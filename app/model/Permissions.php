@@ -65,7 +65,7 @@ class Permissions extends \Nette\Object {
    * Get specified group
    * 
    * @param int $id Group's id
-   * @return \Nette\Database\Table\ActiveRow|bool
+   * @return \stdClass|bool
    */
   function getGroup($id) {
     $groups = $this->getGroups();
