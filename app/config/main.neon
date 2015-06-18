@@ -20,3 +20,5 @@ session:
     savePath: "%tempDir%/sessions"
     name: NEXSESSID
     expiration: 4 hours
+services:
+    authenticator: Nexendrie\Authenticator
