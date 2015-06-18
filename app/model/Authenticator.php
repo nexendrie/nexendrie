@@ -23,17 +23,17 @@ class Authenticator extends \Nette\Object implements NS\IAuthenticator {
    * Logins the user
    * 
    * @param array $credentials
-   * @return \Nette\Security\Identity User's identity
+   * @return \Nette\Security\Identity User"s identity
    */
   function authenticate(array $credentials) {
     list($username, $password) = $credentials;
-    $row = $this->db->table('users')
-      ->where('username', $username)->fetch();
+    $row = $this->db->table("users")
+      ->where("username", $username)->fetch();
     if(!$row) {
-      throw new NS\AuthenticationException('User not found.');
+      throw new NS\AuthenticationException("User not found.");
     }
     if(!NS\Passwords::verify($password, $row->password)) {
-      throw new NS\AuthenticationException('Invalid password.');
+      throw new NS\AuthenticationException("Invalid password.");
     }
     $group = $this->db->table("groups")->get($row->group);
     $data = array(
