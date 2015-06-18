@@ -17,6 +17,8 @@ class Authorizator extends \Nette\Object {
     $permission = new \Nette\Security\Permission;
     
     $groups = $model->getGroups();
+    $permissions = $model->getPermissions();
+    
     foreach($groups as $i => $row) {
       if($row->level === 0) {
         $permission->addRole($row->single_name);
@@ -24,6 +26,12 @@ class Authorizator extends \Nette\Object {
         $parent = $groups[$i+1];
         $permission->addRole($row->single_name, $parent->single_name);
       }
+    }
+    
+    foreach($permissions as $row) {
+      if(!$permission->hasResource($row->resource)) $permission->addResource($row->resource);
+      $group = $model->getGroup($row->group);
+      $permission->allow($group->single_name, $row->resource, $row->action);
     }
     
     return $permission;

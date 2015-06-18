@@ -43,5 +43,15 @@ class Permissions extends \Nette\Object {
       return $group;
     }
   }
+  
+  /**
+   * Get permissions
+   * 
+   * @return array
+   */
+  function getPermissions() {
+    $return = $this->db->table("permissions");
+    return $return;
+  }
 }
 ?>
