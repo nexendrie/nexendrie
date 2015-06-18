@@ -17,11 +17,14 @@ class Permissions extends \Nette\Object {
   /**
    * Get list of all groups
    * 
+   * @param string $order_by
    * @return array
    */
-  function getGroups() {
+  function getGroups($order_by = "level") {
+    $cols = array("id", "level");
+    if(!in_array($order_by, $cols)) $order_by = "level";
     $groups = $this->db->table("groups")
-      ->order("level");
+      ->order($order_by);
     return $groups;
   }
   
