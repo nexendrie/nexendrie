@@ -16,7 +16,7 @@ class Authorizator extends \Nette\Object {
   static function create(\Nexendrie\Permissions $model) {
     $permission = new \Nette\Security\Permission;
     
-    $groups = $model->getGroups();
+    $groups = $model->getGroupsByLevel();
     $permissions = $model->getPermissions();
     
     foreach($groups as $i => $row) {
