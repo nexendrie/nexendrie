@@ -24,6 +24,11 @@ class Permissions extends \Nette\Object {
     return $groups;
   }
   
+  /**
+   * Get list of all groups ordered by level
+   * 
+   * @return array
+   */
   function getGroupsByLevel() {
     $groups = $this->db->table("groups")
       ->order("level");
