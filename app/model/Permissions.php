@@ -46,8 +46,18 @@ class Permissions extends \Nette\Object {
    * @return array
    */
   function getGroupsByLevel() {
-    $groups = $this->db->table("groups")
-      ->order("level");
+    $groups = $this->cache->load("groups_by_level");
+    if($groups === NULL) {
+      $groupsRows = $this->db->table("groups")
+        ->order("level");
+      foreach($groupsRows as $row) {
+        $group = (object) array(
+          "id" => $row->id, "single_name" => $row->single_name, "level" => $row->level
+        );
+        $groups[$group->id] = $group;
+      }
+      $this->cache->save("groups_by_level", $groups);
+    }
     return $groups;
   }
   
