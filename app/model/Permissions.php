@@ -69,7 +69,18 @@ class Permissions extends \Nette\Object {
    * @return array
    */
   function getPermissions() {
-    $return = $this->db->table("permissions");
+    $return = $this->cache->load("permissions");
+    if($return === NULL) {
+      $rows = $this->db->table("permissions");
+      foreach($rows as $row) {
+        $per = new \stdClass;
+        foreach($row as $key => $value) {
+          $per->$key = $value;
+        }
+        $return[] = $per;
+      }
+      $this->cache->save("permissions", $return);
+    }
     return $return;
   }
 }
