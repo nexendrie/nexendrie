@@ -25,8 +25,18 @@ class UserPresenter extends \Nette\Application\UI\Presenter {
     return $form;
   }
   
+  /**
+   * @todo return to previous page if possible, handle exceptions
+   * 
+   * @param \Nette\Application\UI\Form $form
+   * @param \Nette\Utils\ArrayHash $values
+   */
   function loginFormSucceeded(UI\Form $form, $values) {
-    
+    $this->user->login($values["username"], $values["password"]);
+    if($this->user->isLoggedIn()) {
+      $this->flashMessage("Byl jsi úspěšně přihlášen.");
+      $this->redirect("Homepage:");
+    }
   }
   
   /**
