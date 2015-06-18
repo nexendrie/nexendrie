@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie;
 
+use Nette\Utils\Arrays;
+
 /**
  * Description of Permissions
  *
@@ -9,9 +11,12 @@ namespace Nexendrie;
 class Permissions extends \Nette\Object {
   /** @var \Nette\Database\Context */
   protected $db;
+  /** @var \Nette\Caching\Cache */
+  protected $cache;
   
-  function __construct(\Nette\Database\Context $db) {
+  function __construct(\Nette\Caching\Cache $cache, \Nette\Database\Context $db) {
     $this->db = $db;
+    $this->cache = $cache;
   }
   
   /**
@@ -20,7 +25,18 @@ class Permissions extends \Nette\Object {
    * @return array
    */
   function getGroups() {
-    $groups = $this->db->table("groups");
+    $groups = $this->cache->load("groups");
+    if($groups === NULL) {
+      $groupsRows = $this->db->table("groups");
+      foreach($groupsRows as $row) {
+        $group = new \stdClass;
+        foreach($row as $key => $value) {
+          $group->$key = $value;
+        }
+        $groups[$group->id] = $group;
+        $this->cache->save("groups", $groups);
+      }
+    }
     return $groups;
   }
   
@@ -42,16 +58,9 @@ class Permissions extends \Nette\Object {
    * @return \Nette\Database\Table\ActiveRow|bool
    */
   function getGroup($id) {
-    $row = $this->db->table("groups")->get($id);
-    if(!$row) {
-      return false;
-    } else {
-      $group = new \stdClass;
-      foreach($row as $key => $value) {
-        $group->$key = $value;
-      }
-      return $group;
-    }
+    $groups = $this->getGroups();
+    $group = Arrays::get($groups, $id, false);
+    return $group;
   }
   
   /**
