@@ -1,0 +1,22 @@
+includes:
+    - local.neon
+    - routes.neon
+    - models.neon
+application:
+    debugger: true
+    mapping:
+        *: Nexendrie\Presenters\*Presenter
+database:
+    default:
+        dsn: %database.dsn%
+        user: %database.user%
+        password: %database.password%
+        debugger: true
+        explain: true
+tracy:
+    email: %application.webmasterMail%
+    strictMode: TRUE
+session:
+    savePath: "%tempDir%/sessions"
+    name: NEXSESSID
+    expiration: 4 hours

@@ -1,0 +1,3 @@
+routing:
+    routes:
+        "<presenter>[/<action>][/<id>]": "Homepage:default"
