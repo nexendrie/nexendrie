@@ -22,3 +22,4 @@ session:
     expiration: 4 hours
 services:
     authenticator: Nexendrie\Authenticator
+    authorizator: Nexendrie\Authorizator::create
