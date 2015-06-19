@@ -36,7 +36,7 @@ class News extends \Nette\Object {
     $day = (int) substr($date, 8, 2);
     $month = (int) substr($date, 5, 2);
     $year = substr($date, 0, 4);
-    $time = substr($date, 10, 8);
+    $time = substr($date, 10, 5);
     return "$day.$month.$year $time";
   }
   
