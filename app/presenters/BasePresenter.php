@@ -7,6 +7,30 @@ namespace Nexendrie\Presenters;
  * @author Jakub Konečný
  */
 class BasePresenter extends \Nette\Application\UI\Presenter {
+  /**
+   * The user must be logged in to see a page
+   * 
+   * @return void
+   */
+  function requiresLogin() {
+    if(!$this->user->isLoggedIn()) {
+      $this->flashMessage("K zobrazení této stránky musíš být přihlášen.");
+      $this->redirect("User:login");
+    }
+  }
   
+  /**
+   * The user must have specified rights to see a page
+   * 
+   * @param string $resource
+   * @param string $action
+   * @return void
+   */
+  function requiresPermissions($resource, $action) {
+    if(!$this->user->isAllowed($resource, $action)) {
+      $this->flashMessage("K zobrazení této stránky nemáš práva.");
+      $this->redirect("Homepage:");
+    }
+  }
 }
 ?>
