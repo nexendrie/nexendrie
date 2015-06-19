@@ -9,12 +9,12 @@ namespace Nexendrie;
 class Profile extends \Nette\Object {
   /** @var \Nette\Database\Context Database context */
   protected $db;
-  /** @var \Nexendrie\Permissions */
-  protected $permissionsModel;
+  /** @var \Nexendrie\Group */
+  protected $groupModel;
   
-  function __construct(\Nette\Database\Context $database, \Nexendrie\Permissions $permissionsModel) {
+  function __construct(\Nette\Database\Context $database, \Nexendrie\Group $permissionsModel) {
     $this->db = $database;
-    $this->permissionsModel = $permissionsModel;
+    $this->groupModel = $permissionsModel;
   }
   
   /**
@@ -31,7 +31,7 @@ class Profile extends \Nette\Object {
     $return = new \stdClass;
     $return->name = $user->publicname;
     $return->joined = $user->joined;
-    $group = $this->permissionsModel->getGroup($user->group);
+    $group = $this->groupModel->get($user->group);
     if(!$group) $return->title = "";
     else $return->title = $group->single_name;
     return $return;

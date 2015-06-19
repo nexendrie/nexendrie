@@ -11,15 +11,15 @@ use Nette\Security as NS;
 class Authenticator extends \Nette\Object implements NS\IAuthenticator {
   /** @var \Nette\Database\Context Database context */
   protected $db;
-  /** @var \Nexendrie\Permissions */
-  protected $permissionsModel;
+  /** @var \Nexendrie\Group */
+  protected $groupModel;
   
   /**
    * @param \Nette\Database\Context $database Database context
    */
-  function __construct(\Nette\Database\Context $database, \Nexendrie\Permissions $permissionsModel) {
+  function __construct(\Nette\Database\Context $database, \Nexendrie\Group $groupModel) {
     $this->db = $database;
-    $this->permissionsModel = $permissionsModel;
+    $this->groupModel = $groupModel;
   }
   
   /**
@@ -38,7 +38,7 @@ class Authenticator extends \Nette\Object implements NS\IAuthenticator {
     if(!NS\Passwords::verify($password, $row->password)) {
       throw new NS\AuthenticationException("Invalid password.");
     }
-    $group = $this->permissionsModel->getGroup($row->group);
+    $group = $this->groupModel->get($row->group);
     $data = array(
       "name" => $row->publicname, "group" => $row->group
     );
