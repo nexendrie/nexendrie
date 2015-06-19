@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie;
 
+use Nette\Utils\Arrays;
+
 /**
  * Profile Model
  *
@@ -11,10 +13,29 @@ class Profile extends \Nette\Object {
   protected $db;
   /** @var \Nexendrie\Group */
   protected $groupModel;
+  /** @var array */
+  protected $names = array();
   
   function __construct(\Nette\Database\Context $database, \Nexendrie\Group $groupModel) {
     $this->db = $database;
     $this->groupModel = $groupModel;
+  }
+  
+  /**
+   * Get specified user's username and public name
+   * 
+   * @param int $id User's id
+   * @return array
+   */
+  function getNames($id) {
+    $user = Arrays::get($this->names, $id, false);
+    if(!$user) {
+      $user = $this->db->table("users")->get($id);
+      $this->names[$id] = (object) array(
+        "username" => $user->username, "publicname" => $user->publicname
+      );
+    }
+    return $user;
   }
   
   /**

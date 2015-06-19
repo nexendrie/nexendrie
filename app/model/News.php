@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie;
 
-use Nette\Utils\Arrays;
-
 /**
  * News Model
  *
@@ -14,11 +12,12 @@ class News extends \Nette\Object {
   protected $db;
   /** @var int */
   protected $itemsPerPage = 10;
-  /** @var array */
-  protected $names = array();
+  /** @var \Nexendrie\Profile */
+  protected $profileModel;
   
-  function __construct(\Nette\Database\Context $db) {
+  function __construct(\Nette\Database\Context $db, \Nexendrie\Profile $profileModel) {
     $this->db = $db;
+    $this->profileModel = $profileModel;
   }
   
   /**
@@ -27,17 +26,6 @@ class News extends \Nette\Object {
    */
   function setItemsPerPage($amount) {
     if(is_int($amount)) $this->itemsPerPage = $amount;
-  }
-  
-  function getNames($id) {
-    $user = Arrays::get($this->names, $id, false);
-    if(!$user) {
-      $user = $this->db->table("users")->get($id);
-      $this->names[$id] = (object) array(
-        "username" => $user->username, "publicname" => $user->publicname
-      );
-    }
-    return $user;
   }
   
   /**
@@ -71,7 +59,7 @@ class News extends \Nette\Object {
         if($key === "text") {
           continue;
         } elseif($key === "author") {
-          $user = $this->getNames($value);
+          $user = $this->profileModel->getNames($value);
           $n->$key = $user->publicname;
           $key .= "_username";
           $n->$key = $user->username;
@@ -97,7 +85,7 @@ class News extends \Nette\Object {
     $return = new \stdClass;
     foreach($new as $key => $value) {
       if($key === "author") {
-        $user = $this->getNames($value);
+        $user = $this->profileModel->getNames($value);
         $return->$key = $user->publicname;
         $key .= "_username";
         $return->$key = $user->username;

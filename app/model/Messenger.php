@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie;
 
-use Nette\Utils\Arrays;
-
 /**
  * Messenger Model
  *
@@ -13,23 +11,13 @@ class Messenger extends \Nette\Object {
   protected $db;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var array */
-  protected $names = array();
+  /** @var \Nexendrie\Profile */
+  protected $profileModel;
   
-  function __construct(\Nette\Database\Context $db, \Nette\Security\User $user) {
+  function __construct(\Nette\Database\Context $db, \Nette\Security\User $user, \Nexendrie\Profile $profileModel) {
     $this->db = $db;
     $this->user = $user;
-  }
-  
-  function getNames($id) {
-    $user = Arrays::get($this->names, $id, false);
-    if(!$user) {
-      $user = $this->db->table("users")->get($id);
-      $this->names[$id] = (object) array(
-        "username" => $user->username, "publicname" => $user->publicname
-      );
-    }
-    return $user;
+    $this->profileModel = $profileModel;
   }
   
   /**
@@ -47,7 +35,7 @@ class Messenger extends \Nette\Object {
       $m = new \stdClass;
       foreach($message as $key => $value) {
         if($key === "from" OR $key === "to") {
-          $user = $this->getNames($value);
+          $user = $this->profileModel->getNames($value);
           $m->$key = $user->publicname;
           $key .= "_username";
           $m->$key = $user->username;
@@ -75,7 +63,7 @@ class Messenger extends \Nette\Object {
       $m = new \stdClass;
       foreach($message as $key => $value) {
         if($key === "from" OR $key === "to") {
-          $user = $this->getNames($value);
+          $user = $this->profileModel->getNames($value);
           $m->$key = $user->publicname;
           $key .= "_username";
           $m->$key = $user->username;
