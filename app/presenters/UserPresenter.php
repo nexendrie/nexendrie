@@ -61,6 +61,16 @@ class UserPresenter extends \Nette\Application\UI\Presenter {
   }
   
   /**
+   * @return void
+   */
+  function actionRegister() {
+    if($this->user->isLoggedIn()) {
+      $this->flashMessage("Už jsi přihlášen.");
+      $this->redirect("Homepage:");
+    }
+  }
+  
+  /**
    * Creates form for registering
    * 
    * @return \Nette\Application\UI\Form
