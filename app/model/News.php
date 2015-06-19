@@ -12,12 +12,18 @@ class News extends \Nette\Object {
   protected $db;
   /** @var \Nexendrie\Profile */
   protected $profileModel;
+  /** @var \Nette\Security\User */
+  protected $user;
   /** @var int */
   protected $itemsPerPage = 10;
   
   function __construct(\Nette\Database\Context $db, \Nexendrie\Profile $profileModel) {
     $this->db = $db;
     $this->profileModel = $profileModel;
+  }
+  
+  function setUser(\Nette\Security\User $user) {
+    $this->user = $user;
   }
   
   /**
@@ -96,6 +102,13 @@ class News extends \Nette\Object {
       }
     }
     return $return;
+  }
+  
+  function add(\Nette\Utils\ArrayHash $data) {
+    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
+    if(!$this->user->isAllowed("news", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
+    $data["author"] = $this->user->id;
+    $this->db->query("INSERT INTO news", $data);
   }
 }
 ?>

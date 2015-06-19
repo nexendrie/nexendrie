@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Presenters;
 
+use Nette\Application\UI;
+
 /**
  * Description of NewsPresenter
  *
@@ -30,5 +32,43 @@ class NewsPresenter extends BasePresenter {
     if(!$new) $this->forward("notfound");
     $this->template->new = $new;
   }
+  
+  function actionAdd() {
+    $this->requiresPermissions("news", "add");
+  }
+  
+  /**
+   * Creates form for adding news
+   * 
+   * @return \Nette\Application\UI\Form
+   */
+  protected function createComponentAddNewsForm() {
+    $form = new UI\Form;
+    $form->addText("title", "Titulek:")
+      ->addRule(UI\Form::MAX_LENGTH, "Titulek může mít maximálně 30 znaků.", 30)
+      ->setRequired("Zadej titulek.");
+    $form->addTextArea("text", "Text:")
+      ->setRequired("Zadej text.");
+    $form->addSubmit("send", "Odeslat");
+    $form->onSuccess[] = array($this, "addNewsFormSucceeded");
+    return $form;
+  }
+  
+  /**
+   * Adds new
+   * @todo redirect to the added new
+   * 
+   * @param \Nette\Application\UI\Form $form
+   * @param \Nette\Utils\ArrayHash $values
+   */
+  function addNewsFormSucceeded(UI\Form $form, $values) {
+    $this->model->user = $this->context->getService("security.user");
+    $id = $this->model->add($values);
+    if(is_int($id)) {
+      $this->flashMessage("Novinka byla přidána.");
+      $this->redirect("Homepage:");
+    }
+  }
+  
 }
 ?>
