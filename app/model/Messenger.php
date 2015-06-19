@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie;
 
+use Nette\Utils\Arrays;
+
 /**
  * Messenger Model
  *
@@ -25,14 +27,17 @@ class Messenger extends \Nette\Object {
    */
   function inbox() {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    $return = array();
+    $return = $users = array();
     $messages = $this->db->table("messages")
       ->where("to", $this->user->id);
     foreach($messages as $message) {
       $m = new \stdClass;
       foreach($message as $key => $value) {
         if($key === "from" OR $key === "to") {
-          $user = $this->db->table("users")->get($value);
+          $user = Arrays::get($users, $value, false);
+          if(!$user) {
+            $users[$value] = $user = $this->db->table("users")->get($value);
+          }
           $m->$key = $user->publicname;
           $key .= "_username";
           $m->$key = $user->username;
@@ -53,14 +58,17 @@ class Messenger extends \Nette\Object {
    */
   function outbox() {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    $return = array();
+    $return = $users = array();
     $messages = $this->db->table("messages")
       ->where("from", $this->user->id);
     foreach($messages as $message) {
       $m = new \stdClass;
       foreach($message as $key => $value) {
         if($key === "from" OR $key === "to") {
-          $user = $this->db->table("users")->get($value);
+          $user = Arrays::get($users, $value, false);
+          if(!$user) {
+            $users[$value] = $user = $this->db->table("users")->get($value);
+          }
           $m->$key = $user->publicname;
           $key .= "_username";
           $m->$key = $user->username;
