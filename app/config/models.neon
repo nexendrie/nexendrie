@@ -2,3 +2,4 @@ services:
     model.group: Nexendrie\Group
     model.permissions: Nexendrie\Permissions
     model.profile: Nexendrie\Profile
+    model.user: Nexendrie\User

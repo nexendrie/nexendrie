@@ -95,7 +95,19 @@ class UserPresenter extends \Nette\Application\UI\Presenter {
    * @param \Nette\Utils\ArrayHash $values
    */
   function registerFormSucceeded(UI\Form $form, $values) {
-    
+    $model = $this->context->getService("model.user");
+    try {
+      $model->register($values);
+      $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
+      $this->redirect("Homepage:");
+    } catch (\Nexendrie\RegistrationException $e) {
+      if($e->getCode() === \Nexendrie\User::REG_DUPLICATE_USERNAME) {
+        $form->addError("Zvolené uživatelské jméno je už zabráno.");
+      }
+      if($e->getCode() === \Nexendrie\User::REG_DUPLICATE_EMAIL) {
+        $form->addError("Zadaný e-mail je už používán.");
+      }
+    }
   }
 }
 ?>
