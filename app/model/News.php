@@ -10,10 +10,10 @@ namespace Nexendrie;
 class News extends \Nette\Object {
   /** @var \Nette\Database\Context */
   protected $db;
-  /** @var int */
-  protected $itemsPerPage = 10;
   /** @var \Nexendrie\Profile */
   protected $profileModel;
+  /** @var int */
+  protected $itemsPerPage = 10;
   
   function __construct(\Nette\Database\Context $db, \Nexendrie\Profile $profileModel) {
     $this->db = $db;
