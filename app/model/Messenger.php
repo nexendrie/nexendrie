@@ -89,7 +89,7 @@ class Messenger extends \Nette\Object {
     $message = $this->db->table("messages")->get($id);
     if(!$message) throw new \Nette\Application\BadRequestException("Message not found.");
     if($message->from != $this->user->id AND $message->to != $this->user->id) {
-      throw new \Nette\Application\ForbiddenRequestException("This action requires authentication.", 403);
+      throw new \Nette\Application\ForbiddenRequestException("You can't see this message.", 403);
     }
     $return = new \stdClass;
     foreach($message as $key => $value) {
