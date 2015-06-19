@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Presenters;
 
+use Nette\Application\UI;
+
 /**
  * Presenter Messages
  *
@@ -47,6 +49,40 @@ class MessagesPresenter extends BasePresenter {
     } catch(\Nette\Application\BadRequestException $e) {
       $this->forward("notfound");
     }
+  }
+  
+  /**
+   * Creates form for new message
+   * 
+   * @return \Nette\Application\UI\Form
+   */
+  protected function createComponentNewMessageForm() {
+    $form = new UI\Form;
+    $users = $this->model->usersList();
+    $form->addSelect("to", "Pro:", $users)
+      ->setPrompt("Vyber příjemce")
+      ->setRequired("Vyber příjemce.");
+    $form->addText("subject", "Předmět:")
+      ->addRule(UI\Form::MAX_LENGTH, "Předmět může mít maximálně 30 znaků.", 30)
+      ->setRequired("Zadej předmět.");
+    $form->addTextArea("text", "Text:")
+      ->setRequired("Zadej text.");
+    $form->addSubmit("send", "Odeslat");
+    $form->onSuccess[] = array($this, "newMessageFormSucceeded");
+    return $form;
+  }
+  
+  /**
+   * Send new message
+   * 
+   * @param \Nette\Application\UI\Form $form
+   * @param \Nette\Utils\ArrayHash $values
+   * @return void
+   */
+  function newMessageFormSucceeded(UI\Form $form, $values) {
+    $this->model->send($values);
+    $this->flashMessage("Zpráva byla odeslána.");
+    $this->redirect("Messages:sent");
   }
 }
 ?>

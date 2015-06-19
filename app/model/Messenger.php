@@ -101,5 +101,31 @@ class Messenger extends \Nette\Object {
     }
     return $return;
   }
+  
+  /**
+   * Get list of users
+   * 
+   * @return array id => publicname
+   */
+  function usersList() {
+    $return = array();
+    $users = $this->db->table("users");
+    foreach($users as $user) {
+      if($user->id === $this->user->id) continue;
+      $return[$user->id] = $user->publicname;
+    }
+    return $return;
+  }
+  
+  /**
+   * Sends new message
+   * 
+   * @param \Nette\Utils\ArrayHash $data
+   * @return void
+   */
+  function send(\Nette\Utils\ArrayHash $data) {
+    $data["from"] = $this->user->id;
+    $this->db->query("INSERT INTO messages", $data);
+  }
 }
 ?>
