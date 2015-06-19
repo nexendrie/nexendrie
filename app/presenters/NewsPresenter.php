@@ -20,6 +20,9 @@ class NewsPresenter extends BasePresenter {
     $this->model = $this->context->getService("model.news");
   }
   
+  /**
+   * @return void
+   */
   function renderPage($page) {
     if($page == 1) $this->redirect("Homepage:");
     $paginator = new \Nette\Utils\Paginator;
@@ -27,12 +30,18 @@ class NewsPresenter extends BasePresenter {
     $this->template->paginator = $paginator;
   }
   
+  /**
+   * @return void
+   */
   function renderView($id) {
     $new = $this->model->view($id);
     if(!$new) $this->forward("notfound");
     $this->template->new = $new;
   }
   
+  /**
+   * @return void
+   */
   function actionAdd() {
     $this->requiresPermissions("news", "add");
   }
