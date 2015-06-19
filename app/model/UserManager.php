@@ -6,7 +6,7 @@ namespace Nexendrie;
  *
  * @author Jakub Konečný
  */
-class User extends \Nette\Object {
+class UserManager extends \Nette\Object {
   /** @var \Nette\Database\Context Database context */
   protected $db;
   /** Exception error code */
