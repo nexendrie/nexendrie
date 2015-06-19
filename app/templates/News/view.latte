@@ -1,0 +1,7 @@
+{layout '../@layout.latte'}
+{block title}Novinka{/block}
+{block content}
+  <h1>{$new->title}</h1>
+  <p>od <a n:href="Profile:default $new->author_username">{$new->author}</a> {$new->added}</p>
+  <p>{$new->text}</p>
+{/block}
