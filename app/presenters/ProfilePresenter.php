@@ -6,7 +6,7 @@ namespace Nexendrie\Presenters;
  *
  * @author Jakub Konečný
  */
-class ProfilePresenter extends \Nette\Application\UI\Presenter {
+class ProfilePresenter extends BasePresenter {
   /** @var \Nexendrie\Profile */
   protected $model;
   

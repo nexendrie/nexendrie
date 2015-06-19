@@ -6,7 +6,7 @@ namespace Nexendrie\Presenters;
  *
  * @author Jakub Konečný
  */
-class HomepagePresenter extends \Nette\Application\UI\Presenter {
+class HomepagePresenter extends BasePresenter {
   
 }
 ?>

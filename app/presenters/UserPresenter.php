@@ -8,7 +8,7 @@ use Nette\Application\UI;
  *
  * @author Jakub Konečný
  */
-class UserPresenter extends \Nette\Application\UI\Presenter {
+class UserPresenter extends BasePresenter {
   /**
    * Creates form for logging in
    * 
