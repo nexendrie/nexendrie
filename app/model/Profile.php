@@ -11,14 +11,34 @@ use Nette\Utils\Arrays;
 class Profile extends \Nette\Object {
   /** @var \Nette\Database\Context Database context */
   protected $db;
+  /** @var \Nette\Caching\Cache */
+  protected $cache;
   /** @var \Nexendrie\Group */
   protected $groupModel;
   /** @var array */
   protected $names = array();
   
-  function __construct(\Nette\Database\Context $database, \Nexendrie\Group $groupModel) {
+  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Group $groupModel) {
     $this->db = $database;
+    $this->cache = $cache;
     $this->groupModel = $groupModel;
+  }
+  
+  /**
+   * @return array
+   */
+  function getAllNames() {
+    $names = $this->cache->load("users_names");
+    if($names === NULL) {
+      $users = $this->db->table("users");
+      foreach($users as $user) {
+        $names[$user->id] = (object) array(
+          "username" => $user->username, "publicname" => $user->publicname
+        );
+      }
+      $this->cache->save("users_names", $names);
+    }
+    return $names;
   }
   
   /**
@@ -28,13 +48,8 @@ class Profile extends \Nette\Object {
    * @return array
    */
   function getNames($id) {
-    $user = Arrays::get($this->names, $id, false);
-    if(!$user) {
-      $user = $this->db->table("users")->get($id);
-      $this->names[$id] = (object) array(
-        "username" => $user->username, "publicname" => $user->publicname
-      );
-    }
+    $names = $this->getAllNames();
+    $user = Arrays::get($names, $id, false);
     return $user;
   }
   

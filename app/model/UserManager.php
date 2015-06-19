@@ -11,14 +11,17 @@ use Nette\Security as NS;
 class UserManager extends \Nette\Object implements NS\IAuthenticator {
   /** @var \Nette\Database\Context Database context */
   protected $db;
+  /** @var \Nette\Caching\Cache */
+  protected $cache;
   /** @var \Nexendrie\Group */
   protected $groupModel;
   /** Exception error code */
   const REG_DUPLICATE_USERNAME = 1,
     REG_DUPLICATE_EMAIL = 2;
   
-  function __construct(\Nette\Database\Context $db, \Nexendrie\Group $groupModel) {
-    $this->db = $db;
+  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Group $groupModel) {
+    $this->db = $database;
+    $this->cache = $cache;
     $this->groupModel = $groupModel;
   }
   
@@ -63,6 +66,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     $data["publicname"] = $data["username"];
     $data["password"] = \Nette\Security\Passwords::hash($data["password"]);
     $this->db->query("INSERT INTO users", $data);
+    $this->cache->remove("users_names");
   }
 }
 
