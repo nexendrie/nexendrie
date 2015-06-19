@@ -52,5 +52,33 @@ class UserPresenter extends \Nette\Application\UI\Presenter {
     }
     $this->redirect("Homepage:");
   }
+  
+  /**
+   * Creates form for registering
+   * 
+   * @return \Nette\Application\UI\Form
+   */
+  protected function createComponentRegisterForm() {
+    $form = new UI\Form;
+    $form->addText("username", "Uživatelské jméno:")
+      ->addRule(UI\Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků." , 25)
+      ->setRequired("Zadej jméno");
+    $form->addPassword("password", "Heslo:")
+      ->setRequired("Zadej heslo");
+    $form->addText("email", "E-mail:")
+      ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
+      ->setRequired("Zadej e-mail.");
+    $form->addSubmit("login", "Přihlásit se");
+    $form->onSuccess[] = array($this, "registerFormSucceeded");
+    return $form;
+  }
+  
+  /**
+   * @param \Nette\Application\UI\Form $form
+   * @param \Nette\Utils\ArrayHash $values
+   */
+  function registerFormSucceeded(UI\Form $form, $values) {
+    
+  }
 }
 ?>
