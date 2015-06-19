@@ -21,6 +21,6 @@ session:
     name: NEXSESSID
     expiration: 4 hours
 services:
-    authenticator: Nexendrie\Authenticator
+    - Nexendrie\UserManager
     authorizator: Nexendrie\Authorizator::create
     cache.cache: Nette\Caching\Cache(@cache.storage, "data")

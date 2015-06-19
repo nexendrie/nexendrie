@@ -104,7 +104,7 @@ class UserPresenter extends BasePresenter {
    * @return void
    */
   function registerFormSucceeded(UI\Form $form, $values) {
-    $model = $this->context->getService("model.userManager");
+    $model = $this->context->getByType("\Nexendrie\UserManager");
     try {
       $model->register($values);
       $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
