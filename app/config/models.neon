@@ -1,4 +1,5 @@
 services:
     model.group: Nexendrie\Group
+    model.messenger: Nexendrie\Messenger
     model.permissions: Nexendrie\Permissions
     model.profile: Nexendrie\Profile

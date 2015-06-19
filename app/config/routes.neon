@@ -1,4 +1,5 @@
 routing:
     routes:
         "profile/<username>": "Profile:default"
+        "message/<id [0-9]+>": "Messages:view"
         "<presenter>[/<action>][/<id>]": "Homepage:default"

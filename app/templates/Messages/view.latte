@@ -1,0 +1,8 @@
+{layout '../@layout.latte'}
+{block title}Zpráva{/block}
+{block content}
+  <h1>{$message->subject}</h1>
+  Od: <a n:href="Profile:default $message->from_username">{$message->from}</a><br>
+  Pro: <td><a n:href="Profile:default $message->to_username">{$message->to}</a><br>
+  <p>{$message->text}</p>
+{/block}

@@ -1,0 +1,16 @@
+{layout '../@layout.latte'}
+{block title}Odeslané zprávy{/block}
+{block content}
+  <h1>Odeslané zprávy</h1>
+  <p><a n:href="Messages:">Přijaté zprávy</a> Odeslané zprávy <a n:href="Messages:new">Poslat zprávu</a></p>
+  {if count($messages) === 0}
+    <p>Neodeslal jste ještě žádné zprávy.</p>
+  {else}
+    <table>
+      <tr><th>Předmět</th><th>Pro</th><th>Odesláno</th></tr>
+    {foreach $messages as $message}
+      <tr><td><a n:href="Messages:view $message->id">{$message->subject}</a></td><td><a n:href="Profile:default $message->to_username">{$message->to}</a></td><td>{$message->sent}</td></tr>
+    {/foreach}
+    </table>
+  {/if}
+{/block}
