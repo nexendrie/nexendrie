@@ -26,10 +26,12 @@ class UserPresenter extends \Nette\Application\UI\Presenter {
   }
   
   /**
+   * Login the user
    * @todo return to previous page if possible
    * 
    * @param \Nette\Application\UI\Form $form
    * @param \Nette\Utils\ArrayHash $values
+   * @return void
    */
   function loginFormSucceeded(UI\Form $form, $values) {
     try {
@@ -47,6 +49,8 @@ class UserPresenter extends \Nette\Application\UI\Presenter {
   }
   
   /**
+   * Log out the user
+   * 
    * @todo return to previous page if possible
    * @return void
    */
@@ -61,6 +65,8 @@ class UserPresenter extends \Nette\Application\UI\Presenter {
   }
   
   /**
+   * Prevent registration when logged in
+   * 
    * @return void
    */
   function actionRegister() {
@@ -91,8 +97,11 @@ class UserPresenter extends \Nette\Application\UI\Presenter {
   }
   
   /**
+   * Register new user
+   * 
    * @param \Nette\Application\UI\Form $form
    * @param \Nette\Utils\ArrayHash $values
+   * @return void
    */
   function registerFormSucceeded(UI\Form $form, $values) {
     $model = $this->context->getService("model.user");
