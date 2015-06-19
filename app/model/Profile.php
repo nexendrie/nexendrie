@@ -12,9 +12,9 @@ class Profile extends \Nette\Object {
   /** @var \Nexendrie\Group */
   protected $groupModel;
   
-  function __construct(\Nette\Database\Context $database, \Nexendrie\Group $permissionsModel) {
+  function __construct(\Nette\Database\Context $database, \Nexendrie\Group $groupModel) {
     $this->db = $database;
-    $this->groupModel = $permissionsModel;
+    $this->groupModel = $groupModel;
   }
   
   /**
