@@ -17,9 +17,9 @@ class UserPresenter extends BasePresenter {
   protected function createComponentLoginForm() {
     $form = new UI\Form;
     $form->addText("username", "Uživatelské jméno:")
-      ->setRequired("Zadej jméno");
+      ->setRequired("Zadej jméno.");
     $form->addPassword("password", "Heslo:")
-      ->setRequired("Zadej heslo");
+      ->setRequired("Zadej heslo.");
     $form->addSubmit("login", "Přihlásit se");
     $form->onSuccess[] = array($this, "loginFormSucceeded");
     return $form;
@@ -85,9 +85,9 @@ class UserPresenter extends BasePresenter {
     $form = new UI\Form;
     $form->addText("username", "Uživatelské jméno:")
       ->addRule(UI\Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků." , 25)
-      ->setRequired("Zadej jméno");
+      ->setRequired("Zadej jméno.");
     $form->addPassword("password", "Heslo:")
-      ->setRequired("Zadej heslo");
+      ->setRequired("Zadej heslo.");
     $form->addText("email", "E-mail:")
       ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
