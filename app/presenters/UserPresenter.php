@@ -26,16 +26,23 @@ class UserPresenter extends \Nette\Application\UI\Presenter {
   }
   
   /**
-   * @todo return to previous page if possible, handle exceptions
+   * @todo return to previous page if possible
    * 
    * @param \Nette\Application\UI\Form $form
    * @param \Nette\Utils\ArrayHash $values
    */
   function loginFormSucceeded(UI\Form $form, $values) {
-    $this->user->login($values["username"], $values["password"]);
-    if($this->user->isLoggedIn()) {
+    try {
+      $this->user->login($values["username"], $values["password"]);
       $this->flashMessage("Byl jsi úspěšně přihlášen.");
       $this->redirect("Homepage:");
+    } catch(\Nette\Security\AuthenticationException $e) {
+      if($e->getCode() === \Nette\Security\IAuthenticator::IDENTITY_NOT_FOUND) {
+        $form->addError("Neplatné uživatelské jméno.");
+      }
+      if($e->getCode() === \Nette\Security\IAuthenticator::INVALID_CREDENTIAL) {
+        $form->addError("Neplatné heslo.");
+      }
     }
   }
   

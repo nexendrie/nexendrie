@@ -33,10 +33,10 @@ class Authenticator extends \Nette\Object implements NS\IAuthenticator {
     $row = $this->db->table("users")
       ->where("username", $username)->fetch();
     if(!$row) {
-      throw new NS\AuthenticationException("User not found.");
+      throw new NS\AuthenticationException("User not found.", NS\IAuthenticator::IDENTITY_NOT_FOUND);
     }
     if(!NS\Passwords::verify($password, $row->password)) {
-      throw new NS\AuthenticationException("Invalid password.");
+      throw new NS\AuthenticationException("Invalid password.", NS\IAuthenticator::INVALID_CREDENTIAL);
     }
     $group = $this->groupModel->get($row->group);
     $data = array(
