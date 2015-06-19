@@ -1,0 +1,13 @@
+source: .
+destination: ./api
+title: Nexendrie
+todo: yes
+charset:
+    0: UTF-8
+exclude: 
+    0: temp
+    1: tests
+accessLevels:
+    0: public
+    1: protected
+    2: private
