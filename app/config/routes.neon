@@ -1,3 +1,4 @@
 routing:
     routes:
+        "profile/<username>": "Profile:default"
         "<presenter>[/<action>][/<id>]": "Homepage:default"

@@ -1,2 +1,3 @@
 services:
     model.permissions: Nexendrie\Permissions
+    model.profile: Nexendrie\Profile
