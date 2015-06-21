@@ -19,7 +19,8 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   protected $user;
   /** Exception error code */
   const REG_DUPLICATE_USERNAME = 1,
-    REG_DUPLICATE_EMAIL = 2;
+    REG_DUPLICATE_EMAIL = 2,
+    SET_INVALID_PASSWORD = 3;
   
   function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Group $groupModel) {
     $this->db = $database;
@@ -136,6 +137,19 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
       switch($key) {
 case "infomails":
   $value = (int) $value;
+  break;
+case "password_new":
+  if(!empty($value)) {
+    $user = $this->db->table("users")->get($this->user->id);
+    if(!NS\Passwords::verify($settings["password_old"], $user->password)) {
+      throw new SettingsException("Invalid password.", self::SET_INVALID_PASSWORD);
+    }
+    $settings["password"] = \Nette\Security\Passwords::hash($value);
+  }
+  unset($settings[$key], $settings["password_old"], $settings["password_check"]);
+  break;
+case "password_old":
+case "password_check":
   break;
       }
     }

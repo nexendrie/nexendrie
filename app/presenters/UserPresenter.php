@@ -158,11 +158,27 @@ class UserPresenter extends BasePresenter {
       ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
     $form->addCheckbox("infomails", "Posílat informační e-maily");
+    $form->addGroup("Heslo")
+      ->setOption("description", "Současné a nové heslo vyplňujte jen pokud ho chcete změnit.");
+    $form->addPassword("password_old", "Současné heslo:");
+    $form->addPassword("password_new", "Nové heslo:");
+    $form->addPassword("password_check", "Nové heslo (kontrola):");
     $form->currentGroup = NULL;
     $form->addSubmit("save", "Uložit změny");
     $form->onSuccess[] = array($this, "userSettingsFormSucceeded");
+    $form->onValidate[] = array($this, "userSettingsFormValidate");
     $form->setDefaults($this->model->getSettings());
     return $form;
+  }
+  
+  /**
+   * @param \Nette\Application\UI\Form $form
+   * @return void
+   */
+  function userSettingsFormValidate(UI\Form $form) {
+    $values = $form->getValues();
+    if(empty($values["password_old"]) AND !empty($values["password_new"])) $form->addError("Musíš zadat současné heslo.");
+    if($values["password_new"] != $values["password_check"]) $form->addError("Hesla se neshodují.");
   }
   
   /**
@@ -183,6 +199,9 @@ class UserPresenter extends BasePresenter {
       }
       if($e->getCode() === \Nexendrie\UserManager::REG_DUPLICATE_EMAIL) {
         $form->addError("Zadaný e-mail je už používán.");
+      }
+      if($e->getCode() === \Nexendrie\UserManager::SET_INVALID_PASSWORD) {
+        $form->addError("Neplatné heslo.");
       }
     }
   }
