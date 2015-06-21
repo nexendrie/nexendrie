@@ -151,6 +151,7 @@ class UserPresenter extends BasePresenter {
     $this->model->user = $this->context->getService("security.user");
     $settings = $this->model->getSettings();
     $form = new UI\Form;
+    $form->addGroup("Účet");
     $form->addText("publicname", "Zobrazované jméno:")
       ->addRule(UI\Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků." , 25)
       ->setRequired("Zadej jméno.")
