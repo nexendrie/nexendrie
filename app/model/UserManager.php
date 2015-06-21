@@ -115,7 +115,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     $user = $this->db->table("users")->get($this->user->id);
     $settings = (object) array(
-      "publicname" => $user->publicname, "email" => $user->email
+      "publicname" => $user->publicname, "email" => $user->email, "infomails" => (bool) $user->infomails
     );
     return $settings;
   }
@@ -132,6 +132,9 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->nameAvailable($settings["publicname"], "publicname", $this->user->id)) throw new SettingsException("The public name is used by someone else.", self::REG_DUPLICATE_USERNAME);
     if(!$this->emailAvailable($settings["email"], $this->user->id)) throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
+    foreach($settings as $key => $value) {
+      if($key === "infomails") $value = (int) $value;
+    }
     $this->db->query("UPDATE users SET ? WHERE id=?", $settings, $this->user->id);
     $this->cache->remove("users_names");
   }

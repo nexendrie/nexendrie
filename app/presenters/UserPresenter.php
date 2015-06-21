@@ -160,6 +160,8 @@ class UserPresenter extends BasePresenter {
       ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.")
       ->setDefaultValue($settings->email);
+    $form->addCheckbox("infomails", "Posílat informační e-maily")
+      ->setValue($settings->infomails);
     $form->currentGroup = NULL;
     $form->addSubmit("save", "Uložit změny");
     $form->onSuccess[] = array($this, "userSettingsFormSucceeded");
