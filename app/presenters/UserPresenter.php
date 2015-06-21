@@ -10,6 +10,18 @@ use Nette\Application\UI;
  */
 class UserPresenter extends BasePresenter {
   /**
+   * Do not allow access login page if the user is already logged in
+   * 
+   * @return void
+   */
+  function actionLogin() {
+    if($this->user->isLoggedIn()) {
+      $this->flashMessage("Už jsi přihlášený.");
+      $this->redirect("Homepage:");
+    }
+  }
+  
+  /**
    * Creates form for logging in
    * 
    * @return \Nette\Application\UI\Form
