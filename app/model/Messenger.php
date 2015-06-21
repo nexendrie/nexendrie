@@ -94,7 +94,7 @@ class Messenger extends \Nette\Object {
     $return = new \stdClass;
     foreach($message as $key => $value) {
       if($key === "from" OR $key === "to") {
-        $user = $this->db->table("users")->get($value);
+        $user = $this->profileModel->getNames($value);
         $return->$key = $user->publicname;
         $key .= "_username";
         $return->$key = $user->username;
