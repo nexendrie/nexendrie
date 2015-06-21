@@ -1,3 +1,6 @@
+<div id="userPanel">
+  {if !$user->isLoggedIn()}<a n:href="User:login">Přihlásit se</a> <a n:href="User:register">Registrovat se</a>{else}<a n:href="Messages:">Zprávy</a> <a n:href="User:settings">Nastavení</a> <a n:href="User:logout">Odhlásit se</a>{/if}
+</div>
 <nav id="navigation">
-  <a n:href="Homepage:">Úvod</a> {if !$user->isLoggedIn()}<a n:href="User:login">Přihlásit se</a> <a n:href="User:register">Registrovat se</a>{else}<a n:href="Messages:">Zprávy</a> <a n:href="User:settings">Nastavení</a> <a n:href="User:logout">Odhlásit se</a>{/if}
+  <a n:href="Homepage:">Úvod</a>
 </nav>
