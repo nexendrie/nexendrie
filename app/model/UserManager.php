@@ -125,10 +125,12 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * 
    * @param \Nette\Utils\ArrayHash $settings
    * @throws \Nette\Application\ForbiddenRequestException
-   * @return void
+   * @throws SettingsException
    */
   function changeSettings(\Nette\Utils\ArrayHash $settings) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
+    if(!$this->nameAvailable($settings["publicname"], "publicname", $this->user->id)) throw new SettingsException("The public name is used by someone else.", self::REG_DUPLICATE_USERNAME);
+    if(!$this->emailAvailable($settings["email"], $this->user->id)) throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
     $this->db->query("UPDATE users SET ? WHERE id=?", $settings, $this->user->id);
     $this->cache->remove("users_names");
   }
@@ -140,6 +142,10 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
  * @author Jakub Konečný
  */
 class RegistrationException extends \Exception {
+  
+}
+
+class SettingsException extends \Exception {
   
 }
 ?>

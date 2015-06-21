@@ -172,9 +172,18 @@ class UserPresenter extends BasePresenter {
    * @return void
    */
   function userSettingsFormSucceeded(UI\Form $form, $values) {
-    $this->model->user = $this->context->getService("security.user");
-    $this->model->changeSettings($values);
-    $this->flashMessage("Změny uloženy.");
+    try {
+      $this->model->user = $this->context->getService("security.user");
+      $this->model->changeSettings($values);
+      $this->flashMessage("Změny uloženy.");
+    } catch (\Nexendrie\SettingsException $e) {
+      if($e->getCode() === \Nexendrie\UserManager::REG_DUPLICATE_USERNAME) {
+        $form->addError("Zvolené jméno je už zabráno.");
+      }
+      if($e->getCode() === \Nexendrie\UserManager::REG_DUPLICATE_EMAIL) {
+        $form->addError("Zadaný e-mail je už používán.");
+      }
+    }
   }
 }
 ?>
