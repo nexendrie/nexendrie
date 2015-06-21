@@ -15,6 +15,8 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   protected $cache;
   /** @var \Nexendrie\Group */
   protected $groupModel;
+  /** @var \Nette\Security\User */
+  protected $user;
   /** Exception error code */
   const REG_DUPLICATE_USERNAME = 1,
     REG_DUPLICATE_EMAIL = 2;
@@ -23,6 +25,10 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     $this->db = $database;
     $this->cache = $cache;
     $this->groupModel = $groupModel;
+  }
+  
+  function setUser(\Nette\Security\User $user) {
+    $this->user = $user;
   }
   
   /**
@@ -66,6 +72,34 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     $data["publicname"] = $data["username"];
     $data["password"] = \Nette\Security\Passwords::hash($data["password"]);
     $this->db->query("INSERT INTO users", $data);
+    $this->cache->remove("users_names");
+  }
+  
+  /**
+   * Get user's settings
+   * 
+   * @return \stdClass
+   * @throws \Nette\Application\ForbiddenRequestException
+   */
+  function getSettings() {
+    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
+    $user = $this->db->table("users")->get($this->user->id);
+    $settings = (object) array(
+      "publicname" => $user->publicname, "email" => $user->email
+    );
+    return $settings;
+  }
+  
+  /**
+   * Change user's settings
+   * 
+   * @param \Nette\Utils\ArrayHash $settings
+   * @throws \Nette\Application\ForbiddenRequestException
+   * @return void
+   */
+  function changeSettings(\Nette\Utils\ArrayHash $settings) {
+    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
+    $this->db->query("UPDATE users SET ? WHERE id=?", $settings, $this->user->id);
     $this->cache->remove("users_names");
   }
 }

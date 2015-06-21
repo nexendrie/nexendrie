@@ -9,6 +9,17 @@ use Nette\Application\UI;
  * @author Jakub Konečný
  */
 class UserPresenter extends BasePresenter {
+  /** @var \Nexendrie\UserManager */
+  protected $model;
+  
+  /**
+   * @return void
+   */
+  function startup() {
+    parent::startup();
+    $this->model = $this->context->getByType("\Nexendrie\UserManager");
+  }
+  
   /**
    * Do not allow access login page if the user is already logged in
    * 
@@ -110,9 +121,8 @@ class UserPresenter extends BasePresenter {
    * @return void
    */
   function registerFormSucceeded(UI\Form $form, $values) {
-    $model = $this->context->getByType("\Nexendrie\UserManager");
     try {
-      $model->register($values);
+      $this->model->register($values);
       $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
       $this->redirect("Homepage:");
     } catch (\Nexendrie\RegistrationException $e) {
@@ -123,6 +133,48 @@ class UserPresenter extends BasePresenter {
         $form->addError("Zadaný e-mail je už používán.");
       }
     }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionSettings() {
+    $this->requiresLogin();
+  }
+  
+  /**
+   * Creates form for changing user's settings
+   * 
+   * @return \Nette\Application\UI\Form
+   */
+  protected function createComponentUserSettingsForm() {
+    $this->model->user = $this->context->getService("security.user");
+    $settings = $this->model->getSettings();
+    $form = new UI\Form;
+    $form->addText("publicname", "Zobrazované jméno:")
+      ->addRule(UI\Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků." , 25)
+      ->setRequired("Zadej jméno.")
+      ->setDefaultValue($settings->publicname);
+    $form->addText("email", "E-mail:")
+      ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
+      ->setRequired("Zadej e-mail.")
+      ->setDefaultValue($settings->email);
+    $form->addSubmit("save", "Uložit změny");
+    $form->onSuccess[] = array($this, "userSettingsFormSucceeded");
+    return $form;
+  }
+  
+  /**
+   * Change user's settings
+   * 
+   * @param \Nette\Application\UI\Form $form
+   * @param \Nette\Utils\ArrayHash $values
+   * @return void
+   */
+  function userSettingsFormSucceeded(UI\Form $form, $values) {
+    $this->model->user = $this->context->getService("security.user");
+    $this->model->changeSettings($values);
+    $this->flashMessage("Změny uloženy.");
   }
 }
 ?>
