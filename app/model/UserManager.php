@@ -32,6 +32,40 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   }
   
   /**
+   * Checks whetever a name is available
+   * 
+   * @param string $name
+   * @param string $type
+   * @param int $uid Id of user who can use the name
+   * @return bool
+   * @throws \Nette\InvalidArgumentException
+   */
+  function nameAvailable($name, $type = "username", $uid = NULL) {
+    if(!is_int($uid) AND !is_null($uid)) throw new \Nette\InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
+    $types = array("username", "publicname");
+    if(!in_array($type, $types)) throw new \Nette\InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
+    $result = $this->db->table("users")
+      ->where($type, $name);
+    if(is_int($uid)) $result->where("NOT id", $uid);
+    return !($result->count() > 0);
+  }
+  
+  /**
+   * Checks whetever an e-mail is available
+   * 
+   * @param string $email
+   * @param int $uid Id of user who can use the e-mail
+   * @return bool
+   */
+  function emailAvailable($email, $uid = NULL) {
+    if(!is_int($uid) AND !is_null($uid)) throw new \Nette\InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
+    $result = $this->db->table("users")
+      ->where("email", $email);
+    if(is_int($uid)) $result->where("NOT id", $uid);
+    return !($result->count() > 0);
+  }
+  
+  /**
    * Logins the user
    * 
    * @param array $credentials
@@ -63,12 +97,8 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * @return void
    */
   function register(\Nette\Utils\ArrayHash $data) {
-    $username = $this->db->table("users")
-       ->where("username", $data["username"]);
-    if($username->count() > 0) throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
-    $email = $this->db->table("users")
-       ->where("email", $data["email"]);
-    if($email->count() > 0) throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
+    if(!$this->nameAvailable($data["username"])) throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
+    if(!$this->emailAvailable($data["email"])) throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
     $data["publicname"] = $data["username"];
     $data["password"] = \Nette\Security\Passwords::hash($data["password"]);
     $this->db->query("INSERT INTO users", $data);
