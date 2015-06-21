@@ -51,6 +51,10 @@ class MessagesPresenter extends BasePresenter {
     }
   }
   
+  function actionNew($id = NULL) {
+    
+  }
+  
   /**
    * Creates form for new message
    * 

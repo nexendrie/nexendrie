@@ -5,4 +5,5 @@
   Od: <a n:href="Profile:default $message->from_username">{$message->from}</a><br>
   Pro: <td><a n:href="Profile:default $message->to_username">{$message->to}</a><br>
   <p>{$message->text}</p>
+  {if $user->id == $message->to_id}<a n:href="Messages:new $message->from_id">Odpovědět</a>{/if}
 {/block}
