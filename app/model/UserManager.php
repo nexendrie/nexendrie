@@ -133,7 +133,11 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     if(!$this->nameAvailable($settings["publicname"], "publicname", $this->user->id)) throw new SettingsException("The public name is used by someone else.", self::REG_DUPLICATE_USERNAME);
     if(!$this->emailAvailable($settings["email"], $this->user->id)) throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
     foreach($settings as $key => $value) {
-      if($key === "infomails") $value = (int) $value;
+      switch($key) {
+case "infomails":
+  $value = (int) $value;
+  break;
+      }
     }
     $this->db->query("UPDATE users SET ? WHERE id=?", $settings, $this->user->id);
     $this->cache->remove("users_names");
