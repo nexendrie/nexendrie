@@ -47,7 +47,7 @@ class News extends \Nette\Object {
   }
   
   /**
-   * 
+   * Show a page of news
    * 
    * @param \Nette\Utils\Paginator $paginator
    * @param int $page
@@ -81,6 +81,7 @@ class News extends \Nette\Object {
   }
   
   /**
+   * Show specified news
    * 
    * @param type $id
    * @return \stdClass|boolean
@@ -104,6 +105,12 @@ class News extends \Nette\Object {
     return $return;
   }
   
+  /**
+   * Add news
+   * 
+   * @param \Nette\Utils\ArrayHash $data
+   * @throws \Nette\Application\ForbiddenRequestException
+   */
   function add(\Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("news", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
