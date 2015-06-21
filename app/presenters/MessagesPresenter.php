@@ -59,9 +59,15 @@ class MessagesPresenter extends BasePresenter {
   protected function createComponentNewMessageForm() {
     $form = new UI\Form;
     $users = $this->model->usersList();
+    try {
+    $uid = $this->getParameter("id", NULL);
     $form->addSelect("to", "Pro:", $users)
       ->setPrompt("Vyber příjemce")
-      ->setRequired("Vyber příjemce.");
+      ->setRequired("Vyber příjemce.")
+      ->setDefaultValue($uid);
+    } catch(\Nette\InvalidArgumentException $e) {
+      
+    }
     $form->addText("subject", "Předmět:")
       ->addRule(UI\Form::MAX_LENGTH, "Předmět může mít maximálně 30 znaků.", 30)
       ->setRequired("Zadej předmět.");
