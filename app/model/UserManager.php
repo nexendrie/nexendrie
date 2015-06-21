@@ -126,6 +126,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * @param \Nette\Utils\ArrayHash $settings
    * @throws \Nette\Application\ForbiddenRequestException
    * @throws SettingsException
+   * @return void
    */
   function changeSettings(\Nette\Utils\ArrayHash $settings) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
