@@ -1,5 +1,5 @@
 source: .
-destination: ./api
+destination: ./doc
 title: Nexendrie
 todo: yes
 charset:
