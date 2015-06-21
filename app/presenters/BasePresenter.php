@@ -20,6 +20,18 @@ class BasePresenter extends \Nette\Application\UI\Presenter {
   }
   
   /**
+   * The user must not be logged in to see a page
+   * 
+   * @return void
+   */
+  function mustNotBeLoggedIn() {
+    if($this->user->isLoggedIn()) {
+      $this->flashMessage("Už jsi přihlášen.");
+      $this->redirect("Homepage:");
+    }
+  }
+  
+  /**
    * The user must have specified rights to see a page
    * 
    * @param string $resource

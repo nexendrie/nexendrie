@@ -15,10 +15,7 @@ class UserPresenter extends BasePresenter {
    * @return void
    */
   function actionLogin() {
-    if($this->user->isLoggedIn()) {
-      $this->flashMessage("Už jsi přihlášený.");
-      $this->redirect("Homepage:");
-    }
+    $this->mustNotBeLoggedIn();
   }
   
   /**
@@ -82,10 +79,7 @@ class UserPresenter extends BasePresenter {
    * @return void
    */
   function actionRegister() {
-    if($this->user->isLoggedIn()) {
-      $this->flashMessage("Už jsi přihlášen.");
-      $this->redirect("Homepage:");
-    }
+    $this->mustNotBeLoggedIn();
   }
   
   /**
