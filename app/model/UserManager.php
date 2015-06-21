@@ -114,7 +114,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   function getSettings() {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     $user = $this->db->table("users")->get($this->user->id);
-    $settings = (object) array(
+    $settings = array(
       "publicname" => $user->publicname, "email" => $user->email, "infomails" => (bool) $user->infomails
     );
     return $settings;

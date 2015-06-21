@@ -149,22 +149,19 @@ class UserPresenter extends BasePresenter {
    */
   protected function createComponentUserSettingsForm() {
     $this->model->user = $this->context->getService("security.user");
-    $settings = $this->model->getSettings();
     $form = new UI\Form;
     $form->addGroup("Účet");
     $form->addText("publicname", "Zobrazované jméno:")
       ->addRule(UI\Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků." , 25)
-      ->setRequired("Zadej jméno.")
-      ->setDefaultValue($settings->publicname);
+      ->setRequired("Zadej jméno.");
     $form->addText("email", "E-mail:")
       ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
-      ->setRequired("Zadej e-mail.")
-      ->setDefaultValue($settings->email);
-    $form->addCheckbox("infomails", "Posílat informační e-maily")
-      ->setValue($settings->infomails);
+      ->setRequired("Zadej e-mail.");
+    $form->addCheckbox("infomails", "Posílat informační e-maily");
     $form->currentGroup = NULL;
     $form->addSubmit("save", "Uložit změny");
     $form->onSuccess[] = array($this, "userSettingsFormSucceeded");
+    $form->setDefaults($this->model->getSettings());
     return $form;
   }
   
