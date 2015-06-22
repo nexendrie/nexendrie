@@ -75,6 +75,7 @@ class Profile extends \Nette\Object {
     $group = $this->groupModel->get($user->group);
     if(!$group) $return->title = "";
     else $return->title = $group->single_name;
+    $return->banned = (bool) $user->banned;
     return $return;
   }
 }
