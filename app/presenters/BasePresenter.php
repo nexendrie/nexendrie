@@ -7,6 +7,11 @@ namespace Nexendrie\Presenters;
  * @author Jakub Konečný
  */
 class BasePresenter extends \Nette\Application\UI\Presenter {
+  function startup() {
+    parent::startup();
+    $this->template->style = $this->user->identity->style;
+  }
+  
   /**
    * The user must be logged in to see a page
    * 

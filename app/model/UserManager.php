@@ -85,7 +85,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     }
     $group = $this->groupModel->get($row->group);
     $data = array(
-      "name" => $row->publicname, "group" => $row->group
+      "name" => $row->publicname, "group" => $row->group, "style" => $row->style
     );
     return new NS\Identity($row->id, $group->single_name, $data);
   }
@@ -116,7 +116,8 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     $user = $this->db->table("users")->get($this->user->id);
     $settings = array(
-      "publicname" => $user->publicname, "email" => $user->email, "infomails" => (bool) $user->infomails
+      "publicname" => $user->publicname, "email" => $user->email, "infomails" => (bool) $user->infomails,
+      "style" => $user->style
     );
     return $settings;
   }

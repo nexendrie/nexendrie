@@ -157,6 +157,9 @@ class UserPresenter extends BasePresenter {
     $form->addText("email", "E-mail:")
       ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
+    $form->addRadioList("style", "Vzhled stránek:", array(
+      "base" => "Základní"
+    ));
     $form->addCheckbox("infomails", "Posílat informační e-maily");
     $form->addGroup("Heslo")
       ->setOption("description", "Současné a nové heslo vyplňujte jen pokud ho chcete změnit.");
