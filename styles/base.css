@@ -15,7 +15,7 @@
 #mainMenu li { list-style-type: none; font-size: smaller; }
 #mainMenu li a { text-decoration: none; font-weight: lighter; color: #CCFF00; }
 #mainMenu li a:hover { color: #660000; }
-#main { position: absolute; top: 96px; left: 175px; width: 741px;
+#main { position: absolute; top: 104px; left: 175px; width: 741px;
   background-color: rgba(192,192,192,0.2); padding: 0px 7px; }
 #main h1,h2,h3 { color: #000033; }
 #main a { color: #00CC00; }
