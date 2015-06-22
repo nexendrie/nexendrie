@@ -214,6 +214,7 @@ class UserPresenter extends BasePresenter {
     try {
       $this->model->user = $this->context->getService("security.user");
       $this->model->changeSettings($values);
+      $this->user->identity->style = $values["style"];
       $this->flashMessage("Změny uloženy.");
     } catch (\Nexendrie\SettingsException $e) {
       if($e->getCode() === \Nexendrie\UserManager::REG_DUPLICATE_USERNAME) {
