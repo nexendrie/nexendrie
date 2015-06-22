@@ -10,3 +10,8 @@
     <li><a n:href="Homepage:">Úvod</a></li>
   </ul>
 </nav>
+<div id="flashes">
+{foreach $flashes as $flash}
+  <div class="flash {$flash->type}">{$flash->message}</div>
+{/foreach}
+</div>
