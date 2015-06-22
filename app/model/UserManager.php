@@ -148,9 +148,6 @@ case "password_new":
   }
   unset($settings[$key], $settings["password_old"], $settings["password_check"]);
   break;
-case "password_old":
-case "password_check":
-  break;
       }
     }
     $this->db->query("UPDATE users SET ? WHERE id=?", $settings, $this->user->id);
