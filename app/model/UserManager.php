@@ -92,11 +92,16 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     if(!NS\Passwords::verify($password, $row->password)) {
       throw new NS\AuthenticationException("Invalid password.", NS\IAuthenticator::INVALID_CREDENTIAL);
     }
-    $group = $this->groupModel->get($row->group);
+    if($row->banned) {
+      $role = "vězeň";
+    } else {
+     $group = $this->groupModel->get($row->group);
+     $role = $group->single_name;
+    }
     $data = array(
       "name" => $row->publicname, "group" => $row->group, "style" => $row->style
     );
-    return new NS\Identity($row->id, $group->single_name, $data);
+    return new NS\Identity($row->id, $role, $data);
   }
   
   /**

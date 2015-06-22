@@ -29,6 +29,7 @@ class Authorizator extends \Nette\Object {
       }
     }
     
+    $permission->deny("vězeň");
     foreach($permissions as $row) {
       if(!$permission->hasResource($row->resource)) $permission->addResource($row->resource);
       $group = $groupModel->get($row->group);
