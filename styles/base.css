@@ -5,12 +5,16 @@ a { color: #00CC00; }
 #userPanel { position: relative; bottom: 3px; left: 700px; width: 280px; }
 #userPanel a { text-decoration: none; background-color: green; color: white;
   border: 5px green solid; position: relative; bottom: 1px; }
-#mainMenu { position: relative; top: 7px; width: 160px; }
+#userPanel a:hover { color: yellow; }
+#mainMenu { position: relative; top: 7px; width: 160px;
+  background-color: #99CCCC; }
 #mainMenu h3 { position: relative; left: 18px; bottom: 14px; width: 104px;
   background-color: #000099; color: white; padding: 3px 10px 3px 15px; }
 #mainMenu ul { position: relative; left: 17px; bottom: 22px; width: 117px;
   background-color: rgba(51,204,153,0.3); padding: 10px 5px 10px 8px; }
 #mainMenu li { list-style-type: none; font-size: smaller; }
+#mainMenu li a { text-decoration: none; font-weight: lighter; }
+#mainMenu li a:hover { color: #660000; }
 #main { position: absolute; top: 96px; left: 175px; width: 741px;
   background-color: rgba(192,192,192,0.2); padding: 0px 7px; }
 #main h1,h2,h3 { color: #000033; }
