@@ -112,7 +112,7 @@ class Messenger extends \Nette\Object {
    */
   function usersList() {
     $return = array();
-    $users = $this->db->table("users");
+    $users = $this->profileModel->getAllNames();
     foreach($users as $user) {
       if($user->id === $this->user->id) continue;
       $return[$user->id] = $user->publicname;

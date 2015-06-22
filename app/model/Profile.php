@@ -33,7 +33,7 @@ class Profile extends \Nette\Object {
       $users = $this->db->table("users");
       foreach($users as $user) {
         $names[$user->id] = (object) array(
-          "username" => $user->username, "publicname" => $user->publicname
+          "id" => $user->id, "username" => $user->username, "publicname" => $user->publicname
         );
       }
       $this->cache->save("users_names", $names);
