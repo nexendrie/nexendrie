@@ -214,8 +214,11 @@ class UserPresenter extends BasePresenter {
     try {
       $this->model->user = $this->context->getService("security.user");
       $this->model->changeSettings($values);
-      $this->user->identity->style = $values["style"];
       $this->flashMessage("Změny uloženy.");
+      if($this->user->identity->style != $values["style"]) {
+        $this->user->identity->style = $values["style"];
+        $this->redirect("this");
+      }
     } catch (\Nexendrie\SettingsException $e) {
       if($e->getCode() === \Nexendrie\UserManager::REG_DUPLICATE_USERNAME) {
         $form->addError("Zvolené jméno je už zabráno.");
