@@ -11,6 +11,6 @@ a { color: #00CC00; }
 #mainMenu ul { position: relative; left: 17px; bottom: 22px; width: 117px;
   background-color: rgba(51,204,153,0.3); padding: 10px 5px 10px 8px; }
 #mainMenu li { list-style-type: none; font-size: smaller; }
-#main { position: absolute; top: 96px; left: 180px; width: 750px;
-  background-color: rgba(192,192,192,0.2); }
+#main { position: absolute; top: 96px; left: 175px; width: 741px;
+  background-color: rgba(192,192,192,0.2); padding: 0px 7px; }
 #main h1,h2,h3 { color: #000033; }
