@@ -14,6 +14,11 @@ class Messenger extends \Nette\Object {
   /** @var \Nexendrie\Profile */
   protected $profileModel;
   
+  /**
+   * @param \Nette\Database\Context $db
+   * @param \Nette\Security\User $user
+   * @param \Nexendrie\Profile $profileModel
+   */
   function __construct(\Nette\Database\Context $db, \Nette\Security\User $user, \Nexendrie\Profile $profileModel) {
     $this->db = $db;
     $this->user = $user;

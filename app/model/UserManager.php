@@ -22,12 +22,21 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     REG_DUPLICATE_EMAIL = 2,
     SET_INVALID_PASSWORD = 3;
   
+  /**
+   * @param \Nette\Database\Context $database
+   * @param \Nette\Caching\Cache $cache
+   * @param \Nexendrie\Group $groupModel
+   */
   function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Group $groupModel) {
     $this->db = $database;
     $this->cache = $cache;
     $this->groupModel = $groupModel;
   }
   
+  /**
+   * @param \Nette\Security\User $user
+   * @return void
+   */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
   }
@@ -36,7 +45,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * Checks whetever a name is available
    * 
    * @param string $name
-   * @param string $type
+   * @param string $type username/publicname
    * @param int $uid Id of user who can use the name
    * @return bool
    * @throws \Nette\InvalidArgumentException
@@ -165,6 +174,11 @@ class RegistrationException extends \Exception {
   
 }
 
+/**
+ * Settings exception
+ * 
+ * @author Jakub Konečný
+ */
 class SettingsException extends \Exception {
   
 }

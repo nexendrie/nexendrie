@@ -18,6 +18,11 @@ class Profile extends \Nette\Object {
   /** @var array */
   protected $names = array();
   
+  /**
+   * @param \Nette\Database\Context $database
+   * @param \Nette\Caching\Cache $cache
+   * @param \Nexendrie\Group $groupModel
+   */
   function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Group $groupModel) {
     $this->db = $database;
     $this->cache = $cache;

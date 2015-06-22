@@ -17,11 +17,19 @@ class News extends \Nette\Object {
   /** @var int */
   protected $itemsPerPage = 10;
   
+  /**
+   * @param \Nette\Database\Context $db
+   * @param \Nexendrie\Profile $profileModel
+   */
   function __construct(\Nette\Database\Context $db, \Nexendrie\Profile $profileModel) {
     $this->db = $db;
     $this->profileModel = $profileModel;
   }
   
+  /**
+   * @param \Nette\Security\User $user
+   * @return void
+   */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
   }
@@ -35,10 +43,12 @@ class News extends \Nette\Object {
   }
   
   /**
+   * Formats date of news (czech locale)
+   * 
    * @param string $date
    * @return string
    */
-  function formatDate($date) {
+  protected function formatDate($date) {
     $day = (int) substr($date, 8, 2);
     $month = (int) substr($date, 5, 2);
     $year = substr($date, 0, 4);
@@ -110,6 +120,7 @@ class News extends \Nette\Object {
    * 
    * @param \Nette\Utils\ArrayHash $data
    * @throws \Nette\Application\ForbiddenRequestException
+   * @return void
    */
   function add(\Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
