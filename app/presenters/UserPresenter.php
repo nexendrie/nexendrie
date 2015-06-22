@@ -1,7 +1,10 @@
 <?php
 namespace Nexendrie\Presenters;
 
-use Nette\Application\UI;
+use Nette\Application\UI,
+  \Nette\Utils\Finder,
+  \Nette\Neon\Neon,
+  \Nette\Utils\Arrays;
 
 /**
  * Presenter User
@@ -143,6 +146,24 @@ class UserPresenter extends BasePresenter {
   }
   
   /**
+   * Gets list of styles
+   * 
+   * @return array
+   */
+  protected function getStylesList() {
+    $styles = array();
+    $dir = WWW_DIR . "/styles";
+    $file = file_get_contents("$dir/list.neon");
+    $list = Neon::decode($file);
+    foreach(Finder::findFiles("*.css")->in($dir) as $style) {
+      $key = $style->getBaseName(".css");
+      $value = Arrays::get($list, $key, $key);
+      $styles[$key] = $value;
+    }
+    return $styles;
+  }
+  
+  /**
    * Creates form for changing user's settings
    * 
    * @return \Nette\Application\UI\Form
@@ -157,9 +178,7 @@ class UserPresenter extends BasePresenter {
     $form->addText("email", "E-mail:")
       ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
-    $form->addRadioList("style", "Vzhled stránek:", array(
-      "base" => "Základní"
-    ));
+    $form->addRadioList("style", "Vzhled stránek:", $this->getStylesList());
     $form->addCheckbox("infomails", "Posílat informační e-maily");
     $form->addGroup("Heslo")
       ->setOption("description", "Současné a nové heslo vyplňujte jen pokud ho chcete změnit.");
