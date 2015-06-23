@@ -105,7 +105,8 @@ class UserPresenter extends BasePresenter {
     $form = new UI\Form;
     $form->addText("username", "Uživatelské jméno:")
       ->addRule(UI\Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků." , 25)
-      ->setRequired("Zadej jméno.");
+      ->setRequired("Zadej jméno.")
+      ->setOption("description", "Toto jméno se používá pouze pro příhlášení. Jméno, které se zobrazuje ostatním, se mění v Nastavení.");
     $form->addPassword("password", "Heslo:")
       ->setRequired("Zadej heslo.");
     $form->addText("email", "E-mail:")
