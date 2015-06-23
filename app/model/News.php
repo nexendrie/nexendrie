@@ -128,5 +128,12 @@ class News extends \Nette\Object {
     $data["author"] = $this->user->id;
     $this->db->query("INSERT INTO news", $data);
   }
+  
+  function addComment(\Nette\Utils\ArrayHash $data) {
+    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
+    if(!$this->user->isAllowed("comment", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding comments.", 403);
+    $data["author"] = $this->user->id;
+    $this->db->query("INSERT INTO comments", $data);
+  }
 }
 ?>
