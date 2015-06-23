@@ -76,6 +76,9 @@ class Profile extends \Nette\Object {
     if(!$group) $return->title = "";
     else $return->title = $group->single_name;
     $return->banned = (bool) $user->banned;
+    $return->comments = $this->db->table("comments")
+      ->where("author", $user->id)
+      ->count("*");
     return $return;
   }
 }
