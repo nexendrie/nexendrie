@@ -64,7 +64,7 @@ class News extends \Nette\Object {
    * @return array
    */
   function page(\Nette\Utils\Paginator $paginator, $page = 1) {
-    $return = $users = array();
+    $return = array();
     $paginator->page = $page;
     $paginator->itemsPerPage = $this->itemsPerPage;
     $news = $this->db->table("news")->order("added DESC")
