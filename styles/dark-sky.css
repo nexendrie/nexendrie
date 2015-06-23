@@ -18,4 +18,5 @@
 #main { position: absolute; top: 104px; left: 175px; width: 741px;
   background-color: rgba(128,128,128,0.4); padding: 0px 7px; }
 #main h1,h2,h3 { color: #660066; }
-#main a { color: #00CC00; }
+#main a { color: #330033; }
+#main a:hover { color: #666666; }
