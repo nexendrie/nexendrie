@@ -129,11 +129,49 @@ class News extends \Nette\Object {
     $this->db->query("INSERT INTO news", $data);
   }
   
+  /**
+   * Adds comment to news
+   * 
+   * @param \Nette\Utils\ArrayHash $data
+   * @throws \Nette\Application\ForbiddenRequestException
+   * @return void
+   */
   function addComment(\Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("comment", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding comments.", 403);
     $data["author"] = $this->user->id;
     $this->db->query("INSERT INTO comments", $data);
+  }
+  
+  /**
+   * Get comments meeting specified rules
+   * 
+   * @param int $news
+   * @param int $author
+   * @return array
+   */
+  function viewComments($news = 0, $author = 0) {
+    $return = array();
+    $comments = $this->db->table("comments");
+    if($news > 0) $comments->where("news", $news);
+    if($author > 0) $comments->where("author", $author);
+    foreach($comments as $comment) {
+      $n = new \stdClass;
+      foreach($comment as $key => $value) {
+        if($key === "author") {
+          $user = $this->profileModel->getNames($value);
+          $n->$key = $user->publicname;
+          $key .= "_username";
+          $n->$key = $user->username;
+        } elseif($key === "added") {
+          $n->$key = $this->formatDate($value);
+        } else {
+          $n->$key = $value;
+        }
+      }
+      $return[] = $n;
+    }
+    return $return;
   }
 }
 ?>

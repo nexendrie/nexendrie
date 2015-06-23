@@ -4,8 +4,23 @@
   <h1>{$news->title}</h1>
   <p>od <a n:href="Profile:default $news->author_username">{$news->author}</a> {$news->added}</p>
   <p>{$news->text}</p>
+  {if count($comments) === 0}
+    <p>Tuto novinku ještě nikdo nekomentoval. Buď první.</p>
+  {else}
+  <a name="comments"></a>
+    {foreach $comments as $comment}
+    {var $i = $iterator->counter}
+  <div id="comments">
+    <h3>Komentáře:</h3>
+    <span id="comment-{$i}">
+      <a name="comment-{$i}" href="#comment-{$i}">#{$i}</a> <a n:href="Profile:default $news->author_username">{$news->author}</a> - {$comment->title} ({$comment->added}:<br>
+      {$comment->text}
+    </span>
+  </div>
+    {/foreach}
+  {/if}
   {if $news->comments AND $user->isAllowed("comment", "add")}
-  Přidat komentář:<br>
+  <p>Přidat komentář:</p>
   {control addCommentForm}
   {else}
   <p>Nelze přidávat komentáře k této novince.</p>

@@ -37,6 +37,7 @@ class NewsPresenter extends BasePresenter {
     $news = $this->model->view($id);
     if(!$news) $this->forward("notfound");
     $this->template->news = $news;
+    $this->template->comments = $this->model->viewComments($id);
   }
   
   /**
