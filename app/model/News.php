@@ -147,14 +147,12 @@ class News extends \Nette\Object {
    * Get comments meeting specified rules
    * 
    * @param int $news
-   * @param int $author
    * @return array
    */
-  function viewComments($news = 0, $author = 0) {
+  function viewComments($news = 0) {
     $return = array();
     $comments = $this->db->table("comments");
     if($news > 0) $comments->where("news", $news);
-    if($author > 0) $comments->where("author", $author);
     foreach($comments as $comment) {
       $n = new \stdClass;
       foreach($comment as $key => $value) {
