@@ -171,5 +171,33 @@ class News extends \Nette\Object {
     }
     return $return;
   }
+  
+  /**
+   * Check whetever specified news exists
+   * 
+   * @param int $id News' id
+   * @return bool
+   */
+  function exists($id) {
+    $row = $this->db->table("news")
+      ->where("id", $id);
+    return (bool) $row->count("*");
+  }
+  
+  /**
+   * Edit specified news
+   * 
+   * @param int $id News' id
+   * @param \Nette\Utils\ArrayHash $data
+   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws \Nette\ArgumentOutOfRangeException
+   */
+  function edit($id, \Nette\Utils\ArrayHash $data) {
+    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
+    if(!$this->user->isAllowed("news", "edit")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
+    if(!$this->exists($id)) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist");
+    $this->db->query("UPDATE news SET ? WHERE id=?", $data, $id);
+  }
+  
 }
 ?>

@@ -117,5 +117,47 @@ class NewsPresenter extends BasePresenter {
     }
   }
   
+  /**
+   * Edits news
+   * 
+   * @param int $id News'id
+   * @return void
+   */
+  function actionEdit($id) {
+    $this->requiresPermissions("news", "edit");
+    if(!$this->model->exists($id)) $this->forward("notfound");
+  }
+  
+  /**
+   * Creates form for editing news
+   * 
+   * @return \Nette\Application\UI\Form
+   */
+  protected function createComponentEditNewsForm() {
+    $news = $this->model->view($this->getParameter("id"));
+    $form = new UI\Form;
+    $form->addText("title", "Titulek:")
+      ->addRule(UI\Form::MAX_LENGTH, "Titulek může mít maximálně 30 znaků.", 30)
+      ->setRequired("Zadej titulek.");
+    $form->addTextArea("text", "Text:")
+      ->setRequired("Zadej text.");
+    $form->addSubmit("send", "Odeslat");
+    $form->onSuccess[] = array($this, "editNewsFormSucceeded");
+    $form->setDefaults((array) $news);
+    return $form;
+  }
+  
+  /**
+   * Edits news
+   * 
+   * @param \Nette\Application\UI\Form $form
+   * @param \Nette\Utils\ArrayHash $values
+   */
+  function editNewsFormSucceeded(UI\Form $form, $values) {
+    $this->model->user = $this->context->getService("security.user");
+    $this->model->edit($this->getParameter("id"), $values);
+    $this->flashMessage("Novinka upravena.");
+  }
+  
 }
 ?>
