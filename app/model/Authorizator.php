@@ -11,10 +11,9 @@ class Authorizator extends \Nette\Object {
   * Factory for Authorizator
   * 
   * @param \HeroesofAbenez\Permissions $model
-  * @param \Nexendrie\Group $groupModel
   * @return \Nette\Security\Permission
   */
-  static function create(\Nexendrie\Permissions $model, \Nexendrie\Group $groupModel) {
+  static function create(\Nexendrie\Permissions $model) {
     $permission = new \Nette\Security\Permission;
     
     $groups = $model->getGroups();
@@ -32,7 +31,7 @@ class Authorizator extends \Nette\Object {
     $permission->deny("vězeň");
     foreach($permissions as $row) {
       if(!$permission->hasResource($row->resource)) $permission->addResource($row->resource);
-      $group = $groupModel->get($row->group);
+      $group = \Nette\Utils\Arrays::get($groups, $row->group);
       $permission->allow($group->single_name, $row->resource, $row->action);
     }
     
