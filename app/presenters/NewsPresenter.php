@@ -96,6 +96,8 @@ class NewsPresenter extends BasePresenter {
       ->setRequired("Zadej titulek.");
     $form->addTextArea("text", "Text:")
       ->setRequired("Zadej text.");
+    $form->addCheckbox("comments", "Povolit komentáře")
+      ->setValue(true);
     $form->addSubmit("send", "Odeslat");
     $form->onSuccess[] = array($this, "addNewsFormSucceeded");
     return $form;
@@ -141,6 +143,7 @@ class NewsPresenter extends BasePresenter {
       ->setRequired("Zadej titulek.");
     $form->addTextArea("text", "Text:")
       ->setRequired("Zadej text.");
+    $form->addCheckbox("comments", "Povolit komentáře");
     $form->addSubmit("send", "Odeslat");
     $form->onSuccess[] = array($this, "editNewsFormSucceeded");
     $form->setDefaults((array) $news);
