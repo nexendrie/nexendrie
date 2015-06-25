@@ -42,5 +42,23 @@ class Rss extends \Nette\Object {
     }
     return new \Nexendrie\RssResponse($channel);
   }
+  
+  function commentsFeed($news) {
+    if(!$this->newsModel->exists($news)) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist");
+    $comments = $this->newsModel->viewComments($news);
+    $channel = simplexml_load_file(APP_DIR . "/templates/commentsFeed.xml");
+    unset($channel->channel->link);
+    unset($channel->channel->lastBuildDate);
+    $channel->channel->addChild("link", $this->linkGenerator->link("News:view", array("id" => $news)));
+    $channel->channel->addChild("lastBuildDate", $this->localeModel->formatDateTime(time()));
+    foreach($comments as $comment) {
+      $c = $channel->channel->addChild("item");
+      $c->addChild("title", $comment->title);
+      $link = $this->linkGenerator->link("News:view", array("id" => $comment->id));
+      $c->addChild("link", $link);
+      $c->addChild("pubDate", $comment->added);
+    }
+    return new \Nexendrie\RssResponse($channel);
+  }
 }
 ?>
