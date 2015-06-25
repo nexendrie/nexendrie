@@ -19,11 +19,16 @@ class RssResponse extends \Nette\Object implements \Nette\Application\IResponse 
    $this->source = $source;
   }
   
+  /**
+   * @return \SimpleXMLElement
+   */
   function getSource() {
     return $this->source;
   }
   
   /**
+   * Sends response to output
+   * 
    * @param \Nette\Http\IRequest $httpRequest
    * @param \Nette\Http\IResponse $httpResponse
    * @return void

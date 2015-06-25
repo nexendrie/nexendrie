@@ -8,6 +8,8 @@ namespace Nexendrie\Presenters;
  */
 class BasePresenter extends \Nette\Application\UI\Presenter {
   /**
+   * Set website's style and set guest and authenticated role
+   * 
    * @return void
    */
   function startup() {

@@ -14,6 +14,11 @@ class Rss extends \Nette\Object {
   /** @var \Nexendrie\Locale */
   protected $localeModel;
   
+  /**
+   * @param \Nexendrie\News $newsModel
+   * @param \Nette\Application\LinkGenerator $linkGenerator
+   * @param \Nexendrie\Locale $localeModel
+   */
   function __construct(\Nexendrie\News $newsModel, \Nette\Application\LinkGenerator $linkGenerator, \Nexendrie\Locale $localeModel) {
     $this->newsModel = $newsModel;
     $this->linkGenerator = $linkGenerator;
