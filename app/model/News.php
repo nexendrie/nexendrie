@@ -63,6 +63,7 @@ class News extends \Nette\Object {
       $n = new \stdClass;
       foreach($new as $key => $value) {
         if($key === "text") {
+          $n->$key = substr($value, 0 , 150);
           continue;
         } elseif($key === "author") {
           $user = $this->profileModel->getNames($value);
