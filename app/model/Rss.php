@@ -44,6 +44,13 @@ class Rss extends \Nette\Object {
     return new \Nexendrie\RssResponse($channel);
   }
   
+  /**
+   * Generate feed for comments
+   * 
+   * @param int $newsId
+   * @return \Nexendrie\RssResponse
+   * @throws \Nette\ArgumentOutOfRangeException
+   */
   function commentsFeed($newsId) {
     $news = $this->newsModel->view($newsId);
     if(!$news) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist");
