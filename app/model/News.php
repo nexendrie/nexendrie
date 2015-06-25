@@ -14,16 +14,20 @@ class News extends \Nette\Object {
   protected $profileModel;
   /** @var \Nette\Security\User */
   protected $user;
+  /** @var \Nexendrie\Locale */
+  protected $localeModel;
   /** @var int */
   protected $itemsPerPage = 10;
   
   /**
    * @param \Nette\Database\Context $db
    * @param \Nexendrie\Profile $profileModel
+   * @param \Nexendrie\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $db, \Nexendrie\Profile $profileModel) {
+  function __construct(\Nette\Database\Context $db, \Nexendrie\Profile $profileModel, \Nexendrie\Locale $localeModel) {
     $this->db = $db;
     $this->profileModel = $profileModel;
+    $this->localeModel = $localeModel;
   }
   
   /**
@@ -40,16 +44,6 @@ class News extends \Nette\Object {
    */
   function setItemsPerPage($amount) {
     if(is_int($amount)) $this->itemsPerPage = $amount;
-  }
-  
-  /**
-   * Formats date of news (czech locale)
-   * 
-   * @param int $date
-   * @return string
-   */
-  protected function formatDate($date) {
-    return date("j.n.Y G:i", $date);
   }
   
   /**
@@ -76,7 +70,7 @@ class News extends \Nette\Object {
           $key .= "_username";
           $n->$key = $user->username;
         } elseif($key === "added") {
-          $n->$key = $this->formatDate($value);
+          $n->$key = $this->localeModel->formatDateTime($value);
         } else {
           $n->$key = $value;
         }
@@ -103,7 +97,7 @@ class News extends \Nette\Object {
         $key .= "_username";
         $return->$key = $user->username;
       } elseif($key === "added") {
-        $return->$key = $this->formatDate($value);
+        $return->$key = $this->localeModel->formatDateTime($value);
       } else {
         $return->$key = $value;
       }
@@ -160,7 +154,7 @@ class News extends \Nette\Object {
           $key .= "_username";
           $n->$key = $user->username;
         } elseif($key === "added") {
-          $n->$key = $this->formatDate($value);
+          $n->$key = $this->localeModel->formatDateTime($value);
         } else {
           $n->$key = $value;
         }

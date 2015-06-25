@@ -15,6 +15,8 @@ class Profile extends \Nette\Object {
   protected $cache;
   /** @var \Nexendrie\Group */
   protected $groupModel;
+  /** @var \Nexendrie\Locale */
+  protected $localeModel;
   /** @var array */
   protected $names = array();
   
@@ -22,21 +24,13 @@ class Profile extends \Nette\Object {
    * @param \Nette\Database\Context $database
    * @param \Nette\Caching\Cache $cache
    * @param \Nexendrie\Group $groupModel
+   * @param \Nexendrie\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Group $groupModel) {
+  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Group $groupModel, \Nexendrie\Locale $localeModel) {
     $this->db = $database;
     $this->cache = $cache;
     $this->groupModel = $groupModel;
-  }
-  
-  /**
-   * Formats date (czech locale)
-   * 
-   * @param int $date
-   * @return string
-   */
-  protected function formatDate($date) {
-    return date("j.n.Y", $date);
+    $this->localeModel = $localeModel;
   }
   
   /**
@@ -81,7 +75,7 @@ class Profile extends \Nette\Object {
     $user = $result->fetch();
     $return = new \stdClass;
     $return->name = $user->publicname;
-    $return->joined = $this->formatDate($user->joined);
+    $return->joined = $this->localeModel->formatDate($user->joined);
     $group = $this->groupModel->get($user->group);
     if(!$group) $return->title = "";
     else $return->title = $group->single_name;

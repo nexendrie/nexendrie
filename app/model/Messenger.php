@@ -13,26 +13,20 @@ class Messenger extends \Nette\Object {
   protected $user;
   /** @var \Nexendrie\Profile */
   protected $profileModel;
+  /** @var \Nexendrie\Locale */
+  protected $localeModel;
   
   /**
    * @param \Nette\Database\Context $db
    * @param \Nette\Security\User $user
    * @param \Nexendrie\Profile $profileModel
+   * @param \Nexendrie\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $db, \Nette\Security\User $user, \Nexendrie\Profile $profileModel) {
+  function __construct(\Nette\Database\Context $db, \Nette\Security\User $user, \Nexendrie\Profile $profileModel, \Nexendrie\Locale $localeModel) {
     $this->db = $db;
     $this->user = $user;
     $this->profileModel = $profileModel;
-  }
-  
-  /**
-   * Formats date of message (czech locale)
-   * 
-   * @param int $date
-   * @return string
-   */
-  protected function formatDate($date) {
-    return date("j.n.Y G:i", $date);
+    $this->localeModel = $localeModel;
   }
   
   /**
@@ -55,7 +49,7 @@ class Messenger extends \Nette\Object {
           $key .= "_username";
           $m->$key = $user->username;
         } elseif($key === "sent") {
-          $m->$key = $this->formatDate($value);
+          $m->$key = $this->localeModel->formatDateTime($value);
         } else {
           $m->$key = $value;
         }
@@ -85,7 +79,7 @@ class Messenger extends \Nette\Object {
           $key .= "_username";
           $m->$key = $user->username;
         } elseif($key === "sent") {
-          $m->$key = $this->formatDate($value);
+          $m->$key = $this->localeModel->formatDateTime($value);
         } else {
           $m->$key = $value;
         }
@@ -118,7 +112,7 @@ class Messenger extends \Nette\Object {
         $return->$key = $user->publicname;
         $return->{$key . "_username"} = $user->username;
       } elseif($key === "sent") {
-          $return->$key = $this->formatDate($value);
+          $return->$key = $this->localeModel->formatDateTime($value);
         } else {
         $return->$key = $value;
       }
