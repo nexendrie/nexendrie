@@ -45,11 +45,15 @@ class Rss extends \Nette\Object {
   }
   
   function commentsFeed($newsId) {
-    if(!$this->newsModel->exists($newsId)) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist");
+    $news = $this->newsModel->view($newsId);
+    if(!$news) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist");
     $comments = $this->newsModel->viewComments($newsId);
     $channel = simplexml_load_file(APP_DIR . "/templates/commentsFeed.xml");
+    $old_title = (string) $channel->channel->title;
     unset($channel->channel->link);
     unset($channel->channel->lastBuildDate);
+    unset($channel->channel->title);
+    $channel->channel->addChild("title", $old_title . $news->title);
     $channel->channel->addChild("link", $this->linkGenerator->link("News:view", array("id" => $newsId)));
     $channel->channel->addChild("lastBuildDate", $this->localeModel->formatDateTime(time()));
     foreach($comments as $comment) {
