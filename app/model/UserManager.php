@@ -116,6 +116,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     if(!$this->emailAvailable($data["email"])) throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
     $data["publicname"] = $data["username"];
     $data["password"] = \Nette\Security\Passwords::hash($data["password"]);
+    $data["joined"] = time();
     $this->db->query("INSERT INTO users", $data);
     $this->cache->remove("users_names");
   }

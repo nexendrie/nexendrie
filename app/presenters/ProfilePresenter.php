@@ -26,12 +26,6 @@ class ProfilePresenter extends BasePresenter {
     $user = $this->model->view($username);
     if(!$user) $this->forward("notfound");
     foreach($user as $key => $value) {
-      if($key == "joined") {
-        $day = (int) substr($value, 8, 2);
-        $month = (int) substr($value, 5, 2);
-        $year = (int) substr($value, 0, 4);
-        $value = "$day.$month.$year";
-      }
       $this->template->$key = $value;
     }
   }

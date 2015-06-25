@@ -26,6 +26,16 @@ class Messenger extends \Nette\Object {
   }
   
   /**
+   * Formats date of message (czech locale)
+   * 
+   * @param int $date
+   * @return string
+   */
+  protected function formatDate($date) {
+    return date("j.n.Y G:i", $date);
+  }
+  
+  /**
    * Get list of received messages
    * 
    * @return array
@@ -44,6 +54,8 @@ class Messenger extends \Nette\Object {
           $m->$key = $user->publicname;
           $key .= "_username";
           $m->$key = $user->username;
+        } elseif($key === "sent") {
+          $m->$key = $this->formatDate($value);
         } else {
           $m->$key = $value;
         }
@@ -72,6 +84,8 @@ class Messenger extends \Nette\Object {
           $m->$key = $user->publicname;
           $key .= "_username";
           $m->$key = $user->username;
+        } elseif($key === "sent") {
+          $m->$key = $this->formatDate($value);
         } else {
           $m->$key = $value;
         }
@@ -103,7 +117,9 @@ class Messenger extends \Nette\Object {
         $user = $this->profileModel->getNames($value);
         $return->$key = $user->publicname;
         $return->{$key . "_username"} = $user->username;
-      } else {
+      } elseif($key === "sent") {
+          $return->$key = $this->formatDate($value);
+        } else {
         $return->$key = $value;
       }
     }
@@ -133,6 +149,7 @@ class Messenger extends \Nette\Object {
    */
   function send(\Nette\Utils\ArrayHash $data) {
     $data["from"] = $this->user->id;
+    $data["sent"] = time();
     $this->db->query("INSERT INTO messages", $data);
   }
 }

@@ -45,15 +45,11 @@ class News extends \Nette\Object {
   /**
    * Formats date of news (czech locale)
    * 
-   * @param string $date
+   * @param int $date
    * @return string
    */
   protected function formatDate($date) {
-    $day = (int) substr($date, 8, 2);
-    $month = (int) substr($date, 5, 2);
-    $year = substr($date, 0, 4);
-    $time = substr($date, 10, 6);
-    return "$day.$month.$year $time";
+    return date("j.n.Y G:i", $date);
   }
   
   /**
@@ -126,6 +122,7 @@ class News extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("news", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
     $data["author"] = $this->user->id;
+    $data["added"] = time();
     $this->db->query("INSERT INTO news", $data);
   }
   
@@ -140,6 +137,7 @@ class News extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("comment", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding comments.", 403);
     $data["author"] = $this->user->id;
+    $data["added"] = time();
     $this->db->query("INSERT INTO comments", $data);
   }
   

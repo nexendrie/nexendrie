@@ -30,6 +30,16 @@ class Profile extends \Nette\Object {
   }
   
   /**
+   * Formats date (czech locale)
+   * 
+   * @param int $date
+   * @return string
+   */
+  protected function formatDate($date) {
+    return date("j.n.Y", $date);
+  }
+  
+  /**
    * @return array
    */
   function getAllNames() {
@@ -71,7 +81,7 @@ class Profile extends \Nette\Object {
     $user = $result->fetch();
     $return = new \stdClass;
     $return->name = $user->publicname;
-    $return->joined = $user->joined;
+    $return->joined = $this->formatDate($user->joined);
     $group = $this->groupModel->get($user->group);
     if(!$group) $return->title = "";
     else $return->title = $group->single_name;
