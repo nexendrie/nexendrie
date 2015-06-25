@@ -3,4 +3,5 @@ routing:
         "profile/<username>": "Profile:default"
         "message/<id [0-9]+>": "Messages:view"
         "news/page/<page [0-9]+>": "News:page"
+        "rss[/<action>]": "Rss:news"
         "<presenter>[/<action>][/<id>]": "Homepage:default"

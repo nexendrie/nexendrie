@@ -5,3 +5,4 @@ services:
     model.news: Nexendrie\News
     model.permissions: Nexendrie\Permissions
     model.profile: Nexendrie\Profile
+    model.rss: Nexendrie\Rss
