@@ -59,7 +59,8 @@ class Rss extends \Nette\Object {
     foreach($comments as $comment) {
       $c = $channel->channel->addChild("item");
       $c->addChild("title", $comment->title);
-      $link = $this->linkGenerator->link("News:view", array("id" => $comment->id));
+      $link = $this->linkGenerator->link("News:view", array("id" => $newsId));
+      $link .= "#comment-$comment->id";
       $c->addChild("link", $link);
       $c->addChild("pubDate", $comment->added);
       $c->addChild("description", substr($comment->text, 0 , 150));
