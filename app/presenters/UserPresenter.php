@@ -16,11 +16,10 @@ class UserPresenter extends BasePresenter {
   protected $model;
   
   /**
-   * @return void
+   * @param \Nexendrie\UserManager $model
    */
-  function startup() {
-    parent::startup();
-    $this->model = $this->context->getByType("\Nexendrie\UserManager");
+  function __construct(\Nexendrie\UserManager $model) {
+    $this->model = $model;
   }
   
   /**

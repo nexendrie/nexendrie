@@ -7,13 +7,19 @@ namespace Nexendrie\Presenters;
  * @author Jakub Konečný
  */
 class HomepagePresenter extends BasePresenter {
+  /** @var \Nexendrie\News */
+  protected  $model;
+  
+  function __construct(\Nexendrie\News $model) {
+    $this->model = $model;
+  }
+  
   /**
    * @return void
    */
   function renderDefault() {
-    $model = $this->context->getService("model.news");
     $paginator = new \Nette\Utils\Paginator;
-    $this->template->news = $model->page($paginator);
+    $this->template->news = $this->model->page($paginator);
     $this->template->paginator = $paginator;
   }
 }

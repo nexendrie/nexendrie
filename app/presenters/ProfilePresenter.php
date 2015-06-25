@@ -11,11 +11,10 @@ class ProfilePresenter extends BasePresenter {
   protected $model;
   
   /**
-   * @return void
+   * @param \Nexendrie\Profile $model
    */
-  function startup() {
-    parent::startup();
-    $this->model = $this->context->getService("model.profile");
+  function __construct(\Nexendrie\Profile $model) {
+    $this->model = $model;
   }
   
   /**

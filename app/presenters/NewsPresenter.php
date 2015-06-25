@@ -13,11 +13,10 @@ class NewsPresenter extends BasePresenter {
   protected $model;
   
   /**
-   * @return void
+   * @param \Nexendrie\News $model
    */
-  function startup() {
-    parent::startup();
-    $this->model = $this->context->getService("model.news");
+  function __construct(\Nexendrie\News $model) {
+    $this->model = $model;
   }
   
   /**

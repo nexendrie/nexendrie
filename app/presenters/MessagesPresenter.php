@@ -13,12 +13,18 @@ class MessagesPresenter extends BasePresenter {
   protected $model;
   
   /**
+   * @param \Nexendrie\Messenger $model
+   */
+  function __construct(\Nexendrie\Messenger $model) {
+    $this->model = $model;
+  }
+  
+  /**
    * @return void
    */
   function startup() {
     parent::startup();
     $this->requiresLogin();
-    $this->model = $this->context->getService("model.messenger");
   }
   
   /**
