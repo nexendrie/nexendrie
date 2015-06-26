@@ -32,7 +32,7 @@ class RssPresenter extends BasePresenter {
     if($news === NULL) $this->forward("News:notfound");
     try {
       $this->sendResponse($this->model->commentsFeed($news));
-    } catch(\Nette\ArgumentOutOfRangeException $e) {
+    } catch(\Nette\Application\BadRequestException $e) {
       $this->forward("News:notfound");
     }
   }

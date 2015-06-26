@@ -54,11 +54,11 @@ class Rss extends \Nette\Object {
    * 
    * @param int $newsId
    * @return \Nexendrie\RssResponse
-   * @throws \Nette\ArgumentOutOfRangeException
+   * @throws \Nette\Application\BadRequestException
    */
   function commentsFeed($newsId) {
     $news = $this->newsModel->view($newsId);
-    if(!$news) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist.");
+    if(!$news) throw new \Nette\Application\BadRequestException("Specified news does not exist.");
     $comments = $this->newsModel->viewComments($newsId);
     $channel = simplexml_load_file(APP_DIR . "/templates/commentsFeed.xml");
     $old_title = (string) $channel->channel->title;
