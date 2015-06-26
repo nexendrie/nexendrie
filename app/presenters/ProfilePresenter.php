@@ -28,7 +28,7 @@ class ProfilePresenter extends BasePresenter {
       foreach($user as $key => $value) {
         $this->template->$key = $value;
       }
-    } catch(\Nette\ArgumentOutOfRangeException $e) {
+    } catch(\Nette\Application\ForbiddenRequestException $e) {
       $this->forward("notfound");
     }
   }

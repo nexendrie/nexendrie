@@ -33,10 +33,12 @@ class NewsPresenter extends BasePresenter {
    * @return void
    */
   function renderView($id) {
-    $news = $this->model->view($id);
-    if(!$news) $this->forward("notfound");
-    $this->template->news = $news;
-    $this->template->comments = $this->model->viewComments($id);
+    try {
+      $this->template->news = $this->model->view($id);
+      $this->template->comments = $this->model->viewComments($id);
+    } catch (\Nette\Application\ForbiddenRequestException $e) {
+      $this->forward("notfound");
+    }
   }
   
   /**
