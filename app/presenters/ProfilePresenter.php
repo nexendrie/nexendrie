@@ -23,10 +23,13 @@ class ProfilePresenter extends BasePresenter {
    */
   function renderDefault($username) {
     if(is_null($username)) $this->forward("notfound");
-    $user = $this->model->view($username);
-    if(!$user) $this->forward("notfound");
-    foreach($user as $key => $value) {
-      $this->template->$key = $value;
+    try {
+      $user = $this->model->view($username);
+      foreach($user as $key => $value) {
+        $this->template->$key = $value;
+      }
+    } catch(\Nette\ArgumentOutOfRangeException $e) {
+      $this->forward("notfound");
     }
   }
 }

@@ -66,12 +66,13 @@ class Profile extends \Nette\Object {
    * Show user's profile
    * 
    * @param string $username
-   * @return boolean|\stdClass
+   * @return \stdClass
+   * @throws \Nette\ArgumentOutOfRangeException
    */
   function view($username) {
     $result = $this->db->table("users")
       ->where("username", $username);
-    if($result->count() === 0) return false;
+    if($result->count() === 0) throw new \Nette\ArgumentOutOfRangeException("Specified user does not exist.");;
     $user = $result->fetch();
     $return = new \stdClass;
     $return->name = $user->publicname;
