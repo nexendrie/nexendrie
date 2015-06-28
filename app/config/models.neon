@@ -1,6 +1,7 @@
 services:
     model.group: Nexendrie\Group
     model.locale: Nexendrie\Locale(%locale%)
+    model.market: Nexendrie\Market
     model.messenger: Nexendrie\Messenger
     model.news: Nexendrie\News
     model.permissions: Nexendrie\Permissions
