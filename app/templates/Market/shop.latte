@@ -5,6 +5,8 @@
   <p>{$shop->description}</p>
   {if count($items) === 0}
     <p>Bohužel ti nic nemohu nabídnout.</p>
+  {elseif !$user->isLoggedIn()}
+    <p>Cizincům neprodávám.<small>Tip: Aby jsi mohl nakupovat, musíš být zaregistrovaný a přihlášený.</small></p>
   {else}
     <article id="items">
     Mohu ti nabídnout:
