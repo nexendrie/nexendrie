@@ -43,7 +43,7 @@ class MarketPresenter extends BasePresenter {
    * @return void
    */
   function actionBuy($id) {
-    
+    $this->requiresLogin();
   }
 }
 ?>
