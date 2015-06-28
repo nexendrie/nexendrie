@@ -33,7 +33,7 @@ class MarketPresenter extends BasePresenter {
       $data = $this->model->showShop($id);
       $this->template->shop = $data["shop"];
       $this->template->items = $data["items"];
-    } catch(\Nette\Application\ForbiddenRequestException $e) {
+    } catch(\Nette\Application\BadRequestException $e) {
       $this->forward("notfound");
     }
   }

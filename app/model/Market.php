@@ -44,7 +44,7 @@ class Market extends \Nette\Object {
    */
   function showShop($id) {
     $shop = $this->db->table("shops")->get($id);
-    if(!$shop) throw new \Nette\Application\ForbiddenRequestException("Specified shop does not exist.");
+    if(!$shop) throw new \Nette\Application\BadRequestException("Specified shop does not exist.");
     $return = array(
       "shop" => $shop, "items" => array()
     );
