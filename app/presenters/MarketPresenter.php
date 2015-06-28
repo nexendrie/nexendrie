@@ -29,6 +29,20 @@ class MarketPresenter extends BasePresenter {
    * @return void
    */
   function renderShop($id) {
+    try {
+      $data = $this->model->showShop($id);
+      $this->template->shop = $data["shop"];
+      $this->template->items = $data["items"];
+    } catch(\Nette\Application\ForbiddenRequestException $e) {
+      $this->forward("notfound");
+    }
+  }
+  
+  /**
+   * @param int $id Item's id
+   * @return void
+   */
+  function actionBuy($id) {
     
   }
 }
