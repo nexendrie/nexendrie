@@ -81,6 +81,31 @@ class News extends \Nette\Object {
     return $return;
   }
   
+  function all() {
+    $return = array();
+    $news = $this->db->table("news")->order("added DESC");
+    foreach($news as $new) {
+      $n = new \stdClass;
+      foreach($new as $key => $value) {
+        if($key === "text") {
+          $n->$key = substr($value, 0 , 150);
+          continue;
+        } elseif($key === "author") {
+          $user = $this->profileModel->getNames($value);
+          $n->$key = $user->publicname;
+          $key .= "_username";
+          $n->$key = $user->username;
+        } elseif($key === "added") {
+          $n->$key = $this->localeModel->formatDateTime($value);
+        } else {
+          $n->$key = $value;
+        }
+      }
+      $return[] = $n;
+    }
+    return $return;
+  }
+  
   /**
    * Show specified news
    * 

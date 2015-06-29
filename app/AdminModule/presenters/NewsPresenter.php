@@ -22,6 +22,13 @@ class NewsPresenter extends BasePresenter {
   /**
    * @return void
    */
+  function renderDefault() {
+    $this->template->news = $this->model->all();
+  }
+  
+  /**
+   * @return void
+   */
   function actionAdd() {
     $this->requiresPermissions("news", "add");
   }
