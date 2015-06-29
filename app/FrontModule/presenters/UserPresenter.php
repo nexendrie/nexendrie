@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\Presenters;
+namespace Nexendrie\FrontModule\Presenters;
 
 use Nette\Application\UI,
   \Nette\Utils\Finder,

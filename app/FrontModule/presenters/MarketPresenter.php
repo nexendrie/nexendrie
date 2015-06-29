@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\Presenters;
+namespace Nexendrie\FrontModule\Presenters;
 
 /**
  * Presenter Market

@@ -1,11 +1,10 @@
 includes:
     - local.neon
-    - routes.neon
     - models.neon
 application:
     debugger: true
     mapping:
-        *: Nexendrie\Presenters\*Presenter
+        *: Nexendrie\*Module\Presenters\*Presenter
 database:
     default:
         dsn: %database.dsn%

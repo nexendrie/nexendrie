@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\Presenters;
+namespace Nexendrie\FrontModule\Presenters;
 
 /**
  * Parent of all presenters
