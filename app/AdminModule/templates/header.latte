@@ -1,0 +1,17 @@
+<div id="header">
+  <h2><a n:href="Homepage:">Nexendrie</a></h2>
+  <div id="userPanel">
+    <a n:href=":Front:Messages:">Zprávy</a> <a n:href=":Front:User:settings">Nastavení</a> <a n:href=":Front:User:logout">Odhlásit se</a>
+  </div>
+</div>
+<nav id="mainMenu">
+  <h3>Menu</h3>
+  <ul>
+    <li><a n:href="News:">Novinky</a></li>
+  </ul>
+</nav>
+<div id="flashes">
+{foreach $flashes as $flash}
+  <div class="flash {$flash->type}">{$flash->message}</div>
+{/foreach}
+</div>
