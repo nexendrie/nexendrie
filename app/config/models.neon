@@ -4,6 +4,5 @@ services:
     model.market: Nexendrie\Market
     model.messenger: Nexendrie\Messenger
     model.news: Nexendrie\News
-    model.permissions: Nexendrie\Permissions
     model.profile: Nexendrie\Profile
     model.rss: Nexendrie\Rss
