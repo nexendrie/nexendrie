@@ -34,5 +34,20 @@ class Locale extends \Nette\Object {
   function formatDate($date) {
     return date($this->formats["dateFormat"], $date);
   }
+  
+  /**
+   * Selects correct form according to $count
+   * 
+   * @param string $word1
+   * @param string $word2
+   * @param string $word3
+   * @param int $count
+   * @return string
+   */
+  function plural($word1, $word2, $word3, $count) {
+    if($count === $this->formats["plural"][0]) return $word1;
+    elseif($count >= $this->formats["plural"][2]) return $word3;
+    else return $word2;
+  }
 }
 ?>
