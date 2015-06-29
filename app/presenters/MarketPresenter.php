@@ -34,7 +34,7 @@ class MarketPresenter extends BasePresenter {
       $this->template->shop = $data["shop"];
       $localeModel = $this->context->getService("model.locale");
       foreach($data["items"] as $item) {
-        $item->price .= " " . $localeModel->plural("groš", "groše", "grošů", $item->price);
+        $item->price = $localeModel->money($item->price);
       }
       $this->template->items = $data["items"];
     } catch(\Nette\Application\BadRequestException $e) {

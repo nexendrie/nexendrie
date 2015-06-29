@@ -49,5 +49,13 @@ class Locale extends \Nette\Object {
     elseif($count >= $this->formats["plural"][2]) return $word3;
     else return $word2;
   }
+  
+  /**
+   * @param int $amount
+   * @return string
+   */
+  function money($amount) {
+    return "$amount " . $this->plural("groš", "groše", "grošů", $amount);
+  }
 }
 ?>
