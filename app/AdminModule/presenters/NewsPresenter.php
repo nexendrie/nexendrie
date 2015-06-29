@@ -32,15 +32,8 @@ class NewsPresenter extends BasePresenter {
    * @return \Nette\Application\UI\Form
    */
   protected function createComponentAddNewsForm() {
-    $form = new UI\Form;
-    $form->addText("title", "Titulek:")
-      ->addRule(UI\Form::MAX_LENGTH, "Titulek může mít maximálně 30 znaků.", 30)
-      ->setRequired("Zadej titulek.");
-    $form->addTextArea("text", "Text:")
-      ->setRequired("Zadej text.");
-    $form->addCheckbox("comments", "Povolit komentáře")
-      ->setValue(true);
-    $form->addSubmit("send", "Odeslat");
+    $factory = new \Nexendrie\Forms\AddEditNewsForm;
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "addNewsFormSucceeded");
     return $form;
   }
@@ -57,7 +50,7 @@ class NewsPresenter extends BasePresenter {
     $id = $this->model->add($values);
     if(is_int($id)) {
       $this->flashMessage("Novinka byla přidána.");
-      $this->redirect("Homepage:");
+      $this->redirect("News:");
     }
   }
   
@@ -79,14 +72,8 @@ class NewsPresenter extends BasePresenter {
    */
   protected function createComponentEditNewsForm() {
     $news = $this->model->view($this->getParameter("id"));
-    $form = new UI\Form;
-    $form->addText("title", "Titulek:")
-      ->addRule(UI\Form::MAX_LENGTH, "Titulek může mít maximálně 30 znaků.", 30)
-      ->setRequired("Zadej titulek.");
-    $form->addTextArea("text", "Text:")
-      ->setRequired("Zadej text.");
-    $form->addCheckbox("comments", "Povolit komentáře");
-    $form->addSubmit("send", "Odeslat");
+    $factory = new \Nexendrie\Forms\AddEditNewsForm;
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "editNewsFormSucceeded");
     $form->setDefaults((array) $news);
     return $form;
