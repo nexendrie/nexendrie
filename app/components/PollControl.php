@@ -32,12 +32,24 @@ class PollControl extends \Nette\Application\UI\Control {
   function render() {
     $template = $this->template;
     $template->setFile(__DIR__ . "/poll.latte");
-    $poll = $this->model->view($this->id);
-    $poll->answers = explode("\n", $poll->answers);
+    $poll = $this->model->view($this->id, true);
     $this->template->poll = $poll;
-    $template->canVote = $this->user->isAllowed("poll", "vote");
+    $template->canVote = $this->model->canVote($this->id);
     $template->canEdit = $this->user->isAllowed("poll", "add");
     $template->render();
+  }
+  
+  function handleVote($answer) {
+    try {
+      $this->model->vote($this->id, $answer);
+      $this->presenter->flashMessage("Hlas uložen.");
+    } catch (\Nette\InvalidArgumentException $e) {
+      $this->presenter->flashMessage("Zadaná anketa neexistuje.");
+    } catch (\Nette\Application\ForbiddenRequestException $e) {
+      $this->presenter->flashMessage("Nemůžeš hlasovat v této anketě.");
+    } catch (\Nexendrie\PollVotingException $e) {
+      $this->presenter->flashMessage("Neplatná volba.");
+    }
   }
 }
 ?>

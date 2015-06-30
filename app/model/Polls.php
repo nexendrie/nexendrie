@@ -68,11 +68,12 @@ class Polls extends \Nette\Object {
   /**
    * Show specified poll
    * 
-   * @param type $id
+   * @param int $id Poll's id
+   * @param bool $parseAnswers
    * @return \stdClass
    * @throws \Nette\Application\ForbiddenRequestException
    */
-  function view($id) {
+  function view($id, $parseAnswers = false) {
     $poll = $this->db->table("polls")->get($id);
     if(!$poll) throw new \Nette\Application\ForbiddenRequestException("Specified poll does not exist.");
     $return = new \stdClass;
@@ -84,6 +85,8 @@ class Polls extends \Nette\Object {
         $return->$key = $user->username;
       } elseif($key === "added") {
         $return->$key = $this->localeModel->formatDateTime($value);
+      } elseif($key === "answers" AND $parseAnswers) {
+        $return->$key = explode("\n", $value);
       } else {
         $return->$key = $value;
       }
@@ -132,5 +135,45 @@ class Polls extends \Nette\Object {
     if(!$this->exists($id)) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist");
     $this->db->query("UPDATE polls SET ? WHERE id=?", $data, $id);
   }
+  
+  /**
+   * Check whetever the user can vote in specified poll
+   * 
+   * @param int $id Poll's id
+   * @return bool
+   */
+  function canVote($id) {
+    if(!$this->user->isLoggedIn()) return false;
+    elseif(!$this->user->isAllowed("poll", "vote")) return false;
+    $row = $this->db->table("poll_votes")
+      ->where("poll", $id)
+      ->where("user", $this->user->id);
+    return !($row->count("*") > 0 );
+  }
+  
+  /**
+   * Vote in a poll
+   * 
+   * @param int $pollId
+   * @param int $answer
+   * @throws \Nette\InvalidArgumentException
+   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws PollVotingException
+   * @return void
+   */
+  function vote($pollId, $answer) {
+    if(!$this->exists($pollId)) throw new \Nette\InvalidArgumentException("Specified poll does not exist.");
+    if(!$this->canVote($pollId)) throw new \Nette\Application\ForbiddenRequestException("You can't vote in this poll.", 403);
+    $poll = $this->view($pollId, true);
+    if($answer > count($poll->answers)) throw new PollVotingException("The poll has less then $answer answers.");
+    $data = array(
+      "poll" => $pollId, "user" => $this->user->id, "answer" => $answer, "voted" => time()
+    );
+    $this->db->query("INSERT INTO poll_votes", $data);
+  }
+}
+
+class PollVotingException extends \Exception {
+  
 }
 ?>

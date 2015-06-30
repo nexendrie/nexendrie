@@ -1,9 +1,9 @@
   <article id="poll">
-    <p>Přidáno <a href="{plink :Front:Profile:default $poll->author_username}">{$poll->author}</a> {$poll->added}</p>
+    <p>Přidal <a href="{plink :Front:Profile:default $poll->author_username}">{$poll->author}</a> {$poll->added}</p>
     <h3>{$poll->question}</h3>
     <ul>
     {foreach $poll->answers as $answer}
-      <li>{$answer}</li>
+      <li>{if $canVote}<a n:href="vote! $iterator->counter">{$answer}</a> {else}{$answer}{/if}</li>
     {/foreach}
     </ul>
     {if $canEdit}<p><a href="{plink :Admin:Polls:edit $poll->id}">Upravit</a> </p>{/if}
