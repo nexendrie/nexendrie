@@ -111,7 +111,7 @@ class UserPresenter extends BasePresenter {
     $form->addText("email", "E-mail:")
       ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
-    $form->addSubmit("login", "Přihlásit se");
+    $form->addSubmit("register", "Zaregistrovat se");
     $form->onSuccess[] = array($this, "registerFormSucceeded");
     return $form;
   }
