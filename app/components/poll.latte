@@ -6,4 +6,5 @@
       <li>{$answer}</li>
     {/foreach}
     </ul>
+    {if $canEdit}<p><a href="{plink :Admin:Polls:edit $poll->id}">Upravit</a> </p>{/if}
   </article>
