@@ -18,6 +18,10 @@ class BasePresenter extends \Nette\Application\UI\Presenter {
       $this->flashMessage("Pro přístup do administrace musíš být přihlášený.");
       $this->redirect("Front:User:login");
     }
+    if(!$this->user->isAllowed("site", "manage")) {
+      $this->flashMessage("Nemáš přístup do administrace.");
+      $this->redirect("Front:Homepage:");
+    }
     if($this->user->identity) $this->template->style = $this->user->identity->style;
     $groupModel = $this->context->getService("model.group");
     $this->user->guestRole = $groupModel->get(GUEST_ROLE)->single_name;

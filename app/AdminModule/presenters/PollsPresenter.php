@@ -22,16 +22,15 @@ class PollsPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function startup() {
-    parent::startup();
-    $this->requiresPermissions("poll", "add");
+  function renderDefault() {
+    $this->template->polls = $this->model->all();
   }
   
   /**
    * @return void
    */
-  function renderDefault() {
-    $this->template->polls = $this->model->all();
+  function actionAdd() {
+    $this->requiresPermissions("poll", "add");
   }
   
   /**
@@ -64,6 +63,7 @@ class PollsPresenter extends BasePresenter {
    * @return void
    */
   function actionEdit($id) {
+    $this->requiresPermissions("poll", "add");
     if(!$this->model->exists($id)) $this->forward("notfound");
   }
   
