@@ -19,13 +19,20 @@ class PollPresenter extends BasePresenter {
    * @return void
    */
   function renderView($id) {
-    try {
-      $poll = $this->model->view($id);
-      $poll->answers = explode("\n", $poll->answers);
-      $this->template->poll = $poll;
-    } catch(\Nette\Application\ForbiddenRequestException $e) {
-      $this->forward("notfound");
-    }
+    if(!$this->model->exists($id)) $this->forward("notfound");
+    $this->template->pollId = $id;
+  }
+  
+  /**
+   * @return \Nette\Application\UI\Multiplier
+   */
+  function createComponentPoll() {
+    $p = $this;
+    return new \Nette\Application\UI\Multiplier(function ($id) use ($p) {
+      $poll = $p->context->getService("poll");
+      $poll->id = $id;
+      return $poll;
+    });
   }
 }
 ?>
