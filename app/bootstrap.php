@@ -17,6 +17,7 @@ $container = $configurator->createContainer();
 $router = new RouteList;
 $router[] = new Route("profile/<username>", "Front:Profile:default");
 $router[] = new Route("message/<id [0-9]+>", "Front:Messages:view");
+$router[] = new Route("poll/<id [0-9]+>", "Front:Poll:view");
 $router[] = new Route("news/page/<page [0-9]+>", "Front:News:page");
 $router[] = new Route("rss[/<action>][/<news [0-9]+>]", "Front:Rss:news");
 $router[] = new Route("admin/<presenter>[/<action>][/<id>]", array(
