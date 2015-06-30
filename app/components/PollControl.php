@@ -34,6 +34,11 @@ class PollControl extends \Nette\Application\UI\Control {
     $template->setFile(__DIR__ . "/poll.latte");
     $poll = $this->model->view($this->id, true);
     $this->template->poll = $poll;
+    $votes = $this->model->getVotes($this->id);
+    for($i = 1; $i <= count($poll->answers); $i++) {
+      if(!isset($votes["answers"][$i])) $votes["answers"][$i] = 0;
+    }
+    $this->template->votes = $votes;
     $template->canVote = $this->model->canVote($this->id);
     $template->canEdit = $this->user->isAllowed("poll", "add");
     $template->render();

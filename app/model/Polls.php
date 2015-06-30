@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie;
 
+use Nette\Utils\Arrays;
+
 /**
  * Polls Model
  *
@@ -170,6 +172,26 @@ class Polls extends \Nette\Object {
       "poll" => $pollId, "user" => $this->user->id, "answer" => $answer, "voted" => time()
     );
     $this->db->query("INSERT INTO poll_votes", $data);
+  }
+  
+  /**
+   * Get votes for a poll
+   * 
+   * @param int $poll Poll's id
+   * @return array
+   */
+  function getVotes($poll) {
+    $return = array("total" => 0, "answers" => array());
+    $votes = $this->db->table("poll_votes")
+      ->where("poll", $poll);
+    if($votes->count() > 0) {
+      $return["total"] = $votes->count();
+      foreach($votes as $vote) {
+        $count = Arrays::get($return["answers"], $vote->answer, 0);
+        $return["answers"][$vote->answer] = $count + 1;
+      }
+    }
+    return $return;
   }
 }
 
