@@ -1,10 +1,11 @@
 #header { background-color: #0066CC; width: 935px; }
 #header h2 { position: relative; top: 25px; left: 25px; width: 100px; }
 #header h2 a { text-decoration: none; color: gray; font-size: larger; }
+#adminPanel { position: absolute; top: 73px; left: 620px; }
 #userPanel { position: relative; bottom: 3px; left: 700px; width: 280px; }
-#userPanel a { text-decoration: none; background-color: green; color: white;
+#userPanel a, #userPanel a { text-decoration: none; background-color: green; color: white;
   border: 5px green solid; position: relative; bottom: 1px; }
-#userPanel a:hover { color: yellow; }
+#userPanel a:hover, #adminPanel a:hover { color: yellow; }
 #mainMenu { position: relative; top: 7px; width: 160px;
   background-color: #99CCCC; }
 #mainMenu h3 { position: relative; left: 18px; bottom: 14px; width: 104px;

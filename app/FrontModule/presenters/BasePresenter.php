@@ -18,6 +18,7 @@ class BasePresenter extends \Nette\Application\UI\Presenter {
     $groupModel = $this->context->getService("model.group");
     $this->user->guestRole = $groupModel->get(GUEST_ROLE)->single_name;
     $this->user->authenticatedRole = $groupModel->get(LOGGEDIN_ROLE)->single_name;
+    $this->template->isAdmin = $this->user->isAllowed("site", "manage");
   }
   
   /**
