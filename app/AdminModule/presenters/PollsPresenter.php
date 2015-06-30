@@ -17,6 +17,9 @@ class PollsPresenter extends BasePresenter {
     $this->model = $model;
   }
   
+  /**
+   * @return void
+   */
   function startup() {
     parent::startup();
     $this->requiresPermissions("poll", "add");

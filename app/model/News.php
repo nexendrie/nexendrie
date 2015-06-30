@@ -81,6 +81,11 @@ class News extends \Nette\Object {
     return $return;
   }
   
+  /**
+   * Get list of all news
+   * 
+   * @return array
+   */
   function all() {
     $return = array();
     $news = $this->db->table("news")->order("added DESC");

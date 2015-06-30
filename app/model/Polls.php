@@ -26,6 +26,8 @@ class Polls extends \Nette\Object {
   }
   
   /**
+   * Get list of all polls
+   * 
    * @return array
    */
   function all() {
