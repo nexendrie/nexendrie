@@ -1,0 +1,13 @@
+{layout '../@layout.latte'}
+{block title}Ankety{/block}
+{block content}
+  <h1>Ankety</h1>
+  <p><a n:href="News:add">Přidat anketu</a></p>
+  <h3>Seznam anket</h3>
+  <table>
+    <tr><th>Otázka</th><th>Přidáno</th><th>Autor</th><th>Akce</th></tr>
+    {foreach $polls as $item}
+    <tr><td>{$item->question}</td><td>{$item->added}</td><td><a n:href=":Front:Profile: $item->author_username">{$item->author}</a></td><td><a n:href="Polls:edit $item->id">Upravit</a></td></tr>
+    {/foreach}
+  </table>
+{/block}
