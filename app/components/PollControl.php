@@ -39,6 +39,10 @@ class PollControl extends \Nette\Application\UI\Control {
     $template->render();
   }
   
+  /**
+   * @param int $answer
+   * @return void
+   */
   function handleVote($answer) {
     try {
       $this->model->vote($this->id, $answer);

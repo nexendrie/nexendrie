@@ -173,6 +173,11 @@ class Polls extends \Nette\Object {
   }
 }
 
+/**
+ * Poll voting exception
+ * 
+ * @author Jakub Konečný
+ */
 class PollVotingException extends \Exception {
   
 }
