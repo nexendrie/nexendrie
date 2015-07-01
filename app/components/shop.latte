@@ -9,7 +9,7 @@
     Mohu ti nabídnout:
     <ul>
       {foreach $items as $item}
-        <li>{$item->name} za {$item->price}. <a href="{plink :Front:Market:buy $item->id}">Koupit</a></li>
+        <li>{$item->name} za {$item->price}. <a n:href="buy! $item->id">Koupit</a></li>
       {/foreach}
     </ul>
     </article>

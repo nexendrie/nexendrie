@@ -85,5 +85,9 @@ class ShopControl extends \Nette\Application\UI\Control {
     $template->user = $this->user;
     $template->render();
   }
+  
+  function handleBuy($item) {
+    
+  }
 }
 ?>
