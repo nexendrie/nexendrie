@@ -4,7 +4,41 @@ namespace Nexendrie;
 /**
  * @author Jakub Konečný
  */
-class Locale extends \Nette\Object {
+interface ILocale {
+  /**
+   * Formats date and time
+   * 
+   * @param int $date
+   * @return string
+   */
+  function formatDateTime($date);
+  
+  /**
+   * Formats date
+   * 
+   * @param int $date
+   * @return string
+   */
+  function formatDate($date);
+  
+  /**
+   * Selects correct form according to $count
+   * 
+   * @param string $word1
+   * @param string $word2
+   * @param string $word3
+   * @param int $count
+   * @return string
+   */
+  function plural($word1, $word2, $word3, $count);
+}
+
+/**
+ * Locale Model
+ * 
+ * @author Jakub Konečný
+ */
+class Locale extends \Nette\Object implements ILocale {
   /** @var array */
   protected $formats = array();
   
