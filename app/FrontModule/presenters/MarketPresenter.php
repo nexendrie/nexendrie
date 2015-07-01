@@ -28,18 +28,21 @@ class MarketPresenter extends BasePresenter {
    * @param int $id Shop's id
    * @return void
    */
-  function renderShop($id) {
-    try {
-      $data = $this->model->showShop($id);
-      $this->template->shop = $data["shop"];
-      $localeModel = $this->context->getService("model.locale");
-      foreach($data["items"] as $item) {
-        $item->price = $localeModel->money($item->price);
-      }
-      $this->template->items = $data["items"];
-    } catch(\Nette\Application\BadRequestException $e) {
-      $this->forward("notfound");
-    }
+  function actionShop($id) {
+    if(!$this->model->exists($id)) $this->forward("notfound");
+    $this->template->shopId = $id;
+  }
+  
+  /**
+   * @return \Nette\Application\UI\Multiplier
+   */
+  function createComponentShop() {
+    $p = $this;
+    return new \Nette\Application\UI\Multiplier(function ($id) use ($p) {
+      $shop = $p->context->getService("shop");
+      $shop->id = $id;
+      return $shop;
+    });
   }
   
   /**

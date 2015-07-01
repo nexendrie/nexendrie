@@ -26,3 +26,4 @@ services:
     poll: Nexendrie\PollControl
     form.addEditNews: Nexendrie\Forms\AddEditNewsForm::create
     form.addEditPoll: Nexendrie\Forms\AddEditPollForm::create
+    shop: Nexendrie\ShopControl

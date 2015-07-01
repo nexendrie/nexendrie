@@ -36,28 +36,15 @@ class Market extends \Nette\Object {
   }
   
   /**
-   * Shows specified shop
+   * Check whetever specified shop exists
    * 
-   * @param int $id
-   * @return array
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @param int $id News' id
+   * @return bool
    */
-  function showShop($id) {
-    $shop = $this->db->table("shops")->get($id);
-    if(!$shop) throw new \Nette\Application\BadRequestException("Specified shop does not exist.");
-    $return = array(
-      "shop" => $shop, "items" => array()
-    );
-    $items = $this->db->table("items")
-      ->where("shop", $id);
-    foreach($items as $item) {
-      $i = new \stdClass;
-      foreach($item as $key => $value) {
-        $i->$key = $value;
-      }
-      $return["items"][] = $i;
-    }
-    return $return;
+  function exists($id) {
+    $row = $this->db->table("shops")
+      ->where("id", $id);
+    return (bool) $row->count("*");
   }
 }
 ?>
