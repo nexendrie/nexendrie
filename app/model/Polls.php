@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie;
 
-use Nette\Utils\Arrays;
-
 /**
  * Polls Model
  *
@@ -136,62 +134,6 @@ class Polls extends \Nette\Object {
     if(!$this->user->isAllowed("poll", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for editing polls.", 403);
     if(!$this->exists($id)) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist");
     $this->db->query("UPDATE polls SET ? WHERE id=?", $data, $id);
-  }
-  
-  /**
-   * Check whetever the user can vote in specified poll
-   * 
-   * @param int $id Poll's id
-   * @return bool
-   */
-  function canVote($id) {
-    if(!$this->user->isLoggedIn()) return false;
-    elseif(!$this->user->isAllowed("poll", "vote")) return false;
-    $row = $this->db->table("poll_votes")
-      ->where("poll", $id)
-      ->where("user", $this->user->id);
-    return !($row->count("*") > 0 );
-  }
-  
-  /**
-   * Vote in a poll
-   * 
-   * @param int $pollId
-   * @param int $answer
-   * @throws \Nette\InvalidArgumentException
-   * @throws \Nette\Application\ForbiddenRequestException
-   * @throws PollVotingException
-   * @return void
-   */
-  function vote($pollId, $answer) {
-    if(!$this->exists($pollId)) throw new \Nette\InvalidArgumentException("Specified poll does not exist.");
-    if(!$this->canVote($pollId)) throw new \Nette\Application\ForbiddenRequestException("You can't vote in this poll.", 403);
-    $poll = $this->view($pollId, true);
-    if($answer > count($poll->answers)) throw new PollVotingException("The poll has less then $answer answers.");
-    $data = array(
-      "poll" => $pollId, "user" => $this->user->id, "answer" => $answer, "voted" => time()
-    );
-    $this->db->query("INSERT INTO poll_votes", $data);
-  }
-  
-  /**
-   * Get votes for a poll
-   * 
-   * @param int $poll Poll's id
-   * @return array
-   */
-  function getVotes($poll) {
-    $return = array("total" => 0, "answers" => array());
-    $votes = $this->db->table("poll_votes")
-      ->where("poll", $poll);
-    if($votes->count() > 0) {
-      $return["total"] = $votes->count();
-      foreach($votes as $vote) {
-        $count = Arrays::get($return["answers"], $vote->answer, 0);
-        $return["answers"][$vote->answer] = $count + 1;
-      }
-    }
-    return $return;
   }
 }
 
