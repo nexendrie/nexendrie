@@ -12,7 +12,7 @@ class AddEditNewsForm {
   /**
    * @return \Nette\Application\UI\Form
    */
-  function create() {
+  static function create() {
     $form = new UI\Form;
     $form->addText("title", "Titulek:")
       ->addRule(UI\Form::MAX_LENGTH, "Titulek může mít maximálně 30 znaků.", 30)

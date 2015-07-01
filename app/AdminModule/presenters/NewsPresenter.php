@@ -39,8 +39,7 @@ class NewsPresenter extends BasePresenter {
    * @return \Nette\Application\UI\Form
    */
   protected function createComponentAddNewsForm() {
-    $factory = new \Nexendrie\Forms\AddEditNewsForm;
-    $form = $factory->create();
+    $form = $this->context->getService("form.addEditNews");
     $form->onSuccess[] = array($this, "addNewsFormSucceeded");
     return $form;
   }
@@ -79,8 +78,7 @@ class NewsPresenter extends BasePresenter {
    */
   protected function createComponentEditNewsForm() {
     $news = $this->model->view($this->getParameter("id"));
-    $factory = new \Nexendrie\Forms\AddEditNewsForm;
-    $form = $factory->create();
+    $form = $this->context->getService("form.addEditNews");
     $form->onSuccess[] = array($this, "editNewsFormSucceeded");
     $form->setDefaults((array) $news);
     return $form;

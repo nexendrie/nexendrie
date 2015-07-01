@@ -39,8 +39,7 @@ class PollsPresenter extends BasePresenter {
    * @return \Nette\Application\UI\Form
    */
   function createComponentAddPollForm() {
-    $factory = new \Nexendrie\Forms\AddEditPollForm;
-    $form = $factory->create();
+    $form = $this->context->getService("form.addEditPoll");
     $form->onSuccess[] = array($this, "addPollFormSucceeded");
     return $form;
   }
@@ -74,8 +73,7 @@ class PollsPresenter extends BasePresenter {
    */
   function createComponentEditPollForm() {
     $poll = $this->model->view($this->getParameter("id"));
-    $factory = new \Nexendrie\Forms\AddEditPollForm;
-    $form = $factory->create();
+    $form = $this->context->getService("form.addEditPoll");
     $form->onSuccess[] = array($this, "editPollFormSucceeded");
     $form->setDefaults((array) $poll);
     return $form;
