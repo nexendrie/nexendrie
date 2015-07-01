@@ -22,6 +22,12 @@ class PollControl extends \Nette\Application\UI\Control {
   /** @var int */
   protected $id;
   
+  /**
+   * @param \Nexendrie\Profile $profileModel
+   * @param \Nexendrie\ILocale $localeModel
+   * @param \Nette\Security\User $user
+   * @param \Nette\Database\Context $db
+   */
   function __construct(\Nexendrie\Profile $profileModel, \Nexendrie\ILocale $localeModel, \Nette\Security\User $user, \Nette\Database\Context $db) {
     $this->profileModel = $profileModel;
     $this->localeModel = $localeModel;
@@ -29,6 +35,10 @@ class PollControl extends \Nette\Application\UI\Control {
     $this->db = $db;
   }
   
+  /**
+   * @return void
+   * @throws \Nette\Application\BadRequestException
+   */
   function getPoll() {
     if(isset($this->poll)) return $this->poll;
     $poll = $this->db->table("polls")->get($this->id);
