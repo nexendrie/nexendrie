@@ -108,7 +108,7 @@ class PollControl extends \Nette\Application\UI\Control {
    */
   function handleVote($answer) {
     try {
-      $this->vote($this->id, $answer);
+      $this->vote($answer);
       $this->presenter->flashMessage("Hlas uložen.");
     } catch (\Nette\InvalidArgumentException $e) {
       $this->presenter->flashMessage("Zadaná anketa neexistuje.");
