@@ -18,12 +18,21 @@ class ShopControl extends \Nette\Application\UI\Control {
   /** @var int */
   protected $id;
   
+  /**
+   * @param \Nette\Database\Context $db
+   * @param \Nette\Security\User $user
+   * @param \Nexendrie\ILocale $localeModel
+   */
   function __construct(\Nette\Database\Context $db, \Nette\Security\User $user, \Nexendrie\ILocale $localeModel) {
     $this->db = $db;
     $this->user = $user;
     $this->localeModel = $localeModel;
   }
   
+  /**
+   * @return \stdClass
+   * @throws \Nette\Application\BadRequestException
+   */
   function getShop() {
     if(isset($this->shop)) return $this->shop;
     $shop = $this->db->table("shops")->get($this->id);
