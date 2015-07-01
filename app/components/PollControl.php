@@ -36,7 +36,7 @@ class PollControl extends \Nette\Application\UI\Control {
   }
   
   /**
-   * @return void
+   * @return \stdClass
    * @throws \Nette\Application\BadRequestException
    */
   function getPoll() {
@@ -59,6 +59,7 @@ class PollControl extends \Nette\Application\UI\Control {
       }
     }
     $this->poll = $return;
+    return $return;
   }
   
   /**
