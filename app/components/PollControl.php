@@ -9,26 +9,58 @@ use Nette\Utils\Arrays;
  * @author Jakub Konečný
  */
 class PollControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Polls */ 
-  protected $model;
+  /** @var \Nexendrie\Profile */
+  protected $profileModel;
+  /** @var \Nexendrie\Locale */
+  protected $localeModel;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var \Nette\Database\Context */
   protected $db;
+  /** @var \stdClass */
+  protected $poll;
   /** @var int */
   protected $id;
   
-  function __construct(\Nexendrie\Polls $model, \Nette\Security\User $user, \Nette\Database\Context $db) {
-    $this->model = $model;
+  function __construct(\Nexendrie\Profile $profileModel, \Nexendrie\Locale $localeModel, \Nette\Security\User $user, \Nette\Database\Context $db) {
+    $this->profileModel = $profileModel;
+    $this->localeModel = $localeModel;
     $this->user = $user;
     $this->db = $db;
+  }
+  
+  function getPoll() {
+    if(isset($this->poll)) return $this->poll;
+    $poll = $this->db->table("polls")->get($this->id);
+    if(!$poll) throw new \Nette\Application\BadRequestException("Specified poll does not exist.");
+    $return = new \stdClass;
+    foreach($poll as $key => $value) {
+      if($key === "author") {
+        $user = $this->profileModel->getNames($value);
+        $return->$key = $user->publicname;
+        $key .= "_username";
+        $return->$key = $user->username;
+      } elseif($key === "added") {
+        $return->$key = $this->localeModel->formatDateTime($value);
+      } elseif($key === "answers") {
+        $return->$key = explode("\n", $value);
+      } else {
+        $return->$key = $value;
+      }
+    }
+    $this->poll = $return;
   }
   
   /**
    * @param int $id
    */
   function setId($id) {
-    $this->id = $id;
+    try {
+      $this->id = $id;
+      $this->getPoll();
+    } catch(\Nette\Application\BadRequestException $e) {
+      throw $e;
+    }
   }
   
   /**
@@ -56,7 +88,7 @@ class PollControl extends \Nette\Application\UI\Control {
   function render() {
     $template = $this->template;
     $template->setFile(__DIR__ . "/poll.latte");
-    $poll = $this->model->view($this->id, true);
+    $poll = $this->getPoll();
     $this->template->poll = $poll;
     $votes = $this->getVotes();
     for($i = 1; $i <= count($poll->answers); $i++) {
@@ -92,9 +124,8 @@ class PollControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function vote($answer) {
-    if(!$this->model->exists($this->id)) throw new \Nette\InvalidArgumentException("Specified poll does not exist.");
     if(!$this->canVote($this->id)) throw new \Nette\Application\ForbiddenRequestException("You can't vote in this poll.", 403);
-    $poll = $this->model->view($this->id, true);
+    $poll = $this->getPoll();
     if($answer > count($poll->answers)) throw new PollVotingException("The poll has less then $answer answers.");
     $data = array(
       "poll" => $this->id, "user" => $this->user->id, "answer" => $answer, "voted" => time()
