@@ -71,11 +71,11 @@ class Polls extends \Nette\Object {
    * @param int $id Poll's id
    * @param bool $parseAnswers
    * @return \stdClass
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws \Nette\Application\BadRequestException
    */
   function view($id, $parseAnswers = false) {
     $poll = $this->db->table("polls")->get($id);
-    if(!$poll) throw new \Nette\Application\ForbiddenRequestException("Specified poll does not exist.");
+    if(!$poll) throw new \Nette\Application\BadRequestException("Specified poll does not exist.");
     $return = new \stdClass;
     foreach($poll as $key => $value) {
       if($key === "author") {

@@ -116,11 +116,11 @@ class News extends \Nette\Object {
    * 
    * @param type $id
    * @return \stdClass
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws \Nette\Application\BadRequestException
    */
   function view($id) {
     $new = $this->db->table("news")->get($id);
-    if(!$new) throw new \Nette\Application\ForbiddenRequestException("Specified news does not exist.");
+    if(!$new) throw new \Nette\Application\BadRequestException("Specified news does not exist.");
     $return = new \stdClass;
     foreach($new as $key => $value) {
       if($key === "author") {
