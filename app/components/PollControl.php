@@ -135,7 +135,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function vote($answer) {
-    if(!$this->canVote($this->id)) throw new \Nette\Application\ForbiddenRequestException("You can't vote in this poll.", 403);
+    if(!$this->canVote()) throw new \Nette\Application\ForbiddenRequestException("You can't vote in this poll.", 403);
     $poll = $this->getPoll();
     if($answer > count($poll->answers)) throw new PollVotingException("The poll has less then $answer answers.");
     $data = array(
