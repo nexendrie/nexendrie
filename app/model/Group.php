@@ -45,6 +45,16 @@ class Group extends \Nette\Object {
   }
   
   /**
+   * Get number of members of specified group
+   * 
+   * @param int $group Group's id
+   * @return int
+   */
+  function numberOfMembers($group) {
+    return $this->db->table("users")->where("group", $group)->count("*");
+  }
+  
+  /**
    * Get specified group
    * 
    * @param int $id Group's id

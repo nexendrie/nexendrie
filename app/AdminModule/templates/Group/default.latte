@@ -1,0 +1,11 @@
+{layout '../@layout.latte'}
+{block title}Skupiny{/block}
+{block content}
+  <h1>Skupiny</h1>
+  <table>
+    <tr><th>Název</th><th>Členů</th><th>Akce</th></tr>
+    {foreach $groups as $group}
+    <tr><td>{$group->name}</td><td><a n:href="Group:members $group->id">{$group->members}</a></td><td><a n:href="Group:edit $group->id">Upravit</a></td></tr>
+    {/foreach}
+  </table>
+{/block}
