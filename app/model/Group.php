@@ -55,6 +55,5 @@ class Group extends \Nette\Object {
     $group = Arrays::get($groups, $id, false);
     return $group;
   }
-  
 }
 ?>
