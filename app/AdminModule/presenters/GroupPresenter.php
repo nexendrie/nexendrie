@@ -21,6 +21,7 @@ class GroupPresenter extends BasePresenter {
    * @return void
    */
   function renderDefault() {
+    $this->requiresPermissions("group", "list");
     $groups = $this->model->listOfGroups();
     foreach($groups as $group) {
       $group->members = $this->model->numberOfMembers($group->id);
@@ -33,7 +34,7 @@ class GroupPresenter extends BasePresenter {
    * @return void
    */
   function actionEdit($id) {
-    
+    $this->requiresPermissions("group", "edit");
   }
   
   /**
@@ -41,7 +42,7 @@ class GroupPresenter extends BasePresenter {
    * @return void
    */
   function actionMembers($id) {
-    
+    $this->requiresPermissions("group", "list");
   }
 }
 ?>
