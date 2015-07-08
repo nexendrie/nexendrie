@@ -8,7 +8,7 @@ namespace Nexendrie\FrontModule\Presenters;
  */
 class HomepagePresenter extends BasePresenter {
   /** @var \Nexendrie\News */
-  protected  $model;
+  protected $model;
   
   function __construct(\Nexendrie\News $model) {
     $this->model = $model;
