@@ -128,7 +128,7 @@ class UserPresenter extends BasePresenter {
       $this->model->register($values);
       $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
       $this->redirect("Homepage:");
-    } catch (\Nexendrie\RegistrationException $e) {
+    } catch (\Nexendrie\Model\RegistrationException $e) {
       if($e->getCode() === \Nexendrie\Model\UserManager::REG_DUPLICATE_USERNAME) {
         $form->addError("Zvolené uživatelské jméno je už zabráno.");
       }
@@ -219,7 +219,7 @@ class UserPresenter extends BasePresenter {
         $this->user->identity->style = $values["style"];
         $this->redirect("this");
       }
-    } catch (\Nexendrie\SettingsException $e) {
+    } catch (\Nexendrie\Model\SettingsException $e) {
       if($e->getCode() === \Nexendrie\Model\UserManager::REG_DUPLICATE_USERNAME) {
         $form->addError("Zvolené jméno je už zabráno.");
       }

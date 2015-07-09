@@ -156,7 +156,7 @@ class PollControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Zadaná anketa neexistuje.");
     } catch (\Nette\Application\ForbiddenRequestException $e) {
       $this->presenter->flashMessage("Nemůžeš hlasovat v této anketě.");
-    } catch (\Nexendrie\PollVotingException $e) {
+    } catch (\Nexendrie\Model\PollVotingException $e) {
       $this->presenter->flashMessage("Neplatná volba.");
     }
   }
