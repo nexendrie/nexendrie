@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie;
+namespace Nexendrie\Components;
 
 use Nette\Utils\Arrays;
 
