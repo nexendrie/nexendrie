@@ -1,7 +1,7 @@
 <div id="header">
   <h2><a href="{$baseUrl}">Nexendrie</a></h2>
   <div id="adminPanel">
-    {if $isAdmin}<a n:href=":Admin:Homepage:">Administace</a>{else}{/if}
+    {if $isAdmin}<a n:href=":Admin:Homepage:">Administrace</a>{else}{/if}
   </div>
   <div id="userPanel">
     {if !$user->isLoggedIn()}<a n:href="User:login">Přihlásit se</a> <a n:href="User:register">Registrovat se</a>{else}<a n:href="Messages:">Zprávy</a> <a n:href="User:settings">Nastavení</a> <a n:href="User:logout">Odhlásit se</a>{/if}

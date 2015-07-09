@@ -1,7 +1,7 @@
 #header { background-color: #111111; width: 935px; }
 #header h2 { position: relative; top: 25px; left: 25px; width: 100px; }
 #header h2 a { text-decoration: none; color: white; font-size: larger; }
-#adminPanel { position: absolute; top: 73px; left: 620px; }
+#adminPanel { position: absolute; top: 73px; left: 615px; }
 #userPanel { position: relative; bottom: 3px; left: 700px; width: 280px; }
 #userPanel a, #adminPanel a { text-decoration: none; background-color: #CC0000; color: teal;
   border: 5px #CC0000 solid; position: relative; bottom: 1px; }
