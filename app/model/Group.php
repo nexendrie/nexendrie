@@ -15,6 +15,8 @@ class Group extends \Nette\Object {
   protected $cache;
   /** @var \Nette\Security\User */
   protected $user;
+  /** @var \Nexendrie\Model\Profile */
+  protected $profileModel;
   
   /**
    * @param \Nette\Caching\Cache $cache
@@ -31,6 +33,10 @@ class Group extends \Nette\Object {
    */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
+  }
+  
+  function setProfileModel(\Nexendrie\Model\Profile $profileModel) {
+    $this->profileModel = $profileModel;
   }
   
   /**
@@ -76,10 +82,48 @@ class Group extends \Nette\Object {
     return $group;
   }
   
+  /**
+   * Check whetever specified guild exists
+   * 
+   * @param int $id Guild's id
+   * @return bool
+   */
+  function exists($id) {
+    $row = $this->db->table("groups")
+      ->where("id", $id);
+    return (bool) $row->count("*");
+  }
+  
+  /**
+   * Edit specified group
+   * 
+   * @param type $id Group's id
+   * @param \Nette\Utils\ArrayHash $data
+   * @throws \Nette\Application\ForbiddenRequestException
+   * @return void
+   */
   function edit($id, \Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("group", "edit")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
     $this->db->query("UPDATE groups SET ? WHERE id=?", $data, $id);
+  }
+  
+  /**
+   * Get members of specified guild
+   * 
+   * @param int $group Guild's id
+   * @return array
+   * @throws \Nette\Application\BadRequestException
+   */
+  function members($group) {
+    if(!$this->exists($group)) throw new \Nette\Application\BadRequestException("Specified guild does not exist.");
+    $return = array();
+    $members = $this->db->table("users")
+      ->where("group", $group);
+    foreach($members as $member) {
+      $return[] = $this->profileModel->getNames($member->id);
+    }
+    return $return;
   }
 }
 ?>

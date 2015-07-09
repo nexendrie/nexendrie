@@ -81,5 +81,20 @@ class GroupPresenter extends BasePresenter {
   function actionMembers($id) {
     $this->requiresPermissions("group", "list");
   }
+  
+  /**
+   * @param int $id
+   * @return void
+   */
+  function renderMembers($id) {
+    try {
+      $this->model->profileModel = $this->context->getService("model.profile");
+      $this->template->members = $this->model->members($id);
+      $group = $this->model->get($id);
+      $this->template->groupName = $group->name;
+    } catch (\Nette\Application\BadRequestException $ex) {
+      $this->forward("notfound");
+    }
+  }
 }
 ?>
