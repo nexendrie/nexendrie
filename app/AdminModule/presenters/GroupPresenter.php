@@ -37,6 +37,7 @@ class GroupPresenter extends BasePresenter {
    */
   function actionEdit($id) {
     $this->requiresPermissions("group", "edit");
+    if(!$this->model->exists($id)) $this->forward("notfound");
   }
   
   /**
