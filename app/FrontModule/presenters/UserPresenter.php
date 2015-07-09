@@ -12,13 +12,13 @@ use Nette\Application\UI,
  * @author Jakub Konečný
  */
 class UserPresenter extends BasePresenter {
-  /** @var \Nexendrie\UserManager */
+  /** @var \Nexendrie\Model\UserManager */
   protected $model;
   
   /**
-   * @param \Nexendrie\UserManager $model
+   * @param \Nexendrie\Model\UserManager $model
    */
-  function __construct(\Nexendrie\UserManager $model) {
+  function __construct(\Nexendrie\Model\UserManager $model) {
     $this->model = $model;
   }
   
@@ -129,10 +129,10 @@ class UserPresenter extends BasePresenter {
       $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
       $this->redirect("Homepage:");
     } catch (\Nexendrie\RegistrationException $e) {
-      if($e->getCode() === \Nexendrie\UserManager::REG_DUPLICATE_USERNAME) {
+      if($e->getCode() === \Nexendrie\Model\UserManager::REG_DUPLICATE_USERNAME) {
         $form->addError("Zvolené uživatelské jméno je už zabráno.");
       }
-      if($e->getCode() === \Nexendrie\UserManager::REG_DUPLICATE_EMAIL) {
+      if($e->getCode() === \Nexendrie\Model\UserManager::REG_DUPLICATE_EMAIL) {
         $form->addError("Zadaný e-mail je už používán.");
       }
     }
@@ -220,13 +220,13 @@ class UserPresenter extends BasePresenter {
         $this->redirect("this");
       }
     } catch (\Nexendrie\SettingsException $e) {
-      if($e->getCode() === \Nexendrie\UserManager::REG_DUPLICATE_USERNAME) {
+      if($e->getCode() === \Nexendrie\Model\UserManager::REG_DUPLICATE_USERNAME) {
         $form->addError("Zvolené jméno je už zabráno.");
       }
-      if($e->getCode() === \Nexendrie\UserManager::REG_DUPLICATE_EMAIL) {
+      if($e->getCode() === \Nexendrie\Model\UserManager::REG_DUPLICATE_EMAIL) {
         $form->addError("Zadaný e-mail je už používán.");
       }
-      if($e->getCode() === \Nexendrie\UserManager::SET_INVALID_PASSWORD) {
+      if($e->getCode() === \Nexendrie\Model\UserManager::SET_INVALID_PASSWORD) {
         $form->addError("Neplatné heslo.");
       }
     }

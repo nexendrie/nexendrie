@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie;
+namespace Nexendrie\Model;
 
 use Nette\Security as NS;
 

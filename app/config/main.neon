@@ -20,8 +20,8 @@ session:
     name: NEXSESSID
     expiration: 4 hours
 services:
-    - Nexendrie\UserManager
-    authorizator: Nexendrie\Authorizator::create
+    - Nexendrie\Model\UserManager
+    authorizator: Nexendrie\Model\Authorizator::create
     cache.cache: Nette\Caching\Cache(@cache.storage, "data")
     poll: Nexendrie\Components\PollControl
     form.addEditNews: Nexendrie\Forms\AddEditNewsForm::create
