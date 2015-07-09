@@ -13,7 +13,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   protected $db;
   /** @var \Nette\Caching\Cache */
   protected $cache;
-  /** @var \Nexendrie\Group */
+  /** @var \Nexendrie\Model\Group */
   protected $groupModel;
   /** @var \Nette\Security\User */
   protected $user;
@@ -25,9 +25,9 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   /**
    * @param \Nette\Database\Context $database
    * @param \Nette\Caching\Cache $cache
-   * @param \Nexendrie\Group $groupModel
+   * @param \Nexendrie\Model\Group $groupModel
    */
-  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Group $groupModel) {
+  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Model\Group $groupModel) {
     $this->db = $database;
     $this->cache = $cache;
     $this->groupModel = $groupModel;

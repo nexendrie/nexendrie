@@ -33,12 +33,15 @@ interface ILocale {
   function plural($word1, $word2, $word3, $count);
 }
 
+
+namespace Nexendrie\Model;
+
 /**
  * Locale Model
  * 
  * @author Jakub Konečný
  */
-class Locale extends \Nette\Object implements ILocale {
+class Locale extends \Nette\Object implements \Nexendrie\ILocale {
   /** @var array */
   protected $formats = array();
   

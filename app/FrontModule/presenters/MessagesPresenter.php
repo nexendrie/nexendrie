@@ -9,13 +9,13 @@ use Nette\Application\UI;
  * @author Jakub Konečný
  */
 class MessagesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Messenger */
+  /** @var \Nexendrie\Model\Messenger */
   protected $model;
   
   /**
-   * @param \Nexendrie\Messenger $model
+   * @param \Nexendrie\Model\Messenger $model
    */
-  function __construct(\Nexendrie\Messenger $model) {
+  function __construct(\Nexendrie\Model\Messenger $model) {
     $this->model = $model;
   }
   

@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie;
+namespace Nexendrie\Model;
 
 /**
  * News Model
@@ -10,21 +10,21 @@ namespace Nexendrie;
 class News extends \Nette\Object {
   /** @var \Nette\Database\Context */
   protected $db;
-  /** @var \Nexendrie\Profile */
+  /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var \Nexendrie\Locale */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var int */
   protected $itemsPerPage = 10;
   
   /**
    * @param \Nette\Database\Context $db
-   * @param \Nexendrie\Profile $profileModel
-   * @param \Nexendrie\Locale $localeModel
+   * @param \Nexendrie\Model\Profile $profileModel
+   * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $db, \Nexendrie\Profile $profileModel, \Nexendrie\Locale $localeModel) {
+  function __construct(\Nette\Database\Context $db, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
     $this->db = $db;
     $this->profileModel = $profileModel;
     $this->localeModel = $localeModel;

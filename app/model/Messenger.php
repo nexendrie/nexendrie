@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie;
+namespace Nexendrie\Model;
 
 /**
  * Messenger Model
@@ -11,18 +11,18 @@ class Messenger extends \Nette\Object {
   protected $db;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var \Nexendrie\Profile */
+  /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
-  /** @var \Nexendrie\Locale */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   /**
    * @param \Nette\Database\Context $db
    * @param \Nette\Security\User $user
-   * @param \Nexendrie\Profile $profileModel
-   * @param \Nexendrie\Locale $localeModel
+   * @param \Nexendrie\Model\Profile $profileModel
+   * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $db, \Nette\Security\User $user, \Nexendrie\Profile $profileModel, \Nexendrie\Locale $localeModel) {
+  function __construct(\Nette\Database\Context $db, \Nette\Security\User $user, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
     $this->db = $db;
     $this->user = $user;
     $this->profileModel = $profileModel;

@@ -9,7 +9,7 @@ use Nette\Utils\Arrays;
  * @author Jakub Konečný
  */
 class PollControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Profile */
+  /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
   /** @var \Nexendrie\ILocale */
   protected $localeModel;
@@ -23,12 +23,12 @@ class PollControl extends \Nette\Application\UI\Control {
   protected $id;
   
   /**
-   * @param \Nexendrie\Profile $profileModel
+   * @param \Nexendrie\Model\Profile $profileModel
    * @param \Nexendrie\ILocale $localeModel
    * @param \Nette\Security\User $user
    * @param \Nette\Database\Context $db
    */
-  function __construct(\Nexendrie\Profile $profileModel, \Nexendrie\ILocale $localeModel, \Nette\Security\User $user, \Nette\Database\Context $db) {
+  function __construct(\Nexendrie\Model\Profile $profileModel, \Nexendrie\ILocale $localeModel, \Nette\Security\User $user, \Nette\Database\Context $db) {
     $this->profileModel = $profileModel;
     $this->localeModel = $localeModel;
     $this->user = $user;

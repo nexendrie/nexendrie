@@ -9,13 +9,13 @@ use Nette\Application\UI;
  * @author Jakub Konečný
  */
 class NewsPresenter extends BasePresenter {
-  /** @var \Nexendrie\News*/
+  /** @var \Nexendrie\Model\News*/
   protected $model;
   
   /**
-   * @param \Nexendrie\News $model
+   * @param \Nexendrie\Model\News $model
    */
-  function __construct(\Nexendrie\News $model) {
+  function __construct(\Nexendrie\Model\News $model) {
     $this->model = $model;
   }
   

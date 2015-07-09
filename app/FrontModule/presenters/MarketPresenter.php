@@ -7,13 +7,13 @@ namespace Nexendrie\FrontModule\Presenters;
  * @author Jakub Konečný
  */
 class MarketPresenter extends BasePresenter {
-  /** @var \Nexendrie\Market */
+  /** @var \Nexendrie\Model\Market */
   protected $model;
   
   /**
-   * @param \Nexendrie\Market $model
+   * @param \Nexendrie\Model\Market $model
    */
-  function __construct(\Nexendrie\Market $model) {
+  function __construct(\Nexendrie\Model\Market $model) {
     $this->model = $model;
   }
   

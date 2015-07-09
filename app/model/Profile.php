@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie;
+namespace Nexendrie\Model;
 
 use Nette\Utils\Arrays;
 
@@ -13,9 +13,9 @@ class Profile extends \Nette\Object {
   protected $db;
   /** @var \Nette\Caching\Cache */
   protected $cache;
-  /** @var \Nexendrie\Group */
+  /** @var \Nexendrie\Model\Group */
   protected $groupModel;
-  /** @var \Nexendrie\Locale */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var array */
   protected $names = array();
@@ -23,10 +23,10 @@ class Profile extends \Nette\Object {
   /**
    * @param \Nette\Database\Context $database
    * @param \Nette\Caching\Cache $cache
-   * @param \Nexendrie\Group $groupModel
-   * @param \Nexendrie\Locale $localeModel
+   * @param \Nexendrie\Model\Group $groupModel
+   * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Group $groupModel, \Nexendrie\Locale $localeModel) {
+  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Model\Group $groupModel, \Nexendrie\Model\Locale $localeModel) {
     $this->db = $database;
     $this->cache = $cache;
     $this->groupModel = $groupModel;

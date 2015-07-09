@@ -7,13 +7,13 @@ namespace Nexendrie\FrontModule\Presenters;
  * @author Jakub Konečný
  */
 class RssPresenter extends BasePresenter {
-  /** @var \Nexendrie\Rss */
+  /** @var \Nexendrie\Model\Rss */
   protected $model;
   
   /**
-   * @param \Nexendrie\Rss $model
+   * @param \Nexendrie\Model\Rss $model
    */
-  function __construct(\Nexendrie\Rss $model) {
+  function __construct(\Nexendrie\Model\Rss $model) {
     $this->model = $model;
   }
   

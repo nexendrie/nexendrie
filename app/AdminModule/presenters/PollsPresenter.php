@@ -9,13 +9,13 @@ use Nette\Application\UI;
  * @author Jakub Konečný
  */
 class PollsPresenter extends BasePresenter {
-  /** @var \Nexendrie\Polls */
+  /** @var \Nexendrie\Model\Polls */
   protected $model;
   
   /**
-   * @param \Nexendrie\Polls $model
+   * @param \Nexendrie\Model\Polls $model
    */
-  function __construct(\Nexendrie\Polls $model) {
+  function __construct(\Nexendrie\Model\Polls $model) {
     $this->model = $model;
   }
   

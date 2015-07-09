@@ -7,13 +7,13 @@ namespace Nexendrie\AdminModule\Presenters;
  * @author Jakub Konečný
  */
 class GroupPresenter extends BasePresenter {
-  /** @var \Nexendrie\Group */
+  /** @var \Nexendrie\Model\Group */
   protected $model;
   
   /**
-   * @param \Nexendrie\Group $model
+   * @param \Nexendrie\Model\Group $model
    */
-  function __construct(\Nexendrie\Group $model) {
+  function __construct(\Nexendrie\Model\Group $model) {
     $this->model = $model;
   }
   

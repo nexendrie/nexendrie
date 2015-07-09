@@ -7,10 +7,10 @@ namespace Nexendrie\FrontModule\Presenters;
  * @author Jakub Konečný
  */
 class PollPresenter extends BasePresenter {
-  /** @var \Nexendrie\Polls */
+  /** @var \Nexendrie\Model\Polls */
   protected $model;
   
-  function __construct(\Nexendrie\Polls $model) {
+  function __construct(\Nexendrie\Model\Polls $model) {
     $this->model = $model;
   }
   

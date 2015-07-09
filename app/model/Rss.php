@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie;
+namespace Nexendrie\Model;
 
 /**
  * Rss channel generator
@@ -7,19 +7,19 @@ namespace Nexendrie;
  * @author Jakub Konečný
  */
 class Rss extends \Nette\Object {
-  /** @var \Nexendrie\News */
+  /** @var \Nexendrie\Model\News */
   protected $newsModel;
   /** @var \Nette\Application\LinkGenerator */
   protected $linkGenerator;
-  /** @var \Nexendrie\Locale */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   /**
-   * @param \Nexendrie\News $newsModel
+   * @param \Nexendrie\Model\News $newsModel
    * @param \Nette\Application\LinkGenerator $linkGenerator
-   * @param \Nexendrie\Locale $localeModel
+   * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nexendrie\News $newsModel, \Nette\Application\LinkGenerator $linkGenerator, \Nexendrie\Locale $localeModel) {
+  function __construct(\Nexendrie\Model\News $newsModel, \Nette\Application\LinkGenerator $linkGenerator, \Nexendrie\Model\Locale $localeModel) {
     $this->newsModel = $newsModel;
     $this->linkGenerator = $linkGenerator;
     $this->localeModel = $localeModel;
@@ -28,7 +28,7 @@ class Rss extends \Nette\Object {
   /**
    * Generate feed for news
    * 
-   * @return \Nexendrie\RssResponse
+   * @return \Nexendrie\Model\RssResponse
    */
   function newsFeed() {
     $paginator = new \Nette\Utils\Paginator;
@@ -46,14 +46,14 @@ class Rss extends \Nette\Object {
       $i->addChild("pubDate", $item->added);
       $i->addChild("description", $item->text);
     }
-    return new \Nexendrie\RssResponse($channel);
+    return new \Nexendrie\Model\RssResponse($channel);
   }
   
   /**
    * Generate feed for comments
    * 
    * @param int $newsId
-   * @return \Nexendrie\RssResponse
+   * @return \Nexendrie\Model\RssResponse
    * @throws \Nette\Application\BadRequestException
    */
   function commentsFeed($newsId) {
@@ -77,7 +77,7 @@ class Rss extends \Nette\Object {
       $c->addChild("pubDate", $comment->added);
       $c->addChild("description", substr($comment->text, 0 , 150));
     }
-    return new \Nexendrie\RssResponse($channel);
+    return new \Nexendrie\Model\RssResponse($channel);
   }
 }
 ?>
