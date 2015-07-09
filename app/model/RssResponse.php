@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie;
+namespace Nexendrie\Responses;
 
 /**
  * RSS channel response

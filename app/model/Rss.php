@@ -46,7 +46,7 @@ class Rss extends \Nette\Object {
       $i->addChild("pubDate", $item->added);
       $i->addChild("description", $item->text);
     }
-    return new \Nexendrie\Model\RssResponse($channel);
+    return new \Nexendrie\Responses\RssResponse($channel);
   }
   
   /**
@@ -77,7 +77,7 @@ class Rss extends \Nette\Object {
       $c->addChild("pubDate", $comment->added);
       $c->addChild("description", substr($comment->text, 0 , 150));
     }
-    return new \Nexendrie\Model\RssResponse($channel);
+    return new \Nexendrie\Responses\RssResponse($channel);
   }
 }
 ?>
