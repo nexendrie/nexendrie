@@ -83,6 +83,19 @@ class Group extends \Nette\Object {
   }
   
   /**
+   * Get name of specified group
+   * 
+   * @param int $id Group's id
+   * @return string
+   */
+  function getName($id) {
+    $groups = $this->listOfGroups();
+    $group = Arrays::get($groups, $id, false);
+    if(!$group) return "";
+    else return $group->name;
+  }
+  
+  /**
    * Check whetever specified guild exists
    * 
    * @param int $id Guild's id

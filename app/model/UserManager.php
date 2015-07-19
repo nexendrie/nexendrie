@@ -169,6 +169,25 @@ case "password_new":
     $this->db->query("UPDATE users SET ? WHERE id=?", $settings, $this->user->id);
     $this->cache->remove("users_names");
   }
+  
+  /**
+   * Get list of all users
+   * 
+   * @return array
+   */
+  function listOfUsers() {
+    $return = array();
+    $users = $this->db->table("users")
+      ->order("group, id");
+    foreach($users as $user) {
+      $u = (object) array(
+        "id" => $user->id, "publicname" => $user->publicname, "username" => $user->username,
+        "group_id" => $user->group, "group_name" => $this->groupModel->getName($user->group)
+      );
+      $return[] = $u;
+    }
+    return $return;
+  }
 }
 
 /**
