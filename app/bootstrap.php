@@ -2,7 +2,7 @@
 use Nette\Application\Routers\RouteList,
     Nette\Application\Routers\Route;
 
-require LIBS_DIR . "/nette.phar";
+require WWW_DIR . "/vendor/autoload.php";
 Tracy\Debugger::enable(null, APP_DIR . "/log");
 
 $configurator = new Nette\Configurator;

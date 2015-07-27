@@ -4,3 +4,4 @@ temp
 /app/log
 /app/config/local.neon
 /doc
+/vendor
