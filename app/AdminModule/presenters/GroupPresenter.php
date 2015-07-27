@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\AdminModule\Presenters;
 
-use Nette\Application\UI;
+use Nette\Application\UI\Form;
 
 /**
  * Presenter Group
@@ -40,16 +40,16 @@ class GroupPresenter extends BasePresenter {
    */
   function createComponentEditGroupForm() {
     $group = $this->model->get($this->getParameter("id"));
-    $form = new UI\Form;
+    $form = new Form;
     $form->addText("name", "Jméno:")
-      ->addRule(UI\Form::MAX_LENGTH, "Jméno skupiny může mít maximálně 30 znaků.", 30)
+      ->addRule(Form::MAX_LENGTH, "Jméno skupiny může mít maximálně 30 znaků.", 30)
       ->setRequired("Zadej jméno skupiny.");
     $form->addText("single_name", "Titul člena:")
-      ->addRule(UI\Form::MAX_LENGTH, "Titul člena může mít maximálně 30 znaků.", 30)
+      ->addRule(Form::MAX_LENGTH, "Titul člena může mít maximálně 30 znaků.", 30)
       ->setRequired("Zadej titul člena.");
     $form->addText("level", "Úroveň skpuiny:")
-      ->addRule(UI\Form::INTEGER, "Úroveň skupiny musí být číslo")
-      ->addRule(UI\Form::MAX_LENGTH, "Úroveň skupiny může mít maximálně 5 znaků.", 5)
+      ->addRule(Form::INTEGER, "Úroveň skupiny musí být číslo")
+      ->addRule(Form::MAX_LENGTH, "Úroveň skupiny může mít maximálně 5 znaků.", 5)
       ->setRequired("Zadej úroveň skupiny.");
     $form->addSubmit("send", "Odeslat");
     $form->onSuccess[] = array($this, "editGroupFormSucceeded");
@@ -62,7 +62,7 @@ class GroupPresenter extends BasePresenter {
    * @param \Nette\Utils\ArrayHash $values
    * @return void
    */
-  function editGroupFormSucceeded(UI\Form $form, $values) {
+  function editGroupFormSucceeded(Form $form, $values) {
     $this->model->user = $this->context->getService("security.user");
     $this->model->edit($this->getParameter("id"), $values);
     $this->flashMessage("Skupina upravena.");

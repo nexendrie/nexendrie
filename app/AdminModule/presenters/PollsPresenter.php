@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\AdminModule\Presenters;
 
-use Nette\Application\UI,
+use Nette\Application\UI\Form,
     Nexendrie\Forms\AddEditPollFormFactory;
 
 /**
@@ -45,7 +45,7 @@ class PollsPresenter extends BasePresenter {
    * @param \Nette\Application\UI\Form $form
    * @param \Nette\Utils\ArrayHash $values
    */
-  function addPollFormSucceeded(UI\Form $form, $values) {
+  function addPollFormSucceeded(Form $form, $values) {
     $this->model->user = $this->context->getService("security.user");
     $this->model->add($values);
     $this->flashMessage("Anketa přidána.");
@@ -81,7 +81,7 @@ class PollsPresenter extends BasePresenter {
    * @param \Nette\Application\UI\Form $form
    * @param \Nette\Utils\ArrayHash $values
    */
-  function editPollFormSucceeded(UI\Form $form, $values) {
+  function editPollFormSucceeded(Form $form, $values) {
     $this->model->user = $this->context->getService("security.user");
     $this->model->edit($this->getParameter("id"), $values);
     $this->flashMessage("Anketa upravena.");

@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\FrontModule\Presenters;
 
-use Nette\Application\UI,
+use Nette\Application\UI\Form,
   \Nette\Utils\Finder,
   \Nette\Neon\Neon,
   \Nette\Utils\Arrays;
@@ -30,7 +30,7 @@ class UserPresenter extends BasePresenter {
    * @return \Nette\Application\UI\Form
    */
   protected function createComponentLoginForm() {
-    $form = new UI\Form;
+    $form = new Form;
     $form->addText("username", "Uživatelské jméno:")
       ->setRequired("Zadej jméno.");
     $form->addPassword("password", "Heslo:")
@@ -48,7 +48,7 @@ class UserPresenter extends BasePresenter {
    * @param \Nette\Utils\ArrayHash $values
    * @return void
    */
-  function loginFormSucceeded(UI\Form $form, $values) {
+  function loginFormSucceeded(Form $form, $values) {
     try {
       $this->user->login($values["username"], $values["password"]);
       $this->flashMessage("Byl jsi úspěšně přihlášen.");
@@ -94,15 +94,15 @@ class UserPresenter extends BasePresenter {
    * @return \Nette\Application\UI\Form
    */
   protected function createComponentRegisterForm() {
-    $form = new UI\Form;
+    $form = new Form;
     $form->addText("username", "Uživatelské jméno:")
-      ->addRule(UI\Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků." , 25)
+      ->addRule(Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků." , 25)
       ->setRequired("Zadej jméno.")
       ->setOption("description", "Toto jméno se používá pouze pro příhlášení. Jméno, které se zobrazuje ostatním, se mění v Nastavení.");
     $form->addPassword("password", "Heslo:")
       ->setRequired("Zadej heslo.");
     $form->addText("email", "E-mail:")
-      ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
+      ->addRule(Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
     $form->addSubmit("register", "Zaregistrovat se");
     $form->onSuccess[] = array($this, "registerFormSucceeded");
@@ -116,7 +116,7 @@ class UserPresenter extends BasePresenter {
    * @param \Nette\Utils\ArrayHash $values
    * @return void
    */
-  function registerFormSucceeded(UI\Form $form, $values) {
+  function registerFormSucceeded(Form $form, $values) {
     try {
       $this->model->register($values);
       $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
@@ -163,13 +163,13 @@ class UserPresenter extends BasePresenter {
    */
   protected function createComponentUserSettingsForm() {
     $this->model->user = $this->context->getService("security.user");
-    $form = new UI\Form;
+    $form = new Form;
     $form->addGroup("Účet");
     $form->addText("publicname", "Zobrazované jméno:")
-      ->addRule(UI\Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků." , 25)
+      ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků." , 25)
       ->setRequired("Zadej jméno.");
     $form->addText("email", "E-mail:")
-      ->addRule(UI\Form::EMAIL, "Zadej platný e-mail.")
+      ->addRule(Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
     $form->addRadioList("style", "Vzhled stránek:", $this->getStylesList());
     $form->addCheckbox("infomails", "Posílat informační e-maily");
@@ -190,7 +190,7 @@ class UserPresenter extends BasePresenter {
    * @param \Nette\Application\UI\Form $form
    * @return void
    */
-  function userSettingsFormValidate(UI\Form $form) {
+  function userSettingsFormValidate(Form $form) {
     $values = $form->getValues();
     if(empty($values["password_old"]) AND !empty($values["password_new"])) $form->addError("Musíš zadat současné heslo.");
     if($values["password_new"] != $values["password_check"]) $form->addError("Hesla se neshodují.");
@@ -203,7 +203,7 @@ class UserPresenter extends BasePresenter {
    * @param \Nette\Utils\ArrayHash $values
    * @return void
    */
-  function userSettingsFormSucceeded(UI\Form $form, $values) {
+  function userSettingsFormSucceeded(Form $form, $values) {
     try {
       $this->model->user = $this->context->getService("security.user");
       $this->model->changeSettings($values);

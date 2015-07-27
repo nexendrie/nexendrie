@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\AdminModule\Presenters;
 
-use Nette\Application\UI,
+use Nette\Application\UI\Form,
     Nexendrie\Forms\AddEditNewsFormFactory;
 
 /**
@@ -46,7 +46,7 @@ class NewsPresenter extends BasePresenter {
    * @param \Nette\Application\UI\Form $form
    * @param \Nette\Utils\ArrayHash $values
    */
-  function addNewsFormSucceeded(UI\Form $form, $values) {
+  function addNewsFormSucceeded(Form $form, $values) {
     $this->model->user = $this->context->getService("security.user");
     $id = $this->model->add($values);
     if(is_int($id)) {
@@ -86,7 +86,7 @@ class NewsPresenter extends BasePresenter {
    * @param \Nette\Application\UI\Form $form
    * @param \Nette\Utils\ArrayHash $values
    */
-  function editNewsFormSucceeded(UI\Form $form, $values) {
+  function editNewsFormSucceeded(Form $form, $values) {
     $this->model->user = $this->context->getService("security.user");
     $this->model->edit($this->getParameter("id"), $values);
     $this->flashMessage("Novinka upravena.");

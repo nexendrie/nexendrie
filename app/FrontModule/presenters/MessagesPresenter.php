@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\FrontModule\Presenters;
 
-use Nette\Application\UI;
+use Nette\Application\UI\Form;
 
 /**
  * Presenter Messages
@@ -60,7 +60,7 @@ class MessagesPresenter extends BasePresenter {
    * @return \Nette\Application\UI\Form
    */
   protected function createComponentNewMessageForm() {
-    $form = new UI\Form;
+    $form = new Form;
     $users = $this->model->usersList();
     try {
     $uid = $this->getParameter("id", NULL);
@@ -72,7 +72,7 @@ class MessagesPresenter extends BasePresenter {
       
     }
     $form->addText("subject", "Předmět:")
-      ->addRule(UI\Form::MAX_LENGTH, "Předmět může mít maximálně 30 znaků.", 30)
+      ->addRule(Form::MAX_LENGTH, "Předmět může mít maximálně 30 znaků.", 30)
       ->setRequired("Zadej předmět.");
     $form->addTextArea("text", "Text:")
       ->setRequired("Zadej text.");
