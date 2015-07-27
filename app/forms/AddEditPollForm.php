@@ -8,11 +8,11 @@ use Nette\Application\UI;
  *
  * @author Jakub Konečný
  */
-class AddEditPollForm {
+class AddEditPollFormFactory {
   /**
    * @return \Nette\Application\UI\Form
    */
-  static function create() {
+  function create() {
     $form = new UI\Form;
     $form->addText("question", "Otázka:")
       ->addRule(UI\Form::MAX_LENGTH, "Otázka může mít maximálně 60 znaků.", 60)

@@ -32,7 +32,7 @@ class NewsPresenter extends BasePresenter {
    * @return \Nette\Application\UI\Form
    */
   protected function createComponentAddNewsForm() {
-    $form = $this->context->getService("form.addEditNews");
+    $form = $this->context->getService("form.addEditNews")->create();
     $form->onSuccess[] = array($this, "addNewsFormSucceeded");
     return $form;
   }
@@ -71,7 +71,7 @@ class NewsPresenter extends BasePresenter {
    */
   protected function createComponentEditNewsForm() {
     $news = $this->model->view($this->getParameter("id"));
-    $form = $this->context->getService("form.addEditNews");
+    $form = $this->context->getService("form.addEditNews")->create();
     $form->onSuccess[] = array($this, "editNewsFormSucceeded");
     $form->setDefaults((array) $news);
     return $form;

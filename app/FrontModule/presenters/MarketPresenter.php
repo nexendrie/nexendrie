@@ -32,7 +32,7 @@ class MarketPresenter extends BasePresenter {
   function createComponentShop() {
     $p = $this;
     return new \Nette\Application\UI\Multiplier(function ($id) use ($p) {
-      $shop = $p->context->getService("shop");
+      $shop = $p->context->getService("shop")->create();
       $shop->id = $id;
       return $shop;
     });

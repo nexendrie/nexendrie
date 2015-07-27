@@ -32,7 +32,7 @@ class PollsPresenter extends BasePresenter {
    * @return \Nette\Application\UI\Form
    */
   function createComponentAddPollForm() {
-    $form = $this->context->getService("form.addEditPoll");
+    $form = $this->context->getService("form.addEditPoll")->create();
     $form->onSuccess[] = array($this, "addPollFormSucceeded");
     return $form;
   }
@@ -66,7 +66,7 @@ class PollsPresenter extends BasePresenter {
    */
   function createComponentEditPollForm() {
     $poll = $this->model->view($this->getParameter("id"));
-    $form = $this->context->getService("form.addEditPoll");
+    $form = $this->context->getService("form.addEditPoll")->create();
     $form->onSuccess[] = array($this, "editPollFormSucceeded");
     $form->setDefaults((array) $poll);
     return $form;

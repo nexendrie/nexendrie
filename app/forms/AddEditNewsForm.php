@@ -8,11 +8,11 @@ use Nette\Application\UI;
  * 
  * @author Jakub Konečný
  */
-class AddEditNewsForm {
+class AddEditNewsFormFactory {
   /**
    * @return \Nette\Application\UI\Form
    */
-  static function create() {
+  function create() {
     $form = new UI\Form;
     $form->addText("title", "Titulek:")
       ->addRule(UI\Form::MAX_LENGTH, "Titulek může mít maximálně 30 znaků.", 30)

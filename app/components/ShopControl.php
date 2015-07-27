@@ -90,4 +90,9 @@ class ShopControl extends \Nette\Application\UI\Control {
     
   }
 }
+
+interface ShopControlFactory {
+  /** @return ShopControl */
+  function create();
+}
 ?>

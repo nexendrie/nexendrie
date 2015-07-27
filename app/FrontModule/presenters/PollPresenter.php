@@ -25,7 +25,7 @@ class PollPresenter extends BasePresenter {
   function createComponentPoll() {
     $p = $this;
     return new \Nette\Application\UI\Multiplier(function ($id) use ($p) {
-      $poll = $p->context->getService("poll");
+      $poll = $p->context->getService("poll")->create();
       $poll->id = $id;
       return $poll;
     });
