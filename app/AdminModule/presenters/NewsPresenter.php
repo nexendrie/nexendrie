@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\AdminModule\Presenters;
 
-use Nette\Application\UI;
+use Nette\Application\UI,
+    Nexendrie\Forms\AddEditNewsFormFactory;
 
 /**
  * Presenter News
@@ -29,10 +30,11 @@ class NewsPresenter extends BasePresenter {
   /**
    * Creates form for adding news
    * 
+   * @param AddEditNewsFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  protected function createComponentAddNewsForm() {
-    $form = $this->context->getService("form.addEditNews")->create();
+  protected function createComponentAddNewsForm(AddEditNewsFormFactory $factory) {
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "addNewsFormSucceeded");
     return $form;
   }
@@ -67,11 +69,12 @@ class NewsPresenter extends BasePresenter {
   /**
    * Creates form for editing news
    * 
+   * @param AddEditNewsFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  protected function createComponentEditNewsForm() {
+  protected function createComponentEditNewsForm(AddEditNewsFormFactory $factory) {
     $news = $this->model->view($this->getParameter("id"));
-    $form = $this->context->getService("form.addEditNews")->create();
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "editNewsFormSucceeded");
     $form->setDefaults((array) $news);
     return $form;

@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\FrontModule\Presenters;
 
+use Nexendrie\Components\ShopControlFactory;
+
 /**
  * Presenter Market
  *
@@ -27,12 +29,12 @@ class MarketPresenter extends BasePresenter {
   }
   
   /**
+   * @param ShopControlFactory $factory
    * @return \Nette\Application\UI\Multiplier
    */
-  function createComponentShop() {
-    $p = $this;
-    return new \Nette\Application\UI\Multiplier(function ($id) use ($p) {
-      $shop = $p->context->getService("shop")->create();
+  function createComponentShop(ShopControlFactory $factory) {
+    return new \Nette\Application\UI\Multiplier(function ($id) use ($factory) {
+      $shop = $factory->create();
       $shop->id = $id;
       return $shop;
     });

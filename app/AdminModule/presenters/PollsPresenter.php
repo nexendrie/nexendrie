@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\AdminModule\Presenters;
 
-use Nette\Application\UI;
+use Nette\Application\UI,
+    Nexendrie\Forms\AddEditPollFormFactory;
 
 /**
  * Presenter Polls
@@ -29,10 +30,11 @@ class PollsPresenter extends BasePresenter {
   /**
    * Creates form for adding poll
    * 
+   * @param AddEditPollFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  function createComponentAddPollForm() {
-    $form = $this->context->getService("form.addEditPoll")->create();
+  function createComponentAddPollForm(AddEditPollFormFactory $factory) {
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "addPollFormSucceeded");
     return $form;
   }
@@ -62,11 +64,12 @@ class PollsPresenter extends BasePresenter {
   /**
    * Creates form for editing poll
    * 
+   * @param AddEditPollFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  function createComponentEditPollForm() {
+  function createComponentEditPollForm(AddEditPollFormFactory $factory) {
     $poll = $this->model->view($this->getParameter("id"));
-    $form = $this->context->getService("form.addEditPoll")->create();
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "editPollFormSucceeded");
     $form->setDefaults((array) $poll);
     return $form;

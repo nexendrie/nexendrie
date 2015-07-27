@@ -8,6 +8,7 @@ namespace Nexendrie\FrontModule\Presenters;
  */
 class BasePresenter extends \Nette\Application\UI\Presenter {
   use \Kdyby\Autowired\AutowireProperties;
+  use \Kdyby\Autowired\AutowireComponentFactories;
   
   /**
    * Set website's style and set guest and authenticated role

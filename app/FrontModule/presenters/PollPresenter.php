@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\FrontModule\Presenters;
 
+use Nexendrie\Components\PollControlFactory;
+
 /**
  * Description of PollPresenter
  *
@@ -20,12 +22,12 @@ class PollPresenter extends BasePresenter {
   }
   
   /**
+   * @param PollControlFactory $factory
    * @return \Nette\Application\UI\Multiplier
    */
-  function createComponentPoll() {
-    $p = $this;
-    return new \Nette\Application\UI\Multiplier(function ($id) use ($p) {
-      $poll = $p->context->getService("poll")->create();
+  function createComponentPoll(PollControlFactory $factory) {
+    return new \Nette\Application\UI\Multiplier(function ($id) use ($factory) {
+      $poll = $factory->create();
       $poll->id = $id;
       return $poll;
     });
