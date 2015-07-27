@@ -7,12 +7,8 @@ namespace Nexendrie\FrontModule\Presenters;
  * @author Jakub Konečný
  */
 class PollPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Polls */
+  /** @var \Nexendrie\Model\Polls @autowire */
   protected $model;
-  
-  function __construct(\Nexendrie\Model\Polls $model) {
-    $this->model = $model;
-  }
   
   /**
    * @param int $id

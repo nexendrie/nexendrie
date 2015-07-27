@@ -12,15 +12,8 @@ use Nette\Application\UI,
  * @author Jakub Konečný
  */
 class UserPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\UserManager */
+  /** @var \Nexendrie\Model\UserManager @autowire */
   protected $model;
-  
-  /**
-   * @param \Nexendrie\Model\UserManager $model
-   */
-  function __construct(\Nexendrie\Model\UserManager $model) {
-    $this->model = $model;
-  }
   
   /**
    * Do not allow access login page if the user is already logged in

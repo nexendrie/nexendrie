@@ -9,15 +9,8 @@ use Nette\Application\UI;
  * @author Jakub Konečný
  */
 class MessagesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Messenger */
+  /** @var \Nexendrie\Model\Messenger @autowire */
   protected $model;
-  
-  /**
-   * @param \Nexendrie\Model\Messenger $model
-   */
-  function __construct(\Nexendrie\Model\Messenger $model) {
-    $this->model = $model;
-  }
   
   /**
    * @return void

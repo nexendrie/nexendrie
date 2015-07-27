@@ -7,15 +7,8 @@ namespace Nexendrie\FrontModule\Presenters;
  * @author Jakub Konečný
  */
 class ProfilePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Profile */
+  /** @var \Nexendrie\Model\Profile @autowire */
   protected $model;
-  
-  /**
-   * @param \Nexendrie\Model\Profile $model
-   */
-  function __construct(\Nexendrie\Model\Profile $model) {
-    $this->model = $model;
-  }
   
   /**
    * @param string $username

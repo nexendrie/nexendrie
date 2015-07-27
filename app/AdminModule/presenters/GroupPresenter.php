@@ -9,15 +9,8 @@ use Nette\Application\UI;
  * @author Jakub Konečný
  */
 class GroupPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Group */
+  /** @var \Nexendrie\Model\Group @autowire */
   protected $model;
-  
-  /**
-   * @param \Nexendrie\Model\Group $model
-   */
-  function __construct(\Nexendrie\Model\Group $model) {
-    $this->model = $model;
-  }
   
   /**
    * @return void

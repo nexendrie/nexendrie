@@ -9,15 +9,8 @@ use Nette\Application\UI;
  * @author Jakub Konečný
  */
 class NewsPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\News*/
+  /** @var \Nexendrie\Model\News @autowire */
   protected $model;
-  
-  /**
-   * @param \Nexendrie\Model\News $model
-   */
-  function __construct(\Nexendrie\Model\News $model) {
-    $this->model = $model;
-  }
   
   /**
    * @return void

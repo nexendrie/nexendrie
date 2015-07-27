@@ -7,12 +7,8 @@ namespace Nexendrie\FrontModule\Presenters;
  * @author Jakub Konečný
  */
 class HomepagePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\News */
+  /** @var \Nexendrie\Model\News @autowire */
   protected $model;
-  
-  function __construct(\Nexendrie\Model\News $model) {
-    $this->model = $model;
-  }
   
   /**
    * @return void

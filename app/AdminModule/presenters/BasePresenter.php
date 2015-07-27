@@ -7,6 +7,8 @@ namespace Nexendrie\AdminModule\Presenters;
  * @author Jakub Konečný
  */
 class BasePresenter extends \Nette\Application\UI\Presenter {
+  use \Kdyby\Autowired\AutowireProperties;
+  
   /**
    * Check if the user is logged in, set website's style and set guest and authenticated role
    * 
