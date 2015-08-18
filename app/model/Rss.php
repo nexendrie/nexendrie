@@ -28,7 +28,7 @@ class Rss extends \Nette\Object {
   /**
    * Generate feed for news
    * 
-   * @return \Nexendrie\Model\RssResponse
+   * @return \Nexendrie\Responses\RssResponse
    */
   function newsFeed() {
     $paginator = new \Nette\Utils\Paginator;
@@ -53,7 +53,7 @@ class Rss extends \Nette\Object {
    * Generate feed for comments
    * 
    * @param int $newsId
-   * @return \Nexendrie\Model\RssResponse
+   * @return \Nexendrie\Responses\RssResponse
    * @throws \Nette\Application\BadRequestException
    */
   function commentsFeed($newsId) {

@@ -34,7 +34,7 @@ class Profile extends \Nette\Object {
   }
   
   /**
-   * @return array
+   * @return \stdClass[]
    */
   function getAllNames() {
     $names = $this->cache->load("users_names");
@@ -54,7 +54,7 @@ class Profile extends \Nette\Object {
    * Get specified user's username and public name
    * 
    * @param int $id User's id
-   * @return array
+   * @return \stdClass
    */
   function getNames($id) {
     $names = $this->getAllNames();
