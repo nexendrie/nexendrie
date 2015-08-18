@@ -18,3 +18,4 @@ services:
     form.addEditNews: Nexendrie\Forms\AddEditNewsFormFactory
     form.addEditPoll: Nexendrie\Forms\AddEditPollFormFactory
     shop: Nexendrie\Components\ShopControlFactory
+    router: Nexendrie\Model\RouterFactory::create
