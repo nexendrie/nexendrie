@@ -17,8 +17,6 @@ class Profile extends \Nette\Object {
   protected $groupModel;
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
-  /** @var array */
-  protected $names = array();
   
   /**
    * @param \Nette\Database\Context $database
