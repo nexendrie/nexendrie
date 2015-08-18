@@ -1,9 +1,0 @@
-services:
-    model.group: Nexendrie\Model\Group
-    model.locale: Nexendrie\Model\Locale(%locale%)
-    model.market: Nexendrie\Model\Market
-    model.messenger: Nexendrie\Model\Messenger
-    model.news: Nexendrie\Model\News
-    model.polls: Nexendrie\Model\Polls
-    model.profile: Nexendrie\Model\Profile
-    model.rss: Nexendrie\Model\Rss

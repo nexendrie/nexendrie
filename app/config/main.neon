@@ -1,6 +1,5 @@
 includes:
     - local.neon
-    - models.neon
 application:
     mapping:
         *: Nexendrie\*Module\Presenters\*Presenter
@@ -19,3 +18,11 @@ services:
     form.addEditPoll: Nexendrie\Forms\AddEditPollFormFactory
     shop: Nexendrie\Components\ShopControlFactory
     router: Nexendrie\Model\RouterFactory::create
+    model.group: Nexendrie\Model\Group
+    model.locale: Nexendrie\Model\Locale(%locale%)
+    model.market: Nexendrie\Model\Market
+    model.messenger: Nexendrie\Model\Messenger
+    model.news: Nexendrie\Model\News
+    model.polls: Nexendrie\Model\Polls
+    model.profile: Nexendrie\Model\Profile
+    model.rss: Nexendrie\Model\Rss
