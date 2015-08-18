@@ -35,14 +35,14 @@ class Group extends \Nette\Object {
     $this->user = $user;
   }
   
-  function setProfileModel(\Nexendrie\Model\Profile $profileModel) {
+  function setProfileModel(Profile $profileModel) {
     $this->profileModel = $profileModel;
   }
   
   /**
    * Get list of all groups
    * 
-   * @return array
+   * @return \stdClass[]
    */
   function listOfGroups() {
     $groups = $this->cache->load("groups");

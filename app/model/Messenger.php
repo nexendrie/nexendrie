@@ -22,7 +22,7 @@ class Messenger extends \Nette\Object {
    * @param \Nexendrie\Model\Profile $profileModel
    * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $db, \Nette\Security\User $user, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
+  function __construct(\Nette\Database\Context $db, \Nette\Security\User $user, Profile $profileModel, Locale $localeModel) {
     $this->db = $db;
     $this->user = $user;
     $this->profileModel = $profileModel;

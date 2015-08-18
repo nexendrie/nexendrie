@@ -19,7 +19,7 @@ class Rss extends \Nette\Object {
    * @param \Nette\Application\LinkGenerator $linkGenerator
    * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nexendrie\Model\News $newsModel, \Nette\Application\LinkGenerator $linkGenerator, \Nexendrie\Model\Locale $localeModel) {
+  function __construct(News $newsModel, \Nette\Application\LinkGenerator $linkGenerator, Locale $localeModel) {
     $this->newsModel = $newsModel;
     $this->linkGenerator = $linkGenerator;
     $this->localeModel = $localeModel;

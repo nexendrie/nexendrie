@@ -26,7 +26,7 @@ class Profile extends \Nette\Object {
    * @param \Nexendrie\Model\Group $groupModel
    * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Model\Group $groupModel, \Nexendrie\Model\Locale $localeModel) {
+  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, Group $groupModel, Locale $localeModel) {
     $this->db = $database;
     $this->cache = $cache;
     $this->groupModel = $groupModel;

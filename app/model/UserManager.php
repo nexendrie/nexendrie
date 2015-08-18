@@ -27,7 +27,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * @param \Nette\Caching\Cache $cache
    * @param \Nexendrie\Model\Group $groupModel
    */
-  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, \Nexendrie\Model\Group $groupModel) {
+  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, Group $groupModel) {
     $this->db = $database;
     $this->cache = $cache;
     $this->groupModel = $groupModel;
