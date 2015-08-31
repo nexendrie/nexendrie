@@ -48,8 +48,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   }
   
   function afterCompile(\Nette\PhpGenerator\ClassType $class) {
-    $config = $this->getConfig($this->defaults);
-    $roles = $config["roles"];
+    $roles = $this->getConfig($this->defaults)["roles"];
     $initialize = $class->methods["initialize"];
     $initialize->addBody('$groupModel = $this->getByType("Nexendrie\Model\Group");
 $user = $this->getByType("Nette\Security\User");
