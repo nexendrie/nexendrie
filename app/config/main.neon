@@ -22,6 +22,6 @@ services:
     nexendrie.rss: Nexendrie\Model\Rss
     nexendrie.userManager: Nexendrie\Model\UserManager
 extensions:
-    locale: Nexendrie\Model\DI\LocaleExtension
     component: Nexendrie\Model\DI\ComponentExtension
+    locale: Nexendrie\Model\DI\LocaleExtension
     form: Nexendrie\Model\DI\FormExtension
