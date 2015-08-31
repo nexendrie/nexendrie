@@ -12,6 +12,13 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     "roles" => array(
       "guestRole" => 9,
       "loggedInRole" => 8,
+    ),
+    "locale" => array(
+      "dateFormat" => "j.n.Y",
+      "dateTimeFormat" => "j.n.Y G:i",
+      "plural" => array(
+        0 => 1, "2-4", 5
+      )
     )
   );
   
@@ -20,6 +27,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
    */
   function loadConfiguration() {
     $builder = $this->getContainerBuilder();
+    $config = $this->getConfig($this->defaults);
     $services = array(
       "Group", "Market", "Messenger", "News", "Polls", "Profile", "Rss",
       "UserManager"
@@ -28,6 +36,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       $builder->addDefinition($this->prefix(lcfirst($service)))
         ->setFactory("Nexendrie\Model\\" . $service);
     }
+    $builder->addDefinition("nexendrie.locale")
+      ->setFactory("Nexendrie\Model\Locale", array($config["locale"]));
     $builder->addDefinition("cache.cache")
       ->setFactory("Nette\Caching\Cache", array("@cache.storage", "data"));
     $builder->addDefinition($this->prefix("authorizator"))

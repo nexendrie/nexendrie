@@ -11,6 +11,5 @@ session:
     expiration: 4 hours
 extensions:
     component: Nexendrie\Model\DI\ComponentExtension
-    locale: Nexendrie\Model\DI\LocaleExtension
     form: Nexendrie\Model\DI\FormExtension
     nexendrie: Nexendrie\Model\DI\NexendrieExtension
