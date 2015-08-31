@@ -17,20 +17,24 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   protected $groupModel;
   /** @var \Nette\Security\User */
   protected $user;
+  /** @var array */
+  protected $roles = array();
   /** Exception error code */
   const REG_DUPLICATE_USERNAME = 1,
     REG_DUPLICATE_EMAIL = 2,
     SET_INVALID_PASSWORD = 3;
   
   /**
+   * @param array $roles
    * @param \Nette\Database\Context $database
    * @param \Nette\Caching\Cache $cache
    * @param \Nexendrie\Model\Group $groupModel
    */
-  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, Group $groupModel) {
+  function __construct(array $roles, \Nette\Database\Context $database, \Nette\Caching\Cache $cache, Group $groupModel) {
     $this->db = $database;
     $this->cache = $cache;
     $this->groupModel = $groupModel;
+    $this->roles = $roles;
   }
   
   /**
@@ -93,7 +97,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
       throw new NS\AuthenticationException("Invalid password.", NS\IAuthenticator::INVALID_CREDENTIAL);
     }
     if($row->banned) {
-      $group = $this->groupModel->get(BANNED_ROLE);
+      $group = $this->groupModel->get($this->roles["bannedRole"]);
     } else {
       $group = $this->groupModel->get($row->group);
     }
