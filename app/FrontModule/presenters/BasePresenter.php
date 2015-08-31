@@ -6,7 +6,7 @@ namespace Nexendrie\FrontModule\Presenters;
  *
  * @author Jakub Konečný
  */
-class BasePresenter extends \Nexendrie\BasePresenter {
+abstract class BasePresenter extends \Nexendrie\BasePresenter {
   /**
    * @return void
    */

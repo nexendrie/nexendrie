@@ -6,7 +6,7 @@ namespace Nexendrie\AdminModule\Presenters;
  *
  * @author Jakub Konečný
  */
-class BasePresenter extends \Nexendrie\BasePresenter {
+abstract class BasePresenter extends \Nexendrie\BasePresenter {
   /**
    * Check if the user is logged in and if he/she can enter administration
    * 

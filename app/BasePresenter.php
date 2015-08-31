@@ -6,7 +6,7 @@ namespace Nexendrie;
  *
  * @author Jakub Konečný
  */
-class BasePresenter extends \Nette\Application\UI\Presenter {
+abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   use \Kdyby\Autowired\AutowireProperties;
   use \Kdyby\Autowired\AutowireComponentFactories;
   
