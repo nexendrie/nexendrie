@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Components;
 
-use Nette\Utils\Arrays;
+use Nette\Utils\Arrays,
+    Nexendrie\Model\PollVotingException;
 
 /**
  * Poll Control
@@ -157,7 +158,7 @@ class PollControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Zadaná anketa neexistuje.");
     } catch (\Nette\Application\ForbiddenRequestException $e) {
       $this->presenter->flashMessage("Nemůžeš hlasovat v této anketě.");
-    } catch (\Nexendrie\Model\PollVotingException $e) {
+    } catch (PollVotingException $e) {
       $this->presenter->flashMessage("Neplatná volba.");
     }
   }
