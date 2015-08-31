@@ -64,6 +64,7 @@ class PollControl extends \Nette\Application\UI\Control {
   
   /**
    * @param int $id
+   * @throws \Nette\Application\BadRequestException
    */
   function setId($id) {
     try {
@@ -77,7 +78,7 @@ class PollControl extends \Nette\Application\UI\Control {
   /**
    * Get votes for the poll
    * 
-   * @return array
+   * @return \Nette\Database\Table\ActiveRow[]
    */
   function getVotes() {
     $return = array("total" => 0, "answers" => array());
