@@ -17,12 +17,12 @@ services:
     form.addEditPoll: Nexendrie\Forms\AddEditPollFormFactory
     shop: Nexendrie\Components\ShopControlFactory
     router: Nexendrie\Model\RouterFactory::create
-    model.group: Nexendrie\Model\Group
-    model.locale: Nexendrie\Model\Locale(%locale%)
-    model.market: Nexendrie\Model\Market
-    model.messenger: Nexendrie\Model\Messenger
-    model.news: Nexendrie\Model\News
-    model.polls: Nexendrie\Model\Polls
-    model.profile: Nexendrie\Model\Profile
-    model.rss: Nexendrie\Model\Rss
-    model.userManager: Nexendrie\Model\UserManager
+    nexendrie.group: Nexendrie\Model\Group
+    nexendrie.locale: Nexendrie\Model\Locale(%locale%)
+    nexendrie.market: Nexendrie\Model\Market
+    nexendrie.messenger: Nexendrie\Model\Messenger
+    nexendrie.news: Nexendrie\Model\News
+    nexendrie.polls: Nexendrie\Model\Polls
+    nexendrie.profile: Nexendrie\Model\Profile
+    nexendrie.rss: Nexendrie\Model\Rss
+    nexendrie.userManager: Nexendrie\Model\UserManager

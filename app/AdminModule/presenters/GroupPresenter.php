@@ -82,7 +82,7 @@ class GroupPresenter extends BasePresenter {
    */
   function renderMembers($id) {
     try {
-      $this->model->profileModel = $this->context->getService("model.profile");
+      $this->model->profileModel = $this->context->getService("nexendrie.profile");
       $this->template->members = $this->model->members($id);
       $group = $this->model->get($id);
       $this->template->groupName = $group->name;

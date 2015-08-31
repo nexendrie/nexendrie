@@ -18,7 +18,7 @@ class BasePresenter extends \Nette\Application\UI\Presenter {
   function startup() {
     parent::startup();
     if($this->user->identity) $this->template->style = $this->user->identity->style;
-    $groupModel = $this->context->getService("model.group");
+    $groupModel = $this->context->getService("nexendrie.group");
     $this->user->guestRole = $groupModel->get(GUEST_ROLE)->single_name;
     $this->user->authenticatedRole = $groupModel->get(LOGGEDIN_ROLE)->single_name;
     $this->template->isAdmin = $this->user->isAllowed("site", "manage");
