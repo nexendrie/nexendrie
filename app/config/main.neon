@@ -11,8 +11,6 @@ session:
     expiration: 4 hours
 services:
     cache.cache: Nette\Caching\Cache(@cache.storage, "data")
-    component.poll: Nexendrie\Components\PollControlFactory
-    component.shop: Nexendrie\Components\ShopControlFactory
     form.addEditNews: Nexendrie\Forms\AddEditNewsFormFactory
     form.addEditPoll: Nexendrie\Forms\AddEditPollFormFactory
     router: Nexendrie\Model\RouterFactory::create
@@ -27,3 +25,4 @@ services:
     nexendrie.userManager: Nexendrie\Model\UserManager
 extensions:
     locale: Nexendrie\Model\DI\LocaleExtension
+    component: Nexendrie\Model\DI\ComponentExtension
