@@ -10,7 +10,6 @@ session:
     name: NEXSESSID
     expiration: 4 hours
 services:
-    - Nexendrie\Model\UserManager
     authorizator: Nexendrie\Model\Authorizator::create
     cache.cache: Nette\Caching\Cache(@cache.storage, "data")
     poll: Nexendrie\Components\PollControlFactory
@@ -26,3 +25,4 @@ services:
     model.polls: Nexendrie\Model\Polls
     model.profile: Nexendrie\Model\Profile
     model.rss: Nexendrie\Model\Rss
+    model.userManager: Nexendrie\Model\UserManager
