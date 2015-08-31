@@ -10,13 +10,13 @@ session:
     name: NEXSESSID
     expiration: 4 hours
 services:
-    authorizator: Nexendrie\Model\Authorizator::create
     cache.cache: Nette\Caching\Cache(@cache.storage, "data")
-    poll: Nexendrie\Components\PollControlFactory
+    component.poll: Nexendrie\Components\PollControlFactory
+    component.shop: Nexendrie\Components\ShopControlFactory
     form.addEditNews: Nexendrie\Forms\AddEditNewsFormFactory
     form.addEditPoll: Nexendrie\Forms\AddEditPollFormFactory
-    shop: Nexendrie\Components\ShopControlFactory
     router: Nexendrie\Model\RouterFactory::create
+    nexendrie.authorizator: Nexendrie\Model\Authorizator::create
     nexendrie.group: Nexendrie\Model\Group
     nexendrie.locale: Nexendrie\Model\Locale(%locale%)
     nexendrie.market: Nexendrie\Model\Market
