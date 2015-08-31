@@ -39,7 +39,6 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   
   /**
    * @param \Nette\Security\User $user
-   * @return void
    */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
@@ -83,7 +82,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * Logins the user
    * 
    * @param array $credentials
-   * @return \Nette\Security\Identity User's identity
+   * @return NS\Identity User's identity
    * @throws NS\AuthenticationException
    */
   function authenticate(array $credentials) {
@@ -177,7 +176,7 @@ case "password_new":
   /**
    * Get list of all users
    * 
-   * @return array
+   * @return \stdClass[]
    */
   function listOfUsers() {
     $return = array();

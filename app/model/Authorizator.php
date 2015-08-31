@@ -12,7 +12,7 @@ class Authorizator extends \Nette\Object {
    * 
    * @param \Nette\Caching\Cache $cache
    * @param \Nette\Database\Context $db
-   * @return array
+   * @return \stdClass[]
    */
   static function getGroups(\Nette\Caching\Cache $cache, \Nette\Database\Context $db) {
     $groups = $cache->load("groups_by_level");
@@ -35,7 +35,7 @@ class Authorizator extends \Nette\Object {
    * 
    * @param \Nette\Caching\Cache $cache
    * @param \Nette\Database\Context $db
-   * @return array
+   * @return \stdClass[]
    */
   static function getPermissions(\Nette\Caching\Cache $cache, \Nette\Database\Context $db) {
     $return = $cache->load("permissions");

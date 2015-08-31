@@ -32,7 +32,7 @@ class Messenger extends \Nette\Object {
   /**
    * Get list of received messages
    * 
-   * @return array
+   * @return \stdClass[]
    * @throws \Nette\Application\ForbiddenRequestException
    */
   function inbox() {
@@ -62,7 +62,7 @@ class Messenger extends \Nette\Object {
   /**
    * Get list of sent messages
    * 
-   * @return array
+   * @return \stdClass[]
    * @throws \Nette\Application\ForbiddenRequestException
    */
   function outbox() {

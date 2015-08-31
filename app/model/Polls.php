@@ -29,7 +29,6 @@ class Polls extends \Nette\Object {
   
   /**
    * @param \Nette\Security\User $user
-   * @return void
    */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
@@ -38,7 +37,7 @@ class Polls extends \Nette\Object {
   /**
    * Get list of all polls
    * 
-   * @return array
+   * @return \stdClass[]
    */
   function all() {
     $return = array();
@@ -126,6 +125,7 @@ class Polls extends \Nette\Object {
    * 
    * @param int $id Poll's id
    * @param \Nette\Utils\ArrayHash $data
+   * @return void
    * @throws \Nette\Application\ForbiddenRequestException
    * @throws \Nette\ArgumentOutOfRangeException
    */

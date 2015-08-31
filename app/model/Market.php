@@ -20,7 +20,7 @@ class Market extends \Nette\Object {
   /**
    * Gets list of shops
    * 
-   * @return array
+   * @return \stdClass[]
    */
   function listOfShops() {
     $return = array();
@@ -38,7 +38,7 @@ class Market extends \Nette\Object {
   /**
    * Check whetever specified shop exists
    * 
-   * @param int $id News' id
+   * @param int $id Shop's id
    * @return bool
    */
   function exists($id) {

@@ -32,7 +32,6 @@ class News extends \Nette\Object {
   
   /**
    * @param \Nette\Security\User $user
-   * @return void
    */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
@@ -40,7 +39,6 @@ class News extends \Nette\Object {
   
   /**
    * @param int $amount
-   * @return void
    */
   function setItemsPerPage($amount) {
     if(is_int($amount)) $this->itemsPerPage = $amount;
@@ -51,7 +49,7 @@ class News extends \Nette\Object {
    * 
    * @param \Nette\Utils\Paginator $paginator
    * @param int $page
-   * @return array
+   * @return \stdClass[]
    */
   function page(\Nette\Utils\Paginator $paginator, $page = 1) {
     $return = array();
@@ -84,7 +82,7 @@ class News extends \Nette\Object {
   /**
    * Get list of all news
    * 
-   * @return array
+   * @return \stdClass[]
    */
   function all() {
     $return = array();
@@ -171,7 +169,7 @@ class News extends \Nette\Object {
    * Get comments meeting specified rules
    * 
    * @param int $news
-   * @return array
+   * @return \stdClass[]
    */
   function viewComments($news = 0) {
     $return = array();

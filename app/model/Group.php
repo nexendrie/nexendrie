@@ -35,6 +35,9 @@ class Group extends \Nette\Object {
     $this->user = $user;
   }
   
+  /**
+   * @param \Nexendrie\Model\Profile $profileModel
+   */
   function setProfileModel(Profile $profileModel) {
     $this->profileModel = $profileModel;
   }
