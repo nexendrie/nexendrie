@@ -9,19 +9,8 @@ session:
     savePath: "%tempDir%/sessions"
     name: NEXSESSID
     expiration: 4 hours
-services:
-    cache.cache: Nette\Caching\Cache(@cache.storage, "data")
-    router: Nexendrie\Model\RouterFactory::create
-    nexendrie.authorizator: Nexendrie\Model\Authorizator::create
-    nexendrie.group: Nexendrie\Model\Group
-    nexendrie.market: Nexendrie\Model\Market
-    nexendrie.messenger: Nexendrie\Model\Messenger
-    nexendrie.news: Nexendrie\Model\News
-    nexendrie.polls: Nexendrie\Model\Polls
-    nexendrie.profile: Nexendrie\Model\Profile
-    nexendrie.rss: Nexendrie\Model\Rss
-    nexendrie.userManager: Nexendrie\Model\UserManager
 extensions:
     component: Nexendrie\Model\DI\ComponentExtension
     locale: Nexendrie\Model\DI\LocaleExtension
     form: Nexendrie\Model\DI\FormExtension
+    nexendrie: Nexendrie\Model\DI\NexendrieExtension
