@@ -9,8 +9,10 @@ namespace Nexendrie\Model\DI;
 class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /** @var array */
   public $defaults = array(
-    "guestRole" => 9,
-    "loggedInRole" => 8,
+    "roles" => array(
+      "guestRole" => 9,
+      "loggedInRole" => 8,
+    )
   );
   
   /**
@@ -37,11 +39,12 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   
   function afterCompile(\Nette\PhpGenerator\ClassType $class) {
     $config = $this->getConfig($this->defaults);
+    $roles = $config["roles"];
     $initialize = $class->methods["initialize"];
     $initialize->addBody('$groupModel = $this->getByType("Nexendrie\Model\Group");
 $user = $this->getByType("Nette\Security\User");
 $user->guestRole = $groupModel->get(?)->single_name;
-$user->authenticatedRole = $groupModel->get(?)->single_name;', array($config["guestRole"], $config["loggedInRole"]));
+$user->authenticatedRole = $groupModel->get(?)->single_name;', array($roles["guestRole"], $roles["loggedInRole"]));
   }
 }
 ?>
