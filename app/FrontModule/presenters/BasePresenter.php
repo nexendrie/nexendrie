@@ -2,22 +2,16 @@
 namespace Nexendrie\FrontModule\Presenters;
 
 /**
- * Parent of all presenters
+ * Parent of all front presenters
  *
  * @author Jakub Konečný
  */
-class BasePresenter extends \Nette\Application\UI\Presenter {
-  use \Kdyby\Autowired\AutowireProperties;
-  use \Kdyby\Autowired\AutowireComponentFactories;
-  
+class BasePresenter extends \Nexendrie\BasePresenter {
   /**
-   * Set website's style and set guest and authenticated role
-   * 
    * @return void
    */
   function startup() {
     parent::startup();
-    if($this->user->identity) $this->template->style = $this->user->identity->style;
     $this->template->isAdmin = $this->user->isAllowed("site", "manage");
   }
   
@@ -41,20 +35,6 @@ class BasePresenter extends \Nette\Application\UI\Presenter {
   function mustNotBeLoggedIn() {
     if($this->user->isLoggedIn()) {
       $this->flashMessage("Už jsi přihlášen.");
-      $this->redirect("Homepage:");
-    }
-  }
-  
-  /**
-   * The user must have specified rights to see a page
-   * 
-   * @param string $resource
-   * @param string $action
-   * @return void
-   */
-  function requiresPermissions($resource, $action) {
-    if(!$this->user->isAllowed($resource, $action)) {
-      $this->flashMessage("K zobrazení této stránky nemáš práva.");
       $this->redirect("Homepage:");
     }
   }
