@@ -28,5 +28,13 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition("router")
       ->setFactory("Nexendrie\Model\RouterFactory::create");
   }
+  
+  function afterCompile(\Nette\PhpGenerator\ClassType $class) {
+    $initialize = $class->methods["initialize"];
+    $initialize->addBody('$groupModel = $this->getByType("Nexendrie\Model\Group");
+$user = $this->getByType("Nette\Security\User");
+$user->guestRole = $groupModel->get(GUEST_ROLE)->single_name;
+$user->authenticatedRole = $groupModel->get(LOGGEDIN_ROLE)->single_name;');
+  }
 }
 ?>
