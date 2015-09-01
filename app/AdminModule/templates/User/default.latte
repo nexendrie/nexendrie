@@ -4,8 +4,8 @@
   <h1>Uživatelé</h1>
   <table>
     <tr><th>Uživatelské jméno</th><th>Zobrazované jméno</th><th>Skupina</th><th>Akce</th></tr>
-    {foreach $users as $userr}
-    <tr><td><a n:href=":Front:Profile: $userr->username">{$userr->username}</a></td><td>{$userr->publicname}</td><td>{$userr->group_name}</td><td><a n:href="User:edit $userr->id">Upravit</a></td></tr>
+    {foreach $users as $user}
+    <tr><td><a n:href=":Front:Profile: $user->username">{$user->username}</a></td><td>{$user->publicname}</td><td>{$user->group_name}</td><td><a n:href="User:edit $user->id">Upravit</a></td></tr>
     {/foreach}
   </table>
 {/block}
