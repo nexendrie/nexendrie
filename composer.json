@@ -24,6 +24,7 @@
         "nette/utils": "2.3.x",
         "tracy/tracy": "2.3.x",
         "latte/latte": "2.3.x",
-        "kdyby/autowired": "1.3.x"
+        "kdyby/autowired": "1.3.x",
+        "nextras/orm": "^1.1"
     }
 }
