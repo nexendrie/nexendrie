@@ -13,21 +13,17 @@ class Profile extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Caching\Cache */
   protected $cache;
-  /** @var \Nexendrie\Model\Group */
-  protected $groupModel;
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   /**
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Caching\Cache $cache
-   * @param \Nexendrie\Model\Group $groupModel
    * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, Group $groupModel, Locale $localeModel) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, Locale $localeModel) {
     $this->orm = $orm;
     $this->cache = $cache;
-    $this->groupModel = $groupModel;
     $this->localeModel = $localeModel;
   }
   
