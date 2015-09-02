@@ -22,6 +22,7 @@ use Nextras\Orm\Entity\Entity,
  * @property int $money {default 2}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|News[] $news {1:m News::$author}
+ * @property OneHasMany|Poll[] $polls {1:m Poll::$author}
  */
 class User extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */

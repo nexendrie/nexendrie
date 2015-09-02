@@ -7,7 +7,7 @@
   <table>
     <tr><th>Otázka</th><th>Přidáno</th><th>Autor</th><th>Akce</th></tr>
     {foreach $polls as $item}
-      <tr><td>{$item->question}</td><td>{$item->added}</td><td><a n:href=":Front:Profile: $item->author_username">{$item->author}</a></td><td><a n:href=":Front:Poll:view $item->id">Zobrazit</a> <a n:href="Polls:edit $item->id">Upravit</a></td></tr>
+      <tr><td>{$item->question}</td><td>{$item->addedAt}</td><td><a n:href=":Front:Profile: $item->author->username">{$item->author->publicname}</a></td><td><a n:href=":Front:Poll:view $item->id">Zobrazit</a> <a n:href="Polls:edit $item->id">Upravit</a></td></tr>
     {/foreach}
   </table>
 {/block}

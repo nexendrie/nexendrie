@@ -71,7 +71,7 @@ class PollsPresenter extends BasePresenter {
     $poll = $this->model->view($this->getParameter("id"));
     $form = $factory->create();
     $form->onSuccess[] = array($this, "editPollFormSucceeded");
-    $form->setDefaults((array) $poll);
+    $form->setDefaults($poll->toArray());
     return $form;
   }
   

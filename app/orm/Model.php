@@ -11,6 +11,7 @@ namespace Nexendrie\Orm;
  * @property-read UsersRepository $users
  * @property-read CommentsRepository $comments
  * @property-read NewsRepository $news
+ * @property-read PollsRepository $polls
  */
 class Model extends \Nextras\Orm\Model\Model {
   
