@@ -7,14 +7,14 @@ namespace Nexendrie\Model;
  * @author Jakub Konečný
  */
 class Market extends \Nette\Object {
-  /** @var \Nette\Database\Context */
-  protected $db;
+  /** @var \Nexendrie\Orm\Model */
+  protected $orm;
   
   /**
-   * @param \Nette\Database\Context $db
+   * @param \Nexendrie\Orm\Model $db
    */
-  function __construct(\Nette\Database\Context $db) {
-    $this->db = $db;
+  function __construct(\Nexendrie\Orm\Model $orm) {
+    $this->orm = $orm;
   }
   
   /**
@@ -23,16 +23,7 @@ class Market extends \Nette\Object {
    * @return \stdClass[]
    */
   function listOfShops() {
-    $return = array();
-    $shops = $this->db->table("shops");
-    foreach($shops as $shop) {
-      $s = new \stdClass;
-      foreach($shop as $key => $value) {
-        $s->$key = $value;
-      }
-      $return[] = $s;
-    }
-    return $return;
+    return $this->orm->shops->findAll();
   }
   
   /**
@@ -42,9 +33,7 @@ class Market extends \Nette\Object {
    * @return bool
    */
   function exists($id) {
-    $row = $this->db->table("shops")
-      ->where("id", $id);
-    return (bool) $row->count("*");
+    return (bool) $this->orm->shops->getById($id);
   }
 }
 ?>
