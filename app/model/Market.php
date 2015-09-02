@@ -20,7 +20,7 @@ class Market extends \Nette\Object {
   /**
    * Gets list of shops
    * 
-   * @return \stdClass[]
+   * @return \Nexendrie\Orm\Shop[]
    */
   function listOfShops() {
     return $this->orm->shops->findAll();
