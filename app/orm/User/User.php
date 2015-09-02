@@ -14,6 +14,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $password
  * @property string $email
  * @property int $joined
+ * @property-read string $joinedAt {virtual}
  * @property int|NULL $lastActive
  * @property Group $group {m:1 Group::$members}
  * @property int $infomails {default 1}
@@ -32,8 +33,8 @@ class User extends Entity {
     $this->localeModel = $localeModel;
   }
   
-  function getterJoined($joined) {
-    return $this->localeModel->formatDate($joined);
+  function getterJoinedAt() {
+    return $this->localeModel->formatDate($this->joined);
   }
 }
 ?>

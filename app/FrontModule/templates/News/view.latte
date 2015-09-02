@@ -2,7 +2,7 @@
 {block title}Novinka{/block}
 {block content}
   <h1>{$news->title}</h1>
-  <p>od <a n:href="Profile:default $news->author->username">{$news->author->publicname}</a> {$news->added}</p>
+  <p>od <a n:href="Profile:default $news->author->username">{$news->author->publicname}</a> {$news->addedAt}</p>
   <p>{$news->text}</p>
   <a name="comments"></a>
   <div id="comments">
@@ -13,7 +13,7 @@
     {foreach $news->comments as $comment}
     {var $i = $iterator->counter}
     <span id="comment-{$i}">
-      <a name="comment-{$i}" href="#comment-{$i}">#{$i}</a> <a n:href="Profile:default $comment->author->username">{$comment->author->publicname}</a> - {$comment->title} ({$comment->added}):<br>
+      <a name="comment-{$i}" href="#comment-{$i}">#{$i}</a> <a n:href="Profile:default $comment->author->username">{$comment->author->publicname}</a> - {$comment->title} ({$comment->addedAt}):<br>
       {$comment->text}
     </span>{if !$iterator->last}<br>{/if}
     {/foreach}

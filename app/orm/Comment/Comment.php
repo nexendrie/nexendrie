@@ -13,6 +13,7 @@ use Nextras\Orm\Entity\Entity;
  * @property News $news {m:1 News::$comments}
  * @property User $author {m:1 User::$comments}
  * @property int $added
+ * @property-read string $addedAt {virtual}
  */
 class Comment extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
@@ -22,8 +23,8 @@ class Comment extends Entity {
     $this->localeModel = $localeModel;
   }
   
-  function getterAdded($added) {
-    return $this->localeModel->formatDateTime($added);
+  function getterAddedAt() {
+    return $this->localeModel->formatDateTime($this->added);
   }
 }
 ?>
