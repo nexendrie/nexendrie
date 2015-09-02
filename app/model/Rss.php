@@ -74,7 +74,7 @@ class Rss extends \Nette\Object {
       $link = $this->linkGenerator->link("Front:News:view", array("id" => $newsId));
       $link .= "#comment-$comment->id";
       $c->addChild("link", $link);
-      $c->addChild("pubDate", $comment->added);
+      $c->addChild("pubDate", $this->localeModel->formatDateTime($comment->added));
       $c->addChild("description", substr($comment->text, 0 , 150));
     }
     return new \Nexendrie\Responses\RssResponse($channel);

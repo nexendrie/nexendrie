@@ -21,6 +21,7 @@ use Nextras\Orm\Entity\Entity,
  * @property int $banned {default 0}
  * @property int $money {default 2}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
+ * @property OneHasMany|News[] $news {1:m News::$author}
  */
 class User extends Entity {
 

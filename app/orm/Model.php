@@ -10,6 +10,7 @@ namespace Nexendrie\Orm;
  * @property-read GroupsRepository $groups
  * @property-read UsersRepository $users
  * @property-read CommentsRepository $comments
+ * @property-read NewsRepository $news
  */
 class Model extends \Nextras\Orm\Model\Model {
   

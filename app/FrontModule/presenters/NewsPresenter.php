@@ -28,7 +28,6 @@ class NewsPresenter extends BasePresenter {
   function renderView($id) {
     try {
       $this->template->news = $this->model->view($id);
-      $this->template->comments = $this->model->viewComments($id);
     } catch (\Nette\Application\ForbiddenRequestException $e) {
       $this->forward("notfound");
     }
