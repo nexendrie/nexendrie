@@ -16,6 +16,15 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Comment $comments {1:m Comment::$news}
  */
 class News extends Entity {
+  /** @var \Nexendrie\Model\Locale $localeModel */
+  protected $localeModel;
   
+  function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+    $this->localeModel = $localeModel;
+  }
+  
+  function getterAdded($added) {
+    return $this->localeModel->formatDateTime($added);
+  }
 }
 ?>

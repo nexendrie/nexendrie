@@ -15,6 +15,15 @@ use Nextras\Orm\Entity\Entity;
  * @property int $added
  */
 class Comment extends Entity {
-
+  /** @var \Nexendrie\Model\Locale $localeModel */
+  protected $localeModel;
+  
+  function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+    $this->localeModel = $localeModel;
+  }
+  
+  function getterAdded($added) {
+    return $this->localeModel->formatDateTime($added);
+  }
 }
 ?>

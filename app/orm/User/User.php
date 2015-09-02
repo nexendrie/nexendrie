@@ -24,6 +24,15 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|News[] $news {1:m News::$author}
  */
 class User extends Entity {
-
+  /** @var \Nexendrie\Model\Locale $localeModel */
+  protected $localeModel;
+  
+  function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+    $this->localeModel = $localeModel;
+  }
+  
+  function getterJoined($joined) {
+    return $this->localeModel->formatDate($joined);
+  }
 }
 ?>
