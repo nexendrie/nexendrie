@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository;
+use Nextras\Orm\Repository\Repository,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
@@ -9,6 +10,7 @@ use Nextras\Orm\Repository\Repository;
  * @method User|NULL getByUsername(string $username)
  * @method User|NULL getByPublicname(string $publicname)
  * @method User|NULL getByEmail(string $email)
+ * @method ICollection|User[] findByGroup($group)
  */
 class UsersRepository extends Repository {
 

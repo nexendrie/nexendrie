@@ -11,19 +11,20 @@ use Nette\Utils\Arrays;
 class Group extends \Nette\Object {
   /** @var \Nette\Database\Context */
   protected $db;
+  /** @var \Nexendrie\Orm\Model */
+  protected $orm;
   /** @var \Nette\Caching\Cache */
   protected $cache;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var \Nexendrie\Model\Profile */
-  protected $profileModel;
   
   /**
    * @param \Nette\Caching\Cache $cache
    * @param \Nette\Database\Context $db
    */
-  function __construct(\Nette\Caching\Cache $cache, \Nette\Database\Context $db) {
+  function __construct(\Nette\Caching\Cache $cache, \Nette\Database\Context $db, \Nexendrie\Orm\Model $orm) {
     $this->db = $db;
+    $this->orm = $orm;
     $this->cache = $cache;
   }
   
@@ -33,13 +34,6 @@ class Group extends \Nette\Object {
    */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
-  }
-  
-  /**
-   * @param \Nexendrie\Model\Profile $profileModel
-   */
-  function setProfileModel(Profile $profileModel) {
-    $this->profileModel = $profileModel;
   }
   
   /**
@@ -57,7 +51,7 @@ class Group extends \Nette\Object {
           $group->$key = $value;
         }
         $groups[$group->id] = $group;
-        $this->cache->save("groups", $groups);
+      $this->cache->save("groups", $groups);
       }
     }
     return $groups;
@@ -70,7 +64,7 @@ class Group extends \Nette\Object {
    * @return int
    */
   function numberOfMembers($group) {
-    return $this->db->table("users")->where("group", $group)->count("*");
+    return $this->orm->users->findByGroup($group)->count();
   }
   
   /**
@@ -88,6 +82,7 @@ class Group extends \Nette\Object {
   /**
    * Get name of specified group
    * 
+   * @deprecated
    * @param int $id Group's id
    * @return string
    */
@@ -105,9 +100,8 @@ class Group extends \Nette\Object {
    * @return bool
    */
   function exists($id) {
-    $row = $this->db->table("groups")
-      ->where("id", $id);
-    return (bool) $row->count("*");
+    $group = $this->orm->groups->getById($id);
+    return (bool) $group;
   }
   
   /**
@@ -121,23 +115,28 @@ class Group extends \Nette\Object {
   function edit($id, \Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("group", "edit")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
-    $this->db->query("UPDATE groups SET ? WHERE id=?", $data, $id);
+    $group = $this->orm->groups->getById($id);
+    foreach($data as $key => $value) {
+      $group->$key = $value;
+    }
+    $this->orm->groups->persistAndFlush($group);
   }
   
   /**
    * Get members of specified guild
    * 
-   * @param int $group Guild's id
-   * @return array
+   * @param int $id Guild's id
+   * @return \stdClass[]
    * @throws \Nette\Application\BadRequestException
    */
-  function members($group) {
-    if(!$this->exists($group)) throw new \Nette\Application\BadRequestException("Specified guild does not exist.");
+  function members($id) {
+    $group = $this->orm->groups->getById($id);
+    if(!$group) throw new \Nette\Application\BadRequestException("Specified guild does not exist.");
     $return = array();
-    $members = $this->db->table("users")
-      ->where("group", $group);
-    foreach($members as $member) {
-      $return[] = $this->profileModel->getNames($member->id);
+    foreach($group->members as $user) {
+      $return[] = (object) array(
+        "id" => $user->id, "username" => $user->username, "publicname" => $user->publicname
+      );
     }
     return $return;
   }
