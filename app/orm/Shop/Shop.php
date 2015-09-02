@@ -6,7 +6,7 @@ use Nextras\Orm\Entity\Entity,
 
 
 /**
- * Post
+ * Shop
  *
  * @author Jakub Konečný
  * @property string $name

@@ -4,7 +4,7 @@ namespace Nexendrie\Orm;
 use Nextras\Orm\Entity\Entity;
 
 /**
- * Post
+ * Item
  *
  * @author Jakub Konečný
  * @property string $name
