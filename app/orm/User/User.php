@@ -14,12 +14,12 @@ use Nextras\Orm\Entity\Entity,
  * @property string $password
  * @property string $email
  * @property int $joined
- * @property int $lastActive
+ * @property int|NULL $lastActive
  * @property Group $group {m:1 Group::$members}
- * @property int $infomails
- * @property string $style
- * @property int $banned
- * @property int $money
+ * @property int $infomails {default 1}
+ * @property string $style {default default}
+ * @property int $banned {default 0}
+ * @property int $money {default 2}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  */
 class User extends Entity {
