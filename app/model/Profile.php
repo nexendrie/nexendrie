@@ -9,8 +9,6 @@ use Nette\Utils\Arrays;
  * @author Jakub Konečný
  */
 class Profile extends \Nette\Object {
-  /** @var \Nette\Database\Context Database context */
-  protected $db;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Caching\Cache */
@@ -21,13 +19,12 @@ class Profile extends \Nette\Object {
   protected $localeModel;
   
   /**
-   * @param \Nette\Database\Context $database
+   * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Caching\Cache $cache
    * @param \Nexendrie\Model\Group $groupModel
    * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $database, \Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, Group $groupModel, Locale $localeModel) {
-    $this->db = $database;
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, Group $groupModel, Locale $localeModel) {
     $this->orm = $orm;
     $this->cache = $cache;
     $this->groupModel = $groupModel;
@@ -40,7 +37,7 @@ class Profile extends \Nette\Object {
   function getAllNames() {
     $names = $this->cache->load("users_names");
     if($names === NULL) {
-      $users = $this->db->table("users");
+      $users = $this->orm->users->findAll();
       foreach($users as $user) {
         $names[$user->id] = (object) array(
           "id" => $user->id, "username" => $user->username, "publicname" => $user->publicname
