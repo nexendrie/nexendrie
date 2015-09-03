@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
+use Nextras\Orm\Entity\Entity,
+    Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Poll
@@ -14,6 +15,8 @@ use Nextras\Orm\Entity\Entity;
  * @property int $added
  * @property-read string $addedAt {virtual}
  * @property bool $locked {default 0}
+ * @property OneHasMany|PollVote[] $votes {1:m PollVote::$poll}
+ * 
  */
 class Poll extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */

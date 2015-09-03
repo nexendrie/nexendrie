@@ -26,6 +26,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Poll[] $polls {1:m Poll::$author}
  * @property OneHasMany|Message[] $sentMessages {1:m Message::$from}
  * @property OneHasMany|Message[] $receivedMessages {1:m Message::$to}
+ * @property OneHasMany|PollVote[] $pollVotes {1:m PollVote::$user}
  */
 class User extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */

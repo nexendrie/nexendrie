@@ -13,6 +13,7 @@ namespace Nexendrie\Orm;
  * @property-read NewsRepository $news
  * @property-read PollsRepository $polls
  * @property-read MessagesRepository $messages
+ * @property-read PollVotesRepository $pollVotes
  */
 class Model extends \Nextras\Orm\Model\Model {
   
