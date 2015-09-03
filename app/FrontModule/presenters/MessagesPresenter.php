@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\FrontModule\Presenters;
 
-use Nette\Application\UI\Form;
+use Nette\Application\UI\Form,
+    Nexendrie\Forms\NewMessageFormFactory;
 
 /**
  * Presenter Messages
@@ -59,24 +60,14 @@ class MessagesPresenter extends BasePresenter {
    * 
    * @return \Nette\Application\UI\Form
    */
-  protected function createComponentNewMessageForm() {
-    $form = new Form;
-    $users = $this->model->usersList();
+  protected function createComponentNewMessageForm(NewMessageFormFactory $factory) {
+    $form = $factory->create();
     try {
-    $uid = $this->getParameter("id", NULL);
-    $form->addSelect("to", "Pro:", $users)
-      ->setPrompt("Vyber příjemce")
-      ->setRequired("Vyber příjemce.")
-      ->setDefaultValue($uid);
+      $uid = $this->getParameter("id", NULL);
+      $form["to"]->setDefaultValue($uid);
     } catch(\Nette\InvalidArgumentException $e) {
       
     }
-    $form->addText("subject", "Předmět:")
-      ->addRule(Form::MAX_LENGTH, "Předmět může mít maximálně 30 znaků.", 30)
-      ->setRequired("Zadej předmět.");
-    $form->addTextArea("text", "Text:")
-      ->setRequired("Zadej text.");
-    $form->addSubmit("send", "Odeslat");
     $form->onSuccess[] = array($this, "newMessageFormSucceeded");
     return $form;
   }
@@ -89,7 +80,6 @@ class MessagesPresenter extends BasePresenter {
    * @return void
    */
   function newMessageFormSucceeded(Form $form, $values) {
-    $this->model->send($values);
     $this->flashMessage("Zpráva byla odeslána.");
     $this->redirect("Messages:sent");
   }

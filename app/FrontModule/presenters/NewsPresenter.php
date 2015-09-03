@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\FrontModule\Presenters;
 
-use Nette\Application\UI;
+use Nette\Application\UI\Form,
+    Nexendrie\Forms\AddCommentFormFactory;
 
 /**
  * Description of NewsPresenter
@@ -35,17 +36,11 @@ class NewsPresenter extends BasePresenter {
   
   /**
    * Creates form for adding comment to news
-   * 
-   * @return \Nette\Application\UI\Form
+   * @param AddCommentFormFactory $factory
+   * @return Form
    */
-  protected function createComponentAddCommentForm() {
-    $form = new UI\Form;
-    $form->addText("title", "Titulek:")
-      ->addRule(UI\Form::MAX_LENGTH, "Titulek může mít maximálně 30 znaků.", 30)
-      ->setRequired("Zadej titulek.");
-    $form->addTextArea("text", "Text:")
-      ->setRequired("Zadej text.");
-    $form->addSubmit("send", "Odeslat");
+  protected function createComponentAddCommentForm(AddCommentFormFactory $factory) {
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "addCommentFormSucceeded");
     return $form;
   }
@@ -56,10 +51,10 @@ class NewsPresenter extends BasePresenter {
    * @param \Nette\Application\UI\Form $form
    * @param \Nette\Utils\ArrayHash $values
    */
-  function addCommentFormSucceeded(UI\Form $form, $values) {
+  function addCommentFormSucceeded(Form $form, $values) {
     $values["news"] = $this->getParameter("id");
     try {
-      $this->model->user = $this->context->getService("security.user");
+      $this->model->user = $this->user;
       $this->model->addComment($values);
       $this->flashMessage("Komentář přidán.");
     } catch(\Nette\Application\ForbiddenRequestException $e) {
