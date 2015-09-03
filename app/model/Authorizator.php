@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\PermissionDummy;
+
 /**
  * Authorizator
  *
@@ -11,17 +13,17 @@ class Authorizator extends \Nette\Object {
    * Get list of all groups ordered by level
    * 
    * @param \Nette\Caching\Cache $cache
-   * @param \Nette\Database\Context $db
+   * @param \Nexendrie\Orm\Model $orm
    * @return \stdClass[]
    */
-  static function getGroups(\Nette\Caching\Cache $cache, \Nette\Database\Context $db) {
+  static function getGroups(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
     $groups = $cache->load("groups_by_level");
     if($groups === NULL) {
-      $groupsRows = $db->table("groups")
-        ->order("level");
+      $groups = array();
+      $groupsRows = $orm->groups->findAll()->orderBy("level");
       foreach($groupsRows as $row) {
         $group = (object) array(
-          "id" => $row->id, "single_name" => $row->single_name, "level" => $row->level
+          "id" => $row->id, "single_name" => $row->singleName, "level" => $row->level
         );
         $groups[$group->id] = $group;
       }
@@ -34,19 +36,15 @@ class Authorizator extends \Nette\Object {
    * Get permissions
    * 
    * @param \Nette\Caching\Cache $cache
-   * @param \Nette\Database\Context $db
-   * @return \stdClass[]
+   * @param \Nexendrie\Orm\Model $orm
+   * @return PermissionDummy[]
    */
-  static function getPermissions(\Nette\Caching\Cache $cache, \Nette\Database\Context $db) {
+  static function getPermissions(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
     $return = $cache->load("permissions");
     if($return === NULL) {
-      $rows = $db->table("permissions");
+      $rows = $orm->permissions->findAll();
       foreach($rows as $row) {
-        $per = new \stdClass;
-        foreach($row as $key => $value) {
-          $per->$key = $value;
-        }
-        $return[] = $per;
+        $return[] = new PermissionDummy($row);
       }
       $cache->save("permissions", $return);
     }
@@ -56,14 +54,15 @@ class Authorizator extends \Nette\Object {
   /**
   * Factory for Authorizator
   * 
-  * @param \HeroesofAbenez\Permissions $model
+  * @param \Nette\Caching\Cache $cache
+  * @param \Nexendrie\Orm\Model $orm
   * @return \Nette\Security\Permission
   */
-  static function create(\Nette\Caching\Cache $cache, \Nette\Database\Context $db) {
+  static function create(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
     $permission = new \Nette\Security\Permission;
     
-    $groups = self::getGroups($cache, $db);
-    $permissions = self::getPermissions($cache, $db);
+    $groups = self::getGroups($cache, $orm);
+    $permissions = self::getPermissions($cache, $orm);
     
     foreach($groups as $i => $row) {
       if($row->level === 0) {
