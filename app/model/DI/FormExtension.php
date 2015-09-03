@@ -26,6 +26,8 @@ class FormExtension extends \Nette\DI\CompilerExtension {
       ->setFactory("Nexendrie\Forms\UserSettingsFormFactory");
     $builder->addDefinition($this->prefix("addComment"))
       ->setFactory("Nexendrie\Forms\AddCommentFormFactory");
+    $builder->addDefinition($this->prefix("editGroup"))
+      ->setFactory("Nexendrie\Forms\EditGroupFormFactory");
   }
 }
 ?>

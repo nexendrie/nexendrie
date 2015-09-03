@@ -1,0 +1,31 @@
+<?php
+namespace Nexendrie\Forms;
+
+use Nette\Application\UI\Form;
+
+/**
+ * Factory for form EditGroup
+ *
+ * @author Jakub Konečný
+ */
+class EditGroupFormFactory {
+  /**
+   * @return Form
+   */
+  function create() {
+    $form = new Form;
+    $form->addText("name", "Jméno:")
+      ->addRule(Form::MAX_LENGTH, "Jméno skupiny může mít maximálně 30 znaků.", 30)
+      ->setRequired("Zadej jméno skupiny.");
+    $form->addText("singleName", "Titul člena:")
+      ->addRule(Form::MAX_LENGTH, "Titul člena může mít maximálně 30 znaků.", 30)
+      ->setRequired("Zadej titul člena.");
+    $form->addText("level", "Úroveň skpuiny:")
+      ->addRule(Form::INTEGER, "Úroveň skupiny musí být číslo")
+      ->addRule(Form::MAX_LENGTH, "Úroveň skupiny může mít maximálně 5 znaků.", 5)
+      ->setRequired("Zadej úroveň skupiny.");
+    $form->addSubmit("send", "Odeslat");
+    return $form;
+  }
+}
+?>
