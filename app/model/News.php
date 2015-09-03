@@ -12,29 +12,18 @@ use Nextras\Orm\Collection\ICollection,
  * @property-write int $itemsPerPage
  */
 class News extends \Nette\Object {
-  /** @var \Nette\Database\Context */
-  protected $db;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
-  /** @var \Nexendrie\Model\Profile */
-  protected $profileModel;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
   /** @var int */
   protected $itemsPerPage = 10;
   
   /**
-   * @param \Nette\Database\Context $db
-   * @param \Nexendrie\Model\Profile $profileModel
-   * @param \Nexendrie\Model\Locale $localeModel
+   * @param \Nexendrie\Orm\Model $orm
    */
-  function __construct(\Nette\Database\Context $db, \Nexendrie\Orm\Model $orm, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
-    $this->db = $db;
+  function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
-    $this->profileModel = $profileModel;
-    $this->localeModel = $localeModel;
   }
   
   /**
@@ -59,31 +48,9 @@ class News extends \Nette\Object {
    * @return \stdClass[]
    */
   function page(\Nette\Utils\Paginator $paginator, $page = 1) {
-    $return = array();
     $paginator->page = $page;
     $paginator->itemsPerPage = $this->itemsPerPage;
-    $news = $this->db->table("news")->order("added DESC")
-      ->limit($paginator->getLength(), $paginator->getOffset());
-    foreach($news as $new) {
-      $n = new \stdClass;
-      foreach($new as $key => $value) {
-        if($key === "text") {
-          $n->$key = substr($value, 0 , 150);
-          continue;
-        } elseif($key === "author") {
-          $user = $this->profileModel->getNames($value);
-          $n->$key = $user->publicname;
-          $key .= "_username";
-          $n->$key = $user->username;
-        } elseif($key === "added") {
-          $n->$key = $this->localeModel->formatDateTime($value);
-        } else {
-          $n->$key = $value;
-        }
-      }
-      $return[] = $n;
-    }
-    return $return;
+    return $this->orm->news->findAll()->limitBy($paginator->getLength(), $paginator->getOffset());
   }
   
   /**

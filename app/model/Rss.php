@@ -44,7 +44,7 @@ class Rss extends \Nette\Object {
       $link = $this->linkGenerator->link("Front:News:view", array("id" => $item->id));
       $i->addChild("link", $link);
       $i->addChild("pubDate", $item->added);
-      $i->addChild("description", $item->text);
+      $i->addChild("description", substr($item->text, 0 , 150));
     }
     return new \Nexendrie\Responses\RssResponse($channel);
   }
