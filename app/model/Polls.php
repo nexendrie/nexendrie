@@ -11,20 +11,16 @@ class Polls extends \Nette\Object {
   protected $orm;
   /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
   /** @var \Nette\Security\User */
   protected $user;
   
   /**
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nexendrie\Model\Profile $profileModel
-   * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nexendrie\Orm\Model $orm, Profile $profileModel, Locale $localeModel) {
+  function __construct(\Nexendrie\Orm\Model $orm, Profile $profileModel) {
     $this->orm = $orm;
     $this->profileModel = $profileModel;
-    $this->localeModel = $localeModel;
   }
   
   /**
