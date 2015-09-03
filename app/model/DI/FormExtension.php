@@ -12,22 +12,14 @@ class FormExtension extends \Nette\DI\CompilerExtension {
    */
   function loadConfiguration() {
     $builder = $this->getContainerBuilder();
-    $builder->addDefinition($this->prefix("addEditNews"))
-      ->setFactory("Nexendrie\Forms\AddEditNewsFormFactory");
-    $builder->addDefinition($this->prefix("addEditPoll"))
-      ->setFactory("Nexendrie\Forms\AddEditPollFormFactory");
-    $builder->addDefinition($this->prefix("newMessage"))
-      ->setFactory("Nexendrie\Forms\NewMessageFormFactory");
-    $builder->addDefinition($this->prefix("register"))
-      ->setFactory("Nexendrie\Forms\RegisterFormFactory");
-    $builder->addDefinition($this->prefix("login"))
-      ->setFactory("Nexendrie\Forms\LoginFormFactory");
-    $builder->addDefinition($this->prefix("userSettings"))
-      ->setFactory("Nexendrie\Forms\UserSettingsFormFactory");
-    $builder->addDefinition($this->prefix("addComment"))
-      ->setFactory("Nexendrie\Forms\AddCommentFormFactory");
-    $builder->addDefinition($this->prefix("editGroup"))
-      ->setFactory("Nexendrie\Forms\EditGroupFormFactory");
+    $forms = array(
+      "addEditNews", "addEditPoll", "newMessage", "register", "login",
+      "userSettings", "addComment", "editGroup"
+    );
+    foreach($forms as $form) {
+      $builder->addDefinition($this->prefix($form))
+        ->setFactory("Nexendrie\Forms\\" . ucfirst($form) . "FormFactory");
+    }
   }
 }
 ?>
