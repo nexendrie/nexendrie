@@ -1,123 +1,70 @@
 <?php
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Message as MessageEntity;
+
 /**
  * Messenger Model
  *
  * @author Jakub Konečný
  */
 class Messenger extends \Nette\Object {
-  /** @var \Nette\Database\Context */
-  protected $db;
+  /** @var \Nexendrie\Orm\Model */
+  protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
   
   /**
-   * @param \Nette\Database\Context $db
+   * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    * @param \Nexendrie\Model\Profile $profileModel
-   * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $db, \Nette\Security\User $user, Profile $profileModel, Locale $localeModel) {
-    $this->db = $db;
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, Profile $profileModel) {
+    $this->orm = $orm;
     $this->user = $user;
     $this->profileModel = $profileModel;
-    $this->localeModel = $localeModel;
   }
   
   /**
    * Get list of received messages
    * 
-   * @return \stdClass[]
+   * @return MessageEntity[]
    * @throws \Nette\Application\ForbiddenRequestException
    */
   function inbox() {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    $return = $users = array();
-    $messages = $this->db->table("messages")
-      ->where("to", $this->user->id);
-    foreach($messages as $message) {
-      $m = new \stdClass;
-      foreach($message as $key => $value) {
-        if($key === "from" OR $key === "to") {
-          $user = $this->profileModel->getNames($value);
-          $m->$key = $user->publicname;
-          $key .= "_username";
-          $m->$key = $user->username;
-        } elseif($key === "sent") {
-          $m->$key = $this->localeModel->formatDateTime($value);
-        } else {
-          $m->$key = $value;
-        }
-      }
-      $return[] = $m;
-    }
-    return $return;
+    return $this->orm->messages->findByTo($this->user->id);
   }
   
   /**
    * Get list of sent messages
    * 
-   * @return \stdClass[]
+   * @return MessageEntity[]
    * @throws \Nette\Application\ForbiddenRequestException
    */
   function outbox() {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    $return = $users = array();
-    $messages = $this->db->table("messages")
-      ->where("from", $this->user->id);
-    foreach($messages as $message) {
-      $m = new \stdClass;
-      foreach($message as $key => $value) {
-        if($key === "from" OR $key === "to") {
-          $user = $this->profileModel->getNames($value);
-          $m->$key = $user->publicname;
-          $key .= "_username";
-          $m->$key = $user->username;
-        } elseif($key === "sent") {
-          $m->$key = $this->localeModel->formatDateTime($value);
-        } else {
-          $m->$key = $value;
-        }
-      }
-      $return[] = $m;
-    }
-    return $return;
+    return $this->orm->messages->findByFrom($this->user->id);
   }
   
   /**
    * Show specified message
    * 
    * @param int $id Message's id
-   * @return \stdClass
+   * @return MessageEntity
    * @throws \Nette\Application\ForbiddenRequestException
    * @throws \Nette\Application\BadRequestException
    */
   function show($id) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException("This action requires authentication.", 401);
-    $message = $this->db->table("messages")->get($id);
+    $message = $this->orm->messages->getById($id);
     if(!$message) throw new \Nette\Application\BadRequestException("Message not found.");
-    if($message->from != $this->user->id AND $message->to != $this->user->id) {
+    if($message->from->id != $this->user->id AND $message->to->id != $this->user->id) {
       throw new \Nette\Application\ForbiddenRequestException("You can't see this message.", 403);
     }
-    $return = new \stdClass;
-    foreach($message as $key => $value) {
-      if($key === "from" OR $key === "to") {
-        $return->{$key . "_id"} = $value;
-        $user = $this->profileModel->getNames($value);
-        $return->$key = $user->publicname;
-        $return->{$key . "_username"} = $user->username;
-      } elseif($key === "sent") {
-          $return->$key = $this->localeModel->formatDateTime($value);
-        } else {
-        $return->$key = $value;
-      }
-    }
-    return $return;
+    return $message;
   }
   
   /**
@@ -142,9 +89,13 @@ class Messenger extends \Nette\Object {
    * @return void
    */
   function send(\Nette\Utils\ArrayHash $data) {
-    $data["from"] = $this->user->id;
-    $data["sent"] = time();
-    $this->db->query("INSERT INTO messages", $data);
+    $message = new MessageEntity;
+    $message->subject = $data["subject"];
+    $message->text = $data["text"];
+    $message->sent = time();
+    $message->from = $this->orm->users->getById($this->user->id);
+    $message->to = $this->orm->users->getById($data["to"]);
+    $this->orm->messages->persistAndFlush($message);
   }
 }
 ?>

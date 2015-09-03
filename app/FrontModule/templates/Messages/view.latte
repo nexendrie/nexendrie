@@ -2,9 +2,9 @@
 {block title}Zpráva{/block}
 {block content}
   <h1>{$message->subject}</h1>
-  Od: <a n:href="Profile:default $message->from_username">{$message->from}</a><br>
-  Pro: <td><a n:href="Profile:default $message->to_username">{$message->to}</a><br>
-  Odesláno: {$message->sent}<br>
+  Od: <a n:href="Profile:default $message->from->username">{$message->from->publicname}</a><br>
+  Pro: <a n:href="Profile:default $message->to->username">{$message->to->publicname}</a><br>
+  Odesláno: {$message->sentAt}<br>
   <p>{$message->text}</p>
-  {if $user->id == $message->to_id}<a n:href="Messages:new $message->from_id">Odpovědět</a>{/if}
+  {if $user->id == $message->to->id}<a n:href="Messages:new $message->from->id">Odpovědět</a>{/if}
 {/block}

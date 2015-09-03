@@ -24,6 +24,8 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|News[] $news {1:m News::$author}
  * @property OneHasMany|Poll[] $polls {1:m Poll::$author}
+ * @property OneHasMany|Message[] $sentMessages {1:m Message::$from}
+ * @property OneHasMany|Message[] $receivedMessages {1:m Message::$to}
  */
 class User extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
