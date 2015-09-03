@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nette\Utils\Arrays,
-    Nexendrie\Orm\Group as GroupEntity;
+    Nexendrie\Orm\Group as GroupEntity,
+    Nexendrie\Orm\GroupDummy;
 
 /**
  * Group Model
@@ -10,8 +11,6 @@ use Nette\Utils\Arrays,
  * @author Jakub Konečný
  */
 class Group extends \Nette\Object {
-  /** @var \Nette\Database\Context */
-  protected $db;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Caching\Cache */
@@ -21,10 +20,9 @@ class Group extends \Nette\Object {
   
   /**
    * @param \Nette\Caching\Cache $cache
-   * @param \Nette\Database\Context $db
+   * @param \Nexendrie\Orm\Model $orm
    */
-  function __construct(\Nette\Caching\Cache $cache, \Nette\Database\Context $db, \Nexendrie\Orm\Model $orm) {
-    $this->db = $db;
+  function __construct(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
     $this->cache = $cache;
   }
@@ -40,18 +38,15 @@ class Group extends \Nette\Object {
   /**
    * Get list of all groups
    * 
-   * @return \stdClass[]
+   * @return GroupDummy[]
    */
   function listOfGroups() {
     $groups = $this->cache->load("groups");
     if($groups === NULL) {
-      $groupsRows = $this->db->table("groups");
+      $groups = array();
+      $groupsRows = $this->orm->groups->findAll();
       foreach($groupsRows as $row) {
-        $group = new \stdClass;
-        foreach($row as $key => $value) {
-          $group->$key = $value;
-      }
-        $groups[$group->id] = $group;
+        $groups[$row->id] = new GroupDummy($row);
       }
     $this->cache->save("groups", $groups);
     }

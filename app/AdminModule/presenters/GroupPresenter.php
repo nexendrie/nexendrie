@@ -18,9 +18,6 @@ class GroupPresenter extends BasePresenter {
   function renderDefault() {
     $this->requiresPermissions("group", "list");
     $groups = $this->model->listOfGroups();
-    foreach($groups as $group) {
-      $group->members = $this->model->numberOfMembers($group->id);
-    }
     $this->template->groups = $groups;
   }
   
