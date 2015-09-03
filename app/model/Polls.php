@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Poll as PollEntity;
+
 /**
  * Polls Model
  *
@@ -33,7 +35,7 @@ class Polls extends \Nette\Object {
   /**
    * Get list of all polls
    * 
-   * @return \stdClass[]
+   * @return PollEntity[]
    */
   function all() {
     return $this->orm->polls->findAll();
@@ -43,7 +45,7 @@ class Polls extends \Nette\Object {
    * Show specified poll
    * 
    * @param int $id Poll's id
-   * @return \Nexendrie\Orm\Poll
+   * @return PollEntity
    * @throws \Nette\Application\BadRequestException
    */
   function view($id) {
@@ -62,7 +64,7 @@ class Polls extends \Nette\Object {
   function add(\Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("poll", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
-    $poll = new \Nexendrie\Orm\Poll;
+    $poll = new PollEntity;
     foreach($data as $key => $value) {
       $poll->$key = $value;
     }

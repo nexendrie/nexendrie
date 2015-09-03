@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nette\Security as NS;
+use Nette\Security as NS,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * User Model
@@ -116,7 +117,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   function register(\Nette\Utils\ArrayHash $data) {
     if(!$this->nameAvailable($data["username"])) throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
     if(!$this->emailAvailable($data["email"])) throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
-    $user = new \Nexendrie\Orm\User;
+    $user = new UserEntity;
     foreach($data as $key => $value) {
       if($key === "password") $value = \Nette\Security\Passwords::hash($data["password"]);
       $user->$key = $value;
@@ -182,7 +183,7 @@ case "password_new":
   /**
    * Get list of all users
    * 
-   * @return \Nexendrie\Orm\User[]
+   * @return UserEntity[]
    */
   function listOfUsers() {
     return $this->orm->users->findAll()->orderBy("group")->orderBy("id");

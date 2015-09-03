@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Components;
 
+use Nexendrie\Orm\Shop as ShopEntity;
+
 /**
  * Shop Control
  *
@@ -11,7 +13,7 @@ class ShopControl extends \Nette\Application\UI\Control {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var \stdClass */
+  /** @var ShopEntity */
   protected $shop;
   /** @var int */
   protected $id;
@@ -26,7 +28,7 @@ class ShopControl extends \Nette\Application\UI\Control {
   }
   
   /**
-   * @return \stdClass
+   * @return ShopEntity
    * @throws \Nette\Application\BadRequestException
    */
   function getShop() {

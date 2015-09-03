@@ -1,7 +1,9 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection,
+    Nexendrie\Model\News as NewsEntity,
+    Nexendrie\Orm\Comment as CommentEntity;
 
 /**
  * News Model
@@ -87,7 +89,7 @@ class News extends \Nette\Object {
   /**
    * Get list of all news
    * 
-   * @return \stdClass[]
+   * @return NewsEntity[]
    */
   function all() {
     return $this->orm->news->findAll()->orderBy("added", ICollection::DESC);
@@ -97,7 +99,7 @@ class News extends \Nette\Object {
    * Show specified news
    * 
    * @param type $id
-   * @return \stdClass
+   * @return NewsEntity
    * @throws \Nette\Application\BadRequestException
    */
   function view($id) {
@@ -116,7 +118,7 @@ class News extends \Nette\Object {
   function add(\Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("news", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
-    $news = new \Nexendrie\Orm\News;
+    $news = new NewsEntity;
     foreach($data as $key => $value) {
       $news->$key = $value;
     }
@@ -135,7 +137,7 @@ class News extends \Nette\Object {
   function addComment(\Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("comment", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding comments.", 403);
-    $comment = new \Nexendrie\Orm\Comment;
+    $comment = new CommentEntity;
     foreach($data as $key => $value) {
       $comment->$key = $value;
     }
@@ -149,7 +151,7 @@ class News extends \Nette\Object {
    * Get comments meeting specified rules
    * 
    * @param int $news
-   * @return \Nexendrie\Orm\News[]
+   * @return NewsEntity[]
    */
   function viewComments($news = 0) {
     if($news === 0) return $this->orm->news->findAll();

@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nette\Utils\Arrays;
+use Nette\Utils\Arrays,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Profile Model
@@ -60,7 +61,7 @@ class Profile extends \Nette\Object {
    * Show user's profile
    * 
    * @param string $username
-   * @return \Nexendrie\Orm\User
+   * @return UserEntity
    * @throws \Nette\Application\BadRequestException
    */
   function view($username) {

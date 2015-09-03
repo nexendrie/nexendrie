@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Shop as ShopEntity;
+
 /**
  * Market Model
  *
@@ -11,7 +13,7 @@ class Market extends \Nette\Object {
   protected $orm;
   
   /**
-   * @param \Nexendrie\Orm\Model $db
+   * @param \Nexendrie\Orm\Model $orm
    */
   function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
@@ -20,7 +22,7 @@ class Market extends \Nette\Object {
   /**
    * Gets list of shops
    * 
-   * @return \Nexendrie\Orm\Shop[]
+   * @return ShopEntity[]
    */
   function listOfShops() {
     return $this->orm->shops->findAll();
