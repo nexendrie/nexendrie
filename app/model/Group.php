@@ -46,7 +46,7 @@ class Group extends \Nette\Object {
       $groups = array();
       $groupsRows = $this->orm->groups->findAll();
       foreach($groupsRows as $row) {
-        $groups[$row->id] = new GroupDummy($row);
+        $groups[$row->id] = $row->dummy();
       }
     $this->cache->save("groups", $groups);
     }

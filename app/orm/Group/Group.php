@@ -16,6 +16,11 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Permission[] $permissions {1:m Permission}
  */
 class Group extends Entity {
-
+  /**
+   * @return \Nexendrie\Orm\GroupDummy
+   */
+  function dummy() {
+    return new GroupDummy($this);
+  }
 }
 ?>

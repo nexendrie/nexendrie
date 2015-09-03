@@ -12,6 +12,11 @@ use Nextras\Orm\Entity\Entity;
  * @property Group $group {m:1 Group::$permissions}
  */
 class Permission extends Entity {
-  
+  /**
+   * @return \Nexendrie\Orm\PermissionDummy
+   */
+  function dummy() {
+    return new PermissionDummy($this);
+  }
 }
 ?>

@@ -44,7 +44,7 @@ class Authorizator extends \Nette\Object {
     if($return === NULL) {
       $rows = $orm->permissions->findAll();
       foreach($rows as $row) {
-        $return[] = new PermissionDummy($row);
+        $return[] = $row->dummy();
       }
       $cache->save("permissions", $return);
     }
