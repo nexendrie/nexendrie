@@ -14,18 +14,15 @@ class Profile extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Caching\Cache */
   protected $cache;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
   
   /**
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Caching\Cache $cache
    * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, Locale $localeModel) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache) {
     $this->orm = $orm;
     $this->cache = $cache;
-    $this->localeModel = $localeModel;
   }
   
   /**

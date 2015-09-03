@@ -11,18 +11,14 @@ use Nexendrie\Orm\Poll as PollEntity;
 class Polls extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model $orm */
   protected $orm;
-  /** @var \Nexendrie\Model\Profile */
-  protected $profileModel;
   /** @var \Nette\Security\User */
   protected $user;
   
   /**
    * @param \Nexendrie\Orm\Model $orm
-   * @param \Nexendrie\Model\Profile $profileModel
    */
-  function __construct(\Nexendrie\Orm\Model $orm, Profile $profileModel) {
+  function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
-    $this->profileModel = $profileModel;
   }
   
   /**
