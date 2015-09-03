@@ -130,6 +130,7 @@ class Group extends \Nette\Object {
       $group->$key = $value;
     }
     $this->orm->groups->persistAndFlush($group);
+    $this->cache->remove("groups");
   }
   
   /**
