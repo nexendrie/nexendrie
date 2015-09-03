@@ -46,7 +46,7 @@ class PollsPresenter extends BasePresenter {
    * @param \Nette\Utils\ArrayHash $values
    */
   function addPollFormSucceeded(Form $form, $values) {
-    $this->model->user = $this->context->getService("security.user");
+    $this->model->user = $this->user;
     $this->model->add($values);
     $this->flashMessage("Anketa přidána.");
     $this->redirect("Polls:");
@@ -82,7 +82,7 @@ class PollsPresenter extends BasePresenter {
    * @param \Nette\Utils\ArrayHash $values
    */
   function editPollFormSucceeded(Form $form, $values) {
-    $this->model->user = $this->context->getService("security.user");
+    $this->model->user = $this->user;
     $this->model->edit($this->getParameter("id"), $values);
     $this->flashMessage("Anketa upravena.");
   }

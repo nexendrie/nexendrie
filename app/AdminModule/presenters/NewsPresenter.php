@@ -47,7 +47,7 @@ class NewsPresenter extends BasePresenter {
    * @param \Nette\Utils\ArrayHash $values
    */
   function addNewsFormSucceeded(Form $form, $values) {
-    $this->model->user = $this->context->getService("security.user");
+    $this->model->user = $this->user;
     $id = $this->model->add($values);
     $this->flashMessage("Novinka byla přidána.");
     $this->redirect("News:");
@@ -85,7 +85,7 @@ class NewsPresenter extends BasePresenter {
    * @param \Nette\Utils\ArrayHash $values
    */
   function editNewsFormSucceeded(Form $form, $values) {
-    $this->model->user = $this->context->getService("security.user");
+    $this->model->user = $this->user;
     $this->model->edit($this->getParameter("id"), $values);
     $this->flashMessage("Novinka upravena.");
   }

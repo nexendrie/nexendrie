@@ -51,7 +51,7 @@ class GroupPresenter extends BasePresenter {
    * @return void
    */
   function editGroupFormSucceeded(Form $form, $values) {
-    $this->model->user = $this->context->getService("security.user");
+    $this->model->user = $this->user;
     $this->model->edit($this->getParameter("id"), $values);
     $this->flashMessage("Skupina upravena.");
   }
