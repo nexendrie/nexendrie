@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\AdminModule\Presenters;
 
-use Nette\Application\UI\Form;
+use Nette\Application\UI\Form,
+    Nexendrie\Forms\EditGroupFormFactory;
 
 /**
  * Presenter Group
@@ -33,22 +34,12 @@ class GroupPresenter extends BasePresenter {
   /**
    * Creates form for editting group
    * 
+   * @param EditGroupFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  function createComponentEditGroupForm() {
+  function createComponentEditGroupForm(EditGroupFormFactory $factory) {
     $group = $this->model->ormGet($this->getParameter("id"));
-    $form = new Form;
-    $form->addText("name", "Jméno:")
-      ->addRule(Form::MAX_LENGTH, "Jméno skupiny může mít maximálně 30 znaků.", 30)
-      ->setRequired("Zadej jméno skupiny.");
-    $form->addText("singleName", "Titul člena:")
-      ->addRule(Form::MAX_LENGTH, "Titul člena může mít maximálně 30 znaků.", 30)
-      ->setRequired("Zadej titul člena.");
-    $form->addText("level", "Úroveň skpuiny:")
-      ->addRule(Form::INTEGER, "Úroveň skupiny musí být číslo")
-      ->addRule(Form::MAX_LENGTH, "Úroveň skupiny může mít maximálně 5 znaků.", 5)
-      ->setRequired("Zadej úroveň skupiny.");
-    $form->addSubmit("send", "Odeslat");
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "editGroupFormSucceeded");
     $form->setDefaults($group->toArray());
     return $form;

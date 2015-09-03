@@ -2,9 +2,9 @@
 namespace Nexendrie\FrontModule\Presenters;
 
 use Nette\Application\UI\Form,
-  \Nette\Utils\Finder,
-  \Nette\Neon\Neon,
-  \Nette\Utils\Arrays;
+    Nexendrie\Forms\LoginFormFactory,
+    Nexendrie\Forms\RegisterFormFactory,
+    Nexendrie\Forms\UserSettingsFormFactory;
 
 /**
  * Presenter User
@@ -27,15 +27,11 @@ class UserPresenter extends BasePresenter {
   /**
    * Creates form for logging in
    * 
+   * @param LoginFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  protected function createComponentLoginForm() {
-    $form = new Form;
-    $form->addText("username", "Uživatelské jméno:")
-      ->setRequired("Zadej jméno.");
-    $form->addPassword("password", "Heslo:")
-      ->setRequired("Zadej heslo.");
-    $form->addSubmit("login", "Přihlásit se");
+  protected function createComponentLoginForm(LoginFormFactory $factory) {
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "loginFormSucceeded");
     return $form;
   }
@@ -49,18 +45,8 @@ class UserPresenter extends BasePresenter {
    * @return void
    */
   function loginFormSucceeded(Form $form, $values) {
-    try {
-      $this->user->login($values["username"], $values["password"]);
-      $this->flashMessage("Byl jsi úspěšně přihlášen.");
-      $this->redirect("Homepage:");
-    } catch(\Nette\Security\AuthenticationException $e) {
-      if($e->getCode() === \Nette\Security\IAuthenticator::IDENTITY_NOT_FOUND) {
-        $form->addError("Neplatné uživatelské jméno.");
-      }
-      if($e->getCode() === \Nette\Security\IAuthenticator::INVALID_CREDENTIAL) {
-        $form->addError("Neplatné heslo.");
-      }
-    }
+    $this->flashMessage("Byl jsi úspěšně přihlášen.");
+    $this->redirect("Homepage:");
   }
   
   /**
@@ -91,20 +77,11 @@ class UserPresenter extends BasePresenter {
   /**
    * Creates form for registering
    * 
-   * @return \Nette\Application\UI\Form
+   * @param RegisterFormFactory $factory
+   * @return Form
    */
-  protected function createComponentRegisterForm() {
-    $form = new Form;
-    $form->addText("username", "Uživatelské jméno:")
-      ->addRule(Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků." , 25)
-      ->setRequired("Zadej jméno.")
-      ->setOption("description", "Toto jméno se používá pouze pro příhlášení. Jméno, které se zobrazuje ostatním, se mění v Nastavení.");
-    $form->addPassword("password", "Heslo:")
-      ->setRequired("Zadej heslo.");
-    $form->addText("email", "E-mail:")
-      ->addRule(Form::EMAIL, "Zadej platný e-mail.")
-      ->setRequired("Zadej e-mail.");
-    $form->addSubmit("register", "Zaregistrovat se");
+  protected function createComponentRegisterForm(RegisterFormFactory $factory) {
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "registerFormSucceeded");
     return $form;
   }
@@ -117,18 +94,8 @@ class UserPresenter extends BasePresenter {
    * @return void
    */
   function registerFormSucceeded(Form $form, $values) {
-    try {
-      $this->model->register($values);
-      $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
-      $this->redirect("Homepage:");
-    } catch (\Nexendrie\Model\RegistrationException $e) {
-      if($e->getCode() === \Nexendrie\Model\UserManager::REG_DUPLICATE_USERNAME) {
-        $form->addError("Zvolené uživatelské jméno je už zabráno.");
-      }
-      if($e->getCode() === \Nexendrie\Model\UserManager::REG_DUPLICATE_EMAIL) {
-        $form->addError("Zadaný e-mail je už používán.");
-      }
-    }
+    $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
+    $this->redirect("Homepage:");
   }
   
   /**
@@ -139,61 +106,14 @@ class UserPresenter extends BasePresenter {
   }
   
   /**
-   * Gets list of styles
-   * 
-   * @return array
-   */
-  protected function getStylesList() {
-    $styles = array();
-    $dir = WWW_DIR . "/styles";
-    $file = file_get_contents("$dir/list.neon");
-    $list = Neon::decode($file);
-    foreach(Finder::findFiles("*.css")->in($dir) as $style) {
-      $key = $style->getBaseName(".css");
-      $value = Arrays::get($list, $key, $key);
-      $styles[$key] = $value;
-    }
-    return $styles;
-  }
-  
-  /**
    * Creates form for changing user's settings
    * 
    * @return \Nette\Application\UI\Form
    */
-  protected function createComponentUserSettingsForm() {
-    $this->model->user = $this->context->getService("security.user");
-    $form = new Form;
-    $form->addGroup("Účet");
-    $form->addText("publicname", "Zobrazované jméno:")
-      ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků." , 25)
-      ->setRequired("Zadej jméno.");
-    $form->addText("email", "E-mail:")
-      ->addRule(Form::EMAIL, "Zadej platný e-mail.")
-      ->setRequired("Zadej e-mail.");
-    $form->addRadioList("style", "Vzhled stránek:", $this->getStylesList());
-    $form->addCheckbox("infomails", "Posílat informační e-maily");
-    $form->addGroup("Heslo")
-      ->setOption("description", "Současné a nové heslo vyplňujte jen pokud ho chcete změnit.");
-    $form->addPassword("password_old", "Současné heslo:");
-    $form->addPassword("password_new", "Nové heslo:");
-    $form->addPassword("password_check", "Nové heslo (kontrola):");
-    $form->currentGroup = NULL;
-    $form->addSubmit("save", "Uložit změny");
+  protected function createComponentUserSettingsForm(UserSettingsFormFactory $factory) {
+    $form = $factory->create();
     $form->onSuccess[] = array($this, "userSettingsFormSucceeded");
-    $form->onValidate[] = array($this, "userSettingsFormValidate");
-    $form->setDefaults($this->model->getSettings());
     return $form;
-  }
-  
-  /**
-   * @param \Nette\Application\UI\Form $form
-   * @return void
-   */
-  function userSettingsFormValidate(Form $form) {
-    $values = $form->getValues();
-    if(empty($values["password_old"]) AND !empty($values["password_new"])) $form->addError("Musíš zadat současné heslo.");
-    if($values["password_new"] != $values["password_check"]) $form->addError("Hesla se neshodují.");
   }
   
   /**
@@ -204,24 +124,9 @@ class UserPresenter extends BasePresenter {
    * @return void
    */
   function userSettingsFormSucceeded(Form $form, $values) {
-    try {
-      $this->model->user = $this->context->getService("security.user");
-      $this->model->changeSettings($values);
-      $this->flashMessage("Změny uloženy.");
-      if($this->user->identity->style != $values["style"]) {
-        $this->user->identity->style = $values["style"];
-        $this->redirect("this");
-      }
-    } catch (\Nexendrie\Model\SettingsException $e) {
-      if($e->getCode() === \Nexendrie\Model\UserManager::REG_DUPLICATE_USERNAME) {
-        $form->addError("Zvolené jméno je už zabráno.");
-      }
-      if($e->getCode() === \Nexendrie\Model\UserManager::REG_DUPLICATE_EMAIL) {
-        $form->addError("Zadaný e-mail je už používán.");
-      }
-      if($e->getCode() === \Nexendrie\Model\UserManager::SET_INVALID_PASSWORD) {
-        $form->addError("Neplatné heslo.");
-      }
+    if($this->user->identity->style != $values["style"]) {
+      $this->user->identity->style = $values["style"];
+      $this->redirect("this");
     }
   }
 }

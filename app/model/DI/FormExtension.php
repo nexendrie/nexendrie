@@ -12,10 +12,14 @@ class FormExtension extends \Nette\DI\CompilerExtension {
    */
   function loadConfiguration() {
     $builder = $this->getContainerBuilder();
-    $builder->addDefinition($this->prefix("addEditNews"))
-      ->setFactory("Nexendrie\Forms\AddEditNewsFormFactory");
-    $builder->addDefinition($this->prefix("addEditPoll"))
-      ->setFactory("Nexendrie\Forms\AddEditPollFormFactory");
+    $forms = array(
+      "addEditNews", "addEditPoll", "newMessage", "register", "login",
+      "userSettings", "addComment", "editGroup"
+    );
+    foreach($forms as $form) {
+      $builder->addDefinition($this->prefix($form))
+        ->setFactory("Nexendrie\Forms\\" . ucfirst($form) . "FormFactory");
+    }
   }
 }
 ?>
