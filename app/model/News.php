@@ -50,7 +50,7 @@ class News extends \Nette\Object {
   function page(\Nette\Utils\Paginator $paginator, $page = 1) {
     $paginator->page = $page;
     $paginator->itemsPerPage = $this->itemsPerPage;
-    return $this->orm->news->findAll()->limitBy($paginator->getLength(), $paginator->getOffset());
+    return $this->orm->news->findAll()->orderBy("added", ICollection::DESC)->limitBy($paginator->getLength(), $paginator->getOffset());
   }
   
   /**
