@@ -13,6 +13,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $singleName
  * @property int $level
  * @property OneHasMany|Item[] $members {1:m User}
+ * @property OneHasMany|Permission[] $permissions {1:m Permission}
  */
 class Group extends Entity {
 
