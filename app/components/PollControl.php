@@ -2,7 +2,9 @@
 namespace Nexendrie\Components;
 
 use Nette\Utils\Arrays,
-    Nexendrie\Model\PollVotingException;
+    Nexendrie\Model\PollVotingException,
+    Nexendrie\Orm\Poll as PollEntity,
+    \Nexendrie\Orm\PollVote as PollVoteEntity;
 
 /**
  * Poll Control
@@ -10,57 +12,34 @@ use Nette\Utils\Arrays,
  * @author Jakub Konečný
  */
 class PollControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Model\Profile */
-  protected $profileModel;
-  /** @var \Nexendrie\ILocale */
-  protected $localeModel;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var \Nette\Database\Context */
-  protected $db;
+  /** @var \Nexendrie\Orm\Model $orm */
+  protected $orm;
   /** @var \stdClass */
   protected $poll;
   /** @var int */
   protected $id;
   
   /**
-   * @param \Nexendrie\Model\Profile $profileModel
-   * @param \Nexendrie\ILocale $localeModel
    * @param \Nette\Security\User $user
-   * @param \Nette\Database\Context $db
+   * @param \Nexendrie\Orm\Model $orm
    */
-  function __construct(\Nexendrie\Model\Profile $profileModel, \Nexendrie\ILocale $localeModel, \Nette\Security\User $user, \Nette\Database\Context $db) {
-    $this->profileModel = $profileModel;
-    $this->localeModel = $localeModel;
+  function __construct(\Nette\Security\User $user, \Nexendrie\Orm\Model $orm) {
     $this->user = $user;
-    $this->db = $db;
+    $this->orm = $orm;
   }
   
   /**
-   * @return \stdClass
+   * @return PollEntity
    * @throws \Nette\Application\BadRequestException
    */
   function getPoll() {
     if(isset($this->poll)) return $this->poll;
-    $poll = $this->db->table("polls")->get($this->id);
+    $poll = $this->orm->polls->getById($this->id);
     if(!$poll) throw new \Nette\Application\BadRequestException("Specified poll does not exist.");
-    $return = new \stdClass;
-    foreach($poll as $key => $value) {
-      if($key === "author") {
-        $user = $this->profileModel->getNames($value);
-        $return->$key = $user->publicname;
-        $key .= "_username";
-        $return->$key = $user->username;
-      } elseif($key === "added") {
-        $return->$key = $this->localeModel->formatDateTime($value);
-      } elseif($key === "answers") {
-        $return->$key = explode("\n", $value);
-      } else {
-        $return->$key = $value;
-      }
-    }
-    $this->poll = $return;
-    return $return;
+    $this->poll = $poll;
+    return $poll;
   }
   
   /**
@@ -79,12 +58,11 @@ class PollControl extends \Nette\Application\UI\Control {
   /**
    * Get votes for the poll
    * 
-   * @return \Nette\Database\Table\ActiveRow[]
+   * @return array
    */
   function getVotes() {
     $return = array("total" => 0, "answers" => array());
-    $votes = $this->db->table("poll_votes")
-      ->where("poll", $this->id);
+    $votes = $this->orm->pollVotes->findByPoll($this->id);
     if($votes->count() > 0) {
       $return["total"] = $votes->count();
       foreach($votes as $vote) {
@@ -104,7 +82,7 @@ class PollControl extends \Nette\Application\UI\Control {
     $poll = $this->getPoll();
     $this->template->poll = $poll;
     $votes = $this->getVotes();
-    for($i = 1; $i <= count($poll->answers); $i++) {
+    for($i = 1; $i <= count($poll->parsedAnswers); $i++) {
       if(!isset($votes["answers"][$i])) $votes["answers"][$i] = 0;
     }
     $this->template->votes = $votes;
@@ -121,10 +99,8 @@ class PollControl extends \Nette\Application\UI\Control {
   function canVote() {
     if(!$this->user->isLoggedIn()) return false;
     elseif(!$this->user->isAllowed("poll", "vote")) return false;
-    $row = $this->db->table("poll_votes")
-      ->where("poll", $this->id)
-      ->where("user", $this->user->id);
-    return !($row->count("*") > 0 );
+    $row = $this->orm->pollVotes->getByPollAndUser($this->id, $this->user->id);
+    return !(bool) $row;
   }
   
   /**
@@ -139,11 +115,13 @@ class PollControl extends \Nette\Application\UI\Control {
   function vote($answer) {
     if(!$this->canVote()) throw new \Nette\Application\ForbiddenRequestException("You can't vote in this poll.", 403);
     $poll = $this->getPoll();
-    if($answer > count($poll->answers)) throw new PollVotingException("The poll has less then $answer answers.");
-    $data = array(
-      "poll" => $this->id, "user" => $this->user->id, "answer" => $answer, "voted" => time()
-    );
-    $this->db->query("INSERT INTO poll_votes", $data);
+    if($answer > count($poll->parsedAnswers)) throw new PollVotingException("The poll has less then $answer answers.");
+    $vote = new PollVoteEntity;
+    $vote->poll = $this->poll;
+    $vote->user = $this->orm->users->getById($this->user->id);
+    $vote->answer = $answer;
+    $vote->voted = time();
+    $this->orm->pollVotes->persistAndFlush($vote);
   }
   
   /**

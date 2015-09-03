@@ -88,7 +88,7 @@ class MessagesPresenter extends BasePresenter {
    * @param \Nette\Utils\ArrayHash $values
    * @return void
    */
-  function newMessageFormSucceeded(UI\Form $form, $values) {
+  function newMessageFormSucceeded(Form $form, $values) {
     $this->model->send($values);
     $this->flashMessage("Zpráva byla odeslána.");
     $this->redirect("Messages:sent");

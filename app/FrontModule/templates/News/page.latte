@@ -7,7 +7,7 @@
   {else}
     <h2>Novinky strana {$paginator->page}</h2>
     {foreach $news as $new}
-    <p>{$new->title} od <a n:href="Profile:default $new->author_username">{$new->author}</a> Přidáno: {$new->added} <a n:href="News:view $new->id">Zobrazit</a></p>
+    <p>{$new->title} od <a n:href="Profile:default $new->author->username">{$new->author->publicname}</a> Přidáno: {$new->addedAt} <a n:href="News:view $new->id">Zobrazit</a></p>
     {/foreach}
   {/if}
 {/block}

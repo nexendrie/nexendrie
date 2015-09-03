@@ -1,8 +1,8 @@
   <article id="poll">
-    <p>Přidal <a href="{plink :Front:Profile:default $poll->author_username}">{$poll->author}</a> {$poll->added}</p>
+    <p>Přidal <a href="{plink :Front:Profile:default $poll->author->username}">{$poll->author->publicname}</a> {$poll->addedAt}</p>
     <h3>{$poll->question}</h3>
     <ul>
-    {foreach $poll->answers as $answer}
+    {foreach $poll->parsedAnswers as $answer}
       <li>{if $canVote}<a n:href="vote! $iterator->counter">{$answer}</a> {else}{$answer} ({$votes["answers"][$iterator->counter]}){/if}</li>
     {/foreach}
     </ul>

@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nette\Utils\Arrays;
+use Nette\Utils\Arrays,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Profile Model
@@ -9,25 +10,21 @@ use Nette\Utils\Arrays;
  * @author Jakub Konečný
  */
 class Profile extends \Nette\Object {
-  /** @var \Nette\Database\Context Database context */
-  protected $db;
+  /** @var \Nexendrie\Orm\Model */
+  protected $orm;
   /** @var \Nette\Caching\Cache */
   protected $cache;
-  /** @var \Nexendrie\Model\Group */
-  protected $groupModel;
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   /**
-   * @param \Nette\Database\Context $database
+   * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Caching\Cache $cache
-   * @param \Nexendrie\Model\Group $groupModel
    * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $database, \Nette\Caching\Cache $cache, Group $groupModel, Locale $localeModel) {
-    $this->db = $database;
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, Locale $localeModel) {
+    $this->orm = $orm;
     $this->cache = $cache;
-    $this->groupModel = $groupModel;
     $this->localeModel = $localeModel;
   }
   
@@ -37,7 +34,7 @@ class Profile extends \Nette\Object {
   function getAllNames() {
     $names = $this->cache->load("users_names");
     if($names === NULL) {
-      $users = $this->db->table("users");
+      $users = $this->orm->users->findAll();
       foreach($users as $user) {
         $names[$user->id] = (object) array(
           "id" => $user->id, "username" => $user->username, "publicname" => $user->publicname
@@ -64,25 +61,13 @@ class Profile extends \Nette\Object {
    * Show user's profile
    * 
    * @param string $username
-   * @return \stdClass
+   * @return UserEntity
    * @throws \Nette\Application\BadRequestException
    */
   function view($username) {
-    $result = $this->db->table("users")
-      ->where("username", $username);
-    if($result->count() === 0) throw new \Nette\Application\BadRequestException("Specified user does not exist.");
-    $user = $result->fetch();
-    $return = new \stdClass;
-    $return->name = $user->publicname;
-    $return->joined = $this->localeModel->formatDate($user->joined);
-    $group = $this->groupModel->get($user->group);
-    if(!$group) $return->title = "";
-    else $return->title = $group->single_name;
-    $return->banned = (bool) $user->banned;
-    $return->comments = $this->db->table("comments")
-      ->where("author", $user->id)
-      ->count("*");
-    return $return;
+    $user = $this->orm->users->getByUsername($username);
+    if(!$user) throw new \Nette\Application\BadRequestException("Specified user does not exist.");
+    else return $user;
   }
 }
 ?>

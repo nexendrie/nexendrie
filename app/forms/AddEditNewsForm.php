@@ -19,7 +19,7 @@ class AddEditNewsFormFactory {
       ->setRequired("Zadej titulek.");
     $form->addTextArea("text", "Text:")
       ->setRequired("Zadej text.");
-    $form->addCheckbox("comments", "Povolit komentáře")
+    $form->addCheckbox("allowedComments", "Povolit komentáře")
       ->setValue(true);
     $form->addSubmit("send", "Odeslat");
     return $form;

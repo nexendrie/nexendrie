@@ -49,10 +49,8 @@ class NewsPresenter extends BasePresenter {
   function addNewsFormSucceeded(Form $form, $values) {
     $this->model->user = $this->context->getService("security.user");
     $id = $this->model->add($values);
-    if(is_int($id)) {
-      $this->flashMessage("Novinka byla přidána.");
-      $this->redirect("News:");
-    }
+    $this->flashMessage("Novinka byla přidána.");
+    $this->redirect("News:");
   }
   
   /**
@@ -76,7 +74,7 @@ class NewsPresenter extends BasePresenter {
     $news = $this->model->view($this->getParameter("id"));
     $form = $factory->create();
     $form->onSuccess[] = array($this, "editNewsFormSucceeded");
-    $form->setDefaults((array) $news);
+    $form->setDefaults($news->toArray());
     return $form;
   }
   

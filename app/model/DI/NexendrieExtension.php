@@ -54,8 +54,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $initialize = $class->methods["initialize"];
     $initialize->addBody('$groupModel = $this->getByType("Nexendrie\Model\Group");
 $user = $this->getByType("Nette\Security\User");
-$user->guestRole = $groupModel->get(?)->single_name;
-$user->authenticatedRole = $groupModel->get(?)->single_name;', array($roles["guestRole"], $roles["loggedInRole"]));
+$user->guestRole = $groupModel->get(?)->singleName;
+$user->authenticatedRole = $groupModel->get(?)->singleName;', array($roles["guestRole"], $roles["loggedInRole"]));
   }
 }
 ?>

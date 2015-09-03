@@ -1,6 +1,6 @@
   <h1>{$shop->name}</h1>
   <p>{$shop->description}</p>
-  {if count($items) === 0}
+  {if count($shop->items) === 0}
     <p>Bohužel ti nic nemohu nabídnout.</p>
   {elseif !$user->isLoggedIn()}
     <p>Cizincům neprodávám.<small>Tip: Aby jsi mohl nakupovat, musíš být zaregistrovaný a přihlášený.</small></p>
@@ -8,7 +8,7 @@
     <article id="items">
     Mohu ti nabídnout:
     <ul>
-      {foreach $items as $item}
+      {foreach $shop->items as $item}
         <li>{$item->name} za {$item->price}. <a n:href="buy! $item->id">Koupit</a></li>
       {/foreach}
     </ul>

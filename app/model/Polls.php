@@ -1,30 +1,28 @@
 <?php
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Poll as PollEntity;
+
 /**
  * Polls Model
  *
  * @author Jakub Konečný
  */
 class Polls extends \Nette\Object {
-  /** @var \Nette\Database\Context */
-  protected $db;
+  /** @var \Nexendrie\Orm\Model $orm */
+  protected $orm;
   /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
   /** @var \Nette\Security\User */
   protected $user;
   
   /**
-   * @param \Nette\Database\Context $db
+   * @param \Nexendrie\Orm\Model $orm
    * @param \Nexendrie\Model\Profile $profileModel
-   * @param \Nexendrie\Model\Locale $localeModel
    */
-  function __construct(\Nette\Database\Context $db, Profile $profileModel, Locale $localeModel) {
-    $this->db = $db;
+  function __construct(\Nexendrie\Orm\Model $orm, Profile $profileModel) {
+    $this->orm = $orm;
     $this->profileModel = $profileModel;
-    $this->localeModel = $localeModel;
   }
   
   /**
@@ -37,60 +35,23 @@ class Polls extends \Nette\Object {
   /**
    * Get list of all polls
    * 
-   * @return \stdClass[]
+   * @return PollEntity[]
    */
   function all() {
-    $return = array();
-    $polls = $this->db->table("polls")->order("added DESC");
-    foreach($polls as $poll) {
-      $p = new \stdClass;
-      foreach($poll as $key => $value) {
-        if($key === "text") {
-          $p->$key = substr($value, 0 , 150);
-          continue;
-        } elseif($key === "author") {
-          $user = $this->profileModel->getNames($value);
-          $p->$key = $user->publicname;
-          $key .= "_username";
-          $p->$key = $user->username;
-        } elseif($key === "added") {
-          $p->$key = $this->localeModel->formatDateTime($value);
-        } else {
-          $p->$key = $value;
-        }
-      }
-      $return[] = $p;
-    }
-    return $return;
+    return $this->orm->polls->findAll();
   }
   
   /**
    * Show specified poll
    * 
    * @param int $id Poll's id
-   * @param bool $parseAnswers
-   * @return \stdClass
+   * @return PollEntity
    * @throws \Nette\Application\BadRequestException
    */
-  function view($id, $parseAnswers = false) {
-    $poll = $this->db->table("polls")->get($id);
+  function view($id) {
+    $poll = $this->orm->polls->getById($id);
     if(!$poll) throw new \Nette\Application\BadRequestException("Specified poll does not exist.");
-    $return = new \stdClass;
-    foreach($poll as $key => $value) {
-      if($key === "author") {
-        $user = $this->profileModel->getNames($value);
-        $return->$key = $user->publicname;
-        $key .= "_username";
-        $return->$key = $user->username;
-      } elseif($key === "added") {
-        $return->$key = $this->localeModel->formatDateTime($value);
-      } elseif($key === "answers" AND $parseAnswers) {
-        $return->$key = explode("\n", $value);
-      } else {
-        $return->$key = $value;
-      }
-    }
-    return $return;
+    else return $poll;
   }
   
   /**
@@ -103,9 +64,13 @@ class Polls extends \Nette\Object {
   function add(\Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("poll", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
-    $data["author"] = $this->user->id;
-    $data["added"] = time();
-    $this->db->query("INSERT INTO polls", $data);
+    $poll = new PollEntity;
+    foreach($data as $key => $value) {
+      $poll->$key = $value;
+    }
+    $poll->author = $this->orm->users->getById($this->user->id);
+    $poll->added = time();
+    $this->orm->polls->persistAndFlush($poll);
   }
   
   /**
@@ -115,9 +80,7 @@ class Polls extends \Nette\Object {
    * @return bool
    */
   function exists($id) {
-    $row = $this->db->table("polls")
-      ->where("id", $id);
-    return (bool) $row->count("*");
+    return (bool) $this->orm->polls->getById($id);
   }
   
   /**
@@ -133,7 +96,11 @@ class Polls extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("poll", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for editing polls.", 403);
     if(!$this->exists($id)) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist.");
-    $this->db->query("UPDATE polls SET ? WHERE id=?", $data, $id);
+    $poll = $this->orm->polls->getById($id);
+    foreach($data as $key => $value) {
+      $poll->$key = $value;
+    }
+    $this->orm->polls->persistAndFlush($poll);
   }
 }
 

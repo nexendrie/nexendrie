@@ -9,7 +9,7 @@
     <table>
       <tr><th>Předmět</th><th>Od</th><th>Odesláno</th></tr>
     {foreach $messages as $message}
-      <tr><td><a n:href="Messages:view $message->id">{$message->subject}</a></td><td><a n:href="Profile:default $message->from_username">{$message->from}</a></td><td>{$message->sent}</td></tr>
+      <tr><td><a n:href="Messages:view $message->id">{$message->subject}</a></td><td><a n:href="Profile:default $message->from->username">{$message->from->publicname}</a></td><td>{$message->sentAt}</td></tr>
     {/foreach}
     </table>
   {/if}

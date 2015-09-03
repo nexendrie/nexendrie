@@ -17,10 +17,7 @@ class ProfilePresenter extends BasePresenter {
   function renderDefault($username) {
     if(is_null($username)) $this->forward("notfound");
     try {
-      $user = $this->model->view($username);
-      foreach($user as $key => $value) {
-        $this->template->$key = $value;
-      }
+      $this->template->profile = $this->model->view($username);
     } catch(\Nette\Application\BadRequestException $e) {
       $this->forward("notfound");
     }

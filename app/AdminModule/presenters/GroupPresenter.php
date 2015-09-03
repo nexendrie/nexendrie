@@ -18,9 +18,6 @@ class GroupPresenter extends BasePresenter {
   function renderDefault() {
     $this->requiresPermissions("group", "list");
     $groups = $this->model->listOfGroups();
-    foreach($groups as $group) {
-      $group->members = $this->model->numberOfMembers($group->id);
-    }
     $this->template->groups = $groups;
   }
   
@@ -39,12 +36,12 @@ class GroupPresenter extends BasePresenter {
    * @return \Nette\Application\UI\Form
    */
   function createComponentEditGroupForm() {
-    $group = $this->model->get($this->getParameter("id"));
+    $group = $this->model->ormGet($this->getParameter("id"));
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->addRule(Form::MAX_LENGTH, "Jméno skupiny může mít maximálně 30 znaků.", 30)
       ->setRequired("Zadej jméno skupiny.");
-    $form->addText("single_name", "Titul člena:")
+    $form->addText("singleName", "Titul člena:")
       ->addRule(Form::MAX_LENGTH, "Titul člena může mít maximálně 30 znaků.", 30)
       ->setRequired("Zadej titul člena.");
     $form->addText("level", "Úroveň skpuiny:")
@@ -53,7 +50,7 @@ class GroupPresenter extends BasePresenter {
       ->setRequired("Zadej úroveň skupiny.");
     $form->addSubmit("send", "Odeslat");
     $form->onSuccess[] = array($this, "editGroupFormSucceeded");
-    $form->setDefaults((array) $group);
+    $form->setDefaults($group->toArray());
     return $form;
   }
   
@@ -81,14 +78,9 @@ class GroupPresenter extends BasePresenter {
    * @return void
    */
   function renderMembers($id) {
-    try {
-      $this->model->profileModel = $this->context->getService("nexendrie.profile");
-      $this->template->members = $this->model->members($id);
-      $group = $this->model->get($id);
-      $this->template->groupName = $group->name;
-    } catch (\Nette\Application\BadRequestException $ex) {
-      $this->forward("notfound");
-    }
+    $group = $this->model->ormGet($id);
+    if(!$group) $this->forward("notfound");
+    else $this->template->group = $group;
   }
 }
 ?>

@@ -94,5 +94,9 @@ class Locale extends \Nette\Object implements \Nexendrie\ILocale {
   function money($amount) {
     return "$amount " . $this->plural("groš", "groše", "grošů", $amount);
   }
+  
+  function getFormats() {
+    return $this->formats;
+  }
 }
 ?>
