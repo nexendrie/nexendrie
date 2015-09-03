@@ -82,13 +82,9 @@ class GroupPresenter extends BasePresenter {
    * @return void
    */
   function renderMembers($id) {
-    try {
-      $this->template->members = $this->model->members($id);
-      $group = $this->model->get($id);
-      $this->template->groupName = $group->name;
-    } catch (\Nette\Application\BadRequestException $e) {
-      $this->forward("notfound");
-    }
+    $group = $this->model->ormGet($id);
+    if(!$group) $this->forward("notfound");
+    else $this->template->group = $group;
   }
 }
 ?>

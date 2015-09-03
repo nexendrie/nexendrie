@@ -1,10 +1,10 @@
 {layout "../@layout.latte"}
-{block title}Skupina {$groupName}{/block}
+{block title}Skupina {$group->name}{/block}
 {block content}
-  <h1>Skupina {$groupName}</h1>
+  <h1>Skupina {$group->name}</h1>
   <h3>Členové</h3>
   <p>
-  {foreach $members as $member}
+  {foreach $group->members as $member}
     <a n:href=":Front:Profile:default $member->username">{$member->publicname}</a><br>
   {/foreach}
   </p>

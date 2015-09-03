@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nette\Utils\Arrays;
+use Nette\Utils\Arrays,
+    Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Group Model
@@ -49,10 +50,10 @@ class Group extends \Nette\Object {
         $group = new \stdClass;
         foreach($row as $key => $value) {
           $group->$key = $value;
-        }
-        $groups[$group->id] = $group;
-      $this->cache->save("groups", $groups);
       }
+        $groups[$group->id] = $group;
+      }
+    $this->cache->save("groups", $groups);
     }
     return $groups;
   }
@@ -80,6 +81,16 @@ class Group extends \Nette\Object {
   }
   
   /**
+   * @param int $id
+   * @return GroupEntity|bool
+   */
+  function ormGet($id) {
+    $group = $this->orm->groups->getById($id);
+    if(!$group) return false;
+    else return $group;
+  }
+  
+  /**
    * Get name of specified group
    * 
    * @deprecated
@@ -87,8 +98,7 @@ class Group extends \Nette\Object {
    * @return string
    */
   function getName($id) {
-    $groups = $this->listOfGroups();
-    $group = Arrays::get($groups, $id, false);
+    $group = $this->get($id);
     if(!$group) return "";
     else return $group->name;
   }
@@ -125,6 +135,7 @@ class Group extends \Nette\Object {
   /**
    * Get members of specified guild
    * 
+   * @deprecated
    * @param int $id Guild's id
    * @return \stdClass[]
    * @throws \Nette\Application\BadRequestException
