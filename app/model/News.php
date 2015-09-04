@@ -106,6 +106,7 @@ class News extends \Nette\Object {
     if(!$this->user->isAllowed("comment", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding comments.", 403);
     $comment = new CommentEntity;
     foreach($data as $key => $value) {
+      if($key === "news") continue;
       $comment->$key = $value;
     }
     $comment->news = $this->orm->news->getById($data["news"]);
