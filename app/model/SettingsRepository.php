@@ -3,7 +3,8 @@ namespace Nexendrie\Model;
 
 use Nette\Neon\Neon,
     Nette\Utils\FileSystem,
-    Nette\IOException;
+    Nette\IOException,
+    Nette\Neon\Encoder;
 
 /**
  * Settings Repository
@@ -36,7 +37,8 @@ class SettingsRepository extends \Nette\Object {
     $config = Neon::decode(file_get_contents($filename));
     $config += array("nexendrie" => $settings);
     try {
-      FileSystem::write($filename, Neon::encode($config), NULL);
+      $content = Neon::encode($config, Encoder::BLOCK);
+      FileSystem::write($filename, $content);
     } catch (IOException $e) {
       throw $e;
     }
