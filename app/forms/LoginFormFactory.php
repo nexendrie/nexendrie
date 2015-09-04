@@ -16,6 +16,10 @@ class LoginFormFactory {
   /** @var User */
   protected $user;
   
+  function __construct(User $user) {
+    $this->user = $user;
+  }
+  
   /**
    * @return Form
    */
