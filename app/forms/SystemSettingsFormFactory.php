@@ -38,10 +38,14 @@ class SystemSettingsFormFactory {
    * @return array
    */
   protected function getDefaultValues() {
+    $plural = $this->sr->settings["locale"]["plural"];
+    for($i = 3; $i <= 5; $i++) {
+      unset($plural[$i]);
+    }
     return array(
       "dateFormat" => $this->sr->settings["locale"]["dateFormat"],
       "dateTimeFormat" => $this->sr->settings["locale"]["dateTimeFormat"],
-      "plural" => implode("\n", $this->sr->settings["locale"]["plural"]),
+      "plural" => implode("\n", $plural),
       "guestRole" => $this->sr->settings["roles"]["guestRole"],
       "loggedInRole" => $this->sr->settings["roles"]["loggedInRole"],
       "bannedRole" => $this->sr->settings["roles"]["bannedRole"]
