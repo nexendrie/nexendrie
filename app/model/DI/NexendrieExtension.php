@@ -45,7 +45,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition("settingsRepository")
       ->setFactory("Nexendrie\Model\SettingsRepository", array($config));
     $builder->addDefinition($this->prefix("authorizator"))
-      ->setFactory("Nexendrie\Model\Authorizator::create");
+      ->setFactory("Nexendrie\Model\AuthorizatorFactory::create");
     $builder->removeDefinition("router");
     $builder->addDefinition("router")
       ->setFactory("Nexendrie\Model\RouterFactory::create");
