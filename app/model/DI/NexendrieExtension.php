@@ -30,11 +30,11 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder = $this->getContainerBuilder();
     $config = $this->getConfig($this->defaults);
     $services = array(
-      "Group", "Market", "Messenger", "News", "Polls", "Profile", "Rss"
+      "group", "market", "messenger", "news", "polls", "profile", "rss"
     );
     foreach($services as $service) {
-      $builder->addDefinition($this->prefix(lcfirst($service)))
-        ->setFactory("Nexendrie\Model\\" . $service);
+      $builder->addDefinition($this->prefix($service))
+        ->setFactory("Nexendrie\Model\\" . ucfirst($service));
     }
     $builder->addDefinition("nexendrie.userManager")
       ->setFactory("Nexendrie\Model\UserManager", array($config["roles"]));
