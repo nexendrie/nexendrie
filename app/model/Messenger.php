@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Message as MessageEntity;
+use Nexendrie\Orm\Message as MessageEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Messenger Model
@@ -35,7 +36,7 @@ class Messenger extends \Nette\Object {
    */
   function inbox() {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    return $this->orm->messages->findByTo($this->user->id);
+    return $this->orm->messages->findByTo($this->user->id)->orderBy("sent", ICollection::DESC);
   }
   
   /**
@@ -46,7 +47,7 @@ class Messenger extends \Nette\Object {
    */
   function outbox() {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    return $this->orm->messages->findByFrom($this->user->id);
+    return $this->orm->messages->findByFrom($this->user->id)->orderBy("sent", ICollection::DESC);
   }
   
   /**
