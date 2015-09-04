@@ -42,6 +42,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setFactory("Nexendrie\Model\Locale", array($config["locale"]));
     $builder->addDefinition("cache.cache")
       ->setFactory("Nette\Caching\Cache", array("@cache.storage", "data"));
+    $builder->addDefinition("settingsRepository")
+      ->setFactory("Nexendrie\Model\SettingsRepository", array($config));
     $builder->addDefinition($this->prefix("authorizator"))
       ->setFactory("Nexendrie\Model\Authorizator::create");
     $builder->removeDefinition("router");
