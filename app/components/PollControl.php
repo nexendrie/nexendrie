@@ -16,7 +16,7 @@ class PollControl extends \Nette\Application\UI\Control {
   protected $user;
   /** @var \Nexendrie\Orm\Model $orm */
   protected $orm;
-  /** @var \stdClass */
+  /** @var PollEntity */
   protected $poll;
   /** @var int */
   protected $id;
