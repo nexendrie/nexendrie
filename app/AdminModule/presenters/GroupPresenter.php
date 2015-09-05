@@ -37,7 +37,7 @@ class GroupPresenter extends BasePresenter {
    * @param EditGroupFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  function createComponentEditGroupForm(EditGroupFormFactory $factory) {
+  protected function createComponentEditGroupForm(EditGroupFormFactory $factory) {
     $group = $this->model->ormGet($this->getParameter("id"));
     $form = $factory->create();
     $form->onSuccess[] = array($this, "editGroupFormSucceeded");

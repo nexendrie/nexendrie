@@ -32,7 +32,7 @@ class MarketPresenter extends BasePresenter {
    * @param ShopControlFactory $factory
    * @return \Nette\Application\UI\Multiplier
    */
-  function createComponentShop(ShopControlFactory $factory) {
+  protected function createComponentShop(ShopControlFactory $factory) {
     return new \Nette\Application\UI\Multiplier(function ($id) use ($factory) {
       $shop = $factory->create();
       $shop->id = $id;

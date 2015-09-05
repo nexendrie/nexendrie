@@ -33,7 +33,7 @@ class PollsPresenter extends BasePresenter {
    * @param AddEditPollFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  function createComponentAddPollForm(AddEditPollFormFactory $factory) {
+  protected function createComponentAddPollForm(AddEditPollFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = array($this, "addPollFormSucceeded");
     return $form;
@@ -67,7 +67,7 @@ class PollsPresenter extends BasePresenter {
    * @param AddEditPollFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  function createComponentEditPollForm(AddEditPollFormFactory $factory) {
+  protected function createComponentEditPollForm(AddEditPollFormFactory $factory) {
     $poll = $this->model->view($this->getParameter("id"));
     $form = $factory->create();
     $form->onSuccess[] = array($this, "editPollFormSucceeded");

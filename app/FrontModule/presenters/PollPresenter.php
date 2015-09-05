@@ -25,7 +25,7 @@ class PollPresenter extends BasePresenter {
    * @param PollControlFactory $factory
    * @return \Nette\Application\UI\Multiplier
    */
-  function createComponentPoll(PollControlFactory $factory) {
+  protected function createComponentPoll(PollControlFactory $factory) {
     return new \Nette\Application\UI\Multiplier(function ($id) use ($factory) {
       $poll = $factory->create();
       $poll->id = $id;
