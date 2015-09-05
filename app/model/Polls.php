@@ -91,8 +91,8 @@ class Polls extends \Nette\Object {
   function edit($id, \Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("poll", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for editing polls.", 403);
-    if(!$this->exists($id)) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist.");
     $poll = $this->orm->polls->getById($id);
+    if(!$poll) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist.");
     foreach($data as $key => $value) {
       $poll->$key = $value;
     }
