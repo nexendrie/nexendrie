@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\AdminModule\Presenters;
 
+use Nexendrie\Forms\EditUserFormFactory;
+
 /**
  * Presenter User
  *
@@ -28,5 +30,9 @@ class UserPresenter extends BasePresenter {
     $this->requiresPermissions("user", "edit");
   }
   
+  protected function createComponentEditUser(EditUserFormFactory $factory) {
+    $form = $factory->create($this->getParameter("id"));
+    return $form;
+  }
 }
 ?>

@@ -14,7 +14,7 @@ class FormExtension extends \Nette\DI\CompilerExtension {
     $builder = $this->getContainerBuilder();
     $forms = array(
       "addEditNews", "addEditPoll", "newMessage", "register", "login",
-      "userSettings", "addComment", "editGroup", "systemSettings"
+      "userSettings", "addComment", "editGroup", "systemSettings", "editUser"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix($form))
