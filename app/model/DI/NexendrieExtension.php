@@ -36,13 +36,13 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       $builder->addDefinition($this->prefix($service))
         ->setFactory("Nexendrie\Model\\" . ucfirst($service));
     }
-    $builder->addDefinition("nexendrie.userManager")
+    $builder->addDefinition($this->prefix("userManager"))
       ->setFactory("Nexendrie\Model\UserManager", array($config["roles"]));
-    $builder->addDefinition("nexendrie.locale")
+    $builder->addDefinition($this->prefix("locale"))
       ->setFactory("Nexendrie\Model\Locale", array($config["locale"]));
     $builder->addDefinition("cache.cache")
       ->setFactory("Nette\Caching\Cache", array("@cache.storage", "data"));
-    $builder->addDefinition("settingsRepository")
+    $builder->addDefinition($this->prefix("settingsRepository"))
       ->setFactory("Nexendrie\Model\SettingsRepository", array($config));
     $builder->addDefinition($this->prefix("authorizator"))
       ->setFactory("Nexendrie\Model\AuthorizatorFactory::create");
