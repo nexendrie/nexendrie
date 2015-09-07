@@ -45,7 +45,7 @@ class News extends \Nette\Object {
    * 
    * @param \Nette\Utils\Paginator $paginator
    * @param int $page
-   * @return \stdClass[]
+   * @return \NewsEntity[]
    */
   function page(\Nette\Utils\Paginator $paginator, $page = 1) {
     $paginator->page = $page;
