@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "268e9781d8ef0955dd576355976833d0",
+    "hash": "8425396ffcd338f5bfb353ba3be67b46",
     "packages": [
         {
             "name": "kdyby/autowired",

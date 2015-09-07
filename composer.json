@@ -3,6 +3,7 @@
     "description": "Nexendrie website",
     "homepage": "http://nexendrie.g6.cz/",
     "license": "proprietary",
+    "type": "project",
     "authors": [
         {
             "name": "Jakub Konečný",
