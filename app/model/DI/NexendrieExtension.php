@@ -38,7 +38,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /**
    * @return void
    */
-  function addModels() {
+  protected function addModels() {
     $builder = $this->getContainerBuilder();
     $config = $this->getConfig($this->defaults);
     $services = array(
@@ -68,7 +68,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /**
    * @return void
    */
-  function addComponents() {
+  protected function addComponents() {
     $builder = $this->getContainerBuilder();
     $components = array("poll", "shop");
     foreach($components as $component) {
@@ -80,7 +80,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /**
    * @return void
    */
-  function addForms() {
+  protected function addForms() {
     $builder = $this->getContainerBuilder();
     $forms = array(
       "addEditNews", "addEditPoll", "newMessage", "register", "login",
