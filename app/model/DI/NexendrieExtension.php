@@ -8,7 +8,7 @@ namespace Nexendrie\Model\DI;
  */
 class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /** @var array */
-  public $defaults = array(
+  protected $defaults = array(
     "roles" => array(
       "guestRole" => 9,
       "loggedInRole" => 8,
