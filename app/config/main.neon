@@ -10,8 +10,8 @@ session:
     name: NEXSESSID
     expiration: 4 hours
 extensions:
-    form: Nexendrie\Forms\DI\FormsExtension
     nexendrie: Nexendrie\Model\DI\NexendrieExtension
+    nexendrie.form: Nexendrie\Forms\DI\FormsExtension
     dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
     orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
 orm:
