@@ -8,7 +8,7 @@
   {else}
   <h2>Novinky</h2>
     {foreach $news as $new}
-  <p>{$new->title} od <a n:href="Profile:default $new->author->username">{$new->author->publicname}</a> Přidáno: {$new->addedAt} <a n:href="News:view $new->id">Zobrazit</a></p>
+  <p>{$new->title} od <a n:href="Profile:default $new->author->username">{$new->author->publicname}</a> Přidáno: {$new->addedAt}<br>{$new->text|truncate:150} <a n:href="News:view $new->id">Zobrazit</a></p>
     {/foreach}
   {/if}
 {/block}
