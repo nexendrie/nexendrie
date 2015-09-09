@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\Model\DI;
+namespace Nexendrie\Forms\DI;
 
 /**
  * Form Extension for DIC
