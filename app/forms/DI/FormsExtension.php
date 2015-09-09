@@ -6,7 +6,7 @@ namespace Nexendrie\Forms\DI;
  *
  * @author Jakub Konečný
  */
-class FormExtension extends \Nette\DI\CompilerExtension {
+class FormsExtension extends \Nette\DI\CompilerExtension {
   /**
    * @return void
    */
