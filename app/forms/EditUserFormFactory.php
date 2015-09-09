@@ -70,16 +70,10 @@ class EditUserFormFactory extends \Nette\Object {
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");
     $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = function (Form $form, ArrayHash $values) {
+      $this->model->edit($this->uid, $values);
+    };
     return $form;
-  }
-  
-  /**
-   * @param Form $form
-   * @param ArrayHash $values
-   * @return void
-   */
-  function submitted(Form $form, ArrayHash $values) {
-    $this->model->edit($this->uid, $values);
   }
 }
 ?>
