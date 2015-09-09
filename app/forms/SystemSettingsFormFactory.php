@@ -48,7 +48,8 @@ class SystemSettingsFormFactory {
       "plural" => implode("\n", $plural),
       "guestRole" => $this->sr->settings["roles"]["guestRole"],
       "loggedInRole" => $this->sr->settings["roles"]["loggedInRole"],
-      "bannedRole" => $this->sr->settings["roles"]["bannedRole"]
+      "bannedRole" => $this->sr->settings["roles"]["bannedRole"],
+      "newsPerPage" => $this->sr->settings["pagination"]["news"]
     );
   }
   
@@ -61,12 +62,12 @@ class SystemSettingsFormFactory {
     $form->addGroup("Lokální nastavení");
     $form->addText("dateFormat", "Formát datumu:")
       ->setOption("description", "Pro funkci date()")
-      ->setRequired("Zadej formát datumu");
+      ->setRequired("Zadej formát datumu.");
     $form->addText("dateTimeFormat", "Formát času:")
       ->setOption("description", "Dokumentace na http://docs.php.net/manual/en/function.date.php")
-      ->setRequired("Zadej formát času");
+      ->setRequired("Zadej formát času.");
     $form->addTextArea("plural", "Plurály:")
-      ->setRequired("Zadej plurály");
+      ->setRequired("Zadej plurály.");
     $form->addGroup("Role");
     $form->addSelect("guestRole", "Nepřihlášený uživatel:", $groups)
       ->setRequired("Vyyber roli pro nepřihlášeného uživatele.");
@@ -74,6 +75,10 @@ class SystemSettingsFormFactory {
       ->setRequired("Vyyber roli pro přihlášeného uživatele.");
     $form->addSelect("bannedRole", "Zablokovaný uživatel:", $groups)
       ->setRequired("Vyyber roli pro zablokovaného uživatele.");
+    $form->addGroup("Stránkování");
+    $form->addText("newsPerPage", "Novinek na stránku:")
+      ->setRequired("Zadej počet novinek na stránku.")
+      ->addRule(Form::INTEGER, "Počet novinek na stránku musí být číslo.");
     $form->currentGroup = NULL;
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());
@@ -105,6 +110,9 @@ class SystemSettingsFormFactory {
         "dateFormat" => $values["dateFormat"],
         "dateTimeFormat" => $values["dateTimeFormat"],
         "plural" => explode("\n", $values["plural"])
+      ),
+      "pagination" => array(
+        "news" => $values["newsPerPage"]
       )
     );
     try {

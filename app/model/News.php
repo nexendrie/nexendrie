@@ -17,13 +17,15 @@ class News extends \Nette\Object {
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
-  protected $itemsPerPage = 10;
+  protected $itemsPerPage;
   
   /**
+   * @param int $itemsPerPage
    * @param \Nexendrie\Orm\Model $orm
    */
-  function __construct(\Nexendrie\Orm\Model $orm) {
+  function __construct($itemsPerPage, \Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
+    $this->itemsPerPage = (int) $itemsPerPage;
   }
   
   /**
