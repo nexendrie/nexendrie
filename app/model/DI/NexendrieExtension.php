@@ -58,15 +58,17 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition("router")
       ->setFactory("Nexendrie\Model\RouterFactory::create");
   }
+  
   /**
    * @return void
    */
   function addComponents() {
     $builder = $this->getContainerBuilder();
-    $builder->addDefinition($this->prefix("component.poll"))
-      ->setImplement("Nexendrie\Components\PollControlFactory");
-    $builder->addDefinition($this->prefix("component.shop"))
-      ->setImplement("Nexendrie\Components\ShopControlFactory");
+    $components = array("poll", "shop");
+    foreach($components as $component) {
+      $builder->addDefinition($this->prefix("component.$component"))
+        ->setImplement("Nexendrie\Components\\". ucfirst($component) . "ControlFactory");
+    }
   }
   
   function afterCompile(\Nette\PhpGenerator\ClassType $class) {
