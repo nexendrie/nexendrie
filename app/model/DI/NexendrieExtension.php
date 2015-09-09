@@ -27,28 +27,64 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
    * @return void
    */
   function loadConfiguration() {
+    $this->addModels();
+    $this->addComponents();
+    $this->addForms();
+  }
+  
+  /**
+   * @return void
+   */
+  function addModels() {
     $builder = $this->getContainerBuilder();
     $config = $this->getConfig($this->defaults);
     $services = array(
       "group", "market", "messenger", "news", "polls", "profile", "rss"
     );
     foreach($services as $service) {
-      $builder->addDefinition($this->prefix($service))
+      $builder->addDefinition($this->prefix("model.$service"))
         ->setFactory("Nexendrie\Model\\" . ucfirst($service));
     }
-    $builder->addDefinition($this->prefix("userManager"))
+    $builder->addDefinition($this->prefix("model.userManager"))
       ->setFactory("Nexendrie\Model\UserManager", array($config["roles"]));
-    $builder->addDefinition($this->prefix("locale"))
+    $builder->addDefinition($this->prefix("model.locale"))
       ->setFactory("Nexendrie\Model\Locale", array($config["locale"]));
     $builder->addDefinition("cache.cache")
       ->setFactory("Nette\Caching\Cache", array("@cache.storage", "data"));
-    $builder->addDefinition($this->prefix("settingsRepository"))
+    $builder->addDefinition($this->prefix("model.settingsRepository"))
       ->setFactory("Nexendrie\Model\SettingsRepository", array($config));
-    $builder->addDefinition($this->prefix("authorizator"))
+    $builder->addDefinition($this->prefix("model.authorizator"))
       ->setFactory("Nexendrie\Model\AuthorizatorFactory::create");
     $builder->removeDefinition("router");
     $builder->addDefinition("router")
       ->setFactory("Nexendrie\Model\RouterFactory::create");
+  }
+  
+  /**
+   * @return void
+   */
+  function addComponents() {
+    $builder = $this->getContainerBuilder();
+    $components = array("poll", "shop");
+    foreach($components as $component) {
+      $builder->addDefinition($this->prefix("component.$component"))
+        ->setImplement("Nexendrie\Components\\". ucfirst($component) . "ControlFactory");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function addForms() {
+    $builder = $this->getContainerBuilder();
+    $forms = array(
+      "addEditNews", "addEditPoll", "newMessage", "register", "login",
+      "userSettings", "addComment", "editGroup", "systemSettings", "editUser"
+    );
+    foreach($forms as $form) {
+      $builder->addDefinition($this->prefix("form.$form"))
+        ->setFactory("Nexendrie\Forms\\" . ucfirst($form) . "FormFactory");
+    }
   }
   
   function afterCompile(\Nette\PhpGenerator\ClassType $class) {
