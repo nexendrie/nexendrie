@@ -11,7 +11,6 @@ session:
     expiration: 4 hours
 extensions:
     nexendrie: Nexendrie\Model\DI\NexendrieExtension
-    nexendrie.form: Nexendrie\Forms\DI\FormsExtension
     dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
     orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
 orm:

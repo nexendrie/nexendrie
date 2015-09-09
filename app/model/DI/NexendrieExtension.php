@@ -29,6 +29,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   function loadConfiguration() {
     $this->addModels();
     $this->addComponents();
+    $this->addForms();
   }
   
   /**
@@ -68,6 +69,21 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     foreach($components as $component) {
       $builder->addDefinition($this->prefix("component.$component"))
         ->setImplement("Nexendrie\Components\\". ucfirst($component) . "ControlFactory");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function addForms() {
+    $builder = $this->getContainerBuilder();
+    $forms = array(
+      "addEditNews", "addEditPoll", "newMessage", "register", "login",
+      "userSettings", "addComment", "editGroup", "systemSettings", "editUser"
+    );
+    foreach($forms as $form) {
+      $builder->addDefinition($this->prefix("form.$form"))
+        ->setFactory("Nexendrie\Forms\\" . ucfirst($form) . "FormFactory");
     }
   }
   
