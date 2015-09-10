@@ -1,7 +1,10 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\PermissionDummy;
+use Nexendrie\Orm\PermissionDummy,
+    Nette\Security\Permission,
+    Nette\Caching\Cache,
+    Nette\Utils\Arrays;
 
 /**
  * Authorizator
@@ -12,11 +15,11 @@ class AuthorizatorFactory extends \Nette\Object {
   /**
    * Get list of all groups ordered by level
    * 
-   * @param \Nette\Caching\Cache $cache
+   * @param Cache $cache
    * @param \Nexendrie\Orm\Model $orm
    * @return \stdClass[]
    */
-  static function getGroups(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
+  static function getGroups(Cache $cache, \Nexendrie\Orm\Model $orm) {
     $groups = $cache->load("groups_by_level");
     if($groups === NULL) {
       $groups = array();
@@ -35,11 +38,11 @@ class AuthorizatorFactory extends \Nette\Object {
   /**
    * Get permissions
    * 
-   * @param \Nette\Caching\Cache $cache
+   * @param Cache $cache
    * @param \Nexendrie\Orm\Model $orm
    * @return PermissionDummy[]
    */
-  static function getPermissions(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
+  static function getPermissions(Cache $cache, \Nexendrie\Orm\Model $orm) {
     $return = $cache->load("permissions");
     if($return === NULL) {
       $rows = $orm->permissions->findAll();
@@ -54,12 +57,12 @@ class AuthorizatorFactory extends \Nette\Object {
   /**
   * Factory for Authorizator
   * 
-  * @param \Nette\Caching\Cache $cache
+  * @param  $cache
   * @param \Nexendrie\Orm\Model $orm
-  * @return \Nette\Security\Permission
+  * @return Permission
   */
-  static function create(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
-    $permission = new \Nette\Security\Permission;
+  static function create(Cache $cache, \Nexendrie\Orm\Model $orm) {
+    $permission = new Permission;
     
     $groups = self::getGroups($cache, $orm);
     $permissions = self::getPermissions($cache, $orm);
@@ -76,7 +79,7 @@ class AuthorizatorFactory extends \Nette\Object {
     $permission->deny("vězeň");
     foreach($permissions as $row) {
       if(!$permission->hasResource($row->resource)) $permission->addResource($row->resource);
-      $group = \Nette\Utils\Arrays::get($groups, $row->group);
+      $group = Arrays::get($groups, $row->group);
       $permission->allow($group->single_name, $row->resource, $row->action);
     }
     
