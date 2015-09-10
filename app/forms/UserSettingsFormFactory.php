@@ -24,6 +24,7 @@ class UserSettingsFormFactory {
   function __construct(UserManager $model, User $user) {
     $this->model = $model;
     $this->user = $user;
+    $this->model->user = $this->user;
   }
   
   /**
@@ -83,7 +84,6 @@ class UserSettingsFormFactory {
   
   function submitted(Form $form, ArrayHash $values) {
     try {
-      $this->model->user = $this->user;
       $this->model->changeSettings($values);
     } catch (SettingsException $e) {
       if($e->getCode() === UserManager::REG_DUPLICATE_USERNAME) {
