@@ -124,6 +124,7 @@ class UserPresenter extends BasePresenter {
    * @return void
    */
   function userSettingsFormSucceeded(Form $form, $values) {
+    $this->flashMessage("Změny uloženy.");
     if($this->user->identity->style != $values["style"]) {
       $this->user->identity->style = $values["style"];
       $this->redirect("this");
