@@ -9,7 +9,6 @@ use Nextras\Orm\Collection\ICollection,
  * News Model
  *
  * @author Jakub Konečný
- * @property-write int $itemsPerPage
  */
 class News extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model */
@@ -33,13 +32,6 @@ class News extends \Nette\Object {
    */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
-  }
-  
-  /**
-   * @param int $amount
-   */
-  function setItemsPerPage($amount) {
-    if(is_int($amount)) $this->itemsPerPage = $amount;
   }
   
   /**
