@@ -68,20 +68,11 @@ class MessagesPresenter extends BasePresenter {
     } catch(\Nette\InvalidArgumentException $e) {
       
     }
-    $form->onSuccess[] = array($this, "newMessageFormSucceeded");
+    $form->onSuccess[] = function(Form $form, $values) {
+      $this->flashMessage("Zpráva byla odeslána.");
+      $this->redirect("Messages:sent");
+    };
     return $form;
-  }
-  
-  /**
-   * Send new message
-   * 
-   * @param \Nette\Application\UI\Form $form
-   * @param \Nette\Utils\ArrayHash $values
-   * @return void
-   */
-  function newMessageFormSucceeded(Form $form, $values) {
-    $this->flashMessage("Zpráva byla odeslána.");
-    $this->redirect("Messages:sent");
   }
 }
 ?>

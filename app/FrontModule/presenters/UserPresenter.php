@@ -33,20 +33,11 @@ class UserPresenter extends BasePresenter {
   protected function createComponentLoginForm(LoginFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = array($this, "loginFormSucceeded");
+    $form->onSuccess[] = function(Form $form, $values) {
+      $this->flashMessage("Byl jsi úspěšně přihlášen.");
+      $this->redirect("Homepage:");
+    };
     return $form;
-  }
-  
-  /**
-   * Login the user
-   * @todo return to previous page if possible
-   * 
-   * @param \Nette\Application\UI\Form $form
-   * @param \Nette\Utils\ArrayHash $values
-   * @return void
-   */
-  function loginFormSucceeded(Form $form, $values) {
-    $this->flashMessage("Byl jsi úspěšně přihlášen.");
-    $this->redirect("Homepage:");
   }
   
   /**
@@ -82,20 +73,11 @@ class UserPresenter extends BasePresenter {
    */
   protected function createComponentRegisterForm(RegisterFormFactory $factory) {
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "registerFormSucceeded");
+    $form->onSuccess[] = function(Form $form, $values) {
+      $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
+      $this->redirect("Homepage:");
+    };
     return $form;
-  }
-  
-  /**
-   * Register new user
-   * 
-   * @param \Nette\Application\UI\Form $form
-   * @param \Nette\Utils\ArrayHash $values
-   * @return void
-   */
-  function registerFormSucceeded(Form $form, $values) {
-    $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
-    $this->redirect("Homepage:");
   }
   
   /**
@@ -112,23 +94,14 @@ class UserPresenter extends BasePresenter {
    */
   protected function createComponentUserSettingsForm(UserSettingsFormFactory $factory) {
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "userSettingsFormSucceeded");
+    $form->onSuccess[] = function(Form $form, $values) {
+      $this->flashMessage("Změny uloženy.");
+      if($this->user->identity->style != $values["style"]) {
+        $this->user->identity->style = $values["style"];
+        $this->redirect("this");
+      }
+    };
     return $form;
-  }
-  
-  /**
-   * Change user's settings
-   * 
-   * @param \Nette\Application\UI\Form $form
-   * @param \Nette\Utils\ArrayHash $values
-   * @return void
-   */
-  function userSettingsFormSucceeded(Form $form, $values) {
-    $this->flashMessage("Změny uloženy.");
-    if($this->user->identity->style != $values["style"]) {
-      $this->user->identity->style = $values["style"];
-      $this->redirect("this");
-    }
   }
 }
 ?>

@@ -16,12 +16,10 @@ class SettingsPresenter extends BasePresenter {
    */
   protected function createComponentSystemSettingsForm(SystemSettingsFormFactory $factory) {
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "systemSettingsFormSucceeded");
+    $form->onSuccess[] = function(Form $form, $values) {
+      $this->flashMessage("Změny uloženy.");
+    };
     return $form;
-  }
-  
-  function systemSettingsFormSucceeded(Form $form, $values) {
-    $this->flashMessage("Změny uloženy.");
   }
 }
 ?>
