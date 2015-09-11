@@ -32,7 +32,6 @@ class UserPresenter extends BasePresenter {
    */
   protected function createComponentLoginForm(LoginFormFactory $factory) {
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "loginFormSucceeded");
     $form->onSuccess[] = function(Form $form, $values) {
       $this->flashMessage("Byl jsi úspěšně přihlášen.");
       $this->redirect("Homepage:");
