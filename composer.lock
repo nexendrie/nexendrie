@@ -957,16 +957,16 @@
         },
         {
             "name": "nextras/orm",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/orm.git",
-                "reference": "7920016cdba5cdc084d9f194d11608e1eca09d33"
+                "reference": "94fb00401b99217cf5c8058d8ea5b3ead25bbc28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/orm/zipball/7920016cdba5cdc084d9f194d11608e1eca09d33",
-                "reference": "7920016cdba5cdc084d9f194d11608e1eca09d33",
+                "url": "https://api.github.com/repos/nextras/orm/zipball/94fb00401b99217cf5c8058d8ea5b3ead25bbc28",
+                "reference": "94fb00401b99217cf5c8058d8ea5b3ead25bbc28",
                 "shasum": ""
             },
             "require": {
@@ -1014,7 +1014,7 @@
                 "nextras",
                 "orm"
             ],
-            "time": "2015-08-21 15:46:52"
+            "time": "2015-09-11 18:48:54"
         },
         {
             "name": "oodle/inflect",
