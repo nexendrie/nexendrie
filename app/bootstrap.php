@@ -6,7 +6,6 @@ $configurator = new Nette\Configurator;
 $configurator->setTempDirectory(APP_DIR . "/temp");
 $configurator->addConfig(APP_DIR . "/config/main.neon");
 $configurator->createRobotLoader()
-    ->addDirectory(LIBS_DIR)
     ->addDirectory(APP_DIR)
     ->register();
 $container = $configurator->createContainer();
