@@ -4,7 +4,8 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\PermissionDummy,
     Nette\Security\Permission,
     Nette\Caching\Cache,
-    Nette\Utils\Arrays;
+    Nette\Utils\Arrays,
+    Nexendrie\Orm\Model as ORM;
 
 /**
  * Authorizator
@@ -19,7 +20,7 @@ class AuthorizatorFactory extends \Nette\Object {
    * @param \Nexendrie\Orm\Model $orm
    * @return \stdClass[]
    */
-  static function getGroups(Cache $cache, \Nexendrie\Orm\Model $orm) {
+  static function getGroups(Cache $cache, ORM $orm) {
     $groups = $cache->load("groups_by_level");
     if($groups === NULL) {
       $groups = array();
@@ -42,7 +43,7 @@ class AuthorizatorFactory extends \Nette\Object {
    * @param \Nexendrie\Orm\Model $orm
    * @return PermissionDummy[]
    */
-  static function getPermissions(Cache $cache, \Nexendrie\Orm\Model $orm) {
+  static function getPermissions(Cache $cache, ORM $orm) {
     $return = $cache->load("permissions");
     if($return === NULL) {
       $rows = $orm->permissions->findAll();
@@ -61,7 +62,7 @@ class AuthorizatorFactory extends \Nette\Object {
   * @param \Nexendrie\Orm\Model $orm
   * @return Permission
   */
-  static function create(Cache $cache, \Nexendrie\Orm\Model $orm) {
+  static function create(Cache $cache, ORM $orm) {
     $permission = new Permission;
     
     $groups = self::getGroups($cache, $orm);
