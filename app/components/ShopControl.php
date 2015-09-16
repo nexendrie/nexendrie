@@ -19,7 +19,7 @@ class ShopControl extends \Nette\Application\UI\Control {
   protected $id;
   
   /**
-   * @param \Nexendrie\Orm\Model $db
+   * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    */
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
