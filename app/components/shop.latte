@@ -1,9 +1,9 @@
   <h1>{$shop->name}</h1>
   <p>{$shop->description}</p>
-  {if count($shop->items) === 0}
-    <p>Bohužel ti nic nemohu nabídnout.</p>
-  {elseif !$user->isLoggedIn()}
+  {if !$user->isLoggedIn()}
     <p>Cizincům neprodávám.<small>Tip: Aby jsi mohl nakupovat, musíš být zaregistrovaný a přihlášený.</small></p>
+  {elseif count($shop->items) === 0}
+    <p>Bohužel ti nic nemohu nabídnout.</p>
   {else}
     <article id="items">
     Mohu ti nabídnout:
