@@ -2,7 +2,9 @@
 namespace Nexendrie\FrontModule\Presenters;
 
 use Nette\Application\UI\Form,
-    Nexendrie\Forms\NewMessageFormFactory;
+    Nexendrie\Forms\NewMessageFormFactory,
+    Nexendrie\Model\MessageNotFoundException,
+    Nexendrie\Model\AccessDeniedException;
 
 /**
  * Presenter Messages
@@ -42,11 +44,9 @@ class MessagesPresenter extends BasePresenter {
   function renderView($id) {
     try {
       $this->template->message = $this->model->show($id);
-    } catch (\Nette\Application\ForbiddenRequestException $e) {
-      if($e->getCode() === 403) {
-        $this->forward("cannotshow");
-      }
-    } catch(\Nette\Application\BadRequestException $e) {
+    } catch(AccessDeniedException $e) {
+      $this->forward("cannotshow");
+    } catch(MessageNotFoundException $e) {
       $this->forward("notfound");
     }
   }

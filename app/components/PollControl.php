@@ -3,8 +3,10 @@ namespace Nexendrie\Components;
 
 use Nette\Utils\Arrays,
     Nexendrie\Model\PollVotingException,
+    Nexendrie\Model\PollNotFoundException,
+    Nexendrie\Model\AccessDeniedException,
     Nexendrie\Orm\Poll as PollEntity,
-    \Nexendrie\Orm\PollVote as PollVoteEntity;
+    Nexendrie\Orm\PollVote as PollVoteEntity;
 
 /**
  * Poll Control
@@ -32,25 +34,25 @@ class PollControl extends \Nette\Application\UI\Control {
   
   /**
    * @return PollEntity
-   * @throws \Nette\Application\BadRequestException
+   * @throws PollNotFoundException
    */
   function getPoll() {
     if(isset($this->poll)) return $this->poll;
     $poll = $this->orm->polls->getById($this->id);
-    if(!$poll) throw new \Nette\Application\BadRequestException("Specified poll does not exist.");
+    if(!$poll) throw new PollNotFoundException("Specified poll does not exist.");
     $this->poll = $poll;
     return $poll;
   }
   
   /**
    * @param int $id
-   * @throws \Nette\Application\BadRequestException
+   * @throws PollNotFoundException
    */
   function setId($id) {
     try {
       $this->id = $id;
       $this->getPoll();
-    } catch(\Nette\Application\BadRequestException $e) {
+    } catch(PollNotFoundException $e) {
       throw $e;
     }
   }
@@ -108,12 +110,12 @@ class PollControl extends \Nette\Application\UI\Control {
    * 
    * @param int $answer
    * @throws \Nette\InvalidArgumentException
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws AccessDeniedException
    * @throws PollVotingException
    * @return void
    */
   function vote($answer) {
-    if(!$this->canVote()) throw new \Nette\Application\ForbiddenRequestException("You can't vote in this poll.", 403);
+    if(!$this->canVote()) throw new AccessDeniedException("You can't vote in this poll.");
     $poll = $this->getPoll();
     if($answer > count($poll->parsedAnswers)) throw new PollVotingException("The poll has less then $answer answers.");
     $vote = new PollVoteEntity;
@@ -133,11 +135,11 @@ class PollControl extends \Nette\Application\UI\Control {
     try {
       $this->vote($answer);
       $this->presenter->flashMessage("Hlas uložen.");
-    } catch (\Nette\InvalidArgumentException $e) {
+    } catch(\Nette\InvalidArgumentException $e) {
       $this->presenter->flashMessage("Zadaná anketa neexistuje.");
-    } catch (\Nette\Application\ForbiddenRequestException $e) {
+    } catch(AccessDeniedException $e) {
       $this->presenter->flashMessage("Nemůžeš hlasovat v této anketě.");
-    } catch (PollVotingException $e) {
+    } catch(PollVotingException $e) {
       $this->presenter->flashMessage("Neplatná volba.");
     }
   }

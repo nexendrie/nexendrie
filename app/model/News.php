@@ -61,11 +61,11 @@ class News extends \Nette\Object {
    * 
    * @param type $id
    * @return NewsEntity
-   * @throws \Nette\Application\BadRequestException
+   * @throws NewsNotFoundException
    */
   function view($id) {
     $news = $this->orm->news->getById($id);
-    if(!$news) throw new \Nette\Application\BadRequestException("Specified news does not exist.");
+    if(!$news) throw new NewsNotFoundException("Specified news does not exist.");
     else return $news;
   }
   
@@ -93,12 +93,13 @@ class News extends \Nette\Object {
    * Adds comment to news
    * 
    * @param \Nette\Utils\ArrayHash $data
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
    * @return void
    */
   function addComment(\Nette\Utils\ArrayHash $data) {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    if(!$this->user->isAllowed("comment", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding comments.", 403);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isAllowed("comment", "add")) throw new MissingPermissionsException("You don't have permissions for adding comments.");
     $comment = new CommentEntity;
     $this->orm->comments->attach($comment);
     foreach($data as $key => $value) {
@@ -136,18 +137,23 @@ class News extends \Nette\Object {
    * 
    * @param int $id News' id
    * @param \Nette\Utils\ArrayHash $data
-   * @throws \Nette\Application\ForbiddenRequestException
-   * @throws \Nette\ArgumentOutOfRangeException
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws NewsNotFoundException
    */
   function edit($id, \Nette\Utils\ArrayHash $data) {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    if(!$this->user->isAllowed("news", "edit")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isAllowed("news", "edit")) throw new MissingPermissionsException("You don't have permissions for adding news.");
     $news = $this->orm->news->getById($id);
-    if(!$news) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist");
+    if(!$news) throw new NewsNotFoundException("Specified news does not exist");
     foreach($data as $key => $value) {
       $news->$key = $value;
     }
     $this->orm->news->persistAndFlush($news);
   }
+}
+
+class NewsNotFoundException extends RecordNotFoundException {
+  
 }
 ?>

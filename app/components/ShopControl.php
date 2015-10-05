@@ -2,7 +2,7 @@
 namespace Nexendrie\Components;
 
 use Nexendrie\Orm\Shop as ShopEntity,
-    Nette\Application\BadRequestException;
+    Nexendrie\Model\ShopNotFoundException;
 
 /**
  * Shop Control
@@ -30,12 +30,12 @@ class ShopControl extends \Nette\Application\UI\Control {
   
   /**
    * @return ShopEntity
-   * @throws BadRequestException
+   * @throws ShopNotFoundException
    */
   function getShop() {
     if(isset($this->shop)) return $this->shop;
     $shop = $this->orm->shops->getById($this->id);
-    if(!$shop) throw new BadRequestException("Specified shop does not exist.");
+    if(!$shop) throw new ShopNotFoundException("Specified shop does not exist.");
     $this->shop = $shop;
   }
   
@@ -46,7 +46,7 @@ class ShopControl extends \Nette\Application\UI\Control {
     try {
       $this->id = $id;
       $this->getShop();
-    } catch(BadRequestException $e) {
+    } catch(ShopNotFoundException $e) {
       throw $e;
     }
   }

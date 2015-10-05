@@ -118,8 +118,8 @@ class Group extends \Nette\Object {
    * @return void
    */
   function edit($id, \Nette\Utils\ArrayHash $data) {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    if(!$this->user->isAllowed("group", "edit")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isAllowed("group", "edit")) throw new MissingPermissionsException("You don't have permissions for adding news.");
     $group = $this->orm->groups->getById($id);
     foreach($data as $key => $value) {
       $group->$key = $value;
@@ -134,11 +134,11 @@ class Group extends \Nette\Object {
    * @deprecated
    * @param int $id Guild's id
    * @return \stdClass[]
-   * @throws \Nette\Application\BadRequestException
+   * @throws GroupNotFoundException
    */
   function members($id) {
     $group = $this->orm->groups->getById($id);
-    if(!$group) throw new \Nette\Application\BadRequestException("Specified guild does not exist.");
+    if(!$group) throw new GroupNotFoundException("Specified guild does not exist.");
     $return = array();
     foreach($group->members as $user) {
       $return[] = (object) array(
@@ -147,5 +147,9 @@ class Group extends \Nette\Object {
     }
     return $return;
   }
+}
+
+class GroupNotFoundException extends RecordNotFoundException {
+  
 }
 ?>

@@ -32,10 +32,10 @@ class Messenger extends \Nette\Object {
    * Get list of received messages
    * 
    * @return MessageEntity[]
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws AuthenticationNeededException
    */
   function inbox() {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.", 401);
     return $this->orm->messages->findByTo($this->user->id)->orderBy("sent", ICollection::DESC);
   }
   
@@ -43,10 +43,10 @@ class Messenger extends \Nette\Object {
    * Get list of sent messages
    * 
    * @return MessageEntity[]
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws AuthenticationNeededException
    */
   function outbox() {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.", 401);
     return $this->orm->messages->findByFrom($this->user->id)->orderBy("sent", ICollection::DESC);
   }
   
@@ -55,15 +55,16 @@ class Messenger extends \Nette\Object {
    * 
    * @param int $id Message's id
    * @return MessageEntity
-   * @throws \Nette\Application\ForbiddenRequestException
-   * @throws \Nette\Application\BadRequestException
+   * @throws AuthenticationNeededException
+   * @throws MessageNotFoundException
+   * @throws AccessDeniedException
    */
   function show($id) {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException("This action requires authentication.", 401);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     $message = $this->orm->messages->getById($id);
-    if(!$message) throw new \Nette\Application\BadRequestException("Message not found.");
+    if(!$message) throw new MessageNotFoundException("Message not found.");
     if($message->from->id != $this->user->id AND $message->to->id != $this->user->id) {
-      throw new \Nette\Application\ForbiddenRequestException("You can't see this message.", 403);
+      throw new AccessDeniedException("You can't see this message.");
     }
     return $message;
   }
@@ -99,5 +100,9 @@ class Messenger extends \Nette\Object {
     $message->to = $data["to"];
     $this->orm->messages->persistAndFlush($message);
   }
+}
+
+class MessageNotFoundException extends RecordNotFoundException {
+  
 }
 ?>

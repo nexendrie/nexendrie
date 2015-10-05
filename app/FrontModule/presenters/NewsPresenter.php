@@ -2,7 +2,10 @@
 namespace Nexendrie\FrontModule\Presenters;
 
 use Nette\Application\UI\Form,
-    Nexendrie\Forms\AddCommentFormFactory;
+    Nexendrie\Forms\AddCommentFormFactory,
+    Nexendrie\Model\NewsNotFoundException,
+    Nexendrie\Model\AuthenticationNeededException,
+    Nexendrie\Model\MissingPermissionsException;
 
 /**
  * Description of NewsPresenter
@@ -29,7 +32,7 @@ class NewsPresenter extends BasePresenter {
   function renderView($id) {
     try {
       $this->template->news = $this->model->view($id);
-    } catch (\Nette\Application\ForbiddenRequestException $e) {
+    } catch(NewsNotFoundException $e) {
       $this->forward("notfound");
     }
   }
@@ -57,10 +60,10 @@ class NewsPresenter extends BasePresenter {
       $this->model->user = $this->user;
       $this->model->addComment($values);
       $this->flashMessage("Komentář přidán.");
-    } catch(\Nette\Application\ForbiddenRequestException $e) {
+    } catch(AuthenticationNeededException $e) {
       $this->flashMessage("Pro přidání komentáře musíš být přihlášený.");
       $this->redirect("User:login");
-    } catch(\Nette\Application\ForbiddenRequestException $e) {
+    } catch(MissingPermissionsException $e) {
       $this->flashMessage("Nemůžeš přidávat komentáře.");
     }
   }

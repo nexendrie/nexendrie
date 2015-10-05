@@ -59,12 +59,16 @@ class Profile extends \Nette\Object {
    * 
    * @param string $username
    * @return UserEntity
-   * @throws \Nette\Application\BadRequestException
+   * @throws UserNotFoundException
    */
   function view($username) {
     $user = $this->orm->users->getByUsername($username);
-    if(!$user) throw new \Nette\Application\BadRequestException("Specified user does not exist.");
+    if(!$user) throw new UserNotFoundException("Specified user does not exist.");
     else return $user;
   }
+}
+
+class UserNotFoundException extends RecordNotFoundException {
+  
 }
 ?>

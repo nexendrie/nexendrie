@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\FrontModule\Presenters;
 
+use Nexendrie\Model\UserNotFoundException;
+
 /**
  * Presenter Profile
  *
@@ -18,7 +20,7 @@ class ProfilePresenter extends BasePresenter {
     if(is_null($username)) $this->forward("notfound");
     try {
       $this->template->profile = $this->model->view($username);
-    } catch(\Nette\Application\BadRequestException $e) {
+    } catch(UserNotFoundException $e) {
       $this->forward("notfound");
     }
   }

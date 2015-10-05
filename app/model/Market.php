@@ -38,4 +38,8 @@ class Market extends \Nette\Object {
     return (bool) $this->orm->shops->getById($id);
   }
 }
+
+class ShopNotFoundException extends RecordNotFoundException {
+  
+}
 ?>

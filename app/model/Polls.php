@@ -42,11 +42,11 @@ class Polls extends \Nette\Object {
    * 
    * @param int $id Poll's id
    * @return PollEntity
-   * @throws \Nette\Application\BadRequestException
+   * @throws PollNotFoundException
    */
   function view($id) {
     $poll = $this->orm->polls->getById($id);
-    if(!$poll) throw new \Nette\Application\BadRequestException("Specified poll does not exist.");
+    if(!$poll) throw new PollNotFoundException("Specified poll does not exist.");
     else return $poll;
   }
   
@@ -54,12 +54,13 @@ class Polls extends \Nette\Object {
    * Add poll
    * 
    * @param \Nette\Utils\ArrayHash $data
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
    * @return void
    */
   function add(\Nette\Utils\ArrayHash $data) {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    if(!$this->user->isAllowed("poll", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isAllowed("poll", "add")) throw new MissingPermissionsException("You don't have permissions for adding news.");
     $poll = new PollEntity;
     $this->orm->polls->attach($poll);
     foreach($data as $key => $value) {
@@ -86,14 +87,15 @@ class Polls extends \Nette\Object {
    * @param int $id Poll's id
    * @param \Nette\Utils\ArrayHash $data
    * @return void
-   * @throws \Nette\Application\ForbiddenRequestException
-   * @throws \Nette\ArgumentOutOfRangeException
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws PollNotFoundException
    */
   function edit($id, \Nette\Utils\ArrayHash $data) {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    if(!$this->user->isAllowed("poll", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for editing polls.", 403);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isAllowed("poll", "add")) throw new MissingPermissionsException("You don't have permissions for editing polls.");
     $poll = $this->orm->polls->getById($id);
-    if(!$poll) throw new \Nette\ArgumentOutOfRangeException("Specified news does not exist.");
+    if(!$poll) throw new PollNotFoundException("Specified news does not exist.");
     foreach($data as $key => $value) {
       $poll->$key = $value;
     }
@@ -107,6 +109,10 @@ class Polls extends \Nette\Object {
  * @author Jakub Konečný
  */
 class PollVotingException extends \Exception {
+  
+}
+
+class PollNotFoundException extends RecordNotFoundException {
   
 }
 ?>
