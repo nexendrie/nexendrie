@@ -27,7 +27,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * @param string $action
    * @return void
    */
-  function requiresPermissions($resource, $action) {
+  protected function requiresPermissions($resource, $action) {
     if(!$this->user->isAllowed($resource, $action)) {
       $this->flashMessage("K zobrazení této stránky nemáš práva.");
       $this->redirect("Homepage:");

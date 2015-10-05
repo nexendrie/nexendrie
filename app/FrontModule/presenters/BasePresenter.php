@@ -20,7 +20,7 @@ abstract class BasePresenter extends \Nexendrie\BasePresenter {
    * 
    * @return void
    */
-  function requiresLogin() {
+  protected function requiresLogin() {
     if(!$this->user->isLoggedIn()) {
       $this->flashMessage("K zobrazení této stránky musíš být přihlášen.");
       $this->redirect("User:login");
@@ -32,7 +32,7 @@ abstract class BasePresenter extends \Nexendrie\BasePresenter {
    * 
    * @return void
    */
-  function mustNotBeLoggedIn() {
+  protected function mustNotBeLoggedIn() {
     if($this->user->isLoggedIn()) {
       $this->flashMessage("Už jsi přihlášen.");
       $this->redirect("Homepage:");
