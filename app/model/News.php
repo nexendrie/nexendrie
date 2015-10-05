@@ -2,7 +2,7 @@
 namespace Nexendrie\Model;
 
 use Nextras\Orm\Collection\ICollection,
-    Nexendrie\Model\News as NewsEntity,
+    Nexendrie\Orm\News as NewsEntity,
     Nexendrie\Orm\Comment as CommentEntity;
 
 /**
