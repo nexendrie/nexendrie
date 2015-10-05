@@ -91,11 +91,12 @@ class Messenger extends \Nette\Object {
    */
   function send(\Nette\Utils\ArrayHash $data) {
     $message = new MessageEntity;
+    $this->orm->messages->attach($message);
     $message->subject = $data["subject"];
     $message->text = $data["text"];
     $message->sent = time();
-    $message->from = $this->orm->users->getById($this->user->id);
-    $message->to = $this->orm->users->getById($data["to"]);
+    $message->from = $this->user->id;
+    $message->to = $data["to"];
     $this->orm->messages->persistAndFlush($message);
   }
 }

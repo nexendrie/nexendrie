@@ -61,10 +61,11 @@ class Polls extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("poll", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
     $poll = new PollEntity;
+    $this->orm->polls->attach($poll);
     foreach($data as $key => $value) {
       $poll->$key = $value;
     }
-    $poll->author = $this->orm->users->getById($this->user->id);
+    $poll->author = $this->user->id;
     $poll->added = time();
     $this->orm->polls->persistAndFlush($poll);
   }

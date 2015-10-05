@@ -118,13 +118,14 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     if(!$this->nameAvailable($data["username"])) throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
     if(!$this->emailAvailable($data["email"])) throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
     $user = new UserEntity;
+    $this->orm->attach($user);
     foreach($data as $key => $value) {
       if($key === "password") $value = \Nette\Security\Passwords::hash($data["password"]);
       $user->$key = $value;
     }
     $user->publicname = $data["username"];
     $user->joined = time();
-    $user->group = $this->orm->groups->getById($this->roles["loggedInRole"]);
+    $user->group = $this->roles["loggedInRole"];
     $this->orm->users->persistAndFlush($user);
     $this->cache->remove("users_names");
   }

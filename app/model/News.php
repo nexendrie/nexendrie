@@ -80,10 +80,11 @@ class News extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("news", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
     $news = new NewsEntity;
+    $this->orm->news->attach($news);
     foreach($data as $key => $value) {
       $news->$key = $value;
     }
-    $news->author = $this->orm->users->getById($this->user->id);
+    $news->author = $this->user->id;
     $news->added = time();
     $this->orm->news->persistAndFlush($news);
   }
@@ -99,12 +100,11 @@ class News extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("comment", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding comments.", 403);
     $comment = new CommentEntity;
+    $this->orm->comments->attach($comment);
     foreach($data as $key => $value) {
-      if($key === "news") continue;
       $comment->$key = $value;
     }
-    $comment->news = $this->orm->news->getById($data["news"]);
-    $comment->author = $this->orm->users->getById($this->user->id);
+    $comment->author = $this->user->id;
     $comment->added = time();
     $this->orm->comments->persistAndFlush($comment);
   }
@@ -149,6 +149,5 @@ class News extends \Nette\Object {
     }
     $this->orm->news->persistAndFlush($news);
   }
-  
 }
 ?>
