@@ -2,7 +2,9 @@
 namespace Nexendrie\Model;
 
 use Nette\Security as NS,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Orm\User as UserEntity,
+    Nette\InvalidArgumentException,
+    Nette\Application\ForbiddenRequestException;
 
 /**
  * User Model
@@ -48,12 +50,12 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * @param string $type username/publicname
    * @param int $uid Id of user who can use the name
    * @return bool
-   * @throws \Nette\InvalidArgumentException
+   * @throws InvalidArgumentException
    */
   function nameAvailable($name, $type = "username", $uid = NULL) {
-    if(!is_int($uid) AND !is_null($uid)) throw new \Nette\InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
+    if(!is_int($uid) AND !is_null($uid)) throw new InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
     $types = array("username", "publicname");
-    if(!in_array($type, $types)) throw new \Nette\InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
+    if(!in_array($type, $types)) throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
     if($type === "username") $method = "getByUsername";
     else $method = "getByPublicname";
     $row = $this->orm->users->$method($name);
@@ -69,10 +71,11 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * @param string $email
    * @param int $uid Id of user who can use the e-mail
    * @return bool
+   * @throws InvalidArgumentException
    */
   function emailAvailable($email, $uid = NULL) {
-    if(!is_int($uid) AND !is_null($uid)) throw new \Nette\InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
-    if(!is_int($uid) AND !is_null($uid)) throw new \Nette\InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
+    if(!is_int($uid) AND !is_null($uid)) throw new InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
+    if(!is_int($uid) AND !is_null($uid)) throw new InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
     $row = $this->orm->users->getByEmail($email);
     if(!$row) return true;
     elseif(!is_int($uid)) return false;
@@ -134,10 +137,10 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * Get user's settings
    * 
    * @return \stdClass
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws ForbiddenRequestException
    */
   function getSettings() {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
+    if(!$this->user->isLoggedIn()) throw new ForbiddenRequestException("This action requires authentication.", 401);
     $user = $this->orm->users->getById($this->user->id);
     $settings = array(
       "publicname" => $user->publicname, "email" => $user->email, "infomails" => (bool) $user->infomails,
@@ -150,12 +153,12 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * Change user's settings
    * 
    * @param \Nette\Utils\ArrayHash $settings
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws ForbiddenRequestException
    * @throws SettingsException
    * @return void
    */
   function changeSettings(\Nette\Utils\ArrayHash $settings) {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
+    if(!$this->user->isLoggedIn()) throw new ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->nameAvailable($settings["publicname"], "publicname", $this->user->id)) throw new SettingsException("The public name is used by someone else.", self::REG_DUPLICATE_USERNAME);
     if(!$this->emailAvailable($settings["email"], $this->user->id)) throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
     $user = $this->orm->users->getById($this->user->id);
