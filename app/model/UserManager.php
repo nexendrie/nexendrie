@@ -172,7 +172,7 @@ case "password_new":
     if(!NS\Passwords::verify($settings["password_old"], $user->password)) {
       throw new SettingsException("Invalid password.", self::SET_INVALID_PASSWORD);
     }
-    $user->password = \Nette\Security\Passwords::hash($value);
+    $user->password = NS\Passwords::hash($value);
   }
   unset($settings[$key], $settings["password_old"], $settings["password_check"]);
   break;
