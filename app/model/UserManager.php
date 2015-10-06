@@ -3,8 +3,7 @@ namespace Nexendrie\Model;
 
 use Nette\Security as NS,
     Nexendrie\Orm\User as UserEntity,
-    Nette\InvalidArgumentException,
-    Nette\Application\ForbiddenRequestException;
+    Nette\InvalidArgumentException;
 
 /**
  * User Model
@@ -137,10 +136,10 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * Get user's settings
    * 
    * @return \stdClass
-   * @throws ForbiddenRequestException
+   * @throws AuthenticationNeededException
    */
   function getSettings() {
-    if(!$this->user->isLoggedIn()) throw new ForbiddenRequestException("This action requires authentication.", 401);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     $user = $this->orm->users->getById($this->user->id);
     $settings = array(
       "publicname" => $user->publicname, "email" => $user->email, "infomails" => (bool) $user->infomails,
@@ -153,12 +152,12 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * Change user's settings
    * 
    * @param \Nette\Utils\ArrayHash $settings
-   * @throws ForbiddenRequestException
+   * @throws AuthenticationNeededException
    * @throws SettingsException
    * @return void
    */
   function changeSettings(\Nette\Utils\ArrayHash $settings) {
-    if(!$this->user->isLoggedIn()) throw new ForbiddenRequestException ("This action requires authentication.", 401);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->nameAvailable($settings["publicname"], "publicname", $this->user->id)) throw new SettingsException("The public name is used by someone else.", self::REG_DUPLICATE_USERNAME);
     if(!$this->emailAvailable($settings["email"], $this->user->id)) throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
     $user = $this->orm->users->getById($this->user->id);
