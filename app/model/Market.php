@@ -42,4 +42,16 @@ class Market extends \Nette\Object {
 class ShopNotFoundException extends RecordNotFoundException {
   
 }
+
+class ItemNotFoundException extends RecordNotFoundException {
+  
+}
+
+class WrongShopException extends AccessDeniedException {
+  
+}
+
+class InsufficientFunds extends AccessDeniedException {
+  
+}
 ?>
