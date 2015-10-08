@@ -9,7 +9,7 @@
     Mohu ti nabídnout:
     <ul>
       {foreach $shop->items as $item}
-        <li>{$item->name} za {$item->price}. <a n:href="buy! $item->id">Koupit</a></li>
+        <li>{$item->name} za {$item->priceT}. <a n:href="buy! $item->id">Koupit</a></li>
       {/foreach}
     </ul>
     </article>
