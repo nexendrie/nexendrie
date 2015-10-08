@@ -98,7 +98,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * 
    * @return bool
    */
-  function canVote() {
+  protected function canVote() {
     if(!$this->user->isLoggedIn()) return false;
     elseif(!$this->user->isAllowed("poll", "vote")) return false;
     $row = $this->orm->pollVotes->getByPollAndUser($this->id, $this->user->id);
@@ -114,7 +114,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @throws PollVotingException
    * @return void
    */
-  function vote($answer) {
+  protected function vote($answer) {
     if(!$this->canVote()) throw new AccessDeniedException("You can't vote in this poll.");
     $poll = $this->getPoll();
     if($answer > count($poll->parsedAnswers)) throw new PollVotingException("The poll has less then $answer answers.");
