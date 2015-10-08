@@ -7,9 +7,9 @@ use Nextras\Orm\Entity\Entity;
  * UserItem
  *
  * @author Jakub Konečný
- * @property-read Item $item {m:1 Item}
- * @property-read User $user {m:1 User::$items}
- * @property-read int $amount {default 1}
+ * @property Item $item {m:1 Item}
+ * @property User $user {m:1 User::$items}
+ * @property int $amount {default 1}
  */
 class UserItem extends Entity {
   
