@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Shop as ShopEntity;
+use Nexendrie\Orm\Shop as ShopEntity,
+    Nexendrie\Orm\Item as ItemEntity;
 
 /**
  * Market Model
@@ -26,6 +27,15 @@ class Market extends \Nette\Object {
    */
   function listOfShops() {
     return $this->orm->shops->findAll();
+  }
+  
+  /**
+   * Get list of items
+   * 
+   * @return ItemEntity
+   */
+  function listOfItems() {
+    return $this->orm->items->findAll();
   }
   
   /**
@@ -77,6 +87,27 @@ class Market extends \Nette\Object {
       $shop->$key = $value;
     }
     $this->orm->shops->persistAndFlush($shop);
+  }
+  
+  /**
+   * Get specified item's details
+   * 
+   * @param int $id
+   * @return ItemEntity
+   * @throws ItemNotFoundException
+   */
+  function getItem($id) {
+    $item = $this->orm->items->getById($id);
+    if(!$item) throw new ItemNotFoundException("Specified item was not found.");
+    else return $item;
+  }
+  
+  function editItem($id, array $data) {
+    $item = $this->orm->items->getById($id);
+    foreach($data as $key => $value) {
+      $item->$key = $value;
+    }
+    $this->orm->items->persistAndFlush($item);
   }
 }
 

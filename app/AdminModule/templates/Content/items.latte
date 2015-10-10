@@ -1,0 +1,11 @@
+{layout "../@layout.latte"}
+{block title}Věci na tržišti{/block}
+{block content}
+  <h1>Věci na tržišti</h1>
+  <table id="items">
+    <tr><th>Jméno</th><th>Akce</th></tr>
+    {foreach $items as $item}
+    <tr><td>{$item->name}</td><td><a n:href="Item:edit $item->id">Upravit</a></td></tr>
+    {/foreach}
+  </table>
+{/block}

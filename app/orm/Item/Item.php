@@ -11,7 +11,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $name
  * @property string $description
  * @property int $price
- * @property-read string $priceT
+ * @property-read string $priceT {virtual}
  * @property Shop $shop {m:1 Shop}
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}
  */
@@ -25,6 +25,20 @@ class Item extends Entity {
   
   function getterPriceT() {
     return $this->localeModel->money($this->price);
+  }
+  
+  /**
+   * @return \Nexendrie\Orm\Itemdummy
+   */
+  function dummy() {
+    return new ItemDummy($this);
+  }
+  
+  /**
+   * @return array
+   */
+  function dummyArray() {
+    return $this->dummy()->toArray();
   }
 }
 ?>
