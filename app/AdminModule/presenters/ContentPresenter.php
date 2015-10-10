@@ -10,7 +10,7 @@ class ContentPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Market @autowire */
   protected $marketModel;
   
-  function renderShops($id = NULL) {
+  function renderShops() {
     $this->template->shops = $this->marketModel->listOfShops();
   }
 }
