@@ -64,6 +64,20 @@ class Market extends \Nette\Object {
     }
     $this->orm->shops->persistAndFlush($shop);
   }
+  
+  /**
+   * Add new shop
+   * 
+   * @param array $data
+   * @return void
+   */
+  function add(array $data) {
+    $shop = new ShopEntity;
+    foreach($data as $key => $value) {
+      $shop->$key = $value;
+    }
+    $this->orm->shops->persistAndFlush($shop);
+  }
 }
 
 class ShopNotFoundException extends RecordNotFoundException {

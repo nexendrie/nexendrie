@@ -32,6 +32,22 @@ class ShopPresenter extends BasePresenter {
    * @param AddEditShopFormFactory $factory
    * @return Form
    */
+  protected function createComponentAddShopForm(AddEditShopFormFactory $factory) {
+    $form = $factory->create();
+    $form->onSuccess[] = array($this, "addShopFormSucceeded");
+    return $form;
+  }
+  
+  function addShopFormSucceeded(Form $form) {
+    $this->marketModel->add($form->getValues(true));
+    $this->flashMessage("Obchod přidán.");
+    $this->redirect("Content:shops");
+  }
+  
+  /**
+   * @param AddEditShopFormFactory $factory
+   * @return Form
+   */
   protected function createComponentEditShopForm(AddEditShopFormFactory $factory) {
     $form = $factory->create();
     $form->setDefaults($this->shop->toArray());
