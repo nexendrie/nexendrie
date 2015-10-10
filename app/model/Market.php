@@ -37,6 +37,33 @@ class Market extends \Nette\Object {
   function exists($id) {
     return (bool) $this->orm->shops->getById($id);
   }
+  
+  /**
+   * Get specified shop's details
+   * 
+   * @param int $id Shop's id
+   * @return ShopEntity
+   * @throws ShopNotFoundException
+   */
+  function get($id) {
+    $shop = $this->orm->shops->getById($id);
+    if(!$shop) throw new ShopNotFoundException("Specified shop was not found.");
+    else return $shop;
+  }
+  
+  /**
+   * Edit specified shop
+   * 
+   * @param int $id
+   * @param array $data
+   */
+  function edit($id, array $data) {
+    $shop = $this->orm->shops->getById($id);
+    foreach($data as $key => $value) {
+      $shop->$key = $value;
+    }
+    $this->orm->shops->persistAndFlush($shop);
+  }
 }
 
 class ShopNotFoundException extends RecordNotFoundException {
