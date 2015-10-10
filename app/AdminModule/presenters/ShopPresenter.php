@@ -13,7 +13,7 @@ use Nexendrie\Orm\Shop as ShopEntity,
  */
 class ShopPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Market @autowire */
-  protected $marketModel;
+  protected $model;
   /** @var ShopEntity */
   private $shop;
   
@@ -22,7 +22,7 @@ class ShopPresenter extends BasePresenter {
    */
   function actionEdit($id) {
     try {
-      $this->shop = $this->marketModel->getShop($id);
+      $this->shop = $this->model->getShop($id);
     } catch(ShopNotFoundException $e) {
       $this->forward("notfound");
     }
@@ -39,7 +39,7 @@ class ShopPresenter extends BasePresenter {
   }
   
   function addShopFormSucceeded(Form $form) {
-    $this->marketModel->addShop($form->getValues(true));
+    $this->model->addShop($form->getValues(true));
     $this->flashMessage("Obchod přidán.");
     $this->redirect("Content:shops");
   }
@@ -60,7 +60,7 @@ class ShopPresenter extends BasePresenter {
    * @return void
    */
   function editShopFormSucceeded(Form $form) {
-    $this->marketModel->editShop($this->getParameter("id"), $form->getValues(true));
+    $this->model->editShop($this->getParameter("id"), $form->getValues(true));
     $this->flashMessage("Změny uloženy.");
   }
 }
