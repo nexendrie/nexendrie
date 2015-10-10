@@ -55,7 +55,7 @@ class Market extends \Nette\Object {
    * @return ShopEntity
    * @throws ShopNotFoundException
    */
-  function get($id) {
+  function getShop($id) {
     $shop = $this->orm->shops->getById($id);
     if(!$shop) throw new ShopNotFoundException("Specified shop was not found.");
     else return $shop;
@@ -67,7 +67,7 @@ class Market extends \Nette\Object {
    * @param int $id
    * @param array $data
    */
-  function edit($id, array $data) {
+  function editShop($id, array $data) {
     $shop = $this->orm->shops->getById($id);
     foreach($data as $key => $value) {
       $shop->$key = $value;
@@ -81,7 +81,7 @@ class Market extends \Nette\Object {
    * @param array $data
    * @return void
    */
-  function add(array $data) {
+  function addShop(array $data) {
     $shop = new ShopEntity;
     foreach($data as $key => $value) {
       $shop->$key = $value;

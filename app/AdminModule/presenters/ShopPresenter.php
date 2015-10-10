@@ -22,7 +22,7 @@ class ShopPresenter extends BasePresenter {
    */
   function actionEdit($id) {
     try {
-      $this->shop = $this->marketModel->get($id);
+      $this->shop = $this->marketModel->getShop($id);
     } catch(ShopNotFoundException $e) {
       $this->forward("notfound");
     }
@@ -39,7 +39,7 @@ class ShopPresenter extends BasePresenter {
   }
   
   function addShopFormSucceeded(Form $form) {
-    $this->marketModel->add($form->getValues(true));
+    $this->marketModel->addShop($form->getValues(true));
     $this->flashMessage("Obchod přidán.");
     $this->redirect("Content:shops");
   }
@@ -60,7 +60,7 @@ class ShopPresenter extends BasePresenter {
    * @return void
    */
   function editShopFormSucceeded(Form $form) {
-    $this->marketModel->edit($this->getParameter("id"), $form->getValues(true));
+    $this->marketModel->editShop($this->getParameter("id"), $form->getValues(true));
     $this->flashMessage("Změny uloženy.");
   }
 }
