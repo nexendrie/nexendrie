@@ -29,13 +29,14 @@ class RouterFactory extends \Nette\Object {
     $router[] = new Route("admin/groups", "Admin:Group:default");
     $router[] = new Route("admin/users", "Admin:User:default");
     $router[] = new Route("admin/content/<presenter shop|item>/<action>[/<id>]" , array(
-      "module" => "Admin"));
+      "module" => "Admin"
+    ));
     $router[] = new Route("admin/<presenter>[/<action>][/<id>]", array(
-      "module" => "Admin", "presenter" => "Homepage", "action" => "default")
-    );
+      "module" => "Admin", "presenter" => "Homepage", "action" => "default"
+    ));
     $router[] = new Route("<presenter>[/<action>][/<id>]", array(
-      "module" => "Front", "presenter" => "Homepage", "action" => "default")
-    );
+      "module" => "Front", "presenter" => "Homepage", "action" => "default"
+    ));
     return $router;
   }
 }
