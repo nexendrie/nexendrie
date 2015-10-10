@@ -102,8 +102,30 @@ class Market extends \Nette\Object {
     else return $item;
   }
   
+  /**
+   * Edit specified item
+   * 
+   * @param int $id
+   * @param array $data
+   * @return void
+   */
   function editItem($id, array $data) {
     $item = $this->orm->items->getById($id);
+    foreach($data as $key => $value) {
+      $item->$key = $value;
+    }
+    $this->orm->items->persistAndFlush($item);
+  }
+  
+  /**
+   * Add new item
+   * 
+   * @param array $data
+   * @return void
+   */
+  function addItem(array $data) {
+    $item = new ItemEntity;
+    $this->orm->items->attach($item);
     foreach($data as $key => $value) {
       $item->$key = $value;
     }

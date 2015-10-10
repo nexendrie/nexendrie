@@ -29,6 +29,22 @@ class ItemPresenter extends BasePresenter {
     }
   }
   
+  protected function createComponentAddItemForm(AddEditItemFormFactory $factory) {
+    $form = $factory->create();
+    $form->onSuccess[] = array($this, "addItemFormSucceeded");
+    return $form;
+  }
+  
+  /**
+   * @param Form $form
+   * @return void
+   */
+  function addItemFormSucceeded(Form $form) {
+    $this->model->addItem($form->getValues(true));
+    $this->flashMessage("Věc přidána.");
+    $this->redirect("Content:items");
+  }
+  
   /**
    * @param AddEditItemFormFactory $factory
    * @return Form
