@@ -40,20 +40,13 @@ class GroupPresenter extends BasePresenter {
   protected function createComponentEditGroupForm(EditGroupFormFactory $factory) {
     $group = $this->model->ormGet($this->getParameter("id"));
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "editGroupFormSucceeded");
+    $form->onSuccess[] = function(Form $form, $values) {
+      $this->model->user = $this->user;
+      $this->model->edit($this->getParameter("id"), $values);
+      $this->flashMessage("Skupina upravena.");
+    };
     $form->setDefaults($group->toArray());
     return $form;
-  }
-  
-  /**
-   * @param \Nette\Application\UI\Form $form
-   * @param \Nette\Utils\ArrayHash $values
-   * @return void
-   */
-  function editGroupFormSucceeded(Form $form, $values) {
-    $this->model->user = $this->user;
-    $this->model->edit($this->getParameter("id"), $values);
-    $this->flashMessage("Skupina upravena.");
   }
   
   /**

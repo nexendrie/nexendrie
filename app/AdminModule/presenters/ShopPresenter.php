@@ -34,14 +34,12 @@ class ShopPresenter extends BasePresenter {
    */
   protected function createComponentAddShopForm(AddEditShopFormFactory $factory) {
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "addShopFormSucceeded");
+    $form->onSuccess[] = function(Form $form) {
+      $this->model->addShop($form->getValues(true));
+      $this->flashMessage("Obchod přidán.");
+      $this->redirect("Content:shops");
+    };
     return $form;
-  }
-  
-  function addShopFormSucceeded(Form $form) {
-    $this->model->addShop($form->getValues(true));
-    $this->flashMessage("Obchod přidán.");
-    $this->redirect("Content:shops");
   }
   
   /**
@@ -51,17 +49,11 @@ class ShopPresenter extends BasePresenter {
   protected function createComponentEditShopForm(AddEditShopFormFactory $factory) {
     $form = $factory->create();
     $form->setDefaults($this->shop->toArray());
-    $form->onSuccess[] = array($this, "editShopFormSucceeded");
+    $form->onSuccess[] = function(Form $form) {
+      $this->model->editShop($this->getParameter("id"), $form->getValues(true));
+      $this->flashMessage("Změny uloženy.");
+    };
     return $form;
-  }
-  
-  /**
-   * @param Form $form
-   * @return void
-   */
-  function editShopFormSucceeded(Form $form) {
-    $this->model->editShop($this->getParameter("id"), $form->getValues(true));
-    $this->flashMessage("Změny uloženy.");
   }
 }
 ?>

@@ -29,28 +29,20 @@ class NewsPresenter extends BasePresenter {
   
   /**
    * Creates form for adding news
+   * @todo redirect to the added news
    * 
    * @param AddEditNewsFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
   protected function createComponentAddNewsForm(AddEditNewsFormFactory $factory) {
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "addNewsFormSucceeded");
+    $form->onSuccess[] = function(Form $form) {
+      $this->model->user = $this->user;
+      $id = $this->model->add($values);
+      $this->flashMessage("Novinka byla přidána.");
+      $this->redirect("News:");
+    };
     return $form;
-  }
-  
-  /**
-   * Adds news
-   * @todo redirect to the added new
-   * 
-   * @param \Nette\Application\UI\Form $form
-   * @param \Nette\Utils\ArrayHash $values
-   */
-  function addNewsFormSucceeded(Form $form, $values) {
-    $this->model->user = $this->user;
-    $id = $this->model->add($values);
-    $this->flashMessage("Novinka byla přidána.");
-    $this->redirect("News:");
   }
   
   /**
@@ -73,22 +65,13 @@ class NewsPresenter extends BasePresenter {
   protected function createComponentEditNewsForm(AddEditNewsFormFactory $factory) {
     $news = $this->model->view($this->getParameter("id"));
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "editNewsFormSucceeded");
+    $form->onSuccess[] = function(Form $form, $values) {
+      $this->model->user = $this->user;
+      $this->model->edit($this->getParameter("id"), $values);
+      $this->flashMessage("Novinka upravena.");
+    };
     $form->setDefaults($news->toArray());
     return $form;
   }
-  
-  /**
-   * Edits news
-   * 
-   * @param \Nette\Application\UI\Form $form
-   * @param \Nette\Utils\ArrayHash $values
-   */
-  function editNewsFormSucceeded(Form $form, $values) {
-    $this->model->user = $this->user;
-    $this->model->edit($this->getParameter("id"), $values);
-    $this->flashMessage("Novinka upravena.");
-  }
-  
 }
 ?>

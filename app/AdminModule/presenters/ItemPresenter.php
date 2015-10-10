@@ -31,18 +31,12 @@ class ItemPresenter extends BasePresenter {
   
   protected function createComponentAddItemForm(AddEditItemFormFactory $factory) {
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "addItemFormSucceeded");
+    $form->onSuccess[] = function(Form $form) {
+      $this->model->addItem($form->getValues(true));
+      $this->flashMessage("Věc přidána.");
+      $this->redirect("Content:items");
+    };
     return $form;
-  }
-  
-  /**
-   * @param Form $form
-   * @return void
-   */
-  function addItemFormSucceeded(Form $form) {
-    $this->model->addItem($form->getValues(true));
-    $this->flashMessage("Věc přidána.");
-    $this->redirect("Content:items");
   }
   
   /**
@@ -52,13 +46,11 @@ class ItemPresenter extends BasePresenter {
   protected function createComponentEditItemForm(AddEditItemFormFactory $factory) {
     $form = $factory->create();
     $form->setDefaults($this->item->dummyArray());
-    $form->onSuccess[] = array($this, "editItemFormSucceeded");
+    $form->onSuccess[] = function(Form $form) {
+      $this->model->editItem($this->getParameter("id"), $form->getValues(true));
+      $this->flashMessage("Změny uloženy.");
+    };
     return $form;
-  }
-  
-  function editItemFormSucceeded(Form $form) {
-    $this->model->editItem($this->getParameter("id"), $form->getValues(true));
-    $this->flashMessage("Změny uloženy.");
   }
 }
 ?>

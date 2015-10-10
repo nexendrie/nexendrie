@@ -35,21 +35,13 @@ class PollsPresenter extends BasePresenter {
    */
   protected function createComponentAddPollForm(AddEditPollFormFactory $factory) {
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "addPollFormSucceeded");
+    $form->onSuccess[] = function(Form $form, $values) {
+      $this->model->user = $this->user;
+      $this->model->add($values);
+      $this->flashMessage("Anketa přidána.");
+      $this->redirect("Polls:");
+    };
     return $form;
-  }
-  
-  /**
-   * Add poll
-   * 
-   * @param \Nette\Application\UI\Form $form
-   * @param \Nette\Utils\ArrayHash $values
-   */
-  function addPollFormSucceeded(Form $form, $values) {
-    $this->model->user = $this->user;
-    $this->model->add($values);
-    $this->flashMessage("Anketa přidána.");
-    $this->redirect("Polls:");
   }
   
   /**
@@ -70,21 +62,13 @@ class PollsPresenter extends BasePresenter {
   protected function createComponentEditPollForm(AddEditPollFormFactory $factory) {
     $poll = $this->model->view($this->getParameter("id"));
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "editPollFormSucceeded");
+    $form->onSuccess[] = function(Form $form, $values) {
+      $this->model->user = $this->user;
+      $this->model->edit($this->getParameter("id"), $values);
+      $this->flashMessage("Anketa upravena.");
+    };
     $form->setDefaults($poll->toArray());
     return $form;
-  }
-  
-  /**
-   * Add poll
-   * 
-   * @param \Nette\Application\UI\Form $form
-   * @param \Nette\Utils\ArrayHash $values
-   */
-  function editPollFormSucceeded(Form $form, $values) {
-    $this->model->user = $this->user;
-    $this->model->edit($this->getParameter("id"), $values);
-    $this->flashMessage("Anketa upravena.");
   }
 }
 ?>
