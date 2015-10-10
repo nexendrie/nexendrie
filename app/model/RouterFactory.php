@@ -26,8 +26,15 @@ class RouterFactory extends \Nette\Object {
     ));
     $router[] = new Route("news/page/<page [0-9]+>", "Front:News:page");
     $router[] = new Route("rss[/<action>][/<news [0-9]+>]", "Front:Rss:news");
-    $router[] = new Route("admin/groups", "Admin:Group:default");
-    $router[] = new Route("admin/users", "Admin:User:default");
+    $router[] = new Route("admin/<presenter groups|users>", array(
+      "module" => "Admin", "action" => "default",
+      "presenter" => array(
+        Route::FILTER_TABLE => array(
+          "groups" => "Group",
+          "users" => "User"
+        )
+      )
+    ));
     $router[] = new Route("admin/content/<presenter shop|item>/<action>[/<id>]" , array(
       "module" => "Admin"
     ));
