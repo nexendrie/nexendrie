@@ -13,8 +13,11 @@ use Nextras\Orm\Entity\Entity;
  * @property int $finished {default 0}
  * @property int|NULL $lastAction {default NULL}
  * @property int $count {default 0}
+ * @property-read int $finishTime {virtual}
  */
 class UserJob extends Entity {
-  
+  function getterFinishTime() {
+    return $this->started + (60 * 60 * 24 * 7);
+  }
 }
 ?>

@@ -136,6 +136,38 @@ class Job extends \Nette\Object {
     if($activeJob) return true;
     else return false;
   }
+  
+  /**
+   * Get user's current job
+   * 
+   * @return UserJobEntity
+   * @throws AuthenticationNeededException
+   * @throws NotWorkingException
+   */
+  function getCurrentJob() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $job = $this->orm->userJobs->getUserActiveJob($this->user->id);
+    if(!$job) throw new NotWorkingException;
+    else return $job;
+  }
+  
+  /**
+   * Check whetever user can work now
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   * @throws NotWorkingException
+   */
+  function canWork() {
+    try {
+      $job = $this->getCurrentJob();
+    } catch(AccessDeniedException $e) {
+      throw $e;
+    }
+    if($job->lastAction === NULL) return true;
+    elseif($job->lastAction + ($job->job->shift * 60) > time()) return false;
+    else return true;
+  }
 }
 
 class JobNotFoundExceptions extends RecordNotFoundException {
@@ -147,6 +179,10 @@ class AlreadyWorkingException extends AccessDeniedException {
 }
 
 class InsufficientLevelForJobException extends AccessDeniedException {
+  
+}
+
+class NotWorkingException extends AccessDeniedException {
   
 }
 ?>

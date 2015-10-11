@@ -13,6 +13,8 @@ use Nexendrie\Model\AlreadyWorkingException,
 class WorkPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Job @autowire */
   protected $model;
+  /** @var \Nexendrie\Model\Locale @autowire */
+  protected $localeModel;
   
   /**
    * @return void
@@ -27,6 +29,22 @@ class WorkPresenter extends BasePresenter {
    */
   function actionDefault() {
     if(!$this->model->isWorking()) $this->redirect("offers");
+  }
+  
+  /**
+   * @return void
+   */
+  function renderDefault() {
+    $job = $this->model->getCurrentJob();
+    $this->template->jobName = $job->job->name;
+    $finishTime = $job->finishTime;
+    $finished = ($finishTime < time());
+    $this->template->finished = $finished;
+    $this->template->finishTime = $this->localeModel->formatDateTime($finishTime);
+    if(!$finished) {
+      $this->template->help = $job->job->help;
+      $this->template->canWork = $this->model->canWork();
+    }
   }
   
   /**
@@ -65,10 +83,9 @@ class WorkPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
    * @return void
    */
-  function actionFinish($id) {
+  function actionFinish() {
     
   }
   
