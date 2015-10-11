@@ -2,7 +2,7 @@
 namespace Nexendrie\FrontModule\Presenters;
 
 use Nexendrie\Model\AlreadyWorkingException,
-    Nexendrie\Model\JobNotFoundExceptions,
+    Nexendrie\Model\JobNotFoundException,
     Nexendrie\Model\InsufficientLevelForJobException;
 
 /**
@@ -74,7 +74,7 @@ class WorkPresenter extends BasePresenter {
       $this->flashMessage("Práce zahájena.");
     } catch(AlreadyWorkingException $e) {
       $this->flashMessage("Už pracuješ.");
-    } catch(JobNotFoundExceptions $e) {
+    } catch(JobNotFoundException $e) {
       $this->flashMessage("Práce nenalezena.");
     } catch(InsufficientLevelForJobException $e) {
       $this->flashMessage("Nemáš dostatečnou úroveň pro tuto práci.");

@@ -45,11 +45,11 @@ class Job extends \Nette\Object {
    * 
    * @param int $id
    * @return JobEntity
-   * @throws JobNotFoundExceptions
+   * @throws JobNotFoundException
    */
   function getJob($id) {
     $job = $this->orm->jobs->getById($id);
-    if(!$job) throw new JobNotFoundExceptions("Specified job was not found.");
+    if(!$job) throw new JobNotFoundException("Specified job was not found.");
     else return $job;
   }
   
@@ -89,13 +89,13 @@ class Job extends \Nette\Object {
    * @return void
    * @throws AuthenticationNeededException
    * @throws AlreadyWorkingException
-   * @throws JobNotFoundExceptions
+   * @throws JobNotFoundException
    * @throws InsufficientLevelForJobException
    */
   function startJob($id) {
     if($this->isWorking()) throw new AlreadyWorkingException;
     $row = $this->orm->jobs->getById($id);
-    if(!$row) throw new JobNotFoundExceptions;
+    if(!$row) throw new JobNotFoundException;
     if($row->level > $this->user->identity->level) throw new InsufficientLevelForJobException;
     $job = new UserJobEntity;
     $this->orm->userJobs->attach($job);
@@ -170,7 +170,7 @@ class Job extends \Nette\Object {
   }
 }
 
-class JobNotFoundExceptions extends RecordNotFoundException {
+class JobNotFoundException extends RecordNotFoundException {
   
 }
 

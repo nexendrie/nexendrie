@@ -4,7 +4,7 @@ namespace Nexendrie\AdminModule\Presenters;
 use Nexendrie\Forms\AddEditJobFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Orm\Job as JobEntity,
-    Nexendrie\Model\JobNotFoundExceptions;
+    Nexendrie\Model\JobNotFoundException;
 
 /**
  * Presenter Job
@@ -24,7 +24,7 @@ class JobPresenter extends BasePresenter {
   function actionEdit($id) {
     try {
       $this->job = $this->model->getJob($id);
-    } catch(JobNotFoundExceptions $e) {
+    } catch(JobNotFoundException $e) {
       $this->forward("notfound");
     }
   }
