@@ -37,6 +37,8 @@ class WorkPresenter extends BasePresenter {
   function renderDefault() {
     $job = $this->model->getCurrentJob();
     $this->template->jobName = $job->job->name;
+    $this->template->jobCount = $job->count;
+    $this->template->jobNeededCount = $job->job->count;
     $finishTime = $job->finishTime;
     $finished = ($finishTime < time());
     $this->template->finished = $finished;
@@ -90,7 +92,6 @@ class WorkPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
    * @return void
    */
   function actionWork() {
