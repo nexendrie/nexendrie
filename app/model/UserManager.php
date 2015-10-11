@@ -104,7 +104,8 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
       $role = $user->group->singleName;
     }
     $data = array(
-      "name" => $user->publicname, "group" => $user->group->id, "style" => $user->style
+      "name" => $user->publicname, "group" => $user->group->id,
+      "level" => $user->group->level, "style" => $user->style
     );
     return new NS\Identity($user->id, $role, $data);
   }
