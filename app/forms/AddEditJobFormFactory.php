@@ -31,6 +31,10 @@ class AddEditJobFormFactory {
       ->setRequired("Zadej odměnu.")
       ->addRule(Form::INTEGER, "Odměna musí být celé číslo.")
       ->setOption("description", "Odměna za dokončení práce/1 jednotku.");
+    $form->addText("shift", "Délka směny")
+      ->setRequired("Zadej délku směny.")
+      ->addRule(Form::INTEGER, "Délka směny musí být celé číslo.")
+      ->setOption("description", "Délka 1 směny v minutách.");
     $form->addText("level", "Úroveň:")
       ->setRequired("Zadej úroveň.")
       ->addRule(Form::INTEGER, "Úroveň musí být celé číslo.")

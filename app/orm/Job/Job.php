@@ -12,6 +12,7 @@ use Nextras\Orm\Entity\Entity;
  * @property string $help
  * @property int $count {default 0}
  * @property int $award
+ * @property int $shift
  * @property int $level {default 50}
  */
 class Job extends Entity {
