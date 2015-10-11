@@ -3,8 +3,7 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
     Nexendrie\Model\Group,
-    Nexendrie\Model\SettingsRepository,
-    Nette\Utils\ArrayHash;
+    Nexendrie\Model\SettingsRepository;
 
 /**
  * Factory for form SystemSettings
@@ -38,19 +37,12 @@ class SystemSettingsFormFactory {
    * @return array
    */
   protected function getDefaultValues() {
-    $plural = $this->sr->settings["locale"]["plural"];
+    $settings = $this->sr->settings;
     for($i = 3; $i <= 5; $i++) {
-      unset($plural[$i]);
+      unset($settings["locale"]["plural"][$i]);
     }
-    return array(
-      "dateFormat" => $this->sr->settings["locale"]["dateFormat"],
-      "dateTimeFormat" => $this->sr->settings["locale"]["dateTimeFormat"],
-      "plural" => implode("\n", $plural),
-      "guestRole" => $this->sr->settings["roles"]["guestRole"],
-      "loggedInRole" => $this->sr->settings["roles"]["loggedInRole"],
-      "bannedRole" => $this->sr->settings["roles"]["bannedRole"],
-      "newsPerPage" => $this->sr->settings["pagination"]["news"]
-    );
+    $settings["locale"]["plural"] = implode("\n", $settings["locale"]["plural"]);
+    return $settings;
   }
   
   /**
@@ -60,23 +52,26 @@ class SystemSettingsFormFactory {
     $groups = $this->getListOfGroups();
     $form = new Form;
     $form->addGroup("Lokální nastavení");
-    $form->addText("dateFormat", "Formát datumu:")
+    $locale = $form->addContainer("locale");
+    $locale->addText("dateFormat", "Formát datumu:")
       ->setOption("description", "Pro funkci date()")
       ->setRequired("Zadej formát datumu.");
-    $form->addText("dateTimeFormat", "Formát času:")
+    $locale->addText("dateTimeFormat", "Formát času:")
       ->setOption("description", "Dokumentace na http://docs.php.net/manual/en/function.date.php")
       ->setRequired("Zadej formát času.");
-    $form->addTextArea("plural", "Plurály:")
+    $locale->addTextArea("plural", "Plurály:")
       ->setRequired("Zadej plurály.");
     $form->addGroup("Role");
-    $form->addSelect("guestRole", "Nepřihlášený uživatel:", $groups)
+    $roles = $form->addContainer("roles");
+    $roles->addSelect("guestRole", "Nepřihlášený uživatel:", $groups)
       ->setRequired("Vyyber roli pro nepřihlášeného uživatele.");
-    $form->addSelect("loggedInRole", "Přihlášený uživatel:", $groups)
+    $roles->addSelect("loggedInRole", "Přihlášený uživatel:", $groups)
       ->setRequired("Vyyber roli pro přihlášeného uživatele.");
-    $form->addSelect("bannedRole", "Zablokovaný uživatel:", $groups)
+    $roles->addSelect("bannedRole", "Zablokovaný uživatel:", $groups)
       ->setRequired("Vyyber roli pro zablokovaného uživatele.");
     $form->addGroup("Stránkování");
-    $form->addText("newsPerPage", "Novinek na stránku:")
+    $pagination = $form->addContainer("pagination");
+    $pagination->addText("news", "Novinek na stránku:")
       ->setRequired("Zadej počet novinek na stránku.")
       ->addRule(Form::INTEGER, "Počet novinek na stránku musí být číslo.");
     $form->currentGroup = NULL;
@@ -93,30 +88,15 @@ class SystemSettingsFormFactory {
    */
   function validate(Form $form) {
     $values = $form->getValues();
-    $plural = explode("\n", $values["plural"]);
+    $plural = explode("\n", $values["locale"]["plural"]);
     if(count($plural) != 3) $form->addError("Plurály musí obsahovat právě 3 řádky.");
     if(is_int($plural[0])) $form->addError("První plurál musít být číslo.");
     if(is_int($plural[2])) $form->addError("Třetí plurál musít být číslo.");
   }
   
-  function submitted(Form $form, ArrayHash $values) {
-    $settings = array(
-      "roles" => array(
-        "guestRole" => $values["guestRole"],
-        "loggedInRole" => $values["loggedInRole"],
-        "bannedRole" => $values["bannedRole"]
-      ),
-      "locale" => array(
-        "dateFormat" => $values["dateFormat"],
-        "dateTimeFormat" => $values["dateTimeFormat"],
-        "plural" => explode("\n", $values["plural"])
-      ),
-      "pagination" => array(
-        "news" => $values["newsPerPage"]
-      )
-    );
+  function submitted(Form $form) {
     try {
-      $this->sr->save($settings);
+      $this->sr->save($form->getValues(true));
     } catch (\Nette\IOException $e) {
       $form->addError("Došlo k chybě při ukládání nastavení. Ujisti se, že máš právo zápisu do souboru.");
     }
