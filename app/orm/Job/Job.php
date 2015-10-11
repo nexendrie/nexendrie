@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
+use Nextras\Orm\Entity\Entity,
+    Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Job
@@ -15,6 +16,7 @@ use Nextras\Orm\Entity\Entity;
  * @property-read string $awardT
  * @property int $shift
  * @property int $level {default 50}
+ * @property OneHasMany|UserJob[] $userJobs {1:m UserJob::$job}
  */
 class Job extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */

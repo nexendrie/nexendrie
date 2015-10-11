@@ -17,6 +17,7 @@ namespace Nexendrie\Orm;
  * @property-read UserItemsRepository $userItems
  * @property-read PermissionsRepository $permissions
  * @property-read JobsRepository $jobs
+ * @property-read UserJobsRepository $userJobs
  */
 class Model extends \Nextras\Orm\Model\Model {
   

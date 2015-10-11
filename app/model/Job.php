@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Job as JobEntity;
+use Nexendrie\Orm\Job as JobEntity,
+    Nexendrie\Orm\UserJob as UserJobEntity;
 
 /**
  * Job Model
@@ -86,8 +87,22 @@ class Job extends \Nette\Object {
    * 
    * @param int $id
    * @return void
+   * @throws AuthenticationNeededException
+   * @throws AlreadyWorkingException
+   * @throws JobNotFoundExceptions
+   * @throws InsufficientLevelForJobException
    */
   function startJob($id) {
+    if($this->isWorking()) throw new AlreadyWorkingException;
+    $row = $this->orm->jobs->getById($id);
+    if(!$row) throw new JobNotFoundExceptions;
+    if($row->level > $this->user->identity->level) throw new InsufficientLevelForJobException;
+    $job = new UserJobEntity;
+    $this->orm->userJobs->attach($job);
+    $job->user = $this->user->id;
+    $job->job = $id;
+    $job->started = time();
+    $this->orm->userJobs->persistAndFlush($job);
     
   }
   
@@ -113,13 +128,25 @@ class Job extends \Nette\Object {
    * Check whetever the use is currently working
    * 
    * @return bool
+   * @throws AuthenticationNeededException
    */
   function isWorking() {
-    return false;
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $activeJob = $this->orm->userJobs->getUserActiveJob($this->user->id);
+    if($activeJob) return true;
+    else return false;
   }
 }
 
 class JobNotFoundExceptions extends RecordNotFoundException {
+  
+}
+
+class AlreadyWorkingException extends AccessDeniedException {
+  
+}
+
+class InsufficientLevelForJobException extends AccessDeniedException {
   
 }
 ?>
