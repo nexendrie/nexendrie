@@ -1,0 +1,14 @@
+{layout "../@layout.latte"}
+{block title}Majetek{/block}
+{block content}
+  <h1>Majetek</h1>
+  <p>V měšci máš {$money}.</p>
+  {if count($items) > 0}
+  <p>
+    Dále máš:<br>
+    {foreach $items as $row}
+    {$row->amount}x {$row->item->name}{if !$iterator->last},{else}.{/if}<br>
+    {/foreach}
+  </p>
+  {/if}
+{/block}

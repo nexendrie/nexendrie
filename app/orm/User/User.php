@@ -21,6 +21,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $style {default default}
  * @property int $banned {default 0}
  * @property int $money {default 2}
+ * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|News[] $news {1:m News::$author}
  * @property OneHasMany|Poll[] $polls {1:m Poll::$author}
@@ -39,6 +40,10 @@ class User extends Entity {
   
   function getterJoinedAt() {
     return $this->localeModel->formatDate($this->joined);
+  }
+  
+  function getterMoneyT() {
+    return $this->localeModel->money($this->money);
   }
 }
 ?>
