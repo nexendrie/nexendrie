@@ -93,10 +93,10 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     list($username, $password) = $credentials;
     $user = $this->orm->users->getByUsername($username);
     if(!$user) {
-      throw new NS\AuthenticationException("User not found.", NS\IAuthenticator::IDENTITY_NOT_FOUND);
+      throw new NS\AuthenticationException("User not found.", self::IDENTITY_NOT_FOUND);
     }
     if(!NS\Passwords::verify($password, $user->password)) {
-      throw new NS\AuthenticationException("Invalid password.", NS\IAuthenticator::INVALID_CREDENTIAL);
+      throw new NS\AuthenticationException("Invalid password.", self::INVALID_CREDENTIAL);
     }
     if($user->banned) {
       $role = $this->orm->groups->getById($this->roles["bannedRole"])->singleName;

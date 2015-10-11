@@ -5,7 +5,7 @@ use Nette\Application\UI\Form,
     Nette\Utils\ArrayHash,
     Nette\Security\User,
     Nette\Security\AuthenticationException,
-    Nette\Security\IAuthenticator;
+    Nexendrie\Model\UserManager;
 
 /**
  * Factory for form Login
@@ -42,10 +42,10 @@ class LoginFormFactory {
     try {
       $this->user->login($values["username"], $values["password"]);
     } catch(AuthenticationException $e) {
-      if($e->getCode() === IAuthenticator::IDENTITY_NOT_FOUND) {
+      if($e->getCode() === UserManager::IDENTITY_NOT_FOUND) {
         $form->addError("Neplatné uživatelské jméno.");
       }
-      if($e->getCode() === IAuthenticator::INVALID_CREDENTIAL) {
+      if($e->getCode() === UserManager::INVALID_CREDENTIAL) {
         $form->addError("Neplatné heslo.");
       }
     }
