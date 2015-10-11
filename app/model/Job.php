@@ -29,6 +29,17 @@ class Job extends \Nette\Object {
   }
   
   /**
+   * Find available jobs for user
+   * 
+   * @return JobEntity[]
+   * @throws AuthenticationNeededException
+   */
+  function findAvailableJobs() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    else return $this->orm->jobs->findForLevel($this->user->identity->level);
+  }
+  
+  /**
    * Get specified job's details
    * 
    * @param int $id
@@ -96,6 +107,15 @@ class Job extends \Nette\Object {
    */
   function work() {
     
+  }
+  
+  /**
+   * Check whetever the use is currently working
+   * 
+   * @return bool
+   */
+  function isWorking() {
+    return false;
   }
 }
 

@@ -1,0 +1,13 @@
+{layout "../@layout.latte"}
+{block title}Pracovní nabídky{/block}
+{block content}
+  <h1>Pracovní nabídky</h1>
+  <p>Práce je jedním ze způsobů jak získat peníze. Jsou dva druhy prací: u prvního získáš za úspěšnou směnu/výkon stanovenou odměnu. U druhého typu musíš splnit daný úkol, aby jsi dostal odměnu. Za cokoliv navíc dostaneš prémii, za nižší výkon dostaneš menší výplatu.<br>
+  Práce se vybírá na týden, nelze jí předčasně ukončit. Po dokončení dostaneš svou výplatu.</p>
+  <table id="offers">
+    <tr><th>Název</th><th>Popis</th><th>Směna</th><th>Odměňování</th><th></th></tr>
+    {foreach $offers as $offer}
+    <tr><td>{$offer->name}</td><td>{$offer->description}</td><td>{$offer->shift} minut</td><td>{if $offer->count>0}{$offer->awardT} za {$offer->count} směn/výkonů{else}{$offer->awardT} za směnu/výkon{/if}</td><td><a n:href="start $offer->id">Příjmout</a></td></tr>
+    {/foreach}
+  </table>
+{/block}

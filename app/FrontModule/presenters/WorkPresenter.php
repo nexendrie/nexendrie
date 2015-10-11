@@ -21,8 +21,25 @@ class WorkPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
-    
+  function actionDefault() {
+    if(!$this->model->isWorking()) $this->redirect("offers");
+  }
+  
+  /**
+   * @return void
+   */
+  function actionOffers() {
+    if($this->model->isWorking()) {
+      $this->flashMessage("Už pracuješ.");
+      $this->redirect("default");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function renderOffers() {
+    $this->template->offers = $this->model->findAvailableJobs();
   }
   
   /**
