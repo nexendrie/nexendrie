@@ -200,8 +200,7 @@ case "password_new":
   function edit($id, \Nette\Utils\ArrayHash $values) {
     $user = $this->orm->users->getById($id);
     foreach($values as $key => $value) {
-      if($key === "group") $user->$key = $this->orm->groups->getById($value);
-      elseif($key === "banned") $user->$key = (int) $value;
+      if($key === "banned") $user->$key = (int) $value;
       else $user->$key = $value;
     }
     $this->orm->users->persistAndFlush($user);
