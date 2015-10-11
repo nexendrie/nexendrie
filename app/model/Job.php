@@ -55,12 +55,47 @@ class Job extends \Nette\Object {
     $this->orm->jobs->persistAndFlush($job);
   }
   
+  /**
+   * Edit specified job
+   * 
+   * @param int $id Job's id
+   * @param array $data
+   * @return void
+   */
   function editJob($id, array $data) {
     $job = $this->orm->jobs->getById($id);
     foreach($data as $key => $value) {
       $job->$key = $value;
     }
     $this->orm->jobs->persistAndFlush($job);
+  }
+  
+  /**
+   * Start new job
+   * 
+   * @param int $id
+   * @return void
+   */
+  function startJob($id) {
+    
+  }
+  
+  /**
+   * Finish job
+   * 
+   * @return int Reward
+   */
+  function finishJob() {
+    
+  }
+  
+  /**
+   * Do one operation in job
+   * 
+   * @return array Results
+   */
+  function work() {
+    
   }
 }
 
