@@ -69,7 +69,6 @@ class EditUserFormFactory extends \Nette\Object {
     $form->addCheckbox("banned", "Zablokován");
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");
-    $form->onSuccess[] = array($this, "submitted");
     $form->onSuccess[] = function (Form $form, ArrayHash $values) {
       $this->model->edit($this->uid, $values);
     };
