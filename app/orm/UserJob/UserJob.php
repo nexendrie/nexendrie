@@ -13,6 +13,8 @@ use Nextras\Orm\Entity\Entity;
  * @property int $finished {default 0}
  * @property int|NULL $lastAction {default NULL}
  * @property int $count {default 0}
+ * @property int $earned {default 0}
+ * @property int $extra {default 0}
  * @property-read int $finishTime {virtual}
  */
 class UserJob extends Entity {
