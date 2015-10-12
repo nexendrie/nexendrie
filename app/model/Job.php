@@ -159,8 +159,31 @@ class Job extends \Nette\Object {
   }
   
   /**
+   * Get result message
+   * 
+   * @param int $job
+   * @param int $success 0/1
+   * @return string
+   */
+  function getResultMessage($job, $success) {
+    $messages = $this->orm->jobMessages->findByJobAndSuccess($job, $success);
+    if($messages->count() === 0 AND $success === 1) {
+      $message = "Úspěšně jsi zvládl směnu.";
+    } elseif($messages->count() === 0 AND $success === 0) {
+      $message = "Nezvládl jsi tuto směnu.";
+    } else {
+      $roll = rand(0, $messages->count() - 1);
+      $i = 0;
+      foreach($messages->fetchAll() as $m) {
+        if($i === $roll) $message = $m->message;
+        $i++;
+      }
+    }
+    return $message;
+  }
+  
+  /**
    * Do one operation in job
-   * @todo Read result messages from database
    * 
    * @return \stdClass Results
    * @throws AuthenticationNeededException
@@ -179,8 +202,7 @@ class Job extends \Nette\Object {
     if($success) $job->count++;
     $job->lastAction = time();
     $this->orm->userJobs->persistAndFlush($job);
-    if($success) $message = "Úspěšně jsi zvládl směnu.";
-    else $message = "Nezvládl jsi tuto směnu.";
+    $message = $this->getResultMessage($job->job->id, (int) $success);
     $result = (object) array(
       "success" => $success , "message" => $message
     );

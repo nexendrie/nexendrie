@@ -17,6 +17,7 @@ use Nextras\Orm\Entity\Entity,
  * @property int $shift
  * @property int $level {default 50}
  * @property OneHasMany|UserJob[] $userJobs {1:m UserJob::$job}
+ * @property OneHasMany|JobMessage[] $messages {1:m JobMessage::$job}
  */
 class Job extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
