@@ -119,8 +119,8 @@ class Job extends \Nette\Object {
       $reward += $job->job->award * $job->count;
     } else {
       if($job->count < $job->job->count) {
-        $part = $job->job->count / $job->count;
-        $reward += (int) ($job->job->award / $part);
+        $part = @($job->job->count / $job->count);
+        $reward += (int) @($job->job->award / $part);
       } else {
         $reward += $job->job->award;
         if($job->count > $job->job->count) {
