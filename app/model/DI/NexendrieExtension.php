@@ -85,7 +85,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $forms = array(
       "addEditNews", "addEditPoll", "newMessage", "register", "login",
       "userSettings", "addComment", "editGroup", "systemSettings", "editUser",
-      "addEditShop", "addEditItem", "addEditJob"
+      "addEditShop", "addEditItem", "addEditJob", "addEditJobMessage"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix("form.$form"))

@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Job as JobEntity,
-    Nexendrie\Orm\UserJob as UserJobEntity;
+    Nexendrie\Orm\UserJob as UserJobEntity,
+    Nexendrie\Orm\JobMessage as JobMessageEntity;
 
 /**
  * Job Model
@@ -253,6 +254,75 @@ class Job extends \Nette\Object {
     elseif($job->lastAction + ($job->job->shift * 60) > time()) return false;
     else return true;
   }
+  
+  /**
+   * Get messages for specified job
+   * 
+   * @param int $jobId
+   * @return JobMessageEntity[]
+   * @throws JobNotFoundException
+   */
+  function listOfMessages($jobId) {
+    $job = $this->orm->jobs->getById($jobId);
+    if(!$job) throw new JobNotFoundException;
+    else return $job->messages;
+  }
+  
+  /**
+   * Get specified job message
+   * 
+   * @param int $id
+   * @return JobMessageEntity
+   * @throws JobMessageNotFoundException
+   */
+  function getMessage($id) {
+    $message = $this->orm->jobMessages->getById($id);
+    if(!$message) throw new JobMessageNotFoundException;
+    else return $message;
+  }
+  
+  /**
+   * Add new job message
+   * 
+   * @param array $data
+   * @return void
+   */
+  function addMessage(array $data) {
+    $message = new JobMessageEntity;
+    $this->orm->jobMessages->attach($message);
+    foreach($data as $key => $value) {
+      if($key === "success") $value = (int) $value;
+      $message->$key = $value;
+    }
+    $this->orm->jobMessages->persistAndFlush($message);
+  }
+  
+  function editMessage($id, array $data) {
+    $message = $this->orm->jobMessages->getById($id);
+    foreach($data as $key => $value) {
+      if($key === "success") $value = (int) $value;
+      $message->$key = $value;
+    }
+    $this->orm->jobMessages->persistAndFlush($message);
+  }
+  
+  /**
+   * Remove specified job message
+   * 
+   * @param int $id
+   * @return int
+   * @throws JobMessageNotFoundException
+   */
+  function deleteMessage($id) {
+    $message = $this->orm->jobMessages->getById($id);
+    if(!$message) {
+      throw new JobMessageNotFoundException;
+    } else {
+      $return = $message->job->id;
+      $this->orm->jobMessages->remove($message);
+      return $return;
+    }
+  }
 }
 
 class JobNotFoundException extends RecordNotFoundException {
@@ -276,6 +346,10 @@ class CannotWorkException extends AccessDeniedException {
 }
 
 class JobNotFinishedException extends AccessDeniedException {
+  
+}
+
+class JobMessageNotFoundException extends RecordNotFoundException {
   
 }
 ?>
