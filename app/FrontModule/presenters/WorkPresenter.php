@@ -5,7 +5,8 @@ use Nexendrie\Model\AlreadyWorkingException,
     Nexendrie\Model\JobNotFoundException,
     Nexendrie\Model\InsufficientLevelForJobException,
     Nexendrie\Model\NotWorkingException,
-    Nexendrie\Model\CannotWorkException;
+    Nexendrie\Model\CannotWorkException,
+    Nexendrie\Model\JobNotFinishedException;
 
 /**
  * Presenter Work
@@ -92,7 +93,18 @@ class WorkPresenter extends BasePresenter {
    * @return void
    */
   function actionFinish() {
-    
+    try {
+      $rewards = $this->model->finishJob();
+      $this->template->reward = $this->localeModel->money($rewards["reward"]);
+      if($rewards["extra"]) $this->template->extra = $this->localeModel->money($rewards["extra"]);
+      else $this->template->extra = false;
+    } catch(NotWorkingException $e) {
+      $this->flashMessage("Právě nevykonáváš žádnou práci.");
+      $this->redirect("default");
+    } catch(JobNotFinishedException $e) {
+      $this->flashMessage("Práce ještě není hotova.");
+      $this->redirect("default");
+    }
   }
   
   /**

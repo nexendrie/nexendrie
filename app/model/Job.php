@@ -108,12 +108,54 @@ class Job extends \Nette\Object {
   }
   
   /**
+   * Calculate reward from job
+   * 
+   * @param UserJobEntity $job
+   * @return int[] Reward
+   */
+  function calculateReward(UserJobEntity $job) {
+    $reward = $extra = 0;
+    if($job->job->count === 0) {
+      $reward += $job->job->award * $job->count;
+    } else {
+      if($job->count < $job->job->count) {
+        $part = $job->job->count / $job->count;
+        $reward += (int) ($job->job->award / $part);
+      } else {
+        $reward += $job->job->award;
+        if($job->count > $job->job->count) {
+          $extra += (int) ($job->job->award / 5);
+        }
+      }
+    }
+    return array("reward" => $reward, "extra" => $extra);
+  }
+  
+  /**
    * Finish job
    * 
-   * @return int Reward
+   * @return int[] Reward
+   * @throws AuthenticationNeededException
+   * @throws NotWorkingException
+   * @throws JobNotFinishedException
    */
   function finishJob() {
-    
+    try {
+      $currentJob = $this->getCurrentJob();
+    } catch(AccessDeniedException $e) {
+      throw $e;
+    }
+    if(time() < $currentJob->finishTime) throw new JobNotFinishedException;
+    $rewards = $this->calculateReward($currentJob);
+    $currentJob->finished = 1;
+    $currentJob->earned = $rewards["reward"];
+    $currentJob->extra = $rewards["extra"];
+    $this->orm->userJobs->persist($currentJob);
+    $user = $this->orm->users->getById($this->user->id);
+    $user->money += $rewards["reward"] + $rewards["extra"];
+    $this->orm->users->persist($user);
+    $this->orm->flush();
+    return $rewards;
   }
   
   /**
@@ -208,6 +250,10 @@ class NotWorkingException extends AccessDeniedException {
 }
 
 class CannotWorkException extends AccessDeniedException {
+  
+}
+
+class JobNotFinishedException extends AccessDeniedException {
   
 }
 ?>
