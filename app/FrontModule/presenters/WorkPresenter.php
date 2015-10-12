@@ -48,6 +48,8 @@ class WorkPresenter extends BasePresenter {
     if(!$finished) {
       $this->template->help = $job->job->help;
       $this->template->canWork = $this->model->canWork();
+      $nextShift = $job->lastAction + ($job->job->shift * 60);
+      $this->template->nextShift = $this->localeModel->formatDateTime($nextShift);
     }
   }
   
