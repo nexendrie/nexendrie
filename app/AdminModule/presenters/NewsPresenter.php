@@ -38,7 +38,7 @@ class NewsPresenter extends BasePresenter {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->model->user = $this->user;
-      $id = $this->model->add($values);
+      $id = $this->model->add($form->getValues());
       $this->flashMessage("Novinka byla přidána.");
       $this->redirect("News:");
     };
