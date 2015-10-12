@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Práce{/block}
+{block content}
+  <h1>Práce</h1>
+  <table id="jobs">
+    <tr><th>Jméno</th><th>Akce</th></tr>
+    {foreach $jobs as $job}
+      <tr><td>{$job->name}</td><td><a n:href="Job:edit $job->id">Upravit</a> <a n:href="JobMessages:list $job->id">Hlášky</a></td></tr>
+    {/foreach}
+  </table>
+  <p id="new"><a n:href="Job:new">Přidat práci</a></p>
+{/block}

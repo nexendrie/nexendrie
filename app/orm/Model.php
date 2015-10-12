@@ -16,6 +16,9 @@ namespace Nexendrie\Orm;
  * @property-read PollVotesRepository $pollVotes
  * @property-read UserItemsRepository $userItems
  * @property-read PermissionsRepository $permissions
+ * @property-read JobsRepository $jobs
+ * @property-read UserJobsRepository $userJobs
+ * @property-read JobMessagesRepository $jobMessages
  */
 class Model extends \Nextras\Orm\Model\Model {
   

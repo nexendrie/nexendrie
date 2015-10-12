@@ -42,7 +42,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder = $this->getContainerBuilder();
     $config = $this->getConfig($this->defaults);
     $services = array(
-      "group", "market", "messenger", "polls", "profile", "rss", "property"
+      "group", "market", "messenger", "polls", "profile", "rss", "property", "job"
     );
     foreach($services as $service) {
       $builder->addDefinition($this->prefix("model.$service"))
@@ -85,7 +85,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $forms = array(
       "addEditNews", "addEditPoll", "newMessage", "register", "login",
       "userSettings", "addComment", "editGroup", "systemSettings", "editUser",
-      "addEditShop", "addEditItem"
+      "addEditShop", "addEditItem", "addEditJob", "addEditJobMessage"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix("form.$form"))

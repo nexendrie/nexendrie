@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Hlášky práce{/block}
+{block content}
+  <h1>Hlášky práce</h1>
+  <table id="jobMessages">
+    <tr><th>Text</th><th>Úspěch</th><th>Akce</th></tr>
+    {foreach $messages as $message}
+    <tr><td>{$message->message}</td><td>{if $message->success}Ano{else}Ne{/if}</td><td><a n:href="edit $message->id">Upravit</a> <a n:href="delete $message->id">Smazat</a></td></tr>
+    {/foreach}
+  </table>
+  <p><a n:href="add $jobId">Přidat hlášku</a></p>
+{/block}

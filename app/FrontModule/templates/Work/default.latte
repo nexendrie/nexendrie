@@ -1,0 +1,8 @@
+{layout "../@layout.latte"}
+{block title}Práce{/block}
+{block content}
+  <h1>{$jobName}</h1>
+  <p>Pracuješ jako {$jobName} do {$finishTime}. Zvládl jsi už {$jobCount} směn/výkonů {if $jobNeededCount>0} z {$jobNeededCount}{/if}. Zatím jsi vydělal {$earned}.</p>
+  <p>{if $finished}<a n:href="finish">Dokončit práci</a>{else}{$help}{/if}</p>
+  <p>{if $canWork}<a n:href="work">Do toho!</a>{else}Ještě jsi nedokončil směnu. Musíš počkat do {$nextShift}.{/if}</p>
+{/block}
