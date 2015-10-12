@@ -3,7 +3,9 @@ namespace Nexendrie\FrontModule\Presenters;
 
 use Nexendrie\Model\AlreadyWorkingException,
     Nexendrie\Model\JobNotFoundException,
-    Nexendrie\Model\InsufficientLevelForJobException;
+    Nexendrie\Model\InsufficientLevelForJobException,
+    Nexendrie\Model\NotWorkingException,
+    Nexendrie\Model\CannotWorkException;
 
 /**
  * Presenter Work
@@ -95,7 +97,15 @@ class WorkPresenter extends BasePresenter {
    * @return void
    */
   function actionWork() {
-    
+    try {
+      $result = $this->model->work();
+      $this->flashMessage($result->message);
+    } catch(NotWorkingException $e) {
+      $this->flashMessage("Právě nevykonáváš žádnou práci.");
+    } catch(CannotWorkException $e) {
+      $this->flashMessage("Ještě si nedokončil směnu.");
+    }
+    $this->redirect("default");
   }
 }
 ?>

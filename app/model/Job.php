@@ -14,6 +14,7 @@ class Job extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  const BASE_SUCCESS_RATE = 55;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
@@ -117,11 +118,31 @@ class Job extends \Nette\Object {
   
   /**
    * Do one operation in job
+   * @todo Read result messages from database
    * 
-   * @return array Results
+   * @return \stdClass Results
+   * @throws AuthenticationNeededException
+   * @throws NotWorkingException
+   * @throws CannotWorkException
    */
   function work() {
-    
+    try {
+      $canWork = $this->canWork();
+      if(!$canWork) throw new CannotWorkException;
+    } catch(AccessDeniedException $e) {
+      throw $e;
+    }
+    $job = $this->getCurrentJob();
+    $success = (rand(1, 100) <= self::BASE_SUCCESS_RATE);
+    if($success) $job->count++;
+    $job->lastAction = time();
+    $this->orm->userJobs->persistAndFlush($job);
+    if($success) $message = "Úspěšně jsi zvládl směnu.";
+    else $message = "Nezvládl jsi tuto směnu.";
+    $result = (object) array(
+      "success" => $success , "message" => $message
+    );
+    return $result;
   }
   
   /**
@@ -183,6 +204,10 @@ class InsufficientLevelForJobException extends AccessDeniedException {
 }
 
 class NotWorkingException extends AccessDeniedException {
+  
+}
+
+class CannotWorkException extends AccessDeniedException {
   
 }
 ?>
