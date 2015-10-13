@@ -21,6 +21,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $style {default default}
  * @property int $banned {default 0}
  * @property int $money {default 2}
+ * @property Town $town {m:1 Town::$denizens}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|News[] $news {1:m News::$author}

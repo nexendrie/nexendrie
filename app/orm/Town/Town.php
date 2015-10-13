@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
+use Nextras\Orm\Entity\Entity,
+    Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Town
@@ -10,6 +11,7 @@ use Nextras\Orm\Entity\Entity;
  * @property string $name
  * @property string $description
  * @property User $owner {m:1 User::$ownedTowns}
+ * @property OneHasMany|User[] $denizens {1:m User::$town}
  */
 class Town extends Entity {
   /**
