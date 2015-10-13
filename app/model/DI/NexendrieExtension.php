@@ -10,9 +10,9 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /** @var array */
   protected $defaults = array(
     "roles" => array(
-      "guestRole" => 9,
-      "loggedInRole" => 8,
-      "bannedRole" => 10
+      "guestRole" => 12,
+      "loggedInRole" => 11,
+      "bannedRole" => 13
     ),
     "locale" => array(
       "dateFormat" => "j.n.Y",
