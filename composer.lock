@@ -91,16 +91,16 @@
         },
         {
             "name": "latte/latte",
-            "version": "v2.3.5",
+            "version": "v2.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "3d47b0af6967c99df203e98cce6201b5d84b5ea4"
+                "reference": "91b1381c8b3a55517819be07baf2bdb888c5eb1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/3d47b0af6967c99df203e98cce6201b5d84b5ea4",
-                "reference": "3d47b0af6967c99df203e98cce6201b5d84b5ea4",
+                "url": "https://api.github.com/repos/nette/latte/zipball/91b1381c8b3a55517819be07baf2bdb888c5eb1e",
+                "reference": "91b1381c8b3a55517819be07baf2bdb888c5eb1e",
                 "shasum": ""
             },
             "require": {
@@ -142,7 +142,7 @@
                 "templating",
                 "twig"
             ],
-            "time": "2015-10-09 15:29:11"
+            "time": "2015-10-12 18:41:46"
         },
         {
             "name": "nette/application",
@@ -484,16 +484,16 @@
         },
         {
             "name": "nette/forms",
-            "version": "v2.3.4",
+            "version": "v2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/forms.git",
-                "reference": "e4e3777c7a783f1877eda4a07ff2f128bdd05bf9"
+                "reference": "f89c58b1d318e4324e3c905b4d7fc45c4ec626b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/forms/zipball/e4e3777c7a783f1877eda4a07ff2f128bdd05bf9",
-                "reference": "e4e3777c7a783f1877eda4a07ff2f128bdd05bf9",
+                "url": "https://api.github.com/repos/nette/forms/zipball/f89c58b1d318e4324e3c905b4d7fc45c4ec626b6",
+                "reference": "f89c58b1d318e4324e3c905b4d7fc45c4ec626b6",
                 "shasum": ""
             },
             "require": {
@@ -526,16 +526,16 @@
             "authors": [
                 {
                     "name": "David Grudl",
-                    "homepage": "http://davidgrudl.com"
+                    "homepage": "https://davidgrudl.com"
                 },
                 {
                     "name": "Nette Community",
-                    "homepage": "http://nette.org/contributors"
+                    "homepage": "https://nette.org/contributors"
                 }
             ],
             "description": "Nette Forms: greatly facilitates web forms",
-            "homepage": "http://nette.org",
-            "time": "2015-07-20 01:25:35"
+            "homepage": "https://nette.org",
+            "time": "2015-10-12 13:52:41"
         },
         {
             "name": "nette/http",
