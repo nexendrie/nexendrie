@@ -15,7 +15,7 @@ class JobMessageDummy extends \Nette\Object {
   protected $message;
   
   function __construct(JobMessage $message) {
-    $this->success = (bool) $message->success;
+    $this->success = $message->success;
     $this->message = $message->message;
   }
   

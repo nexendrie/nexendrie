@@ -143,7 +143,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     $user = $this->orm->users->getById($this->user->id);
     $settings = array(
-      "publicname" => $user->publicname, "email" => $user->email, "infomails" => (bool) $user->infomails,
+      "publicname" => $user->publicname, "email" => $user->email, "infomails" =>  $user->infomails,
       "style" => $user->style
     );
     return $settings;
@@ -164,9 +164,6 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     $user = $this->orm->users->getById($this->user->id);
     foreach($settings as $key => $value) {
       switch($key) {
-case "infomails":
-  $value = (int) $value;
-  break;
 case "password_new":
   if(!empty($value)) {
     if(!NS\Passwords::verify($settings["password_old"], $user->password)) {

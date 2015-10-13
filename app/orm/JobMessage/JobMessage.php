@@ -8,7 +8,7 @@ use Nextras\Orm\Entity\Entity;
  *
  * @author Jakub Konečný
  * @property Job $job {m:1 Job::$messages}
- * @property int $success
+ * @property bool $success
  * @property string $message
  */
 class JobMessage extends Entity {

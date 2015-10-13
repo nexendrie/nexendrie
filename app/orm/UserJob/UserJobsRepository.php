@@ -17,7 +17,7 @@ class UserJobsRepository extends Repository {
    * @return UserJob|NULL
    */
   function getUserActiveJob($user) {
-    return $this->getBy(array("user" => $user, "finished" => 0));
+    return $this->getBy(array("user" => $user, "finished" => false));
   }
 }
 ?>

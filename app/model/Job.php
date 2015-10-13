@@ -148,7 +148,7 @@ class Job extends \Nette\Object {
     }
     if(time() < $currentJob->finishTime) throw new JobNotFinishedException;
     $rewards = $this->calculateReward($currentJob);
-    $currentJob->finished = 1;
+    $currentJob->finished = true;
     $currentJob->earned = $rewards["reward"];
     $currentJob->extra = $rewards["extra"];
     $this->orm->userJobs->persist($currentJob);
@@ -163,7 +163,7 @@ class Job extends \Nette\Object {
    * Get result message
    * 
    * @param int $job
-   * @param int $success 0/1
+   * @param bool $success
    * @return string
    */
   function getResultMessage($job, $success) {
@@ -203,7 +203,7 @@ class Job extends \Nette\Object {
     if($success) $job->count++;
     $job->lastAction = time();
     $this->orm->userJobs->persistAndFlush($job);
-    $message = $this->getResultMessage($job->job->id, (int) $success);
+    $message = $this->getResultMessage($job->job->id, $success);
     $result = (object) array(
       "success" => $success , "message" => $message
     );

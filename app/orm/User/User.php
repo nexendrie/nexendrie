@@ -17,7 +17,7 @@ use Nextras\Orm\Entity\Entity,
  * @property-read string $joinedAt {virtual}
  * @property int|NULL $lastActive
  * @property Group $group {m:1 Group::$members}
- * @property int $infomails {default 0}
+ * @property bool $infomails {default 0}
  * @property string $style {default default}
  * @property int $banned {default 0}
  * @property int $money {default 2}
