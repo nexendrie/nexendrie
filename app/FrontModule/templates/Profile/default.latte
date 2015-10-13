@@ -1,7 +1,7 @@
 {layout "../@layout.latte"}
 {block title}Profil{/block}
 {block content}
-  <h1>{if $profile->group}{$profile->group->singleName}{/if} {$profile->publicname}</h1>
+  <h1>{$profile->group->singleName} {$profile->publicname}</h1>
   <p>
   V Nexendrii od {$profile->joinedAt}.<br>
   {if $profile->banned}V současnosti si odpykává zasloužený trest v místní šatlavě.<br>{/if}
