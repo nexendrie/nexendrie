@@ -13,7 +13,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $help
  * @property int $count {default 0}
  * @property int $award
- * @property-read string $awardT
+ * @property-read string $awardT {virtual}
  * @property int $shift
  * @property int $level {default 50}
  * @property OneHasMany|UserJob[] $userJobs {1:m UserJob::$job}
