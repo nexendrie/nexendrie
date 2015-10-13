@@ -11,6 +11,8 @@ class ContentPresenter extends BasePresenter {
   protected $marketModel;
   /** @var \Nexendrie\Model\Job @autowire */
   protected $jobModel;
+  /** @var \Nexendrie\Model\Town @autowire */
+  protected $townModel;
   
   /**
    * @return void
@@ -31,6 +33,10 @@ class ContentPresenter extends BasePresenter {
    */
   function renderJobs() {
     $this->template->jobs = $this->jobModel->listOfJobs();
+  }
+  
+  function renderTowns() {
+    $this->template->towns = $this->townModel->listOfTowns();
   }
 }
 ?>

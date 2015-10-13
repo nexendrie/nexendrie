@@ -30,6 +30,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|PollVote[] $pollVotes {1:m PollVote::$user}
  * @property OneHasMany|UserItem[] $items {1:m UserItem::$user}
  * @property OneHasMany|UserJob[] $jobs {1:m UserJob::$user}
+ * @property OneHasMany|Town[] $ownedTowns {1:m Town::$owner}
  */
 class User extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
