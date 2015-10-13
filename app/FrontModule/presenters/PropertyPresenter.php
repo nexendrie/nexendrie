@@ -15,6 +15,8 @@ class PropertyPresenter extends BasePresenter {
     $data = $this->model->show();
     $this->template->money = $data["money"];
     $this->template->items = $data["items"];
+    $this->template->isLord = $data["isLord"];
+    $this->template->towns = $data["towns"];
   }
 }
 ?>

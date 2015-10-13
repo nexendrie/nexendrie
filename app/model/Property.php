@@ -29,6 +29,8 @@ class Property extends \Nette\Object {
     $user = $this->orm->users->getById($this->user->id);
     $return["money"] = $user->moneyT;
     $return["items"] = $user->items;
+    $return["isLord"] = ($user->group->level >= 350);
+    $return["towns"] = $user->ownedTowns;
     return $return;
   }
 }
