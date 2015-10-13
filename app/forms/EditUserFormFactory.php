@@ -4,7 +4,8 @@ namespace Nexendrie\Forms;
 use Nette\Application\UI\Form,
     Nette\Utils\ArrayHash,
     Nexendrie\Model\UserManager,
-    Nexendrie\Model\Group;
+    Nexendrie\Model\Group,
+    Nexendrie\Model\Town;
 
 /**
  * Factory for form EditUser
@@ -18,13 +19,17 @@ class EditUserFormFactory extends \Nette\Object {
   protected $model;
   /** @var Group */
   protected $groupModel;
+  /** @var Town */
+  protected $townModel;
+  
   /** @var int */
   protected $uid;
   
-  function __construct(\Nexendrie\Orm\Model $orm, UserManager $model, Group $groupModel) {
+  function __construct(\Nexendrie\Orm\Model $orm, UserManager $model, Group $groupModel, Town $townModel) {
     $this->orm = $orm;
     $this->model = $model;
     $this->groupModel = $groupModel;
+    $this->townModel = $townModel;
   }
   
   /**
@@ -41,6 +46,18 @@ class EditUserFormFactory extends \Nette\Object {
   
   /**
    * @return array
+   */
+  protected function getListOfTowns() {
+    $return = array();
+    $towns = $this->townModel->listOfTowns();
+    foreach($towns as $town) {
+      $return[$town->id] = $town->name;
+    }
+    return $return;
+  }
+  
+  /**
+   * @return array
    * @throws \Nette\ArgumentOutOfRangeException
    */
   protected function getDefaultValues() {
@@ -50,6 +67,7 @@ class EditUserFormFactory extends \Nette\Object {
       "username" => $user->username,
       "publicname" => $user->publicname,
       "group" => $user->group->id,
+      "town" => $user->town->id,
       "banned" => (bool) $user->banned
     );
   }
@@ -65,7 +83,10 @@ class EditUserFormFactory extends \Nette\Object {
       ->setRequired("Uživatelské jméno nesmí být prázdné");
     $form->addText("publicname", "Zobrazované jméno:")
       ->setRequired("Zobrazované jméno nesmí být prázdné");
-    $form->addSelect("group", "Skupina:", $this->getListOfGroups());
+    $form->addSelect("group", "Skupina:", $this->getListOfGroups())
+      ->setRequired("Vyber skupinu.");
+    $form->addSelect("town", "Město", $this->getListOfTowns())
+       ->setRequired("Vyber město.");
     $form->addCheckbox("banned", "Zablokován");
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");

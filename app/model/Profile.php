@@ -66,6 +66,20 @@ class Profile extends \Nette\Object {
     if(!$user) throw new UserNotFoundException("Specified user does not exist.");
     else return $user;
   }
+  
+  /**
+   * Get list of potential owners
+   * 
+   * @return rray
+   */
+  function getListOfLords() {
+    $return = array();
+    $lords = $this->orm->users->findBy(array("this->group->level>=" => 350));
+    foreach($lords as $lord) {
+      $return[$lord->id] = $lord->publicname;
+    }
+    return $return;
+  }
 }
 
 class UserNotFoundException extends RecordNotFoundException {

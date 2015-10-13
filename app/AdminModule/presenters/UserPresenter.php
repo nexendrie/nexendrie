@@ -32,6 +32,9 @@ class UserPresenter extends BasePresenter {
   
   protected function createComponentEditUser(EditUserFormFactory $factory) {
     $form = $factory->create($this->getParameter("id"));
+    $form->onSuccess[] = function(\Nette\Application\UI\Form $form) {
+      $this->flashMessage("Změny uloženy.");
+    };
     return $form;
   }
 }

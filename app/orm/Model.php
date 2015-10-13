@@ -19,6 +19,7 @@ namespace Nexendrie\Orm;
  * @property-read JobsRepository $jobs
  * @property-read UserJobsRepository $userJobs
  * @property-read JobMessagesRepository $jobMessages
+ * @property-read TownsRepository $towns
  */
 class Model extends \Nextras\Orm\Model\Model {
   

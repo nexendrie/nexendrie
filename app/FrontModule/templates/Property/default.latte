@@ -11,4 +11,12 @@
     {/foreach}
   </p>
   {/if}
+  {if $isLord}
+  <p>
+    Města/vesnice:<br>
+    {foreach $towns as $town}
+    {$town->name}{if !$iterator->last},{else}.{/if}
+    {/foreach}
+  </p>
+  {/if}
 {/block}

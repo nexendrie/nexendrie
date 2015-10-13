@@ -21,6 +21,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $style {default default}
  * @property int $banned {default 0}
  * @property int $money {default 2}
+ * @property Town $town {m:1 Town::$denizens}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|News[] $news {1:m News::$author}
@@ -30,6 +31,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|PollVote[] $pollVotes {1:m PollVote::$user}
  * @property OneHasMany|UserItem[] $items {1:m UserItem::$user}
  * @property OneHasMany|UserJob[] $jobs {1:m UserJob::$user}
+ * @property OneHasMany|Town[] $ownedTowns {1:m Town::$owner}
  */
 class User extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
