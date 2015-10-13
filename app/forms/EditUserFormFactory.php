@@ -68,7 +68,7 @@ class EditUserFormFactory extends \Nette\Object {
       "publicname" => $user->publicname,
       "group" => $user->group->id,
       "town" => $user->town->id,
-      "banned" => (bool) $user->banned
+      "banned" => $user->banned
     );
   }
   
