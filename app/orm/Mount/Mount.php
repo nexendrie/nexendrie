@@ -29,18 +29,19 @@ class Mount extends Entity {
     $this->localeModel = $localeModel;
   }
   
+  /**
+   * @return string[]
+   */
+  function getGenders() {
+    return array(
+      self::GENDER_MALE => "hřebec",
+      self::GENDER_FEMALE => "klisna",
+      self::GENDER_YOUNG => "mládě"
+    );
+  }
+  
   function getterGenderCZ() {
-    switch($this->gender) {
-      case self::GENDER_MALE:
-        return "hřebec";
-        break;
-      case self::GENDER_FEMALE:
-        return "klisna";
-        break;
-      case self::GENDER_YOUNG:
-        return "mládě";
-        break;
-    }
+    return $this->getGenders()[$this->gender];
   }
   
   function getterPriceT() {
