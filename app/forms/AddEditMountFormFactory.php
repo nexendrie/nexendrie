@@ -21,7 +21,7 @@ class AddEditMountFormFactory {
    * @return string[]
    */
   protected function getGenders() {
-    return (new Mount)->getGenders();
+    return Mount::getGenders();
     
   }
   

@@ -32,7 +32,7 @@ class Mount extends Entity {
   /**
    * @return string[]
    */
-  function getGenders() {
+  static function getGenders() {
     return array(
       self::GENDER_MALE => "hřebec",
       self::GENDER_FEMALE => "klisna",
@@ -41,7 +41,7 @@ class Mount extends Entity {
   }
   
   function getterGenderCZ() {
-    return $this->getGenders()[$this->gender];
+    return self::getGenders()[$this->gender];
   }
   
   function getterPriceT() {
