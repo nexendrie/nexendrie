@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form;
+use Nette\Application\UI\Form,
+    Nexendrie\Orm\Mount;
 
 /**
  * Factory for form AddEditMount
@@ -14,6 +15,14 @@ class AddEditMountFormFactory {
   
   function __construct(\Nexendrie\Model\Mount $model) {
     $this->model = $model;
+  }
+  
+  /**
+   * @return string[]
+   */
+  protected function getGenders() {
+    return (new Mount)->getGenders();
+    
   }
   
   /**
@@ -36,6 +45,9 @@ class AddEditMountFormFactory {
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
       ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25);
+    $form->addRadioList("gender", "Pohlaví:", $this->getGenders())
+      ->setRequired("Vyber pohlaví.")
+      ->setValue(Mount::GENDER_YOUNG);
     $form->addSelect("type", "Druh:", $this->getMountTypes())
       ->setRequired("Vyber druh.");
     $form->addText("price", "Cena:")

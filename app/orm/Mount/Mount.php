@@ -8,7 +8,7 @@ use Nextras\Orm\Entity\Entity;
  *
  * @author Jakub Konečný
  * @property string $name
- * @property string $gender {enum self::GENDER_*}
+ * @property string $gender {enum self::GENDER_*} {default self::GENDER_YOUNG}
  * @property MountType $type {m:1 MountType::$mounts}
  * @property User $owner {m:1 User::$mounts}
  * @property int $price

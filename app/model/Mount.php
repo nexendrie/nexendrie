@@ -76,7 +76,6 @@ class Mount extends \Nette\Object {
     }
     $mount->owner = 0;
     $mount->birth = time();
-    $mount->gender = MountEntity::GENDER_YOUNG;
     $this->orm->mounts->persistAndFlush($mount);
   }
   

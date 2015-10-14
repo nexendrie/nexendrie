@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  * @property string $name
- * @property int $gender
+ * @property string $gender
  * @property int $type
  * @property int $price
  * @property bool $onMarket
@@ -14,6 +14,8 @@ namespace Nexendrie\Orm;
 class MountDummy extends \Nette\Object {
   /** @var string */
   protected $name;
+  /** @var string */
+  protected $gender;
   /** @var int */
   protected $type;
   /** @var int */
@@ -23,8 +25,10 @@ class MountDummy extends \Nette\Object {
   
   function __construct(Mount $mount) {
     $this->name = $mount->name;
+    $this->gender = $mount->gender;
     $this->type = $mount->type->id;
     $this->price = $mount->price;
+    $this->onMarket = $mount->onMarket;
   }
   
   /**
