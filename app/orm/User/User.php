@@ -32,6 +32,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|UserItem[] $items {1:m UserItem::$user}
  * @property OneHasMany|UserJob[] $jobs {1:m UserJob::$user}
  * @property OneHasMany|Town[] $ownedTowns {1:m Town::$owner}
+ * @property OneHasMany|Mount[] $mounts {1:m Mount::$owner}
  */
 class User extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
