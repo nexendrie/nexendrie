@@ -23,6 +23,11 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     ),
     "pagination" => array(
       "news" => 10
+    ),
+    "newUser" => array(
+      "style" => "default",
+      "money" => 30,
+      "town" => 3
     )
   );
   
@@ -52,7 +57,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition($this->prefix("model.news"))
       ->setFactory("Nexendrie\Model\News", array($config["pagination"]["news"]));
     $builder->addDefinition($this->prefix("model.userManager"))
-      ->setFactory("Nexendrie\Model\UserManager", array($config["roles"]));
+      ->setFactory("Nexendrie\Model\UserManager", array($config["roles"], $config["newUser"]));
     $builder->addDefinition($this->prefix("model.locale"))
       ->setFactory("Nexendrie\Model\Locale", array($config["locale"]));
     $builder->addDefinition("cache.cache")

@@ -19,6 +19,8 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   protected $user;
   /** @var array */
   protected $roles = array();
+  /** @var array */
+  protected $newUser;
   /** Exception error code */
   const REG_DUPLICATE_USERNAME = 1,
     REG_DUPLICATE_EMAIL = 2,
@@ -26,13 +28,15 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   
   /**
    * @param array $roles
+   * @param array $newUser
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Caching\Cache $cache
    */
-  function __construct(array $roles, \Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache) {
+  function __construct(array $roles, array $newUser, \Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache) {
     $this->orm = $orm;
     $this->cache = $cache;
     $this->roles = $roles;
+    $this->newUser = $newUser;
   }
   
   /**
@@ -113,15 +117,16 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   /**
    * Register new user
    * 
-   * @param \Nette\Utils\ArrayHash $data
+   * @param array $data
    * @throws RegistrationException
    * @return void
    */
-  function register(\Nette\Utils\ArrayHash $data) {
+  function register(array $data) {
     if(!$this->nameAvailable($data["username"])) throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
     if(!$this->emailAvailable($data["email"])) throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
     $user = new UserEntity;
     $this->orm->users->attach($user);
+    $data += $this->newUser;
     foreach($data as $key => $value) {
       if($key === "password") $value = \Nette\Security\Passwords::hash($data["password"]);
       $user->$key = $value;

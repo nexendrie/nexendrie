@@ -3,7 +3,8 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
     Nexendrie\Model\Group,
-    Nexendrie\Model\SettingsRepository;
+    Nexendrie\Model\SettingsRepository,
+    Nexendrie\Model\Town;
 
 /**
  * Factory for form SystemSettings
@@ -15,10 +16,13 @@ class SystemSettingsFormFactory {
   protected $sr;
   /** @var Group */
   protected $groupModel;
+  /** @var Town */
+  protected $townModel;
   
-  function __construct(SettingsRepository $settingsRepository, Group $groupModel) {
+  function __construct(SettingsRepository $settingsRepository, Group $groupModel, Town $townModel) {
     $this->sr = $settingsRepository;
     $this->groupModel = $groupModel;
+    $this->townModel = $townModel;
   }
   
   /**
@@ -29,6 +33,18 @@ class SystemSettingsFormFactory {
     $groups = $this->groupModel->listOfGroups();
     foreach($groups as $group) {
       $return[$group->id] = $group->singleName;
+    }
+    return $return;
+  }
+  
+  /**
+   * @return array
+   */
+  protected function getListOfTowns() {
+    $return = array();
+    $towns = $this->townModel->listOfTowns();
+    foreach($towns as $town) {
+      $return[$town->id] = $town->name;
     }
     return $return;
   }
@@ -74,6 +90,16 @@ class SystemSettingsFormFactory {
     $pagination->addText("news", "Novinek na stránku:")
       ->setRequired("Zadej počet novinek na stránku.")
       ->addRule(Form::INTEGER, "Počet novinek na stránku musí být číslo.");
+    $form->addGroup("Nový uživatel");
+    $newUser = $form->addContainer("newUser");
+    $newUser->addText("style", "Výchozí vzhled:")
+      ->setRequired("Zadej vzhled.");
+    $newUser->addText("money", "Peníze:")
+      ->setRequired("Zadej peníze.")
+      ->addRule(Form::INTEGER, "Peníze musí být celé číslo.")
+      ->addRule(Form::RANGE, "Peníze musí být v rozmezí 1-100.", array(1, 100));
+    $newUser->addSelect("town", "Město:", $this->getListOfTowns())
+      ->setRequired("Vyber město.");
     $form->currentGroup = NULL;
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());

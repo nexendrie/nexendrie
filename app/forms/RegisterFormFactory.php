@@ -38,9 +38,9 @@ class RegisterFormFactory {
     return $form;
   }
   
-  function submitted(Form $form, ArrayHash $values) {
+  function submitted(Form $form) {
     try {
-      $this->model->register($values);
+      $this->model->register($form->getValues(true));
     } catch (RegistrationException $e) {
       if($e->getCode() === UserManager::REG_DUPLICATE_USERNAME) {
         $form->addError("Zvolené uživatelské jméno je už zabráno.");
