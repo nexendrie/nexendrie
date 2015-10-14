@@ -36,10 +36,12 @@ class Mount extends \Nette\Object {
   /**
    * Get list of all mounts
    * 
+   * @param int|NULL $owner Return only mounts owned by specified use. NULL = all users
    * @return MountEntity[]
    */
-  function listOfMounts() {
-    return $this->orm->mounts->findAll();
+  function listOfMounts($owner = NULL) {
+    if(is_int($owner)) return $this->orm->mounts->findByOwner($owner);
+    else return $this->orm->mounts->findAll();
   }
   
   /**

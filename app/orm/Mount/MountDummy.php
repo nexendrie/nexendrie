@@ -9,6 +9,7 @@ namespace Nexendrie\Orm;
  * @property int $gender
  * @property int $type
  * @property int $price
+ * @property bool $onMarket
  */
 class MountDummy extends \Nette\Object {
   /** @var string */
@@ -17,6 +18,8 @@ class MountDummy extends \Nette\Object {
   protected $type;
   /** @var int */
   protected $price;
+  /** @var bool */
+  protected $onMarket;
   
   function __construct(Mount $mount) {
     $this->name = $mount->name;
