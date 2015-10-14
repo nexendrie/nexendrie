@@ -8,7 +8,7 @@ use Nextras\Orm\Entity\Entity;
  *
  * @author Jakub Konečný
  * @property string $name
- * @property int $gender {enum self::GENDER_*}
+ * @property string $gender {enum self::GENDER_*}
  * @property MountType $type {m:1 MountType::$mounts}
  * @property User $owner {m:1 User::$mounts}
  * @property int $price
@@ -19,9 +19,9 @@ use Nextras\Orm\Entity\Entity;
 class Mount extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
-  const GENDER_MALE = 1;
-  const GENDER_FEMALE = 2;
-  const GENDER_YOUNG = 3;
+  const GENDER_MALE = "male";
+  const GENDER_FEMALE = "female";
+  const GENDER_YOUNG = "young";
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
