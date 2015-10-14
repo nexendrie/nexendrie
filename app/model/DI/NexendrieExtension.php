@@ -48,7 +48,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $config = $this->getConfig($this->defaults);
     $services = array(
       "group", "market", "messenger", "polls", "profile", "rss", "property", "job",
-      "town"
+      "town", "mount"
     );
     foreach($services as $service) {
       $builder->addDefinition($this->prefix("model.$service"))
@@ -76,7 +76,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
    */
   protected function addComponents() {
     $builder = $this->getContainerBuilder();
-    $components = array("poll", "shop");
+    $components = array("poll", "shop", "mountsMarket");
     foreach($components as $component) {
       $builder->addDefinition($this->prefix("component.$component"))
         ->setImplement("Nexendrie\Components\\". ucfirst($component) . "ControlFactory");
@@ -91,7 +91,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $forms = array(
       "addEditNews", "addEditPoll", "newMessage", "register", "login",
       "userSettings", "addComment", "editGroup", "systemSettings", "editUser",
-      "addEditShop", "addEditItem", "addEditJob", "addEditJobMessage", "addEditTown"
+      "addEditShop", "addEditItem", "addEditJob", "addEditJobMessage", "addEditTown",
+      "addEditMount", "manageMount"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix("form.$form"))

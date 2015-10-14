@@ -1,0 +1,14 @@
+{layout "../@layout.latte"}
+{block title}Stáje{/block}
+{block content}
+  <h1>Stáje</h1>
+  <h3>Mí koně:</h3>
+  {if $mounts->count() < 1}
+  Nevlastníš žádná jezdecká zvířata.
+  {else}
+    {foreach $mounts as $mount}
+  {$mount->type->name} {$mount->name} <a n:href="manage $mount->id">Spravovat</a><br>
+    {/foreach}
+  {/if}
+  <p><a n:href="Market:mounts">Koupit jezdecké zvíře</a></p>
+{/block}

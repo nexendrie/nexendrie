@@ -1,0 +1,8 @@
+  <h1>Jezdecká zvířata</h1>
+  {if $mounts->count() < 1}
+  Žádná jezdecká zvířata nejsou na prodej.
+  {else}
+    {foreach $mounts as $mount}
+  {$mount->owner->group->singleName} <a href="{plink :Front:Profile:default, username=>$mount->owner->username}">{$mount->owner->publicname}</a> nabízí {$mount->name} ({$mount->type->name} {$mount->genderCZ}) za {$mount->priceT}. <a n:href="buy! $mount->id">Koupit</a><br>
+    {/foreach}
+  {/if}
