@@ -1,7 +1,9 @@
 <?php
 namespace Nexendrie\FrontModule\Presenters;
 
-use Nexendrie\Components\ShopControlFactory;
+use Nexendrie\Components\ShopControlFactory,
+    Nexendrie\Components\MountsMarketControlFactory,
+    Nexendrie\Components\MountsMarketControl;
 
 /**
  * Presenter Market
@@ -46,6 +48,21 @@ class MarketPresenter extends BasePresenter {
    */
   function actionBuy($id) {
     $this->requiresLogin();
+  }
+  
+  /**
+   * @return void
+   */
+  function renderMounts() {
+    $this->requiresLogin();
+  }
+  
+  /**
+   * @param MountsMarketControlFactory $factory
+   * @return MountsMarketControl
+   */
+  protected function createComponentMountsMarket(MountsMarketControlFactory $factory) {
+    return $factory->create();
   }
 }
 ?>

@@ -45,6 +45,15 @@ class Mount extends \Nette\Object {
   }
   
   /**
+   * Get mounts on sale
+   * 
+   * @return MountEntity[]
+   */
+  function mountsOnSale() {
+    return $this->orm->mounts->findOnMarket();
+  }
+  
+  /**
    * Get list of all mount types
    * 
    * @return MountTypeEntity
@@ -85,9 +94,52 @@ class Mount extends \Nette\Object {
     }
     $this->orm->mounts->persistAndFlush($mount);
   }
+  
+  /**
+   * Buy specified mount
+   * 
+   * @param int $id Mount's id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws MountNotFoundException
+   * @throws MountNotOnSaleException
+   * @throws CannotBuyOwnMountException
+   * @throws InsufficientLevelForMountException
+   * @throws InsufficientFunds
+   */
+  function buy($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $mount = $this->orm->mounts->getById($id);
+    if(!$mount) throw new MountNotFoundException;
+    if(!$mount->onMarket) throw new MountNotOnSaleException;
+    if($mount->owner->id === $this->user->id) throw new CannotBuyOwnMountException;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->group->level < $mount->type->level) throw new InsufficientLevelForMountException;
+    if($user->money < $mount->price) throw new InsufficientFunds;
+    $seller = $mount->owner;
+    $seller->money += $mount->price;
+    $user->money -= $mount->price;
+    $mount->owner = $user;
+    $mount->onMarket = false;
+    $this->orm->mounts->persist($mount);
+    $this->orm->users->persist($seller);
+    $this->orm->flush();
+  }
 }
 
 class MountNotFoundException extends RecordNotFoundException {
+  
+}
+
+class MountNotOnSaleException extends AccessDeniedException {
+  
+}
+
+class InsufficientLevelForMountException extends AccessDeniedException {
+  
+}
+
+class CannotBuyOwnMountException extends AccessDeniedException {
   
 }
 ?>

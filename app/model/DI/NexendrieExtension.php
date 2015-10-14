@@ -76,7 +76,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
    */
   protected function addComponents() {
     $builder = $this->getContainerBuilder();
-    $components = array("poll", "shop");
+    $components = array("poll", "shop", "mountsMarket");
     foreach($components as $component) {
       $builder->addDefinition($this->prefix("component.$component"))
         ->setImplement("Nexendrie\Components\\". ucfirst($component) . "ControlFactory");

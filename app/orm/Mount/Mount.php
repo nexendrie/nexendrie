@@ -14,6 +14,8 @@ use Nextras\Orm\Entity\Entity;
  * @property int $price
  * @property bool $onMarket {default 0}
  * @property int $birth
+ * @property-read string $genderCZ {virtual}
+ * @property-read string $priceT {virtual}
  * @property-read string $birthAt {virtual}
  */
 class Mount extends Entity {
@@ -25,6 +27,24 @@ class Mount extends Entity {
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
+  }
+  
+  function getterGenderCZ() {
+    switch($this->gender) {
+      case self::GENDER_MALE:
+        return "hřebec";
+        break;
+      case self::GENDER_FEMALE:
+        return "klisna";
+        break;
+      case self::GENDER_YOUNG:
+        return "mládě";
+        break;
+    }
+  }
+  
+  function getterPriceT() {
+    return $this->localeModel->money($this->price);
   }
   
   function getterBirthAt() {
