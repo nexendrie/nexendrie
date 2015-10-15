@@ -2,7 +2,7 @@
 {block title}Město{/block}
 {block content}
   <h1>{$town->name}</h1>
-  <p>{$town->description}</p>
+  {control manageTownForm}
   <h3>Obyvatelé:</h3>
   <p>
     {foreach $town->denizens as $denizen}

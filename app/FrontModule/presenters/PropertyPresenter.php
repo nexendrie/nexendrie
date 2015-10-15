@@ -2,7 +2,9 @@
 namespace Nexendrie\FrontModule\Presenters;
 
 use Nexendrie\Orm\Town as TownEntity,
-    Nexendrie\Model\TownNotFoundException;
+    Nexendrie\Model\TownNotFoundException,
+    Nexendrie\Forms\ManageTownFormFactory,
+    Nette\Application\UI\Form;
 
 /**
  * Presenter Assets
@@ -53,6 +55,14 @@ class PropertyPresenter extends BasePresenter {
    */
   function renderTown($id) {
     $this->template->town = $this->town;
+  }
+  
+  protected function createComponentManageTownForm(ManageTownFormFactory $factory) {
+    $form = $factory->create($this->town->id);
+    $form->onSuccess[] = function(Form $form) {
+      $this->flashMessage("Změny uloženy.");
+    };
+    return $form;
   }
 }
 ?>
