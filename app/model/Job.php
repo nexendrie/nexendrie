@@ -11,6 +11,8 @@ use Nexendrie\Orm\Job as JobEntity,
  * @author Jakub Konečný
  */
 class Job extends \Nette\Object {
+  /** @var Skills */
+  protected $skillsModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -22,7 +24,8 @@ class Job extends \Nette\Object {
   /** Increase of income per skill level (in %) */
   const SKILL_LEVEL_INCOME = 15;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Skills $skillsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    $this->skillsModel = $skillsModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -134,9 +137,9 @@ class Job extends \Nette\Object {
         }
       }
     }
-    $userSkill = $this->orm->userSkills->getByUserAndSkill($this->user->id, $job->job->neededSkill->id);
-    if($userSkill) {
-      $increase = $userSkill->level * self::SKILL_LEVEL_INCOME;
+    $userSkillLevel = $this->skillsModel->getLevelOfSkill($job->job->neededSkill->id);
+    if($userSkillLevel) {
+      $increase = $userSkillLevel * self::SKILL_LEVEL_INCOME;
       $extra += (int) $reward /100 * $increase;
     }
     return array("reward" => $reward, "extra" => $extra);

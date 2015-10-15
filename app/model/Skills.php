@@ -128,6 +128,23 @@ class Skills extends \Nette\Object {
     $userSkill->user->money -= $price;
     $this->orm->userSkills->persistAndFlush($userSkill);
   }
+  
+  /**
+   * Get level of user's specified skill
+   * 
+   * @param int $skillId
+   * @return int
+   * @throws AuthenticationNeededException
+   */
+  function getLevelOfSkill($skillId) {
+    try {
+      $skill = $this->getUserSkill($skillId);
+    } catch(AuthenticationNeededException $e) {
+      throw $e;
+    }
+    if($skill) return $skill->level;
+    else return 0;
+  }
 }
 
 class SkillNotFoundException extends RecordNotFoundException {
