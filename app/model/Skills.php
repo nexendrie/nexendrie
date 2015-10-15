@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Skill as SkillEntity;
+use Nexendrie\Orm\Skill as SkillEntity,
+    Nexendrie\Orm\UserSkill as UserSkillEntity;
 
 /**
  * Skills Model
@@ -71,17 +72,69 @@ class Skills extends \Nette\Object {
   }
   
   /**
+   * @param int $skill
+   * @return UserSkillEntity|NULL
+   * @throws AuthenticationNeededException
+   */
+  function getUserSkill($skill) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    else return $this->orm->userSkills->getByUserAndSkill($this->user->id, $skill);
+  }
+  
+  /**
+   * Calculate price of learning of next level
+   * 
+   * @param int $basePrice
+   * @param int $newLevel
+   * @return int
+   */
+  function calculateLearningPrice($basePrice, $newLevel) {
+    if($newLevel === 1) return $basePrice;
+    $price = $basePrice;
+    for($i = 1; $i < $newLevel; $i++) {
+      $price += (int) ($basePrice / 10);
+    }
+    return $price;
+  }
+  
+  /**
    * Learn new/improve existing skill
    * 
    * @param int $id Skill's id
    * @return void
+   * @throws AuthenticationNeededException
+   * @throws SkillNotFoundException
+   * @throws SkillMaxLevelReachedException
+   * @throws InsufficientFunds
    */
   function learn($id) {
-    
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    try {
+      $skill = $this->get($id);
+    } catch(SkillNotFoundException $e) {
+      throw $e;
+    }
+    $userSkill = $this->getUserSkill($id);
+    if($userSkill === NULL) {
+      $userSkill = new UserSkillEntity;
+      $userSkill->skill = $skill;
+      $userSkill->user = $this->orm->users->getById($this->user->id);
+      $userSkill->level = 0;
+    }
+    if($userSkill->level === 5) throw new SkillMaxLevelReachedException;
+    $price = $this->calculateLearningPrice($skill->price, $userSkill->level + 1);
+    if($userSkill->user->money < $price) throw new InsufficientFunds;
+    $userSkill->level++;
+    $userSkill->user->money -= $price;
+    $this->orm->userSkills->persistAndFlush($userSkill);
   }
 }
 
 class SkillNotFoundException extends RecordNotFoundException {
+  
+}
+
+class SkillMaxLevelReachedException extends AccessDeniedException {
   
 }
 ?>
