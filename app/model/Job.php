@@ -17,6 +17,8 @@ class Job extends \Nette\Object {
   protected $user;
   /** Base success rate for job (in %) */
   const BASE_SUCCESS_RATE = 55;
+  /** Increase of income per skill level (in %) */
+  const SKILL_LEVEL_INCOME = 15;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
@@ -129,6 +131,11 @@ class Job extends \Nette\Object {
           $extra += (int) ($job->job->award / 5);
         }
       }
+    }
+    $userSkill = $this->orm->userSKills->getByUserAndSkill($this->user->id, $job->job->neededSkill->id);
+    if($userSkill) {
+      $increase = $userSkill->level * self::SKILL_LEVEL_INCOME;
+      $extra += (int) $reward /100 * $increase;
     }
     return array("reward" => $reward, "extra" => $extra);
   }

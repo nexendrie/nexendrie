@@ -13,6 +13,7 @@ use Nextras\Orm\Entity\Entity,
  * @property int $price
  * @property-read string $priceT {virtual}
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
+ * @property OneHasMany|UserSkill $userSkills {1:m UserSkill::$skill}
  */
 class Skill extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
