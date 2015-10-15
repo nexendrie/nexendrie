@@ -7,7 +7,8 @@
   Nevlastníš žádná jezdecká zvířata.
   {else}
     {foreach $mounts as $mount}
-  {$mount->type->name} {$mount->name} <a n:href="manage $mount->id">Spravovat</a><br>
+  <p>{$mount->type->name} {$mount->name} <a n:href="manage $mount->id">Spravovat</a><br>
+  Stav: {$mount->hp} %{if $mount->hp<=30} (Kritický!){/if}</p>
     {/foreach}
   {/if}
   <p><a n:href="Market:mounts">Koupit jezdecké zvíře</a></p>

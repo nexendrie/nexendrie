@@ -14,6 +14,7 @@ use Nextras\Orm\Entity\Entity;
  * @property int $price
  * @property bool $onMarket {default 0}
  * @property int $birth
+ * @property int $hp {default 100}
  * @property-read string $genderCZ {virtual}
  * @property-read string $priceT {virtual}
  * @property-read string $birthAt {virtual}
