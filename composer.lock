@@ -146,16 +146,16 @@
         },
         {
             "name": "nette/application",
-            "version": "v2.3.6",
+            "version": "v2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/application.git",
-                "reference": "68db80ce58a5039656f11409acc597a4ea8d817d"
+                "reference": "8e87ae81c2098abd7895bfd96d9fac1cd332abc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/application/zipball/68db80ce58a5039656f11409acc597a4ea8d817d",
-                "reference": "68db80ce58a5039656f11409acc597a4ea8d817d",
+                "url": "https://api.github.com/repos/nette/application/zipball/8e87ae81c2098abd7895bfd96d9fac1cd332abc3",
+                "reference": "8e87ae81c2098abd7895bfd96d9fac1cd332abc3",
                 "shasum": ""
             },
             "require": {
@@ -204,7 +204,7 @@
             ],
             "description": "Nette Application MVC Component",
             "homepage": "https://nette.org",
-            "time": "2015-10-09 14:57:21"
+            "time": "2015-10-13 14:33:28"
         },
         {
             "name": "nette/bootstrap",
