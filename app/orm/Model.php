@@ -23,7 +23,7 @@ namespace Nexendrie\Orm;
  * @property-read MountsRepository $mounts
  * @property-read MountTypesRepository $mountTypes
  * @property-read SkillsRepository $skills
- * @property-read UserSkillsRepository $userSKills
+ * @property-read UserSkillsRepository $userSkills
  */
 class Model extends \Nextras\Orm\Model\Model {
   

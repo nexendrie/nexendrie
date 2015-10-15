@@ -134,7 +134,7 @@ class Job extends \Nette\Object {
         }
       }
     }
-    $userSkill = $this->orm->userSKills->getByUserAndSkill($this->user->id, $job->job->neededSkill->id);
+    $userSkill = $this->orm->userSkills->getByUserAndSkill($this->user->id, $job->job->neededSkill->id);
     if($userSkill) {
       $increase = $userSkill->level * self::SKILL_LEVEL_INCOME;
       $extra += (int) $reward /100 * $increase;
@@ -201,7 +201,7 @@ class Job extends \Nette\Object {
    */
   function calculateSuccessRate(UserJobEntity $job) {
     $successRate = self::BASE_SUCCESS_RATE;
-    $userSkill = $this->orm->userSKills->getByUserAndSkill($this->user->id, $job->job->neededSkill->id);
+    $userSkill = $this->orm->userSkills->getByUserAndSkill($this->user->id, $job->job->neededSkill->id);
     if($userSkill) {
       $successRate += $userSkill->level * self::SKILL_LEVEL_SUCCESS_RATE;
     }
