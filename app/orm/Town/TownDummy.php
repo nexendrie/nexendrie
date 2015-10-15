@@ -15,12 +15,15 @@ class TownDummy extends \Nette\Object {
   protected $description;
   /** @var int */
   protected $owner;
+  /** @var int */
+  protected $price;
   
   function __construct(Town $town) {
     $this->id = $town->id;
     $this->name = $town->name;
     $this->description = $town->description;
     $this->owner = $town->owner->id;
+    $this->price = $town->price;
   }
   
   /**
