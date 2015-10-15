@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Dovednosti{/block}
+{block content}
+  <h1>Dovednosti</h1>
+  <table id="skills">
+    <tr><th>Název</th><th>Akce</th></tr>
+    {foreach $skills as $skill}
+    <tr><td>{$skill->name}</td><td><a n:href="Skill:edit $skill->id">Upravit</a></td></tr>
+    {/foreach}
+  </table>
+  <p><a n:href="Skill:new">Přidat</a><p>
+{/block}

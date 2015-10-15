@@ -15,6 +15,8 @@ class ContentPresenter extends BasePresenter {
   protected $townModel;
   /** @var \Nexendrie\Model\Mount @autowire */
   protected $mountModel;
+  /** @var \Nexendrie\Model\Skills @autowire */
+  protected $skillsModel;
   
   /**
    * @return void
@@ -49,6 +51,13 @@ class ContentPresenter extends BasePresenter {
    */
   function renderMounts() {
     $this->template->mounts = $this->mountModel->listOfMounts();
+  }
+  
+  /**
+   * @return void
+   */
+  function renderSkills() {
+    $this->template->skills = $this->skillsModel->listOfSkills();
   }
 }
 ?>
