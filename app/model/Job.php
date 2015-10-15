@@ -15,6 +15,7 @@ class Job extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  /** Base success rate for job (in %) */
   const BASE_SUCCESS_RATE = 55;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
@@ -297,6 +298,13 @@ class Job extends \Nette\Object {
     $this->orm->jobMessages->persistAndFlush($message);
   }
   
+  /**
+   * Edit specified job message
+   * 
+   * @param int $id Message's id
+   * @param array $data
+   * @return void
+   */
   function editMessage($id, array $data) {
     $message = $this->orm->jobMessages->getById($id);
     foreach($data as $key => $value) {

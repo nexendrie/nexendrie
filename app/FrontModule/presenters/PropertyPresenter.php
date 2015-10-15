@@ -10,6 +10,9 @@ class PropertyPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Property @autowire */
   protected $model;
   
+  /**
+   * @return void
+   */
   function renderDefault() {
     $this->requiresLogin();
     $data = $this->model->show();

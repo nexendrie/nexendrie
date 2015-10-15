@@ -31,6 +31,10 @@ class TownPresenter extends BasePresenter {
     return $form;
   }
   
+  /**
+   * @param int $id
+   * @return void
+   */
   function actionEdit($id) {
     try {
       $this->town = $this->model->get($id);

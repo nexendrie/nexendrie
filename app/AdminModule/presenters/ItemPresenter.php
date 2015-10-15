@@ -29,6 +29,10 @@ class ItemPresenter extends BasePresenter {
     }
   }
   
+  /**
+   * @param AddEditItemFormFactory $factory
+   * @return Form
+   */
   protected function createComponentAddItemForm(AddEditItemFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {

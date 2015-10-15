@@ -100,6 +100,9 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     }
   }
   
+  /**
+   * @return void
+   */
   function afterCompile(\Nette\PhpGenerator\ClassType $class) {
     $roles = $this->getConfig($this->defaults)["roles"];
     $initialize = $class->methods["initialize"];

@@ -51,6 +51,10 @@ class MessagesPresenter extends BasePresenter {
     }
   }
   
+  /**
+   * @param int|NULL $id Receiver's id
+   * @return void
+   */
   function actionNew($id = NULL) {
     
   }

@@ -96,6 +96,10 @@ class ShopControl extends \Nette\Application\UI\Control {
     $this->orm->flush();
   }
   
+  /**
+   * @param int $item
+   * @return void
+   */
   function handleBuy($item) {
     try {
       $this->buy($item);

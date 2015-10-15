@@ -44,6 +44,9 @@ class ContentPresenter extends BasePresenter {
     $this->template->towns = $this->townModel->listOfTowns();
   }
   
+  /**
+   * @return void
+   */
   function renderMounts() {
     $this->template->mounts = $this->mountModel->listOfMounts();
   }
