@@ -17,6 +17,8 @@ class TownDummy extends \Nette\Object {
   protected $owner;
   /** @var int */
   protected $price;
+  /** @var bool */
+  protected $onMarket;
   
   function __construct(Town $town) {
     $this->id = $town->id;
@@ -24,6 +26,7 @@ class TownDummy extends \Nette\Object {
     $this->description = $town->description;
     $this->owner = $town->owner->id;
     $this->price = $town->price;
+    $this->onMarket = $town->onMarket;
   }
   
   /**

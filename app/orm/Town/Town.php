@@ -12,6 +12,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $description
  * @property User $owner {m:1 User::$ownedTowns}
  * @property int $price {default 5000}
+ * @property bool $onMarket {default 0}
  * @property OneHasMany|User[] $denizens {1:m User::$town}
  */
 class Town extends Entity {
