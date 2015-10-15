@@ -19,10 +19,6 @@ class Job extends \Nette\Object {
   protected $user;
   /** Base success rate for job (in %) */
   const BASE_SUCCESS_RATE = 55;
-  /** Increase of success rate per skill level (in %) */
-  const SKILL_LEVEL_SUCCESS_RATE = 5;
-  /** Increase of income per skill level (in %) */
-  const SKILL_LEVEL_INCOME = 15;
   
   function __construct(Skills $skillsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->skillsModel = $skillsModel;
@@ -137,11 +133,7 @@ class Job extends \Nette\Object {
         }
       }
     }
-    $userSkillLevel = $this->skillsModel->getLevelOfSkill($job->job->neededSkill->id);
-    if($userSkillLevel) {
-      $increase = $userSkillLevel * self::SKILL_LEVEL_INCOME;
-      $extra += (int) $reward /100 * $increase;
-    }
+    $extra += $this->skillsModel->calculateSkillIncomeBonus($reward, $job->job->neededSkill->id);
     return array("reward" => $reward, "extra" => $extra);
   }
   
@@ -204,10 +196,7 @@ class Job extends \Nette\Object {
    */
   function calculateSuccessRate(UserJobEntity $job) {
     $successRate = self::BASE_SUCCESS_RATE;
-    $userSkill = $this->orm->userSkills->getByUserAndSkill($this->user->id, $job->job->neededSkill->id);
-    if($userSkill) {
-      $successRate += $userSkill->level * self::SKILL_LEVEL_SUCCESS_RATE;
-    }
+    $successRate += $this->skillsModel->calculateSkillSuccessBonus($job->job->neededSkill->id);
     return $successRate;
   }
   

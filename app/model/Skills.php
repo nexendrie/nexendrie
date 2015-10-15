@@ -14,6 +14,10 @@ class Skills extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  /** Increase of success rate per skill level (in %) */
+  const SKILL_LEVEL_SUCCESS_RATE = 5;
+  /** Increase of income per skill level (in %) */
+  const SKILL_LEVEL_INCOME = 15;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
@@ -144,6 +148,42 @@ class Skills extends \Nette\Object {
     }
     if($skill) return $skill->level;
     else return 0;
+  }
+  
+  /**
+   * Calculate bonus income from skill level
+   * 
+   * @param int $baseIncome
+   * @param int $skillId
+   * @return int
+   * @throws AuthenticationNeededException
+   */
+  function calculateSkillIncomeBonus($baseIncome, $skillId) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $bonus = 0;
+    $userSkillLevel = $this->getLevelOfSkill($skillId);
+    if($userSkillLevel) {
+      $increase = $userSkillLevel * self::SKILL_LEVEL_INCOME;
+      $bonus += (int) $baseIncome /100 * $increase;
+    }
+    return $bonus;
+  }
+  
+  /**
+   * Calculate bonus success rate from skill level
+   * 
+   * @param int $skillId
+   * @return int
+   * @throws AuthenticationNeededException
+   */
+  function calculateSkillSuccessBonus($skillId) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $bonus = 0;
+    $userSkillLevel = $this->getLevelOfSkill($skillId);
+    if($userSkillLevel) {
+      $bonus += $userSkillLevel * self::SKILL_LEVEL_SUCCESS_RATE;
+    }
+    return $bonus;
   }
 }
 
