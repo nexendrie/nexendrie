@@ -9,6 +9,7 @@ namespace Nexendrie\Orm;
  * @property string $name
  * @property string $singleName
  * @property int $level
+ * @property string $path
  * @property int $members
  */
 class GroupDummy extends \Nette\Object {
@@ -20,6 +21,8 @@ class GroupDummy extends \Nette\Object {
   protected $singleName;
   /** @var int */
   protected $level;
+  /** @var string */
+  protected $path;
   /** @var int */
   protected $members;
   
@@ -28,6 +31,7 @@ class GroupDummy extends \Nette\Object {
     $this->name = $g->name;
     $this->singleName = $g->singleName;
     $this->level = $g->level;
+    $this->path = $g->path;
     $this->members = $g->members->count();
   }
   
@@ -45,6 +49,10 @@ class GroupDummy extends \Nette\Object {
   
   function getLevel() {
     return $this->level;
+  }
+  
+  function getPath() {
+    return $this->path;
   }
   
   function getMembers() {
