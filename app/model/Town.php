@@ -75,9 +75,59 @@ class Town extends \Nette\Object {
     }
     $this->orm->towns->persistAndFlush($town);
   }
+  
+  /**
+   * @return TownEntity[]
+   */
+  function townsOnSale() {
+    return $this->orm->towns->findOnMarket();
+  }
+  
+  /**
+   * Buy specified mount
+   * 
+   * @param int $id Mount's id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws TownNotFoundException
+   * @throws TownNotOnSaleException
+   * @throws CannotBuyOwnTownException
+   * @throws InsufficientLevelForTownException
+   * @throws InsufficientFunds
+   */
+  function buy($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $town = $this->orm->towns->getById($id);
+    if(!$town) throw new TownNotFoundException;
+    if(!$town->onMarket) throw new TownNotOnSaleException;
+    if($town->owner->id === $this->user->id) throw new CannotBuyOwnTownException;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->group->level < 350) throw new InsufficientLevelForTownException;
+    if($user->money < $town->price) throw new InsufficientFunds;
+    $seller = $town->owner;
+    $seller->money += $town->price;
+    $user->money -= $town->price;
+    $town->owner = $user;
+    $town->onMarket = false;
+    $this->orm->towns->persist($town);
+    $this->orm->users->persist($seller);
+    $this->orm->flush();
+  }
 }
 
 class TownNotFoundException extends RecordNotFoundException {
+  
+}
+
+class TownNotOnSaleException extends AccessDeniedException {
+  
+}
+
+class InsufficientLevelForTownException extends AccessDeniedException {
+  
+}
+
+class CannotBuyOwnTownException extends AccessDeniedException {
   
 }
 ?>

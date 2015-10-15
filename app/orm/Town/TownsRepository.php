@@ -10,6 +10,11 @@ use Nextras\Orm\Repository\Repository,
  * @method ICollection|Town[] findByOwner($owner)
  */
 class TownsRepository extends Repository {
-  
+  /**
+   * @return ICollection|Town[]
+   */
+  function findOnMarket() {
+    return $this->findBy(array("onMarket" => true));
+  }
 }
 ?>

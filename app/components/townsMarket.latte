@@ -1,0 +1,8 @@
+  <h1>Města</h1>
+  {if $towns->count() < 1}
+  Žádná města nejsou na prodej.
+  {else}
+    {foreach $towns as $town}
+  {$town->owner->group->singleName} <a href="{plink :Front:Profile:default, username=>$town->owner->username}">{$town->owner->publicname}</a> nabízí {$town->name} za {$town->priceT}. <a n:href="buy! $town->id">Koupit</a><br>
+    {/foreach}
+  {/if}

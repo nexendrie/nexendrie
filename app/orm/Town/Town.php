@@ -14,8 +14,20 @@ use Nextras\Orm\Entity\Entity,
  * @property int $price {default 5000}
  * @property bool $onMarket {default 0}
  * @property OneHasMany|User[] $denizens {1:m User::$town}
+ * @property-read string $priceT {virtual}
  */
 class Town extends Entity {
+  /** @var \Nexendrie\Model\Locale $localeModel */
+  protected $localeModel;
+  
+  function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+    $this->localeModel = $localeModel;
+  }
+  
+  function getterPriceT() {
+    return $this->localeModel->money($this->price);
+  }
+  
   /**
    * @return \Nexendrie\Orm\TownDummy
    */

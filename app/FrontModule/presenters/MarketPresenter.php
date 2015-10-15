@@ -3,7 +3,9 @@ namespace Nexendrie\FrontModule\Presenters;
 
 use Nexendrie\Components\ShopControlFactory,
     Nexendrie\Components\MountsMarketControlFactory,
-    Nexendrie\Components\MountsMarketControl;
+    Nexendrie\Components\MountsMarketControl,
+    Nexendrie\Components\TownsMarketControlFactory,
+    Nexendrie\Components\TownsMarketControl;
 
 /**
  * Presenter Market
@@ -62,6 +64,21 @@ class MarketPresenter extends BasePresenter {
    * @return MountsMarketControl
    */
   protected function createComponentMountsMarket(MountsMarketControlFactory $factory) {
+    return $factory->create();
+  }
+  
+  /**
+   * @return void
+   */
+  function renderTowns() {
+    $this->requiresLogin();
+  }
+  
+  /**
+   * @param TownsMarketControlFactory $factory
+   * @return TownsMarketControl
+   */
+  protected function createComponentTownsMarket(TownsMarketControlFactory $factory) {
     return $factory->create();
   }
 }

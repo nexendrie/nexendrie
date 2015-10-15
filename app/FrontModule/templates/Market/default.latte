@@ -9,5 +9,6 @@
     <p><a n:href="Market:shop $shop->id">{$shop->name}</a></p>   
   {/foreach}
     <p><a n:href="mounts">Jezdecká zvířata</a></p>
+    {if $user->loggedIn AND $user->identity->level>=350}<p><a n:href="towns">Města</a></p>{/if}
   </article>
 {/block}
