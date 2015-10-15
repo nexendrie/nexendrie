@@ -49,7 +49,7 @@ class JobPresenter extends BasePresenter {
    */
   protected function createComponentEditJobForm(AddEditJobFormFactory $factory) {
     $form = $factory->create();
-    $form->setDefaults($this->job->toArray());
+    $form->setDefaults($this->job->dummyArray());
     $form->onSuccess[] = function(Form $form) {
       $this->model->editJob($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Změny uloženy.");

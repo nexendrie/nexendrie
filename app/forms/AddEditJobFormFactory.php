@@ -9,6 +9,25 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 class AddEditJobFormFactory {
+  /** @var \Nexendrie\Model\Skills */
+  protected $skillsModel;
+  
+  function __construct(\Nexendrie\Model\Skills $skillsModel) {
+    $this->skillsModel = $skillsModel;
+  }
+  
+  /**
+   * @return string[]
+   */
+  protected function getSkills() {
+    $return = array();
+    $skills = $this->skillsModel->listOfSkills();
+    foreach($skills as $skill) {
+      $return[$skill->id] = $skill->name;
+    }
+    return $return;
+  }
+  
   /**
    * @return Form
    */
@@ -16,7 +35,7 @@ class AddEditJobFormFactory {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
-      ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 20 znaků.", 20);
+      ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25);
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.")
       ->setOption("description", "Zobrazí se v seznamu prací.");
@@ -41,6 +60,10 @@ class AddEditJobFormFactory {
       ->addRule(Form::RANGE, "Úroveň musí být v rozmezí 50-10000.", array(50, 10000))
       ->setValue(50)
       ->setOption("description", "Minimální úroveň pro výkon práce.");
+    $form->addSelect("neededSkill", "Dovednost", $this->getSkills())
+       ->setPrompt("Vyber dovednost")
+       ->setRequired("Vyber dovednost.")
+       ->setOption("description", "Dovednost nutná pro výkon práce, zvyšuje příjem.");
     $form->addSubmit("submit", "Odeslat");
     return $form;
   }
