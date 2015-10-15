@@ -6,7 +6,8 @@ use Nexendrie\Model\AlreadyWorkingException,
     Nexendrie\Model\InsufficientLevelForJobException,
     Nexendrie\Model\NotWorkingException,
     Nexendrie\Model\CannotWorkException,
-    Nexendrie\Model\JobNotFinishedException;
+    Nexendrie\Model\JobNotFinishedException,
+    Nexendrie\Model\InsufficientSkillLevelForJobException;
 
 /**
  * Presenter Work
@@ -87,6 +88,8 @@ class WorkPresenter extends BasePresenter {
       $this->flashMessage("Práce nenalezena.");
     } catch(InsufficientLevelForJobException $e) {
       $this->flashMessage("Nemáš dostatečnou úroveň pro tuto práci.");
+    } catch(InsufficientSkillLevelForJobException $e) {
+      $this->flashMessage("Neovládáš potřebnou dovednost pro tuto práci.");
     }
     $this->redirect("default");
   }

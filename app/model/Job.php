@@ -11,6 +11,8 @@ use Nexendrie\Orm\Job as JobEntity,
  * @author Jakub Konečný
  */
 class Job extends \Nette\Object {
+  /** @var Skills */
+  protected $skillsModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -18,7 +20,8 @@ class Job extends \Nette\Object {
   /** Base success rate for job (in %) */
   const BASE_SUCCESS_RATE = 55;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Skills $skillsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    $this->skillsModel = $skillsModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -40,7 +43,16 @@ class Job extends \Nette\Object {
    */
   function findAvailableJobs() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    else return $this->orm->jobs->findForLevel($this->user->identity->level);
+    $return = array();
+    $offers = $this->orm->jobs->findForLevel($this->user->identity->level);
+    foreach($offers as $offer) {
+      if($offer->neededSkillLevel > 0) {
+        $userSkillLevel = $this->skillsModel->getLevelOfSkill($offer->neededSkill->id);
+        if($userSkillLevel < $offer->neededSkillLevel) continue;
+      }
+      $return[] = $offer;
+    }
+    return $return;
   }
   
   /**
@@ -100,6 +112,10 @@ class Job extends \Nette\Object {
     $row = $this->orm->jobs->getById($id);
     if(!$row) throw new JobNotFoundException;
     if($row->level > $this->user->identity->level) throw new InsufficientLevelForJobException;
+    if($row->neededSkillLevel > 0) {
+        $userSkillLevel = $this->skillsModel->getLevelOfSkill($offer->neededSkill->id);
+        if($userSkillLevel < $row->neededSkillLevel) throw new InsufficientSkillLevelForJobException;
+      }
     $job = new UserJobEntity;
     $this->orm->userJobs->attach($job);
     $job->user = $this->user->id;
@@ -130,6 +146,7 @@ class Job extends \Nette\Object {
         }
       }
     }
+    $extra += $this->skillsModel->calculateSkillIncomeBonus($reward, $job->job->neededSkill->id);
     return array("reward" => $reward, "extra" => $extra);
   }
   
@@ -185,6 +202,18 @@ class Job extends \Nette\Object {
   }
   
   /**
+   * Calculate success rate for job
+   * 
+   * @param UserJobEntity $job
+   * @return int
+   */
+  function calculateSuccessRate(UserJobEntity $job) {
+    $successRate = self::BASE_SUCCESS_RATE;
+    $successRate += $this->skillsModel->calculateSkillSuccessBonus($job->job->neededSkill->id);
+    return $successRate;
+  }
+  
+  /**
    * Do one operation in job
    * 
    * @return \stdClass Results
@@ -200,7 +229,7 @@ class Job extends \Nette\Object {
       throw $e;
     }
     $job = $this->getCurrentJob();
-    $success = (rand(1, 100) <= self::BASE_SUCCESS_RATE);
+    $success = (rand(1, 100) <= $this->calculateSuccessRate($job));
     if($success) $job->count++;
     $job->lastAction = time();
     $this->orm->userJobs->persistAndFlush($job);
@@ -342,6 +371,10 @@ class AlreadyWorkingException extends AccessDeniedException {
 }
 
 class InsufficientLevelForJobException extends AccessDeniedException {
+  
+}
+
+class InsufficientSkillLevelForJobException extends AccessDeniedException {
   
 }
 
