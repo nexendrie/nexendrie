@@ -17,6 +17,8 @@ class Job extends \Nette\Object {
   protected $user;
   /** Base success rate for job (in %) */
   const BASE_SUCCESS_RATE = 55;
+  /** Increase of success rate per skill level (in %) */
+  const SKILL_LEVEL_SUCCESS_RATE = 5;
   /** Increase of income per skill level (in %) */
   const SKILL_LEVEL_INCOME = 15;
   
@@ -192,6 +194,21 @@ class Job extends \Nette\Object {
   }
   
   /**
+   * Calculate success rate for job
+   * 
+   * @param UserJobEntity $job
+   * @return int
+   */
+  function calculateSuccessRate(UserJobEntity $job) {
+    $successRate = self::BASE_SUCCESS_RATE;
+    $userSkill = $this->orm->userSKills->getByUserAndSkill($this->user->id, $job->job->neededSkill->id);
+    if($userSkill) {
+      $successRate += $userSkill->level * self::SKILL_LEVEL_SUCCESS_RATE;
+    }
+    return $successRate;
+  }
+  
+  /**
    * Do one operation in job
    * 
    * @return \stdClass Results
@@ -207,7 +224,7 @@ class Job extends \Nette\Object {
       throw $e;
     }
     $job = $this->getCurrentJob();
-    $success = (rand(1, 100) <= self::BASE_SUCCESS_RATE);
+    $success = (rand(1, 100) <= $this->calculateSuccessRate($job));
     if($success) $job->count++;
     $job->lastAction = time();
     $this->orm->userJobs->persistAndFlush($job);
