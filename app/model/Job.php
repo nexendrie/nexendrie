@@ -43,7 +43,16 @@ class Job extends \Nette\Object {
    */
   function findAvailableJobs() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    else return $this->orm->jobs->findForLevel($this->user->identity->level);
+    $return = array();
+    $offers = $this->orm->jobs->findForLevel($this->user->identity->level);
+    foreach($offers as $offer) {
+      if($offer->neededSkillLevel > 0) {
+        $userSkillLevel = $this->skillsModel->getLevelOfSkill($offer->neededSkill->id);
+        if($userSkillLevel < $offer->neededSkillLevel) continue;
+      }
+      $return[] = $offer;
+    }
+    return $return;
   }
   
   /**
@@ -103,6 +112,10 @@ class Job extends \Nette\Object {
     $row = $this->orm->jobs->getById($id);
     if(!$row) throw new JobNotFoundException;
     if($row->level > $this->user->identity->level) throw new InsufficientLevelForJobException;
+    if($row->neededSkillLevel > 0) {
+        $userSkillLevel = $this->skillsModel->getLevelOfSkill($offer->neededSkill->id);
+        if($userSkillLevel < $row->neededSkillLevel) throw new InsufficientSkillLevelForJobException;
+      }
     $job = new UserJobEntity;
     $this->orm->userJobs->attach($job);
     $job->user = $this->user->id;
@@ -358,6 +371,10 @@ class AlreadyWorkingException extends AccessDeniedException {
 }
 
 class InsufficientLevelForJobException extends AccessDeniedException {
+  
+}
+
+class InsufficientSkillLevelForJobException extends AccessDeniedException {
   
 }
 
