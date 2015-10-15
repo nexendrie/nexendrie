@@ -15,7 +15,7 @@
   <p>
     Města/vesnice:<br>
     {foreach $towns as $town}
-    {$town->name}{if !$iterator->last},{else}.{/if}
+    <a n:href="town $town->id">{$town->name}</a>{if !$iterator->last},{else}.{/if}
     {/foreach}
   </p>
   {/if}

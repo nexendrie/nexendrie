@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Město{/block}
+{block content}
+  <h1>{$town->name}</h1>
+  <p>{$town->description}</p>
+  <h3>Obyvatelé:</h3>
+  <p>
+    {foreach $town->denizens as $denizen}
+    {$denizen->group->singleName} <a n:href="Profile:default $denizen->username">{$denizen->publicname}</a>{if !$iterator->last},{else}.{/if}
+    {/foreach}
+  </p>
+{/block}
