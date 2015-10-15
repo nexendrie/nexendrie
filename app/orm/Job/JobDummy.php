@@ -21,8 +21,10 @@ class JobDummy extends \Nette\Object {
   protected $shift;
   /** @var int */
   protected $level;
-  /** @var int|NULL */
+  /** @var int */
   protected $neededSkill;
+  /** @var int */
+  protected $neededSkillLevel;
   
   function __construct(Job $job) {
     $this->name = $job->name;
@@ -33,6 +35,7 @@ class JobDummy extends \Nette\Object {
     $this->shift = $job->shift;
     $this->level = $job->level;
     $this->neededSkill = $job->neededSkill->id;
+    $this->neededSkillLevel = $job->neededSkillLevel;
   }
   
   /**

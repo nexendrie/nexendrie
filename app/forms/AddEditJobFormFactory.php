@@ -60,10 +60,15 @@ class AddEditJobFormFactory {
       ->addRule(Form::RANGE, "Úroveň musí být v rozmezí 50-10000.", array(50, 10000))
       ->setValue(50)
       ->setOption("description", "Minimální úroveň pro výkon práce.");
-    $form->addSelect("neededSkill", "Dovednost", $this->getSkills())
+    $form->addSelect("neededSkill", "Dovednost:", $this->getSkills())
        ->setPrompt("Vyber dovednost")
        ->setRequired("Vyber dovednost.")
        ->setOption("description", "Dovednost nutná pro výkon práce, zvyšuje příjem.");
+    $form->addText("neededSkillLevel", "Úroveň dovednosti:")
+       ->setRequired("Zadej úroveň dovednosti.")
+       ->addRule(Form::INTEGER, "Úroveň dovednosti musí být celé číslo.")
+       ->addRule(Form::RANGE, "Úroveň dovednosti musí být v rozmezí 0-5.", array(0, 5))
+       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
     return $form;
   }
