@@ -16,4 +16,8 @@ class MissingPermissionsException extends AccessDeniedException {
 class RecordNotFoundException extends \RuntimeException {
   
 }
+
+class ImprisonedException extends AccessDeniedException {
+  
+}
 ?>
