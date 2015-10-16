@@ -1,4 +1,4 @@
-  <h1>Nápověda - {$current->title}</h1>
+  <h1>{$current->title}</h1>
   {include "help/{$current->slug}.latte"}
   <p id="helpNavigation">{if $index>0}<a href="{plink :Front:Help:, page => $pages[$index-1]->slug}"><< Předchozí</a>{/if} <a href="{plink :Front:Help:}">Index</a> {if $index<count($pages)-1}<a href="{plink :Front:Help:, page => $pages[$index+1]->slug}">Následující >></a>{/if}</p>
   
