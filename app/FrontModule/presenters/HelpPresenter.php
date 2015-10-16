@@ -10,6 +10,10 @@ use Nexendrie\Components\HelpControlFactory,
  * @author Jakub Konečný
  */
 class HelpPresenter extends BasePresenter {
+  /**
+   * @param string $page
+   * @return void
+   */
   function renderDefault($page) {
     $this->template->page = $page;
   }
