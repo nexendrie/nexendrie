@@ -41,6 +41,12 @@ class Mount extends Entity {
     );
   }
   
+  function setterHp($value) {
+    if($value > 100) return 100;
+    elseif($value < 0) return 0;
+    else return $value;
+  }
+  
   function getterGenderCZ() {
     return self::getGenders()[$this->gender];
   }
