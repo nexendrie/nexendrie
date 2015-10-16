@@ -69,6 +69,9 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->removeDefinition("router");
     $builder->addDefinition("router")
       ->setFactory("Nexendrie\Model\RouterFactory::create");
+    $builder->addDefinition($this->prefix("cronTasks"))
+       ->setFactory("Nexendrie\CronTasks")
+       ->addTag("cronner.tasks");
   }
   
   /**

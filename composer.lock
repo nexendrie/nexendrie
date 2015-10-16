@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7ca5ec83723c4e1a63546b41b8ba4c95",
-    "content-hash": "b7fda39941baa309564d53e15dee916c",
+    "hash": "06d18b26e2829a5acd6debbfd2fd615c",
+    "content-hash": "6f9bf74fb88897f5e707120e98e22945",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -794,6 +794,60 @@
             "time": "2015-07-11 21:20:57"
         },
         {
+            "name": "nette/safe-stream",
+            "version": "v2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/safe-stream.git",
+                "reference": "bf30db367b51a0932c44dcb9a378927644d48b2e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/safe-stream/zipball/bf30db367b51a0932c44dcb9a378927644d48b2e",
+                "reference": "bf30db367b51a0932c44dcb9a378927644d48b2e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1"
+            },
+            "conflict": {
+                "nette/nette": "<2.2"
+            },
+            "require-dev": {
+                "nette/tester": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/loader.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "http://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "http://nette.org/contributors"
+                }
+            ],
+            "description": "Nette SafeStream: Atomic Operations",
+            "homepage": "http://nette.org",
+            "time": "2015-07-11 20:59:15"
+        },
+        {
             "name": "nette/security",
             "version": "v2.3.1",
             "source": {
@@ -1066,6 +1120,64 @@
                 "urlify"
             ],
             "time": "2013-11-30 06:16:23"
+        },
+        {
+            "name": "stekycz/cronner",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stekycz/Cronner.git",
+                "reference": "51082627706d361ca1ea3512b5943a70bcc3f1f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/51082627706d361ca1ea3512b5943a70bcc3f1f6",
+                "reference": "51082627706d361ca1ea3512b5943a70bcc3f1f6",
+                "shasum": ""
+            },
+            "require": {
+                "nette/bootstrap": "~2.3",
+                "nette/di": "~2.3",
+                "nette/reflection": "~2.3",
+                "nette/safe-stream": "~2.3",
+                "nette/utils": "~2.3",
+                "php": ">=5.3.3",
+                "tracy/tracy": "~2.3"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "~0.8",
+                "janmarek/mockista": "~1.0",
+                "nette/tester": "~1.3"
+            },
+            "suggest": {
+                "kdyby/console": "Symfony Console integration for Kdyby components",
+                "kdyby/events": "Events for Nette Framework"
+            },
+            "type": "nette-addon",
+            "autoload": {
+                "classmap": [
+                    "Cronner/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Štekl",
+                    "email": "martin.stekl@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple tool which helps with maintenance of cron tasks.",
+            "keywords": [
+                "cron",
+                "manager",
+                "nette",
+                "task"
+            ],
+            "time": "2015-03-05 22:11:26"
         },
         {
             "name": "tracy/tracy",

@@ -13,5 +13,6 @@ extensions:
     nexendrie: Nexendrie\Model\DI\NexendrieExtension
     dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
     orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
+    cronner: stekycz\Cronner\DI\CronnerExtension
 orm:
     model: Nexendrie\Orm\Model
