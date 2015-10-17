@@ -3,7 +3,7 @@
 #header h2 a { text-decoration: none; color: gray; font-size: larger; }
 #adminPanel { position: absolute; top: 73px; left: 615px; }
 #userPanel { position: relative; bottom: 3px; left: 700px; width: 280px; }
-#userPanel a, #userPanel a { text-decoration: none; background-color: green; color: white;
+#userPanel a, #adminPanel a { text-decoration: none; background-color: green; color: white;
   border: 5px green solid; position: relative; bottom: 1px; }
 #userPanel a:hover, #adminPanel a:hover { color: yellow; }
 #mainMenu { position: relative; top: 7px; width: 160px;
