@@ -70,7 +70,7 @@ class Profile extends \Nette\Object {
   /**
    * Get list of potential town owners
    * 
-   * @return rray
+   * @return array
    */
   function getListOfLords() {
     $return = array();
