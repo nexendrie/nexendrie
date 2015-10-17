@@ -23,7 +23,7 @@ class Item extends Entity {
     $this->localeModel = $localeModel;
   }
   
-  function getterPriceT() {
+  protected function getterPriceT() {
     return $this->localeModel->money($this->price);
   }
   

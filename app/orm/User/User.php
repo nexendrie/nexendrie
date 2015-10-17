@@ -43,11 +43,11 @@ class User extends Entity {
     $this->localeModel = $localeModel;
   }
   
-  function getterJoinedAt() {
+  protected function getterJoinedAt() {
     return $this->localeModel->formatDate($this->joined);
   }
   
-  function getterMoneyT() {
+  protected function getterMoneyT() {
     return $this->localeModel->money($this->money);
   }
 }

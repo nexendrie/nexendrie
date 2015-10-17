@@ -22,7 +22,7 @@ class Message extends Entity {
     $this->localeModel = $localeModel;
   }
   
-  function getterSentAt() {
+  protected function getterSentAt() {
     return $this->localeModel->formatDateTime($this->sent);
   }
 }

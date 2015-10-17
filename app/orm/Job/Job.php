@@ -29,7 +29,7 @@ class Job extends Entity {
     $this->localeModel = $localeModel;
   }
   
-  function getterAwardT() {
+  protected function getterAwardT() {
     return $this->localeModel->money($this->award);
   }
   

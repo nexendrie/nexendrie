@@ -47,15 +47,15 @@ class Mount extends Entity {
     else return $value;
   }
   
-  function getterGenderCZ() {
+  protected function getterGenderCZ() {
     return self::getGenders()[$this->gender];
   }
   
-  function getterPriceT() {
+  protected function getterPriceT() {
     return $this->localeModel->money($this->price);
   }
   
-  function getterBirthAt() {
+  protected function getterBirthAt() {
     return $this->localeModel->formatDateTime($this->birth);
   }
   

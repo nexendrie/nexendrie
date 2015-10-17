@@ -26,11 +26,11 @@ class Poll extends Entity {
     $this->localeModel = $localeModel;
   }
   
-  function getterAddedAt() {
+  protected function getterAddedAt() {
     return $this->localeModel->formatDateTime($this->added);
   }
   
-  function getterParsedAnswers() {
+  protected function getterParsedAnswers() {
     return explode("\n", $this->answers);
   }
 }

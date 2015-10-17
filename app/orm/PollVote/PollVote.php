@@ -21,7 +21,7 @@ class PollVote extends Entity {
     $this->localeModel = $localeModel;
   }
   
-  function getterAddedAt() {
+  protected function getterAddedAt() {
     return $this->localeModel->formatDateTime($this->added);
   }
 }
