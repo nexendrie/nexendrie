@@ -106,11 +106,11 @@ class Town extends \Nette\Object {
     if($user->money < $town->price) throw new InsufficientFunds;
     $seller = $town->owner;
     $seller->money += $town->price;
+    $this->orm->users->persist($seller);
     $user->money -= $town->price;
     $town->owner = $user;
     $town->onMarket = false;
     $this->orm->towns->persist($town);
-    $this->orm->users->persist($seller);
     $this->orm->flush();
   }
 }

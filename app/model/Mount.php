@@ -117,11 +117,11 @@ class Mount extends \Nette\Object {
     if($user->money < $mount->price) throw new InsufficientFunds;
     $seller = $mount->owner;
     $seller->money += $mount->price;
+    $this->orm->users->persist($seller);
     $user->money -= $mount->price;
     $mount->owner = $user;
     $mount->onMarket = false;
     $this->orm->mounts->persist($mount);
-    $this->orm->users->persist($seller);
     $this->orm->flush();
   }
 }
