@@ -25,6 +25,6 @@
         "latte/latte": "2.3.x",
         "kdyby/autowired": "1.3.x",
         "nextras/orm": "^1.1",
-        "stekycz/cronner": "^1.1"
+        "stekycz/cronner": "dev-master"
     }
 }

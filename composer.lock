@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "06d18b26e2829a5acd6debbfd2fd615c",
-    "content-hash": "6f9bf74fb88897f5e707120e98e22945",
+    "hash": "cdd7600f2f18e824fce7f140c8a54922",
+    "content-hash": "e6d562b9e9c69c3776f692214aafaaf3",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1123,26 +1123,26 @@
         },
         {
             "name": "stekycz/cronner",
-            "version": "v1.1.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stekycz/Cronner.git",
-                "reference": "51082627706d361ca1ea3512b5943a70bcc3f1f6"
+                "reference": "0ccb7dae1fca4de94081ca954d7922ef8a840973"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/51082627706d361ca1ea3512b5943a70bcc3f1f6",
-                "reference": "51082627706d361ca1ea3512b5943a70bcc3f1f6",
+                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/0ccb7dae1fca4de94081ca954d7922ef8a840973",
+                "reference": "0ccb7dae1fca4de94081ca954d7922ef8a840973",
                 "shasum": ""
             },
             "require": {
-                "nette/bootstrap": "~2.3",
-                "nette/di": "~2.3",
-                "nette/reflection": "~2.3",
-                "nette/safe-stream": "~2.3",
-                "nette/utils": "~2.3",
+                "nette/bootstrap": "@dev",
+                "nette/di": "@dev",
+                "nette/reflection": "@dev",
+                "nette/safe-stream": "@dev",
+                "nette/utils": "@dev",
                 "php": ">=5.3.3",
-                "tracy/tracy": "~2.3"
+                "tracy/tracy": "@dev"
             },
             "require-dev": {
                 "jakub-onderka/php-parallel-lint": "~0.8",
@@ -1177,7 +1177,7 @@
                 "nette",
                 "task"
             ],
-            "time": "2015-03-05 22:11:26"
+            "time": "2015-04-30 05:43:41"
         },
         {
             "name": "tracy/tracy",
@@ -1238,7 +1238,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "stekycz/cronner": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
