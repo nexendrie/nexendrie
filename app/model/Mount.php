@@ -141,4 +141,12 @@ class InsufficientLevelForMountException extends AccessDeniedException {
 class CannotBuyOwnMountException extends AccessDeniedException {
   
 }
+
+class MountNotOwnedException extends AccessDeniedException {
+  
+}
+
+class CareNotNeededException extends AccessDeniedException {
+  
+}
 ?>
