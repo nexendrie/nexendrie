@@ -1,0 +1,11 @@
+  <h1>Stáje</h1>
+  <h3>Mí koně:</h3>
+  {if $mounts->count() < 1}
+  Nevlastníš žádná jezdecká zvířata.
+  {else}
+    {foreach $mounts as $mount}
+  <p>{$mount->type->name} {$mount->name} <a href="{plink :Front:Stables:manage $mount->id}">Spravovat</a><br>
+  Stav: {$mount->hp} %{if $mount->hp<=30} (Kritický!){/if}</p>
+    {/foreach}
+  {/if}
+  <p><a href="{plink :Front:Market:mounts}">Koupit jezdecké zvíře</a></p>

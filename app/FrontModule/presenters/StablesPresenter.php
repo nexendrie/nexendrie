@@ -4,7 +4,9 @@ namespace Nexendrie\FrontModule\Presenters;
 use Nexendrie\Orm\Mount as MountEntity,
     Nexendrie\Model\MountNotFoundException,
     Nexendrie\Forms\ManageMountFormFactory,
-    Nette\Application\UI\Form;
+    Nette\Application\UI\Form,
+    Nexendrie\Components\StablesControlFactory,
+    Nexendrie\Components\StablesControl;
 
 
 
@@ -32,6 +34,14 @@ class StablesPresenter extends BasePresenter {
    */
   function renderDefault() {
     $this->template->mounts = $this->model->listOfMounts($this->user->id);
+  }
+  
+  /**
+   * @param StablesControlFactory $factory
+   * @return StablesControl
+   */
+  protected function createComponentStables(StablesControlFactory $factory) {
+    return $factory->create();
   }
   
   /**
