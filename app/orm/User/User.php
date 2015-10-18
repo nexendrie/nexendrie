@@ -18,7 +18,7 @@ use Nextras\Orm\Entity\Entity,
  * @property int|NULL $lastActive
  * @property Group $group {m:1 Group::$members}
  * @property bool $infomails {default 0}
- * @property string $style {default default}
+ * @property string $style {default "blu-sky"}
  * @property bool $banned {default 0}
  * @property int $money {default 2}
  * @property Town $town {m:1 Town::$denizens}
