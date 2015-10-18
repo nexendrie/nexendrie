@@ -2,14 +2,14 @@
 namespace Nexendrie\AdminModule\Presenters;
 
 use Nette\Application\UI\Form,
-    Nexendrie\Forms\AddEditNewsFormFactory;
+    Nexendrie\Forms\AddEditArticleFormFactory;
 
 /**
  * Presenter News
  *
  * @author Jakub Konečný
  */
-class NewsPresenter extends BasePresenter {
+class ArticlePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Article @autowire */
   protected $model;
   
@@ -24,17 +24,17 @@ class NewsPresenter extends BasePresenter {
    * @return void
    */
   function actionAdd() {
-    $this->requiresPermissions("news", "add");
+    $this->requiresPermissions("article", "add");
   }
   
   /**
    * Creates form for adding news
    * @todo redirect to the added news
    * 
-   * @param AddEditNewsFormFactory $factory
+   * @param AddEditArticleFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  protected function createComponentAddNewsForm(AddEditNewsFormFactory $factory) {
+  protected function createComponentAddArticleForm(AddEditArticleFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->model->addNews($form->getValues(true));
@@ -51,17 +51,17 @@ class NewsPresenter extends BasePresenter {
    * @return void
    */
   function actionEdit($id) {
-    $this->requiresPermissions("news", "edit");
+    $this->requiresPermissions("article", "edit");
     if(!$this->model->exists($id)) $this->forward("notfound");
   }
   
   /**
    * Creates form for editing news
    * 
-   * @param AddEditNewsFormFactory $factory
+   * @param AddEditArticleFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
-  protected function createComponentEditNewsForm(AddEditNewsFormFactory $factory) {
+  protected function createComponentEditArticleForm(AddEditArticleFormFactory $factory) {
     $news = $this->model->view($this->getParameter("id"));
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {

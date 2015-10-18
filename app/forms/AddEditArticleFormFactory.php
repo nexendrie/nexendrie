@@ -8,7 +8,7 @@ use Nette\Application\UI\Form;
  * 
  * @author Jakub Konečný
  */
-class AddEditNewsFormFactory {
+class AddEditArticleFormFactory {
   /**
    * @return \Nette\Application\UI\Form
    */
