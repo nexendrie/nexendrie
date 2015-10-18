@@ -13,8 +13,10 @@ use Nextras\Orm\Entity\Entity;
  * @property int|NULL $released
  * @property int $numberOfShifts
  * @property int $count {default 0}
+ * @property int|NULL $lastAction
  * @property-read string $imprisonedAt {virtual}
  * @property-read string $releasedAt {virtual}
+ * @property-read int $nextShift {virtual}
  */
 class Punishment extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
@@ -31,6 +33,11 @@ class Punishment extends Entity {
   protected function getterReleasedAt() {
     if(is_int($this->released)) return $this->localeModel->formatDateTime($this->released);
     else return "";
+  }
+  
+  protected function getterNextShift() {
+    if($this->lastAction === NULL) return time();
+    else return $this->lastAction + (60 * 60);
   }
 }
 ?>
