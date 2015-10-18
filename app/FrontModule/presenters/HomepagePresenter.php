@@ -7,7 +7,7 @@ namespace Nexendrie\FrontModule\Presenters;
  * @author Jakub Konečný
  */
 class HomepagePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\News @autowire */
+  /** @var \Nexendrie\Model\Article @autowire */
   protected $model;
   
   /**
@@ -15,7 +15,8 @@ class HomepagePresenter extends BasePresenter {
    */
   function renderPage($page = 1) {
     $paginator = new \Nette\Utils\Paginator;
-    $this->template->news = $this->model->page($paginator, $page);
+    $paginator->page = $page;
+    $this->template->news = $this->model->listOfNews($paginator);
     $this->template->paginator = $paginator;
   }
 }

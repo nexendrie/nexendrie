@@ -14,10 +14,26 @@ class Article extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  /** @var int */
+  protected $itemsPerPage;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct($itemsPerPage, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
+    $this->itemsPerPage = (int) $itemsPerPage;
+  }
+  
+  /**
+   * Get list of news
+   * 
+   * @param \Nette\Utils\Paginator $paginator
+   * @return ArticleEntity[]
+   */
+  function listOfNews(\Nette\Utils\Paginator $paginator = NULL) {
+    if($paginator) $paginator->itemsPerPage = $this->itemsPerPage;
+    $news = $this->orm->articles->findNews();
+    if($paginator) $news->limitBy($paginator->getLength(), $paginator->getOffset());
+    return $news;
   }
   
   /**
@@ -25,12 +41,23 @@ class Article extends \Nette\Object {
    * 
    * @param int $id
    * @return ArticleEntity
-   * @throws ArticleNotFound
+   * @throws ArticleNotFoundException
    */
   function view($id) {
     $article = $this->orm->articles->getById($id);
     if(!$article) throw new ArticleNotFound;
     else return $article;
+  }
+  
+  /**
+   * Get comments meeting specified rules
+   * 
+   * @param int $article
+   * @return ArticleEntity[]
+   */
+  function viewComments($article = 0) {
+    if($article === 0) return $this->orm->comments->findAll();
+    else return $this->orm->comments->findByArticle($article);
   }
   
   /**
@@ -98,7 +125,7 @@ class Article extends \Nette\Object {
    * @param array $data
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
-   * @throws NewsNotFoundException
+   * @throws ArticleNotFoundException
    */
   function editArticle($id, array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
@@ -109,6 +136,17 @@ class Article extends \Nette\Object {
       $news->$key = $value;
     }
     $this->orm->articles->persistAndFlush($news);
+  }
+  
+  /**
+   * Check whetever specified article exists
+   * 
+   * @param int $id News' id
+   * @return bool
+   */
+  function exists($id) {
+    $row = $this->orm->articles->getByID($id);
+    return (bool) $row;
   }
 }
 

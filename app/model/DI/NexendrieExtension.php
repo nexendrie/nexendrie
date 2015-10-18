@@ -48,14 +48,14 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $config = $this->getConfig($this->defaults);
     $services = array(
       "group", "market", "messenger", "polls", "profile", "rss", "property", "job",
-      "town", "mount", "skills", "article"
+      "town", "mount", "skills"
     );
     foreach($services as $service) {
       $builder->addDefinition($this->prefix("model.$service"))
         ->setFactory("Nexendrie\Model\\" . ucfirst($service));
     }
-    $builder->addDefinition($this->prefix("model.news"))
-      ->setFactory("Nexendrie\Model\News", array($config["pagination"]["news"]));
+    $builder->addDefinition($this->prefix("model.article"))
+      ->setFactory("Nexendrie\Model\Article", array($config["pagination"]["news"]));
     $builder->addDefinition($this->prefix("model.userManager"))
       ->setFactory("Nexendrie\Model\UserManager", array($config["roles"], $config["newUser"]));
     $builder->addDefinition($this->prefix("model.locale"))

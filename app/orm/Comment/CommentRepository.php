@@ -7,7 +7,7 @@ use Nextras\Orm\Repository\Repository,
 /**
  * @author Jakub Konečný
  * @method Comment|NULL getById($id)
- * @method ICollection|Comment findByNews($news)
+ * @method ICollection|Comment findByArticle($article)
  */
 class CommentsRepository extends Repository {
 
