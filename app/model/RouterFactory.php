@@ -15,6 +15,7 @@ class RouterFactory extends \Nette\Object {
    */
   static function create() {
     $router = new RouteList;
+    $router[] = new Route("/", "Front:Homepage:page");
     $router[] = new Route("profile/<username>", "Front:Profile:default");
     $router[] = new Route("<presenter message|poll|article>/<id [0-9]+>", array(
       "module" => "Front", "action" => "view",
@@ -24,7 +25,7 @@ class RouterFactory extends \Nette\Object {
         )
       ) 
     ));
-    $router[] = new Route("news/page/<page [0-9]+>", "Front:News:page");
+    $router[] = new Route("page/<page [0-9]+>", "Front:Homepage:page");
     $router[] = new Route("rss[/<action>][/<news [0-9]+>]", "Front:Rss:news");
     $router[] = new Route("help[/<page=index>]", "Front:Help:default");
     $router[] = new Route("admin/<presenter groups|users>", array(

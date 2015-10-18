@@ -13,9 +13,9 @@ class HomepagePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderPage($page = 1) {
     $paginator = new \Nette\Utils\Paginator;
-    $this->template->news = $this->model->page($paginator);
+    $this->template->news = $this->model->page($paginator, $page);
     $this->template->paginator = $paginator;
   }
 }
