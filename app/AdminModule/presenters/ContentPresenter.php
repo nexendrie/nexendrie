@@ -21,8 +21,15 @@ class ContentPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderShops() {
+  function startup() {
+    parent::startup();
     $this->requiresPermissions("content", "list");
+  }
+  
+  /**
+   * @return void
+   */
+  function renderShops() {
     $this->template->shops = $this->marketModel->listOfShops();
   }
   
@@ -30,7 +37,6 @@ class ContentPresenter extends BasePresenter {
    * @return void
    */
   function renderItems() {
-    $this->requiresPermissions("content", "list");
     $this->template->items = $this->marketModel->listOfItems();
   }
   
@@ -38,7 +44,6 @@ class ContentPresenter extends BasePresenter {
    * @return void
    */
   function renderJobs() {
-    $this->requiresPermissions("content", "list");
     $this->template->jobs = $this->jobModel->listOfJobs();
   }
   
@@ -46,7 +51,6 @@ class ContentPresenter extends BasePresenter {
    * @return void
    */
   function renderTowns() {
-    $this->requiresPermissions("content", "list");
     $this->template->towns = $this->townModel->listOfTowns();
   }
   
@@ -54,7 +58,6 @@ class ContentPresenter extends BasePresenter {
    * @return void
    */
   function renderMounts() {
-    $this->requiresPermissions("content", "list");
     $this->template->mounts = $this->mountModel->listOfMounts();
   }
   
@@ -62,7 +65,6 @@ class ContentPresenter extends BasePresenter {
    * @return void
    */
   function renderSkills() {
-    $this->requiresPermissions("content", "list");
     $this->template->skills = $this->skillsModel->listOfSkills();
   }
 }
