@@ -34,6 +34,43 @@ class Article extends \Nette\Object {
   }
   
   /**
+   * @param array $data
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @return void
+   * @deprecated
+   */
+  function addNews(array $data) {
+    $data["category"] = ArticleEntity::CATEGORY_NEWS;
+    try {
+      $this->addArticle($data);
+    } catch(Exception $e) {
+      throw $e;
+    }
+  }
+  
+  /**
+   * Add article
+   * 
+   * @param array $data
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @return void
+   */
+  function addArticle(array $data) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isAllowed("news", "add")) throw new MissingPermissionsException;
+    $news = new ArticleEntity;
+    $this->orm->articles->attach($news);
+    foreach($data as $key => $value) {
+      $news->$key = $value;
+    }
+    $news->author = $this->user->id;
+    $news->added = time();
+    $this->orm->articles->persistAndFlush($news);
+  }
+  
+  /**
    * Adds comment to article
    * 
    * @param array $data
@@ -54,6 +91,25 @@ class Article extends \Nette\Object {
     $this->orm->comments->persistAndFlush($comment);
   }
   
+  /**
+   * Edit specified article
+   * 
+   * @param int $id Article' id
+   * @param array $data
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws NewsNotFoundException
+   */
+  function editArticle($id, array $data) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isAllowed("news", "edit")) throw new MissingPermissionsException("You don't have permissions for adding news.");
+    $news = $this->orm->articles->getById($id);
+    if(!$news) throw new ArticleNotFoundException;
+    foreach($data as $key => $value) {
+      $news->$key = $value;
+    }
+    $this->orm->articles->persistAndFlush($news);
+  }
 }
 
 class ArticleNotFoundException extends RecordNotFoundException {

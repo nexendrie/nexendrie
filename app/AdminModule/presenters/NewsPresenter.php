@@ -12,6 +12,8 @@ use Nette\Application\UI\Form,
 class NewsPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\News @autowire */
   protected $model;
+  /** @var \Nexendrie\Model\Article @autowire */
+  protected $articleModel;
   
   /**
    * @return void
@@ -38,7 +40,7 @@ class NewsPresenter extends BasePresenter {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->model->user = $this->user;
-      $id = $this->model->add($form->getValues(true));
+      $this->articleModel->addNews($form->getValues(true));
       $this->flashMessage("Novinka byla přidána.");
       $this->redirect("News:");
     };
@@ -67,7 +69,7 @@ class NewsPresenter extends BasePresenter {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->model->user = $this->user;
-      $this->model->edit($this->getParameter("id"), $form->getValues(true));
+      $this->articleModel->editArticle($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Novinka upravena.");
     };
     $form->setDefaults($news->toArray());

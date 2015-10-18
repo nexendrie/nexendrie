@@ -70,28 +70,6 @@ class News extends \Nette\Object {
   }
   
   /**
-   * Add news
-   * 
-   * @param array $data
-   * @throws AuthenticationNeededException
-   * @throws MissingPermissionsException
-   * @return void
-   */
-  function add(array $data) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$this->user->isAllowed("news", "add")) throw new MissingPermissionsException;
-    $news = new ArticleEntity;
-    $this->orm->articles->attach($news);
-    foreach($data as $key => $value) {
-      $news->$key = $value;
-    }
-    $news->author = $this->user->id;
-    $news->added = time();
-    $news->category = ArticleEntity::CATEGORY_NEWS;
-    $this->orm->articles->persistAndFlush($news);
-  }
-  
-  /**
    * Get comments meeting specified rules
    * 
    * @param int $news
@@ -111,26 +89,6 @@ class News extends \Nette\Object {
   function exists($id) {
     $row = $this->orm->articles->getByID($id);
     return (bool) $row;
-  }
-  
-  /**
-   * Edit specified news
-   * 
-   * @param int $id News' id
-   * @param array $data
-   * @throws AuthenticationNeededException
-   * @throws MissingPermissionsException
-   * @throws NewsNotFoundException
-   */
-  function edit($id, array $data) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
-    if(!$this->user->isAllowed("news", "edit")) throw new MissingPermissionsException("You don't have permissions for adding news.");
-    $news = $this->orm->articles->getById($id);
-    if(!$news) throw new NewsNotFoundException("Specified news does not exist");
-    foreach($data as $key => $value) {
-      $news->$key = $value;
-    }
-    $this->orm->articles->persistAndFlush($news);
   }
 }
 
