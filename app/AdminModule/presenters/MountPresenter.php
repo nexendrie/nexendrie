@@ -18,6 +18,13 @@ class MountPresenter extends BasePresenter {
   private $mount;
   
   /**
+   * @return void
+   */
+  function actionAdd() {
+    $this->requiresPermissions("content", "add");
+  }
+  
+  /**
    * @param AddEditMountFormFactory $factory
    * @return Form
    */
@@ -32,8 +39,10 @@ class MountPresenter extends BasePresenter {
   
   /**
    * @param int $id
+   * @return void
    */
   function actionEdit($id) {
+    $this->requiresPermissions("content", "edit");
     try {
       $this->mount = $this->model->get($id);
     } catch(MountNotFoundException $e) {
