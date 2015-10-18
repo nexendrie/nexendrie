@@ -2,6 +2,7 @@
 {block title}Článek{/block}
 {block content}
   <h1>{$article->title}</h1>
+  <p>V kategorii: {$article->categoryCZ}</p>
   <p>od <a n:href="Profile:default $article->author->username">{$article->author->publicname}</a> {$article->addedAt}</p>
   <p>{$article->text}</p>
   <a name="comments"></a>

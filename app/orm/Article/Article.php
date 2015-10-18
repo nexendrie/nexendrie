@@ -16,6 +16,7 @@ use Nextras\Orm\Entity\Entity,
  * @property-read string $addedAt {virtual}
  * @property bool $allowedComments {default 1}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
+ * @property-read string $categoryCZ {virtual}
  */
 class Article extends Entity {
   const CATEGORY_NEWS = "news";
@@ -38,6 +39,10 @@ class Article extends Entity {
   
   protected function getterAddedAt() {
     return $this->localeModel->formatDateTime($this->added);
+  }
+  
+  protected function getterCategoryCZ() {
+    return self::getCategories()[$this->category];
   }
 }
 ?>
