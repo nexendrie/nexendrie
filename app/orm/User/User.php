@@ -34,6 +34,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Town[] $ownedTowns {1:m Town::$owner}
  * @property OneHasMany|Mount[] $mounts {1:m Mount::$owner}
  * @property OneHasMany|UserSkill $skills {1:m UserSkill::$user}
+ * @property OneHasMany|Punishment[] $punishments {1:m Punishment::$user}
  */
 class User extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */

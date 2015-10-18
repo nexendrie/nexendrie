@@ -24,6 +24,7 @@ namespace Nexendrie\Orm;
  * @property-read MountTypesRepository $mountTypes
  * @property-read SkillsRepository $skills
  * @property-read UserSkillsRepository $userSkills
+ * @property-read PunishmentsRepository $punishments
  */
 class Model extends \Nextras\Orm\Model\Model {
   

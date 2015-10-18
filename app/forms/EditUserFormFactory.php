@@ -67,8 +67,7 @@ class EditUserFormFactory extends \Nette\Object {
       "username" => $user->username,
       "publicname" => $user->publicname,
       "group" => $user->group->id,
-      "town" => $user->town->id,
-      "banned" => $user->banned
+      "town" => $user->town->id
     );
   }
   
@@ -87,7 +86,6 @@ class EditUserFormFactory extends \Nette\Object {
       ->setRequired("Vyber skupinu.");
     $form->addSelect("town", "Město", $this->getListOfTowns())
        ->setRequired("Vyber město.");
-    $form->addCheckbox("banned", "Zablokován");
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");
     $form->onSuccess[] = function (Form $form, ArrayHash $values) {

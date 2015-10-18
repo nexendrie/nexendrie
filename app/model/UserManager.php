@@ -205,10 +205,20 @@ case "password_new":
   function edit($id, \Nette\Utils\ArrayHash $values) {
     $user = $this->orm->users->getById($id);
     foreach($values as $key => $value) {
-      if($key === "banned") $user->$key = (int) $value;
-      else $user->$key = $value;
+      $user->$key = $value;
     }
     $this->orm->users->persistAndFlush($user);
+  }
+  
+  /**
+   * @param int $id
+   * @return UserEntity
+   * @throws UserNotFoundException
+   */
+  function get($id) {
+    $user = $this->orm->users->getById($id);
+    if(!$user) throw new UserNotFoundException;
+    else return $user;
   }
 }
 
