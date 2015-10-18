@@ -1,11 +1,10 @@
 {layout "../@layout.latte"}
 {block title}Novinky{/block}
 {block content}
-  <h1>Novinky</h1>
+  <h1>Novinky strana {$paginator->page}</h1>
   {if count($news) === 0}
   <p>Žádné novinky.</p>
   {else}
-  <h2>Novinky strana 1</h2>
     {foreach $news as $new}
   <article id="news-{$new->id}">
     <h3><a n:href="Article:view $new->id">{$new->title}</a></h3>
