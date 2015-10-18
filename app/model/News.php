@@ -72,12 +72,12 @@ class News extends \Nette\Object {
   /**
    * Add news
    * 
-   * @param \Nette\Utils\ArrayHash $data
+   * @param array $data
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @return void
    */
-  function add(\Nette\Utils\ArrayHash $data) {
+  function add(array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     if(!$this->user->isAllowed("news", "add")) throw new MissingPermissionsException;
     $news = new ArticleEntity;
@@ -94,12 +94,12 @@ class News extends \Nette\Object {
   /**
    * Adds comment to news
    * 
-   * @param \Nette\Utils\ArrayHash $data
+   * @param array $data
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @return void
    */
-  function addComment(\Nette\Utils\ArrayHash $data) {
+  function addComment(array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->user->isAllowed("comment", "add")) throw new MissingPermissionsException("You don't have permissions for adding comments.");
     $comment = new CommentEntity;
@@ -138,12 +138,12 @@ class News extends \Nette\Object {
    * Edit specified news
    * 
    * @param int $id News' id
-   * @param \Nette\Utils\ArrayHash $data
+   * @param array $data
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws NewsNotFoundException
    */
-  function edit($id, \Nette\Utils\ArrayHash $data) {
+  function edit($id, array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->user->isAllowed("news", "edit")) throw new MissingPermissionsException("You don't have permissions for adding news.");
     $news = $this->orm->articles->getById($id);

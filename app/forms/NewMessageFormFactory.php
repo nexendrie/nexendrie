@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nette\Utils\ArrayHash;
+use Nette\Application\UI\Form;
 
 /**
  * Factory for form NewMessageForm
@@ -31,8 +30,8 @@ class NewMessageFormFactory {
     $form->addTextArea("text", "Text:")
       ->setRequired("Zadej text.");
     $form->addSubmit("send", "Odeslat");
-    $form->onSuccess[] = function (Form $form, ArrayHash $values) {
-      $this->model->send($values);
+    $form->onSuccess[] = function(Form $form) {
+      $this->model->send($form->getValues(true));
     };
     return $form;
   }

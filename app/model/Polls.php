@@ -53,12 +53,12 @@ class Polls extends \Nette\Object {
   /**
    * Add poll
    * 
-   * @param \Nette\Utils\ArrayHash $data
+   * @param array $data
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @return void
    */
-  function add(\Nette\Utils\ArrayHash $data) {
+  function add(array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->user->isAllowed("poll", "add")) throw new MissingPermissionsException("You don't have permissions for adding news.");
     $poll = new PollEntity;
@@ -85,13 +85,13 @@ class Polls extends \Nette\Object {
    * Edit specified poll
    * 
    * @param int $id Poll's id
-   * @param \Nette\Utils\ArrayHash $data
+   * @param array $data
    * @return void
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws PollNotFoundException
    */
-  function edit($id, \Nette\Utils\ArrayHash $data) {
+  function edit($id, array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->user->isAllowed("poll", "add")) throw new MissingPermissionsException("You don't have permissions for editing polls.");
     $poll = $this->orm->polls->getById($id);

@@ -40,9 +40,9 @@ class GroupPresenter extends BasePresenter {
   protected function createComponentEditGroupForm(EditGroupFormFactory $factory) {
     $group = $this->model->ormGet($this->getParameter("id"));
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, $values) {
+    $form->onSuccess[] = function(Form $form) {
       $this->model->user = $this->user;
-      $this->model->edit($this->getParameter("id"), $values);
+      $this->model->edit($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Skupina upravena.");
     };
     $form->setDefaults($group->toArray());

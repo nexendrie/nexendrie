@@ -87,10 +87,10 @@ class Messenger extends \Nette\Object {
   /**
    * Sends new message
    * 
-   * @param \Nette\Utils\ArrayHash $data
+   * @param array $data
    * @return void
    */
-  function send(\Nette\Utils\ArrayHash $data) {
+  function send(array $data) {
     $message = new MessageEntity;
     $this->orm->messages->attach($message);
     $message->subject = $data["subject"];

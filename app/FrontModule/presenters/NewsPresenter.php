@@ -52,9 +52,8 @@ class NewsPresenter extends BasePresenter {
    * Adds comment to news
    * 
    * @param \Nette\Application\UI\Form $form
-   * @param \Nette\Utils\ArrayHash $values
    */
-  function addCommentFormSucceeded(Form $form, $values) {
+  function addCommentFormSucceeded(Form $form, array $values) {
     $values["news"] = $this->getParameter("id");
     try {
       $this->model->user = $this->user;

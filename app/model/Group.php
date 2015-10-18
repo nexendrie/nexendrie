@@ -113,11 +113,11 @@ class Group extends \Nette\Object {
    * Edit specified group
    * 
    * @param type $id Group's id
-   * @param \Nette\Utils\ArrayHash $data
+   * @param array $data
    * @throws \Nette\Application\ForbiddenRequestException
    * @return void
    */
-  function edit($id, \Nette\Utils\ArrayHash $data) {
+  function edit($id, array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->user->isAllowed("group", "edit")) throw new MissingPermissionsException("You don't have permissions for adding news.");
     $group = $this->orm->groups->getById($id);

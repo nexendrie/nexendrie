@@ -38,7 +38,7 @@ class NewsPresenter extends BasePresenter {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->model->user = $this->user;
-      $id = $this->model->add($form->getValues());
+      $id = $this->model->add($form->getValues(true));
       $this->flashMessage("Novinka byla přidána.");
       $this->redirect("News:");
     };
@@ -65,9 +65,9 @@ class NewsPresenter extends BasePresenter {
   protected function createComponentEditNewsForm(AddEditNewsFormFactory $factory) {
     $news = $this->model->view($this->getParameter("id"));
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, $values) {
+    $form->onSuccess[] = function(Form $form) {
       $this->model->user = $this->user;
-      $this->model->edit($this->getParameter("id"), $values);
+      $this->model->edit($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Novinka upravena.");
     };
     $form->setDefaults($news->toArray());
