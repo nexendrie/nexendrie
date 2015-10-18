@@ -88,10 +88,16 @@ class EditUserFormFactory extends \Nette\Object {
        ->setRequired("Vyber město.");
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");
+    $form->onValidate[] = array($this, "validate");
     $form->onSuccess[] = function (Form $form, ArrayHash $values) {
       $this->model->edit($this->uid, $values);
     };
     return $form;
+  }
+  
+  function validate(Form $form) {
+    $values = $form->getValues(true);
+    if($values["group"] == 0 AND $this->uid != 0) $form->addError("Neplatná skupina.");
   }
 }
 ?>
