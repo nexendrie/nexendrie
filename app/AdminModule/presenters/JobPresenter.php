@@ -22,11 +22,19 @@ class JobPresenter extends BasePresenter {
    * @return void
    */
   function actionEdit($id) {
+    $this->requiresPermissions("content", "edit");
     try {
       $this->job = $this->model->getJob($id);
     } catch(JobNotFoundException $e) {
       $this->forward("notfound");
     }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionAdd() {
+    $this->requiresPermissions("content", "add");
   }
   
   /**

@@ -21,11 +21,19 @@ class ShopPresenter extends BasePresenter {
    * @param int $id
    */
   function actionEdit($id) {
+    $this->requiresPermissions("content", "edit");
     try {
       $this->shop = $this->model->getShop($id);
     } catch(ShopNotFoundException $e) {
       $this->forward("notfound");
     }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionAdd() {
+    $this->requiresPermissions("content", "add");
   }
   
   /**

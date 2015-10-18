@@ -26,6 +26,7 @@ class JobMessagesPresenter extends BasePresenter {
    * @return void
    */
   function actionList($id) {
+    $this->requiresPermissions("content", "list");
     try {
       $this->template->messages = $this->model->listOfMessages($id);
       $this->template->jobId = $id;
@@ -39,6 +40,7 @@ class JobMessagesPresenter extends BasePresenter {
    * @return void
    */
   function actionAdd($id) {
+    $this->requiresPermissions("content", "add");
     try {
       $this->job = $this->model->getJob($id);
       $this->template->jobName = $this->job->name;
@@ -68,6 +70,7 @@ class JobMessagesPresenter extends BasePresenter {
    * @return void
    */
   function actionEdit($id) {
+    $this->requiresPermissions("content", "edit");
     try {
       $this->message = $this->model->getMessage($id);
     } catch(JobMessageNotFoundException $e) {

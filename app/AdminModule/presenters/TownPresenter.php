@@ -18,6 +18,13 @@ class TownPresenter extends BasePresenter {
   private $town;
   
   /**
+   * @return void
+   */
+  function actionAdd() {
+    $this->requiresPermissions("content", "add");
+  }
+  
+  /**
    * @param AddEditTownFormFactory $factory
    * @return Form
    */
@@ -36,6 +43,7 @@ class TownPresenter extends BasePresenter {
    * @return void
    */
   function actionEdit($id) {
+    $this->requiresPermissions("content", "edit");
     try {
       $this->town = $this->model->get($id);
     } catch(TownNotFoundException $e) {

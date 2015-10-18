@@ -22,11 +22,19 @@ class ItemPresenter extends BasePresenter {
    * @return void
    */
   function actionEdit($id) {
+    $this->requiresPermissions("content", "edit");
     try {
       $this->item = $this->model->getItem($id);
     } catch(ItemNotFoundException $e) {
       $this->forward("notfound");
     }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionAdd() {
+    $this->requiresPermissions("content", "add");
   }
   
   /**

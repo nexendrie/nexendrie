@@ -18,6 +18,13 @@ class SkillPresenter extends BasePresenter {
   private $skill;
   
   /**
+   * @return void
+   */
+  function actionAdd() {
+    $this->requiresPermissions("content", "add");
+  }
+  
+  /**
    * @param AddEditSkillFormFactory $factory
    * @return Form
    */
@@ -36,6 +43,7 @@ class SkillPresenter extends BasePresenter {
    * @return void
    */
   function actionEdit($id) {
+    $this->requiresPermissions("content", "edit");
     try {
       $this->skill = $this->model->get($id);
     } catch(SkillNotFoundException $e) {
