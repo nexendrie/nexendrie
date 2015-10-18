@@ -86,19 +86,6 @@ class Group extends \Nette\Object {
   }
   
   /**
-   * Get name of specified group
-   * 
-   * @deprecated
-   * @param int $id Group's id
-   * @return string
-   */
-  function getName($id) {
-    $group = $this->get($id);
-    if(!$group) return "";
-    else return $group->name;
-  }
-  
-  /**
    * Check whetever specified guild exists
    * 
    * @param int $id Guild's id
@@ -126,26 +113,6 @@ class Group extends \Nette\Object {
     }
     $this->orm->groups->persistAndFlush($group);
     $this->cache->remove("groups");
-  }
-  
-  /**
-   * Get members of specified guild
-   * 
-   * @deprecated
-   * @param int $id Guild's id
-   * @return \stdClass[]
-   * @throws GroupNotFoundException
-   */
-  function members($id) {
-    $group = $this->orm->groups->getById($id);
-    if(!$group) throw new GroupNotFoundException("Specified guild does not exist.");
-    $return = array();
-    foreach($group->members as $user) {
-      $return[] = (object) array(
-        "id" => $user->id, "username" => $user->username, "publicname" => $user->publicname
-      );
-    }
-    return $return;
   }
 }
 
