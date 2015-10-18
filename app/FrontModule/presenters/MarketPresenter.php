@@ -50,6 +50,7 @@ class MarketPresenter extends BasePresenter {
    */
   function actionBuy($id) {
     $this->requiresLogin();
+    $this->mustNotBeBanned();
   }
   
   /**
@@ -57,6 +58,7 @@ class MarketPresenter extends BasePresenter {
    */
   function renderMounts() {
     $this->requiresLogin();
+    $this->mustNotBeBanned();
   }
   
   /**
@@ -72,6 +74,7 @@ class MarketPresenter extends BasePresenter {
    */
   function renderTowns() {
     $this->requiresLogin();
+    $this->mustNotBeBanned();
   }
   
   /**

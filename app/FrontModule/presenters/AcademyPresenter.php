@@ -16,6 +16,7 @@ class AcademyPresenter extends BasePresenter {
   function startup() {
     parent::startup();
     $this->requiresLogin();
+    $this->mustNotBeBanned();
   }
   
   /**

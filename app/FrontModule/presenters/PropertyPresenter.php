@@ -22,6 +22,7 @@ class PropertyPresenter extends BasePresenter {
   function startup() {
     parent::startup();
     $this->requiresLogin();
+    $this->mustNotBeBanned();
   }
   
   /**

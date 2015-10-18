@@ -38,5 +38,17 @@ abstract class BasePresenter extends \Nexendrie\BasePresenter {
       $this->redirect("Homepage:");
     }
   }
+  
+  /**
+   * The user must not be banned to see a page
+   * 
+   * @return void
+   */
+  protected function mustNotBeBanned() {
+    if($this->user->identity->banned) {
+      $this->flashMessage("Ještě neskončil tvůj trest.");
+      $this->redirect("Prison:");
+    }
+  }
 }
 ?>
