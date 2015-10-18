@@ -19,11 +19,15 @@ class PropertyPresenter extends BasePresenter {
   /** @var TownEntity */
   private $town;
   
+  function startup() {
+    parent::startup();
+    $this->requiresLogin();
+  }
+  
   /**
    * @return void
    */
   function renderDefault() {
-    $this->requiresLogin();
     $data = $this->model->show();
     $this->template->money = $data["money"];
     $this->template->items = $data["items"];
@@ -36,7 +40,6 @@ class PropertyPresenter extends BasePresenter {
    * @return void
    */
   function actionTown($id) {
-    $this->requiresLogin();
     try {
       $this->town = $this->townModel->get($id);
     } catch(TownNotFoundException $e) {
