@@ -71,7 +71,7 @@ class Article extends \Nette\Object {
     $data["category"] = ArticleEntity::CATEGORY_NEWS;
     try {
       $this->addArticle($data);
-    } catch(Exception $e) {
+    } catch(\Exception $e) {
       throw $e;
     }
   }
