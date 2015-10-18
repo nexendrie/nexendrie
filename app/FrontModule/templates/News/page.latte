@@ -8,7 +8,7 @@
   <h2>Novinky strana {$paginator->page}</h2>
   {foreach $news as $new}
   <article id="news-{$new->id}">
-    <h3><a n:href="News:view $new->id">{$new->title}</a></h3>
+    <h3><a n:href="Article:view $new->id">{$new->title}</a></h3>
     Autor: <a n:href="Profile:default $new->author->username">{$new->author->publicname}</a> Přidáno: {$new->addedAt} Komentářů: {$new->comments->count()}<br>
     {$new->text|truncate:150}
   </article>

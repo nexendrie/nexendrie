@@ -1,16 +1,16 @@
 {layout "../@layout.latte"}
-{block title}Novinka{/block}
+{block title}Článek{/block}
 {block content}
-  <h1>{$news->title}</h1>
-  <p>od <a n:href="Profile:default $news->author->username">{$news->author->publicname}</a> {$news->addedAt}</p>
-  <p>{$news->text}</p>
+  <h1>{$article->title}</h1>
+  <p>od <a n:href="Profile:default $article->author->username">{$article->author->publicname}</a> {$article->addedAt}</p>
+  <p>{$article->text}</p>
   <a name="comments"></a>
   <div id="comments">
     <h3>Komentáře:</h3>
-  {if count($news->comments) === 0}
-    <p>Tuto novinku ještě nikdo nekomentoval. Buď první.</p>
+  {if count($article->comments) === 0}
+    <p>Tento článek ještě nikdo nekomentoval. Buď první.</p>
   {else}
-    {foreach $news->comments as $comment}
+    {foreach $article->comments as $comment}
     {var $i = $iterator->counter}
     <span id="comment-{$i}">
       <a name="comment-{$i}" href="#comment-{$i}">#{$i}</a> <a n:href="Profile:default $comment->author->username">{$comment->author->publicname}</a> - {$comment->title} ({$comment->addedAt}):<br>
@@ -19,10 +19,10 @@
     {/foreach}
   {/if}
   </div>
-  {if $news->allowedComments AND $user->isAllowed("comment", "add")}
+  {if $article->allowedComments AND $user->isAllowed("comment", "add")}
   <p>Přidat komentář:</p>
   {control addCommentForm}
   {else}
-  <p>Nelze přidávat komentáře k této novince.</p>
+  <p>Nelze přidávat komentáře k tomuto článku.</p>
   {/if}
 {/block}

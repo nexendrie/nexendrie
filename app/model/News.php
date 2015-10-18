@@ -92,27 +92,6 @@ class News extends \Nette\Object {
   }
   
   /**
-   * Adds comment to news
-   * 
-   * @param array $data
-   * @throws AuthenticationNeededException
-   * @throws MissingPermissionsException
-   * @return void
-   */
-  function addComment(array $data) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
-    if(!$this->user->isAllowed("comment", "add")) throw new MissingPermissionsException("You don't have permissions for adding comments.");
-    $comment = new CommentEntity;
-    $this->orm->comments->attach($comment);
-    foreach($data as $key => $value) {
-      $comment->$key = $value;
-    }
-    $comment->author = $this->user->id;
-    $comment->added = time();
-    $this->orm->comments->persistAndFlush($comment);
-  }
-  
-  /**
    * Get comments meeting specified rules
    * 
    * @param int $news

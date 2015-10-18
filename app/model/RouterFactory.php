@@ -16,7 +16,7 @@ class RouterFactory extends \Nette\Object {
   static function create() {
     $router = new RouteList;
     $router[] = new Route("profile/<username>", "Front:Profile:default");
-    $router[] = new Route("<presenter message|poll>/<id [0-9]+>", array(
+    $router[] = new Route("<presenter message|poll|article>/<id [0-9]+>", array(
       "module" => "Front", "action" => "view",
       "presenter" => array(
         Route::FILTER_TABLE => array(
