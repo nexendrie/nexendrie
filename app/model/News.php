@@ -73,12 +73,13 @@ class News extends \Nette\Object {
    * Add news
    * 
    * @param \Nette\Utils\ArrayHash $data
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
    * @return void
    */
   function add(\Nette\Utils\ArrayHash $data) {
-    if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
-    if(!$this->user->isAllowed("news", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isAllowed("news", "add")) throw new MissingPermissionsException;
     $news = new ArticleEntity;
     $this->orm->articles->attach($news);
     foreach($data as $key => $value) {
