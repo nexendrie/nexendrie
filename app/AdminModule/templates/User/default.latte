@@ -4,8 +4,8 @@
   <h1>Uživatelé</h1>
   <table>
     <tr><th>Uživatelské jméno</th><th>Zobrazované jméno</th><th>Skupina</th><th>Akce</th></tr>
-    {foreach $users as $user}
-    <tr><td><a n:href=":Front:Profile: $user->username">{$user->username}</a></td><td>{$user->publicname}</td><td>{$user->group->name}</td><td><a n:href="User:edit $user->id">Upravit</a> {if $user->group->id > 1 AND !$user->banned}<a n:href="User:ban $user->id">Uvěznit</a>{/if}</td></tr>
+    {foreach $users as $u}
+    <tr><td><a n:href=":Front:Profile: $u->username">{$u->username}</a></td><td>{$u->publicname}</td><td>{$u->group->name}</td><td><a n:href="User:edit $u->id">Upravit</a> {if $u->group->id > 1 AND !$u->banned}<a n:href="User:ban $u->id">Uvěznit</a>{/if}</td></tr>
     {/foreach}
   </table>
 {/block}
