@@ -27,6 +27,15 @@ class Article extends Entity {
     $this->localeModel = $localeModel;
   }
   
+  /**
+   * @return string[]
+   */
+  static function getCategories() {
+    return array(
+      self::CATEGORY_NEWS => "Novinky",
+    );
+  }
+  
   protected function getterAddedAt() {
     return $this->localeModel->formatDateTime($this->added);
   }
