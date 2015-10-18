@@ -17,7 +17,7 @@ class ArticlePresenter extends BasePresenter {
    * @return void
    */
   function renderDefault() {
-    $this->template->news = $this->model->listOfNews();
+    $this->template->articles = $this->model->listOfArticles();
   }
   
   /**

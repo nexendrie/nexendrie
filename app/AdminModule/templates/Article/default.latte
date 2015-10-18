@@ -6,7 +6,7 @@
   <h3>Seznam článků</h3>
   <table>
     <tr><th>Titulek</th><th>Kategorie</th><th>Přidáno</th><th>Autor</th><th>Akce</th></tr>
-    {foreach $news as $item}
+    {foreach $articles as $item}
     <tr><td>{$item->title}</td><td>{$item->categoryCZ}</td><td>{$item->addedAt}</td><td><a n:href=":Front:Profile: $item->author->username">{$item->author->publicname}</a></td><td><a n:href=":Front:Article:view $item->id">Zobrazit</a> <a n:href="edit $item->id">Upravit</a></td></tr>
     {/foreach}
   </table>

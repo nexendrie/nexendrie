@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Article as ArticleEntity,
-    Nexendrie\Orm\Comment as CommentEntity;
+    Nexendrie\Orm\Comment as CommentEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Article Model
@@ -21,6 +22,15 @@ class Article extends \Nette\Object {
     $this->orm = $orm;
     $this->user = $user;
     $this->itemsPerPage = (int) $itemsPerPage;
+  }
+  
+  /**
+   * Get all articles
+   * 
+   * @return ArticleEntity[]
+   */
+  function listOfArticles() {
+    return $this->orm->articles->findAll()->orderBy("added", ICollection::DESC);
   }
   
   /**
