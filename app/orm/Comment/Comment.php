@@ -10,7 +10,7 @@ use Nextras\Orm\Entity\Entity;
  * @author Jakub Konečný
  * @property string $title
  * @property string $text
- * @property News $news {m:1 News::$comments}
+ * @property Article $article {m:1 Article::$comments}
  * @property User $author {m:1 User::$comments}
  * @property int $added
  * @property-read string $addedAt {virtual}

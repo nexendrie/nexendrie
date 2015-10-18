@@ -10,7 +10,7 @@ namespace Nexendrie\Orm;
  * @property-read GroupsRepository $groups
  * @property-read UsersRepository $users
  * @property-read CommentsRepository $comments
- * @property-read NewsRepository $news
+ * @property-read ArticlesRepository $articles
  * @property-read PollsRepository $polls
  * @property-read MessagesRepository $messages
  * @property-read PollVotesRepository $pollVotes

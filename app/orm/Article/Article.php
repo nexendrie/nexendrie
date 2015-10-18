@@ -11,12 +11,15 @@ use Nextras\Orm\Entity\Entity,
  * @property string $title
  * @property string $text
  * @property User $author {m:1 User}
+ * @property string $category {enum self::CATEGORY_*}
  * @property int $added
  * @property-read string $addedAt {virtual}
  * @property bool $allowedComments {default 1}
- * @property OneHasMany|Comment $comments {1:m Comment::$news}
+ * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
  */
-class News extends Entity {
+class Article extends Entity {
+  const CATEGORY_NEWS = "news";
+  
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   

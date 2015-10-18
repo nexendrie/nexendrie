@@ -24,7 +24,7 @@ use Nextras\Orm\Entity\Entity,
  * @property Town $town {m:1 Town::$denizens}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
- * @property OneHasMany|News[] $news {1:m News::$author}
+ * @property OneHasMany|Article[] $articles {1:m Article::$author}
  * @property OneHasMany|Poll[] $polls {1:m Poll::$author}
  * @property OneHasMany|Message[] $sentMessages {1:m Message::$from}
  * @property OneHasMany|Message[] $receivedMessages {1:m Message::$to}

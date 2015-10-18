@@ -6,7 +6,7 @@ use Nextras\Orm\Mapper\Mapper;
 /**
  * @author Jakub Konečný
  */
-class NewsMapper extends Mapper {
+class ArticlesMapper extends Mapper {
   
 }
 ?>

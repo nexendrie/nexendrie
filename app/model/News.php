@@ -2,7 +2,7 @@
 namespace Nexendrie\Model;
 
 use Nextras\Orm\Collection\ICollection,
-    Nexendrie\Orm\News as NewsEntity,
+    Nexendrie\Orm\Article as ArticleEntity,
     Nexendrie\Orm\Comment as CommentEntity;
 
 /**
@@ -39,32 +39,32 @@ class News extends \Nette\Object {
    * 
    * @param \Nette\Utils\Paginator $paginator
    * @param int $page
-   * @return \NewsEntity[]
+   * @return \ArticleEntity[]
    */
   function page(\Nette\Utils\Paginator $paginator, $page = 1) {
     $paginator->page = $page;
     $paginator->itemsPerPage = $this->itemsPerPage;
-    return $this->orm->news->findAll()->orderBy("added", ICollection::DESC)->limitBy($paginator->getLength(), $paginator->getOffset());
+    return $this->orm->articles->findNews()->limitBy($paginator->getLength(), $paginator->getOffset());
   }
   
   /**
    * Get list of all news
    * 
-   * @return NewsEntity[]
+   * @return ArticleEntity[]
    */
   function all() {
-    return $this->orm->news->findAll()->orderBy("added", ICollection::DESC);
+    return $this->orm->articles->findNews();
   }
   
   /**
    * Show specified news
    * 
    * @param type $id
-   * @return NewsEntity
+   * @return ArticleEntity
    * @throws NewsNotFoundException
    */
   function view($id) {
-    $news = $this->orm->news->getById($id);
+    $news = $this->orm->articles->getById($id);
     if(!$news) throw new NewsNotFoundException("Specified news does not exist.");
     else return $news;
   }
@@ -79,14 +79,15 @@ class News extends \Nette\Object {
   function add(\Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new \Nette\Application\ForbiddenRequestException ("This action requires authentication.", 401);
     if(!$this->user->isAllowed("news", "add")) throw new \Nette\Application\ForbiddenRequestException ("You don't have permissions for adding news.", 403);
-    $news = new NewsEntity;
-    $this->orm->news->attach($news);
+    $news = new ArticleEntity;
+    $this->orm->articles->attach($news);
     foreach($data as $key => $value) {
       $news->$key = $value;
     }
     $news->author = $this->user->id;
     $news->added = time();
-    $this->orm->news->persistAndFlush($news);
+    $news->category = ArticleEntity::CATEGORY_NEWS;
+    $this->orm->articles->persistAndFlush($news);
   }
   
   /**
@@ -114,10 +115,10 @@ class News extends \Nette\Object {
    * Get comments meeting specified rules
    * 
    * @param int $news
-   * @return NewsEntity[]
+   * @return ArticleEntity[]
    */
   function viewComments($news = 0) {
-    if($news === 0) return $this->orm->news->findAll();
+    if($news === 0) return $this->orm->articles->findAll();
     else return $this->orm->comments->findByNews($news);
   }
   
@@ -128,7 +129,7 @@ class News extends \Nette\Object {
    * @return bool
    */
   function exists($id) {
-    $row = $this->orm->news->getByID($id);
+    $row = $this->orm->articles->getByID($id);
     return (bool) $row;
   }
   
@@ -144,12 +145,12 @@ class News extends \Nette\Object {
   function edit($id, \Nette\Utils\ArrayHash $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->user->isAllowed("news", "edit")) throw new MissingPermissionsException("You don't have permissions for adding news.");
-    $news = $this->orm->news->getById($id);
+    $news = $this->orm->articles->getById($id);
     if(!$news) throw new NewsNotFoundException("Specified news does not exist");
     foreach($data as $key => $value) {
       $news->$key = $value;
     }
-    $this->orm->news->persistAndFlush($news);
+    $this->orm->articles->persistAndFlush($news);
   }
 }
 
