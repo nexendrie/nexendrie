@@ -34,6 +34,7 @@ class UserPresenter extends BasePresenter {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, $values) {
       $this->flashMessage("Byl jsi úspěšně přihlášen.");
+      if($this->user->identity->banned) $this->flashMessage("Stále jsi uvězněný.");
       $this->redirect("Homepage:");
     };
     return $form;
