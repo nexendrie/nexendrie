@@ -11,6 +11,13 @@ use Nexendrie\Forms\SystemSettingsFormFactory,
  */
 class SettingsPresenter extends BasePresenter {
   /**
+   * @return void
+   */
+  function actionDefault() {
+    $this->requiresPermissions("site", "settings");
+  }
+  
+  /**
    * @param SystemSettingsFormFactory $factory
    * @return Form
    */
