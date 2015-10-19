@@ -26,10 +26,7 @@ class AuthorizatorFactory extends \Nette\Object {
       $groups = array();
       $groupsRows = $orm->groups->findAll()->orderBy("level");
       foreach($groupsRows as $row) {
-        $group = (object) array(
-          "id" => $row->id, "single_name" => $row->singleName, "level" => $row->level
-        );
-        $groups[$group->id] = $group;
+        $groups[$row->id] = $row->dummy();
       }
       $cache->save("groups_by_level", $groups);
     }
@@ -70,10 +67,10 @@ class AuthorizatorFactory extends \Nette\Object {
     
     foreach($groups as $i => $row) {
       if($row->level === 0) {
-        $permission->addRole($row->single_name);
+        $permission->addRole($row->singleName);
       } else {
         $parent = $groups[$i+1];
-        $permission->addRole($row->single_name, $parent->single_name);
+        $permission->addRole($row->singleName, $parent->singleName);
       }
     }
     
@@ -81,7 +78,7 @@ class AuthorizatorFactory extends \Nette\Object {
     foreach($permissions as $row) {
       if(!$permission->hasResource($row->resource)) $permission->addResource($row->resource);
       $group = Arrays::get($groups, $row->group);
-      $permission->allow($group->single_name, $row->resource, $row->action);
+      $permission->allow($group->singleName, $row->resource, $row->action);
     }
     
     return $permission;
