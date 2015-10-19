@@ -7,9 +7,9 @@
     <p>Nemáte žádné přijaté zprávy.</p>
   {else}
     <table>
-      <tr><th>Předmět</th><th>Od</th><th>Odesláno</th></tr>
+      <tr><th>Předmět</th><th>Od</th><th>Odesláno</th><th></th></tr>
     {foreach $messages as $message}
-      <tr><td><a n:href="Messages:view $message->id">{$message->subject}</a></td><td><a n:href="Profile:default $message->from->username">{$message->from->publicname}</a></td><td>{$message->sentAt}</td></tr>
+      <tr><td><a n:href="Messages:view $message->id">{$message->subject}</a></td><td><a n:href="Profile:default $message->from->username">{$message->from->publicname}</a></td><td>{$message->sentAt}</td><td>{if !$message->read}Nepřečteno{/if}</td></tr>
     {/foreach}
     </table>
   {/if}

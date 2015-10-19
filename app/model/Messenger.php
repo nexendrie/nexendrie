@@ -66,6 +66,10 @@ class Messenger extends \Nette\Object {
     if($message->from->id != $this->user->id AND $message->to->id != $this->user->id) {
       throw new AccessDeniedException("You can't see this message.");
     }
+    if(!$message->read AND $message->to->id === $this->user->id) {
+      $message->read = true;
+      $this->orm->messages->persistAndFlush($message);
+    }
     return $message;
   }
   
