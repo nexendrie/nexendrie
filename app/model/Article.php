@@ -43,7 +43,7 @@ class Article extends \Nette\Object {
     $news = $this->orm->articles->findNews();
     if($paginator) {
       $paginator->itemsPerPage = $this->itemsPerPage;
-      $news->limitBy($paginator->getLength(), $paginator->getOffset());
+      $news = $news->limitBy($paginator->getLength(), $paginator->getOffset());
     }
     return $news;
   }
@@ -59,7 +59,7 @@ class Article extends \Nette\Object {
     $articles = $this->orm->articles->findChronicle();
     if($paginator) {
       $paginator->itemsPerPage = $this->itemsPerPage;
-      $articles->limitBy($paginator->getLength(), $paginator->getOffset());
+      $articles = $articles->limitBy($paginator->getLength(), $paginator->getOffset());
     }
     return $articles;
   }
