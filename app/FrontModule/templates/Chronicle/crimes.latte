@@ -1,0 +1,16 @@
+{layout "../@layout.latte"}
+{block title}Kniha přestupků{/block}
+{block content}
+  <h1>Kniha přestupků</h1>
+  <p>Zde budou na věčné časy zaznamenáni ti, jež porušili zákony Nexendrie společně se svým proviněním a výší trestu.</p>
+  {if $crimes->count() === 0}
+  <p>Seznam je prozatím prázdný.</p>
+  {else}
+    {foreach $crimes as $crime}
+  <p>
+    {$crime->user->group->singleName} <a n:href="Profile: $crime->user->username">{$crime->user->publicname}</a> {$crime->imprisonedAt} - {if $crime->releasedAt != ""}{$crime->releasedAt}{else}současnost{/if}<br>
+    byl odsouzen k {$crime->numberOfShifts} hodinám nucené práce za {$crime->crime}.
+  </p>
+    {/foreach}
+  {/if}
+{/block}

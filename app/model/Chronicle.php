@@ -1,6 +1,10 @@
 <?php
 namespace Nexendrie\Model;
 
+use Nextras\Orm\Collection\ICollection,
+    Nexendrie\Orm\Article as ArticleEntity,
+    Nexendrie\Orm\Punishment as PunishmentEntity;
+
 /**
  * Chronicle Model
  *
@@ -29,5 +33,13 @@ class Chronicle extends \Nette\Object {
     return $articles;
   }
   
+  /**
+   * Get list of punishments
+   * 
+   * @return PunishmentEntity[]
+   */
+  function crimes() {
+    return $this->orm->punishments->findAll()->orderBy("imprisoned", ICollection::DESC);
+  }
 }
 ?>

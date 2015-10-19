@@ -16,5 +16,12 @@ class ChroniclePresenter extends BasePresenter {
   function renderDefault() {
     $this->template->articles = $this->model->articles();
   }
+  
+  /**
+   * @return void
+   */
+  function renderCrimes() {
+    $this->template->crimes = $this->model->crimes();
+  }
 }
 ?>
