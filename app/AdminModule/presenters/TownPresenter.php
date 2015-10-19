@@ -31,7 +31,9 @@ class TownPresenter extends BasePresenter {
   protected function createComponentAddTownForm(AddEditTownFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
-      $this->model->add($form->getValues(true));
+      $values = $form->getValues(true);
+      if($values["owner"] === 0) $values["onMarket"] = true;
+      $this->model->add($values);
       $this->flashMessage("Město přidáno.");
       $this->redirect("Content:towns");
     };
