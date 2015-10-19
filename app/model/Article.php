@@ -89,22 +89,6 @@ class Article extends \Nette\Object {
   }
   
   /**
-   * @param array $data
-   * @throws AuthenticationNeededException
-   * @throws MissingPermissionsException
-   * @return void
-   * @deprecated
-   */
-  function addNews(array $data) {
-    $data["category"] = ArticleEntity::CATEGORY_NEWS;
-    try {
-      $this->addArticle($data);
-    } catch(\Exception $e) {
-      throw $e;
-    }
-  }
-  
-  /**
    * Add article
    * 
    * @param array $data
