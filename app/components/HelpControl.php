@@ -7,6 +7,13 @@ namespace Nexendrie\Components;
  * @author Jakub Konečný
  */
 class HelpControl extends \Nette\Application\UI\Control {
+  /** @var \Nexendrie\Orm\Model */
+  protected $orm;
+  
+  function __construct(\Nexendrie\Orm\Model $orm) {
+    $this->orm = $orm;
+  }
+  
   /**
    * 
    * @return \Nexendrie\Components\Help\HelpPagesStorage
@@ -25,6 +32,30 @@ class HelpControl extends \Nette\Application\UI\Control {
   }
   
   /**
+   * @return void
+   */
+  function renderWork() {
+    $this->template->jobs = array();
+    $jobs = $this->orm->jobs->findAll();
+    foreach($jobs as $job) {
+      $j = (object) array(
+        "name" => $job->name, "skillName" => $job->neededSkill->name,
+        "skillLevel" => $job->neededSkillLevel, "count" => $job->count,
+        "award" => $job->awardT, "shift" => $job->shift
+      );
+      $j->rank = $this->orm->groups->getByLevel($job->level)->singleName;
+      $this->template->jobs[] = $j;
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function renderAcademy() {
+    $this->template->skills = $this->orm->skills->findAll();
+  }
+  
+  /**
    * @param string $page
    * @return void
    */
@@ -40,6 +71,8 @@ class HelpControl extends \Nette\Application\UI\Control {
       $template->current = $pages[$template->index];
     }
     $template->pages = $pages;
+    $method = "render" . ucfirst($page);
+    if(method_exists($this, $method)) call_user_func(array($this, $method));
     $template->render();
   }
 }

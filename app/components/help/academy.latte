@@ -1,17 +1,7 @@
   <p>V každém městě i vesnici v Nexendrii existuje akademie. V akademii je možné získat nové dovednosti, které ti umožní vykonávat nové práce a zvyšují i tvou odměnu z dané práce. Každá dovednost má 5 stupňů a s každým naučeným stupněm se cena za výuku dalšího mírně zvyšuje. V následujícíh odstavcích najdeš seznam všech dovedností, které tě v akademii mohou naučit.</p>
+  {foreach $skills as $skill}
   <p>
-    Rybolov<br>Cena za 1. stupeň: 15 grošů<br>
-    Potřebné pro práce: Rybář<br>
+    {$skill->name}<br>Cena za 1. stupeň: {$skill->priceT}<br>
+    Potřebné pro práce: {foreach $skill->jobs as $job}{$job->name}{if !$iterator->last}, {/if}{/foreach}<br>
   </p>
-  <p>
-    Péče o zvířata<br>Cena za 1. stupeň: 15 grošů<br>
-    Potřebné pro práce: Pastýř<br>
-  </p>
-  <p>
-    Čtení a psaní<br>Cena za 1. stupeň: 35 grošů<br>
-    Potřebné pro práce: Písař<br>
-  </p>
-  <p>
-    Zacházení se zbraněmi<br>Cena za 1. stupeň: 30 grošů<br>
-    Potřebné pro práce: Strážný<br>
-  </p>
+  {/foreach}
