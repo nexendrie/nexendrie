@@ -49,21 +49,6 @@ class Article extends \Nette\Object {
   }
   
   /**
-   * Get list of chronicle records
-   * 
-   * @param \Nette\Utils\Paginator $paginator
-   * @return ArticleEntity[]
-   */
-  function listOfChronicle(\Nette\Utils\Paginator $paginator = NULL) {
-    $articles = $this->orm->articles->findChronicle();
-    if($paginator) {
-      $paginator->itemsPerPage = $this->itemsPerPage;
-      $articles = $articles->limitBy($paginator->getLength(), $paginator->getOffset());
-    }
-    return $articles;
-  }
-  
-  /**
    * Show specified article
    * 
    * @param int $id

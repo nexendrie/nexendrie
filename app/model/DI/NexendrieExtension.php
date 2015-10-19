@@ -48,7 +48,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $config = $this->getConfig($this->defaults);
     $services = array(
       "group", "market", "messenger", "polls", "profile", "rss", "property", "job",
-      "town", "mount", "skills"
+      "town", "mount", "skills", "chronicle"
     );
     foreach($services as $service) {
       $builder->addDefinition($this->prefix("model.$service"))
