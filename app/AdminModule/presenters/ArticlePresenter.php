@@ -37,9 +37,9 @@ class ArticlePresenter extends BasePresenter {
   protected function createComponentAddArticleForm(AddEditArticleFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
-      $this->model->addNews($form->getValues(true));
+      $this->model->addArticle($form->getValues(true));
       $this->flashMessage("Novinka byla přidána.");
-      $this->redirect("News:");
+      $this->redirect("Article:");
     };
     return $form;
   }

@@ -15,5 +15,12 @@ class ArticlesRepository extends Repository {
   function findNews() {
     return $this->findBy(array("category" => "news"))->orderBy("added", ICollection::DESC);
   }
+  
+  /**
+   * @return ICollection|Article[]
+   */
+  function findChronicle() {
+    return $this->findBy(array("category" => "chronicle"))->orderBy("added", ICollection::DESC);
+  }
 }
 ?>

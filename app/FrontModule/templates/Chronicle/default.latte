@@ -1,0 +1,16 @@
+{layout "../@layout.latte"}
+{block title}Kronika{/block}
+{block content}
+  <h1>Kronika</h1>
+  {if $articles->count() === 0}
+  <p>Nebyly nalezeny žádné záznamy.</p>
+  {else}
+    {foreach $articles as $article}
+  <article id="news-{$article->id}">
+    <h3><a n:href="Article:view $article->id">{$article->title}</a></h3>
+    Autor: <a n:href="Profile:default $article->author->username">{$article->author->publicname}</a> Přidáno: {$article->addedAt} Komentářů: {$article->comments->count()}<br>
+    {$article->text|truncate:150}
+  </article>
+    {/foreach}
+  {/if}
+{/block}

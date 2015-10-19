@@ -20,6 +20,7 @@ use Nextras\Orm\Entity\Entity,
  */
 class Article extends Entity {
   const CATEGORY_NEWS = "news";
+  const CATEGORY_CHRONICLE = "chronicle";
   
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
@@ -34,6 +35,7 @@ class Article extends Entity {
   static function getCategories() {
     return array(
       self::CATEGORY_NEWS => "Novinky",
+      self::CATEGORY_CHRONICLE => "Kronika",
     );
   }
   
