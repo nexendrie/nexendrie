@@ -48,7 +48,6 @@ class Article extends \Nette\Object {
     return $news;
   }
   
-  
   /**
    * Get list of chronicle records
    * 
