@@ -113,7 +113,7 @@ class Job extends \Nette\Object {
     if(!$row) throw new JobNotFoundException;
     if($row->level > $this->user->identity->level) throw new InsufficientLevelForJobException;
     if($row->neededSkillLevel > 0) {
-        $userSkillLevel = $this->skillsModel->getLevelOfSkill($offer->neededSkill->id);
+        $userSkillLevel = $this->skillsModel->getLevelOfSkill($row->neededSkill->id);
         if($userSkillLevel < $row->neededSkillLevel) throw new InsufficientSkillLevelForJobException;
       }
     $job = new UserJobEntity;
