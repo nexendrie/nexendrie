@@ -5,6 +5,6 @@
   <p>
   V Nexendrii od {$profile->joinedAt}. Žije ve městě/vesnici {$profile->town->name}.<br>
   {if $profile->banned}V současnosti si odpykává zasloužený trest v místní šatlavě.<br>{/if}
-  Článků: {$profile->articles->count()} Komentářů: {$profile->comments->count()}
+  Článků: {$profile->articles->countStored()} Komentářů: {$profile->comments->countStored()}
   </p>
 {/block}

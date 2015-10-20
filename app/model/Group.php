@@ -60,7 +60,7 @@ class Group extends \Nette\Object {
    * @return int
    */
   function numberOfMembers($group) {
-    return $this->orm->users->findByGroup($group)->count();
+    return $this->orm->users->findByGroup($group)->countStored();
   }
   
   /**

@@ -32,7 +32,7 @@ class GroupDummy extends \Nette\Object {
     $this->singleName = $g->singleName;
     $this->level = $g->level;
     $this->path = $g->path;
-    $this->members = $g->members->count();
+    $this->members = $g->members->countStored();
   }
   
   function getId() {
