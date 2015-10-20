@@ -16,6 +16,8 @@ class PropertyPresenter extends BasePresenter {
   protected $model;
   /** @var \Nexendrie\Model\Town @autowire */
   protected $townModel;
+  /** @var \Nexendrie\Model\Locale @autowire */
+  protected $localeModel;
   /** @var TownEntity */
   private $town;
   
@@ -61,12 +63,30 @@ class PropertyPresenter extends BasePresenter {
     $this->template->town = $this->town;
   }
   
+  /**
+   * @param ManageTownFormFactory $factory
+   * @return Form
+   */
   protected function createComponentManageTownForm(ManageTownFormFactory $factory) {
     $form = $factory->create($this->town->id);
     $form->onSuccess[] = function(Form $form) {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;
+  }
+  
+  /**
+   * @return void
+   */
+  function renderBudget() {
+    $budget = $this->model->budget();
+    $this->template->incomes = $this->localeModel->money(array_sum($budget["incomes"]));
+    $this->template->expenses = $this->localeModel->money(array_sum($budget["expenses"]));
+    $this->template->budget = $this->localeModel->money(array_sum($budget["incomes"]) - array_sum($budget["expenses"]));
+    $this->template->work = $this->localeModel->money($budget["incomes"]["work"]);
+    $this->template->adventures = $this->localeModel->money($budget["incomes"]["adventures"]);
+    $this->template->taxes = $this->localeModel->money($budget["incomes"]["taxes"]);
+    $this->template->incomeTax = $this->localeModel->money($budget["expenses"]["incomeTax"]);
   }
 }
 ?>

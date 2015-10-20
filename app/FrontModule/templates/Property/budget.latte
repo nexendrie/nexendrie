@@ -1,0 +1,15 @@
+{layout "../@layout.latte"}
+{block title}Rozpočet{/block}
+{block content}
+  <h1>Rozpočet</h1>
+  <h2>Příjmy</h2>
+  Práce + {$work}<br>
+  Dobrodružství + {$adventures}<br>
+  Daně + {$taxes}<br>
+  Celkem příjmy = {$incomes}
+  <h2>Výdaje</h2>
+  Daň z příjmů - {$incomeTax}<br>
+  Celkem výdaje = {$expenses}
+  <h2>Rozdíl</h2>
+  {if $budget > 0}+{/if}{$budget}
+{/block}
