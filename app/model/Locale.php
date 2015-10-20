@@ -83,7 +83,7 @@ class Locale extends \Nette\Object implements \Nexendrie\ILocale {
    */
   function plural($word1, $word2, $word3, $count) {
     if($count === $this->formats["plural"][0]) return $word1;
-    elseif($count >= $this->formats["plural"][2]) return $word3;
+    elseif($count >= $this->formats["plural"][2] OR $count === 0) return $word3;
     else return $word2;
   }
   
