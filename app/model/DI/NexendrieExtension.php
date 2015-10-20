@@ -25,7 +25,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "news" => 10
     ),
     "newUser" => array(
-      "style" => "default",
+      "style" => "blue-sky",
       "money" => 30,
       "town" => 3
     )
