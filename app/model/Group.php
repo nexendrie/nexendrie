@@ -113,6 +113,7 @@ class Group extends \Nette\Object {
     }
     $this->orm->groups->persistAndFlush($group);
     $this->cache->remove("groups");
+    $this->cache->remove("groups_by_level");
   }
 }
 
