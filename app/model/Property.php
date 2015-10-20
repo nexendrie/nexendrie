@@ -56,8 +56,7 @@ class Property extends \Nette\Object {
     ));
     $jobs = $this->orm->userJobs->findFromMonth($this->user->id);
     foreach($jobs as $job) {
-      if($job->finished) $budget["incomes"]["work"] += $job->earned + $job->extra;
-      else $budget["incomes"]["work"] += array_sum($this->jobModel->calculateReward($job));
+      $budget["incomes"]["work"] += array_sum($this->jobModel->calculateReward($job));
     }
     return $budget;
   }

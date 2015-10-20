@@ -133,6 +133,7 @@ class Job extends \Nette\Object {
    * @return int[] Reward
    */
   function calculateReward(UserJobEntity $job) {
+    if($job->finished) return array("reward" => $job->earned, "extra" => $job->extra);
     $reward = $extra = 0;
     if($job->job->count === 0) {
       $reward += $job->job->award * $job->count;
