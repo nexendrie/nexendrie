@@ -1,0 +1,8 @@
+{layout "../@layout.latte"}
+{block title}Seznam měst{/block}
+{block content}
+  <h1>Seznam měst</h1>
+  {foreach $towns as $town}
+    {$town->name} - vládce {$town->owner->group->singleName} <a n:href="Profile: $town->owner->username">{$town->owner->publicname}</a> <a n:href="detail $town->id">Detaily</a><br>
+  {/foreach}
+{/block}
