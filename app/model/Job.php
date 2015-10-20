@@ -171,11 +171,8 @@ class Job extends \Nette\Object {
     $currentJob->finished = true;
     $currentJob->earned = $rewards["reward"];
     $currentJob->extra = $rewards["extra"];
-    $this->orm->userJobs->persist($currentJob);
-    $user = $this->orm->users->getById($this->user->id);
-    $user->money += $rewards["reward"] + $rewards["extra"];
-    $this->orm->users->persist($user);
-    $this->orm->flush();
+    $currentJob->user->money += $rewards["reward"] + $rewards["extra"];
+    $this->orm->userJobs->persistAndFlush($currentJob);
     return $rewards;
   }
   
