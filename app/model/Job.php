@@ -76,6 +76,7 @@ class Job extends \Nette\Object {
    */
   function addJob(array $data) {
     $job = new JobEntity;
+    $this->orm->jobs->attach($job);
     foreach($data as $key => $value) {
       $job->$key = $value;
     }
