@@ -34,7 +34,7 @@ class AcademyControl extends \Nette\Application\UI\Control {
     $skills = array();
     foreach($skillsRows as $skill) {
       $s = (object) array(
-        "id" => $skill->id, "name" => $skill->name, "description" => $skill->description
+        "id" => $skill->id, "name" => $skill->name
       );
       $s->level = $this->model->getLevelOfSkill($skill->id);
       $price = $this->model->calculateLearningPrice($skill->price, $s->level + 1);

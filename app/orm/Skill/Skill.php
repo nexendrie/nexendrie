@@ -9,7 +9,6 @@ use Nextras\Orm\Entity\Entity,
  *
  * @author Jakub Konečný
  * @property string $name
- * @property string $description
  * @property int $price
  * @property-read string $priceT {virtual}
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
