@@ -21,15 +21,17 @@ class UserJobsRepository extends Repository {
   }
   
   /**
-   * Get specified user's jobs from current month
+   * Get specified user's jobs from month
    * 
    * @param int $user
+   * @param int $month
+   * @param int $year
    * @return ICollection|UserJob[]
    */
-  function findFromThisMonth($user) {
+  function findFromMonth($user, $month = 0, $year = 0) {
     $sixDays = 60 * 60 * 24 * 6;
-    $month = date("n");
-    $year = date("Y");
+    if($month === 0) $month = date("n");
+    if($year === 0) $year = date("Y");
     $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);
