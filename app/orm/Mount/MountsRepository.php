@@ -17,5 +17,12 @@ class MountsRepository extends Repository {
   function findOnMarket() {
     return $this->findBy(array("onMarket" => true));
   }
+  
+  /**
+   * @return ICollection|Mount[]
+   */
+  function findOwnedMounts() {
+    return $this->findBy(array("this->owner->id>" => 0));
+  }
 }
 ?>

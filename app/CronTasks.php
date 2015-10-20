@@ -26,7 +26,7 @@ class CronTasks {
    */
   function mountsStatus() {
     echo "Starting mounts status update ...\n";
-    $mounts = $this->orm->mounts->findBy(array("this->owner->id>" => 0));
+    $mounts = $this->orm->mounts->findOwnedMounts();
     foreach($mounts as $mount) {
       $mount->hp -= 5;
       $this->orm->mounts->persist($mount);
