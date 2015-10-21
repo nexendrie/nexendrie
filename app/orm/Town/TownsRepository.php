@@ -11,6 +11,8 @@ use Nextras\Orm\Repository\Repository,
  */
 class TownsRepository extends Repository {
   /**
+   * Get towns on sale
+   * 
    * @return ICollection|Town[]
    */
   function findOnMarket() {

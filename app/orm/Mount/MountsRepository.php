@@ -12,6 +12,8 @@ use Nextras\Orm\Repository\Repository,
  */
 class MountsRepository extends Repository {
   /**
+   * Get mounts on market
+   * 
    * @return ICollection|Mount[]
    */
   function findOnMarket() {
@@ -19,6 +21,8 @@ class MountsRepository extends Repository {
   }
   
   /**
+   * Get mounts owned by users
+   * 
    * @return ICollection|Mount[]
    */
   function findOwnedMounts() {
