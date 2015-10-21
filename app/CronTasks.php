@@ -21,7 +21,7 @@ class CronTasks {
    * @return void
    * 
    * @cronner-task Mounts status update
-   * @cronner-period 1 day
+   * @cronner-period 1 week
    * @cronner-time 01:00 - 02:00
    */
   function mountsStatus() {
