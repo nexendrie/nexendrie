@@ -9,13 +9,16 @@ namespace Nexendrie\Model;
 class Property extends \Nette\Object {
   /** @var \Nexendrie\Model\Job*/
   protected $jobModel;
+  /** @var \Nexendrie\Model\Bank */
+  protected $bankModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Model\Job $jobModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Model\Job $jobModel, \Nexendrie\Model\Bank $bankModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->jobModel = $jobModel;
+    $this->bankModel = $bankModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -52,11 +55,16 @@ class Property extends \Nette\Object {
         "taxes" => 0
       ),
       "expenses" => array(
-        "incomeTax" => 0
+        "incomeTax" => 0,
+        "loansInterest" => 0
     ));
     $jobs = $this->orm->userJobs->findFromMonth($this->user->id);
     foreach($jobs as $job) {
       $budget["incomes"]["work"] += array_sum($this->jobModel->calculateReward($job));
+    }
+    $loans = $this->orm->loans->findReturnedThisMonth($this->user->id);
+    foreach($loans as $loan) {
+      $budget["expenses"]["loansInterest"] += $this->bankModel->calculateInterest($loan);
     }
     return $budget;
   }
