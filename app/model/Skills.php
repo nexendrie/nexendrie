@@ -96,7 +96,7 @@ class Skills extends \Nette\Object {
     if($newLevel === 1) return $basePrice;
     $price = $basePrice;
     for($i = 1; $i < $newLevel; $i++) {
-      $price += (int) ($basePrice / 10);
+      $price += (int) ($basePrice / 5);
     }
     return $price;
   }
