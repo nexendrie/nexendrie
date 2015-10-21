@@ -10,6 +10,7 @@ use Nette\Neon\Neon,
  * Settings Repository
  *
  * @author Jakub Konečný
+ * @property-read array $settings
  */
 class SettingsRepository extends \Nette\Object {
   /** @var array */

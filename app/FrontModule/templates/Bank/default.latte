@@ -1,0 +1,8 @@
+{layout "../@layout.latte"}
+{block title}Banka{/block}
+{block content}
+  <h1>Banka</h1>
+  <p>Přicházíš k místní pobočce banky rodiny Žajských. Ještě před padesáti lety to byli obyčejní měšťané v dnes již neexistujím městě Nexendrie, avšak obchodováním získali velký majetek a před 20 lety se souhlasem tehdejšího krále založili první banku v Nexendrii. Zpočátku půjčovali jen šlechticům, ale brzy zjistili, že nabízením peněz všem vrstám obyvatelstva mohou vydělat ještě více. Dnes mají pobočku v téměř každé městě a vesnici v království.</p>
+  <p>Hned po vstupu do budovy tě pozdraví jeden z členů rodiny. {if !$user->loggedIn}"Vítám vás v bance Žajských, pane. Je mi líto, ale cizincům nepůjčujeme."{elseif $loan}"Vítám vás v bance Žajských, pane. Přišel jste splatit svou půjčku?"{elseif !$loan}"Vítám vás v bance Žajských, pane. Pokud potřebujete rychle peníze, tak jste na správném místě. S ohledem na vaše postavení vám můžeme půjčit maximálně {$maxLoan} s úrokem {$interest}% ročně. Jakmile to vrátíte, rádí vám znovu půjčíme."{/if}</p>
+  <p>{if $user->loggedIn AND !$loan}{control takeLoanForm}{elseif $user->loggedIn AND $loan}<a n:href="return">Vrátit</a> {$returnMoney}{/if}</p>
+{/block}

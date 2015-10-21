@@ -28,6 +28,9 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "style" => "blue-sky",
       "money" => 30,
       "town" => 3
+    ),
+    "fees" => array(
+      "loanInterest" => 15
     )
   );
   
@@ -60,6 +63,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setFactory("Nexendrie\Model\UserManager", array($config["roles"], $config["newUser"]));
     $builder->addDefinition($this->prefix("model.locale"))
       ->setFactory("Nexendrie\Model\Locale", array($config["locale"]));
+    $builder->addDefinition($this->prefix("model.bank"))
+       ->setFactory("Nexendrie\Model\Bank", array($config["fees"]["loanInterest"]));
     $builder->addDefinition("cache.cache")
       ->setFactory("Nette\Caching\Cache", array("@cache.storage", "data"));
     $builder->addDefinition($this->prefix("model.settingsRepository"))
@@ -98,7 +103,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "addEditArticle", "addEditPoll", "newMessage", "register", "login",
       "userSettings", "addComment", "editGroup", "systemSettings", "editUser",
       "addEditShop", "addEditItem", "addEditJob", "addEditJobMessage", "addEditTown",
-      "addEditMount", "addEditSkill", "manageMount", "manageTown", "banUser"
+      "addEditMount", "addEditSkill", "manageMount", "manageTown", "banUser", "takeLoan"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix("form.$form"))
