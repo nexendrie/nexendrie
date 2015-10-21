@@ -109,7 +109,7 @@ class Skills extends \Nette\Object {
    * @throws AuthenticationNeededException
    * @throws SkillNotFoundException
    * @throws SkillMaxLevelReachedException
-   * @throws InsufficientFunds
+   * @throws InsufficientFundsException
    */
   function learn($id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
@@ -127,7 +127,7 @@ class Skills extends \Nette\Object {
     }
     if($userSkill->level === 5) throw new SkillMaxLevelReachedException;
     $price = $this->calculateLearningPrice($skill->price, $userSkill->level + 1);
-    if($userSkill->user->money < $price) throw new InsufficientFunds;
+    if($userSkill->user->money < $price) throw new InsufficientFundsException;
     $userSkill->level++;
     $userSkill->user->money -= $price;
     $this->orm->userSkills->persistAndFlush($userSkill);

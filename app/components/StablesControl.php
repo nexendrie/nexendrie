@@ -3,7 +3,7 @@ namespace Nexendrie\Components;
 
 use Nexendrie\Model\MountNotFoundException,
     Nexendrie\Model\MountNotOwnedException,
-    Nexendrie\Model\InsufficientFunds,
+    Nexendrie\Model\InsufficientFundsException,
     Nexendrie\Model\CareNotNeededException;
 
 /**
@@ -41,14 +41,14 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @return void
    * @throws MountNotFoundException
    * @throws MountNotOwnedException
-   * @throws InsufficientFunds
+   * @throws InsufficientFundsException
    * @throws CareNotNeededException
    */
   protected function increaseLife($mountId, $hp, $price) {
     $mount = $this->orm->mounts->getById($mountId);
     if(!$mount) throw new MountNotFoundException;
     if($mount->owner->id != $this->user->id) throw new MountNotOwnedException;
-    if($mount->owner->money < $price) throw new InsufficientFunds;
+    if($mount->owner->money < $price) throw new InsufficientFundsException;
     if($mount->hp >= 100) throw new CareNotNeededException;
     $mount->hp += $hp;
     $mount->owner->money -= $price;
@@ -63,7 +63,7 @@ class StablesControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
     } catch(MountNotOwnedException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře ti nepatří.");
-    } catch(InsufficientFunds $e) {
+    } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");
     } catch(CareNotNeededException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře nepotřebuje čištění.");
@@ -78,7 +78,7 @@ class StablesControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
     } catch(MountNotOwnedException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře ti nepatří.");
-    } catch(InsufficientFunds $e) {
+    } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");
     } catch(CareNotNeededException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře nepotřebuje krmení.");

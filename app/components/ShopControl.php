@@ -6,7 +6,7 @@ use Nexendrie\Orm\Shop as ShopEntity,
     Nexendrie\Model\ItemNotFoundException,
     Nexendrie\Model\WrongShopException,
     Nexendrie\Model\AuthenticationNeededException,
-    Nexendrie\Model\InsufficientFunds,
+    Nexendrie\Model\InsufficientFundsException,
     Nexendrie\Orm\UserItem as UserItemEntity;
 
 /**
@@ -73,7 +73,7 @@ class ShopControl extends \Nette\Application\UI\Control {
    * @throws AuthenticationNeededException
    * @throws ItemNotFoundException
    * @throws WrongShopException
-   * @throws InsufficientFunds
+   * @throws InsufficientFundsException
    */
   protected function buy($item) {
     $itemRow = $this->orm->items->getById($item);
@@ -81,7 +81,7 @@ class ShopControl extends \Nette\Application\UI\Control {
     if(!$itemRow) throw new ItemNotFoundException("Specified item does not exist.");
     if($itemRow->shop->id != $this->shop->id) throw new WrongShopException("Specified item is not in current shop.");
     $user = $this->orm->users->getById($this->user->id);
-    if($user->money < $itemRow->price) throw new InsufficientFunds("You do not have enough money to buy this item.");
+    if($user->money < $itemRow->price) throw new InsufficientFundsException("You do not have enough money to buy this item.");
     $row = $this->orm->userItems->getByUserAndItem($user->id, $item);
     if(!$row) {
       $row = new UserItemEntity;
@@ -110,7 +110,7 @@ class ShopControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Zadaná věc neexistuje.");
     } catch(WrongShopException $e) {
       $this->presenter->flashMessage("Zadaná věc není v aktuálním obchodě.");
-    } catch(InsufficientFunds $e) {
+    } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz na zakoupení této věci.");
     }
   }

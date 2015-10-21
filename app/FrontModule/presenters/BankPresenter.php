@@ -4,7 +4,7 @@ namespace Nexendrie\FrontModule\Presenters;
 use Nexendrie\Forms\TakeLoanFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\NoLoanException,
-    Nexendrie\Model\InsufficientFunds;
+    Nexendrie\Model\InsufficientFundsException;
 /**
  * Presenter Bank
  *
@@ -54,7 +54,7 @@ class BankPresenter extends BasePresenter {
       $this->flashMessage("Vrátil jsi půjčku.");
     } catch(NoLoanException $e) {
       $this->flashMessage("Nemáš žádnou půjčku.");
-    } catch(InsufficientFunds $e) {
+    } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nemáš dostatek peněz.");
     }
     $this->redirect("default");

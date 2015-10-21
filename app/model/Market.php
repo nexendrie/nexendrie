@@ -145,7 +145,7 @@ class WrongShopException extends AccessDeniedException {
   
 }
 
-class InsufficientFunds extends AccessDeniedException {
+class InsufficientFundsException extends AccessDeniedException {
   
 }
 ?>

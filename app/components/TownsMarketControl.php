@@ -5,7 +5,7 @@ use Nexendrie\Model\TownNotFoundException,
     Nexendrie\Model\TownNotOnSaleException,
     Nexendrie\Model\CannotBuyOwnTownException,
     Nexendrie\Model\InsufficientLevelForTownException,
-    Nexendrie\Model\InsufficientFunds;
+    Nexendrie\Model\InsufficientFundsException;
 
 /**
  * TownsMarketControl
@@ -48,7 +48,7 @@ class TownsMarketControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Toto město je již tvé.");
     } catch(InsufficientLevelForTownException $e) {
       $this->presenter->flashMessage("Nemůžeš kupovat města.");
-    } catch(InsufficientFunds $e) {
+    } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");
     }
   }

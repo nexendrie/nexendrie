@@ -5,7 +5,7 @@ use Nexendrie\Model\MountNotFoundException,
     Nexendrie\Model\MountNotOnSaleException,
     Nexendrie\Model\CannotBuyOwnMountException,
     Nexendrie\Model\InsufficientLevelForMountException,
-    Nexendrie\Model\InsufficientFunds;
+    Nexendrie\Model\InsufficientFundsException;
 
 /**
  * MountsMarketControl
@@ -48,7 +48,7 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Toto jezdecké zvíře je již tvé.");
     } catch(InsufficientLevelForMountException $e) {
       $this->presenter->flashMessage("Nemůže si ještě koupit tento druh jezdeckého zvíře.");
-    } catch(InsufficientFunds $e) {
+    } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");
     }
   }

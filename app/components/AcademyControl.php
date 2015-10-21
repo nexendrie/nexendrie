@@ -3,7 +3,7 @@ namespace Nexendrie\Components;
 
 use Nexendrie\Model\SkillNotFoundException,
     Nexendrie\Model\SkillMaxLevelReachedException,
-    Nexendrie\Model\InsufficientFunds;
+    Nexendrie\Model\InsufficientFundsException;
 
 /**
  * AcademyControl
@@ -57,7 +57,7 @@ class AcademyControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Dovednost nenalezena.");
     } catch(SkillMaxLevelReachedException $e) {
       $this->presenter->flashMessage("Dosáhl jsi již maximální úrovně.");
-    } catch(InsufficientFunds $e) {
+    } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");
     }
   }

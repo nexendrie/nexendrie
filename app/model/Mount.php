@@ -104,7 +104,7 @@ class Mount extends \Nette\Object {
    * @throws MountNotOnSaleException
    * @throws CannotBuyOwnMountException
    * @throws InsufficientLevelForMountException
-   * @throws InsufficientFunds
+   * @throws InsufficientFundsException
    */
   function buy($id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
@@ -114,7 +114,7 @@ class Mount extends \Nette\Object {
     if($mount->owner->id === $this->user->id) throw new CannotBuyOwnMountException;
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->level < $mount->type->level) throw new InsufficientLevelForMountException;
-    if($user->money < $mount->price) throw new InsufficientFunds;
+    if($user->money < $mount->price) throw new InsufficientFundsException;
     $seller = $mount->owner;
     $seller->money += $mount->price;
     $this->orm->users->persist($seller);

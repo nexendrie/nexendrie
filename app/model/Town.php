@@ -93,7 +93,7 @@ class Town extends \Nette\Object {
    * @throws TownNotOnSaleException
    * @throws CannotBuyOwnTownException
    * @throws InsufficientLevelForTownException
-   * @throws InsufficientFunds
+   * @throws InsufficientFundsException
    */
   function buy($id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
@@ -103,7 +103,7 @@ class Town extends \Nette\Object {
     if($town->owner->id === $this->user->id) throw new CannotBuyOwnTownException;
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->level < 350) throw new InsufficientLevelForTownException;
-    if($user->money < $town->price) throw new InsufficientFunds;
+    if($user->money < $town->price) throw new InsufficientFundsException;
     $seller = $town->owner;
     $seller->money += $town->price;
     $this->orm->users->persist($seller);

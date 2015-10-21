@@ -92,14 +92,14 @@ class Bank extends \Nette\Object {
    * @return void
    * @throws AuthenticationNeededException
    * @throws NoLoanException
-   * @throws InsufficientFunds
+   * @throws InsufficientFundsException
    */
   function returnLoan() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $loan = $this->getActiveLoan();
     if(!$loan) throw new NoLoanException;
     $returnMoney = $loan->amount + $this->calculateInterest($loan);
-    if($returnMoney > $loan->user->money) throw new InsufficientFunds;
+    if($returnMoney > $loan->user->money) throw new InsufficientFundsException;
     $loan->returned = time();
     $loan->user->money -= $returnMoney;
     $this->orm->loans->persistAndFlush($loan);
