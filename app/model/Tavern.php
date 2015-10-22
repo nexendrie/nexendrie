@@ -8,7 +8,7 @@ use Nexendrie\Orm\Meal as MealEntity;
  *
  * @author Jakub Konečný
  */
-class Pub extends \Nette\Object {
+class Tavern extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -68,6 +68,26 @@ class Pub extends \Nette\Object {
       $job->$key = $value;
     }
     $this->orm->meals->persistAndFlush($job);
+  }
+  
+  /**
+   * Buy a meal
+   * 
+   * @param int $id Meal's id
+   * @return string
+   * @throws AuthenticationNeededException
+   * @throws MealNotFoundException
+   * @throws InsufficientFundsException
+   */
+  function buyMeal($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $meal = $this->orm->meals->getById($id);
+    if(!$meal) throw new MealNotFoundException;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->money < $meal->price) throw new InsufficientFundsException;
+    $user->money -= $meal->price;
+    //$this->orm->users->persistAndFlush($user);
+    return $meal->message;
   }
 }
 
