@@ -8,7 +8,7 @@ use Nextras\Orm\Entity\Entity;
  *
  * @author Jakub Konečný
  * @property string $name
- * @property string $text
+ * @property string $message
  * @property int $price
  * @property-read string $priceT {virtual}
  */

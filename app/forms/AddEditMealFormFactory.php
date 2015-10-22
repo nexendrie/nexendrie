@@ -17,8 +17,8 @@ class AddEditMealFormFactory {
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
       ->addRule(Form::MAX, "Jméno může mít maximálně 15 znaků.", 15);
-    $form->addTextArea("text", "Text:")
-      ->setRequired("Zadej text.");
+    $form->addTextArea("message", "Zpráva:")
+      ->setRequired("Zadej zprávu.");
     $form->addText("price", "Cena:")
       ->setRequired("Zadej cenu.")
       ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
