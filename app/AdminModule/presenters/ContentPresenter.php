@@ -17,6 +17,8 @@ class ContentPresenter extends BasePresenter {
   protected $mountModel;
   /** @var \Nexendrie\Model\Skills @autowire */
   protected $skillsModel;
+  /** @var \Nexendrie\Model\Pub @autowire */
+  protected $pubModel;
   
   /**
    * @return void
@@ -66,6 +68,13 @@ class ContentPresenter extends BasePresenter {
    */
   function renderSkills() {
     $this->template->skills = $this->skillsModel->listOfSkills();
+  }
+  
+  /**
+   * @return void
+   */
+  function renderMeals() {
+    $this->template->meals = $this->pubModel->listOfMeals();
   }
 }
 ?>
