@@ -169,8 +169,8 @@ class Job extends \Nette\Object {
     if(time() < $currentJob->finishTime) throw new JobNotFinishedException;
     $rewards = $this->calculateReward($currentJob);
     $currentJob->finished = true;
-    $currentJob->earned = $rewards["reward"];
-    $currentJob->extra = $rewards["extra"];
+    $currentJob->earned = (int) round($rewards["reward"]);
+    $currentJob->extra = (int) round($rewards["extra"]);
     $currentJob->user->money += array_sum($rewards);
     $this->orm->userJobs->persistAndFlush($currentJob);
     return $rewards;
