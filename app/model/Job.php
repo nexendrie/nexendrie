@@ -171,7 +171,7 @@ class Job extends \Nette\Object {
     $currentJob->finished = true;
     $currentJob->earned = $rewards["reward"];
     $currentJob->extra = $rewards["extra"];
-    $currentJob->user->money += $rewards["reward"] + $rewards["extra"];
+    $currentJob->user->money += array_sum($rewards);
     $this->orm->userJobs->persistAndFlush($currentJob);
     return $rewards;
   }
