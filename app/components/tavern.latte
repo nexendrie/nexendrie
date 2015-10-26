@@ -1,0 +1,12 @@
+  <h1>Hostinec</h1>
+  <p>Vstupuješ do místního hostince. Jsi poněkud překvapen, kolik je zde v tubo dobu lidí. Po chvíli pokukování si najdeš místo a usedneš. O několik okamžiků později už slyšíš servírku, jak ti říká:</p>
+  {if !$user->loggedIn}
+  <p>"Je vidět, že nejste odtud. Promiňte, ale cizincům neprodáváme."</p>
+  {else}
+  <p>"Vítejte v našem vyhlášeném hostinci. Mohu vám nábídnout:"</p>
+  <ul n:inner-foreach="$meals as $meal">
+    <li>{$meal->name} za {$meal->priceT} <a n:href="eat! $meal->id">Objednat si</a></li>
+  </ul>
+  {default $message = false}
+  {if $message}<p>{$message}</p>{/if}
+  {/if}
