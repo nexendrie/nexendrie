@@ -35,7 +35,7 @@ class Messenger extends \Nette\Object {
    * @throws AuthenticationNeededException
    */
   function inbox() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.", 401);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     return $this->orm->messages->findByTo($this->user->id)->orderBy("sent", ICollection::DESC);
   }
   
@@ -46,7 +46,7 @@ class Messenger extends \Nette\Object {
    * @throws AuthenticationNeededException
    */
   function outbox() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.", 401);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     return $this->orm->messages->findByFrom($this->user->id)->orderBy("sent", ICollection::DESC);
   }
   
