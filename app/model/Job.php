@@ -359,6 +359,15 @@ class Job extends \Nette\Object {
       return $return;
     }
   }
+  
+  function calculateMonthJobIncome($userId, $month = 0, $year = 0) {
+    $income = 0;
+    $jobs = $this->orm->userJobs->findFromMonth($this->user->id);
+    foreach($jobs as $job) {
+      $income += array_sum($this->calculateReward($job));
+    }
+    return $income;
+  }
 }
 
 class JobNotFoundException extends RecordNotFoundException {

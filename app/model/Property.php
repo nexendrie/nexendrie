@@ -50,7 +50,7 @@ class Property extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $budget = array(
       "incomes" => array(
-        "work" => 0,
+        "work" => $this->jobModel->calculateMonthJobIncome($this->user->id),
         "adventures" => 0,
         "taxes" => 0
       ),
@@ -58,10 +58,6 @@ class Property extends \Nette\Object {
         "incomeTax" => 0,
         "loansInterest" => 0
     ));
-    $jobs = $this->orm->userJobs->findFromMonth($this->user->id);
-    foreach($jobs as $job) {
-      $budget["incomes"]["work"] += array_sum($this->jobModel->calculateReward($job));
-    }
     $loans = $this->orm->loans->findReturnedThisMonth($this->user->id);
     foreach($loans as $loan) {
       $budget["expenses"]["loansInterest"] += $this->bankModel->calculateInterest($loan);
