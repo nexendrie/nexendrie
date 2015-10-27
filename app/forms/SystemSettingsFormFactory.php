@@ -100,6 +100,13 @@ class SystemSettingsFormFactory {
       ->addRule(Form::RANGE, "Peníze musí být v rozmezí 1-100.", array(1, 100));
     $newUser->addSelect("town", "Město:", $this->getListOfTowns())
       ->setRequired("Vyber město.");
+    $form->addGroup("Daně a poplatky");
+    $fees = $form->addContainer("fees");
+    $fees->addText("loanInterest", "Úrok z půjčky:")
+      ->setOption("description", "% ročně")
+      ->setRequired("Zadej úrok z půjčky.")
+      ->addRule(Form::INTEGER, "Úrok z půjčky musí být celé číslo.")
+      ->addRule(Form::RANGE, "Úrok z půjčky musí být v rozmezí 0-100.", array(0, 100));
     $form->currentGroup = NULL;
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());
