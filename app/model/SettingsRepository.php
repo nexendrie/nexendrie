@@ -37,6 +37,9 @@ class SettingsRepository extends \Nette\Object {
     $filename = APP_DIR . "/config/local.neon";
     $config = Neon::decode(file_get_contents($filename));
     $config += array("nexendrie" => $settings);
+    if(is_string($config["nexendrie"]["locale"]["plural"])) {
+      $config["nexendrie"]["locale"]["plural"] = explode("\n", $config["nexendrie"]["locale"]["plural"]);
+    }
     try {
       $content = Neon::encode($config, Encoder::BLOCK);
       FileSystem::write($filename, $content);
