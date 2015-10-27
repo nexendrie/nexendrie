@@ -86,7 +86,7 @@ class Tavern extends \Nette\Object {
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < $meal->price) throw new InsufficientFundsException;
     $user->money -= $meal->price;
-    //$this->orm->users->persistAndFlush($user);
+    $this->orm->users->persistAndFlush($user);
     return $meal->message;
   }
 }
