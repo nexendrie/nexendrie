@@ -360,6 +360,14 @@ class Job extends \Nette\Object {
     }
   }
   
+  /**
+   * Calculate income from user's jobs from a month
+   * 
+   * @param int $user
+   * @param int $month
+   * @param int $year
+   * @return int
+   */
   function calculateMonthJobIncome($userId, $month = 0, $year = 0) {
     $income = 0;
     $jobs = $this->orm->userJobs->findFromMonth($this->user->id);
