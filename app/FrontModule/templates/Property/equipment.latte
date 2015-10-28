@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Vybavení{/block}
+{block content}
+  <h1>Vybavení</h1>
+  {if $items->count() === 0}
+  <p>Nemáš žádné vybavení.</p>
+  {else}
+  <div n:inner-foreach="$items as $item" id="items">
+    {$item->item->name} - {$item->item->typeCZ} (Síla: {$item->item->strength}) {if !$item->worn}<a n:href="equip! $item->id">Nasadit</a>{else}<a n:href="unequip! $item->id">Sundat</a>{/if}<br>
+  </div>
+  {/if}
+{/block}

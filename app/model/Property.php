@@ -34,7 +34,7 @@ class Property extends \Nette\Object {
     $return = array();
     $user = $this->orm->users->getById($this->user->id);
     $return["money"] = $user->moneyT;
-    $return["items"] = $user->items;
+    $return["items"] = $user->items->get()->findBy(array("this->item->type" => "item"));
     $return["isLord"] = ($user->group->level >= 350);
     $return["towns"] = $user->ownedTowns;
     return $return;
@@ -64,5 +64,82 @@ class Property extends \Nette\Object {
     }
     return $budget;
   }
+  
+  /**
+   * Show user's equipment
+   * 
+   * @return type
+   * @throws AuthenticationNeededException
+   */
+  function equipment() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    return $this->orm->userItems->findEquipment($this->user->id);
+  }
+  
+  /**
+   * Equip an item
+   * 
+   * @param int $id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws ItemNotFoundException
+   * @throws ItemNotOwnedException
+   * @throws ItemNotEquipableException
+   * @throws ItemAlreadyWornException
+   */
+  function equipItem($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $item = $this->orm->userItems->getById($id);
+    if(!$item) throw new ItemNotFoundException;
+    elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
+    elseif($item->worn) throw new ItemAlreadyWornException;
+    $item->worn = true;
+    $this->orm->userItems->persist($item);
+    $items = $this->orm->userItems->findByType($this->user->id, $item->item->type);
+    foreach($items as $i) {
+      if($i->id === $item->id) continue;
+      $i->worn = false;
+      $this->orm->userItems->persist($i);
+    }
+    $this->orm->flush();
+  }
+  
+  /**
+   * Unequip an item
+   * 
+   * @param int $id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws ItemNotFoundException
+   * @throws ItemNotOwnedException
+   * @throws ItemNotEquipableException
+   * @throws ItemNotWornException
+   */
+  function unequipItem($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $item = $this->orm->userItems->getById($id);
+    if(!$item) throw new ItemNotFoundException;
+    elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
+    elseif($item->item->type === "item") throw new ItemNotEquipableException;
+    elseif(!$item->worn) throw new ItemNotWornException;
+    $item->worn = false;
+    $this->orm->userItems->persistAndFlush($item);
+  }
+}
+
+class ItemNotOwnedException extends AccessDeniedException {
+  
+}
+
+class ItemNotEquipableException extends AccessDeniedException {
+  
+}
+
+class ItemAlreadyWornException extends AccessDeniedException {
+  
+}
+
+class ItemNotWornException extends AccessDeniedException {
+  
 }
 ?>

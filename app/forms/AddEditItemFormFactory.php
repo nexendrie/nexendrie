@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form;
+use Nette\Application\UI\Form,
+    Nexendrie\Orm\Item;
 
 /**
  * Factory for form AddEditItem
@@ -44,6 +45,12 @@ class AddEditItemFormFactory {
       ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999.", array(0, 999));
     $form->addSelect("shop", "Obchod", $this->getShops())
       ->setRequired("Vyber obchod.");
+    $form->addSelect("type", "Typ:", Item::getTypes())
+      ->setRequired("Vyber type.");
+    $form->addText("strength", "Síla:")
+      ->setRequired("Zadej síla.")
+      ->addRule(Form::INTEGER, "Síla musí být celé číslo.")
+      ->addRule(Form::RANGE, "Síla musí být v rozmezí 0-999.", array(0, 999));
     $form->addSubmit("submit", "Odeslat");
     return $form;
   }

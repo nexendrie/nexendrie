@@ -10,6 +10,8 @@ namespace Nexendrie\Orm;
  * @property string $description
  * @property int $price
  * @property int $shop
+ * @property string $type
+ * @property int $strength
  */
 class ItemDummy extends \Nette\Object {
   /** @var int */
@@ -22,6 +24,10 @@ class ItemDummy extends \Nette\Object {
   protected $price;
   /** @var int */
   protected $shop;
+  /** @var string */
+  protected $type;
+  /** @var int */
+  protected $strength;
   
   function __construct(Item $item) {
     $this->id = $item->id;
@@ -29,6 +35,8 @@ class ItemDummy extends \Nette\Object {
     $this->description = $item->description;
     $this->price = $item->price;
     $this->shop = $item->shop->id;
+    $this->type = $item->type;
+    $this->strength = $item->strength;
   }
   
   /**

@@ -13,9 +13,16 @@ use Nextras\Orm\Entity\Entity,
  * @property int $price
  * @property-read string $priceT {virtual}
  * @property Shop $shop {m:1 Shop}
+ * @property string $type {enum self::TYPE_*} {default self::TYPE_ITEM}
+ * @property int $strength {default 0}
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}
+ * @property-read string $typeCZ {virtual}
  */
 class Item extends Entity {
+  const TYPE_ITEM = "item";
+  const TYPE_WEAPON = "weapon";
+  const TYPE_ARMOR = "armor";
+  
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   
@@ -23,8 +30,23 @@ class Item extends Entity {
     $this->localeModel = $localeModel;
   }
   
+  /**
+   * @return string[]
+   */
+  static function getTypes() {
+    return array(
+      "item" => "Věc",
+      "weapon" => "Zbraň",
+      "armor" => "Brnění"
+    );
+  }
+  
   protected function getterPriceT() {
     return $this->localeModel->money($this->price);
+  }
+  
+  protected function getterTypeCZ() {
+    return self::getTypes()[$this->type];
   }
   
   /**

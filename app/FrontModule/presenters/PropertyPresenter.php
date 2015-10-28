@@ -4,7 +4,12 @@ namespace Nexendrie\FrontModule\Presenters;
 use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\TownNotFoundException,
     Nexendrie\Forms\ManageTownFormFactory,
-    Nette\Application\UI\Form;
+    Nette\Application\UI\Form,
+    Nexendrie\Model\ItemNotFoundException,
+    Nexendrie\Model\ItemNotOwnedException,
+    Nexendrie\Model\ItemNotEquipableException,
+    Nexendrie\Model\ItemAlreadyWornException,
+    Nexendrie\Model\ItemNotWornException;
 
 /**
  * Presenter Assets
@@ -88,6 +93,51 @@ class PropertyPresenter extends BasePresenter {
     $this->template->taxes = $this->localeModel->money($budget["incomes"]["taxes"]);
     $this->template->incomeTax = $this->localeModel->money($budget["expenses"]["incomeTax"]);
     $this->template->loansInterest = $this->localeModel->money($budget["expenses"]["loansInterest"]);
+  }
+  
+  /**
+   * @return void
+   */
+  function renderEquipment() {
+    $this->template->items = $this->model->equipment();
+  }
+  
+  /**
+   * @param int $item
+   * @return void
+   */
+  function handleEquip($item) {
+    try {
+      $this->model->equipItem($item);
+      $this->flashMessage("Věc nasazena.");
+    } catch(ItemNotFoundException $e) {
+      $this->flashMessage("Věc nenalezena.");
+    } catch(ItemNotOwnedException $e) {
+      $this->flashMessage("Zadaná věc ti nepatří.");
+    } catch(ItemNotEquipableException $e) {
+      $this->flashMessage("Zadanou věc nelze nasadit.");
+    } catch(ItemAlreadyWornException $e) {
+      $this->flashMessage("Už nosíš danou věc.");
+    }
+    $this->redirect("equipment");
+  }
+  
+  /**
+   * @param int $item
+   * @return void
+   */
+  function handleUnequip($item) {
+    try {
+      $this->model->unequipItem($item);
+      $this->flashMessage("Věc sundána.");
+    } catch(ItemNotFoundException $e) {
+      $this->flashMessage("Věc nenalezena.");
+    } catch(ItemNotOwnedException $e) {
+      $this->flashMessage("Zadaná věc ti nepatří.");
+    } catch(ItemAlreadyWornException $e) {
+      $this->flashMessage("Nenosíš danou věc.");
+    }
+    $this->redirect("equipment");
   }
 }
 ?>
