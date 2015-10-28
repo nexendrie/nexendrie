@@ -22,6 +22,8 @@ class ItemDummy extends \Nette\Object {
   protected $price;
   /** @var int */
   protected $shop;
+  /** @var string */
+  protected $type;
   
   function __construct(Item $item) {
     $this->id = $item->id;
@@ -29,6 +31,7 @@ class ItemDummy extends \Nette\Object {
     $this->description = $item->description;
     $this->price = $item->price;
     $this->shop = $item->shop->id;
+    $this->type = $item->type;
   }
   
   /**
