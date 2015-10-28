@@ -6,7 +6,7 @@
   <p>Nemáš žádné vybavení.</p>
   {else}
   <div n:inner-foreach="$items as $item" id="items">
-    {$item->item->name} - {$item->item->typeCZ}<br>
+    {$item->item->name} - {$item->item->typeCZ} {if !$item->worn}<a n:href="equip! $item->id">Nasadit</a>{else}<a n:href="unequip! $item->id">Sundat</a>{/if}<br>
   </div>
   {/if}
 {/block}
