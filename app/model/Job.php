@@ -363,7 +363,7 @@ class Job extends \Nette\Object {
   /**
    * Calculate income from user's jobs from a month
    * 
-   * @param int $user
+   * @param int $userId
    * @param int $month
    * @param int $year
    * @return int

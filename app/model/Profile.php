@@ -18,7 +18,6 @@ class Profile extends \Nette\Object {
   /**
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Caching\Cache $cache
-   * @param \Nexendrie\Model\Locale $localeModel
    */
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache) {
     $this->orm = $orm;
@@ -70,7 +69,7 @@ class Profile extends \Nette\Object {
   /**
    * Get list of potential town owners
    * 
-   * @return array
+   * @return string[]
    */
   function getListOfLords() {
     $return = array();

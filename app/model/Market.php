@@ -32,7 +32,7 @@ class Market extends \Nette\Object {
   /**
    * Get list of items
    * 
-   * @return ItemEntity
+   * @return ItemEntity[]
    */
   function listOfItems() {
     return $this->orm->items->findAll();

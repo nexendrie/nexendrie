@@ -4,7 +4,7 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\Meal as MealEntity;
 
 /**
- * Pub Model
+ * Tavern Model
  *
  * @author Jakub Konečný
  */

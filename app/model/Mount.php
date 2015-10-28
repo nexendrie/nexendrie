@@ -56,7 +56,7 @@ class Mount extends \Nette\Object {
   /**
    * Get list of all mount types
    * 
-   * @return MountTypeEntity
+   * @return MountTypeEntity[]
    */
   function listOfMountTypes() {
     return $this->orm->mountTypes->findAll();

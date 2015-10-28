@@ -6,7 +6,7 @@ use Nette\Security as NS,
     Nette\InvalidArgumentException;
 
 /**
- * User Model
+ * User Manager
  *
  * @author Jakub Konečný
  */

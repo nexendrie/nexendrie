@@ -2,7 +2,7 @@
 namespace Nexendrie\Model;
 
 /**
- * Assets Model
+ * Property Model
  *
  * @author Jakub Konečný
  */

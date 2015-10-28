@@ -43,7 +43,7 @@ class SettingsRepository extends \Nette\Object {
     try {
       $content = Neon::encode($config, Encoder::BLOCK);
       FileSystem::write($filename, $content);
-    } catch (IOException $e) {
+    } catch(IOException $e) {
       throw $e;
     }
   }
