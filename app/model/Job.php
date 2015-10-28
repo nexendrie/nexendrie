@@ -368,8 +368,9 @@ class Job extends \Nette\Object {
    * @param int $year
    * @return int
    */
-  function calculateMonthJobIncome($userId, $month = 0, $year = 0) {
+  function calculateMonthJobIncome($userId = 0, $month = 0, $year = 0) {
     $income = 0;
+    if($userId === 0) $userId = $this->user->id;
     $jobs = $this->orm->userJobs->findFromMonth($userId, $month, $year);
     foreach($jobs as $job) {
       $income += array_sum($this->calculateReward($job));
