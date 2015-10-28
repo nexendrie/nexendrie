@@ -23,6 +23,8 @@ class PropertyPresenter extends BasePresenter {
   protected $townModel;
   /** @var \Nexendrie\Model\Locale @autowire */
   protected $localeModel;
+  /** @var \Nexendrie\Model\Equipment @autowire */
+  protected $equipmentModel;
   /** @var TownEntity */
   private $town;
   
@@ -108,7 +110,7 @@ class PropertyPresenter extends BasePresenter {
    */
   function handleEquip($item) {
     try {
-      $this->model->equipItem($item);
+      $this->equipmentModel->equipItem($item);
       $this->flashMessage("Věc nasazena.");
     } catch(ItemNotFoundException $e) {
       $this->flashMessage("Věc nenalezena.");
@@ -128,7 +130,7 @@ class PropertyPresenter extends BasePresenter {
    */
   function handleUnequip($item) {
     try {
-      $this->model->unequipItem($item);
+      $this->equipmentModel->unequipItem($item);
       $this->flashMessage("Věc sundána.");
     } catch(ItemNotFoundException $e) {
       $this->flashMessage("Věc nenalezena.");
