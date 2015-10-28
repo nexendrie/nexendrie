@@ -50,7 +50,7 @@ class Item extends Entity {
   }
   
   /**
-   * @return \Nexendrie\Orm\Itemdummy
+   * @return \Nexendrie\Orm\ItemDummy
    */
   function dummy() {
     return new ItemDummy($this);
