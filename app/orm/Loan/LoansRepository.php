@@ -36,7 +36,7 @@ class LoansRepository extends Repository {
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp();
-    return $this->findBy(array("user" => $user, "taken>" => $start, "taken<" => $end));
+    return $this->findBy(array("user" => $user, "returned>" => $start, "returned<" => $end));
   }
 }
 ?>
