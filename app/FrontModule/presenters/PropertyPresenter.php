@@ -134,7 +134,7 @@ class PropertyPresenter extends BasePresenter {
       $this->flashMessage("Věc nenalezena.");
     } catch(ItemNotOwnedException $e) {
       $this->flashMessage("Zadaná věc ti nepatří.");
-    } catch(ItemAlreadyWornException $e) {
+    } catch(ItemNotWornException $e) {
       $this->flashMessage("Nenosíš danou věc.");
     }
     $this->redirect("equipment");
