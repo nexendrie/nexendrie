@@ -14,6 +14,7 @@ use Nextras\Orm\Entity\Entity,
  * @property-read string $priceT {virtual}
  * @property Shop $shop {m:1 Shop}
  * @property string $type {enum self::TYPE_*} {default self::TYPE_ITEM}
+ * @property int $strength {default 0}
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}
  */
 class Item extends Entity {
