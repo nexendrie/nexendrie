@@ -34,7 +34,7 @@ class Property extends \Nette\Object {
     $return = array();
     $user = $this->orm->users->getById($this->user->id);
     $return["money"] = $user->moneyT;
-    $return["items"] = $user->items;
+    $return["items"] = $user->items->get()->findBy(array("this->item->type" => "item"));
     $return["isLord"] = ($user->group->level >= 350);
     $return["towns"] = $user->ownedTowns;
     return $return;
