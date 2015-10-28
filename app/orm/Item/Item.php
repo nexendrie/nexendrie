@@ -16,6 +16,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $type {enum self::TYPE_*} {default self::TYPE_ITEM}
  * @property int $strength {default 0}
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}
+ * @property-read string $typeCZ {virtual}
  */
 class Item extends Entity {
   const TYPE_ITEM = "item";
@@ -42,6 +43,10 @@ class Item extends Entity {
   
   protected function getterPriceT() {
     return $this->localeModel->money($this->price);
+  }
+  
+  protected function getterTypeCZ() {
+    return self::getTypes()[$this->type];
   }
   
   /**

@@ -64,5 +64,16 @@ class Property extends \Nette\Object {
     }
     return $budget;
   }
+  
+  /**
+   * Show user's equipment
+   * 
+   * @return type
+   * @throws AuthenticationNeededException
+   */
+  function equipment() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    return $this->orm->userItems->findEquipment($this->user->id);
+  }
 }
 ?>

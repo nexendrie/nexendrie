@@ -12,6 +12,14 @@ use Nextras\Orm\Repository\Repository,
  * @method ICollection|UserItem[] findByItem($item)
  */
 class UserItemsRepository extends Repository {
-  
+  /**
+   * Find specified user's equipment
+   * 
+   * @param int $user
+   * @return ICollection|Item[]
+   */
+  function findEquipment($user) {
+    return $this->findBy(array("user" => $user, "this->item->type!=" => "item"));
+  }
 }
 ?>
