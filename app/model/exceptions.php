@@ -20,4 +20,8 @@ class RecordNotFoundException extends \RuntimeException {
 class ImprisonedException extends AccessDeniedException {
   
 }
+
+class InsufficientFundsException extends AccessDeniedException {
+  
+}
 ?>

@@ -144,8 +144,4 @@ class ItemNotFoundException extends RecordNotFoundException {
 class WrongShopException extends AccessDeniedException {
   
 }
-
-class InsufficientFundsException extends AccessDeniedException {
-  
-}
 ?>
