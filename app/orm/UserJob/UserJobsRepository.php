@@ -38,7 +38,7 @@ class UserJobsRepository extends Repository {
     $start = $date->getTimestamp() - $sixDays;
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
-    $end = $date->getTimestamp() + $sixDays;
+    $end = $date->getTimestamp() - $sixDays;
     return $this->findBy(array("user" => $user, "started>" => $start, "started<" => $end));
   }
 }
