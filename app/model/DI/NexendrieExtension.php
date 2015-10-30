@@ -66,6 +66,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setFactory("Nexendrie\Model\Locale", array($config["locale"]));
     $builder->addDefinition($this->prefix("model.bank"))
        ->setFactory("Nexendrie\Model\Bank", array($config["fees"]["loanInterest"]));
+    $builder->addDefinition($this->prefix("model.taxes"))
+        ->setFactory("Nexendrie\Model\Taxes", array($config["fees"]["incomeTax"]));
     $builder->addDefinition("cache.cache")
       ->setFactory("Nette\Caching\Cache", array("@cache.storage", "data"));
     $builder->addDefinition($this->prefix("model.settingsRepository"))
@@ -76,7 +78,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition("router")
       ->setFactory("Nexendrie\Model\RouterFactory::create");
     $builder->addDefinition($this->prefix("cronTasks"))
-       ->setFactory("Nexendrie\CronTasks", array($config["fees"]["incomeTax"]))
+       ->setFactory("Nexendrie\CronTasks")
        ->addTag("cronner.tasks");
   }
   
