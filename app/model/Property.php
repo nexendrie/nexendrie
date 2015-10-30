@@ -52,11 +52,9 @@ class Property extends \Nette\Object {
   function budget() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $budget = array(
-      "incomes" => array(
-        "work" => $this->jobModel->calculateMonthJobIncome(),
-        "adventures" => 0,
-        "taxes" => 0
-      ),
+      "incomes" => 
+        $this->taxesModel->calculateIncome($this->user->id) + array("taxes" => 0)
+      ,
       "expenses" => array(
         "incomeTax" => 0,
         "loansInterest" => 0

@@ -36,13 +36,14 @@ class Taxes extends \Nette\Object {
    * @param int $user
    * @param int $month
    * @param int $year
-   * @return int
+   * @return int[]
    */
   function calculateIncome($user, $month = 0, $year = 0) {
     if($month === 0) $month = date("n");
     if($year === 0) $year = date("Y");
-    $income = $this->jobModel->calculateMonthJobIncome($user, $month, $year);
-    return $income;
+    $workIncome = $this->jobModel->calculateMonthJobIncome($user, $month, $year);
+    $adventuresIncome = 0;
+    return array("work" => $workIncome, "adventures" => $adventuresIncome);
   }
   
   /**
@@ -71,7 +72,7 @@ class Taxes extends \Nette\Object {
         $return->denizens[$d->id] = $d;
         continue;
       }
-      $d->income = $this->calculateIncome($denizen->id, $month, $year);
+      $d->income = array_sum($this->calculateIncome($denizen->id, $month, $year));
       $d->tax = $this->calculateTax($d->income);
       $return->denizens[$d->id] = $d;
       $return->taxes += $d->tax;
