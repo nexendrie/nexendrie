@@ -30,6 +30,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "town" => 3
     ),
     "fees" => array(
+      "incomeTax" => 10,
       "loanInterest" => 15
     )
   );
@@ -75,7 +76,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition("router")
       ->setFactory("Nexendrie\Model\RouterFactory::create");
     $builder->addDefinition($this->prefix("cronTasks"))
-       ->setFactory("Nexendrie\CronTasks")
+       ->setFactory("Nexendrie\CronTasks", array($config["fees"]["incomeTax"]))
        ->addTag("cronner.tasks");
   }
   

@@ -102,6 +102,11 @@ class SystemSettingsFormFactory {
       ->setRequired("Vyber město.");
     $form->addGroup("Daně a poplatky");
     $fees = $form->addContainer("fees");
+    $fees->addText("incomeTax", "Daň z příjmů:")
+      ->setOption("description", "% měsíčně")
+      ->setRequired("Zadej daň z příjmů.")
+      ->addRule(Form::INTEGER, "Daň z příjmů musí být celé číslo.")
+      ->addRule(Form::RANGE, "Daň z příjmů musí být v rozmezí 0-100.", array(0, 100));
     $fees->addText("loanInterest", "Úrok z půjčky:")
       ->setOption("description", "% ročně")
       ->setRequired("Zadej úrok z půjčky.")
