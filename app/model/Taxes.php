@@ -90,8 +90,6 @@ class Taxes extends \Nette\Object {
     $date->modify("-1 day");
     $month = $date->format("n");
     $year = $date->format("Y");
-    if($month === 0) $month = date("n");
-    if($year === 0) $year = date("Y");
     /* @var $town \Nexendrie\Orm\Town */
     foreach($this->orm->towns->findAll() as $town) {
       $result = $this->calculateTownTaxes($town, $month, $year);
