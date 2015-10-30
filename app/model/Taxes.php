@@ -14,10 +14,15 @@ class Taxes extends \Nette\Object {
   /** @var int */
   protected $taxRate;
   
+  /**
+   * @param int $taxRate
+   * @param \Nexendrie\Orm\Model $orm
+   * @param \Nexendrie\Model\Job $jobModel
+   */
   function __construct($taxRate, \Nexendrie\Orm\Model $orm, \Nexendrie\Model\Job $jobModel) {
     $this->orm = $orm;
     $this->jobModel = $jobModel;
-    $this->taxRate = $taxRate;
+    $this->taxRate = (int) $taxRate;
   }
   
   /**
