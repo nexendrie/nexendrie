@@ -28,6 +28,7 @@ namespace Nexendrie\Orm;
  * @property-read LoansRepository $loans
  * @property-read MealsRepository $meals
  * @property-read AdventuresRepository $adventures
+ * @property-read AdventureNpcsRepository $adventureNpcs
  */
 class Model extends \Nextras\Orm\Model\Model {
   

@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Adventure as AdventureEntity;
+use Nexendrie\Orm\Adventure as AdventureEntity,
+    Nexendrie\Orm\AdventureNpc as AdventureNpcEntity;
 
 /**
  * Adventure Model
@@ -26,6 +27,19 @@ class Adventure extends \Nette\Object {
    */
   function listOfAdventures() {
     return $this->orm->adventures->findAll();
+  }
+  
+  /**
+   * Get npcs from specified adventure
+   * 
+   * @param int $adventureId
+   * @return AdventureNpcEntity[]
+   * @throws AdventureNotFoundException
+   */
+  function listOfNpcs($adventureId) {
+    $adventure = $this->orm->adventures->getById($adventureId);
+    if(!$adventure) throw new AdventureNotFoundException;
+    else return $adventure->npcs;
   }
   
   /**
@@ -74,9 +88,79 @@ class Adventure extends \Nette\Object {
     }
     $this->orm->adventures->persistAndFlush($adventure);
   }
+  
+  /**
+   * Get specified npc
+   * 
+   * @param int $id
+   * @return AdventureNpcEntity
+   * @throws AdventureNpcNotFoundException
+   */
+  function getNpc($id) {
+    $npc = $this->orm->adventureNpcs->getById($id);
+    if(!$npc) throw new AdventureNpcNotFoundException;
+    else return $npc;
+  }
+  
+  /**
+   * Add new npc
+   * 
+   * @param array $data
+   * @return void
+   */
+  function addNpc(array $data) {
+    $npc = new AdventureNpcEntity;
+    $this->orm->adventureNpcs->attach($npc);
+    foreach($data as $key => $value) {
+      $npc->$key = $value;
+    }
+    $this->orm->adventureNpcs->persistAndFlush($npc);
+  }
+  
+  /**
+   * Edit specified npc
+   * 
+   * @param int $id
+   * @param array $data
+   * @return void
+   * @throws \Nexendrie\Model\AdventureNpcNotFoundException
+   */
+  function editNpc($id, array $data) {
+    try {
+      $npc = $this->getNpc($id);
+    } catch(AdventureNpcNotFoundException $e) {
+      throw $e;
+    }
+    foreach($data as $key => $value) {
+      $npc->$key = $value;
+    }
+    $this->orm->adventureNpcs->persistAndFlush($npc);
+  }
+  
+  /**
+   * Remove specified npc
+   * 
+   * @param int $id
+   * @return int
+   * @throws \Nexendrie\Model\AdventureNpcNotFoundException
+   */
+  function deleteNpc($id) {
+    try {
+      $npc = $this->getNpc($id);
+    } catch(AdventureNpcNotFoundException $e) {
+      throw $e;
+    }
+    $return = $npc->adventure->id;
+    $this->orm->adventureNpcs->removeAndFlush($npc);
+    return $return;
+  }
 }
 
 class AdventureNotFoundException extends RecordNotFoundException {
+  
+}
+
+class AdventureNpcNotFoundException extends RecordNotFoundException {
   
 }
 ?>

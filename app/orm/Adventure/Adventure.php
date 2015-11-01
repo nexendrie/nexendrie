@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
+use Nextras\Orm\Entity\Entity,
+    Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Adventure
@@ -11,6 +12,7 @@ use Nextras\Orm\Entity\Entity;
  * @property string $description
  * @property int $reward
  * @propery-read string $rewardT {virtual}
+ * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure}
  */
 class Adventure extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
