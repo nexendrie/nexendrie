@@ -16,6 +16,13 @@ class AdventurePresenter extends BasePresenter {
   /** @var \Nexendrie\Orm\Adventure */
   private $adventure;
   
+  /**
+   * @return void
+   */
+  function actionAdd() {
+    $this->requiresPermissions("content", "add");
+  }
+  
   /*
    * @param AddEditAdventureFormFactory $factory
    * @return Form
@@ -31,6 +38,7 @@ class AdventurePresenter extends BasePresenter {
   }
   
   function actionEdit($id) {
+    $this->requiresPermissions("content", "edit");
     try {
       $this->adventure = $this->model->get($id);
     } catch(AdventureNotFoundException $e) {
