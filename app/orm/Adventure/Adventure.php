@@ -14,7 +14,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $epilogue
  * @property int $reward
  * @property int $level {default 55}
- * @propery-read string $rewardT {virtual}
+ * @property-read string $rewardT {virtual}
  * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure}
  */
 class Adventure extends Entity {
