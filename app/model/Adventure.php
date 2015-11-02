@@ -154,6 +154,17 @@ class Adventure extends \Nette\Object {
     $this->orm->adventureNpcs->removeAndFlush($npc);
     return $return;
   }
+  
+  /**
+   * Find available adventures for user
+   * 
+   * @return AdventureEntity[]
+   * @throws AuthenticationNeededException
+   */
+  function findAvailableAdventures() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    else return $this->orm->adventures->findForLevel($this->user->identity->level);
+  }
 }
 
 class AdventureNotFoundException extends RecordNotFoundException {
