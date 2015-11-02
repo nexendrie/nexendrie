@@ -21,6 +21,10 @@ class AddEditAdventureEnemyFormFactory {
        ->setRequired("Zadej pořadí.")
        ->addRule(Form::INTEGER, "Pořadí musí být celé číslo.")
        ->addRule(Form::RANGE, "Pořadí musí být v rozmezí 1-9.", array(1, 9));
+    $form->addText("hitpoints", "Životy:")
+      ->setRequired("Zadej počet životů.")
+      ->addRule(Form::INTEGER, "Počet životů musí být celé číslo.")
+      ->addRule(Form::RANGE, "Počet životů musí být v rozmezí 1-999.", array(1, 999));
     $form->addText("strength", "Síla:")
       ->setRequired("Zadej sílu.")
       ->addRule(Form::INTEGER, "Síla musí být celé číslo.")

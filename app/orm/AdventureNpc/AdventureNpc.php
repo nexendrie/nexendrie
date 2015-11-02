@@ -10,6 +10,7 @@ use Nextras\Orm\Entity\Entity;
  * @property string $name
  * @property Adventure $adventure {m:1 Adventure::$npcs}
  * @property int $order
+ * @property int $hitpoints 
  * @property int $strength
  * @property int $armor
  * @property int $reward

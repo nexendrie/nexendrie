@@ -9,6 +9,7 @@ namespace Nexendrie\Orm;
  * @property string $name
  * @property int $adventure
  * @property int $order
+ * @property int $hitpoints 
  * @property int $strength
  * @property int $armor
  * @property int $reward
@@ -25,6 +26,8 @@ class AdventureNpcDummy extends \Nette\Object {
   /** @var int */
   protected $order;
   /** @var int */
+  protected $hitpoints;
+  /** @var int */
   protected $strength;
   /** @var int */
   protected $armor;
@@ -40,6 +43,7 @@ class AdventureNpcDummy extends \Nette\Object {
     $this->name = $npc->name;
     $this->adventure = $npc->adventure;
     $this->order = $npc->order;
+    $this->hitpoints = $npc->hitpoints;
     $this->strength = $npc->strength;
     $this->armor = $npc->armor;
     $this->reward = $npc->reward;
