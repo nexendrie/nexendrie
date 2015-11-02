@@ -9,6 +9,14 @@ use Nextras\Orm\Repository\Repository;
  * @method Adventure|NULL getById($id)
  */
 class AdventuresRepository extends Repository {
-  
+  /**
+   * Find adventures for specified level
+   * 
+   * @param int $level
+   * @return ICollection|Adventure[]
+   */
+  function findForLevel($level) {
+    return $this->findBy(array("level<=" => $level));
+  }
 }
 ?>
