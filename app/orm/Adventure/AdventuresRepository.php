@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository;
+use Nextras\Orm\Repository\Repository,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
