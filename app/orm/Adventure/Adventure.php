@@ -10,6 +10,8 @@ use Nextras\Orm\Entity\Entity,
  * @author Jakub Konečný
  * @property string $name
  * @property string $description
+ * @property string $intro
+ * @property string $epilogue
  * @property int $reward
  * @propery-read string $rewardT {virtual}
  * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure}

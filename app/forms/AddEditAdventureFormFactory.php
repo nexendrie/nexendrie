@@ -19,6 +19,10 @@ class AddEditAdventureFormFactory {
       ->addRule(Form::MAX, "Jméno může mít maximálně 20 znaků.", 20);
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
+    $form->addTextArea("intro", "Úvodní text:")
+      ->setRequired("Zadej úvodní text.");
+    $form->addTextArea("epilogue", "Závěrečný text:")
+      ->setRequired("Zadej zavérečný text.");
     $form->addText("reward", "Odměna:")
       ->setRequired("Zadej odměnu.")
       ->addRule(Form::INTEGER, "Odměna musí být celé číslo.")
