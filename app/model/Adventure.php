@@ -316,6 +316,24 @@ class Adventure extends \Nette\Object {
     $adventure->mount->hp -= 5;
     $this->orm->userAdventures->persistAndFlush($adventure);
   }
+  
+  /**
+   * Calculate income from user's adventures from a month
+   * 
+   * @param int $user
+   * @param int $month
+   * @param int $year
+   * @return int
+   */
+  function calculateMonthAdventuresIncome($user = 0, $month = 0, $year = 0) {
+    $income = 0;
+    if($user === 0) $user = $this->user->id;
+    $adventures = $this->orm->userAdventures->findFromMonth($user, $month, $year);
+    foreach($adventures as $adventure) {
+      $income += $adventure->reward + $adventure->loot;
+    }
+    return $income;
+  }
 }
 
 class AdventureNotFoundException extends RecordNotFoundException {
