@@ -68,5 +68,25 @@ class CronTasks {
     }
     echo "Finished paying taxes ...\n";
   }
+  
+  /**
+   * Close adventures
+   * 
+   * @author Jakub Konečný
+   * @return void
+   * 
+   * @cronner-task Close adventures
+   * @cronner-period 1 day
+   * @cronner-time 00:00 - 01:00
+   */
+  function closeAdventures() {
+    echo "Starting closing adventures ...\n";
+    $adventures = $this->orm->userAdventures->findOpenAdventures();
+    foreach($adventures as $adventure) {
+      $adventure->progress = 10;
+      $this->orm->userAdventures->persistAndFlush($adventure);
+    }
+    echo "Finished closing adventures ...\n";
+  }
 }
 ?>

@@ -41,5 +41,17 @@ class UserAdventuresRepository extends Repository {
     $end = $date->getTimestamp();
     return $this->findBy(array("user" => $user, "started>" => $start, "started<" => $end));
   }
+  
+  /**
+   * Get open adventures
+   * 
+   * @return ICollection|UserAdventure[]
+   */
+  function findOpenAdventures() {
+    $day = date("j");
+    $month = date("n");
+    $ts = mktime(0, 0, 0, $month, $day);
+    return $this->findBy(array("started<" => $ts, "progress<" => 10));
+  }
 }
 ?>
