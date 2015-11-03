@@ -9,7 +9,9 @@ use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\ItemNotOwnedException,
     Nexendrie\Model\ItemNotEquipableException,
     Nexendrie\Model\ItemAlreadyWornException,
-    Nexendrie\Model\ItemNotWornException;
+    Nexendrie\Model\ItemNotWornException,
+    Nexendrie\Model\ItemNotDrinkableException,
+    Nexendrie\Model\HealingNotNeeded;
 
 /**
  * Presenter Assets
@@ -105,6 +107,13 @@ class PropertyPresenter extends BasePresenter {
   }
   
   /**
+   * @return void
+   */
+  function renderPotions() {
+    $this->template->items = $this->model->potions();
+  }
+  
+  /**
    * @param int $item
    * @return void
    */
@@ -141,5 +150,24 @@ class PropertyPresenter extends BasePresenter {
     }
     $this->redirect("equipment");
   }
+  
+  /**
+   * @param int $potion
+   * @return void
+   */
+   function handleDrink($potion) {
+     try {
+       $life = $this->model->drinkPotion($potion);
+       $this->flashMessage("Doplnil sis $life životů.");
+     } catch(ItemNotFoundException $e) {
+      $this->flashMessage("Věc nenalezena.");
+    } catch(ItemNotOwnedException $e) {
+      $this->flashMessage("Zadaná věc ti nepatří.");
+    } catch(ItemNotDrinkableException $e) {
+      $this->flashMessage("Zadanou věc nelze vypít.");
+    } catch(HealingNotNeeded $e) {
+      $this->flashMessage("Nepotřebuješ léčení.");
+    }
+   }
 }
 ?>
