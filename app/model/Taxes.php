@@ -11,6 +11,8 @@ class Taxes extends \Nette\Object {
   protected $orm;
   /** @var \Nexendrie\Model\Job */
   protected $jobModel;
+  /** @var \Nexendrie\Model\Adventure */
+  protected $adventureModel;
   /** @var int */
   protected $taxRate;
   
@@ -19,9 +21,10 @@ class Taxes extends \Nette\Object {
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nexendrie\Model\Job $jobModel
    */
-  function __construct($taxRate, \Nexendrie\Orm\Model $orm, \Nexendrie\Model\Job $jobModel) {
+  function __construct($taxRate, \Nexendrie\Orm\Model $orm, Job $jobModel, Adventure $adventureModel) {
     $this->orm = $orm;
     $this->jobModel = $jobModel;
+    $this->adventureModel = $adventureModel;
     $this->taxRate = (int) $taxRate;
   }
   
@@ -47,7 +50,7 @@ class Taxes extends \Nette\Object {
     if($month === 0) $month = date("n");
     if($year === 0) $year = date("Y");
     $workIncome = $this->jobModel->calculateMonthJobIncome($user, $month, $year);
-    $adventuresIncome = 0;
+    $adventuresIncome = $this->adventureModel->calculateMonthAdventuresIncome($user, $month, $year);
     return array("work" => $workIncome, "adventures" => $adventuresIncome);
   }
   

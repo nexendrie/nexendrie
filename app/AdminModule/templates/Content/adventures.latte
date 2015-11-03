@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Dobrodružství{/block}
+{block content}
+  <h1>Dobrodružství</h1>
+  <table id="adventures">
+    <tr><th>Jméno</th><th>Akce</th></tr>
+    {foreach $adventures as $adventure}
+      <tr><td>{$adventure->name}</td><td><a n:href="Adventure:edit $adventure->id">Upravit</a> <a n:href="AdventureEnemies:list $adventure->id">Nepřátelé</a></td></tr>
+    {/foreach}
+  </table>
+  <p id="new"><a n:href="Adventure:new">Přidat dobrodružství</a></p>
+{/block}

@@ -27,6 +27,9 @@ namespace Nexendrie\Orm;
  * @property-read PunishmentsRepository $punishments
  * @property-read LoansRepository $loans
  * @property-read MealsRepository $meals
+ * @property-read AdventuresRepository $adventures
+ * @property-read AdventureNpcsRepository $adventureNpcs
+ * @property-read UserAdventuresRepository $userAdventures
  */
 class Model extends \Nextras\Orm\Model\Model {
   

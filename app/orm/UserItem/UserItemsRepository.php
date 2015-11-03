@@ -32,5 +32,25 @@ class UserItemsRepository extends Repository {
   function findByType($user, $type) {
     return $this->findBy(array("user" => $user, "this->item->type" => $type));
   }
+  
+  /**
+   * Get user's active weapon
+   * 
+   * @param int $user
+   * @return UserItem|NULL
+   */
+  function getWornWeapon($user) {
+    return $this->getBy(array("user" => $user, "this->item->type" => "weapon", "worn" => true));
+  }
+  
+  /**
+   * Get user's active armor
+   * 
+   * @param int $user
+   * @return UserItem|NULL
+   */
+  function getWornArmor($user) {
+    return $this->getBy(array("user" => $user, "this->item->type" => "armor", "worn" => true));
+  }
 }
 ?>

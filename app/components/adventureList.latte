@@ -1,0 +1,10 @@
+  <h1>Dobrodružství</h1>
+  {foreach $adventures as $adventure}
+  <div class="adventure">
+    <h3>{$adventure->name}</h3>
+    <p>
+      {$adventure->description}<br>
+      Odměna: {$adventure->rewardT} + kořist <a href="{plink Adventure:mounts $adventure->id}">Vybrat jezdecké zvíře</a>
+    </p>
+  </div>
+  {/foreach}

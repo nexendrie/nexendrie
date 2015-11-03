@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
+use Nextras\Orm\Entity\Entity,
+    Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Mount
@@ -15,6 +16,7 @@ use Nextras\Orm\Entity\Entity;
  * @property bool $onMarket {default 0}
  * @property int $birth
  * @property int $hp {default 100}
+ * @property OneHasMany|UserAdventure[] $adventures {1:m UserAdventure::$mount}
  * @property-read string $genderCZ {virtual}
  * @property-read string $priceT {virtual}
  * @property-read string $birthAt {virtual}

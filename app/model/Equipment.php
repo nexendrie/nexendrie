@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Item as ItemEntity;
+
 /**
  * Equipment Model
  *
@@ -65,6 +67,26 @@ class Equipment extends \Nette\Object {
     elseif(!$item->worn) throw new ItemNotWornException;
     $item->worn = false;
     $this->orm->userItems->persistAndFlush($item);
+  }
+  
+  /**
+   * @param int $user
+   * @return ItemEntity|NULL
+   */
+  function getWeapon($user) {
+    $weapon = $this->orm->userItems->getWornWeapon($user);
+    if($weapon) return $weapon->item;
+    else return NULL;
+  }
+  
+  /**
+   * @param int $user
+   * @return ItemEntity|NULL
+   */
+  function getArmor($user) {
+    $armor = $this->orm->userItems->getWornArmor($user);
+    if($armor) return $armor->item;
+    else return NULL;
   }
 }
 
