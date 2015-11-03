@@ -296,6 +296,26 @@ class Adventure extends \Nette\Object {
     }
     return array("success" => $success, "message" => $message);
   }
+  
+  /**
+   * Finish adventure
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws NotOnAdventureException
+   * @throws NotAllEnemiesDefeateException
+   */
+  function finishAdventure() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $adventure = $this->getCurrentAdventure();
+    if(!$adventure) throw new NotOnAdventureException;
+    if($this->getNextNpc($adventure)) throw new NotAllEnemiesDefeateException;
+    $adventure->progress = 10;
+    $adventure->user->money += $adventure->adventure->reward;
+    $adventure->reward += $adventure->adventure->reward;
+    $adventure->mount->hp -= 5;
+    $this->orm->userAdventures->persistAndFlush($adventure);
+  }
 }
 
 class AdventureNotFoundException extends RecordNotFoundException {
@@ -319,6 +339,10 @@ class NotOnAdventureException extends AccessDeniedException {
 }
 
 class NoEnemyRemainException extends AccessDeniedException {
+  
+}
+
+class NotAllEnemiesDefeateException extends AccessDeniedException {
   
 }
 ?>

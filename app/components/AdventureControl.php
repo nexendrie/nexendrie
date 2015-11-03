@@ -8,7 +8,8 @@ use Nexendrie\Model\AlreadyOnAdventureException,
     Nexendrie\Model\MountNotOwnedException,
     Nexendrie\Model\MountInBadConditionException,
     Nexendrie\Model\NotOnAdventureException,
-    Nexendrie\Model\NoEnemyRemainException;
+    Nexendrie\Model\NoEnemyRemainException,
+    Nexendrie\Model\NotAllEnemiesDefeateException;
 
 /**
  * AdventureControl
@@ -91,7 +92,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
       $result = $this->model->fight();
       $this->template->message = $result["message"];
     } catch(NotOnAdventureException $e) {
-      $this->presenter->flashMessage("Nejsi na dobrodružství.");
+      flashMessage("Nejsi na dobrodružství.");
     } catch(NoEnemyRemainException $e) {
       $this->presenter->flashMessage("Porazil jsi již všechny nepřátele.");
     }
@@ -101,7 +102,14 @@ class AdventureControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function handleFinish() {
-    
+    try {
+      $this->model->finishAdventure();
+      $this->presenter->redirect("Homapage:");
+    } catch(NotOnAdventureException $e) {
+      $this->presenter->flashMessage("Nejsi na dobrodružství.");
+    } catch(NotAllEnemiesDefeateException $e) {
+      $this->presenter->flashMessage("Neporazil jsi všechn nepřátele.");
+    }
   }
 }
 
