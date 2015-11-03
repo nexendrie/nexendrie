@@ -7,6 +7,7 @@ use Nextras\Orm\Repository\Repository,
 /**
  * @author Jakub Konečný
  * @method AdventureNpc|NULL getById($id)
+ * @method AdventureNPC|NULL getByAdventureAndOrder($adventure,$order)
  */
 class AdventureNpcsRepository extends Repository {
   /**

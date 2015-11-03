@@ -222,6 +222,17 @@ class Adventure extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     else return $this->orm->userAdventures->getUserActiveAdventure($this->user->id);
   }
+  
+  /**
+   * Get next enemy for adventure
+   * 
+   * @param UserAdventureEntity $adventure
+   * @return AdventureNpcEntity|NULL
+   */
+  function getNextNpc(UserAdventureEntity $adventure) {
+    if($adventure->progress >= 9) return NULL;
+    else return $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
+  }
 }
 
 class AdventureNotFoundException extends RecordNotFoundException {

@@ -43,6 +43,16 @@ class AdventureControl extends \Nette\Application\UI\Control {
     $template->setFile(__DIR__ . "/adventureMounts.latte");
     $template->mounts = $this->model->findGoodMounts();
     $template->adventure = $adventure;
+  }
+  
+  /**
+   * @return void
+   */
+  function render() {
+    $template = $this->template;
+    $template->setFile(__DIR__ . "/adventure.latte");
+    $template->adventure = $adventure = $this->model->getCurrentAdventure();
+    $template->nextEnemy = $this->model->getNextNpc($adventure);
     $template->render();
   }
   
@@ -69,6 +79,20 @@ class AdventureControl extends \Nette\Application\UI\Control {
     } catch(MountInBadConditionException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře je ve špatném stavu.");
     }
+  }
+  
+  /**
+   * @return void
+   */
+  function handleFight() {
+    
+  }
+  
+  /**
+   * @return void
+   */
+  function handleFinish() {
+    
   }
 }
 

@@ -1,0 +1,10 @@
+  {if $adventure->progress === 0}
+  <p>{$adventure->adventure->intro}</p>
+  {/if}
+  {default $message = false}
+  {if $message}<p>{$message}</p>{/if}
+  {if $nextEnemy}
+  <p>{$nextEnemy->encounterText} <a n:href="fight!">Bojuj!</a></p>
+  {else}
+  <p>{$adventure->adventure->epilogue} <a n:href="finish!">Konec</a></p>
+  {/if}
