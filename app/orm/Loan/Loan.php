@@ -23,11 +23,11 @@ class Loan extends Entity {
     $this->localeModel = $localeModel;
   }
   
-  function getterTakenT() {
+  protected function getterTakenT() {
     return $this->localeModel->formatDateTime($this->taken);
   }
   
-  function getterReturnedT() {
+  protected function getterReturnedT() {
     if($this->returned === NULL) return "";
     else return $this->localeModel->formatDateTime($this->returned);
   }
