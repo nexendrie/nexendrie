@@ -10,6 +10,9 @@ use Nexendrie\Components\AdventureControlFactory,
  * @author Jakub Konečný
  */
 class AdventurePresenter extends BasePresenter {
+  /** @var \Nexendrie\Model\Adventure @autowire */
+  protected $model;
+  
   /**
    * @return void
    */
@@ -27,7 +30,7 @@ class AdventurePresenter extends BasePresenter {
    * @return void
    */
   function actionDefault() {
-    $this->redirect("list");
+    if(!$this->model->getCurrentAdventure()) $this->redirect("list");
   }
   
   /**
@@ -36,6 +39,15 @@ class AdventurePresenter extends BasePresenter {
    */
   protected function createComponentAdventure(AdventureControlFactory $factory) {
     return $factory->create();
+  }
+  
+  /**
+   * @param int $id
+   * @return void
+   */
+  function actionMounts($id) {
+    if($this->model->getCurrentAdventure()) $this->redirect("default");
+    $this->template->adventure = $id;
   }
 }
 ?>

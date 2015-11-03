@@ -149,4 +149,8 @@ class MountNotOwnedException extends AccessDeniedException {
 class CareNotNeededException extends AccessDeniedException {
   
 }
+
+class MountInBadConditionException extends AccessDeniedException {
+  
+}
 ?>

@@ -16,6 +16,7 @@ use Nextras\Orm\Entity\Entity,
  * @property int $level {default 55}
  * @property-read string $rewardT {virtual}
  * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure}
+ * @property OneHasMany|UserAdventure[] $userAdventures {1:m UserAdventure::$adventure}
  */
 class Adventure extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */

@@ -28,5 +28,15 @@ class MountsRepository extends Repository {
   function findOwnedMounts() {
     return $this->findBy(array("this->owner->id>" => 0));
   }
+  
+  /**
+   * Get mounts of specified user for adventure
+   * 
+   * @param type $user
+   * @return ICollection|Mount[]
+   */
+  function findGoodMounts($user) {
+    return $this->findBy(array("this->owner->id" => $user, "hp>" => 30));
+  }
 }
 ?>

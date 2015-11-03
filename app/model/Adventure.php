@@ -2,7 +2,9 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Adventure as AdventureEntity,
-    Nexendrie\Orm\AdventureNpc as AdventureNpcEntity;
+    Nexendrie\Orm\AdventureNpc as AdventureNpcEntity,
+    Nexendrie\Orm\UserAdventure as UserAdventureEntity,
+    Nexendrie\Orm\Mount as MountEntity;
 
 /**
  * Adventure Model
@@ -165,6 +167,61 @@ class Adventure extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     else return $this->orm->adventures->findForLevel($this->user->identity->level);
   }
+  
+  /**
+   * Find mounts for adventure
+   * 
+   * @return MountEntityp[]
+   * @throws AuthenticationNeededException
+   */
+  function findGoodMounts() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    return $this->orm->mounts->findGoodMounts($this->user->id);
+  }
+  
+  /**
+   * Start an adventure
+   * 
+   * @param int $adventureId
+   * @param int $mountId
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws AlreadyOnAdventureException
+   * @throws AdventureNotFoundException
+   * @throws InsufficientLevelForAdventureException
+   * @throws MountNotFoundException
+   * @throws MountNotOwnedException
+   * @throws MountInBadConditionException
+   */
+  function startAdventure($adventureId, $mountId) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if($this->getCurrentAdventure()) throw new AlreadyOnAdventureException; 
+    $adventure = $this->orm->adventures->getById($adventureId);
+    if(!$adventure) throw new AdventureNotFoundException;
+    if($adventure->level > $this->user->identity->level) throw new InsufficientLevelForAdventureException;
+    $mount = $this->orm->mounts->getById($mountId);
+    if(!$mount) throw new MountNotFoundException;
+    elseif($mount->owner->id != $this->user->id) throw new MountNotOwnedException;
+    elseif($mount->hp < 30) throw new MountInBadConditionException;
+    $userAdventure = new UserAdventureEntity;
+    $this->orm->userAdventures->attach($userAdventure);
+    $userAdventure->user = $this->user->id;
+    $userAdventure->adventure = $adventure;
+    $userAdventure->mount = $mount;
+    $userAdventure->started = time();
+    $this->orm->userAdventures->persistAndFlush($userAdventure);
+  }
+  
+  /**
+   * Get user's active adventure
+   * 
+   * @return UserAdventureEntity|NULL
+   * @throws AuthenticationNeededException
+   */
+  function getCurrentAdventure() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    else return $this->orm->userAdventures->getUserActiveAdventure($this->user->id);
+  }
 }
 
 class AdventureNotFoundException extends RecordNotFoundException {
@@ -172,6 +229,14 @@ class AdventureNotFoundException extends RecordNotFoundException {
 }
 
 class AdventureNpcNotFoundException extends RecordNotFoundException {
+  
+}
+
+class AlreadyOnAdventureException extends AccessDeniedException {
+  
+}
+
+class InsufficientLevelForAdventureException extends AccessDeniedException {
   
 }
 ?>
