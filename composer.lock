@@ -484,16 +484,16 @@
         },
         {
             "name": "nette/forms",
-            "version": "v2.3.5",
+            "version": "v2.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/forms.git",
-                "reference": "f89c58b1d318e4324e3c905b4d7fc45c4ec626b6"
+                "reference": "5e07a7b7180e5e88db9d44e12f1677e36b4f164b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/forms/zipball/f89c58b1d318e4324e3c905b4d7fc45c4ec626b6",
-                "reference": "f89c58b1d318e4324e3c905b4d7fc45c4ec626b6",
+                "url": "https://api.github.com/repos/nette/forms/zipball/5e07a7b7180e5e88db9d44e12f1677e36b4f164b",
+                "reference": "5e07a7b7180e5e88db9d44e12f1677e36b4f164b",
                 "shasum": ""
             },
             "require": {
@@ -535,7 +535,7 @@
             ],
             "description": "Nette Forms: greatly facilitates web forms",
             "homepage": "https://nette.org",
-            "time": "2015-10-12 13:52:41"
+            "time": "2015-10-19 01:41:55"
         },
         {
             "name": "nette/http",
@@ -1012,16 +1012,16 @@
         },
         {
             "name": "nextras/orm",
-            "version": "v1.1.3",
+            "version": "v1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/orm.git",
-                "reference": "7bb92b331fb3d209a79d79d92336019992077fb6"
+                "reference": "8f478629d1c255a4e854ae69bd815180941fe6fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/orm/zipball/7bb92b331fb3d209a79d79d92336019992077fb6",
-                "reference": "7bb92b331fb3d209a79d79d92336019992077fb6",
+                "url": "https://api.github.com/repos/nextras/orm/zipball/8f478629d1c255a4e854ae69bd815180941fe6fa",
+                "reference": "8f478629d1c255a4e854ae69bd815180941fe6fa",
                 "shasum": ""
             },
             "require": {
@@ -1069,7 +1069,7 @@
                 "nextras",
                 "orm"
             ],
-            "time": "2015-10-04 16:55:48"
+            "time": "2015-10-23 20:47:47"
         },
         {
             "name": "oodle/inflect",
@@ -1181,16 +1181,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.3.5",
+            "version": "v2.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "d2fd27b86871c95fb6dce7479c2797cf60b9d294"
+                "reference": "79831c75b6f48fcb897d25ccae5deec358cb2142"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/d2fd27b86871c95fb6dce7479c2797cf60b9d294",
-                "reference": "d2fd27b86871c95fb6dce7479c2797cf60b9d294",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/79831c75b6f48fcb897d25ccae5deec358cb2142",
+                "reference": "79831c75b6f48fcb897d25ccae5deec358cb2142",
                 "shasum": ""
             },
             "require": {
@@ -1232,7 +1232,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2015-10-09 14:29:03"
+            "time": "2015-10-28 23:49:21"
         }
     ],
     "packages-dev": [],
