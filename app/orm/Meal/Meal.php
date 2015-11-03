@@ -10,6 +10,7 @@ use Nextras\Orm\Entity\Entity;
  * @property string $name
  * @property string $message
  * @property int $price
+ * @property int $life {default 0}
  * @property-read string $priceT {virtual}
  */
 class Meal extends Entity {

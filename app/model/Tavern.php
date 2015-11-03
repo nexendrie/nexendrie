@@ -85,9 +85,15 @@ class Tavern extends \Nette\Object {
     if(!$meal) throw new MealNotFoundException;
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < $meal->price) throw new InsufficientFundsException;
+    $message = $meal->message;
     $user->money -= $meal->price;
+    if($meal->life != 0 AND $user->life > 1 AND $user->life < $user->maxLife) {
+      $user->life += $meal->life;
+      if($meal->life > 0) $message .= " Přibylo ti $meal->life životů.";
+      else $message .= " Ubylo ti " . $meal->life * -1 . " životů.";
+    }
     $this->orm->users->persistAndFlush($user);
-    return $meal->message;
+    return $message;
   }
 }
 

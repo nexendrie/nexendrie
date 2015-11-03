@@ -20,6 +20,8 @@ use Nextras\Orm\Entity\Entity,
  * @property bool $infomails {default 0}
  * @property string $style {default "blu-sky"}
  * @property bool $banned {default 0}
+ * @property int $life {default 60}
+ * @property-read int $maxLife {virtual}
  * @property int $money {default 2}
  * @property Town $town {m:1 Town::$denizens}
  * @property-read string $moneyT {virtual}
@@ -52,6 +54,16 @@ class User extends Entity {
   
   protected function getterMoneyT() {
     return $this->localeModel->money($this->money);
+  }
+  
+  protected function setterLife($value) {
+    if($value > 60) return 60;
+    elseif($value < 1) return 1;
+    else return $value;
+  }
+  
+  protected function getterMaxLife() {
+    return 60;
   }
 }
 ?>

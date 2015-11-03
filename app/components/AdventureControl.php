@@ -107,7 +107,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
   function handleFinish() {
     try {
       $this->model->finishAdventure();
-      $this->presenter->redirect("Homapage:");
+      $this->presenter->redirect("Homepage:");
     } catch(NotOnAdventureException $e) {
       $this->presenter->flashMessage("Nejsi na dobrodružství.");
     } catch(NotAllEnemiesDefeateException $e) {
