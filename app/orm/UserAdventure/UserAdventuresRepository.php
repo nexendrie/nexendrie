@@ -8,6 +8,7 @@ use Nextras\Orm\Repository\Repository,
  * @author Jakub Konečný
  * @method UserAdventure|NULL getById($id)
  * @method ICollection|UserAdventure[] findByUser($user)
+ * @method UserAdventure|NULL getLastAdventure($user)
  */
 class UserAdventuresRepository extends Repository {
   /**

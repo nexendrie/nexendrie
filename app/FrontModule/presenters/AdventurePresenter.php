@@ -30,7 +30,14 @@ class AdventurePresenter extends BasePresenter {
    * @return void
    */
   function actionDefault() {
-    if(!$this->model->getCurrentAdventure()) $this->redirect("list");
+    if($this->model->getCurrentAdventure()) {
+      
+    } elseif($this->model->canDoAdventure())  {
+      $this->redirect("list");
+    } else {
+      $this->flashMessage("Musíš počkat před dalším dobrodružstvím.");
+      $this->redirect("Homepage:");
+    }
   }
   
   /**

@@ -9,7 +9,8 @@ use Nexendrie\Model\AlreadyOnAdventureException,
     Nexendrie\Model\MountInBadConditionException,
     Nexendrie\Model\NotOnAdventureException,
     Nexendrie\Model\NoEnemyRemainException,
-    Nexendrie\Model\NotAllEnemiesDefeateException;
+    Nexendrie\Model\NotAllEnemiesDefeateException,
+    Nexendrie\Model\CannotDoAdventureException;
 
 /**
  * AdventureControl
@@ -71,6 +72,8 @@ class AdventureControl extends \Nette\Application\UI\Control {
       $this->presenter->redirect("Adventure:");
     } catch(AlreadyOnAdventureException $e) {
       $this->presenter->flashMessage("Už jsi na dobrodružství.");
+    } catch(CannotDoAdventureException $e) {
+      $this->presenter->flashMessage("Musíš počkat před dalším dobrodružstvím.");
     } catch(AdventureNotFoundException $e) {
       $this->presenter->flashMessage("Dobrodružství nenalezeno.");
     } catch(InsufficientLevelForAdventureException $e) {

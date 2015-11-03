@@ -4,7 +4,8 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\Adventure as AdventureEntity,
     Nexendrie\Orm\AdventureNpc as AdventureNpcEntity,
     Nexendrie\Orm\UserAdventure as UserAdventureEntity,
-    Nexendrie\Orm\Mount as MountEntity;
+    Nexendrie\Orm\Mount as MountEntity,
+    Nextras\Dbal\QueryBuilder\QueryBuilder;
 
 /**
  * Adventure Model
@@ -199,6 +200,7 @@ class Adventure extends \Nette\Object {
   function startAdventure($adventureId, $mountId) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     if($this->getCurrentAdventure()) throw new AlreadyOnAdventureException; 
+    if(!$this->canDoAdventure()) throw new CannotDoAdventureException;
     $adventure = $this->orm->adventures->getById($adventureId);
     if(!$adventure) throw new AdventureNotFoundException;
     if($adventure->level > $this->user->identity->level) throw new InsufficientLevelForAdventureException;
@@ -334,6 +336,19 @@ class Adventure extends \Nette\Object {
     }
     return $income;
   }
+  
+  /**
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canDoAdventure() {
+    $twoDays = 60 * 60 * 24 * 7;
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $adventure = $this->orm->userAdventures->getLastAdventure($this->user->id);
+    if(!$adventure) return true;
+    elseif($adventure->fetch()->started < time() - $twoDays) return true;
+    else return false;
+  }
 }
 
 class AdventureNotFoundException extends RecordNotFoundException {
@@ -361,6 +376,10 @@ class NoEnemyRemainException extends AccessDeniedException {
 }
 
 class NotAllEnemiesDefeateException extends AccessDeniedException {
+  
+}
+
+class CannotDoAdventureException extends AccessDeniedException {
   
 }
 ?>
