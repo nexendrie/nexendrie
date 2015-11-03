@@ -247,7 +247,7 @@ class Adventure extends \Nette\Object {
    */
   protected function fightNpc(AdventureNpcEntity $npc) {
     $finished = $result = false;
-    $userLife = 60;
+    $user = $this->orm->users->getById($this->user->id);
     $npcLife = $npc->hitpoints;
     $weapon = $this->equipmentModel->getWeapon($this->user->id);
     $armor = $this->equipmentModel->getArmor($this->user->id);
@@ -261,9 +261,10 @@ class Adventure extends \Nette\Object {
         $finished = true;
         $result = true;
       }
-      $userLife -= $npcAttack;
-      if($userLife <= 1) $finished = true;
+      $user->life -= $npcAttack;
+      if($user->life <= 1) $finished = true;
     }
+    $this->orm->users->persistAndFlush($user);
     return $result;
   }
   

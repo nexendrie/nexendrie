@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Lektvary{/block}
+{block content}
+  <h1>Lektvary</h1>
+  {if $items->count() === 0}
+  <p>Nemáš žádné lektvary.</p>
+  {else}
+  <div n:inner-foreach="$items as $item" id="items">
+    {$item->amount}x {$item->item->name} (Síla: {$item->item->strength}) <a n:href="drink! $item->id">Vypít</a><br>
+  </div>
+  {/if}
+{/block}
