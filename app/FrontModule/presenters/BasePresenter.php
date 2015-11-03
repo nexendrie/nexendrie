@@ -10,7 +10,7 @@ abstract class BasePresenter extends \Nexendrie\BasePresenter {
   /**
    * @return void
    */
-  function startup() {
+  protected function startup() {
     parent::startup();
     $this->template->isAdmin = $this->user->isAllowed("site", "manage");
   }

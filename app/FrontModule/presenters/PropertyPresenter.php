@@ -30,7 +30,7 @@ class PropertyPresenter extends BasePresenter {
   /** @var TownEntity */
   private $town;
   
-  function startup() {
+  protected function startup() {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeBanned();

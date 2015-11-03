@@ -12,7 +12,7 @@ abstract class BasePresenter extends \Nexendrie\BasePresenter {
    * 
    * @return void
    */
-  function startup() {
+  protected function startup() {
     parent::startup();
     if(!$this->user->isLoggedIn()) {
       $this->flashMessage("Pro přístup do administrace musíš být přihlášený.");

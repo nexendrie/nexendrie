@@ -23,7 +23,7 @@ class WorkPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function startup() {
+  protected function startup() {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeBanned();

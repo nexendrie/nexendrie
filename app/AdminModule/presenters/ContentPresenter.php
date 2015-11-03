@@ -25,7 +25,7 @@ class ContentPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function startup() {
+  protected function startup() {
     parent::startup();
     $this->requiresPermissions("content", "list");
   }
