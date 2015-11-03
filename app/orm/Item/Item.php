@@ -43,6 +43,15 @@ class Item extends Entity {
     );
   }
   
+  /**
+   * @return string[]
+   */
+  static function getEquipmentTypes() {
+    return array(
+      "weapon", "armor"
+    );
+  }
+  
   protected function getterPriceT() {
     return $this->localeModel->money($this->price);
   }

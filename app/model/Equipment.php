@@ -35,7 +35,7 @@ class Equipment extends \Nette\Object {
     $item = $this->orm->userItems->getById($id);
     if(!$item) throw new ItemNotFoundException;
     elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
-    elseif($item->item->type === "potion" OR $item->item->type === "item") throw new ItemNotEquipableException;
+    elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes())) throw new ItemNotEquipableException;
     elseif($item->worn) throw new ItemAlreadyWornException;
     $item->worn = true;
     $this->orm->userItems->persist($item);

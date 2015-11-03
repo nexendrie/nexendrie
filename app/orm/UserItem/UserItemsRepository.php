@@ -19,7 +19,7 @@ class UserItemsRepository extends Repository {
    * @return ICollection|Item[]
    */
   function findEquipment($user) {
-    return $this->findBy(array("user" => $user, "this->item->type!=" => array("item", "potion")));
+    return $this->findBy(array("user" => $user, "this->item->type=" => Item::getEquipmentTypes()));
   }
   
   /**
