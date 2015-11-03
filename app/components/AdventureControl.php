@@ -6,7 +6,9 @@ use Nexendrie\Model\AlreadyOnAdventureException,
     Nexendrie\Model\InsufficientLevelForAdventureException,
     Nexendrie\Model\MountNotFoundException,
     Nexendrie\Model\MountNotOwnedException,
-    Nexendrie\Model\MountInBadConditionException;
+    Nexendrie\Model\MountInBadConditionException,
+    Nexendrie\Model\NotOnAdventureException,
+    Nexendrie\Model\NoEnemyRemainException;
 
 /**
  * AdventureControl
@@ -85,7 +87,14 @@ class AdventureControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function handleFight() {
-    
+    try {
+      $result = $this->model->fight();
+      $this->template->message = $result["message"];
+    } catch(NotOnAdventureException $e) {
+      $this->presenter->flashMessage("Nejsi na dobrodružství.");
+    } catch(NoEnemyRemainException $e) {
+      $this->presenter->flashMessage("Porazil jsi již všechny nepřátele.");
+    }
   }
   
   /**

@@ -12,12 +12,15 @@ use Nexendrie\Orm\Adventure as AdventureEntity,
  * @author Jakub Konečný
  */
 class Adventure extends \Nette\Object {
+  /** @var \Nexendrie\Model\Equipment */
+  protected $equipmentModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Equipment $equipmentModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    $this->equipmentModel = $equipmentModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -233,6 +236,66 @@ class Adventure extends \Nette\Object {
     if($adventure->progress >= 9) return NULL;
     else return $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
   }
+  
+  /**
+   * Fight a npc
+   * 
+   * @param AdventureNpcEntity $npc
+   * @return bool Whetever the user won
+   */
+  protected function fightNpc(AdventureNpcEntity $npc) {
+    $finished = $result = false;
+    $userLife = 60;
+    $npcLife = $npc->hitpoints;
+    $weapon = $this->equipmentModel->getWeapon($this->user->id);
+    $armor = $this->equipmentModel->getArmor($this->user->id);
+    $damage = $weapon ? $weapon->strength : 0;
+    $defense = $armor ? $armor->strength : 0;
+    $userAttack = $damage - $npc->armor;
+    $npcAttack = $npc->strength - $defense;
+    while(!$finished) {
+      $npcLife -= $userAttack;
+      if($npcLife <= 1) {
+        $finished = true;
+        $result = true;
+      }
+      $userLife -= $npcAttack;
+      if($userLife <= 1) $finished = true;
+    }
+    return $result;
+  }
+  
+  protected function saveVictory(UserAdventureEntity $adventure, AdventureNpcEntity $enemy) {
+    $adventure->progress++;
+    $adventure->user->money += $enemy->reward;
+    $adventure->loot += $enemy->reward;
+    $this->orm->userAdventures->persistAndFlush($adventure);
+  }
+  
+  /**
+   * Fight next enemy
+   * 
+   * @return array
+   * @throws AuthenticationNeededException
+   * @throws NotOnAdventureException
+   * @throws NoEnemyRemainException
+   */
+  function fight() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $adventure = $this->getCurrentAdventure();
+    if(!$adventure) throw new NotOnAdventureException;
+    if($adventure->progress > 9) throw new NoEnemyRemainException;
+    $enemy = $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
+    if(!$enemy) throw new NoEnemyRemainException;
+    $success = $this->fightNpc($enemy);
+    if($success) {
+      $message = $enemy->victoryText;
+      $this->saveVictory($adventure, $enemy);
+    } else {
+      $message = "$enemy->name se ubránil.";
+    }
+    return array("success" => $success, "message" => $message);
+  }
 }
 
 class AdventureNotFoundException extends RecordNotFoundException {
@@ -248,6 +311,14 @@ class AlreadyOnAdventureException extends AccessDeniedException {
 }
 
 class InsufficientLevelForAdventureException extends AccessDeniedException {
+  
+}
+
+class NotOnAdventureException extends AccessDeniedException {
+  
+}
+
+class NoEnemyRemainException extends AccessDeniedException {
   
 }
 ?>
