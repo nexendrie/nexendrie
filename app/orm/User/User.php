@@ -16,6 +16,7 @@ use Nextras\Orm\Entity\Entity,
  * @property int $joined
  * @property-read string $joinedAt {virtual}
  * @property int $lastActive
+ * @property-read string $lastActiveAt {virtual}
  * @property Group $group {m:1 Group::$members}
  * @property bool $infomails {default 0}
  * @property string $style {default "blu-sky"}
@@ -50,6 +51,10 @@ class User extends Entity {
   
   protected function getterJoinedAt() {
     return $this->localeModel->formatDate($this->joined);
+  }
+  
+  protected function getterLastActiveAt() {
+    return $this->localeModel->formatDate($this->lastActive);
   }
   
   protected function getterMoneyT() {
