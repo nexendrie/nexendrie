@@ -25,6 +25,7 @@ use Nextras\Orm\Entity\Entity,
  * @property-read int $maxLife {virtual}
  * @property int $money {default 2}
  * @property Town $town {m:1 Town::$denizens}
+ * @property Monastery|NULL $monastery {m:1 Monastery::$members} {default NULL}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|Article[] $articles {1:m Article::$author}
@@ -40,6 +41,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Punishment[] $punishments {1:m Punishment::$user}
  * @property OneHasMany|Loan[] $loans {1:m Loan::$user}
  * @property OneHasMany|UserAdventure $adventures {1:m UserAdventure::$user}
+ * @property OneHasMany|Monastery[] $monasteriesLed {1:m Monastery::$leader}
  */
 class User extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */

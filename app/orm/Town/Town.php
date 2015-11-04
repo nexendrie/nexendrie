@@ -14,6 +14,7 @@ use Nextras\Orm\Entity\Entity,
  * @property int $price {default 5000}
  * @property bool $onMarket {default 0}
  * @property OneHasMany|User[] $denizens {1:m User::$town}
+ * @property OneHasMany|Monastery[] $monasteries {1:m Monastery::$town}
  * @property-read string $priceT {virtual}
  */
 class Town extends Entity {
