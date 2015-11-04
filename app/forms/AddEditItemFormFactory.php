@@ -44,13 +44,14 @@ class AddEditItemFormFactory {
       ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
       ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999.", array(0, 999));
     $form->addSelect("shop", "Obchod", $this->getShops())
-      ->setRequired("Vyber obchod.");
+      ->setPrompt("žádný");
     $form->addSelect("type", "Typ:", Item::getTypes())
       ->setRequired("Vyber type.");
     $form->addText("strength", "Síla:")
       ->setRequired("Zadej síla.")
       ->addRule(Form::INTEGER, "Síla musí být celé číslo.")
-      ->addRule(Form::RANGE, "Síla musí být v rozmezí 0-999.", array(0, 999));
+      ->addRule(Form::RANGE, "Síla musí být v rozmezí 0-999.", array(0, 999))
+      ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
     return $form;
   }
