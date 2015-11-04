@@ -109,8 +109,8 @@ class Article extends \Nette\Object {
     foreach($data as $key => $value) {
       $comment->$key = $value;
     }
-    $comment->author = $this->user->id;
-    $comment->added = time();
+    $comment->author = $this->orm->users->getById($this->user->id);
+    $comment->author->lastActive = $comment->added = time();
     $this->orm->comments->persistAndFlush($comment);
   }
   

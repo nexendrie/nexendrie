@@ -91,6 +91,7 @@ class ShopControl extends \Nette\Application\UI\Control {
       $row->amount++;
     }
     $user->money = $user->money - $itemRow->price;
+    $user->lastActive = time();
     $this->orm->userItems->persist($row);
     $this->orm->users->persist($user);
     $this->orm->flush();

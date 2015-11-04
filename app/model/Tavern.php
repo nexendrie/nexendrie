@@ -87,6 +87,7 @@ class Tavern extends \Nette\Object {
     if($user->money < $meal->price) throw new InsufficientFundsException;
     $message = $meal->message;
     $user->money -= $meal->price;
+    $user->lastActive = time();
     if($meal->life != 0 AND $user->life > 1 AND $user->life < $user->maxLife) {
       $user->life += $meal->life;
       if($meal->life > 0) $message .= " Přibylo ti $meal->life životů.";

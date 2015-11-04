@@ -65,7 +65,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Už jsi odpracoval svůj trest.");
     } else {
       $punishment->count++;
-      $punishment->lastAction = time();
+      $punishment->lastAction = $punishment->user->lastActive = time();
       $this->orm->punishments->persistAndFlush($punishment);
       $this->presenter->flashMessage("Úspěšně jsi zvládl směnu.");
     }
@@ -81,10 +81,11 @@ class PrisonControl extends \Nette\Application\UI\Control {
       $release = true;
       $user = $this->orm->users->getById($this->user->id);
       $user->banned = false;
+      $user->lastActive = time();
       $this->orm->users->persistAndFlush($user);
     } elseif($punishment->count >= $punishment->numberOfShifts) {
       $release = true;
-      $punishment->released = time();
+      $punishment->user->lastActive = $punishment->released = time();
       $punishment->user->banned = false;
       $this->orm->punishments->persistAndFlush($punishment);
     }

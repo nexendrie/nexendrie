@@ -108,6 +108,7 @@ class Town extends \Nette\Object {
     $seller->money += $town->price;
     $this->orm->users->persist($seller);
     $user->money -= $town->price;
+    $user->lastActive = time();
     $town->owner = $user;
     $town->onMarket = false;
     $this->orm->towns->persist($town);

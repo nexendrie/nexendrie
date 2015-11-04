@@ -119,6 +119,7 @@ class Mount extends \Nette\Object {
     $seller->money += $mount->price;
     $this->orm->users->persist($seller);
     $user->money -= $mount->price;
+    $user->lastActive = time();
     $mount->owner = $user;
     $mount->onMarket = false;
     $this->orm->mounts->persist($mount);

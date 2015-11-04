@@ -100,7 +100,8 @@ class Messenger extends \Nette\Object {
     $message->subject = $data["subject"];
     $message->text = $data["text"];
     $message->sent = time();
-    $message->from = $this->user->id;
+    $message->from = $this->orm->users->getById($this->user->id);
+    $message->from->lastActive = time();
     $message->to = $data["to"];
     $this->orm->messages->persistAndFlush($message);
   }

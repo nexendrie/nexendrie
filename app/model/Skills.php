@@ -130,6 +130,7 @@ class Skills extends \Nette\Object {
     if($userSkill->user->money < $price) throw new InsufficientFundsException;
     $userSkill->level++;
     $userSkill->user->money -= $price;
+    $userSkill->user->lastActive = time();
     $this->orm->userSkills->persistAndFlush($userSkill);
   }
   
