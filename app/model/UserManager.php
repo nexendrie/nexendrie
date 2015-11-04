@@ -134,7 +134,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
       $user->$key = $value;
     }
     $user->publicname = $data["username"];
-    $user->joined = time();
+    $user->joined = $user->lastActive = time();
     $user->group = $this->roles["loggedInRole"];
     $this->orm->users->persistAndFlush($user);
     $this->cache->remove("users_names");

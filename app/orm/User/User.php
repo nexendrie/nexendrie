@@ -15,7 +15,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $email
  * @property int $joined
  * @property-read string $joinedAt {virtual}
- * @property int|NULL $lastActive
+ * @property int $lastActive
  * @property Group $group {m:1 Group::$members}
  * @property bool $infomails {default 0}
  * @property string $style {default "blu-sky"}
