@@ -71,6 +71,15 @@ class Monastery extends \Nette\Object {
     return $canJoin;
   }
   
+  /**
+   * Join a monastery
+   * 
+   * @param int $id
+   * @rturn void
+   * @throws AuthenticationNeededException
+   * @throws CannotJoinMonasteryException
+   * @throws MonasteryNotFoundException
+   */
   function join($id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif(!$this->canJoin()) throw new CannotJoinMonasteryException;
