@@ -96,6 +96,19 @@ class Profile extends \Nette\Object {
     if(!$user) throw new UserNotFoundException;
     else return array($user->life, $user->maxLife);
   }
+  
+  /**
+   * Get specified user's path
+   * 
+   * @param int $id  
+   * @return string
+   */
+  function getPath($id = 0) {
+    if($id === 0) $id = $this->user->id;
+    $user = $this->orm->users->getById($id);
+    if(!$user) throw new UserNotFoundException;
+    else return $user->group->path;
+  }
 }
 
 class UserNotFoundException extends RecordNotFoundException {
