@@ -79,6 +79,18 @@ class Profile extends \Nette\Object {
     }
     return $return;
   }
+  
+  /**
+   * Get specified user's life
+   * 
+   * @param int $id  
+   * @return int[]
+   */
+  function userLife($id = 0) {
+    $user = $this->orm->users->getById($id);
+    if(!$user) throw new UserNotFoundException;
+    else return array($user->life, $user->maxLife);
+  }
 }
 
 class UserNotFoundException extends RecordNotFoundException {

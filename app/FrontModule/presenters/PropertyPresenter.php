@@ -27,6 +27,8 @@ class PropertyPresenter extends BasePresenter {
   protected $localeModel;
   /** @var \Nexendrie\Model\Equipment @autowire */
   protected $equipmentModel;
+  /** @var \Nexendrie\Model\Profile @autowire */
+  protected $profileModel;
   /** @var TownEntity */
   private $town;
   
@@ -110,6 +112,9 @@ class PropertyPresenter extends BasePresenter {
    * @return void
    */
   function renderPotions() {
+    $life = $this->profileModel->userLife($this->user->id);
+    $this->template->life = $life[0];
+    $this->template->maxLife = $life[1];
     $this->template->items = $this->model->potions();
   }
   
