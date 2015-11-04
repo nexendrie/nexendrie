@@ -65,6 +65,7 @@ class MonasteryPresenter extends BasePresenter {
   function actionJoin($id) {
     try {
       $this->model->join($id);
+      $this->redirect("default");
     } catch(CannotJoinMonasteryException $e) {
       $this->flashMessage("Nemůžeš vstoupit do kláštera.");
       $this->redirect("Homepage:");
