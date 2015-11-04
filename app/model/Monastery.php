@@ -56,6 +56,35 @@ class Monastery extends \Nette\Object {
     elseif(!$user->monastery) throw new NotInMonasteryException;
     else return $user->monastery;
   }
+  
+  /**
+   * Check whetever the user can join a monastery
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canJoin() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $canJoin = false;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->monastery AND $user->group->path === "city") $canJoin = true;
+    return $canJoin;
+  }
+  
+  function join($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canJoin()) throw new CannotJoinMonasteryException;
+    try {
+      $monastery = $this->get($id);
+    } catch(MonasteryNotFoundException $e) {
+      throw $e;
+    }
+    $user = $this->orm->users->getById($this->user->id);
+    $user->monastery = $monastery;
+    $user->group = $this->orm->groups->getByLevel(55);
+    $user->town = $monastery->town;
+    $this->orm->users->persistAndFlush($user);
+  }
 }
 
 class MonasteryNotFoundException extends RecordNotFoundException {
@@ -63,6 +92,10 @@ class MonasteryNotFoundException extends RecordNotFoundException {
 }
 
 class NotInMonasteryException extends AccessDeniedException {
+  
+}
+
+class CannotJoinMonasteryException extends AccessDeniedException {
   
 }
 ?>

@@ -2,7 +2,8 @@
 namespace Nexendrie\FrontModule\Presenters;
 
 use Nexendrie\Model\MonasteryNotFoundException,
-    Nexendrie\Model\NotInMonasteryException;
+    Nexendrie\Model\NotInMonasteryException,
+    Nexendrie\Model\CannotJoinMonasteryException;
 
 /**
  * Presenter Monastery
@@ -38,6 +39,7 @@ class MonasteryPresenter extends BasePresenter {
    */
   function renderList() {
     $this->template->monasteries = $this->model->listOfMonasteries();
+    $this->template->canJoin = $this->model->canJoin();
   }
   
   /**
@@ -47,6 +49,19 @@ class MonasteryPresenter extends BasePresenter {
   function renderDetail($id) {
     try {
       $this->template->monastery = $this->model->get($id);
+    } catch(MonasteryNotFoundException $e) {
+      $this->forward("notfound");
+    }
+  }
+  
+  function actionJoin($id) {
+    try {
+      $this->model->join($id);
+      $this->flashMessage("Vstoupil jsi do kláštera.");
+      $this->redirect("default");
+    } catch(CannotJoinMonasteryException $e) {
+      $this->flashMessage("Nemůžeš vstoupit do kláštera.");
+      $this->redirect("Homepage:");
     } catch(MonasteryNotFoundException $e) {
       $this->forward("notfound");
     }

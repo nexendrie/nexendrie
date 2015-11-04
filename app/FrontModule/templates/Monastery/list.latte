@@ -10,7 +10,7 @@
       <td>{$monastery->name}</td>
       <td><a n:href="Profile: $monastery->leader->username">{$monastery->leader->publicname}</a></td>
       <td><a n:href="Town:detail $monastery->town->id">{$monastery->town->name}</a></td>
-      <td><a n:href="detail $monastery->id">Detaily</a></td>
+      <td><a n:href="detail $monastery->id">Detaily</a>{if $canJoin} <a n:href="join $monastery->id">Připojit se</a>{/if}</td>
     </tr>
   </table>
   {/if}
