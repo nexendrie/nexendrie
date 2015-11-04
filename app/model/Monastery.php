@@ -93,6 +93,9 @@ class Monastery extends \Nette\Object {
     $user->group = $this->orm->groups->getByLevel(55);
     $user->town = $monastery->town;
     $this->orm->users->persistAndFlush($user);
+    $this->user->identity->group = $user->group->id;
+    $this->user->identity->level = $user->group->level;
+    $this->user->identity->town = $user->town->id;
   }
   
   /**
