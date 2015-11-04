@@ -112,7 +112,7 @@ class PropertyPresenter extends BasePresenter {
    * @return void
    */
   function renderPotions() {
-    $life = $this->profileModel->userLife($this->user->id);
+    $life = $this->profileModel->userLife();
     $this->template->life = $life[0];
     $this->template->maxLife = $life[1];
     $this->template->items = $this->model->potions();

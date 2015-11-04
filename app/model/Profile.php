@@ -14,14 +14,18 @@ class Profile extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Caching\Cache */
   protected $cache;
+  /** @var \Nette\Security\User */
+  protected $user;
   
   /**
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Caching\Cache $cache
+   * @param \Nette\Security\User $user
    */
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->cache = $cache;
+    $this->user = $user;
   }
   
   /**
@@ -87,6 +91,7 @@ class Profile extends \Nette\Object {
    * @return int[]
    */
   function userLife($id = 0) {
+    if($id === 0) $id = $this->user->id;
     $user = $this->orm->users->getById($id);
     if(!$user) throw new UserNotFoundException;
     else return array($user->life, $user->maxLife);
