@@ -3,7 +3,8 @@ namespace Nexendrie\FrontModule\Presenters;
 
 use Nexendrie\Model\MonasteryNotFoundException,
     Nexendrie\Model\NotInMonasteryException,
-    Nexendrie\Model\CannotJoinMonasteryException;
+    Nexendrie\Model\CannotJoinMonasteryException,
+    Nexendrie\Model\CannotPrayException;
 
 /**
  * Presenter Monastery
@@ -54,6 +55,10 @@ class MonasteryPresenter extends BasePresenter {
     }
   }
   
+  /**
+   * @param int $id
+   * @return void
+   */
   function actionJoin($id) {
     try {
       $this->model->join($id);
@@ -64,6 +69,20 @@ class MonasteryPresenter extends BasePresenter {
       $this->redirect("Homepage:");
     } catch(MonasteryNotFoundException $e) {
       $this->forward("notfound");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionPray() {
+    try {
+      $this->model->pray();
+      $this->flashMessage("Modlidba ti přidala 5 životů.");
+      $this->redirect("default");
+    } catch(CannotPrayException $e) {
+      $this->flashMessage("Nemůžeš se modlit (právě teď).");
+      $this->redirect("Homepage:");
     }
   }
 }

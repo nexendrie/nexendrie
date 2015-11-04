@@ -75,7 +75,7 @@ class Monastery extends \Nette\Object {
    * Join a monastery
    * 
    * @param int $id
-   * @rturn void
+   * @return void
    * @throws AuthenticationNeededException
    * @throws CannotJoinMonasteryException
    * @throws MonasteryNotFoundException
@@ -94,6 +94,38 @@ class Monastery extends \Nette\Object {
     $user->town = $monastery->town;
     $this->orm->users->persistAndFlush($user);
   }
+  
+  /**
+   * Check whetever the user can pray (now)
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canPray() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->monastery) return false;
+    elseif($user->life >= $user->maxLife) return false;
+    elseif(!$user->lastPrayer) return true;
+    $oneDay = 60 * 60 * 24;
+    if($user->lastPrayer + $oneDay > time()) return true;
+    else return false;
+  }
+  
+  /**
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotPrayException
+   */
+  function pray() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->canPray()) throw new CannotPrayException;
+    $user = $this->orm->users->getById($this->user->id);
+    $user->lastPrayer = time();
+    $user->life += 5;
+    $user->prayers++;
+    $this->orm->users->persistAndFlush($user);
+  }
 }
 
 class MonasteryNotFoundException extends RecordNotFoundException {
@@ -105,6 +137,10 @@ class NotInMonasteryException extends AccessDeniedException {
 }
 
 class CannotJoinMonasteryException extends AccessDeniedException {
+  
+}
+
+class CannotPrayException extends AccessDeniedException {
   
 }
 ?>
