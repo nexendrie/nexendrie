@@ -24,6 +24,7 @@ class Item extends Entity {
   const TYPE_ARMOR = "armor";
   const TYPE_POTION = "potion";
   const TYPE_MATERIAL = "material";
+  const TYPE_CHARTER = "charter";
   
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
@@ -42,6 +43,7 @@ class Item extends Entity {
       "armor" => "Brnění",
       "potion" => "Lektvar",
       "material" => "Surovina",
+      "charter" => "Listina",
     );
   }
   
