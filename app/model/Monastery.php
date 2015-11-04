@@ -157,7 +157,8 @@ class Monastery extends \Nette\Object {
     if(!$this->canLeave()) throw new CannotLeaveMonasteryException;
     $user = $this->orm->users->getById($this->user->id);
     $user->monastery = NULL;
-    $user->group = $this->orm->groups->getByLevel(50);
+    if($user->ownedTowns->countStored()) $user->group = $this->orm->groups->getByLevel(400);
+    else $user->group = $this->orm->groups->getByLevel(50);
     $this->orm->users->persistAndFlush($user);
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;
