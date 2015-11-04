@@ -4,7 +4,8 @@ namespace Nexendrie\FrontModule\Presenters;
 use Nexendrie\Model\MonasteryNotFoundException,
     Nexendrie\Model\NotInMonasteryException,
     Nexendrie\Model\CannotJoinMonasteryException,
-    Nexendrie\Model\CannotPrayException;
+    Nexendrie\Model\CannotPrayException,
+    Nexendrie\Model\CannotLeaveMonasteryException;
 
 /**
  * Presenter Monastery
@@ -30,6 +31,7 @@ class MonasteryPresenter extends BasePresenter {
     try {
       $this->template->monastery = $this->model->getByUser();
       $this->template->canPray = $this->model->canPray();
+      $this->template->canLeave = $this->model->canLeave();
     } catch(NotInMonasteryException $e) {
       $this->flashMessage("Nejsi v klášteře.");
       $this->redirect("Homepage:");
@@ -63,13 +65,22 @@ class MonasteryPresenter extends BasePresenter {
   function actionJoin($id) {
     try {
       $this->model->join($id);
-      $this->flashMessage("Vstoupil jsi do kláštera.");
-      $this->redirect("default");
     } catch(CannotJoinMonasteryException $e) {
       $this->flashMessage("Nemůžeš vstoupit do kláštera.");
       $this->redirect("Homepage:");
     } catch(MonasteryNotFoundException $e) {
       $this->forward("notfound");
+    }
+  }
+  
+  function actionLeave() {
+    try {
+      $this->model->leave();
+      $this->flashMessage("Vystoupil jsi z kláštera.");
+      $this->redirect("Homepage:");
+    } catch(CannotLeaveMonasteryException $e) {
+      $this->flashMessage("Nemůžeš vystoupit z kláštera.");
+      $this->redirect("default");
     }
   }
   

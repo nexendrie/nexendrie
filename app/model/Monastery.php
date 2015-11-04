@@ -96,6 +96,7 @@ class Monastery extends \Nette\Object {
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;
     $this->user->identity->town = $user->town->id;
+    $this->user->identity->roles = array($user->group->singleName);
   }
   
   /**
@@ -129,6 +130,39 @@ class Monastery extends \Nette\Object {
     $user->prayers++;
     $this->orm->users->persistAndFlush($user);
   }
+  
+  /**
+   * Check whetever the user can leave monastery
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canLeave( ) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->monastery) return false;
+    elseif($user->id === $user->monastery->leader->id) return false;
+    else return true;
+  }
+  
+  /**
+   * Leave monastery
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotLeaveMonasteryException
+   */
+  function leave() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->canLeave()) throw new CannotLeaveMonasteryException;
+    $user = $this->orm->users->getById($this->user->id);
+    $user->monastery = NULL;
+    $user->group = $this->orm->groups->getByLevel(50);
+    $this->orm->users->persistAndFlush($user);
+    $this->user->identity->group = $user->group->id;
+    $this->user->identity->level = $user->group->level;
+    $this->user->identity->roles = array($user->group->singleName);
+  }
 }
 
 class MonasteryNotFoundException extends RecordNotFoundException {
@@ -144,6 +178,10 @@ class CannotJoinMonasteryException extends AccessDeniedException {
 }
 
 class CannotPrayException extends AccessDeniedException {
+  
+}
+
+class CannotLeaveMonasteryException extends AccessDeniedException {
   
 }
 ?>
