@@ -9,7 +9,7 @@ namespace Nexendrie\Orm;
  * @property string $name
  * @property string $description
  * @property int $price
- * @property int $shop
+ * @property int|NULL $shop
  * @property string $type
  * @property int $strength
  */
@@ -34,7 +34,7 @@ class ItemDummy extends \Nette\Object {
     $this->name = $item->name;
     $this->description = $item->description;
     $this->price = $item->price;
-    $this->shop = $item->shop->id;
+    $this->shop = (empty($item->shop)) ? NULL : $item->shop->id;
     $this->type = $item->type;
     $this->strength = $item->strength;
   }
