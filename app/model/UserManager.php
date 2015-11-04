@@ -109,6 +109,8 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
       $role = $user->group->singleName;
       $banned = false;
     }
+    $user->lastActive = time();
+    $this->orm->users->persistAndFlush($user);
     $data = array(
       "name" => $user->publicname, "group" => $user->group->id,
       "level" => $user->group->level, "style" => $user->style, "town" => $user->town->id, "banned" => $banned
