@@ -23,6 +23,7 @@ class HelpControl extends \Nette\Application\UI\Control {
     $storage[] = new Help\HelpPage("introduction", "Úvod");
     $storage[] = new Help\HelpPage("titles", "Tituly");
     $storage[] = new Help\HelpPage("towns", "Města");
+    $storage[] = new Help\HelpPage("monastery", "Klášter");
     $storage[] = new Help\HelpPage("money", "Peníze");
     $storage[] = new Help\HelpPage("work", "Práce");
     $storage[] = new Help\HelpPage("adventures", "Dobrodružství");
