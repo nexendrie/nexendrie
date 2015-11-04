@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\UserItem as UserItemEntity;
+use Nexendrie\Orm\UserItem as UserItemEntity,
+    Nexendrie\Orm\Item as ItemEntity;
 
 /**
  * Property Model
@@ -39,7 +40,7 @@ class Property extends \Nette\Object {
     $return = array();
     $user = $this->orm->users->getById($this->user->id);
     $return["money"] = $user->moneyT;
-    $return["items"] = $user->items->get()->findBy(array("this->item->type" => "item"));
+    $return["items"] = $user->items->get()->findBy(array("this->item->type" => ItemEntity::getCommonTypes()));
     $return["isLord"] = ($user->group->level >= 350);
     $return["towns"] = $user->ownedTowns;
     return $return;

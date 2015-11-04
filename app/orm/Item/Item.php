@@ -50,6 +50,15 @@ class Item extends Entity {
   /**
    * @return string[]
    */
+  static function getCommonTypes() {
+    return array(
+      "item", "material", "charter"
+    );
+  }
+  
+  /**
+   * @return string[]
+   */
   static function getEquipmentTypes() {
     return array(
       "weapon", "armor"

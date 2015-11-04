@@ -23,6 +23,16 @@ class UserItemsRepository extends Repository {
   }
   
   /**
+   * Find specified user's items
+   * 
+   * @param int $user
+   * @return ICollection|Item[]
+   */
+  function findCommonItems($user) {
+    return $this->findBy(array("user" => $user, "this->item->type=" => Item::getCommonTypes()));
+  }
+  
+  /**
    * Find specified user's items of a type
    * 
    * @param int $user
