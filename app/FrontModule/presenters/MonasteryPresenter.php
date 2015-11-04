@@ -74,6 +74,9 @@ class MonasteryPresenter extends BasePresenter {
     }
   }
   
+  /**
+   * @return void
+   */
   function actionLeave() {
     try {
       $this->model->leave();
