@@ -29,6 +29,7 @@ class MonasteryPresenter extends BasePresenter {
   function renderDefault() {
     try {
       $this->template->monastery = $this->model->getByUser();
+      $this->template->canPray = $this->model->canPray();
     } catch(NotInMonasteryException $e) {
       $this->flashMessage("Nejsi v klášteře.");
       $this->redirect("Homepage:");
