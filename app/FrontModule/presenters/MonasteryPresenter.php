@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\FrontModule\Presenters;
 
-use Nexendrie\Model\MonasteryNotFoundException;
+use Nexendrie\Model\MonasteryNotFoundException,
+    Nexendrie\Model\NotInMonasteryException;
 
 /**
  * Presenter Monastery
@@ -18,6 +19,18 @@ class MonasteryPresenter extends BasePresenter {
   protected function startup() {
     parent::startup();
     $this->requiresLogin();
+  }
+  
+  /**
+   * @return void
+   */
+  function renderDefault() {
+    try {
+      $this->template->monastery = $this->model->getByUser();
+    } catch(NotInMonasteryException $e) {
+      $this->flashMessage("Nejsi v klášteře.");
+      $this->redirect("Homepage:");
+    }
   }
   
   /**

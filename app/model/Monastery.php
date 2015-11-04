@@ -40,9 +40,29 @@ class Monastery extends \Nette\Object {
     if(!$monastery) throw new MonasteryNotFoundException;
     else return $monastery;
   }
+  
+  /**
+   * Get specified user's monastary
+   * 
+   * @param int $id
+   * @return MonasteryEntity
+   * @throws UserNotFoundException
+   * @throws NotInMonasteryException
+   */
+  function getByUser($id = 0) {
+    if($id === 0) $id = $this->user->id;
+    $user = $this->orm->users->getById($id);
+    if(!$user) throw new UserNotFoundException;
+    elseif(!$user->monastery) throw new NotInMonasteryException;
+    else return $user->monastery;
+  }
 }
 
 class MonasteryNotFoundException extends RecordNotFoundException {
+  
+}
+
+class NotInMonasteryException extends AccessDeniedException {
   
 }
 ?>
