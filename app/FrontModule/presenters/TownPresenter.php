@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\FrontModule\Presenters;
 
-use Nexendrie\Model\TownNotFoundException;
+use Nexendrie\Model\TownNotFoundException,
+    Nexendrie\Model\NotInMonasteryException;
 
 /**
  * Presenter Town
@@ -11,6 +12,8 @@ use Nexendrie\Model\TownNotFoundException;
 class TownPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Town @autowire */
   protected $model;
+  /** @var \Nexendrie\Model\UserManager @autowire */
+  protected $userManager;
   
   /**
    * @return void
@@ -25,6 +28,8 @@ class TownPresenter extends BasePresenter {
    */
   function renderDefault() {
     $this->template->town = $this->model->get($this->user->identity->town);
+    $user = $this->userManager->get($this->user->id);
+    $this->template->monastery = $user->monastery;
   }
   
   /**
