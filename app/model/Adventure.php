@@ -81,7 +81,7 @@ class Adventure extends \Nette\Object {
    * @param int $id
    * @param array $data
    * @return void
-   * @throws \Nexendrie\Model\AdventureNotFoundException
+   * @throws AdventureNotFoundException
    */
   function editAdventure($id, array $data) {
     try {
@@ -175,7 +175,7 @@ class Adventure extends \Nette\Object {
   /**
    * Find mounts for adventure
    * 
-   * @return MountEntityp[]
+   * @return MountEntity[]
    * @throws AuthenticationNeededException
    */
   function findGoodMounts() {

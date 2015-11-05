@@ -32,7 +32,7 @@ class MountsRepository extends Repository {
   /**
    * Get mounts of specified user for adventure
    * 
-   * @param type $user
+   * @param int $user
    * @return ICollection|Mount[]
    */
   function findGoodMounts($user) {
