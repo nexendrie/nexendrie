@@ -1,0 +1,17 @@
+{layout "../@layout.latte"}
+{block title}Seznam klášterů{/block}
+{block content}
+  <h1>Seznam klášterů</h1>
+  {if $monasteries->count() === 0}Nebyl nalezen žádný klášter.
+  {else}
+  <table id="monasteries">
+    <tr><th>Jméno</th><th>Vůdce</th><th>Město</th><th></th></tr>
+    <tr n:inner-foreach="$monasteries as $monastery">
+      <td>{$monastery->name}</td>
+      <td><a n:href="Profile: $monastery->leader->username">{$monastery->leader->publicname}</a></td>
+      <td><a n:href="Town:detail $monastery->town->id">{$monastery->town->name}</a></td>
+      <td><a n:href="detail $monastery->id">Detaily</a>{if $canJoin} <a n:href="join $monastery->id">Připojit se</a>{/if}</td>
+    </tr>
+  </table>
+  {/if}
+{/block}

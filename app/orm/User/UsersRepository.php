@@ -11,6 +11,7 @@ use Nextras\Orm\Repository\Repository,
  * @method User|NULL getByPublicname(string $publicname)
  * @method User|NULL getByEmail(string $email)
  * @method ICollection|User[] findByGroup($group)
+ * @method ICollection|User[] findByMonastery($monastery)
  */
 class UsersRepository extends Repository {
 

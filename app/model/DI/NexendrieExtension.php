@@ -31,7 +31,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     ),
     "fees" => array(
       "incomeTax" => 10,
-      "loanInterest" => 15
+      "loanInterest" => 15,
+      "buildMonastery" => 1000
     )
   );
   
@@ -68,6 +69,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
        ->setFactory("Nexendrie\Model\Bank", array($config["fees"]["loanInterest"]));
     $builder->addDefinition($this->prefix("model.taxes"))
         ->setFactory("Nexendrie\Model\Taxes", array($config["fees"]["incomeTax"]));
+    $builder->addDefinition($this->prefix("model.monastery"))
+      ->setFactory("Nexendrie\Model\Monastery", array($config["fees"]["buildMonastery"]));
     $builder->addDefinition("cache.cache")
       ->setFactory("Nette\Caching\Cache", array("@cache.storage", "data"));
     $builder->addDefinition($this->prefix("model.settingsRepository"))
@@ -107,7 +110,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "userSettings", "addComment", "editGroup", "systemSettings", "editUser",
       "addEditShop", "addEditItem", "addEditJob", "addEditJobMessage", "addEditTown",
       "addEditMount", "addEditSkill", "manageMount", "manageTown", "banUser", "takeLoan",
-      "addEditMeal", "addEditAdventure", "addEditAdventureEnemy"
+      "addEditMeal", "addEditAdventure", "addEditAdventureEnemy", "buildMonastery",
+      "monasteryDonate", "manageMonastery"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix("form.$form"))

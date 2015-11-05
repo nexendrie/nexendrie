@@ -60,12 +60,17 @@ class Property extends \Nette\Object {
       ,
       "expenses" => array(
         "incomeTax" => 0,
-        "loansInterest" => 0
+        "loansInterest" => 0,
+        "monasteryDonations" => 0
     ));
     $budget["expenses"]["incomeTax"] = $this->taxesModel->calculateTax(array_sum($budget["incomes"]));
     $loans = $this->orm->loans->findReturnedThisMonth($this->user->id);
     foreach($loans as $loan) {
       $budget["expenses"]["loansInterest"] += $this->bankModel->calculateInterest($loan);
+    }
+    $donations = $this->orm->monasteryDonations->findDonatedThisMonth($this->user->id);
+    foreach($donations as $donation) {
+      $budget["expenses"]["monasteryDonations"] += $donation->amount;
     }
     $towns = $this->orm->towns->findByOwner($this->user->id);
     foreach($towns as $town) {

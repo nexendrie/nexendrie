@@ -17,6 +17,7 @@ use Nextras\Orm\Entity\Entity,
  * @property-read string $joinedAt {virtual}
  * @property int $lastActive
  * @property-read string $lastActiveAt {virtual}
+ * @property int|NULL $lastPrayer {default NULL}
  * @property Group $group {m:1 Group::$members}
  * @property bool $infomails {default 0}
  * @property string $style {default "blu-sky"}
@@ -25,6 +26,8 @@ use Nextras\Orm\Entity\Entity,
  * @property-read int $maxLife {virtual}
  * @property int $money {default 2}
  * @property Town $town {m:1 Town::$denizens}
+ * @property Monastery|NULL $monastery {m:1 Monastery::$members} {default NULL}
+ * @property int $prayers {default 0}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|Article[] $articles {1:m Article::$author}
@@ -40,6 +43,8 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Punishment[] $punishments {1:m Punishment::$user}
  * @property OneHasMany|Loan[] $loans {1:m Loan::$user}
  * @property OneHasMany|UserAdventure $adventures {1:m UserAdventure::$user}
+ * @property OneHasMany|Monastery[] $monasteriesLed {1:m Monastery::$leader}
+ * @property OneHasMany|MonasteryDonation[] $monasteryDonations {1:m MonasteryDonation::$user}
  */
 class User extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */

@@ -30,6 +30,8 @@ namespace Nexendrie\Orm;
  * @property-read AdventuresRepository $adventures
  * @property-read AdventureNpcsRepository $adventureNpcs
  * @property-read UserAdventuresRepository $userAdventures
+ * @property-read MonasteriesRepository $monasteries
+ * @property-read MonasteryDonationsRepository $monasteryDonations
  */
 class Model extends \Nextras\Orm\Model\Model {
   

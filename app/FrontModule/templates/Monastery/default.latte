@@ -1,0 +1,17 @@
+{layout "../@layout.latte"}
+{block title}Klášter{/block}
+{block content}
+  <h1>{$monastery->name}</h1>
+  <p>Vůdce: <a n:href="Profile: $monastery->leader->username">{$monastery->leader->publicname}</a></p>
+  <h3>Členové</h3>
+  <div n:foreach="$monastery->members as $member" class="members">
+    {$member->group->singleName} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
+  </div>
+  <h3>Majetek kláštera</h3>
+  <p>{$monastery->moneyT}</p>
+  <h3>Akce</h3>
+  Darovat peníze klášteru<br>
+  {control monasteryDonateForm}
+  <p>{if $canPray}<a n:href="pray">Modlit se</a>{else}Musíš počkat, než se budeš moci znovu modlit.{/if}</p>
+  <p>{if $canLeave}<a n:href="leave">Opustit klášter</a>{/if}{if $canManage}<a n:href="manage">Spravovat klášter</a>{/if}{if $canBuild} <a n:href="build">Založit vlastní klášter</a>{/if}</p>
+{/block}
