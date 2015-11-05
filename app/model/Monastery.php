@@ -9,16 +9,22 @@ use Nexendrie\Orm\Monastery as MonasteryEntity;
  * @author Jakub Konečný
  */
 class Monastery extends \Nette\Object {
-  const BUILDING_PRICE = 1000;
-  
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  /** @var int */
+  protected $buildingPrice;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  /**
+   * @param int $buildingPrice
+   * @param \Nexendrie\Orm\Model $orm
+   * @param \Nette\Security\User $user
+   */
+  function __construct($buildingPrice, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
+    $this->buildingPrice = $buildingPrice;
   }
   
   /**
@@ -196,15 +202,15 @@ class Monastery extends \Nette\Object {
     if(!$this->canBuild()) throw new CannotBuildMonasteryException;
     if($this->orm->monasteries->getByName($name)) throw new MonasteryNameInUseException;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->money < self::BUILDING_PRICE) throw new InsufficientFundsException;
+    if($user->money < $this->buildingPrice) throw new InsufficientFundsException;
     $monastery = new MonasteryEntity;
     $this->orm->monasteries->attach($monastery);
     $monastery->name = (string) $name;
     $monastery->leader = $user;
     $monastery->town = $this->user->identity->town;
     $monastery->founded = time();
-    $user->money -= self::BUILDING_PRICE;
-    $monastery->money = self::BUILDING_PRICE;
+    $user->money -= $this->buildingPrice;
+    $monastery->money = $this->buildingPrice;
     $this->orm->monasteries->persistAndFlush($monastery);
     $user->monastery = $this->orm->monasteries->getByName($name);
     $this->orm->users->persistAndFlush($user);
