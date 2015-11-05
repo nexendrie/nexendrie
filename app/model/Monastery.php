@@ -240,6 +240,57 @@ class Monastery extends \Nette\Object {
     $donation->when = time();
     $this->orm->monasteryDonations->persistAndFlush($donation);
   }
+  
+  /**
+   * Edit specified monastery
+   * 
+   * @param int $id
+   * @param array $data
+   * @throws MonasteryNotFoundException
+   * @throws MonasteryNameInUseException
+   */
+  function edit($id, array $data) {
+    $monastery = $this->orm->monasteries->getById($id);
+    if(!$monastery) throw new MonasteryNotFoundException;
+    $skip = array("town", "founded", "money");
+    foreach($data as $key => $value) {
+      if($key === "name") {
+        $m = $this->orm->monasteries->getByName($value);
+        if($m AND $m->id != $id) throw new MonasteryNameInUseException;
+      } elseif(in_array($key, $skip)) {
+        continue;
+      } else {
+        $monastery->$key = $value;
+      }
+    }
+    $this->orm->monasteries->persistAndFlush($monastery);
+  }
+  
+  /**
+   * Get high clerics of a monastery
+   * 
+   * @param int $id
+   * @return string[] id => publicname
+   */
+  function highClerics($id) {
+    return $this->orm->users->findByMonastery($id)
+      ->findBy(array("this->group->level" => 550))
+      ->fetchPairs("id", "publicname");
+  }
+  
+  /**
+   * Check whetever the user can manage monastery
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canManage() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->monastery) return false;
+    elseif($user->monastery->leader->id != $this->user->id) return false;
+    else return true;
+  }
 }
 
 class MonasteryNotFoundException extends RecordNotFoundException {

@@ -8,7 +8,8 @@ use Nexendrie\Model\MonasteryNotFoundException,
     Nexendrie\Model\CannotLeaveMonasteryException,
     Nexendrie\Forms\BuildMonasteryFormFactory,
     Nette\Application\UI\Form,
-    Nexendrie\Forms\MonasteryDonateFormFactory;
+    Nexendrie\Forms\MonasteryDonateFormFactory,
+    Nexendrie\Forms\ManageMonasteryFormFactory;
 
 /**
  * Presenter Monastery
@@ -18,6 +19,8 @@ use Nexendrie\Model\MonasteryNotFoundException,
 class MonasteryPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Monastery @autowire */
   protected $model;
+  /** @var int*/
+  private $monasteryId;
   
   /**
    * @return void
@@ -36,6 +39,7 @@ class MonasteryPresenter extends BasePresenter {
       $this->template->canPray = $this->model->canPray();
       $this->template->canLeave = $this->model->canLeave();
       $this->template->canBuild = $this->model->canBuild();
+      $this->template->canManage = $this->model->canManage();
     } catch(NotInMonasteryException $e) {
       $this->flashMessage("Nejsi v klášteře.");
       $this->redirect("Homepage:");
@@ -137,6 +141,27 @@ class MonasteryPresenter extends BasePresenter {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->flashMessage("Příspěvek proveden.");
+    };
+    return $form;
+  }
+  
+  function actionManage() {
+    if(!$this->model->canManage()) {
+      $this->flashMessage("Nemůžeš spravovat klášter.");
+      $this->redirect("Homepage");
+    } else {
+      $this->monasteryId = $this->model->getByUser()->id;
+    }
+  }
+  
+  /**
+   * @param ManageMonasteryFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentManageMonasteryForm(ManageMonasteryFormFactory $factory) {
+    $form = $factory->create($this->monasteryId);
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Změny uloženy.");
     };
     return $form;
   }

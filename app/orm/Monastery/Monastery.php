@@ -33,5 +33,19 @@ class Monastery extends Entity {
   protected function getterMoneyT() {
     return $this->localeModel->money($this->money);
   }
+  
+  /**
+   * @return MonasteryDummy
+   */
+  function dummy() {
+    return new MonasteryDummy($this);
+  }
+  
+  /**
+   * @return array
+   */
+  function dummyArray() {
+    return $this->dummy()->toArray();
+  }
 }
 ?>
