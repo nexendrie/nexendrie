@@ -27,7 +27,7 @@ class Monastery extends \Nette\Object {
    * @return MonasteryEntity[]
    */
   function listOfMonasteries() {
-    return $this->orm->monasterires->findAll();
+    return $this->orm->monasteries->findAll();
   }
   
   /**
@@ -38,7 +38,7 @@ class Monastery extends \Nette\Object {
    * @throws MonasteryNotFoundException
    */
   function get($id) {
-    $monastery = $this->orm->monasterires->getById($id);
+    $monastery = $this->orm->monasteries->getById($id);
     if(!$monastery) throw new MonasteryNotFoundException;
     else return $monastery;
   }
@@ -194,19 +194,19 @@ class Monastery extends \Nette\Object {
   function build($name) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     if(!$this->canBuild()) throw new CannotBuildMonasteryException;
-    if($this->orm->monasterires->getByName($name)) throw new MonasteryNameInUseException;
+    if($this->orm->monasteries->getByName($name)) throw new MonasteryNameInUseException;
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < self::BUILDING_PRICE) throw new InsufficientFundsException;
     $monastery = new MonasteryEntity;
-    $this->orm->monasterires->attach($monastery);
+    $this->orm->monasteries->attach($monastery);
     $monastery->name = (string) $name;
     $monastery->leader = $user;
     $monastery->town = $this->user->identity->town;
     $monastery->founded = time();
     $user->money -= self::BUILDING_PRICE;
     $monastery->money = self::BUILDING_PRICE;
-    $this->orm->monasterires->persistAndFlush($monastery);
-    $user->monastery = $this->orm->monasterires->getByName($name);
+    $this->orm->monasteries->persistAndFlush($monastery);
+    $user->monastery = $this->orm->monasteries->getByName($name);
     $this->orm->users->persistAndFlush($user);
   }
 }
