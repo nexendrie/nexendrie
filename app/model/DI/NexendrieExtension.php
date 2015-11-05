@@ -110,7 +110,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "userSettings", "addComment", "editGroup", "systemSettings", "editUser",
       "addEditShop", "addEditItem", "addEditJob", "addEditJobMessage", "addEditTown",
       "addEditMount", "addEditSkill", "manageMount", "manageTown", "banUser", "takeLoan",
-      "addEditMeal", "addEditAdventure", "addEditAdventureEnemy", "buildMonastery"
+      "addEditMeal", "addEditAdventure", "addEditAdventureEnemy", "buildMonastery",
+      "monasteryDonate"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix("form.$form"))

@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Monastery as MonasteryEntity;
+use Nexendrie\Orm\Monastery as MonasteryEntity,
+    Nexendrie\Orm\MonasteryDonation;
 
 /**
  * Monastery Model
@@ -214,6 +215,30 @@ class Monastery extends \Nette\Object {
     $this->orm->monasteries->persistAndFlush($monastery);
     $user->monastery = $this->orm->monasteries->getByName($name);
     $this->orm->users->persistAndFlush($user);
+  }
+  
+  /**
+   * Donate money to monastery
+   * 
+   * @param int $amount
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws NotInMonasteryException
+   * @throws InsufficientFundsException
+   */
+  function donate($amount) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->monastery) throw new NotInMonasteryException;
+    elseif($user->money < $amount) throw new InsufficientFundsException;
+    $user->money -= $amount;
+    $user->monastery->money += $amount;
+    $donation = new MonasteryDonation;
+    $donation->user = $user;
+    $donation->monastery = $user->monastery;
+    $donation->amount = $amount;
+    $donation->when = time();
+    $this->orm->monasteryDonations->persistAndFlush($donation);
   }
 }
 

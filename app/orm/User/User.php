@@ -44,6 +44,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Loan[] $loans {1:m Loan::$user}
  * @property OneHasMany|UserAdventure $adventures {1:m UserAdventure::$user}
  * @property OneHasMany|Monastery[] $monasteriesLed {1:m Monastery::$leader}
+ * @property OneHasMany|MonasteryDonation[] $monasteryDonations {1:m MonasteryDonation::$user}
  */
 class User extends Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */

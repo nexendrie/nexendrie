@@ -7,7 +7,8 @@ use Nexendrie\Model\MonasteryNotFoundException,
     Nexendrie\Model\CannotPrayException,
     Nexendrie\Model\CannotLeaveMonasteryException,
     Nexendrie\Forms\BuildMonasteryFormFactory,
-    Nette\Application\UI\Form;
+    Nette\Application\UI\Form,
+    Nexendrie\Forms\MonasteryDonateFormFactory;
 
 /**
  * Presenter Monastery
@@ -126,6 +127,18 @@ class MonasteryPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš se modlit (právě teď).");
       $this->redirect("Homepage:");
     }
+  }
+  
+  /**
+   * @param MonasteryDonateFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentMonasteryDonateForm(MonasteryDonateFormFactory $factory) {
+    $form = $factory->create();
+    $form->onSuccess[] = function(Form $form) {
+      $this->flashMessage("Příspěvek proveden.");
+    };
+    return $form;
   }
 }
 ?>
