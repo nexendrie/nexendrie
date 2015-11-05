@@ -9,6 +9,8 @@ use Nexendrie\Orm\Monastery as MonasteryEntity;
  * @author Jakub Konečný
  */
 class Monastery extends \Nette\Object {
+  const BUILDING_PRICE = 1000;
+  
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -164,6 +166,49 @@ class Monastery extends \Nette\Object {
     $this->user->identity->level = $user->group->level;
     $this->user->identity->roles = array($user->group->singleName);
   }
+  
+  /**
+   * Check whetever the user can build monastery
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canBuild() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if($this->user->identity->level != 550) return false;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->monasteriesLed->countStored() > 0) return false;
+    else return true;
+  }
+  
+  /**
+   * Build a monastery
+   * 
+   * @param string $name
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotBuildMonasteryException
+   * @throws MonasteryNameInUseException
+   * @throws InsufficientFundsException
+   */
+  function build($name) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->canBuild()) throw new CannotBuildMonasteryException;
+    if($this->orm->monasterires->getByName($name)) throw new MonasteryNameInUseException;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->money < self::BUILDING_PRICE) throw new InsufficientFundsException;
+    $monastery = new MonasteryEntity;
+    $this->orm->monasterires->attach($monastery);
+    $monastery->name = (string) $name;
+    $monastery->leader = $user;
+    $monastery->town = $this->user->identity->town;
+    $monastery->founded = time();
+    $user->money -= self::BUILDING_PRICE;
+    $monastery->money = self::BUILDING_PRICE;
+    $this->orm->monasterires->persistAndFlush($monastery);
+    $user->monastery = $this->orm->monasterires->getByName($name);
+    $this->orm->users->persistAndFlush($user);
+  }
 }
 
 class MonasteryNotFoundException extends RecordNotFoundException {
@@ -183,6 +228,14 @@ class CannotPrayException extends AccessDeniedException {
 }
 
 class CannotLeaveMonasteryException extends AccessDeniedException {
+  
+}
+
+class CannotBuildMonasteryException extends AccessDeniedException {
+  
+}
+
+class MonasteryNameInUseException extends \RuntimeException {
   
 }
 ?>

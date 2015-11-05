@@ -5,7 +5,9 @@ use Nexendrie\Model\MonasteryNotFoundException,
     Nexendrie\Model\NotInMonasteryException,
     Nexendrie\Model\CannotJoinMonasteryException,
     Nexendrie\Model\CannotPrayException,
-    Nexendrie\Model\CannotLeaveMonasteryException;
+    Nexendrie\Model\CannotLeaveMonasteryException,
+    Nexendrie\Forms\BuildMonasteryFormFactory,
+    Nette\Application\UI\Form;
 
 /**
  * Presenter Monastery
@@ -32,6 +34,7 @@ class MonasteryPresenter extends BasePresenter {
       $this->template->monastery = $this->model->getByUser();
       $this->template->canPray = $this->model->canPray();
       $this->template->canLeave = $this->model->canLeave();
+      $this->template->canBuild = $this->model->canBuild();
     } catch(NotInMonasteryException $e) {
       $this->flashMessage("Nejsi v klášteře.");
       $this->redirect("Homepage:");
@@ -56,6 +59,29 @@ class MonasteryPresenter extends BasePresenter {
     } catch(MonasteryNotFoundException $e) {
       $this->forward("notfound");
     }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionBuild() {
+    if(!$this->model->canBuild()) {
+      $this->flashMessage("Nemůžeš postavit klášter.");
+      $this->redirect("Homepage:");
+    }
+  }
+  
+  /**
+   * @param BuildMonasteryFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentBuildMonasteryForm(BuildMonasteryFormFactory $factory) {
+    $form = $factory->create();
+    $form->onSuccess[]= function(Form $form) {
+      $this->flashMessage("Klášter založen.");
+      $this->redirect("default");
+    };
+    return $form;
   }
   
   /**
