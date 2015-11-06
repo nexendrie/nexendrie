@@ -1,15 +1,14 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
  * 
  * @method Adventure|NULL getById($id)
  */
-class AdventuresRepository extends Repository {
+class AdventuresRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * Find adventures for specified level
    * 

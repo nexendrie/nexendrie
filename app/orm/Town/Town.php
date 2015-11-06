@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Town
@@ -17,7 +16,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Monastery[] $monasteries {1:m Monastery::$town}
  * @property-read string $priceT {virtual}
  */
-class Town extends Entity {
+class Town extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   

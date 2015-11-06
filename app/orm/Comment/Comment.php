@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 
 /**
  * Comment
@@ -15,7 +13,7 @@ use Nextras\Orm\Entity\Entity;
  * @property int $added
  * @property-read string $addedAt {virtual}
  */
-class Comment extends Entity {
+class Comment extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   

@@ -1,13 +1,11 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository;
-
 /**
  * @author Jakub Konečný
  * @method Poll|NULL getById($id)
  */
-class PollsRepository extends Repository {
+class PollsRepository extends \Nextras\Orm\Repository\Repository {
   
 }
 ?>

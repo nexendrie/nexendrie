@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 /**
  * Loan
  *
@@ -15,7 +13,7 @@ use Nextras\Orm\Entity\Entity;
  * @property-read string $takenT {virtual}
  * @property-read string $returnedT {virtual}
  */
-class Loan extends Entity {
+class Loan extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

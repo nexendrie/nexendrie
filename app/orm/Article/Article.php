@@ -1,11 +1,10 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
- * News
+ * Article
  *
  * @author Jakub Konečný
  * @property string $title
@@ -18,7 +17,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
  * @property-read string $categoryCZ {virtual}
  */
-class Article extends Entity {
+class Article extends \Nextras\Orm\Entity\Entity {
   const CATEGORY_NEWS = "news";
   const CATEGORY_CHRONICLE = "chronicle";
   

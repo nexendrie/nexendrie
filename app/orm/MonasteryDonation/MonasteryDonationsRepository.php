@@ -1,15 +1,14 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
  * @method ICollection|MonasteryDonation[] findByUser($user)
  * @method ICollection|MonasteryDonation[] findByMonastery($monastery)
  */
-class MonasteryDonationsRepository extends Repository {
+class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * Get donations made this month by specified user
    * 

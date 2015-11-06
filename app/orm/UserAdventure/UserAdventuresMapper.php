@@ -1,12 +1,10 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Mapper\Mapper;
-
 /**
  * @author Jakub Konečný
  */
-class UserAdventuresMapper extends Mapper {
+class UserAdventuresMapper extends \Nextras\Orm\Mapper\Mapper {
   /**
    * Get user's last adventure
    * 

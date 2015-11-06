@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 /**
  * Message
  *
@@ -15,7 +13,7 @@ use Nextras\Orm\Entity\Entity;
  * @property bool $read {default 0}
  * @property-read string $sentAt {virtual}
  */
-class Message extends Entity {
+class Message extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   

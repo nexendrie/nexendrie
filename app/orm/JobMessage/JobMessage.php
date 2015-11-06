@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 /**
  * JobMessage
  *
@@ -11,7 +9,7 @@ use Nextras\Orm\Entity\Entity;
  * @property bool $success
  * @property string $message
  */
-class JobMessage extends Entity {
+class JobMessage extends \Nextras\Orm\Entity\Entity {
   /**
    * @return \Nexendrie\Orm\JobMessageDummy
    */

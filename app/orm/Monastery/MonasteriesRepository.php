@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
@@ -11,7 +10,7 @@ use Nextras\Orm\Repository\Repository,
  * @method ICollection|Monastery[] findByTown($town)
  * @method Monastery|NULL getByName($name)
  */
-class MonasteriesRepository extends Repository {
+class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
   
 }
 ?>

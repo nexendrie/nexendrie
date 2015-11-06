@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 /**
  * UserAdventure
  *
@@ -15,7 +13,7 @@ use Nextras\Orm\Entity\Entity;
  * @property int $reward {default 0}
  * @property int $loot {default 0}
  */
-class UserAdventure extends Entity {
+class UserAdventure extends \Nextras\Orm\Entity\Entity {
   
 }
 ?>

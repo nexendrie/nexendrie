@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
@@ -10,7 +9,7 @@ use Nextras\Orm\Repository\Repository,
  * @method ICollection|Message[] findByFrom($from)
  * @method ICollection|Message[] findByTo($to)
  */
-class MessagesRepository extends Repository {
+class MessagesRepository extends \Nextras\Orm\Repository\Repository {
   
 }
 ?>

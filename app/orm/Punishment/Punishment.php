@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 /**
  * Punishment
  *
@@ -18,7 +16,7 @@ use Nextras\Orm\Entity\Entity;
  * @property-read string $releasedAt {virtual}
  * @property-read int $nextShift {virtual}
  */
-class Punishment extends Entity {
+class Punishment extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   

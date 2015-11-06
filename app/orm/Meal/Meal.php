@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 /**
  * Meal
  *
@@ -13,7 +11,7 @@ use Nextras\Orm\Entity\Entity;
  * @property int $life {default 0}
  * @property-read string $priceT {virtual}
  */
-class Meal extends Entity {
+class Meal extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

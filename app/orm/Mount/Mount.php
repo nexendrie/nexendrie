@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Mount
@@ -21,7 +20,7 @@ use Nextras\Orm\Entity\Entity,
  * @property-read string $priceT {virtual}
  * @property-read string $birthAt {virtual}
  */
-class Mount extends Entity {
+class Mount extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   const GENDER_MALE = "male";

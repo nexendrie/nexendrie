@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
@@ -13,7 +12,7 @@ use Nextras\Orm\Repository\Repository,
  * @method ICollection|User[] findByGroup($group)
  * @method ICollection|User[] findByMonastery($monastery)
  */
-class UsersRepository extends Repository {
+class UsersRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * Get mayor of a town
    * 

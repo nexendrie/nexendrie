@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Poll
@@ -18,7 +17,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|PollVote[] $votes {1:m PollVote::$poll}
  * 
  */
-class Poll extends Entity {
+class Poll extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   

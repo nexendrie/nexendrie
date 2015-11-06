@@ -1,12 +1,10 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Mapper\Mapper;
-
 /**
  * @author Jakub Konečný
  */
-class MountsMapper extends Mapper {
+class MountsMapper extends \Nextras\Orm\Mapper\Mapper {
   
 }
 ?>

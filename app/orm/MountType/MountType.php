@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * MountType
@@ -13,7 +12,7 @@ use Nextras\Orm\Entity\Entity,
  * @property int $level
  * @property OneHasMany|Mount[] $mounts {1:m Mount::$type}
  */
-class MountType extends Entity {
+class MountType extends \Nextras\Orm\Entity\Entity {
   
 }
 ?>

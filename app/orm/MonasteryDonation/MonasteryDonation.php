@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 /**
  * MonasteryDonation
  *
@@ -12,7 +10,7 @@ use Nextras\Orm\Entity\Entity;
  * @property int $amount
  * @property int $when
  */
-class MonasteryDonation extends Entity {
+class MonasteryDonation extends \Nextras\Orm\Entity\Entity {
   
 }
 ?>

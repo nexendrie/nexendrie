@@ -1,15 +1,14 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
  * @method Loan|NULL getById($id)
  * @method ICollection|Loan[] findByUser($user)
  */
-class LoansRepository extends Repository {
+class LoansRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * Get specified user's active loan
    * 

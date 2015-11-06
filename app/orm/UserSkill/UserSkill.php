@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 /**
  * UserSkill
  *
@@ -11,7 +9,7 @@ use Nextras\Orm\Entity\Entity;
  * @property Skill $skill {m:1 Skill::$userSkills}
  * @property int $level
  */
-class UserSkill extends Entity {
+class UserSkill extends \Nextras\Orm\Entity\Entity {
   
 }
 ?>

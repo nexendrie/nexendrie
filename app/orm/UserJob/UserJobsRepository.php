@@ -1,15 +1,14 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
  * @method UserJob|NULL getById($id)
  * @method ICollection|UserJob[] findByUser($user)
  */
-class UserJobsRepository extends Repository {
+class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * Find specified user's active job
    * 

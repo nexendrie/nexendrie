@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 
 /**
@@ -13,7 +12,7 @@ use Nextras\Orm\Entity\Entity,
  * @property string $description
  * @property OneHasMany|Item[] $items {1:m Item}
  */
-class Shop extends Entity {
+class Shop extends \Nextras\Orm\Entity\Entity {
 
 }
 ?>

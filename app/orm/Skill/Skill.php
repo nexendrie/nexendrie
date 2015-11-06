@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Skill
@@ -14,7 +13,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
  * @property OneHasMany|UserSkill $userSkills {1:m UserSkill::$skill}
  */
-class Skill extends Entity {
+class Skill extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   

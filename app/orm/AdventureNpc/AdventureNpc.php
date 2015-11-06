@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 /**
  * AdventureNpc
  *
@@ -17,7 +15,7 @@ use Nextras\Orm\Entity\Entity;
  * @property string $encounterText
  * @property string $victoryText
  */
-class AdventureNpc extends Entity {
+class AdventureNpc extends \Nextras\Orm\Entity\Entity {
   /**
    * @return \Nexendrie\Orm\AdventureNpcDummy
    */

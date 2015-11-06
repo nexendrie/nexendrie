@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
@@ -10,7 +9,7 @@ use Nextras\Orm\Repository\Repository,
  * @method ICollection|UserAdventure[] findByUser($user)
  * @method UserAdventure|NULL getLastAdventure($user)
  */
-class UserAdventuresRepository extends Repository {
+class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * Find specified user's active adventure
    * 

@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 
 /**
@@ -16,7 +15,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|User[] $members {1:m User}
  * @property OneHasMany|Permission[] $permissions {1:m Permission}
  */
-class Group extends Entity {
+class Group extends \Nextras\Orm\Entity\Entity {
   const PATH_CITY = "city";
   const PATH_CHURCH = "church";
   const PATH_TOWER = "tower";

@@ -1,14 +1,13 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
  * @method Job|NULL getById($id)
  */
-class JobsRepository extends Repository {
+class JobsRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * Find jobs for specified level
    * 

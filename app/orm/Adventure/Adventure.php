@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Adventure
@@ -18,7 +17,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure}
  * @property OneHasMany|UserAdventure[] $userAdventures {1:m UserAdventure::$adventure}
  */
-class Adventure extends Entity {
+class Adventure extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   

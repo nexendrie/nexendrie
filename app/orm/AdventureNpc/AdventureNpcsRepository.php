@@ -1,15 +1,14 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
  * @method AdventureNpc|NULL getById($id)
  * @method AdventureNPC|NULL getByAdventureAndOrder($adventure,$order)
  */
-class AdventureNpcsRepository extends Repository {
+class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * Get npcs from specified adventure
    * 

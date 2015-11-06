@@ -1,14 +1,13 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
  * @method Article[]|NULL getById($id)
  */
-class ArticlesRepository extends Repository {
+class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * @return ICollection|Article[]
    */

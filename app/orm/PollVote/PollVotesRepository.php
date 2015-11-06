@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
@@ -11,7 +10,7 @@ use Nextras\Orm\Repository\Repository,
  * @method ICollection|PollVote[] findByUser($user)
  * @method PollVote|NULL getByPollAndUser($poll,$user)
  */
-class PollVotesRepository extends Repository {
+class PollVotesRepository extends \Nextras\Orm\Repository\Repository {
   
 }
 ?>

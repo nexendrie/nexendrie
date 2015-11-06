@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
@@ -10,7 +9,7 @@ use Nextras\Orm\Repository\Repository,
  * @method ICollection|Mount[] findByOwner($owner)
  * @method ICollection|Mount[] findByType($type)
  */
-class MountsRepository extends Repository {
+class MountsRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * Get mounts on market
    * 

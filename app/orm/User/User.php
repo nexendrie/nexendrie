@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 
 /**
@@ -46,7 +45,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|Monastery[] $monasteriesLed {1:m Monastery::$leader}
  * @property OneHasMany|MonasteryDonation[] $monasteryDonations {1:m MonasteryDonation::$user}
  */
-class User extends Entity {
+class User extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   

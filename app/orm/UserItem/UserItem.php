@@ -1,8 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity;
-
 /**
  * UserItem
  *
@@ -12,7 +10,7 @@ use Nextras\Orm\Entity\Entity;
  * @property int $amount {default 1}
  * @property bool $worn {default 0}
  */
-class UserItem extends Entity {
+class UserItem extends \Nextras\Orm\Entity\Entity {
   
 }
 ?>

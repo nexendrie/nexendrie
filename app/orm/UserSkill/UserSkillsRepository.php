@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Repository\Repository,
-    Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
@@ -10,7 +9,7 @@ use Nextras\Orm\Repository\Repository,
  * @method UserSkill|NULL getByUserAndSkill($user,$skill)
  * @method ICollection|UserSkill findByUser($user)
  */
-class UserSkillsRepository extends Repository {
+class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
   
 }
 ?>

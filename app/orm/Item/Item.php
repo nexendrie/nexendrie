@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Entity\Entity,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Item
@@ -18,7 +17,7 @@ use Nextras\Orm\Entity\Entity,
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}
  * @property-read string $typeCZ {virtual}
  */
-class Item extends Entity {
+class Item extends \Nextras\Orm\Entity\Entity {
   const TYPE_ITEM = "item";
   const TYPE_WEAPON = "weapon";
   const TYPE_ARMOR = "armor";
