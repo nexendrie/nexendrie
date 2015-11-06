@@ -347,7 +347,7 @@ class Adventure extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $adventure = $this->orm->userAdventures->getLastAdventure($this->user->id);
     if(!$adventure->count()) return true;
-    elseif($adventure->fetch()->started < time() - $twoDays) return true;
+    elseif($adventure->fetch()->started + $twoDays < time()) return true;
     else return false;
   }
 }
