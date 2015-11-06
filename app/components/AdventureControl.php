@@ -47,6 +47,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
     $template->setFile(__DIR__ . "/adventureMounts.latte");
     $template->mounts = $this->model->findGoodMounts();
     $template->adventure = $adventure;
+    $template->render();
   }
   
   /**
