@@ -11,7 +11,8 @@ use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\ItemAlreadyWornException,
     Nexendrie\Model\ItemNotWornException,
     Nexendrie\Model\ItemNotDrinkableException,
-    Nexendrie\Model\HealingNotNeeded;
+    Nexendrie\Model\HealingNotNeeded,
+    Nexendrie\Forms\AppointMayorFormFactory;
 
 /**
  * Presenter Assets
@@ -32,6 +33,9 @@ class PropertyPresenter extends BasePresenter {
   /** @var TownEntity */
   private $town;
   
+  /**
+   * @return void
+   */
   protected function startup() {
     parent::startup();
     $this->requiresLogin();
@@ -82,6 +86,14 @@ class PropertyPresenter extends BasePresenter {
     $form = $factory->create($this->town->id);
     $form->onSuccess[] = function(Form $form) {
       $this->flashMessage("Změny uloženy.");
+    };
+    return $form;
+  }
+  
+  protected function createComponentAppointMayorForm(AppointMayorFormFactory $factory) {
+    $form = $factory->create($this->getParameter("id"));
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Rychář jmenován.");
     };
     return $form;
   }

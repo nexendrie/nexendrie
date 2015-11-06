@@ -3,6 +3,8 @@
 {block content}
   <h1>{$town->name}</h1>
   {control manageTownForm}
+  <h3>Jmenovat rycháře</h3>
+  {control appointMayorForm}
   <h3>Obyvatelé:</h3>
   <p>
     {foreach $town->denizens as $denizen}

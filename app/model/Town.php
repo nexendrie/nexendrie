@@ -114,6 +114,59 @@ class Town extends \Nette\Object {
     $this->orm->towns->persist($town);
     $this->orm->flush();
   }
+  
+  /**
+   * @param int $town
+   * @return int|NULL
+   */
+  function getMayorId($town) {
+    $mayor = $this->orm->users->getTownMayor($town);
+    if($mayor) return $mayor->id;
+    else return NULL;
+  }
+  
+  /**
+   * Get citizens of specified town
+   * 
+   * @param int $town
+   * @return string[] id => publicname
+   */
+  function getTownCitizens($town) {
+    return $this->orm->users->findTownCitizens($town)
+      ->fetchPairs("id", "publicname");
+  }
+  
+  /**
+   * Appoint new mayor of a town
+   * 
+   * @param int $townId
+   * @param int $newMayorId
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws TownNotFoundException
+   * @throws TownNotOwnedException
+   * @throws UserNotFoundException
+   * @throws UserDoesNotLiveInTheTownException
+   * @throws InsufficientLevelForMayorException
+   */
+  function appointMayor($townId, $newMayorId) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $town = $this->orm->towns->getById($townId);
+    if(!$town) throw new TownNotFoundException;
+    elseif($town->owner->id != $this->user->id) throw new TownNotOwnedException;
+    $newMayor = $this->orm->users->getById($newMayorId);
+    if(!$newMayor) throw new UserNotFoundException;
+    elseif($newMayor->town->id != $townId) throw new UserDoesNotLiveInTheTownException;
+    $newMayorRank = $newMayor->group->level;
+    if(!in_array($newMayorRank, array(100, 300))) throw new InsufficientLevelForMayorException;
+    $oldMayor = $this->orm->users->getTownMayor($townId);
+    if($oldMayor) {
+      $oldMayor->group = $this->orm->groups->getByLevel(100);
+      $this->orm->users->persist($oldMayor);
+    }
+    $newMayor->group = $this->orm->groups->getByLevel(345);
+    $this->orm->users->persistAndFlush($newMayor);
+  }
 }
 
 class TownNotFoundException extends RecordNotFoundException {
@@ -129,6 +182,18 @@ class InsufficientLevelForTownException extends AccessDeniedException {
 }
 
 class CannotBuyOwnTownException extends AccessDeniedException {
+  
+}
+
+class TownNotOwnedException extends AccessDeniedException {
+  
+}
+
+class InsufficientLevelForMayorException extends AccessDeniedException {
+  
+}
+
+class UserDoesNotLiveInTheTownException extends AccessDeniedException {
   
 }
 ?>

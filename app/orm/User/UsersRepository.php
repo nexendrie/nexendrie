@@ -14,6 +14,27 @@ use Nextras\Orm\Repository\Repository,
  * @method ICollection|User[] findByMonastery($monastery)
  */
 class UsersRepository extends Repository {
-
+  /**
+   * Get mayor of a town
+   * 
+   * @param int $town
+   * @return User|NULL
+   */
+  function getTownMayor($town) {
+    return $this->getBy(array("town" => $town, "this->group->level" => 345));
+  }
+  
+  /**
+   * Get citizens of specified town
+   * 
+   * @param int $town
+   * @return ICollection|User[]
+   */
+  function findTownCitizens($town) {
+    return $this->findBy(array(
+      "town" => $town,
+      "this->group->level" => array(100, 300)
+    ));
+  }
 }
 ?>
