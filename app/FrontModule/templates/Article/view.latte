@@ -5,6 +5,7 @@
   <p>V kategorii: {$article->categoryCZ}</p>
   <p>od <a n:href="Profile:default $article->author->username">{$article->author->publicname}</a> {$article->addedAt}</p>
   <p>{$article->text}</p>
+  {if $user->isAllowed("article", "edit")}<a n:href=":Admin:Article:edit $article->id">Upravit</a>{/if}
   <a name="comments"></a>
   <div id="comments">
     <h3>Komentáře:</h3>
