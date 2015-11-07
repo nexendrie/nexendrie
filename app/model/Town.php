@@ -117,11 +117,11 @@ class Town extends \Nette\Object {
   
   /**
    * @param int $town
-   * @return int|NULL
+   * @return \Nexendrie\Orm\User|NULL
    */
-  function getMayorId($town) {
+  function getMayor($town) {
     $mayor = $this->orm->users->getTownMayor($town);
-    if($mayor) return $mayor->id;
+    if($mayor) return $mayor;
     else return NULL;
   }
   

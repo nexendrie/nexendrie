@@ -76,6 +76,7 @@ class PropertyPresenter extends BasePresenter {
    */
   function renderTown($id) {
     $this->template->town = $this->town;
+    $this->template->mayor = $this->townModel->getMayor($this->town->id);
   }
   
   /**

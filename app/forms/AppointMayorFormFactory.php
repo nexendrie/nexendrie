@@ -30,8 +30,7 @@ class AppointMayorFormFactory {
     $this->town = $this->model->get($townId);
     $form = new Form;
     $form->addSelect("mayor", "Nový rychtář:", $this->model->getTownCitizens($townId))
-      ->setRequired("Vyber nového rychtáře.")
-      ->setValue($this->model->getMayorId($townId));
+      ->setRequired("Vyber nového rychtáře.");
     $form->addSubmit("submit", "Jmenovat");
     $form->onSuccess[] = array($this, "submitted");
     return $form;

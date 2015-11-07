@@ -4,6 +4,7 @@
   <h1>{$town->name}</h1>
   {control manageTownForm}
   <h3>Jmenovat rycháře</h3>
+  <p><b>Současný rychtář:</b> {if $mayor}<a n:href="Profile:default $mayor->username">{$mayor->publicname}</a>{else}nikdo{/if}</p>
   {control appointMayorForm}
   <h3>Obyvatelé:</h3>
   <p>
