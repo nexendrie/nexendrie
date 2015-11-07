@@ -121,7 +121,7 @@ class Monastery extends \Nette\Object {
     elseif($user->life >= $user->maxLife) return false;
     elseif(!$user->lastPrayer) return true;
     $oneDay = 60 * 60 * 24;
-    if($user->lastPrayer + $oneDay > time()) return true;
+    if($user->lastPrayer + $oneDay < time()) return true;
     else return false;
   }
   
