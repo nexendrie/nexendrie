@@ -14,4 +14,5 @@
   <p n:inner-foreach="$town->monasteries as $monastery">
     <a n:href="Monastery:detail $monastery->id">{$monastery->name}</a>{if !$iterator->last}, {/if}
   </p>
+  {if $canMove}<a n:href="move $town->id">Přestěhovat se</a>{/if}
 {/block}

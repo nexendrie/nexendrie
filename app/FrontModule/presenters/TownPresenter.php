@@ -2,7 +2,9 @@
 namespace Nexendrie\FrontModule\Presenters;
 
 use Nexendrie\Model\TownNotFoundException,
-    Nexendrie\Model\NotInMonasteryException;
+    Nexendrie\Model\NotInMonasteryException,
+    Nexendrie\Model\CannotMoveToSameTown,
+    Nexendrie\Model\CannotMoveToTown;
 
 /**
  * Presenter Town
@@ -40,13 +42,37 @@ class TownPresenter extends BasePresenter {
   }
   
   /**
+   * @param int $id
    * @return void
    */
   function renderDetail($id) {
     try {
       $this->template->town = $this->model->get($id);
+      if($id == $this->user->identity->town) $this->template->canMove = false;
+      else $this->template->canMove = $this->model->canMove();
     } catch(TownNotFoundException $e) {
       $this->forward("notfound");
+    }
+  }
+  
+  /**
+   * @param int $id
+   * @return void
+   */
+  function actionMove($id) {
+    try {
+      $this->model->moveToTown((int) $id);
+      $this->flashMessage("Přestěhoval jsi se do vybraného města.");
+      $this->redirect("Town:");
+    } catch(TownNotFoundException $e) {
+      $this->flashMessage("Město nebylo nalezeno.");
+      $this->redirect("Homepage:");
+    } catch(CannotMoveToSameTown $e) {
+      $this->flashMessage("V tomto městě již žiješ.");
+      $this->redirect("Homepage:");
+    } catch(CannotMoveToTown $e) {
+      $this->flashMessage("Nemůžeš se přesunout do jiného města.");
+      $this->redirect("Homepage:");
     }
   }
 }

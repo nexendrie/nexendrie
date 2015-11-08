@@ -17,6 +17,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $lastActive
  * @property-read string $lastActiveAt {virtual}
  * @property int|NULL $lastPrayer {default NULL}
+ * @property int|NULL $lastTransfer {default NULL} 
  * @property Group $group {m:1 Group::$members}
  * @property bool $infomails {default 0}
  * @property string $style {default "blu-sky"}

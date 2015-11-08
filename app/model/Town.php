@@ -167,6 +167,45 @@ class Town extends \Nette\Object {
     $newMayor->group = $this->orm->groups->getByLevel(345);
     $this->orm->users->persistAndFlush($newMayor);
   }
+  
+  /**
+   * Check whetever the user can move to different town (now)
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canMove() {
+    $month = 60 * 60 * 24 * 31;
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->group->path === "church") return false;
+    elseif($user->group->path === "city" AND $user->group->level != 100) return false;
+    elseif($user->lastTransfer === NULL) return true;
+    elseif($user->lastTransfer + $month > time()) return false;
+    else return true;
+  }
+  
+  /**
+   * Move to specified town
+   * 
+   * @param int $id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws TownNotFoundException
+   * @throws CannotMoveToSameTown
+   * @throws CannotMoveToTown
+   */
+  function moveToTown($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $town = $this->orm->towns->getById($id);
+    if(!$town) throw new TownNotFoundException;
+    $user = $this->orm->users->getById($this->user->id);
+    if($id === $user->town->id) throw new CannotMoveToSameTown;
+    elseif(!$this->canMove()) throw new CannotMoveToTown;
+    $this->user->identity->town = $user->town = $id;
+    $user->lastTransfer = time();
+    $this->orm->users->persistAndFlush($user);
+  }
 }
 
 class TownNotFoundException extends RecordNotFoundException {
@@ -194,6 +233,14 @@ class InsufficientLevelForMayorException extends AccessDeniedException {
 }
 
 class UserDoesNotLiveInTheTownException extends AccessDeniedException {
+  
+}
+
+class CannotMoveToSameTown extends AccessDeniedException {
+  
+}
+
+class CannotMoveToTown extends AccessDeniedException {
   
 }
 ?>
