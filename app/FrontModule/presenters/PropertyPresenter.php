@@ -49,7 +49,7 @@ class PropertyPresenter extends BasePresenter {
     $data = $this->inventoryModel->possessions();
     $this->template->money = $data["money"];
     $this->template->items = $data["items"];
-    $this->template->isLord = $data["isLord"];
+    $this->template->isLord = ($this->user->identity->level >= 350);
     $this->template->towns = $data["towns"];
   }
   
