@@ -133,6 +133,9 @@ class Skills extends \Nette\Object {
     $userSkill->level++;
     $userSkill->user->money -= $price;
     $userSkill->user->lastActive = time();
+    if($skill->stat === "hitpoints") {
+      $userSkill->user->maxLife += $skill->statIncrease;
+    }
     $this->orm->userSkills->persistAndFlush($userSkill);
   }
   

@@ -22,7 +22,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $style {default "blu-sky"}
  * @property bool $banned {default 0}
  * @property int $life {default 60}
- * @property-read int $maxLife {virtual}
+ * @property int $maxLife {default 60}
  * @property int $money {default 2}
  * @property Town $town {m:1 Town::$denizens}
  * @property Monastery|NULL $monastery {m:1 Monastery::$members} {default NULL}
@@ -69,10 +69,6 @@ class User extends \Nextras\Orm\Entity\Entity {
     if($value > 60) return 60;
     elseif($value < 1) return 1;
     else return $value;
-  }
-  
-  protected function getterMaxLife() {
-    return 60;
   }
 }
 ?>
