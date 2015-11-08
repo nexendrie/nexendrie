@@ -21,7 +21,7 @@ class AddEditJobFormFactory {
    */
   protected function getSkills() {
     $return = array();
-    $skills = $this->skillsModel->listOfSkills();
+    $skills = $this->skillsModel->listOfSkills("work");
     foreach($skills as $skill) {
       $return[$skill->id] = $skill->name;
     }

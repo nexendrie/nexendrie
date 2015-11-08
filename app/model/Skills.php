@@ -27,10 +27,12 @@ class Skills extends \Nette\Object {
   /**
    * Get list of all skills
    * 
+   * @param string|NULL $type
    * @return SkillEntity[]
    */
-  function listOfSkills() {
-    return $this->orm->skills->findAll();
+  function listOfSkills($type = NULL) {
+    if($type === NULL) return $this->orm->skills->findAll();
+    else return $this->orm->skills->findByType($type);
   }
   
   /**
