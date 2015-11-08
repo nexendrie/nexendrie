@@ -2,8 +2,8 @@
   <h3><a href="{plink Academy:default}">Práce</a> <a href="{plink Academy:combat}">Boj</a></h3>
   <p>text</p>
   <table id="skills">
-    <tr><th>Dovednost</th><th>Úroveň</th><th>Cena</th>{if $type === "combat"}<th>Efekt</th>{/if}<th></th></tr>
+    <tr><th>Dovednost</th><th>Úroveň</th><th>Max. úroveň</th><th>Cena</th>{if $type === "combat"}<th>Efekt</th>{/if}<th></th></tr>
     {foreach $skills as $skill}
-    <tr><td>{$skill->name}</td><td>{$skill->level}</td><td>{$skill->price}</td>{if $type === "combat"}<td>{$skill->stat} +{$skill->statIncrease}</td>{/if}<td>{if $skill->level < $skill->maxLevel}<a n:href="learn! $skill->id">Učit se</a>{/if}</td></tr>
+    <tr><td>{$skill->name}</td><td>{$skill->level}</td><td>{$skill->maxLevel}</td><td>{$skill->price}</td>{if $type === "combat"}<td>{$skill->stat} +{$skill->statIncrease}</td>{/if}<td>{if $skill->level < $skill->maxLevel}<a n:href="learn! $skill->id">Učit se</a>{/if}</td></tr>
     {/foreach}
   </table>
