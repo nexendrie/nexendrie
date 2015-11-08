@@ -22,6 +22,11 @@ class AddEditSkillFormFactory {
       ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
       ->addRule(Form::RANGE, "Cena musí být v rozmezí 1-999.", array(1, 999))
       ->setOption("description", "Cena na první úrovni");
+    $form->addText("maxLevel", "Úrovní:")
+      ->setRequired("Zadej počet úrovní.")
+      ->addRule(Form::INTEGER, "Počet úrovní musí být celé číslo.")
+      ->addRule(Form::RANGE, "Počet úrovní musí být v rozmezí 1-99.", array(1, 99))
+      ->setValue(5);
     $form->addSubmit("submit", "Odeslat");
     return $form;
   }

@@ -125,7 +125,7 @@ class Skills extends \Nette\Object {
       $userSkill->user = $this->orm->users->getById($this->user->id);
       $userSkill->level = 0;
     }
-    if($userSkill->level === 5) throw new SkillMaxLevelReachedException;
+    if($userSkill->level === $skill->maxLevel) throw new SkillMaxLevelReachedException;
     $price = $this->calculateLearningPrice($skill->price, $userSkill->level + 1);
     if($userSkill->user->money < $price) throw new InsufficientFundsException;
     $userSkill->level++;

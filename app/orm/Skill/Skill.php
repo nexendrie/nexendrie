@@ -10,6 +10,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $name
  * @property int $price
  * @property-read string $priceT {virtual}
+ * @property int $maxLevel
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
  * @property OneHasMany|UserSkill $userSkills {1:m UserSkill::$skill}
  */

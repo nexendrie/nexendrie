@@ -3,6 +3,6 @@
   <table id="skills">
     <tr><th>Dovednost</th><th>Úroveň</th><th>Cena</th><th></th></tr>
     {foreach $skills as $skill}
-    <tr><td>{$skill->name}</td><td>{$skill->level}</td><td>{$skill->price}</td><td>{if $skill->level < 5}<a n:href="learn! $skill->id">Učit se</a>{/if}</td></tr>
+    <tr><td>{$skill->name}</td><td>{$skill->level}</td><td>{$skill->price}</td><td>{if $skill->level < $skill->maxLevel}<a n:href="learn! $skill->id">Učit se</a>{/if}</td></tr>
     {/foreach}
   </table>
