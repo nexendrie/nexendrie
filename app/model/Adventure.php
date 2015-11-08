@@ -247,7 +247,7 @@ class Adventure extends \Nette\Object {
   protected function fightNpc(AdventureNpcEntity $npc) {
     $finished = $result = false;
     $user = $this->orm->users->getById($this->user->id);
-    $userStats = $this->combatModel->userCombatStats($this->user->id);
+    $userStats = $this->combatModel->userCombatStats($user);
     $npcLife = $npc->hitpoints;
     $userAttack = $userStats["damage"] - $npc->armor;
     $npcAttack = $npc->strength - $userStats["armor"];
