@@ -9,13 +9,13 @@ use Nexendrie\Orm\User as UserEntity;
  * @author Jakub Konečný
  */
 class Combat extends \Nette\Object {
-  /** @var \Nexendrie\Model\Equipment */
-  protected $equipmentModel;
+  /** @var \Nexendrie\Model\Inventory */
+  protected $inventoryModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   
-  function __construct(Equipment $equipmentModel, \Nexendrie\Orm\Model $orm) {
-    $this->equipmentModel = $equipmentModel;
+  function __construct(Inventory $inventoryModel, \Nexendrie\Orm\Model $orm) {
+    $this->inventoryModel = $inventoryModel;
     $this->orm = $orm;
   }
   
@@ -29,8 +29,8 @@ class Combat extends \Nette\Object {
     $stats = array();
     $stats["maxLife"] = $stats["life"] = $user->maxLife;
     $stats["damage"] = $stats["armor"] = 0;
-    $weapon = $this->equipmentModel->getWeapon($user->id);
-    $armor = $this->equipmentModel->getArmor($user->id);
+    $weapon = $this->inventoryModel->getWeapon($user->id);
+    $armor = $this->inventoryModel->getArmor($user->id);
     if($weapon) $stats["damage"] += $weapon->strength;
     if($armor) $stats["armor"] += $armor->strength;
     $damageSkill = $this->orm->userSkills->getByUserAndStat($user->id, "damage");

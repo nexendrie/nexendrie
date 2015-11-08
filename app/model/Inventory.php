@@ -8,7 +8,7 @@ use Nexendrie\Orm\Item as ItemEntity;
  *
  * @author Jakub Konečný
  */
-class Equipment extends \Nette\Object {
+class Inventory extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
