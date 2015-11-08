@@ -46,7 +46,7 @@ class PropertyPresenter extends BasePresenter {
    * @return void
    */
   function renderDefault() {
-    $data = $this->model->show();
+    $data = $this->inventoryModel->possessions();
     $this->template->money = $data["money"];
     $this->template->items = $data["items"];
     $this->template->isLord = $data["isLord"];
@@ -119,7 +119,7 @@ class PropertyPresenter extends BasePresenter {
    * @return void
    */
   function renderEquipment() {
-    $this->template->items = $this->model->equipment();
+    $this->template->items = $this->inventoryModel->equipment();
   }
   
   /**
@@ -129,7 +129,7 @@ class PropertyPresenter extends BasePresenter {
     $life = $this->profileModel->userLife();
     $this->template->life = $life[0];
     $this->template->maxLife = $life[1];
-    $this->template->items = $this->model->potions();
+    $this->template->items = $this->inventoryModel->potions();
   }
   
   /**
@@ -176,7 +176,7 @@ class PropertyPresenter extends BasePresenter {
    */
    function handleDrink($potion) {
      try {
-       $life = $this->model->drinkPotion($potion);
+       $life = $this->inventoryModel->drinkPotion($potion);
        $this->flashMessage("Doplnil sis $life životů.");
      } catch(ItemNotFoundException $e) {
       $this->flashMessage("Věc nenalezena.");
