@@ -13,7 +13,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $maxLevel
  * @property string $type {enum self::TYPE_*}
  * @property string|NULL $stat {enum self::STAT_*} {default NULL}
- * @property-read string $statCZ {virtual}
+ * @property-read string|NULL $statCZ {virtual}
  * @property int $statIncrease {default 0}
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
  * @property OneHasMany|UserSkill $userSkills {1:m UserSkill::$skill}
@@ -58,7 +58,7 @@ class Skill extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterStatCZ() {
-    return self::getStats()[$this->stat];
+    return ($this->stat != NULL) ? self::getStats()[$this->stat] : NULL;
   }
 }
 ?>
