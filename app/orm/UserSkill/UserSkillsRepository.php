@@ -10,6 +10,16 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|UserSkill findByUser($user)
  */
 class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
-  
+  /**
+   * 
+   * @param int $user
+   * @param int $stat
+   * @return UserSkill|NULL
+   */
+  function getByUserAndStat($user, $stat) {
+    return $this->getBy(array(
+      "user" => $user, "this->skill->stat" => $stat
+    ));
+  }
 }
 ?>

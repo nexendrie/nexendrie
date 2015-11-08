@@ -13,15 +13,15 @@ use Nexendrie\Orm\Adventure as AdventureEntity,
  * @author Jakub Konečný
  */
 class Adventure extends \Nette\Object {
-  /** @var \Nexendrie\Model\Equipment */
-  protected $equipmentModel;
+  /** @var \Nexendrie\Model\Combat */
+  protected $combatModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(Equipment $equipmentModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->equipmentModel = $equipmentModel;
+  function __construct(Combat $combatModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    $this->combatModel = $combatModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -248,13 +248,10 @@ class Adventure extends \Nette\Object {
   protected function fightNpc(AdventureNpcEntity $npc) {
     $finished = $result = false;
     $user = $this->orm->users->getById($this->user->id);
+    $userStats = $this->combatModel->userCombatStats($this->user->id);
     $npcLife = $npc->hitpoints;
-    $weapon = $this->equipmentModel->getWeapon($this->user->id);
-    $armor = $this->equipmentModel->getArmor($this->user->id);
-    $damage = $weapon ? $weapon->strength : 0;
-    $defense = $armor ? $armor->strength : 0;
-    $userAttack = $damage - $npc->armor;
-    $npcAttack = $npc->strength - $defense;
+    $userAttack = $userStats["damage"] - $npc->armor;
+    $npcAttack = $npc->strength - $userStats["armor"];
     while(!$finished) {
       $npcLife -= $userAttack;
       if($npcLife <= 1) {
