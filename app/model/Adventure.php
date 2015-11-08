@@ -4,8 +4,7 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\Adventure as AdventureEntity,
     Nexendrie\Orm\AdventureNpc as AdventureNpcEntity,
     Nexendrie\Orm\UserAdventure as UserAdventureEntity,
-    Nexendrie\Orm\Mount as MountEntity,
-    Nextras\Dbal\QueryBuilder\QueryBuilder;
+    Nexendrie\Orm\Mount as MountEntity;
 
 /**
  * Adventure Model
