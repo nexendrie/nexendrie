@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form;
+use Nette\Application\UI\Form,
+    Nexendrie\Orm\Skill as SkillEntity;
 
 /**
  * Factory for form AddEditSkill
@@ -27,6 +28,8 @@ class AddEditSkillFormFactory {
       ->addRule(Form::INTEGER, "Počet úrovní musí být celé číslo.")
       ->addRule(Form::RANGE, "Počet úrovní musí být v rozmezí 1-99.", array(1, 99))
       ->setValue(5);
+    $form->addSelect("type", "Typ:", SkillEntity::getTypes())
+      ->setRequired("Vyber typ.");
     $form->addSubmit("submit", "Odeslat");
     return $form;
   }
