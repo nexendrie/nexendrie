@@ -92,7 +92,7 @@ class SystemSettingsFormFactory {
       ->addRule(Form::INTEGER, "Počet novinek na stránku musí být číslo.");
     $form->addGroup("Nový uživatel");
     $newUser = $form->addContainer("newUser");
-    $newUser->addText("style", "Výchozí vzhled:")
+    $newUser->addSelect("style", "Výchozí vzhled:", UserSettingsFormFactory::getStylesList())
       ->setRequired("Zadej vzhled.");
     $newUser->addText("money", "Peníze:")
       ->setRequired("Zadej peníze.")

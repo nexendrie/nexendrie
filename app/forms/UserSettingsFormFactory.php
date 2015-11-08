@@ -32,7 +32,7 @@ class UserSettingsFormFactory {
    * 
    * @return array
    */
-  protected function getStylesList() {
+  static function getStylesList() {
     $styles = array();
     $dir = WWW_DIR . "/styles";
     $file = file_get_contents("$dir/list.neon");
@@ -57,7 +57,7 @@ class UserSettingsFormFactory {
     $form->addText("email", "E-mail:")
       ->addRule(Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
-    $form->addRadioList("style", "Vzhled stránek:", $this->getStylesList());
+    $form->addRadioList("style", "Vzhled stránek:", self::getStylesList());
     $form->addCheckbox("infomails", "Posílat informační e-maily");
     $form->addGroup("Heslo")
       ->setOption("description", "Současné a nové heslo vyplňujte jen pokud ho chcete změnit.");
