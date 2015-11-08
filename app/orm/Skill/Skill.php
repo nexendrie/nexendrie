@@ -12,12 +12,18 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $priceT {virtual}
  * @property int $maxLevel
  * @property string $type {enum self::TYPE_*}
+ * @property string|NULL $stat {enum self::STAT_*} {default NULL}
+ * @property-read string $statCZ {virtual}
+ * @property int $statIncrease {default 0}
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
  * @property OneHasMany|UserSkill $userSkills {1:m UserSkill::$skill}
  */
 class Skill extends \Nextras\Orm\Entity\Entity {
   const TYPE_WORK = "work";
   const TYPE_COMBAT = "combat";
+  const STAT_HITPOINTS = "hitpoints";
+  const STAT_DAMAGE = "damage";
+  const STAT_ARMOR = "armor";
   
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
@@ -29,6 +35,7 @@ class Skill extends \Nextras\Orm\Entity\Entity {
   protected function getterPriceT() {
     return $this->localeModel->money($this->price);
   }
+  
   /**
    * @return string[]
    */
@@ -37,6 +44,21 @@ class Skill extends \Nextras\Orm\Entity\Entity {
       self::TYPE_WORK => "práce",
       self::TYPE_COMBAT => "boj",
     );
+  }
+  
+  /**
+   * @return string[]
+   */
+  static function getStats() {
+    return array(
+      self::STAT_HITPOINTS => "maximum životů",
+      self::STAT_DAMAGE => "poškození",
+      self::STAT_ARMOR => "brnění",
+    );
+  }
+  
+  protected function getterStatCZ() {
+    return self::getStats()[$this->stat];
   }
 }
 ?>
