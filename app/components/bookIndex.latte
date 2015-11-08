@@ -1,0 +1,6 @@
+  <h1>Obsah</h1>
+  <ol id="helpPages">
+    {foreach $pages as $page}
+    <li><a href="{plink "$presenterName:default", page => $page->slug}">{$page->title}</a></li>
+    {/foreach}
+  </ol>
