@@ -92,13 +92,14 @@ class Skills extends \Nette\Object {
    * 
    * @param int $basePrice
    * @param int $newLevel
+   * @param int $maxLevel
    * @return int
    */
-  function calculateLearningPrice($basePrice, $newLevel) {
+  function calculateLearningPrice($basePrice, $newLevel, $maxLevel = 5) {
     if($newLevel === 1) return $basePrice;
     $price = $basePrice;
     for($i = 1; $i < $newLevel; $i++) {
-      $price += (int) ($basePrice / 5);
+      $price += (int) ($basePrice / $maxLevel);
     }
     return $price;
   }
@@ -128,7 +129,7 @@ class Skills extends \Nette\Object {
       $userSkill->level = 0;
     }
     if($userSkill->level === $skill->maxLevel) throw new SkillMaxLevelReachedException;
-    $price = $this->calculateLearningPrice($skill->price, $userSkill->level + 1);
+    $price = $this->calculateLearningPrice($skill->price, $userSkill->level + 1, $skill->maxLevel);
     if($userSkill->user->money < $price) throw new InsufficientFundsException;
     $userSkill->level++;
     $userSkill->user->money -= $price;
