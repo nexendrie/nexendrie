@@ -56,7 +56,7 @@ class Property extends \Nette\Object {
     foreach($towns as $town) {
       $budget["incomes"]["taxes"] += $this->taxesModel->calculateTownTaxes($town)->taxes;
       $current = ($town->id === $this->user->identity->town) AND ($town->owner->id === $this->user->id);
-      if($current) $budget["incomes"]["taxes"] += $budget["expenses"]["incomeTax"];
+      if($current) $budget["expenses"]["incomeTax"] = 0;
     }
     return $budget;
   }
