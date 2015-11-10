@@ -161,11 +161,9 @@ class Market extends \Nette\Object {
     } else {
       $row->amount++;
     }
-    $user->money = $user->money - $itemRow->price;
-    $user->lastActive = time();
-    $this->orm->userItems->persist($row);
-    $this->orm->users->persist($user);
-    $this->orm->flush();
+    $row->user->money = $user->money - $itemRow->price;
+    $row->user->lastActive = time();
+    $this->orm->userItems->persistAndFlush($row);
   }
 }
 
