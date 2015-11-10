@@ -6,8 +6,7 @@ use Nexendrie\Orm\Shop as ShopEntity,
     Nexendrie\Model\ItemNotFoundException,
     Nexendrie\Model\WrongShopException,
     Nexendrie\Model\AuthenticationNeededException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Orm\UserItem as UserItemEntity;
+    Nexendrie\Model\InsufficientFundsException;
 
 /**
  * Shop Control
@@ -15,6 +14,8 @@ use Nexendrie\Orm\Shop as ShopEntity,
  * @author Jakub Konečný
  */
 class ShopControl extends \Nette\Application\UI\Control {
+  /** @var \Nexendrie\Model\Market */
+  protected $model;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -25,10 +26,12 @@ class ShopControl extends \Nette\Application\UI\Control {
   protected $id;
   
   /**
+   * @param \Nexendrie\Model\Market $model
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    */
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Model\Market $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    $this->model = $model;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -70,40 +73,10 @@ class ShopControl extends \Nette\Application\UI\Control {
   /**
    * @param int $item
    * @return void
-   * @throws AuthenticationNeededException
-   * @throws ItemNotFoundException
-   * @throws WrongShopException
-   * @throws InsufficientFundsException
-   */
-  protected function buy($item) {
-    $itemRow = $this->orm->items->getById($item);
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$itemRow) throw new ItemNotFoundException("Specified item does not exist.");
-    if($itemRow->shop->id != $this->shop->id) throw new WrongShopException("Specified item is not in current shop.");
-    $user = $this->orm->users->getById($this->user->id);
-    if($user->money < $itemRow->price) throw new InsufficientFundsException("You do not have enough money to buy this item.");
-    $row = $this->orm->userItems->getByUserAndItem($user->id, $item);
-    if(!$row) {
-      $row = new UserItemEntity;
-      $row->user = $user;
-      $row->item = $item;
-    } else {
-      $row->amount++;
-    }
-    $user->money = $user->money - $itemRow->price;
-    $user->lastActive = time();
-    $this->orm->userItems->persist($row);
-    $this->orm->users->persist($user);
-    $this->orm->flush();
-  }
-  
-  /**
-   * @param int $item
-   * @return void
    */
   function handleBuy($item) {
     try {
-      $this->buy($item);
+      $this->model->buy($item, $this->shop->id);
       $this->presenter->flashMessage("Věc koupena.");
     } catch(AuthenticationNeededException $e) {
       $this->presenter->flashMessage("Pro nákup musíš být přihlášený.");

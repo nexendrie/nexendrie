@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Shop as ShopEntity,
-    Nexendrie\Orm\Item as ItemEntity;
+    Nexendrie\Orm\Item as ItemEntity,
+    Nexendrie\Orm\UserItem as UserItemEntity;
 
 /**
  * Market Model
@@ -12,12 +13,16 @@ use Nexendrie\Orm\Shop as ShopEntity,
 class Market extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
+  /** @var \Nette\Security\User */
+  protected $user;
   
   /**
    * @param \Nexendrie\Orm\Model $orm
+   * @param \Nette\Security\User $user
    */
-  function __construct(\Nexendrie\Orm\Model $orm) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
+    $this->user = $user;
   }
   
   /**
@@ -130,6 +135,37 @@ class Market extends \Nette\Object {
       $item->$key = $value;
     }
     $this->orm->items->persistAndFlush($item);
+  }
+  
+  /**
+   * @param int $item
+   * @param int $shop  
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws ItemNotFoundException
+   * @throws WrongShopException
+   * @throws InsufficientFundsException
+   */
+  function buy($item, $shop) {
+    $itemRow = $this->orm->items->getById($item);
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$itemRow) throw new ItemNotFoundException("Specified item does not exist.");
+    if($itemRow->shop->id != $shop) throw new WrongShopException;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->money < $itemRow->price) throw new InsufficientFundsException;
+    $row = $this->orm->userItems->getByUserAndItem($user->id, $item);
+    if(!$row) {
+      $row = new UserItemEntity;
+      $row->user = $user;
+      $row->item = $item;
+    } else {
+      $row->amount++;
+    }
+    $user->money = $user->money - $itemRow->price;
+    $user->lastActive = time();
+    $this->orm->userItems->persist($row);
+    $this->orm->users->persist($user);
+    $this->orm->flush();
   }
 }
 
