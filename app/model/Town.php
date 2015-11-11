@@ -203,7 +203,7 @@ class Town extends \Nette\Object {
     if($id === $user->town->id) throw new CannotMoveToSameTown;
     elseif(!$this->canMove()) throw new CannotMoveToTown;
     $this->user->identity->town = $user->town = $id;
-    $user->lastTransfer = time();
+    $user->lastTransfer = $user->lastActive = time();
     $this->orm->users->persistAndFlush($user);
   }
 }
