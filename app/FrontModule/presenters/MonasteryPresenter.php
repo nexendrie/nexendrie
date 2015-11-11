@@ -9,7 +9,8 @@ use Nexendrie\Model\MonasteryNotFoundException,
     Nexendrie\Forms\BuildMonasteryFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Forms\MonasteryDonateFormFactory,
-    Nexendrie\Forms\ManageMonasteryFormFactory;
+    Nexendrie\Forms\ManageMonasteryFormFactory,
+    Nexendrie\Model\CannotJoinOwnMonastery;
 
 /**
  * Presenter Monastery
@@ -96,12 +97,16 @@ class MonasteryPresenter extends BasePresenter {
   function actionJoin($id) {
     try {
       $this->model->join($id);
+      $this->flashMessage("Vstoupil jsi do kláštera.");
       $this->redirect("default");
     } catch(CannotJoinMonasteryException $e) {
       $this->flashMessage("Nemůžeš vstoupit do kláštera.");
       $this->redirect("Homepage:");
     } catch(MonasteryNotFoundException $e) {
       $this->forward("notfound");
+    } catch(CannotJoinOwnMonastery $e) {
+      $this->flashMessage("Už jsi v tomto klášteře.");
+      $this->redirect("Homepage:");
     }
   }
   

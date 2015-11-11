@@ -73,9 +73,13 @@ class Monastery extends \Nette\Object {
    * @throws AuthenticationNeededException
    */
   function canJoin() {
+    $month = 60 * 60 * 24 * 31;
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery AND $user->group->path === "city") return true;
+    elseif($user->group->path === "church" AND $user->monasteriesLed->countStored()) return false;
+    elseif($user->group->path === "church" AND $user->lastTransfer === NULL) return true;
+    elseif($user->group->path === "church" AND $user->lastTransfer  + $month < time()) return true;
     else return false;
   }
   
@@ -87,6 +91,7 @@ class Monastery extends \Nette\Object {
    * @throws AuthenticationNeededException
    * @throws CannotJoinMonasteryException
    * @throws MonasteryNotFoundException
+   * @throws CannotJoinOwnMonastery
    */
   function join($id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
@@ -97,9 +102,10 @@ class Monastery extends \Nette\Object {
       throw $e;
     }
     $user = $this->orm->users->getById($this->user->id);
+    if($user->monastery->id === $monastery->id) throw new CannotJoinOwnMonastery;
     $user->lastTransfer = $user->lastActive = time();
     $user->monastery = $monastery;
-    $user->group = $this->orm->groups->getByLevel(55);
+    if($user->group->path != "church") $user->group = $this->orm->groups->getByLevel(55);
     $user->town = $monastery->town;
     $this->orm->users->persistAndFlush($user);
     $this->user->identity->group = $user->group->id;
@@ -318,6 +324,10 @@ class CannotBuildMonasteryException extends AccessDeniedException {
 }
 
 class MonasteryNameInUseException extends \RuntimeException {
+  
+}
+
+class CannotJoinOwnMonastery extends AccessDeniedException {
   
 }
 ?>
