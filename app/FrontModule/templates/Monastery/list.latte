@@ -6,7 +6,7 @@
   {else}
   <table id="monasteries">
     <tr><th>Jméno</th><th>Vůdce</th><th>Město</th><th></th></tr>
-    <tr n:inner-foreach="$monasteries as $monastery">
+    <tr n:foreach="$monasteries as $monastery">
       <td>{$monastery->name}</td>
       <td><a n:href="Profile: $monastery->leader->username">{$monastery->leader->publicname}</a></td>
       <td><a n:href="Town:detail $monastery->town->id">{$monastery->town->name}</a></td>
