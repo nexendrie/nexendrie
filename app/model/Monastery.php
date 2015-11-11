@@ -98,6 +98,7 @@ class Monastery extends \Nette\Object {
       throw $e;
     }
     $user = $this->orm->users->getById($this->user->id);
+    $user->lastTransfer = $user->lastActive = time();
     $user->monastery = $monastery;
     $user->group = $this->orm->groups->getByLevel(55);
     $user->town = $monastery->town;
