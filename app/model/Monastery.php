@@ -74,10 +74,9 @@ class Monastery extends \Nette\Object {
    */
   function canJoin() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $canJoin = false;
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery AND $user->group->path === "city") $canJoin = true;
-    return $canJoin;
+    if(!$user->monastery AND $user->group->path === "city") return true;
+    else return false;
   }
   
   /**
