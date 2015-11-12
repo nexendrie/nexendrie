@@ -112,7 +112,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
     } catch(NotOnAdventureException $e) {
       $this->presenter->flashMessage("Nejsi na dobrodružství.");
     } catch(NotAllEnemiesDefeateException $e) {
-      $this->presenter->flashMessage("Neporazil jsi všechn nepřátele.");
+      $this->presenter->flashMessage("Neporazil jsi všechny nepřátele.");
     }
   }
 }
