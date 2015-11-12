@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\AdminModule\Presenters;
+namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Orm\Shop as ShopEntity,
     Nexendrie\Model\ShopNotFoundException,

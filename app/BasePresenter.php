@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie;
+namespace Nexendrie\Presenters;
 
 /**
  * Ultimate ancestor of all presenters

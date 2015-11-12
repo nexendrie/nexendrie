@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\AdminModule\Presenters;
+namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Model\AdventureNotFoundException,
     Nexendrie\Orm\Adventure as AdventureEntity,

@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\AdminModule\Presenters;
+namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Forms\AddEditJobFormFactory,
     Nette\Application\UI\Form,

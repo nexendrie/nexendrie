@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\AdminModule\Presenters;
+namespace Nexendrie\Presenters\AdminModule;
 
 use Nette\Application\UI\Form,
     Nexendrie\Forms\AddEditItemFormFactory,

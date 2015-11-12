@@ -1,12 +1,12 @@
 <?php
-namespace Nexendrie\FrontModule\Presenters;
+namespace Nexendrie\Presenters\FrontModule;
 
 /**
  * Parent of all front presenters
  *
  * @author Jakub Konečný
  */
-abstract class BasePresenter extends \Nexendrie\BasePresenter {
+abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   /**
    * @return void
    */

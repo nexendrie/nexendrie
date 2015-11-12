@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\FrontModule\Presenters;
+namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Orm\Mount as MountEntity,
     Nexendrie\Model\MountNotFoundException,

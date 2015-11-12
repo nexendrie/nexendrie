@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\FrontModule\Presenters;
+namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\TownNotFoundException,

@@ -2,7 +2,7 @@ includes:
     - local.neon
 application:
     mapping:
-        *: Nexendrie\*Module\Presenters\*Presenter
+        *: Nexendrie\Presenters\*Module\*Presenter
 tracy:
     strictMode: TRUE
 session:

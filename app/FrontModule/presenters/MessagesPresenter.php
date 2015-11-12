@@ -1,5 +1,5 @@
 <?php
-namespace Nexendrie\FrontModule\Presenters;
+namespace Nexendrie\Presenters\FrontModule;
 
 use Nette\Application\UI\Form,
     Nexendrie\Forms\NewMessageFormFactory,

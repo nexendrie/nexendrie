@@ -1,12 +1,12 @@
 <?php
-namespace Nexendrie\AdminModule\Presenters;
+namespace Nexendrie\Presenters\AdminModule;
 
 /**
  * Parent of all admin presenters
  *
  * @author Jakub Konečný
  */
-abstract class BasePresenter extends \Nexendrie\BasePresenter {
+abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   /**
    * Check if the user is logged in and if he/she can enter administration
    * 
