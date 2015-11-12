@@ -17,6 +17,8 @@ class Monastery extends \Nette\Object {
   /** @var int */
   protected $buildingPrice;
   
+  const MAX_LEVEL = 5;
+  
   /**
    * @param int $buildingPrice
    * @param \Nexendrie\Orm\Model $orm
@@ -306,7 +308,7 @@ class Monastery extends \Nette\Object {
   function prayerLife() {
     if(!$this->user->isLoggedIn()) return 0;
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) throw new NotInMonasteryException;
+    if(!$user->monastery) return 0;
     return 4 + $user->monastery->level;
   }
 }
