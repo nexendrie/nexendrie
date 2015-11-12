@@ -27,6 +27,7 @@ class WorkPresenter extends BasePresenter {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeBanned();
+    $this->mustNotBeTavelling();
   }
   
   /**

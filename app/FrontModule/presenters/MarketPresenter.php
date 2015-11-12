@@ -19,6 +19,14 @@ class MarketPresenter extends BasePresenter {
   /**
    * @return void
    */
+  protected function startup() {
+    parent::startup();
+    $this->mustNotBeTavelling();
+  }
+  
+  /**
+   * @return void
+   */
   function renderDefault() {
     $this->template->shops = $this->model->listOfShops();
   }

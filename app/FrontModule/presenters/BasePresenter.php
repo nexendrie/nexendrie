@@ -50,5 +50,17 @@ abstract class BasePresenter extends \Nexendrie\BasePresenter {
       $this->redirect("Prison:");
     }
   }
+  
+  /**
+   * The user must not be on adventure to see a page
+   * 
+   * @return void
+   */
+  protected function mustNotBeTavelling() {
+    if($this->user->isLoggedIn() AND $this->user->identity->travelling) {
+      $this->flashMessage("Toto nemůžet dělat, když jsi na cestách.");
+      $this->redirect("Homepage:");
+    }
+  }
 }
 ?>

@@ -17,6 +17,7 @@ class AcademyPresenter extends BasePresenter {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeBanned();
+    $this->mustNotBeTavelling();
   }
   
   /**

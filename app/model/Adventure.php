@@ -214,6 +214,7 @@ class Adventure extends \Nette\Object {
     $userAdventure->mount = $mount;
     $userAdventure->started = time();
     $this->orm->userAdventures->persistAndFlush($userAdventure);
+    $this->user->identity->travelling = true;
   }
   
   /**
@@ -315,6 +316,7 @@ class Adventure extends \Nette\Object {
     $adventure->reward += $adventure->adventure->reward;
     $adventure->mount->hp -= 5;
     $this->orm->userAdventures->persistAndFlush($adventure);
+    $this->user->identity->travelling = false;
   }
   
   /**
