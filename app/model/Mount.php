@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Mount as MountEntity,
-    Nexendrie\Orm\MountType as MountTypeEntity;
+    Nexendrie\Orm\MountType as MountTypeEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Mount Model
@@ -50,7 +51,9 @@ class Mount extends \Nette\Object {
    * @return MountEntity[]
    */
   function mountsOnSale() {
-    return $this->orm->mounts->findOnMarket();
+    return $this->orm->mounts->findOnMarket()
+      ->orderBy("this->type->id", ICollection::DESC)
+      ->orderBy("price", ICollection::DESC);
   }
   
   /**
