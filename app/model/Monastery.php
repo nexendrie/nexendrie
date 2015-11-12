@@ -141,7 +141,7 @@ class Monastery extends \Nette\Object {
     if(!$this->canPray()) throw new CannotPrayException;
     $user = $this->orm->users->getById($this->user->id);
     $user->lastPrayer = time();
-    $user->life += 5;
+    $user->life += 4 + $user->monastery->level;
     $user->prayers++;
     $this->orm->users->persistAndFlush($user);
   }
