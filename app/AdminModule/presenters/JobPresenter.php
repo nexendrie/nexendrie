@@ -61,6 +61,7 @@ class JobPresenter extends BasePresenter {
     $form->onSuccess[] = function(Form $form) {
       $this->model->editJob($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Změny uloženy.");
+      $this->redirect("Content:jobs");
     };
     return $form;
   }

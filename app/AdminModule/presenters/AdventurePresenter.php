@@ -56,6 +56,7 @@ class AdventurePresenter extends BasePresenter {
     $form->onSuccess[] = function(Form $form) {
       $this->model->editAdventure($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Dobrodružství upraveno.");
+      $this->redirect("Content:adventures");
     };
     return $form;
   }

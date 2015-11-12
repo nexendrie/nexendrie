@@ -61,6 +61,7 @@ class MealPresenter extends BasePresenter {
     $form->onSuccess[] = function(Form $form) {
       $this->model->editMeal($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Změny uloženy.");
+      $this->redirect("Content:meals");
     };
     return $form;
   }

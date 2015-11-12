@@ -66,6 +66,7 @@ class PollsPresenter extends BasePresenter {
       $this->model->user = $this->user;
       $this->model->edit($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Anketa upravena.");
+      $this->redirect("Polls:");
     };
     $form->setDefaults($poll->toArray());
     return $form;

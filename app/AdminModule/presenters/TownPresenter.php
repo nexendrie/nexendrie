@@ -63,6 +63,7 @@ class TownPresenter extends BasePresenter {
     $form->onSuccess[] = function(Form $form) {
       $this->model->edit($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Město upraveno.");
+      $this->redirect("Content:towns");
     };
     return $form;
   }

@@ -33,6 +33,7 @@ class MountPresenter extends BasePresenter {
     $form->onSuccess[] = function(Form $form) {
       $this->model->add($form->getValues(true));
       $this->flashMessage("Jezdecké zvíře přidáno.");
+      $this->redirect("Content:mounts");
     };
     return $form;
   }
@@ -60,6 +61,7 @@ class MountPresenter extends BasePresenter {
     $form->onSuccess[] = function(Form $form) {
       $this->model->edit($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Jezdecké zvíře upraveno.");
+      $this->redirect("Content:mounts");
     };
     return $form;
   }
