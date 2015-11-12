@@ -103,7 +103,7 @@ class Inventory extends \Nette\Object {
     $item = $this->orm->userItems->getById($id);
     if(!$item) throw new ItemNotFoundException;
     elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
-    elseif($item->item->type === "item" OR $item->item->type === "potion") throw new ItemNotEquipableException;
+    elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes())) throw new ItemNotEquipableException;
     elseif(!$item->worn) throw new ItemNotWornException;
     $item->worn = false;
     $this->orm->userItems->persistAndFlush($item);
