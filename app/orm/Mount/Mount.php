@@ -19,6 +19,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $genderCZ {virtual}
  * @property-read string $priceT {virtual}
  * @property-read string $birthAt {virtual}
+ * @property-read int $damage {virtual}
+ * @property-read int $armor {virtual}
  */
 class Mount extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
@@ -58,6 +60,14 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   
   protected function getterBirthAt() {
     return $this->localeModel->formatDateTime($this->birth);
+  }
+  
+  protected function getterDamage() {
+    return $this->type->damage;
+  }
+  
+  protected function getterArmor() {
+    return $this->type->armor;
   }
   
   function dummy() {

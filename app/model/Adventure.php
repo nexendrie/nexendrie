@@ -242,12 +242,13 @@ class Adventure extends \Nette\Object {
    * Fight a npc
    * 
    * @param AdventureNpcEntity $npc
+   * @param MountEntity $mount  
    * @return bool Whetever the user won
    */
-  protected function fightNpc(AdventureNpcEntity $npc) {
+  protected function fightNpc(AdventureNpcEntity $npc, MountEntity $mount) {
     $finished = $result = false;
     $user = $this->orm->users->getById($this->user->id);
-    $userStats = $this->combatModel->userCombatStats($user);
+    $userStats = $this->combatModel->userCombatStats($user, $mount);
     $npcLife = $npc->hitpoints;
     $userAttack = $userStats["damage"] - $npc->armor;
     $npcAttack = $npc->strength - $userStats["armor"];
@@ -286,7 +287,7 @@ class Adventure extends \Nette\Object {
     if($adventure->progress > 9) throw new NoEnemyRemainException;
     $enemy = $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
     if(!$enemy) throw new NoEnemyRemainException;
-    $success = $this->fightNpc($enemy);
+    $success = $this->fightNpc($enemy, $adventure->mount);
     if($success) {
       $message = $enemy->victoryText;
       $this->saveVictory($adventure, $enemy);

@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\User as UserEntity;
+use Nexendrie\Orm\User as UserEntity,
+    Nexendrie\Orm\Mount as MountEntity;
 
 /**
  * Combat Model
@@ -23,9 +24,10 @@ class Combat extends \Nette\Object {
    * Get specified user's combat stats
    * 
    * @param UserEntity $user
+   * @param MountEntity|NULL $mount
    * @return int[]
    */
-  function userCombatStats(UserEntity $user) {
+  function userCombatStats(UserEntity $user, MountEntity $mount = NULL) {
     $stats = array();
     $stats["maxLife"] = $stats["life"] = $user->maxLife;
     $stats["damage"] = $stats["armor"] = 0;
@@ -37,6 +39,10 @@ class Combat extends \Nette\Object {
     $armorSkill = $this->orm->userSkills->getByUserAndStat($user->id, "armor");
     if($damageSkill) $stats["damage"] += $damageSkill->skill->statIncrease * $damageSkill->level;
     if($armorSkill) $stats["armor"] += $armorSkill->skill->statIncrease * $damageSkill->level;
+    if($mount) {
+      $stats["damage"] += $mount->damage;
+      $stats["armor"] += $mount->armor;
+    }
     return $stats;
   }
 }
