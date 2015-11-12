@@ -12,6 +12,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property Town $town {m:1 Town::$monasteries}
  * @property int $founded
  * @property int $money
+ * @property int $level {default 1}
  * @property OneHasMany|User[] $members {1:m User::$monastery}
  * @property OneHasMany|MonasteryDonation[] $donations {1:m MonasteryDonation::$monastery}
  * @property-read string $foundedAt {virtual}
