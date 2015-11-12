@@ -297,6 +297,18 @@ class Monastery extends \Nette\Object {
     elseif($user->monastery->leader->id != $this->user->id) return false;
     else return true;
   }
+  
+  /**
+   * How many hitpoints will the prayer add
+   * 
+   * @return int
+   */
+  function prayerLife() {
+    if(!$this->user->isLoggedIn()) return 0;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->monastery) throw new NotInMonasteryException;
+    return 4 + $user->monastery->level;
+  }
 }
 
 class MonasteryNotFoundException extends RecordNotFoundException {

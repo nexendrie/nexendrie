@@ -13,6 +13,6 @@
   <h3>Akce</h3>
   Darovat peníze klášteru<br>
   {control monasteryDonateForm}
-  <p>{if $canPray}<a n:href="pray">Modlit se</a>{else}Musíš počkat, než se budeš moci znovu modlit.{/if}</p>
+  <p>{if $canPray}<a n:href="pray">Modlit se</a>{else}Musíš počkat, než se budeš moci znovu modlit.{/if} Modlení přidá {$prayerLife} životů.</p>
   <p>{if $canLeave}<a n:href="leave">Opustit klášter</a>{/if}{if $canManage}<a n:href="manage">Spravovat klášter</a>{/if}{if $canBuild} <a n:href="build">Založit vlastní klášter</a>{/if}</p>
 {/block}

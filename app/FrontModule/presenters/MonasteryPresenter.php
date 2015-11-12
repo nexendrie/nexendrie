@@ -41,6 +41,7 @@ class MonasteryPresenter extends BasePresenter {
       $this->template->canLeave = $this->model->canLeave();
       $this->template->canBuild = $this->model->canBuild();
       $this->template->canManage = $this->model->canManage();
+      $this->template->prayerLife = $this->model->prayerLife();
     } catch(NotInMonasteryException $e) {
       $this->flashMessage("Nejsi v klášteře.");
       $this->redirect("Homepage:");
