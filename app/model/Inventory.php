@@ -161,6 +161,33 @@ class Inventory extends \Nette\Object {
     if($armor) return $armor->item;
     else return NULL;
   }
+  
+  /**
+   * Sell an item
+   * 
+   * @param int $id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws ItemNotFoundException
+   * @throws ItemNotOwnedException
+   * @throws ItemNotForSaleException
+   */
+  function sellItem($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $item = $this->orm->userItems->getById($id);
+    if(!$item) throw new ItemNotFoundException;
+    elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
+    elseif($item->item->type === "charter") throw new ItemNotForSaleException;
+    $item->amount -= 1;
+    $item->user->money += (int) ($item->item->price / 2);
+    if($item->amount > 0) {
+      $this->orm->userItems->persistAndFlush($item);
+    } else {
+      $this->orm->users->persist($item->user);
+      $this->orm->userItems->remove($item);
+      $this->orm->flush();
+    }
+  }
 }
 
 class ItemNotOwnedException extends AccessDeniedException {
@@ -184,6 +211,10 @@ class ItemNotDrinkableException extends AccessDeniedException {
 }
 
 class HealingNotNeeded extends AccessDeniedException {
+
+}
+
+class ItemNotForSaleException extends AccessDeniedException {
 
 }
 ?>

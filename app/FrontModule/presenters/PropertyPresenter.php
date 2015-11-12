@@ -12,7 +12,8 @@ use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\ItemNotWornException,
     Nexendrie\Model\ItemNotDrinkableException,
     Nexendrie\Model\HealingNotNeeded,
-    Nexendrie\Forms\AppointMayorFormFactory;
+    Nexendrie\Forms\AppointMayorFormFactory,
+    Nexendrie\Model\ItemNotForSaleException;
 
 /**
  * Presenter Assets
@@ -186,6 +187,23 @@ class PropertyPresenter extends BasePresenter {
       $this->flashMessage("Zadanou věc nelze vypít.");
     } catch(HealingNotNeeded $e) {
       $this->flashMessage("Nepotřebuješ léčení.");
+    }
+   }
+   
+  /**
+   * @param int $item
+   * @return void
+   */
+   function handleSell($item) {
+     try {
+       $this->inventoryModel->sellItem($item);
+       $this->flashMessage("Věc prodána.");
+     } catch(ItemNotFoundException $e) {
+      $this->flashMessage("Věc nenalezena.");
+    } catch(ItemNotOwnedException $e) {
+      $this->flashMessage("Zadaná věc ti nepatří.");
+    } catch(ItemNotForSaleException $e) {
+      $this->flashMessage("Zadanou věc nelze prodat.");
     }
    }
 }

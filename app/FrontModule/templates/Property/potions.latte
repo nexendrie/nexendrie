@@ -7,7 +7,7 @@
   <p>Nemáš žádné lektvary.</p>
   {else}
   <div n:inner-foreach="$items as $item" id="items">
-    {$item->amount}x {$item->item->name} (Síla: {$item->item->strength}){if $life < $maxLife} <a n:href="drink! $item->id">Vypít</a>{/if}<br>
+    {$item->amount}x {$item->item->name} (Síla: {$item->item->strength}) za {$item->item->priceT}{if $life < $maxLife} <a n:href="drink! $item->id">Vypít</a>{/if} <a n:href="sell! $item->id">Prodat 1 kus</a><br>
   </div>
   {/if}
 {/block}

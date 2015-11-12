@@ -11,6 +11,9 @@ namespace Nexendrie\Orm;
  * @property bool $worn {default 0}
  */
 class UserItem extends \Nextras\Orm\Entity\Entity {
-  
+  protected function setterAmount($value) {
+    if($value < 0) return 0;
+    else return $value;
+  }
 }
 ?>
