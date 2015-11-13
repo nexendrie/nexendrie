@@ -18,7 +18,7 @@ class Monastery extends \Nette\Object {
   /** @var int */
   protected $buildingPrice;
   
-  const MAX_LEVEL = 5;
+  const MAX_LEVEL = 6;
   const BASE_UPGRADE_PRICE = 700;
   
   /**
