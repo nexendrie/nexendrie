@@ -13,10 +13,13 @@ class Castle extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  /** @var int */
+  protected $buildingPrice;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
+    $this->buildingPrice = 1500;
   }
   
   /**
@@ -40,9 +43,50 @@ class Castle extends \Nette\Object {
     if(!$castle) throw new CastleNotFoundException;
     else return $castle;
   }
+  
+  /**
+   * Build castle
+   * 
+   * @param array $data
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotBuildCastleException
+   * @throws CannotBuildMoreCastlesException
+   * @throws CastleNameInUseException
+   * @throws InsufficientFundsException
+   */
+  function build(array $data) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->group->path != "tower") throw new CannotBuildCastleException;
+    elseif($user->castle) throw new CannotBuildMoreCastlesException;
+    elseif($this->orm->castles->getByName($data["name"])) throw new CastleNameInUseException;
+    elseif($user->money < $this->buildingPrice) throw new InsufficientFundsException;
+    $castle = new CastleEntity;
+    $castle->name = $data["name"];
+    $castle->description = $data["description"];
+    $castle->founded = time();
+    $castle->owner = $user;
+    $castle->owner->money -= $this->buildingPrice;
+    $this->orm->castles->persistAndFlush($castle);
+    $user->castle = $this->orm->castles->getByName($data["name"]);
+    $this->orm->users->persistAndFlush($user);
+  }
 }
 
 class CastleNotFoundException extends RecordNotFoundException {
+  
+}
+
+class CannotBuildCastleException extends AccessDeniedException {
+  
+}
+
+class CannotBuildMoreCastlesException extends AccessDeniedException {
+  
+}
+
+class CastleNameInUseException extends \RuntimeException {
   
 }
 ?>

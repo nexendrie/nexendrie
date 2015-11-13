@@ -1,7 +1,9 @@
 <?php
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\CastleNotFoundException;
+use Nexendrie\Model\CastleNotFoundException,
+    Nexendrie\Forms\BuildCastleFormFactory,
+    Nette\Application\UI\Form;
 
 /**
  * Presenter Castle
@@ -11,6 +13,8 @@ use Nexendrie\Model\CastleNotFoundException;
 class CastlePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Castle @autowire */
   protected $model;
+  /** @var \Nexendrie\Model\UserManager @autowire */
+  protected $userManager;
   
   /**
    * @return void
@@ -37,6 +41,33 @@ class CastlePresenter extends BasePresenter {
     } catch(CastleNotFoundException $e) {
       $this->forward("notfound");
     }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionBuild() {
+    $user = $this->userManager->get($this->user->id);
+    if($user->group->path != "tower") {
+      $this->flashMessage("Nejsi šlechtic.");
+      $this->redirect("Homepage:");
+    } elseif($user->castle) {
+      $this->flashMessage("Můžeš postavit jen 1 hrad.");
+      $this->redirect("default");
+    }
+  }
+  
+  /**
+   * @param BuildCastleFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentBuildCastleForm(BuildCastleFormFactory $factory) {
+    $form = $factory->create();
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Hrad postaven.");
+      $this->redirect("default");
+    };
+    return $form;
   }
 }
 ?>
