@@ -16,7 +16,7 @@ use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\ItemNotForSaleException;
 
 /**
- * Presenter Assets
+ * Presenter Property
  *
  * @author Jakub Konečný
  */
