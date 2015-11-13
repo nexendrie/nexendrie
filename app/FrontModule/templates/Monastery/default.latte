@@ -3,7 +3,7 @@
 {block content}
   <h1>{$monastery->name}</h1>
   <p>Vůdce: <a n:href="Profile: $monastery->leader->username">{$monastery->leader->publicname}</a></p>
-  <p>Úroveň: {$monastery->level}</p>
+  <p>Úroveň: {$monastery->level} Stav: {$monastery->hp}%</p>
   <h3>Členové</h3>
   <div n:foreach="$monastery->members as $member" class="members">
     {$member->group->singleName} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}

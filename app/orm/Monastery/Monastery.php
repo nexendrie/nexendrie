@@ -13,6 +13,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $founded
  * @property int $money
  * @property int $level {default 1}
+ * @property int $hp {default 100}
  * @property OneHasMany|User[] $members {1:m User::$monastery}
  * @property OneHasMany|MonasteryDonation[] $donations {1:m MonasteryDonation::$monastery}
  * @property-read string $foundedAt {virtual}
@@ -39,6 +40,12 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
     if($value < 1) return 1;
     elseif($value > self::MAX_LEVEL) return self::MAX_LEVEL;
     else return $value;
+  }
+  
+  protected function setterHp($value) {
+   if($value < 1) return 1;
+   elseif($value > 100) return 100;
+   else return $value;
   }
   
   protected function getterMoneyT() {
