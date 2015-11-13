@@ -11,6 +11,13 @@ use Nextras\Orm\Collection\ICollection;
  * @method Monastery|NULL getByName($name)
  */
 class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
-  
+  /**
+   * Get monasteries led by users
+   * 
+   * @return ICollection|Monastery[]
+   */
+  function findLedMonasteries() {
+    return $this->findBy(array("this->owner->id>" => 0));
+  }
 }
 ?>
