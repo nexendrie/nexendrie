@@ -27,6 +27,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $money {default 2}
  * @property Town $town {m:1 Town::$denizens}
  * @property Monastery|NULL $monastery {m:1 Monastery::$members} {default NULL}
+ * @property Castle|NULL $castle {1:1 Castle::$owner}
  * @property int $prayers {default 0}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}

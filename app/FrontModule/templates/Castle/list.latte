@@ -1,0 +1,15 @@
+{layout "../@layout.latte"}
+{block title}Seznam hradů{/block}
+{block content}
+  <h1>Seznam hradů</h1>
+  {if $castles->count() === 0}Nebyl nalezen žádný hrad.{/if}
+  <table id="castles">
+    <tr><th>Jméno</th><th>Majitel</th><th>Úroveň</th><th></th></tr>
+    <tr n:foreach="$castles as $castle">
+      <td>{$castle->name}</td>
+      <td><a n:href="Profile: $castle->owner->username">{$castle->owner->publicname}</a></td>
+      <td>{$castle->level}</td>
+      <td><a n:href="detail $castle->id">Detaily</a></td>
+    </tr>
+  </table>
+{/block}

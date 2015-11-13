@@ -85,6 +85,8 @@ class Taxes extends \Nette\Object {
       $return->denizens[$d->id] = $d;
       $return->taxes += $d->tax;
     }
+    $castle = $this->orm->castles->getByOwner($town->owner->id);
+    if($castle) $return->taxes += $castle->taxesBonusIncome;
     return $return;
   }
   

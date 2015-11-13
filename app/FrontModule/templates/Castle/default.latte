@@ -1,0 +1,7 @@
+{layout "../@layout.latte"}
+{block title}Hrad{/block}
+{block content}
+  <h1>{$castle->name}</h1>
+  <p>Úroveň: {$castle->level} Stav: {$castle->hp}%</p>
+  {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> za {$upgradePrice}{/if}
+{/block}
