@@ -51,7 +51,7 @@ class CastlePresenter extends BasePresenter {
     if($user->group->path != "tower") {
       $this->flashMessage("Nejsi šlechtic.");
       $this->redirect("Homepage:");
-    } elseif($user->castle) {
+    } elseif($this->model->getUserCastle()) {
       $this->flashMessage("Můžeš postavit jen 1 hrad.");
       $this->redirect("default");
     }

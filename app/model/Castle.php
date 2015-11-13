@@ -59,7 +59,7 @@ class Castle extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != "tower") throw new CannotBuildCastleException;
-    elseif($user->castle) throw new CannotBuildMoreCastlesException;
+    elseif($this->getUserCastle()) throw new CannotBuildMoreCastlesException;
     elseif($this->orm->castles->getByName($data["name"])) throw new CastleNameInUseException;
     elseif($user->money < $this->buildingPrice) throw new InsufficientFundsException;
     $castle = new CastleEntity;
@@ -71,6 +71,17 @@ class Castle extends \Nette\Object {
     $this->orm->castles->persistAndFlush($castle);
     $user->castle = $this->orm->castles->getByName($data["name"]);
     $this->orm->users->persistAndFlush($user);
+  }
+  
+  /**
+   * Get specified user's castle
+   * 
+   * @param int|NULL $user
+   * @return CastleEntity
+   */
+  function getUserCastle($user = NULL) {
+    if($user === NULL) $user = $this->user->id;
+    return $this->orm->castles->getByOwner($user);
   }
 }
 
