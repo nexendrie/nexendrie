@@ -1,0 +1,7 @@
+{layout "../@layout.latte"}
+{block title}Hrad{/block}
+{block content}
+  <h1>{$castle->name}</h1>
+  <p>{$castle->name} postavil(a) <a n:href="Profile: $castle->owner->username">{$castle->owner->publicname}</a> {$castle->foundedAt}. Hrad je na úrovni {$castle->level}. Stav: {$castle->hp}%.</p>
+  <p>{$castle->description}</p>
+{/block}
