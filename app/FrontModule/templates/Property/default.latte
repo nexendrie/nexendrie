@@ -11,7 +11,7 @@
     {/foreach}
   </p>
   {/if}
-  {if $isLord}
+  {if $towns->count() > 0}
   <p>
     Města/vesnice:<br>
     {foreach $towns as $town}
