@@ -127,6 +127,7 @@ class Monastery extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return false;
+    elseif($user->monastery->hp <= 30) return false;
     elseif($user->life >= $user->maxLife) return false;
     elseif(!$user->lastPrayer) return true;
     $oneDay = 60 * 60 * 24;
