@@ -10,6 +10,7 @@ namespace Nexendrie\Orm;
  * @property int $taken
  * @property int|NULL $returned {default NULL}
  * @property int $interest
+ * @property string $amountT {virtual}
  * @property-read string $takenT {virtual}
  * @property-read string $returnedT {virtual}
  */
@@ -19,6 +20,10 @@ class Loan extends \Nextras\Orm\Entity\Entity {
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
+  }
+  
+  protected function getterAmountT() {
+    return $this->localeModel->money($this->amount);
   }
   
   protected function getterTakenT() {

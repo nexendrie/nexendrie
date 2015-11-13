@@ -2,7 +2,7 @@
 {block title}Majetek{/block}
 {block content}
   <h1>Majetek</h1>
-  <p>V měšci máš {$money}.</p>
+  <p>V měšci máš {$money}. {if $loan}Máš půjčeno {$loan->amountT} od Banky Žajských.{/if}</p>
   {if count($items) > 0}
   <p>
     Dále máš:<br>

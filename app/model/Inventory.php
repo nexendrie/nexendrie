@@ -33,6 +33,7 @@ class Inventory extends \Nette\Object {
     $return["money"] = $user->moneyT;
     $return["items"] = $user->items->get()->findBy(array("this->item->type" => ItemEntity::getCommonTypes()));
     $return["towns"] = $user->ownedTowns;
+    $return["loan"] = $this->orm->loans->getActiveLoan($this->user->id);
     return $return;
   }
   
