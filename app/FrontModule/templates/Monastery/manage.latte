@@ -3,4 +3,5 @@
 {block content}
   <h1>Spravovat klášter</h1>
   {control manageMonasteryForm}
+  {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> klášter za {$upgradePrice}{/if}
 {/block}

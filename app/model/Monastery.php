@@ -17,6 +17,9 @@ class Monastery extends \Nette\Object {
   /** @var int */
   protected $buildingPrice;
   
+  const MAX_LEVEL = 5;
+  const BASE_UPGRADE_PRICE = 700;
+  
   /**
    * @param int $buildingPrice
    * @param \Nexendrie\Orm\Model $orm
@@ -141,7 +144,7 @@ class Monastery extends \Nette\Object {
     if(!$this->canPray()) throw new CannotPrayException;
     $user = $this->orm->users->getById($this->user->id);
     $user->lastPrayer = time();
-    $user->life += 5;
+    $user->life += 4 + $user->monastery->level;
     $user->prayers++;
     $this->orm->users->persistAndFlush($user);
   }
@@ -297,6 +300,70 @@ class Monastery extends \Nette\Object {
     elseif($user->monastery->leader->id != $this->user->id) return false;
     else return true;
   }
+  
+  /**
+   * How many hitpoints will the prayer add
+   * 
+   * @return int
+   */
+  function prayerLife() {
+    if(!$this->user->isLoggedIn()) return 0;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->monastery) return 0;
+    return 4 + $user->monastery->level;
+  }
+  
+  /**
+   * Calculate price of monastery's next upgrade
+   * 
+   * @return int
+   */
+  function calculateUpgradePrice() {
+    if(!$this->user->isLoggedIn()) return 0;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->monastery) return 0;
+    elseif($user->monastery->level < 2) return self::BASE_UPGRADE_PRICE;
+    elseif($user->monastery->level >= self::MAX_LEVEL) return 0;
+    $price = self::BASE_UPGRADE_PRICE;
+    for($i = 2; $i < $user->monastery->level + 1; $i++) {
+      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+    }
+    return $price;
+  }
+  
+  /**
+   * Check whetever the user can manage monastery
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canUpgrade() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->monastery) return false;
+    elseif($user->monastery->leader->id != $this->user->id) return false;
+    elseif($user->monastery->level >= self::MAX_LEVEL) return false;
+    else return true;
+  }
+  
+  /**
+   * Upgrade monastery
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotUpgradeMonasteryException
+   * @throws InsufficientFundsException
+   */
+  function upgrade() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->canUpgrade()) throw new CannotUpgradeMonasteryException;
+    $user = $this->orm->users->getById($this->user->id);
+    $upgradePrice = $this->calculateUpgradePrice();
+    if($user->monastery->money < $upgradePrice) throw new InsufficientFundsException;
+    $user->monastery->level++;
+    $user->monastery->money -= $upgradePrice;
+    $this->orm->monasteries->persistAndFlush($user->monastery);
+  }
 }
 
 class MonasteryNotFoundException extends RecordNotFoundException {
@@ -329,5 +396,9 @@ class MonasteryNameInUseException extends \RuntimeException {
 
 class CannotJoinOwnMonastery extends AccessDeniedException {
   
+}
+
+class CannotUpgradeMonasteryException extends AccessDeniedException {
+
 }
 ?>
