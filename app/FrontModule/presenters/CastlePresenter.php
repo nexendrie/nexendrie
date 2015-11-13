@@ -27,6 +27,18 @@ class CastlePresenter extends BasePresenter {
   /**
    * @return void
    */
+  function renderDefault() {
+    $castle = $this->model->getUserCastle();
+    if(!$castle) {
+      $this->flashMessage("Nemáš hrad.");
+      $this->redirect("Homepage");
+    }
+    $this->template->castle = $castle;
+  }
+  
+  /**
+   * @return void
+   */
   function renderList() {
     $this->template->castles = $this->model->listOfCastles();
   }
