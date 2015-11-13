@@ -17,8 +17,13 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|MonasteryDonation[] $donations {1:m MonasteryDonation::$monastery}
  * @property-read string $foundedAt {virtual}
  * @property-read string $moneyT {virtual}
+ * @property-read int $prayerLife {virtual}
+ * @property-read int $upgradePrice {virtual}
  */
 class Monastery extends \Nextras\Orm\Entity\Entity {
+  const MAX_LEVEL = 6;
+  const BASE_UPGRADE_PRICE = 700;
+  
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
   
@@ -30,8 +35,28 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->formatDateTime($this->founded);
   }
   
+  protected function setterLevel($value) {
+    if($value < 1) return 1;
+    elseif($value > self::MAX_LEVEL) return self::MAX_LEVEL;
+    else return $value;
+  }
+  
   protected function getterMoneyT() {
     return $this->localeModel->money($this->money);
+  }
+  
+  protected function getterPrayerLife() {
+    return 2 + ($this->level * 2);
+  }
+  
+  protected function getterUpgradePrice() {
+    if($this->level === 1) return self::BASE_UPGRADE_PRICE;
+    elseif($this->level === self::MAX_LEVEL) return 0;
+    $price = self::BASE_UPGRADE_PRICE;
+    for($i = 2; $i < $this->level + 1; $i++) {
+      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+    }
+    return $price;
   }
   
   /**

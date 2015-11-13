@@ -18,9 +18,6 @@ class Monastery extends \Nette\Object {
   /** @var int */
   protected $buildingPrice;
   
-  const MAX_LEVEL = 6;
-  const BASE_UPGRADE_PRICE = 700;
-  
   /**
    * @param int $buildingPrice
    * @param \Nexendrie\Orm\Model $orm
@@ -313,7 +310,7 @@ class Monastery extends \Nette\Object {
     if(!$this->user->isLoggedIn()) return 0;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return 0;
-    return 2 + ($user->monastery->level * 2);
+    return $user->monastery->prayerLife;
   }
   
   /**
@@ -325,13 +322,7 @@ class Monastery extends \Nette\Object {
     if(!$this->user->isLoggedIn()) return 0;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return 0;
-    elseif($user->monastery->level < 2) return self::BASE_UPGRADE_PRICE;
-    elseif($user->monastery->level >= self::MAX_LEVEL) return 0;
-    $price = self::BASE_UPGRADE_PRICE;
-    for($i = 2; $i < $user->monastery->level + 1; $i++) {
-      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
-    }
-    return $price;
+    else return $user->monastery->upgradePrice;
   }
   
   /**
@@ -345,7 +336,7 @@ class Monastery extends \Nette\Object {
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return false;
     elseif($user->monastery->leader->id != $this->user->id) return false;
-    elseif($user->monastery->level >= self::MAX_LEVEL) return false;
+    elseif($user->monastery->level >= MonasteryEntity::MAX_LEVEL) return false;
     else return true;
   }
   
