@@ -57,6 +57,13 @@ class HelpControl extends Book\BookControl {
   function renderAcademy() {
     $this->template->skills = $this->orm->skills->findAll();
   }
+  
+  /**
+   * @return void
+   */
+  function renderMonastery() {
+    $this->template->maxLevel = \Nexendrie\Orm\Monastery::MAX_LEVEL;
+  }
 }
 
 interface HelpControlFactory {
