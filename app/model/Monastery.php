@@ -313,7 +313,7 @@ class Monastery extends \Nette\Object {
     if(!$this->user->isLoggedIn()) return 0;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return 0;
-    return 4 + $user->monastery->level;
+    return 2 + ($user->monastery->level * 2);
   }
   
   /**
