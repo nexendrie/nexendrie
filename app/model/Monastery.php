@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Monastery as MonasteryEntity,
-    Nexendrie\Orm\MonasteryDonation;
+    Nexendrie\Orm\MonasteryDonation,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Monastery Model
@@ -37,7 +38,9 @@ class Monastery extends \Nette\Object {
    * @return MonasteryEntity[]
    */
   function listOfMonasteries() {
-    return $this->orm->monasteries->findAll();
+    return $this->orm->monasteries->findAll()
+      ->orderBy("level", ICollection::DESC)
+      ->orderBy("founded");
   }
   
   /**
