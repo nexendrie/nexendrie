@@ -83,6 +83,50 @@ class Castle extends \Nette\Object {
     if($user === NULL) $user = $this->user->id;
     return $this->orm->castles->getByOwner($user);
   }
+  
+  /**
+   * Check whetever the user can upgrade castle
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canUpgrade() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $castle = $this->orm->castles->getByOwner($this->user->id);
+    if(!$castle) return false;
+    elseif($castle->level >= CastleEntity::MAX_LEVEL) return false;
+    else return true;
+  }
+  
+  /**
+   * Calculate upgrade price of castle
+   * 
+   * @return int
+   */
+  function calculateUpgradePrice() {
+    if(!$this->user->isLoggedIn()) return 0;
+    $castle = $this->orm->castles->getByOwner($this->user->id);
+    if(!$castle) return 0;
+    else return $castle->upgradePrice;
+  }
+  
+  /**
+   * Upgrade castle
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotUpgradeCastle
+   * @throws InsufficientFundsException
+   */
+  function upgrade() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canUpgrade()) throw new CannotUpgradeCastle;
+    $castle = $this->orm->castles->getByOwner($this->user->id);
+    if($castle->owner->money < $castle->upgradePrice) throw new InsufficientFundsException;
+    $castle->owner->money -= $castle->upgradePrice;
+    $castle->level++;
+    $this->orm->castles->persistAndFlush($castle);
+  }
 }
 
 class CastleNotFoundException extends RecordNotFoundException {
@@ -98,6 +142,10 @@ class CannotBuildMoreCastlesException extends AccessDeniedException {
 }
 
 class CastleNameInUseException extends \RuntimeException {
+  
+}
+
+class CannotUpgradeCastle extends AccessDeniedException {
   
 }
 ?>

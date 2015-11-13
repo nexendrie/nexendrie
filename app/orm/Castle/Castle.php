@@ -13,9 +13,11 @@ namespace Nexendrie\Orm;
  * @property int $level {default 1}
  * @property int $hp {default 100}
  * @property-read int $taxesBonusIncome {virtual}
+ * @property-read int $upgradePrice {virtual}
  */
 class Castle extends \Nextras\Orm\Entity\Entity {
   const MAX_LEVEL = 5;
+  const BASE_UPGRADE_PRICE = 500;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
@@ -44,5 +46,16 @@ class Castle extends \Nextras\Orm\Entity\Entity {
     if($this->hp <= 30) return 0;
     else return $this->level * 30;
   }
+  
+  protected function getterUpgradePrice() {
+    if($this->level === 1) return self::BASE_UPGRADE_PRICE;
+    elseif($this->level === self::MAX_LEVEL) return 0;
+    $price = self::BASE_UPGRADE_PRICE;
+    for($i = 2; $i < $this->level + 1; $i++) {
+      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+    }
+    return $price;
+  }
+  
 }
 ?>

@@ -3,7 +3,8 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Model\CastleNotFoundException,
     Nexendrie\Forms\BuildCastleFormFactory,
-    Nette\Application\UI\Form;
+    Nette\Application\UI\Form,
+    Nexendrie\Model\CannotUpgradeCastle;
 
 /**
  * Presenter Castle
@@ -13,6 +14,8 @@ use Nexendrie\Model\CastleNotFoundException,
 class CastlePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Castle @autowire */
   protected $model;
+  /** @var \Nexendrie\Model\Locale @autowire */
+  protected $localeModel;
   /** @var \Nexendrie\Model\UserManager @autowire */
   protected $userManager;
   
@@ -34,6 +37,8 @@ class CastlePresenter extends BasePresenter {
       $this->redirect("Homepage");
     }
     $this->template->castle = $castle;
+    $this->template->canUpgrade = $this->model->canUpgrade();
+    $this->template->upgradePrice = $this->localeModel->money($this->model->calculateUpgradePrice());
   }
   
   /**
@@ -80,6 +85,20 @@ class CastlePresenter extends BasePresenter {
       $this->redirect("default");
     };
     return $form;
+  }
+  
+  function handleUpgrade() {
+    try {
+      $this->model->upgrade();
+      $this->flashMessage("Hrad vylepšen.");
+      $this->redirect("default");
+    } catch(CannotUpgradeCastle $e) {
+      $this->flashMessage("Nemůžeš vylepšit hrad.");
+      $this->redirect("Homepage:");
+    } catch(InsufficientFundsException $e) {
+      $this->flashMessage("Nedostatek peněz.");
+      $this->redirect("manage");
+    }
   }
 }
 ?>
