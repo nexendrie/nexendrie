@@ -18,6 +18,8 @@ class Adventure extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  /** @var AdventureEntity */
+  private $adventure = NULL;
   
   function __construct(Combat $combatModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->combatModel = $combatModel;
@@ -225,7 +227,9 @@ class Adventure extends \Nette\Object {
    */
   function getCurrentAdventure() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    else return $this->orm->userAdventures->getUserActiveAdventure($this->user->id);
+    elseif($this->adventure) return $this->adventure;
+    $this->adventure = $this->orm->userAdventures->getUserActiveAdventure($this->user->id);
+    return $this->adventure;
   }
   
   /**
