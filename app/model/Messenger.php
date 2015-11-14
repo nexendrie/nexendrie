@@ -80,10 +80,10 @@ class Messenger extends \Nette\Object {
    */
   function usersList() {
     $return = array();
-    $users = $this->profileModel->getAllNames();
-    foreach($users as $user) {
-      if($user->id === $this->user->id) continue;
-      $return[$user->id] = $user->publicname;
+    $users = $this->orm->users->findAll()->fetchPairs("id", "publicname");
+    foreach($users as $id => $publicname) {
+      if($id === $this->user->id) continue;
+      else $return[$id] = $publicname;
     }
     return $return;
   }
