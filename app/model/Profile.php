@@ -46,18 +46,6 @@ class Profile extends \Nette\Object {
   }
   
   /**
-   * Get specified user's username and public name
-   * 
-   * @param int $id User's id
-   * @return \stdClass
-   */
-  function getNames($id) {
-    $names = $this->getAllNames();
-    $user = Arrays::get($names, $id, false);
-    return $user;
-  }
-  
-  /**
    * Show user's profile
    * 
    * @param string $username
