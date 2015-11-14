@@ -55,6 +55,10 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->orm->mounts->persistAndFlush($mount);
   }
   
+  /**
+   * @param int $mountId
+   * @return void
+   */
   function handleCare($mountId) {
     try {
       $this->increaseLife($mountId, 3, 4);
@@ -70,6 +74,10 @@ class StablesControl extends \Nette\Application\UI\Control {
     }
   }
   
+  /**
+   * @param int $mountId
+   * @return void
+   */
   function handleFeed($mountId) {
     try {
       $this->increaseLife($mountId, 10, 12);
