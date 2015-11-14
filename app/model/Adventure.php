@@ -269,7 +269,6 @@ class Adventure extends \Nette\Object {
       $round++;
       if($round > 30) $finished = true;
     }
-    $this->orm->users->persistAndFlush($user);
     return $result;
   }
   
@@ -301,6 +300,7 @@ class Adventure extends \Nette\Object {
       $this->saveVictory($adventure, $enemy);
     } else {
       $message = "$enemy->name se ubránil.";
+      $this->orm->users->persistAndFlush($adventure->user);
     }
     return array("success" => $success, "message" => $message);
   }
