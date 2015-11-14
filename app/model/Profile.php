@@ -12,37 +12,16 @@ use Nette\Utils\Arrays,
 class Profile extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
-  /** @var \Nette\Caching\Cache */
-  protected $cache;
   /** @var \Nette\Security\User */
   protected $user;
   
   /**
    * @param \Nexendrie\Orm\Model $orm
-   * @param \Nette\Caching\Cache $cache
    * @param \Nette\Security\User $user
    */
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
-    $this->cache = $cache;
     $this->user = $user;
-  }
-  
-  /**
-   * @return \stdClass[]
-   */
-  function getAllNames() {
-    $names = $this->cache->load("users_names");
-    if($names === NULL) {
-      $users = $this->orm->users->findAll();
-      foreach($users as $user) {
-        $names[$user->id] = (object) array(
-          "id" => $user->id, "username" => $user->username, "publicname" => $user->publicname
-        );
-      }
-      $this->cache->save("users_names", $names);
-    }
-    return $names;
   }
   
   /**
