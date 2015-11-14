@@ -117,6 +117,11 @@ class SystemSettingsFormFactory {
       ->setRequired("Zadej cenu založení kláštera.")
       ->addRule(Form::INTEGER, "Cena založení kláštera musí být celé číslo.")
       ->addRule(Form::RANGE, "Cena založení kláštera musí být v rozmezí 0-5000.", array(0, 5000));
+    $fees->addText("buildCastle", "Stavba hradu:")
+      ->setOption("description", "Cena stavby hradu v groších.")
+      ->setRequired("Zadej cenu stavby hradu.")
+      ->addRule(Form::INTEGER, "Cena stavby hradu musí být celé číslo.")
+      ->addRule(Form::RANGE, "Cena stavby hradu musí být v rozmezí 0-5000.", array(0, 5000));
     $form->currentGroup = NULL;
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());

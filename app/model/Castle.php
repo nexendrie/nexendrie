@@ -16,10 +16,10 @@ class Castle extends \Nette\Object {
   /** @var int */
   protected $buildingPrice;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct($buildingPrice, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->buildingPrice = 1500;
+    $this->buildingPrice = (int) $buildingPrice;
   }
   
   /**

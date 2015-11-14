@@ -32,7 +32,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     "fees" => array(
       "incomeTax" => 10,
       "loanInterest" => 15,
-      "buildMonastery" => 1000
+      "buildMonastery" => 1000,
+      "buildCastle" => 1500
     )
   );
   
@@ -54,7 +55,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $services = array(
       "group", "market", "messenger", "polls", "profile", "rss", "property", "job",
       "town", "mount", "skills", "chronicle", "tavern", "inventory", "adventure",
-      "combat", "castle"
+      "combat"
     );
     foreach($services as $service) {
       $builder->addDefinition($this->prefix("model.$service"))
@@ -72,6 +73,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
         ->setFactory("Nexendrie\Model\Taxes", array($config["fees"]["incomeTax"]));
     $builder->addDefinition($this->prefix("model.monastery"))
       ->setFactory("Nexendrie\Model\Monastery", array($config["fees"]["buildMonastery"]));
+    $builder->addDefinition($this->prefix("model.castle"))
+      ->setFactory("Nexendrie\Model\Castle", array($config["fees"]["buildCastle"]));
     $builder->addDefinition("cache.cache")
       ->setFactory("Nette\Caching\Cache", array("@cache.storage", "data"));
     $builder->addDefinition($this->prefix("model.settingsRepository"))
