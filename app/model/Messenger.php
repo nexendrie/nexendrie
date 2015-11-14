@@ -79,13 +79,9 @@ class Messenger extends \Nette\Object {
    * @return array id => publicname
    */
   function usersList() {
-    $return = array();
-    $users = $this->orm->users->findAll()->fetchPairs("id", "publicname");
-    foreach($users as $id => $publicname) {
-      if($id === $this->user->id) continue;
-      else $return[$id] = $publicname;
-    }
-    return $return;
+    return $this->orm->users->findBy(
+      array("id!=" => $this->user->id)
+    )->fetchPairs("id", "publicname");
   }
   
   /**
