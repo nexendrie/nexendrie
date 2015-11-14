@@ -253,6 +253,7 @@ class Adventure extends \Nette\Object {
     $npcLife = $npc->hitpoints;
     $userAttack = $userStats["damage"] - $npc->armor;
     $npcAttack = $npc->strength - $userStats["armor"];
+    $round = 1;
     while(!$finished) {
       $npcLife -= $userAttack;
       if($npcLife <= 1) {
@@ -261,6 +262,8 @@ class Adventure extends \Nette\Object {
       }
       $user->life -= $npcAttack;
       if($user->life <= 1) $finished = true;
+      $round++;
+      if($round > 30) $finished = true;
     }
     $this->orm->users->persistAndFlush($user);
     return $result;
