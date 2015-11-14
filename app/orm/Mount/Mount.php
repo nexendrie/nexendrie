@@ -21,6 +21,10 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $genderCZ {virtual}
  * @property-read string $priceT {virtual}
  * @property-read string $birthAt {virtual}
+ * @property-read int $baseDamage {virtual}
+ * @property-read int $baseArmor {virtual}
+ * @property-read int $maxDamage {virtual}
+ * @property-read int $maxArmor {virtual}
  */
 class Mount extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
@@ -50,6 +54,18 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     else return $value;
   }
   
+  protected function setterDamage($value) {
+    if($value > $this->maxDamage) return $this->maxDamage;
+    elseif($value < $this->baseDamage) return $this->baseDamage;
+    else return $value;
+  }
+  
+  protected function setterArmor($value) {
+    if($value > $this->maxArmor) return $this->maxArmor;
+    elseif($value < $this->baseArmor) return $this->baseArmor;
+    else return $value;
+  }
+  
   protected function getterGenderCZ() {
     return self::getGenders()[$this->gender];
   }
@@ -60,6 +76,22 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   
   protected function getterBirthAt() {
     return $this->localeModel->formatDateTime($this->birth);
+  }
+  
+  protected function getterBaseDamage() {
+    return $this->type->damage;
+  }
+  
+  protected function getterBaseArmor() {
+    return $this->type->armor;
+  }
+  
+  protected function getterMaxDamage() {
+    return ($this->type->armor * 2) + 1;
+  }
+  
+  protected function getterMaxArmor() {
+    return ($this->type->armor * 2) + 1;
   }
   
   function dummy() {
