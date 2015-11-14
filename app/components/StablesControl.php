@@ -4,7 +4,9 @@ namespace Nexendrie\Components;
 use Nexendrie\Model\MountNotFoundException,
     Nexendrie\Model\MountNotOwnedException,
     Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Model\CareNotNeededException;
+    Nexendrie\Model\CareNotNeededException,
+    Nexendrie\Model\MountMaxTrainingLevelReachedException,
+    Nexendrie\Model\MountInBadConditionException;
 
 /**
  * StablesControl
@@ -29,6 +31,13 @@ class StablesControl extends \Nette\Application\UI\Control {
     $template = $this->template;
     $template->setFile(__DIR__ . "/stables.latte");
     $template->mounts = $this->orm->mounts->findByOwner($this->user->id);
+    $template->render();
+  }
+  
+  function renderTrain($mountId) {
+    $template = $this->template;
+    $template->setFile(__DIR__ . "/stablesTrain.latte");
+    $template->mount = $this->orm->mounts->getById($mountId);
     $template->render();
   }
   
@@ -90,6 +99,76 @@ class StablesControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");
     } catch(CareNotNeededException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře nepotřebuje krmení.");
+    }
+  }
+  
+  /**
+   * Train specified mount
+   * 
+   * @param int $mountId
+   * @param string $stat
+   * @return void
+   * @throws MountNotFoundException
+   * @throws MountNotOwnedException
+   * @throws MountMaxTrainingLevelReachedException
+   * @throws MountInBadConditionException
+   * @throws InsufficientFundsException
+   */
+  protected function train($mountId, $stat) {
+    $stats = array("damage", "armor");
+    if(!in_array($stat, $stats)) return;
+    $mount = $this->orm->mounts->getById($mountId);
+    if(!$mount) throw new MountNotFoundException;
+    elseif($mount->owner->id != $this->user->id) throw new MountNotOwnedException;
+    $statCap = ucfirst($stat);
+    if($mount->$stat >= $mount->{"max" . $statCap}) throw new MountMaxTrainingLevelReachedException;
+    elseif($mount->hp < 40) throw MountInBadConditionException;
+    elseif($mount->owner->money < $mount->{$stat . "TrainingCost"}) throw new InsufficientFundsException;
+    $mount->owner->money -= $mount->{$stat . "TrainingCost"};
+    $mount->$stat++;
+    $mount->hp -= 10;
+    $this->orm->mounts->persistAndFlush($mount);
+  }
+  
+  /**
+   * @param int $mount
+   * @return void
+   */
+  function handleTrainDamage($mount) {
+    try {
+      $this->train($mount, "damage");
+      $this->presenter->flashMessage("Trénink byl úspěšný.");
+    } catch(MountNotFoundException $e) {
+      $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
+    } catch(MountNotOwnedException $e) {
+      $this->presenter->flashMessage("Dané jezdecké zvíře ti nepatří.");
+    } catch(InsufficientFundsException $e) {
+      $this->presenter->flashMessage("Nemáš dostatek peněz.");
+    } catch(MountMaxTrainingLevelReachedException $e) {
+      $this->presenter->flashMessage("Dané jezdecké zvíře už nemůže být trénováno.");
+    } catch(MountInBadConditionException $e) {
+      $this->presenter->flashMessage("Dané jezdecké zvíře je ve špatném stavu.");
+    }
+  }
+  
+  /**
+   * @param int $mount
+   * @return void
+   */
+  function handleTrainArmor($mount) {
+    try {
+      $this->train($mount, "armor");
+      $this->presenter->flashMessage("Trénink byl úspěšný.");
+    } catch(MountNotFoundException $e) {
+      $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
+    } catch(MountNotOwnedException $e) {
+      $this->presenter->flashMessage("Dané jezdecké zvíře ti nepatří.");
+    } catch(InsufficientFundsException $e) {
+      $this->presenter->flashMessage("Nemáš dostatek peněz.");
+    } catch(MountMaxTrainingLevelReachedException $e) {
+      $this->presenter->flashMessage("Dané jezdecké zvíře už nemůže být trénováno.");
+    } catch(MountInBadConditionException $e) {
+      $this->presenter->flashMessage("Dané jezdecké zvíře je ve špatném stavu.");
     }
   }
 }

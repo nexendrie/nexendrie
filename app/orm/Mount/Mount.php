@@ -25,6 +25,10 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read int $baseArmor {virtual}
  * @property-read int $maxDamage {virtual}
  * @property-read int $maxArmor {virtual}
+ * @property-read int $damageTrainingCost {virtual}
+ * @property-read int $armorTrainingCost {virtual}
+ * @property-read string $damageTrainingCostT {virtual}
+ * @property-read string $armorTrainingCostT {virtual}
  */
 class Mount extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
@@ -87,11 +91,29 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterMaxDamage() {
-    return ($this->type->armor * 2) + 1;
+    return ($this->type->damage * 2) + 1;
   }
   
   protected function getterMaxArmor() {
     return ($this->type->armor * 2) + 1;
+  }
+  
+  protected function getterDamageTrainingCost() {
+    if($this->damage >= $this->maxDamage) return 0;
+    else return ($this->damage - $this->baseDamage + 1) * 30;
+  }
+  
+  protected function getterArmorTrainingCost() {
+    if($this->armor >= $this->maxArmor) return 0;
+    else return ($this->armor - $this->baseArmor + 1) * 30;
+  }
+  
+  protected function getterDamageTrainingCostT() {
+    return $this->localeModel->money($this->damageTrainingCost);
+  }
+  
+  protected function getterArmorTrainingCostT() {
+    return $this->localeModel->money($this->armorTrainingCost);
   }
   
   function dummy() {

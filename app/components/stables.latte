@@ -4,7 +4,7 @@
   Nevlastníš žádná jezdecká zvířata.
   {else}
     {foreach $mounts as $mount}
-      <p>{$mount->type->name} {$mount->name} <a href="{plink :Front:Stables:manage $mount->id}">Spravovat</a> {if $mount->hp < 100}<a n:href="care! $mount->id">Čistit</a> <a n:href="feed! $mount->id">Nakrmit</a>{/if}<br>
+    <p>{$mount->type->name} {$mount->name} <a href="{plink :Front:Stables:manage $mount->id}">Spravovat</a> {if $mount->hp < 100}<a n:href="care! $mount->id">Čistit</a> <a n:href="feed! $mount->id">Nakrmit</a>{/if} <a href="{plink :Front:Stables:train $mount->id}">Trénovat</a><br>
   Stav: {$mount->hp} %{if $mount->hp<=30} (Kritický!){/if}; Bonus k poškození: {$mount->damage}, brnění: {$mount->armor}</p>
     {/foreach}
   {/if}

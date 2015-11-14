@@ -160,4 +160,8 @@ class CareNotNeededException extends AccessDeniedException {
 class MountInBadConditionException extends AccessDeniedException {
   
 }
+
+class MountMaxTrainingLevelReachedException extends AccessDeniedException {
+  
+}
 ?>

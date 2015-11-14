@@ -69,5 +69,19 @@ class StablesPresenter extends BasePresenter {
     };
     return $form;
   }
+  
+  /**
+   * @param int $id
+   * @return void
+   */
+  function actionTrain($id) {
+    try {
+      $mount = $this->model->get($id);
+    } catch(MountNotFoundException $e) {
+      $this->forward("notfound");
+    }
+    if($mount->owner->id != $this->user->id) $this->forward("notfound");
+    $this->template->mountId = $id;
+  }
 }
 ?>
