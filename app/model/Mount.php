@@ -80,6 +80,8 @@ class Mount extends \Nette\Object {
     $mount->owner = 0;
     $mount->birth = time();
     $mount->onMarket = 1;
+    $mount->damage = $mount->type->damage;
+    $mount->armor = $mount->type->armor;
     $this->orm->mounts->persistAndFlush($mount);
   }
   

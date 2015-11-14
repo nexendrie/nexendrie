@@ -15,12 +15,12 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property bool $onMarket {default 0}
  * @property int $birth
  * @property int $hp {default 100}
+ * @property int $damage {default 0}
+ * @property int $armor {default 0}
  * @property OneHasMany|UserAdventure[] $adventures {1:m UserAdventure::$mount}
  * @property-read string $genderCZ {virtual}
  * @property-read string $priceT {virtual}
  * @property-read string $birthAt {virtual}
- * @property-read int $damage {virtual}
- * @property-read int $armor {virtual}
  */
 class Mount extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
@@ -60,14 +60,6 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   
   protected function getterBirthAt() {
     return $this->localeModel->formatDateTime($this->birth);
-  }
-  
-  protected function getterDamage() {
-    return $this->type->damage;
-  }
-  
-  protected function getterArmor() {
-    return $this->type->armor;
   }
   
   function dummy() {
