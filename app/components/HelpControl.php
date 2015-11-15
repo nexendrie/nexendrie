@@ -60,7 +60,10 @@ class HelpControl extends Book\BookControl {
    * @return void
    */
   function renderAcademy() {
-    $this->template->skills = $this->orm->skills->findAll();
+    $this->template->skills = $this->orm->skills->findAll()
+      ->orderBy("type")
+      ->orderBy("maxLevel")
+      ->orderBy("price");
   }
   
   /**
