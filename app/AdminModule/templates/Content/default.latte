@@ -11,5 +11,6 @@
     <li><a n:href="skills">Dovednosti</a></li>
     <li><a n:href="meals">Jídla</a></li>
     <li><a n:href="adventures">Dobrodružství</a></li>
+    {if $user->isAllowed("content","gift")}<li><a n:href="gift">Darovat věc/peníze</a></li>{/if}
   </ul>
 {/block}

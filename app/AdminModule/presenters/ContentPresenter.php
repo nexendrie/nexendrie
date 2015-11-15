@@ -1,6 +1,9 @@
 <?php
 namespace Nexendrie\Presenters\AdminModule;
 
+use Nexendrie\Forms\GiftFormFactory,
+    Nette\Application\UI\Form;
+
 /**
  * Presenter Content
  *
@@ -84,6 +87,28 @@ class ContentPresenter extends BasePresenter {
    */
   function renderAdventures() {
     $this->template->adventures = $this->adventureModel->listOfAdventures();
+  }
+  
+  /**
+   * @param int $id
+   * @return void
+   */
+  function actionGift($id = 0) {
+    $this->requiresPermissions("content", "gift");
+  }
+  
+  /**
+   * @param GiftFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentGiftForm(GiftFormFactory $factory) {
+    $form = $factory->create();
+    $user = $this->getParameter("id");
+    if($user > 0) $form["user"]->setDefaultValue($user);
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Odesláno.");
+    };
+    return $form;
   }
 }
 ?>
