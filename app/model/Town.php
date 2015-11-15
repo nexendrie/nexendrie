@@ -13,6 +13,8 @@ class Town extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  /** @var int */
+  protected $foundingPrice = 1000;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
@@ -207,6 +209,39 @@ class Town extends \Nette\Object {
     $user->lastTransfer = $user->lastActive = time();
     $this->orm->users->persistAndFlush($user);
   }
+  
+  /**
+   * Found new town
+   * 
+   * @param array $data
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws InsufficientLevelForFoundTownException
+   * @throws InsufficientFundsException
+   * @throws CannotFoundTownException
+   * @throws TownNameInUseException
+   */
+  function found(array $data) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->group->path != "tower") throw new InsufficientLevelForFoundTownException;
+    if($user->money < $this->foundingPrice) throw new InsufficientFundsException;
+    $item = $this->orm->userItems->getByUserAndItem($user->id, 15);
+    if(!$item) throw new CannotFoundTownException;
+    if($this->orm->towns->getByName($data["name"])) throw new TownNameInUseException;
+    $item->amount--;
+    if($item->amount < 1) {
+      $this->orm->userItems->removeAndFlush($item, false);
+    }
+    $town = new TownEntity;
+    $town->name = $data["name"];
+    $town->description = $data["description"];
+    $town->owner = $user;
+    $town->founded = time();
+    $town->owner->money -= $this->foundingPrice;
+    $town->price = $this->foundingPrice;
+    $this->orm->towns->persistAndFlush($town);
+  }
 }
 
 class TownNotFoundException extends RecordNotFoundException {
@@ -242,6 +277,18 @@ class CannotMoveToSameTown extends AccessDeniedException {
 }
 
 class CannotMoveToTown extends AccessDeniedException {
+  
+}
+
+class InsufficientLevelForFoundTownException extends AccessDeniedException {
+  
+}
+
+class CannotFoundTownException extends AccessDeniedException {
+  
+}
+
+class TownNameInUseException extends AccessDeniedException {
   
 }
 ?>

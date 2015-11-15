@@ -3,7 +3,9 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Model\TownNotFoundException,
     Nexendrie\Model\CannotMoveToSameTown,
-    Nexendrie\Model\CannotMoveToTown;
+    Nexendrie\Model\CannotMoveToTown,
+    Nexendrie\Forms\FoundTownFormFactory,
+    Nette\Application\UI\Form;
 
 /**
  * Presenter Town
@@ -17,6 +19,8 @@ class TownPresenter extends BasePresenter {
   protected $castleModel;
   /** @var \Nexendrie\Model\UserManager @autowire */
   protected $userManager;
+  /** @var \Nexendrie\Model\Profile @autowire */
+  protected $profileModel;
   
   /**
    * @return void
@@ -77,6 +81,30 @@ class TownPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš se přesunout do jiného města.");
       $this->redirect("Homepage:");
     }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionFound() {
+    $path = $this->profileModel->getPath();
+    if($path != "tower") {
+      $this->flashMessage("Jen šlechtici mohou zakládat města.");
+      $this->redirect("Homepage:");
+    }
+  }
+  
+  /**
+   * @param FoundTownFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentFoundTownForm(FoundTownFormFactory $factory) {
+    $form = $factory->create();
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Město založeno.");
+      $this->redirect("Homepage:");
+    };
+    return $form;
   }
 }
 ?>
