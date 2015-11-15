@@ -25,8 +25,7 @@ class AddEditTownFormFactory {
       ->setRequired("Zadej jméno.")
       ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 20 znaků.", 20);
     $form->addTextArea("description", "Popis:")
-      ->setRequired("Zadej popis.")
-      ->addRule(Form::MAX_LENGTH, "Popis může mít maximálně 40 znaků.", 40);
+      ->setRequired("Zadej popis.");
     $form->addSelect("owner", "Majitel:", $this->profileModel->getListOfLords())
       ->setRequired("Vyber majitele")
       ->setValue(0);
