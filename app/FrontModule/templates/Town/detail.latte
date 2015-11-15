@@ -3,7 +3,7 @@
 {block content}
   <h1>{$town->name}</h1>
   <p>{$town->description}</p>
-  <p>Městu v současnosti vládne {$town->owner->group->singleName} <a n:href="Profile: $town->owner->username">{$town->owner->publicname}</a>.</p>
+  <p>Město bylo založeno {$town->foundedAt}, v současnosti mu vládne {$town->owner->group->singleName} <a n:href="Profile: $town->owner->username">{$town->owner->publicname}</a>.</p>
   <h3>Obyvatelé města</h3>
   <p>
   {foreach $town->denizens as $denizen}
