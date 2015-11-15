@@ -40,7 +40,11 @@ class HelpControl extends Book\BookControl {
    */
   function renderWork() {
     $this->template->jobs = array();
-    $jobs = $this->orm->jobs->findAll();
+    $jobs = $this->orm->jobs->findAll()
+      ->orderBy("level")
+      ->orderBy("neededSkillLevel")
+      ->orderBy("count")
+      ->orderBy("award");
     foreach($jobs as $job) {
       $j = (object) array(
         "name" => $job->name, "skillName" => $job->neededSkill->name,
