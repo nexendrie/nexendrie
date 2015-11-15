@@ -7,7 +7,7 @@
   <p>
     Dále máš:<br>
     {foreach $items as $row}
-    {$row->amount}x {$row->item->name} za {$row->item->priceT} <a n:href="sell! $row->id">Prodat 1 kus</a><br>
+    {$row->amount}x {$row->item->name} za {$row->item->priceT} {if $row->item->type != "charter"}<a n:href="sell! $row->id">Prodat 1 kus</a>{/if}<br>
     {/foreach}
   </p>
   {/if}
