@@ -2,7 +2,6 @@
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Model\TownNotFoundException,
-    Nexendrie\Model\NotInMonasteryException,
     Nexendrie\Model\CannotMoveToSameTown,
     Nexendrie\Model\CannotMoveToTown;
 
