@@ -67,12 +67,26 @@ class Group extends \Nette\Object {
    * Get specified group
    * 
    * @param int $id Group's id
-   * @return \stdClass|bool
+   * @return GroupDummy|bool
    */
   function get($id) {
     $groups = $this->listOfGroups();
     $group = Arrays::get($groups, $id, false);
     return $group;
+  }
+  
+  /**
+   * Get group of specified level
+   * 
+   * @param int $level Group's level
+   * @return GroupDummy|bool
+   */
+  function getByLevel($level) {
+    $groups = $this->listOfGroups();
+    foreach($groups as $group) {
+      if($group->level === $level) return $group;
+    }
+    return false;
   }
   
   /**

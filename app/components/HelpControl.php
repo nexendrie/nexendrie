@@ -7,10 +7,13 @@ namespace Nexendrie\Components;
  * @author Jakub Konečný
  */
 class HelpControl extends Book\BookControl {
+  /** @var \Nexendrie\Model\Group */
+  protected $groupModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   
-  function __construct(\Nexendrie\Orm\Model $orm) {
+  function __construct(\Nexendrie\Model\Group $groupModel, \Nexendrie\Orm\Model $orm) {
+    $this->groupModel = $groupModel;
     $this->orm = $orm;
     parent::__construct(":Front:Help", "help");
   }
@@ -51,7 +54,7 @@ class HelpControl extends Book\BookControl {
         "skillLevel" => $job->neededSkillLevel, "count" => $job->count,
         "award" => $job->awardT, "shift" => $job->shift
       );
-      $j->rank = $this->orm->groups->getByLevel($job->level)->singleName;
+      $j->rank = $this->groupModel->getByLevel($job->level)->singleName;
       $this->template->jobs[] = $j;
     }
   }
