@@ -58,8 +58,7 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterUpgradePrice() {
-    if($this->level === 1) return self::BASE_UPGRADE_PRICE;
-    elseif($this->level === self::MAX_LEVEL) return 0;
+    if($this->level === self::MAX_LEVEL) return 0;
     $price = self::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->level + 1; $i++) {
       $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
