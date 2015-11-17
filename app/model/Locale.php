@@ -56,6 +56,9 @@ class Locale extends \Nette\Object implements \Nexendrie\ILocale {
    */
   function __construct(array $formats) {
     $this->formats = $formats;
+    $this->formats["plural"][1] = array_map(function($value) {
+      return (int) $value;
+    }, explode("-", $this->formats["plural"][1]));
   }
   
   /**
@@ -88,9 +91,7 @@ class Locale extends \Nette\Object implements \Nexendrie\ILocale {
    * @return string
    */
   function plural($word1, $word2, $word3, $count) {
-    $plural2 = array_map(function($value) {
-      return (int) $value;
-    }, explode("-", $this->formats["plural"][1]));
+    $plural2 = $this->formats["plural"][1];
     if($count === $this->formats["plural"][0]) return $word1;
     elseif($count >= $plural2[0] AND $count <= $plural2[1]) return $word2;
     else return $word3;
