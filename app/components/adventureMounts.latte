@@ -1,7 +1,7 @@
   <h1>Vybrat jezdecké zvíře</h1>
   <p>Vyber si jezdecké zvíře pro dobrodružství. Zvíře musí mít alespoň 30% života a každé dobrodružství jej sníží o 5%.</p>
   <p n:foreach="$mounts as $mount" class="mount">
-    {$mount->name}, {$mount->type->name}, stav {$mount->hp} % <a n:href="start! $adventure,$mount->id">Zvolit</a>
+    {$mount->name}, {$mount->typeGenderName}, stav {$mount->hp} % <a n:href="start! $adventure,$mount->id">Zvolit</a>
   </p>
   {if $mounts->count() === 0}
   <p class="noMountAvailable">

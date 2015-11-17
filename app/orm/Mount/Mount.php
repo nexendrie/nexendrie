@@ -29,6 +29,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read int $armorTrainingCost {virtual}
  * @property-read string $damageTrainingCostT {virtual}
  * @property-read string $armorTrainingCostT {virtual}
+ * @property-read string $typeGenderName {virtual}
  */
 class Mount extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
@@ -114,6 +115,10 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   
   protected function getterArmorTrainingCostT() {
     return $this->localeModel->money($this->armorTrainingCost);
+  }
+  
+  protected function getterTypeGenderName() {
+    return $this->type->{$this->gender . "Name"};
   }
   
   function dummy() {
