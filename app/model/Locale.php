@@ -31,6 +31,12 @@ interface ILocale {
    * @return string
    */
   function plural($word1, $word2, $word3, $count);
+  
+  /**
+   * @param int $amount
+   * @return string
+   */
+  function money($amount);
 }
 
 
