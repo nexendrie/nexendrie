@@ -11,6 +11,7 @@ exclude:
     - examples
     - deprecated
     - Requirements-Checker
+    - shortcuts.php
 accessLevels:
     - public
     - protected
