@@ -5,7 +5,7 @@
   {else}
   <p>"Vítejte v našem vyhlášeném hostinci. Mohu vám nábídnout:"</p>
   <ul n:inner-foreach="$meals as $meal">
-    <li>{$meal->name} za {$meal->priceT} <a n:href="eat! $meal->id">Objednat si</a></li>
+    <li>{$meal->name} za {$meal->priceT} <a n:href="eat! $meal->id">Objednat si</a> ({if $meal->life < 0}ubere{else}přidá{/if} {$meal->life} životů)</li>
   </ul>
   {default $message = false}
   {if $message}<p>{$message}</p>{/if}
