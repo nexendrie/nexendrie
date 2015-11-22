@@ -115,12 +115,12 @@ class Castle extends \Nette\Object {
    * 
    * @return void
    * @throws AuthenticationNeededException
-   * @throws CannotUpgradeCastle
+   * @throws CannotUpgradeCastleException
    * @throws InsufficientFundsException
    */
   function upgrade() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    elseif(!$this->canUpgrade()) throw new CannotUpgradeCastle;
+    elseif(!$this->canUpgrade()) throw new CannotUpgradeCastleException;
     $castle = $this->orm->castles->getByOwner($this->user->id);
     if($castle->owner->money < $castle->upgradePrice) throw new InsufficientFundsException;
     $castle->owner->money -= $castle->upgradePrice;
@@ -145,7 +145,7 @@ class CastleNameInUseException extends \RuntimeException {
   
 }
 
-class CannotUpgradeCastle extends AccessDeniedException {
+class CannotUpgradeCastleException extends AccessDeniedException {
   
 }
 ?>

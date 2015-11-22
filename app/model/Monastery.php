@@ -94,7 +94,7 @@ class Monastery extends \Nette\Object {
    * @throws AuthenticationNeededException
    * @throws CannotJoinMonasteryException
    * @throws MonasteryNotFoundException
-   * @throws CannotJoinOwnMonastery
+   * @throws CannotJoinOwnMonasteryException
    */
   function join($id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
@@ -105,7 +105,7 @@ class Monastery extends \Nette\Object {
       throw $e;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monastery->id === $monastery->id) throw new CannotJoinOwnMonastery;
+    if($user->monastery->id === $monastery->id) throw new CannotJoinOwnMonasteryException;
     $user->lastTransfer = $user->lastActive = time();
     $user->monastery = $monastery;
     if($user->group->path != "church") $user->group = $this->orm->groups->getByLevel(55);
@@ -389,7 +389,7 @@ class MonasteryNameInUseException extends \RuntimeException {
   
 }
 
-class CannotJoinOwnMonastery extends AccessDeniedException {
+class CannotJoinOwnMonasteryException extends AccessDeniedException {
   
 }
 

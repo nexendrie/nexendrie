@@ -2,8 +2,8 @@
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Model\TownNotFoundException,
-    Nexendrie\Model\CannotMoveToSameTown,
-    Nexendrie\Model\CannotMoveToTown,
+    Nexendrie\Model\CannotMoveToSameTownException,
+    Nexendrie\Model\CannotMoveToTownException,
     Nexendrie\Forms\FoundTownFormFactory,
     Nette\Application\UI\Form;
 
@@ -74,10 +74,10 @@ class TownPresenter extends BasePresenter {
     } catch(TownNotFoundException $e) {
       $this->flashMessage("Město nebylo nalezeno.");
       $this->redirect("Homepage:");
-    } catch(CannotMoveToSameTown $e) {
+    } catch(CannotMoveToSameTownException $e) {
       $this->flashMessage("V tomto městě již žiješ.");
       $this->redirect("Homepage:");
-    } catch(CannotMoveToTown $e) {
+    } catch(CannotMoveToTownException $e) {
       $this->flashMessage("Nemůžeš se přesunout do jiného města.");
       $this->redirect("Homepage:");
     }

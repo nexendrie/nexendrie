@@ -10,7 +10,7 @@ use Nexendrie\Model\MonasteryNotFoundException,
     Nette\Application\UI\Form,
     Nexendrie\Forms\MonasteryDonateFormFactory,
     Nexendrie\Forms\ManageMonasteryFormFactory,
-    Nexendrie\Model\CannotJoinOwnMonastery,
+    Nexendrie\Model\CannotJoinOwnMonasteryException,
     Nexendrie\Model\CannotUpgradeMonasteryException,
     Nexendrie\Model\InsufficientFundsException;
 
@@ -109,7 +109,7 @@ class MonasteryPresenter extends BasePresenter {
       $this->redirect("Homepage:");
     } catch(MonasteryNotFoundException $e) {
       $this->forward("notfound");
-    } catch(CannotJoinOwnMonastery $e) {
+    } catch(CannotJoinOwnMonasteryException $e) {
       $this->flashMessage("Už jsi v tomto klášteře.");
       $this->redirect("Homepage:");
     }

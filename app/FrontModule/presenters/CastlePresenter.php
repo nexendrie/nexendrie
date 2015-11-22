@@ -4,7 +4,7 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nexendrie\Model\CastleNotFoundException,
     Nexendrie\Forms\BuildCastleFormFactory,
     Nette\Application\UI\Form,
-    Nexendrie\Model\CannotUpgradeCastle;
+    Nexendrie\Model\CannotUpgradeCastleException;
 
 /**
  * Presenter Castle
@@ -92,7 +92,7 @@ class CastlePresenter extends BasePresenter {
       $this->model->upgrade();
       $this->flashMessage("Hrad vylepšen.");
       $this->redirect("default");
-    } catch(CannotUpgradeCastle $e) {
+    } catch(CannotUpgradeCastleException $e) {
       $this->flashMessage("Nemůžeš vylepšit hrad.");
       $this->redirect("Homepage:");
     } catch(InsufficientFundsException $e) {

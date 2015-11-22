@@ -195,16 +195,16 @@ class Town extends \Nette\Object {
    * @return void
    * @throws AuthenticationNeededException
    * @throws TownNotFoundException
-   * @throws CannotMoveToSameTown
-   * @throws CannotMoveToTown
+   * @throws CannotMoveToSameTownException
+   * @throws CannotMoveToTownException
    */
   function moveToTown($id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $town = $this->orm->towns->getById($id);
     if(!$town) throw new TownNotFoundException;
     $user = $this->orm->users->getById($this->user->id);
-    if($id === $user->town->id) throw new CannotMoveToSameTown;
-    elseif(!$this->canMove()) throw new CannotMoveToTown;
+    if($id === $user->town->id) throw new CannotMoveToSameTownException;
+    elseif(!$this->canMove()) throw new CannotMoveToTownException;
     $this->user->identity->town = $user->town = $id;
     $user->lastTransfer = $user->lastActive = time();
     $this->orm->users->persistAndFlush($user);
@@ -272,11 +272,11 @@ class UserDoesNotLiveInTheTownException extends AccessDeniedException {
   
 }
 
-class CannotMoveToSameTown extends AccessDeniedException {
+class CannotMoveToSameTownException extends AccessDeniedException {
   
 }
 
-class CannotMoveToTown extends AccessDeniedException {
+class CannotMoveToTownException extends AccessDeniedException {
   
 }
 
