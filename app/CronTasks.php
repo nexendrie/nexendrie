@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie;
 
+use Nexendrie\Orm\Mount;
+
 /**
  * Cron Tasks
  *
@@ -28,12 +30,20 @@ class CronTasks {
    * @cronner-time 01:00 - 02:00
    */
   function mountsStatus() {
+    $twoMonths = 60 * 60 * 24 * 30 * 2;
     echo "Starting mounts status update ...\n";
     $mounts = $this->orm->mounts->findOwnedMounts();
     foreach($mounts as $mount) {
       $mount->hp -= 5;
+      echo "Decreasing (#$mount->id) $mount->name's life by 5.";
+      if($mount->gender === Mount::GENDER_YOUNG AND $mount->birth + $twoMonths < time()) {
+        echo "The mount is too old. It becomes adult.";
+        $roll = mt_rand(0, 1);
+        if($roll === 0) $mount->gender = Mount::GENDER_MALE;
+        else $mount->gender = Mount::GENDER_FEMALE;
+      }
       $this->orm->mounts->persist($mount);
-      echo "Decreasing (#$mount->id) $mount->name's life by 5.\n";
+      echo "\n";
     }
     $this->orm->flush();
     echo "Finished mounts status update ...\n";
