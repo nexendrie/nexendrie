@@ -27,7 +27,11 @@ class TavernControl extends \Nette\Application\UI\Control {
   function render() {
     $template = $this->template;
     $template->setFile(__DIR__ . "/tavern.latte");
-    if($this->user->isLoggedIn()) $template->meals = $this->model->listOfMeals();
+    if($this->user->isLoggedIn()) {
+      $template->meals = $this->model->listOfMeals()
+        ->orderBy("life")
+        ->orderBy("price");
+    }
     $template->render();
   }
   
