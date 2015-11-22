@@ -141,7 +141,7 @@ class CannotBuildMoreCastlesException extends AccessDeniedException {
   
 }
 
-class CastleNameInUseException extends \RuntimeException {
+class CastleNameInUseException extends NameInUseException {
   
 }
 

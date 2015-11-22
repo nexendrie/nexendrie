@@ -370,7 +370,7 @@ class AlreadyOnAdventureException extends AccessDeniedException {
   
 }
 
-class InsufficientLevelForAdventureException extends AccessDeniedException {
+class InsufficientLevelForAdventureException extends InsufficientLevelException {
   
 }
 

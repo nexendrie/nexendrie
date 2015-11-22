@@ -141,7 +141,7 @@ class MountNotOnSaleException extends AccessDeniedException {
   
 }
 
-class InsufficientLevelForMountException extends AccessDeniedException {
+class InsufficientLevelForMountException extends InsufficientLevelException {
   
 }
 

@@ -385,7 +385,7 @@ class CannotBuildMonasteryException extends AccessDeniedException {
   
 }
 
-class MonasteryNameInUseException extends \RuntimeException {
+class MonasteryNameInUseException extends NameInUseException {
   
 }
 

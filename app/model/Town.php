@@ -280,7 +280,7 @@ class CannotMoveToTownException extends AccessDeniedException {
   
 }
 
-class InsufficientLevelForFoundTownException extends AccessDeniedException {
+class InsufficientLevelForFoundTownException extends InsufficientLevelException {
   
 }
 
@@ -288,7 +288,7 @@ class CannotFoundTownException extends AccessDeniedException {
   
 }
 
-class TownNameInUseException extends AccessDeniedException {
+class TownNameInUseException extends NameInUseException {
   
 }
 ?>

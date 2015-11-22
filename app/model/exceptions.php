@@ -24,4 +24,12 @@ class ImprisonedException extends AccessDeniedException {
 class InsufficientFundsException extends AccessDeniedException {
   
 }
+
+class NameInUseException extends \RuntimeException {
+  
+}
+
+class InsufficientLevelException extends AccessDeniedException {
+  
+}
 ?>

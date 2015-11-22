@@ -387,7 +387,7 @@ class AlreadyWorkingException extends AccessDeniedException {
   
 }
 
-class InsufficientLevelForJobException extends AccessDeniedException {
+class InsufficientLevelForJobException extends InsufficientLevelException {
   
 }
 
