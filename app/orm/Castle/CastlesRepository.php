@@ -8,6 +8,13 @@ namespace Nexendrie\Orm;
  * @method Castle|NULL getByName($name)
  */
 class CastlesRepository extends \Nextras\Orm\Repository\Repository {
-  
+  /**
+   * Get castles owned by users
+   * 
+   * @return ICollection|Castle[]
+   */
+  function findOwnedCastles() {
+    return $this->findBy(array("this->owner->id>" => 0));
+  }
 }
 ?>

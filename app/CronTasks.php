@@ -120,5 +120,27 @@ class CronTasks {
     $this->orm->flush();
     echo "Finished monasteries status update ...\n";
   }
+  
+  /**
+   * Castles status update
+   * 
+   * @author Jakub Konečný
+   * @return void
+   * 
+   * @cronner-task Castles status update
+   * @cronner-period 1 week
+   * @cronner-time 01:00 - 02:00
+   */
+  function castlesStatus() {
+    echo "Starting castles status update ...\n";
+    $castles = $this->orm->castles->findOwnedCastles();
+    foreach($castles as $castle) {
+      $castle->hp -= 3;
+      $this->orm->castles->persist($castle);
+      echo "Decreasing (#$castle->id) $castle->name's life by 3.\n";
+    }
+    $this->orm->flush();
+    echo "Finished castles status update ...\n";
+  }
 }
 ?>
