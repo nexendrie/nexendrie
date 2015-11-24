@@ -13,7 +13,7 @@ class RssResponse extends \Nette\Object implements \Nette\Application\IResponse 
   private $source;
   
   /**
-   * @param string $source
+   * @param \SimpleXMLElement $source
    */
   function __construct(\SimpleXMLElement $source) {
    $this->source = $source;
