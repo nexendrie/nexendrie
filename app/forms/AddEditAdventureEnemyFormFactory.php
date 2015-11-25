@@ -32,7 +32,7 @@ class AddEditAdventureEnemyFormFactory {
     $form->addText("armor", "Brnění:")
       ->setRequired("Zadej brnění.")
       ->addRule(Form::INTEGER, "Brnění musí být celé číslo.")
-      ->addRule(Form::RANGE, "Brnění musí být v rozmezí 1-99.", array(0, 99));
+      ->addRule(Form::RANGE, "Brnění musí být v rozmezí 0-99.", array(0, 99));
     $form->addText("reward", "Odměna:")
       ->setRequired("Zadej odměnu.")
       ->addRule(Form::INTEGER, "Odměna musí být celé číslo.")
