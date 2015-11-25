@@ -180,7 +180,7 @@ class Inventory extends \Nette\Object {
     elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
     elseif($item->item->type === "charter") throw new ItemNotForSaleException;
     $item->amount -= 1;
-    $item->user->money += (int) ($item->item->price / 2);
+    $item->user->money += (int) ($item->price / 2);
     if($item->amount > 0) {
       $this->orm->userItems->persistAndFlush($item);
     } else {
