@@ -3,7 +3,8 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
     Nexendrie\Orm\UserItem as UserItemEntity,
-    Nexendrie\Orm\Message as MessageEntity;
+    Nexendrie\Orm\Message as MessageEntity,
+    Nexendrie\Orm\Item as ItemEntity;
 
 /**
  * Factory for form Gift
@@ -117,7 +118,7 @@ class GiftFormFactory {
     if($values["item"]) {
       $item = $this->orm->items->getById($values["item"]);
       $row = $this->orm->userItems->getByUserAndItem($user->id, $item->id);
-      if($row) {
+      if($row AND !in_array($item->type, ItemEntity::getEquipmentTypes())) {
         $row->amount++;
       } else {
         $row = new UserItemEntity;
