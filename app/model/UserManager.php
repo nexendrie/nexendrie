@@ -13,8 +13,6 @@ use Nette\Security as NS,
 class UserManager extends \Nette\Object implements NS\IAuthenticator {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
-  /** @var \Nette\Caching\Cache */
-  protected $cache;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var array */
@@ -30,11 +28,9 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    * @param array $roles
    * @param array $newUser
    * @param \Nexendrie\Orm\Model $orm
-   * @param \Nette\Caching\Cache $cache
    */
-  function __construct(array $roles, array $newUser, \Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache) {
+  function __construct(array $roles, array $newUser, \Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
-    $this->cache = $cache;
     $this->roles = $roles;
     $this->newUser = $newUser;
   }
@@ -140,7 +136,6 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     $user->joined = $user->lastActive = time();
     $user->group = $this->roles["loggedInRole"];
     $this->orm->users->persistAndFlush($user);
-    $this->cache->remove("users_names");
   }
   
   /**
@@ -188,7 +183,6 @@ case "password_new":
       if(!in_array($key, $skip)) $user->$key = $value;
     }
     $this->orm->users->persistAndFlush($user);
-    $this->cache->remove("users_names");
   }
   
   /**
