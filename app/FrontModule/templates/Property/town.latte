@@ -6,6 +6,8 @@
   <h3>Jmenovat rycháře</h3>
   <p><b>Současný rychtář:</b> {if $mayor}<a n:href="Profile:default $mayor->username">{$mayor->publicname}</a>{else}nikdo{/if}</p>
   {control appointMayorForm}
+  <h3>Povýšit na měšťana</h3>
+  {control makeCitizenForm}
   <h3>Obyvatelé:</h3>
   <p>
     {foreach $town->denizens as $denizen}

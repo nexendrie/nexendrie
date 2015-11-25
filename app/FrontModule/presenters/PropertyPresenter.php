@@ -16,7 +16,8 @@ use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\ItemNotForSaleException,
     Nexendrie\Model\ItemNotUpgradableException,
     Nexendrie\Model\ItemMaxLevelReachedException,
-    Nexendrie\Model\InsufficientFundsException;
+    Nexendrie\Model\InsufficientFundsException,
+    Nexendrie\Forms\MakeCitizenFormFactory;
 
 /**
  * Presenter Property
@@ -229,6 +230,18 @@ class PropertyPresenter extends BasePresenter {
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nemáš dostatek peněz.");
     }
+  }
+  
+  /**
+   * @param MakeCitizenFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentMakeCitizenForm(MakeCitizenFormFactory $factory) {
+    $form = $factory->create($this->getParameter("id"));
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Provedeno.");
+    };
+    return $form;
   }
 }
 ?>

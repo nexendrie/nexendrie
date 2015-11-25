@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Town as TownEntity;
+use Nexendrie\Orm\Town as TownEntity,
+    Nexendrie\Orm\Message as MessageEntity;
 
 /**
  * Town Model
@@ -242,6 +243,44 @@ class Town extends \Nette\Object {
     $town->price = $this->foundingPrice;
     $this->orm->towns->persistAndFlush($town);
   }
+  
+  /**
+   * Get peasants from specified town
+   * 
+   * @param int $town
+   * @return string[] id => publicname
+   */
+  function getTownPeasants($town) {
+    return $this->orm->users->findTownPeasants($town)
+      ->fetchPairs("id", "publicname");
+  }
+  
+  /**
+   * Promote a peasant to citizen
+   * 
+   * @param int $id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws UserNotFoundException
+   * @throws UserDoesNotLiveInTheTownException
+   * @throws TooHighLevelException
+   */
+  function makeCitizen($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $citizen = $this->orm->users->getById($id);
+    if(!$citizen) throw new UserNotFoundException;
+    $owner = $this->orm->users->getById($this->user->id);
+    if($citizen->town->owner->id != $owner->id) throw new UserDoesNotLiveInTheTownException;
+    elseif($citizen->group->level > 50) throw new TooHighLevelException;
+    $citizen->group = $this->orm->groups->getByLevel(100);
+    $message = new MessageEntity;
+    $message->from = $owner;
+    $message->to = $citizen;
+    $message->sent = time();
+    $message->subject = "Povýšení";
+    $message->text = "Byl jsi povýšen na měšťana.";
+    $this->orm->users->persistAndFlush($citizen);
+  }
 }
 
 class TownNotFoundException extends RecordNotFoundException {
@@ -289,6 +328,10 @@ class CannotFoundTownException extends AccessDeniedException {
 }
 
 class TownNameInUseException extends NameInUseException {
+  
+}
+
+class TooHighLevelException extends AccessDeniedException {
   
 }
 ?>

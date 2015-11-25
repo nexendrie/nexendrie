@@ -35,5 +35,18 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
       "this->group->level" => array(100, 300)
     ));
   }
+  
+  /**
+   * Get peasants from specified town
+   * 
+   * @param int $town
+   * @return ICollection|User[]
+   */
+  function findTownPeasants($town) {
+    return $this->findBy(array(
+      "town" => $town,
+      "this->group->level" => array(50)
+    ));
+  }
 }
 ?>
