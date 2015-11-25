@@ -189,6 +189,31 @@ class Inventory extends \Nette\Object {
       $this->orm->flush();
     }
   }
+  
+  /**
+   * Upgrade an item
+   * 
+   * @param int $id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws ItemNotFoundException
+   * @throws ItemNotOwnedException
+   * @throws ItemNotUpgradableException
+   * @throws ItemMaxLevelReachedException
+   * @throws InsufficientFundsException
+   */
+  function upgradeItem($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $item = $this->orm->userItems->getById($id);
+    if(!$item) throw new ItemNotFoundException;
+    elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
+    elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes())) throw new ItemNotUpgradableException;
+    elseif($item->level >= $item->maxLevel) throw new ItemMaxLevelReachedException;
+    elseif($item->user->money < $item->upgradePrice) throw new InsufficientFundsException;
+    $item->user->money -= $item->upgradePrice;
+    $item->level++;
+    $this->orm->userItems->persistAndFlush($item);
+  }
 }
 
 class ItemNotOwnedException extends AccessDeniedException {
@@ -217,5 +242,13 @@ class HealingNotNeeded extends AccessDeniedException {
 
 class ItemNotForSaleException extends AccessDeniedException {
 
+}
+
+class ItemNotUpgradableException extends AccessDeniedException {
+  
+}
+
+class ItemMaxLevelReachedException extends AccessDeniedException {
+  
 }
 ?>
