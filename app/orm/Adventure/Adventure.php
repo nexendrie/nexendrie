@@ -14,7 +14,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $reward
  * @property int $level {default 55}
  * @property-read string $rewardT {virtual}
- * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure}
+ * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure order:order}
  * @property OneHasMany|UserAdventure[] $userAdventures {1:m UserAdventure::$adventure}
  */
 class Adventure extends \Nextras\Orm\Entity\Entity {
