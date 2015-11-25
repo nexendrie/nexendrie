@@ -178,11 +178,11 @@ class PropertyPresenter extends BasePresenter {
    * @param int $potion
    * @return void
    */
-   function handleDrink($potion) {
-     try {
-       $life = $this->inventoryModel->drinkPotion($potion);
-       $this->flashMessage("Doplnil sis $life životů.");
-     } catch(ItemNotFoundException $e) {
+  function handleDrink($potion) {
+    try {
+      $life = $this->inventoryModel->drinkPotion($potion);
+      $this->flashMessage("Doplnil sis $life životů.");
+    } catch(ItemNotFoundException $e) {
       $this->flashMessage("Věc nenalezena.");
     } catch(ItemNotOwnedException $e) {
       $this->flashMessage("Zadaná věc ti nepatří.");
@@ -191,44 +191,44 @@ class PropertyPresenter extends BasePresenter {
     } catch(HealingNotNeeded $e) {
       $this->flashMessage("Nepotřebuješ léčení.");
     }
-   }
-   
+  }
+  
   /**
    * @param int $item
    * @return void
    */
-   function handleSell($item) {
-     try {
-       $this->inventoryModel->sellItem($item);
-       $this->flashMessage("Věc prodána.");
-     } catch(ItemNotFoundException $e) {
+  function handleSell($item) {
+    try {
+      $this->inventoryModel->sellItem($item);
+      $this->flashMessage("Věc prodána.");
+    } catch(ItemNotFoundException $e) {
       $this->flashMessage("Věc nenalezena.");
     } catch(ItemNotOwnedException $e) {
       $this->flashMessage("Zadaná věc ti nepatří.");
     } catch(ItemNotForSaleException $e) {
       $this->flashMessage("Zadanou věc nelze prodat.");
     }
-   }
-   
-   /**
-    * @param int $item
-    * @return void
-    */
-   function handleUpgrade($item) {
-     try {
-       $this->inventoryModel->upgradeItem($item);
-       $this->flashMessage("Zadanou věc vylepšena.");
-     } catch(ItemNotFoundException $e) {
-       $this->flashMessage("Věc nenalezena.");
-     } catch(ItemNotOwnedException $e) {
-       $this->flashMessage("Zadaná věc ti nepatří.");
-     } catch(ItemNotUpgradableException $e) {
-       $this->flashMessage("Zadanou věc nelze vylepšit.");
-     } catch(ItemMaxLevelReachedException $e) {
-       $this->flashMessage("Zadanou věc už nelze vylepšit.");
-     } catch(InsufficientFundsException $e) {
-       $this->flashMessage("Nemáš dostatek peněz.");
+  }
+  
+  /**
+   * @param int $item
+   * @return void
+   */
+  function handleUpgrade($item) {
+    try {
+      $this->inventoryModel->upgradeItem($item);
+      $this->flashMessage("Zadanou věc vylepšena.");
+    } catch(ItemNotFoundException $e) {
+      $this->flashMessage("Věc nenalezena.");
+    } catch(ItemNotOwnedException $e) {
+      $this->flashMessage("Zadaná věc ti nepatří.");
+    } catch(ItemNotUpgradableException $e) {
+      $this->flashMessage("Zadanou věc nelze vylepšit.");
+    } catch(ItemMaxLevelReachedException $e) {
+      $this->flashMessage("Zadanou věc už nelze vylepšit.");
+    } catch(InsufficientFundsException $e) {
+      $this->flashMessage("Nemáš dostatek peněz.");
     }
-   }
+  }
 }
 ?>
