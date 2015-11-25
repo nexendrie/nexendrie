@@ -145,21 +145,21 @@ class Inventory extends \Nette\Object {
   
   /**
    * @param int $user
-   * @return ItemEntity|NULL
+   * @return UserItemEntity|NULL
    */
   function getWeapon($user) {
     $weapon = $this->orm->userItems->getWornWeapon($user);
-    if($weapon) return $weapon->item;
+    if($weapon) return $weapon;
     else return NULL;
   }
   
   /**
    * @param int $user
-   * @return ItemEntity|NULL
+   * @return UserItemEntity|NULL
    */
   function getArmor($user) {
     $armor = $this->orm->userItems->getWornArmor($user);
-    if($armor) return $armor->item;
+    if($armor) return $armor;
     else return NULL;
   }
   
