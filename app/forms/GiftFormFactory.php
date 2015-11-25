@@ -93,7 +93,7 @@ class GiftFormFactory {
     $message = "Dostal jsi ";
     if($money > 0) $message .= $this->localeModel->money($money);
     if($money > 0 AND strlen($item) > 0) $message .= " a ";
-    if(strlen($item) > 0) $message .= " $item";
+    if(strlen($item) > 0) $message .= $item;
     $message .= ".";
     return $message;
   }
