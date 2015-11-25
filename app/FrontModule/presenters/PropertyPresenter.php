@@ -13,7 +13,10 @@ use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\ItemNotDrinkableException,
     Nexendrie\Model\HealingNotNeeded,
     Nexendrie\Forms\AppointMayorFormFactory,
-    Nexendrie\Model\ItemNotForSaleException;
+    Nexendrie\Model\ItemNotForSaleException,
+    Nexendrie\Model\ItemNotUpgradableException,
+    Nexendrie\Model\ItemMaxLevelReachedException,
+    Nexendrie\Model\InsufficientFundsException;
 
 /**
  * Presenter Property
@@ -204,6 +207,27 @@ class PropertyPresenter extends BasePresenter {
       $this->flashMessage("Zadaná věc ti nepatří.");
     } catch(ItemNotForSaleException $e) {
       $this->flashMessage("Zadanou věc nelze prodat.");
+    }
+   }
+   
+   /**
+    * @param int $item
+    * @return void
+    */
+   function handleUpgrade($item) {
+     try {
+       $this->inventoryModel->upgradeItem($item);
+       $this->flashMessage("Zadanou věc vylepšena.");
+     } catch(ItemNotFoundException $e) {
+       $this->flashMessage("Věc nenalezena.");
+     } catch(ItemNotOwnedException $e) {
+       $this->flashMessage("Zadaná věc ti nepatří.");
+     } catch(ItemNotUpgradableException $e) {
+       $this->flashMessage("Zadanou věc nelze vylepšit.");
+     } catch(ItemMaxLevelReachedException $e) {
+       $this->flashMessage("Zadanou věc už nelze vylepšit.");
+     } catch(InsufficientFundsException $e) {
+       $this->flashMessage("Nemáš dostatek peněz.");
     }
    }
 }

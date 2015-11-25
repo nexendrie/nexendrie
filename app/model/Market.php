@@ -154,7 +154,7 @@ class Market extends \Nette\Object {
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < $itemRow->price) throw new InsufficientFundsException;
     $row = $this->orm->userItems->getByUserAndItem($user->id, $item);
-    if(!$row) {
+    if(!$row OR in_array($itemRow->type, ItemEntity::getEquipmentTypes())) {
       $row = new UserItemEntity;
       $row->user = $user;
       $row->item = $item;

@@ -145,21 +145,21 @@ class Inventory extends \Nette\Object {
   
   /**
    * @param int $user
-   * @return ItemEntity|NULL
+   * @return UserItemEntity|NULL
    */
   function getWeapon($user) {
     $weapon = $this->orm->userItems->getWornWeapon($user);
-    if($weapon) return $weapon->item;
+    if($weapon) return $weapon;
     else return NULL;
   }
   
   /**
    * @param int $user
-   * @return ItemEntity|NULL
+   * @return UserItemEntity|NULL
    */
   function getArmor($user) {
     $armor = $this->orm->userItems->getWornArmor($user);
-    if($armor) return $armor->item;
+    if($armor) return $armor;
     else return NULL;
   }
   
@@ -180,7 +180,7 @@ class Inventory extends \Nette\Object {
     elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
     elseif($item->item->type === "charter") throw new ItemNotForSaleException;
     $item->amount -= 1;
-    $item->user->money += (int) ($item->item->price / 2);
+    $item->user->money += (int) ($item->price / 2);
     if($item->amount > 0) {
       $this->orm->userItems->persistAndFlush($item);
     } else {
@@ -188,6 +188,31 @@ class Inventory extends \Nette\Object {
       $this->orm->userItems->remove($item);
       $this->orm->flush();
     }
+  }
+  
+  /**
+   * Upgrade an item
+   * 
+   * @param int $id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws ItemNotFoundException
+   * @throws ItemNotOwnedException
+   * @throws ItemNotUpgradableException
+   * @throws ItemMaxLevelReachedException
+   * @throws InsufficientFundsException
+   */
+  function upgradeItem($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $item = $this->orm->userItems->getById($id);
+    if(!$item) throw new ItemNotFoundException;
+    elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
+    elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes())) throw new ItemNotUpgradableException;
+    elseif($item->level >= $item->maxLevel) throw new ItemMaxLevelReachedException;
+    elseif($item->user->money < $item->upgradePrice) throw new InsufficientFundsException;
+    $item->user->money -= $item->upgradePrice;
+    $item->level++;
+    $this->orm->userItems->persistAndFlush($item);
   }
 }
 
@@ -217,5 +242,13 @@ class HealingNotNeeded extends AccessDeniedException {
 
 class ItemNotForSaleException extends AccessDeniedException {
 
+}
+
+class ItemNotUpgradableException extends AccessDeniedException {
+  
+}
+
+class ItemMaxLevelReachedException extends AccessDeniedException {
+  
 }
 ?>
