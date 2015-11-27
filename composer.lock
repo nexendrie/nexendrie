@@ -956,16 +956,16 @@
         },
         {
             "name": "nextras/dbal",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/dbal.git",
-                "reference": "232c09f3883eb4dc7468283df35b0713d5f92b08"
+                "reference": "23b5a56a952f8e003f6916c503b59507aab206e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/dbal/zipball/232c09f3883eb4dc7468283df35b0713d5f92b08",
-                "reference": "232c09f3883eb4dc7468283df35b0713d5f92b08",
+                "url": "https://api.github.com/repos/nextras/dbal/zipball/23b5a56a952f8e003f6916c503b59507aab206e6",
+                "reference": "23b5a56a952f8e003f6916c503b59507aab206e6",
                 "shasum": ""
             },
             "require": {
@@ -1008,7 +1008,7 @@
                 "dbal",
                 "nextras"
             ],
-            "time": "2015-09-27 15:10:10"
+            "time": "2015-09-27 15:07:11"
         },
         {
             "name": "nextras/orm",
