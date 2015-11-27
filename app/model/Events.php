@@ -9,7 +9,7 @@ use Nexendrie\Orm\Event,
  *
  * @author Jakub Konečný
  */
-class Events extends \Nette\Object {
+class Events extends \Nette\Object implements \EventCalendar\IEventModel {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Caching\Cache */
@@ -18,12 +18,17 @@ class Events extends \Nette\Object {
   protected $user;
   /** @var \Nexendrie\Model\SettingsRepository */
   protected $sr;
+  /** @var \Nette\Application\LinkGenerator */
+  protected $lg;
+  /** @var Event[] */
+  private $events;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, \Nette\Security\User $user, \Nexendrie\Model\SettingsRepository $sr) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, \Nette\Security\User $user, SettingsRepository $sr, \Nette\Application\LinkGenerator $lg) {
     $this->orm = $orm;
     $this->cache = $cache;
     $this->user = $user;
     $this->sr = $sr;
+    $this->lg = $lg;
   }
   
   /**
@@ -100,6 +105,50 @@ class Events extends \Nette\Object {
     if(!$event) throw new EventNotFoundException;
     elseif($event->start < time()) throw new CannotDeleteStartedEventException;
     else $this->orm->events->removeAndFlush($event);
+  }
+  
+  /**
+   * Load events from a month
+   * 
+   * @param int $year
+   * @param int $month
+   * @return void
+   */
+  function loadEvents($year = 0, $month = 0) {
+    $this->events = $this->orm->events->findFromMonth($year, $month);
+  }
+  
+  /**
+   * @param int $year
+   * @param int $month
+   * @param int $day
+   * @return Event[]
+   */
+  function getForDate($year, $month, $day) {
+    if($this->events === NULL) $this->loadEvents($year, $month);
+    $events = array();
+    foreach($this->events as $event) {
+      $startTS = mktime(0, 0, 0, $month, $day, $year);
+      $date = new \DateTime;
+      $date->setTimestamp($startTS);
+      $date->modify("+1 day");
+      $date->modify("-1 second");
+      if($event->start <= $date->getTimestamp() AND $event->end >= $startTS) {
+        $link = $this->lg->link("Front:Event:view", array("id" => $event->id));
+        $events[] = "<a href=\"$link\" title=\"$event->description\">$event->name</a>";
+      }
+    }
+    return $events;
+  }
+  
+  /**
+   * @param int $year
+   * @param int $month
+   * @param int $day
+   * @return bool
+   */
+  function isForDate($year, $month, $day) {
+    return (bool) count($this->getForDate($year, $month, $day));
   }
 }
 

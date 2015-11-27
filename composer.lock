@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cdd7600f2f18e824fce7f140c8a54922",
-    "content-hash": "e6d562b9e9c69c3776f692214aafaaf3",
+    "hash": "65ad59adf868157929024f2581b99d57",
+    "content-hash": "93a7ff405425111cc694c55ef9c2d2a4",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -88,6 +88,56 @@
                 "nette"
             ],
             "time": "2015-05-09 21:01:17"
+        },
+        {
+            "name": "konecnyjakub/event-calendar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/konecnyjakub/EventCalendar.git",
+                "reference": "2c25fa32bbffcac99bcd9e0d4bb91ba1c3801925"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/2c25fa32bbffcac99bcd9e0d4bb91ba1c3801925",
+                "reference": "2c25fa32bbffcac99bcd9e0d4bb91ba1c3801925",
+                "shasum": ""
+            },
+            "require": {
+                "latte/latte": "~2.3",
+                "nette/application": "~2.3",
+                "nette/utils": "~2.3",
+                "php": ">= 5.3.0"
+            },
+            "replace": {
+                "jaroslav-kubicek/event-calendar": "~0.2"
+            },
+            "require-dev": {
+                "apigen/apigen": "2.8.0",
+                "nette/tester": "@dev"
+            },
+            "suggest": {
+                "dg/texy": ">= v2.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "EventCalendar\\": "/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jaroslav Kubíček",
+                    "homepage": "http://www.nimral.cz"
+                }
+            ],
+            "description": "Plugin for Nette based web applications for creating calendar with custom events",
+            "homepage": "http://www.nimral.cz/calendar",
+            "time": "2015-11-27 10:46:21"
         },
         {
             "name": "latte/latte",
@@ -1239,7 +1289,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "stekycz/cronner": 20
+        "stekycz/cronner": 20,
+        "konecnyjakub/event-calendar": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

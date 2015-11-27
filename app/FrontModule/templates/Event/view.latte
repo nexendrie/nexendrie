@@ -1,0 +1,8 @@
+{layout "../@layout.latte"}
+{block title}Akce{/block}
+{block content}
+  <h1>{$event->name}</h1>
+  <p>Od {$event->startAt} do {$event->endAt}
+    (Akce {if $status === "active"}probíhá{elseif $status === "future"}brzy začne{elseif $status === "past"}už skončila{/if})</p>
+  <p>{$event->description}</p>
+{/block}
