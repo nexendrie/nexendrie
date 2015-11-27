@@ -2,7 +2,9 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Event,
-    Nette\Utils\DateTime;
+    Nette\Utils\DateTime,
+    Nette\Caching\Cache,
+    Nexendrie\Orm\EventDummy;
 
 /**
  * Events Model
@@ -23,7 +25,7 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
   /** @var Event[] */
   private $events;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Caching\Cache $cache, \Nette\Security\User $user, SettingsRepository $sr, \Nette\Application\LinkGenerator $lg) {
+  function __construct(\Nexendrie\Orm\Model $orm, Cache $cache, \Nette\Security\User $user, SettingsRepository $sr, \Nette\Application\LinkGenerator $lg) {
     $this->orm = $orm;
     $this->cache = $cache;
     $this->user = $user;
@@ -149,6 +151,23 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
    */
   function isForDate($year, $month, $day) {
     return (bool) count($this->getForDate($year, $month, $day));
+  }
+  
+  /**
+   * Get ongoing events
+   * 
+   * @return EventDummy[]
+   */
+  function getCurrentEvents() {
+    $return = $this->cache->load("events");
+    if($return === NULL) {
+      $events = $this->orm->events->findForTime();
+      foreach($events as $event) {
+        $return[] = $event->dummy();
+      }
+      $this->cache->save("events", $return, array(Cache::EXPIRE => "15 minutes"));
+    }
+    return $return;
   }
 }
 

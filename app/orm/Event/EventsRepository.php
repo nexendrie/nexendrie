@@ -28,5 +28,16 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
     return $this->findBy(array("start<=" => $endTS, "end>=" => $startTS))
       ->orderBy("start");
   }
+  /**
+   * Get ongoing events (at specified time)
+   * 
+   * @param int $time
+   * @return ICollection|Event[]
+   */
+  function findForTime($time = NULL) {
+    if($time === NULL) $time = time();
+    return $this->findBy(array("start<=" => $time, "end>=" => $time))
+      ->orderBy("start");
+  }
 }
 ?>
