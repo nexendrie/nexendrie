@@ -5,18 +5,18 @@ namespace Nexendrie\Orm;
  * EventDummy
  *
  * @author Jakub Konečný
- * @property int $id
- * @property string $name
- * @property string $description
- * @property string $start
- * @property string $end
- * @property int $adventuresBonus
- * @property int $workBonus
- * @property int $prayerLifeBonus
- * @property int $trainingDiscount
- * @property int $repairingDiscount
- * @property int $caringDiscount
- * @property int $shoppingDiscount
+ * @property-read int $id
+ * @property-read string $name
+ * @property-read string $description
+ * @property-read string $start
+ * @property-read string $end
+ * @property-read int $adventuresBonus
+ * @property-read int $workBonus
+ * @property-read int $prayerLifeBonus
+ * @property-read int $trainingDiscount
+ * @property-read int $repairingDiscount
+ * @property-read int $caringDiscount
+ * @property-read int $shoppingDiscount
  */
 class EventDummy extends \Nette\Object {
   /** @var int */
@@ -57,6 +57,54 @@ class EventDummy extends \Nette\Object {
     $this->repairingDiscount = $event->repairingDiscount;
     $this->caringDiscount = $event->caringDiscount;
     $this->shoppingDiscount = $event->shoppingDiscount;
+  }
+  
+  function getId() {
+    return $this->id;
+  }
+  
+  function getName() {
+    return $this->name;
+  }
+  
+  function getDescription() {
+    return $this->description;
+  }
+  
+  function getStart() {
+    return $this->start;
+  }
+  
+  function getEnd() {
+    return $this->end;
+  }
+  
+  function getAdventuresBonus() {
+    return $this->adventuresBonus;
+  }
+  
+  function getWorkBonus() {
+    return $this->workBonus;
+  }
+  
+  function getPrayerLifeBonus() {
+    return $this->prayerLifeBonus;
+  }
+  
+  function getTrainingDiscount() {
+    return $this->trainingDiscount;
+  }
+  
+  function getRepairingDiscount() {
+    return $this->repairingDiscount;
+  }
+  
+  function getCaringDiscount() {
+    return $this->caringDiscount;
+  }
+  
+  function getShoppingDiscount() {
+    return $this->shoppingDiscount;
   }
   
   /**

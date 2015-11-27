@@ -14,6 +14,8 @@ use Nexendrie\Orm\Adventure as AdventureEntity,
 class Adventure extends \Nette\Object {
   /** @var \Nexendrie\Model\Combat */
   protected $combatModel;
+  /** @var Events */
+  protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -21,8 +23,9 @@ class Adventure extends \Nette\Object {
   /** @var AdventureEntity */
   private $adventure = NULL;
   
-  function __construct(Combat $combatModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Combat $combatModel, Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->combatModel = $combatModel;
+    $this->eventsModel = $eventsModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -319,8 +322,10 @@ class Adventure extends \Nette\Object {
     if(!$adventure) throw new NotOnAdventureException;
     if($this->getNextNpc($adventure)) throw new NotAllEnemiesDefeateException;
     $adventure->progress = 10;
-    $adventure->user->money += $adventure->adventure->reward;
-    $adventure->reward += $adventure->adventure->reward;
+    $reward = $adventure->adventure->reward;
+    $reward += $this->eventsModel->calculateAdventuresBonus($reward);
+    $adventure->user->money += $reward;
+    $adventure->reward += $reward;
     $adventure->mount->hp -= 5;
     $this->orm->userAdventures->persistAndFlush($adventure);
     $this->user->identity->travelling = false;

@@ -169,6 +169,66 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
     }
     return $return;
   }
+  
+  /**
+   * Calculate current bonus for adventures
+   * 
+   * @param int $baseIncome
+   * @return int
+   */
+  function calculateAdventuresBonus($baseIncome) {
+    $bonus = 0;
+    $events = $this->getCurrentEvents();
+    foreach($events as $event) {
+      if($event->adventuresBonus) $bonus += $event->adventuresBonus;
+    }
+    return (int) $baseIncome / 100 * $bonus;
+  }
+  
+  /**
+   * Calculate current bonus for work
+   * 
+   * @param int $baseIncome
+   * @return int
+   */
+  function calculateWorkBonus($baseIncome) {
+    $bonus = 0;
+    $events = $this->getCurrentEvents();
+    foreach($events as $event) {
+      if($event->workBonus) $bonus += $event->workBonus;
+    }
+    return (int) $baseIncome / 100 * $bonus;
+  }
+  
+  /**
+   * Calculate current bonus for praying
+   * 
+   * @param int $baseValue
+   * @return int
+   */
+  function calculatePrayerLifeBonus($baseValue) {
+    $bonus = 0;
+    $events = $this->getCurrentEvents();
+    foreach($events as $event) {
+      if($event->prayerLifeBonus) $bonus += $event->prayerLifeBonus;
+    }
+    return (int) $baseValue / 100 * $bonus;
+  }
+  
+  /**
+   * Calculate current discount for training
+   * 
+   * @param int $basePrice
+   * @return int
+   */
+  function calculateTrainingDiscount($basePrice) {
+    $bonus = 0;
+    $events = $this->getCurrentEvents();
+    foreach($events as $event) {
+      if($event->trainingDiscount) $bonus += $event->trainingDiscount;
+    }
+    return (int) $basePrice / 100 * $bonus;
+  }
 }
 
 class EventNotFoundException extends RecordNotFoundException {
