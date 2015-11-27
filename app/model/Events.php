@@ -229,6 +229,21 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
     }
     return (int) $basePrice / 100 * $bonus;
   }
+  
+  /**
+   * Calculate current discount for shopping
+   * 
+   * @param int $basePrice
+   * @return int
+   */
+  function calculateShoppingDiscount($basePrice) {
+    $bonus = 0;
+    $events = $this->getCurrentEvents();
+    foreach($events as $event) {
+      if($event->shoppingDiscount) $bonus += $event->shoppingDiscount;
+    }
+    return (int) $basePrice / 100 * $bonus;
+  }
 }
 
 class EventNotFoundException extends RecordNotFoundException {

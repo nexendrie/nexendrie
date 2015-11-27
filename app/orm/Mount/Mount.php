@@ -34,12 +34,19 @@ use Nextras\Orm\Relationships\OneHasMany;
 class Mount extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
+  /** @var \Nexendrie\Model\Events */
+  protected $eventsModel;
+  
   const GENDER_MALE = "male";
   const GENDER_FEMALE = "female";
   const GENDER_YOUNG = "young";
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
+  }
+  
+  function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
+    $this->eventsModel = $eventsModel;
   }
   
   /**
@@ -101,12 +108,16 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   
   protected function getterDamageTrainingCost() {
     if($this->damage >= $this->maxDamage) return 0;
-    else return ($this->damage - $this->baseDamage + 1) * 30;
+    $basePrice = ($this->damage - $this->baseDamage + 1) * 30;
+    $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
+    return (int) $basePrice;
   }
   
   protected function getterArmorTrainingCost() {
     if($this->armor >= $this->maxArmor) return 0;
-    else return ($this->armor - $this->baseArmor + 1) * 30;
+    $basePrice = ($this->armor - $this->baseArmor + 1) * 30;
+    $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
+    return (int) $basePrice;
   }
   
   protected function getterDamageTrainingCostT() {
