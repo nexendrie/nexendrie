@@ -10,7 +10,8 @@ use Nexendrie\Model\AlreadyOnAdventureException,
     Nexendrie\Model\NotOnAdventureException,
     Nexendrie\Model\NoEnemyRemainException,
     Nexendrie\Model\NotAllEnemiesDefeateException,
-    Nexendrie\Model\CannotDoAdventureException;
+    Nexendrie\Model\CannotDoAdventureException,
+    Nexendrie\Model\AdventureNotAccessibleException;
 
 /**
  * AdventureControl
@@ -85,6 +86,8 @@ class AdventureControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Dané jezdecké zvíře ti nepatří.");
     } catch(MountInBadConditionException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře je ve špatném stavu.");
+    } catch(AdventureNotAccessibleException $e) {
+      $this->presenter->flashMessage("Vybrané dobrodružství není dostupné.");
     }
   }
   

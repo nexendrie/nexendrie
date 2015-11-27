@@ -200,6 +200,7 @@ class Adventure extends \Nette\Object {
    * @throws MountNotFoundException
    * @throws MountNotOwnedException
    * @throws MountInBadConditionException
+   * @throws AdventureNotAccessibleException
    */
   function startAdventure($adventureId, $mountId) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
@@ -212,6 +213,7 @@ class Adventure extends \Nette\Object {
     if(!$mount) throw new MountNotFoundException;
     elseif($mount->owner->id != $this->user->id) throw new MountNotOwnedException;
     elseif($mount->hp < 30) throw new MountInBadConditionException;
+    elseif($adventure->event AND !$adventure->event->active) throw new AdventureNotAccessibleException;
     $userAdventure = new UserAdventureEntity;
     $this->orm->userAdventures->attach($userAdventure);
     $userAdventure->user = $this->user->id;
@@ -392,6 +394,10 @@ class NotAllEnemiesDefeateException extends AccessDeniedException {
 }
 
 class CannotDoAdventureException extends AccessDeniedException {
+  
+}
+
+class AdventureNotAccessibleException extends AccessDeniedException {
   
 }
 ?>

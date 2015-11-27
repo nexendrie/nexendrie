@@ -20,6 +20,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $repairingDiscount {default 0}
  * @property int $shoppingDiscount {default 0}
  * @property OneHasMany|Adventure[] $adventures {1:m Adventure::$event}
+ * @property-read bool $active {virtual}
  */
 class Event extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
@@ -76,6 +77,12 @@ class Event extends \Nextras\Orm\Entity\Entity {
     if($value < 0) return 0;
     elseif($value > 100) return 100;
     else return $value;
+  }
+  
+  protected function getterActive() {
+    $time = time();
+    if($this->start <= $time AND $this->end >= $time) return true;
+    else return false;
   }
   
   /**
