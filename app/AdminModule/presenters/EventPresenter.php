@@ -3,7 +3,8 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Forms\AddEditEventFormFactory,
     Nette\Application\UI\Form,
-    Nexendrie\Model\EventNotFoundException;
+    Nexendrie\Model\EventNotFoundException,
+    Nexendrie\Model\CannotDeleteStartedEventException;
 
 /**
  * Presenter Event
@@ -70,6 +71,24 @@ class EventPresenter extends BasePresenter {
       $this->redirect("default");
     };
     return $form;
+  }
+  
+  /**
+   * @param int $id
+   * @return void
+   */
+  function actionDelete($id) {
+    $this->requiresPermissions("event", "delete");
+    try {
+      $this->model->deleteEvent($id);
+      $this->flashMessage("Akce smazána.");
+      $this->redirect("default");
+    } catch(EventNotFoundException $e) {
+      $this->forward("notfound");
+    } catch(CannotDeleteStartedEventException $e) {
+      $this->flashMessage("Nelze smazat již započatnou akci.");
+      $this->redirect("Homepage:");
+    }
   }
 }
 ?>

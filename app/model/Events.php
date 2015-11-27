@@ -86,9 +86,28 @@ class Events extends \Nette\Object {
     }
     $this->orm->events->persistAndFlush($event);
   }
+  
+  /**
+   * Delete specified events
+   * 
+   * @param int $id
+   * @return void
+   * @throws EventNotFoundException
+   * @throws CannotDeleteStartedEventException
+   */
+  function deleteEvent($id) {
+    $event = $this->orm->events->getById($id);
+    if(!$event) throw new EventNotFoundException;
+    elseif($event->start < time()) throw new CannotDeleteStartedEventException;
+    else $this->orm->events->removeAndFlush($event);
+  }
 }
 
 class EventNotFoundException extends RecordNotFoundException {
+  
+}
+
+class CannotDeleteStartedEventException extends AccessDeniedException {
   
 }
 ?>

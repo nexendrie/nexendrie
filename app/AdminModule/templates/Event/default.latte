@@ -7,7 +7,7 @@
   <table>
     <tr><th>Jméno</th><th>Operace</th></tr>
     <tr n:foreach="$events as $event">
-      <td>{$event->name}</td><td><a n:href="edit $event->id">Upravit</a></td>
+      <td>{$event->name}</td><td><a n:href="edit $event->id">Upravit</a> {if $event->start > time()}<a n:href="delete $event->id">Smazat</a>{/if}</td>
     </tr>
   </table>
 {/block}
