@@ -50,10 +50,6 @@ class AddEditEventFormFactory {
       ->setRequired()
       ->addRule(Form::INTEGER)
       ->addRule(Form::RANGE, NULL, array(0, 100));
-    $form->addText("caringDiscount", "Sleva na péči:")
-      ->setRequired()
-      ->addRule(Form::INTEGER)
-      ->addRule(Form::RANGE, NULL, array(0, 100));
     $form->addText("shoppingDiscount", "Sleva na nákupy:")
       ->setRequired()
       ->addRule(Form::INTEGER)

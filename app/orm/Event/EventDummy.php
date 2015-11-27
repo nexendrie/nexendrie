@@ -15,7 +15,6 @@ namespace Nexendrie\Orm;
  * @property-read int $prayerLifeBonus
  * @property-read int $trainingDiscount
  * @property-read int $repairingDiscount
- * @property-read int $caringDiscount
  * @property-read int $shoppingDiscount
  */
 class EventDummy extends \Nette\Object {
@@ -40,8 +39,6 @@ class EventDummy extends \Nette\Object {
   /** @var int */
   protected $repairingDiscount;
   /** @var int */
-  protected $caringDiscount;
-  /** @var int */
   protected $shoppingDiscount;
   
   function __construct(Event $event) {
@@ -55,7 +52,6 @@ class EventDummy extends \Nette\Object {
     $this->prayerLifeBonus = $event->prayerLifeBonus;
     $this->trainingDiscount = $event->trainingDiscount;
     $this->repairingDiscount = $event->repairingDiscount;
-    $this->caringDiscount = $event->caringDiscount;
     $this->shoppingDiscount = $event->shoppingDiscount;
   }
   

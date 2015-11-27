@@ -16,7 +16,6 @@ namespace Nexendrie\Orm;
  * @property int $prayerLifeBonus {default 0}
  * @property int $trainingDiscount {default 0}
  * @property int $repairingDiscount {default 0}
- * @property int $caringDiscount {default 0}
  * @property int $shoppingDiscount {default 0}
  */
 class Event extends \Nextras\Orm\Entity\Entity {
@@ -65,12 +64,6 @@ class Event extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterRepairingDiscount($value) {
-    if($value < 0) return 0;
-    elseif($value > 100) return 100;
-    else return $value;
-  }
-  
-  protected function setterCaringDiscount($value) {
     if($value < 0) return 0;
     elseif($value > 100) return 100;
     else return $value;
