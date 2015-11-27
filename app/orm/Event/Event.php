@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Orm;
 
+use Nextras\Orm\Relationships\OneHasMany;
+
 /**
  * Event
  *
@@ -17,6 +19,7 @@ namespace Nexendrie\Orm;
  * @property int $trainingDiscount {default 0}
  * @property int $repairingDiscount {default 0}
  * @property int $shoppingDiscount {default 0}
+ * @property OneHasMany|Adventure[] $adventures {1:m Adventure::$event}
  */
 class Event extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */

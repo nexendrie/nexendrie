@@ -9,6 +9,22 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 class AddEditAdventureFormFactory {
+  /** @var \Nexendrie\Orm\Model */
+  protected $orm;
+  
+  function __construct(\Nexendrie\Orm\Model $orm) {
+    $this->orm = $orm;
+  }
+  
+  /**
+   * Get list of events
+   * 
+   * @return array of id => name
+   */
+  protected function getEvents() {
+    return $this->orm->events->findAll()->fetchPairs("id", "name");
+  }
+  
   /**
    * @return Form
    */
@@ -32,6 +48,8 @@ class AddEditAdventureFormFactory {
       ->setRequired("Zadej odměnu.")
       ->addRule(Form::INTEGER, "Odměna musí být celé číslo.")
       ->addRule(Form::RANGE, "Odměna musí být v rozmezí 1-999.", array(1, 999));
+    $form->addSelect("event", "Akce:", $this->getEvents())
+      ->setPrompt("žádná");
     $form->addSubmit("submit", "Odeslat");
     return $form;
   }

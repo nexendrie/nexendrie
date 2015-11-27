@@ -52,7 +52,7 @@ class AdventurePresenter extends BasePresenter {
    */
   protected function createComponentEditAdventureForm(AddEditAdventureFormFactory $factory) {
     $form = $factory->create();
-    $form->setDefaults($this->adventure->toArray());
+    $form->setDefaults($this->adventure->dummyArray());
     $form->onSuccess[] = function(Form $form) {
       $this->model->editAdventure($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Dobrodružství upraveno.");
