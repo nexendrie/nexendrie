@@ -10,6 +10,13 @@ namespace Nexendrie\Orm;
  * @property string $description
  * @property string $start
  * @property string $end
+ * @property int $adventuresBonus
+ * @property int $workBonus
+ * @property int $prayerLifeBonus
+ * @property int $trainingDiscount
+ * @property int $repairingDiscount
+ * @property int $caringDiscount
+ * @property int $shoppingDiscount
  */
 class EventDummy extends \Nette\Object {
   /** @var int */
@@ -22,6 +29,20 @@ class EventDummy extends \Nette\Object {
   protected $start;
   /** @var string */
   protected $end;
+  /** @var int */
+  protected $adventuresBonus;
+  /** @var int */
+  protected $workBonus;
+  /** @var int */
+  protected $prayerLifeBonus;
+  /** @var int */
+  protected $trainingDiscount;
+  /** @var int */
+  protected $repairingDiscount;
+  /** @var int */
+  protected $caringDiscount;
+  /** @var int */
+  protected $shoppingDiscount;
   
   function __construct(Event $event) {
     $this->id = $event->id;
@@ -29,6 +50,13 @@ class EventDummy extends \Nette\Object {
     $this->description = $event->description;
     $this->start = $event->startAt;
     $this->end = $event->endAt;
+    $this->adventuresBonus = $event->adventuresBonus;
+    $this->workBonus = $event->workBonus;
+    $this->prayerLifeBonus = $event->prayerLifeBonus;
+    $this->trainingDiscount = $event->trainingDiscount;
+    $this->repairingDiscount = $event->repairingDiscount;
+    $this->caringDiscount = $event->caringDiscount;
+    $this->shoppingDiscount = $event->shoppingDiscount;
   }
   
   /**
