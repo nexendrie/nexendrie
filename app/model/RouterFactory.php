@@ -17,7 +17,7 @@ class RouterFactory extends \Nette\Object {
     $router = new RouteList;
     $router[] = new Route("/", "Front:Homepage:page");
     $router[] = new Route("profile/<username>", "Front:Profile:default");
-    $router[] = new Route("<presenter message|poll|article>/<id [0-9]+>", array(
+    $router[] = new Route("<presenter message|poll|article|event>/<id [0-9]+>", array(
       "module" => "Front", "action" => "view",
       "presenter" => array(
         Route::FILTER_TABLE => array(
@@ -28,12 +28,13 @@ class RouterFactory extends \Nette\Object {
     $router[] = new Route("page/<page [0-9]+>", "Front:Homepage:page");
     $router[] = new Route("rss[/<action>][/<news [0-9]+>]", "Front:Rss:news");
     $router[] = new Route("help[/<page=index>]", "Front:Help:default");
-    $router[] = new Route("admin/<presenter groups|users>", array(
+    $router[] = new Route("admin/<presenter groups|users|events>", array(
       "module" => "Admin", "action" => "default",
       "presenter" => array(
         Route::FILTER_TABLE => array(
           "groups" => "Group",
-          "users" => "User"
+          "users" => "User",
+          "events" => "Event"
         )
       )
     ));

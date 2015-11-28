@@ -13,6 +13,8 @@ use Nexendrie\Orm\Job as JobEntity,
 class Job extends \Nette\Object {
   /** @var Skills */
   protected $skillsModel;
+  /** @var Events */
+  protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -20,8 +22,9 @@ class Job extends \Nette\Object {
   /** Base success rate for job (in %) */
   const BASE_SUCCESS_RATE = 55;
   
-  function __construct(Skills $skillsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Skills $skillsModel, Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->skillsModel = $skillsModel;
+    $this->eventsModel = $eventsModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -149,6 +152,7 @@ class Job extends \Nette\Object {
       }
     }
     $extra += $this->skillsModel->calculateSkillIncomeBonus($reward, $job->job->neededSkill->id);
+    $extra += $this->eventsModel->calculateWorkBonus($reward);
     return array("reward" => (int) round($reward), "extra" => (int) round($extra));
   }
   

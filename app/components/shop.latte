@@ -6,7 +6,7 @@
     <p>Bohužel ti nic nemohu nabídnout.</p>
   {else}
     <article id="items">
-    Mohu ti nabídnout:
+    Mohu ti nabídnout {if $discount > 0}(se slevou {$discount}%){/if}:
     <ul>
       {foreach $shop->items as $item}
         <li>{$item->name}{if $item->strength} (Síla: {$item->strength}){/if} za {$item->priceT}. <a n:href="buy! $item->id">Koupit</a></li>

@@ -13,6 +13,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $epilogue
  * @property int $reward
  * @property int $level {default 55}
+ * @property Event|NULL $event {m:1 Event::$adventures}
  * @property-read string $rewardT {virtual}
  * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure order:order}
  * @property OneHasMany|UserAdventure[] $userAdventures {1:m UserAdventure::$adventure}
@@ -27,6 +28,20 @@ class Adventure extends \Nextras\Orm\Entity\Entity {
   
   protected function getterRewardT() {
     return $this->localeModel->money($this->reward);
+  }
+  
+  /**
+   * @return AdventureDummy
+   */
+  function dummy() {
+    return new AdventureDummy($this);
+  }
+  
+  /**
+   * @return array
+   */
+  function dummyArray() {
+    return $this->dummy()->toArray();
   }
 }
 ?>

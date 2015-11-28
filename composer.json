@@ -25,6 +25,7 @@
         "latte/latte": "2.3.x",
         "kdyby/autowired": "1.3.x",
         "nextras/orm": "^1.1",
-        "stekycz/cronner": "dev-master"
+        "stekycz/cronner": "dev-master",
+        "konecnyjakub/event-calendar": "dev-master"
     }
 }

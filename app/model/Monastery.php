@@ -11,6 +11,8 @@ use Nexendrie\Orm\Monastery as MonasteryEntity,
  * @author Jakub Konečný
  */
 class Monastery extends \Nette\Object {
+  /** @var Events */
+  protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -20,10 +22,12 @@ class Monastery extends \Nette\Object {
   
   /**
    * @param int $buildingPrice
+   * @param Events $eventsModel
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    */
-  function __construct($buildingPrice, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct($buildingPrice, Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    $this->eventsModel = $eventsModel;
     $this->orm = $orm;
     $this->user = $user;
     $this->buildingPrice = $buildingPrice;
@@ -145,7 +149,7 @@ class Monastery extends \Nette\Object {
     if(!$this->canPray()) throw new CannotPrayException;
     $user = $this->orm->users->getById($this->user->id);
     $user->lastPrayer = time();
-    $user->life += 4 + $user->monastery->level;
+    $user->life += $this->prayerLife();
     $user->prayers++;
     $this->orm->users->persistAndFlush($user);
   }
@@ -311,7 +315,8 @@ class Monastery extends \Nette\Object {
     if(!$this->user->isLoggedIn()) return 0;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return 0;
-    return $user->monastery->prayerLife;
+    $baseValue = $user->monastery->prayerLife;
+    return $baseValue + $this->eventsModel->calculatePrayerLifeBonus($baseValue);
   }
   
   /**

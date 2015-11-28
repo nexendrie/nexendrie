@@ -10,6 +10,8 @@ use Nexendrie\Orm\Skill as SkillEntity,
  * @author Jakub Konečný
  */
 class Skills extends \Nette\Object {
+  /** @var Events */
+  protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -19,10 +21,12 @@ class Skills extends \Nette\Object {
   /** Increase of income per skill level (in %) */
   const SKILL_LEVEL_INCOME = 15;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    $this->eventsModel = $eventsModel;
     $this->orm = $orm;
     $this->user = $user;
   }
+
   
   /**
    * Get list of all skills
@@ -96,12 +100,13 @@ class Skills extends \Nette\Object {
    * @return int
    */
   function calculateLearningPrice($basePrice, $newLevel, $maxLevel = 5) {
-    if($newLevel === 1) return $basePrice;
+    if($newLevel === 1) return (int) ($basePrice - $this->eventsModel->calculateTrainingDiscount($basePrice));
     $price = $basePrice;
     for($i = 1; $i < $newLevel; $i++) {
       $price += (int) ($basePrice / $maxLevel);
     }
-    return $price;
+    $price -= $this->eventsModel->calculateTrainingDiscount($price);
+    return (int) $price;
   }
   
   /**
