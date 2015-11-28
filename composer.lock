@@ -95,12 +95,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/EventCalendar.git",
-                "reference": "2c25fa32bbffcac99bcd9e0d4bb91ba1c3801925"
+                "reference": "43b6a6572c6e9cd8cf8ac31e1c09719cd30d90c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/2c25fa32bbffcac99bcd9e0d4bb91ba1c3801925",
-                "reference": "2c25fa32bbffcac99bcd9e0d4bb91ba1c3801925",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/43b6a6572c6e9cd8cf8ac31e1c09719cd30d90c9",
+                "reference": "43b6a6572c6e9cd8cf8ac31e1c09719cd30d90c9",
                 "shasum": ""
             },
             "require": {
@@ -120,6 +120,11 @@
                 "dg/texy": ">= v2.2.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "EventCalendar\\": "/"
@@ -137,7 +142,7 @@
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
             "homepage": "http://www.nimral.cz/calendar",
-            "time": "2015-11-27 10:46:21"
+            "time": "2015-11-28 10:50:58"
         },
         {
             "name": "latte/latte",
