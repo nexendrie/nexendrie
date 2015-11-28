@@ -11,6 +11,8 @@ use Nexendrie\Orm\Shop as ShopEntity,
  * @author Jakub Konečný
  */
 class Market extends \Nette\Object {
+  /** @var \Nexendrie\Model\Events */
+  protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -20,7 +22,8 @@ class Market extends \Nette\Object {
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    */
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    $this->eventsModel = $eventsModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -161,7 +164,9 @@ class Market extends \Nette\Object {
     } else {
       $row->amount++;
     }
-    $row->user->money = $user->money - $itemRow->price;
+    $price = $itemRow->price;
+    $price -= (int) $this->eventsModel->calculateShoppingDiscount($price);
+    $row->user->money = $user->money - $price;
     $row->user->lastActive = time();
     $this->orm->userItems->persistAndFlush($row);
   }

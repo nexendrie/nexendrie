@@ -27,15 +27,9 @@ class Item extends \Nextras\Orm\Entity\Entity {
   
   /** @var \Nexendrie\Model\Locale $localeModel */
   protected $localeModel;
-  /** @var \Nexendrie\Model\Events */
-  protected $eventsModel;
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
-  }
-  
-  function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
-    $this->eventsModel = $eventsModel;
   }
   
   /**
@@ -68,10 +62,6 @@ class Item extends \Nextras\Orm\Entity\Entity {
     return array(
       "weapon", "armor"
     );
-  }
-  
-  protected function getterPrice($price) {
-    return (int) ($price - $this->eventsModel->calculateShoppingDiscount($price));
   }
   
   protected function getterPriceT() {

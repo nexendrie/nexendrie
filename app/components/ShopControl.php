@@ -16,6 +16,8 @@ use Nexendrie\Orm\Shop as ShopEntity,
 class ShopControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Market */
   protected $model;
+  /** @var \Nexendrie\Model\Events */
+  protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -27,11 +29,13 @@ class ShopControl extends \Nette\Application\UI\Control {
   
   /**
    * @param \Nexendrie\Model\Market $model
+   * @param \Nexendrie\Model\Events $eventsModel
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    */
-  function __construct(\Nexendrie\Model\Market $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Model\Market $model, \Nexendrie\Model\Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->model = $model;
+    $this->eventsModel = $eventsModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -67,6 +71,7 @@ class ShopControl extends \Nette\Application\UI\Control {
     $template->setFile(__DIR__ . "/shop.latte");
     $template->shop = $this->getShop();
     $template->user = $this->user;
+    $template->discount = $this->eventsModel->getShoppingDiscount();
     $template->render();
   }
   

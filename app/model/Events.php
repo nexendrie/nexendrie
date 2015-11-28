@@ -222,12 +222,12 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
    * @return int
    */
   function calculateTrainingDiscount($basePrice) {
-    $bonus = 0;
+    $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
-      if($event->trainingDiscount) $bonus += $event->trainingDiscount;
+      if($event->trainingDiscount) $discount += $event->trainingDiscount;
     }
-    return (int) $basePrice / 100 * $bonus;
+    return (int) $basePrice / 100 * $discount;
   }
   
   /**
@@ -237,12 +237,27 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
    * @return int
    */
   function calculateShoppingDiscount($basePrice) {
-    $bonus = 0;
+    $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
-      if($event->shoppingDiscount) $bonus += $event->shoppingDiscount;
+      if($event->shoppingDiscount) $discount += $event->shoppingDiscount;
     }
-    return (int) $basePrice / 100 * $bonus;
+    return (int) $basePrice / 100 * $discount;
+  }
+  
+  /**
+   * Get current shopping discount
+   * 
+   * @param int $basePrice
+   * @return int
+   */
+  function getShoppingDiscount() {
+    $discount = 0;
+    $events = $this->getCurrentEvents();
+    foreach($events as $event) {
+      if($event->shoppingDiscount) $discount += $event->shoppingDiscount;
+    }
+    return $discount;
   }
 }
 
