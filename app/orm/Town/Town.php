@@ -13,7 +13,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property User $owner {m:1 User::$ownedTowns}
  * @property int $price {default 5000}
  * @property bool $onMarket {default 0}
- * @property OneHasMany|User[] $denizens {1:m User::$town}
+ * @property OneHasMany|User[] $denizens {1:m User::$town order:group}
  * @property OneHasMany|Monastery[] $monasteries {1:m Monastery::$town}
  * @property-read string $foundedAt {virtual}
  * @property-read string $priceT {virtual}
