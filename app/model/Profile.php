@@ -43,12 +43,8 @@ class Profile extends \Nette\Object {
    * @return string[]
    */
   function getListOfLords() {
-    $return = array();
-    $lords = $this->orm->users->findBy(array("this->group->level>=" => 350));
-    foreach($lords as $lord) {
-      $return[$lord->id] = $lord->publicname;
-    }
-    return $return;
+    return $this->orm->users->findBy(array("this->group->level>=" => 350))
+      ->fetchPairs("id", "publicname");
   }
   
   /**

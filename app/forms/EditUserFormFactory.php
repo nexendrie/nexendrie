@@ -48,12 +48,7 @@ class EditUserFormFactory extends \Nette\Object {
    * @return array
    */
   protected function getListOfTowns() {
-    $return = array();
-    $towns = $this->townModel->listOfTowns();
-    foreach($towns as $town) {
-      $return[$town->id] = $town->name;
-    }
-    return $return;
+    return $this->townModel->listOfTowns()->fetchPairs("id", "name");
   }
   
   /**

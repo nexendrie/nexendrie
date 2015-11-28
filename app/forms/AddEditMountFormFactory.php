@@ -29,12 +29,7 @@ class AddEditMountFormFactory {
    * @return array
    */
   protected function getMountTypes() {
-    $return = array();
-    $types = $this->model->listOfMountTypes();
-    foreach($types as $type) {
-      $return[$type->id] = $type->name;
-    }
-    return $return;
+    return $this->model->listOfMountTypes()->fetchPairs("id", "name");
   }
   
   /**

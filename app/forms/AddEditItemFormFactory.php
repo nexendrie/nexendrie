@@ -21,12 +21,7 @@ class AddEditItemFormFactory {
    * @return array
    */
   protected function getShops() {
-    $shops = $this->orm->shops->findAll();
-    $return = array();
-    foreach($shops as $shop) {
-      $return[$shop->id] = $shop->name;
-    }
-    return $return;
+    return $this->orm->shops->findAll()->fetchPairs("id", "name");
   }
   
   /**
