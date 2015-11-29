@@ -38,7 +38,6 @@ class CastlePresenter extends BasePresenter {
     }
     $this->template->castle = $castle;
     $this->template->canUpgrade = $this->model->canUpgrade();
-    $this->template->upgradePrice = $this->localeModel->money($this->model->calculateUpgradePrice());
   }
   
   /**

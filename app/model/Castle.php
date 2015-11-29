@@ -99,18 +99,6 @@ class Castle extends \Nette\Object {
   }
   
   /**
-   * Calculate upgrade price of castle
-   * 
-   * @return int
-   */
-  function calculateUpgradePrice() {
-    if(!$this->user->isLoggedIn()) return 0;
-    $castle = $this->orm->castles->getByOwner($this->user->id);
-    if(!$castle) return 0;
-    else return $castle->upgradePrice;
-  }
-  
-  /**
    * Upgrade castle
    * 
    * @return void
