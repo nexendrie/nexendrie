@@ -218,7 +218,7 @@ class PropertyPresenter extends BasePresenter {
   function handleUpgrade($item) {
     try {
       $this->inventoryModel->upgradeItem($item);
-      $this->flashMessage("Zadanou věc vylepšena.");
+      $this->flashMessage("Věc vylepšena.");
     } catch(ItemNotFoundException $e) {
       $this->flashMessage("Věc nenalezena.");
     } catch(ItemNotOwnedException $e) {
