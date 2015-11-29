@@ -3,5 +3,6 @@
 {block content}
   <h1>Spravovat klášter</h1>
   {control manageMonasteryForm}
-  {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> klášter za {$upgradePrice}{/if}
+  {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> klášter za {$monastery->upgradePriceT}<br>{/if}
+  {if $monastery->hp < 100}<a n:href="repair!">Opravit</a> klášter za {$monastery->repairPriceT}{/if}
 {/block}

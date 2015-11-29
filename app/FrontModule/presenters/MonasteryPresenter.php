@@ -12,7 +12,8 @@ use Nexendrie\Model\MonasteryNotFoundException,
     Nexendrie\Forms\ManageMonasteryFormFactory,
     Nexendrie\Model\CannotJoinOwnMonasteryException,
     Nexendrie\Model\CannotUpgradeMonasteryException,
-    Nexendrie\Model\InsufficientFundsException;
+    Nexendrie\Model\InsufficientFundsException,
+    Nexendrie\Model\CannotRepairMonasteryException;
 
 /**
  * Presenter Monastery
@@ -160,7 +161,8 @@ class MonasteryPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš spravovat klášter.");
       $this->redirect("Homepage");
     } else {
-      $this->monasteryId = $this->model->getByUser()->id;
+      $this->template->monastery = $monastery = $this->model->getByUser();
+      $this->monasteryId = $monastery->id;
       $this->template->canUpgrade = $this->model->canUpgrade();
       $this->template->upgradePrice = $this->localeModel->money($this->model->calculateUpgradePrice());
     }
@@ -184,10 +186,27 @@ class MonasteryPresenter extends BasePresenter {
   function handleUpgrade() {
     try {
       $this->model->upgrade();
-      $this->flashMessage("Klášter vylepšen");
+      $this->flashMessage("Klášter vylepšen.");
       $this->redirect("manage");
     } catch(CannotUpgradeMonasteryException $e) {
       $this->flashMessage("Nemůžeš vylepšit klášter.");
+      $this->redirect("Homepage:");
+    } catch(InsufficientFundsException $e) {
+      $this->flashMessage("Nedostatek peněz.");
+      $this->redirect("manage");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function handleRepair() {
+    try {
+      $this->model->repair();
+      $this->flashMessage("Klášter opraven.");
+      $this->redirect("manage");
+    } catch(CannotRepairMonasteryException $e) {
+      $this->flashMessage("Nemůžeš opravit klášter.");
       $this->redirect("Homepage:");
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nedostatek peněz.");

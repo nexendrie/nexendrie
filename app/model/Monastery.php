@@ -364,6 +364,40 @@ class Monastery extends \Nette\Object {
     $user->monastery->money -= $upgradePrice;
     $this->orm->monasteries->persistAndFlush($user->monastery);
   }
+  
+  /**
+   * Check whetever the user can repair monastery
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canRepair() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->monastery) return false;
+    elseif($user->monastery->leader->id != $this->user->id) return false;
+    elseif($user->monastery->hp >= 100) return false;
+    else return true;
+  }
+  
+  /**
+   * Repair monastery
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotRepairMonasteryException
+   * @throws InsufficientFundsException
+   */
+  function repair() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->canRepair()) throw new CannotRepairMonasteryException;
+    $user = $this->orm->users->getById($this->user->id);
+    $repairPrice = $user->monastery->repairPrice;
+    if($user->monastery->money < $repairPrice) throw new InsufficientFundsException;
+    $user->monastery->hp = 100;
+    $user->monastery->money -= $repairPrice;
+    $this->orm->monasteries->persistAndFlush($user->monastery);
+  }
 }
 
 class MonasteryNotFoundException extends RecordNotFoundException {
@@ -399,6 +433,10 @@ class CannotJoinOwnMonasteryException extends AccessDeniedException {
 }
 
 class CannotUpgradeMonasteryException extends AccessDeniedException {
+
+}
+
+class CannotRepairMonasteryException extends AccessDeniedException {
 
 }
 ?>

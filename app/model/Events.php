@@ -259,6 +259,21 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
     }
     return $discount;
   }
+  
+  /**
+   * Calculate current discount for repairing castles and monasteries
+   * 
+   * @param int $basePrice
+   * @return int
+   */
+  function calculateRepairingDiscount($basePrice) {
+    $discount = 0;
+    $events = $this->getCurrentEvents();
+    foreach($events as $event) {
+      if($event->repairingDiscount) $discount += $event->repairingDiscount;
+    }
+    return (int) $basePrice / 100 * $discount;
+  }
 }
 
 class EventNotFoundException extends RecordNotFoundException {
