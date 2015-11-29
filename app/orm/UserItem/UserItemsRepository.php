@@ -15,7 +15,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * Find specified user's equipment
    * 
    * @param int $user
-   * @return ICollection|Item[]
+   * @return ICollection|UserItem[]
    */
   function findEquipment($user) {
     return $this->findBy(array("user" => $user, "this->item->type=" => Item::getEquipmentTypes()));
@@ -25,7 +25,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * Find specified user's items
    * 
    * @param int $user
-   * @return ICollection|Item[]
+   * @return ICollection|UserItem[]
    */
   function findCommonItems($user) {
     return $this->findBy(array("user" => $user, "this->item->type=" => Item::getCommonTypes()));
@@ -36,7 +36,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * 
    * @param int $user
    * @param string $type
-   * @return ICollection|Item[]
+   * @return ICollection|UserItem[]
    */
   function findByType($user, $type) {
     return $this->findBy(array("user" => $user, "this->item->type" => $type));
