@@ -115,6 +115,38 @@ class Castle extends \Nette\Object {
     $castle->level++;
     $this->orm->castles->persistAndFlush($castle);
   }
+  
+  /**
+   * Check whetever the user can repair castle
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canRepair() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $castle = $this->orm->castles->getByOwner($this->user->id);
+    if(!$castle) return false;
+    elseif($castle->hp >= 100) return false;
+    else return true;
+  }
+  
+  /**
+   * Repair castle
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotRepairCastleException
+   * @throws InsufficientFundsException
+   */
+  function repair() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canRepair()) throw new CannotRepairCastleException;
+    $castle = $this->orm->castles->getByOwner($this->user->id);
+    if($castle->owner->money < $castle->repairPrice) throw new InsufficientFundsException;
+    $castle->owner->money -= $castle->repairPrice;
+    $castle->hp = 100;
+    $this->orm->castles->persistAndFlush($castle);
+  }
 }
 
 class CastleNotFoundException extends RecordNotFoundException {
@@ -134,6 +166,10 @@ class CastleNameInUseException extends NameInUseException {
 }
 
 class CannotUpgradeCastleException extends AccessDeniedException {
+  
+}
+
+class CannotRepairCastleException extends AccessDeniedException {
   
 }
 ?>
