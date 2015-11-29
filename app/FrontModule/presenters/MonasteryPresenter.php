@@ -23,8 +23,6 @@ use Nexendrie\Model\MonasteryNotFoundException,
 class MonasteryPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Monastery @autowire */
   protected $model;
-  /** @var \Nexendrie\Model\Locale @autowire */
-  protected $localeModel;
   /** @var int*/
   private $monasteryId;
   
@@ -164,7 +162,6 @@ class MonasteryPresenter extends BasePresenter {
       $this->template->monastery = $monastery = $this->model->getByUser();
       $this->monasteryId = $monastery->id;
       $this->template->canUpgrade = $this->model->canUpgrade();
-      $this->template->upgradePrice = $this->localeModel->money($this->model->calculateUpgradePrice());
     }
   }
   

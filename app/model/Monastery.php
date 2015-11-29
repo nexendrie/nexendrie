@@ -320,18 +320,6 @@ class Monastery extends \Nette\Object {
   }
   
   /**
-   * Calculate price of monastery's next upgrade
-   * 
-   * @return int
-   */
-  function calculateUpgradePrice() {
-    if(!$this->user->isLoggedIn()) return 0;
-    $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) return 0;
-    else return $user->monastery->upgradePrice;
-  }
-  
-  /**
    * Check whetever the user can manage monastery
    * 
    * @return bool
@@ -358,7 +346,7 @@ class Monastery extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     if(!$this->canUpgrade()) throw new CannotUpgradeMonasteryException;
     $user = $this->orm->users->getById($this->user->id);
-    $upgradePrice = $this->calculateUpgradePrice();
+    $upgradePrice = $user->monastery->upgradePrice;
     if($user->monastery->money < $upgradePrice) throw new InsufficientFundsException;
     $user->monastery->level++;
     $user->monastery->money -= $upgradePrice;
