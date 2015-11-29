@@ -21,7 +21,7 @@ class Article extends \Nextras\Orm\Entity\Entity {
   const CATEGORY_NEWS = "news";
   const CATEGORY_CHRONICLE = "chronicle";
   
-  /** @var \Nexendrie\Model\Locale $localeModel */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {

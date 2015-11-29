@@ -29,7 +29,7 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   const BASE_UPGRADE_PRICE = 700;
   const BASE_REPAIR_PRICE = 30;
   
-  /** @var \Nexendrie\Model\Locale $localeModel */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;

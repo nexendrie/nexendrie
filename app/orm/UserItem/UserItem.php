@@ -19,7 +19,7 @@ namespace Nexendrie\Orm;
 class UserItem extends \Nextras\Orm\Entity\Entity {
   const UPGRADE_PRICE = 25;
   
-  /** @var \Nexendrie\Model\Locale $localeModel */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {

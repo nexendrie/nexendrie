@@ -14,7 +14,7 @@ namespace Nexendrie\Orm;
  * @property-read string $sentAt {virtual}
  */
 class Message extends \Nextras\Orm\Entity\Entity {
-  /** @var \Nexendrie\Model\Locale $localeModel */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {

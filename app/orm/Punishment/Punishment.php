@@ -17,7 +17,7 @@ namespace Nexendrie\Orm;
  * @property-read int $nextShift {virtual}
  */
 class Punishment extends \Nextras\Orm\Entity\Entity {
-  /** @var \Nexendrie\Model\Locale $localeModel */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {

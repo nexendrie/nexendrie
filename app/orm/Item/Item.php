@@ -25,7 +25,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
   const TYPE_MATERIAL = "material";
   const TYPE_CHARTER = "charter";
   
-  /** @var \Nexendrie\Model\Locale $localeModel */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {

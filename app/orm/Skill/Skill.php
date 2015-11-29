@@ -25,7 +25,7 @@ class Skill extends \Nextras\Orm\Entity\Entity {
   const STAT_DAMAGE = "damage";
   const STAT_ARMOR = "armor";
   
-  /** @var \Nexendrie\Model\Locale $localeModel */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {

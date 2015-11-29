@@ -19,7 +19,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|UserAdventure[] $userAdventures {1:m UserAdventure::$adventure}
  */
 class Adventure extends \Nextras\Orm\Entity\Entity {
-  /** @var \Nexendrie\Model\Locale $localeModel */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {

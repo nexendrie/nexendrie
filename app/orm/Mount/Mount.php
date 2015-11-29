@@ -32,7 +32,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $typeGenderName {virtual}
  */
 class Mount extends \Nextras\Orm\Entity\Entity {
-  /** @var \Nexendrie\Model\Locale $localeModel */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;

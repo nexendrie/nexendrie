@@ -12,15 +12,15 @@ namespace Nexendrie\Orm;
  * @property-read string $votedAt {virtual}
  */
 class PollVote extends \Nextras\Orm\Entity\Entity {
-  /** @var \Nexendrie\Model\Locale $localeModel */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterAddedAt() {
-    return $this->localeModel->formatDateTime($this->added);
+  protected function getterVotedAt() {
+    return $this->localeModel->formatDateTime($this->voted);
   }
 }
 ?>
