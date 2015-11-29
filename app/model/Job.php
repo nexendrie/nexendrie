@@ -146,9 +146,8 @@ class Job extends \Nette\Object {
         $reward += (int) @($job->job->award / $part);
       } else {
         $reward += $job->job->award;
-        if($job->count > $job->job->count) {
-          $extra += (int) ($job->job->award / 5);
-        }
+        if($job->count >= $job->job->count * 1.2) $extra += (int) ($job->job->award / 5);
+        if($job->count >= $job->job->count * 1.5) $extra += (int) ($job->job->award / 2);
       }
     }
     $extra += $this->skillsModel->calculateSkillIncomeBonus($reward, $job->job->neededSkill->id);
