@@ -165,6 +165,7 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
       foreach($events as $event) {
         $return[] = $event->dummy();
       }
+      if($return === NULL) $return = array();
       $this->cache->save("events", $return, array(Cache::EXPIRE => "15 minutes"));
     }
     return $return;
