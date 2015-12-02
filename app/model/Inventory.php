@@ -167,7 +167,7 @@ class Inventory extends \Nette\Object {
    * Sell an item
    * 
    * @param int $id
-   * @return void
+   * @return int
    * @throws AuthenticationNeededException
    * @throws ItemNotFoundException
    * @throws ItemNotOwnedException
@@ -180,7 +180,8 @@ class Inventory extends \Nette\Object {
     elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
     elseif($item->item->type === "charter") throw new ItemNotForSaleException;
     $item->amount -= 1;
-    $item->user->money += (int) ($item->price / 2);
+    $price = (int) ($item->price / 2);
+    $item->user->money += $price;
     if($item->amount > 0) {
       $this->orm->userItems->persistAndFlush($item);
     } else {
@@ -188,6 +189,7 @@ class Inventory extends \Nette\Object {
       $this->orm->userItems->remove($item);
       $this->orm->flush();
     }
+    return $price;
   }
   
   /**

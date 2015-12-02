@@ -200,8 +200,8 @@ class PropertyPresenter extends BasePresenter {
    */
   function handleSell($item) {
     try {
-      $this->inventoryModel->sellItem($item);
-      $this->flashMessage("Věc prodána.");
+      $price = $this->inventoryModel->sellItem($item);
+      $this->flashMessage("Věc prodána za " . $this->localeModel->money($price) . ".");
     } catch(ItemNotFoundException $e) {
       $this->flashMessage("Věc nenalezena.");
     } catch(ItemNotOwnedException $e) {
