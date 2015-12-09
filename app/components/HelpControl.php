@@ -28,6 +28,7 @@ class HelpControl extends Book\BookControl {
     $storage[] = new Book\BookPage("towns", "Města");
     $storage[] = new Book\BookPage("castle", "Hrad");
     $storage[] = new Book\BookPage("monastery", "Klášter");
+    $storage[] = new Book\BookPage("house", "Dům");
     $storage[] = new Book\BookPage("money", "Peníze");
     $storage[] = new Book\BookPage("work", "Práce");
     $storage[] = new Book\BookPage("adventures", "Dobrodružství");
@@ -81,6 +82,12 @@ class HelpControl extends Book\BookControl {
    */
   function renderCastle() {
     $this->template->maxLevel = \Nexendrie\Orm\Castle::MAX_LEVEL;
+  }
+  /**
+   * @return void
+   */
+  function renderHouse() {
+    $this->template->maxLevel = \Nexendrie\Orm\House::MAX_LEVEL;
   }
 }
 
