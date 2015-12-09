@@ -30,6 +30,18 @@ class HousePresenter extends BasePresenter {
   /**
    * @return void
    */
+  function renderDefault() {
+    $house = $this->model->getUserHouse();
+    if(!$house) {
+      $this->flashMessage("Nevlastníš dům.");
+      $this->redirect("Homepage:");
+    }
+    $this->template->house = $house;
+  }
+  
+  /**
+   * @return void
+   */
   function actionBuy() {
     try {
       $this->model->buyHouse();

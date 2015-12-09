@@ -2,4 +2,7 @@
 {block title}Dům{/block}
 {block content}
   <h1>Dům</h1>
+  Stav: {$house->hp}%<br>
+  Úroveň: {$house->luxuryLevel}<br>
+  Pivovar: {if $house->breweryLevel < 1}není{else}úroveň: {$house->breweryLevel}{/if}
 {/block}
