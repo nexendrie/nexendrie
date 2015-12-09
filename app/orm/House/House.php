@@ -20,7 +20,7 @@ class House extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterBreweryLevel($value) {
-    if($value < 1) return 1;
+    if($value < 0) return 0;
     elseif($value > self::MAX_LEVEL) return self::MAX_LEVEL;
     else return $value;
   }
