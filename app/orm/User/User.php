@@ -27,7 +27,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $money {default 2}
  * @property Town $town {m:1 Town::$denizens}
  * @property Monastery|NULL $monastery {m:1 Monastery::$members} {default NULL}
- * @property Castle|NULL $castle {1:1 Castle::$owner}
+ * @property Castle|NULL $castle {1:1 Castle::$owner} {default NULL}
+ * @property House|NULL $house {1:1 House::$owner} {default NULL}
  * @property int $prayers {default 0}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
@@ -46,6 +47,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|UserAdventure $adventures {1:m UserAdventure::$user}
  * @property OneHasMany|Monastery[] $monasteriesLed {1:m Monastery::$leader}
  * @property OneHasMany|MonasteryDonation[] $monasteryDonations {1:m MonasteryDonation::$user}
+ * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$user}
  */
 class User extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */

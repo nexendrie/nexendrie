@@ -21,6 +21,8 @@ class TownPresenter extends BasePresenter {
   protected $userManager;
   /** @var \Nexendrie\Model\Profile @autowire */
   protected $profileModel;
+  /** @var \Nexendrie\Model\House @autowire */
+  protected $houseModel;
   
   /**
    * @return void
@@ -39,6 +41,7 @@ class TownPresenter extends BasePresenter {
     $this->template->path = $user->group->path;
     $this->template->monastery = $user->monastery;
     $this->template->castle = $this->castleModel->getUserCastle();
+    $this->template->house = $this->houseModel->getUserHouse();
   }
   
   /**

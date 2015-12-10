@@ -114,6 +114,7 @@ class PropertyPresenter extends BasePresenter {
     $this->template->budget = $this->localeModel->money(array_sum($budget["incomes"]) - array_sum($budget["expenses"]));
     $this->template->work = $this->localeModel->money($budget["incomes"]["work"]);
     $this->template->adventures = $this->localeModel->money($budget["incomes"]["adventures"]);
+    $this->template->beerProduction = $this->localeModel->money($budget["incomes"]["beerProduction"]);
     $this->template->taxes = $this->localeModel->money($budget["incomes"]["taxes"]);
     $this->template->incomeTax = $this->localeModel->money($budget["expenses"]["incomeTax"]);
     $this->template->loansInterest = $this->localeModel->money($budget["expenses"]["loansInterest"]);

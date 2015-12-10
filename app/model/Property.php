@@ -36,7 +36,7 @@ class Property extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $budget = array(
       "incomes" => 
-        $this->taxesModel->calculateIncome($this->user->id) + array("taxes" => 0)
+        $this->taxesModel->calculateIncome($this->user->id) + array("taxes" => 0, "beerProduction" => 0)
       ,
       "expenses" => array(
         "incomeTax" => 0,
@@ -51,6 +51,10 @@ class Property extends \Nette\Object {
     $donations = $this->orm->monasteryDonations->findDonatedThisMonth($this->user->id);
     foreach($donations as $donation) {
       $budget["expenses"]["monasteryDonations"] += $donation->amount;
+    }
+    $beerProduction = $this->orm->beerProduction->findProducedThisMonth($this->user->id);
+    foreach($beerProduction as $production) {
+      $budget["incomes"]["beerProduction"] += $production->amount * $production->price;
     }
     $towns = $this->orm->towns->findByOwner($this->user->id);
     foreach($towns as $town) {
