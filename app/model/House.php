@@ -86,6 +86,38 @@ class House extends \Nette\Object {
     $house->luxuryLevel++;
     $this->orm->houses->persistAndFlush($house);
   }
+  
+  /**
+   * Check whetever the user can repair house
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canRepair() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $house = $this->orm->houses->getByOwner($this->user->id);
+    if(!$house) return false;
+    elseif($house->hp >= 100) return false;
+    else return true;
+  }
+  
+  /**
+   * Repair house
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotRepairHouseException
+   * @throws InsufficientFundsException
+   */
+  function repair() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canRepair()) throw new CannotRepairHouseException;
+    $house = $this->orm->houses->getByOwner($this->user->id);
+    if($house->owner->money < $house->repairPrice) throw new InsufficientFundsException;
+    $house->owner->money -= $house->repairPrice;
+    $house->hp = 100;
+    $this->orm->houses->persistAndFlush($house);
+  }
 }
 
 class CannotBuyMoreHousesException extends AccessDeniedException {
@@ -97,6 +129,10 @@ class CannotBuyHouse extends AccessDeniedException {
 }
 
 class CannotUpgradeHouseException extends AccessDeniedException {
+  
+}
+
+class CannotRepairHouseException extends AccessDeniedException {
   
 }
 ?>
