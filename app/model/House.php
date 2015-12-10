@@ -166,6 +166,7 @@ class House extends \Nette\Object {
     if(!$house) return false;
     elseif($house->owner->group->path != "city") return false;
     elseif($house->breweryLevel < 1) return false;
+    elseif($house->hp < 31) return false;
     $lastProduction = $this->orm->beerProduction->getLastProduction($house->id);
     if(!$lastProduction->count()) return true;
     elseif($lastProduction->fetch()->when + $sevenDays < time()) return true;
