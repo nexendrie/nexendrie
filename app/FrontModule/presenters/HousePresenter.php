@@ -2,7 +2,8 @@
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Model\CannotBuyMoreHousesException,
-    Nexendrie\Model\InsufficientFundsException;
+    Nexendrie\Model\InsufficientFundsException,
+    Nexendrie\Model\CannotUpgradeHouseException;
 
 /**
  * Presenter House
@@ -37,6 +38,7 @@ class HousePresenter extends BasePresenter {
       $this->redirect("Homepage:");
     }
     $this->template->house = $house;
+    $this->template->canUpgrade = $this->model->canUpgrade();
   }
   
   /**
@@ -53,6 +55,23 @@ class HousePresenter extends BasePresenter {
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nemáš dostatek peněz.");
       $this->redirect("Homepage:");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function handleUpgrade() {
+    try {
+      $this->model->upgrade();
+      $this->flashMessage("Dům vylepšen.");
+      $this->redirect("default");
+    } catch(CannotUpgradeHouseException $e) {
+      $this->flashMessage("Nemůžeš vylepšit dům.");
+      $this->redirect("Homepage:");
+    } catch(InsufficientFundsException $e) {
+      $this->flashMessage("Nedostatek peněz.");
+      $this->redirect("default");
     }
   }
 }

@@ -3,6 +3,6 @@
 {block content}
   <h1>Dům</h1>
   Stav: {$house->hp}%<br>
-  Úroveň: {$house->luxuryLevel}<br>
+  Úroveň: {$house->luxuryLevel} {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> za {$house->upgradePriceT}{/if}<br>
   Pivovar: {if $house->breweryLevel < 1}není{else}úroveň: {$house->breweryLevel}{/if}
 {/block}
