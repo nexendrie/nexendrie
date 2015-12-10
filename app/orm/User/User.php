@@ -47,6 +47,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|UserAdventure $adventures {1:m UserAdventure::$user}
  * @property OneHasMany|Monastery[] $monasteriesLed {1:m Monastery::$leader}
  * @property OneHasMany|MonasteryDonation[] $monasteryDonations {1:m MonasteryDonation::$user}
+ * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$user}
  */
 class User extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */

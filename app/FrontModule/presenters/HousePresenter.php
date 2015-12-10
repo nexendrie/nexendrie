@@ -5,7 +5,8 @@ use Nexendrie\Model\CannotBuyMoreHousesException,
     Nexendrie\Model\InsufficientFundsException,
     Nexendrie\Model\CannotUpgradeHouseException,
     Nexendrie\Model\CannotRepairHouseException,
-    Nexendrie\Model\CannotUpgradeBreweryException;
+    Nexendrie\Model\CannotUpgradeBreweryException,
+    Nexendrie\Model\CannotProduceBeerException;
 
 /**
  * Presenter House
@@ -17,6 +18,8 @@ class HousePresenter extends BasePresenter {
   protected $model;
   /** @var \Nexendrie\Model\Profile @autowire */
   protected $profileModel;
+  /** @var \Nexendrie\Model\Locale @autowire */
+  protected $localeModel;
   
   /**
    * @return void
@@ -42,6 +45,7 @@ class HousePresenter extends BasePresenter {
     $this->template->house = $house;
     $this->template->canUpgrade = $this->model->canUpgrade();
     $this->template->canUpgradeBrewery = $this->model->canUpgradeBrewery();
+    $this->template->canProduceBeer = $this->model->canProduceBeer();
   }
   
   /**
@@ -110,6 +114,21 @@ class HousePresenter extends BasePresenter {
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("default");
+    }
+  }
+  
+  function handleProduceBeer() {
+    try {
+      $result = $this->model->produceBeer();
+      $message = "Uvařil jsi " . $result["amount"] . " ";
+      $message .= $this->localeModel->plural("sud", "sudy", "sudů", $result["amount"]);
+      $message .= " piva za ";
+      $message .= $this->localeModel->money($result["amount"] * $result["price"]) . ".";
+      $this->flashMessage($message);
+      $this->redirect("default");
+    } catch(CannotProduceBeerException $e) {
+      $this->flashMessage("Nemůžeš vařit pivo.");
+      $this->redirect("Homepage:");
     }
   }
 }

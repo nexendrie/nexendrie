@@ -9,6 +9,7 @@ namespace Nexendrie\Orm;
  * @property int $luxuryLevel {default 1}
  * @property int $breweryLevel {default 0}
  * @property int $hp {default 100}
+ * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$house}
  * @property-read int $workIncomeBonus {virtual}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}

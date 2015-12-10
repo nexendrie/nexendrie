@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\House as HouseEntity;
+use Nexendrie\Orm\House as HouseEntity,
+    Nexendrie\Orm\BeerProduction;
 
 /**
  * House Model
@@ -151,6 +152,47 @@ class House extends \Nette\Object {
     $this->orm->houses->persistAndFlush($house);
     return $house->breweryLevel;
   }
+  
+  /**
+   * Check whetever the user can produce beer
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canProduceBeer() {
+    $sevenDays = 60 * 60 * 24 * 7;
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $house = $this->orm->houses->getByOwner($this->user->id);
+    if(!$house) return false;
+    elseif($house->owner->group->path != "city") return false;
+    elseif($house->breweryLevel < 1) return false;
+    $lastProduction = $this->orm->beerProduction->getLastProduction($house->id);
+    if(!$lastProduction->count()) return true;
+    elseif($lastProduction->fetch()->when + $sevenDays < time()) return true;
+    else return false;
+  }
+  
+  /**
+   * Produce beer
+   * 
+   * @return int[]
+   * @throws AuthenticationNeededException
+   * @throws CannotProduceBeerException
+   */
+  function produceBeer() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canProduceBeer()) throw new CannotProduceBeerException;
+    $house = $this->orm->houses->getByOwner($this->user->id);
+    $production = new BeerProduction;
+    $production->house = $house;
+    $production->user = $house->owner;
+    $production->amount = $house->breweryLevel;
+    $production->price = 30;
+    $production->when = $house->owner->lastActive = time();
+    $house->owner->money += $production->amount * $production->price;
+    $this->orm->beerProduction->persistAndFlush($production);
+    return array("amount" => $production->amount, "price" => $production->price);
+  }
 }
 
 class CannotBuyMoreHousesException extends AccessDeniedException {
@@ -170,6 +212,10 @@ class CannotRepairHouseException extends AccessDeniedException {
 }
 
 class CannotUpgradeBreweryException extends AccessDeniedException {
+  
+}
+
+class CannotProduceBeerException extends AccessDeniedException {
   
 }
 ?>
