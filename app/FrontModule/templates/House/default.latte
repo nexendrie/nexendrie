@@ -4,5 +4,5 @@
   <h1>Dům</h1>
   Stav: {$house->hp}% {if $house->hp < 100}<a n:href="repair!">Opravit</a> za {$house->repairPriceT}{/if}<br>
   Úroveň: {$house->luxuryLevel} {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> za {$house->upgradePriceT}{/if}<br>
-  Pivovar: {if $house->breweryLevel < 1}není{else}úroveň: {$house->breweryLevel}{/if}
+  Pivovar: {if $house->breweryLevel < 1}není <a n:href="upgradeBrewery!">Pořídit</a> za {$house->breweryUpgradePriceT}{else}úroveň: {$house->breweryLevel} {if $canUpgradeBrewery}<a n:href="upgradeBrewery!">Vylepšit</a> za {$house->breweryUpgradePriceT}{/if}{/if}
 {/block}

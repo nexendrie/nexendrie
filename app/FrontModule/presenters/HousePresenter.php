@@ -4,7 +4,8 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nexendrie\Model\CannotBuyMoreHousesException,
     Nexendrie\Model\InsufficientFundsException,
     Nexendrie\Model\CannotUpgradeHouseException,
-    Nexendrie\Model\CannotRepairHouseException;
+    Nexendrie\Model\CannotRepairHouseException,
+    Nexendrie\Model\CannotUpgradeBreweryException;
 
 /**
  * Presenter House
@@ -40,6 +41,7 @@ class HousePresenter extends BasePresenter {
     }
     $this->template->house = $house;
     $this->template->canUpgrade = $this->model->canUpgrade();
+    $this->template->canUpgradeBrewery = $this->model->canUpgradeBrewery();
   }
   
   /**
@@ -86,6 +88,24 @@ class HousePresenter extends BasePresenter {
       $this->redirect("default");
     } catch(CannotRepairHouseException $e) {
       $this->flashMessage("Nemůžeš opravit dům.");
+      $this->redirect("Homepage:");
+    } catch(InsufficientFundsException $e) {
+      $this->flashMessage("Nedostatek peněz.");
+      $this->redirect("default");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function handleUpgradeBrewery() {
+    try {
+      $newLevel = $this->model->upgradeBrewery();
+      if($newLevel === 1) $this->flashMessage("Pivovar pořízen.");
+      else $this->flashMessage("Pivovar vylepšen.");
+      $this->redirect("default");
+    } catch(CannotUpgradeHouseException $e) {
+      $this->flashMessage("Nemůžeš vylepšit pivovar.");
       $this->redirect("Homepage:");
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nedostatek peněz.");

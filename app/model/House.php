@@ -118,6 +118,39 @@ class House extends \Nette\Object {
     $house->hp = 100;
     $this->orm->houses->persistAndFlush($house);
   }
+  
+  /**
+   * Check whetever the user can upgrade brewery
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canUpgradeBrewery() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $house = $this->orm->houses->getByOwner($this->user->id);
+    if(!$house) return false;
+    elseif($house->breweryLevel >= HouseEntity::MAX_LEVEL) return false;
+    else return true;
+  }
+  
+  /**
+   * Upgrade house
+   * 
+   * @return int New level
+   * @throws AuthenticationNeededException
+   * @throws CannotUpgradeHouseException
+   * @throws InsufficientFundsException
+   */
+  function upgradeBrewery() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canUpgradeBrewery()) throw new CannotUpgradeBreweryException;
+    $house = $this->orm->houses->getByOwner($this->user->id);
+    if($house->owner->money < $house->breweryUpgradePrice) throw new InsufficientFundsException;
+    $house->owner->money -= $house->breweryUpgradePrice;
+    $house->breweryLevel++;
+    $this->orm->houses->persistAndFlush($house);
+    return $house->breweryLevel;
+  }
 }
 
 class CannotBuyMoreHousesException extends AccessDeniedException {
@@ -133,6 +166,10 @@ class CannotUpgradeHouseException extends AccessDeniedException {
 }
 
 class CannotRepairHouseException extends AccessDeniedException {
+  
+}
+
+class CannotUpgradeBreweryException extends AccessDeniedException {
   
 }
 ?>

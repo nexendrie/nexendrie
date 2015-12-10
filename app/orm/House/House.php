@@ -12,6 +12,8 @@ namespace Nexendrie\Orm;
  * @property-read int $workIncomeBonus {virtual}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}
+ * @property-read int $breweryUpgradePrice {virtual}
+ * @property-read string $breweryUpgradePriceT {virtual}
  * @property-read int $repairPrice {virtual}
  * @property-read string $repairPriceT {virtual}
  */
@@ -68,6 +70,19 @@ class House extends \Nextras\Orm\Entity\Entity {
   
   protected function getterUpgradePriceT() {
     return $this->localeModel->money($this->upgradePrice);
+  }
+  
+  protected function getterBreweryUpgradePrice() {
+    if($this->breweryLevel === self::MAX_LEVEL) return 0;
+    $price = self::BASE_UPGRADE_PRICE;
+    for($i = 1; $i < $this->breweryLevel + 1; $i++) {
+      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+    }
+    return $price;
+  }
+  
+  protected function getterBreweryUpgradePriceT() {
+    return $this->localeModel->money($this->breweryUpgradePrice);
   }
   
   protected function getterRepairPrice() {
