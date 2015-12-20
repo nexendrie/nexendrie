@@ -265,10 +265,7 @@ class Adventure extends \Nette\Object {
     $round = 1;
     while(!$finished) {
       $npcLife -= $userAttack;
-      if($npcLife <= 1) {
-        $finished = true;
-        $result = true;
-      }
+      if($npcLife <= 1) $finished = $result = true;
       $user->life -= $npcAttack;
       if($user->life <= 1) $finished = true;
       $round++;
