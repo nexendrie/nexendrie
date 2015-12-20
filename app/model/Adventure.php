@@ -259,6 +259,7 @@ class Adventure extends \Nette\Object {
     $finished = $result = false;
     $user = $this->orm->users->getById($this->user->id);
     $userStats = $this->combatModel->userCombatStats($user, $mount);
+    $user->life += $userStats["maxLife"] - $user->maxLife;
     $npcLife = $npc->hitpoints;
     $userAttack = $userStats["damage"] - $npc->armor;
     $npcAttack = $npc->strength - $userStats["armor"];

@@ -164,6 +164,16 @@ class Inventory extends \Nette\Object {
   }
   
   /**
+   * @param int $user
+   * @return UserItemEntity|NULL
+   */
+  function getHelmet($user) {
+    $armor = $this->orm->userItems->getWornHelmet($user);
+    if($armor) return $armor;
+    else return NULL;
+  }
+  
+  /**
    * Sell an item
    * 
    * @param int $id

@@ -21,6 +21,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
   const TYPE_ITEM = "item";
   const TYPE_WEAPON = "weapon";
   const TYPE_ARMOR = "armor";
+  const TYPE_HELMET = "helmet";
   const TYPE_POTION = "potion";
   const TYPE_MATERIAL = "material";
   const TYPE_CHARTER = "charter";
@@ -40,6 +41,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
       "item" => "Věc",
       "weapon" => "Zbraň",
       "armor" => "Brnění",
+      "helmet" => "Helma",
       "potion" => "Lektvar",
       "material" => "Surovina",
       "charter" => "Listina",
@@ -60,7 +62,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
    */
   static function getEquipmentTypes() {
     return array(
-      "weapon", "armor"
+      "weapon", "armor", "helmet"
     );
   }
   

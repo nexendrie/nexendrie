@@ -61,5 +61,15 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
   function getWornArmor($user) {
     return $this->getBy(array("user" => $user, "this->item->type" => "armor", "worn" => true));
   }
+  
+  /**
+   * Get user's active helmet
+   * 
+   * @param int $user
+   * @return UserItem|NULL
+   */
+  function getWornHelmet($user) {
+    return $this->getBy(array("user" => $user, "this->item->type" => "helmet", "worn" => true));
+  }
 }
 ?>
