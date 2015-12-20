@@ -45,7 +45,7 @@ class Inventory extends \Nette\Object {
    */
   function equipment() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    return $this->orm->userItems->findEquipment($this->user->id);
+    return $this->orm->userItems->findEquipment($this->user->id)->orderBy("this->item->strength");
   }
   
   /**
