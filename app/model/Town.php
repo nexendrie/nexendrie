@@ -180,7 +180,7 @@ class Town extends \Nette\Object {
    */
   function canMove() {
     $month = 60 * 60 * 24 * 31;
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path === "church") return false;
     elseif($user->group->path === "city" AND $user->group->level != 100) return false;

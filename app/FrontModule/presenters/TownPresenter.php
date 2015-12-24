@@ -29,7 +29,7 @@ class TownPresenter extends BasePresenter {
    */
   protected function startup() {
     parent::startup();
-    $this->requiresLogin();
+    if($this->action != "detail") $this->requiresLogin();
   }
   
   /**
