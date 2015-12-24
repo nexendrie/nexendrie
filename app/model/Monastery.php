@@ -81,7 +81,7 @@ class Monastery extends \Nette\Object {
    */
   function canJoin() {
     $month = 60 * 60 * 24 * 31;
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery AND $user->group->path === "city") return true;
     elseif($user->group->path === "church" AND $user->monasteriesLed->countStored()) return false;
