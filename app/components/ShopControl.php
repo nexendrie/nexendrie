@@ -70,7 +70,6 @@ class ShopControl extends \Nette\Application\UI\Control {
     $template = $this->template;
     $template->setFile(__DIR__ . "/shop.latte");
     $template->shop = $this->getShop();
-    $template->user = $this->user;
     $template->discount = $this->eventsModel->getShoppingDiscount();
     $template->render();
   }
