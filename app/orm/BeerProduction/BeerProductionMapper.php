@@ -16,7 +16,7 @@ class BeerProductionMapper extends \Nextras\Orm\Mapper\Mapper {
    * @return BeerProduction|NULL
    */
   function getLastProduction($house) {
-    return $this->builder()->where("house=$house")->orderBy("'when' DESC")->limitBy(1);
+    return $this->builder()->where("house=$house")->orderBy("`when` DESC")->limitBy(1);
   }
 }
 ?>
