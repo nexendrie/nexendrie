@@ -22,6 +22,7 @@ class House extends \Nextras\Orm\Entity\Entity {
   const MAX_LEVEL = 5;
   const BASE_UPGRADE_PRICE = 250;
   const BASE_REPAIR_PRICE = 15;
+  const INCOME_BONUS_PER_LEVEL = 4;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
@@ -57,7 +58,7 @@ class House extends \Nextras\Orm\Entity\Entity {
   protected function getterWorkIncomeBonus() {
     if($this->hp <= 30) return 0;
     elseif($this->owner->group->path != "city") return 0;
-    else return $this->luxuryLevel * 4;
+    else return $this->luxuryLevel * self::INCOME_BONUS_PER_LEVEL;
   }
   
   protected function getterUpgradePrice() {

@@ -11,10 +11,13 @@ class HelpControl extends Book\BookControl {
   protected $groupModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
+  /** @var \Nexendrie\Model\Locale */
+  protected $localeModel;
   
-  function __construct(\Nexendrie\Model\Group $groupModel, \Nexendrie\Orm\Model $orm) {
+  function __construct(\Nexendrie\Model\Group $groupModel, \Nexendrie\Orm\Model $orm, \Nexendrie\Model\Locale $localeModel) {
     $this->groupModel = $groupModel;
     $this->orm = $orm;
+    $this->localeModel = $localeModel;
     parent::__construct(":Front:Help", "help");
   }
   
@@ -82,12 +85,14 @@ class HelpControl extends Book\BookControl {
    */
   function renderCastle() {
     $this->template->maxLevel = \Nexendrie\Orm\Castle::MAX_LEVEL;
+    $this->template->taxBonusPerLevel = $this->localeModel->money(\Nexendrie\Orm\Castle::TAX_BONUS_PER_LEVEL);
   }
   /**
    * @return void
    */
   function renderHouse() {
     $this->template->maxLevel = \Nexendrie\Orm\House::MAX_LEVEL;
+    $this->template->incomeBonusPerLevel = \Nexendrie\Orm\House::INCOME_BONUS_PER_LEVEL;
   }
 }
 

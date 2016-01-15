@@ -22,6 +22,7 @@ class Castle extends \Nextras\Orm\Entity\Entity {
   const MAX_LEVEL = 5;
   const BASE_UPGRADE_PRICE = 500;
   const BASE_REPAIR_PRICE = 35;
+  const TAX_BONUS_PER_LEVEL = 30;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
@@ -55,7 +56,7 @@ class Castle extends \Nextras\Orm\Entity\Entity {
   protected function getterTaxesBonusIncome() {
     if($this->hp <= 30) return 0;
     elseif($this->owner->group->path != "tower") return 0;
-    else return $this->level * 30;
+    else return $this->level * self::TAX_BONUS_PER_LEVEL;
   }
   
   protected function getterUpgradePrice() {
