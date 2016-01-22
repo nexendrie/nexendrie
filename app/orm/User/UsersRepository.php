@@ -48,5 +48,17 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
       "this->group->level" => array(50)
     ));
   }
+  
+  /**
+   * Get users in guild
+   * 
+   * @return ICollection|User[]
+   */
+  function findInGuild() {
+    return $this->findBy(array(
+      "guild!=" => NULL,
+      "this->group->path" => "city"
+    ));
+  }
 }
 ?>

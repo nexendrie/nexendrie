@@ -80,6 +80,31 @@ class CronTasks {
   }
   
   /**
+   * Guild fees
+   * 
+   * @author Jakub Konečný
+   * @return void
+   * 
+   * @cronner-task Guild fees
+   * @cronner-period 1 day
+   * @cronner-time 01:00 - 02:00
+   */
+  function guildFees() {
+    $date = new \DateTime;
+    $date->setTimestamp(time());
+    if($date->format("j") != 1) return;
+    echo "Starting paying guild fees ...\n";
+    $users = $this->orm->users->findInGuild();
+    foreach($users as $user) {
+      echo "User will pay {$user->guildRank->guildFee} to his/her guild.\n";
+      $user->money -= $user->guildRank->guildFee;
+      $user->guild->money += $user->guildRank->guildFee;
+      $this->orm->users->persistAndFlush($user);
+    }
+    echo "Finished paying guild fees ...\n";
+  }
+  
+  /**
    * Close adventures
    * 
    * @author Jakub Konečný
@@ -158,7 +183,7 @@ class CronTasks {
     $houses = $this->orm->houses->findOwnedHouses();
     foreach($houses as $house) {
       $house->hp -= 3;
-      $this->orm->houses->persist($castle);
+      $this->orm->houses->persist($house);
       echo "Decreasing house (#$house->id)'s life by 3.\n";
     }
     $this->orm->flush();
