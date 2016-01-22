@@ -83,8 +83,11 @@ class Monastery extends \Nette\Object {
     $month = 60 * 60 * 24 * 31;
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery AND $user->group->path === "city") return true;
-    elseif($user->group->path === "church" AND $user->monasteriesLed->countStored()) return false;
+    if(!$user->monastery AND $user->group->path === "city") {
+      if($user->guild AND $user->guildRank->id === 4) return false;
+      else return true;
+    }
+    if($user->group->path === "church" AND $user->monasteriesLed->countStored()) return false;
     elseif($user->group->path === "church" AND $user->lastTransfer === NULL) return true;
     elseif($user->group->path === "church" AND $user->lastTransfer  + $month < time()) return true;
     else return false;
@@ -114,6 +117,7 @@ class Monastery extends \Nette\Object {
     $user->monastery = $monastery;
     if($user->group->path != "church") $user->group = $this->orm->groups->getByLevel(55);
     $user->town = $monastery->town;
+    $user->guild = $user->guildRank = NULL;
     $this->orm->users->persistAndFlush($user);
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;
