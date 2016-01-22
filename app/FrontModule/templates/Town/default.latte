@@ -14,5 +14,12 @@
   <p n:foreach="$town->monasteries as $monastery">
     <a n:href="Monastery:detail $monastery->id">{$monastery->name}</a>{if !$iterator->last}, {/if}
   </p>
-  <p><a n:href="list">Seznam měst</a> <a n:href="Castle:list">Seznam hradů</a> <a n:href="Monastery:list">Seznam klášterů</a> {if $monastery}<a n:href="Monastery:">Tvůj klášter</a>{/if} {if !$castle AND $path === "tower"}<a n:href="Castle:build">Postavit hrad</a>{/if} {if $castle}<a n:href="Castle:">Tvůj hrad</a>{/if} {if $path === "tower"}<a n:href="found">Založit město</a>{/if} {if $house}<a n:href="House:">Dům</a>{/if} {if !$house AND $path === "city"}<a n:href="House:buy">Koupit dům</a>{/if}</p>
+  <h3>Cechy</h3>
+  <p n:foreach="$town->guilds as $guild">
+    <a n:href="Guild:detail $guild->id">{$guild->name}</a>{if !$iterator->last}, {/if}
+  </p>
+  <p>
+    <a n:href="list">Seznam měst</a> <a n:href="Castle:list">Seznam hradů</a> <a n:href="Monastery:list">Seznam klášterů</a> <a n:href="Guild:list">Seznam cechů</a><br>
+    {if $monastery}<a n:href="Monastery:">Tvůj klášter</a>{/if} {if !$castle AND $path === "tower"}<a n:href="Castle:build">Postavit hrad</a>{/if} {if $castle}<a n:href="Castle:">Tvůj hrad</a>{/if} {if $path === "tower"}<a n:href="found">Založit město</a>{/if} {if $house}<a n:href="House:">Dům</a>{/if} {if !$house AND $path === "city"}<a n:href="House:buy">Koupit dům</a>{/if}
+  </p>
 {/block}
