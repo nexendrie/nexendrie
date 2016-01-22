@@ -36,6 +36,8 @@ namespace Nexendrie\Orm;
  * @property-read EventsRepository $events
  * @property-read HousesRepository $houses
  * @property-read BeerProductionRepository $beerProduction
+ * @property-read GuildsRepository $guilds
+ * @property-read GuildRanksRepository $guildRanks
  */
 class Model extends \Nextras\Orm\Model\Model {
   

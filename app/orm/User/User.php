@@ -30,6 +30,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property Castle|NULL $castle {1:1 Castle::$owner} {default NULL}
  * @property House|NULL $house {1:1 House::$owner} {default NULL}
  * @property int $prayers {default 0}
+ * @property Guild|NULL $guild {m:1 Guild::$members} {default NULL}
+ * @property GuildRank|NULL $guildRank {m:1 GuildRank::$people} {default NULL}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|Article[] $articles {1:m Article::$author}
