@@ -97,6 +97,17 @@ class Guild extends \Nette\Object {
     $user->guildRank = 4;
     $this->orm->users->persistAndFlush($user);
   }
+  
+  function calculateRankIncomeBonus($baseIncome) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $bonus = 0;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->guild AND $user->group->path === "city") {
+      $increase = $user->guildRank->incomeBonus;
+      $bonus += (int) $baseIncome /100 * $increase;
+    }
+    return $bonus;
+  }
 }
 
 class GuildNotFoundException extends RecordNotFoundException {
