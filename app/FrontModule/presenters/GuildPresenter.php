@@ -2,7 +2,8 @@
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Forms\FoundGuildFormFactory,
-    Nette\Application\UI\Form;
+    Nette\Application\UI\Form,
+    Nexendrie\Model\GuildNotFoundException;
 
 /**
  * Presenter Guild
@@ -24,6 +25,18 @@ class GuildPresenter extends BasePresenter {
   /**
    * @return void
    */
+  function renderDefault() {
+    $guild = $this->model->getUserGuild();
+    if(!$guild) {
+      $this->flashMessage("Nejsi v cechu");
+      $this->redirect("Homepage:");
+    }
+    $this->template->guild = $guild;
+  }
+  
+  /**
+   * @return void
+   */
   function renderList() {
     $this->template->guilds = $this->model->listOfGuilds();
   }
@@ -33,7 +46,11 @@ class GuildPresenter extends BasePresenter {
    * @return void
    */
   function renderDetail($id) {
-    
+    try {
+      $this->template->guild = $this->model->getGuild($id);
+    } catch(GuildNotFoundException $e) {
+      $this->forward("notfound");
+    }
   }
   
   /**

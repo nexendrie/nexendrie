@@ -37,10 +37,13 @@ class Guild extends \Nette\Object {
    * Get specified guild
    * 
    * @param int $id
-   * @return GuildEntity|NULL
+   * @return GuildEntity
+   * @throws GuildNotFoundException
    */
   function getGuild($id) {
-    return $this->orm->guilds->getById($id);
+    $guild = $this->orm->guilds->getById($id);
+    if(!$guild) throw new GuildNotFoundException;
+    else return $guild;
   }
   
   /**
@@ -91,8 +94,13 @@ class Guild extends \Nette\Object {
     $user->money -= $this->foundingPrice;
     $guild->money = $this->foundingPrice;
     $user->guild = $guild;
+    $user->guildRank = 4;
     $this->orm->users->persistAndFlush($user);
   }
+}
+
+class GuildNotFoundException extends RecordNotFoundException {
+  
 }
 
 class CannotFoundGuildException extends AccessDeniedException {

@@ -2,11 +2,12 @@
 {block title}Cech{/block}
 {block content}
   <h1>{$guild->name}</h1>
-  <p>Úroveň: {$guild->level}</p>
+  <p>{$guild->name} byl založen {$guild->foundedAt}. Cech je na úrovni {$guild->level}.</p>
+  <p>{$guild->description}</p>
   <h3>Členové</h3>
-  <div n:foreach="$guild->members as $member" class="members">
+  <p>
+    {foreach $guild->members as $member}
     {$member->guildRank->name} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
-  </div>
-  <h3>Majetek cechu</h3>
-  <p>{$guild->moneyT}</p>
+  {/foreach}
+  </p>
 {/block}
