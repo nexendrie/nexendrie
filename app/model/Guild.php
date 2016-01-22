@@ -110,6 +110,40 @@ class Guild extends \Nette\Object {
   }
   
   /**
+   * Check whetever the user can join a guild
+   * 
+   * @return bool
+   */
+  function canJoin() {
+    if(!$this->user->isLoggedIn()) return false;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->group->path === "city" AND !$user->guild) return true;
+    else return false;
+  }
+  
+  /**
+   * Join a guild
+   * 
+   * @param int $id
+   * @throws AuthenticationNeededException
+   * @throws CannotJoinGuildException
+   * @throws GuildNotFoundException
+   */
+  function join($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canJoin()) throw new CannotJoinGuildException;
+    try {
+      $guild = $this->getGuild($id);
+    } catch(GuildNotFoundException $e) {
+      throw $e;
+    }
+    $user = $this->orm->users->getById($this->user->id);
+    $user->guild = $guild;
+    $user->guildRank = 1;
+    $this->orm->users->persistAndFlush($user);
+  }
+  
+  /**
    * Check whetever the user can leave guild
    * 
    * @return bool
@@ -148,6 +182,10 @@ class CannotFoundGuildException extends AccessDeniedException {
 }
 
 class GuildNameInUseException extends NameInUseException {
+  
+}
+
+class CannotJoinGuildException extends AccessDeniedException {
   
 }
 

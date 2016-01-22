@@ -77,7 +77,6 @@ class Monastery extends \Nette\Object {
    * Check whetever the user can join a monastery
    * 
    * @return bool
-   * @throws AuthenticationNeededException
    */
   function canJoin() {
     $month = 60 * 60 * 24 * 31;

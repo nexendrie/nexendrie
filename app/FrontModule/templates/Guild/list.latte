@@ -11,7 +11,7 @@
       <td><a n:href="Town:detail $guild->town->id">{$guild->town->name}</a></td>
       <td>{$guild->level}</td>
       <td>{$guild->members->countStored()}</td>
-      <td><a n:href="detail $guild->id">Detaily</a></td>
+      <td><a n:href="detail $guild->id">Detaily</a> {if $canJoin}<a n:href="join $guild->id">Připojit se</a>{/if}</td>
     </tr>
   </table>
   {/if}
