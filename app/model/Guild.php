@@ -108,6 +108,35 @@ class Guild extends \Nette\Object {
     }
     return $bonus;
   }
+  
+  /**
+   * Check whetever the user can leave guild
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canLeave( ) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->guild) return false;
+    elseif($user->guildRank->id === 4) return false;
+    else return true;
+  }
+  
+  /**
+   * Leave guild
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotLeaveGuildException
+   */
+  function leave() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->canLeave()) throw new CannotLeaveGuildException;
+    $user = $this->orm->users->getById($this->user->id);
+    $user->guild = $user->guildRank = NULL;
+    $this->orm->users->persistAndFlush($user);
+  }
 }
 
 class GuildNotFoundException extends RecordNotFoundException {
@@ -122,4 +151,7 @@ class GuildNameInUseException extends NameInUseException {
   
 }
 
+class CannotLeaveGuildException extends AccessDeniedException {
+  
+}
 ?>

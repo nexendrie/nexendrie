@@ -3,7 +3,8 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Forms\FoundGuildFormFactory,
     Nette\Application\UI\Form,
-    Nexendrie\Model\GuildNotFoundException;
+    Nexendrie\Model\GuildNotFoundException,
+    Nexendrie\Model\CannotLeaveGuildException;
 
 /**
  * Presenter Guild
@@ -32,6 +33,7 @@ class GuildPresenter extends BasePresenter {
       $this->redirect("Homepage:");
     }
     $this->template->guild = $guild;
+    $this->template->canLeave = $this->model->canLeave();
   }
   
   /**
@@ -74,6 +76,20 @@ class GuildPresenter extends BasePresenter {
       $this->redirect("default");
     };
     return $form;
+  }
+  
+  /**
+   * @return void
+   */
+  function actionLeave() {
+    try {
+      $this->model->leave();
+      $this->flashMessage("Opustil jsi cech.");
+      $this->redirect("Homepage:");
+    } catch(CannotLeaveGuildException $e) {
+      $this->flashMessage("Nemůžeš opustit cech.");
+      $this->redirect("Homepage:");
+    }
   }
 }
 ?>
