@@ -16,10 +16,10 @@ class Guild extends \Nette\Object {
   /** @var int */
   protected $foundingPrice;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct($foundingPrice, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->foundingPrice = 1000;
+    $this->foundingPrice = $foundingPrice;
   }
   
   /**
