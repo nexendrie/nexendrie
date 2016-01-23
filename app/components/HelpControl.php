@@ -88,12 +88,20 @@ class HelpControl extends Book\BookControl {
     $this->template->maxLevel = \Nexendrie\Orm\Castle::MAX_LEVEL;
     $this->template->taxBonusPerLevel = $this->localeModel->money(\Nexendrie\Orm\Castle::TAX_BONUS_PER_LEVEL);
   }
+  
   /**
    * @return void
    */
   function renderHouse() {
     $this->template->maxLevel = \Nexendrie\Orm\House::MAX_LEVEL;
     $this->template->incomeBonusPerLevel = \Nexendrie\Orm\House::INCOME_BONUS_PER_LEVEL;
+  }
+  
+  /**
+   * @return void
+   */
+  function renderGuild() {
+    $this->template->ranks = $this->orm->guildRanks->findAll();
   }
 }
 
