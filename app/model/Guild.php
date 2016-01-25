@@ -120,12 +120,11 @@ class Guild extends \Nette\Object {
   
   function calculateRankIncomeBonus($baseIncome) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $bonus = 0;
+    $bonus = $increase = 0;
     $user = $this->orm->users->getById($this->user->id);
     if($user->guild AND $user->group->path === "city") {
-      $increase = $user->guildRank->incomeBonus;
+      $increase += $user->guildRank->incomeBonus + $user->guild->level - 1;
     }
-    $increase += $user->guild->level - 1;
     $bonus += (int) $baseIncome /100 * $increase;
     return $bonus;
   }
