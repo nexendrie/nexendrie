@@ -323,7 +323,7 @@ class Monastery extends \Nette\Object {
   }
   
   /**
-   * Check whetever the user can manage monastery
+   * Check whetever the user can upgrade monastery
    * 
    * @return bool
    * @throws AuthenticationNeededException
@@ -351,8 +351,8 @@ class Monastery extends \Nette\Object {
     $user = $this->orm->users->getById($this->user->id);
     $upgradePrice = $user->monastery->upgradePrice;
     if($user->monastery->money < $upgradePrice) throw new InsufficientFundsException;
-    $user->monastery->level++;
     $user->monastery->money -= $upgradePrice;
+    $user->monastery->level++;
     $this->orm->monasteries->persistAndFlush($user->monastery);
   }
   

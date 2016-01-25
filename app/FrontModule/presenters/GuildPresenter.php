@@ -6,7 +6,9 @@ use Nexendrie\Forms\FoundGuildFormFactory,
     Nexendrie\Model\GuildNotFoundException,
     Nexendrie\Model\CannotLeaveGuildException,
     Nexendrie\Model\CannotJoinGuildException,
-    Nexendrie\Forms\ManageGuildFormFactory;
+    Nexendrie\Forms\ManageGuildFormFactory,
+    Nexendrie\Model\CannotUpgradeGuildException,
+    Nexendrie\Model\InsufficientFundsException;
 
 /**
  * Presenter Guild
@@ -120,6 +122,9 @@ class GuildPresenter extends BasePresenter {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat cech.");
       $this->redirect("Homepage:");
+    } else {
+      $this->template->guild = $monastery = $this->model->getUserGuild();
+      $this->template->canUpgrade = $this->model->canUpgrade();
     }
   }
   
@@ -133,6 +138,23 @@ class GuildPresenter extends BasePresenter {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;
+  }
+  
+  /**
+   * @return void
+   */
+  function handleUpgrade() {
+    try {
+      $this->model->upgrade();
+      $this->flashMessage("Cech vylepšen.");
+      $this->redirect("manage");
+    } catch(CannotUpgradeGuildException $e) {
+      $this->flashMessage("Nemůžeš vylepšit cech.");
+      $this->redirect("Homepage:");
+    } catch(InsufficientFundsException $e) {
+      $this->flashMessage("Nedostatek peněz.");
+      $this->redirect("manage");
+    }
   }
 }
 ?>

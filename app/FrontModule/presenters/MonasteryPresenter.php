@@ -154,6 +154,9 @@ class MonasteryPresenter extends BasePresenter {
     return $form;
   }
   
+  /**
+   * @return void
+   */
   function actionManage() {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat klášter.");

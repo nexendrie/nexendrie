@@ -16,8 +16,13 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $money
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|User[] $members {1:m User::$guild order:guildRank,DESC}
+ * @property-read int $upgradePrice {virtual}
+ * @property-read string $upgradePriceT {virtual}
  */
 class Guild extends \Nextras\Orm\Entity\Entity {
+  const MAX_LEVEL = 6;
+  const BASE_UPGRADE_PRICE = 700;
+  
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -27,7 +32,7 @@ class Guild extends \Nextras\Orm\Entity\Entity {
   
   protected function setterLevel($value) {
     if($value < 1) return 1;
-    elseif($value > 9) return 9;
+    elseif($value > self::MAX_LEVEL) return self::MAX_LEVEL;
     else return $value;
   }
   
@@ -37,6 +42,19 @@ class Guild extends \Nextras\Orm\Entity\Entity {
   
   protected function getterMoneyT() {
     return $this->localeModel->money($this->money);
+  }
+  
+  protected function getterUpgradePrice() {
+    if($this->level === self::MAX_LEVEL) return 0;
+    $price = self::BASE_UPGRADE_PRICE;
+    for($i = 2; $i < $this->level + 1; $i++) {
+      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+    }
+    return $price;
+  }
+  
+  protected function getterUpgradePriceT() {
+    return $this->localeModel->money($this->upgradePrice);
   }
 }
 ?>

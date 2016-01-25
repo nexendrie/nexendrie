@@ -203,6 +203,39 @@ class Guild extends \Nette\Object {
     if(!$user->guild) return false;
     else return ($user->guildRank->id === 4);
   }
+  
+  /**
+   * Check whetever the user can upgrade guild
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canUpgrade() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->guild) return false;
+    elseif($user->guildRank->id != 4) return false;
+    elseif($user->guild->level >= GuildEntity::MAX_LEVEL) return false;
+    else return true;
+  }
+  
+  /**
+   * Upgrade guild
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotUpgradeGuildException
+   * @throws InsufficientFundsException
+   */
+  function upgrade() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->canUpgrade()) throw new CannotUpgradeGuildException;
+    $guild = $this->getUserGuild();
+    if($guild->money < $guild->upgradePrice) throw new InsufficientFundsException;
+    $guild->money -= $guild->upgradePrice;
+    $guild->level++;
+    $this->orm->guilds->persistAndFlush($guild);
+  }
 }
 
 class GuildNotFoundException extends RecordNotFoundException {
@@ -223,5 +256,9 @@ class CannotJoinGuildException extends AccessDeniedException {
 
 class CannotLeaveGuildException extends AccessDeniedException {
   
+}
+
+class CannotUpgradeGuildException extends AccessDeniedException {
+
 }
 ?>
