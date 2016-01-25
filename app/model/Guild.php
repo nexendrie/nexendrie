@@ -118,7 +118,7 @@ class Guild extends \Nette\Object {
     $this->orm->users->persistAndFlush($user);
   }
   
-  function calculateRankIncomeBonus($baseIncome) {
+  function calculateGuildIncomeBonus($baseIncome) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $bonus = $increase = 0;
     $user = $this->orm->users->getById($this->user->id);
