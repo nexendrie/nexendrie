@@ -186,6 +186,7 @@ class Town extends \Nette\Object {
     elseif($user->group->path === "city" AND $user->group->level != 100) return false;
     elseif($user->lastTransfer === NULL) return true;
     elseif($user->lastTransfer + $month > time()) return false;
+    elseif($user->guild AND $user->guildRank->id === 4) return false;
     else return true;
   }
   
@@ -208,6 +209,7 @@ class Town extends \Nette\Object {
     elseif(!$this->canMove()) throw new CannotMoveToTownException;
     $this->user->identity->town = $user->town = $id;
     $user->lastTransfer = $user->lastActive = time();
+    $user->guild = $user->guildRank = NULL;
     $this->orm->users->persistAndFlush($user);
   }
   

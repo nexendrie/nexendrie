@@ -22,7 +22,7 @@ class House extends \Nextras\Orm\Entity\Entity {
   const MAX_LEVEL = 5;
   const BASE_UPGRADE_PRICE = 250;
   const BASE_REPAIR_PRICE = 15;
-  const INCOME_BONUS_PER_LEVEL = 4;
+  const INCOME_BONUS_PER_LEVEL = 3;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

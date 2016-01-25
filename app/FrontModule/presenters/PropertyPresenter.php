@@ -3,7 +3,7 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\TownNotFoundException,
-    Nexendrie\Forms\ManageTownFormFactory,
+    Nexendrie\Forms\ManageGuildFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\ItemNotFoundException,
     Nexendrie\Model\ItemNotOwnedException,
@@ -85,10 +85,10 @@ class PropertyPresenter extends BasePresenter {
   }
   
   /**
-   * @param ManageTownFormFactory $factory
+   * @param ManageGuildFormFactory $factory
    * @return Form
    */
-  protected function createComponentManageTownForm(ManageTownFormFactory $factory) {
+  protected function createComponentManageTownForm(ManageGuildFormFactory $factory) {
     $form = $factory->create($this->town->id);
     $form->onSuccess[] = function(Form $form) {
       $this->flashMessage("Změny uloženy.");
@@ -118,7 +118,7 @@ class PropertyPresenter extends BasePresenter {
     $this->template->taxes = $this->localeModel->money($budget["incomes"]["taxes"]);
     $this->template->incomeTax = $this->localeModel->money($budget["expenses"]["incomeTax"]);
     $this->template->loansInterest = $this->localeModel->money($budget["expenses"]["loansInterest"]);
-    $this->template->monasteryDonations = $this->localeModel->money($budget["expenses"]["monasteryDonations"]);
+    $this->template->membershipFee = $this->localeModel->money($budget["expenses"]["membershipFee"]);
   }
   
   /**
