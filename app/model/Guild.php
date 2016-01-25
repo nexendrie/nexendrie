@@ -124,8 +124,9 @@ class Guild extends \Nette\Object {
     $user = $this->orm->users->getById($this->user->id);
     if($user->guild AND $user->group->path === "city") {
       $increase = $user->guildRank->incomeBonus;
-      $bonus += (int) $baseIncome /100 * $increase;
     }
+    $increase += $user->guild->level - 1;
+    $bonus += (int) $baseIncome /100 * $increase;
     return $bonus;
   }
   
