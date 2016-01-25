@@ -5,7 +5,8 @@ use Nexendrie\Forms\FoundGuildFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\GuildNotFoundException,
     Nexendrie\Model\CannotLeaveGuildException,
-    Nexendrie\Model\CannotJoinGuildException;
+    Nexendrie\Model\CannotJoinGuildException,
+    Nexendrie\Forms\ManageGuildFormFactory;
 
 /**
  * Presenter Guild
@@ -35,6 +36,7 @@ class GuildPresenter extends BasePresenter {
     }
     $this->template->guild = $guild;
     $this->template->canLeave = $this->model->canLeave();
+    $this->template->canManage = $this->model->canManage();
   }
   
   /**
@@ -109,6 +111,28 @@ class GuildPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš opustit cech.");
       $this->redirect("Homepage:");
     }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionManage() {
+    if(!$this->model->canManage()) {
+      $this->flashMessage("Nemůžeš spravovat cech.");
+      $this->redirect("Homepage:");
+    }
+  }
+  
+  /**
+   * @param ManageGuildFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentManageGuildForm(ManageGuildFormFactory $factory) {
+    $form = $factory->create($this->model->getUserGuild()->id);
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Změny uloženy.");
+    };
+    return $form;
   }
 }
 ?>

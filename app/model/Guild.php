@@ -47,6 +47,26 @@ class Guild extends \Nette\Object {
   }
   
   /**
+   * Edit specified guild
+   * 
+   * @param int $id
+   * @param array $data
+   * @return void
+   * @throws GuildNotFoundException
+   */
+  function editGuild($id, array $data) {
+    try {
+      $guild = $this->getGuild($id);
+    } catch(GuildNotFoundException $e) {
+      throw $e;
+    }
+    foreach($data as $key => $value) {
+      $guild->$key = $value;
+    }
+    $this->orm->guilds->persistAndFlush($guild);
+  }
+  
+  /**
    * Get specified user's guild
    * 
    * @param int $uid
@@ -153,8 +173,7 @@ class Guild extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->guild) return false;
-    elseif($user->guildRank->id === 4) return false;
-    else return true;
+    else return !($user->guildRank->id === 4);
   }
   
   /**
@@ -170,6 +189,19 @@ class Guild extends \Nette\Object {
     $user = $this->orm->users->getById($this->user->id);
     $user->guild = $user->guildRank = NULL;
     $this->orm->users->persistAndFlush($user);
+  }
+  
+  /**
+   * Check whetever the user can leave guild
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canManage() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->guild) return false;
+    else return ($user->guildRank->id === 4);
   }
 }
 

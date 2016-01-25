@@ -3,7 +3,7 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\TownNotFoundException,
-    Nexendrie\Forms\ManageTownFormFactory,
+    Nexendrie\Forms\ManageGuildFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\ItemNotFoundException,
     Nexendrie\Model\ItemNotOwnedException,
@@ -85,10 +85,10 @@ class PropertyPresenter extends BasePresenter {
   }
   
   /**
-   * @param ManageTownFormFactory $factory
+   * @param ManageGuildFormFactory $factory
    * @return Form
    */
-  protected function createComponentManageTownForm(ManageTownFormFactory $factory) {
+  protected function createComponentManageTownForm(ManageGuildFormFactory $factory) {
     $form = $factory->create($this->town->id);
     $form->onSuccess[] = function(Form $form) {
       $this->flashMessage("Změny uloženy.");
