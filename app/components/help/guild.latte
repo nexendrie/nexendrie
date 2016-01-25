@@ -3,5 +3,5 @@
     <tr><th>Hodnost</th><th>Bonus k příjmům z práce</th><th>Členský poplatek</th></tr>
     <tr n:foreach="$ranks as $rank"><td>{$rank->name}</td><td>{$rank->incomeBonus}</td><td>{$rank->guildFee}</td></tr>
   </table>
-  <p>V čele cechu stojí cechmistr. Ten může povyšovat, degradovat a vylučovat členy, také má možnost přejmenovat cech a rozhoduje o způsobu využití společných peněz.</p>
+  <p>V čele cechu stojí cechmistr. Ten může povyšovat, degradovat a vylučovat členy, také má možnost přejmenovat cech a z vybraných příspěvků vylepšit cech. Každá úroveň cechu zvyšuje příjmy z práce všech členů o 1%, maximální úroveň je {$maxLevel}.</p>
   <p>Důležité upozornění: každý cech může fungovat jen v jednom městě. Pokud se tedy rozhodneš opustit město, automaticky vystoupíš i ze svého cechu. Z tohoto důvodu se cechmistr nemůže přestěhovat do jiného města.</p>

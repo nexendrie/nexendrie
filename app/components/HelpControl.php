@@ -102,6 +102,7 @@ class HelpControl extends Book\BookControl {
    */
   function renderGuild() {
     $this->template->ranks = $this->orm->guildRanks->findAll();
+    $this->template->maxLevel = \Nexendrie\Orm\Guild::MAX_LEVEL;
   }
 }
 
