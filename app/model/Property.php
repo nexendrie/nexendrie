@@ -41,7 +41,6 @@ class Property extends \Nette\Object {
       "expenses" => array(
         "incomeTax" => 0,
         "loansInterest" => 0,
-        "monasteryDonations" => 0,
         "membershipFee" => 0
     ));
     $budget["expenses"]["incomeTax"] = $this->taxesModel->calculateTax(array_sum($budget["incomes"]));
@@ -51,7 +50,7 @@ class Property extends \Nette\Object {
     }
     $donations = $this->orm->monasteryDonations->findDonatedThisMonth($this->user->id);
     foreach($donations as $donation) {
-      $budget["expenses"]["monasteryDonations"] += $donation->amount;
+      $budget["expenses"]["membershipFee"] += $donation->amount;
     }
     $beerProduction = $this->orm->beerProduction->findProducedThisMonth($this->user->id);
     foreach($beerProduction as $production) {
@@ -64,7 +63,7 @@ class Property extends \Nette\Object {
       if($current) $budget["expenses"]["incomeTax"] = 0;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->guild AND $user->group->path === "city")$budget["expenses"]["membershipFee"] = $user->guildRank->guildFee;
+    if($user->guild AND $user->group->path === "city")$budget["expenses"]["membershipFee"] += $user->guildRank->guildFee;
     return $budget;
   }
 }
