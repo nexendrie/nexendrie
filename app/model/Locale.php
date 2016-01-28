@@ -37,6 +37,12 @@ interface ILocale {
    * @return string
    */
   function money($amount);
+  
+  /**
+   * @param int $amount
+   * @return string
+   */
+  function hitpoints($amount);
 }
 
 
@@ -103,6 +109,14 @@ class Locale extends \Nette\Object implements \Nexendrie\ILocale {
    */
   function money($amount) {
     return "$amount " . $this->plural("groš", "groše", "grošů", $amount);
+  }
+  
+  /**
+   * @param int $amount
+   * @return string
+   */
+  function hitpoints($amount) {
+    return "$amount " . $this->plural("život", "životy", "životů", $amount);
   }
   
   function getFormats() {

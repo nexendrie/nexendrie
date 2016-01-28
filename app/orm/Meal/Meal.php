@@ -10,6 +10,7 @@ namespace Nexendrie\Orm;
  * @property int $price
  * @property int $life {default 0}
  * @property-read string $priceT {virtual}
+ * @property-read string $effect {virtual}
  */
 class Meal extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
@@ -21,6 +22,12 @@ class Meal extends \Nextras\Orm\Entity\Entity {
   
   protected function getterPriceT() {
     return $this->localeModel->money($this->price);
+  }
+  
+  protected function getterEffect() {
+    if($this->life < 0) $word = "ubere";
+    else $word = "přidá";
+    return $word . " " . $this->localeModel->hitpoints($this->life);
   }
 }
 ?>
