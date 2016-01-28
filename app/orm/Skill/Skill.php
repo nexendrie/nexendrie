@@ -17,6 +17,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $statIncrease {default 0}
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
  * @property OneHasMany|UserSkill $userSkills {1:m UserSkill::$skill}
+ * @property-read string $effect {virtual}
  */
 class Skill extends \Nextras\Orm\Entity\Entity {
   const TYPE_WORK = "work";
@@ -59,6 +60,11 @@ class Skill extends \Nextras\Orm\Entity\Entity {
   
   protected function getterStatCZ() {
     return ($this->stat != NULL) ? self::getStats()[$this->stat] : NULL;
+  }
+  
+  protected function getterEffect() {
+    if($this->type === self::TYPE_WORK) return "";
+    else return $this->statCZ . " +" . $this->statIncrease;
   }
 }
 ?>

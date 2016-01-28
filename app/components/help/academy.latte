@@ -4,6 +4,6 @@
     {$skill->name}<br>
     Cena za 1. stupeň: {$skill->priceT}, úrovní: {$skill->maxLevel}<br>
     {if $skill->type === "work"} Potřebné pro práce: {foreach $skill->jobs as $job}{$job->name}{if !$iterator->last}, {/if}{/foreach}<br>
-    {elseif $skill->type === "combat"}Efekt: {$skill->statCZ} +{$skill->statIncrease}{/if}
+    {elseif $skill->type === "combat"}Efekt: {$skill->effect}{/if}
   </p>
   {/foreach}
