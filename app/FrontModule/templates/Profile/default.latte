@@ -4,8 +4,11 @@
   <h1>{$profile->group->singleName} {$profile->publicname}</h1>
   <p>
     V Nexendrii od {$profile->joinedAt}, naposledy spatřen(a) {$profile->lastActiveAt}. V současnosti žije ve městě/vesnici <a n:href="Town:detail $profile->town->id">{$profile->town->name}</a>{if $profile->monastery}, klášteře <a n:href="Monastery:detail $profile->monastery->id">{$profile->monastery->name}</a>{/if}{if $castle}, na hradě <a n:href="Castle:detail $castle->id">{$castle->name}</a>{/if}.<br>
+    {if $profile->ownedTowns->count()}
+    Vládne městům: {foreach $profile->ownedTowns as $town}<a n:href="Town:detail $town->id">{$town->name}</a>{if !$iterator->last}, {else}.{/if}{/foreach}<br>
+    {/if}
     {if $profile->guild}{$profile->guildRank->name} <a n:href="Guild:detail $profile->guild->id">{$profile->guild->name}</a><br>{/if}
     {if $profile->banned}V současnosti si odpykává zasloužený trest v místní šatlavě.<br>{/if}
-   Napsáno {$profile->articles->countStored()} článků a {$profile->comments->countStored()} komentářů
+   Napsáno {$profile->articles->countStored()} článků a {$profile->comments->countStored()} komentářů.
   </p>
 {/block}
