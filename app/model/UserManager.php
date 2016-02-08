@@ -149,7 +149,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     $user = $this->orm->users->getById($this->user->id);
     $settings = array(
       "publicname" => $user->publicname, "email" => $user->email, "infomails" =>  $user->infomails,
-      "style" => $user->style
+      "style" => $user->style, "gender" => $user->gender
     );
     return $settings;
   }

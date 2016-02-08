@@ -8,7 +8,8 @@ use Nette\Application\UI\Form,
     Nette\Utils\Arrays,
     Nexendrie\Model\UserManager,
     Nette\Security\User,
-    Nexendrie\Model\SettingsException;
+    Nexendrie\Model\SettingsException,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Factory for form UserSettings
@@ -57,6 +58,8 @@ class UserSettingsFormFactory {
     $form->addText("email", "E-mail:")
       ->addRule(Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
+    $form->addRadioList("gender", "Pohlaví:", UserEntity::getGenders())
+      ->setRequired("Vyber pohlaví.");
     $form->addRadioList("style", "Vzhled stránek:", self::getStylesList());
     $form->addCheckbox("infomails", "Posílat informační e-maily");
     $form->addGroup("Heslo")

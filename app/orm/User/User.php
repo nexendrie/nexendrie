@@ -21,6 +21,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property Group $group {m:1 Group::$members}
  * @property bool $infomails {default 0}
  * @property string $style {default "blu-sky"}
+ * @property string $gender {enum self::GENDER_*} {default self::GENDER_MALE}
  * @property bool $banned {default 0}
  * @property int $life {default 60}
  * @property int $maxLife {default 60}
@@ -52,6 +53,9 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$user}
  */
 class User extends \Nextras\Orm\Entity\Entity {
+  const GENDER_MALE = "male";
+  const GENDER_FEMALE = "female";
+  
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -65,6 +69,16 @@ class User extends \Nextras\Orm\Entity\Entity {
   
   protected function getterLastActiveAt() {
     return $this->localeModel->formatDate($this->lastActive);
+  }
+  
+  /**
+   * @return string[]
+   */
+  static function getGenders() {
+    return array(
+      self::GENDER_MALE => "muž",
+      self::GENDER_FEMALE => "žena"
+    );
   }
   
   protected function getterMoneyT() {
