@@ -130,6 +130,7 @@ class Inventory extends \Nette\Object {
     if($item->user->life >= $item->user->maxLife) throw new HealingNotNeeded;
     $item->amount -= 1;
     $life = $item->item->strength;
+    if($item->user->monastery) $life += $item->user->monastery->level;
     if($item->amount < 1) {
       $user = $this->orm->users->getById($this->user->id);
       $this->orm->userItems->remove($item);
