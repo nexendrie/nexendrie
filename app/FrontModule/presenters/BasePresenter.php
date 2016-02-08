@@ -7,12 +7,16 @@ namespace Nexendrie\Presenters\FrontModule;
  * @author Jakub Konečný
  */
 abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
+  /** @var \Nexendrie\Model\Profile @autowire */
+  protected $profileModel;
+  
   /**
    * @return void
    */
   protected function startup() {
     parent::startup();
     $this->template->isAdmin = $this->user->isAllowed("site", "manage");
+    $this->template->path = ($this->user->isLoggedIn() ? $this->profileModel->getPath() : NULL);
   }
   
   /**
