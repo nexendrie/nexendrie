@@ -10,6 +10,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @author Jakub Konečný
  * @property string $name
  * @property string $singleName
+ * @property string $femaleName
  * @property int $level
  * @property string $path {enum self::PATH_*} 
  * @property OneHasMany|User[] $members {1:m User}

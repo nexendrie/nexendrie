@@ -51,6 +51,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Monastery[] $monasteriesLed {1:m Monastery::$leader}
  * @property OneHasMany|MonasteryDonation[] $monasteryDonations {1:m MonasteryDonation::$user}
  * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$user}
+ * @property-read string $title {virtual}
  */
 class User extends \Nextras\Orm\Entity\Entity {
   const GENDER_MALE = "male";
@@ -89,6 +90,11 @@ class User extends \Nextras\Orm\Entity\Entity {
     if($value > 60) return 60;
     elseif($value < 1) return 1;
     else return $value;
+  }
+  
+  protected function getterTitle() {
+    if($this->gender === self::GENDER_FEMALE) return $this->group->femaleName;
+    else return $this->group->singleName;
   }
 }
 ?>

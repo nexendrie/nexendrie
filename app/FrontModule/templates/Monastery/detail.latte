@@ -6,7 +6,7 @@
   <h3>Obyvatelé</h3>
   <p>
     {foreach $monastery->members as $member}
-    {$member->group->singleName} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
+    {$member->title} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
   {/foreach}
   </p>
 {/block}

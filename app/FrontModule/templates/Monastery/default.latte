@@ -6,7 +6,7 @@
   <p>Úroveň: {$monastery->level} Stav: {$monastery->hp}%</p>
   <h3>Členové</h3>
   <div n:foreach="$monastery->members as $member" class="members">
-    {$member->group->singleName} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
+    {$member->title} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
   </div>
   <h3>Majetek kláštera</h3>
   <p>{$monastery->moneyT}</p>

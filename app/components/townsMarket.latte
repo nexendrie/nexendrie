@@ -3,6 +3,6 @@
   Žádná města nejsou na prodej.
   {else}
     {foreach $towns as $town}
-  {$town->owner->group->singleName} <a href="{plink :Front:Profile:default, username=>$town->owner->username}">{$town->owner->publicname}</a> nabízí <a href="{plink Town:detail $town->id}">{$town->name}</a> za {$town->priceT}. <a n:href="buy! $town->id">Koupit</a><br>
+  {$town->owner->title} <a href="{plink :Front:Profile:default, username=>$town->owner->username}">{$town->owner->publicname}</a> nabízí <a href="{plink Town:detail $town->id}">{$town->name}</a> za {$town->priceT}. <a n:href="buy! $town->id">Koupit</a><br>
     {/foreach}
   {/if}

@@ -3,11 +3,11 @@
 {block content}
   <h1>{$town->name}</h1>
   <p>{$town->description}</p>
-  <p>Město bylo založeno {$town->foundedAt}, v současnosti mu vládne {$town->owner->group->singleName} <a n:href="Profile: $town->owner->username">{$town->owner->publicname}</a>.</p>
+  <p>Město bylo založeno {$town->foundedAt}, v současnosti mu vládne {$town->owner->title} <a n:href="Profile: $town->owner->username">{$town->owner->publicname}</a>.</p>
   <h3>Obyvatelé města</h3>
   <p>
   {foreach $town->denizens as $denizen}
-    {$denizen->group->singleName} <a n:href="Profile: $denizen->username">{$denizen->publicname}</a>{if !$iterator->last}, {/if}
+    {$denizen->title} <a n:href="Profile: $denizen->username">{$denizen->publicname}</a>{if !$iterator->last}, {/if}
   {/foreach}
   </p>
   <h3>Kláštery ve městě</h3>

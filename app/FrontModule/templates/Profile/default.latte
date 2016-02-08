@@ -1,7 +1,7 @@
 {layout "../@layout.latte"}
 {block title}Profil{/block}
 {block content}
-  <h1>{$profile->group->singleName} {$profile->publicname}</h1>
+  <h1>{$profile->title} {$profile->publicname}</h1>
   <p>
     V Nexendrii od {$profile->joinedAt}, naposledy spatřen(a) {$profile->lastActiveAt}. V současnosti žije ve městě/vesnici <a n:href="Town:detail $profile->town->id">{$profile->town->name}</a>{if $profile->monastery}, klášteře <a n:href="Monastery:detail $profile->monastery->id">{$profile->monastery->name}</a>{/if}{if $castle}, na hradě <a n:href="Castle:detail $castle->id">{$castle->name}</a>{/if}.<br>
     {if $profile->ownedTowns->count()}
