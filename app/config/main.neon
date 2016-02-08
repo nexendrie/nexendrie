@@ -16,3 +16,5 @@ extensions:
     cronner: stekycz\Cronner\DI\CronnerExtension
 orm:
     model: Nexendrie\Orm\Model
+cronner:
+    bar: false

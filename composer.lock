@@ -95,12 +95,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/EventCalendar.git",
-                "reference": "43b6a6572c6e9cd8cf8ac31e1c09719cd30d90c9"
+                "reference": "7025b237f6e8ab0bb4d6e00c23ec73103221ad3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/43b6a6572c6e9cd8cf8ac31e1c09719cd30d90c9",
-                "reference": "43b6a6572c6e9cd8cf8ac31e1c09719cd30d90c9",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/7025b237f6e8ab0bb4d6e00c23ec73103221ad3e",
+                "reference": "7025b237f6e8ab0bb4d6e00c23ec73103221ad3e",
                 "shasum": ""
             },
             "require": {
@@ -142,7 +142,7 @@
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
             "homepage": "http://www.nimral.cz/calendar",
-            "time": "2015-11-28 10:50:58"
+            "time": "2016-01-23 11:10:48"
         },
         {
             "name": "latte/latte",
@@ -1182,12 +1182,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stekycz/Cronner.git",
-                "reference": "0ccb7dae1fca4de94081ca954d7922ef8a840973"
+                "reference": "ff2ef03e38885fb0753ecf0a3a04bc1e72233fdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/0ccb7dae1fca4de94081ca954d7922ef8a840973",
-                "reference": "0ccb7dae1fca4de94081ca954d7922ef8a840973",
+                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/ff2ef03e38885fb0753ecf0a3a04bc1e72233fdf",
+                "reference": "ff2ef03e38885fb0753ecf0a3a04bc1e72233fdf",
                 "shasum": ""
             },
             "require": {
@@ -1232,7 +1232,7 @@
                 "nette",
                 "task"
             ],
-            "time": "2015-04-30 05:43:41"
+            "time": "2016-02-07 11:10:02"
         },
         {
             "name": "tracy/tracy",
