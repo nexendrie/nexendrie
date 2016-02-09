@@ -5,7 +5,8 @@ use Nexendrie\Model\TownNotFoundException,
     Nexendrie\Model\CannotMoveToSameTownException,
     Nexendrie\Model\CannotMoveToTownException,
     Nexendrie\Forms\FoundTownFormFactory,
-    Nette\Application\UI\Form;
+    Nette\Application\UI\Form,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Presenter Town
@@ -75,7 +76,9 @@ class TownPresenter extends BasePresenter {
   function actionMove($id) {
     try {
       $this->model->moveToTown((int) $id);
-      $this->flashMessage("Přestěhoval jsi se do vybraného města.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Přestěhovala jsi se do vybraného města.";
+      else $message = "Přestěhoval jsi se do vybraného města.";
+      $this->flashMessage($message);
       $this->redirect("Town:");
     } catch(TownNotFoundException $e) {
       $this->flashMessage("Město nebylo nalezeno.");

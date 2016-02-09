@@ -4,7 +4,8 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nette\Application\UI\Form,
     Nexendrie\Forms\LoginFormFactory,
     Nexendrie\Forms\RegisterFormFactory,
-    Nexendrie\Forms\UserSettingsFormFactory;
+    Nexendrie\Forms\UserSettingsFormFactory,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Presenter User
@@ -33,7 +34,9 @@ class UserPresenter extends BasePresenter {
   protected function createComponentLoginForm(LoginFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, $values) {
-      $this->flashMessage("Byl jsi úspěšně přihlášen.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Byla jsi úspěšně přihlášena.";
+      else $message = "Byl jsi úspěšně přihlášen.";
+      $this->flashMessage($message);
       if($this->user->identity->banned) $this->flashMessage("Stále jsi uvězněný.");
       if($this->user->identity->travelling) $this->flashMessage("Stále jsi na dobrodružství.");
       $this->redirect("Homepage:");

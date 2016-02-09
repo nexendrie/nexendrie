@@ -11,7 +11,8 @@ use Nexendrie\Model\AlreadyOnAdventureException,
     Nexendrie\Model\NoEnemyRemainException,
     Nexendrie\Model\NotAllEnemiesDefeateException,
     Nexendrie\Model\CannotDoAdventureException,
-    Nexendrie\Model\AdventureNotAccessibleException;
+    Nexendrie\Model\AdventureNotAccessibleException,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * AdventureControl
@@ -70,7 +71,9 @@ class AdventureControl extends \Nette\Application\UI\Control {
   function handleStart($adventure, $mount) {
     try {
       $this->model->startAdventure($adventure, $mount);
-      $this->presenter->flashMessage("Vydal jsi se na dobrodružství.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vydala jsi se na dobrodružství.";
+      else $message = "Vydal jsi se na dobrodružství.";
+      $this->presenter->flashMessage($message);
       $this->presenter->redirect("Adventure:");
     } catch(AlreadyOnAdventureException $e) {
       $this->presenter->flashMessage("Už jsi na dobrodružství.");

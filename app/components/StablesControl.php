@@ -6,7 +6,8 @@ use Nexendrie\Model\MountNotFoundException,
     Nexendrie\Model\InsufficientFundsException,
     Nexendrie\Model\CareNotNeededException,
     Nexendrie\Model\MountMaxTrainingLevelReachedException,
-    Nexendrie\Model\MountInBadConditionException;
+    Nexendrie\Model\MountInBadConditionException,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * StablesControl
@@ -71,7 +72,9 @@ class StablesControl extends \Nette\Application\UI\Control {
   function handleCare($mountId) {
     try {
       $this->increaseLife($mountId, 3, 4);
-      $this->presenter->flashMessage("Očistil jsi jezdecké zvíře.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Očistila jsi jezdecké zvíře.";
+      else $message = "Očistil jsi jezdecké zvíře.";
+      $this->presenter->flashMessage($message);
     } catch(MountNotFoundException $e) {
       $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
     } catch(MountNotOwnedException $e) {
@@ -90,7 +93,9 @@ class StablesControl extends \Nette\Application\UI\Control {
   function handleFeed($mountId) {
     try {
       $this->increaseLife($mountId, 10, 12);
-      $this->presenter->flashMessage("Nakrmil jsi jezdecké zvíře.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nakrmila jsi jezdecké zvíře.";
+      else $message = "Nakrmil jsi jezdecké zvíře.";
+      $this->presenter->flashMessage($message);
     } catch(MountNotFoundException $e) {
       $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
     } catch(MountNotOwnedException $e) {

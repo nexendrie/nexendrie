@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Components;
 
-use Nexendrie\Orm\Punishment;
+use Nexendrie\Orm\Punishment,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Prison Control
@@ -58,16 +59,22 @@ class PrisonControl extends \Nette\Application\UI\Control {
   function handleWork() {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     if(!$punishment === NULL) {
-      $this->presenter->flashMessage("Nejsi uvězněn.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi uvězněná.";
+      else $message = "Nejsi uvězněný.";
+      $this->presenter->flashMessage($message);
     } elseif(!$this->canWork($punishment)) {
       $this->presenter->flashMessage("Ještě nemůžeš pracovat.");
     } elseif($punishment->count >= $punishment->numberOfShifts) {
-      $this->presenter->flashMessage("Už jsi odpracoval svůj trest.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Už jsi odpracovala svůj trest.";
+      else $message = "Už jsi odpracoval svůj trest.";
+      $this->presenter->flashMessage($message);
     } else {
       $punishment->count++;
       $punishment->lastAction = $punishment->user->lastActive = time();
       $this->orm->punishments->persistAndFlush($punishment);
-      $this->presenter->flashMessage("Úspěšně jsi zvládl směnu.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Úspěšně jsi zvládla směnu.";
+      else $message = "Úspěšně jsi zvládl směnu.";
+      $this->presenter->flashMessage($message);
     }
   }
   
@@ -92,10 +99,14 @@ class PrisonControl extends \Nette\Application\UI\Control {
     if($release) {
       $this->user->identity->banned = false;
       $this->user->identity->roles = array($punishment->user->group->singleName);
-      $this->presenter->flashMessage("Byl jsi propuštěn.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Byla jsi propuštěna.";
+      else $message = "Byl jsi propuštěn.";
+      $this->presenter->flashMessage($message);
       $this->presenter->redirect(":Front:Homepage:");
     } else {
-      $this->presenter->flashMessage("Ještě nemůžeš být propuštěn.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Ještě nemůžeš být propuštěna.";
+      else $message = "Ještě nemůžeš být propuštěn.";
+      $this->presenter->flashMessage($message);
     }
   }
 }

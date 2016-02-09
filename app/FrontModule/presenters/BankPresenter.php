@@ -4,7 +4,8 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nexendrie\Forms\TakeLoanFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\NoLoanException,
-    Nexendrie\Model\InsufficientFundsException;
+    Nexendrie\Model\InsufficientFundsException,
+    Nexendrie\Orm\User as UserEntity;
 /**
  * Presenter Bank
  *
@@ -38,7 +39,9 @@ class BankPresenter extends BasePresenter {
   protected function createComponentTakeLoanForm(TakeLoanFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
-      $message = sprintf("Přijal jsi půjčku %s.", $this->localeModel->money($values["amount"]));
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $text = "Přijala jsi půjčku %s.";
+      else $text = "Přijal jsi půjčku %s.";
+      $message = sprintf($text, $this->localeModel->money($values["amount"]));
       $this->flashMessage($message);
     };
     return $form;
@@ -51,7 +54,9 @@ class BankPresenter extends BasePresenter {
     $this->requiresLogin();
     try {
       $this->model->returnLoan();
-      $this->flashMessage("Vrátil jsi půjčku.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vrátila jsi půjčku.";
+      else $message = "Vrátil jsi půjčku.";
+      $this->flashMessage($message);
     } catch(NoLoanException $e) {
       $this->flashMessage("Nemáš žádnou půjčku.");
     } catch(InsufficientFundsException $e) {

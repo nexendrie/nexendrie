@@ -8,7 +8,8 @@ use Nexendrie\Forms\FoundGuildFormFactory,
     Nexendrie\Model\CannotJoinGuildException,
     Nexendrie\Forms\ManageGuildFormFactory,
     Nexendrie\Model\CannotUpgradeGuildException,
-    Nexendrie\Model\InsufficientFundsException;
+    Nexendrie\Model\InsufficientFundsException,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Presenter Guild
@@ -91,10 +92,12 @@ class GuildPresenter extends BasePresenter {
   function actionJoin($id) {
     try {
       $this->model->join($id);
-      $this->flashMessage("Vstoupil jsi do cechu.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vstoupila jsi do cechu.";
+      else $message = "Vstoupil jsi do cechu.";
+      $this->flashMessage($message);
       $this->redirect("default");
     } catch(CannotJoinGuildException $e) {
-      $this->flashMessage("Nemůžeš vstoupit cech.");
+      $this->flashMessage("Nemůžeš vstoupit do cechu.");
       $this->redirect("Homepage:");
     } catch(GuildNotFoundException $e) {
       $this->forward("notfound");
@@ -107,7 +110,9 @@ class GuildPresenter extends BasePresenter {
   function actionLeave() {
     try {
       $this->model->leave();
-      $this->flashMessage("Opustil jsi cech.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Opustila jsi cech.";
+      else $message = "Opustil jsi cech.";
+      $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(CannotLeaveGuildException $e) {
       $this->flashMessage("Nemůžeš opustit cech.");

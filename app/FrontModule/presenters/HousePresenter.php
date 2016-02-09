@@ -6,7 +6,8 @@ use Nexendrie\Model\CannotBuyMoreHousesException,
     Nexendrie\Model\CannotUpgradeHouseException,
     Nexendrie\Model\CannotRepairHouseException,
     Nexendrie\Model\CannotUpgradeBreweryException,
-    Nexendrie\Model\CannotProduceBeerException;
+    Nexendrie\Model\CannotProduceBeerException,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Presenter House
@@ -120,7 +121,9 @@ class HousePresenter extends BasePresenter {
   function handleProduceBeer() {
     try {
       $result = $this->model->produceBeer();
-      $message = "Uvařil jsi " . $result["amount"] . " ";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Uvařila jsi ";
+      else $message = "Uvařil jsi ";
+      $message = $result["amount"] . " ";
       $message .= $this->localeModel->plural("sud", "sudy", "sudů", $result["amount"]);
       $message .= " piva za ";
       $message .= $this->localeModel->money($result["amount"] * $result["price"]) . ".";
