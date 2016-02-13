@@ -42,7 +42,7 @@ class TownPresenter extends BasePresenter {
     $this->template->town = $this->model->get($this->user->identity->town);
     $user = $this->userManager->get($this->user->id);
     $this->template->path = $user->group->path;
-    $this->template->monastery = $user->monastery;
+    $this->template->monasteryU = $user->monastery;
     $this->template->castle = $this->castleModel->getUserCastle();
     $this->template->house = $this->houseModel->getUserHouse();
     $this->template->guild = $this->guildModel->getUserGuild();
