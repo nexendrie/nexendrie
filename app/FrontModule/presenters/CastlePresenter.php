@@ -19,6 +19,8 @@ class CastlePresenter extends BasePresenter {
   protected $localeModel;
   /** @var \Nexendrie\Model\UserManager @autowire */
   protected $userManager;
+  /** @var \Nexendrie\Model\Profile @autowire */
+  protected $profileModel;
   
   /**
    * @return void
@@ -35,7 +37,8 @@ class CastlePresenter extends BasePresenter {
     $castle = $this->model->getUserCastle();
     if(!$castle) {
       $this->flashMessage("Nemáš hrad.");
-      $this->redirect("Homepage");
+      if($this->profileModel->getPath() === "tower") $this->redirect("build");
+      else $this->redirect("Homepage:");
     }
     $this->template->castle = $castle;
     $this->template->canUpgrade = $this->model->canUpgrade();
