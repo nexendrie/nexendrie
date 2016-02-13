@@ -85,7 +85,7 @@ class Monastery extends \Nette\Object {
     if(!$user->monastery AND $user->group->path === "city") {
       if($user->guild AND $user->guildRank->id === 4) return false;
       else return true;
-    }
+    } elseif(!$user->monastery AND $user->group->path === "tower") return true;
     if($user->group->path === "church" AND $user->monasteriesLed->countStored()) return false;
     elseif($user->group->path === "church" AND $user->lastTransfer === NULL) return true;
     elseif($user->group->path === "church" AND $user->lastTransfer  + $month < time()) return true;
