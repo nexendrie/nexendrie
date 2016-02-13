@@ -16,8 +16,6 @@ use Nexendrie\Model\TownNotFoundException,
 class TownPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Town @autowire */
   protected $model;
-  /** @var \Nexendrie\Model\Castle @autowire */
-  protected $castleModel;
   /** @var \Nexendrie\Model\UserManager @autowire */
   protected $userManager;
   /** @var \Nexendrie\Model\Profile @autowire */
@@ -42,8 +40,6 @@ class TownPresenter extends BasePresenter {
     $this->template->town = $this->model->get($this->user->identity->town);
     $user = $this->userManager->get($this->user->id);
     $this->template->path = $user->group->path;
-    $this->template->monasteryU = $user->monastery;
-    $this->template->castle = $this->castleModel->getUserCastle();
     $this->template->house = $this->houseModel->getUserHouse();
     $this->template->guild = $this->guildModel->getUserGuild();
   }
