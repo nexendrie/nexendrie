@@ -111,7 +111,7 @@ class Monastery extends \Nette\Object {
       throw $e;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monastery->id === $monastery->id) throw new CannotJoinOwnMonasteryException;
+    if($user->monastery AND $user->monastery->id === $monastery->id) throw new CannotJoinOwnMonasteryException;
     $user->lastTransfer = $user->lastActive = time();
     $user->monastery = $monastery;
     if($user->group->path != "church") $user->group = $this->orm->groups->getByLevel(55);
