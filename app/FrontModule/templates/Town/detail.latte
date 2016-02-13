@@ -7,7 +7,7 @@
   <h3>Obyvatelé města</h3>
   <p>
   {foreach $town->denizens as $denizen}
-    {$denizen->group->singleName} <a n:href="Profile: $denizen->username">{$denizen->publicname}</a>{if !$iterator->last}, {/if}
+    {$denizen->title} <a n:href="Profile: $denizen->username">{$denizen->publicname}</a>{if !$iterator->last}, {/if}
   {/foreach}
   </p>
   <h3>Kláštery ve městě</h3>
