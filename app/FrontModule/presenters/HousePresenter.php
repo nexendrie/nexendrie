@@ -118,12 +118,15 @@ class HousePresenter extends BasePresenter {
     }
   }
   
+  /**
+   * @return void
+   */
   function handleProduceBeer() {
     try {
       $result = $this->model->produceBeer();
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Uvařila jsi ";
       else $message = "Uvařil jsi ";
-      $message = $result["amount"] . " ";
+      $message .= $result["amount"] . " ";
       $message .= $this->localeModel->plural("sud", "sudy", "sudů", $result["amount"]);
       $message .= " piva za ";
       $message .= $this->localeModel->money($result["amount"] * $result["price"]) . ".";
