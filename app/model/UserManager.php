@@ -110,7 +110,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     $adventure = $this->orm->userAdventures->getUserActiveAdventure($user->id);
     $data = array(
       "name" => $user->publicname, "group" => $user->group->id,
-      "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "town" => $user->town->id, "banned" => $banned, "travelling" => !($adventure === NULL)
+      "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "path" => $user->group->path, "town" => $user->town->id, "banned" => $banned, "travelling" => !($adventure === NULL)
     );
     return new NS\Identity($user->id, $role, $data);
   }

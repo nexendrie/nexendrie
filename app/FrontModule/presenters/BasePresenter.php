@@ -16,7 +16,7 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   protected function startup() {
     parent::startup();
     $this->template->isAdmin = $this->user->isAllowed("site", "manage");
-    $this->template->path = ($this->user->isLoggedIn() ? $this->profileModel->getPath() : NULL);
+    $this->template->path = ($this->user->isLoggedIn() ? $this->user->identity->path : NULL);
   }
   
   /**
