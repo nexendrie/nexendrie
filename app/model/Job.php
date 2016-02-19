@@ -17,6 +17,8 @@ class Job extends \Nette\Object {
   protected $eventsModel;
   /** @var Guild */
   protected $guildModel;
+  /** @var Locale @autowire */
+  protected $localeModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -24,10 +26,11 @@ class Job extends \Nette\Object {
   /** Base success rate for job (in %) */
   const BASE_SUCCESS_RATE = 55;
   
-  function __construct(Skills $skillsModel, Events $eventsModel, Guild $guildModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Skills $skillsModel, Events $eventsModel, Guild $guildModel, Locale $localeModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->skillsModel = $skillsModel;
     $this->eventsModel = $eventsModel;
     $this->guildModel = $guildModel;
+    $this->localeModel = $localeModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -273,6 +276,23 @@ class Job extends \Nette\Object {
     $job = $this->orm->userJobs->getUserActiveJob($this->user->id);
     if(!$job) throw new NotWorkingException;
     else return $job;
+  }
+  
+  /**
+   * Parse job's help text
+   * 
+   * @param UserJobEntity $job
+   * @return string   
+   */
+  function parseJobHelp(UserJobEntity $job) {
+    $oldCount = $job->count;
+    if($job->job->count) $job->count = $job->job->count;
+    else $job->count = 1;
+    $reward = $this->localeModel->money(array_sum($this->calculateReward($job)));
+    $job->count = $oldCount;
+    $help = str_replace("%reward%", $reward, $job->job->help);
+    $help = str_replace("%count%", $job->job->count, $help);
+    return $help;
   }
   
   /**

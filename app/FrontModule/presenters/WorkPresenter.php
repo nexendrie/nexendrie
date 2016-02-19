@@ -52,7 +52,7 @@ class WorkPresenter extends BasePresenter {
     $earned = $this->model->calculateReward($job);
     $this->template->earned = $this->localeModel->money(array_sum($earned));
     if(!$finished) {
-      $this->template->help = $job->job->help;
+      $this->template->help = $this->model->parseJobHelp($job);
       $this->template->canWork = $this->model->canWork();
       $nextShift = $job->lastAction + ($job->job->shift * 60);
       $this->template->nextShift = $this->localeModel->formatDateTime($nextShift);
