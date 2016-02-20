@@ -104,7 +104,9 @@ class AdventureControl extends \Nette\Application\UI\Control {
     } catch(NotOnAdventureException $e) {
       flashMessage("Nejsi na dobrodružství.");
     } catch(NoEnemyRemainException $e) {
-      $this->presenter->flashMessage("Porazil jsi již všechny nepřátele.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Porazila jsi již všechny nepřátele.";
+      else $message = "Porazil jsi již všechny nepřátele.";
+      $this->presenter->flashMessage($message);
     }
   }
   
@@ -118,7 +120,9 @@ class AdventureControl extends \Nette\Application\UI\Control {
     } catch(NotOnAdventureException $e) {
       $this->presenter->flashMessage("Nejsi na dobrodružství.");
     } catch(NotAllEnemiesDefeateException $e) {
-      $this->presenter->flashMessage("Neporazil jsi všechny nepřátele.");
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Neporazila jsi všechny nepřátele.";
+      else $message = "Neporazil jsi všechny nepřátele.";
+      $this->presenter->flashMessage($message);
     }
   }
 }
