@@ -45,6 +45,28 @@ class Job extends \Nette\Object {
   }
   
   /**
+   * Calculate reward from an offer
+   * 
+   * @param JobEntity $id
+   * @return \stdClass
+   * @throws AuthenticationNeededException
+   */
+  function calculateAward(JobEntity $offer) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $oldAward = $offer->award;
+    $job = new UserJobEntity;
+    $job->job = $offer;
+    $job->user = $this->orm->users->getById($this->user->id);
+    if($job->job->count) $job->count = $job->job->count;
+    else $job->count = 1;
+    $offer->award = $this->localeModel->money(array_sum($this->calculateReward($job)));
+    $o = (object) $offer->toArray();
+    $o->award = $offer->awardT;
+    $offer->award = $oldAward;
+    return $o;
+  }
+  
+  /**
    * Find available jobs for user
    * 
    * @return JobEntity[]
@@ -59,7 +81,7 @@ class Job extends \Nette\Object {
         $userSkillLevel = $this->skillsModel->getLevelOfSkill($offer->neededSkill->id);
         if($userSkillLevel < $offer->neededSkillLevel) continue;
       }
-      $return[] = $offer;
+      $return[] = $this->calculateAward($offer);
     }
     return $return;
   }
