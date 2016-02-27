@@ -76,6 +76,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
       else $message = "Úspěšně jsi zvládl směnu.";
       $this->presenter->flashMessage($message);
     }
+    $this->presenter->redirect("default");
   }
   
   /**
@@ -107,6 +108,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Ještě nemůžeš být propuštěna.";
       else $message = "Ještě nemůžeš být propuštěn.";
       $this->presenter->flashMessage($message);
+      $this->presenter->redirect("default");
     }
   }
 }

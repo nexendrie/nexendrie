@@ -69,6 +69,7 @@ class AcademyControl extends \Nette\Application\UI\Control {
     } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");
     }
+    $this->presenter->redirect("default");
   }
 }
 

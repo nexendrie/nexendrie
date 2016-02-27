@@ -84,6 +84,7 @@ class StablesControl extends \Nette\Application\UI\Control {
     } catch(CareNotNeededException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře nepotřebuje čištění.");
     }
+    $this->presenter->redirect("default");
   }
   
   /**
@@ -105,6 +106,7 @@ class StablesControl extends \Nette\Application\UI\Control {
     } catch(CareNotNeededException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře nepotřebuje krmení.");
     }
+    $this->presenter->redirect("default");
   }
   
   /**
@@ -154,6 +156,7 @@ class StablesControl extends \Nette\Application\UI\Control {
     } catch(MountInBadConditionException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře je ve špatném stavu.");
     }
+    $this->presenter->redirect("default");
   }
   
   /**
@@ -175,6 +178,7 @@ class StablesControl extends \Nette\Application\UI\Control {
     } catch(MountInBadConditionException $e) {
       $this->presenter->flashMessage("Dané jezdecké zvíře je ve špatném stavu.");
     }
+    $this->presenter->redirect("default");
   }
 }
 

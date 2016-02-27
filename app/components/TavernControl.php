@@ -49,6 +49,7 @@ class TavernControl extends \Nette\Application\UI\Control {
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nemáš dostatek peněz.");
     }
+    $this->presenter->redirect("default");
   }
 }
 
