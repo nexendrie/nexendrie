@@ -82,7 +82,8 @@ class AdventureEnemiesPresenter extends BasePresenter {
     $form->setDefaults($this->npc->dummyArray());
     $form->onSuccess[] = function(Form $form) {
       $this->model->editNpc($this->getParameter("id"), $form->getValues(true));
-      $this->redirect("list", array("id" => $this->adventure->id));
+      $this->flashMessage("Nepřítel upraven.");
+      $this->redirect("list", array("id" => $this->npc->adventure->id));
     };
     return $form;
   }
