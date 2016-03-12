@@ -99,7 +99,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder = $this->getContainerBuilder();
     $components = array(
       "poll", "shop", "mountsMarket", "academy", "townsMarket", "help", "stables",
-      "prison", "tavern", "adventure"
+      "prison", "tavern", "adventure", "history"
     );
     foreach($components as $component) {
       $builder->addDefinition($this->prefix("component.$component"))
