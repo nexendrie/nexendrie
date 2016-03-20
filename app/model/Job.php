@@ -219,9 +219,9 @@ class Job extends \Nette\Object {
    */
   function getResultMessage($job, $success) {
     $messages = $this->orm->jobMessages->findByJobAndSuccess($job, $success);
-    if($messages->count() === 0 AND $success === 1) {
+    if($messages->count() === 0 AND $success) {
       $message = "Úspěšně jsi zvládl směnu.";
-    } elseif($messages->count() === 0 AND $success === 0) {
+    } elseif($messages->count() === 0 AND !$success) {
       $message = "Nezvládl jsi tuto směnu.";
     } else {
       $roll = rand(0, $messages->count() - 1);
