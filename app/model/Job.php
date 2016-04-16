@@ -3,7 +3,8 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Job as JobEntity,
     Nexendrie\Orm\UserJob as UserJobEntity,
-    Nexendrie\Orm\JobMessage as JobMessageEntity;
+    Nexendrie\Orm\JobMessage as JobMessageEntity,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Job Model
@@ -220,9 +221,11 @@ class Job extends \Nette\Object {
   function getResultMessage($job, $success) {
     $messages = $this->orm->jobMessages->findByJobAndSuccess($job, $success);
     if($messages->count() === 0 AND $success) {
-      $message = "Úspěšně jsi zvládl směnu.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Úspěšně jsi zvládla směnu.";
+      else $message = "Úspěšně jsi zvládl směnu.";
     } elseif($messages->count() === 0 AND !$success) {
-      $message = "Nezvládl jsi tuto směnu.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nezvládla jsi tuto směnu.";
+      else $message = "Nezvládl jsi tuto směnu.";
     } else {
       $roll = rand(0, $messages->count() - 1);
       $i = 0;
