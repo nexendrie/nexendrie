@@ -35,6 +35,10 @@ class PropertyPresenter extends BasePresenter {
   protected $inventoryModel;
   /** @var \Nexendrie\Model\Profile @autowire */
   protected $profileModel;
+  /** @var \Nexendrie\Model\Combat @autowire */
+  protected $combatModel;
+  /** @var \Nexendrie\Model\UserManager @autowire */
+  protected $userManager;
   /** @var TownEntity */
   private $town;
   
@@ -132,10 +136,13 @@ class PropertyPresenter extends BasePresenter {
    * @return void
    */
   function renderPotions() {
-    $life = $this->profileModel->userLife();
-    $this->template->life = $life[0];
-    $this->template->maxLife = $life[1];
+    $user = $this->userManager->get($this->user->id);
+    $this->template->life = $user->life;
+    $this->template->maxLife = $user->maxLife;
     $this->template->items = $this->inventoryModel->potions();
+    $combatLife = $this->combatModel->calculateUserLife($user);
+    $this->template->lifeCombat = $combatLife["life"];
+    $this->template->maxLifeCombat = $combatLife["maxLife"];
   }
   
   /**

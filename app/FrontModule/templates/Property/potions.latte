@@ -2,7 +2,7 @@
 {block title}Lektvary{/block}
 {block content}
   <h1>Lektvary</h1>
-  <p>Tvé zdraví: {$life}/{$maxLife}</p>
+  <p>Tvé zdraví: {$life}/{$maxLife} (v souboji {$lifeCombat}/{$maxLifeCombat})</p>
   {if $items->count() === 0}
   <p>Nemáš žádné lektvary.</p>
   {else}
