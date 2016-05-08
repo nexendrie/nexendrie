@@ -52,5 +52,15 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
     $ts = mktime(0, 0, 0, $month, $day);
     return $this->findBy(array("started<" => $ts, "progress<" => 10));
   }
+  
+  /**
+   * Get specified user's completed adventures
+   * 
+   * @param int $user
+   * @return ICollection|UserAdventure[]
+   */
+  function findUserCompletedAdventures($user) {
+    return $this->findBy(array("user" => $user, "progress" => 10));
+  }
 }
 ?>

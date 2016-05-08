@@ -72,6 +72,66 @@ class Profile extends \Nette\Object {
     if(!$user) throw new UserNotFoundException;
     else return $user->group->path;
   }
+  
+  /**
+   * Get amount of completed adventures of specified user
+   * 
+   * @param int $id  
+   * @return int
+   */
+  function countCompletedAdventures($id = 0) {
+    return $this->orm->userAdventures->findUserCompletedAdventures($id)->countStored();
+  }
+  
+  /**
+   * Get amount of beers produced by specified user
+   * 
+   * @param int $id  
+   * @return int
+   */
+  function countProducedBeers($id = 0) {
+    $amount = 0;
+    $production = $this->orm->beerProduction->findByUser($id);
+    foreach($production as $row) {
+      $amount += $row->amount;
+    }
+    return $amount;
+  }
+  
+  /**
+   * Get amount of punishments of specified user
+   * 
+   * @param int $id  
+   * @return int
+   */
+  function countPunishments($id = 0) {
+    return $this->orm->punishments->findByUser($id)->countStored();
+  }
+  
+  /**
+   * Get amount of taken lessons of specified user
+   * 
+   * @param int $id  
+   * @return int
+   */
+  function countLessons($id = 0) {
+    $amount = 0;
+    $lessons = $this->orm->userSkills->findByUser($id);
+    foreach($lessons as $lesson) {
+      $amount += $lesson->level;
+    }
+    return $amount;
+  }
+  
+  /**
+   * Get amount of sent and received of specified user
+   * 
+   * @param int $id  
+   * @return int
+   */
+   function countMessages($id = 0) {
+     return array("sent" => $this->orm->messages->findByFrom($id)->countStored(), "recieved" => $this->orm->messages->findByTo($id)->countStored());
+   }
 }
 
 class UserNotFoundException extends RecordNotFoundException {

@@ -9,6 +9,16 @@
     {/if}
     {if $profile->guild}{$profile->guildRank->name} <a n:href="Guild:detail $profile->guild->id">{$profile->guild->name}</a><br>{/if}
     {if $profile->banned}V současnosti si odpykává zasloužený trest v místní šatlavě.<br>{/if}
-   Napsal{if $profile->gender === "female"}a{/if} {$profile->articles->countStored()} článků a {$profile->comments->countStored()} komentářů.
+    <h3>Statistiky</h3>
+    <table>
+      <tr><td>Napsaných článků</td><td>{$profile->articles->countStored()}</td></tr>
+      <tr><td>Napsaných komentářů</td><td>{$profile->comments->countStored()}</td></tr>
+      <tr><td>Odeslaných zpráv</td><td>{$messages["sent"]}</td></tr>
+      <tr><td>Přijatých zpráv</td><td>{$messages["recieved"]}</td></tr>
+      <tr><td>Dokončených dobrodružství</td><td>{$adventuresCompleted}</td></tr>
+      <tr><td>Vyprodukovaných sudů piv</td><td>{$beersProduced}</td></tr>
+      <tr><td>Uvěznění</td><td>{$punishments}</td></tr>
+      <tr><td>Lekcí v akademii</td><td>{$lessons}</td></tr>
+    </table>
   </p>
 {/block}
