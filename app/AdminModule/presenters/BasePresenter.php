@@ -16,11 +16,11 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
     parent::startup();
     if(!$this->user->isLoggedIn()) {
       $this->flashMessage("Pro přístup do administrace musíš být přihlášený.");
-      $this->redirect("Front:User:login");
+      $this->redirect(":Front:User:login");
     }
     if(!$this->user->isAllowed("site", "manage")) {
       $this->flashMessage("Nemáš přístup do administrace.");
-      $this->redirect("Front:Homepage:");
+      $this->redirect(":Front:Homepage:");
     }
   }
 }
