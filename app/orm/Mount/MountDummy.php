@@ -11,7 +11,7 @@ namespace Nexendrie\Orm;
  * @property int $price
  * @property bool $onMarket
  */
-class MountDummy extends \Nette\Object {
+class MountDummy extends DummyEntity {
   /** @var string */
   protected $name;
   /** @var string */
@@ -29,17 +29,6 @@ class MountDummy extends \Nette\Object {
     $this->type = $mount->type->id;
     $this->price = $mount->price;
     $this->onMarket = $mount->onMarket;
-  }
-  
-  /**
-   * @return array
-   */
-  function toArray() {
-    $return = array();
-    foreach($this as $key => $value) {
-      $return[$key] = $value;
-    }
-    return $return;
   }
 }
 ?>

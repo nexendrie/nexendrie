@@ -14,7 +14,7 @@ namespace Nexendrie\Orm;
  * @property int $level
  * @property int|NULL $event
  */
-class AdventureDummy extends \Nette\Object {
+class AdventureDummy extends DummyEntity {
   /** @var int */
   protected $id;
   /** @var string */
@@ -41,17 +41,6 @@ class AdventureDummy extends \Nette\Object {
     $this->reward = $adventure->reward;
     $this->level = $adventure->level;
     $this->event = (empty($adventure->event)) ? NULL : $adventure->event->id;
-  }
-  
-  /**
-   * @return array
-   */
-  function toArray() {
-    $return = array();
-    foreach($this as $key => $value) {
-      $return[$key] = $value;
-    }
-    return $return;
   }
 }
 ?>

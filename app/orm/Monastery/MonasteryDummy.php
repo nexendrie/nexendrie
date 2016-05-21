@@ -12,7 +12,7 @@ namespace Nexendrie\Orm;
  * @property int $founded
  * @property int $money
  */
-class MonasteryDummy extends \Nette\Object {
+class MonasteryDummy extends DummyEntity {
   /** @var int */
   protected $id;
   /** @var string */
@@ -33,17 +33,6 @@ class MonasteryDummy extends \Nette\Object {
     $this->town = $monastery->town->id;
     $this->founded = $monastery->founded;
     $this->money = $monastery->money;
-  }
-  
-  /**
-   * @return array
-   */
-  function toArray() {
-    $return = array();
-    foreach($this as $key => $value) {
-      $return[$key] = $value;
-    }
-    return $return;
   }
 }
 ?>

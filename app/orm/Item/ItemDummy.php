@@ -13,7 +13,7 @@ namespace Nexendrie\Orm;
  * @property string $type
  * @property int $strength
  */
-class ItemDummy extends \Nette\Object {
+class ItemDummy extends DummyEntity {
   /** @var int */
   protected $id;
   /** @var string */
@@ -37,17 +37,6 @@ class ItemDummy extends \Nette\Object {
     $this->shop = (empty($item->shop)) ? NULL : $item->shop->id;
     $this->type = $item->type;
     $this->strength = $item->strength;
-  }
-  
-  /**
-   * @return array
-   */
-  function toArray() {
-    $return = array();
-    foreach($this as $key => $value) {
-      $return[$key] = $value;
-    }
-    return $return;
   }
 }
 ?>

@@ -8,7 +8,7 @@ namespace Nexendrie\Orm;
  * @property int $success
  * @property string $message
  */
-class JobMessageDummy extends \Nette\Object {
+class JobMessageDummy extends DummyEntity {
   /** @var bool */
   protected $success;
   /** @var string */
@@ -17,17 +17,6 @@ class JobMessageDummy extends \Nette\Object {
   function __construct(JobMessage $message) {
     $this->success = $message->success;
     $this->message = $message->message;
-  }
-  
-  /**
-   * @return array
-   */
-  function toArray() {
-    $return = array();
-    foreach($this as $key => $value) {
-      $return[$key] = $value;
-    }
-    return $return;
   }
 }
 ?>

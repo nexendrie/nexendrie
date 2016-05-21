@@ -16,7 +16,7 @@ namespace Nexendrie\Orm;
  * @property string $encounterText
  * @property string $victoryText
  */
-class AdventureNpcDummy extends \Nette\Object {
+class AdventureNpcDummy extends DummyEntity {
   /** @var int */
   protected $id;
   /** @var string */

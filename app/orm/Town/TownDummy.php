@@ -2,11 +2,11 @@
 namespace Nexendrie\Orm;
 
 /**
- *TownDummy
+ * TownDummy
  *
  * @author Jakub Konečný
  */
-class TownDummy extends \Nette\Object {
+class TownDummy extends DummyEntity {
   /** @var int */
   protected $id;
   /** @var string */
@@ -27,17 +27,6 @@ class TownDummy extends \Nette\Object {
     $this->owner = $town->owner->id;
     $this->price = $town->price;
     $this->onMarket = $town->onMarket;
-  }
-  
-  /**
-   * @return array
-   */
-  function toArray() {
-    $return = array();
-    foreach($this as $key => $value) {
-      $return[$key] = $value;
-    }
-    return $return;
   }
 }
 ?>

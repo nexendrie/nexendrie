@@ -17,7 +17,7 @@ namespace Nexendrie\Orm;
  * @property-read int $repairingDiscount
  * @property-read int $shoppingDiscount
  */
-class EventDummy extends \Nette\Object {
+class EventDummy extends DummyEntity {
   /** @var int */
   protected $id;
   /** @var string */
@@ -101,17 +101,6 @@ class EventDummy extends \Nette\Object {
   
   function getShoppingDiscount() {
     return $this->shoppingDiscount;
-  }
-  
-  /**
-   * @return array
-   */
-  function toArray() {
-    $return = array();
-    foreach($this as $key => $value) {
-      $return[$key] = $value;
-    }
-    return $return;
   }
 }
 ?>

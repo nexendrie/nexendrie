@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-class JobDummy extends \Nette\Object {
+class JobDummy extends DummyEntity {
   /** @var string */
   protected $name;
   /** @var string */
@@ -36,17 +36,6 @@ class JobDummy extends \Nette\Object {
     $this->level = $job->level;
     $this->neededSkill = $job->neededSkill->id;
     $this->neededSkillLevel = $job->neededSkillLevel;
-  }
-  
-  /**
-   * @return array
-   */
-  function toArray() {
-    $return = array();
-    foreach($this as $key => $value) {
-      $return[$key] = $value;
-    }
-    return $return;
   }
 }
 ?>
