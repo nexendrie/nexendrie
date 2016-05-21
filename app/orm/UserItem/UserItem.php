@@ -15,6 +15,8 @@ namespace Nexendrie\Orm;
  * @property-read string $upgradePriceT {virtual}
  * @property-read int $price {virtual}
  * @property-read string $priceT {virtual}
+ * @property-read int $sellPrice {virtual}
+ * @property-read string $sellPriceT {virtual}
  */
 class UserItem extends \Nextras\Orm\Entity\Entity {
   const UPGRADE_PRICE = 25;
@@ -64,6 +66,14 @@ class UserItem extends \Nextras\Orm\Entity\Entity {
   
   protected function getterPriceT() {
     return $this->localeModel->money($this->price);
+  }
+  
+  protected function getterSellPrice() {
+    return (int) ($this->price / 2);
+  }
+  
+  protected function getterSellPriceT() {
+    return $this->localeModel->money($this->sellPrice);
   }
 }
 ?>
