@@ -41,6 +41,7 @@ class UserPresenter extends BasePresenter {
     $form = $factory->create($this->getParameter("id"));
     $form->onSuccess[] = function(\Nette\Application\UI\Form $form) {
       $this->flashMessage("Změny uloženy.");
+      $this->redirect("default");
     };
     return $form;
   }

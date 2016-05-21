@@ -44,6 +44,7 @@ class GroupPresenter extends BasePresenter {
       $this->model->user = $this->user;
       $this->model->edit($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Skupina upravena.");
+      $this->redirect("default");
     };
     $form->setDefaults($group->toArray());
     return $form;

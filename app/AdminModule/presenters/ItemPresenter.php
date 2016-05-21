@@ -61,6 +61,7 @@ class ItemPresenter extends BasePresenter {
     $form->onSuccess[] = function(Form $form) {
       $this->model->editItem($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Změny uloženy.");
+      $this->redirect("Content:items");
     };
     return $form;
   }
