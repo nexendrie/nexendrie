@@ -9,7 +9,7 @@
     Mohu ti nabídnout {if $discount > 0}(se slevou {$discount}%){/if}:
     <ul>
       {foreach $shop->items as $item}
-        <li>{$item->name}{if $item->strength} (Síla: {$item->strength}){/if} za {$item->priceT}. <a n:href="buy! $item->id">Koupit</a></li>
+        <li><span title="{$item->description}">{$item->name}{if $item->strength} (Síla: {$item->strength}){/if} za {$item->priceT}.</span> <a n:href="buy! $item->id">Koupit</a></li>
       {/foreach}
     </ul>
     </article>
