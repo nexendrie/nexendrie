@@ -200,6 +200,7 @@ class PropertyPresenter extends BasePresenter {
     } catch(HealingNotNeeded $e) {
       $this->flashMessage("Nepotřebuješ léčení.");
     }
+    $this->redirect("equipment");
   }
   
   /**
@@ -217,6 +218,7 @@ class PropertyPresenter extends BasePresenter {
     } catch(ItemNotForSaleException $e) {
       $this->flashMessage("Zadanou věc nelze prodat.");
     }
+    $this->redirect("equipment");
   }
   
   /**
@@ -238,6 +240,7 @@ class PropertyPresenter extends BasePresenter {
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nemáš dostatek peněz.");
     }
+    $this->redirect("equipment");
   }
   
   /**
