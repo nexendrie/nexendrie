@@ -1,0 +1,9 @@
+{layout "../@layout.latte"}
+{block title}Články{/block}
+{block content}
+  <h1>Články</h1>
+  <h3>Kategorie</h3>
+  <ul n:inner-foreach="$categories as $slug => $name">
+    <li><a n:href="Articles:category $slug">{$name}</a></li>
+  </ul>
+{/block}

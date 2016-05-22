@@ -49,6 +49,22 @@ class Article extends \Nette\Object {
   }
   
   /**
+   * Get list of articles from specified category
+   * 
+   * @param string $name
+   * @param \Nette\Utils\Paginator $paginator
+   * @return ArticleEntity[]
+   */
+  function category($name, \Nette\Utils\Paginator $paginator = NULL) {
+    $articles = $this->orm->articles->findByCategory($name);
+    if($paginator) {
+      $paginator->itemsPerPage = $this->itemsPerPage;
+      $articles = $articles->limitBy($paginator->getLength(), $paginator->getOffset());
+    }
+    return $articles;
+  }
+  
+  /**
    * Show specified article
    * 
    * @param int $id

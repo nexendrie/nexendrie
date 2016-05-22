@@ -1,0 +1,16 @@
+{layout "../@layout.latte"}
+{block title}{$category}{/block}
+{block content}
+  <h1>{$category} strana {$paginator->page}</h1>
+  {if count($articles) === 0}
+  <p>Žádné články.</p>
+  {else}
+    {foreach $articles as $article}
+  <article id="article-{$article->id}">
+    <h3><a n:href="Article:view $article->id">{$article->title}</a></h3>
+    Autor: <a n:href="Profile:default $article->author->username">{$article->author->publicname}</a> Přidáno: {$article->addedAt} Komentářů: {$article->comments->countStored()}<br>
+    {$article->text|truncate:150}
+  </article>
+    {/foreach}
+  {/if}
+{/block}
