@@ -6,4 +6,5 @@
   <ul n:inner-foreach="$categories as $slug => $name">
     <li><a n:href="Articles:category $slug">{$name}</a></li>
   </ul>
+  <a n:href=":Admin:Article:add">Napsat článek</a>
 {/block}
