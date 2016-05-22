@@ -110,7 +110,7 @@ class Guild extends \Nette\Object {
     $guild->name = $data["name"];
     $guild->description = $data["description"];
     $guild->town = $this->user->identity->town;
-    $guild->founded = time();
+    $user->lastActive = $guild->founded = time();
     $user->money -= $this->foundingPrice;
     $guild->money = $this->foundingPrice;
     $user->guild = $guild;

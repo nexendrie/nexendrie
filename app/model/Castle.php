@@ -65,8 +65,8 @@ class Castle extends \Nette\Object {
     $castle = new CastleEntity;
     $castle->name = $data["name"];
     $castle->description = $data["description"];
-    $castle->founded = time();
     $castle->owner = $user;
+    $castle->owner->lastActive = $castle->founded = time();
     $castle->owner->money -= $this->buildingPrice;
     $this->orm->castles->persistAndFlush($castle);
     $user->castle = $this->orm->castles->getByName($data["name"]);

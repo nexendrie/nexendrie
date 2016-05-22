@@ -99,14 +99,14 @@ class Article extends \Nette\Object {
   function addArticle(array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     if(!$this->user->isAllowed("article", "add")) throw new MissingPermissionsException;
-    $news = new ArticleEntity;
-    $this->orm->articles->attach($news);
+    $article = new ArticleEntity;
+    $this->orm->articles->attach($article);
     foreach($data as $key => $value) {
-      $news->$key = $value;
+      $article->$key = $value;
     }
-    $news->author = $this->user->id;
-    $news->added = time();
-    $this->orm->articles->persistAndFlush($news);
+    $article->author = $this->user->id;
+    $article->author->lastActive = $article->added = time();
+    $this->orm->articles->persistAndFlush($article);
   }
   
   /**
