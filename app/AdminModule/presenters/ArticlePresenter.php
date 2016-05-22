@@ -2,7 +2,8 @@
 namespace Nexendrie\Presenters\AdminModule;
 
 use Nette\Application\UI\Form,
-    Nexendrie\Forms\AddEditArticleFormFactory;
+    Nexendrie\Forms\AddEditArticleFormFactory,
+    Nexendrie\Model\ArticleNotFoundException;
 
 /**
  * Presenter News
@@ -51,8 +52,12 @@ class ArticlePresenter extends BasePresenter {
    * @return void
    */
   function actionEdit($id) {
-    $this->requiresPermissions("article", "edit");
-    if(!$this->model->exists($id)) $this->forward("notfound");
+    try {
+      $article = $this->model->view($id);
+    } catch(ArticleNotFoundException $e) {
+      $this->forward("notfound");
+    }
+    if($article->author->id != $this->user->id) $this->requiresPermissions("article", "edit");
   }
   
   /**

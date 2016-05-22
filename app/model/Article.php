@@ -73,7 +73,7 @@ class Article extends \Nette\Object {
    */
   function view($id) {
     $article = $this->orm->articles->getById($id);
-    if(!$article) throw new ArticleNotFound;
+    if(!$article) throw new ArticleNotFoundException;
     else return $article;
   }
   
@@ -141,13 +141,13 @@ class Article extends \Nette\Object {
    */
   function editArticle($id, array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
-    if(!$this->user->isAllowed("article", "edit")) throw new MissingPermissionsException("You don't have permissions for adding news.");
-    $news = $this->orm->articles->getById($id);
-    if(!$news) throw new ArticleNotFoundException;
+    $article = $this->orm->articles->getById($id);
+    if(!$article) throw new ArticleNotFoundException;
+    if(!$this->user->isAllowed("article", "edit") AND $article->author->id != $this->user->id) throw new MissingPermissionsException("You don't have permissions for editting articles.");
     foreach($data as $key => $value) {
-      $news->$key = $value;
+      $article->$key = $value;
     }
-    $this->orm->articles->persistAndFlush($news);
+    $this->orm->articles->persistAndFlush($article);
   }
   
   /**
