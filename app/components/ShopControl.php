@@ -91,6 +91,7 @@ class ShopControl extends \Nette\Application\UI\Control {
     } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz na zakoupení této věci.");
     }
+    $this->presenter->redirect(":Front:Market:shop", array("id" => $this->shop->id));
   }
 }
 
