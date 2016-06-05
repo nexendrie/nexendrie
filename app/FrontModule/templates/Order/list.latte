@@ -1,0 +1,17 @@
+{layout "../@layout.latte"}
+{block title}Seznam řádů{/block}
+{block content}
+  <h1>Seznam řádů</h1>
+  {if $orders->count() === 0}Nebyl nalezen žádný řád.
+  {else}
+  <table id="guilds">
+    <tr><th>Jméno</th><th>Úroveň</th><th>Členů</th></tr>
+    <tr n:foreach="$orders as $order">
+      <td>{$order->name}</td>
+      <td>{$order->level}</td>
+      <td>{$order->members->countStored()}</td>
+      <td><a n:href="detail $order->id">Detaily</a></td>
+    </tr>
+  </table>
+  {/if}
+{/block}
