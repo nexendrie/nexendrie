@@ -18,7 +18,7 @@ namespace Nexendrie\Orm;
  */
 class Order extends \Nextras\Orm\Entity\Entity {
   const MAX_LEVEL = 6;
-  const BASE_UPGRADE_PRICE = 700;
+  const BASE_UPGRADE_PRICE = 800;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

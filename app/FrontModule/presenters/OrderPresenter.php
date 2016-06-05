@@ -7,6 +7,8 @@ use Nexendrie\Forms\FoundOrderFormFactory,
     Nexendrie\Model\OrderNotFoundException,
     Nexendrie\Model\CannotJoinOrderException,
     Nexendrie\Model\CannotLeaveOrderException,
+    Nexendrie\Model\CannotUpgradeOrderException,
+    Nexendrie\Model\InsufficientFundsException,
     Nexendrie\Orm\User as UserEntity;
 
 /**
@@ -128,7 +130,10 @@ class OrderPresenter extends BasePresenter {
      if(!$this->model->canManage()) {
        $this->flashMessage("Nemůžeš spravovat řád.");
        $this->redirect("Homepage:");
-     }
+     } else {
+      $this->template->order =  $this->model->getUserOrder();
+      $this->template->canUpgrade = $this->model->canUpgrade();
+    }
    }
   
   /**
@@ -141,6 +146,23 @@ class OrderPresenter extends BasePresenter {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;
+  }
+   
+   /**
+    * @return void
+    */
+  function handleUpgrade() {
+    try {
+      $this->model->upgrade();
+      $this->flashMessage("Řád vylepšen.");
+      $this->redirect("manage");
+    } catch(CannotUpgradeOrderException $e) {
+      $this->flashMessage("Nemůžeš vylepšit řád.");
+      $this->redirect("Homepage:");
+    } catch(InsufficientFundsException $e) {
+      $this->flashMessage("Nedostatek peněz.");
+      $this->redirect("manage");
+    }
   }
 }
 ?>

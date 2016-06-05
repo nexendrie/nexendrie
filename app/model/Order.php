@@ -209,6 +209,39 @@ class Order extends \Nette\Object {
     if(!$user->order) return false;
     else return ($user->orderRank->id === 4);
   }
+  
+  /**
+   * Check whetever the user can upgrade order
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canUpgrade() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->order) return false;
+    elseif($user->orderRank->id != 4) return false;
+    elseif($user->order->level >= OrderEntity::MAX_LEVEL) return false;
+    else return true;
+  }
+  
+  /**
+   * Upgrade order
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotUpgradeOrderException
+   * @throws InsufficientFundsException
+   */
+  function upgrade() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->canUpgrade()) throw new CannotUpgradeOrderException;
+    $order = $this->getUserOrder();
+    if($order->money < $order->upgradePrice) throw new InsufficientFundsException;
+    $order->money -= $order->upgradePrice;
+    $order->level++;
+    $this->orm->orders->persistAndFlush($order);
+  }
 }
 
 class OrderNotFoundException extends RecordNotFoundException {
@@ -229,5 +262,9 @@ class CannotJoinOrderException extends AccessDeniedException {
 
 class CannotLeaveOrderException extends AccessDeniedException {
   
+}
+
+class CannotUpgradeOrderException extends AccessDeniedException {
+
 }
 ?>
