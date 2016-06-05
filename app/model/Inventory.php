@@ -183,7 +183,10 @@ class Inventory extends \Nette\Object {
     $weapon = $this->getWeapon($user);
     $armor = $this->getArmor($user);
     $helmet = $this->getHelmet($user);
-    return $this->orm->itemSets->getByWeaponAndArmorAndHelmet($weapon->item, $armor->item, $helmet->item);
+    $w = ($weapon) ? $weapon->item : NULL;
+    $a = ($armor) ? $armor->item : NULL;
+    $h = ($helmet) ? $helmet->item : NULL;
+    return $this->orm->itemSets->getByWeaponAndArmorAndHelmet($w, $a, $h);
   }
   
   /**

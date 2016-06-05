@@ -15,7 +15,7 @@ namespace Nexendrie\Orm;
  */
 class ItemSet extends \Nextras\Orm\Entity\Entity {
   const STAT_DAMAGE = "damage";
-  const STAT_ARMOR = "defense";
+  const STAT_ARMOR = "armor";
   const STAT_HITPOINTS = "hitpoints";
   
   /**

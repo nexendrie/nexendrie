@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\Mount as MountEntity;
+    Nexendrie\Orm\Mount as MountEntity,
+    Nexendrie\Orm\ItemSet as ItemSetEntity;
 
 /**
  * Combat Model
@@ -29,11 +30,11 @@ class Combat extends \Nette\Object {
   function calculateUserLife(UserEntity $user) {
     $maxLife = $life = $user->maxLife;
     $helmet = $this->inventoryModel->getHelmet($user->id);
-    if($helmet) {
-      $hpIncrease = ($helmet->item->strength + $helmet->level) * 5;
-      $maxLife += $hpIncrease;
-      $life  += $hpIncrease;
-    }
+    $set = $this->inventoryModel->getUserItemSet($user->id);
+    if($helmet) $hpIncrease = ($helmet->item->strength + $helmet->level) * 5;
+    if($set AND $set->stat === ItemSetEntity::STAT_HITPOINTS) $hpIncrease += $set->bonus;
+    $maxLife += $hpIncrease;
+    $life  += $hpIncrease;
     return array("maxLife" => $maxLife, "life" => $life);
   }
   
@@ -49,12 +50,14 @@ class Combat extends \Nette\Object {
     $weapon = $this->inventoryModel->getWeapon($user->id);
     if($weapon) $damage += $weapon->item->strength + $weapon->level;
     $damageSkills = $this->orm->userSkills->findByUserAndStat($user->id, "damage");
+    $set = $this->inventoryModel->getUserItemSet($user->id);
     if($damageSkills) {
       foreach($damageSkills as $damageSkill) {
         $damage += $damageSkill->skill->statIncrease * $damageSkill->level;
       }
     }
     if($mount) $damage += $mount->damage;
+    if($set AND $set->stat === ItemSetEntity::STAT_DAMAGE) $damage += $set->bonus;
     return $damage;
   }
   
@@ -70,12 +73,14 @@ class Combat extends \Nette\Object {
     $armor = $this->inventoryModel->getArmor($user->id);
     if($armor) $armorValue += $armor->item->strength + $armor->level;
     $armorSkills = $this->orm->userSkills->findByUserAndStat($user->id, "armor");
+    $set = $this->inventoryModel->getUserItemSet($user->id);
     if($armorSkills) {
       foreach($armorSkills as $armorSkill) {
         $armorValue += $armorSkill->skill->statIncrease * $armorSkill->level;
       }
     }
     if($mount) $armorValue += $mount->armor;
+    if($set AND $set->stat === ItemSetEntity::STAT_ARMOR) $armorValue += $set->bonus;
     return $armorValue;
   }
   
