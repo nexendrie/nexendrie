@@ -109,7 +109,7 @@ class Order extends \Nette\Object {
     $bonus = $increase = 0;
     $user = $this->orm->users->getById($this->user->id);
     if($user->order AND $user->group->path === "tower") {
-      $increase += $user->orderRank->adventureBonus + $user->order->level - 1;
+      $increase += $user->orderRank->adventureBonus + ($user->order->level * 2.5) - 2.5;
     }
     $bonus += (int) $baseIncome /100 * $increase;
     return $bonus;
