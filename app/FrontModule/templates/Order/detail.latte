@@ -2,11 +2,12 @@
 {block title}Řád{/block}
 {block content}
   <h1>{$order->name}</h1>
-  <p>Úroveň: {$order->level}</p>
+  <p>{$order->name} byl založen {$order->foundedAt}. Řád je na úrovni {$order->level}.</p>
+  <p>{$order->description}</p>
   <h3>Členové</h3>
-  <div n:foreach="$order->members as $member" class="members">
+  <p>
+    {foreach $order->members as $member}
     {$member->orderRank->name} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
-  </div>
-  <h3>Majetek cechu</h3>
-  <p>{$order->moneyT}</p>
+  {/foreach}
+  </p>
 {/block}

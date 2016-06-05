@@ -40,6 +40,19 @@ class Order extends \Nette\Object {
   }
   
   /**
+   * Get specified order
+   * 
+   * @param int $id
+   * @return OrderEntity
+   * @throws OrderNotFoundException
+   */
+  function getOrder($id) {
+    $order = $this->orm->orders->getById($id);
+    if(!$order) throw new OrderNotFoundException;
+    else return $order;
+  }
+  
+  /**
    * Get specified user's order
    * 
    * @param int $uid

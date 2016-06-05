@@ -2,7 +2,8 @@
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Forms\FoundOrderFormFactory,
-    Nette\Application\UI\Form;
+    Nette\Application\UI\Form,
+    Nexendrie\Model\OrderNotFoundException;
 
 /**
  * Presenter Order
@@ -26,6 +27,18 @@ class OrderPresenter extends BasePresenter {
   /**
    * @return void
    */
+  function renderDefault() {
+    $order = $this->model->getUserOrder();
+    if(!$order) {
+      $this->flashMessage("Nejsi v řádu.");
+      $this->redirect("Homepage:");
+    }
+    $this->template->order = $order;
+  }
+  
+  /**
+   * @return void
+   */
   function renderList() {
     $this->template->orders = $this->model->listOfOrders();
   }
@@ -35,7 +48,11 @@ class OrderPresenter extends BasePresenter {
    * @return void
    */
   function renderDetail($id) {
-    
+    try {
+      $this->template->order = $this->model->getOrder($id);
+    } catch(OrderNotFoundException $e) {
+      $this->forward("notfound");
+    }
   }
   
   /**
