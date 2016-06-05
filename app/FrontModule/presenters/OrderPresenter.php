@@ -1,6 +1,9 @@
 <?php
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Forms\FoundOrderFormFactory,
+    Nette\Application\UI\Form;
+
 /**
  * Presenter Order
  *
@@ -9,6 +12,8 @@ namespace Nexendrie\Presenters\FrontModule;
 class OrderPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Order @autowire  */
   protected $model;
+  /** @var \Nexendrie\Model\Locale @autowire */
+  protected $localeModel;
   
   /**
    * @return void
@@ -31,6 +36,30 @@ class OrderPresenter extends BasePresenter {
    */
   function renderDetail($id) {
     
+  }
+  
+  /**
+   * @return void
+   */
+  function actionFound() {
+    if(!$this->model->canFound()) {
+      $this->flashMessage("Nemůžeš založit řád.");
+      $this->redirect("Homepage:");
+    }
+    $this->template->foundingPrice = $this->localeModel->money($this->model->foundingPrice);
+  }
+  
+  /**
+   * @param FoundOrderFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentFoundOrderForm(FoundOrderFormFactory $factory) {
+    $form = $factory->create();
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Řád založen.");
+      $this->redirect("default");
+    };
+    return $form;
   }
 }
 ?>

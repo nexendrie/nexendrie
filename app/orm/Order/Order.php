@@ -7,11 +7,11 @@ namespace Nexendrie\Orm;
  * @author Jakub Konečný
  * @property string $name
  * @property string $description
- * @property int $level
+ * @property int $level {default 1}
  * @property int $founded
- * @property-read string $foundedAt
+ * @property-read string $foundedAt {virtual}
  * @property int $money
- * @property-read string $moneyT
+ * @property-read string $moneyT {virtual}
  * @property OneHasMany|User[] $members {1:m User::$order order:orderRank,DESC}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}
