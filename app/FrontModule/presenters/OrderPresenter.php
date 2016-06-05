@@ -3,7 +3,9 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Forms\FoundOrderFormFactory,
     Nette\Application\UI\Form,
-    Nexendrie\Model\OrderNotFoundException;
+    Nexendrie\Model\OrderNotFoundException,
+    Nexendrie\Model\CannotJoinOrderException,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Presenter Order
@@ -41,6 +43,7 @@ class OrderPresenter extends BasePresenter {
    */
   function renderList() {
     $this->template->orders = $this->model->listOfOrders();
+    $this->template->canJoin = $this->model->canJoin();
   }
   
   /**
@@ -77,6 +80,25 @@ class OrderPresenter extends BasePresenter {
       $this->redirect("default");
     };
     return $form;
+  }
+  
+  /**
+   * @param int $id
+   * @return void
+   */
+  function actionJoin($id) {
+    try {
+      $this->model->join($id);
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vstoupila jsi do řádu.";
+      else $message = "Vstoupil jsi do řádu.";
+      $this->flashMessage($message);
+      $this->redirect("default");
+    } catch(CannotJoinOrderException $e) {
+      $this->flashMessage("Nemůžeš vstoupit do řádu.");
+      $this->redirect("Homepage:");
+    } catch(GuildNotFoundException $e) {
+      $this->forward("notfound");
+    }
   }
 }
 ?>

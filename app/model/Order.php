@@ -114,6 +114,41 @@ class Order extends \Nette\Object {
     $bonus += (int) $baseIncome /100 * $increase;
     return $bonus;
   }
+  
+  /**
+   * Check whetever the user can join an order
+   * 
+   * @return bool
+   */
+  function canJoin() {
+    if(!$this->user->isLoggedIn()) return false;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->group->path === "tower" AND !$user->order) return true;
+    else return false;
+  }
+  
+  /**
+   * Join an order
+   * 
+   * @param int $id
+   * @throws AuthenticationNeededException
+   * @throws CannotJoinOrderException
+   * @throws OrderNotFoundException
+   */
+  function join($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canJoin()) throw new CannotJoinOrderException;
+    try {
+      $order = $this->getOrder($id);
+    } catch(OrderNotFoundException $e) {
+      throw $e;
+    }
+    $user = $this->orm->users->getById($this->user->id);
+    $user->order = $order;
+    $user->orderRank = 1;
+    $this->orm->users->persistAndFlush($user);
+  }
+  
 }
 
 class OrderNotFoundException extends RecordNotFoundException {
@@ -127,4 +162,9 @@ class CannotFoundOrderException extends AccessDeniedException {
 class OrderNameInUseException extends NameInUseException {
   
 }
+
+class CannotJoinOrderException extends AccessDeniedException {
+  
+}
+
 ?>

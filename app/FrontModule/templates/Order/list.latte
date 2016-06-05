@@ -10,7 +10,7 @@
       <td>{$order->name}</td>
       <td>{$order->level}</td>
       <td>{$order->members->countStored()}</td>
-      <td><a n:href="detail $order->id">Detaily</a></td>
+      <td><a n:href="detail $order->id">Detaily</a> {if $canJoin}<a n:href="join $order->id">Připojit se</a>{/if}</td>
     </tr>
   </table>
   {/if}
