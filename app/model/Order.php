@@ -149,6 +149,33 @@ class Order extends \Nette\Object {
     $this->orm->users->persistAndFlush($user);
   }
   
+  /**
+   * Check whetever the user can leave order
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canLeave( ) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->order) return false;
+    else return !($user->orderRank->id === 4);
+  }
+  
+  /**
+   * Leave order
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws CannotLeaveOrderException
+   */
+  function leave() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->canLeave()) throw new CannotLeaveOrderException;
+    $user = $this->orm->users->getById($this->user->id);
+    $user->order = $user->orderRank = NULL;
+    $this->orm->users->persistAndFlush($user);
+  }
 }
 
 class OrderNotFoundException extends RecordNotFoundException {
@@ -167,4 +194,7 @@ class CannotJoinOrderException extends AccessDeniedException {
   
 }
 
+class CannotLeaveOrderException extends AccessDeniedException {
+  
+}
 ?>

@@ -5,6 +5,7 @@ use Nexendrie\Forms\FoundOrderFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\OrderNotFoundException,
     Nexendrie\Model\CannotJoinOrderException,
+    Nexendrie\Model\CannotLeaveOrderException,
     Nexendrie\Orm\User as UserEntity;
 
 /**
@@ -36,6 +37,7 @@ class OrderPresenter extends BasePresenter {
       $this->redirect("Homepage:");
     }
     $this->template->order = $order;
+    $this->template->canLeave = $this->model->canLeave();
   }
   
   /**
@@ -98,6 +100,22 @@ class OrderPresenter extends BasePresenter {
       $this->redirect("Homepage:");
     } catch(GuildNotFoundException $e) {
       $this->forward("notfound");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionLeave() {
+    try {
+      $this->model->leave();
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Opustila jsi řád.";
+      else $message = "Opustil jsi řád.";
+      $this->flashMessage($message);
+      $this->redirect("Homepage:");
+    } catch(CannotLeaveOrderException $e) {
+      $this->flashMessage("Nemůžeš opustit cech.");
+      $this->redirect("Homepage:");
     }
   }
 }

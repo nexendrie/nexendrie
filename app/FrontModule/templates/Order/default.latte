@@ -8,5 +8,6 @@
     {$member->orderRank->name} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
   </div>
   <h3>Majetek cechu</h3>
-  <p>{$order->moneyT}</p>
+  <p>{$order->moneyT}</p><h3>Akce</h3>
+  <p>{if $canLeave}<a n:href="leave">Opustit řád</a>{/if}
 {/block}
