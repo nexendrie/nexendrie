@@ -60,5 +60,18 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
       "this->group->path" => "city"
     ));
   }
+  
+  /**
+   * Get users in order
+   * 
+   * @return ICollection|User[]
+   */
+  function findInOrder() {
+    return $this->findBy(array(
+      "order!=" => NULL,
+      "this->group->path" => "tower"
+    ));
+  }
+  
 }
 ?>
