@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "65ad59adf868157929024f2581b99d57",
+    "hash": "e780853dc34a26b31d81af2f1cc1dc2d",
     "content-hash": "93a7ff405425111cc694c55ef9c2d2a4",
     "packages": [
         {
@@ -146,16 +146,16 @@
         },
         {
             "name": "latte/latte",
-            "version": "v2.3.11",
+            "version": "v2.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "a337509d08f5622c0baff971346a4a101416842d"
+                "reference": "26af8b6b68ea68bb466ce692c12b8898524456bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/a337509d08f5622c0baff971346a4a101416842d",
-                "reference": "a337509d08f5622c0baff971346a4a101416842d",
+                "url": "https://api.github.com/repos/nette/latte/zipball/26af8b6b68ea68bb466ce692c12b8898524456bd",
+                "reference": "26af8b6b68ea68bb466ce692c12b8898524456bd",
                 "shasum": ""
             },
             "require": {
@@ -197,7 +197,7 @@
                 "templating",
                 "twig"
             ],
-            "time": "2016-04-10 23:40:55"
+            "time": "2016-05-30 09:11:18"
         },
         {
             "name": "nette/application",
@@ -539,20 +539,20 @@
         },
         {
             "name": "nette/forms",
-            "version": "v2.3.8",
+            "version": "v2.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/forms.git",
-                "reference": "0cb5a8534bd446824ed6f63af3b4479c11361768"
+                "reference": "e32577062a2544fedac8a95fbc393ab98a3291c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/forms/zipball/0cb5a8534bd446824ed6f63af3b4479c11361768",
-                "reference": "0cb5a8534bd446824ed6f63af3b4479c11361768",
+                "url": "https://api.github.com/repos/nette/forms/zipball/e32577062a2544fedac8a95fbc393ab98a3291c7",
+                "reference": "e32577062a2544fedac8a95fbc393ab98a3291c7",
                 "shasum": ""
             },
             "require": {
-                "nette/component-model": "~2.2",
+                "nette/component-model": "~2.2.0",
                 "nette/http": "~2.2",
                 "nette/utils": "~2.2",
                 "php": ">=5.3.1"
@@ -590,7 +590,7 @@
             ],
             "description": "Nette Forms: greatly facilitates web forms",
             "homepage": "https://nette.org",
-            "time": "2016-02-08 00:16:32"
+            "time": "2016-05-17 15:35:20"
         },
         {
             "name": "nette/http",
@@ -957,16 +957,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v2.3.8",
+            "version": "v2.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "34ca4cd67bb768199aae2879eb8ad0ab016f2d8a"
+                "reference": "f6586f827292bd35c8593df943437f2247ba5337"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/34ca4cd67bb768199aae2879eb8ad0ab016f2d8a",
-                "reference": "34ca4cd67bb768199aae2879eb8ad0ab016f2d8a",
+                "url": "https://api.github.com/repos/nette/utils/zipball/f6586f827292bd35c8593df943437f2247ba5337",
+                "reference": "f6586f827292bd35c8593df943437f2247ba5337",
                 "shasum": ""
             },
             "require": {
@@ -1008,7 +1008,7 @@
             ],
             "description": "Nette Utility Classes",
             "homepage": "https://nette.org",
-            "time": "2016-03-18 17:36:54"
+            "time": "2016-04-21 09:36:23"
         },
         {
             "name": "nextras/dbal",
@@ -1237,16 +1237,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.3.10",
+            "version": "v2.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "0378bbc73ba54be60f90a00faa148768fb723406"
+                "reference": "152b7602115dd3a66f3190280951390097a15f65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/0378bbc73ba54be60f90a00faa148768fb723406",
-                "reference": "0378bbc73ba54be60f90a00faa148768fb723406",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/152b7602115dd3a66f3190280951390097a15f65",
+                "reference": "152b7602115dd3a66f3190280951390097a15f65",
                 "shasum": ""
             },
             "require": {
@@ -1288,7 +1288,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2016-02-28 21:39:42"
+            "time": "2016-05-30 09:03:15"
         }
     ],
     "packages-dev": [],
