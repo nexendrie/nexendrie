@@ -7,6 +7,7 @@ use Nexendrie\Orm\Guild as GuildEntity;
  * Guild Model
  *
  * @author Jakub Konečný
+ * @property int $foundingPrice
  */
 class Guild extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model */
@@ -20,6 +21,13 @@ class Guild extends \Nette\Object {
     $this->orm = $orm;
     $this->user = $user;
     $this->foundingPrice = $foundingPrice;
+  }
+  
+  /**
+   * return int
+   */
+  function getFoundingPrice() {
+    return $this->foundingPrice;
   }
   
   /**

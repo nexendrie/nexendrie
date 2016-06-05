@@ -24,6 +24,8 @@ use Nexendrie\Model\MonasteryNotFoundException,
 class MonasteryPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Monastery @autowire */
   protected $model;
+  /** @var \Nexendrie\Model\Locale @autowire */
+  protected $localeModel;
   /** @var int*/
   private $monasteryId;
   
@@ -80,6 +82,7 @@ class MonasteryPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš postavit klášter.");
       $this->redirect("Homepage:");
     }
+    $this->template->buildingPrice = $this->localeModel->money($this->model->buildingPrice);
   }
   
   /**

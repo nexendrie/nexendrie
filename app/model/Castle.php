@@ -7,6 +7,7 @@ use Nexendrie\Orm\Castle as CastleEntity;
  * Castle Model
  *
  * @author Jakub Konečný
+ * @property-read int $buildingPrice
  */
 class Castle extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model */
@@ -20,6 +21,13 @@ class Castle extends \Nette\Object {
     $this->orm = $orm;
     $this->user = $user;
     $this->buildingPrice = (int) $buildingPrice;
+  }
+  
+  /**
+   * @return int
+   */
+  function getBuildingPrice() {
+    return $this->buildingPrice;
   }
   
   /**

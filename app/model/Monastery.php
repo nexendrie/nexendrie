@@ -9,6 +9,8 @@ use Nexendrie\Orm\Monastery as MonasteryEntity,
  * Monastery Model
  *
  * @author Jakub Konečný
+ * @property-read int $buildingPrice
+ * 
  */
 class Monastery extends \Nette\Object {
   /** @var Events */
@@ -31,6 +33,13 @@ class Monastery extends \Nette\Object {
     $this->orm = $orm;
     $this->user = $user;
     $this->buildingPrice = $buildingPrice;
+  }
+  
+  /**
+   * @return int
+   */
+  function getBuildingPrice() {
+    return $this->buildingPrice;
   }
   
   /**

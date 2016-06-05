@@ -19,6 +19,8 @@ use Nexendrie\Forms\FoundGuildFormFactory,
 class GuildPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Guild @autowire */
   protected $model;
+  /** @var \Nexendrie\Model\Locale @autowire */
+  protected $localeModel;
   
   /**
    * @return void
@@ -70,6 +72,7 @@ class GuildPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš založit cech.");
       $this->redirect("Homepage:");
     }
+    $this->template->foundingPrice = $this->localeModel->money($this->model->foundingPrice);
   }
   
   /**
