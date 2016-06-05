@@ -9,5 +9,6 @@
   </div>
   <h3>Majetek cechu</h3>
   <p>{$order->moneyT}</p><h3>Akce</h3>
-  <p>{if $canLeave}<a n:href="leave">Opustit řád</a>{/if}
+  {if $canLeave}<p><a n:href="leave">Opustit řád</a></p>{/if}
+  {if $canManage}<p><a n:href="manage">Spravovat řád</a></p>{/if}
 {/block}

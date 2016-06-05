@@ -2,6 +2,7 @@
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Forms\FoundOrderFormFactory,
+    Nexendrie\Forms\ManageOrderFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\OrderNotFoundException,
     Nexendrie\Model\CannotJoinOrderException,
@@ -38,6 +39,7 @@ class OrderPresenter extends BasePresenter {
     }
     $this->template->order = $order;
     $this->template->canLeave = $this->model->canLeave();
+    $this->template->canManage = $this->model->canManage();
   }
   
   /**
@@ -117,6 +119,28 @@ class OrderPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš opustit cech.");
       $this->redirect("Homepage:");
     }
+  }
+  
+  /**
+    * @return void
+    */
+   function actionManage() {
+     if(!$this->model->canManage()) {
+       $this->flashMessage("Nemůžeš spravovat řád.");
+       $this->redirect("Homepage:");
+     }
+   }
+  
+  /**
+   * @param ManageOrderFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentManageOrderForm(ManageOrderFormFactory $factory) {
+    $form = $factory->create($this->model->getUserOrder()->id);
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Změny uloženy.");
+    };
+    return $form;
   }
 }
 ?>

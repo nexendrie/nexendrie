@@ -53,6 +53,26 @@ class Order extends \Nette\Object {
   }
   
   /**
+   * Edit specified order
+   * 
+   * @param int $id
+   * @param array $data
+   * @return void
+   * @throws OrderNotFoundException
+   */
+  function editOrder($id, array $data) {
+    try {
+      $order = $this->getOrder($id);
+    } catch(OrderNotFoundException $e) {
+      throw $e;
+    }
+    foreach($data as $key => $value) {
+      $order->$key = $value;
+    }
+    $this->orm->orders->persistAndFlush($order);
+  }
+  
+  /**
    * Get specified user's order
    * 
    * @param int $uid
@@ -175,6 +195,19 @@ class Order extends \Nette\Object {
     $user = $this->orm->users->getById($this->user->id);
     $user->order = $user->orderRank = NULL;
     $this->orm->users->persistAndFlush($user);
+  }
+  
+  /**
+   * Check whetever the user can manage order
+   * 
+   * @return bool
+   * @throws AuthenticationNeededException
+   */
+  function canManage() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $user = $this->orm->users->getById($this->user->id);
+    if(!$user->order) return false;
+    else return ($user->orderRank->id === 4);
   }
 }
 

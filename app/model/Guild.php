@@ -192,7 +192,7 @@ class Guild extends \Nette\Object {
   }
   
   /**
-   * Check whetever the user can leave guild
+   * Check whetever the user can manage guild
    * 
    * @return bool
    * @throws AuthenticationNeededException
