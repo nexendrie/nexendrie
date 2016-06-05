@@ -25,7 +25,7 @@ class ShopPresenter extends BasePresenter {
     try {
       $this->shop = $this->model->getShop($id);
     } catch(ShopNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   

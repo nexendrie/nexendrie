@@ -42,7 +42,7 @@ class AdventurePresenter extends BasePresenter {
     try {
       $this->adventure = $this->model->get($id);
     } catch(AdventureNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   

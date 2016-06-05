@@ -19,7 +19,7 @@ class ProfilePresenter extends BasePresenter {
    * @return void
    */
   function renderDefault($username) {
-    if(is_null($username)) $this->forward("notfound");
+    if(is_null($username)) throw new \Nette\Application\BadRequestException;
     try {
       $user = $this->model->view($username);
       $this->template->profile = $user;
@@ -30,7 +30,7 @@ class ProfilePresenter extends BasePresenter {
       $this->template->lessons = $this->model->countLessons($user->id);
       $this->template->messages = $this->model->countMessages($user->id);
     } catch(UserNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
 }

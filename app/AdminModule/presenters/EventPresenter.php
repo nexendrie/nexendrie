@@ -54,7 +54,7 @@ class EventPresenter extends BasePresenter {
     try {
       $this->event = $this->model->getEvent($id);
     } catch(EventNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   
@@ -84,7 +84,7 @@ class EventPresenter extends BasePresenter {
       $this->flashMessage("Akce smazána.");
       $this->redirect("default");
     } catch(EventNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     } catch(CannotDeleteStartedEventException $e) {
       $this->flashMessage("Nelze smazat již započatnou akci.");
       $this->redirect("Homepage:");

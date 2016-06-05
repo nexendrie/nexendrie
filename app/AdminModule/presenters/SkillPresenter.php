@@ -47,7 +47,7 @@ class SkillPresenter extends BasePresenter {
     try {
       $this->skill = $this->model->get($id);
     } catch(SkillNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   

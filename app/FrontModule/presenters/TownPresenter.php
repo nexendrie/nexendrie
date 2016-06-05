@@ -64,7 +64,7 @@ class TownPresenter extends BasePresenter {
       if($id == $this->user->identity->town) $this->template->canMove = false;
       else $this->template->canMove = $this->model->canMove();
     } catch(TownNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   

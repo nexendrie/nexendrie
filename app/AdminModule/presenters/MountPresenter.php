@@ -47,7 +47,7 @@ class MountPresenter extends BasePresenter {
     try {
       $this->mount = $this->model->get($id);
     } catch(MountNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   

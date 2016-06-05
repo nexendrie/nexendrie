@@ -59,7 +59,7 @@ class CastlePresenter extends BasePresenter {
     try {
       $this->template->castle = $this->model->getCastle($id);
     } catch(CastleNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   

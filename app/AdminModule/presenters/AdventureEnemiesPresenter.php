@@ -31,7 +31,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
       $this->template->npcs = $this->model->listOfNpcs($id);
       $this->template->adventureId = $id;
     } catch(AdventureNotFoundException $e) {
-      $this->forward("Adventure:notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   /**
@@ -44,7 +44,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
       $this->adventure = $this->model->get($id);
       $this->template->adventureName = $this->adventure->name;
     } catch(AdventureNotFoundException $e) {
-      $this->forward("Adventure:notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   
@@ -73,7 +73,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
     try {
       $this->npc = $this->model->getNpc($id);
     } catch (AdventureNpcNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   
@@ -98,7 +98,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
       $this->flashMessage("Nepřítel smazán.");
       $this->redirect("list", array("id" => $adventure));
     } catch(AdventureNpcNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
 }

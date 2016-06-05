@@ -70,7 +70,7 @@ class MonasteryPresenter extends BasePresenter {
     try {
       $this->template->monastery = $this->model->get($id);
     } catch(MonasteryNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   
@@ -113,7 +113,7 @@ class MonasteryPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš vstoupit do kláštera.");
       $this->redirect("Homepage:");
     } catch(MonasteryNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     } catch(CannotJoinOwnMonasteryException $e) {
       $this->flashMessage("Už jsi v tomto klášteře.");
       $this->redirect("Homepage:");

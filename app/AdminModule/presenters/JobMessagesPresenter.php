@@ -74,7 +74,7 @@ class JobMessagesPresenter extends BasePresenter {
     try {
       $this->message = $this->model->getMessage($id);
     } catch(JobMessageNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   
@@ -102,7 +102,7 @@ class JobMessagesPresenter extends BasePresenter {
       $this->flashMessage("Hláška smazána.");
       $this->redirect("list", array("id" => $job));
     } catch(JobMessageNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
 }

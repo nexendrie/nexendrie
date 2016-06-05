@@ -22,11 +22,11 @@ class RssPresenter extends BasePresenter {
    * @return void
    */
   function renderComments($news) {
-    if($news === NULL) $this->forward("News:notfound");
+    if($news === NULL) throw new \Nette\Application\BadRequestException;
     try {
       $this->sendResponse($this->model->commentsFeed($news));
     } catch(\Nette\Application\BadRequestException $e) {
-      $this->forward("News:notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
 }

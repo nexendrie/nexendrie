@@ -26,7 +26,7 @@ class JobPresenter extends BasePresenter {
     try {
       $this->job = $this->model->getJob($id);
     } catch(JobNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   

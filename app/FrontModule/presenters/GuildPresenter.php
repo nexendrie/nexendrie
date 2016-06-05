@@ -60,7 +60,7 @@ class GuildPresenter extends BasePresenter {
     try {
       $this->template->guild = $this->model->getGuild($id);
     } catch(GuildNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   
@@ -103,7 +103,7 @@ class GuildPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš vstoupit do cechu.");
       $this->redirect("Homepage:");
     } catch(GuildNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   

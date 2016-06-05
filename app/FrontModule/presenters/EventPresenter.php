@@ -25,7 +25,7 @@ class EventPresenter extends BasePresenter {
       else $status = "past";
       $this->template->status = $status;
     } catch(EventNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
 }

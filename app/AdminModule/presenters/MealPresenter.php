@@ -47,7 +47,7 @@ class MealPresenter extends BasePresenter {
     try {
       $this->meal = $this->model->getMeal($id);
     } catch(MealNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   

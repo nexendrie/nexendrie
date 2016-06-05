@@ -49,7 +49,7 @@ class TownPresenter extends BasePresenter {
     try {
       $this->town = $this->model->get($id);
     } catch(TownNotFoundException $e) {
-      $this->forward("notfound");
+      throw new \Nette\Application\BadRequestException;
     }
   }
   
