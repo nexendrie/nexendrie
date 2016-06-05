@@ -86,7 +86,8 @@ class Monastery extends \Nette\Object {
       if($user->guild AND $user->guildRank->id === 4) return false;
       else return true;
     } elseif(!$user->monastery AND $user->group->path === "tower") {
-      return true;
+      if($user->order AND $user->orderRank->id === 4) return false;
+      else return true;
     } elseif($user->group->path === "church") {
       if($user->monasteriesLed->countStored()) return false;
       elseif($user->lastTransfer === NULL) return true;
@@ -120,6 +121,7 @@ class Monastery extends \Nette\Object {
     if($user->group->path != "church") $user->group = $this->orm->groups->getByLevel(55);
     $user->town = $monastery->town;
     $user->guild = $user->guildRank = NULL;
+    $user->order = $user->orderRank = NULL;
     $this->orm->users->persistAndFlush($user);
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;

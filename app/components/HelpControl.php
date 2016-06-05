@@ -40,6 +40,7 @@ class HelpControl extends Book\BookControl {
     $storage[] = new Book\BookPage("market", "Tržiště");
     $storage[] = new Book\BookPage("stables", "Stáje");
     $storage[] = new Book\BookPage("guild", "Cechy");
+    $storage[] = new Book\BookPage("order", "Řády");
     return $storage;
   }
   
@@ -103,6 +104,14 @@ class HelpControl extends Book\BookControl {
   function renderGuild() {
     $this->template->ranks = $this->orm->guildRanks->findAll();
     $this->template->maxLevel = \Nexendrie\Orm\Guild::MAX_LEVEL;
+  }
+  
+  /**
+   * @return void
+   */
+  function renderOrder() {
+    $this->template->ranks = $this->orm->orderRanks->findAll();
+    $this->template->maxLevel = \Nexendrie\Orm\Order::MAX_LEVEL;
   }
 }
 

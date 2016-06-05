@@ -34,7 +34,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "loanInterest" => 15,
       "buildMonastery" => 1000,
       "buildCastle" => 1500,
-      "foundGuild" => 1000
+      "foundGuild" => 1000,
+      "foundOrder" => 1200
     )
   );
   
@@ -78,6 +79,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setFactory("Nexendrie\Model\Castle", array($config["fees"]["buildCastle"]));
     $builder->addDefinition($this->prefix("model.guild"))
       ->setFactory("Nexendrie\Model\Guild", array($config["fees"]["foundGuild"]));
+    $builder->addDefinition($this->prefix("model.order"))
+      ->setFactory("Nexendrie\Model\Order", array($config["fees"]["foundOrder"]));
     $builder->addDefinition("cache.cache")
       ->setFactory("Nette\Caching\Cache", array("@cache.storage", "data"));
     $builder->addDefinition($this->prefix("model.settingsRepository"))
@@ -119,7 +122,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "addEditMount", "addEditSkill", "manageMount", "manageTown", "banUser", "takeLoan",
       "addEditMeal", "addEditAdventure", "addEditAdventureEnemy", "buildMonastery",
       "monasteryDonate", "manageMonastery", "appointMayor", "buildCastle", "gift",
-      "foundTown", "makeCitizen", "addEditEvent", "foundGuild", "manageGuild"
+      "foundTown", "makeCitizen", "addEditEvent", "foundGuild", "manageGuild", "foundOrder",
+      "manageOrder"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix("form.$form"))

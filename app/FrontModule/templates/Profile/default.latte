@@ -8,6 +8,7 @@
     Vládne {if $profile->ownedTowns->count() === 1}městu{else}městům:{/if} {foreach $profile->ownedTowns as $town}<a n:href="Town:detail $town->id">{$town->name}</a>{if !$iterator->last}, {else}.{/if}{/foreach}<br>
     {/if}
     {if $profile->guild}{$profile->guildRank->name} <a n:href="Guild:detail $profile->guild->id">{$profile->guild->name}</a><br>{/if}
+    {if $profile->order}{$profile->orderRank->name} <a n:href="Order:detail $profile->order->id">{$profile->order->name}</a><br>{/if}
     {if $profile->banned}V současnosti si odpykává zasloužený trest v místní šatlavě.<br>{/if}
     <h3>Statistiky</h3>
     <table>

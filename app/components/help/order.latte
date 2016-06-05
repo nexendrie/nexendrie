@@ -1,0 +1,6 @@
+  <p>Šlechtici se mohou organizovat v řádech. Řády jsou prestižní organizace, jejich věhlas umožňuje členům získat větší příjmy z dobrodružství. Ti však za to musí každý měsíc odvádět svému cechu příspěvek. Výše příspěvku i bonusu závisí na postavení člena.</p>
+  <table>
+    <tr><th>Hodnost</th><th>Bonus k příjmům z dobrodružství</th><th>Členský poplatek</th></tr>
+    <tr n:foreach="$ranks as $rank"><td>{$rank->name}</td><td>{$rank->adventureBonus}</td><td>{$rank->orderFee}</td></tr>
+  </table>
+  <p>V čele cechu stojí velmistr. Ten může povyšovat, degradovat a vylučovat členy, také má možnost přejmenovat řád a z vybraných příspěvků vylepšit řád. Každá úroveň řádu zvyšuje příjmy z dobrodružství všech členů o 2,5%, maximální úroveň je {$maxLevel}.</p>

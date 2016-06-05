@@ -1,0 +1,13 @@
+{layout "../@layout.latte"}
+{block title}Řád{/block}
+{block content}
+  <h1>{$order->name}</h1>
+  <p>{$order->name} byl založen {$order->foundedAt}. Řád je na úrovni {$order->level}.</p>
+  <p>{$order->description}</p>
+  <h3>Členové</h3>
+  <p>
+    {foreach $order->members as $member}
+    {$member->orderRank->name} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
+  {/foreach}
+  </p>
+{/block}

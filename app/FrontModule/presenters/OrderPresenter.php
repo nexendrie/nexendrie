@@ -1,24 +1,26 @@
 <?php
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Forms\FoundGuildFormFactory,
+use Nexendrie\Forms\FoundOrderFormFactory,
+    Nexendrie\Forms\ManageOrderFormFactory,
     Nette\Application\UI\Form,
-    Nexendrie\Model\GuildNotFoundException,
-    Nexendrie\Model\CannotLeaveGuildException,
-    Nexendrie\Model\CannotJoinGuildException,
-    Nexendrie\Forms\ManageGuildFormFactory,
-    Nexendrie\Model\CannotUpgradeGuildException,
+    Nexendrie\Model\OrderNotFoundException,
+    Nexendrie\Model\CannotJoinOrderException,
+    Nexendrie\Model\CannotLeaveOrderException,
+    Nexendrie\Model\CannotUpgradeOrderException,
     Nexendrie\Model\InsufficientFundsException,
     Nexendrie\Orm\User as UserEntity;
 
 /**
- * Presenter Guild
+ * Presenter Order
  *
  * @author Jakub Konečný
  */
-class GuildPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Guild @autowire */
+class OrderPresenter extends BasePresenter {
+  /** @var \Nexendrie\Model\Order @autowire  */
   protected $model;
+  /** @var \Nexendrie\Model\Locale @autowire */
+  protected $localeModel;
   
   /**
    * @return void
@@ -32,12 +34,12 @@ class GuildPresenter extends BasePresenter {
    * @return void
    */
   function renderDefault() {
-    $guild = $this->model->getUserGuild();
-    if(!$guild) {
-      $this->flashMessage("Nejsi v cechu.");
+    $order = $this->model->getUserOrder();
+    if(!$order) {
+      $this->flashMessage("Nejsi v řádu.");
       $this->redirect("Homepage:");
     }
-    $this->template->guild = $guild;
+    $this->template->order = $order;
     $this->template->canLeave = $this->model->canLeave();
     $this->template->canManage = $this->model->canManage();
   }
@@ -46,7 +48,7 @@ class GuildPresenter extends BasePresenter {
    * @return void
    */
   function renderList() {
-    $this->template->guilds = $this->model->listOfGuilds();
+    $this->template->orders = $this->model->listOfOrders();
     $this->template->canJoin = $this->model->canJoin();
   }
   
@@ -56,8 +58,8 @@ class GuildPresenter extends BasePresenter {
    */
   function renderDetail($id) {
     try {
-      $this->template->guild = $this->model->getGuild($id);
-    } catch(GuildNotFoundException $e) {
+      $this->template->order = $this->model->getOrder($id);
+    } catch(OrderNotFoundException $e) {
       $this->forward("notfound");
     }
   }
@@ -67,19 +69,20 @@ class GuildPresenter extends BasePresenter {
    */
   function actionFound() {
     if(!$this->model->canFound()) {
-      $this->flashMessage("Nemůžeš založit cech.");
+      $this->flashMessage("Nemůžeš založit řád.");
       $this->redirect("Homepage:");
     }
+    $this->template->foundingPrice = $this->localeModel->money($this->model->foundingPrice);
   }
   
   /**
-   * @param FoundGuildFormFactory $factory
+   * @param FoundOrderFormFactory $factory
    * @return Form
    */
-  protected function createComponentFoundGuildForm(FoundGuildFormFactory $factory) {
+  protected function createComponentFoundOrderForm(FoundOrderFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = function() {
-      $this->flashMessage("Cech založen.");
+      $this->flashMessage("Řád založen.");
       $this->redirect("default");
     };
     return $form;
@@ -92,12 +95,12 @@ class GuildPresenter extends BasePresenter {
   function actionJoin($id) {
     try {
       $this->model->join($id);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vstoupila jsi do cechu.";
-      else $message = "Vstoupil jsi do cechu.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vstoupila jsi do řádu.";
+      else $message = "Vstoupil jsi do řádu.";
       $this->flashMessage($message);
       $this->redirect("default");
-    } catch(CannotJoinGuildException $e) {
-      $this->flashMessage("Nemůžeš vstoupit do cechu.");
+    } catch(CannotJoinOrderException $e) {
+      $this->flashMessage("Nemůžeš vstoupit do řádu.");
       $this->redirect("Homepage:");
     } catch(GuildNotFoundException $e) {
       $this->forward("notfound");
@@ -110,51 +113,51 @@ class GuildPresenter extends BasePresenter {
   function actionLeave() {
     try {
       $this->model->leave();
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Opustila jsi cech.";
-      else $message = "Opustil jsi cech.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Opustila jsi řád.";
+      else $message = "Opustil jsi řád.";
       $this->flashMessage($message);
       $this->redirect("Homepage:");
-    } catch(CannotLeaveGuildException $e) {
+    } catch(CannotLeaveOrderException $e) {
       $this->flashMessage("Nemůžeš opustit cech.");
       $this->redirect("Homepage:");
     }
   }
   
   /**
-   * @return void
-   */
-  function actionManage() {
-    if(!$this->model->canManage()) {
-      $this->flashMessage("Nemůžeš spravovat cech.");
-      $this->redirect("Homepage:");
-    } else {
-      $this->template->guild =  $this->model->getUserGuild();
+    * @return void
+    */
+   function actionManage() {
+     if(!$this->model->canManage()) {
+       $this->flashMessage("Nemůžeš spravovat řád.");
+       $this->redirect("Homepage:");
+     } else {
+      $this->template->order =  $this->model->getUserOrder();
       $this->template->canUpgrade = $this->model->canUpgrade();
     }
-  }
+   }
   
   /**
-   * @param ManageGuildFormFactory $factory
+   * @param ManageOrderFormFactory $factory
    * @return Form
    */
-  protected function createComponentManageGuildForm(ManageGuildFormFactory $factory) {
-    $form = $factory->create($this->model->getUserGuild()->id);
+  protected function createComponentManageOrderForm(ManageOrderFormFactory $factory) {
+    $form = $factory->create($this->model->getUserOrder()->id);
     $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;
   }
-  
-  /**
-   * @return void
-   */
+   
+   /**
+    * @return void
+    */
   function handleUpgrade() {
     try {
       $this->model->upgrade();
-      $this->flashMessage("Cech vylepšen.");
+      $this->flashMessage("Řád vylepšen.");
       $this->redirect("manage");
-    } catch(CannotUpgradeGuildException $e) {
-      $this->flashMessage("Nemůžeš vylepšit cech.");
+    } catch(CannotUpgradeOrderException $e) {
+      $this->flashMessage("Nemůžeš vylepšit řád.");
       $this->redirect("Homepage:");
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nedostatek peněz.");
