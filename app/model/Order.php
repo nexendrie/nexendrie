@@ -103,6 +103,17 @@ class Order extends \Nette\Object {
     $user->orderRank = 4;
     $this->orm->users->persistAndFlush($user);
   }
+  
+  function calculateOrderIncomeBonus($baseIncome) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $bonus = $increase = 0;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->order AND $user->group->path === "tower") {
+      $increase += $user->orderRank->adventureBonus + $user->order->level - 1;
+    }
+    $bonus += (int) $baseIncome /100 * $increase;
+    return $bonus;
+  }
 }
 
 class OrderNotFoundException extends RecordNotFoundException {

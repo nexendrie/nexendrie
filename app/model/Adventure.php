@@ -16,6 +16,8 @@ class Adventure extends \Nette\Object {
   protected $combatModel;
   /** @var Events */
   protected $eventsModel;
+  /** @var \Nexendrie\Model\Order */
+  protected $orderModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -23,9 +25,10 @@ class Adventure extends \Nette\Object {
   /** @var AdventureEntity */
   private $adventure = NULL;
   
-  function __construct(Combat $combatModel, Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Combat $combatModel, Events $eventsModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->combatModel = $combatModel;
     $this->eventsModel = $eventsModel;
+    $this->orderModel = $orderModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -324,6 +327,7 @@ class Adventure extends \Nette\Object {
     $adventure->progress = 10;
     $reward = $adventure->adventure->reward;
     $reward += $this->eventsModel->calculateAdventuresBonus($reward);
+    $reward += $this->orderModel->calculateOrderIncomeBonus($reward);
     $adventure->user->money += $reward;
     $adventure->reward += $reward;
     $adventure->mount->hp -= 5;
