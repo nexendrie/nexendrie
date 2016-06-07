@@ -28,6 +28,7 @@ class Combat extends \Nette\Object {
    */
   function calculateUserLife(UserEntity $user) {
     $maxLife = $life = $user->maxLife;
+    $hpIncrease = 0;
     $helmet = $this->inventoryModel->getHelmet($user->id);
     if($helmet) {
       $hpIncrease = ($helmet->item->strength + $helmet->level) * 5;
