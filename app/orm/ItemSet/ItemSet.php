@@ -38,5 +38,19 @@ class ItemSet extends \Nextras\Orm\Entity\Entity {
   protected function getterEffect() {
     return self::getStats()[$this->stat] . " +" . $this->bonus;
   }
+  
+  /**
+   * @return \Nexendrie\Orm\ItemSetDummy
+   */
+  function dummy() {
+    return new ItemSetDummy($this);
+  }
+  
+  /**
+   * @return array
+   */
+  function dummyArray() {
+    return $this->dummy()->toArray();
+  }
 }
 ?>

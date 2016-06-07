@@ -24,6 +24,8 @@ class ContentPresenter extends BasePresenter {
   protected $tavernModel;
   /** @var \Nexendrie\Model\Adventure @autowire */
   protected $adventureModel;
+  /** @var Nexendrie\Model\ItemSet @autowire */
+  protected $itemSetModel;
   
   /**
    * @return void
@@ -87,6 +89,13 @@ class ContentPresenter extends BasePresenter {
    */
   function renderAdventures() {
     $this->template->adventures = $this->adventureModel->listOfAdventures();
+  }
+  
+  /**
+   * @return void
+   */
+  function renderItemSets() {
+    $this->template->sets = $this->itemSetModel->listOfSets();
   }
   
   /**
