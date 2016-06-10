@@ -57,7 +57,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $services = array(
       "group", "market", "messenger", "polls", "profile", "rss", "property", "job",
       "town", "mount", "skills", "chronicle", "tavern", "inventory", "adventure",
-      "combat", "events", "house"
+      "combat", "events", "house", "itemSet"
     );
     foreach($services as $service) {
       $builder->addDefinition($this->prefix("model.$service"))
@@ -123,7 +123,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "addEditMeal", "addEditAdventure", "addEditAdventureEnemy", "buildMonastery",
       "monasteryDonate", "manageMonastery", "appointMayor", "buildCastle", "gift",
       "foundTown", "makeCitizen", "addEditEvent", "foundGuild", "manageGuild", "foundOrder",
-      "manageOrder"
+      "manageOrder", "addEditItemSet"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix("form.$form"))

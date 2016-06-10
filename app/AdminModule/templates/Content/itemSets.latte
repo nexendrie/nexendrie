@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Sady věcí{/block}
+{block content}
+  <h1>Sady věcí</h1>
+  <table id="adventures">
+    <tr><th>Jméno</th><th>Akce</th></tr>
+    {foreach $sets as $set}
+      <tr><td>{$set->name}</td><td><a n:href="ItemSet:edit $set->id">Upravit</a> <a n:href="ItemSet:delete $set->id">Smazat</a></td></tr>
+    {/foreach}
+  </table>
+  <p id="new"><a n:href="ItemSet:new">Přidat sadu</a></p>
+{/block}

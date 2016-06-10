@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\UserItem as UserItemEntity,
-    Nexendrie\Orm\Item as ItemEntity;
+    Nexendrie\Orm\Item as ItemEntity,
+    Nexendrie\Orm\ItemSet as ItemSetEntity;
 
 /**
  * Equipment Model
@@ -172,6 +173,20 @@ class Inventory extends \Nette\Object {
     $armor = $this->orm->userItems->getWornHelmet($user);
     if($armor) return $armor;
     else return NULL;
+  }
+  
+  /**
+   * @param int $user
+   * @return ItemSetEntity|NULL
+   */
+  function getUserItemSet($user) {
+    $weapon = $this->getWeapon($user);
+    $armor = $this->getArmor($user);
+    $helmet = $this->getHelmet($user);
+    $w = ($weapon) ? $weapon->item : NULL;
+    $a = ($armor) ? $armor->item : NULL;
+    $h = ($helmet) ? $helmet->item : NULL;
+    return $this->orm->itemSets->getByWeaponAndArmorAndHelmet($w, $a, $h);
   }
   
   /**

@@ -130,6 +130,7 @@ class PropertyPresenter extends BasePresenter {
    */
   function renderEquipment() {
     $this->template->items = $this->inventoryModel->equipment();
+    $this->template->currentSet = $this->inventoryModel->getUserItemSet($this->user->id);
   }
   
   /**

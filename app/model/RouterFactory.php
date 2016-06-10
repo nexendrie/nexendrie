@@ -43,7 +43,7 @@ class RouterFactory extends \Nette\Object {
         )
       )
     ));
-    $adminRouter[] = new Route("admin/content/<presenter shop|item|job|jobMessages|town|mount|skill|adventure|adventureEnemies>/<action>[/<id>]");
+    $adminRouter[] = new Route("admin/content/<presenter shop|item|job|jobMessages|town|mount|skill|adventure|adventureEnemies|itemSet>/<action>[/<id>]");
     $adminRouter[] = new Route("admin/<presenter>[/<action>][/<id>]", array(
       "presenter" => "Homepage", "action" => "default"
     ));

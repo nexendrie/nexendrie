@@ -2,6 +2,7 @@
 {block title}Vybavení{/block}
 {block content}
   <h1>Vybavení</h1>
+  {if $currentSet}<p>Aktuální sada: {$currentSet->name} - {$currentSet->effect}</p>{/if}
   {if $items->count() === 0}
   <p>Nemáš žádné vybavení.</p>
   {else}
