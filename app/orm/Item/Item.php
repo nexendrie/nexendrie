@@ -16,6 +16,9 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $strength {default 0}
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}
  * @property-read string $typeCZ {virtual}
+ * @property OneHasMany|ItemSet[] $weaponSets {1:m ItemSet::$weapon}
+ * @property OneHasMany|ItemSet[] $armorSets {1:m ItemSet::$armor}
+ * @property OneHasMany|ItemSet[] $helmetSets {1:m ItemSet::$helmet}
  */
 class Item extends \Nextras\Orm\Entity\Entity {
   const TYPE_ITEM = "item";

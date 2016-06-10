@@ -6,9 +6,9 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  * @property string $name
- * @property Item|NULL $weapon
- * @property Item|NULL $armor
- * @property Item|NULL $helmet
+ * @property Item|NULL $weapon {m:1 Item::$weaponSets}
+ * @property Item|NULL $armor {m:1 Item::$armorSets}
+ * @property Item|NULL $helmet {m:1 Item::$helmetSets}
  * @property string $stat {enum self::STAT_*}
  * @property int $bonus
  * @property-read string $effect {virtual}
