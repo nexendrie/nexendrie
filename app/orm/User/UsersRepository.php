@@ -73,5 +73,15 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
     ));
   }
   
+  /**
+   * Get members of specified order
+   * 
+   * @param int $order
+   * @return ICollection|User[]
+   */
+  function findByOrder($order) {
+    return $this->findBy(array("order" => $order))
+      ->orderBy("orderRank", ICollection::DESC);
+  }
 }
 ?>
