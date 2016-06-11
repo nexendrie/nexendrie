@@ -42,7 +42,7 @@ class ManageGuildFormFactory {
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
     $form->addSelect("skill", "Dovednost:", $this->getListOfSkills())
-      ->setPrompt("");
+      ->setRequired("Vyber dovednost.");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($guild->dummyArray());
     $form->onSuccess[] = array($this, "submitted");

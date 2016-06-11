@@ -14,7 +14,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $foundedAt {virtual}
  * @property Town $town {m:1 Town::$guilds}
  * @property int $money
- * @property Skill|NULL $skill {m:1 Skill::$guilds}
+ * @property Skill $skill {m:1 Skill::$guilds}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|User[] $members {1:m User::$guild order:guildRank,DESC}
  * @property-read int $upgradePrice {virtual}

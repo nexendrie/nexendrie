@@ -14,9 +14,16 @@ use Nette\Application\UI\Form,
 class FoundGuildFormFactory {
   /** @var \Nexendrie\Model\Guild */
   protected $model;
+  /** @var \Nexendrie\Model\Skills */
+  protected $skillsModel;
   
-  function __construct(\Nexendrie\Model\Guild $model) {
+  function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Skills $skillsModel) {
     $this->model = $model;
+    $this->skillsModel = $skillsModel;
+  }
+  
+  protected function getListOfSkills() {
+    return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   
   /**
@@ -29,6 +36,8 @@ class FoundGuildFormFactory {
       ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25);
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
+    $form->addSelect("skill", "Dovednost:", $this->getListOfSkills())
+      ->setRequired("Vyber dovednost.");
     $form->addSubmit("submit", "Založit");
     $form->onSuccess[] = array($this, "submitted");
     return $form;

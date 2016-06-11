@@ -12,16 +12,24 @@ namespace Nexendrie\Orm;
  * @property int $founded
  * @property int $town
  * @property int $money
- * @property int $skill
+ * @property string $skill
  */
 class GuildDummy extends DummyEntity {
+  /** @var int */
   protected $id;
+  /** @var string */
   protected $name;
+  /** @var string */
   protected $description;
+  /** @var int */
   protected $level;
+  /** @var int */
   protected $founded;
+  /** @var int */
   protected $town;
+  /** @var int */
   protected $money;
+  /** @var int */
   protected $skill;
   
   function __construct(Guild $guild) {
@@ -32,7 +40,7 @@ class GuildDummy extends DummyEntity {
     $this->founded = $guild->founded;
     $this->town = $guild->town;
     $this->money = $guild->money;
-    $this->skill = (empty($guild->skill)) ? NULL : $guild->skill->id;
+    $this->skill = $guild->skill->id;
   }
 
 }
