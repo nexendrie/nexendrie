@@ -52,8 +52,10 @@ class UserPresenter extends BasePresenter {
    */
   function actionLogout() {
     if($this->user->isLoggedIn()) {
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Byla jsi úspěšně odhlášena.";
+      else $message = "Byl jsi úspěšně odhlášen.";
+      $this->flashMessage($message);
       $this->user->logout();
-      $this->flashMessage("Byl jsi úspěšně odhlášen.");
     } else {
       $this->flashMessage("Nejsi přihlášen.");
     }
