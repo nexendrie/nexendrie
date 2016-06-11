@@ -97,7 +97,7 @@ class CronTasks {
     $users = $this->orm->users->findInGuild();
     foreach($users as $user) {
       $guildFee = $user->guildRank->guildFee;
-      echo "User will pay {$guildFee} to his/her guild.\n";
+      echo "$user->publicname (#$user->id} will pay {$guildFee} to his/her guild.\n";
       $user->money -= $guildFee;
       $user->guild->money += $guildFee;
       $this->orm->users->persistAndFlush($user);
@@ -123,7 +123,7 @@ class CronTasks {
     $users = $this->orm->users->findInOrder();
     foreach($users as $user) {
       $orderFee = $user->orderRank->orderFee;
-      echo "User will pay {$orderFee} to his/her order.\n";
+      echo "$user->publicname (#$user->id} will pay {$orderFee} to his/her order.\n";
       $user->money -= $orderFee;
       $user->guild->money += $orderFee;
       $this->orm->users->persistAndFlush($user);
