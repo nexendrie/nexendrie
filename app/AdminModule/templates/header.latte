@@ -8,11 +8,11 @@
   <h3>Menu</h3>
   <ul>
     <li><a n:href="Article:">Články</a></li>
-    <li><a n:href="Polls:">Ankety</a></li>
+    {if $user->isAllowed("poll", "list")}<li><a n:href="Polls:">Ankety</a></li>{/if}
     {if $user->isAllowed("user", "list")}<li><a n:href="User:">Uživatelé</a></li>{/if}
     {if $user->isAllowed("group", "list")}<li><a n:href="Group:">Skupiny</a></li>{/if}
     {if $user->isAllowed("content", "list")}<li><a n:href="Content:">Správa obsahu</a></li>{/if}
-    <li><a n:href="Event:">Akce</a></li>
+    {if $user->isAllowed("event", "list")}<li><a n:href="Event:">Akce</a></li>{/if}
     {if $user->isAllowed("site", "settings")}<li><a n:href="Settings:">Nastavení systému</a></li>{/if}
   </ul>
 </nav>

@@ -16,6 +16,14 @@ class PollsPresenter extends BasePresenter {
   /**
    * @return void
    */
+  protected function startup() {
+    parent::startup();
+    $this->requiresPermissions("content", "list");
+  }
+  
+  /**
+   * @return void
+   */
   function renderDefault() {
     $this->template->polls = $this->model->all();
   }
