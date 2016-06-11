@@ -34,11 +34,15 @@ class UserPresenter extends BasePresenter {
   protected function createComponentLoginForm(LoginFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, $values) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Byla jsi úspěšně přihlášena.";
-      else $message = "Byl jsi úspěšně přihlášen.";
+    if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Byla jsi úspěšně přihlášena.";
+    else $message = "Byl jsi úspěšně přihlášen.";
+    $this->flashMessage($message);
+    if($this->user->identity->banned) {
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Stále jsi uvězněná.";
+      else $message = "Stále jsi uvězněný.";
       $this->flashMessage($message);
-      if($this->user->identity->banned) $this->flashMessage("Stále jsi uvězněný.");
-      if($this->user->identity->travelling) $this->flashMessage("Stále jsi na dobrodružství.");
+    }
+    if($this->user->identity->travelling) $this->flashMessage("Stále jsi na dobrodružství.");
       $this->redirect("Homepage:");
     };
     return $form;
