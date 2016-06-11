@@ -5,7 +5,7 @@
   <p>Úroveň: {$order->level}</p>
   <h3>Členové</h3>
   <div>
-    <span n:foreach="$order->members as $member" class="member">{$member->orderRank->name} <a href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}</span>
+    <span n:foreach="$order->members as $member" class="member">{$member->orderRank->name} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}</span>
   </div>
   <h3>Majetek cechu</h3>
   <p>{$order->moneyT}</p>
