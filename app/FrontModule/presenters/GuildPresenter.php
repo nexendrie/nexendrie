@@ -9,6 +9,13 @@ use Nexendrie\Forms\FoundGuildFormFactory,
     Nexendrie\Forms\ManageGuildFormFactory,
     Nexendrie\Model\CannotUpgradeGuildException,
     Nexendrie\Model\InsufficientFundsException,
+    Nexendrie\Model\AuthenticationNeededException,
+    Nexendrie\Model\MissingPermissionsException,
+    Nexendrie\Model\UserNotFoundException,
+    Nexendrie\Model\UserNotInYourgGuildException,
+    Nexendrie\Model\CannotPromoteMemberException,
+    Nexendrie\Model\CannotDemoteMemberException,
+    Nexendrie\Model\CannotKickMemberException,
     Nexendrie\Orm\User as UserEntity;
 
 /**
@@ -162,6 +169,100 @@ class GuildPresenter extends BasePresenter {
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("manage");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function actionMembers() {
+    if(!$this->model->canManage()) {
+      $this->flashMessage("Nemůžeš spravovat cech.");
+      $this->redirect("Homepage:");
+    }
+    $guild = $this->model->getUserGuild()->id;
+    $this->template->members = $this->model->getMembers($guild);
+    $this->template->maxRank = $this->model->maxRank;
+  }
+  
+  /**
+   * @param int $user
+   * @return void
+   */
+  function handlePromote($user) {
+    try {
+      $this->model->promote($user);
+      $this->flashMessage("Povýšen(a)");
+      $this->redirect("members");
+    } catch(AuthenticationNeededException $e) {
+      $this->flashMessage("K této akci musíš být přihlášený.");
+      $this->redirect("User:login");
+    } catch(MissingPermissionsException $e) {
+      $this->flashMessage("K této akci nemáš práva.");
+      $this->redirect("Homepage:");
+    } catch(UserNotFoundException $e) {
+      $this->flashMessage("Uživatel nenalezen.");
+      $this->redirect("Homepage:");
+    } catch(UserNotInYourGuildException $e) {
+      $this->flashMessage("Uživatel není ve tvém cechu.");
+      $this->redirect("Homepage:");
+    } catch(CannotPromoteMemberException $e) {
+      $this->flashMessage("Uživatel nemůže být povýšen.");
+      $this->redirect("members");
+    }
+  }
+  
+  /**
+   * @param int $user
+   * @return void
+   */
+  function handleDemote($user) {
+    try {
+      $this->model->demote($user);
+      $this->flashMessage("Degradován(a)");
+      $this->redirect("members");
+    } catch(AuthenticationNeededException $e) {
+      $this->flashMessage("K této akci musíš být přihlášený.");
+      $this->redirect("User:login");
+    } catch(MissingPermissionsException $e) {
+      $this->flashMessage("K této akci nemáš práva.");
+      $this->redirect("Homepage:");
+    } catch(UserNotFoundException $e) {
+      $this->flashMessage("Uživatel nenalezen.");
+      $this->redirect("Homepage:");
+    } catch(UserNotInYourGuildException $e) {
+      $this->flashMessage("Uživatel není ve tvém cechu.");
+      $this->redirect("Homepage:");
+    } catch(CannotDemoteMemberException $e) {
+      $this->flashMessage("Uživatel nemůže být degradován.");
+      $this->redirect("members");
+    }
+  }
+  
+  /**
+   * @param int $user
+   * @return void
+   */
+  function handleKick($user) {
+    try {
+      $this->model->kick($user);
+      $this->flashMessage("Vyloučen(a)");
+      $this->redirect("members");
+    } catch(AuthenticationNeededException $e) {
+      $this->flashMessage("K této akci musíš být přihlášený.");
+      $this->redirect("User:login");
+    } catch(MissingPermissionsException $e) {
+      $this->flashMessage("K této akci nemáš práva.");
+      $this->redirect("Homepage:");
+    } catch(UserNotFoundException $e) {
+      $this->flashMessage("Uživatel nenalezen.");
+      $this->redirect("Homepage:");
+    } catch(UserNotInYourGuildException $e) {
+      $this->flashMessage("Uživatel není ve tvém cechu.");
+      $this->redirect("Homepage:");
+    } catch(CannotKickMemberException $e) {
+      $this->flashMessage("Uživatel nemůže být vyloučen.");
+      $this->redirect("members");
     }
   }
 }

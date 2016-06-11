@@ -10,5 +10,6 @@
   <h3>Majetek cechu</h3>
   <p>{$order->moneyT}</p><h3>Akce</h3>
   {if $canLeave}<p><a n:href="leave">Opustit řád</a></p>{/if}
-  {if $canManage}<p><a n:href="manage">Spravovat řád</a></p>{/if}
+  {if $canManage}<p><a n:href="manage">Spravovat řád</a></p>
+  <p><a n:href="members">Spravovat členy</a></p>{/if}
 {/block}

@@ -1,13 +1,15 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Guild as GuildEntity;
+use Nexendrie\Orm\Guild as GuildEntity,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Guild Model
  *
  * @author Jakub Konečný
  * @property int $foundingPrice
+ * @property-read int $maxRank
  */
 class Guild extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model */
@@ -244,6 +246,94 @@ class Guild extends \Nette\Object {
     $guild->level++;
     $this->orm->guilds->persistAndFlush($guild);
   }
+  
+  /**
+   * Get members of specified order
+   * 
+   * @param int $guild
+   * @return UserEntity[]
+   */
+  function getMembers($guild) {
+    return $this->orm->users->findByGuild($guild);
+  }
+  
+  /**
+   * @return int
+   */
+  function getMaxRank() {
+    static $rank = NULL;
+    if($rank === NULL) $rank = $this->orm->guildRanks->findAll()->countStored();
+    return $rank;
+  }
+  
+  /**
+   * Promote a user
+   * 
+   * @param int $userId User's id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws UserNotFoundException
+   * @throws UserNotInYourGuildException
+   * @throws CannotPromoteMemberException
+   */
+  function promote($userId) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canManage()) throw new MissingPermissionsException;
+    $user = $this->orm->users->getById($userId);
+    if(!$user) throw new UserNotFoundException;
+    $admin = $this->orm->users->getById($this->user->id);
+    if($user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
+    elseif($user->guildRank->id >= $this->maxRank - 1) throw new CannotPromoteMemberException;
+    $user->guildRank = $this->orm->guildRanks->getById($user->guildRank->id + 1);
+    $this->orm->users->persistAndFlush($user);
+  }
+  
+  /**
+   * Demote a user
+   * 
+   * @param int $userId User's id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws UserNotFoundException
+   * @throws UserNotInYourGuildException
+   * @throws CannotDemoteMemberException
+   */
+  function demote($userId) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canManage()) throw new MissingPermissionsException;
+    $user = $this->orm->users->getById($userId);
+    if(!$user) throw new UserNotFoundException;
+    $admin = $this->orm->users->getById($this->user->id);
+    if($user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
+    elseif($user->guildRank->id < 2 OR $user->guildRank->id === $this->maxRank) throw new CannotDemoteMemberException;
+    $user->guildRank = $this->orm->guildRanks->getById($user->guildRank->id - 1);
+    $this->orm->users->persistAndFlush($user);
+  }
+  
+  /**
+   * Kick a user
+   * 
+   * @param int $userId User's id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws UserNotFoundException
+   * @throws UserNotInYourGuildException
+   * @throws CannotKickMemberException
+   */
+  function kick($userId) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canManage()) throw new MissingPermissionsException;
+    $user = $this->orm->users->getById($userId);
+    if(!$user) throw new UserNotFoundException;
+    $admin = $this->orm->users->getById($this->user->id);
+    if($user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
+    elseif($user->guildRank->id === $this->maxRank) throw new CannotKickMemberException;
+    $user->guild = $user->guildRank = NULL;
+    $this->orm->users->persistAndFlush($user);
+  }
 }
 
 class GuildNotFoundException extends RecordNotFoundException {
@@ -268,5 +358,9 @@ class CannotLeaveGuildException extends AccessDeniedException {
 
 class CannotUpgradeGuildException extends AccessDeniedException {
 
+}
+
+class UserNotInYourGuildException extends AccessDeniedException {
+  
 }
 ?>

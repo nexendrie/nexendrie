@@ -11,5 +11,6 @@
   <p>{$guild->moneyT}</p>
   <h3>Akce</h3>
   {if $canLeave}<p><a n:href="leave">Opustit cech</a></p>{/if}
-  {if $canManage}<p><a n:href="manage">Spravovat cech</a></p>{/if}
+  {if $canManage}<p><a n:href="manage">Spravovat cech</a></p>
+  <p><a n:href="members">Spravovat členy</a></p>{/if}
 {/block}

@@ -1,13 +1,15 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Order as OrderEntity;
+use Nexendrie\Orm\Order as OrderEntity,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Order Model
  *
  * @author Jakub Konečný
  * @property-read int $foundingPrice
+ * @property-read int $maxRank
  */
 class Order extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model */
@@ -120,7 +122,7 @@ class Order extends \Nette\Object {
     $user->money -= $this->foundingPrice;
     $order->money = $this->foundingPrice;
     $user->order = $order;
-    $user->orderRank = 4;
+    $user->orderRank = $this->maxRank;
     $this->orm->users->persistAndFlush($user);
   }
   
@@ -179,7 +181,7 @@ class Order extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->order) return false;
-    else return !($user->orderRank->id === 4);
+    else return !($user->orderRank->id === $this->maxRank);
   }
   
   /**
@@ -207,7 +209,7 @@ class Order extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->order) return false;
-    else return ($user->orderRank->id === 4);
+    else return ($user->orderRank->id === $this->maxRank);
   }
   
   /**
@@ -220,7 +222,7 @@ class Order extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->order) return false;
-    elseif($user->orderRank->id != 4) return false;
+    elseif($user->orderRank->id != $this->maxRank) return false;
     elseif($user->order->level >= OrderEntity::MAX_LEVEL) return false;
     else return true;
   }
@@ -241,6 +243,94 @@ class Order extends \Nette\Object {
     $order->money -= $order->upgradePrice;
     $order->level++;
     $this->orm->orders->persistAndFlush($order);
+  }
+  
+  /**
+   * Get members of specified order
+   * 
+   * @param int $order
+   * @return UserEntity[]
+   */
+  function getMembers($order) {
+    return $this->orm->users->findByOrder($order);
+  }
+  
+  /**
+   * @return int
+   */
+  function getMaxRank() {
+    static $rank = NULL;
+    if($rank === NULL) $rank = $this->orm->orderRanks->findAll()->countStored();
+    return $rank;
+  }
+  
+  /**
+   * Promote a user
+   * 
+   * @param int $userId User's id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws UserNotFoundException
+   * @throws UserNotInYourOrderException
+   * @throws CannotPromoteMemberException
+   */
+  function promote($userId) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canManage()) throw new MissingPermissionsException;
+    $user = $this->orm->users->getById($userId);
+    if(!$user) throw new UserNotFoundException;
+    $admin = $this->orm->users->getById($this->user->id);
+    if($user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
+    elseif($user->orderRank->id >= $this->maxRank - 1) throw new CannotPromoteMemberException;
+    $user->orderRank = $this->orm->orderRanks->getById($user->orderRank->id + 1);
+    $this->orm->users->persistAndFlush($user);
+  }
+  
+  /**
+   * Demote a user
+   * 
+   * @param int $userId User's id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws UserNotFoundException
+   * @throws UserNotInYourOrderException
+   * @throws CannotDemoteMemberException
+   */
+  function demote($userId) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canManage()) throw new MissingPermissionsException;
+    $user = $this->orm->users->getById($userId);
+    if(!$user) throw new UserNotFoundException;
+    $admin = $this->orm->users->getById($this->user->id);
+    if($user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
+    elseif($user->orderRank->id < 2 OR $user->orderRank->id === $this->maxRank) throw new CannotDemoteMemberException;
+    $user->orderRank = $this->orm->orderRanks->getById($user->orderRank->id - 1);
+    $this->orm->users->persistAndFlush($user);
+  }
+  
+  /**
+   * Kick a user
+   * 
+   * @param int $userId User's id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws UserNotFoundException
+   * @throws UserNotInYourOrderException
+   * @throws CannotKickMemberException
+   */
+  function kick($userId) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    elseif(!$this->canManage()) throw new MissingPermissionsException;
+    $user = $this->orm->users->getById($userId);
+    if(!$user) throw new UserNotFoundException;
+    $admin = $this->orm->users->getById($this->user->id);
+    if($user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
+    elseif($user->orderRank->id === $this->maxRank) throw new CannotKickMemberException;
+    $user->order = $user->orderRank = NULL;
+    $this->orm->users->persistAndFlush($user);
   }
 }
 
@@ -266,5 +356,9 @@ class CannotLeaveOrderException extends AccessDeniedException {
 
 class CannotUpgradeOrderException extends AccessDeniedException {
 
+}
+
+class UserNotInYourOrderException extends AccessDeniedException {
+  
 }
 ?>
