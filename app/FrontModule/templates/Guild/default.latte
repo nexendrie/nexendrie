@@ -4,8 +4,8 @@
   <h1>{$guild->name}</h1>
   <p>Úroveň: {$guild->level}</p>
   <h3>Členové</h3>
-  <div n:foreach="$guild->members as $member" class="members">
-    {$member->guildRank->name} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
+  <div>
+    <span n:foreach="$guild->members as $member" class="member">{$member->guildRank->name} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}</span>
   </div>
   <h3>Majetek cechu</h3>
   <p>{$guild->moneyT}</p>

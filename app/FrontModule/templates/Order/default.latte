@@ -4,11 +4,12 @@
   <h1>{$order->name}</h1>
   <p>Úroveň: {$order->level}</p>
   <h3>Členové</h3>
-  <div n:foreach="$order->members as $member" class="members">
-    {$member->orderRank->name} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
+  <div>
+    <span n:foreach="$order->members as $member" class="member">{$member->orderRank->name} <a href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}</span>
   </div>
   <h3>Majetek cechu</h3>
-  <p>{$order->moneyT}</p><h3>Akce</h3>
+  <p>{$order->moneyT}</p>
+  <h3>Akce</h3>
   {if $canLeave}<p><a n:href="leave">Opustit řád</a></p>{/if}
   {if $canManage}<p><a n:href="manage">Spravovat řád</a></p>
   <p><a n:href="members">Spravovat členy</a></p>{/if}
