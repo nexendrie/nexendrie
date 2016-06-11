@@ -9,6 +9,8 @@ namespace Nexendrie\Presenters\FrontModule;
 class HomepagePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Article @autowire */
   protected $model;
+  /** @var \Nexendrie\Model\Bank @autowire */
+  protected $bankModel;
   
   /**
    * @return void

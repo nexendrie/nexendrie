@@ -44,8 +44,8 @@ class Bank extends \Nette\Object {
   function maxLoan() {
     if(!$this->user->isLoggedIn()) return 0;
     $level = $this->user->identity->level;
-    if($level < 100) return 70;
-    elseif($level === 100) return 300;
+    if($level < 90) return 70;
+    elseif($level >= 90 AND $level <= 100) return 300;
     elseif($level > 100 AND $level < 400) return 500;
     elseif($level === 400) return 700;
     elseif($level > 400 AND $level < 10000) return 1500;
