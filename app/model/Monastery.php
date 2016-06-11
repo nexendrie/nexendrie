@@ -19,17 +19,25 @@ class Monastery extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  /** @var Guild */
+  protected $guildModel;
+  /** @var Order */
+  protected $orderModel;
   /** @var int */
   protected $buildingPrice;
   
   /**
    * @param int $buildingPrice
    * @param Events $eventsModel
+   * @param Guild $guildModel
+   * @param Order $orderModel;
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    */
-  function __construct($buildingPrice, Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct($buildingPrice, Events $eventsModel, Guild $guildModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->eventsModel = $eventsModel;
+    $this->guildModel = $guildModel;
+    $this->orderModel = $orderModel;
     $this->orm = $orm;
     $this->user = $user;
     $this->buildingPrice = $buildingPrice;
@@ -92,10 +100,10 @@ class Monastery extends \Nette\Object {
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery AND $user->group->path === "city") {
-      if($user->guild AND $user->guildRank->id === 4) return false;
+      if($user->guild AND $user->guildRank->id === $this->guildModel->maxRank) return false;
       else return true;
     } elseif(!$user->monastery AND $user->group->path === "tower") {
-      if($user->order AND $user->orderRank->id === 4) return false;
+      if($user->order AND $user->orderRank->id === $this->orderModel->maxRank) return false;
       else return true;
     } elseif($user->group->path === "church") {
       if($user->monasteriesLed->countStored()) return false;
