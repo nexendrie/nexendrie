@@ -4,6 +4,6 @@
   <h1>Spravovat členy řádu</h1>
   <table>
     <tr><th>Jméno</th><th>Hodnost</th><th>Akce</th></tr>
-    <tr n:foreach="$members as $member"><td>{$member->publicname}</td><td>{$member->orderRank->name}</td><td>{if $member->id != $user->id AND $member->orderRank->id < 3}<a n:href="promote! $member->id">Povýšit</a>{/if} {if $member->id != $user->id AND $member->orderRank->id > 1  AND $member->orderRank->id < 4}<a n:href="demote! $member->id">Degradovat</a>{/if} {if $member->id != $user->id}<a n:href="kick! $member->id">Vyloučit</a>{/if}</td></tr>
+    <tr n:foreach="$members as $member"><td>{$member->publicname}</td><td>{$member->orderRank->name}</td><td>{if $member->id != $user->id AND $member->orderRank->id < $maxRank - 1}<a n:href="promote! $member->id">Povýšit</a>{/if} {if $member->id != $user->id AND $member->orderRank->id > 1  AND $member->orderRank->id < $maxRank}<a n:href="demote! $member->id">Degradovat</a>{/if} {if $member->id != $user->id}<a n:href="kick! $member->id">Vyloučit</a>{/if}</td></tr>
   </table>
 {/block}

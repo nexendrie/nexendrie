@@ -182,6 +182,7 @@ class OrderPresenter extends BasePresenter {
     }
     $order = $this->model->getUserOrder()->id;
     $this->template->members = $this->model->getMembers($order);
+    $this->template->maxRank = $this->model->maxRank;
   }
   
   /**
