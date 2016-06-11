@@ -16,7 +16,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string|NULL $statCZ {virtual}
  * @property int $statIncrease {default 0}
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
- * @property OneHasMany|UserSkill $userSkills {1:m UserSkill::$skill}
+ * @property OneHasMany|UserSkill[] $userSkills {1:m UserSkill::$skill}
+ * @property OneHasMany|Guild[] $guilds {1:m Guild::$skill}
  * @property-read string $effect {virtual}
  */
 class Skill extends \Nextras\Orm\Entity\Entity {

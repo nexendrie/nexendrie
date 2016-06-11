@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Guild as GuildEntity,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Orm\User as UserEntity,
+    Nexendrie\Orm\UserJob as UserJobEntity;
 
 /**
  * Guild Model
@@ -128,12 +129,15 @@ class Guild extends \Nette\Object {
     $this->orm->users->persistAndFlush($user);
   }
   
-  function calculateGuildIncomeBonus($baseIncome, $userId) {
+  function calculateGuildIncomeBonus($baseIncome, UserJobEntity $job) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $bonus = $increase = 0;
-    $user = $this->orm->users->getById($userId);
+    $user = $this->orm->users->getById($job->user->id);
     if($user->guild AND $user->group->path === "city") {
-      $increase += $user->guildRank->incomeBonus + $user->guild->level - 1;
+      $use = false;
+      if($user->guild->skill === NULL) $use = true;
+      elseif($job->job->neededSkill->id === $user->guild->skill->id) $use = true;
+      if($use) $increase += $user->guildRank->incomeBonus + $user->guild->level - 1;
     }
     $bonus += (int) $baseIncome /100 * $increase;
     return $bonus;

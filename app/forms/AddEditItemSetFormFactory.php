@@ -40,7 +40,7 @@ class AddEditItemSetFormFactory {
     $form->addSelect("weapon", "Zbraň:", $this->getWeapons())
       ->setPrompt("");
     $form->addSelect("armor", "Zbroj:", $this->getArmors())
-      ->setPrompt("");;
+      ->setPrompt("");
     $form->addSelect("helmet", "Přilba:", $this->getHelmets())
       ->setPrompt("");;
     $form->addSelect("stat", "Vlastnost:", ItemSet::getStats())

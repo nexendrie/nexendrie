@@ -183,7 +183,7 @@ class Job extends \Nette\Object {
     $extra += $this->eventsModel->calculateWorkBonus($reward);
     $house = $this->orm->houses->getByOwner($job->user->id);
     if($house) $extra += (int) ($reward / 100 * $house->workIncomeBonus);
-    $extra += $this->guildModel->calculateGuildIncomeBonus($reward, $job->user->id);
+    $extra += $this->guildModel->calculateGuildIncomeBonus($reward, $job);
     return array("reward" => (int) round($reward), "extra" => (int) round($extra));
   }
   
