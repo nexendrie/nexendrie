@@ -361,16 +361,4 @@ class CannotUpgradeOrderException extends AccessDeniedException {
 class UserNotInYourOrderException extends AccessDeniedException {
   
 }
-
-class CannotPromoteMemberException extends AccessDeniedException {
-  
-}
-
-class CannotDemoteMemberException extends AccessDeniedException {
-  
-}
-
-class CannotKickMemberException extends AccessDeniedException {
-  
-}
 ?>

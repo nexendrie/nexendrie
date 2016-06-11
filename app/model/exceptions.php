@@ -32,4 +32,16 @@ class NameInUseException extends \RuntimeException {
 class InsufficientLevelException extends AccessDeniedException {
   
 }
+
+class CannotPromoteMemberException extends AccessDeniedException {
+  
+}
+
+class CannotDemoteMemberException extends AccessDeniedException {
+  
+}
+
+class CannotKickMemberException extends AccessDeniedException {
+  
+}
 ?>

@@ -83,5 +83,16 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
     return $this->findBy(array("order" => $order))
       ->orderBy("orderRank", ICollection::DESC);
   }
+  
+  /**
+   * Get members of specified guild
+   * 
+   * @param int $guild
+   * @return ICollection|User[]
+   */
+  function findByGuild($guild) {
+    return $this->findBy(array("guild" => $guild))
+      ->orderBy("guildRank", ICollection::DESC);
+  }
 }
 ?>
