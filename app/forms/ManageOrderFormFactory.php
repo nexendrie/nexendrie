@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form;
+use Nette\Application\UI\Form,
+    Nexendrie\Model\OrderNameInUseException;
 
 /**
  * Factory for form ManageOrder
@@ -45,7 +46,11 @@ class ManageOrderFormFactory {
    * @return void
    */
   function submitted(Form $form) {
-    $this->model->editOrder($this->id, $form->getValues(true));
+    try {
+      $this->model->editOrder($this->id, $form->getValues(true));
+    } catch(OrderNameInUseException $e) {
+      $form->addError("Zadané jméno je již zabráno.");
+    }
   }
 }
 ?>

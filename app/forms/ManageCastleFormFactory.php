@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form;
+use Nette\Application\UI\Form,
+    Nexendrie\Model\CastleNameInUseException;
 
 /**
  * Factory for form ManageCastle
@@ -42,7 +43,11 @@ class ManageCastleFormFactory {
    * @return void
    */
   function submitted(Form $form) {
-    $this->model->editCastle($this->id, $form->getValues(true));
+    try {
+      $this->model->editCastle($this->id, $form->getValues(true));
+    } catch(CastleNameInUseException $e) {
+      $form->addError("Zadané jméno je již zabráno.");
+    }
   }
 }
 ?>

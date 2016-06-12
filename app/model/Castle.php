@@ -53,12 +53,26 @@ class Castle extends \Nette\Object {
   }
   
   /**
+   * Check whetever a name can be used
+   * 
+   * @param string $name
+   * @param int|NULL $id
+   * @return bool
+   */
+ private function checkNameAvailability($name, $id = NULL) {
+    $castle = $this->orm->castles->getByName($name);
+    if($castle AND $castle->id != $id) return false;
+    else return true;
+  }
+  
+  /**
    * Edit specified castle
    * 
    * @param int $id
    * @param array $data
    * @return void
    * @throws CastleNotFoundException
+   * @throws CastleNameInUseException
    */
   function editCastle($id, array $data) {
     try {
@@ -67,6 +81,7 @@ class Castle extends \Nette\Object {
       throw $e;
     }
     foreach($data as $key => $value) {
+      if($key === "name" AND !$this->checkNameAvailability($value, $id)) throw new CastleNameInUseException;
       $castle->$key = $value;
     }
     $this->orm->castles->persistAndFlush($castle);
@@ -88,7 +103,7 @@ class Castle extends \Nette\Object {
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != "tower") throw new CannotBuildCastleException;
     elseif($this->getUserCastle()) throw new CannotBuildMoreCastlesException;
-    elseif($this->orm->castles->getByName($data["name"])) throw new CastleNameInUseException;
+    elseif(!$this->checkNameAvailability($data["name"])) throw new CastleNameInUseException;
     elseif($user->money < $this->buildingPrice) throw new InsufficientFundsException;
     $castle = new CastleEntity;
     $castle->name = $data["name"];

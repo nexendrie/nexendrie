@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form;
+use Nette\Application\UI\Form,
+    Nexendrie\Model\GuildNameInUseException;
 
 /**
  * Factory for form ManageGuild
@@ -54,7 +55,11 @@ class ManageGuildFormFactory {
    * @return void
    */
   function submitted(Form $form) {
-    $this->model->editGuild($this->id, $form->getValues(true));
+    try {
+      $this->model->editGuild($this->id, $form->getValues(true));
+    } catch(GuildNameInUseException $e) {
+      $form->addError("Zadané jméno je již zabráno.");
+    }
   }
 }
 ?>

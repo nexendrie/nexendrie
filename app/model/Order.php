@@ -55,12 +55,26 @@ class Order extends \Nette\Object {
   }
   
   /**
+   * Check whetever a name can be used
+   * 
+   * @param string $name
+   * @param int|NULL $id
+   * @return bool
+   */
+ private function checkNameAvailability($name, $id = NULL) {
+    $guild = $this->orm->castles->getByName($name);
+    if($guild AND $guild->id != $id) return false;
+    else return true;
+  }
+  
+  /**
    * Edit specified order
    * 
    * @param int $id
    * @param array $data
    * @return void
    * @throws OrderNotFoundException
+   * @throws OrderNameInUseException
    */
   function editOrder($id, array $data) {
     try {
@@ -69,6 +83,7 @@ class Order extends \Nette\Object {
       throw $e;
     }
     foreach($data as $key => $value) {
+      if($key === "name" AND !$this->checkNameAvailability($value, $id)) throw new OrderNameInUseException;
       $order->$key = $value;
     }
     $this->orm->orders->persistAndFlush($order);
@@ -112,7 +127,7 @@ class Order extends \Nette\Object {
   function found(array $data) {
     if(!$this->canFound()) throw new CannotFoundOrderException;
     $user = $this->orm->users->getById($this->user->id);
-    if($this->orm->guilds->getByName($data["name"])) throw new OrderNameInUseException;
+    if(!$this->checkNameAvailability($data["name"])) throw new OrderNameInUseException;
     if($user->money < $this->foundingPrice) throw new InsufficientFundsException;
     $order = new OrderEntity;
     $this->orm->orders->attach($order);

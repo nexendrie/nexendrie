@@ -58,12 +58,26 @@ class Guild extends \Nette\Object {
   }
   
   /**
+   * Check whetever a name can be used
+   * 
+   * @param string $name
+   * @param int|NULL $id
+   * @return bool
+   */
+ private function checkNameAvailability($name, $id = NULL) {
+    $guild = $this->orm->castles->getByName($name);
+    if($guild AND $guild->id != $id) return false;
+    else return true;
+  }
+  
+  /**
    * Edit specified guild
    * 
    * @param int $id
    * @param array $data
    * @return void
    * @throws GuildNotFoundException
+   * @throws GuildNameInUseException
    */
   function editGuild($id, array $data) {
     try {
@@ -72,6 +86,7 @@ class Guild extends \Nette\Object {
       throw $e;
     }
     foreach($data as $key => $value) {
+      if($key === "name" AND !$this->checkNameAvailability($value, $id)) throw new GuildNameInUseException;
       $guild->$key = $value;
     }
     $this->orm->guilds->persistAndFlush($guild);
@@ -114,7 +129,7 @@ class Guild extends \Nette\Object {
   function found(array $data) {
     if(!$this->canFound()) throw new CannotFoundGuildException;
     $user = $this->orm->users->getById($this->user->id);
-    if($this->orm->guilds->getByName($data["name"])) throw new GuildNameInUseException;
+    if(!$this->checkNameAvailability($data["name"])) throw new GuildNameInUseException;
     if($user->money < $this->foundingPrice) throw new InsufficientFundsException;
     $guild = new GuildEntity;
     $this->orm->guilds->attach($guild);
