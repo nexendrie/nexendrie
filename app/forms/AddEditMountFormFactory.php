@@ -48,7 +48,8 @@ class AddEditMountFormFactory {
     $form->addText("price", "Cena:")
       ->setRequired("Zadej cenu.")
       ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
-      ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", array(0,999999));
+      ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", array(0,999999))
+      ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
     return $form;
   }

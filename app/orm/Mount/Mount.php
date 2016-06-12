@@ -139,5 +139,10 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   function dummyArray() {
     return $this->dummy()->toArray();
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    if(!$this->price) $this->price = $this->type->price;
+  }
 }
 ?>
