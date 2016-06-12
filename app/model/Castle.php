@@ -53,6 +53,26 @@ class Castle extends \Nette\Object {
   }
   
   /**
+   * Edit specified castle
+   * 
+   * @param int $id
+   * @param array $data
+   * @return void
+   * @throws CastleNotFoundException
+   */
+  function editCastle($id, array $data) {
+    try {
+      $castle = $this->getCastle($id);
+    } catch(CastleNotFoundException $e) {
+      throw $e;
+    }
+    foreach($data as $key => $value) {
+      $castle->$key = $value;
+    }
+    $this->orm->castles->persistAndFlush($castle);
+  }
+  
+  /**
    * Build castle
    * 
    * @param array $data

@@ -3,6 +3,7 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Model\CastleNotFoundException,
     Nexendrie\Forms\BuildCastleFormFactory,
+    Nexendrie\Forms\ManageCastleFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\CannotUpgradeCastleException,
     Nexendrie\Model\CannotRepairCastleException;
@@ -33,7 +34,7 @@ class CastlePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function actionDefault() {
     $castle = $this->model->getUserCastle();
     if(!$castle) {
       $this->flashMessage("Nemáš hrad.");
@@ -123,6 +124,18 @@ class CastlePresenter extends BasePresenter {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("manage");
     }
+  }
+  
+  /**
+   * @param ManageCastleFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentManageCastleForm(ManageCastleFormFactory $factory) {
+    $form = $factory->create($this->template->castle->id);
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Změny uloženy.");
+    };
+    return $form;
   }
 }
 ?>

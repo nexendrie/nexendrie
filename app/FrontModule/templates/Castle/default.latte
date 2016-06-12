@@ -5,4 +5,6 @@
   <p>Úroveň: {$castle->level} Stav: {$castle->hp}%</p>
   {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> za {$castle->upgradePriceT}<br>{/if}
   {if $castle->hp < 100}<a n:href="repair!">Opravit</a> za {$castle->repairPriceT}{/if}
+  <h3>Upravit hrad</h3>
+  {control manageCastleForm}
 {/block}
