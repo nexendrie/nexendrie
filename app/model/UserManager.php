@@ -83,11 +83,33 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   }
   
   /**
+   * Get user's identity
+   * 
+   * @param \Nexendrie\Orm\User $user
+   * @return \Nette\Security\Identity
+   */
+  protected function getIdentity(UserEntity $user) {
+    if($user->banned) {
+      $role = $this->orm->groups->getById($this->roles["bannedRole"])->singleName;
+      $banned = true;
+    } else {
+      $role = $user->group->singleName;
+      $banned = false;
+    }
+    $adventure = $this->orm->userAdventures->getUserActiveAdventure($user->id);
+    $data = array(
+      "name" => $user->publicname, "group" => $user->group->id,
+      "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "path" => $user->group->path, "town" => $user->town->id, "banned" => $banned, "travelling" => !($adventure === NULL)
+    );
+    return new NS\Identity($user->id, $role, $data);
+  }
+  
+  /**
    * Logins the user
    * 
    * @param array $credentials
-   * @return NS\Identity User's identity
-   * @throws NS\AuthenticationException
+   * @return \Nette\Security\Identity User's identity
+   * @throws \Nette\Security\AuthenticationException
    */
   function authenticate(array $credentials) {
     list($username, $password) = $credentials;
@@ -98,21 +120,9 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     if(!NS\Passwords::verify($password, $user->password)) {
       throw new NS\AuthenticationException("Invalid password.", self::INVALID_CREDENTIAL);
     }
-    if($user->banned) {
-      $role = $this->orm->groups->getById($this->roles["bannedRole"])->singleName;
-      $banned = true;
-    } else {
-      $role = $user->group->singleName;
-      $banned = false;
-    }
     $user->lastActive = time();
     $this->orm->users->persistAndFlush($user);
-    $adventure = $this->orm->userAdventures->getUserActiveAdventure($user->id);
-    $data = array(
-      "name" => $user->publicname, "group" => $user->group->id,
-      "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "path" => $user->group->path, "town" => $user->town->id, "banned" => $banned, "travelling" => !($adventure === NULL)
-    );
-    return new NS\Identity($user->id, $role, $data);
+    return $this->getIdentity($user);
   }
   
   /**
