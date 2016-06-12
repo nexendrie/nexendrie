@@ -30,7 +30,7 @@ class Monastery extends \Nette\Object {
    * @param int $buildingPrice
    * @param Events $eventsModel
    * @param Guild $guildModel
-   * @param Order $orderModel;
+   * @param Order $orderModel
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    */

@@ -126,6 +126,18 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   }
   
   /**
+   * Refresh user's identity
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   */
+  function refreshIdentity() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    $user = $this->orm->users->getById($this->user->id);
+    $this->user->login($this->getIdentity($user));
+  }
+  
+  /**
    * Register new user
    * 
    * @param array $data
