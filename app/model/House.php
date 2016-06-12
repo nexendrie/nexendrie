@@ -139,7 +139,7 @@ class House extends \Nette\Object {
    * 
    * @return int New level
    * @throws AuthenticationNeededException
-   * @throws CannotUpgradeHouseException
+   * @throws CannotUpgradeBreweryException
    * @throws InsufficientFundsException
    */
   function upgradeBrewery() {

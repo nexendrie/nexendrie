@@ -109,7 +109,7 @@ class HousePresenter extends BasePresenter {
       if($newLevel === 1) $this->flashMessage("Pivovar pořízen.");
       else $this->flashMessage("Pivovar vylepšen.");
       $this->redirect("default");
-    } catch(CannotUpgradeHouseException $e) {
+    } catch(CannotUpgradeBreweryException $e) {
       $this->flashMessage("Nemůžeš vylepšit pivovar.");
       $this->redirect("Homepage:");
     } catch(InsufficientFundsException $e) {
