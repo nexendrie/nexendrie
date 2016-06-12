@@ -250,7 +250,7 @@ class Monastery extends \Nette\Object {
     $monastery->name = (string) $name;
     $monastery->leader = $user;
     $monastery->town = $this->user->identity->town;
-    $monastery->leader->lastActive = $monastery->founded = time();
+    $monastery->leader->lastActive = time();
     $user->money -= $this->buildingPrice;
     $monastery->money = $this->buildingPrice;
     $this->orm->monasteries->persistAndFlush($monastery);
@@ -278,7 +278,6 @@ class Monastery extends \Nette\Object {
     $donation->user = $user;
     $donation->monastery = $user->monastery;
     $donation->amount = $amount;
-    $donation->when = time();
     $this->orm->monasteryDonations->persistAndFlush($donation);
   }
   

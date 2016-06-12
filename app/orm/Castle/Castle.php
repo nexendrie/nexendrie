@@ -81,5 +81,10 @@ class Castle extends \Nextras\Orm\Entity\Entity {
   protected function getterRepairPriceT() {
     return $this->localeModel->money($this->repairPrice);
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->founded = time();
+  }
 }
 ?>

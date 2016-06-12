@@ -80,7 +80,6 @@ class Bank extends \Nette\Object {
     $loan = new LoanEntity;
     $loan->user = $this->orm->users->getById($this->user->id);
     $loan->user->money += $amount;
-    $loan->taken = time();
     $loan->interest = $this->interest;
     $loan->amount = $amount;
     $this->orm->loans->persistAndFlush($loan);

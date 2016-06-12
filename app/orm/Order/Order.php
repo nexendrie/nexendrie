@@ -53,5 +53,10 @@ class Order extends \Nextras\Orm\Entity\Entity {
   protected function getterUpgradePriceT() {
     return $this->localeModel->money($this->upgradePrice);
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->founded = time();
+  }
 }
 ?>

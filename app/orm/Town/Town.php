@@ -48,5 +48,11 @@ class Town extends \Nextras\Orm\Entity\Entity {
   function dummyArray() {
     return $this->dummy()->toArray();
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->founded = time();
+    if($this->owner->id === 0) $this->onMarket = 1;
+  }
 }
 ?>

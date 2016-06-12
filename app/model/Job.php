@@ -153,7 +153,6 @@ class Job extends \Nette\Object {
     $this->orm->userJobs->attach($job);
     $job->user = $this->user->id;
     $job->job = $id;
-    $job->started = time();
     $this->orm->userJobs->persistAndFlush($job);
     
   }

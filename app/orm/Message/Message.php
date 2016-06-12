@@ -24,5 +24,10 @@ class Message extends \Nextras\Orm\Entity\Entity {
   protected function getterSentAt() {
     return $this->localeModel->formatDateTime($this->sent);
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->sent = time();
+  }
 }
 ?>

@@ -98,5 +98,10 @@ class User extends \Nextras\Orm\Entity\Entity {
     if($this->gender === self::GENDER_FEMALE) return $this->group->femaleName;
     else return $this->group->singleName;
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->joined = $this->lastActive = time();
+  }
 }
 ?>

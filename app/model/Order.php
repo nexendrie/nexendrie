@@ -133,7 +133,7 @@ class Order extends \Nette\Object {
     $this->orm->orders->attach($order);
     $order->name = $data["name"];
     $order->description = $data["description"];
-    $user->lastActive = $order->founded = time();
+    $user->lastActive = Stime();
     $user->money -= $this->foundingPrice;
     $order->money = $this->foundingPrice;
     $user->order = $order;

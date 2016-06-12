@@ -56,7 +56,6 @@ class Town extends \Nette\Object {
     foreach($data as $key => $value) {
       $town->$key = $value;
     }
-    $town->founded = time();
     $this->orm->towns->persistAndFlush($town);
   }
   

@@ -95,7 +95,6 @@ class Messenger extends \Nette\Object {
     $this->orm->messages->attach($message);
     $message->subject = $data["subject"];
     $message->text = $data["text"];
-    $message->sent = time();
     $message->from = $this->orm->users->getById($this->user->id);
     $message->from->lastActive = time();
     $message->to = $data["to"];

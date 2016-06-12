@@ -123,7 +123,6 @@ class PollControl extends \Nette\Application\UI\Control {
     $vote->poll = $this->poll;
     $vote->user = $this->user->id;
     $vote->answer = $answer;
-    $vote->voted = time();
     $this->orm->pollVotes->persistAndFlush($vote);
   }
   

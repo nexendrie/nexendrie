@@ -103,5 +103,10 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   function dummyArray() {
     return $this->dummy()->toArray();
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->founded = time();
+  }
 }
 ?>

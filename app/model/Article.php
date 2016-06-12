@@ -105,7 +105,7 @@ class Article extends \Nette\Object {
       $article->$key = $value;
     }
     $article->author = $this->user->id;
-    $article->author->lastActive = $article->added = time();
+    $article->author->lastActive = time();
     $this->orm->articles->persistAndFlush($article);
   }
   
@@ -126,7 +126,7 @@ class Article extends \Nette\Object {
       $comment->$key = $value;
     }
     $comment->author = $this->orm->users->getById($this->user->id);
-    $comment->author->lastActive = $comment->added = time();
+    $comment->author->lastActive = time();
     $this->orm->comments->persistAndFlush($comment);
   }
   

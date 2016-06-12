@@ -143,6 +143,10 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   protected function onBeforeInsert() {
     parent::onBeforeInsert();
     if(!$this->price) $this->price = $this->type->price;
+    if(!$this->damage) $this->damage = $this->type->damage;
+    if(!$this->armor) $this->armor = $this->type->armor;
+    $this->birth = time();
+    if($this->owner->id === 0) $this->onMarket = 1;
   }
 }
 ?>

@@ -57,5 +57,10 @@ class Article extends \Nextras\Orm\Entity\Entity {
   protected function getterCategoryCZ() {
     return self::getCategories()[$this->category];
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->added = time();
+  }
 }
 ?>

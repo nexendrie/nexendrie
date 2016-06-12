@@ -32,5 +32,10 @@ class Poll extends \Nextras\Orm\Entity\Entity {
   protected function getterParsedAnswers() {
     return explode("\n", $this->answers);
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->added = time();
+  }
 }
 ?>

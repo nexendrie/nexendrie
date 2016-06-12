@@ -24,5 +24,10 @@ class Comment extends \Nextras\Orm\Entity\Entity {
   protected function getterAddedAt() {
     return $this->localeModel->formatDateTime($this->added);
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->added = time();
+  }
 }
 ?>

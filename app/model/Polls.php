@@ -67,7 +67,6 @@ class Polls extends \Nette\Object {
       $poll->$key = $value;
     }
     $poll->author = $this->user->id;
-    $poll->added = time();
     $this->orm->polls->persistAndFlush($poll);
   }
   
