@@ -135,10 +135,13 @@ class Order extends \Nette\Object {
     $order->description = $data["description"];
     $user->lastActive = Stime();
     $user->money -= $this->foundingPrice;
-    $order->money = $this->foundingPrice;
     $user->order = $order;
     $user->orderRank = $this->maxRank;
-    $this->orm->users->persistAndFlush($user);
+    $this->orm->users->persist($user);
+    $queen = $this->orm->users->getById(0);
+    $queen->money += $this->foundingPrice;
+    $this->orm->users->persist($queen);
+    $this->orm->flush();
   }
   
   function calculateOrderIncomeBonus($baseIncome) {
