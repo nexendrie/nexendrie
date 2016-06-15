@@ -10,7 +10,7 @@ namespace Nexendrie\Orm;
  * @property int $level {default 1}
  * @property int $founded
  * @property-read string $foundedAt {virtual}
- * @property int $money
+ * @property int $money {default 0}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|User[] $members {1:m User::$order order:orderRank,DESC}
  * @property-read int $upgradePrice {virtual}
