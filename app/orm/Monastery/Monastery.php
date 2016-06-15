@@ -11,7 +11,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property User $leader {m:1 User::$monasteriesLed}
  * @property Town $town {m:1 Town::$monasteries}
  * @property int $founded
- * @property int $money
+ * @property int $money {default 0}
  * @property int $level {default 1}
  * @property int $hp {default 100}
  * @property OneHasMany|User[] $members {1:m User::$monastery order:group}
