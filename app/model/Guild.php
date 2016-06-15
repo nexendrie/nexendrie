@@ -138,7 +138,6 @@ class Guild extends \Nette\Object {
     $guild->town = $this->user->identity->town;
     $user->lastActive = time();
     $user->money -= $this->foundingPrice;
-    $guild->money = $this->foundingPrice;
     $user->guild = $guild;
     $user->guildRank = 4;
     $this->orm->users->persistAndFlush($user);
