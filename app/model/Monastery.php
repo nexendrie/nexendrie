@@ -296,6 +296,7 @@ class Monastery extends \Nette\Object {
       if($key === "name") {
         $m = $this->orm->monasteries->getByName($value);
         if($m AND $m->id != $id) throw new MonasteryNameInUseException;
+        $monastery->$key = $value;
       } elseif(in_array($key, $skip)) {
         continue;
       } else {
