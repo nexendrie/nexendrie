@@ -37,5 +37,10 @@ class Punishment extends \Nextras\Orm\Entity\Entity {
     if($this->lastAction === NULL) return time();
     else return $this->lastAction + (60 * 60);
   }
+  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->imprisoned = time();
+  }
 }
 ?>

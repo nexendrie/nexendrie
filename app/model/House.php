@@ -189,7 +189,7 @@ class House extends \Nette\Object {
     $production->user = $house->owner;
     $production->amount = $house->breweryLevel;
     $production->price = 30;
-    $production->when = $house->owner->lastActive = time();
+    $house->owner->lastActive = time();
     $house->owner->money += $production->amount * $production->price;
     $this->orm->beerProduction->persistAndFlush($production);
     return array("amount" => $production->amount, "price" => $production->price);

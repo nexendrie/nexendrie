@@ -14,6 +14,9 @@ namespace Nexendrie\Orm;
  * @property int $loot {default 0}
  */
 class UserAdventure extends \Nextras\Orm\Entity\Entity {
-  
+  protected function onBeforeInsert() {
+    parent::onBeforeInsert();
+    $this->started = time();
+  }
 }
 ?>

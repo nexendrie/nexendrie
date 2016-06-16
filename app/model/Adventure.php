@@ -222,7 +222,6 @@ class Adventure extends \Nette\Object {
     $userAdventure->user = $this->user->id;
     $userAdventure->adventure = $adventure;
     $userAdventure->mount = $mount;
-    $userAdventure->started = time();
     $this->orm->userAdventures->persistAndFlush($userAdventure);
     $this->user->identity->travelling = true;
   }

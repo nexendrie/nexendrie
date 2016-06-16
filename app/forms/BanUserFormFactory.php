@@ -47,7 +47,6 @@ class BanUserFormFactory {
     $user->banned = true;
     $punishment = new Punishment;
     $punishment->user = $user;
-    $punishment->imprisoned = time();
     $punishment->numberOfShifts = $values["numberOfShifts"];
     $punishment->crime = $values["crime"];
     $this->orm->punishments->persistAndFlush($punishment);
