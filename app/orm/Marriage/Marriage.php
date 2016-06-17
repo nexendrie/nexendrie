@@ -13,6 +13,7 @@ namespace Nexendrie\Orm;
  * @property int|NULL $accepted {default NULL}
  * @property-read string|NULL $acceptedT {virtual}
  * @property int $term
+ * @property-read string|NULL $termT {virtual}
  * @property int|NULL $cancelled {default NULL}
  * @property-read string|NULL $cancelledT {virtual}
  */
@@ -37,6 +38,11 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   protected function getterAcceptedT() {
     if($this->accepted === NULL) return "";
     else return $this->localeModel->formatDateTime($this->accepted);
+  }
+  
+  protected function getterTermT() {
+    if($this->term === NULL) return "";
+    else return $this->localeModel->formatDateTime($this->term);
   }
   
   protected function getterCancelledT() {
