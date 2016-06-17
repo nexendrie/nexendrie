@@ -10,6 +10,7 @@
     {if $profile->guild}{$profile->guildRank->name} <a n:href="Guild:detail $profile->guild->id">{$profile->guild->name}</a><br>{/if}
     {if $profile->order}{$profile->orderRank->name} <a n:href="Order:detail $profile->order->id">{$profile->order->name}</a><br>{/if}
     {if $profile->banned}V současnosti si odpykává zasloužený trest v místní šatlavě.<br>{/if}
+    {if $partner}Partner(ka): {$partner->title} <a n:href="Profile: $partner->username">{$partner->publicname}</a><br>{/if}
     <h3>Statistiky</h3>
     <table>
       <tr><td>Napsaných článků</td><td>{$profile->articles->countStored()}</td></tr>

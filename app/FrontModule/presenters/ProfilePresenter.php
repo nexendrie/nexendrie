@@ -29,6 +29,7 @@ class ProfilePresenter extends BasePresenter {
       $this->template->punishments = $this->model->countPunishments($user->id);
       $this->template->lessons = $this->model->countLessons($user->id);
       $this->template->messages = $this->model->countMessages($user->id);
+      $this->template->partner = $this->model->getPartner($user->id);
     } catch(UserNotFoundException $e) {
       throw new \Nette\Application\BadRequestException;
     }
