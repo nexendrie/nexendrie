@@ -53,6 +53,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Monastery[] $monasteriesLed {1:m Monastery::$leader}
  * @property OneHasMany|MonasteryDonation[] $monasteryDonations {1:m MonasteryDonation::$user}
  * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$user}
+ * @property OneHasMany|Marriage[] $sentMarriages {1:m Marriage::$user1}
+ * @property OneHasMany|Marriage[] $recievedMarriages {1:m Marriage::$user2}
  * @property-read string $title {virtual}
  */
 class User extends \Nextras\Orm\Entity\Entity {
