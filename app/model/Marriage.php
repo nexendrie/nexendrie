@@ -125,6 +125,21 @@ class Marriage extends \Nette\Object {
     $proposal->status = MarriageEntity::STATUS_DECLINED;
     $this->orm->marriages->persistAndFlush($proposal);
   }
+  
+  /**
+   * Get user's current marriage
+   * 
+   * @return NULL|MarriageEntity
+   * @throws AuthenticationNeededException
+   */
+  function getCurrentMarriage() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    if(is_null($marriage)) {
+      $marriage = $this->orm->marriages->getAcceptedMarriage($this->user->id)->fetch();
+    }
+    return $marriage;
+  }
 }
 
 class CannotProposeMarriageException extends AccessDeniedException {

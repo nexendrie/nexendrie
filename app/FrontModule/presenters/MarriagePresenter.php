@@ -21,7 +21,12 @@ class MarriagePresenter extends BasePresenter {
    * @return void
    */
   function actionDefault() {
-    if(!$this->profileModel->getPartner($this->user->id) AND !$this->profileModel->getFiance($this->user->id)) $this->redirect("proposals");
+    $partner = $this->profileModel->getPartner($this->user->id);
+    $fiance = $this->profileModel->getFiance($this->user->id);
+    if(!$partner AND !$fiance) $this->redirect("proposals");
+    $this->template->partner = $partner;
+    $this->template->fiance = $fiance;
+    $this->template->marriage = $this->model->getCurrentMarriage();
   }
   
   /**

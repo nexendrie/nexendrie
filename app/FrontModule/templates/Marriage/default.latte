@@ -1,0 +1,10 @@
+{layout "../@layout.latte"}
+{block title}Manželství{/block}
+{block content}
+  <h1>Manželství</h1>
+  {if $partner}
+  <p>Aktuálně jsi {if $user->identity->gender === "female"}vdaná za{else}ženatý s{/if} <a n:href="Profile: $partner->username">{$partner->publicname}</a>.
+  {else}
+  <p>Aktuálně jsi zasnouben{if $user->identity->gender === "female"}á{else}ý{/if} s <a n:href="Profile: $fiance->username">{$fiance->publicname}</a>. Vaše svatba se bude konat {$marriage->termT}.</p>
+  {/if}
+{/block}
