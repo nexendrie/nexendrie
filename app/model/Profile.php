@@ -146,6 +146,19 @@ class Profile extends \Nette\Object {
      elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
      else return NULL;
    }
+   
+   /**
+    * Get specified user's fiance(e)
+    * 
+    * @param int $id 
+    * @return UserEntity|NULL
+    */
+   function getFiance($id) {
+     $marriage = $this->orm->marriages->getAcceptedMarriage($id)->fetch();
+     if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
+     elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
+     else return NULL;
+   }
 }
 
 class UserNotFoundException extends RecordNotFoundException {

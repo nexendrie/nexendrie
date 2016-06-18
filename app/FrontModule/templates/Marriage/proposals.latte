@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Návrhy k sňatku{/block}
+{block content}
+  <h1>Návrhy k sňatku</h1>
+  {if $proposals->count() === 0}
+  <p>Žádné nabídky nenalezeny</p>
+  {else}
+    {foreach $proposals as $proposal}
+  <p><a n:href="Profile: $proposal->user1->username">{$proposal->user1->publicname}</a> tě požádal{if $proposal->user1->gender === "female"}a{/if} {$proposal->proposedT} o ruku. <a n:href="accept $proposal->id">Přijmout</a> <a n:href="decline $proposal->id">Odmítnout</a></p>
+    {/foreach}
+  {/if}
+{/block}

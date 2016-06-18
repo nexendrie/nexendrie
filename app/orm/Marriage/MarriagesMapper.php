@@ -12,5 +12,13 @@ class MarriagesMapper extends \Nextras\Orm\Mapper\Mapper {
   function getActiveMarriage($user) {
     return $this->builder()->where("status=\"active\" AND (user1=$user OR user2=$user)");
   }
+  
+  /**
+   * @param int|User $user
+   * @return Marriage|NULL
+   */
+  function getAcceptedMarriage($user) {
+    return $this->builder()->where("status=\"accepted\" AND (user1=$user OR user2=$user)");
+  }
 }
 ?>

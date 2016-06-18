@@ -49,9 +49,17 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
     if($this->cancelled === NULL) return "";
     else return $this->localeModel->formatDateTime($this->cancelled);
   }
+  
   protected function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->proposed = time();
+  }
+  
+  protected function onBeforeUpdate() {
+    parent::onBeforeUpdate();
+    if($this->status === self::STATUS_ACCEPTED AND is_null($this->accepted)) $this->accepted = time();
+    elseif($this->status === self::STATUS_DECLINED AND is_null($this->accepted)) $this->accepted = time();
+    elseif($this->status === self::STATUS_CANCELLED AND is_null($this->cancelled)) $this->cancelled = time();
   }
 }
 ?>
