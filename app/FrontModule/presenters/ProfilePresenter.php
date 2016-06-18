@@ -13,6 +13,8 @@ class ProfilePresenter extends BasePresenter {
   protected $model;
   /** @var \Nexendrie\Model\Castle @autowire */
   protected $castleModel;
+  /** @var \Nexendrie\Model\Marriage @autowire */
+  protected $marriageModel;
   
   /**
    * @param string $username
@@ -30,6 +32,7 @@ class ProfilePresenter extends BasePresenter {
       $this->template->lessons = $this->model->countLessons($user->id);
       $this->template->messages = $this->model->countMessages($user->id);
       $this->template->partner = $this->model->getPartner($user->id);
+      $this->template->canProposeMarriage = $this->marriageModel->canPropose($user->id);
     } catch(UserNotFoundException $e) {
       throw new \Nette\Application\BadRequestException;
     }

@@ -7,7 +7,7 @@ namespace Nexendrie\Orm;
  * @author Jakub Konečný
  * @property User $user1 {m:1 User::$sentMarriages}
  * @property User $user2 {m:1 User::$recievedMarriages}
- * @property string $status {enum self::STATUS_*}
+ * @property string $status {enum self::STATUS_*} {default self::STATUS_PROPOSED}
  * @property int $proposed
  * @property-read string $proposedT {virtual}
  * @property int|NULL $accepted {default NULL}
