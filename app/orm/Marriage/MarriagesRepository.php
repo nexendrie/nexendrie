@@ -23,5 +23,16 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
       "user2" => $user, "status" => Marriage::STATUS_PROPOSED
     ));
   }
+  
+  /**
+   * Get open weddings
+   * 
+   * @return ICollection|Marriage[]
+   */
+  function findOpenWeddings() {
+    return $this->findBy(array(
+      "status" => Marriage::STATUS_ACCEPTED, "term<=" => time() + 60 * 60
+    ));
+  }
 }
 ?>

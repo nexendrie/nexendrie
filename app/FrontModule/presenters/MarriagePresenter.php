@@ -4,7 +4,10 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nexendrie\Model\CannotProposeMarriageException,
     Nexendrie\Model\MarriageNotFoundException,
     Nexendrie\Model\AccessDeniedException,
-    Nexendrie\Model\MarriageProposalAlreadyHandledException;
+    Nexendrie\Model\MarriageProposalAlreadyHandledException,
+    Nexendrie\Components\WeddingControlFactory,
+    Nexendrie\Components\WeddingControl,
+    Nexendrie\Orm\Marriage as MarriageEntity;
 
 /**
  * Presenter Marriage
@@ -16,6 +19,8 @@ class MarriagePresenter extends BasePresenter {
   protected $model;
   /** @var \Nexendrie\Model\Profile @autowire */
   protected $profileModel;
+  /** @var MarriageEntity */
+  private $marriage;
   
   /**
    * @return void
@@ -89,6 +94,38 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Tento návrh byl již vyřízen.");
     }
     $this->redirect("Homepage:");
+  }
+  
+  /**
+   * @param int $id
+   * @return void
+   */
+  function actionCeremony($id) {
+    try {
+      $this->marriage = $this->model->getMarriage($id);
+    } catch(MarriageNotFoundException $e) {
+      throw new \Nette\Application\BadRequestException;
+    }
+    if($this->marriage->status != MarriageEntity::STATUS_ACCEPTED) {
+      $this->flashMessage("Svatba se nekoná.");
+      $this->redirect("Homepage:");
+    } elseif($this->marriage->term > time()) {
+      $this->flashMessage("Svatba ještě nezačala.");
+      $this->redirect("Homepage:");
+    } elseif($this->marriage->term + 60 * 60 < time()) {
+      $this->flashMessage("Svatba už skončila.");
+      $this->redirect("Homepage:");
+    }
+  }
+  
+  /**
+   * @param WeddingControlFactory $factory
+   * @return WeddingControl
+   */
+  protected function createComponentWedding(WeddingControlFactory $factory) {
+    $wedding = $factory->create();
+    $wedding->marriage = $this->marriage;
+    return $wedding;
   }
 }
 ?>

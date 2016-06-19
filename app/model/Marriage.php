@@ -29,6 +29,19 @@ class Marriage extends \Nette\Object {
   }
   
   /**
+   * Get marriage
+   * 
+   * @param int $id
+   * @return MarriageEntity
+   * @throws MarriageNotFoundException
+   */
+  function getMarriage($id) {
+    $marriage = $this->orm->marriages->getById($id);
+    if(!$marriage) throw new MarriageNotFoundException;
+    else return $marriage;
+  }
+  
+  /**
    * Check whetever the user can propose someone
    *  
    * @param int $id
@@ -46,6 +59,18 @@ class Marriage extends \Nette\Object {
     elseif(!is_null($this->orm->marriages->getAcceptedMarriage($this->user->id)->fetch())) return false;
     elseif($user->group->path != $me->group->path) return false;
     return true;
+  }
+  
+  /**
+   * @param MarriageEntity $marriage
+   * @return bool
+   */
+  function canFinish(MarriageEntity $marriage) {
+    if($marriage->status != MarriageEntity::STATUS_ACCEPTED) return false;
+    elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user1->id)->fetch())) return false;
+    elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user2->id)->fetch())) return false;
+    elseif($marriage->user1->group->path != $marriage->user2->group->path) return false;
+    else return true;
   }
   
   /**
