@@ -165,6 +165,23 @@ class Marriage extends \Nette\Object {
     }
     return $marriage;
   }
+  
+  /**
+   * Cancel wedding
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws NotEngagedException
+   * @throws WeddingAlreadyHappenedException
+   */
+  function cancelWedding() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $marriage = $this->orm->marriages->getAcceptedMarriage($this->user->id)->fetch();
+    if(is_null($marriage)) throw new NotEngagedException;
+    if($marriage->term < time()) throw new WeddingAlreadyHappenedException;
+    $marriage->status = MarriageEntity::STATUS_CANCELLED;
+    $this->orm->marriages->persistAndFlush($marriage);
+  }
 }
 
 class CannotProposeMarriageException extends AccessDeniedException {
@@ -176,6 +193,14 @@ class MarriageNotFoundException extends RecordNotFoundException {
 }
 
 class MarriageProposalAlreadyHandledException extends RecordNotFoundException {
+  
+}
+
+class NotEngagedException extends AccessDeniedException {
+  
+}
+
+class WeddingAlreadyHappenedException extends AccessDeniedException {
   
 }
 ?>

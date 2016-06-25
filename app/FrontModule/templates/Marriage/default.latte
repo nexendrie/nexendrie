@@ -5,6 +5,6 @@
   {if $partner}
   <p>Aktuálně jsi {if $user->identity->gender === "female"}vdaná za{else}ženatý s{/if} <a n:href="Profile: $partner->username">{$partner->publicname}</a>.
   {else}
-  <p>Aktuálně jsi zasnouben{if $user->identity->gender === "female"}á{else}ý{/if} s <a n:href="Profile: $fiance->username">{$fiance->publicname}</a>. Vaše svatba se bude konat {$marriage->termT}. {if $marriage->term < time()} <a n:href="Marriage:ceremony $marriage->id">Obřad</a>{/if}</p>
+  <p>Aktuálně jsi zasnouben{if $user->identity->gender === "female"}á{else}ý{/if} s <a n:href="Profile: $fiance->username">{$fiance->publicname}</a>. Vaše svatba se bude konat {$marriage->termT}. {if $marriage->term < time()} <a n:href="Marriage:ceremony $marriage->id">Obřad</a>{else}<a n:href="cancelWedding!">Zrušit zasnoubení</a>{/if}</p>
   {/if}
 {/block}

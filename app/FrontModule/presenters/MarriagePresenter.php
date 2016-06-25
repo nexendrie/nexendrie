@@ -5,6 +5,8 @@ use Nexendrie\Model\CannotProposeMarriageException,
     Nexendrie\Model\MarriageNotFoundException,
     Nexendrie\Model\AccessDeniedException,
     Nexendrie\Model\MarriageProposalAlreadyHandledException,
+    Nexendrie\Model\NotEngagedException,
+    Nexendrie\Model\WeddingAlreadyHappenedException,
     Nexendrie\Components\WeddingControlFactory,
     Nexendrie\Components\WeddingControl,
     Nexendrie\Orm\Marriage as MarriageEntity;
@@ -126,6 +128,25 @@ class MarriagePresenter extends BasePresenter {
     $wedding = $factory->create();
     $wedding->marriage = $this->marriage;
     return $wedding;
+  }
+  
+  /**
+   * @return void
+   */
+  function handleCancelWedding() {
+    try {
+      $this->model->cancelWedding();
+      $this->flashMessage("Zasnoubení zrušeno.");
+      $this->redirect("default");
+    } catch(NotEngagedException $e) {
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi zasnoubená.";
+      else $message = "Nejsi zasnoubený.";
+      $this->flashMessage($message);
+      $this->redirect("Homepage:");
+    } catch(WeddingAlreadyHappenedException $e) {
+      $this->flashMessage("Svatba se už uskutečnila.");
+      $this->redirect("Homepage:");
+    }
   }
 }
 ?>
