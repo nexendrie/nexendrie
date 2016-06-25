@@ -182,6 +182,58 @@ class Marriage extends \Nette\Object {
     $marriage->status = MarriageEntity::STATUS_CANCELLED;
     $this->orm->marriages->persistAndFlush($marriage);
   }
+  
+  /**
+   * File for divorce
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws NotMarriedException
+   * @throws AlreadyInDivorceException
+   */
+  function fileForDivorce() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    if(is_null($marriage)) throw new NotMarriedException;
+    elseif($marriage->divorce) throw new AlreadyInDivorceException;
+    if($marriage->user1->id === $this->user->id) $marriage->divorce = 1;
+    else $marriage->divorce = 2;
+    $this->orm->marriages->persistAndFlush($marriage);
+  }
+  
+  /**
+   * Accept divorce
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws NotMarriedException
+   * @throws NotInDivorceException
+   */
+  function acceptDivorce() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    if(is_null($marriage)) throw new NotMarriedException;
+    elseif($marriage->divorce < 1 OR $marriage->divorce > 2) throw new NotInDivorceException;
+    $marriage->status = MarriageEntity::STATUS_CANCELLED;
+    $this->orm->marriages->persistAndFlush($marriage);
+  }
+  
+  /**
+   * Decline divorce
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws NotMarriedException
+   * @throws NotInDivorceException
+   */
+  function declineDivorce() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    if(is_null($marriage)) throw new NotMarriedException;
+    elseif($marriage->divorce < 1 OR $marriage->divorce > 2) throw new NotInDivorceException;
+    $marriage->divorce += 2;
+    $this->orm->marriages->persistAndFlush($marriage);
+  }
 }
 
 class CannotProposeMarriageException extends AccessDeniedException {
@@ -200,7 +252,19 @@ class NotEngagedException extends AccessDeniedException {
   
 }
 
+class NotMarriedException extends AccessDeniedException {
+  
+}
+
 class WeddingAlreadyHappenedException extends AccessDeniedException {
+  
+}
+
+class AlreadyInDivorceException extends AccessDeniedException {
+  
+}
+
+class NotInDivorceException extends AccessDeniedException {
   
 }
 ?>

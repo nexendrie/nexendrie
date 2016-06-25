@@ -8,6 +8,7 @@ namespace Nexendrie\Orm;
  * @property User $user1 {m:1 User::$sentMarriages}
  * @property User $user2 {m:1 User::$recievedMarriages}
  * @property string $status {enum self::STATUS_*} {default self::STATUS_PROPOSED}
+ * @property int $divorce {default 0}
  * @property int $proposed
  * @property-read string $proposedT {virtual}
  * @property int|NULL $accepted {default NULL}
@@ -29,6 +30,12 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   
   function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
+  }
+  
+  protected function setterDivorce($value) {
+    if($value < 0) return 0;
+    elseif($value > 4) return 4;
+    else return $value;
   }
   
   protected function getterProposedT() {

@@ -3,7 +3,7 @@
 {block content}
   <h1>Manželství</h1>
   {if $partner}
-  <p>Aktuálně jsi {if $user->identity->gender === "female"}vdaná za{else}ženatý s{/if} <a n:href="Profile: $partner->username">{$partner->publicname}</a>.
+      <p>Aktuálně jsi {if $user->identity->gender === "female"}vdaná za{else}ženatý s{/if} <a n:href="Profile: $partner->username">{$partner->publicname}</a>. {if $marriage->divorce === 0}<a n:href="fileForDivorce!">Požádat o rozvod</a>{elseif ($marriage->divorce === 1 AND $user->id === $marriage->user1->id) OR ($marriage->divorce === 2 AND $user->id === $marriage->user2->id)}Partner(ka) ještě nereagoval(a) na žádost o rozvod.{elseif ($marriage->divorce === 1 AND $user->id === $marriage->user2->id) OR ($marriage->divorce === 2 AND $user->id === $marriage->user1->id)}Partner(ka) požádal(a) o rozvod. <a n:href="acceptDivorce!">Přijmout</a> <a n:href="declineDivorce!">Odmítnout</a>{elseif ($marriage->divorce === 3 AND $user->id === $marriage->user1->id) OR ($marriage->divorce === 4 AND $user->id === $marriage->user2->id)}Partner(ka) odmítnul(a) žádost o rozvod.{/if}
   {else}
   <p>Aktuálně jsi zasnouben{if $user->identity->gender === "female"}á{else}ý{/if} s <a n:href="Profile: $fiance->username">{$fiance->publicname}</a>. Vaše svatba se bude konat {$marriage->termT}. {if $marriage->term < time()} <a n:href="Marriage:ceremony $marriage->id">Obřad</a>{else}<a n:href="cancelWedding!">Zrušit zasnoubení</a>{/if}</p>
   {/if}

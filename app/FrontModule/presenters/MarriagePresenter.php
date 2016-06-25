@@ -7,9 +7,13 @@ use Nexendrie\Model\CannotProposeMarriageException,
     Nexendrie\Model\MarriageProposalAlreadyHandledException,
     Nexendrie\Model\NotEngagedException,
     Nexendrie\Model\WeddingAlreadyHappenedException,
+    Nexendrie\Model\NotMarriedException,
+    Nexendrie\Model\AlreadyInDivorceException,
+    Nexendrie\Model\NotInDivorceException,
     Nexendrie\Components\WeddingControlFactory,
     Nexendrie\Components\WeddingControl,
-    Nexendrie\Orm\Marriage as MarriageEntity;
+    Nexendrie\Orm\Marriage as MarriageEntity,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Presenter Marriage
@@ -146,6 +150,63 @@ class MarriagePresenter extends BasePresenter {
     } catch(WeddingAlreadyHappenedException $e) {
       $this->flashMessage("Svatba se už uskutečnila.");
       $this->redirect("Homepage:");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function handleFileForDivorce() {
+    try {
+      $this->model->fileForDivorce();
+      $this->flashMessage("Žádost podána.");
+      $this->redirect("default");
+    } catch(NotMarriedException $e) {
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi vdaná.";
+      else $message = "Nejsi ženatý.";
+      $this->flashMessage($message);
+      $this->redirect("Homepage:");
+    } catch(AlreadyInDivorceException $e) {
+      $this->flashMessage("Už se rozvádíte.");
+      $this->redirect("default");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function handleAcceptDivorce() {
+    try {
+      $this->model->acceptDivorce();
+      $this->flashMessage("Vaše manželství skončilo.");
+      $this->redirect("Homepage:");
+    } catch(NotMarriedException $e) {
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi vdaná.";
+      else $message = "Nejsi ženatý.";
+      $this->flashMessage($message);
+      $this->redirect("Homepage:");
+    } catch(NotInDivorceException $e) {
+      $this->flashMessage("Nerozvádíte se.");
+      $this->redirect("default");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function handleDeclineDivorce() {
+    try {
+      $this->model->declineDivorce();
+      $this->flashMessage("Žádost zamítnuta.");
+      $this->redirect("default");
+    } catch(NotMarriedException $e) {
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi vdaná.";
+      else $message = "Nejsi ženatý.";
+      $this->flashMessage($message);
+      $this->redirect("Homepage:");
+    } catch(NotInDivorceException $e) {
+      $this->flashMessage("Nerozvádíte se.");
+      $this->redirect("default");
     }
   }
 }
