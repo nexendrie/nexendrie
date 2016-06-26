@@ -1,7 +1,9 @@
 <?php
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\CannotProposeMarriageException,
+use Nette\Application\UI\Form,
+    Nexendrie\Forms\ChangeWeddingTermFormFactory,
+    Nexendrie\Model\CannotProposeMarriageException,
     Nexendrie\Model\MarriageNotFoundException,
     Nexendrie\Model\AccessDeniedException,
     Nexendrie\Model\MarriageProposalAlreadyHandledException,
@@ -37,7 +39,7 @@ class MarriagePresenter extends BasePresenter {
     if(!$partner AND !$fiance) $this->redirect("proposals");
     $this->template->partner = $partner;
     $this->template->fiance = $fiance;
-    $this->template->marriage = $this->model->getCurrentMarriage();
+    $this->template->marriage = $this->marriage = $this->model->getCurrentMarriage();
   }
   
   /**
@@ -208,6 +210,18 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Nerozvádíte se.");
       $this->redirect("default");
     }
+  }
+  
+  /**
+   * @param ChangeWeddingTermFormFactory $factory
+   * @return Form
+   */
+  protected function createComponentChangeWeddingTermForm(ChangeWeddingTermFormFactory $factory) {
+    $form = $factory->create($this->marriage);
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Termín svatby změněn.");
+    };
+    return $form;
   }
 }
 ?>

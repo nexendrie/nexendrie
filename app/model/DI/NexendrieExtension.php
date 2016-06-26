@@ -123,7 +123,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "addEditMeal", "addEditAdventure", "addEditAdventureEnemy", "buildMonastery",
       "monasteryDonate", "manageMonastery", "appointMayor", "buildCastle", "gift",
       "foundTown", "makeCitizen", "addEditEvent", "foundGuild", "manageGuild", "foundOrder",
-      "manageOrder", "addEditItemSet", "manageCastle"
+      "manageOrder", "addEditItemSet", "manageCastle", "changeWeddingTerm"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix("form.$form"))
@@ -140,7 +140,9 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $initialize->addBody('$groupModel = $this->getByType("Nexendrie\Model\Group");
 $user = $this->getByType("Nette\Security\User");
 $user->guestRole = $groupModel->get(?)->singleName;
-$user->authenticatedRole = $groupModel->get(?)->singleName;', array($roles["guestRole"], $roles["loggedInRole"]));
+$user->authenticatedRole = $groupModel->get(?)->singleName;
+\Nella\Forms\DateTime\DateInput::register();
+\Nella\Forms\DateTime\DateTimeInput::register();', array($roles["guestRole"], $roles["loggedInRole"]));
   }
 }
 ?>
