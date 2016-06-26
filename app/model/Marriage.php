@@ -86,7 +86,6 @@ class Marriage extends \Nette\Object {
     $this->orm->marriages->attach($marriage);
     $marriage->user1 = $this->user->id;
     $marriage->user2 = $id;
-    $marriage->term = time() + (60 * 60 * 24 * 14);
     $this->orm->marriages->persistAndFlush($marriage);
   }
   

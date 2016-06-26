@@ -13,7 +13,7 @@ namespace Nexendrie\Orm;
  * @property-read string $proposedT {virtual}
  * @property int|NULL $accepted {default NULL}
  * @property-read string|NULL $acceptedT {virtual}
- * @property int $term
+ * @property int|NULL $term
  * @property-read string|NULL $termT {virtual}
  * @property int|NULL $cancelled {default NULL}
  * @property-read string|NULL $cancelledT {virtual}
@@ -65,8 +65,9 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   protected function onBeforeUpdate() {
     parent::onBeforeUpdate();
     if($this->status === self::STATUS_ACCEPTED AND is_null($this->accepted)) $this->accepted = time();
-    elseif($this->status === self::STATUS_DECLINED AND is_null($this->accepted)) $this->accepted = time();
-    elseif($this->status === self::STATUS_CANCELLED AND is_null($this->cancelled)) $this->cancelled = time();
+    if($this->status === self::STATUS_ACCEPTED AND is_null($this->term)) $this->term = time() + (60 * 60 * 24 * 14);
+    if($this->status === self::STATUS_DECLINED AND is_null($this->accepted)) $this->accepted = time();
+    if($this->status === self::STATUS_CANCELLED AND is_null($this->cancelled)) $this->cancelled = time();
   }
 }
 ?>
