@@ -41,6 +41,7 @@ class HelpControl extends Book\BookControl {
     $storage[] = new Book\BookPage("stables", "Stáje");
     $storage[] = new Book\BookPage("guild", "Cechy");
     $storage[] = new Book\BookPage("order", "Řády");
+    $storage[] = new Book\BookPage("marriage", "Manželství");
     return $storage;
   }
   
