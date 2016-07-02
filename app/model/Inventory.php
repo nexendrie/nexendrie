@@ -3,7 +3,8 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\UserItem as UserItemEntity,
     Nexendrie\Orm\Item as ItemEntity,
-    Nexendrie\Orm\ItemSet as ItemSetEntity;
+    Nexendrie\Orm\ItemSet as ItemSetEntity,
+    Nexendrie\Orm\Marriage as MarriageEntity;
 
 /**
  * Equipment Model
@@ -58,6 +59,17 @@ class Inventory extends \Nette\Object {
   function potions() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     return $this->orm->userItems->findByType($this->user->id, "potion");
+  }
+  
+  /**
+   * Get user's intimacy boosters
+   * 
+   * @return UserItemEntity[]
+   * @throws AuthenticationNeededException
+   */
+  function intimacyBoosters() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    return $this->orm->userItems->findByType($this->user->id, "intimacy_boost");
   }
   
   /**
@@ -127,7 +139,7 @@ class Inventory extends \Nette\Object {
     $item = $this->orm->userItems->getById($id);
     if(!$item) throw new ItemNotFoundException;
     elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
-    elseif($item->item->type != "potion") throw new ItemNotDrinkableException;
+    elseif($item->item->type != ItemEntity::TYPE_POTION) throw new ItemNotDrinkableException;
     if($item->user->life >= $item->user->maxLife) throw new HealingNotNeeded;
     $item->amount -= 1;
     $life = $item->item->strength;
@@ -143,6 +155,39 @@ class Inventory extends \Nette\Object {
       $this->orm->userItems->persistAndFlush($item);
     }
     return $life;
+  }
+  
+  /**
+   * @param int $id
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws NotMarriedException
+   * @throws ItemNotFoundException
+   * @throws ItemNotOwnedException
+   * @throws ItemNotUsableException
+   * @throws MaxIntimacyReachedException
+   */
+  function boostIntimacy($id) {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    if(is_null($marriage)) throw new NotMarriedException;
+    $item = $this->orm->userItems->getById($id);
+    if(!$item) throw new ItemNotFoundException;
+    elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
+    elseif($item->item->type != ItemEntity::TYPE_INTIMACY_BOOST) throw new ItemNotUsableException;    
+    if($marriage->intimacy + $item->item->strength > MarriageEntity::MAX_INTIMACY) throw new MaxIntimacyReachedException;
+    $item->amount -= 1;
+    $marriage->intimacy += $item->item->strength;
+    if($item->amount < 1) {
+      $user = $this->orm->users->getById($this->user->id);
+      $this->orm->userItems->remove($item);
+      $this->orm->users->persist($user);
+    } else {
+      $item->user->life += $item->item->strength;
+      $this->orm->userItems->persist($item);
+    }
+    $this->orm->marriages->persist($marriage);
+    $this->orm->flush();
   }
   
   /**
@@ -260,7 +305,11 @@ class ItemNotWornException extends AccessDeniedException {
   
 }
 
-class ItemNotDrinkableException extends AccessDeniedException {
+class ItemNotUsableException extends AccessDeniedException {
+  
+}
+
+class ItemNotDrinkableException extends ItemNotUsableException {
 
 }
 

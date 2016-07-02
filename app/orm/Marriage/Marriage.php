@@ -27,6 +27,7 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   const STATUS_DECLINED = "declined";
   const STATUS_ACTIVE = "active";
   const STATUS_CANCELLED = "cancelled";
+  const MAX_INTIMACY = 1000;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
@@ -62,7 +63,7 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   
   protected function setterIntimacy($value) {
     if($value < 0) return 0;
-    elseif($value > 1000) return 1000;
+    elseif($value > self::MAX_INTIMACY) return self::MAX_INTIMACY;
     else return $value;
   }
   

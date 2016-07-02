@@ -289,4 +289,8 @@ class NotInDivorceException extends AccessDeniedException {
 class CannotTakeBackDivorceException extends AccessDeniedException {
   
 }
+
+class MaxIntimacyReachedException extends AccessDeniedException {
+  
+}
 ?>

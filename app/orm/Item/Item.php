@@ -28,6 +28,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
   const TYPE_POTION = "potion";
   const TYPE_MATERIAL = "material";
   const TYPE_CHARTER = "charter";
+  const TYPE_INTIMACY_BOOST = "intimacy_boost";
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
@@ -41,13 +42,14 @@ class Item extends \Nextras\Orm\Entity\Entity {
    */
   static function getTypes() {
     return array(
-      "item" => "Věc",
-      "weapon" => "Zbraň",
-      "armor" => "Brnění",
-      "helmet" => "Helma",
-      "potion" => "Lektvar",
-      "material" => "Surovina",
-      "charter" => "Listina",
+      self::TYPE_ITEM => "Věc",
+      self::TYPE_WEAPON => "Zbraň",
+      self::TYPE_ARMOR => "Brnění",
+      self::TYPE_HELMET => "Helma",
+      self::TYPE_POTION => "Lektvar",
+      self::TYPE_POTION => "Surovina",
+      self::TYPE_CHARTER => "Listina",
+      self::TYPE_INTIMACY_BOOST => "Zvýšení důvěrnosti",
     );
   }
   
@@ -56,7 +58,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
    */
   static function getCommonTypes() {
     return array(
-      "item", "material", "charter"
+      self::TYPE_ITEM, self::TYPE_MATERIAL, self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
     );
   }
   
@@ -65,7 +67,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
    */
   static function getEquipmentTypes() {
     return array(
-      "weapon", "armor", "helmet"
+      self::TYPE_WEAPON, self::TYPE_ARMOR, self::TYPE_HELMET
     );
   }
   

@@ -13,6 +13,10 @@ use Nette\Application\UI\Form,
     Nexendrie\Model\AlreadyInDivorceException,
     Nexendrie\Model\NotInDivorceException,
     Nexendrie\Model\CannotTakeBackDivorceException,
+    Nexendrie\Model\MaxIntimacyReachedException,
+    Nexendrie\Model\ItemNotFoundException,
+    Nexendrie\Model\ItemNotUsableException,
+    Nexendrie\Model\ItemNotOwnedException,
     Nexendrie\Components\WeddingControlFactory,
     Nexendrie\Components\WeddingControl,
     Nexendrie\Orm\Marriage as MarriageEntity,
@@ -28,6 +32,8 @@ class MarriagePresenter extends BasePresenter {
   protected $model;
   /** @var \Nexendrie\Model\Profile @autowire */
   protected $profileModel;
+  /** @var \Nexendrie\Model\Inventory @autowire */
+  protected $inventoryModel;
   /** @var MarriageEntity */
   private $marriage;
   
@@ -41,6 +47,10 @@ class MarriagePresenter extends BasePresenter {
     $this->template->partner = $partner;
     $this->template->fiance = $fiance;
     $this->template->marriage = $this->marriage = $this->model->getCurrentMarriage();
+    if(!is_null($partner)) {
+      $this->template->boosters = $this->inventoryModel->intimacyBoosters();
+      $this->template->maxIntimacy = MarriageEntity::MAX_INTIMACY;
+    }
   }
   
   /**
@@ -235,6 +245,30 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage($message);
       $this->redirect("default");
     }
+  }
+  
+  /**
+   * @param int $item
+   * @return void
+   */
+  function handleBoostIntimacy($item) {
+    try {
+      $this->inventoryModel->boostIntimacy($item);
+      $this->flashMessage("Věc použita.");
+    } catch(NotMarriedException $e) {
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi vdaná.";
+      else $message = "Nejsi ženatý.";
+      $this->flashMessage($message);
+    } catch(ItemNotFoundException $e) {
+      $this->flashMessage("Věc nenalezena.");
+    } catch(ItemNotOwnedException $e) {
+      $this->flashMessage("Zadaná věc ti nepatří.");
+    } catch(ItemNotUsableException $e) {
+      $this->flashMessage("Nemůžeš použít tuto věc.");
+    } catch(MaxIntimacyReachedException $e) {
+      $this->flashMessage("Nemůžeš už zvýšit důvěrnost.");
+    }
+    $this->redirect("default");
   }
   
   /**
