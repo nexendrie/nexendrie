@@ -2,7 +2,8 @@
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
-    Nexendrie\Model\GuildNameInUseException;
+    Nexendrie\Model\GuildNameInUseException,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Factory for form ManageGuild
@@ -45,7 +46,7 @@ class ManageGuildFormFactory {
     $form->addSelect("skill", "Dovednost:", $this->getListOfSkills())
       ->setRequired("Vyber dovednost.");
     $form->addSubmit("submit", "Odeslat");
-    $form->setDefaults($guild->dummyArray());
+    $form->setDefaults($guild->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = array($this, "submitted");
     return $form;
   }

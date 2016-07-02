@@ -78,19 +78,5 @@ class Item extends \Nextras\Orm\Entity\Entity {
   protected function getterTypeCZ() {
     return self::getTypes()[$this->type];
   }
-  
-  /**
-   * @return \Nexendrie\Orm\ItemDummy
-   */
-  function dummy() {
-    return new ItemDummy($this);
-  }
-  
-  /**
-   * @return array
-   */
-  function dummyArray() {
-    return $this->dummy()->toArray();
-  }
 }
 ?>

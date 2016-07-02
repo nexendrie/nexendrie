@@ -10,18 +10,6 @@ namespace Nexendrie\Orm;
  * @property string $message
  */
 class JobMessage extends \Nextras\Orm\Entity\Entity {
-  /**
-   * @return \Nexendrie\Orm\JobMessageDummy
-   */
-  function dummy() {
-    return new JobMessageDummy($this);
-  }
   
-  /**
-   * @return array
-   */
-  function dummyArray() {
-    return $this->dummy()->toArray();
-  }
 }
 ?>

@@ -29,19 +29,5 @@ class Adventure extends \Nextras\Orm\Entity\Entity {
   protected function getterRewardT() {
     return $this->localeModel->money($this->reward);
   }
-  
-  /**
-   * @return AdventureDummy
-   */
-  function dummy() {
-    return new AdventureDummy($this);
-  }
-  
-  /**
-   * @return array
-   */
-  function dummyArray() {
-    return $this->dummy()->toArray();
-  }
 }
 ?>

@@ -3,7 +3,8 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Forms\AddEditAdventureFormFactory,
     Nette\Application\UI\Form,
-    Nexendrie\Model\AdventureNotFoundException;
+    Nexendrie\Model\AdventureNotFoundException,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Presenter Adventure
@@ -52,7 +53,7 @@ class AdventurePresenter extends BasePresenter {
    */
   protected function createComponentEditAdventureForm(AddEditAdventureFormFactory $factory) {
     $form = $factory->create();
-    $form->setDefaults($this->adventure->dummyArray());
+    $form->setDefaults($this->adventure->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form) {
       $this->model->editAdventure($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Dobrodružství upraveno.");

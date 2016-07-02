@@ -3,7 +3,8 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
     Nexendrie\Model\MonasteryNotFoundException,
-    Nexendrie\Model\MonasteryNameInUseException;
+    Nexendrie\Model\MonasteryNameInUseException,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Factory for form ManageMonastery
@@ -31,7 +32,7 @@ class ManageMonasteryFormFactory {
       ->setRequired("Zadej jméno");
     $form->addSelect("leader", "Vůdce:", $this->model->highClerics($id));
     $form->addSubmit("submit", "Odeslat");
-    $form->setDefaults($this->model->get($id)->dummyArray());
+    $form->setDefaults($this->model->get($id)->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = array($this, "submitted");
     return $form;
   }

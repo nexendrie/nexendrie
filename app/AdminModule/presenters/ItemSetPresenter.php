@@ -4,7 +4,8 @@ namespace Nexendrie\Presenters\AdminModule;
 use Nexendrie\Model\ItemSetNotFoundException,
     Nexendrie\Forms\AddEditItemSetFormFactory,
     Nette\Application\UI\Form,
-    Nexendrie\Orm\ItemSet as ItemSetEntity;
+    Nexendrie\Orm\ItemSet as ItemSetEntity,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Presenter ItemSet
@@ -57,7 +58,7 @@ class ItemSetPresenter extends BasePresenter {
    */
   protected function createComponentEditItemSetForm(AddEditItemSetFormFactory $factory) {
     $form = $factory->create();
-    $form->setDefaults($this->set->dummyArray());
+    $form->setDefaults($this->set->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form) {
       $this->model->edit($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Sada upravena.");

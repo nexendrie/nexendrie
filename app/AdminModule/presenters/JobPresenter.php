@@ -4,7 +4,8 @@ namespace Nexendrie\Presenters\AdminModule;
 use Nexendrie\Forms\AddEditJobFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Orm\Job as JobEntity,
-    Nexendrie\Model\JobNotFoundException;
+    Nexendrie\Model\JobNotFoundException,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Presenter Job
@@ -57,7 +58,7 @@ class JobPresenter extends BasePresenter {
    */
   protected function createComponentEditJobForm(AddEditJobFormFactory $factory) {
     $form = $factory->create();
-    $form->setDefaults($this->job->dummyArray());
+    $form->setDefaults($this->job->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form) {
       $this->model->editJob($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Změny uloženy.");

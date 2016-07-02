@@ -90,20 +90,6 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->money($this->repairPrice);
   }
   
-  /**
-   * @return MonasteryDummy
-   */
-  function dummy() {
-    return new MonasteryDummy($this);
-  }
-  
-  /**
-   * @return array
-   */
-  function dummyArray() {
-    return $this->dummy()->toArray();
-  }
-  
   protected function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->founded = time();

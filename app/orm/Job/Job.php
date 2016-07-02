@@ -31,19 +31,5 @@ class Job extends \Nextras\Orm\Entity\Entity {
   protected function getterAwardT() {
     return $this->localeModel->money($this->award);
   }
-  
-  /**
-   * @return JobDummy
-   */
-  function dummy() {
-    return new JobDummy($this);
-  }
-  
-  /**
-   * @return array
-   */
-  function dummyArray() {
-    return $this->dummy()->toArray();
-  }
 }
 ?>

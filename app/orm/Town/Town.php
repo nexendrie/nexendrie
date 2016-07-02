@@ -35,20 +35,6 @@ class Town extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->money($this->price);
   }
   
-  /**
-   * @return \Nexendrie\Orm\TownDummy
-   */
-  function dummy() {
-    return new TownDummy($this);
-  }
-  
-  /**
-   * @return array
-   */
-  function dummyArray() {
-    return $this->dummy()->toArray();
-  }
-  
   protected function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->founded = time();

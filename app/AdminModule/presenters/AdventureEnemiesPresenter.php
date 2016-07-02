@@ -6,7 +6,8 @@ use Nexendrie\Model\AdventureNotFoundException,
     Nexendrie\Forms\AddEditAdventureEnemyFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\AdventureNpcNotFoundException,
-    Nexendrie\Orm\AdventureNpc as AdventureNpcEntity;
+    Nexendrie\Orm\AdventureNpc as AdventureNpcEntity,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Presenter AdventureEnemy
@@ -79,7 +80,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
   
   protected function createComponentEditAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory) {
     $form = $factory->create();
-    $form->setDefaults($this->npc->dummyArray());
+    $form->setDefaults($this->npc->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form) {
       $this->model->editNpc($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Nepřítel upraven.");

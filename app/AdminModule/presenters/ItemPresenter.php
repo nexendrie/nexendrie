@@ -4,7 +4,8 @@ namespace Nexendrie\Presenters\AdminModule;
 use Nette\Application\UI\Form,
     Nexendrie\Forms\AddEditItemFormFactory,
     Nexendrie\Orm\Item as ItemEntity,
-    Nexendrie\Model\ItemNotFoundException;
+    Nexendrie\Model\ItemNotFoundException,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Presenter Item
@@ -57,7 +58,7 @@ class ItemPresenter extends BasePresenter {
    */
   protected function createComponentEditItemForm(AddEditItemFormFactory $factory) {
     $form = $factory->create();
-    $form->setDefaults($this->item->dummyArray());
+    $form->setDefaults($this->item->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form) {
       $this->model->editItem($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Změny uloženy.");

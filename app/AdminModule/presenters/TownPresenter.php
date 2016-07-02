@@ -4,7 +4,8 @@ namespace Nexendrie\Presenters\AdminModule;
 use Nexendrie\Forms\AddEditTownFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Orm\Town as TownEntity,
-    Nexendrie\Model\TownNotFoundException;
+    Nexendrie\Model\TownNotFoundException,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Presenter Town
@@ -58,7 +59,7 @@ class TownPresenter extends BasePresenter {
    */
   protected function createComponentEditTownForm(AddEditTownFormFactory $factory) {
     $form = $factory->create();
-    $form->setDefaults($this->town->dummyArray());
+    $form->setDefaults($this->town->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form) {
       $this->model->edit($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Město upraveno.");

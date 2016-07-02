@@ -16,18 +16,6 @@ namespace Nexendrie\Orm;
  * @property string $victoryText
  */
 class AdventureNpc extends \Nextras\Orm\Entity\Entity {
-  /**
-   * @return \Nexendrie\Orm\AdventureNpcDummy
-   */
-  function dummy() {
-    return new AdventureNpcDummy($this);
-  }
   
-  /**
-   * @return array
-   */
-  function dummyArray() {
-    return $this->dummy()->toArray();
-  }
 }
 ?>

@@ -132,14 +132,6 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     return $this->type->{$this->gender . "Name"};
   }
   
-  function dummy() {
-    return new MountDummy($this);
-  }
-  
-  function dummyArray() {
-    return $this->dummy()->toArray();
-  }
-  
   protected function onBeforeInsert() {
     parent::onBeforeInsert();
     if(!$this->price) $this->price = $this->type->price;

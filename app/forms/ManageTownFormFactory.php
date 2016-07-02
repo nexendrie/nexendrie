@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form;
+use Nette\Application\UI\Form,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Factory for form ManageTown
@@ -38,7 +39,7 @@ class ManageTownFormFactory {
       ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", array(0,999999));
     $form->addCheckbox("onMarket", "Na prodej");
     $form->addSubmit("submit", "Odeslat");
-    $form->setDefaults($town->dummyArray());
+    $form->setDefaults($town->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = array($this, "submitted");
     return $form;
   }

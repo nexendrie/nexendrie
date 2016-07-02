@@ -58,20 +58,6 @@ class Guild extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->money($this->upgradePrice);
   }
   
-  /**
-   * @return \Nexendrie\Orm\ItemSetDummy
-   */
-  function dummy() {
-    return new GuildDummy($this);
-  }
-  
-  /**
-   * @return array
-   */
-  function dummyArray() {
-    return $this->dummy()->toArray();
-  }
-  
   protected function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->founded = time();

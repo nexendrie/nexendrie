@@ -6,7 +6,8 @@ use Nexendrie\Model\JobNotFoundException,
     Nexendrie\Orm\JobMessage as JobMessageEntity,
     Nexendrie\Orm\Job as JobEntity,
     Nette\Application\UI\Form,
-    Nexendrie\Forms\AddEditJobMessageFormFactory;
+    Nexendrie\Forms\AddEditJobMessageFormFactory,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Presenter JobMessages
@@ -84,7 +85,7 @@ class JobMessagesPresenter extends BasePresenter {
    */
   protected function createComponentEditJobMessageForm(AddEditJobMessageFormFactory $factory) {
     $form = $factory->create();
-    $form->setDefaults($this->message->dummyArray());
+    $form->setDefaults($this->message->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form) {
       $this->model->editMessage($this->message->id, $form->getValues(true));
       $this->flashMessage("Hláška upravena.");

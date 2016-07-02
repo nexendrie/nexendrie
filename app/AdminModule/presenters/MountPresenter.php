@@ -4,7 +4,8 @@ namespace Nexendrie\Presenters\AdminModule;
 use Nexendrie\Forms\AddEditMountFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Orm\Mount as MountEntity,
-    Nexendrie\Model\MountNotFoundException;
+    Nexendrie\Model\MountNotFoundException,
+    Nextras\Orm\Entity\IEntity;
 
 /**
  * Presenter Mount
@@ -57,7 +58,7 @@ class MountPresenter extends BasePresenter {
    */
   protected function createComponentEditMountForm(AddEditMountFormFactory $factory) {
     $form = $factory->create();
-    $form->setDefaults($this->mount->dummyArray());
+    $form->setDefaults($this->mount->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form) {
       $this->model->edit($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Jezdecké zvíře upraveno.");
