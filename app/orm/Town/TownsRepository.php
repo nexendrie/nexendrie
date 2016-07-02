@@ -10,6 +10,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method Town|NULL getByName($name)
  */
 class TownsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Town::class];
+  }
+  
   /**
    * Get towns on sale
    * 

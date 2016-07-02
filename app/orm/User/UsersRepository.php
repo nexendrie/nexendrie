@@ -13,6 +13,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|User[] findByMonastery($monastery)
  */
 class UsersRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [User::class];
+  }
+  
   /**
    * Get mayor of a town
    * 

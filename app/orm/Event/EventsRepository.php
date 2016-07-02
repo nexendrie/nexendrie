@@ -9,6 +9,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method Event|NULL getById($id)
  */
 class EventsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Event::class];
+  }
+  
   /**
    * Get events from specified month
    * 

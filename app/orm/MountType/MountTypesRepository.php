@@ -6,6 +6,8 @@ namespace Nexendrie\Orm;
  * @method MountType|NULL getById($id)
  */
 class MountTypesRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [MountType::class];
+  }
 }
 ?>

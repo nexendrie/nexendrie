@@ -6,6 +6,8 @@ namespace Nexendrie\Orm;
  * @method Shop|NULL getById($id)
  */
 class ShopsRepository extends \Nextras\Orm\Repository\Repository {
-
+  static function getEntityClassNames() {
+    return [Shop::class];
+  }
 }
 ?>

@@ -9,6 +9,9 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Article[] findByCategory(string $category) 
  */
 class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Article::class];
+  }
   /**
    * @return ICollection|Article[]
    */

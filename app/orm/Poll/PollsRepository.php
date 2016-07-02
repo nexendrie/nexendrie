@@ -6,6 +6,8 @@ namespace Nexendrie\Orm;
  * @method Poll|NULL getById($id)
  */
 class PollsRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [Poll::class];
+  }
 }
 ?>

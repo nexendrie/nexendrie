@@ -11,6 +11,8 @@ use Nextras\Orm\Collection\ICollection;
  * @method PollVote|NULL getByPollAndUser($poll,$user)
  */
 class PollVotesRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [PollVote::class];
+  }
 }
 ?>

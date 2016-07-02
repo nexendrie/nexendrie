@@ -6,6 +6,8 @@ namespace Nexendrie\Orm;
  * @method OrderRank|NULL getById($id)
  */
 class OrderRanksRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [OrderRank::class];
+  }
 }
 ?>

@@ -10,6 +10,8 @@ use Nextras\Orm\Collection\ICollection;
  * @method Guild|NULL getByName($name)
  */
 class GuildsRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [Guild::class];
+  }
 }
 ?>

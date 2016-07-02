@@ -9,6 +9,8 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|ElectionResult[] findByTownAndYearAndMonth($town,$year,$month)
  */
 class ElectionResultsRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [ElectionResult::class];
+  }
 }
 ?>

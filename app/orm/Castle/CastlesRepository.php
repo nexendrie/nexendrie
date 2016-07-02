@@ -10,6 +10,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method Castle|NULL getByName($name)
  */
 class CastlesRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Castle::class];
+  }
+  
   /**
    * Get castles owned by users
    * 

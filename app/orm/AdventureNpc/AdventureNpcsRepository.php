@@ -9,6 +9,9 @@ use Nextras\Orm\Collection\ICollection;
  * @method AdventureNPC|NULL getByAdventureAndOrder($adventure,$order)
  */
 class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [AdventureNpc::class];
+  }
   /**
    * Get npcs from specified adventure
    * 

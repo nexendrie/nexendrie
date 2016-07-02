@@ -9,6 +9,8 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Permission[] findByGroup($group)
  */
 class PermissionsRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [Permission::class];
+  }
 }
 ?>

@@ -12,7 +12,7 @@ use Nextras\Orm\Collection\ICollection;
  */
 class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
-    return array("Nexendrie\Orm\BeerProduction");
+    return [BeerProduction::class];
   }
   
   /**

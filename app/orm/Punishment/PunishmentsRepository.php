@@ -9,6 +9,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Punishment findByUser($user)
  */
 class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Punishment::class];
+  }
+  
   /**
    * Find specified user's active punishment
    * 

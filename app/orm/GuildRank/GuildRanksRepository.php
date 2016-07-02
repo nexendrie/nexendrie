@@ -6,6 +6,8 @@ namespace Nexendrie\Orm;
  * @method GuildRank|NULL getById($id)
  */
 class GuildRanksRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [GuildRank::class];
+  }
 }
 ?>

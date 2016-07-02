@@ -9,6 +9,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Election[] findByTown($town)
  */
 class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Election::class];
+  }
+  
   /**
    * Get votes from specified town and month
    * 

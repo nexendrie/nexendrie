@@ -7,6 +7,8 @@ namespace Nexendrie\Orm;
  * @method ItemSet|NULL getByWeaponAndArmorAndHelmet($weapon,$armor,$helmet)
  */
 class ItemSetsRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [ItemSet::class];
+  }
 }
 ?>

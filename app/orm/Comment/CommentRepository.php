@@ -9,6 +9,8 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Comment[] findByArticle($article)
  */
 class CommentsRepository extends \Nextras\Orm\Repository\Repository {
-
+  static function getEntityClassNames() {
+    return [Comment::class];
+  }
 }
 ?>

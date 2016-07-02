@@ -10,6 +10,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|UserSkill[] findByUser($user)
  */
 class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [UserSkill::class];
+  }
+  
   /**
    * 
    * @param int $user

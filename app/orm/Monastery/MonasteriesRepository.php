@@ -11,6 +11,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method Monastery|NULL getByName($name)
  */
 class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Monastery::class];
+  }
+  
   /**
    * Get monasteries led by users
    * 

@@ -10,6 +10,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Mount[] findByType($type)
  */
 class MountsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Mount::class];
+  }
+  
   /**
    * Get mounts on market
    * 

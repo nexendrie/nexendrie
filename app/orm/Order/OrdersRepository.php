@@ -7,6 +7,8 @@ namespace Nexendrie\Orm;
  * @method Order|NULL getByName($name)
  */
 class OrdersRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [Order::class];
+  }
 }
 ?>

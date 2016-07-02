@@ -7,6 +7,8 @@ namespace Nexendrie\Orm;
  * @method Group|NULL getByLevel($level)
  */
 class GroupsRepository extends \Nextras\Orm\Repository\Repository {
-
+  static function getEntityClassNames() {
+    return [Group::class];
+  }
 }
 ?>

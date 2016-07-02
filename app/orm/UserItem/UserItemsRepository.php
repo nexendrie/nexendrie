@@ -11,6 +11,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|UserItem[] findByItem($item)
  */
 class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [UserItem::class];
+  }
+  
   /**
    * Find specified user's equipment
    * 

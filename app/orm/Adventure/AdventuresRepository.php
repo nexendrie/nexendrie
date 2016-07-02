@@ -9,6 +9,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method Adventure|NULL getById($id)
  */
 class AdventuresRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Adventure::class];
+  }
+  
   /**
    * Find adventures for specified level
    * 

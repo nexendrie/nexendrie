@@ -9,6 +9,9 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Loan[] findByUser($user)
  */
 class LoansRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Loan::class];
+  }
   /**
    * Get specified user's active loan
    * 

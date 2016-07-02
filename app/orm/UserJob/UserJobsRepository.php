@@ -9,6 +9,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|UserJob[] findByUser($user)
  */
 class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [UserJob::class];
+  }
+  
   /**
    * Find specified user's active job
    * 

@@ -7,6 +7,9 @@ namespace Nexendrie\Orm;
  * @method House|NULL getByOwner($owner)
  */
 class HousesRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [House::class];
+  }
   /**
    * Get houses owned by users
    * 

@@ -8,6 +8,9 @@ use Nextras\Orm\Collection\ICollection;
  * @method Job|NULL getById($id)
  */
 class JobsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Job::class];
+  }
   /**
    * Find jobs for specified level
    * 

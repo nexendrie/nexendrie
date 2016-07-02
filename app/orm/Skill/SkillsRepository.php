@@ -9,6 +9,8 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Skill[] findByType($type)
  */
 class SkillsRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [Skill::class];
+  }
 }
 ?>

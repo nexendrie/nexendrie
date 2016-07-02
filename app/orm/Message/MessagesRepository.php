@@ -10,6 +10,8 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Message[] findByTo($to)
  */
 class MessagesRepository extends \Nextras\Orm\Repository\Repository {
-  
+  static function getEntityClassNames() {
+    return [Message::class];
+  }
 }
 ?>

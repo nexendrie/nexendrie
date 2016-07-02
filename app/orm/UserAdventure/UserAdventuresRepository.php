@@ -10,6 +10,9 @@ use Nextras\Orm\Collection\ICollection;
  * @method UserAdventure|NULL getLastAdventure($user)
  */
 class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [UserAdventure::class];
+  }
   /**
    * Find specified user's active adventure
    * 
