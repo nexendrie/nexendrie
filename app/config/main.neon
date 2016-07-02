@@ -18,3 +18,4 @@ orm:
     model: Nexendrie\Orm\Model
 cronner:
     bar: false
+    timestampStorage: stekycz\Cronner\TimestampStorage\FileStorage(%appDir%/temp/cronner)
