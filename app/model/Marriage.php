@@ -233,6 +233,25 @@ class Marriage extends \Nette\Object {
     $marriage->divorce += 2;
     $this->orm->marriages->persistAndFlush($marriage);
   }
+  
+  /**
+   * Take back divorce
+   * 
+   * @return void
+   * @throws AuthenticationNeededException
+   * @throws NotMarriedException
+   * @throws NotInDivorceException
+   * @throws CannotTakeBackDivorceException
+   */
+  function takeBackDivorce() {
+    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    if(is_null($marriage)) throw new NotMarriedException;
+    elseif($marriage->divorce < 1 OR $marriage->divorce > 4)  throw new NotInDivorceException;
+    elseif(($marriage->divorce === 3 AND $this->user->id != $marriage->user1->id) OR ($marriage->divorce === 4 AND $this->user->id != $marriage->user2->id)) throw new CannotTakeBackDivorceException;
+    $marriage->divorce = 0;
+    $this->orm->marriages->persistAndFlush($marriage);
+  }
 }
 
 class CannotProposeMarriageException extends AccessDeniedException {
@@ -264,6 +283,10 @@ class AlreadyInDivorceException extends AccessDeniedException {
 }
 
 class NotInDivorceException extends AccessDeniedException {
+  
+}
+
+class CannotTakeBackDivorceException extends AccessDeniedException {
   
 }
 ?>

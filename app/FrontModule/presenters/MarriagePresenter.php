@@ -12,6 +12,7 @@ use Nette\Application\UI\Form,
     Nexendrie\Model\NotMarriedException,
     Nexendrie\Model\AlreadyInDivorceException,
     Nexendrie\Model\NotInDivorceException,
+    Nexendrie\Model\CannotTakeBackDivorceException,
     Nexendrie\Components\WeddingControlFactory,
     Nexendrie\Components\WeddingControl,
     Nexendrie\Orm\Marriage as MarriageEntity,
@@ -208,6 +209,30 @@ class MarriagePresenter extends BasePresenter {
       $this->redirect("Homepage:");
     } catch(NotInDivorceException $e) {
       $this->flashMessage("Nerozvádíte se.");
+      $this->redirect("default");
+    }
+  }
+  
+  /**
+   * @return void
+   */
+  function handleTakeBackDivorce() {
+    try {
+      $this->model->takeBackDivorce();
+      $this->flashMessage("Žádost stáhnuta.");
+      $this->redirect("default");
+    } catch(NotMarriedException $e) {
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi vdaná.";
+      else $message = "Nejsi ženatý.";
+      $this->flashMessage($message);
+      $this->redirect("Homepage:");
+    } catch(NotInDivorceException $e) {
+      $this->flashMessage("Nerozvádíte se.");
+      $this->redirect("default");
+    } catch(CannotTakeBackDivorceException $e) {
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nepodala jsi žádost o rozvod.";
+      else $message = "Nepodal jsi žádost o rozvod.";
+      $this->flashMessage($message);
       $this->redirect("default");
     }
   }
