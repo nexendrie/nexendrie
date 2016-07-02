@@ -31,7 +31,7 @@ class RouterFactory extends \Nette\Object {
     $frontRouter[] = new Route("<presenter help|history>[/<page=index>]", array(
       "action" => "default"
     ));
-    $frontRouter[] = new Route("articles/<category>[/<page [0-9]+]", "Articles:category");
+    $frontRouter[] = new Route("articles/<category>[/<page [0-9]+>]", "Articles:category");
     $adminRouter = new RouteList("Admin");
     $adminRouter[] = new Route("admin/<presenter groups|users|events>", array(
       "action" => "default",
