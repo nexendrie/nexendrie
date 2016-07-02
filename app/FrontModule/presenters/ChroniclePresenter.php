@@ -13,6 +13,8 @@ class ChroniclePresenter extends BasePresenter {
   protected $model;
   /** @var \Nexendrie\Model\Events @autowire */
   protected $eventsModel;
+  /** @var \Nexendrie\Model\Marriage @autowire */
+  protected $marriagesModel;
   
   /**
    * @return void
@@ -26,6 +28,13 @@ class ChroniclePresenter extends BasePresenter {
    */
   function renderCrimes() {
     $this->template->crimes = $this->model->crimes();
+  }
+  
+  /**
+   * @return void
+   */
+  function renderMarriages() {
+    $this->template->marriages = $this->marriagesModel->listOfMarriages();
   }
   
   /**

@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie;
 
-use Nexendrie\Orm\Mount;
+use Nexendrie\Orm\Mount,
+    Nexendrie\Orm\Marriage;
 
 /**
  * Cron Tasks
@@ -13,10 +14,13 @@ class CronTasks {
   protected $orm;
   /** @var \Nexendrie\Model\Taxes */
   protected $taxesModel;
+  /** @var \Nexendrie\Model\Marriage */
+  protected $marriageModel;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Taxes $taxesModel) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Taxes $taxesModel, \Nexendrie\Model\Marriage $marriageModel) {
     $this->orm = $orm;
     $this->taxesModel = $taxesModel;
+    $this->marriageModel = $marriageModel;
   }
   
   /**
@@ -215,6 +219,31 @@ class CronTasks {
     }
     $this->orm->flush();
     echo "Finished houses status update ...\n";
+  }
+  
+  /**
+   * Close weddings
+   * 
+   * @author Jakub Konečný
+   * @return void
+   * 
+   * @cronner-task Close weddings
+   * @cronner-period 1 hour
+   */
+  function closeWeddings() {
+    echo "Starting closing weddings ...\n";
+    $weddings = $this->orm->marriages->findOpenWeddings();
+    foreach($weddings as $wedding) {
+      if(!$this->marriageModel->canFinish($wedding)) {
+        echo "Wedding (#$wedding->id) cannot be finished!\n";
+      } else {
+        echo "Closed wedding (#$wedding->id).\n";
+        $wedding->status = Marriage::STATUS_ACTIVE;
+        $this->orm->marriages->persist($wedding);
+      }
+    }
+    $this->orm->flush();
+    echo "Finished closing weddings ...\n";
   }
 }
 ?>

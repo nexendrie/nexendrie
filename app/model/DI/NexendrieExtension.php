@@ -57,7 +57,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $services = array(
       "group", "market", "messenger", "polls", "profile", "rss", "property", "job",
       "town", "mount", "skills", "chronicle", "tavern", "inventory", "adventure",
-      "combat", "events", "house", "itemSet"
+      "combat", "events", "house", "itemSet", "marriage"
     );
     foreach($services as $service) {
       $builder->addDefinition($this->prefix("model.$service"))
@@ -102,7 +102,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder = $this->getContainerBuilder();
     $components = array(
       "poll", "shop", "mountsMarket", "academy", "townsMarket", "help", "stables",
-      "prison", "tavern", "adventure", "history"
+      "prison", "tavern", "adventure", "history", "wedding"
     );
     foreach($components as $component) {
       $builder->addDefinition($this->prefix("component.$component"))
@@ -123,7 +123,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "addEditMeal", "addEditAdventure", "addEditAdventureEnemy", "buildMonastery",
       "monasteryDonate", "manageMonastery", "appointMayor", "buildCastle", "gift",
       "foundTown", "makeCitizen", "addEditEvent", "foundGuild", "manageGuild", "foundOrder",
-      "manageOrder", "addEditItemSet", "manageCastle"
+      "manageOrder", "addEditItemSet", "manageCastle", "changeWeddingTerm"
     );
     foreach($forms as $form) {
       $builder->addDefinition($this->prefix("form.$form"))
@@ -140,7 +140,9 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $initialize->addBody('$groupModel = $this->getByType("Nexendrie\Model\Group");
 $user = $this->getByType("Nette\Security\User");
 $user->guestRole = $groupModel->get(?)->singleName;
-$user->authenticatedRole = $groupModel->get(?)->singleName;', array($roles["guestRole"], $roles["loggedInRole"]));
+$user->authenticatedRole = $groupModel->get(?)->singleName;
+\Nella\Forms\DateTime\DateInput::register();
+\Nella\Forms\DateTime\DateTimeInput::register();', array($roles["guestRole"], $roles["loggedInRole"]));
   }
 }
 ?>

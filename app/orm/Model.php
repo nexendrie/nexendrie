@@ -40,7 +40,8 @@ namespace Nexendrie\Orm;
  * @property-read GuildRanksRepository $guildRanks
  * @property-read OrdersRepository $orders
  * @property-read OrderRanksRepository $orderRanks
- * @property-read ItemSetsRepository $itemSets
+ * @property-read ItemSetsRepository  $itemSets
+ * @property-read MarriagesRepository $marriages
  */
 class Model extends \Nextras\Orm\Model\Model {
   

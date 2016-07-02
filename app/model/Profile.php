@@ -132,6 +132,33 @@ class Profile extends \Nette\Object {
    function countMessages($id = 0) {
      return array("sent" => $this->orm->messages->findByFrom($id)->countStored(), "recieved" => $this->orm->messages->findByTo($id)->countStored());
    }
+   
+   
+   /**
+    * Get specified user's partner
+    * 
+    * @param int $id 
+    * @return UserEntity|NULL
+    */
+   function getPartner($id) {
+     $marriage = $this->orm->marriages->getActiveMarriage($id)->fetch();
+     if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
+     elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
+     else return NULL;
+   }
+   
+   /**
+    * Get specified user's fiance(e)
+    * 
+    * @param int $id 
+    * @return UserEntity|NULL
+    */
+   function getFiance($id) {
+     $marriage = $this->orm->marriages->getAcceptedMarriage($id)->fetch();
+     if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
+     elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
+     else return NULL;
+   }
 }
 
 class UserNotFoundException extends RecordNotFoundException {
