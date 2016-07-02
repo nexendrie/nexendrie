@@ -17,7 +17,8 @@ namespace Nexendrie\Orm;
  * @property-read string|NULL $termT {virtual}
  * @property int|NULL $cancelled {default NULL}
  * @property-read string|NULL $cancelledT {virtual}
- * @property int $level {default 1}
+ * @property int $intimacy {default 0}
+ * @property-read int $level {virtual}
  * @property-read int $hpIncrease {virtual}
  */
 class Marriage extends \Nextras\Orm\Entity\Entity {
@@ -59,15 +60,19 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
     else return $this->localeModel->formatDateTime($this->cancelled);
   }
   
-  protected function setterLevel($value) {
-    if($value < 1) return 1;
-    elseif($value > 9) return 9;
+  protected function setterIntimacy($value) {
+    if($value < 0) return 0;
+    elseif($value > 1000) return 1000;
     else return $value;
   }
   
-  protected function getterHpIncrease() {
+  protected function getterLevel() {
     if($this->status != self::STATUS_ACTIVE) return 0;
-    else return $this->level * 3;
+    else return (int) ($this->intimacy / 100);
+  }
+  
+  protected function getterHpIncrease() {
+    return $this->level * 2;
   }
   
   protected function onBeforeInsert() {
