@@ -34,6 +34,8 @@ class Combat extends \Nette\Object {
     $set = $this->inventoryModel->getUserItemSet($user->id);
     if($helmet) $hpIncrease = ($helmet->item->strength + $helmet->level) * 5;
     if($set AND $set->stat === ItemSetEntity::STAT_HITPOINTS) $hpIncrease += $set->bonus;
+    $marriage = $this->orm->marriages->getActiveMarriage($user->id)->fetch();
+    if(!is_null($marriage)) $hpIncrease += $marriage->hpIncrease;
     $maxLife += $hpIncrease;
     $life  += $hpIncrease;
     return array("maxLife" => $maxLife, "life" => $life);
