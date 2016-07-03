@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Order as OrderEntity,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Orm\User as UserEntity,
+    Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Order Model
@@ -109,7 +110,7 @@ class Order extends \Nette\Object {
   function canFound() {
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != "tower") return false;
+    if($user->group->path != GroupEntity::PATH_TOWER) return false;
     elseif($user->group->level < 6000) return false;
     elseif($user->order) return false;
     else return true;
@@ -148,7 +149,7 @@ class Order extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $bonus = $increase = 0;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->order AND $user->group->path === "tower") {
+    if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
       $increase += $user->orderRank->adventureBonus + ($user->order->level * 2.5) - 2.5;
     }
     $bonus += (int) $baseIncome /100 * $increase;
@@ -163,7 +164,7 @@ class Order extends \Nette\Object {
   function canJoin() {
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path === "tower" AND !$user->order) return true;
+    if($user->group->path === GroupEntity::PATH_TOWER AND !$user->order) return true;
     else return false;
   }
   

@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Town as TownEntity,
-    Nexendrie\Orm\Message as MessageEntity;
+    Nexendrie\Orm\Message as MessageEntity,
+    Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Town Model
@@ -181,8 +182,8 @@ class Town extends \Nette\Object {
     $month = 60 * 60 * 24 * 31;
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path === "church") return false;
-    elseif($user->group->path === "city" AND $user->group->level != 100) return false;
+    if($user->group->path === GroupEntity::PATH_CHURCH) return false;
+    elseif($user->group->path === GroupEntity::PATH_CITY AND $user->group->level != 100) return false;
     elseif($user->lastTransfer === NULL) return true;
     elseif($user->lastTransfer + $month > time()) return false;
     elseif($user->guild AND $user->guildRank->id === 4) return false;
@@ -226,7 +227,7 @@ class Town extends \Nette\Object {
   function found(array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != "tower") throw new InsufficientLevelForFoundTownException;
+    if($user->group->path != GroupEntity::PATH_TOWER) throw new InsufficientLevelForFoundTownException;
     if($user->money < $this->foundingPrice) throw new InsufficientFundsException;
     $item = $this->orm->userItems->getByUserAndItem($user->id, 15);
     if(!$item) throw new CannotFoundTownException;

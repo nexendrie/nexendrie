@@ -6,7 +6,8 @@ use Nexendrie\Model\TownNotFoundException,
     Nexendrie\Model\CannotMoveToTownException,
     Nexendrie\Forms\FoundTownFormFactory,
     Nette\Application\UI\Form,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Orm\User as UserEntity,
+    Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Presenter Town
@@ -96,7 +97,7 @@ class TownPresenter extends BasePresenter {
    */
   function actionFound() {
     $path = $this->profileModel->getPath();
-    if($path != "tower") {
+    if($path != GroupEntity::PATH_TOWER) {
       $this->flashMessage("Jen šlechtici mohou zakládat města.");
       $this->redirect("Homepage:");
     }

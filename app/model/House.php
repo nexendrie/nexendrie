@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\House as HouseEntity,
-    Nexendrie\Orm\BeerProduction;
+    Nexendrie\Orm\BeerProduction,
+    Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * House Model
@@ -46,7 +47,7 @@ class House extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif($this->getUserHouse()) throw new CannotBuyMoreHousesException;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != "city") throw new CannotBuyHouse;
+    if($user->group->path != GroupEntity::PATH_CITY) throw new CannotBuyHouse;
     elseif($user->money < $this->price) throw new InsufficientFundsException;
     $user->money -= $this->price;
     $house = new HouseEntity;
@@ -164,7 +165,7 @@ class House extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $house = $this->orm->houses->getByOwner($this->user->id);
     if(!$house) return false;
-    elseif($house->owner->group->path != "city") return false;
+    elseif($house->owner->group->path != GroupEntity::PATH_CITY) return false;
     elseif($house->breweryLevel < 1) return false;
     elseif($house->hp < 31) return false;
     $lastProduction = $this->orm->beerProduction->getLastProduction($house->id);

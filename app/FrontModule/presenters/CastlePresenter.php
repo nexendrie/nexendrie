@@ -6,7 +6,8 @@ use Nexendrie\Model\CastleNotFoundException,
     Nexendrie\Forms\ManageCastleFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\CannotUpgradeCastleException,
-    Nexendrie\Model\CannotRepairCastleException;
+    Nexendrie\Model\CannotRepairCastleException,
+    Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Presenter Castle
@@ -38,7 +39,7 @@ class CastlePresenter extends BasePresenter {
     $castle = $this->model->getUserCastle();
     if(!$castle) {
       $this->flashMessage("Nemáš hrad.");
-      if($this->profileModel->getPath() === "tower") $this->redirect("build");
+      if($this->profileModel->getPath() === GroupEntity::PATH_TOWER) $this->redirect("build");
       else $this->redirect("Homepage:");
     }
     $this->template->castle = $castle;
@@ -69,7 +70,7 @@ class CastlePresenter extends BasePresenter {
    */
   function actionBuild() {
     $user = $this->userManager->get($this->user->id);
-    if($user->group->path != "tower") {
+    if($user->group->path != GroupEntity::PATH_TOWER) {
       $this->flashMessage("Nejsi šlechtic.");
       $this->redirect("Homepage:");
     } elseif($this->model->getUserCastle()) {

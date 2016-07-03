@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Castle as CastleEntity;
+use Nexendrie\Orm\Castle as CastleEntity,
+    Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Castle Model
@@ -101,7 +102,7 @@ class Castle extends \Nette\Object {
   function build(array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != "tower") throw new CannotBuildCastleException;
+    if($user->group->path != GroupEntity::PATH_TOWER) throw new CannotBuildCastleException;
     elseif($this->getUserCastle()) throw new CannotBuildMoreCastlesException;
     elseif(!$this->checkNameAvailability($data["name"])) throw new CastleNameInUseException;
     elseif($user->money < $this->buildingPrice) throw new InsufficientFundsException;

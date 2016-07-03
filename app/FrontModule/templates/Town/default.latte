@@ -20,6 +20,6 @@
   </p>
   <p>
     <a n:href="list">Seznam měst</a> <a n:href="Castle:list">Seznam hradů</a> <a n:href="Monastery:list">Seznam klášterů</a> <a n:href="Guild:list">Seznam cechů</a> <a n:href="Order:list">Seznam řádů</a><br>
-    {if $path === "tower"}<a n:href="found">Založit město</a>{/if} {if $house}<a n:href="House:">Dům</a>{/if} {if !$house AND $path === "city"}<a n:href="House:buy">Koupit dům</a>{/if} {if !$guild AND $path === "city"}<a n:href="Guild:found">Založit cech</a>{/if} {if $guild}<a n:href="Guild:">Tvůj cech</a>{/if} {if !$order AND $path === "tower"}<a n:href="Order:found">Založit řád</a>{/if} {if $order}<a n:href="Order:">Tvůj řád</a>{/if}
+    {if $path === \Nexendrie\Orm\Group::PATH_TOWER}<a n:href="found">Založit město</a>{/if} {if $house}<a n:href="House:">Dům</a>{/if} {if !$house AND $path === \Nexendrie\Orm\Group::PATH_CITY}<a n:href="House:buy">Koupit dům</a>{/if} {if !$guild AND $path === \Nexendrie\Orm\Group::PATH_CITY}<a n:href="Guild:found">Založit cech</a>{/if} {if $guild}<a n:href="Guild:">Tvůj cech</a>{/if} {if !$order AND $path === \Nexendrie\Orm\Group::PATH_TOWER}<a n:href="Order:found">Založit řád</a>{/if} {if $order}<a n:href="Order:">Tvůj řád</a>{/if}
   </p>
 {/block}

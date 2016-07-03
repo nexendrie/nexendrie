@@ -7,7 +7,8 @@ use Nexendrie\Model\CannotBuyMoreHousesException,
     Nexendrie\Model\CannotRepairHouseException,
     Nexendrie\Model\CannotUpgradeBreweryException,
     Nexendrie\Model\CannotProduceBeerException,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Orm\User as UserEntity,
+    Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Presenter House
@@ -29,7 +30,7 @@ class HousePresenter extends BasePresenter {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeTavelling();
-    if($this->profileModel->getPath() != "city") {
+    if($this->profileModel->getPath() != GroupEntity::PATH_CITY) {
       $this->redirect("Homepage:");
     }
   }

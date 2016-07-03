@@ -3,6 +3,7 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Monastery as MonasteryEntity,
     Nexendrie\Orm\MonasteryDonation,
+    Nexendrie\Orm\Group as GroupEntity,
     Nextras\Orm\Collection\ICollection;
 
 /**
@@ -99,13 +100,13 @@ class Monastery extends \Nette\Object {
     $month = 60 * 60 * 24 * 31;
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery AND $user->group->path === "city") {
+    if(!$user->monastery AND $user->group->path === GroupEntity::PATH_CITY) {
       if($user->guild AND $user->guildRank->id === $this->guildModel->maxRank) return false;
       else return true;
-    } elseif(!$user->monastery AND $user->group->path === "tower") {
+    } elseif(!$user->monastery AND $user->group->path === GroupEntity::PATH_TOWER) {
       if($user->order AND $user->orderRank->id === $this->orderModel->maxRank) return false;
       else return true;
-    } elseif($user->group->path === "church") {
+    } elseif($user->group->path === GroupEntity::PATH_CHURCH) {
       if($user->monasteriesLed->countStored()) return false;
       elseif($user->lastTransfer === NULL) return true;
       elseif($user->lastTransfer  + $month < time()) return true;
@@ -135,7 +136,7 @@ class Monastery extends \Nette\Object {
     if($user->monastery AND $user->monastery->id === $monastery->id) throw new CannotJoinOwnMonasteryException;
     $user->lastTransfer = $user->lastActive = time();
     $user->monastery = $monastery;
-    if($user->group->path != "church") $user->group = $this->orm->groups->getByLevel(55);
+    if($user->group->path != GroupEntity::PATH_CHURCH) $user->group = $this->orm->groups->getByLevel(55);
     $user->town = $monastery->town;
     $user->guild = $user->guildRank = NULL;
     $user->order = $user->orderRank = NULL;

@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Group as GroupEntity;
+
 /**
  * Property Model
  *
@@ -63,8 +65,8 @@ class Property extends \Nette\Object {
       if($current) $budget["expenses"]["incomeTax"] = 0;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->guild AND $user->group->path === "city") $budget["expenses"]["membershipFee"] += $user->guildRank->guildFee;
-    if($user->order AND $user->group->path === "tower") $budget["expenses"]["membershipFee"] += $user->orderRank->orderFee;
+    if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) $budget["expenses"]["membershipFee"] += $user->guildRank->guildFee;
+    if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) $budget["expenses"]["membershipFee"] += $user->orderRank->orderFee;
     return $budget;
   }
 }

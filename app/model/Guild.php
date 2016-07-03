@@ -3,7 +3,8 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Guild as GuildEntity,
     Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\UserJob as UserJobEntity;
+    Nexendrie\Orm\UserJob as UserJobEntity,
+    Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Guild Model
@@ -112,7 +113,7 @@ class Guild extends \Nette\Object {
   function canFound() {
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != "city") return false;
+    if($user->group->path != GroupEntity::PATH_CITY) return false;
     elseif($user->guild) return false;
     else return true;
   }
@@ -147,7 +148,7 @@ class Guild extends \Nette\Object {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $bonus = $increase = 0;
     $user = $this->orm->users->getById($job->user->id);
-    if($user->guild AND $user->group->path === "city") {
+    if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
       $use = false;
       if($user->guild->skill === NULL) $use = true;
       elseif($job->job->neededSkill->id === $user->guild->skill->id) $use = true;
@@ -165,7 +166,7 @@ class Guild extends \Nette\Object {
   function canJoin() {
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path === "city" AND !$user->guild) return true;
+    if($user->group->path === GroupEntity::PATH_CITY AND !$user->guild) return true;
     else return false;
   }
   

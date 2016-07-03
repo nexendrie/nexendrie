@@ -57,7 +57,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
   function findInGuild() {
     return $this->findBy(array(
       "guild!=" => NULL,
-      "this->group->path" => "city"
+      "this->group->path" => Group::PATH_CITY
     ));
   }
   
@@ -69,7 +69,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
   function findInOrder() {
     return $this->findBy(array(
       "order!=" => NULL,
-      "this->group->path" => "tower"
+      "this->group->path" => Group::PATH_TOWER
     ));
   }
   
