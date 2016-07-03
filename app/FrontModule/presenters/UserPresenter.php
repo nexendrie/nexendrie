@@ -26,8 +26,6 @@ class UserPresenter extends BasePresenter {
   }
   
   /**
-   * Creates form for logging in
-   * 
    * @param LoginFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
@@ -49,8 +47,6 @@ class UserPresenter extends BasePresenter {
   }
   
   /**
-   * Log out the user
-   * 
    * @todo return to previous page if possible
    * @return void
    */
@@ -76,8 +72,6 @@ class UserPresenter extends BasePresenter {
   }
   
   /**
-   * Creates form for registering
-   * 
    * @param RegisterFormFactory $factory
    * @return Form
    */
@@ -98,9 +92,8 @@ class UserPresenter extends BasePresenter {
   }
   
   /**
-   * Creates form for changing user's settings
-   * 
-   * @return \Nette\Application\UI\Form
+   * @param UserSettingsFormFactory $factory
+   * @return Form
    */
   protected function createComponentUserSettingsForm(UserSettingsFormFactory $factory) {
     $form = $factory->create();

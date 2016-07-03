@@ -6,7 +6,7 @@ use Nette\Application\UI\Form,
     Nexendrie\Model\ArticleNotFoundException;
 
 /**
- * Presenter News
+ * Presenter Article
  *
  * @author Jakub Konečný
  */
@@ -29,8 +29,7 @@ class ArticlePresenter extends BasePresenter {
   }
   
   /**
-   * Creates form for adding news
-   * @todo redirect to the added news
+   * @todo redirect to the added article
    * 
    * @param AddEditArticleFormFactory $factory
    * @return \Nette\Application\UI\Form
@@ -46,9 +45,7 @@ class ArticlePresenter extends BasePresenter {
   }
   
   /**
-   * Edits news
-   * 
-   * @param int $id News'id
+   * @param int $id
    * @return void
    */
   function actionEdit($id) {
@@ -61,8 +58,6 @@ class ArticlePresenter extends BasePresenter {
   }
   
   /**
-   * Creates form for editing news
-   * 
    * @param AddEditArticleFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
@@ -71,7 +66,7 @@ class ArticlePresenter extends BasePresenter {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->model->editArticle($this->getParameter("id"), $form->getValues(true));
-      $this->flashMessage("Novinka upravena.");
+      $this->flashMessage("Článek upraven.");
     };
     $form->setDefaults($news->toArray());
     return $form;

@@ -60,8 +60,6 @@ class MessagesPresenter extends BasePresenter {
   }
   
   /**
-   * Creates form for new message
-   * 
    * @return \Nette\Application\UI\Form
    */
   protected function createComponentNewMessageForm(NewMessageFormFactory $factory) {

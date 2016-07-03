@@ -36,8 +36,6 @@ class PollsPresenter extends BasePresenter {
   }
   
   /**
-   * Creates form for adding poll
-   * 
    * @param AddEditPollFormFactory $factory
    * @return Form
    */
@@ -62,8 +60,6 @@ class PollsPresenter extends BasePresenter {
   }
   
   /**
-   * Creates form for editing poll
-   * 
    * @param AddEditPollFormFactory $factory
    * @return Form
    */

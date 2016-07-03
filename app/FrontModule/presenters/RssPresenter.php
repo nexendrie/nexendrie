@@ -18,7 +18,7 @@ class RssPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $news News' id
+   * @param int $news Article's id
    * @return void
    */
   function renderComments($news) {

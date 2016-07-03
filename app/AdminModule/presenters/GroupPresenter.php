@@ -32,8 +32,6 @@ class GroupPresenter extends BasePresenter {
   }
   
   /**
-   * Creates form for editting group
-   * 
    * @param EditGroupFormFactory $factory
    * @return \Nette\Application\UI\Form
    */

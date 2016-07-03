@@ -4,7 +4,7 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nexendrie\Components\PollControlFactory;
 
 /**
- * Description of PollPresenter
+ * Presenter Poll
  *
  * @author Jakub Konečný
  */

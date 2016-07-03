@@ -29,7 +29,6 @@ class ArticlePresenter extends BasePresenter {
   }
   
   /**
-   * Creates form for adding comment to news
    * @param AddCommentFormFactory $factory
    * @return Form
    */
@@ -40,8 +39,6 @@ class ArticlePresenter extends BasePresenter {
   }
   
   /**
-   * Adds comment to news
-   * 
    * @param Form $form
    */
   function addCommentFormSucceeded(Form $form) {
