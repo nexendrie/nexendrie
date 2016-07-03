@@ -204,7 +204,6 @@ case "password_new":
       if(!in_array($key, $skip)) $user->$key = $value;
     }
     $this->orm->users->persistAndFlush($user);
-    $this->user->identity->gender = $user->gender;
   }
   
   /**

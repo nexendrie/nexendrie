@@ -98,11 +98,9 @@ class UserPresenter extends BasePresenter {
   protected function createComponentUserSettingsForm(UserSettingsFormFactory $factory) {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, $values) {
+      $this->model->refreshIdentity();
       $this->flashMessage("Změny uloženy.");
-      if($this->user->identity->style != $values["style"]) {
-        $this->user->identity->style = $values["style"];
-        $this->redirect("this");
-      }
+      $this->redirect("this");
     };
     return $form;
   }
