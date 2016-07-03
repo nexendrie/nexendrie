@@ -13,14 +13,14 @@ class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Article[]
    */
   function findNews() {
-    return $this->findBy(array("category" => "news"))->orderBy("added", ICollection::DESC);
+    return $this->findBy(array("category" => Article::CATEGORY_NEWS))->orderBy("added", ICollection::DESC);
   }
   
   /**
    * @return ICollection|Article[]
    */
   function findChronicle() {
-    return $this->findBy(array("category" => "chronicle"))->orderBy("added", ICollection::DESC);
+    return $this->findBy(array("category" => Article::CATEGORY_CHRONICLE))->orderBy("added", ICollection::DESC);
   }
 }
 ?>
