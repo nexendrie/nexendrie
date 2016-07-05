@@ -71,6 +71,15 @@ class Item extends \Nextras\Orm\Entity\Entity {
     );
   }
   
+  /**
+   * @return string[]
+   */
+  static function getNotForSale() {
+    return array(
+      self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
+    );
+  }
+  
   protected function getterPriceT() {
     return $this->localeModel->money($this->price);
   }

@@ -249,7 +249,7 @@ class Inventory extends \Nette\Object {
     $item = $this->orm->userItems->getById($id);
     if(!$item) throw new ItemNotFoundException;
     elseif($item->user->id != $this->user->id) throw new ItemNotOwnedException;
-    elseif($item->item->type === "charter") throw new ItemNotForSaleException;
+    elseif(in_array($item->item->type, ItemEntity::getNotForSale())) throw new ItemNotForSaleException;
     $item->amount -= 1;
     $price = $item->sellPrice;
     $item->user->money += $price;
