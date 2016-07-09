@@ -143,6 +143,10 @@ class ElectionsControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Nemůžeš hlasovat.");
       $this->presenter->redirect(":Front:Homepage:");
     }
+    if(!in_array($candidate, $this->getCandidates()->fetchPairs(NULL, "id"))) {
+      $this->presenter->flashMessage("Neplatný kandidát.");
+      $this->presenter->redirect(":Front:Homepage:");
+    }
     $vote = new ElectionEntity;
     $this->orm->elections->attach($vote);
     $vote->town = $this->town;
