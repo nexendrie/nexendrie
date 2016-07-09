@@ -96,6 +96,11 @@ class ElectionsControl extends \Nette\Application\UI\Control {
     return $this->orm->elections->findVotedInMonth($this->town->id, $year, $month);
   }
   
+  /**
+   * Get results of last elections
+   * 
+   * @return stdClass[]
+   */
   protected function getResults() {
     $date = new \DateTime;
     $date->setTimestamp(mktime(0, 0, 0, date("n"), 1, date("Y")));
