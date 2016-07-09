@@ -57,7 +57,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $services = array(
       "group", "market", "messenger", "polls", "profile", "rss", "property", "job",
       "town", "mount", "skills", "chronicle", "tavern", "inventory", "adventure",
-      "combat", "events", "house", "itemSet", "marriage"
+      "combat", "events", "house", "itemSet", "marriage", "elections"
     );
     foreach($services as $service) {
       $builder->addDefinition($this->prefix("model.$service"))
@@ -102,7 +102,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder = $this->getContainerBuilder();
     $components = array(
       "poll", "shop", "mountsMarket", "academy", "townsMarket", "help", "stables",
-      "prison", "tavern", "adventure", "history", "wedding"
+      "prison", "tavern", "adventure", "history", "wedding", "elections"
     );
     foreach($components as $component) {
       $builder->addDefinition($this->prefix("component.$component"))

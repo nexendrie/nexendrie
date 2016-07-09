@@ -6,6 +6,8 @@ use Nexendrie\Model\TownNotFoundException,
     Nexendrie\Model\CannotMoveToTownException,
     Nexendrie\Forms\FoundTownFormFactory,
     Nette\Application\UI\Form,
+    Nexendrie\Components\ElectionsControlFactory,
+    Nexendrie\Components\ElectionsControl,
     Nexendrie\Orm\User as UserEntity,
     Nexendrie\Orm\Group as GroupEntity;
 
@@ -27,6 +29,8 @@ class TownPresenter extends BasePresenter {
   protected $guildModel;
   /** @var \Nexendrie\Model\Order @autowire */
   protected $orderModel;
+  /** @var \Nexendrie\Orm\Town */
+  private $town;
   
   /**
    * @return void
@@ -114,6 +118,24 @@ class TownPresenter extends BasePresenter {
       $this->redirect("Homepage:");
     };
     return $form;
+  }
+  
+  /**
+   * @return void
+   */
+  function actionElections() {
+    $this->requiresPermissions("town", "elect");
+    $this->town = $this->model->get($this->user->identity->town);
+  }
+  
+  /**
+   * @param ElectionsControlFactory $factory
+   * @return ElectionsControl
+   */
+  protected function createComponentElections(ElectionsControlFactory $factory) {
+    $elections = $factory->create();
+    $elections->town = $this->town;
+    return $elections;
   }
 }
 ?>

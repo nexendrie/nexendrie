@@ -55,6 +55,9 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$user}
  * @property OneHasMany|Marriage[] $sentMarriages {1:m Marriage::$user1}
  * @property OneHasMany|Marriage[] $recievedMarriages {1:m Marriage::$user2}
+ * @property OneHasMany|Election[] $receivedVotes {1:m Election::$candidate}
+ * @property OneHasMany|Election[] $castedVotes {1:m Election::$voter}
+ * @property OneHasMany|ElectionResult[] $elections {1:m ElectionResult::$candidate}
  * @property-read string $title {virtual}
  */
 class User extends \Nextras\Orm\Entity\Entity {
