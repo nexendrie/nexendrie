@@ -2,7 +2,8 @@
 namespace Nexendrie\Components;
 
 use Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\Election as ElectionEntity;
+    Nexendrie\Orm\Election as ElectionEntity,
+    Nexendrie\Orm\ElectionResult as ElectionResultEntity;
 
 /**
  * ElectionsControl
@@ -80,13 +81,13 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   /**
    * Get results of last elections
    * 
-   * @return stdClass[]
+   * @return ElectionResult[]
    */
   protected function getResults() {
     $date = new \DateTime;
     $date->setTimestamp(mktime(0, 0, 0, date("n"), 1, date("Y")));
-    $date->modify("-1 month");
-    $votes = $this->getVotes($date->format("Y"), $date->format("n"));
+    //$date->modify("-1 month");
+    /*$votes = $this->getVotes($date->format("Y"), $date->format("n"));
     $results = array();
     foreach($votes as $vote) {
       $index = $vote->candidate->username;
@@ -98,7 +99,8 @@ class ElectionsControl extends \Nette\Application\UI\Control {
         );
       }
     }
-    return $results;
+    return $results;*/
+    return $this->orm->electionResults->findByTownAndYearAndMonth($this->town->id, $date->format("Y"), $date->format("n"));
   }
   
   /**

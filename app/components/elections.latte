@@ -2,7 +2,7 @@
   {elseif $state === "results"}<h2>Výsledky posledních voleb</h2>
     {if !count($results)}Minulý měsíc nikdo nehlasoval.{/if}
     {foreach $results as $result}
-    <p><a href="{plink :Front:Profile: $result->candidate->username}">{$result->candidate->publicname}</a> získal {$result->amount} hlasů{if $result->elected} a stal{if $result->candidate->gender === "female"}a{/if} se konšelem{/if}.</p>
+    <p><a href="{plink :Front:Profile: $result->candidate->username}">{$result->candidate->publicname}</a> získal {$result->votes} hlasů{if $result->elected} a stal{if $result->candidate->gender === "female"}a{/if} se konšelem{/if}.</p>
     {/foreach}
   {elseif $state === "voting"}
     {if !$councillors}Tvé město/vesnice má příliš málo obyvatel. Městská rada se nevolí.
