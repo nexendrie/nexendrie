@@ -1,8 +1,10 @@
 <?php
 namespace Nexendrie;
 
-use Nexendrie\Orm\Mount,
-    Nexendrie\Orm\Marriage;
+use Nexendrie\Utils\Arrays,
+    Nexendrie\Orm\Mount,
+    Nexendrie\Orm\Marriage,
+    Nexendrie\Orm\ElectionResult;
 
 /**
  * Cron Tasks
@@ -16,11 +18,14 @@ class CronTasks {
   protected $taxesModel;
   /** @var \Nexendrie\Model\Marriage */
   protected $marriageModel;
+  /** @var \Nexendrie\Model\Elections */
+  protected $electionsModel;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Taxes $taxesModel, \Nexendrie\Model\Marriage $marriageModel) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Taxes $taxesModel, \Nexendrie\Model\Marriage $marriageModel, \Nexendrie\Model\Elections $electionsModel) {
     $this->orm = $orm;
     $this->taxesModel = $taxesModel;
     $this->marriageModel = $marriageModel;
+    $this->electionsModel = $electionsModel;
   }
   
   /**
@@ -244,6 +249,80 @@ class CronTasks {
     }
     $this->orm->flush();
     echo "Finished closing weddings ...\n";
+  }
+  
+  /**
+   * @param int $town
+   * @param int $year
+   * @param int $month
+   * @return array
+   */
+  protected function getElectionResults($town, $year, $month) {
+    $votes = $this->orm->elections->findVotedInMonth($town, $year, $month);
+    $results = array();
+    foreach($votes as $vote) {
+      if(!in_array($vote->candidate->id, $this->electionsModel->getCandidates($town)->fetchPairs(NULL, "id"))) continue;
+      $index = $vote->candidate->username;
+      if(isset($results[$index])) {
+        $results[$index]["amount"]++;
+      } else {
+        $results[$index] = array(
+          "candidate" => $vote->candidate, "amount" => 1
+        );
+      }
+    }
+    return Arrays::orderby($results, "amount", SORT_DESC);
+  }
+  
+  /**
+   * Municipal elections
+   * 
+   * @author Jakub Konečný
+   * @return void
+   * 
+   * @cronner-task Municipal elections
+   * @cronner-period 1 day
+   * @cronner-time 01:00 - 02:00
+   */
+  function municipalElections() {
+    $date = new \DateTime;
+    $date->setTimestamp(time());
+    if($date->format("j") != 1) return;
+    echo "Starting proccessing results of municipal elections ...\n";
+    $date->modify("-1 day");
+    $year = (int) $date->format("Y");
+    $month = (int) $date->format("n");
+    $towns = $this->orm->towns->findAll();
+    foreach($towns as $town) {
+      echo "Town (#$town->id) $town->name ...\n";
+      $councillors = $this->electionsModel->getNumberOfCouncillors($town->id);
+      $results = $this->getElectionResults($town, $year, $month);
+      if(!count($results)) {
+        echo "No votes found.\n";
+        continue;
+      }
+      echo sprintf("Found %d possible candidates, the town can have %d councillors.\n", count($results), $councillors);
+      foreach($results as $row) {
+        $record = new ElectionResult;
+        $record->candidate = $row["candidate"];
+        $record->town = $town;
+        $record->votes = $row["amount"];
+        $record->year = $year;
+        $record->month = $month;
+        if($councillors <= 0) {
+          echo "{$row["candidate"]->publicname} will not become a councillor.\n";
+          $this->orm->electionResults->persist($record);
+          continue;
+        }
+        echo "{$row["candidate"]->publicname} will become a councillor.\n";
+        $record->elected = true;
+        $record->candidate->group = $this->orm->groups->getByLevel(300);
+        $this->orm->electionResults->persist($record);
+        $councillors--;
+      }
+    }
+    $this->orm->flush();
+    echo "Finished proccessing results of municipal elections ...\n";
   }
 }
 ?>

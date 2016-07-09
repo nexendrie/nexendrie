@@ -17,6 +17,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Monastery[] $monasteries {1:m Monastery::$town}
  * @property OneHasMany|Guild[] $guilds {1:m Guild::$town}
  * @property OneHasMany|Election[] $elections {1:m Election::$town}
+ * @property OneHasMany|ElectionResult[] $electionResults {1:m ElectionResult::$town}
  * @property-read string $foundedAt {virtual}
  * @property-read string $priceT {virtual}
  */

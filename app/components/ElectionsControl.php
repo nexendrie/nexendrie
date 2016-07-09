@@ -10,6 +10,8 @@ use Nexendrie\Orm\User as UserEntity,
  * @author Jakub Konečný
  */
 class ElectionsControl extends \Nette\Application\UI\Control {
+  /** @var \Nexendrie\Model\Elections */
+  protected $model;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -17,7 +19,8 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Orm\Town */
   private $town;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Model\Elections $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    $this->model = $model;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -48,35 +51,13 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   }
   
   /**
-   * Get candidates for elections
-   * 
-   * @return UserEntity[]
-   */
-  protected function getCandidates() {
-    return $this->orm->users->findTownCitizens($this->town->id);
-  }
-  
-  /**
-   * Get number of councillors for the town
-   * 
-   * @return int
-   */
-  protected function getNumberOfCouncillors() {
-    /** @var int */
-    $denizens = $this->town->denizens->countStored();
-    if($denizens <= 3) return 0;
-    elseif($denizens <= 6) return 1;
-    else return (int) ($denizens / 5);
-  }
-  
-  /**
    * Check if the user can vote
    * 
    * @return bool
    */
   protected function canVote() {
     if(!$this->user->isAllowed("town", "elect")) return false;
-    elseif(!$this->getNumberOfCouncillors()) return false;
+    elseif(!$this->model->getNumberOfCouncillors($this->town->id)) return false;
     elseif($this->getState() != "voting") return false;
     $votes = $this->getVotes(date("Y"), date("n"));
     foreach($votes as $vote) {
@@ -128,8 +109,8 @@ class ElectionsControl extends \Nette\Application\UI\Control {
     $this->template->state = $this->getState();
     switch($this->template->state) {
       case "voting":
-        $this->template->candidates = $this->getCandidates();
-        $this->template->councillors = $this->getNumberOfCouncillors();
+        $this->template->candidates = $this->model->getCandidates($this->town->id);
+        $this->template->councillors = $this->model->getNumberOfCouncillors($this->town->id);
         $this->template->canVote = $this->canVote();
         break;
       case "results":
@@ -148,7 +129,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Nemůžeš hlasovat.");
       $this->presenter->redirect(":Front:Homepage:");
     }
-    if(!in_array($candidate, $this->getCandidates()->fetchPairs(NULL, "id"))) {
+    if(!in_array($candidate, $this->model->getCandidates($this->town->id)->fetchPairs(NULL, "id"))) {
       $this->presenter->flashMessage("Neplatný kandidát.");
       $this->presenter->redirect(":Front:Homepage:");
     }
