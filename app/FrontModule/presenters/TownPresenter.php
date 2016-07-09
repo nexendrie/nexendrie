@@ -115,5 +115,9 @@ class TownPresenter extends BasePresenter {
     };
     return $form;
   }
+  
+  function actionElections() {
+    $this->requiresPermissions("town", "elect");
+  }
 }
 ?>
