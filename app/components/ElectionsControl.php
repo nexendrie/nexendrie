@@ -96,6 +96,25 @@ class ElectionsControl extends \Nette\Application\UI\Control {
     return $this->orm->elections->findVotedInMonth($this->town->id, $year, $month);
   }
   
+  protected function getResults() {
+    $date = new \DateTime;
+    $date->setTimestamp(mktime(0, 0, 0, date("n"), 1, date("Y")));
+    $date->modify("-1 month");
+    $votes = $this->getVotes($date->format("Y"), $date->format("n"));
+    $results = array();
+    foreach($votes as $vote) {
+      $index = $vote->candidate->username;
+      if(isset($results[$index])) {
+        $results[$index]->amount++;
+      } else {
+        $results[$index] = (object) array(
+          "candidate" => $vote->candidate, "amount" => 1, "elected" => $vote->elected
+        );
+      }
+    }
+    return $results;
+  }
+  
   /**
    * @return void
    */
