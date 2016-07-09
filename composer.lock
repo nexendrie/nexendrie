@@ -201,20 +201,20 @@
         },
         {
             "name": "nella/forms-datetime",
-            "version": "v2.4.0",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nella/forms-datetime.git",
-                "reference": "e4181e2dab0c72aa3c2be6f700a628da0edb5fab"
+                "reference": "d3890aadfcb7ce63b5ca7ab301708926fbe46ebe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nella/forms-datetime/zipball/e4181e2dab0c72aa3c2be6f700a628da0edb5fab",
-                "reference": "e4181e2dab0c72aa3c2be6f700a628da0edb5fab",
+                "url": "https://api.github.com/repos/nella/forms-datetime/zipball/d3890aadfcb7ce63b5ca7ab301708926fbe46ebe",
+                "reference": "d3890aadfcb7ce63b5ca7ab301708926fbe46ebe",
                 "shasum": ""
             },
             "require": {
-                "nette/forms": "~2.2,<2.5.0",
+                "nette/forms": "~2.3,<2.5.0",
                 "php": ">=5.6.0"
             },
             "require-dev": {
@@ -254,7 +254,7 @@
                 "input",
                 "nette"
             ],
-            "time": "2016-05-20 00:20:34"
+            "time": "2016-07-08 20:29:18"
         },
         {
             "name": "nette/application",
@@ -494,16 +494,16 @@
         },
         {
             "name": "nette/di",
-            "version": "v2.3.11",
+            "version": "v2.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/di.git",
-                "reference": "3f8347bbcac706e1ced651c7beb9affd66298473"
+                "reference": "aed06c37a722a1450854176f1d0b11de473092f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/di/zipball/3f8347bbcac706e1ced651c7beb9affd66298473",
-                "reference": "3f8347bbcac706e1ced651c7beb9affd66298473",
+                "url": "https://api.github.com/repos/nette/di/zipball/aed06c37a722a1450854176f1d0b11de473092f1",
+                "reference": "aed06c37a722a1450854176f1d0b11de473092f1",
                 "shasum": ""
             },
             "require": {
@@ -542,7 +542,7 @@
             ],
             "description": "Nette Dependency Injection Component",
             "homepage": "https://nette.org",
-            "time": "2016-06-17 16:43:21"
+            "time": "2016-07-06 13:10:47"
         },
         {
             "name": "nette/finder",
