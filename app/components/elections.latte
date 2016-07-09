@@ -1,0 +1,13 @@
+  {if $state === "nothing"}<p>Ještě se nekonají volby.</p>
+  {elseif $state === "results"}<h2>Výsledky posledních voleb</h2>
+  {elseif $state === "voting"}
+    {if !$councillors}Tvé město/vesnice má příliš málo obyvatel. Městská rada se nevolí.
+    {else}
+      <p>Konšeli se stane {$councillors} kandidátů s nejvíce hlasy.</p>
+      <h2>Kandidáti</h2>
+      {if $candidates->count() === 0}<p>Nejsou žádní kandidáti.</p>{/if}
+      {foreach $candidates as $candidate}
+      {$candidate->publicname} <a href="{plink :Front:Profile: $candidate->username}">Profil</a> {if $canVote}<a n:href="vote! $candidate->id">Hlasovat</a>{/if}<br>
+      {/foreach}
+    {/if}
+  {/if}
