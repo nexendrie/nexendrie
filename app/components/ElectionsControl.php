@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Components;
 
-use Nexendrie\Orm\User as UserEntity;
+use Nexendrie\Orm\User as UserEntity,
+    Nexendrie\Orm\Election as ElectionEntity;
 
 /**
  * ElectionsControl
@@ -77,7 +78,22 @@ class ElectionsControl extends \Nette\Application\UI\Control {
     if(!$this->user->isAllowed("town", "elect")) return false;
     elseif(!$this->getNumberOfCouncillors()) return false;
     elseif($this->getState() != "voting") return false;
-    else return true;
+    $votes = $this->getVotes(date("Y"), date("n"));
+    foreach($votes as $vote) {
+      if($vote->voter->id === $this->user->id) return false;
+    }
+    return true;
+  }
+  
+  /**
+   * Get votes from specified month
+   * 
+   * @param int $year
+   * @param int $month
+   * @return ElectionEntity[]
+   */
+  protected function getVotes($year, $month) {
+    return $this->orm->elections->findVotedInMonth($this->town->id, $year, $month);
   }
   
   /**
@@ -92,6 +108,9 @@ class ElectionsControl extends \Nette\Application\UI\Control {
         $this->template->councillors = $this->getNumberOfCouncillors();
         $this->template->canVote = $this->canVote();
         break;
+      case "results":
+        $this->template->results = $this->getResults();
+        break;
     }
     $this->template->render();
   }
@@ -101,7 +120,19 @@ class ElectionsControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function handleVote($candidate) {
-    
+    if(!$this->canVote()) {
+      $this->presenter->flashMessage("Nemůžeš hlasovat.");
+      $this->presenter->redirect(":Front:Homepage:");
+    }
+    $vote = new ElectionEntity;
+    $this->orm->elections->attach($vote);
+    $vote->town = $this->town;
+    $vote->voter = $this->user->id;
+    $vote->voter->lastActive = time();
+    $vote->candidate = $candidate;
+    $this->orm->elections->persistAndFlush($vote);
+    $this->presenter->flashMessage("Tvůj hlas byl zaznamenán.");
+    $this->presenter->redirect(":Front:Town:elections");
   }
 }
 
