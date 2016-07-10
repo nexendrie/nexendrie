@@ -5,13 +5,28 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Loan|NULL getById($id)
- * @method ICollection|Loan[] findByUser($user)
  */
 class LoansRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [Loan::class];
   }
+  
+  /**
+   * @param int $id
+   * @return Loan|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param User|int $user
+   * @return ICollection|Loan[]
+   */
+  function findByUser($user) {
+    return $this->findBy(array("user" => $user));
+  }
+  
   /**
    * Get specified user's active loan
    * 

@@ -3,11 +3,18 @@ namespace Nexendrie\Orm;
 
 /**
  * @author Jakub Konečný
- * @method Poll|NULL getById($id)
  */
 class PollsRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [Poll::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return Poll|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
   }
 }
 ?>

@@ -10,6 +10,14 @@ class ItemsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
+   * @param int $id
+   * @return Item|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
    * @return Item[]
    */
   function findWeapons() {

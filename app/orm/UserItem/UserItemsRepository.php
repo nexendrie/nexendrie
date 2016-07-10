@@ -5,14 +5,43 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method UserItem|NULL getById($id)
- * @method UserItem|NULL getByUserAndItem($user,$item)
- * @method ICollection|UserItem[] findByUser($user)
- * @method ICollection|UserItem[] findByItem($item)
  */
 class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [UserItem::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return UserItem|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param User|int $user
+   * @param Item|int $item
+   * @return UserItem|NULL
+   */
+  function getByUserAndItem($user, $item) {
+    return $this->getBy(array("user" => $user, "item" => $item));
+  }
+  
+  /**
+   * @param User|int $user
+   * @return ICollection|UserItem[]
+   */
+  function findByUser($user) {
+    return $this->findBy(array("user" => $user));
+  }
+  
+  /**
+   * @param Item|int $item
+   * @return ICollection|UserItem[]
+   */
+  function findByItem($item) {
+    return $this->findBy(array("item" => $item));
   }
   
   /**

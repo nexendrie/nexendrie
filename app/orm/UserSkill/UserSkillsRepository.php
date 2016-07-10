@@ -5,13 +5,35 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method UserSkill|NULL getById($id)
- * @method UserSkill|NULL getByUserAndSkill($user,$skill)
- * @method ICollection|UserSkill[] findByUser($user)
  */
 class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [UserSkill::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return UserSkill|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param User|int $user
+   * @param Skill|int $skill
+   * @return User|NULL
+   */
+  function getByUserAndSkill($user, $skill) {
+    return $this->getBy(array("user" => $user, "skill" => $skill));
+  }
+  
+  /**
+   * @param User|int $user
+   * @return ICollection|UserSkill[]
+   */
+  function findByUser($user) {
+    return $this->findBy(array("user" => $user));
   }
   
   /**

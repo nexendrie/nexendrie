@@ -5,14 +5,35 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method BeerProduction|NULL getById($id)
- * @method ICollection|BeerProduction[] findByUser($user)
- * @method ICollection|BeerProduction[] findByHouse($house)
  * @method BeerProduction|NULL getLastProduction($house)
  */
 class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [BeerProduction::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return BeerProduction|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param User|int $user
+   * @return ICollection|BeerProduction[]
+   */
+  function findByUser($user) {
+    return $this->findBy(array("user" => $user));
+  }
+  
+  /**
+   * @param House|int $house
+   * @return ICollection|BeerProduction[]
+   */
+  function findByHouse($house) {
+    return $this->findBy(array("house" => $house));
   }
   
   /**

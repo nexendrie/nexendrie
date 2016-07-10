@@ -5,12 +5,18 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * 
- * @method Event|NULL getById($id)
  */
 class EventsRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [Event::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return Event|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
   }
   
   /**

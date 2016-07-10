@@ -5,13 +5,28 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Article|NULL getById($id)
- * @method ICollection|Article[] findByCategory(string $category) 
  */
 class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [Article::class];
   }
+  
+  /**
+   * @param int $id
+   * @return Article|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param string $category
+   * @return ICollection|Article[]
+   */
+  function findByCategory($category) {
+    return $this->findBy(array("category" => $category));
+  }
+  
   /**
    * @return ICollection|Article[]
    */

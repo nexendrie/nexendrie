@@ -5,12 +5,26 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Punishment|NULL getById($id)
- * @method ICollection|Punishment findByUser($user)
  */
 class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [Punishment::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return Punishment|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param User|int $user
+   * @return ICollection|Punishment
+   */
+  function findByUser($user) {
+    return $this->findBy(array("user" => $user));
   }
   
   /**

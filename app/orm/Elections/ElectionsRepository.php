@@ -5,12 +5,26 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Election|NULL getById($id)
- * @method ICollection|Election[] findByTown($town)
  */
 class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [Election::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return Election|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param Town|int $town
+   * @return Election|NULL
+   */
+  function findByTown($town) {
+    return $this->findBy(array("town" => $town));
   }
   
   /**
