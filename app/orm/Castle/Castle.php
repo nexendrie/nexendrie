@@ -5,11 +5,12 @@ namespace Nexendrie\Orm;
  * Castle
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property string $description
  * @property int $founded
  * @property-read string $foundedAt {virtual}
- * @property User $owner {1:1 User::$castle}
+ * @property User $owner {1:1 User::$castle, isMain=true}
  * @property int $level {default 1}
  * @property int $hp {default 100}
  * @property-read int $taxesBonusIncome {virtual}

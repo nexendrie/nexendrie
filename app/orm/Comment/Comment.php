@@ -6,6 +6,7 @@ namespace Nexendrie\Orm;
  * Comment
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $title
  * @property string $text
  * @property Article $article {m:1 Article::$comments}

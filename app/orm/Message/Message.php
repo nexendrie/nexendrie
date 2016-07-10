@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * Message
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $subject
  * @property string $text
  * @property User $from {m:1 User::$sentMessages}

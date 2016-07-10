@@ -7,11 +7,12 @@ use Nextras\Orm\Relationships\OneHasMany;
  * Item
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property string $description
  * @property int $price
  * @property-read string $priceT {virtual}
- * @property Shop|NULL $shop {m:1 Shop}
+ * @property Shop|NULL $shop {m:1 Shop::$items}
  * @property string $type {enum self::TYPE_*} {default self::TYPE_ITEM}
  * @property int $strength {default 0}
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}

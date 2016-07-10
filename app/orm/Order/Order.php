@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * Order
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property string $description
  * @property int $level {default 1}
@@ -12,7 +13,7 @@ namespace Nexendrie\Orm;
  * @property-read string $foundedAt {virtual}
  * @property int $money {default 0}
  * @property-read string $moneyT {virtual}
- * @property OneHasMany|User[] $members {1:m User::$order order:orderRank,DESC}
+ * @property OneHasMany|User[] $members {1:m User::$order, orderBy=[orderRank,DESC]}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}
  */

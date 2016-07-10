@@ -5,7 +5,8 @@ namespace Nexendrie\Orm;
  * UserItem
  *
  * @author Jakub Konečný
- * @property Item $item {m:1 Item}
+ * @property int $id {primary}
+ * @property Item $item {m:1 Item::$userItems}
  * @property User $user {m:1 User::$items}
  * @property int $amount {default 1}
  * @property bool $worn {default 0}

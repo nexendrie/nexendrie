@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * Loan
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property User $user {m:1 User::$loans}
  * @property int $amount
  * @property int $taken

@@ -7,6 +7,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * Event
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property string $description
  * @property int $start

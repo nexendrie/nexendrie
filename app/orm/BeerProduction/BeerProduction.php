@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * BeerProduction
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property User $user {m:1 User::$beerProduction}
  * @property House $house {m:1 House::$beerProduction}
  * @property int $amount

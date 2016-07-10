@@ -7,6 +7,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * Guild
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property string $description
  * @property int $level {default 1}
@@ -16,7 +17,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $money {default 0}
  * @property Skill $skill {m:1 Skill::$guilds}
  * @property-read string $moneyT {virtual}
- * @property OneHasMany|User[] $members {1:m User::$guild order:guildRank,DESC}
+ * @property OneHasMany|User[] $members {1:m User::$guild, orderBy=[guildRank,DESC]}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}
  */

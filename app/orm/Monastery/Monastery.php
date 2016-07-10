@@ -7,6 +7,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * Monastery
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property User $leader {m:1 User::$monasteriesLed}
  * @property Town $town {m:1 Town::$monasteries}
@@ -14,7 +15,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $money {default 0}
  * @property int $level {default 1}
  * @property int $hp {default 100}
- * @property OneHasMany|User[] $members {1:m User::$monastery order:group}
+ * @property OneHasMany|User[] $members {1:m User::$monastery, orderBy=group}
  * @property OneHasMany|MonasteryDonation[] $donations {1:m MonasteryDonation::$monastery}
  * @property-read string $foundedAt {virtual}
  * @property-read string $moneyT {virtual}

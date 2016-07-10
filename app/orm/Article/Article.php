@@ -7,9 +7,10 @@ use Nextras\Orm\Relationships\OneHasMany;
  * Article
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $title
  * @property string $text
- * @property User $author {m:1 User}
+ * @property User $author {m:1 User::$articles}
  * @property string $category {enum self::CATEGORY_*}
  * @property int $added
  * @property-read string $addedAt {virtual}

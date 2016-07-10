@@ -7,6 +7,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * GuildRank
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property int $incomeBonus
  * @property int $guildFee

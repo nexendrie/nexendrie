@@ -7,10 +7,11 @@ use Nextras\Orm\Relationships\OneHasMany;
  * Poll
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $question
  * @property string $answers
  * @property-read array $parsedAnswers {virtual}
- * @property User $author {m:1 User}
+ * @property User $author {m:1 User::$polls}
  * @property int $added
  * @property-read string $addedAt {virtual}
  * @property bool $locked {default 0}

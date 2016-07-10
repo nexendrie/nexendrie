@@ -5,7 +5,8 @@ namespace Nexendrie\Orm;
  * House
  *
  * @author Jakub Konečný
- * @property User $owner {1:1 User::$house}
+ * @property int $id {primary}
+ * @property User $owner {1:1 User::$house, isMain=true}
  * @property int $luxuryLevel {default 1}
  * @property int $breweryLevel {default 0}
  * @property int $hp {default 100}

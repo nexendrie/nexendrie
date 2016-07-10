@@ -7,6 +7,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * Skill
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property int $price
  * @property-read string $priceT {virtual}

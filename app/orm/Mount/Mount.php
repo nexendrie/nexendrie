@@ -7,6 +7,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * Mount
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property string $gender {enum self::GENDER_*} {default self::GENDER_YOUNG}
  * @property MountType $type {m:1 MountType::$mounts}

@@ -7,6 +7,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * MountType
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property-read string $maleName {virtual}
  * @property string $femaleName
