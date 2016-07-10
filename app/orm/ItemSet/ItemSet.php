@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * ItemSet
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property Item|NULL $weapon {m:1 Item::$weaponSets}
  * @property Item|NULL $armor {m:1 Item::$armorSets}

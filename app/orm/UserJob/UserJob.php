@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * UserJob
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property User $user {m:1 User::$jobs}
  * @property Job $job {m:1 Job::$userJobs}
  * @property int $started

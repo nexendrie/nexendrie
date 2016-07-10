@@ -5,14 +5,60 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method User|NULL getById($id)
- * @method User|NULL getByUsername(string $username)
- * @method User|NULL getByPublicname(string $publicname)
- * @method User|NULL getByEmail(string $email)
- * @method ICollection|User[] findByGroup($group)
- * @method ICollection|User[] findByMonastery($monastery)
  */
 class UsersRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [User::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return User|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param string $username
+   * @return User|NULL
+   */
+  function getByUsername($username) {
+    return $this->getBy(array("username" => $username));
+  }
+  
+  /**
+   * @param string $publicname
+   * @return User|NULL
+   */
+  function getByPublicname($publicname) {
+    return $this->getBy(array("publicname" => $publicname));
+  }
+  
+  /**
+   * @param string $email
+   * @return User|NULL
+   */
+  function getByEmail($email) {
+    return $this->getBy(array("email" => $email));
+  }
+  
+  /**
+   * @param Group|Int $group
+   * @return ICollection|User[]
+   */
+  function findByGroup($group) {
+    return $this->findBy(array("group" => $group));
+  }
+  
+  /**
+   * @param Monastery|Int $monastery
+   * @return ICollection|User[]
+   */
+  function findByMonastery($monastery) {
+    return $this->findBy(array("monastery" => $monastery));
+  }
+  
   /**
    * Get mayor of a town
    * 

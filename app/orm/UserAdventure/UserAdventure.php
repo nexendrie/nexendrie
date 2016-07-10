@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * UserAdventure
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property User $user {m:1 User::$adventures}
  * @property Adventure $adventure {m:1 Adventure::$userAdventures}
  * @property Mount $mount {m:1 Mount::$adventures}

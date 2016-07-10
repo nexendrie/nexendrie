@@ -5,11 +5,28 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method UserAdventure|NULL getById($id)
- * @method ICollection|UserAdventure[] findByUser($user)
- * @method UserAdventure|NULL getLastAdventure($user)
  */
 class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [UserAdventure::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return UserAdventure|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  
+  /**
+   * @param User|int $user
+   * @return ICollection|UserAdventure[]
+   */
+  function findByUser($user) {
+    return $this->findBy(array("user" => $user));
+  }
   /**
    * Find specified user's active adventure
    * 

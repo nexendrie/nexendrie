@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * Meal
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property string $message
  * @property int $price

@@ -7,13 +7,14 @@ use Nextras\Orm\Relationships\OneHasMany;
  * Town
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property string $description
  * @property int $founded
  * @property User $owner {m:1 User::$ownedTowns}
  * @property int $price {default 5000}
  * @property bool $onMarket {default 0}
- * @property OneHasMany|User[] $denizens {1:m User::$town order:group}
+ * @property OneHasMany|User[] $denizens {1:m User::$town, orderBy=group}
  * @property OneHasMany|Monastery[] $monasteries {1:m Monastery::$town}
  * @property OneHasMany|Guild[] $guilds {1:m Guild::$town}
  * @property OneHasMany|Election[] $elections {1:m Election::$town}

@@ -5,11 +5,34 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Guild|NULL getById($id)
- * @method ICollection|Guild[] findByTown($town)
- * @method Guild|NULL getByName($name)
  */
 class GuildsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Guild::class];
+  }
   
+  /**
+   * @param int $id
+   * @return Guild|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param int $name
+   * @return Guild|NULL
+   */
+  function getByName($name) {
+    return $this->getBy(array("name" => $name));
+  }
+  
+  /**
+   * @param Town|int $town
+   * @return ICollection|Guild[]
+   */
+  function findByTown($town) {
+    return $this->findBy(array("id" => $town));
+  }
 }
 ?>

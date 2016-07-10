@@ -5,9 +5,20 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Job|NULL getById($id)
  */
 class JobsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Job::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return Job|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
   /**
    * Find jobs for specified level
    * 

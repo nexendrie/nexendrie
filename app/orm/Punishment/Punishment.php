@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * Punishment
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property User $user {m:1 User::$punishments}
  * @property string $crime
  * @property int $imprisoned

@@ -5,10 +5,20 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * 
- * @method Adventure|NULL getById($id)
  */
 class AdventuresRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Adventure::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return Adventure|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
   /**
    * Find adventures for specified level
    * 

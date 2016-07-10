@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * Marriage
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property User $user1 {m:1 User::$sentMarriages}
  * @property User $user2 {m:1 User::$recievedMarriages}
  * @property string $status {enum self::STATUS_*} {default self::STATUS_PROPOSED}

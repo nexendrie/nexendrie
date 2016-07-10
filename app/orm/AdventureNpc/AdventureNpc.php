@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
  * AdventureNpc
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $name
  * @property Adventure $adventure {m:1 Adventure::$npcs}
  * @property int $order

@@ -5,8 +5,9 @@ namespace Nexendrie\Orm;
  * PollVote
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property Poll $poll {m:1 Poll::$votes}
- * @property User $user {m:1 User}
+ * @property User $user {m:1 User::$pollVotes}
  * @property int $answer
  * @property int $voted
  * @property-read string $votedAt {virtual}

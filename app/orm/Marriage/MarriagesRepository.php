@@ -5,13 +5,38 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Marriage|NULL getById($id)
- * @method ICollection|Marriage[] findByUser1($user1)
- * @method ICollection|Marriage[] findByUser2($user2)
  * @method Marriage|NULL getActiveMarriage($user)
  * @method Marriage|NULL getAcceptedMarriage($user)
  */
 class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Marriage::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return Marriage|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param User|int $user1
+   * @return ICollection|Marriage[]
+   */
+  function findByUser1($user1) {
+    return $this->findBy(array("user1" => $user1));
+  }
+  
+  /**
+   * @param User|int $user2
+   * @return ICollection|Marriage[]
+   */
+  function findByUser2($user2) {
+    return $this->findBy(array("user2" => $user2));
+  }
+  
   /**
    * Get proposals for a user
    * 

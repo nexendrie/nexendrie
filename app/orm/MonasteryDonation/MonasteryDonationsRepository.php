@@ -9,6 +9,9 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|MonasteryDonation[] findByMonastery($monastery)
  */
 class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [MonasteryDonation::class];
+  }
   /**
    * Get donations made this month by specified user
    * 

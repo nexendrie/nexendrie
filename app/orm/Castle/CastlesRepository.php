@@ -5,11 +5,36 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Castle|NULL getById($id)
- * @method Castle|NULL getByOwner($owner)
- * @method Castle|NULL getByName($name)
  */
 class CastlesRepository extends \Nextras\Orm\Repository\Repository {
+  static function getEntityClassNames() {
+    return [Castle::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return Castle|NULL
+   */
+  function getById($id) {
+    return $this->getBy(array("id" => $id));
+  }
+  
+  /**
+   * @param User|int $owner
+   * @return Castle|NULL
+   */
+  function getByOwner($owner) {
+    return $this->getBy(array("owner" => $owner));
+  }
+  
+  /**
+   * @param string $name
+   * @return Castle|NULL
+   */
+  function getByName($name) {
+    return $this->getBy(array("name" => $name));
+  }
+  
   /**
    * Get castles owned by users
    * 

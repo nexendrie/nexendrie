@@ -8,6 +8,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * User
  *
  * @author Jakub Konečný
+ * @property int $id {primary}
  * @property string $username
  * @property string $publicname
  * @property string $password
