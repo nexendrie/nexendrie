@@ -5,6 +5,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method UserAdventure|NULL getLastAdventure($user)
  */
 class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
