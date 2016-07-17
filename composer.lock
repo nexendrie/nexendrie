@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f3a2fede8350824268c68b77252ffb43",
-    "content-hash": "cbe8eabf3e0afe83e1ba8e522f42bce2",
+    "hash": "10d3aa587faf640768dc4b5f2a35c919",
+    "content-hash": "f285a05ef2e0c3fc98466e86f003d7be",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -88,6 +88,55 @@
                 "nette"
             ],
             "time": "2015-05-09 21:01:17"
+        },
+        {
+            "name": "konecnyjakub/book-component",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/konecnyjakub/book-component.git",
+                "reference": "66b70e0e85a3aadc5e29217ec78d02fa1691f4d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/konecnyjakub/book-component/zipball/66b70e0e85a3aadc5e29217ec78d02fa1691f4d3",
+                "reference": "66b70e0e85a3aadc5e29217ec78d02fa1691f4d3",
+                "shasum": ""
+            },
+            "require": {
+                "latte/latte": "~2.3",
+                "nette/application": "~2.3",
+                "nette/utils": "~2.3",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "mrtnzlml/testbench": "^2.2",
+                "nette/robot-loader": "^2.4",
+                "tracy/tracy": "^2.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JK\\BookComponent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Konečný",
+                    "email": "jakub.konecny2@centrum.cz"
+                }
+            ],
+            "description": "Simple book component with list of chapters/pages and links to previous and next chapter/page",
+            "time": "2016-07-17 15:45:32"
         },
         {
             "name": "konecnyjakub/event-calendar",
@@ -1356,11 +1405,19 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "dev-master",
+            "alias_normalized": "9999999-dev",
+            "version": "1.0.9999999.9999999-dev",
+            "package": "konecnyjakub/book-component"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
         "stekycz/cronner": 20,
-        "konecnyjakub/event-calendar": 20
+        "konecnyjakub/event-calendar": 20,
+        "konecnyjakub/book-component": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

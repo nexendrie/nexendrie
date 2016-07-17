@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Components;
 
+use \JK\BookComponent as Book;
+
 /**
  * HelpControl
  *
@@ -18,7 +20,7 @@ class HelpControl extends Book\BookControl {
     $this->groupModel = $groupModel;
     $this->orm = $orm;
     $this->localeModel = $localeModel;
-    parent::__construct(":Front:Help", "help");
+    parent::__construct(":Front:Help", __DIR__ . "/help");
   }
   
   /**

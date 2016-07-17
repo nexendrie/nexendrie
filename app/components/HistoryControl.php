@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Components;
 
+use \JK\BookComponent as Book;
+
 /**
  * HelpControl
  *
@@ -8,7 +10,7 @@ namespace Nexendrie\Components;
  */
 class HistoryControl extends Book\BookControl {
   function __construct() {
-    parent::__construct(":Front:History", "history");
+    parent::__construct(":Front:History", __DIR__ . "/history");
   }
   
   /**

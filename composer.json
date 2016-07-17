@@ -27,6 +27,7 @@
         "nextras/orm": "~2.0",
         "stekycz/cronner": "dev-master",
         "konecnyjakub/event-calendar": "dev-master",
-        "nella/forms-datetime": "^2.4"
+        "nella/forms-datetime": "^2.4",
+        "konecnyjakub/book-component": "1.0.x-dev as dev-master"
     }
 }
