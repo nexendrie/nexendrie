@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1ef48aea935bac8c73c64d008f425562",
-    "content-hash": "80ed69a90306315d0b38bdefb2e408bc",
+    "hash": "f3a2fede8350824268c68b77252ffb43",
+    "content-hash": "cbe8eabf3e0afe83e1ba8e522f42bce2",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -201,16 +201,16 @@
         },
         {
             "name": "nella/forms-datetime",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nella/forms-datetime.git",
-                "reference": "d3890aadfcb7ce63b5ca7ab301708926fbe46ebe"
+                "reference": "d0b421f33fd953f7399dee65ad68633b7cde14e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nella/forms-datetime/zipball/d3890aadfcb7ce63b5ca7ab301708926fbe46ebe",
-                "reference": "d3890aadfcb7ce63b5ca7ab301708926fbe46ebe",
+                "url": "https://api.github.com/repos/nella/forms-datetime/zipball/d0b421f33fd953f7399dee65ad68633b7cde14e1",
+                "reference": "d0b421f33fd953f7399dee65ad68633b7cde14e1",
                 "shasum": ""
             },
             "require": {
@@ -254,7 +254,7 @@
                 "input",
                 "nette"
             ],
-            "time": "2016-07-08 20:29:18"
+            "time": "2016-07-15 22:44:30"
         },
         {
             "name": "nette/application",
@@ -1365,7 +1365,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.5.0"
+        "php": ">=5.6.0"
     },
     "platform-dev": []
 }
