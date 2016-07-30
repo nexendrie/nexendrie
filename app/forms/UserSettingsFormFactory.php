@@ -15,6 +15,7 @@ use Nette\Application\UI\Form,
  * Factory for form UserSettings
  *
  * @author Jakub Konečný
+ * @property-write User $user
  */
 class UserSettingsFormFactory {
   /** @var UserManager */
@@ -67,7 +68,7 @@ class UserSettingsFormFactory {
     $form->addPassword("password_old", "Současné heslo:");
     $form->addPassword("password_new", "Nové heslo:");
     $form->addPassword("password_check", "Nové heslo (kontrola):");
-    $form->currentGroup = NULL;
+    $form->setCurrentGroup(NULL);
     $form->addSubmit("save", "Uložit změny");
     $form->setDefaults($this->model->getSettings());
     $form->onValidate[] = array($this, "validate");

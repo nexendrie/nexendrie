@@ -12,6 +12,7 @@ use Nexendrie\Orm\Shop as ShopEntity,
  * Shop Control
  *
  * @author Jakub Konečný
+ * @property-write int $id
  */
 class ShopControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Market */

@@ -9,6 +9,7 @@ use Nexendrie\Orm\User as UserEntity,
  * ElectionsControl
  *
  * @author Jakub Konečný
+ * @property-write \Nexendrie\Orm\Town $town
  */
 class ElectionsControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Elections */
