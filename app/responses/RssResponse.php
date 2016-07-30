@@ -34,7 +34,7 @@ class RssResponse extends \Nette\Object implements \Nette\Application\IResponse 
    * @return void
    */
   function send(\Nette\Http\IRequest $httpRequest, \Nette\Http\IResponse $httpResponse) {
-    $httpResponse->contentType = "application/xhtml+xml";
+    $httpResponse->setContentType("application/xhtml+xml");
     echo $this->source->asXML();
   }
 }
