@@ -94,12 +94,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/book-component.git",
-                "reference": "5e5a66546008a149c6fed29d211d5c3e0b23c522"
+                "reference": "09b95296228330aa26f362347816537d533cbe70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/book-component/zipball/5e5a66546008a149c6fed29d211d5c3e0b23c522",
-                "reference": "5e5a66546008a149c6fed29d211d5c3e0b23c522",
+                "url": "https://api.github.com/repos/konecnyjakub/book-component/zipball/09b95296228330aa26f362347816537d533cbe70",
+                "reference": "09b95296228330aa26f362347816537d533cbe70",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 }
             ],
             "description": "Simple book component with list of chapters/pages and links to previous and next chapter/page",
-            "time": "2016-07-31 14:05:03"
+            "time": "2016-08-01 16:38:52"
         },
         {
             "name": "konecnyjakub/event-calendar",
@@ -1444,19 +1444,21 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.4.1",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "89cd0c8cfd7e246a39a504f860cf2fbb5a5095f1"
+                "reference": "6b67ebb3a4ab663f7230f769627b6d1e138b1423"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/89cd0c8cfd7e246a39a504f860cf2fbb5a5095f1",
-                "reference": "89cd0c8cfd7e246a39a504f860cf2fbb5a5095f1",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/6b67ebb3a4ab663f7230f769627b6d1e138b1423",
+                "reference": "6b67ebb3a4ab663f7230f769627b6d1e138b1423",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
+                "ext-session": "*",
                 "php": ">=5.4.4"
             },
             "require-dev": {
@@ -1500,7 +1502,7 @@
                 "debugger",
                 "nette"
             ],
-            "time": "2016-06-30 19:57:01"
+            "time": "2016-07-31 16:43:38"
         }
     ],
     "packages-dev": [],
