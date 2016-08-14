@@ -1,4 +1,4 @@
   <h1>Trénink jezdeckého zvířete {$mount->name}</h1>
   <p>Stav: {$mount->hp} %</p>
-  <p>Bonus k poškození: {$mount->damage} ({$mount->baseDamage}-{$mount->maxDamage}) {if $mount->hp >= 40 AND $mount->damage < $mount->maxDamage}<a n:href="trainDamage! $mount->id">Zvýšit</a> za {$mount->damageTrainingCostT}{/if}</p>
-  <p>Bonus k brnění: {$mount->armor} ({$mount->baseArmor}-{$mount->maxArmor}) {if $mount->hp >= 40 AND $mount->armor < $mount->maxArmor}<a n:href="trainArmor! $mount->id">Zvýšit</a> za {$mount->armorTrainingCostT}{/if}</p>
+  <p>Bonus k poškození: {$mount->damage} ({$mount->baseDamage}-{$mount->maxDamage}) {if $mount->hp >= 40 and $mount->damage < $mount->maxDamage}<a n:href="trainDamage! $mount->id">Zvýšit</a> za {$mount->damageTrainingCostT}{/if}</p>
+  <p>Bonus k brnění: {$mount->armor} ({$mount->baseArmor}-{$mount->maxArmor}) {if $mount->hp >= 40 and $mount->armor < $mount->maxArmor}<a n:href="trainArmor! $mount->id">Zvýšit</a> za {$mount->armorTrainingCostT}{/if}</p>

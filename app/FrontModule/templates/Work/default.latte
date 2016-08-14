@@ -4,5 +4,5 @@
   <h1>{$jobName}</h1>
   <p>Pracuješ jako {$jobName} do {$finishTime}. Zvládl{if $user->identity->gender === "female"}a{/if} jsi už {$jobCount} směn/výkonů {if $jobNeededCount>0} z {$jobNeededCount}{/if} a vydělal{if $user->identity->gender === "female"}a{/if} {$earned}.</p>
   <p>{if $finished}<a n:href="finish">Dokončit práci</a>{else}{$help}{/if}</p>
-  <p>{if $canWork AND !$finished}<a n:href="work">Do toho!</a>{elseif !$canWork AND !$finished}Ještě jsi nedokončil{if $user->identity->gender === "female"}a{/if} směnu. Musíš počkat do {$nextShift}.{/if}</p>
+  <p>{if $canWork and !$finished}<a n:href="work">Do toho!</a>{elseif !$canWork and !$finished}Ještě jsi nedokončil{if $user->identity->gender === "female"}a{/if} směnu. Musíš počkat do {$nextShift}.{/if}</p>
 {/block}

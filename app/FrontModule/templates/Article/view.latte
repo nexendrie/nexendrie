@@ -22,7 +22,7 @@
     {/foreach}
   {/if}
   </div>
-  {if $article->allowedComments AND $user->isAllowed("comment", "add")}
+  {if $article->allowedComments and $user->isAllowed("comment", "add")}
   <p>Přidat komentář:</p>
   {control addCommentForm}
   {else}

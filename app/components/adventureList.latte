@@ -1,6 +1,6 @@
   <h1>Dobrodružství</h1>
   {foreach $adventures as $adventure}
-    {continueIf $adventure->event AND !$adventure->event->active}
+    {continueIf $adventure->event and !$adventure->event->active}
   <div class="adventure">
     <h3>{$adventure->name}</h3>
     <p>

@@ -25,7 +25,7 @@
     <li><a n:href="Work:">Práce</a></li>
     <li><a n:href="Stables:">Stáje</a></li>
     <li><a n:href="Property:">Majetek</a></li>
-    {if $user->loggedIn AND $user->identity->banned}<li><a n:href="Prison:">Vězení</a></li>{/if}
+    {if $user->loggedIn and $user->identity->banned}<li><a n:href="Prison:">Vězení</a></li>{/if}
     {if $user->loggedIn}<li><a n:href="Marriage:">Manželství</a></li>{/if}
     <li><a n:href="Chronicle:">Kronika</a></li>
     <li><a n:href="Articles:">Články</a></li>
