@@ -278,9 +278,12 @@ class Adventure extends \Nette\Object {
   }
   
   protected function saveVictory(UserAdventureEntity $adventure, AdventureNpcEntity $enemy) {
+    $reward = $enemy->reward;
+    $reward += $this->eventsModel->calculateAdventuresBonus($reward);
+    $reward += $this->orderModel->calculateOrderIncomeBonus($reward);
     $adventure->progress++;
-    $adventure->user->money += $enemy->reward;
-    $adventure->loot += $enemy->reward;
+    $adventure->user->money += $reward;
+    $adventure->loot += $reward;
     $this->orm->userAdventures->persistAndFlush($adventure);
   }
   
