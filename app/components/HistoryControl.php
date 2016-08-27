@@ -10,6 +10,7 @@ use \JK\BookComponent as Book;
  */
 class HistoryControl extends Book\BookControl {
   function __construct() {
+    $this->lang = "cs";
     parent::__construct(":Front:History", __DIR__ . "/history");
   }
   

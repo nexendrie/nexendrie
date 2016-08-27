@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kdyby/Autowired.git",
-                "reference": "f590a69e79c39239533318fa3c8a8362fda2cba5"
+                "reference": "a81bf753d4e2954732dc0d2797a737140003e4cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/Autowired/zipball/f590a69e79c39239533318fa3c8a8362fda2cba5",
-                "reference": "f590a69e79c39239533318fa3c8a8362fda2cba5",
+                "url": "https://api.github.com/repos/Kdyby/Autowired/zipball/a81bf753d4e2954732dc0d2797a737140003e4cc",
+                "reference": "a81bf753d4e2954732dc0d2797a737140003e4cc",
                 "shasum": ""
             },
             "require": {
@@ -86,7 +86,7 @@
                 "kdyby",
                 "nette"
             ],
-            "time": "2016-07-08 22:15:57"
+            "time": "2016-08-26 06:30:06"
         },
         {
             "name": "konecnyjakub/book-component",
@@ -94,12 +94,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/book-component.git",
-                "reference": "09b95296228330aa26f362347816537d533cbe70"
+                "reference": "d107f1dec0eeddcf8ed1afe99d89cfec389e98a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/book-component/zipball/09b95296228330aa26f362347816537d533cbe70",
-                "reference": "09b95296228330aa26f362347816537d533cbe70",
+                "url": "https://api.github.com/repos/konecnyjakub/book-component/zipball/d107f1dec0eeddcf8ed1afe99d89cfec389e98a8",
+                "reference": "d107f1dec0eeddcf8ed1afe99d89cfec389e98a8",
                 "shasum": ""
             },
             "require": {
@@ -109,6 +109,8 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
+                "jakub-onderka/php-console-highlighter": "^0.3.2",
+                "jakub-onderka/php-parallel-lint": "^0.9.2",
                 "mrtnzlml/testbench": "^2.3",
                 "nette/robot-loader": "^2.4",
                 "nette/tester": "2.0.x-dev as v1.7",
@@ -132,11 +134,18 @@
             "authors": [
                 {
                     "name": "Jakub Konečný",
-                    "email": "jakub.konecny2@centrum.cz"
+                    "email": "jakub.konecny2@centrum.cz",
+                    "role": "Developer"
                 }
             ],
             "description": "Simple book component with list of chapters/pages and links to previous and next chapter/page",
-            "time": "2016-08-01 16:38:52"
+            "keywords": [
+                "Simple",
+                "book",
+                "component",
+                "nette"
+            ],
+            "time": "2016-08-25 19:20:05"
         },
         {
             "name": "konecnyjakub/event-calendar",
