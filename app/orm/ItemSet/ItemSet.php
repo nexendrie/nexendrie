@@ -23,11 +23,11 @@ class ItemSet extends \Nextras\Orm\Entity\Entity {
    * @return string[]
    */
   static function getStats() {
-    return array(
+    return [
       self::STAT_HITPOINTS => "maximum životů",
       self::STAT_DAMAGE => "poškození",
       self::STAT_ARMOR => "brnění",
-    );
+    ];
   }
   
   function setterBonus($value) {

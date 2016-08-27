@@ -51,7 +51,7 @@ class Taxes extends \Nette\Object {
     if($year === 0) $year = date("Y");
     $workIncome = $this->jobModel->calculateMonthJobIncome($user, $month, $year);
     $adventuresIncome = $this->adventureModel->calculateMonthAdventuresIncome($user, $month, $year);
-    return array("work" => $workIncome, "adventures" => $adventuresIncome);
+    return ["work" => $workIncome, "adventures" => $adventuresIncome];
   }
   
   /**
@@ -63,19 +63,19 @@ class Taxes extends \Nette\Object {
    * @return \stdClass
    */
   function calculateTownTaxes(\Nexendrie\Orm\Town $town, $month = 0, $year = 0) {
-    $return = (object) array(
+    $return = (object) [
       "id" => $town->id, "name" => $town->name, "owner" => 0,
-      "taxes" => 0, "denizens" => array()
-    );
+      "taxes" => 0, "denizens" => []
+    ];
     if($month === 0) $month = date("n");
     if($year === 0) $year = date("Y");
     $return->owner = $town->owner->id;
     foreach($town->denizens as $denizen) {
       if($denizen->id === 0) continue;
-      $d = (object) array(
+      $d = (object) [
         "id" => $denizen->id, "publicname" => $denizen->publicname,
         "income" => 0, "tax" => 0
-      );
+      ];
       if($town->owner->id === $denizen->id) {
         $return->denizens[$d->id] = $d;
         continue;
@@ -94,7 +94,7 @@ class Taxes extends \Nette\Object {
    * @return array
    */
   function payTaxes() {
-    $return = array();
+    $return = [];
     $date = new \DateTime;
     $date->setTimestamp(time());
     $date->modify("-1 day");

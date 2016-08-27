@@ -32,7 +32,7 @@ class GiftFormFactory {
    */
   protected function getUsersList() {
     return $this->orm->users->findBy(
-      array("id>" => 0)
+        ["id>" => 0]
     )->fetchPairs("id", "publicname");
   }
   
@@ -54,14 +54,14 @@ class GiftFormFactory {
       ->setRequired("Vyber uživatele.");
     $form->addText("money", "Peníze:")
       ->addRule(Form::INTEGER, "Zadej celé číslo.")
-      ->addRule(Form::RANGE, "Zadej číslo v rozmezí 0-2000.", array(0, 2000))
+      ->addRule(Form::RANGE, "Zadej číslo v rozmezí 0-2000.", [0, 2000])
       ->setValue(0);
     $form->addSelect("item", "Věc:", $this->getItemsList())
       ->setPrompt("-");
     $form->addTextArea("message", "Zpráva pro příjemce:");
     $form->addSubmit("submit", "Darovat");
-    $form->onValidate[] = array($this, "validate");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onValidate[] = [$this, "validate"];
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

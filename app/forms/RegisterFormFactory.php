@@ -25,7 +25,7 @@ class RegisterFormFactory {
   function create() {
     $form = new Form;
     $form->addText("username", "Uživatelské jméno:")
-      ->addRule(Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků." , 25)
+      ->addRule(Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků.", 25)
       ->setRequired("Zadej jméno.")
       ->setOption("description", "Toto jméno se používá pouze pro příhlášení. Jméno, které se zobrazuje ostatním, se mění v Nastavení.");
     $form->addPassword("password", "Heslo:")
@@ -34,7 +34,7 @@ class RegisterFormFactory {
       ->addRule(Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
     $form->addSubmit("register", "Zaregistrovat se");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

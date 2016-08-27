@@ -12,7 +12,7 @@ class Arrays {
     $data = array_shift($args);
     foreach ($args as $n => $field) {
       if(is_string($field)) {
-        $tmp = array();
+        $tmp = [];
         foreach ($data as $key => $row) {
           $tmp[$key] = $row[$field];
         }

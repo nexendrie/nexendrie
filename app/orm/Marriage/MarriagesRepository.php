@@ -18,7 +18,7 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
    * @return Marriage|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -26,7 +26,7 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Marriage[]
    */
   function findByUser1($user1) {
-    return $this->findBy(array("user1" => $user1));
+    return $this->findBy(["user1" => $user1]);
   }
   
   /**
@@ -34,7 +34,7 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Marriage[]
    */
   function findByUser2($user2) {
-    return $this->findBy(array("user2" => $user2));
+    return $this->findBy(["user2" => $user2]);
   }
   
   /**
@@ -44,9 +44,9 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Marriage[]
    */
   function findProposals($user) {
-    return $this->findBy(array(
+    return $this->findBy([
       "user2" => $user, "status" => Marriage::STATUS_PROPOSED
-    ));
+    ]);
   }
   
   /**
@@ -55,9 +55,9 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Marriage[]
    */
   function findOpenWeddings() {
-    return $this->findBy(array(
+    return $this->findBy([
       "status" => Marriage::STATUS_ACCEPTED, "term<=" => time() + 60 * 60
-    ));
+    ]);
   }
 }
 ?>

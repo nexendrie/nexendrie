@@ -37,7 +37,7 @@ class ManageOrderFormFactory {
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($guild->toArray());
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

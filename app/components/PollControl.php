@@ -63,7 +63,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @return array
    */
   function getVotes() {
-    $return = array("total" => 0, "answers" => array());
+    $return = ["total" => 0, "answers" => []];
     $votes = $this->orm->pollVotes->findByPoll($this->id);
     if($votes->count() > 0) {
       $return["total"] = $votes->count();

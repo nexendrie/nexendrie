@@ -16,7 +16,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
    * @return Loan|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -24,7 +24,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Loan[]
    */
   function findByUser($user) {
-    return $this->findBy(array("user" => $user));
+    return $this->findBy(["user" => $user]);
   }
   
   /**
@@ -34,7 +34,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
    * @return Loan|NULL
    */
   function getActiveLoan($user) {
-    return $this->getBy(array("user" => $user, "returned" => NULL));
+    return $this->getBy(["user" => $user, "returned" => NULL]);
   }
   
   /**
@@ -53,7 +53,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp();
-    return $this->findBy(array("user" => $user, "returned>" => $start, "returned<" => $end));
+    return $this->findBy(["user" => $user, "returned>" => $start, "returned<" => $end]);
   }
 }
 ?>

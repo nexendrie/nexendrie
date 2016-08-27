@@ -60,7 +60,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
       $data["adventure"] = $this->adventure->id;
       $this->model->addNpc($data);
       $this->flashMessage("Nepřítel přidán.");
-      $this->redirect("list", array("id" => $this->adventure->id));
+      $this->redirect("list", ["id" => $this->adventure->id]);
     };
     return $form;
   }
@@ -84,7 +84,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
     $form->onSuccess[] = function(Form $form) {
       $this->model->editNpc($this->getParameter("id"), $form->getValues(true));
       $this->flashMessage("Nepřítel upraven.");
-      $this->redirect("list", array("id" => $this->npc->adventure->id));
+      $this->redirect("list", ["id" => $this->npc->adventure->id]);
     };
     return $form;
   }
@@ -97,7 +97,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
     try {
       $adventure = $this->model->deleteNpc($id);
       $this->flashMessage("Nepřítel smazán.");
-      $this->redirect("list", array("id" => $adventure));
+      $this->redirect("list", ["id" => $adventure]);
     } catch(AdventureNpcNotFoundException $e) {
       throw new \Nette\Application\BadRequestException;
     }

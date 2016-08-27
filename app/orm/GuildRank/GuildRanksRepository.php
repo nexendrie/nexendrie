@@ -14,7 +14,7 @@ class GuildRanksRepository extends \Nextras\Orm\Repository\Repository {
    * @return GuildRank|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
 }
 ?>

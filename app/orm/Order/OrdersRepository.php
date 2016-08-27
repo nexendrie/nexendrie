@@ -14,7 +14,7 @@ class OrdersRepository extends \Nextras\Orm\Repository\Repository {
    * @return Order|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -22,7 +22,7 @@ class OrdersRepository extends \Nextras\Orm\Repository\Repository {
    * @return Order|NULL
    */
   function getByName($name) {
-    return $this->getBy(array("name" => $name));
+    return $this->getBy(["name" => $name]);
   }
 }
 ?>

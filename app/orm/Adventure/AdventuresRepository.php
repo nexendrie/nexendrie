@@ -16,7 +16,7 @@ class AdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @return Adventure|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -26,7 +26,7 @@ class AdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Adventure[]
    */
   function findForLevel($level) {
-    return $this->findBy(array("level<=" => $level));
+    return $this->findBy(["level<=" => $level]);
   }
 }
 ?>

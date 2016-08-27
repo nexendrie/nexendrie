@@ -122,7 +122,7 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @throws InsufficientFundsException
    */
   protected function train($mountId, $stat) {
-    $stats = array("damage", "armor");
+    $stats = ["damage", "armor"];
     if(!in_array($stat, $stats)) return;
     $mount = $this->orm->mounts->getById($mountId);
     if(!$mount) throw new MountNotFoundException;

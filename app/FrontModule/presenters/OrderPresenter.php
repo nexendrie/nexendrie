@@ -133,7 +133,7 @@ class OrderPresenter extends BasePresenter {
   /**
     * @return void
     */
-   function actionManage() {
+  function actionManage() {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat řád.");
       $this->redirect("Homepage:");
@@ -141,7 +141,7 @@ class OrderPresenter extends BasePresenter {
       $this->template->order =  $this->model->getUserOrder();
       $this->template->canUpgrade = $this->model->canUpgrade();
     }
-   }
+  }
   
   /**
    * @param ManageOrderFormFactory $factory

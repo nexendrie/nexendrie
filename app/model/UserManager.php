@@ -16,7 +16,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   /** @var \Nette\Security\User */
   protected $user;
   /** @var array */
-  protected $roles = array();
+  protected $roles = [];
   /** @var array */
   protected $newUser;
   /** Exception error code */
@@ -53,7 +53,7 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
    */
   function nameAvailable($name, $type = "username", $uid = NULL) {
     if(!is_int($uid) AND !is_null($uid)) throw new InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
-    $types = array("username", "publicname");
+    $types = ["username", "publicname"];
     if(!in_array($type, $types)) throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
     if($type === "username") $method = "getByUsername";
     else $method = "getByPublicname";
@@ -97,10 +97,10 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
       $banned = false;
     }
     $adventure = $this->orm->userAdventures->getUserActiveAdventure($user->id);
-    $data = array(
+    $data = [
       "name" => $user->publicname, "group" => $user->group->id,
       "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "path" => $user->group->path, "town" => $user->town->id, "banned" => $banned, "travelling" => !($adventure === NULL)
-    );
+    ];
     return new NS\Identity($user->id, $role, $data);
   }
   
@@ -168,10 +168,10 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   function getSettings() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     $user = $this->orm->users->getById($this->user->id);
-    $settings = array(
+    $settings = [
       "publicname" => $user->publicname, "email" => $user->email, "infomails" =>  $user->infomails,
       "style" => $user->style, "gender" => $user->gender
-    );
+    ];
     return $settings;
   }
   
@@ -190,17 +190,17 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     $user = $this->orm->users->getById($this->user->id);
     foreach($settings as $key => $value) {
       switch($key) {
-case "password_new":
-  if(!empty($value)) {
-    if(!NS\Passwords::verify($settings["password_old"], $user->password)) {
-      throw new SettingsException("Invalid password.", self::SET_INVALID_PASSWORD);
-    }
-    $user->password = NS\Passwords::hash($value);
-  }
-  unset($settings[$key], $settings["password_old"], $settings["password_check"]);
+        case "password_new":
+          if(!empty($value)) {
+            if(!NS\Passwords::verify($settings["password_old"], $user->password)) {
+              throw new SettingsException("Invalid password.", self::SET_INVALID_PASSWORD);
+            }
+            $user->password = NS\Passwords::hash($value);
+          }
+          unset($settings[$key], $settings["password_old"], $settings["password_check"]);
   break;
       }
-      $skip = array("password_old", "password_new", "password_check");
+      $skip = ["password_old", "password_new", "password_check"];
       if(!in_array($key, $skip)) $user->$key = $value;
     }
     $this->orm->users->persistAndFlush($user);

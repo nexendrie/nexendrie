@@ -55,7 +55,7 @@ namespace Nexendrie\Model;
  */
 class Locale extends \Nette\Object implements \Nexendrie\ILocale {
   /** @var array */
-  protected $formats = array();
+  protected $formats = [];
   
   /**
    * @param array $formats

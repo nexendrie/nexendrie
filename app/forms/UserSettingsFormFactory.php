@@ -35,7 +35,7 @@ class UserSettingsFormFactory {
    * @return array
    */
   static function getStylesList() {
-    $styles = array();
+    $styles = [];
     $dir = WWW_DIR . "/styles";
     $file = file_get_contents("$dir/list.neon");
     $list = Neon::decode($file);
@@ -54,7 +54,7 @@ class UserSettingsFormFactory {
     $form = new Form;
     $form->addGroup("Účet");
     $form->addText("publicname", "Zobrazované jméno:")
-      ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků." , 25)
+      ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25)
       ->setRequired("Zadej jméno.");
     $form->addText("email", "E-mail:")
       ->addRule(Form::EMAIL, "Zadej platný e-mail.")
@@ -71,8 +71,8 @@ class UserSettingsFormFactory {
     $form->setCurrentGroup(NULL);
     $form->addSubmit("save", "Uložit změny");
     $form->setDefaults($this->model->getSettings());
-    $form->onValidate[] = array($this, "validate");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onValidate[] = [$this, "validate"];
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

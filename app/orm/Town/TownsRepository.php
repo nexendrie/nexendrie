@@ -16,7 +16,7 @@ class TownsRepository extends \Nextras\Orm\Repository\Repository {
    * @return Town|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -24,7 +24,7 @@ class TownsRepository extends \Nextras\Orm\Repository\Repository {
    * @return Town|NULL
    */
   function getByName($name) {
-    return $this->getBy(array("name" => $name));
+    return $this->getBy(["name" => $name]);
   }
   
   /**
@@ -32,7 +32,7 @@ class TownsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Town[]
    */
   function findByOwner($owner) {
-    return $this->findBy(array("owner" => $owner));
+    return $this->findBy(["owner" => $owner]);
   }
   
   /**
@@ -41,7 +41,7 @@ class TownsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Town[]
    */
   function findOnMarket() {
-    return $this->findBy(array("onMarket" => true));
+    return $this->findBy(["onMarket" => true]);
   }
 }
 ?>

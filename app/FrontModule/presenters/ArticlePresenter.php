@@ -34,7 +34,7 @@ class ArticlePresenter extends BasePresenter {
    */
   protected function createComponentAddCommentForm(AddCommentFormFactory $factory) {
     $form = $factory->create();
-    $form->onSuccess[] = array($this, "addCommentFormSucceeded");
+    $form->onSuccess[] = [$this, "addCommentFormSucceeded"];
     return $form;
   }
   

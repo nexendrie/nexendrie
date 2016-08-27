@@ -36,7 +36,7 @@ class EditUserFormFactory extends \Nette\Object {
    * @return array
    */
   protected function getListOfGroups() {
-    $return = array();
+    $return = [];
     $groups = $this->groupModel->listOfGroups();
     foreach($groups as $group) {
       $return[$group->id] = $group->name;
@@ -58,12 +58,12 @@ class EditUserFormFactory extends \Nette\Object {
   protected function getDefaultValues() {
     $user = $this->orm->users->getById($this->uid);
     if(!$user) throw new \Nette\ArgumentOutOfRangeException("User with specified id does not exist.");
-    return array(
+    return [
       "username" => $user->username,
       "publicname" => $user->publicname,
       "group" => $user->group->id,
       "town" => $user->town->id
-    );
+    ];
   }
   
   /**
@@ -83,7 +83,7 @@ class EditUserFormFactory extends \Nette\Object {
        ->setRequired("Vyber město.");
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");
-    $form->onValidate[] = array($this, "validate");
+    $form->onValidate[] = [$this, "validate"];
     $form->onSuccess[] = function (Form $form, ArrayHash $values) {
       $this->model->edit($this->uid, $values);
     };

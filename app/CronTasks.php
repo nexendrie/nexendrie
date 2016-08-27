@@ -259,16 +259,16 @@ class CronTasks {
    */
   protected function getElectionResults($town, $year, $month) {
     $votes = $this->orm->elections->findVotedInMonth($town, $year, $month);
-    $results = array();
+    $results = [];
     foreach($votes as $vote) {
       if(!in_array($vote->candidate->id, $this->electionsModel->getCandidates($town)->fetchPairs(NULL, "id"))) continue;
       $index = $vote->candidate->username;
       if(isset($results[$index])) {
         $results[$index]["amount"]++;
       } else {
-        $results[$index] = array(
+        $results[$index] = [
           "candidate" => $vote->candidate, "amount" => 1
-        );
+        ];
       }
     }
     return Arrays::orderby($results, "amount", SORT_DESC);

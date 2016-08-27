@@ -43,12 +43,12 @@ class Group extends \Nette\Object {
   function listOfGroups() {
     $groups = $this->cache->load("groups");
     if($groups === NULL) {
-      $groups = array();
+      $groups = [];
       $groupsRows = $this->orm->groups->findAll();
       foreach($groupsRows as $row) {
         $groups[$row->id] = $row->dummy();
       }
-    $this->cache->save("groups", $groups);
+      $this->cache->save("groups", $groups);
     }
     return $groups;
   }

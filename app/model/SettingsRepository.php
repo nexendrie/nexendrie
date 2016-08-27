@@ -14,7 +14,7 @@ use Nette\Neon\Neon,
  */
 class SettingsRepository extends \Nette\Object {
   /** @var array */
-  protected $settings = array();
+  protected $settings = [];
   
   function __construct(array $settings) {
     $this->settings = $settings;
@@ -36,7 +36,7 @@ class SettingsRepository extends \Nette\Object {
   function save(array $settings) {
     $filename = APP_DIR . "/config/local.neon";
     $config = Neon::decode(file_get_contents($filename));
-    $config += array("nexendrie" => $settings);
+    $config += ["nexendrie" => $settings];
     if(is_string($config["nexendrie"]["locale"]["plural"])) {
       $config["nexendrie"]["locale"]["plural"] = explode("\n", $config["nexendrie"]["locale"]["plural"]);
     }

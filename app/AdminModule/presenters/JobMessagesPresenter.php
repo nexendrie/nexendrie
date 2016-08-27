@@ -61,7 +61,7 @@ class JobMessagesPresenter extends BasePresenter {
       $data["job"] = $this->job->id;
       $this->model->addMessage($data);
       $this->flashMessage("Hláška přidána.");
-      $this->redirect("list", array("id" => $this->job->id));
+      $this->redirect("list", ["id" => $this->job->id]);
     };
     return $form;
   }
@@ -101,7 +101,7 @@ class JobMessagesPresenter extends BasePresenter {
     try {
       $job = $this->model->deleteMessage($id);
       $this->flashMessage("Hláška smazána.");
-      $this->redirect("list", array("id" => $job));
+      $this->redirect("list", ["id" => $job]);
     } catch(JobMessageNotFoundException $e) {
       throw new \Nette\Application\BadRequestException;
     }

@@ -21,7 +21,7 @@ class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Monastery[]
    */
   function findLedMonasteries() {
-    return $this->findBy(array("this->owner->id>" => 0));
+    return $this->findBy(["this->owner->id>" => 0]);
   }
 }
 ?>

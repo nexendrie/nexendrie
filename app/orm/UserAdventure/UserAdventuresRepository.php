@@ -17,7 +17,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @return UserAdventure|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   
@@ -26,7 +26,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|UserAdventure[]
    */
   function findByUser($user) {
-    return $this->findBy(array("user" => $user));
+    return $this->findBy(["user" => $user]);
   }
   /**
    * Find specified user's active adventure
@@ -35,7 +35,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @return UserJob|NULL
    */
   function getUserActiveAdventure($user) {
-    return $this->getBy(array("user" => $user, "progress<" => 10));
+    return $this->getBy(["user" => $user, "progress<" => 10]);
   }
   
   /**
@@ -56,7 +56,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp();
-    return $this->findBy(array("user" => $user, "started>" => $start, "started<" => $end));
+    return $this->findBy(["user" => $user, "started>" => $start, "started<" => $end]);
   }
   
   /**
@@ -68,7 +68,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
     $day = date("j");
     $month = date("n");
     $ts = mktime(0, 0, 0, $month, $day);
-    return $this->findBy(array("started<" => $ts, "progress<" => 10));
+    return $this->findBy(["started<" => $ts, "progress<" => 10]);
   }
   
   /**
@@ -78,7 +78,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|UserAdventure[]
    */
   function findUserCompletedAdventures($user) {
-    return $this->findBy(array("user" => $user, "progress" => 10));
+    return $this->findBy(["user" => $user, "progress" => 10]);
   }
 }
 ?>

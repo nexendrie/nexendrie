@@ -62,7 +62,7 @@ class Order extends \Nette\Object {
    * @param int|NULL $id
    * @return bool
    */
- private function checkNameAvailability($name, $id = NULL) {
+  private function checkNameAvailability($name, $id = NULL) {
     $guild = $this->orm->castles->getByName($name);
     if($guild AND $guild->id != $id) return false;
     else return true;

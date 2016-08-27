@@ -39,7 +39,7 @@ class FoundGuildFormFactory {
     $form->addSelect("skill", "Dovednost:", $this->getListOfSkills())
       ->setRequired("Vyber dovednost.");
     $form->addSubmit("submit", "Založit");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

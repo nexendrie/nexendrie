@@ -128,7 +128,7 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
    */
   function getForDate($year, $month, $day) {
     if($this->events === NULL) $this->loadEvents($year, $month);
-    $events = array();
+    $events = [];
     foreach($this->events as $event) {
       $startTS = mktime(0, 0, 0, $month, $day, $year);
       $date = new \DateTime;
@@ -136,7 +136,7 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
       $date->modify("+1 day");
       $date->modify("-1 second");
       if($event->start <= $date->getTimestamp() AND $event->end >= $startTS) {
-        $link = $this->lg->link("Front:Event:view", array("id" => $event->id));
+        $link = $this->lg->link("Front:Event:view", ["id" => $event->id]);
         $events[] = "<a href=\"$link\" title=\"$event->description\">$event->name</a>";
       }
     }
@@ -165,8 +165,8 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
       foreach($events as $event) {
         $return[] = $event->dummy();
       }
-      if($return === NULL) $return = array();
-      $this->cache->save("events", $return, array(Cache::EXPIRE => "15 minutes"));
+      if($return === NULL) $return = [];
+      $this->cache->save("events", $return, [Cache::EXPIRE => "15 minutes"]);
     }
     return $return;
   }

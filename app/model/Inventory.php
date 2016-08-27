@@ -30,10 +30,10 @@ class Inventory extends \Nette\Object {
    */
   function possessions() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $return = array();
+    $return = [];
     $user = $this->orm->users->getById($this->user->id);
     $return["money"] = $user->moneyT;
-    $return["items"] = $user->items->get()->findBy(array("this->item->type" => ItemEntity::getCommonTypes()));
+    $return["items"] = $user->items->get()->findBy(["this->item->type" => ItemEntity::getCommonTypes()]);
     $return["towns"] = $user->ownedTowns;
     $return["loan"] = $this->orm->loans->getActiveLoan($this->user->id);
     return $return;

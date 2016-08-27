@@ -16,7 +16,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return User|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -24,7 +24,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return User|NULL
    */
   function getByUsername($username) {
-    return $this->getBy(array("username" => $username));
+    return $this->getBy(["username" => $username]);
   }
   
   /**
@@ -32,7 +32,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return User|NULL
    */
   function getByPublicname($publicname) {
-    return $this->getBy(array("publicname" => $publicname));
+    return $this->getBy(["publicname" => $publicname]);
   }
   
   /**
@@ -40,7 +40,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return User|NULL
    */
   function getByEmail($email) {
-    return $this->getBy(array("email" => $email));
+    return $this->getBy(["email" => $email]);
   }
   
   /**
@@ -48,7 +48,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|User[]
    */
   function findByGroup($group) {
-    return $this->findBy(array("group" => $group));
+    return $this->findBy(["group" => $group]);
   }
   
   /**
@@ -56,7 +56,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|User[]
    */
   function findByMonastery($monastery) {
-    return $this->findBy(array("monastery" => $monastery));
+    return $this->findBy(["monastery" => $monastery]);
   }
   
   /**
@@ -66,7 +66,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return User|NULL
    */
   function getTownMayor($town) {
-    return $this->getBy(array("town" => $town, "this->group->level" => 345));
+    return $this->getBy(["town" => $town, "this->group->level" => 345]);
   }
   
   /**
@@ -76,10 +76,10 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|User[]
    */
   function findTownCitizens($town) {
-    return $this->findBy(array(
+    return $this->findBy([
       "town" => $town,
-      "this->group->level" => array(100, 300)
-    ));
+      "this->group->level" => [100, 300]
+    ]);
   }
   
   /**
@@ -89,10 +89,10 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|User[]
    */
   function findTownPeasants($town) {
-    return $this->findBy(array(
+    return $this->findBy([
       "town" => $town,
-      "this->group->level" => array(50)
-    ));
+      "this->group->level" => [50]
+    ]);
   }
   
   /**
@@ -101,10 +101,10 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|User[]
    */
   function findInGuild() {
-    return $this->findBy(array(
+    return $this->findBy([
       "guild!=" => NULL,
       "this->group->path" => Group::PATH_CITY
-    ));
+    ]);
   }
   
   /**
@@ -113,10 +113,10 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|User[]
    */
   function findInOrder() {
-    return $this->findBy(array(
+    return $this->findBy([
       "order!=" => NULL,
       "this->group->path" => Group::PATH_TOWER
-    ));
+    ]);
   }
   
   /**
@@ -126,7 +126,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|User[]
    */
   function findByOrder($order) {
-    return $this->findBy(array("order" => $order))
+    return $this->findBy(["order" => $order])
       ->orderBy("orderRank", ICollection::DESC);
   }
   
@@ -137,7 +137,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|User[]
    */
   function findByGuild($guild) {
-    return $this->findBy(array("guild" => $guild))
+    return $this->findBy(["guild" => $guild])
       ->orderBy("guildRank", ICollection::DESC);
   }
 }

@@ -37,8 +37,8 @@ class ChangeWeddingTermFormFactory {
       ->addRule([$form["term"], "validateDateTime"], "Neplatné datum.")
       ->setValue($default);
     $form->addSubmit("submit", "Změnit");
-    $form->onValidate[] = array($this, "validate");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onValidate[] = [$this, "validate"];
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

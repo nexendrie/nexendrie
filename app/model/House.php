@@ -193,7 +193,7 @@ class House extends \Nette\Object {
     $house->owner->lastActive = time();
     $house->owner->money += $production->amount * $production->price;
     $this->orm->beerProduction->persistAndFlush($production);
-    return array("amount" => $production->amount, "price" => $production->price);
+    return ["amount" => $production->amount, "price" => $production->price];
   }
 }
 

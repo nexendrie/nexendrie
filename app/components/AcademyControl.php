@@ -31,16 +31,16 @@ class AcademyControl extends \Nette\Application\UI\Control {
   function render($type = "work") {
     $template = $this->template;
     $template->setFile(__DIR__ . "/academy.latte");
-    $types = array("work", "combat");
+    $types = ["work", "combat"];
     if(!in_array($type, $types)) $type = "work";
     $template->type = $type;
     $skillsRows = $this->model->listOfSkills($type);
-    $skills = array();
+    $skills = [];
     foreach($skillsRows as $skill) {
-      $s = (object) array(
+      $s = (object) [
         "id" => $skill->id, "name" => $skill->name, "maxLevel" => $skill->maxLevel,
         "effect" => $skill->effect
-      );
+      ];
       $s->level = $this->model->getLevelOfSkill($skill->id);
       $price = $this->model->calculateLearningPrice($skill->price, $s->level + 1, $s->maxLevel);
       $s->price = $this->localeModel->money($price);

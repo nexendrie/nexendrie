@@ -23,7 +23,7 @@ class AuthorizatorFactory extends \Nette\Object {
   static function getGroups(Cache $cache, ORM $orm) {
     $groups = $cache->load("groups_by_level");
     if($groups === NULL) {
-      $groups = array();
+      $groups = [];
       $groupsRows = $orm->groups->findAll()->orderBy("level");
       foreach($groupsRows as $row) {
         $groups[$row->id] = $row->dummy();

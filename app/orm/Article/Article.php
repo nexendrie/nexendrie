@@ -39,7 +39,7 @@ class Article extends \Nextras\Orm\Entity\Entity {
    * @return string[]
    */
   static function getCategories() {
-    return array(
+    return [
       self::CATEGORY_NEWS => "Novinky",
       self::CATEGORY_CHRONICLE => "Kronika",
       self::CATEGORY_POETRY => "Poezie",
@@ -48,7 +48,7 @@ class Article extends \Nextras\Orm\Entity\Entity {
       self::CATEGORY_NOVELLA => "Novely",
       self::CATEGORY_FAIRY_TALE => "Pohádky",
       self::CATEGORY_UNCATEGORIZED => "Nezařazené",
-    );
+    ];
   }
   
   protected function getterAddedAt() {

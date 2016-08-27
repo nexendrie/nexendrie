@@ -40,10 +40,10 @@ class Rss extends \Nette\Object {
     foreach($items as $item) {
       $i = $channel->channel->addChild("item");
       $i->addChild("title", $item->title);
-      $link = $this->linkGenerator->link("Front:Article:view", array("id" => $item->id));
+      $link = $this->linkGenerator->link("Front:Article:view", ["id" => $item->id]);
       $i->addChild("link", $link);
       $i->addChild("pubDate", $item->added);
-      $i->addChild("description", substr($item->text, 0 , 150));
+      $i->addChild("description", substr($item->text, 0, 150));
     }
     return new \Nexendrie\Responses\RssResponse($channel);
   }
@@ -68,16 +68,16 @@ class Rss extends \Nette\Object {
     unset($channel->channel->lastBuildDate);
     unset($channel->channel->title);
     $channel->channel->addChild("title", $old_title . $news->title);
-    $channel->channel->addChild("link", $this->linkGenerator->link("Front:Article:view", array("id" => $newsId)));
+    $channel->channel->addChild("link", $this->linkGenerator->link("Front:Article:view", ["id" => $newsId]));
     $channel->channel->addChild("lastBuildDate", $this->localeModel->formatDateTime(time()));
     foreach($comments as $comment) {
       $c = $channel->channel->addChild("item");
       $c->addChild("title", $comment->title);
-      $link = $this->linkGenerator->link("Front:Article:view", array("id" => $newsId));
+      $link = $this->linkGenerator->link("Front:Article:view", ["id" => $newsId]);
       $link .= "#comment-$comment->id";
       $c->addChild("link", $link);
       $c->addChild("pubDate", $this->localeModel->formatDateTime($comment->added));
-      $c->addChild("description", substr($comment->text, 0 , 150));
+      $c->addChild("description", substr($comment->text, 0, 150));
     }
     return new \Nexendrie\Responses\RssResponse($channel);
   }

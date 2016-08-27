@@ -75,7 +75,7 @@ class Job extends \Nette\Object {
    */
   function findAvailableJobs() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $return = array();
+    $return = [];
     $offers = $this->orm->jobs->findForLevel($this->user->identity->level);
     foreach($offers as $offer) {
       if($offer->neededSkillLevel > 0) {
@@ -148,7 +148,7 @@ class Job extends \Nette\Object {
     if($row->neededSkillLevel > 0) {
         $userSkillLevel = $this->skillsModel->getLevelOfSkill($row->neededSkill->id);
         if($userSkillLevel < $row->neededSkillLevel) throw new InsufficientSkillLevelForJobException;
-      }
+    }
     $job = new UserJobEntity;
     $this->orm->userJobs->attach($job);
     $job->user = $this->user->id;
@@ -164,7 +164,7 @@ class Job extends \Nette\Object {
    * @return int[] Reward
    */
   function calculateReward(UserJobEntity $job) {
-    if($job->finished) return array("reward" => $job->earned, "extra" => $job->extra);
+    if($job->finished) return ["reward" => $job->earned, "extra" => $job->extra];
     $reward = $extra = 0;
     if($job->job->count === 0) {
       $reward += $job->job->award * $job->count;
@@ -180,7 +180,7 @@ class Job extends \Nette\Object {
     $house = $this->orm->houses->getByOwner($job->user->id);
     if($house) $extra += (int) ($reward / 100 * $house->workIncomeBonus);
     $extra += $this->guildModel->calculateGuildIncomeBonus($reward, $job);
-    return array("reward" => (int) round($reward), "extra" => (int) round($extra));
+    return ["reward" => (int) round($reward), "extra" => (int) round($extra)];
   }
   
   /**
@@ -266,9 +266,9 @@ class Job extends \Nette\Object {
     $job->lastAction = time();
     $this->orm->userJobs->persistAndFlush($job);
     $message = $this->getResultMessage($job->job->id, $success);
-    $result = (object) array(
+    $result = (object) [
       "success" => $success , "message" => $message
-    );
+    ];
     return $result;
   }
   

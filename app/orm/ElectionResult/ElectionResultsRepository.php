@@ -16,7 +16,7 @@ class ElectionResultsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ElectionResult|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -26,7 +26,7 @@ class ElectionResultsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|ElectionResult[]
    */
   function findByTownAndYearAndMonth($town,$year,$month) {
-    return $this->findBy(array("town" => $town, "year" => $year, "month" => $month));
+    return $this->findBy(["town" => $town, "year" => $year, "month" => $month]);
   }
 }
 ?>

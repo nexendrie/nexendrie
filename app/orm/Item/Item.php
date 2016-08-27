@@ -42,7 +42,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
    * @return string[]
    */
   static function getTypes() {
-    return array(
+    return [
       self::TYPE_ITEM => "Věc",
       self::TYPE_WEAPON => "Zbraň",
       self::TYPE_ARMOR => "Brnění",
@@ -51,34 +51,34 @@ class Item extends \Nextras\Orm\Entity\Entity {
       self::TYPE_POTION => "Surovina",
       self::TYPE_CHARTER => "Listina",
       self::TYPE_INTIMACY_BOOST => "Zvýšení důvěrnosti",
-    );
+    ];
   }
   
   /**
    * @return string[]
    */
   static function getCommonTypes() {
-    return array(
+    return [
       self::TYPE_ITEM, self::TYPE_MATERIAL, self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
-    );
+    ];
   }
   
   /**
    * @return string[]
    */
   static function getEquipmentTypes() {
-    return array(
+    return [
       self::TYPE_WEAPON, self::TYPE_ARMOR, self::TYPE_HELMET
-    );
+    ];
   }
   
   /**
    * @return string[]
    */
   static function getNotForSale() {
-    return array(
+    return [
       self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
-    );
+    ];
   }
   
   protected function getterPriceT() {

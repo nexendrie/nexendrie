@@ -30,6 +30,7 @@ variables:
 .job_template: &script_def
   script:
   - ./vendor/bin/parallel-lint app -e php --exclude vendor
+  - ./vendor/bin/phpcs --extensions=php . --standard=ruleset.xml --colors
 
 test:mysql:
   <<: *script_def

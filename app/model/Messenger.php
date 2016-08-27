@@ -80,7 +80,7 @@ class Messenger extends \Nette\Object {
    */
   function usersList() {
     return $this->orm->users->findBy(
-      array("id!=" => $this->user->id)
+        ["id!=" => $this->user->id]
     )->fetchPairs("id", "publicname");
   }
   

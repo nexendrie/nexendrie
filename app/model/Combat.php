@@ -38,7 +38,7 @@ class Combat extends \Nette\Object {
     if(!is_null($marriage)) $hpIncrease += $marriage->hpIncrease;
     $maxLife += $hpIncrease;
     $life  += $hpIncrease;
-    return array("maxLife" => $maxLife, "life" => $life);
+    return ["maxLife" => $maxLife, "life" => $life];
   }
   
   /**

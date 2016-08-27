@@ -16,7 +16,7 @@ class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
    * @return AdventureNpc|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -26,7 +26,7 @@ class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
    * @return AdventureNPC|NULL
    */
   function getByAdventureAndOrder($adventure, $order) {
-    return $this->getBy(array("adventure" => $adventure, "order" => $order));
+    return $this->getBy(["adventure" => $adventure, "order" => $order]);
   }
   
   /**
@@ -36,7 +36,7 @@ class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|AdventureNpc[]
    */
   function findByAdventure($adventure) {
-    return $this->findBy(array("adventure" => $adventure))->orderBy("order");
+    return $this->findBy(["adventure" => $adventure])->orderBy("order");
   }
 }
 ?>

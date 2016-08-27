@@ -310,7 +310,7 @@ class Adventure extends \Nette\Object {
       $message = "$enemy->name se ubránil.";
       $this->orm->users->persistAndFlush($adventure->user);
     }
-    return array("success" => $success, "message" => $message);
+    return ["success" => $success, "message" => $message];
   }
   
   /**

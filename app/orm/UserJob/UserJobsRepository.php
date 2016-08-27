@@ -20,7 +20,7 @@ class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
    * @return UserJob|NULL
    */
   function getUserActiveJob($user) {
-    return $this->getBy(array("user" => $user, "finished" => false));
+    return $this->getBy(["user" => $user, "finished" => false]);
   }
   
   /**
@@ -42,7 +42,7 @@ class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp() - $sixDays;
-    return $this->findBy(array("user" => $user, "started>" => $start, "started<" => $end));
+    return $this->findBy(["user" => $user, "started>" => $start, "started<" => $end]);
   }
 }
 ?>

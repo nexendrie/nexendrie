@@ -21,12 +21,12 @@ class AddEditSkillFormFactory {
     $form->addText("price", "Cena:")
       ->setRequired("Zadej cenu.")
       ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
-      ->addRule(Form::RANGE, "Cena musí být v rozmezí 1-999.", array(1, 999))
+      ->addRule(Form::RANGE, "Cena musí být v rozmezí 1-999.", [1, 999])
       ->setOption("description", "Cena na první úrovni");
     $form->addText("maxLevel", "Úrovní:")
       ->setRequired("Zadej počet úrovní.")
       ->addRule(Form::INTEGER, "Počet úrovní musí být celé číslo.")
-      ->addRule(Form::RANGE, "Počet úrovní musí být v rozmezí 1-99.", array(1, 99))
+      ->addRule(Form::RANGE, "Počet úrovní musí být v rozmezí 1-99.", [1, 99])
       ->setValue(5);
     $form->addSelect("type", "Typ:", SkillEntity::getTypes())
       ->setRequired("Vyber typ.");
@@ -39,9 +39,9 @@ class AddEditSkillFormFactory {
       ->addConditionOn($form["type"], Form::EQUAL, "combat")
         ->setRequired()
         ->addRule(Form::INTEGER, "Vylepšení vlastnosti musí být celé číslo.")
-        ->addRule(Form::RANGE, "Vylepšení vlastnosti musí být v rozmezí 1-99.", array(1,99));
+        ->addRule(Form::RANGE, "Vylepšení vlastnosti musí být v rozmezí 1-99.", [1,99]);
     $form->addSubmit("submit", "Odeslat");
-    $form->onValidate[] = array($this, "validate");
+    $form->onValidate[] = [$this, "validate"];
     return $form;
   }
   
@@ -51,12 +51,12 @@ class AddEditSkillFormFactory {
    * @return void
    */
   function validate(Form $form, array $values) {
-   if($values["type"] === "work" AND $values["stat"] != NULL) {
-     $form->addError("Neplatná kombinace: vybrána vlastnost u pracovní dovednosti.");
-   }
-   if($values["type"] === "work" AND $values["statIncrease"] != 0) {
-    $form->addError("Neplatná kombinace: vylepšení dovednosti musí být 0 u pracovní dovednosti.");
-   }
+    if($values["type"] === "work" AND $values["stat"] != NULL) {
+      $form->addError("Neplatná kombinace: vybrána vlastnost u pracovní dovednosti.");
+    }
+    if($values["type"] === "work" AND $values["statIncrease"] != 0) {
+      $form->addError("Neplatná kombinace: vylepšení dovednosti musí být 0 u pracovní dovednosti.");
+    }
   }
 }
 ?>

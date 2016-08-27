@@ -99,7 +99,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
     }
     if($release) {
       $this->user->identity->banned = false;
-      $this->user->identity->roles = array($punishment->user->group->singleName);
+      $this->user->identity->roles = [$punishment->user->group->singleName];
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Byla jsi propuštěna.";
       else $message = "Byl jsi propuštěn.";
       $this->presenter->flashMessage($message);

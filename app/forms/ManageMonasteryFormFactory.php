@@ -33,7 +33,7 @@ class ManageMonasteryFormFactory {
     $form->addSelect("leader", "Vůdce:", $this->model->highClerics($id));
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($this->model->get($id)->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

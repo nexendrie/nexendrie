@@ -16,7 +16,7 @@ class GuildsRepository extends \Nextras\Orm\Repository\Repository {
    * @return Guild|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -24,7 +24,7 @@ class GuildsRepository extends \Nextras\Orm\Repository\Repository {
    * @return Guild|NULL
    */
   function getByName($name) {
-    return $this->getBy(array("name" => $name));
+    return $this->getBy(["name" => $name]);
   }
   
   /**
@@ -32,7 +32,7 @@ class GuildsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Guild[]
    */
   function findByTown($town) {
-    return $this->findBy(array("id" => $town));
+    return $this->findBy(["id" => $town]);
   }
 }
 ?>

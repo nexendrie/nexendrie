@@ -1,7 +1,6 @@
 <?php
 namespace Nexendrie\Orm;
 
-
 /**
  * Comment
  *

@@ -16,7 +16,7 @@ class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
    * @return Election|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -24,7 +24,7 @@ class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
    * @return Election|NULL
    */
   function findByTown($town) {
-    return $this->findBy(array("town" => $town));
+    return $this->findBy(["town" => $town]);
   }
   
   /**
@@ -43,7 +43,7 @@ class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp();
-    return $this->findBy(array("town" => $town, "when>" => $start, "when<" => $end));
+    return $this->findBy(["town" => $town, "when>" => $start, "when<" => $end]);
   }
 }
 ?>

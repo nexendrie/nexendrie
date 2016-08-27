@@ -31,9 +31,9 @@ class BanUserFormFactory {
     $form->addText("numberOfShifts", "Počet směn:")
       ->setRequired("Zadej počet směn.")
       ->addRule(Form::INTEGER, "Počet směn musí být celé číslo.")
-      ->addRule(Form::RANGE, "Počet směn musí být v rozmezí 1-9999.", array(1, 9999));
+      ->addRule(Form::RANGE, "Počet směn musí být v rozmezí 1-9999.", [1, 9999]);
     $form->addSubmit("ban", "Uvěznit");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

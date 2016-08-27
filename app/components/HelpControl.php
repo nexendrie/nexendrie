@@ -52,18 +52,18 @@ class HelpControl extends Book\BookControl {
    * @return void
    */
   function renderWork() {
-    $this->template->jobs = array();
+    $this->template->jobs = [];
     $jobs = $this->orm->jobs->findAll()
       ->orderBy("level")
       ->orderBy("neededSkillLevel")
       ->orderBy("count")
       ->orderBy("award");
     foreach($jobs as $job) {
-      $j = (object) array(
+      $j = (object) [
         "name" => $job->name, "skillName" => $job->neededSkill->name,
         "skillLevel" => $job->neededSkillLevel, "count" => $job->count,
         "award" => $job->awardT, "shift" => $job->shift
-      );
+      ];
       $j->rank = $this->groupModel->getByLevel($job->level)->singleName;
       $this->template->jobs[] = $j;
     }

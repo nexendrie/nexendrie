@@ -10,36 +10,36 @@ use Nexendrie;
  */
 class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /** @var array */
-  protected $defaults = array(
-    "roles" => array(
+  protected $defaults = [
+    "roles" => [
       "guestRole" => 13,
       "loggedInRole" => 12,
       "bannedRole" => 14
-    ),
-    "locale" => array(
+    ],
+    "locale" => [
       "dateFormat" => "j.n.Y",
       "dateTimeFormat" => "j.n.Y G:i",
-      "plural" => array(
+      "plural" => [
         0 => 1, "2-4", 5
-      )
-    ),
-    "pagination" => array(
+      ]
+    ],
+    "pagination" => [
       "news" => 10
-    ),
-    "newUser" => array(
+    ],
+    "newUser" => [
       "style" => "blue-sky",
       "money" => 30,
       "town" => 3
-    ),
-    "fees" => array(
+    ],
+    "fees" => [
       "incomeTax" => 10,
       "loanInterest" => 15,
       "buildMonastery" => 1000,
       "buildCastle" => 1500,
       "foundGuild" => 1000,
       "foundOrder" => 1200
-    )
-  );
+    ]
+  ];
   
   /**
    * @return void
@@ -99,27 +99,27 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition($this->prefix("model.elections"))
       ->setFactory(Nexendrie\Model\Elections::class);
     $builder->addDefinition($this->prefix("model.article"))
-      ->setFactory(Nexendrie\Model\Article::class, array($config["pagination"]["news"]));
+      ->setFactory(Nexendrie\Model\Article::class, [$config["pagination"]["news"]]);
     $builder->addDefinition($this->prefix("model.userManager"))
-      ->setFactory(Nexendrie\Model\UserManager::class, array($config["roles"], $config["newUser"]));
+      ->setFactory(Nexendrie\Model\UserManager::class, [$config["roles"], $config["newUser"]]);
     $builder->addDefinition($this->prefix("model.locale"))
-      ->setFactory(Nexendrie\Model\Locale::class, array($config["locale"]));
+      ->setFactory(Nexendrie\Model\Locale::class, [$config["locale"]]);
     $builder->addDefinition($this->prefix("model.bank"))
-       ->setFactory(Nexendrie\Model\Bank::class, array($config["fees"]["loanInterest"]));
+       ->setFactory(Nexendrie\Model\Bank::class, [$config["fees"]["loanInterest"]]);
     $builder->addDefinition($this->prefix("model.taxes"))
-        ->setFactory(Nexendrie\Model\Taxes::class, array($config["fees"]["incomeTax"]));
+        ->setFactory(Nexendrie\Model\Taxes::class, [$config["fees"]["incomeTax"]]);
     $builder->addDefinition($this->prefix("model.monastery"))
-      ->setFactory(Nexendrie\Model\Monastery::class, array($config["fees"]["buildMonastery"]));
+      ->setFactory(Nexendrie\Model\Monastery::class, [$config["fees"]["buildMonastery"]]);
     $builder->addDefinition($this->prefix("model.castle"))
-      ->setFactory(Nexendrie\Model\Castle::class, array($config["fees"]["buildCastle"]));
+      ->setFactory(Nexendrie\Model\Castle::class, [$config["fees"]["buildCastle"]]);
     $builder->addDefinition($this->prefix("model.guild"))
-      ->setFactory(Nexendrie\Model\Guild::class, array($config["fees"]["foundGuild"]));
+      ->setFactory(Nexendrie\Model\Guild::class, [$config["fees"]["foundGuild"]]);
     $builder->addDefinition($this->prefix("model.order"))
-      ->setFactory(Nexendrie\Model\Order::class, array($config["fees"]["foundOrder"]));
+      ->setFactory(Nexendrie\Model\Order::class, [$config["fees"]["foundOrder"]]);
     $builder->addDefinition("cache.cache")
-      ->setFactory(\Nette\Caching\Cache::class, array("@cache.storage", "data"));
+      ->setFactory(\Nette\Caching\Cache::class, ["@cache.storage", "data"]);
     $builder->addDefinition($this->prefix("model.settingsRepository"))
-      ->setFactory(Nexendrie\Model\SettingsRepository::class, array($config));
+      ->setFactory(Nexendrie\Model\SettingsRepository::class, [$config]);
     $builder->addDefinition($this->prefix("model.authorizator"))
       ->setFactory("Nexendrie\Model\AuthorizatorFactory::create");
     $builder->removeDefinition("router");
@@ -261,7 +261,7 @@ $user = $this->getByType("Nette\Security\User");
 $user->guestRole = $groupModel->get(?)->singleName;
 $user->authenticatedRole = $groupModel->get(?)->singleName;
 \Nella\Forms\DateTime\DateInput::register();
-\Nella\Forms\DateTime\DateTimeInput::register();', array(Nexendrie\Model\Group::class, $roles["guestRole"], $roles["loggedInRole"]));
+\Nella\Forms\DateTime\DateTimeInput::register();', [Nexendrie\Model\Group::class, $roles["guestRole"], $roles["loggedInRole"]]);
   }
 }
 ?>

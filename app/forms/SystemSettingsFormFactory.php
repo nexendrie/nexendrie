@@ -29,7 +29,7 @@ class SystemSettingsFormFactory {
    * @return array
    */
   protected function getListOfGroups() {
-    $return = array();
+    $return = [];
     $groups = $this->groupModel->listOfGroups();
     foreach($groups as $group) {
       $return[$group->id] = $group->singleName;
@@ -41,7 +41,7 @@ class SystemSettingsFormFactory {
    * @return array
    */
   protected function getListOfTowns() {
-    $return = array();
+    $return = [];
     $towns = $this->townModel->listOfTowns();
     foreach($towns as $town) {
       $return[$town->id] = $town->name;
@@ -97,7 +97,7 @@ class SystemSettingsFormFactory {
     $newUser->addText("money", "Peníze:")
       ->setRequired("Zadej peníze.")
       ->addRule(Form::INTEGER, "Peníze musí být celé číslo.")
-      ->addRule(Form::RANGE, "Peníze musí být v rozmezí 1-100.", array(1, 100));
+      ->addRule(Form::RANGE, "Peníze musí být v rozmezí 1-100.", [1, 100]);
     $newUser->addSelect("town", "Město:", $this->getListOfTowns())
       ->setRequired("Vyber město.");
     $form->addGroup("Daně a poplatky");
@@ -106,37 +106,37 @@ class SystemSettingsFormFactory {
       ->setOption("description", "% měsíčně")
       ->setRequired("Zadej daň z příjmů.")
       ->addRule(Form::INTEGER, "Daň z příjmů musí být celé číslo.")
-      ->addRule(Form::RANGE, "Daň z příjmů musí být v rozmezí 0-100.", array(0, 100));
+      ->addRule(Form::RANGE, "Daň z příjmů musí být v rozmezí 0-100.", [0, 100]);
     $fees->addText("loanInterest", "Úrok z půjčky:")
       ->setOption("description", "% ročně")
       ->setRequired("Zadej úrok z půjčky.")
       ->addRule(Form::INTEGER, "Úrok z půjčky musí být celé číslo.")
-      ->addRule(Form::RANGE, "Úrok z půjčky musí být v rozmezí 0-100.", array(0, 100));
+      ->addRule(Form::RANGE, "Úrok z půjčky musí být v rozmezí 0-100.", [0, 100]);
     $fees->addText("buildMonastery", "Založení kláštera:")
       ->setOption("description", "Cena založení kláštera v groších.")
       ->setRequired("Zadej cenu založení kláštera.")
       ->addRule(Form::INTEGER, "Cena založení kláštera musí být celé číslo.")
-      ->addRule(Form::RANGE, "Cena založení kláštera musí být v rozmezí 0-5000.", array(0, 5000));
+      ->addRule(Form::RANGE, "Cena založení kláštera musí být v rozmezí 0-5000.", [0, 5000]);
     $fees->addText("buildCastle", "Stavba hradu:")
       ->setOption("description", "Cena stavby hradu v groších.")
       ->setRequired("Zadej cenu stavby hradu.")
       ->addRule(Form::INTEGER, "Cena stavby hradu musí být celé číslo.")
-      ->addRule(Form::RANGE, "Cena stavby hradu musí být v rozmezí 0-5000.", array(0, 5000));
+      ->addRule(Form::RANGE, "Cena stavby hradu musí být v rozmezí 0-5000.", [0, 5000]);
     $fees->addText("foundGuild", "Založení cechu:")
       ->setOption("description", "Cena založení cechu v groších.")
       ->setRequired("Zadej cenu založení cechu.")
       ->addRule(Form::INTEGER, "Cena založení cechu musí být celé číslo.")
-      ->addRule(Form::RANGE, "Cena založení cechu musí být v rozmezí 0-5000.", array(0, 5000));
+      ->addRule(Form::RANGE, "Cena založení cechu musí být v rozmezí 0-5000.", [0, 5000]);
     $fees->addText("foundOrder", "Založení řádu:")
       ->setOption("description", "Cena založení řádu v groších.")
       ->setRequired("Zadej cenu založení řádu.")
       ->addRule(Form::INTEGER, "Cena založení řádu musí být celé číslo.")
-      ->addRule(Form::RANGE, "Cena založení řádu musí být v rozmezí 0-5000.", array(0, 5000));
+      ->addRule(Form::RANGE, "Cena založení řádu musí být v rozmezí 0-5000.", [0, 5000]);
     $form->currentGroup = NULL;
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());
-    $form->onValidate[] = array($this, "validate");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onValidate[] = [$this, "validate"];
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

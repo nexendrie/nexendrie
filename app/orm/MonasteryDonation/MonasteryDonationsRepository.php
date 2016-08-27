@@ -28,7 +28,7 @@ class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp();
-    return $this->findBy(array("user" => $user, "when>" => $start, "when<" => $end));
+    return $this->findBy(["user" => $user, "when>" => $start, "when<" => $end]);
   }
 }
 ?>

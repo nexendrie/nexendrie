@@ -42,12 +42,12 @@ class AddEditAdventureFormFactory {
     $form->addText("level", "Úroveň:")
       ->setRequired("Zadej úroveň.")
       ->addRule(Form::INTEGER, "Úroveň musí být celé číslo.")
-      ->addRule(Form::RANGE, "Úroveň musí být v rozmezí 55-10000.", array(55, 10000))
+      ->addRule(Form::RANGE, "Úroveň musí být v rozmezí 55-10000.", [55, 10000])
       ->setValue(55);
     $form->addText("reward", "Odměna:")
       ->setRequired("Zadej odměnu.")
       ->addRule(Form::INTEGER, "Odměna musí být celé číslo.")
-      ->addRule(Form::RANGE, "Odměna musí být v rozmezí 1-999.", array(1, 999));
+      ->addRule(Form::RANGE, "Odměna musí být v rozmezí 1-999.", [1, 999]);
     $form->addSelect("event", "Akce:", $this->getEvents())
       ->setPrompt("žádná");
     $form->addSubmit("submit", "Odeslat");

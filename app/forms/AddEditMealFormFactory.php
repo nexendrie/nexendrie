@@ -22,11 +22,11 @@ class AddEditMealFormFactory {
     $form->addText("price", "Cena:")
       ->setRequired("Zadej cenu.")
       ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
-      ->addRule(Form::RANGE, "Cena musí být v rozmezí 1-999.", array(1, 999));
+      ->addRule(Form::RANGE, "Cena musí být v rozmezí 1-999.", [1, 999]);
     $form->addText("life", "Efekt na život:")
       ->setRequired("Zadej efekt.")
       ->addRule(Form::INTEGER, "Efekt musí být celé číslo.")
-      ->addRule(Form::RANGE, "Efekt musí být v rozmezí -60 - 60.", array(-60, 60));
+      ->addRule(Form::RANGE, "Efekt musí být v rozmezí -60 - 60.", [-60, 60]);
     $form->addSubmit("submit", "Odeslat");
     return $form;
   }

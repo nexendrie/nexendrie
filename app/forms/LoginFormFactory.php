@@ -30,7 +30,7 @@ class LoginFormFactory {
     $form->addPassword("password", "Heslo:")
       ->setRequired("Zadej heslo.");
     $form->addSubmit("login", "Přihlásit se");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

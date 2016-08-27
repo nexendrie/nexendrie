@@ -144,7 +144,7 @@ class Monastery extends \Nette\Object {
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;
     $this->user->identity->town = $user->town->id;
-    $this->user->identity->roles = array($user->group->singleName);
+    $this->user->identity->roles = [$user->group->singleName];
     $this->user->identity->path = $user->group->path;
   }
   
@@ -212,7 +212,7 @@ class Monastery extends \Nette\Object {
     $this->orm->users->persistAndFlush($user);
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;
-    $this->user->identity->roles = array($user->group->singleName);
+    $this->user->identity->roles = [$user->group->singleName];
     $this->user->identity->path = $user->group->path;
   }
   
@@ -292,7 +292,7 @@ class Monastery extends \Nette\Object {
   function edit($id, array $data) {
     $monastery = $this->orm->monasteries->getById($id);
     if(!$monastery) throw new MonasteryNotFoundException;
-    $skip = array("town", "founded", "money");
+    $skip = ["town", "founded", "money"];
     foreach($data as $key => $value) {
       if($key === "name") {
         $m = $this->orm->monasteries->getByName($value);
@@ -315,7 +315,7 @@ class Monastery extends \Nette\Object {
    */
   function highClerics($id) {
     return $this->orm->users->findByMonastery($id)
-      ->findBy(array("this->group->level" => 550))
+      ->findBy(["this->group->level" => 550])
       ->fetchPairs("id", "publicname");
   }
   

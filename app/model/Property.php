@@ -36,15 +36,16 @@ class Property extends \Nette\Object {
    */
   function budget() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $budget = array(
+    $budget = [
       "incomes" => 
-        $this->taxesModel->calculateIncome($this->user->id) + array("taxes" => 0, "beerProduction" => 0)
+        $this->taxesModel->calculateIncome($this->user->id) + ["taxes" => 0, "beerProduction" => 0]
       ,
-      "expenses" => array(
+      "expenses" => [
         "incomeTax" => 0,
         "loansInterest" => 0,
         "membershipFee" => 0
-    ));
+      ]
+    ];
     $budget["expenses"]["incomeTax"] = $this->taxesModel->calculateTax(array_sum($budget["incomes"]));
     $loans = $this->orm->loans->findReturnedThisMonth($this->user->id);
     foreach($loans as $loan) {

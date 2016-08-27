@@ -28,7 +28,7 @@ class MakeCitizenFormFactory {
     $form->addSelect("user", "Uživatel:", $this->model->getTownPeasants($town))
       ->setRequired();
     $form->addSubmit("submit", "Povýsit");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

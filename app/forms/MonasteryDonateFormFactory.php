@@ -28,7 +28,7 @@ class MonasteryDonateFormFactory {
       ->addRule(Form::INTEGER, "Množství musí být celé číslo")
       ->addRule(Form::MIN, "Musíš darovat minimálně 1 groš.", 1);
     $form->addSubmit("submit", "Darovat");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

@@ -44,13 +44,13 @@ class ChroniclePresenter extends BasePresenter {
     $calendar = new Calendar;
     $calendar->language = Calendar::LANG_CZ;
     $calendar->firstDay = Calendar::FIRST_MONDAY;
-    $calendar->options = array(
+    $calendar->options = [
       Calendar::OPT_BOTTOM_NAV_PREV => "Předchozí měsíc",
       Calendar::OPT_BOTTOM_NAV_NEXT => "Následující měsíc"
-    );
+    ];
     $this->eventsModel->loadEvents();
     $calendar->events = $this->eventsModel;
-    $calendar->onDateChange[] = array($this->eventsModel, "loadEvents");
+    $calendar->onDateChange[] = [$this->eventsModel, "loadEvents"];
     return $calendar;
   }
 }

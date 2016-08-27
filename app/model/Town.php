@@ -162,7 +162,7 @@ class Town extends \Nette\Object {
     if(!$newMayor) throw new UserNotFoundException;
     elseif($newMayor->town->id != $townId) throw new UserDoesNotLiveInTheTownException;
     $newMayorRank = $newMayor->group->level;
-    if(!in_array($newMayorRank, array(100, 300))) throw new InsufficientLevelForMayorException;
+    if(!in_array($newMayorRank, [100, 300])) throw new InsufficientLevelForMayorException;
     $oldMayor = $this->orm->users->getTownMayor($townId);
     if($oldMayor) {
       $oldMayor->group = $this->orm->groups->getByLevel(100);

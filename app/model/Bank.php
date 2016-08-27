@@ -63,7 +63,7 @@ class Bank extends \Nette\Object {
     $end = $loan->returned ? $loan->returned: time();
     $duration = ($end - $start) / (60 * 60 * 24);
     $interest = (int) ($loan->amount * $loan->interest * $duration / 36500);
-    return max(array(1, $interest));
+    return max([1, $interest]);
   }
   
   /**

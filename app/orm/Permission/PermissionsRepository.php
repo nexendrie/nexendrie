@@ -16,7 +16,7 @@ class PermissionsRepository extends \Nextras\Orm\Repository\Repository {
    * @return Permission|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -24,7 +24,7 @@ class PermissionsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Permission[]
    */
   function findByGroup($group) {
-    return $this->findBy(array("group" => $group));
+    return $this->findBy(["group" => $group]);
   }
 }
 ?>

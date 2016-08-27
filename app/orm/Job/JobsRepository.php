@@ -16,7 +16,7 @@ class JobsRepository extends \Nextras\Orm\Repository\Repository {
    * @return Job|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -26,7 +26,7 @@ class JobsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Job[]
    */
   function findForLevel($level) {
-    return $this->findBy(array("level<=" => $level));
+    return $this->findBy(["level<=" => $level]);
   }
 }
 ?>

@@ -54,9 +54,9 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterHp($value) {
-   if($value < 1) return 1;
-   elseif($value > 100) return 100;
-   else return $value;
+    if($value < 1) return 1;
+    elseif($value > 100) return 100;
+    else return $value;
   }
   
   protected function getterMoneyT() {

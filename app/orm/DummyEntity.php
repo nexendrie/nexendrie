@@ -11,7 +11,7 @@ abstract class DummyEntity extends \Nette\Object {
    * @return array
    */
   function toArray() {
-    $return = array();
+    $return = [];
     foreach($this as $key => $value) {
       $return[$key] = $value;
     }

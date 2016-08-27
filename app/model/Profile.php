@@ -43,7 +43,7 @@ class Profile extends \Nette\Object {
    * @return string[]
    */
   function getListOfLords() {
-    return $this->orm->users->findBy(array("this->group->level>=" => 350))
+    return $this->orm->users->findBy(["this->group->level>=" => 350])
       ->fetchPairs("id", "publicname");
   }
   
@@ -57,7 +57,7 @@ class Profile extends \Nette\Object {
     if($id === 0) $id = $this->user->id;
     $user = $this->orm->users->getById($id);
     if(!$user) throw new UserNotFoundException;
-    else return array($user->life, $user->maxLife);
+    else return [$user->life, $user->maxLife];
   }
   
   /**
@@ -129,9 +129,9 @@ class Profile extends \Nette\Object {
    * @param int $id  
    * @return int
    */
-   function countMessages($id = 0) {
-     return array("sent" => $this->orm->messages->findByFrom($id)->countStored(), "recieved" => $this->orm->messages->findByTo($id)->countStored());
-   }
+  function countMessages($id = 0) {
+    return ["sent" => $this->orm->messages->findByFrom($id)->countStored(), "recieved" => $this->orm->messages->findByTo($id)->countStored()];
+  }
    
    
    /**
@@ -140,12 +140,12 @@ class Profile extends \Nette\Object {
     * @param int $id 
     * @return UserEntity|NULL
     */
-   function getPartner($id) {
-     $marriage = $this->orm->marriages->getActiveMarriage($id)->fetch();
-     if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
-     elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
-     else return NULL;
-   }
+  function getPartner($id) {
+    $marriage = $this->orm->marriages->getActiveMarriage($id)->fetch();
+    if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
+    elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
+    else return NULL;
+  }
    
    /**
     * Get specified user's fiance(e)
@@ -153,12 +153,12 @@ class Profile extends \Nette\Object {
     * @param int $id 
     * @return UserEntity|NULL
     */
-   function getFiance($id) {
-     $marriage = $this->orm->marriages->getAcceptedMarriage($id)->fetch();
-     if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
-     elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
-     else return NULL;
-   }
+  function getFiance($id) {
+    $marriage = $this->orm->marriages->getAcceptedMarriage($id)->fetch();
+    if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
+    elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
+    else return NULL;
+  }
 }
 
 class UserNotFoundException extends RecordNotFoundException {

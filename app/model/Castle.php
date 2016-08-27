@@ -60,7 +60,7 @@ class Castle extends \Nette\Object {
    * @param int|NULL $id
    * @return bool
    */
- private function checkNameAvailability($name, $id = NULL) {
+  private function checkNameAvailability($name, $id = NULL) {
     $castle = $this->orm->castles->getByName($name);
     if($castle AND $castle->id != $id) return false;
     else return true;

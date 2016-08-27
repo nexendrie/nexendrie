@@ -16,7 +16,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
    * @return Event|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -35,7 +35,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
     $date->modify("+1 month");
     $date->modify("-1 second");
     $endTS = $date->getTimestamp();
-    return $this->findBy(array("start<=" => $endTS, "end>=" => $startTS))
+    return $this->findBy(["start<=" => $endTS, "end>=" => $startTS])
       ->orderBy("start");
   }
   /**
@@ -46,7 +46,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
    */
   function findForTime($time = NULL) {
     if($time === NULL) $time = time();
-    return $this->findBy(array("start<=" => $time, "end>=" => $time))
+    return $this->findBy(["start<=" => $time, "end>=" => $time])
       ->orderBy("start");
   }
 }

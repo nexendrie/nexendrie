@@ -27,7 +27,7 @@ class BuildMonasteryFormFactory {
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno");
     $form->addSubmit("submit", "Založit klášter");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

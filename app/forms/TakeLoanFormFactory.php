@@ -25,9 +25,9 @@ class TakeLoanFormFactory {
     $form->addText("amount", "Částka:")
       ->setRequired("Zadej částku.")
       ->addRule(Form::INTEGER, "Částka musí být celé číslo.")
-      ->addRule(Form::RANGE, "Částka musí být v rozmezí 1-$maxLoan.", array(1, $maxLoan));
+      ->addRule(Form::RANGE, "Částka musí být v rozmezí 1-$maxLoan.", [1, $maxLoan]);
     $form->addSubmit("submit", "Půjčit si");
-    $form->onSuccess[] = array($this, "submitted");
+    $form->onSuccess[] = [$this, "submitted"];
     return $form;
   }
   

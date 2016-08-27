@@ -17,7 +17,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
    * @return BeerProduction|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -25,7 +25,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|BeerProduction[]
    */
   function findByUser($user) {
-    return $this->findBy(array("user" => $user));
+    return $this->findBy(["user" => $user]);
   }
   
   /**
@@ -33,7 +33,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|BeerProduction[]
    */
   function findByHouse($house) {
-    return $this->findBy(array("house" => $house));
+    return $this->findBy(["house" => $house]);
   }
   
   /**
@@ -52,7 +52,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp();
-    return $this->findBy(array("user" => $user, "when>" => $start, "when<" => $end));
+    return $this->findBy(["user" => $user, "when>" => $start, "when<" => $end]);
   }
 }
 ?>

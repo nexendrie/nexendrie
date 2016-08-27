@@ -16,7 +16,7 @@ class CommentsRepository extends \Nextras\Orm\Repository\Repository {
    * @return Comment|NULL
    */
   function getById($id) {
-    return $this->getBy(array("id" => $id));
+    return $this->getBy(["id" => $id]);
   }
   
   /**
@@ -24,7 +24,7 @@ class CommentsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Comment[]
    */
   function findByArticle($article) {
-    return $this->findBy(array("article" => $article));
+    return $this->findBy(["article" => $article]);
   }
 }
 ?>
