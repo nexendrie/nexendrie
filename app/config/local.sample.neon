@@ -1,0 +1,10 @@
+php:
+    date.timezone: Europe/Prague
+tracy:
+    email: jakub.konecny2@centrum.cz
+dbal:
+    driver: mysqli
+    host: localhost
+    dbname: nexendrie
+    user: nexendrie
+    password: nexendrie
