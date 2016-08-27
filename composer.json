@@ -29,5 +29,9 @@
         "konecnyjakub/event-calendar": "dev-master",
         "nella/forms-datetime": "^2.4",
         "konecnyjakub/book-component": "1.0.x-dev as dev-master"
+    },
+    "require-dev": {
+        "jakub-onderka/php-parallel-lint": "^0.9.2",
+        "jakub-onderka/php-console-highlighter": "^0.3.2"
     }
 }
