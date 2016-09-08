@@ -8,8 +8,6 @@ cache:
   - vendor/
 
 before_script:
-- cp app/config/local.sample.neon app/config/local.neon
-
 - mkdir app/temp
 - mkdir app/temp/cache
 - mkdir app/temp/sessions
@@ -20,8 +18,6 @@ before_script:
 - docker-php-ext-install pdo_mysql
 - curl -sS https://getcomposer.org/installer | php
 - php composer.phar install --no-interaction --prefer-source
-
-- php setup_ci.php
 
 variables:
   MYSQL_DATABASE: nexendrie

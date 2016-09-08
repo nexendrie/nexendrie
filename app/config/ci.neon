@@ -1,0 +1,29 @@
+application:
+    mapping:
+        *: Nexendrie\Presenters\*Module\*Presenter
+tracy:
+    strictMode: TRUE
+    email: jakub.konecny2@centrum.cz
+session:
+    savePath: "%tempDir%/sessions"
+    name: NEXSESSID
+    expiration: 4 hours
+extensions:
+    nexendrie: Nexendrie\Model\DI\NexendrieExtension
+    dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
+    orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
+    cronner: stekycz\Cronner\DI\CronnerExtension
+orm:
+    model: Nexendrie\Orm\Model
+cronner:
+    bar: false
+    timestampStorage: stekycz\Cronner\TimestampStorage\FileStorage(%appDir%/temp/cronner)
+php:
+    date.timezone: Europe/Prague
+dbal:
+    driver: mysqli
+    host: mysql
+    dbname: nexendrie
+    user: root
+    password: nexendrie
+
