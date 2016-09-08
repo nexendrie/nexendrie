@@ -25,7 +25,7 @@ image: php:5.6
   - php composer.phar update --no-interaction --prefer-source -a
   
   script:
-  - ./vendor/bin/parallel-lint app -e php --exclude vendor
+  - ./vendor/bin/parallel-lint app -e php --exclude vendor --exclude app/temp
   - ./vendor/bin/phpcs --extensions=php . --standard=ruleset.xml --colors
 
 test:default:
