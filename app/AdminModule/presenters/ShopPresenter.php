@@ -19,6 +19,8 @@ class ShopPresenter extends BasePresenter {
   
   /**
    * @param int $id
+   * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionEdit($id) {
     $this->requiresPermissions("content", "edit");

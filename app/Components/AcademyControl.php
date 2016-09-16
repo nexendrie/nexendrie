@@ -26,6 +26,7 @@ class AcademyControl extends \Nette\Application\UI\Control {
   }
   
   /**
+   * @param string $type
    * @return void
    */
   function render($type = "work") {

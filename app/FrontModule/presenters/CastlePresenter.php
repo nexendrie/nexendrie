@@ -7,6 +7,7 @@ use Nexendrie\Model\CastleNotFoundException,
     Nette\Application\UI\Form,
     Nexendrie\Model\CannotUpgradeCastleException,
     Nexendrie\Model\CannotRepairCastleException,
+    Nexendrie\Model\InsufficientFundsException,
     Nexendrie\Orm\Group as GroupEntity;
 
 /**
@@ -56,6 +57,7 @@ class CastlePresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function renderDetail($id) {
     try {

@@ -25,6 +25,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionList($id) {
     $this->requiresPermissions("content", "list");
@@ -35,9 +36,11 @@ class AdventureEnemiesPresenter extends BasePresenter {
       throw new \Nette\Application\BadRequestException;
     }
   }
+  
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionAdd($id) {
     $this->requiresPermissions("content", "add");
@@ -68,6 +71,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionEdit($id) {
     $this->requiresPermissions("content", "edit");
@@ -78,6 +82,10 @@ class AdventureEnemiesPresenter extends BasePresenter {
     }
   }
   
+  /**
+   * @param AddEditAdventureEnemyFormFactory $factory
+   * @return Form
+   */
   protected function createComponentEditAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory) {
     $form = $factory->create();
     $form->setDefaults($this->npc->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
@@ -92,6 +100,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionDelete($id) {
     try {

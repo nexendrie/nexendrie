@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\ItemSet as ItemSetEntity;
+use Nexendrie\Orm\ItemSet as ItemSetEntity,
+    Nexendrie\Orm\Adventure as AdventureEntity;
 
 /**
  * ItemSet Model

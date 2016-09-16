@@ -15,7 +15,7 @@ class HistoryControl extends Book\BookControl {
   }
   
   /**
-   * @return \Nexendrie\Components\Book\BookPagesStorage
+   * @return Book\BookPagesStorage
    */
   function getPages() {
     $storage = new Book\BookPagesStorage;

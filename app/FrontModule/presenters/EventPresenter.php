@@ -15,6 +15,7 @@ class EventPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function renderView($id) {
     try {

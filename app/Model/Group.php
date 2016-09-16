@@ -115,7 +115,7 @@ class Group {
   /**
    * Edit specified group
    * 
-   * @param type $id Group's id
+   * @param int $id Group's id
    * @param array $data
    * @throws \Nette\Application\ForbiddenRequestException
    * @return void

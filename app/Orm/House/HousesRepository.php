@@ -1,6 +1,8 @@
 <?php
 namespace Nexendrie\Orm;
 
+use Nextras\Orm\Collection\ICollection;
+
 /**
  * @author Jakub Konečný
  */

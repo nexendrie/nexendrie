@@ -22,6 +22,7 @@ class Taxes {
    * @param int $taxRate
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nexendrie\Model\Job $jobModel
+   * @param \Nexendrie\Model\Adventure $adventureModel
    */
   function __construct($taxRate, \Nexendrie\Orm\Model $orm, Job $jobModel, Adventure $adventureModel) {
     $this->orm = $orm;
@@ -35,6 +36,7 @@ class Taxes {
    * 
    * @param int $income
    * @return int
+   * @throws \Nette\Application\BadRequestException
    */
   function calculateTax($income) {
     return (int) round(@($income / 100 * $this->taxRate));

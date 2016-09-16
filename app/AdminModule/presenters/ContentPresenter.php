@@ -24,7 +24,7 @@ class ContentPresenter extends BasePresenter {
   protected $tavernModel;
   /** @var \Nexendrie\Model\Adventure @autowire */
   protected $adventureModel;
-  /** @var Nexendrie\Model\ItemSet @autowire */
+  /** @var \Nexendrie\Model\ItemSet @autowire */
   protected $itemSetModel;
   
   /**

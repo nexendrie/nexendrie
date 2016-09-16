@@ -78,6 +78,7 @@ class MarriagePresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionAccept($id) {
     try {
@@ -98,6 +99,7 @@ class MarriagePresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionDecline($id) {
     try {
@@ -118,6 +120,7 @@ class MarriagePresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionCeremony($id) {
     try {

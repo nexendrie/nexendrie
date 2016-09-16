@@ -49,8 +49,8 @@ class Job {
   
   /**
    * Calculate reward from an offer
-   * 
-   * @param JobEntity $id
+   *
+   * @param JobEntity $offer
    * @return \stdClass
    * @throws AuthenticationNeededException
    */

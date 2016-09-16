@@ -13,7 +13,7 @@ use Nexendrie\Model\ItemSetNotFoundException,
  * @author Jakub Konečný
  */
 class ItemSetPresenter extends BasePresenter {
-  /** @var Nexendrie\Model\ItemSet @autowire */
+  /** @var \Nexendrie\Model\ItemSet @autowire */
   protected $model;
   /** @var ItemSetEntity */
   private $set;
@@ -42,6 +42,7 @@ class ItemSetPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionEdit($id) {
     $this->requiresPermissions("content", "edit");
@@ -70,6 +71,7 @@ class ItemSetPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionDelete($id) {
     $this->requiresPermissions("content", "delete");

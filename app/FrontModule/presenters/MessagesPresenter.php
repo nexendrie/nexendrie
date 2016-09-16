@@ -40,6 +40,7 @@ class MessagesPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function renderView($id) {
     try {
@@ -60,6 +61,7 @@ class MessagesPresenter extends BasePresenter {
   }
   
   /**
+   * @param NewMessageFormFactory $factory
    * @return \Nette\Application\UI\Form
    */
   protected function createComponentNewMessageForm(NewMessageFormFactory $factory) {

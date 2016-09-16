@@ -251,6 +251,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   }
   
   /**
+   * @param \Nette\PhpGenerator\ClassType $class
    * @return void
    */
   function afterCompile(\Nette\PhpGenerator\ClassType $class) {

@@ -56,6 +56,7 @@ class EventPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionEdit($id) {
     $this->requiresPermissions("event", "edit");
@@ -84,6 +85,7 @@ class EventPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionDelete($id) {
     $this->requiresPermissions("event", "delete");

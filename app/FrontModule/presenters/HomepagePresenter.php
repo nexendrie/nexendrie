@@ -11,6 +11,7 @@ class HomepagePresenter extends BasePresenter {
   protected $model;
   
   /**
+   * @param int $page
    * @return void
    */
   function renderPage($page = 1) {

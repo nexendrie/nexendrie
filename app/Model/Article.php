@@ -159,7 +159,7 @@ class Article {
    * @return bool
    */
   function exists($id) {
-    $row = $this->orm->articles->getByID($id);
+    $row = $this->orm->articles->getById($id);
     return (bool) $row;
   }
 }

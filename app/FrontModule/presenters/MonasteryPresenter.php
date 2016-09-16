@@ -65,6 +65,7 @@ class MonasteryPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function renderDetail($id) {
     try {
@@ -101,6 +102,7 @@ class MonasteryPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionJoin($id) {
     try {

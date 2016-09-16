@@ -16,6 +16,7 @@ use Nexendrie\Forms\FoundOrderFormFactory,
     Nexendrie\Model\CannotPromoteMemberException,
     Nexendrie\Model\CannotDemoteMemberException,
     Nexendrie\Model\CannotKickMemberException,
+    Nexendrie\Model\GuildNotFoundException,
     Nexendrie\Orm\User as UserEntity;
 
 /**
@@ -62,6 +63,7 @@ class OrderPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function renderDetail($id) {
     try {
@@ -98,6 +100,7 @@ class OrderPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionJoin($id) {
     try {

@@ -21,6 +21,7 @@ class Market {
   use \Nette\SmartObject;
   
   /**
+   * @param \Nexendrie\Model\Events $eventsModel
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    */

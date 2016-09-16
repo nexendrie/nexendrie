@@ -89,7 +89,7 @@ class PropertyPresenter extends BasePresenter {
   }
   
   /**
-   * @param ManageGuildFormFactory $factory
+   * @param ManageTownFormFactory $factory
    * @return Form
    */
   protected function createComponentManageTownForm(ManageTownFormFactory $factory) {

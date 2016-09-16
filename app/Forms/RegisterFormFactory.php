@@ -12,7 +12,7 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 class RegisterFormFactory {
-  /** @var UserManger */
+  /** @var UserManager */
   protected $model;
   
   function __construct(UserManager $model) {

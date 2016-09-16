@@ -47,7 +47,9 @@ class StablesPresenter extends BasePresenter {
   }
   
   /**
+   * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionManage($id) {
     try {
@@ -73,6 +75,7 @@ class StablesPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionTrain($id) {
     try {

@@ -82,7 +82,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   /**
    * Get results of last elections
    * 
-   * @return ElectionResult[]
+   * @return ElectionResultEntity[]
    */
   protected function getResults() {
     $date = new \DateTime;

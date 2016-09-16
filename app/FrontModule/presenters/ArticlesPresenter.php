@@ -21,6 +21,7 @@ class ArticlesPresenter extends BasePresenter {
   
   /**
    * @param string $category
+   * @param int $page
    * @return void
    */
   function actionCategory($category, $page = 1) {
@@ -35,6 +36,7 @@ class ArticlesPresenter extends BasePresenter {
   
   /**
    * @param string $category
+   * @param int $page
    * @return void
    */
   function renderCategory($category, $page = 1) {

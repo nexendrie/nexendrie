@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-use AuthenticationNeededException,
+use Nexendrie\Model\AuthenticationNeededException,
     Nexendrie\Model\MealNotFoundException,
     Nexendrie\Model\InsufficientFundsException;
 

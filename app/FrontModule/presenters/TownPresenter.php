@@ -62,6 +62,7 @@ class TownPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function renderDetail($id) {
     try {

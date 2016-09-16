@@ -53,6 +53,7 @@ class PollsPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionEdit($id) {
     $this->requiresPermissions("poll", "add");

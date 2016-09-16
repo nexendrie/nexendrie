@@ -12,7 +12,7 @@ class BeerProductionMapper extends \Nextras\Orm\Mapper\Mapper {
   /**
    * Get user's last production
    * 
-   * @param int $user
+   * @param int $house
    * @return BeerProduction|NULL
    */
   function getLastProduction($house) {

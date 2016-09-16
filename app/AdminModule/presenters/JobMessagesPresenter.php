@@ -69,6 +69,7 @@ class JobMessagesPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionEdit($id) {
     $this->requiresPermissions("content", "edit");
@@ -96,6 +97,7 @@ class JobMessagesPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionDelete($id) {
     try {

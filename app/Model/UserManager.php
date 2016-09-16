@@ -218,7 +218,7 @@ class UserManager implements NS\IAuthenticator {
   }
   
   /**
-   * @param id $id User's id
+   * @param int $id User's id
    * @param \Nette\Utils\ArrayHash $values
    * @return void
    */

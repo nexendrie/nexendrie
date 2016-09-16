@@ -25,6 +25,7 @@ class GroupPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function actionEdit($id) {
     $this->requiresPermissions("group", "edit");
@@ -59,6 +60,7 @@ class GroupPresenter extends BasePresenter {
   /**
    * @param int $id
    * @return void
+   * @throws \Nette\Application\BadRequestException
    */
   function renderMembers($id) {
     $group = $this->model->ormGet($id);

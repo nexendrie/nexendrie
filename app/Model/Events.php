@@ -250,8 +250,7 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Get current shopping discount
-   * 
-   * @param int $basePrice
+   *
    * @return int
    */
   function getShoppingDiscount() {
