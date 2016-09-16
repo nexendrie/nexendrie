@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nette\Utils\Arrays,
-    Nexendrie\Orm\User as UserEntity;
+use Nexendrie\Orm\User as UserEntity;
 
 /**
  * Profile Model

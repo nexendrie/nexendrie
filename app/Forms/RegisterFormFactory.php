@@ -2,7 +2,6 @@
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
-    Nette\Utils\ArrayHash,
     Nexendrie\Model\UserManager,
     Nexendrie\Model\RegistrationException;
 

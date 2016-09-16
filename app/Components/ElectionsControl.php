@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-use Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\Election as ElectionEntity,
+use Nexendrie\Orm\Election as ElectionEntity,
     Nexendrie\Orm\ElectionResult as ElectionResultEntity;
 
 /**
