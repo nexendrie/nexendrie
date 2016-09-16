@@ -102,7 +102,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
       $result = $this->model->fight();
       $this->template->message = $result["message"];
     } catch(NotOnAdventureException $e) {
-      flashMessage("Nejsi na dobrodružství.");
+      $this->presenter->flashMessage("Nejsi na dobrodružství.");
     } catch(NoEnemyRemainException $e) {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Porazila jsi již všechny nepřátele.";
       else $message = "Porazil jsi již všechny nepřátele.";

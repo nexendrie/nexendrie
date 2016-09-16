@@ -136,7 +136,7 @@ class Order {
     $this->orm->orders->attach($order);
     $order->name = $data["name"];
     $order->description = $data["description"];
-    $user->lastActive = Stime();
+    $user->lastActive = time();
     $user->money -= $this->foundingPrice;
     $user->order = $order;
     $user->orderRank = $this->maxRank;
