@@ -129,7 +129,7 @@ class StablesControl extends \Nette\Application\UI\Control {
     elseif($mount->owner->id != $this->user->id) throw new MountNotOwnedException;
     $statCap = ucfirst($stat);
     if($mount->$stat >= $mount->{"max" . $statCap}) throw new MountMaxTrainingLevelReachedException;
-    elseif($mount->hp < 40) throw MountInBadConditionException;
+    elseif($mount->hp < 40) throw new MountInBadConditionException;
     elseif($mount->owner->money < $mount->{$stat . "TrainingCost"}) throw new InsufficientFundsException;
     $mount->owner->money -= $mount->{$stat . "TrainingCost"};
     $mount->$stat++;
