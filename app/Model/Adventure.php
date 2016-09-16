@@ -12,17 +12,17 @@ use Nexendrie\Orm\Adventure as AdventureEntity,
  * @author Jakub Konečný
  */
 class Adventure {
-  /** @var \Nexendrie\Model\Combat */
+  /** @var Combat */
   protected $combatModel;
   /** @var Events */
   protected $eventsModel;
-  /** @var \Nexendrie\Model\Order */
+  /** @var Order */
   protected $orderModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var AdventureEntity */
+  /** @var UserAdventureEntity */
   private $adventure = NULL;
   
   use \Nette\SmartObject;

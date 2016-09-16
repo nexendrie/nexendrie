@@ -11,7 +11,7 @@ use Nexendrie\Orm\User as UserEntity,
  * @author Jakub Konečný
  */
 class Combat {
-  /** @var \Nexendrie\Model\Inventory */
+  /** @var Inventory */
   protected $inventoryModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;

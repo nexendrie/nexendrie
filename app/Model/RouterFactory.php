@@ -14,7 +14,7 @@ class RouterFactory {
   use \Nette\StaticClass;
   
   /**
-   * @return \Nette\Application\Routers\RouteList
+   * @return RouteList
    */
   static function create() {
     $router = new RouteList;

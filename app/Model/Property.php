@@ -9,11 +9,11 @@ use Nexendrie\Orm\Group as GroupEntity;
  * @author Jakub Konečný
  */
 class Property {
-  /** @var \Nexendrie\Model\Job*/
+  /** @var Job*/
   protected $jobModel;
-  /** @var \Nexendrie\Model\Bank */
+  /** @var Bank */
   protected $bankModel;
-  /** @var \Nexendrie\Model\Taxes */
+  /** @var Taxes */
   protected $taxesModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
@@ -22,7 +22,7 @@ class Property {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Model\Job $jobModel, \Nexendrie\Model\Bank $bankModel, \Nexendrie\Model\Taxes $taxesModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Job $jobModel, Bank $bankModel, Taxes $taxesModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->jobModel = $jobModel;
     $this->bankModel = $bankModel;
     $this->taxesModel = $taxesModel;

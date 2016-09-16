@@ -18,7 +18,7 @@ class Events implements \EventCalendar\IEventModel {
   protected $cache;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var \Nexendrie\Model\SettingsRepository */
+  /** @var SettingsRepository */
   protected $sr;
   /** @var \Nette\Application\LinkGenerator */
   protected $lg;

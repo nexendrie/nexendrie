@@ -9,9 +9,9 @@ namespace Nexendrie\Model;
 class Taxes {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
-  /** @var \Nexendrie\Model\Job */
+  /** @var Job */
   protected $jobModel;
-  /** @var \Nexendrie\Model\Adventure */
+  /** @var Adventure */
   protected $adventureModel;
   /** @var int */
   protected $taxRate;
@@ -21,8 +21,8 @@ class Taxes {
   /**
    * @param int $taxRate
    * @param \Nexendrie\Orm\Model $orm
-   * @param \Nexendrie\Model\Job $jobModel
-   * @param \Nexendrie\Model\Adventure $adventureModel
+   * @param Job $jobModel
+   * @param Adventure $adventureModel
    */
   function __construct($taxRate, \Nexendrie\Orm\Model $orm, Job $jobModel, Adventure $adventureModel) {
     $this->orm = $orm;

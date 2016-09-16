@@ -11,7 +11,7 @@ use Nexendrie\Orm\Shop as ShopEntity,
  * @author Jakub Konečný
  */
 class Market {
-  /** @var \Nexendrie\Model\Events */
+  /** @var Events */
   protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;

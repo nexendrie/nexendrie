@@ -14,7 +14,7 @@ class Messenger {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var \Nexendrie\Model\Profile */
+  /** @var Profile */
   protected $profileModel;
   
   use \Nette\SmartObject;

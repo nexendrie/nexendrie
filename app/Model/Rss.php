@@ -7,19 +7,19 @@ namespace Nexendrie\Model;
  * @author Jakub Konečný
  */
 class Rss {
-  /** @var \Nexendrie\Model\Article */
+  /** @var Article */
   protected $articleModel;
   /** @var \Nette\Application\LinkGenerator */
   protected $linkGenerator;
-  /** @var \Nexendrie\Model\Locale */
+  /** @var Locale */
   protected $localeModel;
   
   use \Nette\SmartObject;
   
   /**
-   * @param \Nexendrie\Model\Article $articleModel
+   * @param Article $articleModel
    * @param \Nette\Application\LinkGenerator $linkGenerator
-   * @param \Nexendrie\Model\Locale $localeModel
+   * @param Locale $localeModel
    */
   function __construct(Article $articleModel, \Nette\Application\LinkGenerator $linkGenerator, Locale $localeModel) {
     $this->articleModel = $articleModel;
