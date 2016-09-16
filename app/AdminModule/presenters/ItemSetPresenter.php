@@ -76,7 +76,7 @@ class ItemSetPresenter extends BasePresenter {
   function actionDelete($id) {
     $this->requiresPermissions("content", "delete");
     try {
-      $this->set = $this->model->delete($id);
+      $this->model->delete($id);
       $this->flashMessage("Sada smazána.");
       $this->redirect("Content:ItemSets");
     } catch(ItemSetNotFoundException $e) {
