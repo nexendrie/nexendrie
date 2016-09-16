@@ -196,28 +196,4 @@ class House extends \Nette\Object {
     return ["amount" => $production->amount, "price" => $production->price];
   }
 }
-
-class CannotBuyMoreHousesException extends AccessDeniedException {
-  
-}
-
-class CannotBuyHouse extends AccessDeniedException {
-  
-}
-
-class CannotUpgradeHouseException extends AccessDeniedException {
-  
-}
-
-class CannotRepairHouseException extends AccessDeniedException {
-  
-}
-
-class CannotUpgradeBreweryException extends AccessDeniedException {
-  
-}
-
-class CannotProduceBeerException extends AccessDeniedException {
-  
-}
 ?>

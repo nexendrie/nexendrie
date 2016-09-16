@@ -104,16 +104,4 @@ class Bank extends \Nette\Object {
     $this->orm->loans->persistAndFlush($loan);
   }
 }
-
-class TooHighLoanException extends AccessDeniedException {
-  
-}
-
-class CannotTakeMoreLoansException extends AccessDeniedException {
-  
-}
-
-class NoLoanException extends AccessDeniedException {
-  
-}
 ?>

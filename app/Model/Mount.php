@@ -128,36 +128,4 @@ class Mount extends \Nette\Object {
     $this->orm->flush();
   }
 }
-
-class MountNotFoundException extends RecordNotFoundException {
-  
-}
-
-class MountNotOnSaleException extends AccessDeniedException {
-  
-}
-
-class InsufficientLevelForMountException extends InsufficientLevelException {
-  
-}
-
-class CannotBuyOwnMountException extends AccessDeniedException {
-  
-}
-
-class MountNotOwnedException extends AccessDeniedException {
-  
-}
-
-class CareNotNeededException extends AccessDeniedException {
-  
-}
-
-class MountInBadConditionException extends AccessDeniedException {
-  
-}
-
-class MountMaxTrainingLevelReachedException extends AccessDeniedException {
-  
-}
 ?>

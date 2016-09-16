@@ -198,12 +198,4 @@ class Skills extends \Nette\Object {
     return $bonus;
   }
 }
-
-class SkillNotFoundException extends RecordNotFoundException {
-  
-}
-
-class SkillMaxLevelReachedException extends AccessDeniedException {
-  
-}
 ?>

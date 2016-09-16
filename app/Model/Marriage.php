@@ -253,44 +253,4 @@ class Marriage extends \Nette\Object {
     $this->orm->marriages->persistAndFlush($marriage);
   }
 }
-
-class CannotProposeMarriageException extends AccessDeniedException {
-  
-}
-
-class MarriageNotFoundException extends RecordNotFoundException {
-  
-}
-
-class MarriageProposalAlreadyHandledException extends RecordNotFoundException {
-  
-}
-
-class NotEngagedException extends AccessDeniedException {
-  
-}
-
-class NotMarriedException extends AccessDeniedException {
-  
-}
-
-class WeddingAlreadyHappenedException extends AccessDeniedException {
-  
-}
-
-class AlreadyInDivorceException extends AccessDeniedException {
-  
-}
-
-class NotInDivorceException extends AccessDeniedException {
-  
-}
-
-class CannotTakeBackDivorceException extends AccessDeniedException {
-  
-}
-
-class MaxIntimacyReachedException extends AccessDeniedException {
-  
-}
 ?>

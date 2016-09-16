@@ -192,28 +192,4 @@ class Castle extends \Nette\Object {
     $this->orm->castles->persistAndFlush($castle);
   }
 }
-
-class CastleNotFoundException extends RecordNotFoundException {
-  
-}
-
-class CannotBuildCastleException extends AccessDeniedException {
-  
-}
-
-class CannotBuildMoreCastlesException extends AccessDeniedException {
-  
-}
-
-class CastleNameInUseException extends NameInUseException {
-  
-}
-
-class CannotUpgradeCastleException extends AccessDeniedException {
-  
-}
-
-class CannotRepairCastleException extends AccessDeniedException {
-  
-}
 ?>

@@ -414,44 +414,4 @@ class Monastery extends \Nette\Object {
     $this->orm->monasteries->persistAndFlush($user->monastery);
   }
 }
-
-class MonasteryNotFoundException extends RecordNotFoundException {
-  
-}
-
-class NotInMonasteryException extends AccessDeniedException {
-  
-}
-
-class CannotJoinMonasteryException extends AccessDeniedException {
-  
-}
-
-class CannotPrayException extends AccessDeniedException {
-  
-}
-
-class CannotLeaveMonasteryException extends AccessDeniedException {
-  
-}
-
-class CannotBuildMonasteryException extends AccessDeniedException {
-  
-}
-
-class MonasteryNameInUseException extends NameInUseException {
-  
-}
-
-class CannotJoinOwnMonasteryException extends AccessDeniedException {
-  
-}
-
-class CannotUpgradeMonasteryException extends AccessDeniedException {
-
-}
-
-class CannotRepairMonasteryException extends AccessDeniedException {
-
-}
 ?>

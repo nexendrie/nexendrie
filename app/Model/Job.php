@@ -428,36 +428,4 @@ class Job extends \Nette\Object {
     return $income;
   }
 }
-
-class JobNotFoundException extends RecordNotFoundException {
-  
-}
-
-class AlreadyWorkingException extends AccessDeniedException {
-  
-}
-
-class InsufficientLevelForJobException extends InsufficientLevelException {
-  
-}
-
-class InsufficientSkillLevelForJobException extends AccessDeniedException {
-  
-}
-
-class NotWorkingException extends AccessDeniedException {
-  
-}
-
-class CannotWorkException extends AccessDeniedException {
-  
-}
-
-class JobNotFinishedException extends AccessDeniedException {
-  
-}
-
-class JobMessageNotFoundException extends RecordNotFoundException {
-  
-}
 ?>

@@ -276,12 +276,4 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
     return (int) $basePrice / 100 * $discount;
   }
 }
-
-class EventNotFoundException extends RecordNotFoundException {
-  
-}
-
-class CannotDeleteStartedEventException extends AccessDeniedException {
-  
-}
 ?>

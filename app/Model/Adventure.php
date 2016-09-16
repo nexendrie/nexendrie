@@ -371,40 +371,4 @@ class Adventure extends \Nette\Object {
     return false;
   }
 }
-
-class AdventureNotFoundException extends RecordNotFoundException {
-  
-}
-
-class AdventureNpcNotFoundException extends RecordNotFoundException {
-  
-}
-
-class AlreadyOnAdventureException extends AccessDeniedException {
-  
-}
-
-class InsufficientLevelForAdventureException extends InsufficientLevelException {
-  
-}
-
-class NotOnAdventureException extends AccessDeniedException {
-  
-}
-
-class NoEnemyRemainException extends AccessDeniedException {
-  
-}
-
-class NotAllEnemiesDefeateException extends AccessDeniedException {
-  
-}
-
-class CannotDoAdventureException extends AccessDeniedException {
-  
-}
-
-class AdventureNotAccessibleException extends AccessDeniedException {
-  
-}
 ?>

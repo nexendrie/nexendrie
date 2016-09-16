@@ -1,19 +1,18 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Guild as GuildEntity,
+use Nexendrie\Orm\Order as OrderEntity,
     Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\UserJob as UserJobEntity,
     Nexendrie\Orm\Group as GroupEntity;
 
 /**
- * Guild Model
+ * Order Model
  *
  * @author Jakub Konečný
- * @property int $foundingPrice
+ * @property-read int $foundingPrice
  * @property-read int $maxRank
  */
-class Guild extends \Nette\Object {
+class Order extends \Nette\Object {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -28,34 +27,32 @@ class Guild extends \Nette\Object {
   }
   
   /**
-   * return int
+   * @return int
    */
   function getFoundingPrice() {
     return $this->foundingPrice;
   }
   
   /**
-   * Get list of guild from specified town
+   * Get list of orders
    * 
-   * @param int $town
-   * @return GuildEntity[]
+   * @return OrderEntity[]
    */
-  function listOfGuilds($town = 0) {
-    if($town === 0) return $this->orm->guilds->findAll();
-    else return $this->orm->guilds->findByTown($town);
+  function listOfOrders() {
+    return $this->orm->orders->findAll();
   }
   
   /**
-   * Get specified guild
+   * Get specified order
    * 
    * @param int $id
-   * @return GuildEntity
-   * @throws GuildNotFoundException
+   * @return OrderEntity
+   * @throws OrderNotFoundException
    */
-  function getGuild($id) {
-    $guild = $this->orm->guilds->getById($id);
-    if(!$guild) throw new GuildNotFoundException;
-    else return $guild;
+  function getOrder($id) {
+    $order = $this->orm->orders->getById($id);
+    if(!$order) throw new OrderNotFoundException;
+    else return $order;
   }
   
   /**
@@ -72,128 +69,129 @@ class Guild extends \Nette\Object {
   }
   
   /**
-   * Edit specified guild
+   * Edit specified order
    * 
    * @param int $id
    * @param array $data
    * @return void
-   * @throws GuildNotFoundException
-   * @throws GuildNameInUseException
+   * @throws OrderNotFoundException
+   * @throws OrderNameInUseException
    */
-  function editGuild($id, array $data) {
+  function editOrder($id, array $data) {
     try {
-      $guild = $this->getGuild($id);
-    } catch(GuildNotFoundException $e) {
+      $order = $this->getOrder($id);
+    } catch(OrderNotFoundException $e) {
       throw $e;
     }
     foreach($data as $key => $value) {
-      if($key === "name" AND !$this->checkNameAvailability($value, $id)) throw new GuildNameInUseException;
-      $guild->$key = $value;
+      if($key === "name" AND !$this->checkNameAvailability($value, $id)) throw new OrderNameInUseException;
+      $order->$key = $value;
     }
-    $this->orm->guilds->persistAndFlush($guild);
+    $this->orm->orders->persistAndFlush($order);
   }
   
   /**
-   * Get specified user's guild
+   * Get specified user's order
    * 
    * @param int $uid
-   * @return GuildEntity|NULL
+   * @return OrderEntity|NULL
    */
-  function getUserGuild($uid = 0) {
+  function getUserOrder($uid = 0) {
     if($uid === 0) $uid = $this->user->id;
     $user = $this->orm->users->getById($uid);
-    return $user->guild;
+    return $user->order;
   }
   
   /**
-   * Check whetever the user can found a guild
+   * Check whetever the user can found an order
    * 
    * @return bool
    */
   function canFound() {
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != GroupEntity::PATH_CITY) return false;
-    elseif($user->guild) return false;
+    if($user->group->path != GroupEntity::PATH_TOWER) return false;
+    elseif($user->group->level < 6000) return false;
+    elseif($user->order) return false;
     else return true;
   }
   
   /**
-   * Found a guild
+   * Found an order
    * 
    * @param array $data
    * @return void
-   * @throws CannotFoundGuildException
-   * @throws GuildNameInUseException
+   * @throws CannotFoundOrderException
+   * @throws OrderNameInUseException
    * @throws InsufficientFundsException
    */
   function found(array $data) {
-    if(!$this->canFound()) throw new CannotFoundGuildException;
+    if(!$this->canFound()) throw new CannotFoundOrderException;
     $user = $this->orm->users->getById($this->user->id);
-    if(!$this->checkNameAvailability($data["name"])) throw new GuildNameInUseException;
+    if(!$this->checkNameAvailability($data["name"])) throw new OrderNameInUseException;
     if($user->money < $this->foundingPrice) throw new InsufficientFundsException;
-    $guild = new GuildEntity;
-    $this->orm->guilds->attach($guild);
-    $guild->name = $data["name"];
-    $guild->description = $data["description"];
-    $guild->town = $this->user->identity->town;
-    $user->lastActive = time();
+    $order = new OrderEntity;
+    $this->orm->orders->attach($order);
+    $order->name = $data["name"];
+    $order->description = $data["description"];
+    $user->lastActive = Stime();
     $user->money -= $this->foundingPrice;
-    $user->guild = $guild;
-    $user->guildRank = 4;
-    $this->orm->users->persistAndFlush($user);
+    $user->order = $order;
+    $user->orderRank = $this->maxRank;
+    $this->orm->users->persist($user);
+    $queen = $this->orm->users->getById(0);
+    $queen->money += $this->foundingPrice;
+    $this->orm->users->persist($queen);
+    $this->orm->flush();
   }
   
-  function calculateGuildIncomeBonus($baseIncome, UserJobEntity $job) {
+  function calculateOrderIncomeBonus($baseIncome) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $bonus = $increase = 0;
-    $user = $this->orm->users->getById($job->user->id);
-    if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
-      $use = false;
-      if($user->guild->skill === NULL) $use = true;
-      elseif($job->job->neededSkill->id === $user->guild->skill->id) $use = true;
-      if($use) $increase += $user->guildRank->incomeBonus + $user->guild->level - 1;
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
+      $increase += $user->orderRank->adventureBonus + ($user->order->level * 2.5) - 2.5;
     }
     $bonus += (int) $baseIncome /100 * $increase;
     return $bonus;
   }
   
   /**
-   * Check whetever the user can join a guild
+   * Check whetever the user can join an order
    * 
    * @return bool
    */
   function canJoin() {
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path === GroupEntity::PATH_CITY AND !$user->guild) return true;
+    if($user->group->path === GroupEntity::PATH_TOWER AND !$user->order) return true;
     else return false;
   }
   
   /**
-   * Join a guild
+   * Join an order
    * 
    * @param int $id
    * @throws AuthenticationNeededException
-   * @throws CannotJoinGuildException
-   * @throws GuildNotFoundException
+   * @throws CannotJoinOrderException
+   * @throws OrderNotFoundException
    */
   function join($id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    elseif(!$this->canJoin()) throw new CannotJoinGuildException;
+    elseif(!$this->canJoin()) throw new CannotJoinOrderException;
     try {
-      $guild = $this->getGuild($id);
-    } catch(GuildNotFoundException $e) {
+      $order = $this->getOrder($id);
+    } catch(OrderNotFoundException $e) {
       throw $e;
     }
     $user = $this->orm->users->getById($this->user->id);
-    $user->guild = $guild;
-    $user->guildRank = 1;
+    $user->order = $order;
+    $user->orderRank = 1;
     $this->orm->users->persistAndFlush($user);
   }
   
   /**
-   * Check whetever the user can leave guild
+   * Check whetever the user can leave order
    * 
    * @return bool
    * @throws AuthenticationNeededException
@@ -201,27 +199,27 @@ class Guild extends \Nette\Object {
   function canLeave( ) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->guild) return false;
-    else return !($user->guildRank->id === 4);
+    if(!$user->order) return false;
+    else return !($user->orderRank->id === $this->maxRank);
   }
   
   /**
-   * Leave guild
+   * Leave order
    * 
    * @return void
    * @throws AuthenticationNeededException
-   * @throws CannotLeaveGuildException
+   * @throws CannotLeaveOrderException
    */
   function leave() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$this->canLeave()) throw new CannotLeaveGuildException;
+    if(!$this->canLeave()) throw new CannotLeaveOrderException;
     $user = $this->orm->users->getById($this->user->id);
-    $user->guild = $user->guildRank = NULL;
+    $user->order = $user->orderRank = NULL;
     $this->orm->users->persistAndFlush($user);
   }
   
   /**
-   * Check whetever the user can manage guild
+   * Check whetever the user can manage order
    * 
    * @return bool
    * @throws AuthenticationNeededException
@@ -229,12 +227,12 @@ class Guild extends \Nette\Object {
   function canManage() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->guild) return false;
-    else return ($user->guildRank->id === 4);
+    if(!$user->order) return false;
+    else return ($user->orderRank->id === $this->maxRank);
   }
   
   /**
-   * Check whetever the user can upgrade guild
+   * Check whetever the user can upgrade order
    * 
    * @return bool
    * @throws AuthenticationNeededException
@@ -242,38 +240,38 @@ class Guild extends \Nette\Object {
   function canUpgrade() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->guild) return false;
-    elseif($user->guildRank->id != 4) return false;
-    elseif($user->guild->level >= GuildEntity::MAX_LEVEL) return false;
+    if(!$user->order) return false;
+    elseif($user->orderRank->id != $this->maxRank) return false;
+    elseif($user->order->level >= OrderEntity::MAX_LEVEL) return false;
     else return true;
   }
   
   /**
-   * Upgrade guild
+   * Upgrade order
    * 
    * @return void
    * @throws AuthenticationNeededException
-   * @throws CannotUpgradeGuildException
+   * @throws CannotUpgradeOrderException
    * @throws InsufficientFundsException
    */
   function upgrade() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$this->canUpgrade()) throw new CannotUpgradeGuildException;
-    $guild = $this->getUserGuild();
-    if($guild->money < $guild->upgradePrice) throw new InsufficientFundsException;
-    $guild->money -= $guild->upgradePrice;
-    $guild->level++;
-    $this->orm->guilds->persistAndFlush($guild);
+    if(!$this->canUpgrade()) throw new CannotUpgradeOrderException;
+    $order = $this->getUserOrder();
+    if($order->money < $order->upgradePrice) throw new InsufficientFundsException;
+    $order->money -= $order->upgradePrice;
+    $order->level++;
+    $this->orm->orders->persistAndFlush($order);
   }
   
   /**
    * Get members of specified order
    * 
-   * @param int $guild
+   * @param int $order
    * @return UserEntity[]
    */
-  function getMembers($guild) {
-    return $this->orm->users->findByGuild($guild);
+  function getMembers($order) {
+    return $this->orm->users->findByOrder($order);
   }
   
   /**
@@ -281,7 +279,7 @@ class Guild extends \Nette\Object {
    */
   function getMaxRank() {
     static $rank = NULL;
-    if($rank === NULL) $rank = $this->orm->guildRanks->findAll()->countStored();
+    if($rank === NULL) $rank = $this->orm->orderRanks->findAll()->countStored();
     return $rank;
   }
   
@@ -293,7 +291,7 @@ class Guild extends \Nette\Object {
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws UserNotFoundException
-   * @throws UserNotInYourGuildException
+   * @throws UserNotInYourOrderException
    * @throws CannotPromoteMemberException
    */
   function promote($userId) {
@@ -302,9 +300,9 @@ class Guild extends \Nette\Object {
     $user = $this->orm->users->getById($userId);
     if(!$user) throw new UserNotFoundException;
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
-    elseif($user->guildRank->id >= $this->maxRank - 1) throw new CannotPromoteMemberException;
-    $user->guildRank = $this->orm->guildRanks->getById($user->guildRank->id + 1);
+    if($user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
+    elseif($user->orderRank->id >= $this->maxRank - 1) throw new CannotPromoteMemberException;
+    $user->orderRank = $this->orm->orderRanks->getById($user->orderRank->id + 1);
     $this->orm->users->persistAndFlush($user);
   }
   
@@ -316,7 +314,7 @@ class Guild extends \Nette\Object {
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws UserNotFoundException
-   * @throws UserNotInYourGuildException
+   * @throws UserNotInYourOrderException
    * @throws CannotDemoteMemberException
    */
   function demote($userId) {
@@ -325,9 +323,9 @@ class Guild extends \Nette\Object {
     $user = $this->orm->users->getById($userId);
     if(!$user) throw new UserNotFoundException;
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
-    elseif($user->guildRank->id < 2 OR $user->guildRank->id === $this->maxRank) throw new CannotDemoteMemberException;
-    $user->guildRank = $this->orm->guildRanks->getById($user->guildRank->id - 1);
+    if($user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
+    elseif($user->orderRank->id < 2 OR $user->orderRank->id === $this->maxRank) throw new CannotDemoteMemberException;
+    $user->orderRank = $this->orm->orderRanks->getById($user->orderRank->id - 1);
     $this->orm->users->persistAndFlush($user);
   }
   
@@ -339,7 +337,7 @@ class Guild extends \Nette\Object {
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws UserNotFoundException
-   * @throws UserNotInYourGuildException
+   * @throws UserNotInYourOrderException
    * @throws CannotKickMemberException
    */
   function kick($userId) {
@@ -348,38 +346,10 @@ class Guild extends \Nette\Object {
     $user = $this->orm->users->getById($userId);
     if(!$user) throw new UserNotFoundException;
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
-    elseif($user->guildRank->id === $this->maxRank) throw new CannotKickMemberException;
-    $user->guild = $user->guildRank = NULL;
+    if($user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
+    elseif($user->orderRank->id === $this->maxRank) throw new CannotKickMemberException;
+    $user->order = $user->orderRank = NULL;
     $this->orm->users->persistAndFlush($user);
   }
-}
-
-class GuildNotFoundException extends RecordNotFoundException {
-  
-}
-
-class CannotFoundGuildException extends AccessDeniedException {
-  
-}
-
-class GuildNameInUseException extends NameInUseException {
-  
-}
-
-class CannotJoinGuildException extends AccessDeniedException {
-  
-}
-
-class CannotLeaveGuildException extends AccessDeniedException {
-  
-}
-
-class CannotUpgradeGuildException extends AccessDeniedException {
-
-}
-
-class UserNotInYourGuildException extends AccessDeniedException {
-  
 }
 ?>

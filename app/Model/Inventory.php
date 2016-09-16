@@ -288,44 +288,4 @@ class Inventory extends \Nette\Object {
     $this->orm->userItems->persistAndFlush($item);
   }
 }
-
-class ItemNotOwnedException extends AccessDeniedException {
-  
-}
-
-class ItemNotEquipableException extends AccessDeniedException {
-  
-}
-
-class ItemAlreadyWornException extends AccessDeniedException {
-  
-}
-
-class ItemNotWornException extends AccessDeniedException {
-  
-}
-
-class ItemNotUsableException extends AccessDeniedException {
-  
-}
-
-class ItemNotDrinkableException extends ItemNotUsableException {
-
-}
-
-class HealingNotNeeded extends AccessDeniedException {
-
-}
-
-class ItemNotForSaleException extends AccessDeniedException {
-
-}
-
-class ItemNotUpgradableException extends AccessDeniedException {
-  
-}
-
-class ItemMaxLevelReachedException extends AccessDeniedException {
-  
-}
 ?>

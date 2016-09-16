@@ -171,16 +171,4 @@ class Market extends \Nette\Object {
     $this->orm->userItems->persistAndFlush($row);
   }
 }
-
-class ShopNotFoundException extends RecordNotFoundException {
-  
-}
-
-class ItemNotFoundException extends RecordNotFoundException {
-  
-}
-
-class WrongShopException extends AccessDeniedException {
-  
-}
 ?>

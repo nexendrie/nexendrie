@@ -130,8 +130,4 @@ class Group extends \Nette\Object {
     $this->cache->remove("groups_by_level");
   }
 }
-
-class GroupNotFoundException extends RecordNotFoundException {
-  
-}
 ?>

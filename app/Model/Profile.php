@@ -160,8 +160,4 @@ class Profile extends \Nette\Object {
     else return NULL;
   }
 }
-
-class UserNotFoundException extends RecordNotFoundException {
-  
-}
 ?>

@@ -239,22 +239,4 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
     else return $user;
   }
 }
-
-/**
- * Registration exception
- * 
- * @author Jakub Konečný
- */
-class RegistrationException extends \Exception {
-  
-}
-
-/**
- * Settings exception
- * 
- * @author Jakub Konečný
- */
-class SettingsException extends \Exception {
-  
-}
 ?>

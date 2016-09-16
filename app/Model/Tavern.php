@@ -97,8 +97,4 @@ class Tavern extends \Nette\Object {
     return $message;
   }
 }
-
-class MealNotFoundException extends RecordNotFoundException {
-  
-}
 ?>

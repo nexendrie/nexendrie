@@ -161,8 +161,4 @@ class Article extends \Nette\Object {
     return (bool) $row;
   }
 }
-
-class ArticleNotFoundException extends RecordNotFoundException {
-  
-}
 ?>

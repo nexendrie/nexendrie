@@ -101,8 +101,4 @@ class Messenger extends \Nette\Object {
     $this->orm->messages->persistAndFlush($message);
   }
 }
-
-class MessageNotFoundException extends RecordNotFoundException {
-  
-}
 ?>

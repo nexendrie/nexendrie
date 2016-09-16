@@ -88,8 +88,4 @@ class ItemSet extends \Nette\Object {
     $this->orm->itemSets->removeAndFlush($set);
   }
 }
-
-class ItemSetNotFoundException extends RecordNotFoundException {
-  
-}
 ?>

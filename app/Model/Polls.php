@@ -101,17 +101,4 @@ class Polls extends \Nette\Object {
     $this->orm->polls->persistAndFlush($poll);
   }
 }
-
-/**
- * Poll voting exception
- * 
- * @author Jakub Konečný
- */
-class PollVotingException extends \Exception {
-  
-}
-
-class PollNotFoundException extends RecordNotFoundException {
-  
-}
 ?>
