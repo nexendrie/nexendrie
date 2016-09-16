@@ -10,13 +10,15 @@ use Nette\Utils\Arrays,
  *
  * @author Jakub Konečný
  */
-class Group extends \Nette\Object {
+class Group {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Caching\Cache */
   protected $cache;
   /** @var \Nette\Security\User */
   protected $user;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param \Nette\Caching\Cache $cache

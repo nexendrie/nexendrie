@@ -10,7 +10,7 @@ use Nette\Security as NS,
  *
  * @author Jakub Konečný
  */
-class UserManager extends \Nette\Object implements NS\IAuthenticator {
+class UserManager implements NS\IAuthenticator {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -23,6 +23,8 @@ class UserManager extends \Nette\Object implements NS\IAuthenticator {
   const REG_DUPLICATE_USERNAME = 1,
     REG_DUPLICATE_EMAIL = 2,
     SET_INVALID_PASSWORD = 3;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param array $roles

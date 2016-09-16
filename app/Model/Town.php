@@ -10,13 +10,15 @@ use Nexendrie\Orm\Town as TownEntity,
  *
  * @author Jakub Konečný
  */
-class Town extends \Nette\Object {
+class Town {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
   protected $foundingPrice = 1000;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;

@@ -10,7 +10,7 @@ namespace Nexendrie\Orm;
  * @property-read string $action
  * @property-read int $group
  */
-class PermissionDummy extends \Nette\Object {
+class PermissionDummy {
   /** @var int */
   protected $id;
   /** @var string */
@@ -19,6 +19,8 @@ class PermissionDummy extends \Nette\Object {
   protected $action;
   /** @var int */
   protected $group;
+  
+  use \Nette\SmartObject;
   
   function __construct(Permission $p) {
     $this->id = $p->id;

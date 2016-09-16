@@ -13,7 +13,7 @@ use Nexendrie\Orm\Monastery as MonasteryEntity,
  * @property-read int $buildingPrice
  * 
  */
-class Monastery extends \Nette\Object {
+class Monastery {
   /** @var Events */
   protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */
@@ -26,6 +26,8 @@ class Monastery extends \Nette\Object {
   protected $orderModel;
   /** @var int */
   protected $buildingPrice;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param int $buildingPrice

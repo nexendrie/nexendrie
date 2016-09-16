@@ -10,13 +10,15 @@ use Nexendrie\Orm\House as HouseEntity,
  *
  * @author Jakub Konečný
  */
-class House extends \Nette\Object {
+class House {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
   protected $price = 500;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;

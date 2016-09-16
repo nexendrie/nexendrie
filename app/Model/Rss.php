@@ -6,13 +6,15 @@ namespace Nexendrie\Model;
  *
  * @author Jakub Konečný
  */
-class Rss extends \Nette\Object {
+class Rss {
   /** @var \Nexendrie\Model\Article */
   protected $articleModel;
   /** @var \Nette\Application\LinkGenerator */
   protected $linkGenerator;
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param \Nexendrie\Model\Article $articleModel

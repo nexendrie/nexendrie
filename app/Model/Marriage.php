@@ -8,11 +8,13 @@ use Nexendrie\Orm\Marriage as MarriageEntity;
  *
  * @author Jakub Konečný
  */
-class Marriage extends \Nette\Object {
+class Marriage {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;

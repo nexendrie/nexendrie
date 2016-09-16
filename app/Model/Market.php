@@ -10,13 +10,15 @@ use Nexendrie\Orm\Shop as ShopEntity,
  *
  * @author Jakub Konečný
  */
-class Market extends \Nette\Object {
+class Market {
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param \Nexendrie\Orm\Model $orm

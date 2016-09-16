@@ -10,13 +10,15 @@ use Nexendrie\Orm\Castle as CastleEntity,
  * @author Jakub Konečný
  * @property-read int $buildingPrice
  */
-class Castle extends \Nette\Object {
+class Castle {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
   protected $buildingPrice;
+  
+  use \Nette\SmartObject;
   
   function __construct($buildingPrice, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;

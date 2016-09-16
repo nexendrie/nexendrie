@@ -10,11 +10,13 @@ use Nexendrie\Orm\User as UserEntity,
  *
  * @author Jakub Konečný
  */
-class Combat extends \Nette\Object {
+class Combat {
   /** @var \Nexendrie\Model\Inventory */
   protected $inventoryModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
+  
+  use \Nette\SmartObject;
   
   function __construct(Inventory $inventoryModel, \Nexendrie\Orm\Model $orm) {
     $this->inventoryModel = $inventoryModel;

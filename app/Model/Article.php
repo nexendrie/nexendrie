@@ -10,13 +10,15 @@ use Nexendrie\Orm\Article as ArticleEntity,
  *
  * @author Jakub Konečný
  */
-class Article extends \Nette\Object {
+class Article {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
   protected $itemsPerPage;
+  
+  use \Nette\SmartObject;
   
   function __construct($itemsPerPage, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;

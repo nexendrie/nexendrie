@@ -11,7 +11,7 @@ use Nexendrie\Orm\Job as JobEntity,
  *
  * @author Jakub Konečný
  */
-class Job extends \Nette\Object {
+class Job {
   /** @var Skills */
   protected $skillsModel;
   /** @var Events */
@@ -26,6 +26,8 @@ class Job extends \Nette\Object {
   protected $user;
   /** Base success rate for job (in %) */
   const BASE_SUCCESS_RATE = 55;
+  
+  use \Nette\SmartObject;
   
   function __construct(Skills $skillsModel, Events $eventsModel, Guild $guildModel, Locale $localeModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->skillsModel = $skillsModel;

@@ -10,9 +10,11 @@ use Nextras\Orm\Collection\ICollection,
  *
  * @author Jakub Konečný
  */
-class Chronicle extends \Nette\Object {
+class Chronicle {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;

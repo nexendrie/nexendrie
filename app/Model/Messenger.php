@@ -9,13 +9,15 @@ use Nexendrie\Orm\Message as MessageEntity,
  *
  * @author Jakub Konečný
  */
-class Messenger extends \Nette\Object {
+class Messenger {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param \Nexendrie\Orm\Model $orm

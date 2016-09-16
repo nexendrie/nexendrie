@@ -8,9 +8,11 @@ use Nexendrie\Orm\ItemSet as ItemSetEntity;
  *
  * @author Jakub Konečný
  */
-class ItemSet extends \Nette\Object {
+class ItemSet {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;

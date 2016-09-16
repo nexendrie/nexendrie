@@ -12,7 +12,10 @@ use Nexendrie\Orm\PermissionDummy,
  *
  * @author Jakub Konečný
  */
-class AuthorizatorFactory extends \Nette\Object {
+class AuthorizatorFactory {
+  
+  use \Nette\StaticClass;
+  
   /**
    * Get list of all groups ordered by level
    * 

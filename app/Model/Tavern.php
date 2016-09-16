@@ -8,11 +8,13 @@ use Nexendrie\Orm\Meal as MealEntity;
  *
  * @author Jakub Konečný
  */
-class Tavern extends \Nette\Object {
+class Tavern {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;

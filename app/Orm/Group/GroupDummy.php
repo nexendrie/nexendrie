@@ -13,7 +13,7 @@ namespace Nexendrie\Orm;
  * @property string $path
  * @property int $members
  */
-class GroupDummy extends \Nette\Object {
+class GroupDummy {
   /** @var int */
   protected $id;
   /** @var string */
@@ -28,6 +28,8 @@ class GroupDummy extends \Nette\Object {
   protected $path;
   /** @var int */
   protected $members;
+  
+  use \Nette\SmartObject;
   
   function __construct(Group $g) {
     $this->id = $g->id;

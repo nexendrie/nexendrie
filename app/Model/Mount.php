@@ -10,11 +10,13 @@ use Nexendrie\Orm\Mount as MountEntity,
  *
  * @author Jakub Konečný
  */
-class Mount extends \Nette\Object {
+class Mount {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;

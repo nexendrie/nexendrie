@@ -9,11 +9,13 @@ use Nette\Utils\Arrays,
  *
  * @author Jakub Konečný
  */
-class Profile extends \Nette\Object {
+class Profile {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param \Nexendrie\Orm\Model $orm

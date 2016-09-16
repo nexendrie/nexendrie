@@ -12,7 +12,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class EditUserFormFactory extends \Nette\Object {
+class EditUserFormFactory {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var UserManager */
@@ -24,6 +24,8 @@ class EditUserFormFactory extends \Nette\Object {
   
   /** @var int */
   protected $uid;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Orm\Model $orm, UserManager $model, Group $groupModel, Town $townModel) {
     $this->orm = $orm;

@@ -8,13 +8,15 @@ use Nexendrie\Orm\Loan as LoanEntity;
  *
  * @author Jakub Konečný
  */
-class Bank extends \Nette\Object {
+class Bank {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
   protected $interest;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param int $interest

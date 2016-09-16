@@ -6,7 +6,9 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-abstract class DummyEntity extends \Nette\Object {
+abstract class DummyEntity {
+  use \Nette\SmartObject;
+  
   /**
    * @return array
    */

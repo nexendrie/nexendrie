@@ -13,13 +13,15 @@ use Nexendrie\Orm\Guild as GuildEntity,
  * @property int $foundingPrice
  * @property-read int $maxRank
  */
-class Guild extends \Nette\Object {
+class Guild {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
   protected $foundingPrice;
+  
+  use \Nette\SmartObject;
   
   function __construct($foundingPrice, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;

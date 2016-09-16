@@ -8,7 +8,7 @@ use Nexendrie\Orm\Group as GroupEntity;
  *
  * @author Jakub Konečný
  */
-class Property extends \Nette\Object {
+class Property {
   /** @var \Nexendrie\Model\Job*/
   protected $jobModel;
   /** @var \Nexendrie\Model\Bank */
@@ -19,6 +19,8 @@ class Property extends \Nette\Object {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Model\Job $jobModel, \Nexendrie\Model\Bank $bankModel, \Nexendrie\Model\Taxes $taxesModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->jobModel = $jobModel;

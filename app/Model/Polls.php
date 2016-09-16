@@ -8,11 +8,13 @@ use Nexendrie\Orm\Poll as PollEntity;
  *
  * @author Jakub Konečný
  */
-class Polls extends \Nette\Object {
+class Polls {
   /** @var \Nexendrie\Orm\Model $orm */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param \Nexendrie\Orm\Model $orm

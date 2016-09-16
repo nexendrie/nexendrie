@@ -53,9 +53,11 @@ namespace Nexendrie\Model;
  * 
  * @author Jakub Konečný
  */
-class Locale extends \Nette\Object implements \Nexendrie\ILocale {
+class Locale implements \Nexendrie\ILocale {
   /** @var array */
   protected $formats = [];
+  
+  use \Nette\SmartObject;
   
   /**
    * @param array $formats

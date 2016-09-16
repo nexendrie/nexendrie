@@ -6,7 +6,7 @@ namespace Nexendrie\Model;
  *
  * @author Jakub Konečný
  */
-class Taxes extends \Nette\Object {
+class Taxes {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nexendrie\Model\Job */
@@ -15,6 +15,8 @@ class Taxes extends \Nette\Object {
   protected $adventureModel;
   /** @var int */
   protected $taxRate;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param int $taxRate
@@ -72,6 +74,7 @@ class Taxes extends \Nette\Object {
     $return->owner = $town->owner->id;
     foreach($town->denizens as $denizen) {
       if($denizen->id === 0) continue;
+      /** @var \stdClass $d */
       $d = (object) [
         "id" => $denizen->id, "publicname" => $denizen->publicname,
         "income" => 0, "tax" => 0

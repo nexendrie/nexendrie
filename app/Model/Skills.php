@@ -9,7 +9,7 @@ use Nexendrie\Orm\Skill as SkillEntity,
  *
  * @author Jakub Konečný
  */
-class Skills extends \Nette\Object {
+class Skills {
   /** @var Events */
   protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */
@@ -20,6 +20,8 @@ class Skills extends \Nette\Object {
   const SKILL_LEVEL_SUCCESS_RATE = 5;
   /** Increase of income per skill level (in %) */
   const SKILL_LEVEL_INCOME = 15;
+  
+  use \Nette\SmartObject;
   
   function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->eventsModel = $eventsModel;

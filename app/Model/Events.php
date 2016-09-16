@@ -11,7 +11,7 @@ use Nexendrie\Orm\Event,
  *
  * @author Jakub Konečný
  */
-class Events extends \Nette\Object implements \EventCalendar\IEventModel {
+class Events implements \EventCalendar\IEventModel {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Caching\Cache */
@@ -24,6 +24,8 @@ class Events extends \Nette\Object implements \EventCalendar\IEventModel {
   protected $lg;
   /** @var Event[] */
   private $events;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Orm\Model $orm, Cache $cache, \Nette\Security\User $user, SettingsRepository $sr, \Nette\Application\LinkGenerator $lg) {
     $this->orm = $orm;

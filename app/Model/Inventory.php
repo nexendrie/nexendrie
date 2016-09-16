@@ -11,11 +11,13 @@ use Nexendrie\Orm\UserItem as UserItemEntity,
  *
  * @author Jakub Konečný
  */
-class Inventory extends \Nette\Object {
+class Inventory {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
+  
+  use \Nette\SmartObject;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;

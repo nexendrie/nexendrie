@@ -8,9 +8,11 @@ namespace Nexendrie\Responses;
  * 
  * @property-read \SimpleXMLElement $source
  */
-class RssResponse extends \Nette\Object implements \Nette\Application\IResponse {
+class RssResponse implements \Nette\Application\IResponse {
   /** @var \SimpleXMLElement */
   private $source;
+  
+  use \Nette\SmartObject;
   
   /**
    * @param \SimpleXMLElement $source
