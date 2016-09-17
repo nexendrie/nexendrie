@@ -128,7 +128,7 @@ class Profile {
    * Get amount of sent and received of specified user
    * 
    * @param int $id  
-   * @return int
+   * @return int[]
    */
   function countMessages($id = 0) {
     return ["sent" => $this->orm->messages->findByFrom($id)->countStored(), "recieved" => $this->orm->messages->findByTo($id)->countStored()];

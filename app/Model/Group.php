@@ -48,6 +48,7 @@ class Group {
     if($groups === NULL) {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll();
+      /** @var \Nexendrie\Orm\Group $row */
       foreach($groupsRows as $row) {
         $groups[$row->id] = $row->dummy();
       }

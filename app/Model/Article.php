@@ -83,7 +83,7 @@ class Article {
    * Get comments meeting specified rules
    * 
    * @param int $article
-   * @return ArticleEntity[]
+   * @return CommentEntity[]
    */
   function viewComments($article = 0) {
     if($article === 0) return $this->orm->comments->findAll();

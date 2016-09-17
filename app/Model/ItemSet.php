@@ -1,8 +1,7 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\ItemSet as ItemSetEntity,
-    Nexendrie\Orm\Adventure as AdventureEntity;
+use Nexendrie\Orm\ItemSet as ItemSetEntity;
 
 /**
  * ItemSet Model
@@ -32,7 +31,7 @@ class ItemSet {
    * Get specified item set
    *  
    * @param int $id
-   * @return AdventureEntity
+   * @return ItemSetEntity
    * @throws ItemSetNotFoundException
    */
   function get($id) {

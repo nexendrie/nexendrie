@@ -165,7 +165,7 @@ class UserManager implements NS\IAuthenticator {
   /**
    * Get user's settings
    * 
-   * @return \stdClass
+   * @return array
    * @throws AuthenticationNeededException
    */
   function getSettings() {
