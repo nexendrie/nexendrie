@@ -7,6 +7,7 @@ use Nexendrie\Orm\Poll as PollEntity;
  * Polls Model
  *
  * @author Jakub Konečný
+ * @property \Nette\Security\User $user
  */
 class Polls {
   /** @var \Nexendrie\Orm\Model $orm */

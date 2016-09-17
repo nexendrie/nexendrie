@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7f957e88b00a3e1dfba75d33125a2811",
+    "hash": "abbb7320efa3bfb1183556a41eea7c58",
     "content-hash": "b15f017aab76829e6319070b69fb2b26",
     "packages": [
         {
@@ -94,12 +94,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/book-component.git",
-                "reference": "d107f1dec0eeddcf8ed1afe99d89cfec389e98a8"
+                "reference": "5ce456ed4944cb0da2b70a0f22d323374b282f9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/book-component/zipball/d107f1dec0eeddcf8ed1afe99d89cfec389e98a8",
-                "reference": "d107f1dec0eeddcf8ed1afe99d89cfec389e98a8",
+                "url": "https://api.github.com/repos/konecnyjakub/book-component/zipball/5ce456ed4944cb0da2b70a0f22d323374b282f9e",
+                "reference": "5ce456ed4944cb0da2b70a0f22d323374b282f9e",
                 "shasum": ""
             },
             "require": {
@@ -114,6 +114,7 @@
                 "mrtnzlml/testbench": "^2.3",
                 "nette/robot-loader": "^2.4",
                 "nette/tester": "2.0.x-dev as v1.7",
+                "squizlabs/php_codesniffer": "^2.6",
                 "tracy/tracy": "^2.4"
             },
             "type": "library",
@@ -145,7 +146,7 @@
                 "component",
                 "nette"
             ],
-            "time": "2016-08-25 19:20:05"
+            "time": "2016-09-13 19:37:27"
         },
         {
             "name": "konecnyjakub/event-calendar",
@@ -1334,16 +1335,16 @@
         },
         {
             "name": "nextras/orm",
-            "version": "v2.0.2",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/orm.git",
-                "reference": "152edd59b48740d8531c745830b331817674971b"
+                "reference": "44d7e81cb05ec6536452d59ebd6f7c44a141eda4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/orm/zipball/152edd59b48740d8531c745830b331817674971b",
-                "reference": "152edd59b48740d8531c745830b331817674971b",
+                "url": "https://api.github.com/repos/nextras/orm/zipball/44d7e81cb05ec6536452d59ebd6f7c44a141eda4",
+                "reference": "44d7e81cb05ec6536452d59ebd6f7c44a141eda4",
                 "shasum": ""
             },
             "require": {
@@ -1363,7 +1364,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -1391,7 +1392,7 @@
                 "nextras",
                 "orm"
             ],
-            "time": "2016-03-13 08:47:43"
+            "time": "2016-07-05 15:46:03"
         },
         {
             "name": "stekycz/cronner",
@@ -1651,16 +1652,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.6.2",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "4edb770cb853def6e60c93abb088ad5ac2010c83"
+                "reference": "571e27b6348e5b3a637b2abc82ac0d01e6d7bbed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4edb770cb853def6e60c93abb088ad5ac2010c83",
-                "reference": "4edb770cb853def6e60c93abb088ad5ac2010c83",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/571e27b6348e5b3a637b2abc82ac0d01e6d7bbed",
+                "reference": "571e27b6348e5b3a637b2abc82ac0d01e6d7bbed",
                 "shasum": ""
             },
             "require": {
@@ -1725,7 +1726,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2016-07-13 23:29:13"
+            "time": "2016-09-01 23:53:02"
         }
     ],
     "aliases": [

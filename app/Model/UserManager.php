@@ -9,6 +9,7 @@ use Nette\Security as NS,
  * User Manager
  *
  * @author Jakub Konečný
+ * @property \Nette\Security\User $user
  */
 class UserManager implements NS\IAuthenticator {
   /** @var \Nexendrie\Orm\Model */

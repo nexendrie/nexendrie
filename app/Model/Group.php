@@ -9,6 +9,7 @@ use Nette\Utils\Arrays,
  * Group Model
  *
  * @author Jakub Konečný
+ * @property \Nette\Security\User $user
  */
 class Group {
   /** @var \Nexendrie\Orm\Model */

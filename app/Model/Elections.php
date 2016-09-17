@@ -12,11 +12,11 @@ class Elections {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   
+  use \Nette\SmartObject;
+  
   function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
   }
-  
-  use \Nette\SmartObject;
   
   /**
    * Get number of councillors for the town
