@@ -20,7 +20,7 @@ class AuthorizatorFactory {
    * Get list of all groups ordered by level
    * 
    * @param Cache $cache
-   * @param \Nexendrie\Orm\Model $orm
+   * @param ORM $orm
    * @return \stdClass[]
    */
   static function getGroups(Cache $cache, ORM $orm) {
@@ -28,6 +28,7 @@ class AuthorizatorFactory {
     if($groups === NULL) {
       $groups = [];
       $groupsRows = $orm->groups->findAll()->orderBy("level");
+      /** @var \Nexendrie\Orm\Group $row */
       foreach($groupsRows as $row) {
         $groups[$row->id] = $row->dummy();
       }
@@ -40,13 +41,14 @@ class AuthorizatorFactory {
    * Get permissions
    * 
    * @param Cache $cache
-   * @param \Nexendrie\Orm\Model $orm
+   * @param ORM $orm
    * @return PermissionDummy[]
    */
   static function getPermissions(Cache $cache, ORM $orm) {
     $return = $cache->load("permissions");
     if($return === NULL) {
       $rows = $orm->permissions->findAll();
+      /** @var \Nexendrie\Orm\Permission $row */
       foreach($rows as $row) {
         $return[] = $row->dummy();
       }
@@ -59,7 +61,7 @@ class AuthorizatorFactory {
   * Factory for Authorizator
   * 
   * @param  $cache
-  * @param \Nexendrie\Orm\Model $orm
+  * @param ORM $orm
   * @return Permission
   */
   static function create(Cache $cache, ORM $orm) {

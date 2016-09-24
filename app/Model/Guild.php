@@ -146,6 +146,11 @@ class Guild {
     $this->orm->users->persistAndFlush($user);
   }
   
+  /**
+   * @param int $baseIncome
+   * @param UserJobEntity $job
+   * @return int
+   */
   function calculateGuildIncomeBonus($baseIncome, UserJobEntity $job) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $bonus = $increase = 0;

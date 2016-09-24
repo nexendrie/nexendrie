@@ -147,6 +147,10 @@ class Order {
     $this->orm->flush();
   }
   
+  /**
+   * @param int $baseIncome
+   * @return int
+   */
   function calculateOrderIncomeBonus($baseIncome) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $bonus = $increase = 0;
