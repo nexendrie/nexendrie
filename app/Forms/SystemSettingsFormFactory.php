@@ -132,7 +132,7 @@ class SystemSettingsFormFactory {
       ->setRequired("Zadej cenu založení řádu.")
       ->addRule(Form::INTEGER, "Cena založení řádu musí být celé číslo.")
       ->addRule(Form::RANGE, "Cena založení řádu musí být v rozmezí 0-5000.", [0, 5000]);
-    $form->currentGroup = NULL;
+    $form->setCurrentGroup(NULL);
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());
     $form->onValidate[] = [$this, "validate"];
