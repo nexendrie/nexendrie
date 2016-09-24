@@ -1,4 +1,4 @@
-image: php:5.6
+image: php:7.0
 
 .job_template: &test_job
   services:
@@ -28,11 +28,7 @@ image: php:5.6
   - ./vendor/bin/parallel-lint app -e php --exclude vendor --exclude app/temp
   - ./vendor/bin/phpcs --extensions=php . --standard=ruleset.xml --colors
 
-test:default:
-  <<: *test_job
-
 test:php7:
-  image: php:7.0
   <<: *test_job
 
 test:php71:
