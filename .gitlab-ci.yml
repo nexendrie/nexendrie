@@ -10,7 +10,7 @@ image: php:7.0
   
   variables:
     MYSQL_DATABASE: nexendrie
-    MYSQL_ROOT_PASSWORD: nexendrie
+    MYSQL_ROOT_PASSWORD: root
   
   before_script:
   - mkdir app/temp
@@ -20,9 +20,11 @@ image: php:7.0
   
   - apt-get update -yqq
   - apt-get install git -yqq
-  - docker-php-ext-install pdo_mysql
+  - docker-php-ext-install mysqli
   - curl -sS https://getcomposer.org/installer | php
   - php composer.phar update --no-interaction --prefer-source -a
+
+  - php setup_ci.php
   
   script:
   - ./vendor/bin/parallel-lint app -e php --exclude vendor --exclude app/temp

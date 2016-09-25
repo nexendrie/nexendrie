@@ -5,3 +5,6 @@ temp
 /app/config/local.neon
 /doc
 /vendor
+/tests/_temp/
+output/
+*.actual

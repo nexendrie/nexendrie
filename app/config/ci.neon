@@ -25,5 +25,4 @@ dbal:
     host: mysql
     dbname: nexendrie
     user: root
-    password: nexendrie
-
+    password: root
