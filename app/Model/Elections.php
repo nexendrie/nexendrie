@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\User as UserEntity;
+use Nexendrie\Orm\User as UserEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Elections Model
@@ -36,7 +37,7 @@ class Elections {
    * Get candidates for elections
    * 
    * @param int $town
-   * @return UserEntity[]
+   * @return UserEntity[]|ICollection
    */
   function getCandidates($town) {
     return $this->orm->users->findTownCitizens($town);

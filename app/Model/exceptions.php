@@ -165,7 +165,7 @@ class CannotBuyMoreHousesException extends AccessDeniedException {
   
 }
 
-class CannotBuyHouse extends AccessDeniedException {
+class CannotBuyHouseException extends AccessDeniedException {
   
 }
 
@@ -419,7 +419,7 @@ class UserNotInYourOrderException extends AccessDeniedException {
 
 /**
  * Poll voting exception
- * 
+ *
  * @author Jakub Konečný
  */
 class PollVotingException extends \Exception {

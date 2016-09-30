@@ -4,7 +4,8 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\Event,
     Nette\Utils\DateTime,
     Nette\Caching\Cache,
-    Nexendrie\Orm\EventDummy;
+    Nexendrie\Orm\EventDummy,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Events Model
@@ -38,7 +39,7 @@ class Events implements \EventCalendar\IEventModel {
   /**
    * Get list of all events
    * 
-   * @return Event[]
+   * @return Event[]|ICollection
    */
   function listOfEvents() {
     return $this->orm->events->findAll();
@@ -126,7 +127,7 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $year
    * @param int $month
    * @param int $day
-   * @return Event[]
+   * @return Event[]|ICollection
    */
   function getForDate($year, $month, $day) {
     if($this->events === NULL) $this->loadEvents($year, $month);
@@ -215,7 +216,7 @@ class Events implements \EventCalendar\IEventModel {
     foreach($events as $event) {
       if($event->prayerLifeBonus) $bonus += $event->prayerLifeBonus;
     }
-    return (int) $baseValue / 100 * $bonus;
+    return (int) ($baseValue / 100 * $bonus);
   }
   
   /**

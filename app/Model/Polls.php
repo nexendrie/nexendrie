@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Poll as PollEntity;
+use Nexendrie\Orm\Poll as PollEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Polls Model
@@ -34,7 +35,7 @@ class Polls {
   /**
    * Get list of all polls
    * 
-   * @return PollEntity[]
+   * @return PollEntity[]|ICollection
    */
   function all() {
     return $this->orm->polls->findAll();
@@ -97,7 +98,7 @@ class Polls {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->user->isAllowed("poll", "add")) throw new MissingPermissionsException("You don't have permissions for editing polls.");
     $poll = $this->orm->polls->getById($id);
-    if(!$poll) throw new PollNotFoundException("Specified news does not exist.");
+    if(!$poll) throw new PollNotFoundException("Specified poll does not exist.");
     foreach($data as $key => $value) {
       $poll->$key = $value;
     }

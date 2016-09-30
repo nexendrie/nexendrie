@@ -4,7 +4,8 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\UserItem as UserItemEntity,
     Nexendrie\Orm\Item as ItemEntity,
     Nexendrie\Orm\ItemSet as ItemSetEntity,
-    Nexendrie\Orm\Marriage as MarriageEntity;
+    Nexendrie\Orm\Marriage as MarriageEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Equipment Model
@@ -44,7 +45,7 @@ class Inventory {
   /**
    * Show user's equipment
    * 
-   * @return UserItemEntity[]
+   * @return UserItemEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
   function equipment() {
@@ -55,7 +56,7 @@ class Inventory {
   /**
    * Show user's potions
    * 
-   * @return UserItemEntity[]
+   * @return UserItemEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
   function potions() {
@@ -66,7 +67,7 @@ class Inventory {
   /**
    * Get user's intimacy boosters
    * 
-   * @return UserItemEntity[]
+   * @return UserItemEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
   function intimacyBoosters() {

@@ -4,7 +4,9 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\Adventure as AdventureEntity,
     Nexendrie\Orm\AdventureNpc as AdventureNpcEntity,
     Nexendrie\Orm\UserAdventure as UserAdventureEntity,
-    Nexendrie\Orm\Mount as MountEntity;
+    Nexendrie\Orm\Mount as MountEntity,
+    Nextras\Orm\Collection\ICollection,
+    Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Adventure Model
@@ -38,7 +40,7 @@ class Adventure {
   /**
    * Get list of all adventures
    * 
-   * @return AdventureEntity[]
+   * @return AdventureEntity[]|ICollection
    */
   function listOfAdventures() {
     return $this->orm->adventures->findAll();
@@ -48,7 +50,7 @@ class Adventure {
    * Get npcs from specified adventure
    * 
    * @param int $adventureId
-   * @return AdventureNpcEntity[]
+   * @return AdventureNpcEntity[]|OneHasMany
    * @throws AdventureNotFoundException
    */
   function listOfNpcs($adventureId) {
@@ -94,7 +96,7 @@ class Adventure {
    */
   function editAdventure($id, array $data) {
     try {
-      $adventure = $this->orm->adventures->getById($id);
+      $adventure = $this->get($id);
     } catch(AdventureNotFoundException $e) {
       throw $e;
     }
@@ -138,7 +140,7 @@ class Adventure {
    * @param int $id
    * @param array $data
    * @return void
-   * @throws \Nexendrie\Model\AdventureNpcNotFoundException
+   * @throws AdventureNpcNotFoundException
    */
   function editNpc($id, array $data) {
     try {
@@ -157,7 +159,7 @@ class Adventure {
    * 
    * @param int $id
    * @return int
-   * @throws \Nexendrie\Model\AdventureNpcNotFoundException
+   * @throws AdventureNpcNotFoundException
    */
   function deleteNpc($id) {
     try {
@@ -173,7 +175,7 @@ class Adventure {
   /**
    * Find available adventures for user
    * 
-   * @return AdventureEntity[]
+   * @return AdventureEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
   function findAvailableAdventures() {
@@ -184,7 +186,7 @@ class Adventure {
   /**
    * Find mounts for adventure
    * 
-   * @return MountEntity[]
+   * @return MountEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
   function findGoodMounts() {

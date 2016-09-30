@@ -220,12 +220,7 @@ INSERT INTO `towns` (`id`, `name`, `description`, `founded`, `owner`, `price`, `
   (11,	'Roden',	'Vesnice na západě země',	1463914056,	0,	5000,	1);
 
 INSERT INTO `users` (`id`, `username`, `publicname`, `password`, `email`, `joined`, `last_active`, `last_prayer`, `last_transfer`, `group`, `infomails`, `style`, `gender`, `banned`, `life`, `max_life`, `money`, `town`, `monastery`, `castle`, `house`, `prayers`, `guild`, `guild_rank`, `order`, `order_rank`) VALUES
-  (0,	'system',	'Vladěna',	'$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2',	'admin@localhost',	1429779664,	1429779664,	NULL,	NULL,	0,	0,	'blue-sky',	'female',	0,	60,	60,	560132,	1,	NULL,	1,	NULL,	0,	NULL,	NULL,	NULL,	NULL),
-  (1,	'admin',	'Trimadyl z Myhru',	'$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2',	'jakub.konecny2@centrum.cz',	1429779664,	1474791401,	NULL,	1455366455,	1,	1,	'dark-sky',	'male',	0,	90,	90,	17540,	2,	NULL,	2,	NULL,	0,	NULL,	NULL,	1,	4),
-  (2,	'Rahym',	'Rahym',	'$2y$10$5rhQ8Puifw9YxQ8hdK.HCOeo5AW4EhLzLrDicx1TuE3TEs.tSUmVS',	'jakub.konecny2@seznam.cz',	1435240277,	1474791458,	1446893589,	1447251643,	4,	1,	'blue-sky',	'male',	0,	60,	60,	13791,	1,	2,	NULL,	NULL,	2,	NULL,	NULL,	NULL,	NULL),
-  (3,	'jakub',	'Jakub',	'$2y$10$ejwYft0LbhlwhLz5vA07FOs2nNZGBb4IVpxkw7i5owXgjQ1JM6iF2',	'konecnyjakub01@gmail.com',	1441219049,	1474791426,	NULL,	1447528739,	8,	1,	'blue-sky',	'male',	0,	60,	60,	19689,	2,	NULL,	NULL,	NULL,	0,	1,	4,	NULL,	NULL),
-  (4,	'svetlana',	'Světlana',	'$2y$10$0a7MCizD1w6BECZvV7p4XOyA2aGyepJQPlpzJrFwvvURcSRzGpEL.',	'svetlana@localhost.k',	1455360151,	1474791467,	1455466667,	1455466659,	5,	0,	'dark-sky',	'female',	0,	60,	60,	13707,	3,	NULL,	NULL,	NULL,	1,	NULL,	NULL,	1,	3),
-  (5,	'premysl',	'premysl',	'$2y$10$25fvAltDnlF.TOPTj8JlK.VC2BhFmijGJNjV5HxIz1LQ9Pj0L.LQK',	'premysl@localhost.k',	1468050937,	1468050937,	NULL,	NULL,	9,	0,	'blue-sky',	'male',	0,	60,	60,	30,	2,	NULL,	NULL,	NULL,	0,	NULL,	NULL,	NULL,	NULL),
-  (6,	'kazimira',	'kazimira',	'$2y$10$Om40QnY7ELgtedNugwwziOwVjn6mPDhFBQlXr1PR/h.w4Df0xBDZi',	'kazimira@localhost.k',	1468051028,	1468051028,	NULL,	NULL,	12,	0,	'blue-sky',	'male',	0,	60,	60,	30,	2,	NULL,	NULL,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
+  (0,	'system',	'Vladěna',	'$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2',	'admin@localhost',	1429779664,	1475089811,	NULL,	NULL,	0,	0,	'blue-sky',	'female',	0,	60,	60,	560132,	1,	NULL,	1,	NULL,	0,	NULL,	NULL,	NULL,	NULL),
+  (1,	'admin',	'Trimadyl z Myhru',	'$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2',	'jakub.konecny2@centrum.cz',	1429779664,	1475089811,	NULL,	1455366455,	1,	1,	'dark-sky',	'male',	0,	90,	90,	18229,	2,	NULL,	2,	NULL,	0,	NULL,	NULL,	1,	4);
 
 -- 2016-09-25 09:08:14

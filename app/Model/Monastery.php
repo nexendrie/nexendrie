@@ -56,7 +56,7 @@ class Monastery {
   /**
    * Get list of all monasteries
    * 
-   * @return MonasteryEntity[]
+   * @return MonasteryEntity[]|ICollection
    */
   function listOfMonasteries() {
     return $this->orm->monasteries->findAll()
@@ -292,8 +292,11 @@ class Monastery {
    * @throws MonasteryNameInUseException
    */
   function edit($id, array $data) {
-    $monastery = $this->orm->monasteries->getById($id);
-    if(!$monastery) throw new MonasteryNotFoundException;
+    try {
+      $monastery = $this->get($id);
+    } catch(MonasteryNotFoundException $e) {
+      throw $e;
+    }
     $skip = ["town", "founded", "money"];
     foreach($data as $key => $value) {
       if($key === "name") {
@@ -312,7 +315,7 @@ class Monastery {
   /**
    * Get high clerics of a monastery
    * 
-   * @param int $id
+   * @param int $id Monastery' id
    * @return string[] id => publicname
    */
   function highClerics($id) {

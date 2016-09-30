@@ -11,6 +11,8 @@ image: php:7.0
   variables:
     MYSQL_DATABASE: nexendrie
     MYSQL_ROOT_PASSWORD: root
+    APP_USER: admin
+    APP_PASSWORD: qwerty
   
   before_script:
   - mkdir app/temp
@@ -27,8 +29,9 @@ image: php:7.0
   - php setup_ci.php
   
   script:
-  - ./vendor/bin/parallel-lint app -e php --exclude vendor --exclude app/temp
-  - ./vendor/bin/phpcs --extensions=php . --standard=ruleset.xml --colors
+  - ./vendor/bin/parallel-lint . -e php,phpt --exclude vendor --exclude app/temp --exclude tests/_temp
+  - ./vendor/bin/phpcs --extensions=php,phpt . --standard=ruleset.xml --colors
+  - ./vendor/bin/run-tests -p php tests
 
 test:php7:
   <<: *test_job

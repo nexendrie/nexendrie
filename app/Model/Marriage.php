@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Marriage as MarriageEntity;
+use Nexendrie\Orm\Marriage as MarriageEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Marriage Model
@@ -24,7 +25,7 @@ class Marriage {
   /**
    * Get list of all marriages
    * 
-   * @return MarriageEntity[]
+   * @return MarriageEntity[]|ICollection
    */
   function listOfMarriages() {
     return $this->orm->marriages->findAll();
@@ -94,7 +95,7 @@ class Marriage {
   /**
    * Get proposals for a user
    * 
-   * @return MarriageEntity[]
+   * @return MarriageEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
   function listOfProposals() {
@@ -146,8 +147,8 @@ class Marriage {
     $proposal = $this->orm->marriages->getById($id);
     if(!$proposal) throw new MarriageNotFoundException;
     elseif($proposal->user2->id != $this->user->id) throw new AccessDeniedException;
-    elseif(!$this->canPropose($proposal->user1->id)) throw new CannotProposeMarriageException;
     elseif($proposal->status != MarriageEntity::STATUS_PROPOSED) throw new MarriageProposalAlreadyHandledException;
+    elseif(!$this->canPropose($proposal->user1->id)) throw new CannotProposeMarriageException;
     $proposal->status = MarriageEntity::STATUS_DECLINED;
     $this->orm->marriages->persistAndFlush($proposal);
   }

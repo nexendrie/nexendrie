@@ -33,7 +33,7 @@ class Messenger {
   /**
    * Get list of received messages
    * 
-   * @return MessageEntity[]
+   * @return MessageEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
   function inbox() {
@@ -44,7 +44,7 @@ class Messenger {
   /**
    * Get list of sent messages
    * 
-   * @return MessageEntity[]
+   * @return MessageEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
   function outbox() {

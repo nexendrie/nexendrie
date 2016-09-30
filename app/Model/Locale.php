@@ -52,6 +52,7 @@ namespace Nexendrie\Model;
  * Locale Model
  * 
  * @author Jakub Konečný
+ * @property array $formats
  */
 class Locale implements \Nexendrie\ILocale {
   /** @var array */
