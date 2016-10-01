@@ -4,7 +4,9 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\Job as JobEntity,
     Nexendrie\Orm\UserJob as UserJobEntity,
     Nexendrie\Orm\JobMessage as JobMessageEntity,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Orm\User as UserEntity,
+    Nextras\Orm\Collection\ICollection,
+    Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Job Model
@@ -41,7 +43,7 @@ class Job {
   /**
    * Get list of all jobs
    * 
-   * @return JobEntity[]
+   * @return JobEntity[]|ICollection
    */
   function listOfJobs() {
     return $this->orm->jobs->findAll();
@@ -72,7 +74,7 @@ class Job {
   /**
    * Find available jobs for user
    * 
-   * @return JobEntity[]
+   * @return \stdClass[]
    * @throws AuthenticationNeededException
    */
   function findAvailableJobs() {
@@ -340,7 +342,7 @@ class Job {
    * Get messages for specified job
    * 
    * @param int $jobId
-   * @return JobMessageEntity[]
+   * @return JobMessageEntity[]|OneHasMany
    * @throws JobNotFoundException
    */
   function listOfMessages($jobId) {

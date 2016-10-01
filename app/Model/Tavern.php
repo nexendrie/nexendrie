@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Meal as MealEntity;
+use Nexendrie\Orm\Meal as MealEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Tavern Model
@@ -24,7 +25,7 @@ class Tavern {
   /**
    * Get list of all meals
    * 
-   * @return MealEntity[]
+   * @return MealEntity[]|ICollection
    */
   function listOfMeals() {
     return $this->orm->meals->findAll();
@@ -63,13 +64,18 @@ class Tavern {
    * @param int $id Meal's id
    * @param array $data
    * @return void
+   * @throws MealNotFoundException
    */
   function editMeal($id, array $data) {
-    $job = $this->orm->meals->getById($id);
-    foreach($data as $key => $value) {
-      $job->$key = $value;
+    try {
+      $meal = $this->getMeal($id);
+    } catch(MealNotFoundException $e) {
+      throw $e;
     }
-    $this->orm->meals->persistAndFlush($job);
+    foreach($data as $key => $value) {
+      $meal->$key = $value;
+    }
+    $this->orm->meals->persistAndFlush($meal);
   }
   
   /**

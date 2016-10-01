@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Castle as CastleEntity,
-    Nexendrie\Orm\Group as GroupEntity;
+    Nexendrie\Orm\Group as GroupEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Castle Model
@@ -36,7 +37,7 @@ class Castle {
   /**
    * Get list of all castles
    * 
-   * @return CastleEntity[]
+   * @return CastleEntity[]|ICollection
    */
   function listOfCastles() {
     return $this->orm->castles->findAll();
@@ -138,7 +139,7 @@ class Castle {
    */
   function canUpgrade() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $castle = $this->orm->castles->getByOwner($this->user->id);
+    $castle = $this->getUserCastle();
     if(!$castle) return false;
     elseif($castle->level >= CastleEntity::MAX_LEVEL) return false;
     else return true;
@@ -155,7 +156,7 @@ class Castle {
   function upgrade() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif(!$this->canUpgrade()) throw new CannotUpgradeCastleException;
-    $castle = $this->orm->castles->getByOwner($this->user->id);
+    $castle = $this->getUserCastle();
     if($castle->owner->money < $castle->upgradePrice) throw new InsufficientFundsException;
     $castle->owner->money -= $castle->upgradePrice;
     $castle->level++;
@@ -170,7 +171,7 @@ class Castle {
    */
   function canRepair() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $castle = $this->orm->castles->getByOwner($this->user->id);
+    $castle = $this->getUserCastle();
     if(!$castle) return false;
     elseif($castle->hp >= 100) return false;
     else return true;
@@ -187,7 +188,7 @@ class Castle {
   function repair() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif(!$this->canRepair()) throw new CannotRepairCastleException;
-    $castle = $this->orm->castles->getByOwner($this->user->id);
+    $castle = $this->getUserCastle();
     if($castle->owner->money < $castle->repairPrice) throw new InsufficientFundsException;
     $castle->owner->money -= $castle->repairPrice;
     $castle->hp = 100;

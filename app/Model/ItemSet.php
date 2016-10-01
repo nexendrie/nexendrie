@@ -1,7 +1,8 @@
 <?php
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\ItemSet as ItemSetEntity;
+use Nexendrie\Orm\ItemSet as ItemSetEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * ItemSet Model
@@ -21,7 +22,7 @@ class ItemSet {
   /**
    * Get list of all item sets
    * 
-   * @return ItemSetEntity[]
+   * @return ItemSetEntity[]|ICollection
    */
   function listOfSets() {
     return $this->orm->itemSets->findAll();
@@ -61,7 +62,7 @@ class ItemSet {
    * @param int $id
    * @param array $data
    * @return void
-   * @throws \Nexendrie\Model\ItemSetNotFoundException
+   * @throws ItemSetNotFoundException
    */
   function edit($id, array $data) {
     try {
@@ -79,7 +80,7 @@ class ItemSet {
    * Remove specified item set
    * 
    * @param int $id
-   * @throws \Nexendrie\Model\ItemSetNotFoundException
+   * @throws ItemSetNotFoundException
    */
   function delete($id) {
     try {

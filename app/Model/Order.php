@@ -3,7 +3,8 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Order as OrderEntity,
     Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\Group as GroupEntity;
+    Nexendrie\Orm\Group as GroupEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Order Model
@@ -38,7 +39,7 @@ class Order {
   /**
    * Get list of orders
    * 
-   * @return OrderEntity[]
+   * @return OrderEntity[]|ICollection
    */
   function listOfOrders() {
     return $this->orm->orders->findAll();
@@ -65,7 +66,7 @@ class Order {
    * @return bool
    */
   private function checkNameAvailability($name, $id = NULL) {
-    $guild = $this->orm->castles->getByName($name);
+    $guild = $this->orm->orders->getByName($name);
     if($guild AND $guild->id != $id) return false;
     else return true;
   }
@@ -113,7 +114,7 @@ class Order {
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != GroupEntity::PATH_TOWER) return false;
-    elseif($user->group->level < 6000) return false;
+    elseif($user->group->level < 600) return false;
     elseif($user->order) return false;
     else return true;
   }
@@ -129,8 +130,8 @@ class Order {
    */
   function found(array $data) {
     if(!$this->canFound()) throw new CannotFoundOrderException;
-    $user = $this->orm->users->getById($this->user->id);
     if(!$this->checkNameAvailability($data["name"])) throw new OrderNameInUseException;
+    $user = $this->orm->users->getById($this->user->id);
     if($user->money < $this->foundingPrice) throw new InsufficientFundsException;
     $order = new OrderEntity;
     $this->orm->orders->attach($order);
@@ -158,7 +159,7 @@ class Order {
     if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
       $increase += $user->orderRank->adventureBonus + ($user->order->level * 2.5) - 2.5;
     }
-    $bonus += (int) $baseIncome /100 * $increase;
+    $bonus += (int) ($baseIncome /100 * $increase);
     return $bonus;
   }
   
@@ -274,7 +275,7 @@ class Order {
    * Get members of specified order
    * 
    * @param int $order
-   * @return UserEntity[]
+   * @return UserEntity[]|ICollection
    */
   function getMembers($order) {
     return $this->orm->users->findByOrder($order);
@@ -306,7 +307,7 @@ class Order {
     $user = $this->orm->users->getById($userId);
     if(!$user) throw new UserNotFoundException;
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
+    if(is_null($user->order) OR $user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
     elseif($user->orderRank->id >= $this->maxRank - 1) throw new CannotPromoteMemberException;
     $user->orderRank = $this->orm->orderRanks->getById($user->orderRank->id + 1);
     $this->orm->users->persistAndFlush($user);
@@ -329,7 +330,7 @@ class Order {
     $user = $this->orm->users->getById($userId);
     if(!$user) throw new UserNotFoundException;
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
+    if(is_null($user->order) OR $user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
     elseif($user->orderRank->id < 2 OR $user->orderRank->id === $this->maxRank) throw new CannotDemoteMemberException;
     $user->orderRank = $this->orm->orderRanks->getById($user->orderRank->id - 1);
     $this->orm->users->persistAndFlush($user);
@@ -352,7 +353,7 @@ class Order {
     $user = $this->orm->users->getById($userId);
     if(!$user) throw new UserNotFoundException;
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
+    if(is_null($user->order) OR $user->order->id != $admin->order->id) throw new UserNotInYourOrderException;
     elseif($user->orderRank->id === $this->maxRank) throw new CannotKickMemberException;
     $user->order = $user->orderRank = NULL;
     $this->orm->users->persistAndFlush($user);

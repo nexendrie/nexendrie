@@ -36,7 +36,6 @@ class Taxes {
    * 
    * @param int $income
    * @return int
-   * @throws \Nette\Application\BadRequestException
    */
   function calculateTax($income) {
     return (int) round(@($income / 100 * $this->taxRate));

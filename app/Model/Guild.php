@@ -4,7 +4,8 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\Guild as GuildEntity,
     Nexendrie\Orm\User as UserEntity,
     Nexendrie\Orm\UserJob as UserJobEntity,
-    Nexendrie\Orm\Group as GroupEntity;
+    Nexendrie\Orm\Group as GroupEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Guild Model
@@ -40,7 +41,7 @@ class Guild {
    * Get list of guild from specified town
    * 
    * @param int $town
-   * @return GuildEntity[]
+   * @return GuildEntity[]|ICollection
    */
   function listOfGuilds($town = 0) {
     if($town === 0) return $this->orm->guilds->findAll();
@@ -142,7 +143,7 @@ class Guild {
     $user->lastActive = time();
     $user->money -= $this->foundingPrice;
     $user->guild = $guild;
-    $user->guildRank = 4;
+    $user->guildRank = $this->getMaxRank();
     $this->orm->users->persistAndFlush($user);
   }
   
@@ -209,7 +210,7 @@ class Guild {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->guild) return false;
-    else return !($user->guildRank->id === 4);
+    else return !($user->guildRank->id === $this->getMaxRank());
   }
   
   /**
@@ -237,7 +238,7 @@ class Guild {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->guild) return false;
-    else return ($user->guildRank->id === 4);
+    else return ($user->guildRank->id === $this->getMaxRank());
   }
   
   /**
@@ -250,7 +251,7 @@ class Guild {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->guild) return false;
-    elseif($user->guildRank->id != 4) return false;
+    elseif($user->guildRank->id != $this->getMaxRank()) return false;
     elseif($user->guild->level >= GuildEntity::MAX_LEVEL) return false;
     else return true;
   }
@@ -277,7 +278,7 @@ class Guild {
    * Get members of specified order
    * 
    * @param int $guild
-   * @return UserEntity[]
+   * @return UserEntity[]|ICollection
    */
   function getMembers($guild) {
     return $this->orm->users->findByGuild($guild);
@@ -309,7 +310,7 @@ class Guild {
     $user = $this->orm->users->getById($userId);
     if(!$user) throw new UserNotFoundException;
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
+    if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
     elseif($user->guildRank->id >= $this->maxRank - 1) throw new CannotPromoteMemberException;
     $user->guildRank = $this->orm->guildRanks->getById($user->guildRank->id + 1);
     $this->orm->users->persistAndFlush($user);
@@ -332,7 +333,7 @@ class Guild {
     $user = $this->orm->users->getById($userId);
     if(!$user) throw new UserNotFoundException;
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
+    if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
     elseif($user->guildRank->id < 2 OR $user->guildRank->id === $this->maxRank) throw new CannotDemoteMemberException;
     $user->guildRank = $this->orm->guildRanks->getById($user->guildRank->id - 1);
     $this->orm->users->persistAndFlush($user);
@@ -355,7 +356,7 @@ class Guild {
     $user = $this->orm->users->getById($userId);
     if(!$user) throw new UserNotFoundException;
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
+    if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) throw new UserNotInYourGuildException;
     elseif($user->guildRank->id === $this->maxRank) throw new CannotKickMemberException;
     $user->guild = $user->guildRank = NULL;
     $this->orm->users->persistAndFlush($user);

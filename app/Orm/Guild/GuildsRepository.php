@@ -32,7 +32,7 @@ class GuildsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Guild[]
    */
   function findByTown($town) {
-    return $this->findBy(["id" => $town]);
+    return $this->findBy(["town" => $town]);
   }
 }
 ?>

@@ -3,7 +3,8 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Shop as ShopEntity,
     Nexendrie\Orm\Item as ItemEntity,
-    Nexendrie\Orm\UserItem as UserItemEntity;
+    Nexendrie\Orm\UserItem as UserItemEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Market Model
@@ -34,7 +35,7 @@ class Market {
   /**
    * Gets list of shops
    * 
-   * @return ShopEntity[]
+   * @return ShopEntity[]|ICollection
    */
   function listOfShops() {
     return $this->orm->shops->findAll();
@@ -43,7 +44,7 @@ class Market {
   /**
    * Get list of items
    * 
-   * @return ItemEntity[]
+   * @return ItemEntity[]|ICollection
    */
   function listOfItems() {
     return $this->orm->items->findAll();

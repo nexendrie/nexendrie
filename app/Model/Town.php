@@ -3,7 +3,8 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Orm\Message as MessageEntity,
-    Nexendrie\Orm\Group as GroupEntity;
+    Nexendrie\Orm\Group as GroupEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Town Model
@@ -41,7 +42,7 @@ class Town {
   /**
    * Get list of all towns
    * 
-   * @return TownEntity[]
+   * @return TownEntity[]|ICollection
    */
   function listOfTowns() {
     return $this->orm->towns->findAll();
@@ -83,7 +84,7 @@ class Town {
   }
   
   /**
-   * @return TownEntity[]
+   * @return TownEntity[]|ICollection
    */
   function townsOnSale() {
     return $this->orm->towns->findOnMarket();

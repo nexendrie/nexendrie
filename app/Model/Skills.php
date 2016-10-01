@@ -2,7 +2,8 @@
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Skill as SkillEntity,
-    Nexendrie\Orm\UserSkill as UserSkillEntity;
+    Nexendrie\Orm\UserSkill as UserSkillEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * Skills Model
@@ -28,13 +29,12 @@ class Skills {
     $this->orm = $orm;
     $this->user = $user;
   }
-
   
   /**
    * Get list of all skills
    * 
    * @param string|NULL $type
-   * @return SkillEntity[]
+   * @return SkillEntity[]|ICollection
    */
   function listOfSkills($type = NULL) {
     if($type === NULL) return $this->orm->skills->findAll();

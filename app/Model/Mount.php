@@ -40,7 +40,7 @@ class Mount {
    * Get list of all mounts
    * 
    * @param int|NULL $owner Return only mounts owned by specified use. NULL = all users
-   * @return MountEntity[]
+   * @return MountEntity[]|ICollection
    */
   function listOfMounts($owner = NULL) {
     if(is_int($owner)) return $this->orm->mounts->findByOwner($owner);
@@ -50,7 +50,7 @@ class Mount {
   /**
    * Get mounts on sale
    * 
-   * @return MountEntity[]
+   * @return MountEntity[]|ICollection
    */
   function mountsOnSale() {
     return $this->orm->mounts->findOnMarket()
@@ -61,7 +61,7 @@ class Mount {
   /**
    * Get list of all mount types
    * 
-   * @return MountTypeEntity[]
+   * @return MountTypeEntity[]|ICollection
    */
   function listOfMountTypes() {
     return $this->orm->mountTypes->findAll();
@@ -89,9 +89,14 @@ class Mount {
    * @param int $id Mount's id
    * @param array $data
    * @return void
+   * @throws MountNotFoundException
    */
   function edit($id, array $data) {
-    $mount = $this->orm->mounts->getById($id);
+    try {
+      $mount = $this->get($id);
+    } catch(MountNotFoundException $e) {
+      throw $e;
+    }
     foreach($data as $key => $value) {
       $mount->$key = $value;
     }
@@ -112,8 +117,11 @@ class Mount {
    */
   function buy($id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $mount = $this->orm->mounts->getById($id);
-    if(!$mount) throw new MountNotFoundException;
+    try {
+      $mount = $this->get($id);
+    } catch(MountNotFoundException $e) {
+      throw $e;
+    }
     if(!$mount->onMarket) throw new MountNotOnSaleException;
     if($mount->owner->id === $this->user->id) throw new CannotBuyOwnMountException;
     $user = $this->orm->users->getById($this->user->id);

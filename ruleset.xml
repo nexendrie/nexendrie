@@ -7,6 +7,7 @@
   <config name="tab_width" value="2"/>
   <exclude-pattern>*/vendor/*</exclude-pattern>
   <exclude-pattern>*/temp/*</exclude-pattern>
+  <exclude-pattern>*/_temp/*</exclude-pattern>
   <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
   <rule ref="Generic.CodeAnalysis">
     <exclude name="Generic.CodeAnalysis.EmptyStatement"/>
@@ -44,9 +45,10 @@
   <rule ref="Squiz.PHP.GlobalKeyword"/>
   <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
   <rule ref="Squiz.PHP.NonExecutableCode"/>
-  <!-- <rule ref="Squiz.WhiteSpace.FunctionSpacing"/> -->
   <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
-  <rule ref="PSR1.Files.SideEffects"/>
+  <rule ref="PSR1.Files.SideEffects">
+    <exclude-pattern>*/tests/*</exclude-pattern>
+  </rule>
   <rule ref="PSR1.Methods.CamelCapsMethodName"/>
   <rule ref="PSR2.Classes.PropertyDeclaration"/>
   <rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>

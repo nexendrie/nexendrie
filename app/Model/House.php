@@ -42,14 +42,14 @@ class House {
    * @return void
    * @throws AuthenticationNeededException
    * @throws CannotBuyMoreHousesException
-   * @throws CannotBuyHouse
+   * @throws CannotBuyHouseException
    * @throws InsufficientFundsException
    */
   function buyHouse() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif($this->getUserHouse()) throw new CannotBuyMoreHousesException;
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != GroupEntity::PATH_CITY) throw new CannotBuyHouse;
+    if($user->group->path != GroupEntity::PATH_CITY) throw new CannotBuyHouseException;
     elseif($user->money < $this->price) throw new InsufficientFundsException;
     $user->money -= $this->price;
     $house = new HouseEntity;
@@ -67,7 +67,7 @@ class House {
    */
   function canUpgrade() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $house = $this->orm->houses->getByOwner($this->user->id);
+    $house = $this->getUserHouse();
     if(!$house) return false;
     elseif($house->luxuryLevel >= HouseEntity::MAX_LEVEL) return false;
     else return true;
@@ -84,7 +84,7 @@ class House {
   function upgrade() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif(!$this->canUpgrade()) throw new CannotUpgradeHouseException;
-    $house = $this->orm->houses->getByOwner($this->user->id);
+    $house = $this->getUserHouse();
     if($house->owner->money < $house->upgradePrice) throw new InsufficientFundsException;
     $house->owner->money -= $house->upgradePrice;
     $house->luxuryLevel++;
@@ -99,7 +99,7 @@ class House {
    */
   function canRepair() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $house = $this->orm->houses->getByOwner($this->user->id);
+    $house = $this->getUserHouse();
     if(!$house) return false;
     elseif($house->hp >= 100) return false;
     else return true;
@@ -116,7 +116,7 @@ class House {
   function repair() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif(!$this->canRepair()) throw new CannotRepairHouseException;
-    $house = $this->orm->houses->getByOwner($this->user->id);
+    $house = $this->getUserHouse();
     if($house->owner->money < $house->repairPrice) throw new InsufficientFundsException;
     $house->owner->money -= $house->repairPrice;
     $house->hp = 100;
@@ -131,7 +131,7 @@ class House {
    */
   function canUpgradeBrewery() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $house = $this->orm->houses->getByOwner($this->user->id);
+    $house = $this->getUserHouse();
     if(!$house) return false;
     elseif($house->breweryLevel >= HouseEntity::MAX_LEVEL) return false;
     else return true;
@@ -148,7 +148,7 @@ class House {
   function upgradeBrewery() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif(!$this->canUpgradeBrewery()) throw new CannotUpgradeBreweryException;
-    $house = $this->orm->houses->getByOwner($this->user->id);
+    $house = $this->getUserHouse();
     if($house->owner->money < $house->breweryUpgradePrice) throw new InsufficientFundsException;
     $house->owner->money -= $house->breweryUpgradePrice;
     $house->breweryLevel++;
@@ -165,7 +165,7 @@ class House {
   function canProduceBeer() {
     $sevenDays = 60 * 60 * 24 * 7;
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    $house = $this->orm->houses->getByOwner($this->user->id);
+    $house = $this->getUserHouse();
     if(!$house) return false;
     elseif($house->owner->group->path != GroupEntity::PATH_CITY) return false;
     elseif($house->breweryLevel < 1) return false;
@@ -186,7 +186,7 @@ class House {
   function produceBeer() {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif(!$this->canProduceBeer()) throw new CannotProduceBeerException;
-    $house = $this->orm->houses->getByOwner($this->user->id);
+    $house = $this->getUserHouse();
     $production = new BeerProduction;
     $production->house = $house;
     $production->user = $house->owner;

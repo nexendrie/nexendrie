@@ -29,7 +29,7 @@ class Article {
   /**
    * Get all articles
    * 
-   * @return ArticleEntity[]
+   * @return ArticleEntity[]|ICollection
    */
   function listOfArticles() {
     return $this->orm->articles->findAll()->orderBy("added", ICollection::DESC);
@@ -39,7 +39,7 @@ class Article {
    * Get list of news
    * 
    * @param \Nette\Utils\Paginator $paginator
-   * @return ArticleEntity[]
+   * @return ArticleEntity[]|ICollection
    */
   function listOfNews(\Nette\Utils\Paginator $paginator = NULL) {
     $news = $this->orm->articles->findNews();
@@ -55,7 +55,7 @@ class Article {
    * 
    * @param string $name
    * @param \Nette\Utils\Paginator $paginator
-   * @return ArticleEntity[]
+   * @return ArticleEntity[]|ICollection
    */
   function category($name, \Nette\Utils\Paginator $paginator = NULL) {
     $articles = $this->orm->articles->findByCategory($name);
@@ -83,7 +83,7 @@ class Article {
    * Get comments meeting specified rules
    * 
    * @param int $article
-   * @return CommentEntity[]
+   * @return CommentEntity[]|ICollection
    */
   function viewComments($article = 0) {
     if($article === 0) return $this->orm->comments->findAll();
