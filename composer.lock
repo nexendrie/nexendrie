@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "af5d9390d517569a322910c1641bb0cb",
-    "content-hash": "b5e2f303b5802bf5159449c984432652",
+    "hash": "dc85121b539039b19799bac47102ca78",
+    "content-hash": "ddc9570f373065d1a247bb2c75d0aa75",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1906,12 +1906,6 @@
         }
     ],
     "aliases": [
-        {
-            "alias": "dev-master",
-            "alias_normalized": "9999999-dev",
-            "version": "1.1.9999999.9999999-dev",
-            "package": "konecnyjakub/book-component"
-        },
         {
             "alias": "v1.7",
             "alias_normalized": "1.7.0.0",
