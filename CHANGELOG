@@ -1,2 +1,6 @@
+Version 1.0.0-beta1+dev
+- raised minimal version of PHP to 7.0
+- added some unit tests
+
 Version 1.0.0-beta1
 - first released version
