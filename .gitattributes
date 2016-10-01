@@ -3,6 +3,6 @@
 .gitignore      export-ignore
 .gitlab-ci.yml  export-ignore
 apigen.neon     export-ignore
-setup_ci.php	export-ignore
+/ci		export-ignore
 ci.neon         export-ignore
 ruleset.xml	export-ignore

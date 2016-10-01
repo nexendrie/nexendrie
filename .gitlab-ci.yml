@@ -1,36 +1,61 @@
 image: php:7.0
 
-.job_template: &test_job
-  services:
-  - mysql
-  
+stages:
+  - build
+  - analyze
+  - test
+
+build:
+  stage: build
+
+  script:
+  - mkdir app/temp
+  - mkdir app/temp/cache
+  - mkdir app/log
+
+  - apt-get update -yqq
+  - apt-get install git -yqq
+  - curl -sS https://getcomposer.org/installer | php
+  - php composer.phar install --no-interaction --prefer-source -a
+
   cache:
     paths:
-    - vendor/
-  
+    - vendor
+
+  artifacts:
+    paths:
+    - vendor
+    - app/temp
+    - app/log
+    expire_in: 10 mins
+
+analyze:lint:
+  stage: analyze
+  script:
+  - ./vendor/bin/parallel-lint . -e php,phpt --exclude vendor --exclude app/temp --exclude tests/_temp
+
+analyze:cs:
+  stage: analyze
+  script:
+  - ./vendor/bin/phpcs --extensions=php,phpt . --standard=ruleset.xml --colors
+
+.job_template: &test_job
+  stage: test
+
+  services:
+  - mysql
+
   variables:
     MYSQL_DATABASE: nexendrie
     MYSQL_ROOT_PASSWORD: root
     APP_USER: admin
     APP_PASSWORD: qwerty
-  
-  before_script:
-  - mkdir app/temp
-  - mkdir app/temp/cache
-  - mkdir app/temp/sessions
-  - mkdir app/log
-  
-  - apt-get update -yqq
-  - apt-get install git -yqq
-  - docker-php-ext-install mysqli
-  - curl -sS https://getcomposer.org/installer | php
-  - php composer.phar update --no-interaction --prefer-source -a
 
-  - php setup_ci.php
-  
+  before_script:
+  - docker-php-ext-install mysqli
+  - php ci/setup_db.php
+
   script:
-  - ./vendor/bin/parallel-lint . -e php,phpt --exclude vendor --exclude app/temp --exclude tests/_temp
-  - ./vendor/bin/phpcs --extensions=php,phpt . --standard=ruleset.xml --colors
   - ./vendor/bin/run-tests -p php tests
 
 test:php7:
