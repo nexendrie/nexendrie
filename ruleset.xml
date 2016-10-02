@@ -27,13 +27,12 @@
   <rule ref="Generic.Metrics.NestingLevel"/>
   <rule ref="Generic.NamingConventions.ConstructorName"/>
   <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
-  <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
-  <rule ref="Generic.PHP.ClosingPHPTag"/>
-  <rule ref="Generic.PHP.DeprecatedFunctions"/>
-  <rule ref="Generic.PHP.DisallowShortOpenTag"/>
-  <rule ref="Generic.PHP.ForbiddenFunctions"/>
-  <rule ref="Generic.PHP.SAPIUsage"/>
-  <rule ref="Generic.PHP.Syntax"/>
+  <rule ref="Generic.PHP">
+    <exclude name="Generic.PHP.LowerCaseConstant"/>
+    <exclude name="Generic.PHP.LowerCaseKeyword"/>
+    <exclude name="Generic.PHP.UpperCaseConstant"/>
+  </rule>
+  <rule ref="Generic.Strings"/>
   <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
   <rule ref="Generic.WhiteSpace.ScopeIndent">
     <properties>
