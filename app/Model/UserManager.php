@@ -181,12 +181,12 @@ class UserManager implements NS\IAuthenticator {
   /**
    * Change user's settings
    * 
-   * @param \Nette\Utils\ArrayHash $settings
+   * @param array $settings
    * @throws AuthenticationNeededException
    * @throws SettingsException
    * @return void
    */
-  function changeSettings(\Nette\Utils\ArrayHash $settings) {
+  function changeSettings(array $settings) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->nameAvailable($settings["publicname"], "publicname", $this->user->id)) throw new SettingsException("The public name is used by someone else.", self::REG_DUPLICATE_USERNAME);
     if(!$this->emailAvailable($settings["email"], $this->user->id)) throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
@@ -220,10 +220,10 @@ class UserManager implements NS\IAuthenticator {
   
   /**
    * @param int $id User's id
-   * @param \Nette\Utils\ArrayHash $values
+   * @param array $values
    * @return void
    */
-  function edit($id, \Nette\Utils\ArrayHash $values) {
+  function edit($id, array $values) {
     $user = $this->orm->users->getById($id);
     foreach($values as $key => $value) {
       $user->$key = $value;

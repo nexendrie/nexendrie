@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
-    Nette\Utils\ArrayHash,
     Nexendrie\Model\UserManager,
     Nexendrie\Model\Group,
     Nexendrie\Model\Town;
@@ -88,7 +87,7 @@ class EditUserFormFactory {
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");
     $form->onValidate[] = [$this, "validate"];
-    $form->onSuccess[] = function (Form $form, ArrayHash $values) {
+    $form->onSuccess[] = function (Form $form, array $values) {
       $this->model->edit($this->uid, $values);
     };
     return $form;

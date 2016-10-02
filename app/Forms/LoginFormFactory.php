@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
-    Nette\Utils\ArrayHash,
     Nette\Security\User,
     Nette\Security\AuthenticationException,
     Nexendrie\Model\UserManager;
@@ -38,9 +37,9 @@ class LoginFormFactory {
   
   /**
    * @param Form $form
-   * @param ArrayHash $values
+   * @param array $values
    */
-  function submitted(Form $form, ArrayHash $values) {
+  function submitted(Form $form, array $values) {
     try {
       $this->user->login($values["username"], $values["password"]);
     } catch(AuthenticationException $e) {

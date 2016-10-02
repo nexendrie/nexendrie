@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
-    Nette\Utils\ArrayHash,
     Nette\Utils\Finder,
     Nette\Neon\Neon,
     Nette\Utils\Arrays,
@@ -88,7 +87,7 @@ class UserSettingsFormFactory {
     if($values["password_new"] != $values["password_check"]) $form->addError("Hesla se neshodují.");
   }
   
-  function submitted(Form $form, ArrayHash $values) {
+  function submitted(Form $form, array $values) {
     try {
       $this->model->changeSettings($values);
     } catch (SettingsException $e) {
