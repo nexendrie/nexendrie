@@ -87,6 +87,16 @@ class MonasteryTest extends \Tester\TestCase {
     Assert::type("bool", $this->model->canPray());
   }
   
+  function testPray() {
+    Assert::exception(function() {
+      $this->model->pray();
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->pray();
+    }, CannotPrayException::class);
+  }
+  
   function testCanLeave() {
     Assert::exception(function() {
       $this->model->canLeave();
@@ -97,6 +107,16 @@ class MonasteryTest extends \Tester\TestCase {
     Assert::false($this->model->canLeave());
   }
   
+  function testLeave() {
+    Assert::exception(function() {
+      $this->model->leave();
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->leave();
+    }, CannotLeaveMonasteryException::class);
+  }
+  
   function testCanBuild() {
     Assert::exception(function() {
       $this->model->canBuild();
@@ -105,6 +125,32 @@ class MonasteryTest extends \Tester\TestCase {
     Assert::false($this->model->canBuild());
     $this->login("Rahym");
     Assert::false($this->model->canBuild());
+  }
+  
+  function testBuild() {
+    Assert::exception(function() {
+      $this->model->build("abc");
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->build("abc");
+    }, CannotBuildMonasteryException::class);
+  }
+  
+  function testDonate() {
+    Assert::exception(function() {
+      $this->model->donate(1);
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->donate(1);
+    }, NotInMonasteryException::class);
+  }
+  
+  function testEdit() {
+    Assert::exception(function() {
+      $this->model->edit(50, []);
+    }, MonasteryNotFoundException::class);
   }
   
   function testHighClerics() {
@@ -147,6 +193,16 @@ class MonasteryTest extends \Tester\TestCase {
     Assert::type("bool", $this->model->canUpgrade());
   }
   
+  function testUpgrade() {
+    Assert::exception(function() {
+      $this->model->upgrade();
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->upgrade();
+    }, CannotUpgradeMonasteryException::class);
+  }
+  
   function testCanRepair() {
     Assert::exception(function() {
       $this->model->canRepair();
@@ -155,6 +211,16 @@ class MonasteryTest extends \Tester\TestCase {
     Assert::false($this->model->canRepair());
     $this->login("Rahym");
     Assert::type("bool", $this->model->canRepair());
+  }
+  
+  function testRepair() {
+    Assert::exception(function() {
+      $this->model->repair();
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->repair();
+    }, CannotRepairMonasteryException::class);
   }
 }
 

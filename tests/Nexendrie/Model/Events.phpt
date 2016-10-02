@@ -49,6 +49,11 @@ class EventsTest extends \Tester\TestCase {
     }, CannotDeleteStartedEventException::class);
   }
   
+  function testGetCurrentEvents() {
+    $events = $this->model->getCurrentEvents();
+    Assert::type("array", $events);
+  }
+  
   function testCalculateAdventuresBonus() {
     $result = $this->model->calculateAdventuresBonus(100);
     Assert::type("int", $result);
