@@ -69,7 +69,8 @@ class TownPresenter extends BasePresenter {
   function renderDetail(int $id) {
     try {
       $this->template->town = $this->model->get($id);
-      if($id == $this->user->identity->town) $this->template->canMove = false;
+      if(!$this->user->isLoggedIn()) $this->template->canMove = false;
+      elseif($id == $this->user->identity->town) $this->template->canMove = false;
       else $this->template->canMove = $this->model->canMove();
     } catch(TownNotFoundException $e) {
       throw new \Nette\Application\BadRequestException;
