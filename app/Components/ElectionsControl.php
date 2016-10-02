@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Nexendrie\Components;
 
 use Nexendrie\Orm\Election as ElectionEntity,
@@ -85,7 +87,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
    */
   protected function getResults() {
     $date = new \DateTime;
-    $date->setTimestamp(mktime(0, 0, 0, date("n"), 1, date("Y")));
+    $date->setTimestamp(mktime(0, 0, 0, (int) date("n"), 1, (int) date("Y")));
     //$date->modify("-1 month");
     /*$votes = $this->getVotes($date->format("Y"), $date->format("n"));
     $results = array();

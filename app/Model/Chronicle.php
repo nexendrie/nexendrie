@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Nexendrie\Model;
 
 use Nextras\Orm\Collection\ICollection,

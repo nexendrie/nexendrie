@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Nexendrie\Orm;
 
 use Nextras\Orm\Collection\ICollection;
@@ -29,7 +31,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
   function findFromMonth($year = 0, $month = 0) {
     if($month === 0) $month = date("n");
     if($year === 0) $year = date("Y");
-    $startTS = mktime(0, 0, 0, $month, 1, $year);
+    $startTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);
     $date = new \DateTime;
     $date->setTimestamp($startTS);
     $date->modify("+1 month");

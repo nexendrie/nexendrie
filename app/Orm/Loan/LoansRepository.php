@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Nexendrie\Orm;
 
 use Nextras\Orm\Collection\ICollection;
@@ -46,7 +48,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
   function findReturnedThisMonth($user) {
     $month = date("n");
     $year = date("Y");
-    $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
+    $startOfMonthTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp();

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Nexendrie\Orm;
 
 use Nextras\Orm\Collection\ICollection;
@@ -35,7 +37,7 @@ class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
     $sixDays = 60 * 60 * 24 * 6;
     if($month === 0) $month = date("n");
     if($year === 0) $year = date("Y");
-    $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
+    $startOfMonthTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp() - $sixDays;

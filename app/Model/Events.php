@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Event,
@@ -133,7 +135,7 @@ class Events implements \EventCalendar\IEventModel {
     if($this->events === NULL) $this->loadEvents($year, $month);
     $events = [];
     foreach($this->events as $event) {
-      $startTS = mktime(0, 0, 0, $month, $day, $year);
+      $startTS = mktime(0, 0, 0, (int) $month, (int) $day, (int) $year);
       $date = new \DateTime;
       $date->setTimestamp($startTS);
       $date->modify("+1 day");

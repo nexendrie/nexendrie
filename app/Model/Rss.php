@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Nexendrie\Model;
 
 /**
@@ -44,7 +46,7 @@ class Rss {
       $i->addChild("title", $item->title);
       $link = $this->linkGenerator->link("Front:Article:view", ["id" => $item->id]);
       $i->addChild("link", $link);
-      $i->addChild("pubDate", $item->added);
+      $i->addChild("pubDate", (string) $item->added);
       $i->addChild("description", substr($item->text, 0, 150));
     }
     return new \Nexendrie\Responses\RssResponse($channel);
@@ -78,7 +80,7 @@ class Rss {
       $link = $this->linkGenerator->link("Front:Article:view", ["id" => $newsId]);
       $link .= "#comment-$comment->id";
       $c->addChild("link", $link);
-      $c->addChild("pubDate", $this->localeModel->formatDateTime($comment->added));
+      $c->addChild("pubDate", (string) $this->localeModel->formatDateTime($comment->added));
       $c->addChild("description", substr($comment->text, 0, 150));
     }
     return new \Nexendrie\Responses\RssResponse($channel);

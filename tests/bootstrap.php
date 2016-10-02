@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 const WWW_DIR = __DIR__ ."/../";
 const APP_DIR = WWW_DIR . "/app";
 

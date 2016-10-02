@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Nexendrie\Orm;
 
 use Nextras\Orm\Collection\ICollection;
@@ -49,7 +51,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
   function findFromMonth($user, $month = 0, $year = 0) {
     if($month === 0) $month = date("n");
     if($year === 0) $year = date("Y");
-    $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
+    $startOfMonthTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp();
@@ -67,7 +69,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
   function findOpenAdventures() {
     $day = date("j");
     $month = date("n");
-    $ts = mktime(0, 0, 0, $month, $day);
+    $ts = mktime(0, 0, 0, (int) $month, (int) $day);
     return $this->findBy(["started<" => $ts, "progress<" => 10]);
   }
   

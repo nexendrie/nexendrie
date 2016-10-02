@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Article as ArticleEntity,

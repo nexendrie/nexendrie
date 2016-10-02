@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Nexendrie\Components;
 
 use Nexendrie\Model\AlreadyOnAdventureException,
