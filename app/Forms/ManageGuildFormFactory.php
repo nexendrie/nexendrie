@@ -28,7 +28,7 @@ class ManageGuildFormFactory {
     $this->user = $user;
   }
   
-  protected function getListOfSkills() {
+  protected function getListOfSkills(): array {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   
@@ -36,7 +36,7 @@ class ManageGuildFormFactory {
    * @param int $guildId
    * @return Form
    */
-  function create($guildId) {
+  function create(int $guildId): Form {
     $form = new Form;
     $this->id = $guildId;
     $guild = $this->model->getGuild($this->id);
@@ -55,11 +55,12 @@ class ManageGuildFormFactory {
   
   /**
    * @param Form $form
+   * @param array $values
    * @return void
    */
-  function submitted(Form $form) {
+  function submitted(Form $form, array $values) {
     try {
-      $this->model->editGuild($this->id, $form->getValues(true));
+      $this->model->editGuild($this->id, $values);
     } catch(GuildNameInUseException $e) {
       $form->addError("Zadané jméno je již zabráno.");
     }

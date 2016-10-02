@@ -25,7 +25,7 @@ class ManageMountFormFactory {
    * @param int $mountId
    * @return Form
    */
-  function create($mountId) {
+  function create(int $mountId): Form {
     $form = new Form;
     $this->id = $mountId;
     $mount = $this->model->get($this->id);
@@ -43,8 +43,13 @@ class ManageMountFormFactory {
     return $form;
   }
   
-  function submitted(Form $form) {
-    $this->model->edit($this->id, $form->getValues(true));
+  /**
+   * @param Form $form
+   * @param array $values
+   * @return void
+   */
+  function submitted(Form $form, array $values) {
+    $this->model->edit($this->id, $values);
   }
 }
 ?>

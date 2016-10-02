@@ -29,9 +29,9 @@ class UserPresenter extends BasePresenter {
   
   /**
    * @param LoginFormFactory $factory
-   * @return \Nette\Application\UI\Form
+   * @return Form
    */
-  protected function createComponentLoginForm(LoginFormFactory $factory) {
+  protected function createComponentLoginForm(LoginFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, $values) {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Byla jsi úspěšně přihlášena.";
@@ -77,9 +77,9 @@ class UserPresenter extends BasePresenter {
    * @param RegisterFormFactory $factory
    * @return Form
    */
-  protected function createComponentRegisterForm(RegisterFormFactory $factory) {
+  protected function createComponentRegisterForm(RegisterFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, $values) {
+    $form->onSuccess[] = function(Form $form, array $values) {
       $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
       $this->redirect("Homepage:");
     };
@@ -97,7 +97,7 @@ class UserPresenter extends BasePresenter {
    * @param UserSettingsFormFactory $factory
    * @return Form
    */
-  protected function createComponentUserSettingsForm(UserSettingsFormFactory $factory) {
+  protected function createComponentUserSettingsForm(UserSettingsFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, $values) {
       $this->model->refreshIdentity();

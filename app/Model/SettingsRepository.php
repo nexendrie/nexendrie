@@ -27,7 +27,7 @@ class SettingsRepository {
   /**
    * @return array
    */
-  function getSettings() {
+  function getSettings(): array {
     return $this->settings;
   }
   

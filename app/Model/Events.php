@@ -43,7 +43,7 @@ class Events implements \EventCalendar\IEventModel {
    * 
    * @return Event[]|ICollection
    */
-  function listOfEvents() {
+  function listOfEvents(): ICollection {
     return $this->orm->events->findAll();
   }
   
@@ -54,7 +54,7 @@ class Events implements \EventCalendar\IEventModel {
    * @return Event
    * @throws EventNotFoundException
    */
-  function getEvent($id) {
+  function getEvent($id): Event {
     $event = $this->orm->events->getById($id);
     if(!$event) throw new EventNotFoundException;
     else return $event;
@@ -86,7 +86,7 @@ class Events implements \EventCalendar\IEventModel {
    * @return void
    * @throws EventNotFoundException
    */
-  function editEvent($id, array $data) {
+  function editEvent(int $id, array $data) {
     $event = $this->orm->events->getById($id);
     if(!$event) throw new EventNotFoundException;
     foreach($data as $key => $value) {
@@ -107,7 +107,7 @@ class Events implements \EventCalendar\IEventModel {
    * @throws EventNotFoundException
    * @throws CannotDeleteStartedEventException
    */
-  function deleteEvent($id) {
+  function deleteEvent(int $id) {
     $event = $this->orm->events->getById($id);
     if(!$event) throw new EventNotFoundException;
     elseif($event->start < time()) throw new CannotDeleteStartedEventException;
@@ -121,7 +121,7 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $month
    * @return void
    */
-  function loadEvents($year = 0, $month = 0) {
+  function loadEvents(int $year = 0, int $month = 0) {
     $this->events = $this->orm->events->findFromMonth($year, $month);
   }
   
@@ -163,7 +163,7 @@ class Events implements \EventCalendar\IEventModel {
    * 
    * @return EventDummy[]
    */
-  function getCurrentEvents() {
+  function getCurrentEvents(): array {
     $return = $this->cache->load("events");
     if($return === NULL) {
       $events = $this->orm->events->findForTime();
@@ -182,13 +182,13 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $baseIncome
    * @return int
    */
-  function calculateAdventuresBonus($baseIncome) {
+  function calculateAdventuresBonus(int $baseIncome): int {
     $bonus = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
       if($event->adventuresBonus) $bonus += $event->adventuresBonus;
     }
-    return (int) $baseIncome / 100 * $bonus;
+    return (int) ($baseIncome / 100 * $bonus);
   }
   
   /**
@@ -197,13 +197,13 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $baseIncome
    * @return int
    */
-  function calculateWorkBonus($baseIncome) {
+  function calculateWorkBonus(int $baseIncome): int {
     $bonus = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
       if($event->workBonus) $bonus += $event->workBonus;
     }
-    return (int) $baseIncome / 100 * $bonus;
+    return (int) ($baseIncome / 100 * $bonus);
   }
   
   /**
@@ -212,7 +212,7 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $baseValue
    * @return int
    */
-  function calculatePrayerLifeBonus($baseValue) {
+  function calculatePrayerLifeBonus(int $baseValue): int {
     $bonus = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
@@ -227,13 +227,13 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $basePrice
    * @return int
    */
-  function calculateTrainingDiscount($basePrice) {
+  function calculateTrainingDiscount(int $basePrice): int {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
       if($event->trainingDiscount) $discount += $event->trainingDiscount;
     }
-    return (int) $basePrice / 100 * $discount;
+    return (int) ($basePrice / 100 * $discount);
   }
   
   /**
@@ -242,7 +242,7 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $basePrice
    * @return int
    */
-  function calculateShoppingDiscount($basePrice) {
+  function calculateShoppingDiscount(int $basePrice): int {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
@@ -256,7 +256,7 @@ class Events implements \EventCalendar\IEventModel {
    *
    * @return int
    */
-  function getShoppingDiscount() {
+  function getShoppingDiscount(): int {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
@@ -271,7 +271,7 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $basePrice
    * @return int
    */
-  function calculateRepairingDiscount($basePrice) {
+  function calculateRepairingDiscount(int $basePrice): int {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {

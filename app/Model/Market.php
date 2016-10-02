@@ -39,7 +39,7 @@ class Market {
    * 
    * @return ShopEntity[]|ICollection
    */
-  function listOfShops() {
+  function listOfShops(): ICollection {
     return $this->orm->shops->findAll();
   }
   
@@ -48,7 +48,7 @@ class Market {
    * 
    * @return ItemEntity[]|ICollection
    */
-  function listOfItems() {
+  function listOfItems(): ICollection {
     return $this->orm->items->findAll();
   }
   
@@ -58,7 +58,7 @@ class Market {
    * @param int $id Shop's id
    * @return bool
    */
-  function exists($id) {
+  function exists(int $id): bool {
     return (bool) $this->orm->shops->getById($id);
   }
   
@@ -69,7 +69,7 @@ class Market {
    * @return ShopEntity
    * @throws ShopNotFoundException
    */
-  function getShop($id) {
+  function getShop(int $id): ShopEntity {
     $shop = $this->orm->shops->getById($id);
     if(!$shop) throw new ShopNotFoundException("Specified shop was not found.");
     else return $shop;
@@ -80,8 +80,9 @@ class Market {
    * 
    * @param int $id
    * @param array $data
+   * @return void
    */
-  function editShop($id, array $data) {
+  function editShop(int $id, array $data) {
     $shop = $this->orm->shops->getById($id);
     foreach($data as $key => $value) {
       $shop->$key = $value;
@@ -110,7 +111,7 @@ class Market {
    * @return ItemEntity
    * @throws ItemNotFoundException
    */
-  function getItem($id) {
+  function getItem(int $id): ItemEntity {
     $item = $this->orm->items->getById($id);
     if(!$item) throw new ItemNotFoundException("Specified item was not found.");
     else return $item;
@@ -123,7 +124,7 @@ class Market {
    * @param array $data
    * @return void
    */
-  function editItem($id, array $data) {
+  function editItem(int $id, array $data) {
     $item = $this->orm->items->getById($id);
     foreach($data as $key => $value) {
       $item->$key = $value;
@@ -155,7 +156,7 @@ class Market {
    * @throws WrongShopException
    * @throws InsufficientFundsException
    */
-  function buy($item, $shop) {
+  function buy(int $item, int $shop) {
     $itemRow = $this->orm->items->getById($item);
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     if(!$itemRow) throw new ItemNotFoundException("Specified item does not exist.");

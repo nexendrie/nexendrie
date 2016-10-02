@@ -26,7 +26,7 @@ class ItemSet {
    * 
    * @return ItemSetEntity[]|ICollection
    */
-  function listOfSets() {
+  function listOfSets(): ICollection {
     return $this->orm->itemSets->findAll();
   }
   
@@ -37,7 +37,7 @@ class ItemSet {
    * @return ItemSetEntity
    * @throws ItemSetNotFoundException
    */
-  function get($id) {
+  function get(int $id): ItemSetEntity {
     $set = $this->orm->itemSets->getById($id);
     if(!$set) throw new ItemSetNotFoundException;
     else return $set;
@@ -66,7 +66,7 @@ class ItemSet {
    * @return void
    * @throws ItemSetNotFoundException
    */
-  function edit($id, array $data) {
+  function edit(int $id, array $data) {
     try {
       $npc = $this->get($id);
     } catch(ItemSetNotFoundException $e) {
@@ -84,7 +84,7 @@ class ItemSet {
    * @param int $id
    * @throws ItemSetNotFoundException
    */
-  function delete($id) {
+  function delete(int $id) {
     try {
       $set = $this->get($id);
     } catch(ItemSetNotFoundException $e) {

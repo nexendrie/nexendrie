@@ -23,14 +23,14 @@ class AddEditAdventureFormFactory {
    * 
    * @return array of id => name
    */
-  protected function getEvents() {
+  protected function getEvents(): array {
     return $this->orm->events->findAll()->fetchPairs("id", "name");
   }
   
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

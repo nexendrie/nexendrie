@@ -47,7 +47,7 @@ class Job {
    * 
    * @return JobEntity[]|ICollection
    */
-  function listOfJobs() {
+  function listOfJobs(): ICollection {
     return $this->orm->jobs->findAll();
   }
   
@@ -58,7 +58,7 @@ class Job {
    * @return \stdClass
    * @throws AuthenticationNeededException
    */
-  function calculateAward(JobEntity $offer) {
+  function calculateAward(JobEntity $offer): \stdClass {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $oldAward = $offer->award;
     $job = new UserJobEntity;
@@ -79,7 +79,7 @@ class Job {
    * @return \stdClass[]
    * @throws AuthenticationNeededException
    */
-  function findAvailableJobs() {
+  function findAvailableJobs(): array {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $return = [];
     $offers = $this->orm->jobs->findForLevel($this->user->identity->level);
@@ -100,7 +100,7 @@ class Job {
    * @return JobEntity
    * @throws JobNotFoundException
    */
-  function getJob($id) {
+  function getJob(int $id): JobEntity {
     $job = $this->orm->jobs->getById($id);
     if(!$job) throw new JobNotFoundException("Specified job was not found.");
     else return $job;
@@ -128,7 +128,7 @@ class Job {
    * @param array $data
    * @return void
    */
-  function editJob($id, array $data) {
+  function editJob(int $id, array $data) {
     $job = $this->orm->jobs->getById($id);
     foreach($data as $key => $value) {
       $job->$key = $value;
@@ -146,7 +146,7 @@ class Job {
    * @throws JobNotFoundException
    * @throws InsufficientLevelForJobException
    */
-  function startJob($id) {
+  function startJob(int $id) {
     if($this->isWorking()) throw new AlreadyWorkingException;
     $row = $this->orm->jobs->getById($id);
     if(!$row) throw new JobNotFoundException;
@@ -169,7 +169,7 @@ class Job {
    * @param UserJobEntity $job
    * @return int[] Reward
    */
-  function calculateReward(UserJobEntity $job) {
+  function calculateReward(UserJobEntity $job): array {
     if($job->finished) return ["reward" => $job->earned, "extra" => $job->extra];
     $reward = $extra = 0;
     if($job->job->count === 0) {
@@ -197,7 +197,7 @@ class Job {
    * @throws NotWorkingException
    * @throws JobNotFinishedException
    */
-  function finishJob() {
+  function finishJob(): array {
     try {
       $currentJob = $this->getCurrentJob();
     } catch(AccessDeniedException $e) {
@@ -220,7 +220,7 @@ class Job {
    * @param bool $success
    * @return string
    */
-  function getResultMessage($job, $success) {
+  function getResultMessage(int $job, bool $success): string {
     $messages = $this->orm->jobMessages->findByJobAndSuccess($job, $success);
     if($messages->count() === 0 AND $success) {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Úspěšně jsi zvládla směnu.";
@@ -245,7 +245,7 @@ class Job {
    * @param UserJobEntity $job
    * @return int
    */
-  function calculateSuccessRate(UserJobEntity $job) {
+  function calculateSuccessRate(UserJobEntity $job): int {
     $successRate = self::BASE_SUCCESS_RATE;
     $successRate += $this->skillsModel->calculateSkillSuccessBonus($job->job->neededSkill->id);
     return $successRate;
@@ -259,7 +259,7 @@ class Job {
    * @throws NotWorkingException
    * @throws CannotWorkException
    */
-  function work() {
+  function work(): \stdClass {
     try {
       $canWork = $this->canWork();
       if(!$canWork) throw new CannotWorkException;
@@ -284,7 +284,7 @@ class Job {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function isWorking() {
+  function isWorking(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $activeJob = $this->orm->userJobs->getUserActiveJob($this->user->id);
     if($activeJob) return true;
@@ -298,7 +298,7 @@ class Job {
    * @throws AuthenticationNeededException
    * @throws NotWorkingException
    */
-  function getCurrentJob() {
+  function getCurrentJob(): UserJobEntity {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $job = $this->orm->userJobs->getUserActiveJob($this->user->id);
     if(!$job) throw new NotWorkingException;
@@ -311,7 +311,7 @@ class Job {
    * @param UserJobEntity $job
    * @return string   
    */
-  function parseJobHelp(UserJobEntity $job) {
+  function parseJobHelp(UserJobEntity $job): string {
     $oldCount = $job->count;
     if($job->job->count) $job->count = $job->job->count;
     else $job->count = 1;
@@ -329,7 +329,7 @@ class Job {
    * @throws AuthenticationNeededException
    * @throws NotWorkingException
    */
-  function canWork() {
+  function canWork(): bool {
     try {
       $job = $this->getCurrentJob();
     } catch(AccessDeniedException $e) {
@@ -347,7 +347,7 @@ class Job {
    * @return JobMessageEntity[]|OneHasMany
    * @throws JobNotFoundException
    */
-  function listOfMessages($jobId) {
+  function listOfMessages(int $jobId): OneHasMany {
     $job = $this->orm->jobs->getById($jobId);
     if(!$job) throw new JobNotFoundException;
     else return $job->messages;
@@ -360,7 +360,7 @@ class Job {
    * @return JobMessageEntity
    * @throws JobMessageNotFoundException
    */
-  function getMessage($id) {
+  function getMessage(int $id): JobMessageEntity {
     $message = $this->orm->jobMessages->getById($id);
     if(!$message) throw new JobMessageNotFoundException;
     else return $message;
@@ -389,7 +389,7 @@ class Job {
    * @param array $data
    * @return void
    */
-  function editMessage($id, array $data) {
+  function editMessage(int $id, array $data) {
     $message = $this->orm->jobMessages->getById($id);
     foreach($data as $key => $value) {
       if($key === "success") $value = (int) $value;
@@ -405,7 +405,7 @@ class Job {
    * @return int
    * @throws JobMessageNotFoundException
    */
-  function deleteMessage($id) {
+  function deleteMessage(int $id) {
     $message = $this->orm->jobMessages->getById($id);
     if(!$message) {
       throw new JobMessageNotFoundException;
@@ -424,7 +424,7 @@ class Job {
    * @param int $year
    * @return int
    */
-  function calculateMonthJobIncome($userId = 0, $month = 0, $year = 0) {
+  function calculateMonthJobIncome(int $userId = 0, int $month = 0, int $year = 0): int {
     $income = 0;
     if($userId === 0) $userId = $this->user->id;
     $jobs = $this->orm->userJobs->findFromMonth($userId, $month, $year);

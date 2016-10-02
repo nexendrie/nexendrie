@@ -38,7 +38,7 @@ class TownsMarketControl extends \Nette\Application\UI\Control {
   /**
    * @param int $townId
    */
-  function handleBuy($townId) {
+  function handleBuy(int $townId) {
     try {
       $this->model->buy($townId);
       $this->presenter->flashMessage("Město koupeno.");

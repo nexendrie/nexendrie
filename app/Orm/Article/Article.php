@@ -40,7 +40,7 @@ class Article extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getCategories() {
+  static function getCategories(): array {
     return [
       self::CATEGORY_NEWS => "Novinky",
       self::CATEGORY_CHRONICLE => "Kronika",
@@ -53,11 +53,11 @@ class Article extends \Nextras\Orm\Entity\Entity {
     ];
   }
   
-  protected function getterAddedAt() {
+  protected function getterAddedAt(): string {
     return $this->localeModel->formatDateTime($this->added);
   }
   
-  protected function getterCategoryCZ() {
+  protected function getterCategoryCZ(): string {
     return self::getCategories()[$this->category];
   }
   

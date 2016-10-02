@@ -20,7 +20,7 @@ class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return ICollection|MonasteryDonation[]
    */
-  function findDonatedThisMonth($user) {
+  function findDonatedThisMonth($user): ICollection {
     $month = date("n");
     $year = date("Y");
     $startOfMonthTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);

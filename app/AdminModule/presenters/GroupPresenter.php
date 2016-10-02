@@ -29,21 +29,21 @@ class GroupPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("group", "edit");
     if(!$this->model->exists($id)) throw new \Nette\Application\BadRequestException;
   }
   
   /**
    * @param EditGroupFormFactory $factory
-   * @return \Nette\Application\UI\Form
+   * @return Form
    */
-  protected function createComponentEditGroupForm(EditGroupFormFactory $factory) {
+  protected function createComponentEditGroupForm(EditGroupFormFactory $factory): Form {
     $group = $this->model->ormGet($this->getParameter("id"));
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
+    $form->onSuccess[] = function(Form $form, array $values) {
       $this->model->user = $this->user;
-      $this->model->edit($this->getParameter("id"), $form->getValues(true));
+      $this->model->edit($this->getParameter("id"), $values);
       $this->flashMessage("Skupina upravena.");
       $this->redirect("default");
     };
@@ -55,7 +55,7 @@ class GroupPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionMembers($id) {
+  function actionMembers(int $id) {
     $this->requiresPermissions("group", "list");
   }
   
@@ -64,7 +64,7 @@ class GroupPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderMembers($id) {
+  function renderMembers(int $id) {
     $group = $this->model->ormGet($id);
     if(!$group) throw new \Nette\Application\BadRequestException;
     else $this->template->group = $group;

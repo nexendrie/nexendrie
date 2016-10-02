@@ -24,7 +24,7 @@ class TavernPresenter extends BasePresenter {
    * @param TavernControlFactory $factory
    * @return TavernControl
    */
-  protected function createComponentTavern(TavernControlFactory $factory) {
+  protected function createComponentTavern(TavernControlFactory $factory): TavernControl {
     return $factory->create();
   }
 }

@@ -27,7 +27,7 @@ class JobsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $level
    * @return ICollection|Job[]
    */
-  function findForLevel($level) {
+  function findForLevel(int $level): ICollection {
     return $this->findBy(["level<=" => $level]);
   }
 }

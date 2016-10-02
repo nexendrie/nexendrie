@@ -23,7 +23,7 @@ class RegisterFormFactory {
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("username", "Uživatelské jméno:")
       ->addRule(Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků.", 25)
@@ -39,9 +39,14 @@ class RegisterFormFactory {
     return $form;
   }
   
-  function submitted(Form $form) {
+  /**
+   * @param Form $form
+   * @param array $values
+   * @return void
+   */
+  function submitted(Form $form, array $values) {
     try {
-      $this->model->register($form->getValues(true));
+      $this->model->register($values);
     } catch (RegistrationException $e) {
       if($e->getCode() === UserManager::REG_DUPLICATE_USERNAME) {
         $form->addError("Zvolené uživatelské jméno je už zabráno.");

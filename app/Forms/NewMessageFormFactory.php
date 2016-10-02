@@ -21,7 +21,7 @@ class NewMessageFormFactory {
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addSelect("to", "Pro:", $this->model->usersList())
       ->setPrompt("Vyber příjemce")
@@ -32,8 +32,8 @@ class NewMessageFormFactory {
     $form->addTextArea("text", "Text:")
       ->setRequired("Zadej text.");
     $form->addSubmit("send", "Odeslat");
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->send($form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->send($values);
     };
     return $form;
   }

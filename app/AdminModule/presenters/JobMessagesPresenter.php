@@ -28,7 +28,7 @@ class JobMessagesPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionList($id) {
+  function actionList(int $id) {
     $this->requiresPermissions("content", "list");
     try {
       $this->template->messages = $this->model->listOfMessages($id);
@@ -42,7 +42,7 @@ class JobMessagesPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionAdd($id) {
+  function actionAdd(int $id) {
     $this->requiresPermissions("content", "add");
     try {
       $this->job = $this->model->getJob($id);
@@ -56,7 +56,7 @@ class JobMessagesPresenter extends BasePresenter {
    * @param AddEditJobMessageFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddJobMessageForm(AddEditJobMessageFormFactory $factory) {
+  protected function createComponentAddJobMessageForm(AddEditJobMessageFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $data = $form->getValues(true);
@@ -73,7 +73,7 @@ class JobMessagesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->message = $this->model->getMessage($id);
@@ -86,11 +86,11 @@ class JobMessagesPresenter extends BasePresenter {
    * @param AddEditJobMessageFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditJobMessageForm(AddEditJobMessageFormFactory $factory) {
+  protected function createComponentEditJobMessageForm(AddEditJobMessageFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->message->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->editMessage($this->message->id, $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->editMessage($this->message->id, $values);
       $this->flashMessage("Hláška upravena.");
     };
     return $form;
@@ -101,7 +101,7 @@ class JobMessagesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionDelete($id) {
+  function actionDelete(int $id) {
     try {
       $job = $this->model->deleteMessage($id);
       $this->flashMessage("Hláška smazána.");

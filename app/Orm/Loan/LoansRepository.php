@@ -25,7 +25,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $user
    * @return ICollection|Loan[]
    */
-  function findByUser($user) {
+  function findByUser($user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   
@@ -35,7 +35,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return Loan|NULL
    */
-  function getActiveLoan($user) {
+  function getActiveLoan(int $user) {
     return $this->getBy(["user" => $user, "returned" => NULL]);
   }
   
@@ -45,10 +45,10 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return ICollection|Loan[]
    */
-  function findReturnedThisMonth($user) {
-    $month = date("n");
-    $year = date("Y");
-    $startOfMonthTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);
+  function findReturnedThisMonth(int $user): ICollection {
+    $month = (int) date("n");
+    $year = (int) date("Y");
+    $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp();

@@ -25,21 +25,21 @@ class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $category
    * @return ICollection|Article[]
    */
-  function findByCategory($category) {
+  function findByCategory(string $category): ICollection {
     return $this->findBy(["category" => $category]);
   }
   
   /**
    * @return ICollection|Article[]
    */
-  function findNews() {
+  function findNews(): ICollection {
     return $this->findBy(["category" => Article::CATEGORY_NEWS])->orderBy("added", ICollection::DESC);
   }
   
   /**
    * @return ICollection|Article[]
    */
-  function findChronicle() {
+  function findChronicle(): ICollection {
     return $this->findBy(["category" => Article::CATEGORY_CHRONICLE])->orderBy("added", ICollection::DESC);
   }
 }

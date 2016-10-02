@@ -61,7 +61,7 @@ class CastlePresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderDetail($id) {
+  function renderDetail(int $id) {
     try {
       $this->template->castle = $this->model->getCastle($id);
     } catch(CastleNotFoundException $e) {
@@ -88,7 +88,7 @@ class CastlePresenter extends BasePresenter {
    * @param BuildCastleFormFactory $factory
    * @return Form
    */
-  protected function createComponentBuildCastleForm(BuildCastleFormFactory $factory) {
+  protected function createComponentBuildCastleForm(BuildCastleFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function() {
       $this->flashMessage("Hrad postaven.");
@@ -135,7 +135,7 @@ class CastlePresenter extends BasePresenter {
    * @param ManageCastleFormFactory $factory
    * @return Form
    */
-  protected function createComponentManageCastleForm(ManageCastleFormFactory $factory) {
+  protected function createComponentManageCastleForm(ManageCastleFormFactory $factory): Form {
     $form = $factory->create($this->template->castle->id);
     $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");

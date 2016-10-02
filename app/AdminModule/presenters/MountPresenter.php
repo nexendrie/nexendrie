@@ -31,10 +31,10 @@ class MountPresenter extends BasePresenter {
    * @param AddEditMountFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddMountForm(AddEditMountFormFactory $factory) {
+  protected function createComponentAddMountForm(AddEditMountFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->add($form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->add($values);
       $this->flashMessage("Jezdecké zvíře přidáno.");
       $this->redirect("Content:mounts");
     };
@@ -46,7 +46,7 @@ class MountPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->mount = $this->model->get($id);
@@ -59,11 +59,11 @@ class MountPresenter extends BasePresenter {
    * @param AddEditMountFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditMountForm(AddEditMountFormFactory $factory) {
+  protected function createComponentEditMountForm(AddEditMountFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->mount->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->edit($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->edit($this->getParameter("id"), $values);
       $this->flashMessage("Jezdecké zvíře upraveno.");
       $this->redirect("Content:mounts");
     };

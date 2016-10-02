@@ -40,29 +40,29 @@ class Castle extends \Nextras\Orm\Entity\Entity {
     $this->eventsModel = $eventsModel;
   }
   
-  protected function setterLevel($value) {
+  protected function setterLevel(int $value): int {
     if($value < 1) return 1;
     elseif($value > self::MAX_LEVEL) return self::MAX_LEVEL;
     else return $value;
   }
   
-  protected function setterHp($value) {
+  protected function setterHp(int $value): int {
     if($value < 1) return 1;
     elseif($value > 100) return 100;
     else return $value;
   }
   
-  protected function getterFoundedAt() {
+  protected function getterFoundedAt(): string {
     return $this->localeModel->formatDate($this->founded);
   }
   
-  protected function getterTaxesBonusIncome() {
+  protected function getterTaxesBonusIncome(): int {
     if($this->hp <= 30) return 0;
     elseif($this->owner->group->path != Group::PATH_TOWER) return 0;
     else return $this->level * self::TAX_BONUS_PER_LEVEL;
   }
   
-  protected function getterUpgradePrice() {
+  protected function getterUpgradePrice(): int {
     if($this->level === self::MAX_LEVEL) return 0;
     $price = self::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->level + 1; $i++) {
@@ -71,18 +71,18 @@ class Castle extends \Nextras\Orm\Entity\Entity {
     return $price;
   }
   
-  protected function getterUpgradePriceT() {
+  protected function getterUpgradePriceT(): string {
     return $this->localeModel->money($this->upgradePrice);
   }
   
-  protected function getterRepairPrice() {
+  protected function getterRepairPrice(): int {
     if($this->hp >= 100) return 0;
     if($this->level === 1) $multiplier = 1; else $multiplier = ($this->level - 1) * 10 / 100 + 1;
     $basePrice = self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp);
     return (int) ($basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice));
   }
   
-  protected function getterRepairPriceT() {
+  protected function getterRepairPriceT(): string {
     return $this->localeModel->money($this->repairPrice);
   }
   

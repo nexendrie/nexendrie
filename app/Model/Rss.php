@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Responses\RssResponse;
+
 /**
  * Rss channel generator
  *
@@ -32,9 +34,9 @@ class Rss {
   /**
    * Generate feed for news
    * 
-   * @return \Nexendrie\Responses\RssResponse
+   * @return RssResponse
    */
-  function newsFeed() {
+  function newsFeed(): RssResponse {
     $items = $this->articleModel->listOfNews();
     $channel = simplexml_load_file(APP_DIR . "/FrontModule/templates/newsFeed.xml");
     unset($channel->channel->link);
@@ -49,17 +51,17 @@ class Rss {
       $i->addChild("pubDate", (string) $item->added);
       $i->addChild("description", substr($item->text, 0, 150));
     }
-    return new \Nexendrie\Responses\RssResponse($channel);
+    return new RssResponse($channel);
   }
   
   /**
    * Generate feed for comments
    * 
    * @param int $newsId
-   * @return \Nexendrie\Responses\RssResponse
+   * @return RssResponse
    * @throws ArticleNotFoundException
    */
-  function commentsFeed($newsId) {
+  function commentsFeed(int $newsId): RssResponse {
     try {
       $news = $this->articleModel->view($newsId);
     } catch(ArticleNotFoundException $e) {
@@ -83,7 +85,7 @@ class Rss {
       $c->addChild("pubDate", (string) $this->localeModel->formatDateTime($comment->added));
       $c->addChild("description", substr($comment->text, 0, 150));
     }
-    return new \Nexendrie\Responses\RssResponse($channel);
+    return new RssResponse($channel);
   }
 }
 ?>

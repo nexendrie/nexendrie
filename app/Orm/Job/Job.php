@@ -31,7 +31,7 @@ class Job extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterAwardT() {
+  protected function getterAwardT(): string {
     return $this->localeModel->money($this->award);
   }
 }

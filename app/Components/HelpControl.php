@@ -29,7 +29,7 @@ class HelpControl extends Book\BookControl {
   /**
    * @return Book\BookPagesStorage
    */
-  function getPages() {
+  function getPages(): Book\BookPagesStorage {
     $storage = new Book\BookPagesStorage;
     $storage[] = new Book\BookPage("introduction", "Úvod");
     $storage[] = new Book\BookPage("titles", "Tituly");

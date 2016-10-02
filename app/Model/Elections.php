@@ -27,7 +27,7 @@ class Elections {
    * @param int $town
    * @return int
    */
-  function getNumberOfCouncillors($town) {
+  function getNumberOfCouncillors(int $town): int {
     /** @var int */
     $denizens = $this->orm->towns->getById($town)->denizens->countStored();
     if($denizens <= 3) return 0;
@@ -41,7 +41,7 @@ class Elections {
    * @param int $town
    * @return UserEntity[]|ICollection
    */
-  function getCandidates($town) {
+  function getCandidates(int $town): ICollection {
     return $this->orm->users->findTownCitizens($town);
   }
 }

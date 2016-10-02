@@ -37,52 +37,52 @@ class Event extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->formatDateTime($this->start);
   }
   
-  protected function setterEnd($value) {
+  protected function setterEnd(int $value): int {
     if($value < $this->start) return $this->start;
     else return $value;
   }
   
-  protected function getterEndAt() {
+  protected function getterEndAt(): string {
     return $this->localeModel->formatDateTime($this->end);
   }
   
-  protected function setterAdventuresBonus($value) {
+  protected function setterAdventuresBonus(int $value): int {
     if($value < 0) return 0;
     elseif($value > 999) return 999;
     else return $value;
   }
   
-  protected function setterWorkBonus($value) {
+  protected function setterWorkBonus(int $value): int {
     if($value < 0) return 0;
     elseif($value > 999) return 999;
     else return $value;
   }
   
-  protected function setterPrayerLifeBonus($value) {
+  protected function setterPrayerLifeBonus(int $value): int {
     if($value < 0) return 0;
     elseif($value > 999) return 999;
     else return $value;
   }
   
-  protected function setterTrainingDiscount($value) {
+  protected function setterTrainingDiscount(int $value): int {
     if($value < 0) return 0;
     elseif($value > 100) return 100;
     else return $value;
   }
   
-  protected function setterRepairingDiscount($value) {
+  protected function setterRepairingDiscount(int $value): int {
     if($value < 0) return 0;
     elseif($value > 100) return 100;
     else return $value;
   }
   
-  protected function setterShoppingDiscount($value) {
+  protected function setterShoppingDiscount(int $value): int {
     if($value < 0) return 0;
     elseif($value > 100) return 100;
     else return $value;
   }
   
-  protected function getterActive() {
+  protected function getterActive(): bool {
     $time = time();
     if($this->start <= $time AND $this->end >= $time) return true;
     else return false;
@@ -91,14 +91,14 @@ class Event extends \Nextras\Orm\Entity\Entity {
   /**
    * @return EventDummy
    */
-  function dummy() {
+  function dummy(): EventDummy {
     return new EventDummy($this);
   }
   
   /**
    * @return array
    */
-  function dummyArray() {
+  function dummyArray(): array {
     return $this->dummy()->toArray();
   }
 }

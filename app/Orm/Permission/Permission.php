@@ -14,9 +14,9 @@ namespace Nexendrie\Orm;
  */
 class Permission extends \Nextras\Orm\Entity\Entity {
   /**
-   * @return \Nexendrie\Orm\PermissionDummy
+   * @return PermissionDummy
    */
-  function dummy() {
+  function dummy(): PermissionDummy {
     return new PermissionDummy($this);
   }
 }

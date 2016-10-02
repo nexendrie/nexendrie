@@ -68,7 +68,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionTown($id) {
+  function actionTown(int $id) {
     try {
       $this->town = $this->townModel->get($id);
     } catch(TownNotFoundException $e) {
@@ -85,7 +85,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function renderTown($id) {
+  function renderTown(int $id) {
     $this->template->town = $this->town;
     $this->template->mayor = $this->townModel->getMayor($this->town->id);
   }
@@ -94,7 +94,7 @@ class PropertyPresenter extends BasePresenter {
    * @param ManageTownFormFactory $factory
    * @return Form
    */
-  protected function createComponentManageTownForm(ManageTownFormFactory $factory) {
+  protected function createComponentManageTownForm(ManageTownFormFactory $factory): Form {
     $form = $factory->create($this->town->id);
     $form->onSuccess[] = function(Form $form) {
       $this->flashMessage("Změny uloženy.");
@@ -102,7 +102,7 @@ class PropertyPresenter extends BasePresenter {
     return $form;
   }
   
-  protected function createComponentAppointMayorForm(AppointMayorFormFactory $factory) {
+  protected function createComponentAppointMayorForm(AppointMayorFormFactory $factory): Form {
     $form = $factory->create($this->getParameter("id"));
     $form->onSuccess[] = function() {
       $this->flashMessage("Rychář jmenován.");
@@ -152,7 +152,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $item
    * @return void
    */
-  function handleEquip($item) {
+  function handleEquip(int $item) {
     try {
       $this->inventoryModel->equipItem($item);
       $this->flashMessage("Věc nasazena.");
@@ -172,7 +172,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $item
    * @return void
    */
-  function handleUnequip($item) {
+  function handleUnequip(int $item) {
     try {
       $this->inventoryModel->unequipItem($item);
       $this->flashMessage("Věc sundána.");
@@ -190,7 +190,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $potion
    * @return void
    */
-  function handleDrink($potion) {
+  function handleDrink(int $potion) {
     try {
       $life = $this->inventoryModel->drinkPotion($potion);
       $this->flashMessage("Doplnil sis $life životů.");
@@ -210,7 +210,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $item
    * @return void
    */
-  function handleSell($item) {
+  function handleSell(int $item) {
     try {
       $price = $this->inventoryModel->sellItem($item);
       $this->flashMessage("Věc prodána za " . $this->localeModel->money($price) . ".");
@@ -228,7 +228,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $item
    * @return void
    */
-  function handleUpgrade($item) {
+  function handleUpgrade(int $item) {
     try {
       $this->inventoryModel->upgradeItem($item);
       $this->flashMessage("Věc vylepšena.");
@@ -250,7 +250,7 @@ class PropertyPresenter extends BasePresenter {
    * @param MakeCitizenFormFactory $factory
    * @return Form
    */
-  protected function createComponentMakeCitizenForm(MakeCitizenFormFactory $factory) {
+  protected function createComponentMakeCitizenForm(MakeCitizenFormFactory $factory): Form {
     $form = $factory->create($this->getParameter("id"));
     $form->onSuccess[] = function() {
       $this->flashMessage("Provedeno.");

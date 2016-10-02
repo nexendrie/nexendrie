@@ -33,7 +33,7 @@ class Inventory {
    * @return array
    * @throws AuthenticationNeededException
    */
-  function possessions() {
+  function possessions(): array {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $return = [];
     $user = $this->orm->users->getById($this->user->id);
@@ -50,7 +50,7 @@ class Inventory {
    * @return UserItemEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function equipment() {
+  function equipment(): ICollection {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     return $this->orm->userItems->findEquipment($this->user->id)->orderBy("this->item->strength");
   }
@@ -61,7 +61,7 @@ class Inventory {
    * @return UserItemEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function potions() {
+  function potions(): ICollection {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     return $this->orm->userItems->findByType($this->user->id, "potion");
   }
@@ -72,7 +72,7 @@ class Inventory {
    * @return UserItemEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function intimacyBoosters() {
+  function intimacyBoosters(): ICollection {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     return $this->orm->userItems->findByType($this->user->id, "intimacy_boost");
   }
@@ -88,7 +88,7 @@ class Inventory {
    * @throws ItemNotEquipableException
    * @throws ItemAlreadyWornException
    */
-  function equipItem($id) {
+  function equipItem(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $item = $this->orm->userItems->getById($id);
     if(!$item) throw new ItemNotFoundException;
@@ -117,7 +117,7 @@ class Inventory {
    * @throws ItemNotEquipableException
    * @throws ItemNotWornException
    */
-  function unequipItem($id) {
+  function unequipItem(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $item = $this->orm->userItems->getById($id);
     if(!$item) throw new ItemNotFoundException;
@@ -139,7 +139,7 @@ class Inventory {
    * @throws ItemNotDrinkableException
    * @throws HealingNotNeeded
    */
-  function drinkPotion($id) {
+  function drinkPotion(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $item = $this->orm->userItems->getById($id);
     if(!$item) throw new ItemNotFoundException;
@@ -172,7 +172,7 @@ class Inventory {
    * @throws ItemNotUsableException
    * @throws MaxIntimacyReachedException
    */
-  function boostIntimacy($id) {
+  function boostIntimacy(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
     if(is_null($marriage)) throw new NotMarriedException;
@@ -199,7 +199,7 @@ class Inventory {
    * @param int $user
    * @return UserItemEntity|NULL
    */
-  function getWeapon($user) {
+  function getWeapon(int $user) {
     $weapon = $this->orm->userItems->getWornWeapon($user);
     if($weapon) return $weapon;
     else return NULL;
@@ -209,7 +209,7 @@ class Inventory {
    * @param int $user
    * @return UserItemEntity|NULL
    */
-  function getArmor($user) {
+  function getArmor(int $user) {
     $armor = $this->orm->userItems->getWornArmor($user);
     if($armor) return $armor;
     else return NULL;
@@ -219,7 +219,7 @@ class Inventory {
    * @param int $user
    * @return UserItemEntity|NULL
    */
-  function getHelmet($user) {
+  function getHelmet(int $user) {
     $armor = $this->orm->userItems->getWornHelmet($user);
     if($armor) return $armor;
     else return NULL;
@@ -229,7 +229,7 @@ class Inventory {
    * @param int $user
    * @return ItemSetEntity|NULL
    */
-  function getUserItemSet($user) {
+  function getUserItemSet(int $user) {
     $weapon = $this->getWeapon($user);
     $armor = $this->getArmor($user);
     $helmet = $this->getHelmet($user);
@@ -249,7 +249,7 @@ class Inventory {
    * @throws ItemNotOwnedException
    * @throws ItemNotForSaleException
    */
-  function sellItem($id) {
+  function sellItem(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $item = $this->orm->userItems->getById($id);
     if(!$item) throw new ItemNotFoundException;
@@ -280,7 +280,7 @@ class Inventory {
    * @throws ItemMaxLevelReachedException
    * @throws InsufficientFundsException
    */
-  function upgradeItem($id) {
+  function upgradeItem(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $item = $this->orm->userItems->getById($id);
     if(!$item) throw new ItemNotFoundException;

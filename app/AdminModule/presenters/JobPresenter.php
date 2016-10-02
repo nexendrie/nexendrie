@@ -25,7 +25,7 @@ class JobPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->job = $this->model->getJob($id);
@@ -45,7 +45,7 @@ class JobPresenter extends BasePresenter {
    * @param AddEditJobFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddJobForm(AddEditJobFormFactory $factory) {
+  protected function createComponentAddJobForm(AddEditJobFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->model->addJob($form->getValues(true));
@@ -59,11 +59,11 @@ class JobPresenter extends BasePresenter {
    * @param AddEditJobFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditJobForm(AddEditJobFormFactory $factory) {
+  protected function createComponentEditJobForm(AddEditJobFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->job->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->editJob($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->editJob($this->getParameter("id"), $values);
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:jobs");
     };

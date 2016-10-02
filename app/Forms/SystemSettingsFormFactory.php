@@ -30,7 +30,7 @@ class SystemSettingsFormFactory {
   /**
    * @return array
    */
-  protected function getListOfGroups() {
+  protected function getListOfGroups(): array {
     $return = [];
     $groups = $this->groupModel->listOfGroups();
     foreach($groups as $group) {
@@ -42,7 +42,7 @@ class SystemSettingsFormFactory {
   /**
    * @return array
    */
-  protected function getListOfTowns() {
+  protected function getListOfTowns(): array {
     $return = [];
     $towns = $this->townModel->listOfTowns();
     foreach($towns as $town) {
@@ -54,7 +54,7 @@ class SystemSettingsFormFactory {
   /**
    * @return array
    */
-  protected function getDefaultValues() {
+  protected function getDefaultValues(): array {
     $settings = $this->sr->settings;
     for($i = 3; $i <= 5; $i++) {
       unset($settings["locale"]["plural"][$i]);
@@ -66,7 +66,7 @@ class SystemSettingsFormFactory {
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $groups = $this->getListOfGroups();
     $form = new Form;
     $form->addGroup("Lokální nastavení");
@@ -144,20 +144,25 @@ class SystemSettingsFormFactory {
   
   /**
    * @param Form $form
+   * @param array $values
    * @return void
    */
-  function validate(Form $form) {
-    $values = $form->getValues();
+  function validate(Form $form, array $values) {
     $plural = explode("\n", $values["locale"]["plural"]);
     if(count($plural) != 3) $form->addError("Plurály musí obsahovat právě 3 řádky.");
     if(is_int($plural[0])) $form->addError("První plurál musít být číslo.");
     if(is_int($plural[2])) $form->addError("Třetí plurál musít být číslo.");
   }
   
-  function submitted(Form $form) {
+  /**
+   * @param Form $form
+   * @param array $values
+   * @return void
+   */
+  function submitted(Form $form, array $values) {
     try {
-      $this->sr->save($form->getValues(true));
-    } catch (\Nette\IOException $e) {
+      $this->sr->save($values);
+    } catch(\Nette\IOException $e) {
       $form->addError("Došlo k chybě při ukládání nastavení. Ujisti se, že máš právo zápisu do souboru.");
     }
   }

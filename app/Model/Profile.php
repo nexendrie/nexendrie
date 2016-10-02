@@ -34,7 +34,7 @@ class Profile {
    * @return UserEntity
    * @throws UserNotFoundException
    */
-  function view($username) {
+  function view(string $username): UserEntity {
     $user = $this->orm->users->getByUsername($username);
     if(!$user) throw new UserNotFoundException("Specified user does not exist.");
     else return $user;
@@ -45,7 +45,7 @@ class Profile {
    * 
    * @return string[]
    */
-  function getListOfLords() {
+  function getListOfLords(): array {
     return $this->orm->users->findBy(["this->group->level>=" => 350])
       ->fetchPairs("id", "publicname");
   }
@@ -56,7 +56,7 @@ class Profile {
    * @param int $id  
    * @return int[]
    */
-  function userLife($id = 0) {
+  function userLife(int $id = 0): array {
     if($id === 0) $id = $this->user->id;
     $user = $this->orm->users->getById($id);
     if(!$user) throw new UserNotFoundException;
@@ -69,7 +69,7 @@ class Profile {
    * @param int $id  
    * @return string
    */
-  function getPath($id = 0) {
+  function getPath(int $id = 0): string {
     if($id === 0) $id = $this->user->id;
     $user = $this->orm->users->getById($id);
     if(!$user) throw new UserNotFoundException;
@@ -82,7 +82,7 @@ class Profile {
    * @param int $id  
    * @return int
    */
-  function countCompletedAdventures($id = 0) {
+  function countCompletedAdventures(int $id = 0): int {
     return $this->orm->userAdventures->findUserCompletedAdventures($id)->countStored();
   }
   
@@ -92,7 +92,7 @@ class Profile {
    * @param int $id  
    * @return int
    */
-  function countProducedBeers($id = 0) {
+  function countProducedBeers(int $id = 0): int {
     $amount = 0;
     $production = $this->orm->beerProduction->findByUser($id);
     foreach($production as $row) {
@@ -107,7 +107,7 @@ class Profile {
    * @param int $id  
    * @return int
    */
-  function countPunishments($id = 0) {
+  function countPunishments(int $id = 0): int {
     return $this->orm->punishments->findByUser($id)->countStored();
   }
   
@@ -117,7 +117,7 @@ class Profile {
    * @param int $id  
    * @return int
    */
-  function countLessons($id = 0) {
+  function countLessons(int $id = 0): int {
     $amount = 0;
     $lessons = $this->orm->userSkills->findByUser($id);
     foreach($lessons as $lesson) {
@@ -132,7 +132,7 @@ class Profile {
    * @param int $id  
    * @return int[]
    */
-  function countMessages($id = 0) {
+  function countMessages(int $id = 0): array {
     return ["sent" => $this->orm->messages->findByFrom($id)->countStored(), "recieved" => $this->orm->messages->findByTo($id)->countStored()];
   }
    
@@ -143,7 +143,7 @@ class Profile {
     * @param int $id 
     * @return UserEntity|NULL
     */
-  function getPartner($id) {
+  function getPartner(int $id) {
     $marriage = $this->orm->marriages->getActiveMarriage($id)->fetch();
     if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
     elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
@@ -156,7 +156,7 @@ class Profile {
     * @param int $id 
     * @return UserEntity|NULL
     */
-  function getFiance($id) {
+  function getFiance(int $id) {
     $marriage = $this->orm->marriages->getAcceptedMarriage($id)->fetch();
     if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
     elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;

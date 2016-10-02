@@ -24,7 +24,7 @@ class ItemSet extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getStats() {
+  static function getStats(): array {
     return [
       self::STAT_HITPOINTS => "maximum životů",
       self::STAT_DAMAGE => "poškození",
@@ -32,13 +32,13 @@ class ItemSet extends \Nextras\Orm\Entity\Entity {
     ];
   }
   
-  function setterBonus($value) {
+  function setterBonus(int $value): int {
     if($value < 0) return 0;
     elseif($value > 99) return 99;
     else return $value;
   }
   
-  protected function getterEffect() {
+  protected function getterEffect(): string {
     return self::getStats()[$this->stat] . " +" . $this->bonus;
   }
 }

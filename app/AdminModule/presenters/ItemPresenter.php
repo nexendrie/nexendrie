@@ -25,7 +25,7 @@ class ItemPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->item = $this->model->getItem($id);
@@ -45,7 +45,7 @@ class ItemPresenter extends BasePresenter {
    * @param AddEditItemFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddItemForm(AddEditItemFormFactory $factory) {
+  protected function createComponentAddItemForm(AddEditItemFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->model->addItem($form->getValues(true));
@@ -59,11 +59,11 @@ class ItemPresenter extends BasePresenter {
    * @param AddEditItemFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditItemForm(AddEditItemFormFactory $factory) {
+  protected function createComponentEditItemForm(AddEditItemFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->item->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->editItem($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->editItem($this->getParameter("id"), $values);
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:items");
     };

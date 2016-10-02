@@ -21,14 +21,14 @@ class AddEditJobFormFactory {
   /**
    * @return string[]
    */
-  protected function getSkills() {
+  protected function getSkills(): array {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

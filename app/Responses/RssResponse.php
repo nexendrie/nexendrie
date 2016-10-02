@@ -26,7 +26,7 @@ class RssResponse implements \Nette\Application\IResponse {
   /**
    * @return \SimpleXMLElement
    */
-  function getSource() {
+  function getSource(): \SimpleXMLElement {
     return $this->source;
   }
   

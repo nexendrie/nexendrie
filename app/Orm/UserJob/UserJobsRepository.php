@@ -21,7 +21,7 @@ class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user User's id
    * @return UserJob|NULL
    */
-  function getUserActiveJob($user) {
+  function getUserActiveJob(int $user) {
     return $this->getBy(["user" => $user, "finished" => false]);
   }
   
@@ -33,11 +33,11 @@ class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $year
    * @return ICollection|UserJob[]
    */
-  function findFromMonth($user, $month = 0, $year = 0) {
+  function findFromMonth(int $user, int $month = 0, int $year = 0) {
     $sixDays = 60 * 60 * 24 * 6;
-    if($month === 0) $month = date("n");
-    if($year === 0) $year = date("Y");
-    $startOfMonthTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);
+    if($month === 0) $month = (int) date("n");
+    if($year === 0) $year = (int) date("Y");
+    $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp() - $sixDays;

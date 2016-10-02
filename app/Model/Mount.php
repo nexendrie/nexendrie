@@ -32,7 +32,7 @@ class Mount {
    * @return MountEntity
    * @throws MountNotFoundException
    */
-  function get($id) {
+  function get(int $id): MountEntity {
     $mount = $this->orm->mounts->getById($id);
     if(!$mount) throw new MountNotFoundException;
     else return $mount;
@@ -44,7 +44,7 @@ class Mount {
    * @param int|NULL $owner Return only mounts owned by specified use. NULL = all users
    * @return MountEntity[]|ICollection
    */
-  function listOfMounts($owner = NULL) {
+  function listOfMounts(int $owner = NULL): ICollection {
     if(is_int($owner)) return $this->orm->mounts->findByOwner($owner);
     else return $this->orm->mounts->findAll();
   }
@@ -54,7 +54,7 @@ class Mount {
    * 
    * @return MountEntity[]|ICollection
    */
-  function mountsOnSale() {
+  function mountsOnSale(): ICollection {
     return $this->orm->mounts->findOnMarket()
       ->orderBy("this->type->id", ICollection::DESC)
       ->orderBy("price", ICollection::DESC);
@@ -65,7 +65,7 @@ class Mount {
    * 
    * @return MountTypeEntity[]|ICollection
    */
-  function listOfMountTypes() {
+  function listOfMountTypes(): ICollection {
     return $this->orm->mountTypes->findAll();
   }
   
@@ -93,7 +93,7 @@ class Mount {
    * @return void
    * @throws MountNotFoundException
    */
-  function edit($id, array $data) {
+  function edit(int $id, array $data) {
     try {
       $mount = $this->get($id);
     } catch(MountNotFoundException $e) {
@@ -117,7 +117,7 @@ class Mount {
    * @throws InsufficientLevelForMountException
    * @throws InsufficientFundsException
    */
-  function buy($id) {
+  function buy(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     try {
       $mount = $this->get($id);

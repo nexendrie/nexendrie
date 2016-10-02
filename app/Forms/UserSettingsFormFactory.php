@@ -35,7 +35,7 @@ class UserSettingsFormFactory {
    * 
    * @return array
    */
-  static function getStylesList() {
+  static function getStylesList(): array {
     $styles = [];
     $dir = WWW_DIR . "/styles";
     $file = file_get_contents("$dir/list.neon");
@@ -51,7 +51,7 @@ class UserSettingsFormFactory {
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addGroup("Účet");
     $form->addText("publicname", "Zobrazované jméno:")
@@ -79,14 +79,19 @@ class UserSettingsFormFactory {
   
   /**
    * @param Form $form
+   * @param array $values
    * @return void
    */
-  function validate(Form $form) {
-    $values = $form->getValues();
+  function validate(Form $form, array $values) {
     if(empty($values["password_old"]) AND !empty($values["password_new"])) $form->addError("Musíš zadat současné heslo.");
     if($values["password_new"] != $values["password_check"]) $form->addError("Hesla se neshodují.");
   }
   
+  /**
+   * @param Form $form
+   * @param array $values
+   * @return void
+   */
   function submitted(Form $form, array $values) {
     try {
       $this->model->changeSettings($values);

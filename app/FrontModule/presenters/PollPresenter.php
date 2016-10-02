@@ -19,7 +19,7 @@ class PollPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderView($id) {
+  function renderView(int $id) {
     if(!$this->model->exists($id)) throw new \Nette\Application\BadRequestException;
     $this->template->pollId = $id;
   }
@@ -28,7 +28,7 @@ class PollPresenter extends BasePresenter {
    * @param PollControlFactory $factory
    * @return \Nette\Application\UI\Multiplier
    */
-  protected function createComponentPoll(PollControlFactory $factory) {
+  protected function createComponentPoll(PollControlFactory $factory): \Nette\Application\UI\Multiplier {
     return new \Nette\Application\UI\Multiplier(function ($id) use ($factory) {
       $poll = $factory->create();
       $poll->id = $id;

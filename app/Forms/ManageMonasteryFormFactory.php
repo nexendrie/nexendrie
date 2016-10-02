@@ -27,7 +27,7 @@ class ManageMonasteryFormFactory {
    * @param int $id
    * @return Form
    */
-  function create($id) {
+  function create(int $id): Form {
     $this->id = $id;
     $form = new Form;
     $form->addText("name", "Jméno:")
@@ -39,6 +39,11 @@ class ManageMonasteryFormFactory {
     return $form;
   }
   
+  /**
+   * @param Form $form
+   * @param array $values
+   * @return void
+   */
   function submitted(Form $form, array $values) {
     try {
       $this->model->edit($this->id, $values);

@@ -31,7 +31,7 @@ class UserPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("user", "edit");
   }
   
@@ -39,7 +39,7 @@ class UserPresenter extends BasePresenter {
    * @param EditUserFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditUser(EditUserFormFactory $factory) {
+  protected function createComponentEditUser(EditUserFormFactory $factory): Form {
     $form = $factory->create($this->getParameter("id"));
     $form->onSuccess[] = function(\Nette\Application\UI\Form $form) {
       $this->flashMessage("Změny uloženy.");
@@ -52,7 +52,7 @@ class UserPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionBan($id) {
+  function actionBan(int $id) {
     $this->requiresPermissions("user", "ban");
     if($id == 0) {
       $this->flashMessage("Neoprávněná operace.");
@@ -79,7 +79,7 @@ class UserPresenter extends BasePresenter {
    * @param BanUserFormFactory $factory
    * @return Form
    */
-  protected function createComponentBanUserForm(BanUserFormFactory $factory) {
+  protected function createComponentBanUserForm(BanUserFormFactory $factory): Form {
     $form = $factory->create($this->getParameter("id"));
     $form->onSuccess[] = function(\Nette\Application\UI\Form $form) {
       $this->flashMessage("Uživatel uvězněn.");

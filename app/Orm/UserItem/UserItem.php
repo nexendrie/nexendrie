@@ -29,33 +29,33 @@ class UserItem extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function setterAmount($value) {
+  protected function setterAmount(int $value): int {
     if($value < 0) return 0;
     else return $value;
   }
   
-  protected function setterLevel($value) {
+  protected function setterLevel(int $value): int {
     if($value < 0) return 0;
     elseif($value > $this->maxLevel) return $this->maxLevel;
     else return $value;
   }
   
-  protected function getterMaxLevel() {
+  protected function getterMaxLevel(): int {
     if(!in_array($this->item->type, Item::getEquipmentTypes())) return 0;
     else return (int) round($this->item->strength / 2) + 1;
   }
   
-  protected function getterUpgradePrice() {
+  protected function getterUpgradePrice(): int {
     if(!in_array($this->item->type, Item::getEquipmentTypes())) return 0;
     elseif($this->level >= $this->maxLevel) return 0;
     else return ($this->level + 1) * (int) ($this->item->price / 3);
   }
   
-  protected function getterUpgradePriceT() {
+  protected function getterUpgradePriceT(): string {
     return $this->localeModel->money($this->upgradePrice);
   }
   
-  protected function getterPrice() {
+  protected function getterPrice(): int {
     $price = $this->item->price;
     $i = 1;
     while($i <= $this->level) {
@@ -65,15 +65,15 @@ class UserItem extends \Nextras\Orm\Entity\Entity {
     return $price;
   }
   
-  protected function getterPriceT() {
+  protected function getterPriceT(): string {
     return $this->localeModel->money($this->price);
   }
   
-  protected function getterSellPrice() {
+  protected function getterSellPrice(): int {
     return (int) ($this->price / 2);
   }
   
-  protected function getterSellPriceT() {
+  protected function getterSellPriceT(): string {
     return $this->localeModel->money($this->sellPrice);
   }
 }

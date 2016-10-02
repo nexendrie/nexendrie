@@ -25,7 +25,7 @@ class Bank {
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    */
-  function __construct($interest, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(int $interest, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
     $this->interest = (int) $interest;
@@ -45,7 +45,7 @@ class Bank {
   /**
    * @return int
    */
-  function maxLoan() {
+  function maxLoan(): int {
     if(!$this->user->isLoggedIn()) return 0;
     $level = $this->user->identity->level;
     if($level < 90) return 70;
@@ -62,7 +62,7 @@ class Bank {
    * @param LoanEntity $loan
    * @return int
    */
-  function calculateInterest(LoanEntity $loan) {
+  function calculateInterest(LoanEntity $loan): int {
     $start = $loan->taken;
     $end = $loan->returned ? $loan->returned: time();
     $duration = ($end - $start) / (60 * 60 * 24);
@@ -78,7 +78,7 @@ class Bank {
    * @throws TooHighLoanException
    * @throws CannotTakeMoreLoansException
    */
-  function takeLoan($amount) {
+  function takeLoan(int $amount) {
     if($amount > $this->maxLoan()) throw new TooHighLoanException;
     elseif($this->getActiveLoan()) throw new CannotTakeMoreLoansException;
     $loan = new LoanEntity;

@@ -37,7 +37,7 @@ class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $adventure
    * @return ICollection|AdventureNpc[]
    */
-  function findByAdventure($adventure) {
+  function findByAdventure(int $adventure): ICollection {
     return $this->findBy(["adventure" => $adventure])->orderBy("order");
   }
 }

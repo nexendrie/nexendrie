@@ -19,7 +19,7 @@ namespace Nexendrie\Orm;
  * @property-read int $finishTime {virtual}
  */
 class UserJob extends \Nextras\Orm\Entity\Entity {
-  protected function getterFinishTime() {
+  protected function getterFinishTime(): int {
     return $this->started + (60 * 60 * 24 * 7);
   }
   

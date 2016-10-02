@@ -14,7 +14,7 @@ class AddEditShopFormFactory {
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

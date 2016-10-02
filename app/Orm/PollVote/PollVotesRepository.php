@@ -34,7 +34,7 @@ class PollVotesRepository extends \Nextras\Orm\Repository\Repository {
    * @param Poll|int $poll
    * @return ICollection|PollVote[]
    */
-  function findByPoll($poll) {
+  function findByPoll($poll): ICollection {
     return $this->findBy(["poll" => $poll]);
   }
   
@@ -42,7 +42,7 @@ class PollVotesRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $user
    * @return ICollection|PollVote[]
    */
-  function findByUser($user) {
+  function findByUser($user): ICollection {
     return $this->findBy(["user" => $user]);
   }
 }

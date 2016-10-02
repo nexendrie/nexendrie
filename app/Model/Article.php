@@ -33,7 +33,7 @@ class Article {
    * 
    * @return ArticleEntity[]|ICollection
    */
-  function listOfArticles() {
+  function listOfArticles(): ICollection {
     return $this->orm->articles->findAll()->orderBy("added", ICollection::DESC);
   }
   
@@ -43,7 +43,7 @@ class Article {
    * @param \Nette\Utils\Paginator $paginator
    * @return ArticleEntity[]|ICollection
    */
-  function listOfNews(\Nette\Utils\Paginator $paginator = NULL) {
+  function listOfNews(\Nette\Utils\Paginator $paginator = NULL): ICollection {
     $news = $this->orm->articles->findNews();
     if($paginator) {
       $paginator->itemsPerPage = $this->itemsPerPage;
@@ -59,7 +59,7 @@ class Article {
    * @param \Nette\Utils\Paginator $paginator
    * @return ArticleEntity[]|ICollection
    */
-  function category($name, \Nette\Utils\Paginator $paginator = NULL) {
+  function category($name, \Nette\Utils\Paginator $paginator = NULL): ICollection {
     $articles = $this->orm->articles->findByCategory($name);
     if($paginator) {
       $paginator->itemsPerPage = $this->itemsPerPage;
@@ -75,7 +75,7 @@ class Article {
    * @return ArticleEntity
    * @throws ArticleNotFoundException
    */
-  function view($id) {
+  function view(int $id): ArticleEntity {
     $article = $this->orm->articles->getById($id);
     if(!$article) throw new ArticleNotFoundException;
     else return $article;
@@ -87,7 +87,7 @@ class Article {
    * @param int $article
    * @return CommentEntity[]|ICollection
    */
-  function viewComments($article = 0) {
+  function viewComments(int $article = 0): ICollection {
     if($article === 0) return $this->orm->comments->findAll();
     else return $this->orm->comments->findByArticle($article);
   }
@@ -139,11 +139,12 @@ class Article {
    * 
    * @param int $id Article' id
    * @param array $data
+   * @return void
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws ArticleNotFoundException
    */
-  function editArticle($id, array $data) {
+  function editArticle(int $id, array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     $article = $this->orm->articles->getById($id);
     if(!$article) throw new ArticleNotFoundException;
@@ -160,7 +161,7 @@ class Article {
    * @param int $id News' id
    * @return bool
    */
-  function exists($id) {
+  function exists(int $id): bool {
     $row = $this->orm->articles->getById($id);
     return (bool) $row;
   }

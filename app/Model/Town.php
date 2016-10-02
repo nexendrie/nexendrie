@@ -35,7 +35,7 @@ class Town {
    * @return TownEntity
    * @throws TownNotFoundException
    */
-  function get($id) {
+  function get(int $id): TownEntity {
     $town = $this->orm->towns->getById($id);
     if(!$town) throw new TownNotFoundException;
     else return $town;
@@ -46,7 +46,7 @@ class Town {
    * 
    * @return TownEntity[]|ICollection
    */
-  function listOfTowns() {
+  function listOfTowns(): ICollection {
     return $this->orm->towns->findAll();
   }
   
@@ -73,7 +73,7 @@ class Town {
    * @return void
    * @throws TownNotFoundException
    */
-  function edit($id, array $data) {
+  function edit(int $id, array $data) {
     try {
       $town = $this->get($id);
     } catch(TownNotFoundException $e) {
@@ -88,7 +88,7 @@ class Town {
   /**
    * @return TownEntity[]|ICollection
    */
-  function townsOnSale() {
+  function townsOnSale(): ICollection {
     return $this->orm->towns->findOnMarket();
   }
   
@@ -104,7 +104,7 @@ class Town {
    * @throws InsufficientLevelForTownException
    * @throws InsufficientFundsException
    */
-  function buy($id) {
+  function buy(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $town = $this->orm->towns->getById($id);
     if(!$town) throw new TownNotFoundException;
@@ -128,7 +128,7 @@ class Town {
    * @param int $town
    * @return \Nexendrie\Orm\User|NULL
    */
-  function getMayor($town) {
+  function getMayor(int $town) {
     $mayor = $this->orm->users->getTownMayor($town);
     if($mayor) return $mayor;
     else return NULL;
@@ -140,7 +140,7 @@ class Town {
    * @param int $town
    * @return string[] id => publicname
    */
-  function getTownCitizens($town) {
+  function getTownCitizens(int $town): array {
     return $this->orm->users->findTownCitizens($town)
       ->fetchPairs("id", "publicname");
   }
@@ -158,7 +158,7 @@ class Town {
    * @throws UserDoesNotLiveInTheTownException
    * @throws InsufficientLevelForMayorException
    */
-  function appointMayor($townId, $newMayorId) {
+  function appointMayor(int $townId, int $newMayorId) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $town = $this->orm->towns->getById($townId);
     if(!$town) throw new TownNotFoundException;
@@ -183,7 +183,7 @@ class Town {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canMove() {
+  function canMove(): bool {
     $month = 60 * 60 * 24 * 31;
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
@@ -205,7 +205,7 @@ class Town {
    * @throws CannotMoveToSameTownException
    * @throws CannotMoveToTownException
    */
-  function moveToTown($id) {
+  function moveToTown(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $town = $this->orm->towns->getById($id);
     if(!$town) throw new TownNotFoundException;
@@ -257,7 +257,7 @@ class Town {
    * @param int $town
    * @return string[] id => publicname
    */
-  function getTownPeasants($town) {
+  function getTownPeasants(int $town): array {
     return $this->orm->users->findTownPeasants($town)
       ->fetchPairs("id", "publicname");
   }
@@ -272,7 +272,7 @@ class Town {
    * @throws UserDoesNotLiveInTheTownException
    * @throws TooHighLevelException
    */
-  function makeCitizen($id) {
+  function makeCitizen(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $citizen = $this->orm->users->getById($id);
     if(!$citizen) throw new UserNotFoundException;

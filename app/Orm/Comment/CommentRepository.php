@@ -25,7 +25,7 @@ class CommentsRepository extends \Nextras\Orm\Repository\Repository {
    * @param Article|int $article
    * @return ICollection|Comment[]
    */
-  function findByArticle($article) {
+  function findByArticle($article): ICollection {
     return $this->findBy(["article" => $article]);
   }
 }

@@ -14,7 +14,7 @@ abstract class DummyEntity {
   /**
    * @return array
    */
-  function toArray() {
+  function toArray(): array {
     $return = [];
     foreach($this as $key => $value) {
       $return[$key] = $value;

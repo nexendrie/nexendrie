@@ -22,7 +22,7 @@ class AddEditMountFormFactory {
   /**
    * @return string[]
    */
-  protected function getGenders() {
+  protected function getGenders(): array {
     return Mount::getGenders();
     
   }
@@ -30,14 +30,14 @@ class AddEditMountFormFactory {
   /**
    * @return array
    */
-  protected function getMountTypes() {
+  protected function getMountTypes(): array {
     return $this->model->listOfMountTypes()->fetchPairs("id", "name");
   }
   
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

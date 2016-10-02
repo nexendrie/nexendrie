@@ -24,7 +24,7 @@ class ShopPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->shop = $this->model->getShop($id);
@@ -44,10 +44,10 @@ class ShopPresenter extends BasePresenter {
    * @param AddEditShopFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddShopForm(AddEditShopFormFactory $factory) {
+  protected function createComponentAddShopForm(AddEditShopFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->addShop($form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->addShop($values);
       $this->flashMessage("Obchod přidán.");
       $this->redirect("Content:shops");
     };
@@ -58,11 +58,11 @@ class ShopPresenter extends BasePresenter {
    * @param AddEditShopFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditShopForm(AddEditShopFormFactory $factory) {
+  protected function createComponentEditShopForm(AddEditShopFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->shop->toArray());
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->editShop($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->editShop($this->getParameter("id"), $values);
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:shops");
     };

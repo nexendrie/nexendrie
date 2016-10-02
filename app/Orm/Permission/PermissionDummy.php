@@ -31,19 +31,19 @@ class PermissionDummy {
     $this->group = $p->group->id;
   }
   
-  function getId() {
+  function getId(): int {
     return $this->id;
   }
   
-  function getResource() {
+  function getResource(): string {
     return $this->resource;
   }
   
-  function getAction() {
+  function getAction(): string {
     return $this->action;
   }
   
-  function getGroup() {
+  function getGroup(): int {
     return $this->group;
   }
 }

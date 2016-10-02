@@ -74,7 +74,7 @@ class User extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterJoinedAt() {
+  protected function getterJoinedAt(): string {
     return $this->localeModel->formatDate($this->joined);
   }
   
@@ -85,24 +85,24 @@ class User extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getGenders() {
+  static function getGenders(): array {
     return [
       self::GENDER_MALE => "muž",
       self::GENDER_FEMALE => "žena"
     ];
   }
   
-  protected function getterMoneyT() {
+  protected function getterMoneyT(): string {
     return $this->localeModel->money($this->money);
   }
   
-  protected function setterLife($value) {
+  protected function setterLife(int $value): int {
     if($value > $this->maxLife) return 60;
     elseif($value < 1) return 1;
     else return $value;
   }
   
-  protected function getterTitle() {
+  protected function getterTitle(): string {
     if($this->gender === self::GENDER_FEMALE) return $this->group->femaleName;
     else return $this->group->singleName;
   }

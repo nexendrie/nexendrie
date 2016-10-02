@@ -16,7 +16,7 @@ class HistoryPresenter extends BasePresenter {
    * @param string $page
    * @return void
    */
-  function renderDefault($page) {
+  function renderDefault(string $page = "index") {
     $this->template->page = $page;
   }
   
@@ -24,7 +24,7 @@ class HistoryPresenter extends BasePresenter {
    * @param HistoryControlFactory $factory
    * @return HistoryControl
    */
-  protected function createComponentHistory(HistoryControlFactory $factory) {
+  protected function createComponentHistory(HistoryControlFactory $factory): HistoryControl {
     return $factory->create();
   }
 }

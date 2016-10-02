@@ -22,7 +22,7 @@ class AddEditEventFormFactory {
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.");
@@ -64,6 +64,7 @@ class AddEditEventFormFactory {
   /**
    * @param Form $form
    * @param array $values
+   * @return void
    */
   function validate(Form $form, array $values) {
     $format = $this->sr->settings["locale"]["dateTimeFormat"];

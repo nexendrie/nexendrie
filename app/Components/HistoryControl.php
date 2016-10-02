@@ -19,7 +19,7 @@ class HistoryControl extends Book\BookControl {
   /**
    * @return Book\BookPagesStorage
    */
-  function getPages() {
+  function getPages(): Book\BookPagesStorage {
     $storage = new Book\BookPagesStorage;
     $storage[] = new Book\BookPage("ancient", "Dávné časy");
     $storage[] = new Book\BookPage("empire", "Čas císařství");

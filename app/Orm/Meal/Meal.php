@@ -23,11 +23,11 @@ class Meal extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterPriceT() {
+  protected function getterPriceT(): string {
     return $this->localeModel->money($this->price);
   }
   
-  protected function getterEffect() {
+  protected function getterEffect(): string {
     if($this->life < 0) $word = "ubere";
     else $word = "přidá";
     return $word . " " . $this->localeModel->hitpoints($this->life);

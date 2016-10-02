@@ -23,7 +23,7 @@ class GroupsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $level
    * @return Group|NULL
    */
-  function getByLevel($level) {
+  function getByLevel(int $level) {
     return $this->getBy(["level" => $level]);
   }
 }

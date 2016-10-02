@@ -28,7 +28,7 @@ class Chronicle {
    * @param \Nette\Utils\Paginator $paginator
    * @return ArticleEntity[]|ICollection
    */
-  function articles(\Nette\Utils\Paginator $paginator = NULL) {
+  function articles(\Nette\Utils\Paginator $paginator = NULL): ICollection {
     $articles = $this->orm->articles->findChronicle();
     if($paginator) {
       $paginator->itemsPerPage = $this->itemsPerPage;
@@ -42,7 +42,7 @@ class Chronicle {
    * 
    * @return PunishmentEntity[]|ICollection
    */
-  function crimes() {
+  function crimes(): ICollection {
     return $this->orm->punishments->findAll()->orderBy("imprisoned", ICollection::DESC);
   }
 }

@@ -47,7 +47,7 @@ class ShopControl extends \Nette\Application\UI\Control {
    * @return ShopEntity
    * @throws ShopNotFoundException
    */
-  function getShop() {
+  function getShop(): ShopEntity {
     if(isset($this->shop)) return $this->shop;
     $shop = $this->orm->shops->getById($this->id);
     if(!$shop) throw new ShopNotFoundException("Specified shop does not exist.");
@@ -57,7 +57,7 @@ class ShopControl extends \Nette\Application\UI\Control {
   /**
    * @param int $id
    */
-  function setId($id) {
+  function setId(int $id) {
     try {
       $this->id = $id;
       $this->getShop();
@@ -81,7 +81,7 @@ class ShopControl extends \Nette\Application\UI\Control {
    * @param int $item
    * @return void
    */
-  function handleBuy($item) {
+  function handleBuy(int $item) {
     try {
       $this->model->buy($item, $this->shop->id);
       $this->presenter->flashMessage("Věc koupena.");

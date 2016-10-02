@@ -43,27 +43,27 @@ class GroupDummy {
     $this->members = $g->members->countStored();
   }
   
-  function getId() {
+  function getId(): int {
     return $this->id;
   }
   
-  function getName() {
+  function getName(): string {
     return $this->name;
   }
   
-  function getSingleName() {
+  function getSingleName(): string {
     return $this->singleName;
   }
   
-  function getLevel() {
+  function getLevel(): int {
     return $this->level;
   }
   
-  function getPath() {
+  function getPath(): string {
     return $this->path;
   }
   
-  function getMembers() {
+  function getMembers(): int {
     return $this->members;
   }
 }

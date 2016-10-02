@@ -13,7 +13,7 @@ class UserAdventuresMapper extends \Nextras\Orm\Mapper\Mapper {
    * @param int $user
    * @return UserAdventure|NULL
    */
-  function getLastAdventure($user) {
+  function getLastAdventure(int $user) {
     return $this->builder()->where("user=$user")->orderBy("started DESC")->limitBy(1);
   }
 }

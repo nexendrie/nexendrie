@@ -22,7 +22,7 @@ class PollVote extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterVotedAt() {
+  protected function getterVotedAt(): string {
     return $this->localeModel->formatDateTime($this->voted);
   }
   

@@ -30,10 +30,10 @@ class SkillPresenter extends BasePresenter {
    * @param AddEditSkillFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddSkillForm(AddEditSkillFormFactory $factory) {
+  protected function createComponentAddSkillForm(AddEditSkillFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->add($form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->add($values);
       $this->flashMessage("Dovednost přidána.");
       $this->redirect("Content:skills");
     };
@@ -45,7 +45,7 @@ class SkillPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->skill = $this->model->get($id);
@@ -58,11 +58,11 @@ class SkillPresenter extends BasePresenter {
    * @param AddEditSkillFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditSkillForm(AddEditSkillFormFactory $factory) {
+  protected function createComponentEditSkillForm(AddEditSkillFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->skill->toArray());
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->edit($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->edit($this->getParameter("id"), $values);
       $this->flashMessage("Dovednost upravena.");
       $this->redirect("Content:skills");
     };

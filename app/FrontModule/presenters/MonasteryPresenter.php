@@ -69,7 +69,7 @@ class MonasteryPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderDetail($id) {
+  function renderDetail(int $id) {
     try {
       $this->template->monastery = $this->model->get($id);
     } catch(MonasteryNotFoundException $e) {
@@ -92,7 +92,7 @@ class MonasteryPresenter extends BasePresenter {
    * @param BuildMonasteryFormFactory $factory
    * @return Form
    */
-  protected function createComponentBuildMonasteryForm(BuildMonasteryFormFactory $factory) {
+  protected function createComponentBuildMonasteryForm(BuildMonasteryFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[]= function(Form $form) {
       $this->flashMessage("Klášter založen.");
@@ -106,7 +106,7 @@ class MonasteryPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionJoin($id) {
+  function actionJoin(int $id) {
     try {
       $this->model->join($id);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vstoupila jsi do kláštera";
@@ -158,7 +158,7 @@ class MonasteryPresenter extends BasePresenter {
    * @param MonasteryDonateFormFactory $factory
    * @return Form
    */
-  protected function createComponentMonasteryDonateForm(MonasteryDonateFormFactory $factory) {
+  protected function createComponentMonasteryDonateForm(MonasteryDonateFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->flashMessage("Příspěvek proveden.");
@@ -184,7 +184,7 @@ class MonasteryPresenter extends BasePresenter {
    * @param ManageMonasteryFormFactory $factory
    * @return Form
    */
-  protected function createComponentManageMonasteryForm(ManageMonasteryFormFactory $factory) {
+  protected function createComponentManageMonasteryForm(ManageMonasteryFormFactory $factory): Form {
     $form = $factory->create($this->monasteryId);
     $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");

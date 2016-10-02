@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use Nextras\Orm\Collection\ICollection;
+
 /**
  * @author Jakub Konečný
  */
@@ -20,23 +22,23 @@ class ItemsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @return Item[]
+   * @return Item[]|ICollection
    */
-  function findWeapons() {
+  function findWeapons(): ICollection {
     return $this->findBy(["type" => Item::TYPE_WEAPON]);
   }
   
   /**
-   * @return Item[]
+   * @return Item[]|ICollection
    */
-  function findArmors() {
+  function findArmors(): ICollection {
     return $this->findBy(["type" => Item::TYPE_ARMOR]);
   }
   
   /**
-   * @return Item[]
+   * @return Item[]|ICollection
    */
-  function findHelmets() {
+  function findHelmets(): ICollection {
     return $this->findBy(["type" => Item::TYPE_HELMET]);
   }
 }

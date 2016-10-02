@@ -28,7 +28,7 @@ class ChangeWeddingTermFormFactory {
    * @param Marriage $marriage
    * @return Form
    */
-  function create(Marriage $marriage) {
+  function create(Marriage $marriage): Form {
     $format = explode(" ", $this->sr->settings["locale"]["dateTimeFormat"]);
     $this->marriage = $marriage;
     $default = new \DateTime();

@@ -43,7 +43,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getTypes() {
+  static function getTypes(): array {
     return [
       self::TYPE_ITEM => "Věc",
       self::TYPE_WEAPON => "Zbraň",
@@ -59,7 +59,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getCommonTypes() {
+  static function getCommonTypes(): array {
     return [
       self::TYPE_ITEM, self::TYPE_MATERIAL, self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
     ];
@@ -68,7 +68,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getEquipmentTypes() {
+  static function getEquipmentTypes(): array {
     return [
       self::TYPE_WEAPON, self::TYPE_ARMOR, self::TYPE_HELMET
     ];
@@ -77,17 +77,17 @@ class Item extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getNotForSale() {
+  static function getNotForSale(): array {
     return [
       self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
     ];
   }
   
-  protected function getterPriceT() {
+  protected function getterPriceT(): string {
     return $this->localeModel->money($this->price);
   }
   
-  protected function getterTypeCZ() {
+  protected function getterTypeCZ(): string {
     return self::getTypes()[$this->type];
   }
 }

@@ -46,7 +46,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
    * @param int $adventure
    * @return void
    */
-  function renderMounts($adventure) {
+  function renderMounts(int $adventure) {
     $template = $this->template;
     $template->setFile(__DIR__ . "/adventureMounts.latte");
     $template->mounts = $this->model->findGoodMounts();
@@ -70,7 +70,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
    * @param int $mount
    * @return void
    */
-  function handleStart($adventure, $mount) {
+  function handleStart(int $adventure, int $mount) {
     try {
       $this->model->startAdventure($adventure, $mount);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vydala jsi se na dobrodružství.";

@@ -41,7 +41,7 @@ class TavernControl extends \Nette\Application\UI\Control {
    * @param int $mealId
    * @return void
    */
-  function handleEat($mealId) {
+  function handleEat(int $mealId) {
     try {
       $this->template->message = $this->model->buyMeal($mealId);
     } catch(AuthenticationNeededException $e) {

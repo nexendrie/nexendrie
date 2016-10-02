@@ -24,7 +24,7 @@ class LoginFormFactory {
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("username", "Uživatelské jméno:")
       ->setRequired("Zadej jméno.");
@@ -38,6 +38,7 @@ class LoginFormFactory {
   /**
    * @param Form $form
    * @param array $values
+   * @return void
    */
   function submitted(Form $form, array $values) {
     try {

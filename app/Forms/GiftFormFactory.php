@@ -32,7 +32,7 @@ class GiftFormFactory {
    * 
    * @return array id => publicname
    */
-  protected function getUsersList() {
+  protected function getUsersList(): array {
     return $this->orm->users->findBy(
         ["id>" => 0]
     )->fetchPairs("id", "publicname");
@@ -43,14 +43,14 @@ class GiftFormFactory {
    * 
    * @return array id => name
    */
-  protected function getItemsList() {
+  protected function getItemsList(): array {
     return $this->orm->items->findAll()->fetchPairs("id", "name");
   }
   
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addSelect("user", "Uživatel:", $this->getUsersList())
       ->setRequired("Vyber uživatele.");
@@ -91,7 +91,7 @@ class GiftFormFactory {
    * @param string $item
    * @return string
    */
-  protected function composeMessage($money, $item) {
+  protected function composeMessage($money, $item): string {
     $message = "Dostal jsi ";
     if($money > 0) $message .= $this->localeModel->money($money);
     if($money > 0 AND strlen($item) > 0) $message .= " a ";

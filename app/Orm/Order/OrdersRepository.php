@@ -23,7 +23,7 @@ class OrdersRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $name
    * @return Order|NULL
    */
-  function getByName($name) {
+  function getByName(string $name) {
     return $this->getBy(["name" => $name]);
   }
 }

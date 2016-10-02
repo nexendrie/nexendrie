@@ -66,7 +66,7 @@ class TownPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderDetail($id) {
+  function renderDetail(int $id) {
     try {
       $this->template->town = $this->model->get($id);
       if($id == $this->user->identity->town) $this->template->canMove = false;
@@ -80,7 +80,7 @@ class TownPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionMove($id) {
+  function actionMove(int $id) {
     try {
       $this->model->moveToTown((int) $id);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Přestěhovala jsi se do vybraného města.";
@@ -114,7 +114,7 @@ class TownPresenter extends BasePresenter {
    * @param FoundTownFormFactory $factory
    * @return Form
    */
-  protected function createComponentFoundTownForm(FoundTownFormFactory $factory) {
+  protected function createComponentFoundTownForm(FoundTownFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function() {
       $this->flashMessage("Město založeno.");
@@ -135,7 +135,7 @@ class TownPresenter extends BasePresenter {
    * @param ElectionsControlFactory $factory
    * @return ElectionsControl
    */
-  protected function createComponentElections(ElectionsControlFactory $factory) {
+  protected function createComponentElections(ElectionsControlFactory $factory): ElectionsControl {
     $elections = $factory->create();
     $elections->town = $this->town;
     return $elections;

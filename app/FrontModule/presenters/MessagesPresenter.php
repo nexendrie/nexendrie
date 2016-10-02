@@ -44,7 +44,7 @@ class MessagesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderView($id) {
+  function renderView(int $id) {
     try {
       $this->template->message = $this->model->show($id);
     } catch(AccessDeniedException $e) {
@@ -58,15 +58,15 @@ class MessagesPresenter extends BasePresenter {
    * @param int|NULL $id Receiver's id
    * @return void
    */
-  function actionNew($id = NULL) {
+  function actionNew(int $id = NULL) {
     
   }
   
   /**
    * @param NewMessageFormFactory $factory
-   * @return \Nette\Application\UI\Form
+   * @return Form
    */
-  protected function createComponentNewMessageForm(NewMessageFormFactory $factory) {
+  protected function createComponentNewMessageForm(NewMessageFormFactory $factory): Form {
     $form = $factory->create();
     try {
       $uid = $this->getParameter("id", NULL);

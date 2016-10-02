@@ -34,7 +34,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $user
    * @return ICollection|UserItem[]
    */
-  function findByUser($user) {
+  function findByUser($user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   
@@ -42,7 +42,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param Item|int $item
    * @return ICollection|UserItem[]
    */
-  function findByItem($item) {
+  function findByItem($item): ICollection {
     return $this->findBy(["item" => $item]);
   }
   
@@ -52,7 +52,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return ICollection|UserItem[]
    */
-  function findEquipment($user) {
+  function findEquipment(int $user): ICollection {
     return $this->findBy(["user" => $user, "this->item->type=" => Item::getEquipmentTypes()]);
   }
   
@@ -62,7 +62,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return ICollection|UserItem[]
    */
-  function findCommonItems($user) {
+  function findCommonItems(int $user): ICollection {
     return $this->findBy(["user" => $user, "this->item->type=" => Item::getCommonTypes()]);
   }
   
@@ -73,7 +73,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $type
    * @return ICollection|UserItem[]
    */
-  function findByType($user, $type) {
+  function findByType(int $user, string $type): ICollection {
     return $this->findBy(["user" => $user, "this->item->type" => $type]);
   }
   
@@ -83,7 +83,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return UserItem|NULL
    */
-  function getWornWeapon($user) {
+  function getWornWeapon(int $user) {
     return $this->getBy(["user" => $user, "this->item->type" => "weapon", "worn" => true]);
   }
   
@@ -93,7 +93,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return UserItem|NULL
    */
-  function getWornArmor($user) {
+  function getWornArmor(int $user) {
     return $this->getBy(["user" => $user, "this->item->type" => "armor", "worn" => true]);
   }
   
@@ -103,7 +103,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return UserItem|NULL
    */
-  function getWornHelmet($user) {
+  function getWornHelmet(int $user) {
     return $this->getBy(["user" => $user, "this->item->type" => "helmet", "worn" => true]);
   }
 }

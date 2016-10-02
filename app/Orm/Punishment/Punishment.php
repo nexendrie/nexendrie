@@ -27,16 +27,16 @@ class Punishment extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterImprisonedAt() {
+  protected function getterImprisonedAt(): string {
     return $this->localeModel->formatDateTime($this->imprisoned);
   }
   
-  protected function getterReleasedAt() {
+  protected function getterReleasedAt(): string {
     if(is_int($this->released)) return $this->localeModel->formatDateTime($this->released);
     else return "";
   }
   
-  protected function getterNextShift() {
+  protected function getterNextShift(): int {
     if($this->lastAction === NULL) return time();
     else return $this->lastAction + (60 * 60);
   }

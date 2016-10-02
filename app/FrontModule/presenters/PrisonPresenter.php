@@ -25,7 +25,7 @@ class PrisonPresenter extends BasePresenter {
    * @param PrisonControlFactory $factory
    * @return PrisonControl
    */
-  protected function createComponentPrison(PrisonControlFactory $factory) {
+  protected function createComponentPrison(PrisonControlFactory $factory): PrisonControl {
     return $factory->create();
   }
 }

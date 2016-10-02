@@ -23,7 +23,7 @@ class MonasteryDonateFormFactory {
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("amount", "Množství:")
       ->setRequired("Zadej množství.")
@@ -34,6 +34,11 @@ class MonasteryDonateFormFactory {
     return $form;
   }
   
+  /**
+   * @param Form $form
+   * @param array $values
+   * @return void
+   */
   function submitted(Form $form, array $values) {
     try {
       $this->model->donate($values["amount"]);

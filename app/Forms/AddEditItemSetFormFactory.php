@@ -19,22 +19,22 @@ class AddEditItemSetFormFactory {
     $this->orm = $orm;
   }
   
-  protected function getWeapons() {
+  protected function getWeapons(): array {
     return $this->orm->items->findWeapons()->fetchPairs("id", "name");
   }
   
-  protected function getArmors() {
+  protected function getArmors(): array {
     return $this->orm->items->findArmors()->fetchPairs("id", "name");
   }
   
-  protected function getHelmets() {
+  protected function getHelmets(): array {
     return $this->orm->items->findHelmets()->fetchPairs("id", "name");
   }
   
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

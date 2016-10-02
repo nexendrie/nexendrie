@@ -55,7 +55,7 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getGenders() {
+  static function getGenders(): array {
     return [
       self::GENDER_MALE => "hřebec",
       self::GENDER_FEMALE => "klisna",
@@ -63,33 +63,33 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     ];
   }
   
-  protected function setterHp($value) {
+  protected function setterHp(int $value): int {
     if($value > 100) return 100;
     elseif($value < 0) return 0;
     else return $value;
   }
   
-  protected function setterDamage($value) {
+  protected function setterDamage(int $value): int {
     if($value > $this->maxDamage) return $this->maxDamage;
     elseif($value < $this->baseDamage) return $this->baseDamage;
     else return $value;
   }
   
-  protected function setterArmor($value) {
+  protected function setterArmor(int $value): int {
     if($value > $this->maxArmor) return $this->maxArmor;
     elseif($value < $this->baseArmor) return $this->baseArmor;
     else return $value;
   }
   
-  protected function getterGenderCZ() {
+  protected function getterGenderCZ(): string {
     return self::getGenders()[$this->gender];
   }
   
-  protected function getterPriceT() {
+  protected function getterPriceT(): string {
     return $this->localeModel->money($this->price);
   }
   
-  protected function getterBirthAt() {
+  protected function getterBirthAt(): string {
     return $this->localeModel->formatDateTime($this->birth);
   }
   

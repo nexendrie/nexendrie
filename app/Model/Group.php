@@ -45,7 +45,7 @@ class Group {
    * 
    * @return GroupDummy[]
    */
-  function listOfGroups() {
+  function listOfGroups(): array {
     $groups = $this->cache->load("groups");
     if($groups === NULL) {
       $groups = [];
@@ -65,7 +65,7 @@ class Group {
    * @param int $group Group's id
    * @return int
    */
-  function numberOfMembers($group) {
+  function numberOfMembers(int $group): int {
     return $this->orm->users->findByGroup($group)->countStored();
   }
   
@@ -75,7 +75,7 @@ class Group {
    * @param int $id Group's id
    * @return GroupDummy|bool
    */
-  function get($id) {
+  function get(int $id) {
     $groups = $this->listOfGroups();
     $group = Arrays::get($groups, $id, false);
     return $group;
@@ -87,7 +87,7 @@ class Group {
    * @param int $level Group's level
    * @return GroupDummy|bool
    */
-  function getByLevel($level) {
+  function getByLevel(int $level) {
     $groups = $this->listOfGroups();
     foreach($groups as $group) {
       if($group->level === $level) return $group;
@@ -99,7 +99,7 @@ class Group {
    * @param int $id
    * @return GroupEntity|bool
    */
-  function ormGet($id) {
+  function ormGet(int $id) {
     $group = $this->orm->groups->getById($id);
     if(!$group) return false;
     else return $group;
@@ -107,11 +107,11 @@ class Group {
   
   /**
    * Check whetever specified guild exists
-   * 
+   *
    * @param int $id Guild's id
    * @return bool
    */
-  function exists($id) {
+  function exists(int $id): bool {
     $group = $this->orm->groups->getById($id);
     return (bool) $group;
   }
@@ -124,7 +124,7 @@ class Group {
    * @throws \Nette\Application\ForbiddenRequestException
    * @return void
    */
-  function edit($id, array $data) {
+  function edit(int $id, array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->user->isAllowed("group", "edit")) throw new MissingPermissionsException("You don't have permissions for adding news.");
     $group = $this->orm->groups->getById($id);

@@ -16,7 +16,7 @@ class HelpPresenter extends BasePresenter {
    * @param string $page
    * @return void
    */
-  function renderDefault($page) {
+  function renderDefault(string $page = "index") {
     $this->template->page = $page;
   }
   
@@ -24,7 +24,7 @@ class HelpPresenter extends BasePresenter {
    * @param HelpControlFactory $factory
    * @return HelpControl
    */
-  protected function createComponentHelp(HelpControlFactory $factory) {
+  protected function createComponentHelp(HelpControlFactory $factory): HelpControl {
     return $factory->create();
   }
 }

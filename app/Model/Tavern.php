@@ -29,7 +29,7 @@ class Tavern {
    * 
    * @return MealEntity[]|ICollection
    */
-  function listOfMeals() {
+  function listOfMeals(): ICollection {
     return $this->orm->meals->findAll();
   }
   
@@ -40,7 +40,7 @@ class Tavern {
    * @return MealEntity
    * @throws MealNotFoundException
    */
-  function getMeal($id) {
+  function getMeal(int $id): MealEntity {
     $meal = $this->orm->meals->getById($id);
     if($meal) return $meal;
     else throw new MealNotFoundException;
@@ -68,7 +68,7 @@ class Tavern {
    * @return void
    * @throws MealNotFoundException
    */
-  function editMeal($id, array $data) {
+  function editMeal(int $id, array $data) {
     try {
       $meal = $this->getMeal($id);
     } catch(MealNotFoundException $e) {
@@ -89,7 +89,7 @@ class Tavern {
    * @throws MealNotFoundException
    * @throws InsufficientFundsException
    */
-  function buyMeal($id) {
+  function buyMeal(int $id): string {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $meal = $this->orm->meals->getById($id);
     if(!$meal) throw new MealNotFoundException;

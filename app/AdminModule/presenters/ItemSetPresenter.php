@@ -31,7 +31,7 @@ class ItemSetPresenter extends BasePresenter {
    * @param AddEditItemSetFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddItemSetForm(AddEditItemSetFormFactory $factory) {
+  protected function createComponentAddItemSetForm(AddEditItemSetFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
       $this->model->add($values);
@@ -46,7 +46,7 @@ class ItemSetPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->set = $this->model->get($id);
@@ -59,11 +59,11 @@ class ItemSetPresenter extends BasePresenter {
    * @param AddEditItemSetFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditItemSetForm(AddEditItemSetFormFactory $factory) {
+  protected function createComponentEditItemSetForm(AddEditItemSetFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->set->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->edit($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->edit($this->getParameter("id"), $values);
       $this->flashMessage("Sada upravena.");
       $this->redirect("Content:itemSets");
     };
@@ -75,7 +75,7 @@ class ItemSetPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionDelete($id) {
+  function actionDelete(int $id) {
     $this->requiresPermissions("content", "delete");
     try {
       $this->model->delete($id);

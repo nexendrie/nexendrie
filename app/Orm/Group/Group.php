@@ -25,9 +25,9 @@ class Group extends \Nextras\Orm\Entity\Entity {
   const PATH_TOWER = "tower";
   
   /**
-   * @return \Nexendrie\Orm\GroupDummy
+   * @return GroupDummy
    */
-  function dummy() {
+  function dummy(): GroupDummy {
     return new GroupDummy($this);
   }
 }

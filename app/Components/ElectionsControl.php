@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Components;
 
 use Nexendrie\Orm\Election as ElectionEntity,
-    Nexendrie\Orm\ElectionResult as ElectionResultEntity;
+    Nexendrie\Orm\ElectionResult as ElectionResultEntity,
+    Nextras\Orm\Collection\ICollection;
 
 /**
  * ElectionsControl
@@ -37,7 +38,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
    * 
    * @return string
    */
-  protected function getState() {
+  protected function getState(): string {
     $fakeDay = new \DateTime;
     $fakeDay->setDate(date("Y"), date("n"), date("j"));
     if($fakeDay->format("j") <= 7) {
@@ -58,11 +59,11 @@ class ElectionsControl extends \Nette\Application\UI\Control {
    * 
    * @return bool
    */
-  protected function canVote() {
+  protected function canVote(): bool {
     if(!$this->user->isAllowed("town", "elect")) return false;
     elseif(!$this->model->getNumberOfCouncillors($this->town->id)) return false;
     elseif($this->getState() != "voting") return false;
-    $votes = $this->getVotes(date("Y"), date("n"));
+    $votes = $this->getVotes((int) date("Y"), (int) date("n"));
     foreach($votes as $vote) {
       if($vote->voter->id === $this->user->id) return false;
     }
@@ -74,18 +75,18 @@ class ElectionsControl extends \Nette\Application\UI\Control {
    * 
    * @param int $year
    * @param int $month
-   * @return ElectionEntity[]
+   * @return ElectionEntity[]|ICollection
    */
-  protected function getVotes($year, $month) {
+  protected function getVotes(int $year, int $month): ICollection {
     return $this->orm->elections->findVotedInMonth($this->town->id, $year, $month);
   }
   
   /**
    * Get results of last elections
-   * 
-   * @return ElectionResultEntity[]
+   *
+   * @return ElectionResultEntity[]|ICollection
    */
-  protected function getResults() {
+  protected function getResults(): ICollection {
     $date = new \DateTime;
     $date->setTimestamp(mktime(0, 0, 0, (int) date("n"), 1, (int) date("Y")));
     //$date->modify("-1 month");
@@ -102,7 +103,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
       }
     }
     return $results;*/
-    return $this->orm->electionResults->findByTownAndYearAndMonth($this->town->id, $date->format("Y"), $date->format("n"));
+    return $this->orm->electionResults->findByTownAndYearAndMonth($this->town->id, (int) $date->format("Y"), (int) $date->format("n"));
   }
   
   /**
@@ -128,7 +129,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
    * @param int $candidate
    * @return void
    */
-  function handleVote($candidate) {
+  function handleVote(int $candidate) {
     if(!$this->canVote()) {
       $this->presenter->flashMessage("Nemůžeš hlasovat.");
       $this->presenter->redirect(":Front:Homepage:");

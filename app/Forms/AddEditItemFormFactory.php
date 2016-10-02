@@ -22,14 +22,14 @@ class AddEditItemFormFactory {
   /**
    * @return array
    */
-  protected function getShops() {
+  protected function getShops(): array {
     return $this->orm->shops->findAll()->fetchPairs("id", "name");
   }
   
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

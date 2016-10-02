@@ -46,7 +46,7 @@ class AdventurePresenter extends BasePresenter {
    * @param AdventureControlFactory $factory
    * @return AdventureControl
    */
-  protected function createComponentAdventure(AdventureControlFactory $factory) {
+  protected function createComponentAdventure(AdventureControlFactory $factory): AdventureControl {
     return $factory->create();
   }
   
@@ -54,7 +54,7 @@ class AdventurePresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionMounts($id) {
+  function actionMounts(int $id) {
     if($this->model->getCurrentAdventure()) $this->redirect("default");
     $this->template->adventure = $id;
   }

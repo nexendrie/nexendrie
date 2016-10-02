@@ -38,7 +38,7 @@ class EditUserFormFactory {
   /**
    * @return array
    */
-  protected function getListOfGroups() {
+  protected function getListOfGroups(): array {
     $return = [];
     $groups = $this->groupModel->listOfGroups();
     foreach($groups as $group) {
@@ -50,7 +50,7 @@ class EditUserFormFactory {
   /**
    * @return array
    */
-  protected function getListOfTowns() {
+  protected function getListOfTowns(): array {
     return $this->townModel->listOfTowns()->fetchPairs("id", "name");
   }
   
@@ -58,7 +58,7 @@ class EditUserFormFactory {
    * @return array
    * @throws \Nette\ArgumentOutOfRangeException
    */
-  protected function getDefaultValues() {
+  protected function getDefaultValues(): array {
     $user = $this->orm->users->getById($this->uid);
     if(!$user) throw new \Nette\ArgumentOutOfRangeException("User with specified id does not exist.");
     return [
@@ -73,7 +73,7 @@ class EditUserFormFactory {
    * @param int $uid
    * @return Form
    */
-  function create($uid) {
+  function create($uid): Form {
     $form = new Form;
     $this->uid = (int) $uid;
     $form->addText("username", "Uživatelské jméno:")
@@ -93,8 +93,12 @@ class EditUserFormFactory {
     return $form;
   }
   
-  function validate(Form $form) {
-    $values = $form->getValues(true);
+  /**
+   * @param Form $form
+   * @param array $values
+   * @return void
+   */
+  function validate(Form $form, array  $values) {
     if($values["group"] == 0 AND $this->uid != 0) $form->addError("Neplatná skupina.");
   }
 }

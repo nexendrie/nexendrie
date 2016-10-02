@@ -59,7 +59,7 @@ class MarriagePresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionPropose($id) {
+  function actionPropose(int $id) {
     try {
       $this->model->proposeMarriage($id);
       $this->flashMessage("Sňatek navržen.");
@@ -82,7 +82,7 @@ class MarriagePresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionAccept($id) {
+  function actionAccept(int $id) {
     try {
       $this->model->acceptProposal($id);
       $this->flashMessage("Návrh přijat. Nyní jste zasnoubení.");
@@ -103,7 +103,7 @@ class MarriagePresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionDecline($id) {
+  function actionDecline(int $id) {
     try {
       $this->model->declineProposal($id);
       $this->flashMessage("Návrh zamítut.");
@@ -124,7 +124,7 @@ class MarriagePresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionCeremony($id) {
+  function actionCeremony(int $id) {
     try {
       $this->marriage = $this->model->getMarriage($id);
     } catch(MarriageNotFoundException $e) {
@@ -146,7 +146,7 @@ class MarriagePresenter extends BasePresenter {
    * @param WeddingControlFactory $factory
    * @return WeddingControl
    */
-  protected function createComponentWedding(WeddingControlFactory $factory) {
+  protected function createComponentWedding(WeddingControlFactory $factory): WeddingControl {
     $wedding = $factory->create();
     $wedding->marriage = $this->marriage;
     return $wedding;
@@ -256,7 +256,7 @@ class MarriagePresenter extends BasePresenter {
    * @param int $item
    * @return void
    */
-  function handleBoostIntimacy($item) {
+  function handleBoostIntimacy(int $item) {
     try {
       $this->inventoryModel->boostIntimacy($item);
       $this->flashMessage("Věc použita.");
@@ -280,7 +280,7 @@ class MarriagePresenter extends BasePresenter {
    * @param ChangeWeddingTermFormFactory $factory
    * @return Form
    */
-  protected function createComponentChangeWeddingTermForm(ChangeWeddingTermFormFactory $factory) {
+  protected function createComponentChangeWeddingTermForm(ChangeWeddingTermFormFactory $factory): Form {
     $form = $factory->create($this->marriage);
     $form->onSuccess[] = function() {
       $this->flashMessage("Termín svatby změněn.");

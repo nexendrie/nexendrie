@@ -55,7 +55,7 @@ class Adventure {
    * @return AdventureNpcEntity[]|OneHasMany
    * @throws AdventureNotFoundException
    */
-  function listOfNpcs($adventureId) {
+  function listOfNpcs(int $adventureId): OneHasMany {
     $adventure = $this->orm->adventures->getById($adventureId);
     if(!$adventure) throw new AdventureNotFoundException;
     else return $adventure->npcs;
@@ -68,7 +68,7 @@ class Adventure {
    * @return AdventureEntity
    * @throws AdventureNotFoundException
    */
-  function get($id) {
+  function get(int $id): AdventureEntity {
     $adventure = $this->orm->adventures->getById($id);
     if(!$adventure) throw new AdventureNotFoundException;
     else return $adventure;
@@ -96,7 +96,7 @@ class Adventure {
    * @return void
    * @throws AdventureNotFoundException
    */
-  function editAdventure($id, array $data) {
+  function editAdventure(int $id, array $data) {
     try {
       $adventure = $this->get($id);
     } catch(AdventureNotFoundException $e) {
@@ -115,7 +115,7 @@ class Adventure {
    * @return AdventureNpcEntity
    * @throws AdventureNpcNotFoundException
    */
-  function getNpc($id) {
+  function getNpc(int $id): AdventureNpcEntity {
     $npc = $this->orm->adventureNpcs->getById($id);
     if(!$npc) throw new AdventureNpcNotFoundException;
     else return $npc;
@@ -144,7 +144,7 @@ class Adventure {
    * @return void
    * @throws AdventureNpcNotFoundException
    */
-  function editNpc($id, array $data) {
+  function editNpc(int $id, array $data) {
     try {
       $npc = $this->getNpc($id);
     } catch(AdventureNpcNotFoundException $e) {
@@ -163,7 +163,7 @@ class Adventure {
    * @return int
    * @throws AdventureNpcNotFoundException
    */
-  function deleteNpc($id) {
+  function deleteNpc(int $id) {
     try {
       $npc = $this->getNpc($id);
     } catch(AdventureNpcNotFoundException $e) {
@@ -180,7 +180,7 @@ class Adventure {
    * @return AdventureEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function findAvailableAdventures() {
+  function findAvailableAdventures(): ICollection {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     else return $this->orm->adventures->findForLevel($this->user->identity->level);
   }
@@ -191,7 +191,7 @@ class Adventure {
    * @return MountEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function findGoodMounts() {
+  function findGoodMounts(): ICollection {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     return $this->orm->mounts->findGoodMounts($this->user->id);
   }
@@ -211,7 +211,7 @@ class Adventure {
    * @throws MountInBadConditionException
    * @throws AdventureNotAccessibleException
    */
-  function startAdventure($adventureId, $mountId) {
+  function startAdventure(int $adventureId, int $mountId) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     if($this->getCurrentAdventure()) throw new AlreadyOnAdventureException; 
     if(!$this->canDoAdventure()) throw new CannotDoAdventureException;
@@ -263,7 +263,7 @@ class Adventure {
    * @param MountEntity $mount  
    * @return bool Whetever the user won
    */
-  protected function fightNpc(AdventureNpcEntity $npc, MountEntity $mount) {
+  protected function fightNpc(AdventureNpcEntity $npc, MountEntity $mount): bool {
     $finished = $result = false;
     $user = $this->orm->users->getById($this->user->id);
     $userStats = $this->combatModel->userCombatStats($user, $mount);
@@ -301,7 +301,7 @@ class Adventure {
    * @throws NotOnAdventureException
    * @throws NoEnemyRemainException
    */
-  function fight() {
+  function fight(): array {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $adventure = $this->getCurrentAdventure();
     if(!$adventure) throw new NotOnAdventureException;
@@ -351,7 +351,7 @@ class Adventure {
    * @param int $year
    * @return int
    */
-  function calculateMonthAdventuresIncome($user = 0, $month = 0, $year = 0) {
+  function calculateMonthAdventuresIncome(int $user = 0, int $month = 0, int $year = 0): int {
     $income = 0;
     if($user === 0) $user = $this->user->id;
     $adventures = $this->orm->userAdventures->findFromMonth($user, $month, $year);
@@ -365,7 +365,7 @@ class Adventure {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canDoAdventure() {
+  function canDoAdventure(): bool {
     $twoDays = 60 * 60 * 24 * 2;
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $adventure = $this->orm->userAdventures->getLastAdventure($this->user->id);

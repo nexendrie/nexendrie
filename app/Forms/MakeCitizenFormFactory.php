@@ -25,7 +25,7 @@ class MakeCitizenFormFactory {
    * @param int $town
    * @return Form
    */
-  function create($town) {
+  function create($town): Form {
     $form = new Form;
     $form->addSelect("user", "Uživatel:", $this->model->getTownPeasants($town))
       ->setRequired();
@@ -37,6 +37,7 @@ class MakeCitizenFormFactory {
   /**
    * @param Form $form
    * @param array $values
+   * @return void
    */
   function submitted(Form $form, array $values) {
     try {

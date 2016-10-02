@@ -27,7 +27,7 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $user1
    * @return ICollection|Marriage[]
    */
-  function findByUser1($user1) {
+  function findByUser1($user1): ICollection {
     return $this->findBy(["user1" => $user1]);
   }
   
@@ -35,7 +35,7 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $user2
    * @return ICollection|Marriage[]
    */
-  function findByUser2($user2) {
+  function findByUser2($user2): ICollection {
     return $this->findBy(["user2" => $user2]);
   }
   
@@ -45,7 +45,7 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
    * @param int|User $user
    * @return ICollection|Marriage[]
    */
-  function findProposals($user) {
+  function findProposals($user): ICollection {
     return $this->findBy([
       "user2" => $user, "status" => Marriage::STATUS_PROPOSED
     ]);
@@ -56,7 +56,7 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
    * 
    * @return ICollection|Marriage[]
    */
-  function findOpenWeddings() {
+  function findOpenWeddings(): ICollection {
     return $this->findBy([
       "status" => Marriage::STATUS_ACCEPTED, "term<=" => time() + 60 * 60
     ]);

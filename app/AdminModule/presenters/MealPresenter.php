@@ -30,7 +30,7 @@ class MealPresenter extends BasePresenter {
    * @param AddEditMealFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddMealForm(AddEditMealFormFactory $factory) {
+  protected function createComponentAddMealForm(AddEditMealFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
       $this->model->addMeal($form->getValues(true));
@@ -45,7 +45,7 @@ class MealPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->meal = $this->model->getMeal($id);
@@ -58,11 +58,11 @@ class MealPresenter extends BasePresenter {
    * @param AddEditMealFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditMealForm(AddEditMealFormFactory $factory) {
+  protected function createComponentEditMealForm(AddEditMealFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->meal->toArray());
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->editMeal($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->editMeal($this->getParameter("id"), $values);
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:meals");
     };

@@ -38,7 +38,7 @@ class BankPresenter extends BasePresenter {
    * @param TakeLoanFormFactory $factory
    * @return Form
    */
-  protected function createComponentTakeLoanForm(TakeLoanFormFactory $factory) {
+  protected function createComponentTakeLoanForm(TakeLoanFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $text = "Přijala jsi půjčku %s.";

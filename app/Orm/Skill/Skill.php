@@ -37,14 +37,14 @@ class Skill extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterPriceT() {
+  protected function getterPriceT(): string {
     return $this->localeModel->money($this->price);
   }
   
   /**
    * @return string[]
    */
-  static function getTypes() {
+  static function getTypes(): array {
     return [
       self::TYPE_WORK => "práce",
       self::TYPE_COMBAT => "boj",
@@ -54,7 +54,7 @@ class Skill extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getStats() {
+  static function getStats(): array {
     return [
       self::STAT_HITPOINTS => "maximum životů",
       self::STAT_DAMAGE => "poškození",
@@ -66,7 +66,7 @@ class Skill extends \Nextras\Orm\Entity\Entity {
     return ($this->stat != NULL) ? self::getStats()[$this->stat] : NULL;
   }
   
-  protected function getterEffect() {
+  protected function getterEffect(): string {
     if($this->type === self::TYPE_WORK) return "";
     else return $this->statCZ . " +" . $this->statIncrease;
   }

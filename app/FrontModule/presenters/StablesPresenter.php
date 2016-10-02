@@ -44,7 +44,7 @@ class StablesPresenter extends BasePresenter {
    * @param StablesControlFactory $factory
    * @return StablesControl
    */
-  protected function createComponentStables(StablesControlFactory $factory) {
+  protected function createComponentStables(StablesControlFactory $factory): StablesControl {
     return $factory->create();
   }
   
@@ -53,7 +53,7 @@ class StablesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionManage($id) {
+  function actionManage(int $id) {
     try {
       $this->mount = $this->model->get($id);
     } catch(MountNotFoundException $e) {
@@ -66,7 +66,7 @@ class StablesPresenter extends BasePresenter {
    * @param ManageMountFormFactory $factory
    * @return Form
    */
-  protected function createComponentManageMountForm(ManageMountFormFactory $factory) {
+  protected function createComponentManageMountForm(ManageMountFormFactory $factory): Form {
     $form = $factory->create($this->mount->id);
     $form->onSuccess[] = function(Form $form) {
       $this->flashMessage("Změny uloženy.");
@@ -79,7 +79,7 @@ class StablesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionTrain($id) {
+  function actionTrain(int $id) {
     try {
       $mount = $this->model->get($id);
     } catch(MountNotFoundException $e) {

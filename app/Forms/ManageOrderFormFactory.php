@@ -28,7 +28,7 @@ class ManageOrderFormFactory {
    * @param int $guildId
    * @return Form
    */
-  function create($guildId) {
+  function create(int $guildId): Form {
     $form = new Form;
     $this->id = $guildId;
     $guild = $this->model->getOrder($this->id);
@@ -45,11 +45,12 @@ class ManageOrderFormFactory {
   
   /**
    * @param Form $form
+   * @param array $values
    * @return void
    */
-  function submitted(Form $form) {
+  function submitted(Form $form, array $values) {
     try {
-      $this->model->editOrder($this->id, $form->getValues(true));
+      $this->model->editOrder($this->id, $values);
     } catch(OrderNameInUseException $e) {
       $form->addError("Zadané jméno je již zabráno.");
     }

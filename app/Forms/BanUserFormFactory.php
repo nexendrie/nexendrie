@@ -25,7 +25,7 @@ class BanUserFormFactory {
    * @param int $userId
    * @return Form
    */
-  function create($userId) {
+  function create(int $userId): Form {
     $this->userId = $userId;
     $form = new Form;
     $form->addTextArea("crime", "Zločin:")

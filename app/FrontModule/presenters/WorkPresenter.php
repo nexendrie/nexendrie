@@ -84,7 +84,7 @@ class WorkPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionStart($id) {
+  function actionStart(int $id) {
     try {
       $this->model->startJob($id);
       $this->flashMessage("Práce zahájena.");

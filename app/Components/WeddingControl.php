@@ -34,7 +34,7 @@ class WeddingControl extends \Nette\Application\UI\Control {
   /**
    * @return string[]
    */
-  protected function getTexts() {
+  protected function getTexts(): array {
     $texts = [];
     return $texts;
   }

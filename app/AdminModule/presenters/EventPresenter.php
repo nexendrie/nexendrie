@@ -45,10 +45,10 @@ class EventPresenter extends BasePresenter {
    * @param AddEditEventFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddEventForm(AddEditEventFormFactory $factory) {
+  protected function createComponentAddEventForm(AddEditEventFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSubmit[] = function(Form $form) {
-      $this->model->addEvent($form->getValues(true));
+    $form->onSubmit[] = function(Form $form, array $values) {
+      $this->model->addEvent($values);
       $this->flashMessage("Akce přidána.");
       $this->redirect("default");
     };
@@ -60,7 +60,7 @@ class EventPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("event", "edit");
     try {
       $this->event = $this->model->getEvent($id);
@@ -73,11 +73,11 @@ class EventPresenter extends BasePresenter {
    * @param AddEditEventFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditEventForm(AddEditEventFormFactory $factory) {
+  protected function createComponentEditEventForm(AddEditEventFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->event->dummyArray());
-    $form->onSubmit[] = function(Form $form) {
-      $this->model->editEvent($this->getParameter("id"), $form->getValues(true));
+    $form->onSubmit[] = function(Form $form, array $values) {
+      $this->model->editEvent($this->getParameter("id"), $values);
       $this->flashMessage("Akce upravena.");
       $this->redirect("default");
     };
@@ -89,7 +89,7 @@ class EventPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionDelete($id) {
+  function actionDelete(int $id) {
     $this->requiresPermissions("event", "delete");
     try {
       $this->model->deleteEvent($id);

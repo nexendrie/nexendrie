@@ -9,6 +9,7 @@ use Nette\Utils\Arrays,
     Nexendrie\Model\AccessDeniedException,
     Nexendrie\Orm\Poll as PollEntity,
     Nexendrie\Orm\PollVote as PollVoteEntity;
+use Nexendrie\Orm\Poll;
 
 /**
  * Poll Control
@@ -38,7 +39,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @return PollEntity
    * @throws PollNotFoundException
    */
-  function getPoll() {
+  function getPoll(): PollEntity {
     if(isset($this->poll)) return $this->poll;
     $poll = $this->orm->polls->getById($this->id);
     if(!$poll) throw new PollNotFoundException("Specified poll does not exist.");
@@ -50,7 +51,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @param int $id
    * @throws PollNotFoundException
    */
-  function setId($id) {
+  function setId(int $id) {
     try {
       $this->id = $id;
       $this->getPoll();
@@ -64,7 +65,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * 
    * @return array
    */
-  function getVotes() {
+  function getVotes(): array {
     $return = ["total" => 0, "answers" => []];
     $votes = $this->orm->pollVotes->findByPoll($this->id);
     if($votes->count() > 0) {
@@ -100,7 +101,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * 
    * @return bool
    */
-  protected function canVote() {
+  protected function canVote(): bool {
     if(!$this->user->isLoggedIn()) return false;
     elseif(!$this->user->isAllowed("poll", "vote")) return false;
     $row = $this->orm->pollVotes->getByPollAndUser($this->id, $this->user->id);
@@ -116,7 +117,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @throws PollVotingException
    * @return void
    */
-  protected function vote($answer) {
+  protected function vote(int $answer) {
     if(!$this->canVote()) throw new AccessDeniedException("You can't vote in this poll.");
     $poll = $this->getPoll();
     if($answer > count($poll->parsedAnswers)) throw new PollVotingException("The poll has less then $answer answers.");
@@ -132,7 +133,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @param int $answer
    * @return void
    */
-  function handleVote($answer) {
+  function handleVote(int $answer) {
     try {
       $this->vote($answer);
       $this->presenter->flashMessage("Hlas uložen.");

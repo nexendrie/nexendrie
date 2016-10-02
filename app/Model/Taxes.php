@@ -39,7 +39,7 @@ class Taxes {
    * @param int $income
    * @return int
    */
-  function calculateTax($income) {
+  function calculateTax(int $income): int {
     return (int) round(@($income / 100 * $this->taxRate));
   }
   
@@ -51,9 +51,9 @@ class Taxes {
    * @param int $year
    * @return int[]
    */
-  function calculateIncome($user, $month = 0, $year = 0) {
-    if($month === 0) $month = date("n");
-    if($year === 0) $year = date("Y");
+  function calculateIncome(int $user, int $month = 0, int $year = 0): array {
+    if($month === 0) $month = (int) date("n");
+    if($year === 0) $year = (int) date("Y");
     $workIncome = $this->jobModel->calculateMonthJobIncome($user, $month, $year);
     $adventuresIncome = $this->adventureModel->calculateMonthAdventuresIncome($user, $month, $year);
     return ["work" => $workIncome, "adventures" => $adventuresIncome];
@@ -67,13 +67,13 @@ class Taxes {
    * @param int $year
    * @return \stdClass
    */
-  function calculateTownTaxes(\Nexendrie\Orm\Town $town, $month = 0, $year = 0) {
+  function calculateTownTaxes(\Nexendrie\Orm\Town $town, int $month = 0, int $year = 0): \stdClass {
     $return = (object) [
       "id" => $town->id, "name" => $town->name, "owner" => 0,
       "taxes" => 0, "denizens" => []
     ];
-    if($month === 0) $month = date("n");
-    if($year === 0) $year = date("Y");
+    if($month === 0) $month = (int) date("n");
+    if($year === 0) $year = (int) date("Y");
     $return->owner = $town->owner->id;
     foreach($town->denizens as $denizen) {
       if($denizen->id === 0) continue;
@@ -99,13 +99,13 @@ class Taxes {
   /**
    * @return array
    */
-  function payTaxes() {
+  function payTaxes(): array {
     $return = [];
     $date = new \DateTime;
     $date->setTimestamp(time());
     $date->modify("-1 day");
-    $month = $date->format("n");
-    $year = $date->format("Y");
+    $month = (int) $date->format("n");
+    $year = (int) $date->format("Y");
     /* @var $town \Nexendrie\Orm\Town */
     foreach($this->orm->towns->findAll() as $town) {
       $result = $this->calculateTownTaxes($town, $month, $year);

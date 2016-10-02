@@ -29,7 +29,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
    * @param Punishment $punishment
    * @return bool
    */
-  protected function canWork(Punishment $punishment) {
+  protected function canWork(Punishment $punishment): bool {
     if($punishment->lastAction === NULL) return true;
     elseif(time() >$punishment->nextShift) return true;
     else return false;

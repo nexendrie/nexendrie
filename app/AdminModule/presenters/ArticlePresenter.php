@@ -34,12 +34,12 @@ class ArticlePresenter extends BasePresenter {
    * @todo redirect to the added article
    * 
    * @param AddEditArticleFormFactory $factory
-   * @return \Nette\Application\UI\Form
+   * @return Form
    */
-  protected function createComponentAddArticleForm(AddEditArticleFormFactory $factory) {
+  protected function createComponentAddArticleForm(AddEditArticleFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->addArticle($form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->addArticle($values);
       $this->flashMessage("Novinka byla přidána.");
       $this->redirect("Article:");
     };
@@ -51,7 +51,7 @@ class ArticlePresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     try {
       $article = $this->model->view($id);
     } catch(ArticleNotFoundException $e) {
@@ -62,13 +62,13 @@ class ArticlePresenter extends BasePresenter {
   
   /**
    * @param AddEditArticleFormFactory $factory
-   * @return \Nette\Application\UI\Form
+   * @return Form
    */
-  protected function createComponentEditArticleForm(AddEditArticleFormFactory $factory) {
+  protected function createComponentEditArticleForm(AddEditArticleFormFactory $factory): Form {
     $news = $this->model->view($this->getParameter("id"));
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->editArticle($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->editArticle($this->getParameter("id"), $values);
       $this->flashMessage("Článek upraven.");
     };
     $form->setDefaults($news->toArray());

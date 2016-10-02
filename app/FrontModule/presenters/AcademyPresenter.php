@@ -26,7 +26,7 @@ class AcademyPresenter extends BasePresenter {
    * @param AcademyControlFactory $factory
    * @return AcademyControl
    */
-  protected function createComponentAcademy(AcademyControlFactory $factory) {
+  protected function createComponentAcademy(AcademyControlFactory $factory): AcademyControl {
     return $factory->create();
   }
 }

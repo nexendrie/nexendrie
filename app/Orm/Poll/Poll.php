@@ -28,11 +28,11 @@ class Poll extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterAddedAt() {
+  protected function getterAddedAt(): string {
     return $this->localeModel->formatDateTime($this->added);
   }
   
-  protected function getterParsedAnswers() {
+  protected function getterParsedAnswers(): array {
     return explode("\n", $this->answers);
   }
   

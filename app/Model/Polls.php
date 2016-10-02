@@ -39,7 +39,7 @@ class Polls {
    * 
    * @return PollEntity[]|ICollection
    */
-  function all() {
+  function all(): ICollection {
     return $this->orm->polls->findAll();
   }
   
@@ -50,7 +50,7 @@ class Polls {
    * @return PollEntity
    * @throws PollNotFoundException
    */
-  function view($id) {
+  function view(int $id): PollEntity {
     $poll = $this->orm->polls->getById($id);
     if(!$poll) throw new PollNotFoundException("Specified poll does not exist.");
     else return $poll;
@@ -60,9 +60,9 @@ class Polls {
    * Add poll
    * 
    * @param array $data
+   * @return void
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
-   * @return void
    */
   function add(array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
@@ -82,7 +82,7 @@ class Polls {
    * @param int $id News' id
    * @return bool
    */
-  function exists($id) {
+  function exists(int $id): bool {
     return (bool) $this->orm->polls->getById($id);
   }
   
@@ -96,7 +96,7 @@ class Polls {
    * @throws MissingPermissionsException
    * @throws PollNotFoundException
    */
-  function edit($id, array $data) {
+  function edit(int $id, array $data) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     if(!$this->user->isAllowed("poll", "add")) throw new MissingPermissionsException("You don't have permissions for editing polls.");
     $poll = $this->orm->polls->getById($id);

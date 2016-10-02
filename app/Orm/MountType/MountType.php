@@ -22,7 +22,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Mount[] $mounts {1:m Mount::$type}
  */
 class MountType extends \Nextras\Orm\Entity\Entity {
-  protected function getterMaleName() {
+  protected function getterMaleName(): string {
     return $this->name;
   }
 }

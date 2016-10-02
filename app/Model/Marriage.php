@@ -29,7 +29,7 @@ class Marriage {
    * 
    * @return MarriageEntity[]|ICollection
    */
-  function listOfMarriages() {
+  function listOfMarriages(): ICollection {
     return $this->orm->marriages->findAll();
   }
   
@@ -40,7 +40,7 @@ class Marriage {
    * @return MarriageEntity
    * @throws MarriageNotFoundException
    */
-  function getMarriage($id) {
+  function getMarriage(int $id): MarriageEntity {
     $marriage = $this->orm->marriages->getById($id);
     if(!$marriage) throw new MarriageNotFoundException;
     else return $marriage;
@@ -52,7 +52,7 @@ class Marriage {
    * @param int $id
    * @return bool
    */
-  function canPropose($id) {
+  function canPropose(int $id): bool {
     if(!$this->user->isLoggedIn()) return false;
     elseif($id === $this->user->id) return false;
     $user = $this->orm->users->getById($id);
@@ -70,7 +70,7 @@ class Marriage {
    * @param MarriageEntity $marriage
    * @return bool
    */
-  function canFinish(MarriageEntity $marriage) {
+  function canFinish(MarriageEntity $marriage): bool {
     if($marriage->status != MarriageEntity::STATUS_ACCEPTED) return false;
     elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user1->id)->fetch())) return false;
     elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user2->id)->fetch())) return false;
@@ -85,7 +85,7 @@ class Marriage {
    * @return void
    * @throws CannotProposeMarriageException
    */
-  function proposeMarriage($id) {
+  function proposeMarriage(int $id) {
     if(!$this->canPropose($id)) throw new CannotProposeMarriageException;
     $marriage = new MarriageEntity;
     $this->orm->marriages->attach($marriage);
@@ -100,7 +100,7 @@ class Marriage {
    * @return MarriageEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function listOfProposals() {
+  function listOfProposals(): ICollection {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     else return $this->orm->marriages->findProposals($this->user->id);
   }
@@ -116,7 +116,7 @@ class Marriage {
    * @throws CannotProposeMarriageException
    * @throws MarriageProposalAlreadyHandledException
    */
-  function acceptProposal($id) {
+  function acceptProposal(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $proposal = $this->orm->marriages->getById($id);
     if(!$proposal) throw new MarriageNotFoundException;
@@ -144,7 +144,7 @@ class Marriage {
    * @throws CannotProposeMarriageException
    * @throws MarriageProposalAlreadyHandledException
    */
-  function declineProposal($id) {
+  function declineProposal(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $proposal = $this->orm->marriages->getById($id);
     if(!$proposal) throw new MarriageNotFoundException;

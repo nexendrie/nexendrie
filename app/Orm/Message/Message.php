@@ -24,7 +24,7 @@ class Message extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterSentAt() {
+  protected function getterSentAt(): string {
     return $this->localeModel->formatDateTime($this->sent);
   }
   

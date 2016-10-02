@@ -39,43 +39,43 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function setterDivorce($value) {
+  protected function setterDivorce(int $value): int {
     if($value < 0) return 0;
     elseif($value > 4) return 4;
     else return $value;
   }
   
-  protected function getterProposedT() {
+  protected function getterProposedT(): string {
     return $this->localeModel->formatDateTime($this->proposed);
   }
   
-  protected function getterAcceptedT() {
+  protected function getterAcceptedT(): string {
     if($this->accepted === NULL) return "";
     else return $this->localeModel->formatDateTime($this->accepted);
   }
   
-  protected function getterTermT() {
+  protected function getterTermT(): string {
     if($this->term === NULL) return "";
     else return $this->localeModel->formatDateTime($this->term);
   }
   
-  protected function getterCancelledT() {
+  protected function getterCancelledT(): string {
     if($this->cancelled === NULL) return "";
     else return $this->localeModel->formatDateTime($this->cancelled);
   }
   
-  protected function setterIntimacy($value) {
+  protected function setterIntimacy(int $value): int {
     if($value < 0) return 0;
     elseif($value > self::MAX_INTIMACY) return self::MAX_INTIMACY;
     else return $value;
   }
   
-  protected function getterLevel() {
+  protected function getterLevel(): int {
     if($this->status != self::STATUS_ACTIVE) return 0;
     else return (int) ($this->intimacy / 100);
   }
   
-  protected function getterHpIncrease() {
+  protected function getterHpIncrease(): int {
     return $this->level * 2;
   }
   

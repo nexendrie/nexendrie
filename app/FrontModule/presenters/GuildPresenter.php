@@ -66,7 +66,7 @@ class GuildPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderDetail($id) {
+  function renderDetail(int $id) {
     try {
       $this->template->guild = $this->model->getGuild($id);
     } catch(GuildNotFoundException $e) {
@@ -89,7 +89,7 @@ class GuildPresenter extends BasePresenter {
    * @param FoundGuildFormFactory $factory
    * @return Form
    */
-  protected function createComponentFoundGuildForm(FoundGuildFormFactory $factory) {
+  protected function createComponentFoundGuildForm(FoundGuildFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function() {
       $this->flashMessage("Cech založen.");
@@ -103,7 +103,7 @@ class GuildPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionJoin($id) {
+  function actionJoin(int $id) {
     try {
       $this->model->join($id);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vstoupila jsi do cechu.";
@@ -151,7 +151,7 @@ class GuildPresenter extends BasePresenter {
    * @param ManageGuildFormFactory $factory
    * @return Form
    */
-  protected function createComponentManageGuildForm(ManageGuildFormFactory $factory) {
+  protected function createComponentManageGuildForm(ManageGuildFormFactory $factory): Form {
     $form = $factory->create($this->model->getUserGuild()->id);
     $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");
@@ -193,7 +193,7 @@ class GuildPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handlePromote($user) {
+  function handlePromote(int $user) {
     try {
       $this->model->promote($user);
       $this->flashMessage("Povýšen(a)");
@@ -220,7 +220,7 @@ class GuildPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handleDemote($user) {
+  function handleDemote(int $user) {
     try {
       $this->model->demote($user);
       $this->flashMessage("Degradován(a)");
@@ -247,7 +247,7 @@ class GuildPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handleKick($user) {
+  function handleKick(int $user) {
     try {
       $this->model->kick($user);
       $this->flashMessage("Vyloučen(a)");

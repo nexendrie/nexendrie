@@ -31,10 +31,9 @@ class TownPresenter extends BasePresenter {
    * @param AddEditTownFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddTownForm(AddEditTownFormFactory $factory) {
+  protected function createComponentAddTownForm(AddEditTownFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
-      $values = $form->getValues(true);
+    $form->onSuccess[] = function(Form $form, array $values) {
       $this->model->add($values);
       $this->flashMessage("Město přidáno.");
       $this->redirect("Content:towns");
@@ -47,7 +46,7 @@ class TownPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->town = $this->model->get($id);
@@ -60,11 +59,11 @@ class TownPresenter extends BasePresenter {
    * @param AddEditTownFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditTownForm(AddEditTownFormFactory $factory) {
+  protected function createComponentEditTownForm(AddEditTownFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->town->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->edit($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->edit($this->getParameter("id"), $values);
       $this->flashMessage("Město upraveno.");
       $this->redirect("Content:towns");
     };

@@ -38,7 +38,7 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
   /**
    * @param int $mountId
    */
-  function handleBuy($mountId) {
+  function handleBuy(int $mountId) {
     try {
       $this->model->buy($mountId);
       $this->presenter->flashMessage("Jezdecké zvíře koupeno.");

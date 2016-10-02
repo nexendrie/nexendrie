@@ -33,7 +33,7 @@ class House {
    * @param int $user
    * @return HouseEntity|NULL
    */
-  function getUserHouse($user = 0) {
+  function getUserHouse(int $user = 0) {
     if($user === 0) $user = $this->user->id;
     return $this->orm->houses->getByOwner($user);
   }
@@ -67,7 +67,7 @@ class House {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canUpgrade() {
+  function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $house = $this->getUserHouse();
     if(!$house) return false;
@@ -99,7 +99,7 @@ class House {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canRepair() {
+  function canRepair(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $house = $this->getUserHouse();
     if(!$house) return false;
@@ -131,7 +131,7 @@ class House {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canUpgradeBrewery() {
+  function canUpgradeBrewery(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $house = $this->getUserHouse();
     if(!$house) return false;
@@ -147,7 +147,7 @@ class House {
    * @throws CannotUpgradeBreweryException
    * @throws InsufficientFundsException
    */
-  function upgradeBrewery() {
+  function upgradeBrewery(): int {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif(!$this->canUpgradeBrewery()) throw new CannotUpgradeBreweryException;
     $house = $this->getUserHouse();
@@ -164,7 +164,7 @@ class House {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canProduceBeer() {
+  function canProduceBeer(): bool {
     $sevenDays = 60 * 60 * 24 * 7;
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $house = $this->getUserHouse();
@@ -185,7 +185,7 @@ class House {
    * @throws AuthenticationNeededException
    * @throws CannotProduceBeerException
    */
-  function produceBeer() {
+  function produceBeer(): array {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif(!$this->canProduceBeer()) throw new CannotProduceBeerException;
     $house = $this->getUserHouse();

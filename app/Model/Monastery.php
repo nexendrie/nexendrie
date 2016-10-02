@@ -51,7 +51,7 @@ class Monastery {
   /**
    * @return int
    */
-  function getBuildingPrice() {
+  function getBuildingPrice() :int {
     return $this->buildingPrice;
   }
   
@@ -60,7 +60,7 @@ class Monastery {
    * 
    * @return MonasteryEntity[]|ICollection
    */
-  function listOfMonasteries() {
+  function listOfMonasteries(): ICollection {
     return $this->orm->monasteries->findAll()
       ->orderBy("level", ICollection::DESC)
       ->orderBy("founded");
@@ -73,7 +73,7 @@ class Monastery {
    * @return MonasteryEntity
    * @throws MonasteryNotFoundException
    */
-  function get($id) {
+  function get(int $id): MonasteryEntity {
     $monastery = $this->orm->monasteries->getById($id);
     if(!$monastery) throw new MonasteryNotFoundException;
     else return $monastery;
@@ -87,7 +87,7 @@ class Monastery {
    * @throws UserNotFoundException
    * @throws NotInMonasteryException
    */
-  function getByUser($id = 0) {
+  function getByUser(int $id = 0): MonasteryEntity {
     if($id === 0) $id = $this->user->id;
     $user = $this->orm->users->getById($id);
     if(!$user) throw new UserNotFoundException;
@@ -100,7 +100,7 @@ class Monastery {
    * 
    * @return bool
    */
-  function canJoin() {
+  function canJoin(): bool {
     $month = 60 * 60 * 24 * 31;
     if(!$this->user->isLoggedIn()) return false;
     $user = $this->orm->users->getById($this->user->id);
@@ -128,7 +128,7 @@ class Monastery {
    * @throws MonasteryNotFoundException
    * @throws CannotJoinOwnMonasteryException
    */
-  function join($id) {
+  function join(int $id) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     elseif(!$this->canJoin()) throw new CannotJoinMonasteryException;
     try {
@@ -158,7 +158,7 @@ class Monastery {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canPray() {
+  function canPray(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return false;
@@ -191,7 +191,7 @@ class Monastery {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canLeave( ) {
+  function canLeave(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return false;
@@ -226,7 +226,7 @@ class Monastery {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canBuild() {
+  function canBuild(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     if($this->user->identity->level != 550) return false;
     $user = $this->orm->users->getById($this->user->id);
@@ -244,7 +244,7 @@ class Monastery {
    * @throws MonasteryNameInUseException
    * @throws InsufficientFundsException
    */
-  function build($name) {
+  function build(string $name) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     if(!$this->canBuild()) throw new CannotBuildMonasteryException;
     if($this->orm->monasteries->getByName($name)) throw new MonasteryNameInUseException;
@@ -271,7 +271,7 @@ class Monastery {
    * @throws NotInMonasteryException
    * @throws InsufficientFundsException
    */
-  function donate($amount) {
+  function donate(int $amount) {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) throw new NotInMonasteryException;
@@ -290,10 +290,11 @@ class Monastery {
    * 
    * @param int $id
    * @param array $data
+   * @return void
    * @throws MonasteryNotFoundException
    * @throws MonasteryNameInUseException
    */
-  function edit($id, array $data) {
+  function edit(int $id, array $data) {
     try {
       $monastery = $this->get($id);
     } catch(MonasteryNotFoundException $e) {
@@ -320,7 +321,7 @@ class Monastery {
    * @param int $id Monastery' id
    * @return string[] id => publicname
    */
-  function highClerics($id) {
+  function highClerics(int $id): array {
     return $this->orm->users->findByMonastery($id)
       ->findBy(["this->group->level" => 550])
       ->fetchPairs("id", "publicname");
@@ -332,7 +333,7 @@ class Monastery {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canManage() {
+  function canManage(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return false;
@@ -345,7 +346,7 @@ class Monastery {
    * 
    * @return int
    */
-  function prayerLife() {
+  function prayerLife(): int {
     if(!$this->user->isLoggedIn()) return 0;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return 0;
@@ -359,7 +360,7 @@ class Monastery {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canUpgrade() {
+  function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return false;
@@ -393,7 +394,7 @@ class Monastery {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canRepair() {
+  function canRepair(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery) return false;

@@ -25,7 +25,7 @@ class ManageTownFormFactory {
    * @param int $townId
    * @return Form
    */
-  function create($townId) {
+  function create(int $townId): Form {
     $form = new Form;
     $this->id = $townId;
     $town = $this->model->get($this->id);
@@ -48,10 +48,11 @@ class ManageTownFormFactory {
   
   /**
    * @param Form $form
+   * @param array $values
    * @return void
    */
-  function submitted(Form $form) {
-    $this->model->edit($this->id, $form->getValues(true));
+  function submitted(Form $form, array $values) {
+    $this->model->edit($this->id, $values);
   }
 }
 ?>

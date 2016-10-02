@@ -13,7 +13,7 @@ interface ILocale {
    * @param int $date
    * @return string
    */
-  function formatDateTime($date);
+  function formatDateTime(int $date);
   
   /**
    * Formats date
@@ -21,7 +21,7 @@ interface ILocale {
    * @param int $date
    * @return string
    */
-  function formatDate($date);
+  function formatDate(int $date);
   
   /**
    * Selects correct form according to $count
@@ -32,19 +32,19 @@ interface ILocale {
    * @param int $count
    * @return string
    */
-  function plural($word1, $word2, $word3, $count);
+  function plural(string $word1, string $word2, string $word3, int $count);
   
   /**
    * @param int $amount
    * @return string
    */
-  function money($amount);
+  function money(int $amount);
   
   /**
    * @param int $amount
    * @return string
    */
-  function hitpoints($amount);
+  function hitpoints(int $amount);
 }
 
 
@@ -78,7 +78,7 @@ class Locale implements \Nexendrie\ILocale {
    * @param int $date
    * @return string
    */
-  function formatDateTime($date) {
+  function formatDateTime(int $date): string {
     return date($this->formats["dateTimeFormat"], $date);
   }
   
@@ -88,7 +88,7 @@ class Locale implements \Nexendrie\ILocale {
    * @param int $date
    * @return string
    */
-  function formatDate($date) {
+  function formatDate(int $date): string {
     return date($this->formats["dateFormat"], $date);
   }
   
@@ -101,7 +101,7 @@ class Locale implements \Nexendrie\ILocale {
    * @param int $count
    * @return string
    */
-  function plural($word1, $word2, $word3, $count) {
+  function plural(string $word1, string $word2, string $word3, int $count): string {
     $plural2 = $this->formats["plural"][1];
     if($count === $this->formats["plural"][0]) return $word1;
     elseif($count >= $plural2[0] AND $count <= $plural2[1]) return $word2;
@@ -112,7 +112,7 @@ class Locale implements \Nexendrie\ILocale {
    * @param int $amount
    * @return string
    */
-  function money($amount) {
+  function money(int $amount): string {
     return "$amount " . $this->plural("groš", "groše", "grošů", $amount);
   }
   
@@ -120,11 +120,11 @@ class Locale implements \Nexendrie\ILocale {
    * @param int $amount
    * @return string
    */
-  function hitpoints($amount) {
+  function hitpoints(int $amount): string {
     return "$amount " . $this->plural("život", "životy", "životů", $amount);
   }
   
-  function getFormats() {
+  function getFormats(): array {
     return $this->formats;
   }
 }

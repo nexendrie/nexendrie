@@ -31,7 +31,7 @@ class Combat {
    * @param UserEntity $user
    * @return int[]
    */
-  function calculateUserLife(UserEntity $user) {
+  function calculateUserLife(UserEntity $user): array {
     $maxLife = $life = $user->maxLife;
     $hpIncrease = 0;
     $helmet = $this->inventoryModel->getHelmet($user->id);
@@ -52,7 +52,7 @@ class Combat {
    * @param MountEntity|NULL $mount
    * @return int
    */
-  function calculateUserDamage(UserEntity $user, MountEntity $mount = NULL) {
+  function calculateUserDamage(UserEntity $user, MountEntity $mount = NULL): int {
     $damage = 0;
     $weapon = $this->inventoryModel->getWeapon($user->id);
     if($weapon) $damage += $weapon->item->strength + $weapon->level;
@@ -98,7 +98,7 @@ class Combat {
    * @param MountEntity|NULL $mount
    * @return int[]
    */
-  function userCombatStats(UserEntity $user, MountEntity $mount = NULL) {
+  function userCombatStats(UserEntity $user, MountEntity $mount = NULL): array {
     $stats = $this->calculateUserLife($user);
     $stats["damage"] = $this->calculateUserDamage($user, $mount);
     $stats["armor"] = $this->calculateUserArmor($user, $mount);

@@ -25,7 +25,7 @@ class ManageCastleFormFactory {
    * @param int $castleId
    * @return Form
    */
-  function create($castleId) {
+  function create(int $castleId): Form {
     $form = new Form;
     $this->id = $castleId;
     $castle = $this->model->getCastle($this->id);
@@ -42,11 +42,12 @@ class ManageCastleFormFactory {
   
   /**
    * @param Form $form
+   * @param array $values
    * @return void
    */
-  function submitted(Form $form) {
+  function submitted(Form $form, array $values) {
     try {
-      $this->model->editCastle($this->id, $form->getValues(true));
+      $this->model->editCastle($this->id, $values);
     } catch(CastleNameInUseException $e) {
       $form->addError("Zadané jméno je již zabráno.");
     }

@@ -29,7 +29,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionList($id) {
+  function actionList(int $id) {
     $this->requiresPermissions("content", "list");
     try {
       $this->template->npcs = $this->model->listOfNpcs($id);
@@ -44,7 +44,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionAdd($id) {
+  function actionAdd(int $id) {
     $this->requiresPermissions("content", "add");
     try {
       $this->adventure = $this->model->get($id);
@@ -58,10 +58,9 @@ class AdventureEnemiesPresenter extends BasePresenter {
    * @param AddEditAdventureEnemyFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory) {
+  protected function createComponentAddAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
-      $data = $form->getValues(true);
+    $form->onSuccess[] = function(Form $for, array $data) {
       $data["adventure"] = $this->adventure->id;
       $this->model->addNpc($data);
       $this->flashMessage("Nepřítel přidán.");
@@ -75,7 +74,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->npc = $this->model->getNpc($id);
@@ -88,11 +87,11 @@ class AdventureEnemiesPresenter extends BasePresenter {
    * @param AddEditAdventureEnemyFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory) {
+  protected function createComponentEditAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->npc->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->editNpc($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->editNpc($this->getParameter("id"), $values);
       $this->flashMessage("Nepřítel upraven.");
       $this->redirect("list", ["id" => $this->npc->adventure->id]);
     };
@@ -104,7 +103,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionDelete($id) {
+  function actionDelete(int $id) {
     try {
       $adventure = $this->model->deleteNpc($id);
       $this->flashMessage("Nepřítel smazán.");

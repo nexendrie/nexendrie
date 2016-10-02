@@ -25,7 +25,7 @@ class FoundTownFormFactory {
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.");
@@ -39,6 +39,7 @@ class FoundTownFormFactory {
   /**
    * @param Form $form
    * @param array $values
+   * @return void
    */
   function submitted(Form $form, array $values) {
     try {

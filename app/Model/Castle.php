@@ -32,7 +32,7 @@ class Castle {
   /**
    * @return int
    */
-  function getBuildingPrice() {
+  function getBuildingPrice(): int {
     return $this->buildingPrice;
   }
   
@@ -41,7 +41,7 @@ class Castle {
    * 
    * @return CastleEntity[]|ICollection
    */
-  function listOfCastles() {
+  function listOfCastles(): ICollection {
     return $this->orm->castles->findAll();
   }
   
@@ -52,7 +52,7 @@ class Castle {
    * @return CastleEntity
    * @throws CastleNotFoundException
    */
-  function getCastle($id) {
+  function getCastle(int $id): CastleEntity {
     $castle = $this->orm->castles->getById($id);
     if(!$castle) throw new CastleNotFoundException;
     else return $castle;
@@ -65,7 +65,7 @@ class Castle {
    * @param int|NULL $id
    * @return bool
    */
-  private function checkNameAvailability($name, $id = NULL) {
+  private function checkNameAvailability(string $name, int $id = NULL): bool {
     $castle = $this->orm->castles->getByName($name);
     if($castle AND $castle->id != $id) return false;
     else return true;
@@ -80,7 +80,7 @@ class Castle {
    * @throws CastleNotFoundException
    * @throws CastleNameInUseException
    */
-  function editCastle($id, array $data) {
+  function editCastle(int $id, array $data) {
     try {
       $castle = $this->getCastle($id);
     } catch(CastleNotFoundException $e) {
@@ -126,9 +126,9 @@ class Castle {
    * Get specified user's castle
    * 
    * @param int|NULL $user
-   * @return CastleEntity
+   * @return CastleEntity|NULL
    */
-  function getUserCastle($user = NULL) {
+  function getUserCastle(int $user = NULL) {
     if($user === NULL) $user = $this->user->id;
     return $this->orm->castles->getByOwner($user);
   }
@@ -139,7 +139,7 @@ class Castle {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canUpgrade() {
+  function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $castle = $this->getUserCastle();
     if(!$castle) return false;
@@ -171,7 +171,7 @@ class Castle {
    * @return bool
    * @throws AuthenticationNeededException
    */
-  function canRepair() {
+  function canRepair(): bool {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $castle = $this->getUserCastle();
     if(!$castle) return false;

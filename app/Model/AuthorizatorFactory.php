@@ -25,7 +25,7 @@ class AuthorizatorFactory {
    * @param ORM $orm
    * @return \stdClass[]
    */
-  static function getGroups(Cache $cache, ORM $orm) {
+  static function getGroups(Cache $cache, ORM $orm): array {
     $groups = $cache->load("groups_by_level");
     if($groups === NULL) {
       $groups = [];
@@ -46,7 +46,7 @@ class AuthorizatorFactory {
    * @param ORM $orm
    * @return PermissionDummy[]
    */
-  static function getPermissions(Cache $cache, ORM $orm) {
+  static function getPermissions(Cache $cache, ORM $orm): array {
     $return = $cache->load("permissions");
     if($return === NULL) {
       $rows = $orm->permissions->findAll();
@@ -66,7 +66,7 @@ class AuthorizatorFactory {
   * @param ORM $orm
   * @return Permission
   */
-  static function create(Cache $cache, ORM $orm) {
+  static function create(Cache $cache, ORM $orm): Permission {
     $permission = new Permission;
     
     $groups = self::getGroups($cache, $orm);

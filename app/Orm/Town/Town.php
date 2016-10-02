@@ -32,11 +32,11 @@ class Town extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterFoundedAt() {
+  protected function getterFoundedAt(): string {
     return $this->localeModel->formatDate($this->founded);
   }
   
-  protected function getterPriceT() {
+  protected function getterPriceT(): string {
     return $this->localeModel->money($this->price);
   }
   

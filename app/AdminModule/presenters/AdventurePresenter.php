@@ -30,17 +30,17 @@ class AdventurePresenter extends BasePresenter {
    * @param AddEditAdventureFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddAdventureForm(AddEditAdventureFormFactory $factory) {
+  protected function createComponentAddAdventureForm(AddEditAdventureFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->addAdventure($form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->addAdventure($values);
       $this->flashMessage("Dobrodružství přidáno.");
       $this->redirect("Content:adventures");
     };
     return $form;
   }
   
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("content", "edit");
     try {
       $this->adventure = $this->model->get($id);
@@ -53,11 +53,11 @@ class AdventurePresenter extends BasePresenter {
    * @param AddEditAdventureFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditAdventureForm(AddEditAdventureFormFactory $factory) {
+  protected function createComponentEditAdventureForm(AddEditAdventureFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->adventure->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->editAdventure($this->getParameter("id"), $form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->editAdventure($this->getParameter("id"), $values);
       $this->flashMessage("Dobrodružství upraveno.");
       $this->redirect("Content:adventures");
     };

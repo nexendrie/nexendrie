@@ -41,11 +41,11 @@ class PollsPresenter extends BasePresenter {
    * @param AddEditPollFormFactory $factory
    * @return Form
    */
-  protected function createComponentAddPollForm(AddEditPollFormFactory $factory) {
+  protected function createComponentAddPollForm(AddEditPollFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
+    $form->onSuccess[] = function(Form $form, array $values) {
       $this->model->user = $this->user;
-      $this->model->add($form->getValues(true));
+      $this->model->add($values);
       $this->flashMessage("Anketa přidána.");
       $this->redirect("Polls:");
     };
@@ -57,7 +57,7 @@ class PollsPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit($id) {
+  function actionEdit(int $id) {
     $this->requiresPermissions("poll", "add");
     if(!$this->model->exists($id)) throw new \Nette\Application\BadRequestException;
   }
@@ -66,12 +66,12 @@ class PollsPresenter extends BasePresenter {
    * @param AddEditPollFormFactory $factory
    * @return Form
    */
-  protected function createComponentEditPollForm(AddEditPollFormFactory $factory) {
+  protected function createComponentEditPollForm(AddEditPollFormFactory $factory): Form {
     $poll = $this->model->view($this->getParameter("id"));
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
+    $form->onSuccess[] = function(Form $form, array $values) {
       $this->model->user = $this->user;
-      $this->model->edit($this->getParameter("id"), $form->getValues(true));
+      $this->model->edit($this->getParameter("id"), $values);
       $this->flashMessage("Anketa upravena.");
       $this->redirect("Polls:");
     };

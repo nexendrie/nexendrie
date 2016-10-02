@@ -25,15 +25,15 @@ class Loan extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterAmountT() {
+  protected function getterAmountT(): string {
     return $this->localeModel->money($this->amount);
   }
   
-  protected function getterTakenT() {
+  protected function getterTakenT(): string {
     return $this->localeModel->formatDateTime($this->taken);
   }
   
-  protected function getterReturnedT() {
+  protected function getterReturnedT(): string {
     if($this->returned === NULL) return "";
     else return $this->localeModel->formatDateTime($this->returned);
   }

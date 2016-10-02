@@ -30,7 +30,7 @@ class UserManagerTest extends \Tester\TestCase {
       $this->model->nameAvailable("abc", "abc");
     }, InvalidArgumentException::class);
     Assert::exception(function() {
-      $this->model->nameAvailable("abc", "abc", "abc");
+      $this->model->nameAvailable("abc", "abc", 50);
     }, InvalidArgumentException::class);
     Assert::false($this->model->nameAvailable("system"));
     Assert::true($this->model->nameAvailable("system", "username", 0));
@@ -45,9 +45,6 @@ class UserManagerTest extends \Tester\TestCase {
     Assert::false($this->model->emailAvailable("admin@localhost"));
     Assert::true($this->model->emailAvailable("admin@localhost", 0));
     Assert::false($this->model->emailAvailable("admin@localhost", 1));
-    Assert::exception(function() {
-      $this->model->emailAvailable("abc", "abc");
-    }, InvalidArgumentException::class);
   }
   
   function testAuthenticate() {

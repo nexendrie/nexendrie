@@ -42,31 +42,31 @@ class House extends \Nextras\Orm\Entity\Entity {
     $this->eventsModel = $eventsModel;
   }
   
-  protected function setterLuxuryLevel($value) {
+  protected function setterLuxuryLevel(int $value): int {
     if($value < 1) return 1;
     elseif($value > self::MAX_LEVEL) return self::MAX_LEVEL;
     else return $value;
   }
   
-  protected function setterBreweryLevel($value) {
+  protected function setterBreweryLevel(int $value): int {
     if($value < 0) return 0;
     elseif($value > self::MAX_LEVEL) return self::MAX_LEVEL;
     else return $value;
   }
   
-  protected function setterHp($value) {
+  protected function setterHp(int $value): int {
     if($value < 1) return 1;
     elseif($value > 100) return 100;
     else return $value;
   }
   
-  protected function getterWorkIncomeBonus() {
+  protected function getterWorkIncomeBonus(): int {
     if($this->hp <= 30) return 0;
     elseif($this->owner->group->path != Group::PATH_CITY) return 0;
     else return $this->luxuryLevel * self::INCOME_BONUS_PER_LEVEL;
   }
   
-  protected function getterUpgradePrice() {
+  protected function getterUpgradePrice(): int {
     if($this->luxuryLevel === self::MAX_LEVEL) return 0;
     $price = self::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->luxuryLevel + 1; $i++) {
@@ -75,11 +75,11 @@ class House extends \Nextras\Orm\Entity\Entity {
     return $price;
   }
   
-  protected function getterUpgradePriceT() {
+  protected function getterUpgradePriceT(): string {
     return $this->localeModel->money($this->upgradePrice);
   }
   
-  protected function getterBreweryUpgradePrice() {
+  protected function getterBreweryUpgradePrice(): int {
     if($this->breweryLevel === self::MAX_LEVEL) return 0;
     $price = self::BASE_UPGRADE_PRICE;
     for($i = 1; $i < $this->breweryLevel + 1; $i++) {
@@ -88,18 +88,18 @@ class House extends \Nextras\Orm\Entity\Entity {
     return $price;
   }
   
-  protected function getterBreweryUpgradePriceT() {
+  protected function getterBreweryUpgradePriceT(): string {
     return $this->localeModel->money($this->breweryUpgradePrice);
   }
   
-  protected function getterRepairPrice() {
+  protected function getterRepairPrice(): int {
     if($this->hp >= 100) return 0;
     if($this->luxuryLevel === 1) $multiplier = 1; else $multiplier = ($this->level - 1) * 10 / 100 + 1;
     $basePrice = self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp);
     return (int) ($basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice));
   }
   
-  protected function getterRepairPriceT() {
+  protected function getterRepairPriceT(): string {
     return $this->localeModel->money($this->repairPrice);
   }
 }

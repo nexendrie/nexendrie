@@ -104,7 +104,7 @@ class ContentPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionGift($id = 0) {
+  function actionGift(int $id = 0) {
     $this->requiresPermissions("content", "gift");
   }
   
@@ -112,7 +112,7 @@ class ContentPresenter extends BasePresenter {
    * @param GiftFormFactory $factory
    * @return Form
    */
-  protected function createComponentGiftForm(GiftFormFactory $factory) {
+  protected function createComponentGiftForm(GiftFormFactory $factory): Form {
     $form = $factory->create();
     $user = $this->getParameter("id");
     if($user > 0) $form["user"]->setDefaultValue($user);

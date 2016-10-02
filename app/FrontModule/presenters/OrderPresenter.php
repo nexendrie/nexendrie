@@ -67,7 +67,7 @@ class OrderPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderDetail($id) {
+  function renderDetail(int $id) {
     try {
       $this->template->order = $this->model->getOrder($id);
     } catch(OrderNotFoundException $e) {
@@ -90,7 +90,7 @@ class OrderPresenter extends BasePresenter {
    * @param FoundOrderFormFactory $factory
    * @return Form
    */
-  protected function createComponentFoundOrderForm(FoundOrderFormFactory $factory) {
+  protected function createComponentFoundOrderForm(FoundOrderFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function() {
       $this->flashMessage("Řád založen.");
@@ -104,7 +104,7 @@ class OrderPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionJoin($id) {
+  function actionJoin(int $id) {
     try {
       $this->model->join($id);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vstoupila jsi do řádu.";
@@ -152,7 +152,7 @@ class OrderPresenter extends BasePresenter {
    * @param ManageOrderFormFactory $factory
    * @return Form
    */
-  protected function createComponentManageOrderForm(ManageOrderFormFactory $factory) {
+  protected function createComponentManageOrderForm(ManageOrderFormFactory $factory): Form {
     $form = $factory->create($this->model->getUserOrder()->id);
     $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");
@@ -194,7 +194,7 @@ class OrderPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handlePromote($user) {
+  function handlePromote(int $user) {
     try {
       $this->model->promote($user);
       $this->flashMessage("Povýšen(a)");
@@ -221,7 +221,7 @@ class OrderPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handleDemote($user) {
+  function handleDemote(int $user) {
     try {
       $this->model->demote($user);
       $this->flashMessage("Degradován(a)");
@@ -248,7 +248,7 @@ class OrderPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handleKick($user) {
+  function handleKick(int $user) {
     try {
       $this->model->kick($user);
       $this->flashMessage("Vyloučen(a)");

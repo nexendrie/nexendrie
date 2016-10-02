@@ -38,7 +38,7 @@ class MarketPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionShop($id) {
+  function actionShop(int $id) {
     if(!$this->model->exists($id)) throw new \Nette\Application\BadRequestException;
     $this->template->shopId = $id;
   }
@@ -47,7 +47,7 @@ class MarketPresenter extends BasePresenter {
    * @param ShopControlFactory $factory
    * @return \Nette\Application\UI\Multiplier
    */
-  protected function createComponentShop(ShopControlFactory $factory) {
+  protected function createComponentShop(ShopControlFactory $factory): \Nette\Application\UI\Multiplier {
     return new \Nette\Application\UI\Multiplier(function ($id) use ($factory) {
       $shop = $factory->create();
       $shop->id = $id;
@@ -59,7 +59,7 @@ class MarketPresenter extends BasePresenter {
    * @param int $id Item's id
    * @return void
    */
-  function actionBuy($id) {
+  function actionBuy(int $id) {
     $this->requiresLogin();
     $this->mustNotBeBanned();
   }
@@ -76,7 +76,7 @@ class MarketPresenter extends BasePresenter {
    * @param MountsMarketControlFactory $factory
    * @return MountsMarketControl
    */
-  protected function createComponentMountsMarket(MountsMarketControlFactory $factory) {
+  protected function createComponentMountsMarket(MountsMarketControlFactory $factory): MountsMarketControl {
     return $factory->create();
   }
   
@@ -92,7 +92,7 @@ class MarketPresenter extends BasePresenter {
    * @param TownsMarketControlFactory $factory
    * @return TownsMarketControl
    */
-  protected function createComponentTownsMarket(TownsMarketControlFactory $factory) {
+  protected function createComponentTownsMarket(TownsMarketControlFactory $factory): TownsMarketControl {
     return $factory->create();
   }
 }

@@ -16,13 +16,13 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|User[] $people {1:m User::$orderRank}
  */
 class OrderRank extends \Nextras\Orm\Entity\Entity {
-  protected function setterIncomeBonus($value) {
+  protected function setterIncomeBonus(int $value): int {
     if($value < 0) return 0;
     elseif($value > 99) return 99;
     else return $value;
   }
   
-  protected function setterGuildFee($value) {
+  protected function setterGuildFee(int $value): int {
     if($value < 0) return 0;
     elseif($value > 999) return 999;
     else return $value;

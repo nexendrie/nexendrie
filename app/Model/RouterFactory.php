@@ -18,7 +18,7 @@ class RouterFactory {
   /**
    * @return RouteList
    */
-  static function create() {
+  static function create(): RouteList {
     $router = new RouteList;
     $frontRouter = new RouteList("Front");
     $frontRouter[] = new Route("/", "Homepage:page");

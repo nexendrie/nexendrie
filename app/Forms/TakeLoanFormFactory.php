@@ -21,7 +21,7 @@ class TakeLoanFormFactory {
   /**
    * @return Form
    */
-  function create() {
+  function create(): Form {
     $maxLoan = $this->model->maxLoan();
     $form = new Form;
     $form->addText("amount", "Částka:")

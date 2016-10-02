@@ -34,21 +34,21 @@ class Guild extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function setterLevel($value) {
+  protected function setterLevel(int $value): int {
     if($value < 1) return 1;
     elseif($value > self::MAX_LEVEL) return self::MAX_LEVEL;
     else return $value;
   }
   
-  protected function getterFoundedAt() {
+  protected function getterFoundedAt(): string {
     return $this->localeModel->formatDateTime($this->founded);
   }
   
-  protected function getterMoneyT() {
+  protected function getterMoneyT(): string {
     return $this->localeModel->money($this->money);
   }
   
-  protected function getterUpgradePrice() {
+  protected function getterUpgradePrice(): int {
     if($this->level === self::MAX_LEVEL) return 0;
     $price = self::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->level + 1; $i++) {
@@ -57,7 +57,7 @@ class Guild extends \Nextras\Orm\Entity\Entity {
     return $price;
   }
   
-  protected function getterUpgradePriceT() {
+  protected function getterUpgradePriceT(): string {
     return $this->localeModel->money($this->upgradePrice);
   }
   

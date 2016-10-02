@@ -57,7 +57,7 @@ class UserManager implements NS\IAuthenticator {
    * @return bool
    * @throws InvalidArgumentException
    */
-  function nameAvailable($name, $type = "username", $uid = NULL) {
+  function nameAvailable(string $name, string $type = "username", int $uid = NULL): bool {
     if(!is_int($uid) AND !is_null($uid)) throw new InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
     $types = ["username", "publicname"];
     if(!in_array($type, $types)) throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
@@ -78,8 +78,7 @@ class UserManager implements NS\IAuthenticator {
    * @return bool
    * @throws InvalidArgumentException
    */
-  function emailAvailable($email, $uid = NULL) {
-    if(!is_int($uid) AND !is_null($uid)) throw new InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
+  function emailAvailable(string $email, int $uid = NULL): bool {
     $row = $this->orm->users->getByEmail($email);
     if(!$row) return true;
     elseif(!is_int($uid)) return false;
@@ -93,7 +92,7 @@ class UserManager implements NS\IAuthenticator {
    * @param UserEntity $user
    * @return NS\Identity
    */
-  protected function getIdentity(UserEntity $user) {
+  protected function getIdentity(UserEntity $user): NS\Identity {
     if($user->banned) {
       $role = $this->orm->groups->getById($this->roles["bannedRole"])->singleName;
     } else {
@@ -114,7 +113,7 @@ class UserManager implements NS\IAuthenticator {
    * @return NS\Identity User's identity
    * @throws NS\AuthenticationException
    */
-  function authenticate(array $credentials) {
+  function authenticate(array $credentials): NS\Identity {
     list($username, $password) = $credentials;
     $user = $this->orm->users->getByUsername($username);
     if(!$user) {
@@ -144,8 +143,8 @@ class UserManager implements NS\IAuthenticator {
    * Register new user
    * 
    * @param array $data
-   * @throws RegistrationException
    * @return void
+   * @throws RegistrationException
    */
   function register(array $data) {
     if(!$this->nameAvailable($data["username"])) throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
@@ -168,7 +167,7 @@ class UserManager implements NS\IAuthenticator {
    * @return array
    * @throws AuthenticationNeededException
    */
-  function getSettings() {
+  function getSettings(): array {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
     $user = $this->orm->users->getById($this->user->id);
     $settings = [
@@ -214,7 +213,7 @@ class UserManager implements NS\IAuthenticator {
    * 
    * @return UserEntity[]|ICollection
    */
-  function listOfUsers() {
+  function listOfUsers(): ICollection {
     return $this->orm->users->findAll()->orderBy("group")->orderBy("id");
   }
   
@@ -223,7 +222,7 @@ class UserManager implements NS\IAuthenticator {
    * @param array $values
    * @return void
    */
-  function edit($id, array $values) {
+  function edit(int $id, array $values) {
     $user = $this->orm->users->getById($id);
     foreach($values as $key => $value) {
       $user->$key = $value;
@@ -236,7 +235,7 @@ class UserManager implements NS\IAuthenticator {
    * @return UserEntity
    * @throws UserNotFoundException
    */
-  function get($id) {
+  function get(int $id): UserEntity {
     $user = $this->orm->users->getById($id);
     if(!$user) throw new UserNotFoundException;
     else return $user;
