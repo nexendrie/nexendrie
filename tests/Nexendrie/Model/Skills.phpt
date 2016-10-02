@@ -33,6 +33,12 @@ class SkillsTest extends \Tester\TestCase {
     Assert::same(Skill::TYPE_COMBAT, $skill->type);
   }
   
+  function testEdit() {
+    Assert::exception(function() {
+      $this->model->edit(50, []);
+    }, SkillNotFoundException::class);
+  }
+  
   function testGet() {
     $skill = $this->model->get(1);
     Assert::type(Skill::class, $skill);

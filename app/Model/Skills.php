@@ -63,9 +63,14 @@ class Skills {
    * @param int $id Skill's id
    * @param array $data
    * @return void
+   * @throws SkillNotFoundException
    */
   function edit(int $id, array $data) {
-    $skill = $this->orm->skills->getById($id);
+    try {
+      $skill = $this->get($id);
+    } catch(SkillNotFoundException $e) {
+      throw $e;
+    }
     foreach($data as $key => $value) {
       $skill->$key = $value;
     }

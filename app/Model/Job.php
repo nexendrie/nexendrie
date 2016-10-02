@@ -127,9 +127,14 @@ class Job {
    * @param int $id Job's id
    * @param array $data
    * @return void
+   * @throws JobNotFoundException
    */
   function editJob(int $id, array $data) {
-    $job = $this->orm->jobs->getById($id);
+    try {
+      $job = $this->getJob($id);
+    } catch(JobNotFoundException $e) {
+      throw $e;
+    }
     foreach($data as $key => $value) {
       $job->$key = $value;
     }
