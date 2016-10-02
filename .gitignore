@@ -1,6 +1,7 @@
 Thumbs.db
 temp
 /nbproject
+/.idea
 /app/log
 /app/config/local.neon
 /doc
