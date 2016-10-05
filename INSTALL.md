@@ -32,11 +32,11 @@ After that, you need to create file /app/config/local.neon with local settings f
 
 Dependencies
 ------------
-The game uses Composer to manage its dependencies. If you do not have them installed, run *composer install* to obtain them. Then, you update them on regular basics with *composer update*.
+The game uses Composer to manage its dependencies. If you do not have them installed, run *composer install* to obtain them.
 
 Database
 --------
-The game needs a database to store its data. We use nextras/orm to access it. It supports only MySql/MariaDB and PostgreSql. Before you can run the game for first time, you have to create tables and fill the with at least basic data. For now, you have to do everything by yourself. See the entites to get an idea about tables definitions.
+The game needs a database to store its data. We use nextras/orm to access it. It supports only MySql/MariaDB and PostgreSql. Before you can run the game for first time, you have to create tables and fill the with at least basic data. For now, you have to do everything by yourself. See the entites to get an idea about tables definitions or files in folder app/sqls for actual queries for MySql/MariaDB.
 
 After that, do not forget to write access data (name of database, username and password) to file app/config/local.neon so the game will know where to look for data.
 
