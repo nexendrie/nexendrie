@@ -223,4 +223,10 @@ INSERT INTO `users` (`id`, `username`, `publicname`, `password`, `email`, `joine
   (0,	'system',	'Vladěna',	'$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2',	'admin@localhost',	1429779664,	1475089811,	NULL,	NULL,	0,	0,	'blue-sky',	'female',	0,	60,	60,	560132,	1,	NULL,	1,	NULL,	0,	NULL,	NULL,	NULL,	NULL),
   (1,	'admin',	'Trimadyl z Myhru',	'$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2',	'jakub.konecny2@centrum.cz',	1429779664,	1475089811,	NULL,	1455366455,	1,	1,	'dark-sky',	'male',	0,	90,	90,	18229,	2,	NULL,	2,	NULL,	0,	NULL,	NULL,	1,	4);
 
+INSERT INTO `castles` (`id`, `name`, `description`, `founded`, `owner`, `level`, `hp`) VALUES
+  (1,	'Dračí hrad',	'Dračí hrad je již od nepaměti sídlem panovníků Nexendrie.',	1429779664,	0,	5,	'100');
+
+INSERT INTO `monasteries` (`id`, `name`, `leader`, `town`, `founded`, `money`, `level`, `hp`) VALUES
+  (1,	'Pokusný klášter',	0,	3,	1446628777,	1001,	1,	100);
+
 -- 2016-09-25 09:08:14

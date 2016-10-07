@@ -13,7 +13,6 @@ INSERT INTO `users` (`id`, `username`, `publicname`, `password`, `email`, `joine
   (6,	'kazimira',	'kazimira',	'$2y$10$Om40QnY7ELgtedNugwwziOwVjn6mPDhFBQlXr1PR/h.w4Df0xBDZi',	'kazimira@localhost.k',	1468051028,	1475089808,	NULL,	NULL,	12,	0,	'blue-sky',	'male',	0,	60,	60,	30,	2,	NULL,	NULL,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
 
 INSERT INTO `castles` (`id`, `name`, `description`, `founded`, `owner`, `level`, `hp`) VALUES
-  (1,	'Dračí hrad',	'Dračí hrad je již od nepaměti sídlem panovníků Nexendrie.',	1429779664,	0,	5,	'100'),
   (2,	'Falver',	'.',	1447420077,	1,	5,	'100'),
   (3,	'Erdvor',	'.',	1466869822,	4,	3,	'100');
 
@@ -79,7 +78,6 @@ INSERT INTO `comments` (`id`, `title`, `text`, `article`, `author`, `added`) VAL
   (5,	'Test',	'text',	6,	1,	1445197436);
 
 INSERT INTO `monasteries` (`id`, `name`, `leader`, `town`, `founded`, `money`, `level`, `hp`) VALUES
-  (1,	'Pokusný klášter',	0,	3,	1446628777,	1001,	1,	100),
   (2,	'Dům Jaly',	2,	1,	1447251495,	0,	6,	100);
 
 INSERT INTO `events` (`id`, `name`, `description`, `start`, `end`, `adventures_bonus`, `work_bonus`, `prayer_life_bonus`, `training_discount`, `repairing_discount`, `shopping_discount`) VALUES
