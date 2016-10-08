@@ -1,6 +1,8 @@
 Version 1.0.0-beta1+dev
 - raised minimal version of PHP to 7.0
 - added some unit tests
+- fixed invalid property name in MonasteriesRepository::findLedMonasteries()
+- fixed TownPresenter::renderDetail() if the user is not logged in
 
 Version 1.0.0-beta1
 - first released version
