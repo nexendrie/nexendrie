@@ -55,6 +55,7 @@ class Marriage {
   function canPropose(int $id): bool {
     if(!$this->user->isLoggedIn()) return false;
     elseif($id === $this->user->id) return false;
+    elseif($id === 0) return false;
     $user = $this->orm->users->getById($id);
     if(!$user) return false;
     elseif(!is_null($this->orm->marriages->getActiveMarriage($id)->fetch())) return false;
