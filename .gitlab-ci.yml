@@ -1,4 +1,4 @@
-image: php:7.0
+image: shipito/php:7.0
 
 stages:
   - build
@@ -12,11 +12,7 @@ build:
   - mkdir app/temp
   - mkdir app/temp/cache
   - mkdir app/log
-
-  - apt-get update -yqq
-  - apt-get install git -yqq
-  - curl -sS https://getcomposer.org/installer | php
-  - php composer.phar install --no-interaction --prefer-source -a
+  - composer install --prefer-dist -a
 
   cache:
     paths:
@@ -61,7 +57,17 @@ analyze:cs:
 test:php7:
   <<: *test_job
 
+test:php7:cc:
+  image: shipito/php:7.0-xdebug
+  <<: *test_job
+  script:
+  - ./vendor/bin/run-tests -p php tests --coverage ./coverage.html --coverage-src ./app/Model
+  artifacts:
+    name: "Code coverage"
+    paths:
+    - coverage.html
+
 test:php71:
-  image: php:7.1
+  image: shipito/php:7.1
   <<: *test_job
   allow_failure: true
