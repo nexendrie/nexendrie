@@ -1,4 +1,4 @@
-Version 1.0.0-beta1+dev
+Version 1.0.0-beta2
 - raised minimal version of PHP to 7.0
 - added some unit tests
 - fixed invalid property name in MonasteriesRepository::findLedMonasteries()
