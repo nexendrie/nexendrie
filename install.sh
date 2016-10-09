@@ -6,6 +6,9 @@ mkdir app/temp/cache
 mkdir app/temp/sessions
 mkdir app/log
 
-composer install -a
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar composer
+chmod +x composer
+./composer install -a --ignore-platform-reqs
 
 exit 0

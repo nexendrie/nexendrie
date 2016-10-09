@@ -4,6 +4,7 @@ stages:
   - build
   - analyze
   - test
+  - deploy
 
 build:
   stage: build
@@ -54,6 +55,18 @@ analyze:cs:
   script:
   - ./vendor/bin/run-tests -p php tests
 
+.job_template: &deploy_job
+  stage: deploy
+
+  dependencies:
+  - build
+
+  before_script:
+  - php ci/prepare_deploy.php
+
+  script:
+  - ./vendor/bin/deployment deployment.ini
+
 test:php7:
   <<: *test_job
 
@@ -71,3 +84,9 @@ test:php71:
   image: shipito/php:7.1
   <<: *test_job
   allow_failure: true
+
+deploy to alpha:
+  <<: *deploy_job
+  environment: alpha
+  only:
+    - master@konecnyjakub/nexendrie
