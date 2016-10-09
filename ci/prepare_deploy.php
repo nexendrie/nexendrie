@@ -6,11 +6,8 @@ require WWW_DIR . "/vendor/autoload.php";
 
 $filename = WWW_DIR . "/deployment.ini";
 $config = file_get_contents($filename);
-$user = $password = "";
-if(getenv("CI_BUILD_NAME" === "deploy to alpha")) {
-  $user = getenv("FTP_ALPHA_USER");
-  $password = getenv("FTP_ALPHA_PASSWORD");
-}
+$user = getenv("FTP_ALPHA_USER");
+$password = getenv("FTP_ALPHA_PASSWORD");
 $config .= "user=$user
 password=$password
 ";
