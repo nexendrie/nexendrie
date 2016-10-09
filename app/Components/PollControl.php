@@ -9,7 +9,6 @@ use Nette\Utils\Arrays,
     Nexendrie\Model\AccessDeniedException,
     Nexendrie\Orm\Poll as PollEntity,
     Nexendrie\Orm\PollVote as PollVoteEntity;
-use Nexendrie\Orm\Poll;
 
 /**
  * Poll Control
