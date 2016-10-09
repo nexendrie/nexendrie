@@ -35,7 +35,8 @@
         "jakub-onderka/php-console-highlighter": "^0.3.2",
         "squizlabs/php_codesniffer": "^2.6",
         "nette/tester": "2.0.x-dev as v1.7",
-        "mrtnzlml/testbench": "^2.3"
+        "mrtnzlml/testbench": "^2.3",
+        "dg/ftp-deployment": "^2.5"
     },
     "autoload": {
         "psr-4": {
