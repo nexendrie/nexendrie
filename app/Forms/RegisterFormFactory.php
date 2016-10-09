@@ -6,6 +6,7 @@ namespace Nexendrie\Forms;
 use Nette\Application\UI\Form,
     Nexendrie\Model\UserManager,
     Nexendrie\Model\RegistrationException;
+use Nexendrie\Model\SettingsRepository;
 
 /**
  * Factory for form Register
@@ -15,9 +16,12 @@ use Nette\Application\UI\Form,
 class RegisterFormFactory {
   /** @var UserManager */
   protected $model;
+  /** @var SettingsRepository */
+  protected $sr;
   
-  function __construct(UserManager $model) {
+  function __construct(UserManager $model, SettingsRepository $sr) {
     $this->model = $model;
+    $this->sr = $sr;
   }
   
   /**
@@ -34,6 +38,12 @@ class RegisterFormFactory {
     $form->addText("email", "E-mail:")
       ->addRule(Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
+    if($this->sr->settings["registration"]["token"]) {
+      $form->addText("token", "Token:")
+        ->setRequired()
+        ->addRule(Form::EQUAL, "Špatné heslo.", $this->sr->settings["registration"]["token"])
+        ->setOption("description", "Registrace na tomto serveru vyžaduje heslo.");
+    }
     $form->addSubmit("register", "Zaregistrovat se");
     $form->onSuccess[] = [$this, "submitted"];
     return $form;
@@ -47,7 +57,7 @@ class RegisterFormFactory {
   function submitted(Form $form, array $values) {
     try {
       $this->model->register($values);
-    } catch (RegistrationException $e) {
+    } catch(RegistrationException $e) {
       if($e->getCode() === UserManager::REG_DUPLICATE_USERNAME) {
         $form->addError("Zvolené uživatelské jméno je už zabráno.");
       }

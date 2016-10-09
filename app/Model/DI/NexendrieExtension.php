@@ -40,7 +40,10 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       "buildCastle" => 1500,
       "foundGuild" => 1000,
       "foundOrder" => 1200
-    ]
+    ],
+    "registration" => [
+      "token" => ""
+    ],
   ];
   
   /**
