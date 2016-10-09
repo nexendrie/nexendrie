@@ -10,7 +10,7 @@ INSERT INTO `users` (`id`, `username`, `publicname`, `password`, `email`, `joine
   (3,	'jakub',	'Jakub',	'$2y$10$ejwYft0LbhlwhLz5vA07FOs2nNZGBb4IVpxkw7i5owXgjQ1JM6iF2',	'konecnyjakub01@gmail.com',	1441219049,	1475089811,	NULL,	1447528739,	8,	1,	'blue-sky',	'male',	0,	60,	60,	20312,	2,	NULL,	NULL,	NULL,	0,	1,	4,	NULL,	NULL),
   (4,	'svetlana',	'Světlana',	'$2y$10$0a7MCizD1w6BECZvV7p4XOyA2aGyepJQPlpzJrFwvvURcSRzGpEL.',	'svetlana@localhost.k',	1455360151,	1475089812,	1455466667,	1455466659,	5,	0,	'dark-sky',	'female',	0,	60,	60,	14312,	3,	NULL,	NULL,	NULL,	1,	NULL,	NULL,	1,	3),
   (5,	'premysl',	'premysl',	'$2y$10$25fvAltDnlF.TOPTj8JlK.VC2BhFmijGJNjV5HxIz1LQ9Pj0L.LQK',	'premysl@localhost.k',	1468050937,	1468050937,	NULL,	NULL,	9,	0,	'blue-sky',	'male',	0,	60,	60,	30,	2,	NULL,	NULL,	NULL,	0,	NULL,	NULL,	NULL,	NULL),
-  (6,	'kazimira',	'kazimira',	'$2y$10$Om40QnY7ELgtedNugwwziOwVjn6mPDhFBQlXr1PR/h.w4Df0xBDZi',	'kazimira@localhost.k',	1468051028,	1475089808,	NULL,	NULL,	12,	0,	'blue-sky',	'male',	0,	60,	60,	30,	2,	NULL,	NULL,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
+  (6,	'kazimira',	'kazimira',	'$2y$10$Om40QnY7ELgtedNugwwziOwVjn6mPDhFBQlXr1PR/h.w4Df0xBDZi',	'kazimira@localhost.k',	1468051028,	1475089808,	NULL,	NULL,	12,	0,	'blue-sky',	'female',	0,	60,	60,	30,	2,	NULL,	NULL,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
 
 INSERT INTO `castles` (`id`, `name`, `description`, `founded`, `owner`, `level`, `hp`) VALUES
   (2,	'Falver',	'.',	1447420077,	1,	5,	'100'),
