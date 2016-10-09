@@ -4,8 +4,6 @@ RewriteEngine on
 RewriteBase /
 #RewriteCond %{HTTPS} off
 #RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L]
-RewriteCond %{HTTP_HOST} ^www.(.+)$ [NC]
-RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?q=$1 [QSA,L]
