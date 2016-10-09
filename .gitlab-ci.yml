@@ -67,10 +67,10 @@ analyze:cs:
   script:
   - ./vendor/bin/deployment deployment.ini
 
-test:php7:
+test:default:
   <<: *test_job
 
-test:php7:cc:
+test:cc:
   image: shipito/php:7.0-xdebug
   <<: *test_job
   script:
@@ -85,7 +85,7 @@ test:php71:
   <<: *test_job
   allow_failure: true
 
-deploy to alpha:
+deploy:alpha:
   <<: *deploy_job
   environment: alpha
   only:
