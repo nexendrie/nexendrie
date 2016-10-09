@@ -72,6 +72,18 @@ class UserManagerTest extends \Tester\TestCase {
     $this->model->refreshIdentity();
   }
   
+  function testRegister() {
+    /** @var \Nexendrie\Orm\Model $orm */
+    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    $user = $orm->users->getById(1);
+    Assert::exception(function() use($user) {
+      $this->model->register(["username" => $user->username]);
+    }, RegistrationException::class, NULL, UserManager::REG_DUPLICATE_USERNAME);
+    Assert::exception(function() use($user) {
+      $this->model->register(["email" => $user->email, "username" => "abc"]);
+    }, RegistrationException::class, NULL, UserManager::REG_DUPLICATE_EMAIL);
+  }
+  
   function testGetSettings() {
     Assert::exception(function() {
       $this->model->getSettings();
