@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1c32df3585ed4ff0139ad039d2ad535b",
-    "content-hash": "624b8b789a7b41b208c29d0a34d1eafd",
+    "hash": "6fd61024a76027aa8bdab04feb667bf7",
+    "content-hash": "91595fc872b352af4a75a7e9fa6e6f07",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -90,16 +90,16 @@
         },
         {
             "name": "konecnyjakub/book-component",
-            "version": "dev-master",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/book-component.git",
-                "reference": "83926e532f1eeab898fd75484281dec53fab09d1"
+                "reference": "eb7f6c6a6d841f291acc24134007c86aeee083ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/book-component/zipball/83926e532f1eeab898fd75484281dec53fab09d1",
-                "reference": "83926e532f1eeab898fd75484281dec53fab09d1",
+                "url": "https://api.github.com/repos/konecnyjakub/book-component/zipball/eb7f6c6a6d841f291acc24134007c86aeee083ac",
+                "reference": "eb7f6c6a6d841f291acc24134007c86aeee083ac",
                 "shasum": ""
             },
             "require": {
@@ -145,7 +145,7 @@
                 "component",
                 "nette"
             ],
-            "time": "2016-09-22 20:03:57"
+            "time": "2016-10-10 15:32:39"
         },
         {
             "name": "konecnyjakub/event-calendar",
@@ -1972,7 +1972,6 @@
         "kdyby/autowired": 20,
         "stekycz/cronner": 20,
         "konecnyjakub/event-calendar": 20,
-        "konecnyjakub/book-component": 20,
         "nette/tester": 20
     },
     "prefer-stable": false,
