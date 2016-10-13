@@ -277,7 +277,7 @@ class Events implements \EventCalendar\IEventModel {
     foreach($events as $event) {
       if($event->repairingDiscount) $discount += $event->repairingDiscount;
     }
-    return (int) $basePrice / 100 * $discount;
+    return (int) ($basePrice / 100) * $discount;
   }
 }
 ?>
