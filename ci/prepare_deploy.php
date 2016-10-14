@@ -15,6 +15,10 @@ switch(getenv("DEPLOY_ENVIRONMENT")) {
     $user = getenv("FTP_ALPHA_USER");
     $password = getenv("FTP_ALPHA_PASSWORD");
     break;
+  case "beta":
+    $user = getenv("FTP_BETA_USER");
+    $password = getenv("FTP_BETA_PASSWORD");
+    break;
 }
 $user = getenv("FTP_ALPHA_USER");
 $password = getenv("FTP_ALPHA_PASSWORD");

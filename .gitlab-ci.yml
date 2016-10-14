@@ -92,3 +92,11 @@ deploy:alpha:
     - master@konecnyjakub/nexendrie
   variables:
     DEPLOY_ENVIRONMENT: alpha
+
+deploy:beta:
+  <<: *deploy_job
+  environment: beta
+  only:
+    - tags
+  variables:
+    DEPLOY_ENVIRONMENT: beta
