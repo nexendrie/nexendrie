@@ -18,7 +18,6 @@
         "nette/caching": "~2.4",
         "nette/di": "~2.4",
         "nette/forms": "~2.4",
-        "nette/robot-loader": "~2.4",
         "nette/security": "~2.4",
         "nette/utils": "~2.4",
         "tracy/tracy": "~2.4",

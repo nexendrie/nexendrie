@@ -1,6 +1,7 @@
 application:
     mapping:
         *: Nexendrie\Presenters\*Module\*Presenter
+    scanDirs: false
 tracy:
     strictMode: TRUE
     email: jakub.konecny2@centrum.cz

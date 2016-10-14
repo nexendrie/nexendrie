@@ -3,6 +3,7 @@ includes:
 application:
     mapping:
         *: Nexendrie\Presenters\*Module\*Presenter
+    scanDirs: false
 tracy:
     strictMode: TRUE
 session:
