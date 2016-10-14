@@ -90,3 +90,5 @@ deploy:alpha:
   environment: alpha
   only:
     - master@konecnyjakub/nexendrie
+  variables:
+    DEPLOY_ENVIRONMENT: alpha
