@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6fd61024a76027aa8bdab04feb667bf7",
-    "content-hash": "91595fc872b352af4a75a7e9fa6e6f07",
+    "hash": "6c813ee1e0f4151aef331a1f8c23c8df",
+    "content-hash": "e19e75ef6bb7fda0312762bba54ada80",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1754,16 +1754,16 @@
         },
         {
             "name": "mrtnzlml/testbench",
-            "version": "v2.3.1",
+            "version": "v2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mrtnzlml/testbench.git",
-                "reference": "5134803c18096ebf92be7147a6942e8d0a48ae88"
+                "reference": "f62bcca0130a612421ba82486eeca0da761a0aaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mrtnzlml/testbench/zipball/5134803c18096ebf92be7147a6942e8d0a48ae88",
-                "reference": "5134803c18096ebf92be7147a6942e8d0a48ae88",
+                "url": "https://api.github.com/repos/mrtnzlml/testbench/zipball/f62bcca0130a612421ba82486eeca0da761a0aaf",
+                "reference": "f62bcca0130a612421ba82486eeca0da761a0aaf",
                 "shasum": ""
             },
             "require": {
@@ -1771,6 +1771,7 @@
                 "nette/application": "^2.4",
                 "nette/bootstrap": "^2.4",
                 "nette/di": "^2.4",
+                "nette/safe-stream": "^2.3",
                 "nette/security": "^2.4",
                 "nette/tester": "2.0.x-dev as v1.7",
                 "nette/utils": "^2.4",
@@ -1822,7 +1823,7 @@
                 }
             ],
             "description": "Simple integration testing tool for Nette Framework applications",
-            "time": "2016-07-24 11:26:34"
+            "time": "2016-10-12 15:56:17"
         },
         {
             "name": "nette/tester",
