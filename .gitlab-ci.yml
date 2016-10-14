@@ -83,7 +83,6 @@ test:cc:
 test:php71:
   image: shipito/php:7.1
   <<: *test_job
-  allow_failure: true
 
 deploy:alpha:
   <<: *deploy_job
