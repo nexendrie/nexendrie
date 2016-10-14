@@ -19,9 +19,11 @@ switch(getenv("DEPLOY_ENVIRONMENT")) {
     $user = getenv("FTP_BETA_USER");
     $password = getenv("FTP_BETA_PASSWORD");
     break;
+  default:
+    echo "Error: invalid environment";
+    exit(1);
+    break;
 }
-$user = getenv("FTP_ALPHA_USER");
-$password = getenv("FTP_ALPHA_PASSWORD");
 $config .= "user=$user
 password=$password
 ";
