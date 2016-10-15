@@ -38,7 +38,7 @@ class Rss {
    */
   function newsFeed(): RssResponse {
     $items = $this->articleModel->listOfNews();
-    $channel = simplexml_load_file(APP_DIR . "/FrontModule/templates/newsFeed.xml");
+    $channel = simplexml_load_file(APP_DIR . "/Presenters/FrontModule/templates/newsFeed.xml");
     unset($channel->channel->link);
     unset($channel->channel->lastBuildDate);
     $channel->channel->addChild("link", $this->linkGenerator->link("Front:Homepage:default"));
@@ -68,7 +68,7 @@ class Rss {
       throw $e;
     }
     $comments = $this->articleModel->viewComments($newsId);
-    $channel = simplexml_load_file(APP_DIR . "/FrontModule/templates/commentsFeed.xml");
+    $channel = simplexml_load_file(APP_DIR . "/Presenters/FrontModule/templates/commentsFeed.xml");
     $old_title = (string) $channel->channel->title;
     unset($channel->channel->link);
     unset($channel->channel->lastBuildDate);
