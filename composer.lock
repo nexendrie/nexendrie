@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dedb143af8f5e303d4d658bd8cf6cbf6",
-    "content-hash": "8638691e9e72b224c9e2467f6ef7dcca",
+    "hash": "89e8bdca1d0a9f7289ceb5264473f548",
+    "content-hash": "0281a93d8ed7f8a10998dab62d456057",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -145,6 +145,7 @@
                 "component",
                 "nette"
             ],
+            "abandoned": "nexendrie/book-component",
             "time": "2016-10-10 15:32:39"
         },
         {
