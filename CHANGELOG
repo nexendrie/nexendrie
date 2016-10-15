@@ -3,6 +3,8 @@ Version 1.0.0-beta2+dev
 - added some unit tests
 - it is now possible to restrict registration by password
 - fixed some invalid types of arguments
+- removed dependency on nette/robot-loader
+- moved app/log and app/temp to root
 
 Version 1.0.0-beta2
 - raised minimal version of PHP to 7.0
