@@ -6,7 +6,21 @@ const APP_DIR = WWW_DIR . "/app";
 
 require __DIR__ . "/../vendor/autoload.php";
 
+/**
+ * TUserControl
+ * Simplifies working with users in a test suit
+ * You have to also use trait \Testbench\TCompiledContainer
+ *
+ * @author Jakub Konečný
+ */
 Trait TUserControl {
+  /**
+   * Login a user
+   *
+   * @param string $username
+   * @param string $password
+   * @return void
+   */
   function login($username = "", $password = "") {
     /** @var \Nette\Security\User $user */
     $user = $this->getService(\Nette\Security\User::class);
@@ -15,6 +29,11 @@ Trait TUserControl {
     $user->login($username, $password);
   }
   
+  /**
+   * Logout the user
+   *
+   * @return void
+   */
   function logout() {
     /** @var \Nette\Security\User $user */
     $user = $this->getService(\Nette\Security\User::class);
