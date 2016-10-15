@@ -85,7 +85,7 @@ deploy:alpha:
   <<: *deploy_job
   environment: alpha
   only:
-    - master@konecnyjakub/nexendrie
+    - master@nexendrie/nexendrie
   variables:
     DEPLOY_ENVIRONMENT: alpha
 
