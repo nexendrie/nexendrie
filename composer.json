@@ -27,7 +27,7 @@
         "stekycz/cronner": "dev-master",
         "konecnyjakub/event-calendar": "dev-master",
         "nella/forms-datetime": "^2.4",
-        "konecnyjakub/book-component": "^1.0"
+        "nexendrie/book-component": "^1.0.2"
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^0.9.2",

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use \JK\BookComponent as Book;
+use \Nexendrie\BookComponent as Book;
 
 /**
  * HelpControl
