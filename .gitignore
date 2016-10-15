@@ -1,8 +1,10 @@
 Thumbs.db
-temp
+/temp
+!/temp/.htaccess
 /nbproject
 /.idea
-/app/log
+/log
+!/log/.htaccess
 /app/config/local.neon
 /doc
 /vendor

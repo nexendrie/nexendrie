@@ -1,10 +1,8 @@
 #!/bin/bash
 cp app/config/local.sample.neon app/config/local.neon
 
-mkdir app/temp
-mkdir app/temp/cache
-mkdir app/temp/sessions
-mkdir app/log
+mkdir temp/cache
+mkdir temp/sessions
 
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar composer

@@ -10,9 +10,7 @@ build:
   stage: build
 
   script:
-  - mkdir app/temp
-  - mkdir app/temp/cache
-  - mkdir app/log
+  - mkdir temp/cache
   - composer install --prefer-dist -a
 
   cache:
@@ -22,14 +20,13 @@ build:
   artifacts:
     paths:
     - vendor
-    - app/temp
-    - app/log
+    - temp/cache
     expire_in: 10 mins
 
 analyze:lint:
   stage: analyze
   script:
-  - ./vendor/bin/parallel-lint . -e php,phpt --exclude vendor --exclude app/temp --exclude tests/_temp
+  - ./vendor/bin/parallel-lint . -e php,phpt --exclude vendor --exclude temp --exclude tests/_temp
 
 analyze:cs:
   stage: analyze
