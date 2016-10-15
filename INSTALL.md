@@ -55,4 +55,4 @@ If you have NGINX, you (currenty) have to do all server configuration by yoursel
 
 Additional resources
 --------------------
-When testing, you will also need to download definition of our coding standard. It can be found [here] (https://gitlab.com/nexendrie/resources/blob/master/cs-ruleset.xml).
+When testing, you will also need to download definition of our coding standard. It can be found [here] (https://gitlab.com/nexendrie/resources/raw/master/cs-ruleset.xml).
