@@ -32,7 +32,7 @@ analyze:cs:
   stage: analyze
 
   before_script:
-  - curl https://gitlab.com/nexendrie/resources/blob/master/cs-ruleset.xml > cs-ruleset.xml
+  - curl https://gitlab.com/nexendrie/resources/raw/master/cs-ruleset.xml > cs-ruleset.xml
 
   script:
   - ./vendor/bin/phpcs --extensions=php,phpt . --standard=cs-ruleset.xml --colors
