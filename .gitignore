@@ -11,3 +11,4 @@ temp/
 /tests/_temp/
 output/
 *.actual
+cs-ruleset.xml

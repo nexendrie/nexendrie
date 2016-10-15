@@ -5,5 +5,4 @@
 apigen.neon     export-ignore
 /ci		export-ignore
 ci.neon         export-ignore
-ruleset.xml	export-ignore
 deployment.ini	export-ignore
