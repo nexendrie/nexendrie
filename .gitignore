@@ -12,3 +12,4 @@ temp/
 output/
 *.actual
 cs-ruleset.xml
+coverage.*
