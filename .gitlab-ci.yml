@@ -75,7 +75,7 @@ test:cc:
   image: shipito/php:7.0-xdebug
   <<: *test_job
   script:
-  - ./vendor/bin/run-tests -p php tests --coverage ./coverage.html --coverage-src ./app/Model
+  - ./vendor/bin/run-tests -p php tests --coverage ./coverage.html --coverage-src ./app
   artifacts:
     name: "Code coverage"
     paths:
