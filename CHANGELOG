@@ -1,3 +1,6 @@
+Version 1.0.0-beta3+dev
+- replaced BETA in pages' title by configurable version suffix
+
 Version 1.0.0-beta3
 - forbid prosing marriage to the queen
 - added some unit tests
