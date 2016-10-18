@@ -138,6 +138,11 @@ class SystemSettingsFormFactory {
     $registration = $form->addContainer("registration");
     $registration->addText("token", "Heslo:")
       ->setOption("description", "Ponech prázdné, pokud má být registrace přístupná všem.");
+    $form->addGroup("Stránky");
+    $site = $form->addContainer("site");
+    $site->addText("versionSuffix", "Přípona verze:")
+      ->addRule(Form::MAX_LENGTH, NULL, 5)
+      ->setRequired(false);
     $form->setCurrentGroup(NULL);
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());

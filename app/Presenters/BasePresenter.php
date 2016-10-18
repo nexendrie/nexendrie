@@ -12,6 +12,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   use \Kdyby\Autowired\AutowireProperties;
   use \Kdyby\Autowired\AutowireComponentFactories;
   
+  /** @var \Nexendrie\Model\SettingsRepository @autowire */
+  protected $sr;
+  
   /**
    * Set website's style
    * 
@@ -20,6 +23,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected function startup() {
     parent::startup();
     if($this->user->isLoggedIn()) $this->template->style = $this->user->identity->style;
+  }
+  
+  function beforeRender() {
+    $this->template->versionSuffix = $this->sr->settings["site"]["versionSuffix"];
   }
   
   /**

@@ -44,6 +44,9 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     "registration" => [
       "token" => ""
     ],
+    "site" => [
+      "versionSuffix" => ""
+    ]
   ];
   
   /**
