@@ -1,5 +1,6 @@
 Version 1.0.0-beta3+dev
 - replaced BETA in pages' title by configurable version suffix
+- separated rss channel generating into package nexendrie/rss
 
 Version 1.0.0-beta3
 - forbid prosing marriage to the queen

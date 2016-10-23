@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Responses\RssResponse;
+use Nexendrie\Rss\RssResponse,
+    Nexendrie\Rss\Generator,
+    Nexendrie\Rss\RssChannelItem;
 
 /**
  * Rss channel generator
@@ -37,21 +39,22 @@ class Rss {
    * @return RssResponse
    */
   function newsFeed(): RssResponse {
+    $generator = new Generator;
+    $generator->title = "Nexendrie - Novinky";
+    $generator->description = "Novinky v Nexendrii";
+    $generator->link = $this->linkGenerator->link("Front:Homepage:default");
+    $generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
     $items = $this->articleModel->listOfNews();
-    $channel = simplexml_load_file(APP_DIR . "/Presenters/FrontModule/templates/newsFeed.xml");
-    unset($channel->channel->link);
-    unset($channel->channel->lastBuildDate);
-    $channel->channel->addChild("link", $this->linkGenerator->link("Front:Homepage:default"));
-    $channel->channel->addChild("lastBuildDate", $this->localeModel->formatDateTime(time()));
-    foreach($items as $item) {
-      $i = $channel->channel->addChild("item");
-      $i->addChild("title", $item->title);
-      $link = $this->linkGenerator->link("Front:Article:view", ["id" => $item->id]);
-      $i->addChild("link", $link);
-      $i->addChild("pubDate", (string) $item->added);
-      $i->addChild("description", substr($item->text, 0, 150));
-    }
-    return new RssResponse($channel);
+    $generator->dataSource = function() use($items) {
+      $return = [];
+      /** @var \Nexendrie\Orm\Article $row */
+      foreach($items as $row) {
+        $item = new RssChannelItem($row->title, $row->text, $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]), $row->addedAt);
+        $return[] = $item;
+      }
+      return $return;
+    };
+    return new RssResponse($generator->generate());
   }
   
   /**
@@ -63,29 +66,28 @@ class Rss {
    */
   function commentsFeed(int $newsId): RssResponse {
     try {
-      $news = $this->articleModel->view($newsId);
+      $article = $this->articleModel->view($newsId);
     } catch(ArticleNotFoundException $e) {
       throw $e;
     }
+    $generator = new Generator;
+    $generator->title = "Nexendrie - Komentáře k " . $article->title;
+    $generator->description = "Komentáře k článku";
+    $generator->link = $this->linkGenerator->link("Front:Homepage:default");
+    $generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
     $comments = $this->articleModel->viewComments($newsId);
-    $channel = simplexml_load_file(APP_DIR . "/Presenters/FrontModule/templates/commentsFeed.xml");
-    $old_title = (string) $channel->channel->title;
-    unset($channel->channel->link);
-    unset($channel->channel->lastBuildDate);
-    unset($channel->channel->title);
-    $channel->channel->addChild("title", $old_title . $news->title);
-    $channel->channel->addChild("link", $this->linkGenerator->link("Front:Article:view", ["id" => $newsId]));
-    $channel->channel->addChild("lastBuildDate", $this->localeModel->formatDateTime(time()));
-    foreach($comments as $comment) {
-      $c = $channel->channel->addChild("item");
-      $c->addChild("title", $comment->title);
-      $link = $this->linkGenerator->link("Front:Article:view", ["id" => $newsId]);
-      $link .= "#comment-$comment->id";
-      $c->addChild("link", $link);
-      $c->addChild("pubDate", (string) $this->localeModel->formatDateTime($comment->added));
-      $c->addChild("description", substr($comment->text, 0, 150));
-    }
-    return new RssResponse($channel);
+    $generator->dataSource = function() use($comments, $newsId) {
+      $return = [];
+      /** @var \Nexendrie\Orm\Comment $row */
+      foreach($comments as $row) {
+        $link = $this->linkGenerator->link("Front:Article:view", ["id" => $newsId]);
+        $link .= "#comment-$row->id";
+        $item = new RssChannelItem($row->title, $row->text, $link, $row->addedAt);
+        $return[] = $item;
+      }
+      return $return;
+    };
+    return new RssResponse($generator->generate());
   }
 }
 ?>
