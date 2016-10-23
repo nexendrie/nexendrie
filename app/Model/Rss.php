@@ -5,7 +5,7 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Rss\RssResponse,
     Nexendrie\Rss\Generator,
-    Nexendrie\Rss\RssChannelItem;
+    Nexendrie\Rss\RssChannelItem as Item;
 
 /**
  * Rss channel generator
@@ -49,8 +49,8 @@ class Rss {
       $return = [];
       /** @var \Nexendrie\Orm\Article $row */
       foreach($items as $row) {
-        $item = new RssChannelItem($row->title, $row->text, $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]), $row->addedAt);
-        $return[] = $item;
+        $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
+        $return[] = new Item($row->title, $row->text, $link, $row->addedAt);
       }
       return $return;
     };
@@ -60,13 +60,13 @@ class Rss {
   /**
    * Generate feed for comments
    * 
-   * @param int $newsId
+   * @param int $id
    * @return RssResponse
    * @throws ArticleNotFoundException
    */
-  function commentsFeed(int $newsId): RssResponse {
+  function commentsFeed(int $id): RssResponse {
     try {
-      $article = $this->articleModel->view($newsId);
+      $article = $this->articleModel->view($id);
     } catch(ArticleNotFoundException $e) {
       throw $e;
     }
@@ -75,15 +75,14 @@ class Rss {
     $generator->description = "Komentáře k článku";
     $generator->link = $this->linkGenerator->link("Front:Homepage:default");
     $generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
-    $comments = $this->articleModel->viewComments($newsId);
-    $generator->dataSource = function() use($comments, $newsId) {
+    $comments = $this->articleModel->viewComments($id);
+    $generator->dataSource = function() use($comments, $id) {
       $return = [];
       /** @var \Nexendrie\Orm\Comment $row */
       foreach($comments as $row) {
-        $link = $this->linkGenerator->link("Front:Article:view", ["id" => $newsId]);
+        $link = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
         $link .= "#comment-$row->id";
-        $item = new RssChannelItem($row->title, $row->text, $link, $row->addedAt);
-        $return[] = $item;
+        $return[] = new Item($row->title, $row->text, $link, $row->addedAt);
       }
       return $return;
     };
