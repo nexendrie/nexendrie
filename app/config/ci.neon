@@ -27,3 +27,5 @@ dbal:
     dbname: nexendrie
     user: root
     password: root
+services:
+    rssGenerator: Nexendrie\Rss\Generator

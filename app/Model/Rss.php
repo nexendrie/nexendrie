@@ -19,6 +19,8 @@ class Rss {
   protected $linkGenerator;
   /** @var Locale */
   protected $localeModel;
+  /** @var Generator */
+  protected $generator;
   
   use \Nette\SmartObject;
   
@@ -26,11 +28,13 @@ class Rss {
    * @param Article $articleModel
    * @param \Nette\Application\LinkGenerator $linkGenerator
    * @param Locale $localeModel
+   * @param Generator $this->generator
    */
-  function __construct(Article $articleModel, \Nette\Application\LinkGenerator $linkGenerator, Locale $localeModel) {
+  function __construct(Article $articleModel, \Nette\Application\LinkGenerator $linkGenerator, Locale $localeModel, Generator $generator) {
     $this->articleModel = $articleModel;
     $this->linkGenerator = $linkGenerator;
     $this->localeModel = $localeModel;
+    $this->generator = $generator;
   }
   
   /**
@@ -39,13 +43,12 @@ class Rss {
    * @return RssResponse
    */
   function newsFeed(): RssResponse {
-    $generator = new Generator;
-    $generator->title = "Nexendrie - Novinky";
-    $generator->description = "Novinky v Nexendrii";
-    $generator->link = $this->linkGenerator->link("Front:Homepage:default");
-    $generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
+    $this->generator->title = "Nexendrie - Novinky";
+    $this->generator->description = "Novinky v Nexendrii";
+    $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
+    $this->generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
     $items = $this->articleModel->listOfNews();
-    $generator->dataSource = function() use($items) {
+    $this->generator->dataSource = function() use($items) {
       $return = [];
       /** @var \Nexendrie\Orm\Article $row */
       foreach($items as $row) {
@@ -54,7 +57,7 @@ class Rss {
       }
       return $return;
     };
-    return new RssResponse($generator->generate());
+    return new RssResponse($this->generator->generate());
   }
   
   /**
@@ -70,13 +73,12 @@ class Rss {
     } catch(ArticleNotFoundException $e) {
       throw $e;
     }
-    $generator = new Generator;
-    $generator->title = "Nexendrie - Komentáře k " . $article->title;
-    $generator->description = "Komentáře k článku";
-    $generator->link = $this->linkGenerator->link("Front:Homepage:default");
-    $generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
+    $this->generator->title = "Nexendrie - Komentáře k " . $article->title;
+    $this->generator->description = "Komentáře k článku";
+    $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
+    $this->generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
     $comments = $this->articleModel->viewComments($id);
-    $generator->dataSource = function() use($comments, $id) {
+    $this->generator->dataSource = function() use($comments, $id) {
       $return = [];
       /** @var \Nexendrie\Orm\Comment $row */
       foreach($comments as $row) {
@@ -86,7 +88,7 @@ class Rss {
       }
       return $return;
     };
-    return new RssResponse($generator->generate());
+    return new RssResponse($this->generator->generate());
   }
 }
 ?>

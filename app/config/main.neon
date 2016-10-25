@@ -20,3 +20,5 @@ orm:
 cronner:
     bar: false
     timestampStorage: stekycz\Cronner\TimestampStorage\FileStorage(%appDir%/temp/cronner)
+services:
+    rssGenerator: Nexendrie\Rss\Generator
