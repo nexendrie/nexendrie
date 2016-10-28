@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d1cbcc39d36ae4ff9c2c1d99f3400a6c",
-    "content-hash": "fcebf0f206dbace9b301ef47a984faa9",
+    "hash": "83f96f2a0463346346c626ec8f567080",
+    "content-hash": "8614cf37e883bc84a9508c27570128c4",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -94,12 +94,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/EventCalendar.git",
-                "reference": "cc132590898e6085ae3030a763eeb542b4f4981c"
+                "reference": "bf713202106c9ce5055f65658c117dd3ff09964a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/cc132590898e6085ae3030a763eeb542b4f4981c",
-                "reference": "cc132590898e6085ae3030a763eeb542b4f4981c",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/bf713202106c9ce5055f65658c117dd3ff09964a",
+                "reference": "bf713202106c9ce5055f65658c117dd3ff09964a",
                 "shasum": ""
             },
             "require": {
@@ -144,7 +144,7 @@
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
             "homepage": "http://www.nimral.cz/calendar",
-            "time": "2016-10-22 19:24:00"
+            "time": "2016-10-24 16:39:29"
         },
         {
             "name": "latte/latte",
@@ -1165,22 +1165,23 @@
         },
         {
             "name": "nexendrie/book-component",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/book-component.git",
-                "reference": "05a384016d5349c1c185d7971955bf6b5f0b5afa"
+                "reference": "3b711d06a6581b893f872a3fbd4518bd632b5e60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/book-component/zipball/05a384016d5349c1c185d7971955bf6b5f0b5afa",
-                "reference": "05a384016d5349c1c185d7971955bf6b5f0b5afa",
+                "url": "https://api.github.com/repos/nexendrie/book-component/zipball/3b711d06a6581b893f872a3fbd4518bd632b5e60",
+                "reference": "3b711d06a6581b893f872a3fbd4518bd632b5e60",
                 "shasum": ""
             },
             "require": {
-                "latte/latte": "~2.3",
-                "nette/application": "~2.3",
-                "nette/utils": "~2.3",
+                "latte/latte": "^2.4",
+                "nette/application": "^2.4",
+                "nette/utils": "^2.4",
+                "nexendrie/translation": "1.0.x@dev",
                 "php": ">=5.6.0"
             },
             "replace": {
@@ -1223,7 +1224,7 @@
                 "component",
                 "nette"
             ],
-            "time": "2016-10-15 20:23:41"
+            "time": "2016-10-24 17:57:05"
         },
         {
             "name": "nexendrie/rss",
@@ -1231,17 +1232,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/rss.git",
-                "reference": "fbd4fdb7624b280722421854fa3c7b6328977f3b"
+                "reference": "db625ed1da18241be703b32b6bbe2b586bf9645b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/rss/zipball/fbd4fdb7624b280722421854fa3c7b6328977f3b",
-                "reference": "fbd4fdb7624b280722421854fa3c7b6328977f3b",
+                "url": "https://api.github.com/repos/nexendrie/rss/zipball/db625ed1da18241be703b32b6bbe2b586bf9645b",
+                "reference": "db625ed1da18241be703b32b6bbe2b586bf9645b",
                 "shasum": ""
             },
             "require": {
                 "ext-simplexml": "*",
-                "nette/utils": "~2.3",
+                "nette/utils": "^2.4",
                 "php": ">=5.6.0"
             },
             "require-dev": {
@@ -1282,7 +1283,69 @@
                 "generator",
                 "rss"
             ],
-            "time": "2016-10-23 08:42:49"
+            "time": "2016-10-26 19:18:26"
+        },
+        {
+            "name": "nexendrie/translation",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nexendrie/translation.git",
+                "reference": "a0f65414ee4b31cc0d80c727c94f1ddef2ebf3a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nexendrie/translation/zipball/a0f65414ee4b31cc0d80c727c94f1ddef2ebf3a5",
+                "reference": "a0f65414ee4b31cc0d80c727c94f1ddef2ebf3a5",
+                "shasum": ""
+            },
+            "require": {
+                "nette/neon": "^2.4",
+                "nette/utils": "^2.4",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-console-highlighter": "^0.3.2",
+                "jakub-onderka/php-parallel-lint": "^0.9.2",
+                "mrtnzlml/testbench": "^2.4",
+                "nette/di": "^2.4",
+                "nette/tester": "2.0.x-dev as v1.7",
+                "squizlabs/php_codesniffer": "^2.6"
+            },
+            "suggest": {
+                "nette/di": "To use TranslationExtension"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nexendrie\\Translation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Konečný",
+                    "email": "jakub.konecny2@centrum.cz",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easy translating of Nette applications with neon",
+            "keywords": [
+                "internationalization",
+                "neon",
+                "nette",
+                "translating",
+                "translation"
+            ],
+            "time": "2016-10-28 11:12:45"
         },
         {
             "name": "nextras/dbal",
@@ -1981,6 +2044,7 @@
         "stekycz/cronner": 20,
         "konecnyjakub/event-calendar": 20,
         "nexendrie/rss": 20,
+        "nexendrie/translation": 20,
         "nette/tester": 20
     },
     "prefer-stable": false,
