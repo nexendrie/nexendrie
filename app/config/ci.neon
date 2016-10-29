@@ -14,6 +14,7 @@ extensions:
     dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
     orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
     cronner: stekycz\Cronner\DI\CronnerExtension
+    rss: Nexendrie\Rss\Bridges\NetteDI\RssExtension
 orm:
     model: Nexendrie\Orm\Model
 cronner:
@@ -27,5 +28,3 @@ dbal:
     dbname: nexendrie
     user: root
     password: root
-services:
-    rssGenerator: Nexendrie\Rss\Generator

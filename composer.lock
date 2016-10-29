@@ -1232,12 +1232,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/rss.git",
-                "reference": "db625ed1da18241be703b32b6bbe2b586bf9645b"
+                "reference": "2d781554cad47e20fc68fbb8a6213012a8da7edd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/rss/zipball/db625ed1da18241be703b32b6bbe2b586bf9645b",
-                "reference": "db625ed1da18241be703b32b6bbe2b586bf9645b",
+                "url": "https://api.github.com/repos/nexendrie/rss/zipball/2d781554cad47e20fc68fbb8a6213012a8da7edd",
+                "reference": "2d781554cad47e20fc68fbb8a6213012a8da7edd",
                 "shasum": ""
             },
             "require": {
@@ -1249,6 +1249,7 @@
                 "jakub-onderka/php-console-highlighter": "^0.3.2",
                 "jakub-onderka/php-parallel-lint": "^0.9.2",
                 "mrtnzlml/testbench": "^2.3",
+                "nette/di": "^2.4",
                 "nette/tester": "2.0.x-dev as v1.7",
                 "squizlabs/php_codesniffer": "^2.6",
                 "tracy/tracy": "^2.4"
@@ -1279,11 +1280,12 @@
                 }
             ],
             "description": "Rss channel generator",
+            "homepage": "https://nexendrie.gitlab.io/rss",
             "keywords": [
                 "generator",
                 "rss"
             ],
-            "time": "2016-10-26 19:18:26"
+            "time": "2016-10-29 07:27:19"
         },
         {
             "name": "nexendrie/translation",
@@ -1291,12 +1293,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/translation.git",
-                "reference": "a0f65414ee4b31cc0d80c727c94f1ddef2ebf3a5"
+                "reference": "2b5b3fa4425e21141d2551cdfad897623ecdeb1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/translation/zipball/a0f65414ee4b31cc0d80c727c94f1ddef2ebf3a5",
-                "reference": "a0f65414ee4b31cc0d80c727c94f1ddef2ebf3a5",
+                "url": "https://api.github.com/repos/nexendrie/translation/zipball/2b5b3fa4425e21141d2551cdfad897623ecdeb1c",
+                "reference": "2b5b3fa4425e21141d2551cdfad897623ecdeb1c",
                 "shasum": ""
             },
             "require": {
@@ -1345,7 +1347,7 @@
                 "translating",
                 "translation"
             ],
-            "time": "2016-10-28 11:12:45"
+            "time": "2016-10-28 14:59:39"
         },
         {
             "name": "nextras/dbal",

@@ -57,7 +57,7 @@ class Rss {
       }
       return $return;
     };
-    return new RssResponse($this->generator->generate());
+    return $this->generator->response();
   }
   
   /**
@@ -88,7 +88,7 @@ class Rss {
       }
       return $return;
     };
-    return new RssResponse($this->generator->generate());
+    return $this->generator->response();
   }
 }
 ?>
