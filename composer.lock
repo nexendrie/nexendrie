@@ -4,12 +4,12 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "83f96f2a0463346346c626ec8f567080",
-    "content-hash": "8614cf37e883bc84a9508c27570128c4",
+    "hash": "5c05c898b035ca42e8ba57b82baf9b92",
+    "content-hash": "40b79dea4cb59a295a003b958b1b9d3b",
     "packages": [
         {
             "name": "kdyby/autowired",
-            "version": "dev-master",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kdyby/Autowired.git",
@@ -1232,12 +1232,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/rss.git",
-                "reference": "2d781554cad47e20fc68fbb8a6213012a8da7edd"
+                "reference": "3b3b4b96fd7d0bd58880108c88e12f8e3e740457"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/rss/zipball/2d781554cad47e20fc68fbb8a6213012a8da7edd",
-                "reference": "2d781554cad47e20fc68fbb8a6213012a8da7edd",
+                "url": "https://api.github.com/repos/nexendrie/rss/zipball/3b3b4b96fd7d0bd58880108c88e12f8e3e740457",
+                "reference": "3b3b4b96fd7d0bd58880108c88e12f8e3e740457",
                 "shasum": ""
             },
             "require": {
@@ -1285,7 +1285,7 @@
                 "generator",
                 "rss"
             ],
-            "time": "2016-10-29 07:27:19"
+            "time": "2016-10-29 07:35:49"
         },
         {
             "name": "nexendrie/translation",
@@ -2042,7 +2042,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kdyby/autowired": 20,
         "stekycz/cronner": 20,
         "konecnyjakub/event-calendar": 20,
         "nexendrie/rss": 20,
