@@ -1232,12 +1232,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/rss.git",
-                "reference": "3b3b4b96fd7d0bd58880108c88e12f8e3e740457"
+                "reference": "de7efe236f9bdfd101d9ff1c3b51d24b97afd040"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/rss/zipball/3b3b4b96fd7d0bd58880108c88e12f8e3e740457",
-                "reference": "3b3b4b96fd7d0bd58880108c88e12f8e3e740457",
+                "url": "https://api.github.com/repos/nexendrie/rss/zipball/de7efe236f9bdfd101d9ff1c3b51d24b97afd040",
+                "reference": "de7efe236f9bdfd101d9ff1c3b51d24b97afd040",
                 "shasum": ""
             },
             "require": {
@@ -1285,7 +1285,7 @@
                 "generator",
                 "rss"
             ],
-            "time": "2016-10-29 07:35:49"
+            "time": "2016-10-29 18:21:08"
         },
         {
             "name": "nexendrie/translation",
@@ -1293,15 +1293,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/translation.git",
-                "reference": "2b5b3fa4425e21141d2551cdfad897623ecdeb1c"
+                "reference": "f8bb559563cba5702fa82baad3bdc66f607b0f55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/translation/zipball/2b5b3fa4425e21141d2551cdfad897623ecdeb1c",
-                "reference": "2b5b3fa4425e21141d2551cdfad897623ecdeb1c",
+                "url": "https://api.github.com/repos/nexendrie/translation/zipball/f8bb559563cba5702fa82baad3bdc66f607b0f55",
+                "reference": "f8bb559563cba5702fa82baad3bdc66f607b0f55",
                 "shasum": ""
             },
             "require": {
+                "nette/finder": "^2.4",
                 "nette/neon": "^2.4",
                 "nette/utils": "^2.4",
                 "php": ">=5.6.0"
@@ -1326,7 +1327,10 @@
             "autoload": {
                 "psr-4": {
                     "Nexendrie\\Translation\\": "src/"
-                }
+                },
+                "classmap": [
+                    "src/exceptions.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1341,13 +1345,13 @@
             ],
             "description": "Easy translating of Nette applications with neon",
             "keywords": [
-                "internationalization",
+                "localization",
                 "neon",
                 "nette",
                 "translating",
                 "translation"
             ],
-            "time": "2016-10-28 14:59:39"
+            "time": "2016-10-30 09:14:59"
         },
         {
             "name": "nextras/dbal",
