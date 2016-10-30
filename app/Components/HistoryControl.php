@@ -3,30 +3,32 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use \Nexendrie\BookComponent as Book;
+use Nexendrie\BookComponent\BookControl,
+    Nexendrie\BookComponent\BookPagesStorage,
+    Nexendrie\BookComponent\BookPage;
 
 /**
  * HelpControl
  *
  * @author Jakub Konečný
  */
-class HistoryControl extends Book\BookControl {
+class HistoryControl extends BookControl {
   function __construct() {
     $this->lang = "cs";
     parent::__construct(":Front:History", __DIR__ . "/history");
   }
   
   /**
-   * @return Book\BookPagesStorage
+   * @return BookPagesStorage
    */
-  function getPages(): Book\BookPagesStorage {
-    $storage = new Book\BookPagesStorage;
-    $storage[] = new Book\BookPage("ancient", "Dávné časy");
-    $storage[] = new Book\BookPage("empire", "Čas císařství");
-    $storage[] = new Book\BookPage("principalities", "Éra knížectví");
-    $storage[] = new Book\BookPage("unification", "Sjednocování");
-    $storage[] = new Book\BookPage("greatwar", "Velká válka");
-    $storage[] = new Book\BookPage("afterwar", "Po válce");
+  function getPages(): BookPagesStorage {
+    $storage = new BookPagesStorage;
+    $storage[] = new BookPage("ancient", "Dávné časy");
+    $storage[] = new BookPage("empire", "Čas císařství");
+    $storage[] = new BookPage("principalities", "Éra knížectví");
+    $storage[] = new BookPage("unification", "Sjednocování");
+    $storage[] = new BookPage("greatwar", "Velká válka");
+    $storage[] = new BookPage("afterwar", "Po válce");
     return $storage;
   }
 }
