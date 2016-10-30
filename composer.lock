@@ -1293,12 +1293,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/translation.git",
-                "reference": "f8bb559563cba5702fa82baad3bdc66f607b0f55"
+                "reference": "d1df0a3a794be31be41151b4259528afb0daefdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/translation/zipball/f8bb559563cba5702fa82baad3bdc66f607b0f55",
-                "reference": "f8bb559563cba5702fa82baad3bdc66f607b0f55",
+                "url": "https://api.github.com/repos/nexendrie/translation/zipball/d1df0a3a794be31be41151b4259528afb0daefdd",
+                "reference": "d1df0a3a794be31be41151b4259528afb0daefdd",
                 "shasum": ""
             },
             "require": {
@@ -1313,10 +1313,12 @@
                 "mrtnzlml/testbench": "^2.4",
                 "nette/di": "^2.4",
                 "nette/tester": "2.0.x-dev as v1.7",
-                "squizlabs/php_codesniffer": "^2.6"
+                "squizlabs/php_codesniffer": "^2.6",
+                "tracy/tracy": "^2.4"
             },
             "suggest": {
-                "nette/di": "To use TranslationExtension"
+                "nette/di": "To use TranslationExtension",
+                "tracy/tracy": "For debugger panel"
             },
             "type": "library",
             "extra": {
@@ -1351,7 +1353,7 @@
                 "translating",
                 "translation"
             ],
-            "time": "2016-10-30 09:14:59"
+            "time": "2016-10-30 18:18:31"
         },
         {
             "name": "nextras/dbal",

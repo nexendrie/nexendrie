@@ -30,5 +30,5 @@ dbal:
     user: root
     password: root
 translation:
-    folder: %wwwDir%/vendor/nexendrie/book-component/src/lang
+    folders: %wwwDir%/vendor/nexendrie/book-component/src/lang
     default: cs

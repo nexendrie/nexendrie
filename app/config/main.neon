@@ -23,5 +23,5 @@ cronner:
     bar: false
     timestampStorage: stekycz\Cronner\TimestampStorage\FileStorage(%appDir%/temp/cronner)
 translation:
-    folder: %wwwDir%/vendor/nexendrie/book-component/src/lang
+    folders: %wwwDir%/vendor/nexendrie/book-component/src/lang
     default: cs
