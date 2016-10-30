@@ -13,7 +13,8 @@ use Nexendrie\BookComponent\BookControl,
     Nexendrie\Orm\Castle as CastleEntity,
     Nexendrie\Orm\House as HouseEntity,
     Nexendrie\Orm\Guild as GuildEntity,
-    Nexendrie\Orm\Order as OrderEntity;
+    Nexendrie\Orm\Order as OrderEntity,
+    Nexendrie\Translation\Translator;
 
 /**
  * HelpControl
@@ -28,11 +29,11 @@ class HelpControl extends BookControl {
   /** @var Locale */
   protected $localeModel;
   
-  function __construct(Group $groupModel, ORM $orm, Locale $localeModel) {
+  function __construct(Group $groupModel, ORM $orm, Locale $localeModel, Translator $translator) {
     $this->groupModel = $groupModel;
     $this->orm = $orm;
     $this->localeModel = $localeModel;
-    $this->lang = "cs";
+    $this->translator = $translator;
     parent::__construct(":Front:Help", __DIR__ . "/help");
   }
   

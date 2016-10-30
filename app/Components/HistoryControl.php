@@ -5,7 +5,8 @@ namespace Nexendrie\Components;
 
 use Nexendrie\BookComponent\BookControl,
     Nexendrie\BookComponent\BookPagesStorage,
-    Nexendrie\BookComponent\BookPage;
+    Nexendrie\BookComponent\BookPage,
+    Nexendrie\Translation\Translator;
 
 /**
  * HelpControl
@@ -13,8 +14,8 @@ use Nexendrie\BookComponent\BookControl,
  * @author Jakub Konečný
  */
 class HistoryControl extends BookControl {
-  function __construct() {
-    $this->lang = "cs";
+  function __construct(Translator $translator) {
+    $this->translator = $translator;
     parent::__construct(":Front:History", __DIR__ . "/history");
   }
   
