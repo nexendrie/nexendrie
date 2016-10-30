@@ -94,7 +94,8 @@ class House extends \Nextras\Orm\Entity\Entity {
   
   protected function getterRepairPrice(): int {
     if($this->hp >= 100) return 0;
-    if($this->luxuryLevel === 1) $multiplier = 1; else $multiplier = ($this->level - 1) * 10 / 100 + 1;
+    if($this->luxuryLevel === 1) $multiplier = 1;
+    else $multiplier = ($this->level - 1) * 10 / 100 + 1;
     $basePrice = self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp);
     return (int) ($basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice));
   }

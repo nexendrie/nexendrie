@@ -44,7 +44,7 @@ class AddEditItemSetFormFactory {
     $form->addSelect("armor", "Zbroj:", $this->getArmors())
       ->setPrompt("");
     $form->addSelect("helmet", "Přilba:", $this->getHelmets())
-      ->setPrompt("");;
+      ->setPrompt("");
     $form->addSelect("stat", "Vlastnost:", ItemSet::getStats())
       ->setRequired("Vyber vlastnost.");
     $form->addText("bonus", "Velikost bonusu:")

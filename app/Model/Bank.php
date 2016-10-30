@@ -64,7 +64,7 @@ class Bank {
    */
   function calculateInterest(LoanEntity $loan): int {
     $start = $loan->taken;
-    $end = $loan->returned ? $loan->returned: time();
+    $end = ($loan->returned) ? $loan->returned : time();
     $duration = ($end - $start) / (60 * 60 * 24);
     $interest = (int) ($loan->amount * $loan->interest * $duration / 36500);
     return max([1, $interest]);
