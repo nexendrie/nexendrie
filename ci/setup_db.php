@@ -1,5 +1,6 @@
 <?php
-use Nette\Neon\Neon;
+use Nette\Neon\Neon,
+    Nextras\Dbal\Utils\FileImporter;
 
 const WWW_DIR = __DIR__ . "/..";
 const APP_DIR = WWW_DIR . "/app";
@@ -12,6 +13,6 @@ $connection = new Nextras\Dbal\Connection($config["dbal"]);
 $sqlsFolder = APP_DIR . "/sqls";
 $files = ["structure", "data_basic", "data_test"];
 foreach($files as $file) {
-  Nextras\Dbal\Utils\FileImporter::executeFile($connection, "$sqlsFolder/$file.sql");
+  FileImporter::executeFile($connection, "$sqlsFolder/$file.sql");
 }
 ?>
