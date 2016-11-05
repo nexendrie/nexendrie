@@ -1,5 +1,3 @@
-includes:
-    - local.neon
 application:
     mapping:
         *: Nexendrie\Presenters\*Module\*Presenter
