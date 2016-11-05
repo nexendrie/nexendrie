@@ -1232,12 +1232,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/rss.git",
-                "reference": "de7efe236f9bdfd101d9ff1c3b51d24b97afd040"
+                "reference": "48df1a1e3ba447949a5e5c110e36cd357e603fbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/rss/zipball/de7efe236f9bdfd101d9ff1c3b51d24b97afd040",
-                "reference": "de7efe236f9bdfd101d9ff1c3b51d24b97afd040",
+                "url": "https://api.github.com/repos/nexendrie/rss/zipball/48df1a1e3ba447949a5e5c110e36cd357e603fbb",
+                "reference": "48df1a1e3ba447949a5e5c110e36cd357e603fbb",
                 "shasum": ""
             },
             "require": {
@@ -1251,7 +1251,8 @@
                 "mrtnzlml/testbench": "^2.3",
                 "nette/di": "^2.4",
                 "nette/tester": "2.0.x-dev as v1.7",
-                "squizlabs/php_codesniffer": "^2.6",
+                "nexendrie/site-generator": "1.0.x-dev",
+                "squizlabs/php_codesniffer": "^2.7",
                 "tracy/tracy": "^2.4"
             },
             "suggest": {
@@ -1266,7 +1267,10 @@
             "autoload": {
                 "psr-4": {
                     "Nexendrie\\Rss\\": "src/"
-                }
+                },
+                "classmap": [
+                    "src/exceptions.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1280,12 +1284,12 @@
                 }
             ],
             "description": "Rss channel generator",
-            "homepage": "https://nexendrie.gitlab.io/rss",
+            "homepage": "https://nexendrie.gitlab.io",
             "keywords": [
                 "generator",
                 "rss"
             ],
-            "time": "2016-10-29 18:21:08"
+            "time": "2016-11-05 07:06:48"
         },
         {
             "name": "nexendrie/translation",
@@ -1293,12 +1297,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/translation.git",
-                "reference": "d1df0a3a794be31be41151b4259528afb0daefdd"
+                "reference": "f26c3542c8f89bcf785e15a195591c6d0b86a653"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/translation/zipball/d1df0a3a794be31be41151b4259528afb0daefdd",
-                "reference": "d1df0a3a794be31be41151b4259528afb0daefdd",
+                "url": "https://api.github.com/repos/nexendrie/translation/zipball/f26c3542c8f89bcf785e15a195591c6d0b86a653",
+                "reference": "f26c3542c8f89bcf785e15a195591c6d0b86a653",
                 "shasum": ""
             },
             "require": {
@@ -1313,7 +1317,7 @@
                 "mrtnzlml/testbench": "^2.4",
                 "nette/di": "^2.4",
                 "nette/tester": "2.0.x-dev as v1.7",
-                "squizlabs/php_codesniffer": "^2.6",
+                "squizlabs/php_codesniffer": "^2.7",
                 "tracy/tracy": "^2.4"
             },
             "suggest": {
@@ -1346,6 +1350,7 @@
                 }
             ],
             "description": "Easy translating of Nette applications with neon",
+            "homepage": "https://nexendrie.gitlab.io",
             "keywords": [
                 "localization",
                 "neon",
@@ -1353,7 +1358,7 @@
                 "translating",
                 "translation"
             ],
-            "time": "2016-10-30 18:18:31"
+            "time": "2016-11-05 07:09:25"
         },
         {
             "name": "nextras/dbal",
