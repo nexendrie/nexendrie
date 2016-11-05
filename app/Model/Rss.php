@@ -28,7 +28,7 @@ class Rss {
    * @param Article $articleModel
    * @param \Nette\Application\LinkGenerator $linkGenerator
    * @param Locale $localeModel
-   * @param Generator $this->generator
+   * @param Generator $generator
    */
   function __construct(Article $articleModel, \Nette\Application\LinkGenerator $linkGenerator, Locale $localeModel, Generator $generator) {
     $this->articleModel = $articleModel;
