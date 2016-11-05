@@ -51,8 +51,3 @@ RewriteBase /
 in /.htaccess and (optionally) set up a virtual host.
 ### NGINX
 If you have NGINX, you (currenty) have to do all server configuration by yourself.
-
-
-Additional resources
---------------------
-When testing, you will also need to download definition of our coding standard. It can be found [here] (https://gitlab.com/nexendrie/resources/raw/master/cs-ruleset.xml).
