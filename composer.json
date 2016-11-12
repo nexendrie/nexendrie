@@ -23,13 +23,12 @@
         "tracy/tracy": "~2.4",
         "latte/latte": "~2.4",
         "kdyby/autowired": "^1.4",
-        "nextras/orm": "^2.1",
+        "nextras/orm": "^2.2",
         "stekycz/cronner": "dev-master",
         "konecnyjakub/event-calendar": "dev-master",
         "nella/forms-datetime": "^2.4",
-        "nexendrie/book-component": "^1.1",
-        "nexendrie/rss": "1.0.x@dev",
-        "nexendrie/translation": "1.0.x@dev"
+        "nexendrie/book-component": "^1.1.1",
+        "nexendrie/rss": "^0.3"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e5c5a889e1853e9e11e23d2674ada686",
-    "content-hash": "53c0c4a739bf679545a3857d1ad796d4",
+    "hash": "206da2cefa0b1aec6ba18ae9c7217de5",
+    "content-hash": "9fb08a02f2af21ce3daf431102c446b1",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -535,16 +535,16 @@
         },
         {
             "name": "nette/di",
-            "version": "v2.4.3",
+            "version": "v2.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/di.git",
-                "reference": "aa40af0766b990fbe052d6efe89382d6df2ae641"
+                "reference": "54dbce99e3355e201607874bdbcde8a0b8a1e98e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/di/zipball/aa40af0766b990fbe052d6efe89382d6df2ae641",
-                "reference": "aa40af0766b990fbe052d6efe89382d6df2ae641",
+                "url": "https://api.github.com/repos/nette/di/zipball/54dbce99e3355e201607874bdbcde8a0b8a1e98e",
+                "reference": "54dbce99e3355e201607874bdbcde8a0b8a1e98e",
                 "shasum": ""
             },
             "require": {
@@ -591,7 +591,7 @@
             ],
             "description": "Nette Dependency Injection Component",
             "homepage": "https://nette.org",
-            "time": "2016-09-21 16:51:11"
+            "time": "2016-10-26 16:05:47"
         },
         {
             "name": "nette/finder",
@@ -1165,40 +1165,38 @@
         },
         {
             "name": "nexendrie/book-component",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/book-component.git",
-                "reference": "3b711d06a6581b893f872a3fbd4518bd632b5e60"
+                "reference": "8ecdef1ffdebc182afb7f096103d22c06d7f695d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/book-component/zipball/3b711d06a6581b893f872a3fbd4518bd632b5e60",
-                "reference": "3b711d06a6581b893f872a3fbd4518bd632b5e60",
+                "url": "https://api.github.com/repos/nexendrie/book-component/zipball/8ecdef1ffdebc182afb7f096103d22c06d7f695d",
+                "reference": "8ecdef1ffdebc182afb7f096103d22c06d7f695d",
                 "shasum": ""
             },
             "require": {
                 "latte/latte": "^2.4",
                 "nette/application": "^2.4",
                 "nette/utils": "^2.4",
-                "nexendrie/translation": "1.0.x@dev",
+                "nexendrie/translation": "^0.1",
                 "php": ">=5.6.0"
             },
             "replace": {
                 "konecnyjakub/book-component": "~1.0"
             },
             "require-dev": {
-                "jakub-onderka/php-console-highlighter": "^0.3.2",
-                "jakub-onderka/php-parallel-lint": "^0.9.2",
-                "mrtnzlml/testbench": "^2.3",
-                "nette/tester": "2.0.x-dev as v1.7",
-                "squizlabs/php_codesniffer": "^2.6",
+                "nette/tester": "dev-master",
+                "nexendrie/code-quality": "dev-master",
+                "nexendrie/site-generator": "1.0.x-dev",
                 "tracy/tracy": "^2.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -1218,26 +1216,27 @@
                 }
             ],
             "description": "Simple book component with list of chapters/pages and links to previous and next chapter/page",
+            "homepage": "https://nexendrie.gitlab.io",
             "keywords": [
                 "Simple",
                 "book",
                 "component",
                 "nette"
             ],
-            "time": "2016-10-24 17:57:05"
+            "time": "2016-11-12 10:56:33"
         },
         {
             "name": "nexendrie/rss",
-            "version": "dev-master",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/rss.git",
-                "reference": "3b1a6d1d9c7f56bd5914610d6cc6f027f8636003"
+                "reference": "33fd3013da573c1c027e6d03607b2583b592e343"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/rss/zipball/3b1a6d1d9c7f56bd5914610d6cc6f027f8636003",
-                "reference": "3b1a6d1d9c7f56bd5914610d6cc6f027f8636003",
+                "url": "https://api.github.com/repos/nexendrie/rss/zipball/33fd3013da573c1c027e6d03607b2583b592e343",
+                "reference": "33fd3013da573c1c027e6d03607b2583b592e343",
                 "shasum": ""
             },
             "require": {
@@ -1246,10 +1245,12 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
+                "jakub-onderka/php-console-highlighter": "^0.3.2",
+                "jakub-onderka/php-parallel-lint": "^0.9.2",
+                "mrtnzlml/testbench": "^2.3",
                 "nette/di": "^2.4",
-                "nette/tester": "dev-master",
-                "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "1.0.x-dev",
+                "nette/tester": "2.0.x-dev as v1.7",
+                "squizlabs/php_codesniffer": "^2.7",
                 "tracy/tracy": "^2.4"
             },
             "suggest": {
@@ -1281,25 +1282,25 @@
                 }
             ],
             "description": "Rss channel generator",
-            "homepage": "https://nexendrie.gitlab.io",
+            "homepage": "https://nexendrie.gitlab.io/rss",
             "keywords": [
                 "generator",
                 "rss"
             ],
-            "time": "2016-11-05 12:05:18"
+            "time": "2016-11-04 16:53:57"
         },
         {
             "name": "nexendrie/translation",
-            "version": "dev-master",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/translation.git",
-                "reference": "3b2f51313a2335ec7e8e50ed97b0fcae054d1cf7"
+                "reference": "eba3e139efe5c07b33340e9addd075724fad762b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/translation/zipball/3b2f51313a2335ec7e8e50ed97b0fcae054d1cf7",
-                "reference": "3b2f51313a2335ec7e8e50ed97b0fcae054d1cf7",
+                "url": "https://api.github.com/repos/nexendrie/translation/zipball/eba3e139efe5c07b33340e9addd075724fad762b",
+                "reference": "eba3e139efe5c07b33340e9addd075724fad762b",
                 "shasum": ""
             },
             "require": {
@@ -1352,7 +1353,7 @@
                 "translating",
                 "translation"
             ],
-            "time": "2016-11-06 12:25:36"
+            "time": "2016-11-10 21:09:12"
         },
         {
             "name": "nextras/dbal",
@@ -1413,16 +1414,16 @@
         },
         {
             "name": "nextras/orm",
-            "version": "v2.1.1",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/orm.git",
-                "reference": "765716dbfe5731f2b49c64916ee740dd114973fd"
+                "reference": "9e8d6453feff050191e35242aeeeb7f05104f088"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/orm/zipball/765716dbfe5731f2b49c64916ee740dd114973fd",
-                "reference": "765716dbfe5731f2b49c64916ee740dd114973fd",
+                "url": "https://api.github.com/repos/nextras/orm/zipball/9e8d6453feff050191e35242aeeeb7f05104f088",
+                "reference": "9e8d6453feff050191e35242aeeeb7f05104f088",
                 "shasum": ""
             },
             "require": {
@@ -1431,7 +1432,7 @@
                 "nette/tokenizer": "~2.2",
                 "nette/utils": "~2.2",
                 "nextras/dbal": "~2.0",
-                "php": ">=5.5"
+                "php": ">=5.6"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9",
@@ -1442,7 +1443,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
@@ -1470,7 +1471,7 @@
                 "nextras",
                 "orm"
             ],
-            "time": "2016-09-29 21:23:31"
+            "time": "2016-11-10 17:12:05"
         },
         {
             "name": "stekycz/cronner",
@@ -1831,16 +1832,16 @@
         },
         {
             "name": "mrtnzlml/testbench",
-            "version": "v2.4",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mrtnzlml/testbench.git",
-                "reference": "f62bcca0130a612421ba82486eeca0da761a0aaf"
+                "reference": "7362fe750b2cc8f7fe4ced6222f21d55511edf2f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mrtnzlml/testbench/zipball/f62bcca0130a612421ba82486eeca0da761a0aaf",
-                "reference": "f62bcca0130a612421ba82486eeca0da761a0aaf",
+                "url": "https://api.github.com/repos/mrtnzlml/testbench/zipball/7362fe750b2cc8f7fe4ced6222f21d55511edf2f",
+                "reference": "7362fe750b2cc8f7fe4ced6222f21d55511edf2f",
                 "shasum": ""
             },
             "require": {
@@ -1900,7 +1901,7 @@
                 }
             ],
             "description": "Simple integration testing tool for Nette Framework applications",
-            "time": "2016-10-12 15:56:17"
+            "time": "2016-11-07 08:58:13"
         },
         {
             "name": "nette/tester",
@@ -2084,8 +2085,6 @@
     "stability-flags": {
         "stekycz/cronner": 20,
         "konecnyjakub/event-calendar": 20,
-        "nexendrie/rss": 20,
-        "nexendrie/translation": 20,
         "nexendrie/code-quality": 20,
         "nette/tester": 20
     },
