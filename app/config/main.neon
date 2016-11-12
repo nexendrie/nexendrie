@@ -17,9 +17,6 @@ extensions:
     translation: Nexendrie\Translation\Bridges\NetteDI\TranslationExtension
 orm:
     model: Nexendrie\Orm\Model
-cronner:
-    bar: false
-    timestampStorage: stekycz\Cronner\TimestampStorage\FileStorage(%appDir%/temp/cronner)
 php:
     date.timezone: Europe/Prague
 translation:

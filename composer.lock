@@ -1479,12 +1479,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stekycz/Cronner.git",
-                "reference": "1d3e6e5a4256ea633d0d7255662cfbd820ef7778"
+                "reference": "8708c286da07279fbcb07b004675ead36365a5ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/1d3e6e5a4256ea633d0d7255662cfbd820ef7778",
-                "reference": "1d3e6e5a4256ea633d0d7255662cfbd820ef7778",
+                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/8708c286da07279fbcb07b004675ead36365a5ad",
+                "reference": "8708c286da07279fbcb07b004675ead36365a5ad",
                 "shasum": ""
             },
             "require": {
@@ -1529,7 +1529,7 @@
                 "nette",
                 "task"
             ],
-            "time": "2016-10-04 11:13:39"
+            "time": "2016-11-12 12:17:49"
         },
         {
             "name": "tracy/tracy",
