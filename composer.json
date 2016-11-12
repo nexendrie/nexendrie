@@ -43,6 +43,13 @@
         },
         "classmap": ["app/Model/exceptions.php"]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Nexendrie\\": [
+                "tests/"
+            ]
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"

@@ -13,7 +13,7 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class AdventureTest extends \Tester\TestCase {
-  use \TUserControl;
+  use TUserControl;
   
   /** @var Adventure */
   protected $model;

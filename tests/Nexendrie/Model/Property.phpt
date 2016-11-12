@@ -8,7 +8,7 @@ use Tester\Assert;
 require __DIR__ . "/../../bootstrap.php";
 
 class PropertyTest extends \Tester\TestCase {
-  use \TUserControl;
+  use TUserControl;
   
   /** @var Property */
   protected $model;

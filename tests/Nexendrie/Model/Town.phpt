@@ -10,7 +10,7 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class TownTest extends \Tester\TestCase {
-  use \TUserControl;
+  use TUserControl;
   
   /** @var Town */
   protected $model;

@@ -13,7 +13,7 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class UserManagerTest extends \Tester\TestCase {
-  use \TUserControl;
+  use TUserControl;
   
   /** @var UserManager */
   protected $model;

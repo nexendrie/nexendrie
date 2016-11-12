@@ -12,7 +12,7 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class JobTest extends \Tester\TestCase {
-  use \TUserControl;
+  use TUserControl;
   
   /** @var Job */
   protected $model;

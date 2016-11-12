@@ -11,7 +11,7 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class OrderTest extends \Tester\TestCase {
-  use \TUserControl;
+  use TUserControl;
   
   /** @var Order */
   protected $model;

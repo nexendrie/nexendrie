@@ -11,7 +11,7 @@ require __DIR__ . "/../../bootstrap.php";
 
 
 class MarriageTest extends \Tester\TestCase {
-  use \TUserControl;
+  use TUserControl;
   
   /** @var Marriage */
   protected $model;

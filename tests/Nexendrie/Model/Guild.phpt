@@ -12,7 +12,7 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class GuildTest extends \Tester\TestCase {
-  use \TUserControl;
+  use TUserControl;
   
   /** @var Guild */
   protected $model;

@@ -11,7 +11,7 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class MountTest extends \Tester\TestCase {
-  use \TUserControl;
+  use TUserControl;
   
   /** @var Mount */
   protected $model;
