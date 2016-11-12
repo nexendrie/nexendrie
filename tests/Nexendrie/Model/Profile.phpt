@@ -11,6 +11,7 @@ require __DIR__ . "/../../bootstrap.php";
 
 class ProfileTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
+  
   /** @var Profile */
   protected $model;
   

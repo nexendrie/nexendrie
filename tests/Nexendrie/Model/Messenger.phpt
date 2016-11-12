@@ -10,8 +10,7 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class MessengerTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
-  use\ TUserControl;
+  use \TUserControl;
   
   /** @var Messenger */
   protected $model;

@@ -12,7 +12,6 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class JobTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
   use \TUserControl;
   
   /** @var Job */

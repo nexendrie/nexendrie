@@ -13,7 +13,6 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class AdventureTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
   use \TUserControl;
   
   /** @var Adventure */

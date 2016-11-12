@@ -7,7 +7,6 @@ use Tester\Assert;
 
 require __DIR__ . "/../../bootstrap.php";
 
-
 class CombatTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
   

@@ -11,9 +11,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-
 class GuildTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
   use \TUserControl;
   
   /** @var Guild */

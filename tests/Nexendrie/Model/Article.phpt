@@ -11,7 +11,6 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class ArticleTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
   use \TUserControl;
   
   /** @var Article */

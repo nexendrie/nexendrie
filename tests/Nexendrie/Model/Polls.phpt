@@ -10,7 +10,6 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 class PollsTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
   use \TUserControl;
   
   /** @var Polls */

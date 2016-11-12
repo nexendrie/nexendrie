@@ -11,7 +11,6 @@ require __DIR__ . "/../../bootstrap.php";
 
 
 class MarriageTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
   use \TUserControl;
   
   /** @var Marriage */

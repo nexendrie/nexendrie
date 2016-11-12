@@ -9,11 +9,12 @@ require __DIR__ . "/../vendor/autoload.php";
 /**
  * TUserControl
  * Simplifies working with users in a test suit
- * You have to also use trait \Testbench\TCompiledContainer
  *
  * @author Jakub Konečný
  */
-Trait TUserControl {
+trait TUserControl {
+  use \Testbench\TCompiledContainer;
+  
   /**
    * Login a user
    *

@@ -9,9 +9,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-
 class GroupTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
   use \TUserControl;
   
   /** @var Group */
