@@ -41,7 +41,7 @@ analyze:cs:
   - mysql
 
   variables:
-    MYSQL_DATABASE: nexendrie
+    MYSQL_DATABASE: nexendrie_test
     MYSQL_ROOT_PASSWORD: root
     APP_USER: admin
     APP_PASSWORD: qwerty

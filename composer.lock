@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "206da2cefa0b1aec6ba18ae9c7217de5",
+    "hash": "710f1907e9d33ce10773a6699c033b3e",
     "content-hash": "9fb08a02f2af21ce3daf431102c446b1",
     "packages": [
         {
@@ -1479,12 +1479,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stekycz/Cronner.git",
-                "reference": "8708c286da07279fbcb07b004675ead36365a5ad"
+                "reference": "c7b5cfff5a57ea8431f8b2acfeef63fa44bb7350"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/8708c286da07279fbcb07b004675ead36365a5ad",
-                "reference": "8708c286da07279fbcb07b004675ead36365a5ad",
+                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/c7b5cfff5a57ea8431f8b2acfeef63fa44bb7350",
+                "reference": "c7b5cfff5a57ea8431f8b2acfeef63fa44bb7350",
                 "shasum": ""
             },
             "require": {
@@ -1506,6 +1506,11 @@
                 "kdyby/events": "Events for Nette Framework"
             },
             "type": "nette-addon",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "v1.1.x-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "Cronner/"
@@ -1529,7 +1534,7 @@
                 "nette",
                 "task"
             ],
-            "time": "2016-11-12 12:17:49"
+            "time": "2016-11-12 18:14:01"
         },
         {
             "name": "tracy/tracy",
