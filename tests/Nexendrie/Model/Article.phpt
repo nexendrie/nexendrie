@@ -78,6 +78,12 @@ class ArticleTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->editArticle(1, []);
     }, MissingPermissionsException::class);
+    $this->login();
+    $article = $this->model->view(1);
+    $title = $article->title;
+    $this->model->editArticle($article->id, ["title" => "abc"]);
+    Assert::same("abc", $article->title);
+    $this->model->editArticle($article->id, ["title" => $title]);
   }
   
   function testExists() {

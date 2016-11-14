@@ -61,6 +61,11 @@ class JobTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->editJob(50, []);
     }, JobNotFoundException::class);
+    $job = $this->model->getJob(1);
+    $name = $job->name;
+    $this->model->editJob($job->id, ["name" => "abc"]);
+    Assert::same("abc", $job->name);
+    $this->model->editJob($job->id, ["name" => $name]);
   }
   
   function testIsWorking() {

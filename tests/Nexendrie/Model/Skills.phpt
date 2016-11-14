@@ -36,6 +36,11 @@ class SkillsTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->edit(50, []);
     }, SkillNotFoundException::class);
+    $skill = $this->model->get(1);
+    $name = $skill->name;
+    $this->model->edit($skill->id, ["name" => "abc"]);
+    Assert::same("abc", $skill->name);
+    $this->model->edit($skill->id, ["name" => $name]);
   }
   
   function testGet() {

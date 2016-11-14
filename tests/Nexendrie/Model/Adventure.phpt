@@ -50,6 +50,11 @@ class AdventureTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->editAdventure(50, []);
     }, AdventureNotFoundException::class);
+    $adventure = $this->model->get(1);
+    $name = $adventure->name;
+    $this->model->editAdventure($adventure->id, ["name" => "abc"]);
+    Assert::same("abc", $adventure->name);
+    $this->model->editAdventure($adventure->id, ["name" => $name]);
   }
   
   function testGetNpc() {

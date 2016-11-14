@@ -45,12 +45,28 @@ class MarketTest extends \Tester\TestCase {
     }, ShopNotFoundException::class);
   }
   
+  function testEditShop() {
+    $shop = $this->model->getShop(1);
+    $name = $shop->name;
+    $this->model->editShop($shop->id, ["name" => "abc"]);
+    Assert::same("abc", $shop->name);
+    $this->model->editShop($shop->id, ["name" => $name]);
+  }
+  
   function testGetItem() {
     $item = $this->model->getItem(1);
     Assert::type(ItemEntity::class, $item);
     Assert::exception(function() {
       $this->model->getItem(50);
     }, ItemNotFoundException::class);
+  }
+  
+  function testEditItem() {
+    $item = $this->model->getItem(1);
+    $name = $item->name;
+    $this->model->editItem($item->id, ["name" => "abc"]);
+    Assert::same("abc", $item->name);
+    $this->model->editItem($item->id, ["name" => $name]);
   }
 }
 

@@ -37,6 +37,11 @@ class TavernTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->editMeal(50, []);
     }, MealNotFoundException::class);
+    $meal = $this->model->getMeal(1);
+    $name = $meal->name;
+    $this->model->editMeal($meal->id, ["name" => "abc"]);
+    Assert::same("abc", $meal->name);
+    $this->model->editMeal($meal->id, ["name" => $name]);
   }
   
   function testBuyMeal() {

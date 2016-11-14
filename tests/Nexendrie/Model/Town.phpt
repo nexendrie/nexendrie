@@ -34,6 +34,11 @@ class TownTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->edit(50, []);
     }, TownNotFoundException::class);
+    $town = $this->model->get(1);
+    $name = $town->name;
+    $this->model->edit($town->id, ["name" => "abc"]);
+    Assert::same("abc", $town->name);
+    $this->model->edit($town->id, ["name" => $name]);
   }
   
   function testTownsOnSale() {

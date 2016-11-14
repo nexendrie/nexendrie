@@ -62,6 +62,11 @@ class PollsTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->edit(50, []);
     }, PollNotFoundException::class);
+    $poll = $this->model->view(1);
+    $question = $poll->question;
+    $this->model->edit($poll->id, ["question" => "abc"]);
+    Assert::same("abc", $poll->question);
+    $this->model->edit($poll->id, ["question" => $question]);
   }
 }
 
