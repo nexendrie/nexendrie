@@ -25,7 +25,7 @@ class Order {
   
   use \Nette\SmartObject;
   
-  function __construct($foundingPrice, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(int $foundingPrice, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
     $this->foundingPrice = $foundingPrice;

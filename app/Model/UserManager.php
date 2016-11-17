@@ -3,21 +3,26 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Security as NS,
+use Nette\Security\IAuthenticator,
+    Nette\Security\User,
+    Nette\Security\Identity,
+    Nette\Security\Passwords,
+    Nexendrie\Orm\Model as ORM,
     Nexendrie\Orm\User as UserEntity,
     Nextras\Orm\Collection\ICollection,
-    Nette\InvalidArgumentException;
+    Nette\InvalidArgumentException,
+    Nette\Security\AuthenticationException;
 
 /**
  * User Manager
  *
  * @author Jakub Konečný
- * @property \Nette\Security\User $user
+ * @property User $user
  */
-class UserManager implements NS\IAuthenticator {
-  /** @var \Nexendrie\Orm\Model */
+class UserManager implements IAuthenticator {
+  /** @var ORM */
   protected $orm;
-  /** @var \Nette\Security\User */
+  /** @var User */
   protected $user;
   /** @var array */
   protected $roles = [];
@@ -33,18 +38,18 @@ class UserManager implements NS\IAuthenticator {
   /**
    * @param array $roles
    * @param array $newUser
-   * @param \Nexendrie\Orm\Model $orm
+   * @param ORM $orm
    */
-  function __construct(array $roles, array $newUser, \Nexendrie\Orm\Model $orm) {
+  function __construct(array $roles, array $newUser, ORM $orm) {
     $this->orm = $orm;
     $this->roles = $roles;
     $this->newUser = $newUser;
   }
   
   /**
-   * @param \Nette\Security\User $user
+   * @param User $user
    */
-  function setUser(\Nette\Security\User $user) {
+  function setUser(User $user) {
     $this->user = $user;
   }
   
@@ -90,9 +95,9 @@ class UserManager implements NS\IAuthenticator {
    * Get user's identity
    * 
    * @param UserEntity $user
-   * @return NS\Identity
+   * @return Identity
    */
-  protected function getIdentity(UserEntity $user): NS\Identity {
+  protected function getIdentity(UserEntity $user): Identity {
     if($user->banned) {
       $role = $this->orm->groups->getById($this->roles["bannedRole"])->singleName;
     } else {
@@ -103,24 +108,24 @@ class UserManager implements NS\IAuthenticator {
       "name" => $user->publicname, "group" => $user->group->id,
       "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "path" => $user->group->path, "town" => $user->town->id, "banned" => $user->banned, "travelling" => !($adventure === NULL)
     ];
-    return new NS\Identity($user->id, $role, $data);
+    return new Identity($user->id, $role, $data);
   }
   
   /**
    * Logins the user
    * 
    * @param array $credentials
-   * @return NS\Identity User's identity
-   * @throws NS\AuthenticationException
+   * @return Identity User's identity
+   * @throws AuthenticationException
    */
-  function authenticate(array $credentials): NS\Identity {
+  function authenticate(array $credentials): Identity {
     list($username, $password) = $credentials;
     $user = $this->orm->users->getByUsername($username);
     if(!$user) {
-      throw new NS\AuthenticationException("User not found.", self::IDENTITY_NOT_FOUND);
+      throw new AuthenticationException("User not found.", self::IDENTITY_NOT_FOUND);
     }
-    if(!NS\Passwords::verify($password, $user->password)) {
-      throw new NS\AuthenticationException("Invalid password.", self::INVALID_CREDENTIAL);
+    if(!Passwords::verify($password, $user->password)) {
+      throw new AuthenticationException("Invalid password.", self::INVALID_CREDENTIAL);
     }
     $user->lastActive = time();
     $this->orm->users->persistAndFlush($user);
@@ -153,7 +158,7 @@ class UserManager implements NS\IAuthenticator {
     $this->orm->users->attach($user);
     $data += $this->newUser;
     foreach($data as $key => $value) {
-      if($key === "password") $value = \Nette\Security\Passwords::hash($data["password"]);
+      if($key === "password") $value = Passwords::hash($data["password"]);
       $user->$key = $value;
     }
     $user->publicname = $data["username"];
@@ -194,10 +199,10 @@ class UserManager implements NS\IAuthenticator {
       switch($key) {
         case "password_new":
           if(!empty($value)) {
-            if(!NS\Passwords::verify($settings["password_old"], $user->password)) {
+            if(!Passwords::verify($settings["password_old"], $user->password)) {
               throw new SettingsException("Invalid password.", self::SET_INVALID_PASSWORD);
             }
-            $user->password = NS\Passwords::hash($value);
+            $user->password = Passwords::hash($value);
           }
           unset($settings[$key], $settings["password_old"], $settings["password_check"]);
   break;

@@ -39,7 +39,7 @@ class Monastery {
    * @param \Nexendrie\Orm\Model $orm
    * @param \Nette\Security\User $user
    */
-  function __construct($buildingPrice, Events $eventsModel, Guild $guildModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(int $buildingPrice, Events $eventsModel, Guild $guildModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->eventsModel = $eventsModel;
     $this->guildModel = $guildModel;
     $this->orderModel = $orderModel;
