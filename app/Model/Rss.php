@@ -48,9 +48,9 @@ class Rss {
     $this->generator->description = "Novinky v Nexendrii";
     $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
     $this->generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
-    $items = $this->articleModel->listOfNews();
-    $this->generator->dataSource = function() use($items) {
+    $this->generator->dataSource = function() {
       $return = [];
+      $items = $this->articleModel->listOfNews();
       /** @var \Nexendrie\Orm\Article $row */
       foreach($items as $row) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
@@ -78,9 +78,9 @@ class Rss {
     $this->generator->description = "Komentáře k článku";
     $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
     $this->generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
-    $comments = $this->articleModel->viewComments($id);
-    $this->generator->dataSource = function() use($comments, $id) {
+    $this->generator->dataSource = function() use($id) {
       $return = [];
+      $comments = $this->articleModel->viewComments($id);
       /** @var \Nexendrie\Orm\Comment $row */
       foreach($comments as $row) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
