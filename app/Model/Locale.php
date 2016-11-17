@@ -1,53 +1,6 @@
 <?php
 declare(strict_types=1);
 
-namespace Nexendrie;
-
-/**
- * @author Jakub Konečný
- */
-interface ILocale {
-  /**
-   * Formats date and time
-   * 
-   * @param int $date
-   * @return string
-   */
-  function formatDateTime(int $date);
-  
-  /**
-   * Formats date
-   * 
-   * @param int $date
-   * @return string
-   */
-  function formatDate(int $date);
-  
-  /**
-   * Selects correct form according to $count
-   * 
-   * @param string $word1
-   * @param string $word2
-   * @param string $word3
-   * @param int $count
-   * @return string
-   */
-  function plural(string $word1, string $word2, string $word3, int $count);
-  
-  /**
-   * @param int $amount
-   * @return string
-   */
-  function money(int $amount);
-  
-  /**
-   * @param int $amount
-   * @return string
-   */
-  function hitpoints(int $amount);
-}
-
-
 namespace Nexendrie\Model;
 
 /**
@@ -56,7 +9,7 @@ namespace Nexendrie\Model;
  * @author Jakub Konečný
  * @property array $formats
  */
-class Locale implements \Nexendrie\ILocale {
+class Locale {
   /** @var array */
   protected $formats = [];
   
