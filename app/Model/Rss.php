@@ -5,7 +5,8 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Rss\RssResponse,
     Nexendrie\Rss\Generator,
-    Nexendrie\Rss\RssChannelItem as Item;
+    Nexendrie\Rss\RssChannelItem as Item,
+    Nette\Application\LinkGenerator;
 
 /**
  * Rss channel generator
@@ -15,7 +16,7 @@ use Nexendrie\Rss\RssResponse,
 class Rss {
   /** @var Article */
   protected $articleModel;
-  /** @var \Nette\Application\LinkGenerator */
+  /** @var LinkGenerator */
   protected $linkGenerator;
   /** @var Locale */
   protected $localeModel;
@@ -26,11 +27,11 @@ class Rss {
   
   /**
    * @param Article $articleModel
-   * @param \Nette\Application\LinkGenerator $linkGenerator
+   * @param LinkGenerator $linkGenerator
    * @param Locale $localeModel
    * @param Generator $generator
    */
-  function __construct(Article $articleModel, \Nette\Application\LinkGenerator $linkGenerator, Locale $localeModel, Generator $generator) {
+  function __construct(Article $articleModel, LinkGenerator $linkGenerator, Locale $localeModel, Generator $generator) {
     $this->articleModel = $articleModel;
     $this->linkGenerator = $linkGenerator;
     $this->localeModel = $localeModel;
