@@ -36,7 +36,9 @@ class MonasteryPresenter extends BasePresenter {
    */
   protected function startup() {
     parent::startup();
-    if($this->action != "detail" AND $this->action != "list") $this->requiresLogin();
+    if($this->action != "detail" AND $this->action != "list") {
+      $this->requiresLogin();
+    }
   }
   
   /**
@@ -109,8 +111,11 @@ class MonasteryPresenter extends BasePresenter {
   function actionJoin(int $id) {
     try {
       $this->model->join($id);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vstoupila jsi do kláštera";
-      else $message = "Vstoupil jsi do kláštera";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Vstoupila jsi do kláštera";
+      } else {
+        $message = "Vstoupil jsi do kláštera";
+      }
       $this->flashMessage($message);
       $this->redirect("default");
     } catch(CannotJoinMonasteryException $e) {
@@ -130,8 +135,11 @@ class MonasteryPresenter extends BasePresenter {
   function actionLeave() {
     try {
       $this->model->leave();
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vystoupila jsi z kláštera.";
-      else $message = "Vystoupil jsi z kláštera.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Vystoupila jsi z kláštera.";
+      } else {
+        $message = "Vystoupil jsi z kláštera.";
+      }
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(CannotLeaveMonasteryException $e) {

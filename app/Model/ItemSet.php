@@ -39,8 +39,11 @@ class ItemSet {
    */
   function get(int $id): ItemSetEntity {
     $set = $this->orm->itemSets->getById($id);
-    if(!$set) throw new ItemSetNotFoundException;
-    else return $set;
+    if(!$set) {
+      throw new ItemSetNotFoundException;
+    } else {
+      return $set;
+    }
   }
   
   /**

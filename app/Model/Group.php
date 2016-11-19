@@ -90,7 +90,9 @@ class Group {
   function getByLevel(int $level) {
     $groups = $this->listOfGroups();
     foreach($groups as $group) {
-      if($group->level === $level) return $group;
+      if($group->level === $level) {
+        return $group;
+      }
     }
     return false;
   }
@@ -101,8 +103,12 @@ class Group {
    */
   function ormGet(int $id) {
     $group = $this->orm->groups->getById($id);
-    if(!$group) return false;
-    else return $group;
+    if(!$group) {
+      return false;
+    }
+    else {
+      return $group;
+    }
   }
   
   /**
@@ -125,8 +131,12 @@ class Group {
    * @return void
    */
   function edit(int $id, array $data) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
-    if(!$this->user->isAllowed("group", "edit")) throw new MissingPermissionsException("You don't have permissions for adding news.");
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
+    if(!$this->user->isAllowed("group", "edit")) {
+      throw new MissingPermissionsException("You don't have permissions for adding news.");
+    }
     $group = $this->orm->groups->getById($id);
     foreach($data as $key => $value) {
       $group->$key = $value;

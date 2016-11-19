@@ -158,9 +158,15 @@ class SystemSettingsFormFactory {
    */
   function validate(Form $form, array $values) {
     $plural = explode("\n", $values["locale"]["plural"]);
-    if(count($plural) != 3) $form->addError("Plurály musí obsahovat právě 3 řádky.");
-    if(is_int($plural[0])) $form->addError("První plurál musít být číslo.");
-    if(is_int($plural[2])) $form->addError("Třetí plurál musít být číslo.");
+    if(count($plural) != 3) {
+      $form->addError("Plurály musí obsahovat právě 3 řádky.");
+    }
+    if(is_int($plural[0])) {
+      $form->addError("První plurál musít být číslo.");
+    }
+    if(is_int($plural[2])) {
+      $form->addError("Třetí plurál musít být číslo.");
+    }
   }
   
   /**

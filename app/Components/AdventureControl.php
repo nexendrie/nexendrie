@@ -73,8 +73,11 @@ class AdventureControl extends \Nette\Application\UI\Control {
   function handleStart(int $adventure, int $mount) {
     try {
       $this->model->startAdventure($adventure, $mount);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vydala jsi se na dobrodružství.";
-      else $message = "Vydal jsi se na dobrodružství.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Vydala jsi se na dobrodružství.";
+      } else {
+        $message = "Vydal jsi se na dobrodružství.";
+      }
       $this->presenter->flashMessage($message);
       $this->presenter->redirect("Adventure:");
     } catch(AlreadyOnAdventureException $e) {

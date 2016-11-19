@@ -1970,12 +1970,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/code-quality.git",
-                "reference": "35156b828f17cc626cfc4d9cc41b773c5b429bda"
+                "reference": "0fabbc55002f8ae2ea7ae5dd571a12ed46dbf66e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/code-quality/zipball/35156b828f17cc626cfc4d9cc41b773c5b429bda",
-                "reference": "35156b828f17cc626cfc4d9cc41b773c5b429bda",
+                "url": "https://api.github.com/repos/nexendrie/code-quality/zipball/0fabbc55002f8ae2ea7ae5dd571a12ed46dbf66e",
+                "reference": "0fabbc55002f8ae2ea7ae5dd571a12ed46dbf66e",
                 "shasum": ""
             },
             "require": {
@@ -2004,7 +2004,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2016-11-05 13:04:00"
+            "time": "2016-11-19 12:30:55"
         },
         {
             "name": "squizlabs/php_codesniffer",

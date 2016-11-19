@@ -36,8 +36,11 @@ class Profile {
    */
   function view(string $username): UserEntity {
     $user = $this->orm->users->getByUsername($username);
-    if(!$user) throw new UserNotFoundException("Specified user does not exist.");
-    else return $user;
+    if(!$user) {
+      throw new UserNotFoundException("Specified user does not exist.");
+    } else {
+      return $user;
+    }
   }
   
   /**
@@ -57,10 +60,15 @@ class Profile {
    * @return int[]
    */
   function userLife(int $id = 0): array {
-    if($id === 0) $id = $this->user->id;
+    if($id === 0) {
+      $id = $this->user->id;
+    }
     $user = $this->orm->users->getById($id);
-    if(!$user) throw new UserNotFoundException;
-    else return [$user->life, $user->maxLife];
+    if(!$user) {
+      throw new UserNotFoundException;
+    } else {
+      return [$user->life, $user->maxLife];
+    }
   }
   
   /**
@@ -70,10 +78,15 @@ class Profile {
    * @return string
    */
   function getPath(int $id = 0): string {
-    if($id === 0) $id = $this->user->id;
+    if($id === 0) {
+      $id = $this->user->id;
+    }
     $user = $this->orm->users->getById($id);
-    if(!$user) throw new UserNotFoundException;
-    else return $user->group->path;
+    if(!$user) {
+      throw new UserNotFoundException;
+    } else {
+      return $user->group->path;
+    }
   }
   
   /**
@@ -145,9 +158,13 @@ class Profile {
     */
   function getPartner(int $id) {
     $marriage = $this->orm->marriages->getActiveMarriage($id)->fetch();
-    if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
-    elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
-    else return NULL;
+    if($marriage AND $marriage->user1->id === $id) {
+      return $marriage->user2;
+    } elseif($marriage AND $marriage->user2->id === $id) {
+      return $marriage->user1;
+    } else {
+      return NULL;
+    }
   }
    
    /**
@@ -158,9 +175,13 @@ class Profile {
     */
   function getFiance(int $id) {
     $marriage = $this->orm->marriages->getAcceptedMarriage($id)->fetch();
-    if($marriage AND $marriage->user1->id === $id) return $marriage->user2;
-    elseif($marriage AND $marriage->user2->id === $id) return $marriage->user1;
-    else return NULL;
+    if($marriage AND $marriage->user1->id === $id) {
+      return $marriage->user2;
+    } elseif($marriage AND $marriage->user2->id === $id) {
+      return $marriage->user1;
+    } else {
+      return NULL;
+    }
   }
 }
 ?>

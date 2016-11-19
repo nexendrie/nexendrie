@@ -39,8 +39,11 @@ class Skills {
    * @return SkillEntity[]|ICollection
    */
   function listOfSkills(string $type = NULL): ICollection {
-    if($type === NULL) return $this->orm->skills->findAll();
-    else return $this->orm->skills->findByType($type);
+    if($type === NULL) {
+      return $this->orm->skills->findAll();
+    } else {
+      return $this->orm->skills->findByType($type);
+    }
   }
   
   /**
@@ -86,8 +89,11 @@ class Skills {
    */
   function get(int $id): SkillEntity {
     $skill = $this->orm->skills->getById($id);
-    if(!$skill) throw new SkillNotFoundException;
-    else return $skill;
+    if(!$skill) {
+      throw new SkillNotFoundException;
+    } else {
+      return $skill;
+    }
   }
   
   /**
@@ -96,8 +102,11 @@ class Skills {
    * @throws AuthenticationNeededException
    */
   function getUserSkill(int $skill) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    else return $this->orm->userSkills->getByUserAndSkill($this->user->id, $skill);
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    } else {
+      return $this->orm->userSkills->getByUserAndSkill($this->user->id, $skill);
+    }
   }
   
   /**
@@ -109,7 +118,9 @@ class Skills {
    * @return int
    */
   function calculateLearningPrice(int $basePrice, int $newLevel, int $maxLevel = 5): int {
-    if($newLevel === 1) return (int) ($basePrice - $this->eventsModel->calculateTrainingDiscount($basePrice));
+    if($newLevel === 1) {
+      return (int) ($basePrice - $this->eventsModel->calculateTrainingDiscount($basePrice));
+    }
     $price = $basePrice;
     for($i = 1; $i < $newLevel; $i++) {
       $price += (int) ($basePrice / $maxLevel);
@@ -129,7 +140,9 @@ class Skills {
    * @throws InsufficientFundsException
    */
   function learn(int $id) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     try {
       $skill = $this->get($id);
     } catch(SkillNotFoundException $e) {
@@ -142,9 +155,13 @@ class Skills {
       $userSkill->user = $this->orm->users->getById($this->user->id);
       $userSkill->level = 0;
     }
-    if($userSkill->level === $skill->maxLevel) throw new SkillMaxLevelReachedException;
+    if($userSkill->level === $skill->maxLevel) {
+      throw new SkillMaxLevelReachedException;
+    }
     $price = $this->calculateLearningPrice($skill->price, $userSkill->level + 1, $skill->maxLevel);
-    if($userSkill->user->money < $price) throw new InsufficientFundsException;
+    if($userSkill->user->money < $price) {
+      throw new InsufficientFundsException;
+    }
     $userSkill->level++;
     $userSkill->user->money -= $price;
     $userSkill->user->lastActive = time();
@@ -167,8 +184,11 @@ class Skills {
     } catch(AuthenticationNeededException $e) {
       throw $e;
     }
-    if($skill) return $skill->level;
-    else return 0;
+    if($skill) {
+      return $skill->level;
+    } else {
+      return 0;
+    }
   }
   
   /**
@@ -180,7 +200,9 @@ class Skills {
    * @throws AuthenticationNeededException
    */
   function calculateSkillIncomeBonus(int $baseIncome, int $skillId): int {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $bonus = 0;
     $userSkillLevel = $this->getLevelOfSkill($skillId);
     if($userSkillLevel) {
@@ -198,7 +220,9 @@ class Skills {
    * @throws AuthenticationNeededException
    */
   function calculateSkillSuccessBonus(int $skillId): int {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $bonus = 0;
     $userSkillLevel = $this->getLevelOfSkill($skillId);
     if($userSkillLevel) {

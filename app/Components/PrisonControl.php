@@ -30,9 +30,13 @@ class PrisonControl extends \Nette\Application\UI\Control {
    * @return bool
    */
   protected function canWork(Punishment $punishment): bool {
-    if($punishment->lastAction === NULL) return true;
-    elseif(time() >$punishment->nextShift) return true;
-    else return false;
+    if($punishment->lastAction === NULL) {
+      return true;
+    } elseif(time() >$punishment->nextShift) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   /**
@@ -46,11 +50,15 @@ class PrisonControl extends \Nette\Application\UI\Control {
     if($punishment === NULL) {
       $template->noCrime = true;
     } else {
-      if($punishment->count >= $punishment->numberOfShifts) $template->release = true;
+      if($punishment->count >= $punishment->numberOfShifts) {
+        $template->release = true;
+      }
       $template->punishment = $punishment;
       $canWork = $this->canWork($punishment);
       $template->canWork = $canWork;
-      if(!$canWork) $template->nextShift = $this->localeModel->formatDateTime($punishment->nextShift);
+      if(!$canWork) {
+        $template->nextShift = $this->localeModel->formatDateTime($punishment->nextShift);
+      }
     }
     $template->render();
   }
@@ -61,21 +69,30 @@ class PrisonControl extends \Nette\Application\UI\Control {
   function handleWork() {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     if(!$punishment === NULL) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi uvězněná.";
-      else $message = "Nejsi uvězněný.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Nejsi uvězněná.";
+      } else {
+        $message = "Nejsi uvězněný.";
+      }
       $this->presenter->flashMessage($message);
     } elseif(!$this->canWork($punishment)) {
       $this->presenter->flashMessage("Ještě nemůžeš pracovat.");
     } elseif($punishment->count >= $punishment->numberOfShifts) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Už jsi odpracovala svůj trest.";
-      else $message = "Už jsi odpracoval svůj trest.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Už jsi odpracovala svůj trest.";
+      } else {
+        $message = "Už jsi odpracoval svůj trest.";
+      }
       $this->presenter->flashMessage($message);
     } else {
       $punishment->count++;
       $punishment->lastAction = $punishment->user->lastActive = time();
       $this->orm->punishments->persistAndFlush($punishment);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Úspěšně jsi zvládla směnu.";
-      else $message = "Úspěšně jsi zvládl směnu.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Úspěšně jsi zvládla směnu.";
+      } else {
+        $message = "Úspěšně jsi zvládl směnu.";
+      }
       $this->presenter->flashMessage($message);
     }
     $this->presenter->redirect("default");
@@ -102,13 +119,19 @@ class PrisonControl extends \Nette\Application\UI\Control {
     if($release) {
       $this->user->identity->banned = false;
       $this->user->identity->roles = [$punishment->user->group->singleName];
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Byla jsi propuštěna.";
-      else $message = "Byl jsi propuštěn.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Byla jsi propuštěna.";
+      } else {
+        $message = "Byl jsi propuštěn.";
+      }
       $this->presenter->flashMessage($message);
       $this->presenter->redirect(":Front:Homepage:");
     } else {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Ještě nemůžeš být propuštěna.";
-      else $message = "Ještě nemůžeš být propuštěn.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Ještě nemůžeš být propuštěna.";
+      } else {
+        $message = "Ještě nemůžeš být propuštěn.";
+      }
       $this->presenter->flashMessage($message);
       $this->presenter->redirect("default");
     }

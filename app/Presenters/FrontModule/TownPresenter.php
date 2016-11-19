@@ -39,7 +39,9 @@ class TownPresenter extends BasePresenter {
    */
   protected function startup() {
     parent::startup();
-    if($this->action != "detail" AND $this->action != "list") $this->requiresLogin();
+    if($this->action != "detail" AND $this->action != "list") {
+      $this->requiresLogin();
+    }
   }
   
   /**
@@ -69,9 +71,13 @@ class TownPresenter extends BasePresenter {
   function renderDetail(int $id) {
     try {
       $this->template->town = $this->model->get($id);
-      if(!$this->user->isLoggedIn()) $this->template->canMove = false;
-      elseif($id == $this->user->identity->town) $this->template->canMove = false;
-      else $this->template->canMove = $this->model->canMove();
+      if(!$this->user->isLoggedIn()) {
+        $this->template->canMove = false;
+      } elseif($id == $this->user->identity->town) {
+        $this->template->canMove = false;
+      } else {
+        $this->template->canMove = $this->model->canMove();
+      }
     } catch(TownNotFoundException $e) {
       throw new \Nette\Application\BadRequestException;
     }
@@ -84,8 +90,11 @@ class TownPresenter extends BasePresenter {
   function actionMove(int $id) {
     try {
       $this->model->moveToTown((int) $id);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Přestěhovala jsi se do vybraného města.";
-      else $message = "Přestěhoval jsi se do vybraného města.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Přestěhovala jsi se do vybraného města.";
+      } else {
+        $message = "Přestěhoval jsi se do vybraného města.";
+      }
       $this->flashMessage($message);
       $this->redirect("Town:");
     } catch(TownNotFoundException $e) {

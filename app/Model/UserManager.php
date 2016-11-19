@@ -63,16 +63,28 @@ class UserManager implements IAuthenticator {
    * @throws InvalidArgumentException
    */
   function nameAvailable(string $name, string $type = "username", int $uid = NULL): bool {
-    if(!is_int($uid) AND !is_null($uid)) throw new InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
+    if(!is_int($uid) AND !is_null($uid)) {
+      throw new InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
+    }
     $types = ["username", "publicname"];
-    if(!in_array($type, $types)) throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
-    if($type === "username") $method = "getByUsername";
-    else $method = "getByPublicname";
+    if(!in_array($type, $types)) {
+      throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
+    }
+    if($type === "username") {
+      $method = "getByUsername";
+    } else {
+      $method = "getByPublicname";
+    }
     $row = $this->orm->users->$method($name);
-    if(!$row) return true;
-    elseif(!is_int($uid)) return false;
-    elseif($row->id === $uid) return true;
-    else return false;
+    if(!$row) {
+      return true;
+    } elseif(!is_int($uid)) {
+      return false;
+    } elseif($row->id === $uid) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   /**
@@ -85,10 +97,15 @@ class UserManager implements IAuthenticator {
    */
   function emailAvailable(string $email, int $uid = NULL): bool {
     $row = $this->orm->users->getByEmail($email);
-    if(!$row) return true;
-    elseif(!is_int($uid)) return false;
-    elseif($row->id === $uid) return true;
-    else return false;
+    if(!$row) {
+      return true;
+    } elseif(!is_int($uid)) {
+      return false;
+    } elseif($row->id === $uid) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   /**
@@ -139,7 +156,9 @@ class UserManager implements IAuthenticator {
    * @throws AuthenticationNeededException
    */
   function refreshIdentity() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
     $user = $this->orm->users->getById($this->user->id);
     $this->user->login($this->getIdentity($user));
   }
@@ -152,13 +171,19 @@ class UserManager implements IAuthenticator {
    * @throws RegistrationException
    */
   function register(array $data) {
-    if(!$this->nameAvailable($data["username"])) throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
-    if(!$this->emailAvailable($data["email"])) throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
+    if(!$this->nameAvailable($data["username"])) {
+      throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
+    }
+    if(!$this->emailAvailable($data["email"])) {
+      throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
+    }
     $user = new UserEntity;
     $this->orm->users->attach($user);
     $data += $this->newUser;
     foreach($data as $key => $value) {
-      if($key === "password") $value = Passwords::hash($data["password"]);
+      if($key === "password") {
+        $value = Passwords::hash($data["password"]);
+      }
       $user->$key = $value;
     }
     $user->publicname = $data["username"];
@@ -173,7 +198,9 @@ class UserManager implements IAuthenticator {
    * @throws AuthenticationNeededException
    */
   function getSettings(): array {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
     $user = $this->orm->users->getById($this->user->id);
     $settings = [
       "publicname" => $user->publicname, "email" => $user->email, "infomails" =>  $user->infomails,
@@ -191,9 +218,15 @@ class UserManager implements IAuthenticator {
    * @return void
    */
   function changeSettings(array $settings) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
-    if(!$this->nameAvailable($settings["publicname"], "publicname", $this->user->id)) throw new SettingsException("The public name is used by someone else.", self::REG_DUPLICATE_USERNAME);
-    if(!$this->emailAvailable($settings["email"], $this->user->id)) throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
+    if(!$this->nameAvailable($settings["publicname"], "publicname", $this->user->id)) {
+      throw new SettingsException("The public name is used by someone else.", self::REG_DUPLICATE_USERNAME);
+    }
+    if(!$this->emailAvailable($settings["email"], $this->user->id)) {
+      throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
+    }
     $user = $this->orm->users->getById($this->user->id);
     foreach($settings as $key => $value) {
       switch($key) {
@@ -208,7 +241,9 @@ class UserManager implements IAuthenticator {
   break;
       }
       $skip = ["password_old", "password_new", "password_check"];
-      if(!in_array($key, $skip)) $user->$key = $value;
+      if(!in_array($key, $skip)) {
+        $user->$key = $value;
+      }
     }
     $this->orm->users->persistAndFlush($user);
   }
@@ -242,8 +277,11 @@ class UserManager implements IAuthenticator {
    */
   function get(int $id): UserEntity {
     $user = $this->orm->users->getById($id);
-    if(!$user) throw new UserNotFoundException;
-    else return $user;
+    if(!$user) {
+      throw new UserNotFoundException;
+    } else {
+      return $user;
+    }
   }
 }
 ?>

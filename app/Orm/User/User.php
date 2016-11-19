@@ -97,14 +97,21 @@ class User extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterLife(int $value): int {
-    if($value > $this->maxLife) return 60;
-    elseif($value < 1) return 1;
-    else return $value;
+    if($value > $this->maxLife) {
+      return 60;
+    } elseif($value < 1) {
+      return 1;
+    } else {
+      return $value;
+    }
   }
   
   protected function getterTitle(): string {
-    if($this->gender === self::GENDER_FEMALE) return $this->group->femaleName;
-    else return $this->group->singleName;
+    if($this->gender === self::GENDER_FEMALE) {
+      return $this->group->femaleName;
+    } else {
+      return $this->group->singleName;
+    }
   }
   
   protected function onBeforeInsert() {

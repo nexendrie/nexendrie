@@ -36,7 +36,9 @@ class GuildPresenter extends BasePresenter {
    */
   protected function startup() {
     parent::startup();
-    if($this->action != "detail" AND $this->action != "list") $this->requiresLogin();
+    if($this->action != "detail" AND $this->action != "list") {
+      $this->requiresLogin();
+    }
   }
   
   /**
@@ -106,8 +108,11 @@ class GuildPresenter extends BasePresenter {
   function actionJoin(int $id) {
     try {
       $this->model->join($id);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vstoupila jsi do cechu.";
-      else $message = "Vstoupil jsi do cechu.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Vstoupila jsi do cechu.";
+      } else {
+        $message = "Vstoupil jsi do cechu.";
+      }
       $this->flashMessage($message);
       $this->redirect("default");
     } catch(CannotJoinGuildException $e) {
@@ -124,8 +129,11 @@ class GuildPresenter extends BasePresenter {
   function actionLeave() {
     try {
       $this->model->leave();
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Opustila jsi cech.";
-      else $message = "Opustil jsi cech.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Opustila jsi cech.";
+      } else {
+        $message = "Opustil jsi cech.";
+      }
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(CannotLeaveGuildException $e) {

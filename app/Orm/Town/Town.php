@@ -43,7 +43,9 @@ class Town extends \Nextras\Orm\Entity\Entity {
   protected function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->founded = time();
-    if($this->owner->id === 0) $this->onMarket = 1;
+    if($this->owner->id === 0) {
+      $this->onMarket = 1;
+    }
   }
 }
 ?>

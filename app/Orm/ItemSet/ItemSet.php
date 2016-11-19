@@ -33,9 +33,13 @@ class ItemSet extends \Nextras\Orm\Entity\Entity {
   }
   
   function setterBonus(int $value): int {
-    if($value < 0) return 0;
-    elseif($value > 99) return 99;
-    else return $value;
+    if($value < 0) {
+      return 0;
+    } elseif($value > 99) {
+      return 99;
+    } else {
+      return $value;
+    }
   }
   
   protected function getterEffect(): string {

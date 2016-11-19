@@ -36,7 +36,9 @@ class WorkPresenter extends BasePresenter {
    * @return void
    */
   function actionDefault() {
-    if(!$this->model->isWorking()) $this->redirect("offers");
+    if(!$this->model->isWorking()) {
+      $this->redirect("offers");
+    }
   }
   
   /**
@@ -107,8 +109,11 @@ class WorkPresenter extends BasePresenter {
     try {
       $rewards = $this->model->finishJob();
       $this->template->reward = $this->localeModel->money($rewards["reward"]);
-      if($rewards["extra"]) $this->template->extra = $this->localeModel->money($rewards["extra"]);
-      else $this->template->extra = false;
+      if($rewards["extra"]) {
+        $this->template->extra = $this->localeModel->money($rewards["extra"]);
+      } else {
+        $this->template->extra = false;
+      }
     } catch(NotWorkingException $e) {
       $this->flashMessage("Právě nevykonáváš žádnou práci.");
       $this->redirect("default");

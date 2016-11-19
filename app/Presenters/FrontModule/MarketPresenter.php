@@ -39,7 +39,9 @@ class MarketPresenter extends BasePresenter {
    * @throws \Nette\Application\BadRequestException
    */
   function actionShop(int $id) {
-    if(!$this->model->exists($id)) throw new \Nette\Application\BadRequestException;
+    if(!$this->model->exists($id)) {
+      throw new \Nette\Application\BadRequestException;
+    }
     $this->template->shopId = $id;
   }
   

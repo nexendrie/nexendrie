@@ -37,7 +37,9 @@ class OrderPresenter extends BasePresenter {
    */
   protected function startup() {
     parent::startup();
-    if($this->action != "detail" AND $this->action != "list") $this->requiresLogin();
+    if($this->action != "detail" AND $this->action != "list") {
+      $this->requiresLogin();
+    }
   }
   
   /**
@@ -107,8 +109,11 @@ class OrderPresenter extends BasePresenter {
   function actionJoin(int $id) {
     try {
       $this->model->join($id);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vstoupila jsi do řádu.";
-      else $message = "Vstoupil jsi do řádu.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Vstoupila jsi do řádu.";
+      } else {
+        $message = "Vstoupil jsi do řádu.";
+      }
       $this->flashMessage($message);
       $this->redirect("default");
     } catch(CannotJoinOrderException $e) {
@@ -125,8 +130,11 @@ class OrderPresenter extends BasePresenter {
   function actionLeave() {
     try {
       $this->model->leave();
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Opustila jsi řád.";
-      else $message = "Opustil jsi řád.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Opustila jsi řád.";
+      } else {
+        $message = "Opustil jsi řád.";
+      }
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(CannotLeaveOrderException $e) {

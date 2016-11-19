@@ -45,7 +45,9 @@ class MarriagePresenter extends BasePresenter {
   function actionDefault() {
     $partner = $this->profileModel->getPartner($this->user->id);
     $fiance = $this->profileModel->getFiance($this->user->id);
-    if(!$partner AND !$fiance) $this->redirect("proposals");
+    if(!$partner AND !$fiance) {
+      $this->redirect("proposals");
+    }
     $this->template->partner = $partner;
     $this->template->fiance = $fiance;
     $this->template->marriage = $this->marriage = $this->model->getCurrentMarriage();
@@ -161,8 +163,11 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Zasnoubení zrušeno.");
       $this->redirect("default");
     } catch(NotEngagedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi zasnoubená.";
-      else $message = "Nejsi zasnoubený.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Nejsi zasnoubená.";
+      } else {
+        $message = "Nejsi zasnoubený.";
+      }
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(WeddingAlreadyHappenedException $e) {
@@ -180,8 +185,11 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Žádost podána.");
       $this->redirect("default");
     } catch(NotMarriedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi vdaná.";
-      else $message = "Nejsi ženatý.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Nejsi vdaná.";
+      } else {
+        $message = "Nejsi ženatý.";
+      }
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(AlreadyInDivorceException $e) {
@@ -199,8 +207,11 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Vaše manželství skončilo.");
       $this->redirect("Homepage:");
     } catch(NotMarriedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi vdaná.";
-      else $message = "Nejsi ženatý.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Nejsi vdaná.";
+      } else {
+        $message = "Nejsi ženatý.";
+      }
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(NotInDivorceException $e) {
@@ -218,8 +229,11 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Žádost zamítnuta.");
       $this->redirect("default");
     } catch(NotMarriedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi vdaná.";
-      else $message = "Nejsi ženatý.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Nejsi vdaná.";
+      } else {
+        $message = "Nejsi ženatý.";
+      }
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(NotInDivorceException $e) {
@@ -237,16 +251,22 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Žádost stáhnuta.");
       $this->redirect("default");
     } catch(NotMarriedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi vdaná.";
-      else $message = "Nejsi ženatý.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Nejsi vdaná.";
+      } else {
+        $message = "Nejsi ženatý.";
+      }
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(NotInDivorceException $e) {
       $this->flashMessage("Nerozvádíte se.");
       $this->redirect("default");
     } catch(CannotTakeBackDivorceException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nepodala jsi žádost o rozvod.";
-      else $message = "Nepodal jsi žádost o rozvod.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Nepodala jsi žádost o rozvod.";
+      } else {
+        $message = "Nepodal jsi žádost o rozvod.";
+      }
       $this->flashMessage($message);
       $this->redirect("default");
     }
@@ -261,8 +281,11 @@ class MarriagePresenter extends BasePresenter {
       $this->inventoryModel->boostIntimacy($item);
       $this->flashMessage("Věc použita.");
     } catch(NotMarriedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nejsi vdaná.";
-      else $message = "Nejsi ženatý.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Nejsi vdaná.";
+      } else {
+        $message = "Nejsi ženatý.";
+      }
       $this->flashMessage($message);
     } catch(ItemNotFoundException $e) {
       $this->flashMessage("Věc nenalezena.");

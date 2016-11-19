@@ -52,8 +52,12 @@ class Taxes {
    * @return int[]
    */
   function calculateIncome(int $user, int $month = 0, int $year = 0): array {
-    if($month === 0) $month = (int) date("n");
-    if($year === 0) $year = (int) date("Y");
+    if($month === 0) {
+      $month = (int) date("n");
+    }
+    if($year === 0) {
+      $year = (int) date("Y");
+    }
     $workIncome = $this->jobModel->calculateMonthJobIncome($user, $month, $year);
     $adventuresIncome = $this->adventureModel->calculateMonthAdventuresIncome($user, $month, $year);
     return ["work" => $workIncome, "adventures" => $adventuresIncome];
@@ -72,8 +76,12 @@ class Taxes {
       "id" => $town->id, "name" => $town->name, "owner" => 0,
       "taxes" => 0, "denizens" => []
     ];
-    if($month === 0) $month = (int) date("n");
-    if($year === 0) $year = (int) date("Y");
+    if($month === 0) {
+      $month = (int) date("n");
+    }
+    if($year === 0) {
+      $year = (int) date("Y");
+    }
     $return->owner = $town->owner->id;
     foreach($town->denizens as $denizen) {
       if($denizen->id === 0) continue;
@@ -92,7 +100,9 @@ class Taxes {
       $return->taxes += $d->tax;
     }
     $castle = $this->orm->castles->getByOwner($town->owner->id);
-    if($castle) $return->taxes += $castle->taxesBonusIncome;
+    if($castle) {
+      $return->taxes += $castle->taxesBonusIncome;
+    }
     return $return;
   }
   

@@ -40,9 +40,13 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterDivorce(int $value): int {
-    if($value < 0) return 0;
-    elseif($value > 4) return 4;
-    else return $value;
+    if($value < 0) {
+      return 0;
+    } elseif($value > 4) {
+      return 4;
+    } else {
+      return $value;
+    }
   }
   
   protected function getterProposedT(): string {
@@ -50,29 +54,45 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterAcceptedT(): string {
-    if($this->accepted === NULL) return "";
-    else return $this->localeModel->formatDateTime($this->accepted);
+    if($this->accepted === NULL) {
+      return "";
+    } else {
+      return $this->localeModel->formatDateTime($this->accepted);
+    }
   }
   
   protected function getterTermT(): string {
-    if($this->term === NULL) return "";
-    else return $this->localeModel->formatDateTime($this->term);
+    if($this->term === NULL) {
+      return "";
+    } else {
+      return $this->localeModel->formatDateTime($this->term);
+    }
   }
   
   protected function getterCancelledT(): string {
-    if($this->cancelled === NULL) return "";
-    else return $this->localeModel->formatDateTime($this->cancelled);
+    if($this->cancelled === NULL) {
+      return "";
+    } else {
+      return $this->localeModel->formatDateTime($this->cancelled);
+    }
   }
   
   protected function setterIntimacy(int $value): int {
-    if($value < 0) return 0;
-    elseif($value > self::MAX_INTIMACY) return self::MAX_INTIMACY;
-    else return $value;
+    if($value < 0) {
+      return 0;
+    } elseif($value > self::MAX_INTIMACY) {
+      return self::MAX_INTIMACY;
+    } else {
+      return $value;
+    }
   }
   
   protected function getterLevel(): int {
-    if($this->status != self::STATUS_ACTIVE) return 0;
-    else return (int) ($this->intimacy / 100);
+    if($this->status != self::STATUS_ACTIVE) {
+      return 0;
+    } else {
+      return (int) ($this->intimacy / 100);
+    }
   }
   
   protected function getterHpIncrease(): int {
@@ -86,10 +106,18 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   
   protected function onBeforeUpdate() {
     parent::onBeforeUpdate();
-    if($this->status === self::STATUS_ACCEPTED AND is_null($this->accepted)) $this->accepted = time();
-    if($this->status === self::STATUS_ACCEPTED AND is_null($this->term)) $this->term = time() + (60 * 60 * 24 * 14);
-    if($this->status === self::STATUS_DECLINED AND is_null($this->accepted)) $this->accepted = time();
-    if($this->status === self::STATUS_CANCELLED AND is_null($this->cancelled)) $this->cancelled = time();
+    if($this->status === self::STATUS_ACCEPTED AND is_null($this->accepted)) {
+      $this->accepted = time();
+    }
+    if($this->status === self::STATUS_ACCEPTED AND is_null($this->term)) {
+      $this->term = time() + (60 * 60 * 24 * 14);
+    }
+    if($this->status === self::STATUS_DECLINED AND is_null($this->accepted)) {
+      $this->accepted = time();
+    }
+    if($this->status === self::STATUS_CANCELLED AND is_null($this->cancelled)) {
+      $this->cancelled = time();
+    }
   }
 }
 ?>

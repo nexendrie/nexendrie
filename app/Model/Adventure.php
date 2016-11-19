@@ -57,8 +57,11 @@ class Adventure {
    */
   function listOfNpcs(int $adventureId): OneHasMany {
     $adventure = $this->orm->adventures->getById($adventureId);
-    if(!$adventure) throw new AdventureNotFoundException;
-    else return $adventure->npcs;
+    if(!$adventure) {
+      throw new AdventureNotFoundException;
+    } else {
+      return $adventure->npcs;
+    }
   }
   
   /**
@@ -70,8 +73,11 @@ class Adventure {
    */
   function get(int $id): AdventureEntity {
     $adventure = $this->orm->adventures->getById($id);
-    if(!$adventure) throw new AdventureNotFoundException;
-    else return $adventure;
+    if(!$adventure) {
+      throw new AdventureNotFoundException;
+    } else {
+      return $adventure;
+    }
   }
   
   /**
@@ -117,8 +123,11 @@ class Adventure {
    */
   function getNpc(int $id): AdventureNpcEntity {
     $npc = $this->orm->adventureNpcs->getById($id);
-    if(!$npc) throw new AdventureNpcNotFoundException;
-    else return $npc;
+    if(!$npc) {
+      throw new AdventureNpcNotFoundException;
+    } else {
+      return $npc;
+    }
   }
   
   /**
@@ -181,8 +190,11 @@ class Adventure {
    * @throws AuthenticationNeededException
    */
   function findAvailableAdventures(): ICollection {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    else return $this->orm->adventures->findForLevel($this->user->identity->level);
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    } else {
+      return $this->orm->adventures->findForLevel($this->user->identity->level);
+    }
   }
   
   /**
@@ -192,7 +204,9 @@ class Adventure {
    * @throws AuthenticationNeededException
    */
   function findGoodMounts(): ICollection {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     return $this->orm->mounts->findGoodMounts($this->user->id);
   }
   
@@ -212,17 +226,32 @@ class Adventure {
    * @throws AdventureNotAccessibleException
    */
   function startAdventure(int $adventureId, int $mountId) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if($this->getCurrentAdventure()) throw new AlreadyOnAdventureException; 
-    if(!$this->canDoAdventure()) throw new CannotDoAdventureException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    if($this->getCurrentAdventure()) {
+      throw new AlreadyOnAdventureException;
+    }
+    if(!$this->canDoAdventure()) {
+      throw new CannotDoAdventureException;
+    }
     $adventure = $this->orm->adventures->getById($adventureId);
-    if(!$adventure) throw new AdventureNotFoundException;
-    if($adventure->level > $this->user->identity->level) throw new InsufficientLevelForAdventureException;
+    if(!$adventure) {
+      throw new AdventureNotFoundException;
+    }
+    if($adventure->level > $this->user->identity->level) {
+      throw new InsufficientLevelForAdventureException;
+    }
     $mount = $this->orm->mounts->getById($mountId);
-    if(!$mount) throw new MountNotFoundException;
-    elseif($mount->owner->id != $this->user->id) throw new MountNotOwnedException;
-    elseif($mount->hp < 30) throw new MountInBadConditionException;
-    elseif($adventure->event AND !$adventure->event->active) throw new AdventureNotAccessibleException;
+    if(!$mount) {
+      throw new MountNotFoundException;
+    } elseif($mount->owner->id != $this->user->id) {
+      throw new MountNotOwnedException;
+    } elseif($mount->hp < 30) {
+      throw new MountInBadConditionException;
+    } elseif($adventure->event AND !$adventure->event->active) {
+      throw new AdventureNotAccessibleException;
+    }
     $userAdventure = new UserAdventureEntity;
     $this->orm->userAdventures->attach($userAdventure);
     $userAdventure->user = $this->user->id;
@@ -239,8 +268,11 @@ class Adventure {
    * @throws AuthenticationNeededException
    */
   function getCurrentAdventure() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    elseif($this->adventure) return $this->adventure;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    } elseif($this->adventure) {
+      return $this->adventure;
+    }
     $this->adventure = $this->orm->userAdventures->getUserActiveAdventure($this->user->id);
     return $this->adventure;
   }
@@ -252,8 +284,11 @@ class Adventure {
    * @return AdventureNpcEntity|NULL
    */
   function getNextNpc(UserAdventureEntity $adventure) {
-    if($adventure->progress >= 9) return NULL;
-    else return $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
+    if($adventure->progress >= 9) {
+      return NULL;
+    } else {
+      return $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
+    }
   }
   
   /**
@@ -274,11 +309,17 @@ class Adventure {
     $round = 1;
     while(!$finished) {
       $npcLife -= $userAttack;
-      if($npcLife <= 1) $finished = $result = true;
+      if($npcLife <= 1) {
+        $finished = $result = true;
+      }
       $user->life -= $npcAttack;
-      if($user->life <= 1) $finished = true;
+      if($user->life <= 1) {
+        $finished = true;
+      }
       $round++;
-      if($round > 30) $finished = true;
+      if($round > 30) {
+        $finished = true;
+      }
     }
     return $result;
   }
@@ -302,12 +343,20 @@ class Adventure {
    * @throws NoEnemyRemainException
    */
   function fight(): array {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $adventure = $this->getCurrentAdventure();
-    if(!$adventure) throw new NotOnAdventureException;
-    if($adventure->progress > 9) throw new NoEnemyRemainException;
+    if(!$adventure) {
+      throw new NotOnAdventureException;
+    }
+    if($adventure->progress > 9) {
+      throw new NoEnemyRemainException;
+    }
     $enemy = $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
-    if(!$enemy) throw new NoEnemyRemainException;
+    if(!$enemy) {
+      throw new NoEnemyRemainException;
+    }
     $success = $this->fightNpc($enemy, $adventure->mount);
     if($success) {
       $message = $enemy->victoryText;
@@ -328,10 +377,16 @@ class Adventure {
    * @throws NotAllEnemiesDefeateException
    */
   function finishAdventure() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $adventure = $this->getCurrentAdventure();
-    if(!$adventure) throw new NotOnAdventureException;
-    if($this->getNextNpc($adventure)) throw new NotAllEnemiesDefeateException;
+    if(!$adventure) {
+      throw new NotOnAdventureException;
+    }
+    if($this->getNextNpc($adventure)) {
+      throw new NotAllEnemiesDefeateException;
+    }
     $adventure->progress = 10;
     $reward = $adventure->adventure->reward;
     $reward += $this->eventsModel->calculateAdventuresBonus($reward);
@@ -353,7 +408,9 @@ class Adventure {
    */
   function calculateMonthAdventuresIncome(int $user = 0, int $month = 0, int $year = 0): int {
     $income = 0;
-    if($user === 0) $user = $this->user->id;
+    if($user === 0) {
+      $user = $this->user->id;
+    }
     $adventures = $this->orm->userAdventures->findFromMonth($user, $month, $year);
     foreach($adventures as $adventure) {
       $income += $adventure->reward + $adventure->loot;
@@ -367,13 +424,19 @@ class Adventure {
    */
   function canDoAdventure(): bool {
     $twoDays = 60 * 60 * 24 * 2;
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $adventure = $this->orm->userAdventures->getLastAdventure($this->user->id);
-    if(!$adventure->count()) return true;
+    if(!$adventure->count()) {
+      return true;
+    }
     $next = new \DateTime;
     $next->setTimestamp($adventure->fetch()->started + $twoDays);
     $next->setTime(0, 0, 0);
-    if($next->getTimestamp() < time()) return true;
+    if($next->getTimestamp() < time()) {
+      return true;
+    }
     return false;
   }
 }

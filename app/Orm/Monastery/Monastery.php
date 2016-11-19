@@ -50,15 +50,23 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterLevel(int $value): int {
-    if($value < 1) return 1;
-    elseif($value > self::MAX_LEVEL) return self::MAX_LEVEL;
-    else return $value;
+    if($value < 1) {
+      return 1;
+    } elseif($value > self::MAX_LEVEL) {
+      return self::MAX_LEVEL;
+    } else {
+      return $value;
+    }
   }
   
   protected function setterHp(int $value): int {
-    if($value < 1) return 1;
-    elseif($value > 100) return 100;
-    else return $value;
+    if($value < 1) {
+      return 1;
+    } elseif($value > 100) {
+      return 100;
+    } else {
+      return $value;
+    }
   }
   
   protected function getterMoneyT(): string {
@@ -66,12 +74,17 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterPrayerLife(): int {
-    if($this->hp <= 30) return 0;
-    else return 2 + ($this->level * 2);
+    if($this->hp <= 30) {
+      return 0;
+    } else {
+      return 2 + ($this->level * 2);
+    }
   }
   
   protected function getterUpgradePrice(): int {
-    if($this->level === self::MAX_LEVEL) return 0;
+    if($this->level === self::MAX_LEVEL) {
+      return 0;
+    }
     $price = self::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->level + 1; $i++) {
       $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
@@ -84,9 +97,14 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterRepairPrice(): int {
-    if($this->hp >= 100) return 0;
-    if($this->level === 1) $multiplier = 1;
-    else $multiplier = ($this->level - 1) * 10 / 100 + 1;
+    if($this->hp >= 100) {
+      return 0;
+    }
+    if($this->level === 1) {
+      $multiplier = 1;
+    } else {
+      $multiplier = ($this->level - 1) * 10 / 100 + 1;
+    }
     $basePrice = self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp);
     return (int) ($basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice));
   }

@@ -43,7 +43,7 @@ class AddEditItemFormFactory {
     $form->addSelect("shop", "Obchod", $this->getShops())
       ->setPrompt("žádný");
     $form->addSelect("type", "Typ:", Item::getTypes())
-      ->setRequired("Vyber type.");
+      ->setRequired("Vyber typ.");
     $form->addText("strength", "Síla:")
       ->setRequired("Zadej síla.")
       ->addRule(Form::INTEGER, "Síla musí být celé číslo.")

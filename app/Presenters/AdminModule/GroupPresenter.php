@@ -31,7 +31,9 @@ class GroupPresenter extends BasePresenter {
    */
   function actionEdit(int $id) {
     $this->requiresPermissions("group", "edit");
-    if(!$this->model->exists($id)) throw new \Nette\Application\BadRequestException;
+    if(!$this->model->exists($id)) {
+      throw new \Nette\Application\BadRequestException;
+    }
   }
   
   /**
@@ -66,7 +68,9 @@ class GroupPresenter extends BasePresenter {
    */
   function renderMembers(int $id) {
     $group = $this->model->ormGet($id);
-    if(!$group) throw new \Nette\Application\BadRequestException;
+    if(!$group) {
+      throw new \Nette\Application\BadRequestException;
+    }
     else $this->template->group = $group;
   }
 }

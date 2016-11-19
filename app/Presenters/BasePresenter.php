@@ -22,7 +22,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    */
   protected function startup() {
     parent::startup();
-    if($this->user->isLoggedIn()) $this->template->style = $this->user->identity->style;
+    if($this->user->isLoggedIn()) {
+      $this->template->style = $this->user->identity->style;
+    }
   }
   
   function beforeRender() {

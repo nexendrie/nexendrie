@@ -52,8 +52,11 @@ class Polls {
    */
   function view(int $id): PollEntity {
     $poll = $this->orm->polls->getById($id);
-    if(!$poll) throw new PollNotFoundException("Specified poll does not exist.");
-    else return $poll;
+    if(!$poll) {
+      throw new PollNotFoundException("Specified poll does not exist.");
+    } else {
+      return $poll;
+    }
   }
   
   /**
@@ -65,8 +68,12 @@ class Polls {
    * @throws MissingPermissionsException
    */
   function add(array $data) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
-    if(!$this->user->isAllowed("poll", "add")) throw new MissingPermissionsException("You don't have permissions for adding news.");
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
+    if(!$this->user->isAllowed("poll", "add")) {
+      throw new MissingPermissionsException("You don't have permissions for adding news.");
+    }
     $poll = new PollEntity;
     $this->orm->polls->attach($poll);
     foreach($data as $key => $value) {
@@ -97,10 +104,16 @@ class Polls {
    * @throws PollNotFoundException
    */
   function edit(int $id, array $data) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
-    if(!$this->user->isAllowed("poll", "add")) throw new MissingPermissionsException("You don't have permissions for editing polls.");
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
+    if(!$this->user->isAllowed("poll", "add")) {
+      throw new MissingPermissionsException("You don't have permissions for editing polls.");
+    }
     $poll = $this->orm->polls->getById($id);
-    if(!$poll) throw new PollNotFoundException("Specified poll does not exist.");
+    if(!$poll) {
+      throw new PollNotFoundException("Specified poll does not exist.");
+    }
     foreach($data as $key => $value) {
       $poll->$key = $value;
     }

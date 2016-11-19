@@ -39,9 +39,13 @@ class PollControl extends \Nette\Application\UI\Control {
    * @throws PollNotFoundException
    */
   function getPoll(): PollEntity {
-    if(isset($this->poll)) return $this->poll;
+    if(isset($this->poll)) {
+      return $this->poll;
+    }
     $poll = $this->orm->polls->getById($this->id);
-    if(!$poll) throw new PollNotFoundException("Specified poll does not exist.");
+    if(!$poll) {
+      throw new PollNotFoundException("Specified poll does not exist.");
+    }
     $this->poll = $poll;
     return $poll;
   }
@@ -87,7 +91,9 @@ class PollControl extends \Nette\Application\UI\Control {
     $this->template->poll = $poll;
     $votes = $this->getVotes();
     for($i = 1; $i <= count($poll->parsedAnswers); $i++) {
-      if(!isset($votes["answers"][$i])) $votes["answers"][$i] = 0;
+      if(!isset($votes["answers"][$i])) {
+        $votes["answers"][$i] = 0;
+      }
     }
     $this->template->votes = $votes;
     $template->canVote = $this->canVote();
@@ -101,8 +107,11 @@ class PollControl extends \Nette\Application\UI\Control {
    * @return bool
    */
   protected function canVote(): bool {
-    if(!$this->user->isLoggedIn()) return false;
-    elseif(!$this->user->isAllowed("poll", "vote")) return false;
+    if(!$this->user->isLoggedIn()) {
+      return false;
+    } elseif(!$this->user->isAllowed("poll", "vote")) {
+      return false;
+    }
     $row = $this->orm->pollVotes->getByPollAndUser($this->id, $this->user->id);
     return !(bool) $row;
   }
@@ -117,9 +126,13 @@ class PollControl extends \Nette\Application\UI\Control {
    * @return void
    */
   protected function vote(int $answer) {
-    if(!$this->canVote()) throw new AccessDeniedException("You can't vote in this poll.");
+    if(!$this->canVote()) {
+      throw new AccessDeniedException("You can't vote in this poll.");
+    }
     $poll = $this->getPoll();
-    if($answer > count($poll->parsedAnswers)) throw new PollVotingException("The poll has less then $answer answers.");
+    if($answer > count($poll->parsedAnswers)) {
+      throw new PollVotingException("The poll has less then $answer answers.");
+    }
     $vote = new PollVoteEntity;
     $this->orm->pollVotes->attach($vote);
     $vote->poll = $this->poll;

@@ -38,7 +38,9 @@ class Bank {
    * @throws AuthenticationNeededException
    */
   function getActiveLoan() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     return $this->orm->loans->getActiveLoan($this->user->id);
   }
   
@@ -46,14 +48,23 @@ class Bank {
    * @return int
    */
   function maxLoan(): int {
-    if(!$this->user->isLoggedIn()) return 0;
+    if(!$this->user->isLoggedIn()) {
+      return 0;
+    }
     $level = $this->user->identity->level;
-    if($level < 90) return 70;
-    elseif($level >= 90 AND $level <= 100) return 300;
-    elseif($level > 100 AND $level < 400) return 500;
-    elseif($level === 400) return 700;
-    elseif($level > 400 AND $level < 10000) return 1500;
-    else return 2000;
+    if($level < 90) {
+      return 70;
+    } elseif($level >= 90 AND $level <= 100) {
+      return 300;
+    } elseif($level > 100 AND $level < 400) {
+      return 500;
+    } elseif($level === 400) {
+      return 700;
+    } elseif($level > 400 AND $level < 10000) {
+      return 1500;
+    } else {
+      return 2000;
+    }
   }
   
   /**
@@ -79,8 +90,11 @@ class Bank {
    * @throws CannotTakeMoreLoansException
    */
   function takeLoan(int $amount) {
-    if($amount > $this->maxLoan()) throw new TooHighLoanException;
-    elseif($this->getActiveLoan()) throw new CannotTakeMoreLoansException;
+    if($amount > $this->maxLoan()) {
+      throw new TooHighLoanException;
+    } elseif($this->getActiveLoan()) {
+      throw new CannotTakeMoreLoansException;
+    }
     $loan = new LoanEntity;
     $loan->user = $this->orm->users->getById($this->user->id);
     $loan->user->money += $amount;
@@ -98,11 +112,17 @@ class Bank {
    * @throws InsufficientFundsException
    */
   function returnLoan() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $loan = $this->getActiveLoan();
-    if(!$loan) throw new NoLoanException;
+    if(!$loan) {
+      throw new NoLoanException;
+    }
     $returnMoney = $loan->amount + $this->calculateInterest($loan);
-    if($returnMoney > $loan->user->money) throw new InsufficientFundsException;
+    if($returnMoney > $loan->user->money) {
+      throw new InsufficientFundsException;
+    }
     $loan->returned = time();
     $loan->user->money -= $returnMoney;
     $this->orm->loans->persistAndFlush($loan);

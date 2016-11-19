@@ -49,8 +49,12 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|UserAdventure[]
    */
   function findFromMonth(int $user, int $month = 0, int $year = 0) {
-    if($month === 0) $month = (int) date("n");
-    if($year === 0) $year = (int) date("Y");
+    if($month === 0) {
+      $month = (int) date("n");
+    }
+    if($year === 0) {
+      $year = (int) date("Y");
+    }
     $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);

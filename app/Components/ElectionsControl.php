@@ -60,12 +60,18 @@ class ElectionsControl extends \Nette\Application\UI\Control {
    * @return bool
    */
   protected function canVote(): bool {
-    if(!$this->user->isAllowed("town", "elect")) return false;
-    elseif(!$this->model->getNumberOfCouncillors($this->town->id)) return false;
-    elseif($this->getState() != "voting") return false;
+    if(!$this->user->isAllowed("town", "elect")) {
+      return false;
+    } elseif(!$this->model->getNumberOfCouncillors($this->town->id)) {
+      return false;
+    } elseif($this->getState() != "voting") {
+      return false;
+    }
     $votes = $this->getVotes((int) date("Y"), (int) date("n"));
     foreach($votes as $vote) {
-      if($vote->voter->id === $this->user->id) return false;
+      if($vote->voter->id === $this->user->id) {
+        return false;
+      }
     }
     return true;
   }

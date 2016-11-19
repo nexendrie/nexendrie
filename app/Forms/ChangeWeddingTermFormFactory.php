@@ -51,7 +51,9 @@ class ChangeWeddingTermFormFactory {
    */
   function validate(Form $form, array $values) {
     $term = $values["term"]->getTimestamp();
-    if($term < time()) $form->addError("Datum nemůže být v minulosti.");
+    if($term < time()) {
+      $form->addError("Datum nemůže být v minulosti.");
+    }
   }
   
   /**

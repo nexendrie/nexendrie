@@ -37,8 +37,11 @@ class Town {
    */
   function get(int $id): TownEntity {
     $town = $this->orm->towns->getById($id);
-    if(!$town) throw new TownNotFoundException;
-    else return $town;
+    if(!$town) {
+      throw new TownNotFoundException;
+    } else {
+      return $town;
+    }
   }
   
   /**
@@ -105,14 +108,26 @@ class Town {
    * @throws InsufficientFundsException
    */
   function buy(int $id) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $town = $this->orm->towns->getById($id);
-    if(!$town) throw new TownNotFoundException;
-    if(!$town->onMarket) throw new TownNotOnSaleException;
-    if($town->owner->id === $this->user->id) throw new CannotBuyOwnTownException;
+    if(!$town) {
+      throw new TownNotFoundException;
+    }
+    if(!$town->onMarket) {
+      throw new TownNotOnSaleException;
+    }
+    if($town->owner->id === $this->user->id) {
+      throw new CannotBuyOwnTownException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->level < 350) throw new InsufficientLevelForTownException;
-    if($user->money < $town->price) throw new InsufficientFundsException;
+    if($user->group->level < 350) {
+      throw new InsufficientLevelForTownException;
+    }
+    if($user->money < $town->price) {
+      throw new InsufficientFundsException;
+    }
     $seller = $town->owner;
     $seller->money += $town->price;
     $this->orm->users->persist($seller);
@@ -130,8 +145,11 @@ class Town {
    */
   function getMayor(int $town) {
     $mayor = $this->orm->users->getTownMayor($town);
-    if($mayor) return $mayor;
-    else return NULL;
+    if($mayor) {
+      return $mayor;
+    } else {
+      return NULL;
+    }
   }
   
   /**
@@ -159,15 +177,25 @@ class Town {
    * @throws InsufficientLevelForMayorException
    */
   function appointMayor(int $townId, int $newMayorId) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $town = $this->orm->towns->getById($townId);
-    if(!$town) throw new TownNotFoundException;
-    elseif($town->owner->id != $this->user->id) throw new TownNotOwnedException;
+    if(!$town) {
+      throw new TownNotFoundException;
+    } elseif($town->owner->id != $this->user->id) {
+      throw new TownNotOwnedException;
+    }
     $newMayor = $this->orm->users->getById($newMayorId);
-    if(!$newMayor) throw new UserNotFoundException;
-    elseif($newMayor->town->id != $townId) throw new UserDoesNotLiveInTheTownException;
+    if(!$newMayor) {
+      throw new UserNotFoundException;
+    } elseif($newMayor->town->id != $townId) {
+      throw new UserDoesNotLiveInTheTownException;
+    }
     $newMayorRank = $newMayor->group->level;
-    if(!in_array($newMayorRank, [100, 300])) throw new InsufficientLevelForMayorException;
+    if(!in_array($newMayorRank, [100, 300])) {
+      throw new InsufficientLevelForMayorException;
+    }
     $oldMayor = $this->orm->users->getTownMayor($townId);
     if($oldMayor) {
       $oldMayor->group = $this->orm->groups->getByLevel(100);
@@ -185,14 +213,23 @@ class Town {
    */
   function canMove(): bool {
     $month = 60 * 60 * 24 * 31;
-    if(!$this->user->isLoggedIn()) return false;
+    if(!$this->user->isLoggedIn()) {
+      return false;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path === GroupEntity::PATH_CHURCH) return false;
-    elseif($user->group->path === GroupEntity::PATH_CITY AND $user->group->level != 100) return false;
-    elseif($user->lastTransfer === NULL) return true;
-    elseif($user->lastTransfer + $month > time()) return false;
-    elseif($user->guild AND $user->guildRank->id === 4) return false;
-    else return true;
+    if($user->group->path === GroupEntity::PATH_CHURCH) {
+      return false;
+    } elseif($user->group->path === GroupEntity::PATH_CITY AND $user->group->level != 100) {
+      return false;
+    } elseif($user->lastTransfer === NULL) {
+      return true;
+    } elseif($user->lastTransfer + $month > time()) {
+      return false;
+    } elseif($user->guild AND $user->guildRank->id === 4) {
+      return false;
+    } else {
+      return true;
+    }
   }
   
   /**
@@ -206,12 +243,19 @@ class Town {
    * @throws CannotMoveToTownException
    */
   function moveToTown(int $id) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $town = $this->orm->towns->getById($id);
-    if(!$town) throw new TownNotFoundException;
+    if(!$town) {
+      throw new TownNotFoundException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if($id === $user->town->id) throw new CannotMoveToSameTownException;
-    elseif(!$this->canMove()) throw new CannotMoveToTownException;
+    if($id === $user->town->id) {
+      throw new CannotMoveToSameTownException;
+    } elseif(!$this->canMove()) {
+      throw new CannotMoveToTownException;
+    }
     $this->user->identity->town = $user->town = $id;
     $user->lastTransfer = $user->lastActive = time();
     $user->guild = $user->guildRank = NULL;
@@ -230,13 +274,23 @@ class Town {
    * @throws TownNameInUseException
    */
   function found(array $data) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != GroupEntity::PATH_TOWER) throw new InsufficientLevelForFoundTownException;
-    if($user->money < $this->foundingPrice) throw new InsufficientFundsException;
+    if($user->group->path != GroupEntity::PATH_TOWER) {
+      throw new InsufficientLevelForFoundTownException;
+    }
+    if($user->money < $this->foundingPrice) {
+      throw new InsufficientFundsException;
+    }
     $item = $this->orm->userItems->getByUserAndItem($user->id, 15);
-    if(!$item) throw new CannotFoundTownException;
-    if($this->orm->towns->getByName($data["name"])) throw new TownNameInUseException;
+    if(!$item) {
+      throw new CannotFoundTownException;
+    }
+    if($this->orm->towns->getByName($data["name"])) {
+      throw new TownNameInUseException;
+    }
     $item->amount--;
     if($item->amount < 1) {
       $this->orm->userItems->removeAndFlush($item, false);
@@ -273,12 +327,19 @@ class Town {
    * @throws TooHighLevelException
    */
   function makeCitizen(int $id) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $citizen = $this->orm->users->getById($id);
-    if(!$citizen) throw new UserNotFoundException;
+    if(!$citizen) {
+      throw new UserNotFoundException;
+    }
     $owner = $this->orm->users->getById($this->user->id);
-    if($citizen->town->owner->id != $owner->id) throw new UserDoesNotLiveInTheTownException;
-    elseif($citizen->group->level > 50) throw new TooHighLevelException;
+    if($citizen->town->owner->id != $owner->id) {
+      throw new UserDoesNotLiveInTheTownException;
+    } elseif($citizen->group->level > 50) {
+      throw new TooHighLevelException;
+    }
     $citizen->group = $this->orm->groups->getByLevel(100);
     $message = new MessageEntity;
     $message->from = $owner;

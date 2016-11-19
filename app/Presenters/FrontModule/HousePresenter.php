@@ -109,8 +109,11 @@ class HousePresenter extends BasePresenter {
   function handleUpgradeBrewery() {
     try {
       $newLevel = $this->model->upgradeBrewery();
-      if($newLevel === 1) $this->flashMessage("Pivovar pořízen.");
-      else $this->flashMessage("Pivovar vylepšen.");
+      if($newLevel === 1) {
+        $this->flashMessage("Pivovar pořízen.");
+      } else {
+        $this->flashMessage("Pivovar vylepšen.");
+      }
       $this->redirect("default");
     } catch(CannotUpgradeBreweryException $e) {
       $this->flashMessage("Nemůžeš vylepšit pivovar.");
@@ -127,8 +130,11 @@ class HousePresenter extends BasePresenter {
   function handleProduceBeer() {
     try {
       $result = $this->model->produceBeer();
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Uvařila jsi ";
-      else $message = "Uvařil jsi ";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Uvařila jsi ";
+      } else {
+        $message = "Uvařil jsi ";
+      }
       $message .= $result["amount"] . " ";
       $message .= $this->localeModel->plural("sud", "sudy", "sudů", $result["amount"]);
       $message .= " piva za ";

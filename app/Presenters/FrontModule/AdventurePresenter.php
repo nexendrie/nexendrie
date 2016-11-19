@@ -55,7 +55,9 @@ class AdventurePresenter extends BasePresenter {
    * @return void
    */
   function actionMounts(int $id) {
-    if($this->model->getCurrentAdventure()) $this->redirect("default");
+    if($this->model->getCurrentAdventure()) {
+      $this->redirect("default");
+    }
     $this->template->adventure = $id;
   }
 }

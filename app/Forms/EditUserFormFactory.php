@@ -60,7 +60,9 @@ class EditUserFormFactory {
    */
   protected function getDefaultValues(): array {
     $user = $this->orm->users->getById($this->uid);
-    if(!$user) throw new \Nette\ArgumentOutOfRangeException("User with specified id does not exist.");
+    if(!$user) {
+      throw new \Nette\ArgumentOutOfRangeException("User with specified id does not exist.");
+    }
     return [
       "username" => $user->username,
       "publicname" => $user->publicname,
@@ -99,7 +101,9 @@ class EditUserFormFactory {
    * @return void
    */
   function validate(Form $form, array  $values) {
-    if($values["group"] == 0 AND $this->uid != 0) $form->addError("Neplatná skupina.");
+    if($values["group"] == 0 AND $this->uid != 0) {
+      $form->addError("Neplatná skupina.");
+    }
   }
 }
 ?>

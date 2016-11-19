@@ -23,9 +23,13 @@ class EventPresenter extends BasePresenter {
     try {
       $this->template->event = $event = $this->model->getEvent($id);
       $time = time();
-      if($event->start <= $time AND $event->end >= $time) $status = "active";
-      elseif($event->start > $time) $status = "future";
-      else $status = "past";
+      if($event->start <= $time AND $event->end >= $time) {
+        $status = "active";
+      } elseif($event->start > $time) {
+        $status = "future";
+      } else {
+        $status = "past";
+      }
       $this->template->status = $status;
     } catch(EventNotFoundException $e) {
       throw new \Nette\Application\BadRequestException;

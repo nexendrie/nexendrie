@@ -38,8 +38,11 @@ class Event extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterEnd(int $value): int {
-    if($value < $this->start) return $this->start;
-    else return $value;
+    if($value < $this->start) {
+      return $this->start;
+    } else {
+      return $value;
+    }
   }
   
   protected function getterEndAt(): string {
@@ -47,45 +50,72 @@ class Event extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterAdventuresBonus(int $value): int {
-    if($value < 0) return 0;
-    elseif($value > 999) return 999;
-    else return $value;
+    if($value < 0) {
+      return 0;
+    } elseif($value > 999) {
+      return 999;
+    } else {
+      return $value;
+    }
   }
   
   protected function setterWorkBonus(int $value): int {
-    if($value < 0) return 0;
-    elseif($value > 999) return 999;
-    else return $value;
+    if($value < 0) {
+      return 0;
+    } elseif($value > 999) {
+      return 999;
+    } else {
+      return $value;
+    }
   }
   
   protected function setterPrayerLifeBonus(int $value): int {
-    if($value < 0) return 0;
-    elseif($value > 999) return 999;
-    else return $value;
+    if($value < 0) {
+      return 0;
+    } elseif($value > 999) {
+      return 999;
+    } else {
+      return $value;
+    }
   }
   
   protected function setterTrainingDiscount(int $value): int {
-    if($value < 0) return 0;
-    elseif($value > 100) return 100;
-    else return $value;
+    if($value < 0) {
+      return 0;
+    } elseif($value > 100) {
+      return 100;
+    } else {
+      return $value;
+    }
   }
   
   protected function setterRepairingDiscount(int $value): int {
-    if($value < 0) return 0;
-    elseif($value > 100) return 100;
-    else return $value;
+    if($value < 0) {
+      return 0;
+    } elseif($value > 100) {
+      return 100;
+    } else {
+      return $value;
+    }
   }
   
   protected function setterShoppingDiscount(int $value): int {
-    if($value < 0) return 0;
-    elseif($value > 100) return 100;
-    else return $value;
+    if($value < 0) {
+      return 0;
+    } elseif($value > 100) {
+      return 100;
+    } else {
+      return $value;
+    }
   }
   
   protected function getterActive(): bool {
     $time = time();
-    if($this->start <= $time AND $this->end >= $time) return true;
-    else return false;
+    if($this->start <= $time AND $this->end >= $time) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   /**

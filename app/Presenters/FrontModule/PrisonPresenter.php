@@ -17,8 +17,11 @@ class PrisonPresenter extends BasePresenter {
    */
   protected function startup() {
     parent::startup();
-    if(!$this->user->isLoggedIn()) $this->redirect("Homepage:");
-    elseif(!$this->user->identity->banned) $this->redirect("Homepage:");
+    if(!$this->user->isLoggedIn()) {
+      $this->redirect("Homepage:");
+    } elseif(!$this->user->identity->banned) {
+      $this->redirect("Homepage:");
+    }
   }
   
   /**

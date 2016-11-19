@@ -93,9 +93,15 @@ class GiftFormFactory {
    */
   protected function composeMessage($money, $item): string {
     $message = "Dostal jsi ";
-    if($money > 0) $message .= $this->localeModel->money($money);
-    if($money > 0 AND strlen($item) > 0) $message .= " a ";
-    if(strlen($item) > 0) $message .= $item;
+    if($money > 0) {
+      $message .= $this->localeModel->money($money);
+    }
+    if($money > 0 AND strlen($item) > 0) {
+      $message .= " a ";
+    }
+    if(strlen($item) > 0) {
+      $message .= $item;
+    }
     $message .= ".";
     return $message;
   }
@@ -130,8 +136,11 @@ class GiftFormFactory {
       $this->orm->userItems->persist($row, false);
       $itemName = $item->name;
     }
-    if(!$filledMessage) $messageText = $this->composeMessage($money, $itemName);
-    else $messageText = $values["message"];
+    if(!$filledMessage) {
+      $messageText = $this->composeMessage($money, $itemName);
+    } else {
+      $messageText = $values["message"];
+    }
     $message = new MessageEntity;
     $message->from = $this->orm->users->getById($this->user->id);
     $message->to = $user;

@@ -71,8 +71,11 @@ class Market {
    */
   function getShop(int $id): ShopEntity {
     $shop = $this->orm->shops->getById($id);
-    if(!$shop) throw new ShopNotFoundException("Specified shop was not found.");
-    else return $shop;
+    if(!$shop) {
+      throw new ShopNotFoundException("Specified shop was not found.");
+    } else {
+      return $shop;
+    }
   }
   
   /**
@@ -113,8 +116,11 @@ class Market {
    */
   function getItem(int $id): ItemEntity {
     $item = $this->orm->items->getById($id);
-    if(!$item) throw new ItemNotFoundException("Specified item was not found.");
-    else return $item;
+    if(!$item) {
+      throw new ItemNotFoundException("Specified item was not found.");
+    } else {
+      return $item;
+    }
   }
   
   /**
@@ -158,11 +164,19 @@ class Market {
    */
   function buy(int $item, int $shop) {
     $itemRow = $this->orm->items->getById($item);
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$itemRow) throw new ItemNotFoundException("Specified item does not exist.");
-    if($itemRow->shop->id != $shop) throw new WrongShopException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    if(!$itemRow) {
+      throw new ItemNotFoundException("Specified item does not exist.");
+    }
+    if($itemRow->shop->id != $shop) {
+      throw new WrongShopException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->money < $itemRow->price) throw new InsufficientFundsException;
+    if($user->money < $itemRow->price) {
+      throw new InsufficientFundsException;
+    }
     $row = $this->orm->userItems->getByUserAndItem($user->id, $item);
     if(!$row OR in_array($itemRow->type, ItemEntity::getEquipmentTypes())) {
       $row = new UserItemEntity;

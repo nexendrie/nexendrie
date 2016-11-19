@@ -42,8 +42,11 @@ class Tavern {
    */
   function getMeal(int $id): MealEntity {
     $meal = $this->orm->meals->getById($id);
-    if($meal) return $meal;
-    else throw new MealNotFoundException;
+    if($meal) {
+      return $meal;
+    } else {
+      throw new MealNotFoundException;
+    }
   }
   
   /**
@@ -90,18 +93,27 @@ class Tavern {
    * @throws InsufficientFundsException
    */
   function buyMeal(int $id): string {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $meal = $this->orm->meals->getById($id);
-    if(!$meal) throw new MealNotFoundException;
+    if(!$meal) {
+      throw new MealNotFoundException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->money < $meal->price) throw new InsufficientFundsException;
+    if($user->money < $meal->price) {
+      throw new InsufficientFundsException;
+    }
     $message = $meal->message;
     $user->money -= $meal->price;
     $user->lastActive = time();
     if($meal->life != 0 AND $user->life > 1 AND $user->life < $user->maxLife) {
       $user->life += $meal->life;
-      if($meal->life > 0) $message .= " Přibylo ti $meal->life životů.";
-      else $message .= " Ubylo ti " . $meal->life * -1 . " životů.";
+      if($meal->life > 0) {
+        $message .= " Přibylo ti $meal->life životů.";
+      } else {
+        $message .= " Ubylo ti " . $meal->life * -1 . " životů.";
+      }
     }
     $this->orm->users->persistAndFlush($user);
     return $message;

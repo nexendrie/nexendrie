@@ -25,7 +25,9 @@ class BankPresenter extends BasePresenter {
    * @return void
    */
   function renderDefault() {
-    if($this->user->isLoggedIn()) $this->template->loan = $this->model->getActiveLoan();
+    if($this->user->isLoggedIn()) {
+      $this->template->loan = $this->model->getActiveLoan();
+    }
     $this->template->maxLoan = $this->localeModel->money($this->model->maxLoan());
     $this->template->interest = $this->sr->settings["fees"]["loanInterest"];
     if($this->user->isLoggedIn() AND $this->template->loan) {
@@ -41,8 +43,11 @@ class BankPresenter extends BasePresenter {
   protected function createComponentTakeLoanForm(TakeLoanFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $text = "Přijala jsi půjčku %s.";
-      else $text = "Přijal jsi půjčku %s.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $text = "Přijala jsi půjčku %s.";
+      } else {
+        $text = "Přijal jsi půjčku %s.";
+      }
       $message = sprintf($text, $this->localeModel->money($values["amount"]));
       $this->flashMessage($message);
     };
@@ -56,8 +61,11 @@ class BankPresenter extends BasePresenter {
     $this->requiresLogin();
     try {
       $this->model->returnLoan();
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Vrátila jsi půjčku.";
-      else $message = "Vrátil jsi půjčku.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Vrátila jsi půjčku.";
+      } else {
+        $message = "Vrátil jsi půjčku.";
+      }
       $this->flashMessage($message);
     } catch(NoLoanException $e) {
       $this->flashMessage("Nemáš žádnou půjčku.");

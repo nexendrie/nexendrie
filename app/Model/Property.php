@@ -39,7 +39,9 @@ class Property {
    * @throws AuthenticationNeededException
    */
   function budget(): array {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $budget = [
       "incomes" => 
         $this->taxesModel->calculateIncome($this->user->id) + ["taxes" => 0, "beerProduction" => 0]
@@ -67,11 +69,17 @@ class Property {
     foreach($towns as $town) {
       $budget["incomes"]["taxes"] += $this->taxesModel->calculateTownTaxes($town)->taxes;
       $current = ($town->id === $this->user->identity->town) AND ($town->owner->id === $this->user->id);
-      if($current) $budget["expenses"]["incomeTax"] = 0;
+      if($current) {
+        $budget["expenses"]["incomeTax"] = 0;
+      }
     }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) $budget["expenses"]["membershipFee"] += $user->guildRank->guildFee;
-    if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) $budget["expenses"]["membershipFee"] += $user->orderRank->orderFee;
+    if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
+      $budget["expenses"]["membershipFee"] += $user->guildRank->guildFee;
+    }
+    if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
+      $budget["expenses"]["membershipFee"] += $user->orderRank->orderFee;
+    }
     return $budget;
   }
 }

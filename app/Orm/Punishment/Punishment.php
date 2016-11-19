@@ -32,13 +32,19 @@ class Punishment extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterReleasedAt(): string {
-    if(is_int($this->released)) return $this->localeModel->formatDateTime($this->released);
-    else return "";
+    if(is_int($this->released)) {
+      return $this->localeModel->formatDateTime($this->released);
+    } else {
+      return "";
+    }
   }
   
   protected function getterNextShift(): int {
-    if($this->lastAction === NULL) return time();
-    else return $this->lastAction + (60 * 60);
+    if($this->lastAction === NULL) {
+      return time();
+    } else {
+      return $this->lastAction + (60 * 60);
+    }
   }
   
   protected function onBeforeInsert() {

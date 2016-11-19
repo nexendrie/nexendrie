@@ -32,7 +32,9 @@ class CastlePresenter extends BasePresenter {
    */
   protected function startup() {
     parent::startup();
-    if($this->action != "detail" AND $this->action != "list") $this->requiresLogin();
+    if($this->action != "detail" AND $this->action != "list") {
+      $this->requiresLogin();
+    }
   }
   
   /**
@@ -42,8 +44,11 @@ class CastlePresenter extends BasePresenter {
     $castle = $this->model->getUserCastle();
     if(!$castle) {
       $this->flashMessage("Nemáš hrad.");
-      if($this->profileModel->getPath() === GroupEntity::PATH_TOWER) $this->redirect("build");
-      else $this->redirect("Homepage:");
+      if($this->profileModel->getPath() === GroupEntity::PATH_TOWER) {
+        $this->redirect("build");
+      } else {
+        $this->redirect("Homepage:");
+      }
     }
     $this->template->castle = $castle;
     $this->template->canUpgrade = $this->model->canUpgrade();

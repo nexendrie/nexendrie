@@ -77,8 +77,11 @@ class Article {
    */
   function view(int $id): ArticleEntity {
     $article = $this->orm->articles->getById($id);
-    if(!$article) throw new ArticleNotFoundException;
-    else return $article;
+    if(!$article) {
+      throw new ArticleNotFoundException;
+    } else {
+      return $article;
+    }
   }
   
   /**
@@ -88,8 +91,11 @@ class Article {
    * @return CommentEntity[]|ICollection
    */
   function viewComments(int $article = 0): ICollection {
-    if($article === 0) return $this->orm->comments->findAll();
-    else return $this->orm->comments->findByArticle($article);
+    if($article === 0) {
+      return $this->orm->comments->findAll();
+    } else {
+      return $this->orm->comments->findByArticle($article);
+    }
   }
   
   /**
@@ -101,8 +107,12 @@ class Article {
    * @return void
    */
   function addArticle(array $data) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$this->user->isAllowed("article", "add")) throw new MissingPermissionsException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    if(!$this->user->isAllowed("article", "add")) {
+      throw new MissingPermissionsException;
+    }
     $article = new ArticleEntity;
     $this->orm->articles->attach($article);
     foreach($data as $key => $value) {
@@ -122,8 +132,12 @@ class Article {
    * @return void
    */
   function addComment(array $data) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
-    if(!$this->user->isAllowed("comment", "add")) throw new MissingPermissionsException("You don't have permissions for adding comments.");
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
+    if(!$this->user->isAllowed("comment", "add")) {
+      throw new MissingPermissionsException("You don't have permissions for adding comments.");
+    }
     $comment = new CommentEntity;
     $this->orm->comments->attach($comment);
     foreach($data as $key => $value) {
@@ -145,10 +159,14 @@ class Article {
    * @throws ArticleNotFoundException
    */
   function editArticle(int $id, array $data) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
     $article = $this->orm->articles->getById($id);
     if(!$article) throw new ArticleNotFoundException;
-    if(!$this->user->isAllowed("article", "edit") AND $article->author->id != $this->user->id) throw new MissingPermissionsException("You don't have permissions for editting articles.");
+    if(!$this->user->isAllowed("article", "edit") AND $article->author->id != $this->user->id) {
+      throw new MissingPermissionsException("You don't have permissions for editting articles.");
+    }
     foreach($data as $key => $value) {
       $article->$key = $value;
     }

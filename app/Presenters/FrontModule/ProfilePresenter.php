@@ -24,7 +24,9 @@ class ProfilePresenter extends BasePresenter {
    * @throws \Nette\Application\BadRequestException
    */
   function renderDefault($username) {
-    if(is_null($username)) throw new \Nette\Application\BadRequestException;
+    if(is_null($username)) {
+      throw new \Nette\Application\BadRequestException;
+    }
     try {
       $user = $this->model->view($username);
       $this->template->profile = $user;

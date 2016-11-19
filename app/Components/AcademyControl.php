@@ -35,7 +35,9 @@ class AcademyControl extends \Nette\Application\UI\Control {
     $template = $this->template;
     $template->setFile(__DIR__ . "/academy.latte");
     $types = ["work", "combat"];
-    if(!in_array($type, $types)) $type = "work";
+    if(!in_array($type, $types)) {
+      $type = "work";
+    }
     $template->type = $type;
     $skillsRows = $this->model->listOfSkills($type);
     $skills = [];
@@ -60,14 +62,20 @@ class AcademyControl extends \Nette\Application\UI\Control {
   function handleLearn(int $skillId) {
     try {
       $this->model->learn($skillId);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Úspěšně jsi se naučila dovednost.";
-      else $message = "Úspěšně jsi se naučil dovednost.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Úspěšně jsi se naučila dovednost.";
+      } else {
+        $message = "Úspěšně jsi se naučil dovednost.";
+      }
       $this->presenter->flashMessage($message);
     } catch(SkillNotFoundException $e) {
       $this->presenter->flashMessage("Dovednost nenalezena.");
     } catch(SkillMaxLevelReachedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Dosáhla jsi již maximální úrovně";
-      else $message = "Dosáhl jsi již maximální úrovně.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Dosáhla jsi již maximální úrovně.";
+      } else {
+        $message = "Dosáhl jsi již maximální úrovně.";
+      }
       $this->presenter->flashMessage($message);
     } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");

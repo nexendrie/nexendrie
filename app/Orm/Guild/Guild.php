@@ -35,9 +35,13 @@ class Guild extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterLevel(int $value): int {
-    if($value < 1) return 1;
-    elseif($value > self::MAX_LEVEL) return self::MAX_LEVEL;
-    else return $value;
+    if($value < 1) {
+      return 1;
+    } elseif($value > self::MAX_LEVEL) {
+      return self::MAX_LEVEL;
+    } else {
+      return $value;
+    }
   }
   
   protected function getterFoundedAt(): string {
@@ -49,7 +53,9 @@ class Guild extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterUpgradePrice(): int {
-    if($this->level === self::MAX_LEVEL) return 0;
+    if($this->level === self::MAX_LEVEL) {
+      return 0;
+    }
     $price = self::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->level + 1; $i++) {
       $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);

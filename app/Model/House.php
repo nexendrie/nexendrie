@@ -34,7 +34,9 @@ class House {
    * @return HouseEntity|NULL
    */
   function getUserHouse(int $user = 0) {
-    if($user === 0) $user = $this->user->id;
+    if($user === 0) {
+      $user = $this->user->id;
+    }
     return $this->orm->houses->getByOwner($user);
   }
   
@@ -48,11 +50,17 @@ class House {
    * @throws InsufficientFundsException
    */
   function buyHouse() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    elseif($this->getUserHouse()) throw new CannotBuyMoreHousesException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    } elseif($this->getUserHouse()) {
+      throw new CannotBuyMoreHousesException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != GroupEntity::PATH_CITY) throw new CannotBuyHouseException;
-    elseif($user->money < $this->price) throw new InsufficientFundsException;
+    if($user->group->path != GroupEntity::PATH_CITY) {
+      throw new CannotBuyHouseException;
+    } elseif($user->money < $this->price) {
+      throw new InsufficientFundsException;
+    }
     $user->money -= $this->price;
     $house = new HouseEntity;
     $house->owner = $user;
@@ -68,11 +76,17 @@ class House {
    * @throws AuthenticationNeededException
    */
   function canUpgrade(): bool {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $house = $this->getUserHouse();
-    if(!$house) return false;
-    elseif($house->luxuryLevel >= HouseEntity::MAX_LEVEL) return false;
-    else return true;
+    if(!$house) {
+      return false;
+    } elseif($house->luxuryLevel >= HouseEntity::MAX_LEVEL) {
+      return false;
+    } else {
+      return true;
+    }
   }
   
   /**
@@ -84,10 +98,15 @@ class House {
    * @throws InsufficientFundsException
    */
   function upgrade() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    elseif(!$this->canUpgrade()) throw new CannotUpgradeHouseException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    } elseif(!$this->canUpgrade()) {
+      throw new CannotUpgradeHouseException;
+    }
     $house = $this->getUserHouse();
-    if($house->owner->money < $house->upgradePrice) throw new InsufficientFundsException;
+    if($house->owner->money < $house->upgradePrice) {
+      throw new InsufficientFundsException;
+    }
     $house->owner->money -= $house->upgradePrice;
     $house->luxuryLevel++;
     $this->orm->houses->persistAndFlush($house);
@@ -100,11 +119,17 @@ class House {
    * @throws AuthenticationNeededException
    */
   function canRepair(): bool {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $house = $this->getUserHouse();
-    if(!$house) return false;
-    elseif($house->hp >= 100) return false;
-    else return true;
+    if(!$house) {
+      return false;
+    } elseif($house->hp >= 100) {
+      return false;
+    } else {
+      return true;
+    }
   }
   
   /**
@@ -116,10 +141,15 @@ class House {
    * @throws InsufficientFundsException
    */
   function repair() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    elseif(!$this->canRepair()) throw new CannotRepairHouseException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    } elseif(!$this->canRepair()) {
+      throw new CannotRepairHouseException;
+    }
     $house = $this->getUserHouse();
-    if($house->owner->money < $house->repairPrice) throw new InsufficientFundsException;
+    if($house->owner->money < $house->repairPrice) {
+      throw new InsufficientFundsException;
+    }
     $house->owner->money -= $house->repairPrice;
     $house->hp = 100;
     $this->orm->houses->persistAndFlush($house);
@@ -132,11 +162,17 @@ class House {
    * @throws AuthenticationNeededException
    */
   function canUpgradeBrewery(): bool {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $house = $this->getUserHouse();
-    if(!$house) return false;
-    elseif($house->breweryLevel >= HouseEntity::MAX_LEVEL) return false;
-    else return true;
+    if(!$house) {
+      return false;
+    } elseif($house->breweryLevel >= HouseEntity::MAX_LEVEL) {
+      return false;
+    } else {
+      return true;
+    }
   }
   
   /**
@@ -148,10 +184,15 @@ class House {
    * @throws InsufficientFundsException
    */
   function upgradeBrewery(): int {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    elseif(!$this->canUpgradeBrewery()) throw new CannotUpgradeBreweryException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    } elseif(!$this->canUpgradeBrewery()) {
+      throw new CannotUpgradeBreweryException;
+    }
     $house = $this->getUserHouse();
-    if($house->owner->money < $house->breweryUpgradePrice) throw new InsufficientFundsException;
+    if($house->owner->money < $house->breweryUpgradePrice) {
+      throw new InsufficientFundsException;
+    }
     $house->owner->money -= $house->breweryUpgradePrice;
     $house->breweryLevel++;
     $this->orm->houses->persistAndFlush($house);
@@ -166,16 +207,27 @@ class House {
    */
   function canProduceBeer(): bool {
     $sevenDays = 60 * 60 * 24 * 7;
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $house = $this->getUserHouse();
-    if(!$house) return false;
-    elseif($house->owner->group->path != GroupEntity::PATH_CITY) return false;
-    elseif($house->breweryLevel < 1) return false;
-    elseif($house->hp < 31) return false;
+    if(!$house) {
+      return false;
+    } elseif($house->owner->group->path != GroupEntity::PATH_CITY) {
+      return false;
+    } elseif($house->breweryLevel < 1) {
+      return false;
+    } elseif($house->hp < 31) {
+      return false;
+    }
     $lastProduction = $this->orm->beerProduction->getLastProduction($house->id);
-    if(!$lastProduction->count()) return true;
-    elseif($lastProduction->fetch()->when + $sevenDays < time()) return true;
-    else return false;
+    if(!$lastProduction->count()) {
+      return true;
+    } elseif($lastProduction->fetch()->when + $sevenDays < time()) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   /**
@@ -186,8 +238,11 @@ class House {
    * @throws CannotProduceBeerException
    */
   function produceBeer(): array {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    elseif(!$this->canProduceBeer()) throw new CannotProduceBeerException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    } elseif(!$this->canProduceBeer()) {
+      throw new CannotProduceBeerException;
+    }
     $house = $this->getUserHouse();
     $production = new BeerProduction;
     $production->house = $house;

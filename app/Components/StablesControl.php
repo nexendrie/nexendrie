@@ -62,10 +62,18 @@ class StablesControl extends \Nette\Application\UI\Control {
    */
   protected function increaseLife(int $mountId, int $hp, int $price) {
     $mount = $this->orm->mounts->getById($mountId);
-    if(!$mount) throw new MountNotFoundException;
-    if($mount->owner->id != $this->user->id) throw new MountNotOwnedException;
-    if($mount->owner->money < $price) throw new InsufficientFundsException;
-    if($mount->hp >= 100) throw new CareNotNeededException;
+    if(!$mount) {
+      throw new MountNotFoundException;
+    }
+    if($mount->owner->id != $this->user->id) {
+      throw new MountNotOwnedException;
+    }
+    if($mount->owner->money < $price) {
+      throw new InsufficientFundsException;
+    }
+    if($mount->hp >= 100) {
+      throw new CareNotNeededException;
+    }
     $mount->hp += $hp;
     $mount->owner->money -= $price;
     $this->orm->mounts->persistAndFlush($mount);
@@ -78,8 +86,11 @@ class StablesControl extends \Nette\Application\UI\Control {
   function handleCare(int $mountId) {
     try {
       $this->increaseLife($mountId, 3, 4);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Očistila jsi jezdecké zvíře.";
-      else $message = "Očistil jsi jezdecké zvíře.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Očistila jsi jezdecké zvíře.";
+      } else {
+        $message = "Očistil jsi jezdecké zvíře.";
+      }
       $this->presenter->flashMessage($message);
     } catch(MountNotFoundException $e) {
       $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
@@ -100,8 +111,11 @@ class StablesControl extends \Nette\Application\UI\Control {
   function handleFeed(int $mountId) {
     try {
       $this->increaseLife($mountId, 10, 12);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) $message = "Nakrmila jsi jezdecké zvíře.";
-      else $message = "Nakrmil jsi jezdecké zvíře.";
+      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+        $message = "Nakrmila jsi jezdecké zvíře.";
+      } else {
+        $message = "Nakrmil jsi jezdecké zvíře.";
+      }
       $this->presenter->flashMessage($message);
     } catch(MountNotFoundException $e) {
       $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
@@ -129,14 +143,23 @@ class StablesControl extends \Nette\Application\UI\Control {
    */
   protected function train(int $mountId, string $stat) {
     $stats = ["damage", "armor"];
-    if(!in_array($stat, $stats)) return;
+    if(!in_array($stat, $stats)) {
+      return;
+    }
     $mount = $this->orm->mounts->getById($mountId);
-    if(!$mount) throw new MountNotFoundException;
-    elseif($mount->owner->id != $this->user->id) throw new MountNotOwnedException;
+    if(!$mount) {
+      throw new MountNotFoundException;
+    } elseif($mount->owner->id != $this->user->id) {
+      throw new MountNotOwnedException;
+    }
     $statCap = ucfirst($stat);
-    if($mount->$stat >= $mount->{"max" . $statCap}) throw new MountMaxTrainingLevelReachedException;
-    elseif($mount->hp < 40) throw new MountInBadConditionException;
-    elseif($mount->owner->money < $mount->{$stat . "TrainingCost"}) throw new InsufficientFundsException;
+    if($mount->$stat >= $mount->{"max" . $statCap}) {
+      throw new MountMaxTrainingLevelReachedException;
+    } elseif($mount->hp < 40) {
+      throw new MountInBadConditionException;
+    } elseif($mount->owner->money < $mount->{$stat . "TrainingCost"}) {
+      throw new InsufficientFundsException;
+    }
     $mount->owner->money -= $mount->{$stat . "TrainingCost"};
     $mount->$stat++;
     $mount->hp -= 10;

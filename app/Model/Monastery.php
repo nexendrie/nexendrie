@@ -75,8 +75,11 @@ class Monastery {
    */
   function get(int $id): MonasteryEntity {
     $monastery = $this->orm->monasteries->getById($id);
-    if(!$monastery) throw new MonasteryNotFoundException;
-    else return $monastery;
+    if(!$monastery) {
+      throw new MonasteryNotFoundException;
+    } else {
+      return $monastery;
+    }
   }
   
   /**
@@ -88,11 +91,17 @@ class Monastery {
    * @throws NotInMonasteryException
    */
   function getByUser(int $id = 0): MonasteryEntity {
-    if($id === 0) $id = $this->user->id;
+    if($id === 0) {
+      $id = $this->user->id;
+    }
     $user = $this->orm->users->getById($id);
-    if(!$user) throw new UserNotFoundException;
-    elseif(!$user->monastery) throw new NotInMonasteryException;
-    else return $user->monastery;
+    if(!$user) {
+      throw new UserNotFoundException;
+    } elseif(!$user->monastery) {
+      throw new NotInMonasteryException;
+    } else {
+      return $user->monastery;
+    }
   }
   
   /**
@@ -102,18 +111,30 @@ class Monastery {
    */
   function canJoin(): bool {
     $month = 60 * 60 * 24 * 31;
-    if(!$this->user->isLoggedIn()) return false;
+    if(!$this->user->isLoggedIn()) {
+      return false;
+    }
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery AND $user->group->path === GroupEntity::PATH_CITY) {
-      if($user->guild AND $user->guildRank->id === $this->guildModel->maxRank) return false;
-      else return true;
+      if($user->guild AND $user->guildRank->id === $this->guildModel->maxRank) {
+        return false;
+      } else {
+        return true;
+      }
     } elseif(!$user->monastery AND $user->group->path === GroupEntity::PATH_TOWER) {
-      if($user->order AND $user->orderRank->id === $this->orderModel->maxRank) return false;
-      else return true;
+      if($user->order AND $user->orderRank->id === $this->orderModel->maxRank) {
+        return false;
+      } else {
+        return true;
+      }
     } elseif($user->group->path === GroupEntity::PATH_CHURCH) {
-      if($user->monasteriesLed->countStored()) return false;
-      elseif($user->lastTransfer === NULL) return true;
-      elseif($user->lastTransfer  + $month < time()) return true;
+      if($user->monasteriesLed->countStored()) {
+        return false;
+      } elseif($user->lastTransfer === NULL) {
+        return true;
+      } elseif($user->lastTransfer  + $month < time()) {
+        return true;
+      }
     }
     return false;
   }
@@ -129,18 +150,25 @@ class Monastery {
    * @throws CannotJoinOwnMonasteryException
    */
   function join(int $id) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    elseif(!$this->canJoin()) throw new CannotJoinMonasteryException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    } elseif(!$this->canJoin()) {
+      throw new CannotJoinMonasteryException;
+    }
     try {
       $monastery = $this->get($id);
     } catch(MonasteryNotFoundException $e) {
       throw $e;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monastery AND $user->monastery->id === $monastery->id) throw new CannotJoinOwnMonasteryException;
+    if($user->monastery AND $user->monastery->id === $monastery->id) {
+      throw new CannotJoinOwnMonasteryException;
+    }
     $user->lastTransfer = $user->lastActive = time();
     $user->monastery = $monastery;
-    if($user->group->path != GroupEntity::PATH_CHURCH) $user->group = $this->orm->groups->getByLevel(55);
+    if($user->group->path != GroupEntity::PATH_CHURCH) {
+      $user->group = $this->orm->groups->getByLevel(55);
+    }
     $user->town = $monastery->town;
     $user->guild = $user->guildRank = NULL;
     $user->order = $user->orderRank = NULL;
@@ -159,15 +187,25 @@ class Monastery {
    * @throws AuthenticationNeededException
    */
   function canPray(): bool {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) return false;
-    elseif($user->monastery->hp <= 30) return false;
-    elseif($user->life >= $user->maxLife) return false;
-    elseif(!$user->lastPrayer) return true;
+    if(!$user->monastery) {
+      return false;
+    } elseif($user->monastery->hp <= 30) {
+      return false;
+    } elseif($user->life >= $user->maxLife) {
+      return false;
+    } elseif(!$user->lastPrayer) {
+      return true;
+    }
     $oneDay = 60 * 60 * 24;
-    if($user->lastPrayer + $oneDay < time()) return true;
-    else return false;
+    if($user->lastPrayer + $oneDay < time()) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   /**
@@ -176,8 +214,12 @@ class Monastery {
    * @throws CannotPrayException
    */
   function pray() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$this->canPray()) throw new CannotPrayException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    if(!$this->canPray()) {
+      throw new CannotPrayException;
+    }
     $user = $this->orm->users->getById($this->user->id);
     $user->lastPrayer = time();
     $user->life += $this->prayerLife();
@@ -192,11 +234,17 @@ class Monastery {
    * @throws AuthenticationNeededException
    */
   function canLeave(): bool {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) return false;
-    elseif($user->id === $user->monastery->leader->id) return false;
-    else return true;
+    if(!$user->monastery) {
+      return false;
+    } elseif($user->id === $user->monastery->leader->id) {
+      return false;
+    } else {
+      return true;
+    }
   }
   
   /**
@@ -207,12 +255,19 @@ class Monastery {
    * @throws CannotLeaveMonasteryException
    */
   function leave() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$this->canLeave()) throw new CannotLeaveMonasteryException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    if(!$this->canLeave()) {
+      throw new CannotLeaveMonasteryException;
+    }
     $user = $this->orm->users->getById($this->user->id);
     $user->monastery = NULL;
-    if($user->ownedTowns->countStored() OR $this->orm->castles->getByOwner($this->user->id)) $user->group = $this->orm->groups->getByLevel(400);
-    else $user->group = $this->orm->groups->getByLevel(50);
+    if($user->ownedTowns->countStored() OR $this->orm->castles->getByOwner($this->user->id)) {
+      $user->group = $this->orm->groups->getByLevel(400);
+    } else {
+      $user->group = $this->orm->groups->getByLevel(50);
+    }
     $this->orm->users->persistAndFlush($user);
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;
@@ -227,11 +282,18 @@ class Monastery {
    * @throws AuthenticationNeededException
    */
   function canBuild(): bool {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if($this->user->identity->level != 550) return false;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    if($this->user->identity->level != 550) {
+      return false;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monasteriesLed->countStored() > 0) return false;
-    else return true;
+    if($user->monasteriesLed->countStored() > 0) {
+      return false;
+    } else {
+      return true;
+    }
   }
   
   /**
@@ -245,11 +307,19 @@ class Monastery {
    * @throws InsufficientFundsException
    */
   function build(string $name) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$this->canBuild()) throw new CannotBuildMonasteryException;
-    if($this->orm->monasteries->getByName($name)) throw new MonasteryNameInUseException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    if(!$this->canBuild()) {
+      throw new CannotBuildMonasteryException;
+    }
+    if($this->orm->monasteries->getByName($name)) {
+      throw new MonasteryNameInUseException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->money < $this->buildingPrice) throw new InsufficientFundsException;
+    if($user->money < $this->buildingPrice) {
+      throw new InsufficientFundsException;
+    }
     $monastery = new MonasteryEntity;
     $this->orm->monasteries->attach($monastery);
     $monastery->name = (string) $name;
@@ -272,10 +342,15 @@ class Monastery {
    * @throws InsufficientFundsException
    */
   function donate(int $amount) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) throw new NotInMonasteryException;
-    elseif($user->money < $amount) throw new InsufficientFundsException;
+    if(!$user->monastery) {
+      throw new NotInMonasteryException;
+    } elseif($user->money < $amount) {
+      throw new InsufficientFundsException;
+    }
     $user->money -= $amount;
     $user->monastery->money += $amount;
     $donation = new MonasteryDonation;
@@ -304,7 +379,9 @@ class Monastery {
     foreach($data as $key => $value) {
       if($key === "name") {
         $m = $this->orm->monasteries->getByName($value);
-        if($m AND $m->id != $id) throw new MonasteryNameInUseException;
+        if($m AND $m->id != $id) {
+          throw new MonasteryNameInUseException;
+        }
         $monastery->$key = $value;
       } elseif(in_array($key, $skip)) {
         continue;
@@ -334,11 +411,17 @@ class Monastery {
    * @throws AuthenticationNeededException
    */
   function canManage(): bool {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) return false;
-    elseif($user->monastery->leader->id != $this->user->id) return false;
-    else return true;
+    if(!$user->monastery) {
+      return false;
+    } elseif($user->monastery->leader->id != $this->user->id) {
+      return false;
+    } else {
+      return true;
+    }
   }
   
   /**
@@ -347,9 +430,13 @@ class Monastery {
    * @return int
    */
   function prayerLife(): int {
-    if(!$this->user->isLoggedIn()) return 0;
+    if(!$this->user->isLoggedIn()) {
+      return 0;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) return 0;
+    if(!$user->monastery) {
+      return 0;
+    }
     $baseValue = $user->monastery->prayerLife;
     return $baseValue + $this->eventsModel->calculatePrayerLifeBonus($baseValue);
   }
@@ -361,12 +448,19 @@ class Monastery {
    * @throws AuthenticationNeededException
    */
   function canUpgrade(): bool {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) return false;
-    elseif($user->monastery->leader->id != $this->user->id) return false;
-    elseif($user->monastery->level >= MonasteryEntity::MAX_LEVEL) return false;
-    else return true;
+    if(!$user->monastery) {
+      return false;
+    } elseif($user->monastery->leader->id != $this->user->id) {
+      return false;
+    } elseif($user->monastery->level >= MonasteryEntity::MAX_LEVEL) {
+      return false;
+    } else {
+      return true;
+    }
   }
   
   /**
@@ -378,11 +472,17 @@ class Monastery {
    * @throws InsufficientFundsException
    */
   function upgrade() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$this->canUpgrade()) throw new CannotUpgradeMonasteryException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    if(!$this->canUpgrade()) {
+      throw new CannotUpgradeMonasteryException;
+    }
     $user = $this->orm->users->getById($this->user->id);
     $upgradePrice = $user->monastery->upgradePrice;
-    if($user->monastery->money < $upgradePrice) throw new InsufficientFundsException;
+    if($user->monastery->money < $upgradePrice) {
+      throw new InsufficientFundsException;
+    }
     $user->monastery->money -= $upgradePrice;
     $user->monastery->level++;
     $this->orm->monasteries->persistAndFlush($user->monastery);
@@ -395,12 +495,19 @@ class Monastery {
    * @throws AuthenticationNeededException
    */
   function canRepair(): bool {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) return false;
-    elseif($user->monastery->leader->id != $this->user->id) return false;
-    elseif($user->monastery->hp >= 100) return false;
-    else return true;
+    if(!$user->monastery) {
+      return false;
+    } elseif($user->monastery->leader->id != $this->user->id) {
+      return false;
+    } elseif($user->monastery->hp >= 100) {
+      return false;
+    } else {
+      return true;
+    }
   }
   
   /**
@@ -412,11 +519,17 @@ class Monastery {
    * @throws InsufficientFundsException
    */
   function repair() {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
-    if(!$this->canRepair()) throw new CannotRepairMonasteryException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    if(!$this->canRepair()) {
+      throw new CannotRepairMonasteryException;
+    }
     $user = $this->orm->users->getById($this->user->id);
     $repairPrice = $user->monastery->repairPrice;
-    if($user->monastery->money < $repairPrice) throw new InsufficientFundsException;
+    if($user->monastery->money < $repairPrice) {
+      throw new InsufficientFundsException;
+    }
     $user->monastery->hp = 100;
     $user->monastery->money -= $repairPrice;
     $this->orm->monasteries->persistAndFlush($user->monastery);

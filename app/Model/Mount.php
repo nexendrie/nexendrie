@@ -34,8 +34,11 @@ class Mount {
    */
   function get(int $id): MountEntity {
     $mount = $this->orm->mounts->getById($id);
-    if(!$mount) throw new MountNotFoundException;
-    else return $mount;
+    if(!$mount) {
+      throw new MountNotFoundException;
+    } else {
+      return $mount;
+    }
   }
   
   /**
@@ -45,8 +48,11 @@ class Mount {
    * @return MountEntity[]|ICollection
    */
   function listOfMounts(int $owner = NULL): ICollection {
-    if(is_int($owner)) return $this->orm->mounts->findByOwner($owner);
-    else return $this->orm->mounts->findAll();
+    if(is_int($owner)) {
+      return $this->orm->mounts->findByOwner($owner);
+    } else {
+      return $this->orm->mounts->findAll();
+    }
   }
   
   /**
@@ -118,17 +124,27 @@ class Mount {
    * @throws InsufficientFundsException
    */
   function buy(int $id) {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     try {
       $mount = $this->get($id);
     } catch(MountNotFoundException $e) {
       throw $e;
     }
-    if(!$mount->onMarket) throw new MountNotOnSaleException;
-    if($mount->owner->id === $this->user->id) throw new CannotBuyOwnMountException;
+    if(!$mount->onMarket) {
+      throw new MountNotOnSaleException;
+    }
+    if($mount->owner->id === $this->user->id) {
+      throw new CannotBuyOwnMountException;
+    }
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->level < $mount->type->level) throw new InsufficientLevelForMountException;
-    if($user->money < $mount->price) throw new InsufficientFundsException;
+    if($user->group->level < $mount->type->level) {
+      throw new InsufficientLevelForMountException;
+    }
+    if($user->money < $mount->price) {
+      throw new InsufficientFundsException;
+    }
     $seller = $mount->owner;
     $seller->money += $mount->price;
     $this->orm->users->persist($seller);

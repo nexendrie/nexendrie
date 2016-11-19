@@ -56,9 +56,13 @@ class Locale {
    */
   function plural(string $word1, string $word2, string $word3, int $count): string {
     $plural2 = $this->formats["plural"][1];
-    if($count === $this->formats["plural"][0]) return $word1;
-    elseif($count >= $plural2[0] AND $count <= $plural2[1]) return $word2;
-    else return $word3;
+    if($count === $this->formats["plural"][0]) {
+      return $word1;
+    } elseif($count >= $plural2[0] AND $count <= $plural2[1]) {
+      return $word2;
+    } else {
+      return $word3;
+    }
   }
   
   /**

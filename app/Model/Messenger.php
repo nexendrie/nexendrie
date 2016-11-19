@@ -39,7 +39,9 @@ class Messenger {
    * @throws AuthenticationNeededException
    */
   function inbox(): ICollection {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
     return $this->orm->messages->findByTo($this->user->id)->orderBy("sent", ICollection::DESC);
   }
   
@@ -50,7 +52,9 @@ class Messenger {
    * @throws AuthenticationNeededException
    */
   function outbox(): ICollection {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
     return $this->orm->messages->findByFrom($this->user->id)->orderBy("sent", ICollection::DESC);
   }
   
@@ -64,9 +68,13 @@ class Messenger {
    * @throws AccessDeniedException
    */
   function show(int $id): MessageEntity {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException("This action requires authentication.");
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException("This action requires authentication.");
+    }
     $message = $this->orm->messages->getById($id);
-    if(!$message) throw new MessageNotFoundException("Message not found.");
+    if(!$message) {
+      throw new MessageNotFoundException("Message not found.");
+    }
     if($message->from->id != $this->user->id AND $message->to->id != $this->user->id) {
       throw new AccessDeniedException("You can't see this message.");
     }

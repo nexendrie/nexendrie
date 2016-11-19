@@ -25,7 +25,9 @@ class RssPresenter extends BasePresenter {
    * @throws \Nette\Application\BadRequestException
    */
   function renderComments(int $news) {
-    if($news === NULL) throw new \Nette\Application\BadRequestException;
+    if($news === NULL) {
+      throw new \Nette\Application\BadRequestException;
+    }
     try {
       $this->sendResponse($this->model->commentsFeed($news));
     } catch(\Nette\Application\BadRequestException $e) {

@@ -64,21 +64,33 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterHp(int $value): int {
-    if($value > 100) return 100;
-    elseif($value < 0) return 0;
-    else return $value;
+    if($value > 100) {
+      return 100;
+    } elseif($value < 0) {
+      return 0;
+    } else {
+      return $value;
+    }
   }
   
   protected function setterDamage(int $value): int {
-    if($value > $this->maxDamage) return $this->maxDamage;
-    elseif($value < $this->baseDamage) return $this->baseDamage;
-    else return $value;
+    if($value > $this->maxDamage) {
+      return $this->maxDamage;
+    } elseif($value < $this->baseDamage) {
+      return $this->baseDamage;
+    } else {
+      return $value;
+    }
   }
   
   protected function setterArmor(int $value): int {
-    if($value > $this->maxArmor) return $this->maxArmor;
-    elseif($value < $this->baseArmor) return $this->baseArmor;
-    else return $value;
+    if($value > $this->maxArmor) {
+      return $this->maxArmor;
+    } elseif($value < $this->baseArmor) {
+      return $this->baseArmor;
+    } else {
+      return $value;
+    }
   }
   
   protected function getterGenderCZ(): string {
@@ -110,14 +122,18 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterDamageTrainingCost() {
-    if($this->damage >= $this->maxDamage) return 0;
+    if($this->damage >= $this->maxDamage) {
+      return 0;
+    }
     $basePrice = ($this->damage - $this->baseDamage + 1) * 30;
     $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
     return (int) $basePrice;
   }
   
   protected function getterArmorTrainingCost() {
-    if($this->armor >= $this->maxArmor) return 0;
+    if($this->armor >= $this->maxArmor) {
+      return 0;
+    }
     $basePrice = ($this->armor - $this->baseArmor + 1) * 30;
     $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
     return (int) $basePrice;
@@ -137,11 +153,19 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   
   protected function onBeforeInsert() {
     parent::onBeforeInsert();
-    if(!$this->price) $this->price = $this->type->price;
-    if(!$this->damage) $this->damage = $this->type->damage;
-    if(!$this->armor) $this->armor = $this->type->armor;
+    if(!$this->price) {
+      $this->price = $this->type->price;
+    }
+    if(!$this->damage) {
+      $this->damage = $this->type->damage;
+    }
+    if(!$this->armor) {
+      $this->armor = $this->type->armor;
+    }
     $this->birth = time();
-    if($this->owner->id === 0) $this->onMarket = 1;
+    if($this->owner->id === 0) {
+      $this->onMarket = 1;
+    }
   }
 }
 ?>

@@ -20,7 +20,9 @@ class PollPresenter extends BasePresenter {
    * @throws \Nette\Application\BadRequestException
    */
   function renderView(int $id) {
-    if(!$this->model->exists($id)) throw new \Nette\Application\BadRequestException;
+    if(!$this->model->exists($id)) {
+      throw new \Nette\Application\BadRequestException;
+    }
     $this->template->pollId = $id;
   }
   
