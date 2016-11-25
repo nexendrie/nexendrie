@@ -1914,12 +1914,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "7c21d99b7699f85bcd8e3073b7a475129b660b0f"
+                "reference": "7700c4de0ea523e6a687661705fccc3741d8636b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/7c21d99b7699f85bcd8e3073b7a475129b660b0f",
-                "reference": "7c21d99b7699f85bcd8e3073b7a475129b660b0f",
+                "url": "https://api.github.com/repos/nette/tester/zipball/7700c4de0ea523e6a687661705fccc3741d8636b",
+                "reference": "7700c4de0ea523e6a687661705fccc3741d8636b",
                 "shasum": ""
             },
             "require": {
@@ -1962,7 +1962,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2016-08-05 13:39:28"
+            "time": "2016-11-21 18:07:16"
         },
         {
             "name": "nexendrie/code-quality",
