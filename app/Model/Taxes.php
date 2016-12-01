@@ -123,6 +123,7 @@ class Taxes {
       if($result->taxes > 0) {
         $town->owner->money += $result->taxes;
         foreach($town->denizens as $denizen) {
+          if(!isset($result->denizens[$denizen->id])) continue;
           $denizen->money -= $result->denizens[$denizen->id]->tax;
         }
         $this->orm->towns->persistAndFlush($town);
