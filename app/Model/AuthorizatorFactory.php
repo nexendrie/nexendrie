@@ -83,7 +83,9 @@ class AuthorizatorFactory {
     
     $permission->deny("vězeň");
     foreach($permissions as $row) {
-      if(!$permission->hasResource($row->resource)) $permission->addResource($row->resource);
+      if(!$permission->hasResource($row->resource)) {
+        $permission->addResource($row->resource);
+      }
       $group = Arrays::get($groups, $row->group);
       $permission->allow($group->singleName, $row->resource, $row->action);
     }
