@@ -37,14 +37,6 @@ class ProfileTest extends \Tester\TestCase {
     }
   }
   
-  function testUserLife() {
-    $result = $this->model->userLife(1);
-    Assert::type("array", $result);
-    Assert::count(2, $result);
-    Assert::same(90, $result[0]);
-    Assert::same(90, $result[1]);
-  }
-  
   function testGetPath() {
     Assert::same(Group::PATH_TOWER, $this->model->getPath(1));
     Assert::same(Group::PATH_CHURCH, $this->model->getPath(2));

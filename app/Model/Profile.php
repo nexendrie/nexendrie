@@ -54,24 +54,6 @@ class Profile {
   }
   
   /**
-   * Get specified user's life
-   * 
-   * @param int $id  
-   * @return int[]
-   */
-  function userLife(int $id = 0): array {
-    if($id === 0) {
-      $id = $this->user->id;
-    }
-    $user = $this->orm->users->getById($id);
-    if(!$user) {
-      throw new UserNotFoundException;
-    } else {
-      return [$user->life, $user->maxLife];
-    }
-  }
-  
-  /**
    * Get specified user's path
    * 
    * @param int $id  
