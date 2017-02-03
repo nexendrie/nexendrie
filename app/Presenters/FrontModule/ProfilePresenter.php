@@ -31,11 +31,6 @@ class ProfilePresenter extends BasePresenter {
       $user = $this->model->view($username);
       $this->template->profile = $user;
       $this->template->castle = $this->castleModel->getUserCastle($user->id);
-      $this->template->adventuresCompleted = $this->model->countCompletedAdventures($user->id);
-      $this->template->beersProduced = $this->model->countProducedBeers($user->id);
-      $this->template->punishments = $this->model->countPunishments($user->id);
-      $this->template->lessons = $this->model->countLessons($user->id);
-      $this->template->messages = $this->model->countMessages($user->id);
       $this->template->partner = $this->model->getPartner($user->id);
       $this->template->fiance = $this->model->getFiance($user->id);
       $this->template->canProposeMarriage = $this->marriageModel->canPropose($user->id);

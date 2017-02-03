@@ -62,6 +62,11 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Election[] $castedVotes {1:m Election::$voter}
  * @property OneHasMany|ElectionResult[] $elections {1:m ElectionResult::$candidate}
  * @property-read string $title {virtual}
+ * @property-read int $completedAdventures {virtual}
+ * @property-read int $producedBeers {virtual}
+ * @property-read int $punishmentsCount {virtual}
+ * @property-read int $lessonsTaken {virtual}
+ * @property-read int[] $messagesCount {virtual}
  */
 class User extends \Nextras\Orm\Entity\Entity {
   const GENDER_MALE = "male";
@@ -112,6 +117,34 @@ class User extends \Nextras\Orm\Entity\Entity {
     } else {
       return $this->group->singleName;
     }
+  }
+  
+  protected function getterCompletedAdventures() {
+    return $this->adventures->get()->findBy(["progress" => 10])->countStored();
+  }
+  
+  protected function getterProducedBeers() {
+    $amount = 0;
+    foreach($this->beerProduction as $row) {
+      $amount += $row->amount;
+    }
+    return $amount;
+  }
+  
+  protected function getterPunishmentsCount() {
+    return $this->punishments->countStored();
+  }
+  
+  protected function getterLessonsTaken() {
+    $amount = 0;
+    foreach($this->skills as $lesson) {
+      $amount += $lesson->level;
+    }
+    return $amount;
+  }
+  
+  protected function getterMessagesCount() {
+    return ["sent" => $this->sentMessages->get()->countStored(), "recieved" => $this->receivedMessages->get()->countStored()];
   }
   
   protected function onBeforeInsert() {

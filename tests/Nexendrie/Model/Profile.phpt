@@ -54,35 +54,6 @@ class ProfileTest extends \Tester\TestCase {
     }, UserNotFoundException::class);
   }
   
-  function testCountCompletedAdventures() {
-    Assert::type("int", $this->model->countCompletedAdventures(1));
-  }
-  
-  function testCountProducedBeers() {
-    $result = $this->model->countProducedBeers(3);
-    Assert::type("int", $result);
-    Assert::true($result > 0);
-  }
-  
-  function testCountPunishments() {
-    Assert::same(0, $this->model->countPunishments(1));
-    Assert::same(1, $this->model->countPunishments(2));
-  }
-  
-  function testCountLessons() {
-    $result = $this->model->countLessons(1);
-    Assert::type("int", $result);
-    Assert::true($result > 0);
-  }
-  
-  function testCountMessages() {
-    $result = $this->model->countMessages(1);
-    Assert::type("array", $result);
-    Assert::count(2, $result);
-    Assert::same(9, $result["sent"]);
-    Assert::same(2, $result["recieved"]);
-  }
-  
   function testGetPartner() {
     $partner1 = $this->model->getPartner(4);
     Assert::type(UserEntity::class, $partner1);

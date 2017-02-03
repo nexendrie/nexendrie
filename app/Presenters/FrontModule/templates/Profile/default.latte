@@ -17,12 +17,12 @@
     <table>
       <tr><td>Napsaných článků</td><td>{$profile->articles->countStored()}</td></tr>
       <tr><td>Napsaných komentářů</td><td>{$profile->comments->countStored()}</td></tr>
-      <tr><td>Odeslaných zpráv</td><td>{$messages["sent"]}</td></tr>
-      <tr><td>Přijatých zpráv</td><td>{$messages["recieved"]}</td></tr>
-      <tr><td>Dokončených dobrodružství</td><td>{$adventuresCompleted}</td></tr>
-      <tr><td>Vyprodukovaných sudů piv</td><td>{$beersProduced}</td></tr>
-      <tr><td>Uvěznění</td><td>{$punishments}</td></tr>
-      <tr><td>Lekcí v akademii</td><td>{$lessons}</td></tr>
+      <tr><td>Odeslaných zpráv</td><td>{$profile->messagesCount["sent"]}</td></tr>
+      <tr><td>Přijatých zpráv</td><td>{$profile->messagesCount["recieved"]}</td></tr>
+      <tr><td>Dokončených dobrodružství</td><td>{$profile->completedAdventures}</td></tr>
+      <tr><td>Vyprodukovaných sudů piv</td><td>{$profile->producedBeers}</td></tr>
+      <tr><td>Uvěznění</td><td>{$profile->punishmentsCount}</td></tr>
+      <tr><td>Lekcí v akademii</td><td>{$profile->lessonsTaken}</td></tr>
     </table>
   </p>
 {/block}
