@@ -98,7 +98,7 @@ class User extends \Nextras\Orm\Entity\Entity {
   
   protected function setterLife(int $value): int {
     if($value > $this->maxLife) {
-      return 60;
+      return $this->maxLife;
     } elseif($value < 1) {
       return 1;
     } else {
