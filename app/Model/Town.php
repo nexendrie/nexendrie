@@ -346,7 +346,7 @@ class Town {
     $message->to = $citizen;
     $message->sent = time();
     $message->subject = "Povýšení";
-    $message->text = "Byl jsi povýšen na měšťana.";
+    $message->text = "Byl(a) jsi povýšen(a) na měšťana.";
     $this->orm->users->persistAndFlush($citizen);
   }
 }
