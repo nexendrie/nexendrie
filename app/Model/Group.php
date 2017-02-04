@@ -122,10 +122,10 @@ class Group {
    */
   function edit(int $id, array $data) {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException("This action requires authentication.");
+      throw new AuthenticationNeededException();
     }
     if(!$this->user->isAllowed("group", "edit")) {
-      throw new MissingPermissionsException("You don't have permissions for adding news.");
+      throw new MissingPermissionsException();
     }
     $group = $this->orm->groups->getById($id);
     foreach($data as $key => $value) {
