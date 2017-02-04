@@ -60,16 +60,6 @@ class Group {
   }
   
   /**
-   * Get number of members of specified group
-   * 
-   * @param int $group Group's id
-   * @return int
-   */
-  function numberOfMembers(int $group): int {
-    return $this->orm->users->findByGroup($group)->countStored();
-  }
-  
-  /**
    * Get specified group
    * 
    * @param int $id Group's id

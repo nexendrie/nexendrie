@@ -25,15 +25,6 @@ class GroupTest extends \Tester\TestCase {
     Assert::type(GroupDummy::class, $result[1]);
   }
   
-  function testNumberOfMembers() {
-    $result1 = $this->model->numberOfMembers(1);
-    Assert::type("int", $result1);
-    Assert::same(1, $result1);
-    $result2 = $this->model->numberOfMembers(50);
-    Assert::type("int", $result2);
-    Assert::same(0, $result2);
-  }
-  
   function testGet() {
     $group = $this->model->get(1);
     Assert::type(GroupDummy::class, $group);
