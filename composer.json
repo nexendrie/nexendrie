@@ -24,7 +24,7 @@
         "latte/latte": "~2.4",
         "kdyby/autowired": "^1.4",
         "nextras/orm": "^2.2",
-        "stekycz/cronner": "dev-master",
+        "stekycz/cronner": "^2.0",
         "konecnyjakub/event-calendar": "dev-master",
         "nella/forms-datetime": "^2.4",
         "nexendrie/book-component": "^1.1.1",
