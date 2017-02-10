@@ -21,6 +21,7 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
   protected $user;
   
   function __construct(\Nexendrie\Model\Mount $model, \Nette\Security\User $user) {
+    parent::__construct();
     $this->model = $model;
     $this->user = $user;
   }

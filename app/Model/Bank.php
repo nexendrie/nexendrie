@@ -28,7 +28,7 @@ class Bank {
   function __construct(int $interest, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->interest = (int) $interest;
+    $this->interest = $interest;
   }
   
   /**

@@ -37,6 +37,7 @@ class ShopControl extends \Nette\Application\UI\Control {
    * @param \Nette\Security\User $user
    */
   function __construct(\Nexendrie\Model\Market $model, \Nexendrie\Model\Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    parent::__construct();
     $this->model = $model;
     $this->eventsModel = $eventsModel;
     $this->orm = $orm;

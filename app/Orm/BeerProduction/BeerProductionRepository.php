@@ -42,7 +42,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
    * Get beer made this month by specified user
    * 
    * @param int $user
-   * @return ICollection|MonasteryDonation[]
+   * @return ICollection|BeerProduction[]
    */
   function findProducedThisMonth(int $user): ICollection {
     $month = (int) date("n");

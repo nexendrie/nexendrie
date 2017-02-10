@@ -26,11 +26,11 @@ class Taxes {
    * @param Job $jobModel
    * @param Adventure $adventureModel
    */
-  function __construct($taxRate, \Nexendrie\Orm\Model $orm, Job $jobModel, Adventure $adventureModel) {
+  function __construct(int $taxRate, \Nexendrie\Orm\Model $orm, Job $jobModel, Adventure $adventureModel) {
     $this->orm = $orm;
     $this->jobModel = $jobModel;
     $this->adventureModel = $adventureModel;
-    $this->taxRate = (int) $taxRate;
+    $this->taxRate = $taxRate;
   }
   
   /**

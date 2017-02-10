@@ -26,7 +26,7 @@ class Adventure {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
-  /** @var UserAdventureEntity */
+  /** @var UserAdventureEntity|null */
   private $adventure = NULL;
   
   use \Nette\SmartObject;

@@ -20,6 +20,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
   protected $user;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
+    parent::__construct();
     $this->orm = $orm;
     $this->localeModel = $localeModel;
     $this->user = $user;

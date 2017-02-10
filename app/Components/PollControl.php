@@ -30,6 +30,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @param \Nexendrie\Orm\Model $orm
    */
   function __construct(\Nette\Security\User $user, \Nexendrie\Orm\Model $orm) {
+    parent::__construct();
     $this->user = $user;
     $this->orm = $orm;
   }

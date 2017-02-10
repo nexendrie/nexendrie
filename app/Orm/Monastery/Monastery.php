@@ -105,8 +105,8 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
     } else {
       $multiplier = ($this->level - 1) * 10 / 100 + 1;
     }
-    $basePrice = self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp);
-    return (int) ($basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice));
+    $basePrice = (int) (self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
+    return $basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice);
   }
   
   protected function getterRepairPriceT(): string {

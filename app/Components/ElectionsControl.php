@@ -24,6 +24,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   private $town;
   
   function __construct(\Nexendrie\Model\Elections $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    parent::__construct();
     $this->model = $model;
     $this->orm = $orm;
     $this->user = $user;

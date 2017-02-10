@@ -274,7 +274,7 @@ class Events implements \EventCalendar\IEventModel {
         $discount += $event->shoppingDiscount;
       }
     }
-    return (int) $basePrice / 100 * $discount;
+    return (int) ($basePrice / 100 * $discount);
   }
   
   /**

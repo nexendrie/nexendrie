@@ -186,7 +186,7 @@ class Market {
       $row->amount++;
     }
     $price = $itemRow->price;
-    $price -= (int) $this->eventsModel->calculateShoppingDiscount($price);
+    $price -= $this->eventsModel->calculateShoppingDiscount($price);
     $row->user->money = $user->money - $price;
     $row->user->lastActive = time();
     $this->orm->userItems->persistAndFlush($row);

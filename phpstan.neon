@@ -1,0 +1,23 @@
+includes:
+    - vendor/phpstan/phpstan-nette/extension.neon
+parameters:
+    excludes_analyse:
+        - %rootDir%/../../../tests/_temp/*
+    fileExtensions:
+        - php
+        - phpt
+    autoload_directories:
+        - %rootDir%/../../../tests
+    universalObjectCratesClasses:
+        - Nette\Security\IIdentity
+        - Nextras\Orm\Entity\IEntity
+    ignoreErrors:
+        - "#Casting to [a-z\\_]+ something that's already [a-z\\_]+#"
+        - '#Call to an undefined method [a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+\(\)#'
+        - '#Property Nexendrie\\Orm\\[a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ \([a-zA-Z0-9\\|_]+\) does not accept int#'
+        - '#Parameter \#[0-9]+ $[a-zA-Z0-9\\_]+ of method [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ expects mixed\[\], mixed\[\]|Nette\\Utils\\ArrayHash given#'
+        - '#Cannot access property [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ from current scope#'
+        - '#Undefined variable: \$user #'
+        - '#Property EventCalendar\\AbstractCalendar::\$events \(EventCalendar\\ICalendarEvent\) does not accept Nexendrie\\Model\\Events#'
+        - '#Property Nexendrie\\Model\\Events::$events \(Nexendrie\\Orm\\Event\[\]\) does not accept Nexendrie\\Orm\\Event\[\]|Nextras\\Orm\\Collection\\ICollection#'
+        - '#Property Nexendrie\\Orm\\Job::\$award \(int\) does not accept string#'

@@ -40,7 +40,7 @@ class UserPresenter extends BasePresenter {
    * @return Form
    */
   protected function createComponentEditUser(EditUserFormFactory $factory): Form {
-    $form = $factory->create($this->getParameter("id"));
+    $form = $factory->create((int) $this->getParameter("id"));
     $form->onSuccess[] = function(\Nette\Application\UI\Form $form) {
       $this->flashMessage("Změny uloženy.");
       $this->redirect("default");
@@ -57,20 +57,19 @@ class UserPresenter extends BasePresenter {
     if($id == 0) {
       $this->flashMessage("Neoprávněná operace.");
       $this->redirect("default");
-    } else {
-      try {
-        $user = $this->model->get($id);
-        if($user->group->id === 1) {
-          $this->flashMessage("Neoprávněná operace.");
-          $this->redirect("default");
-        } elseif($user->banned) {
-          $this->flashMessage("Uživatel už je uvězněn.");
-          $this->redirect("default");
-        }
-      } catch(UserNotFoundException $e) {
-        $this->flashMessage("Zadaný uživatel neexistuje.");
+    }
+    try {
+      $user = $this->model->get($id);
+      if($user->group->id === 1) {
+        $this->flashMessage("Neoprávněná operace.");
+        $this->redirect("default");
+      } elseif($user->banned) {
+        $this->flashMessage("Uživatel už je uvězněn.");
         $this->redirect("default");
       }
+    } catch(UserNotFoundException $e) {
+      $this->flashMessage("Zadaný uživatel neexistuje.");
+      $this->redirect("default");
     }
     $this->template->name = $user->publicname;
   }

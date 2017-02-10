@@ -4,3 +4,4 @@ apigen.neon     export-ignore
 /ci		export-ignore
 ci.neon         export-ignore
 deployment.ini	export-ignore
+phpstan.neon    export-ignore

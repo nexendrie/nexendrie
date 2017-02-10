@@ -23,6 +23,7 @@ class StablesControl extends \Nette\Application\UI\Control {
   protected $user;
   
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    parent::__construct();
     $this->orm = $orm;
     $this->user = $user;
   }

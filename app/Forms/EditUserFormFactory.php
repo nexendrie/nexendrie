@@ -75,9 +75,9 @@ class EditUserFormFactory {
    * @param int $uid
    * @return Form
    */
-  function create($uid): Form {
+  function create(int $uid): Form {
     $form = new Form;
-    $this->uid = (int) $uid;
+    $this->uid = $uid;
     $form->addText("username", "Uživatelské jméno:")
       ->setRequired("Uživatelské jméno nesmí být prázdné");
     $form->addText("publicname", "Zobrazované jméno:")

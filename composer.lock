@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "81ea8a98fe66e46158973128eee8c2a1",
+    "content-hash": "c09540153066f38fa5f592fa95fe1f21",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -2175,6 +2175,48 @@
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
             "time": "2017-01-30T23:13:17+00:00"
+        },
+        {
+            "name": "phpstan/phpstan-nette",
+            "version": "0.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan-nette.git",
+                "reference": "76cbb53b3d8ca2f1ec006a2889ad5adb9b5b0383"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan-nette/zipball/76cbb53b3d8ca2f1ec006a2889ad5adb9b5b0383",
+                "reference": "76cbb53b3d8ca2f1ec006a2889ad5adb9b5b0383",
+                "shasum": ""
+            },
+            "require": {
+                "nette/component-model": "^2.3.0",
+                "nette/di": "^2.3.0",
+                "nette/forms": "^2.3.0",
+                "nette/utils": "^2.3.0",
+                "php": "~7.0",
+                "phpstan/phpstan": "^0.6"
+            },
+            "require-dev": {
+                "consistence/coding-standard": "~0.12.0",
+                "phing/phing": "^2.13.0",
+                "phpunit/phpunit": "^5.3",
+                "satooshi/php-coveralls": "^1.0",
+                "slevomat/coding-standard": "dev-php7#961090ac32"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Nette Framework class reflection extension for PHPStan",
+            "time": "2017-01-30T20:44:33+00:00"
         },
         {
             "name": "psr/log",

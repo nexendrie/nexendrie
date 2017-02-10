@@ -38,7 +38,7 @@ class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Election[]
    */
   function findVotedInMonth($town, int $year, int $month): ICollection {
-    $startOfMonthTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);
+    $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp();

@@ -255,6 +255,7 @@ class Job {
    */
   function getResultMessage(int $job, bool $success): string {
     $messages = $this->orm->jobMessages->findByJobAndSuccess($job, $success);
+    $message = "";
     if($messages->count() === 0 AND $success) {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
         $message = "Úspěšně jsi zvládla směnu.";

@@ -127,7 +127,7 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     }
     $basePrice = ($this->damage - $this->baseDamage + 1) * 30;
     $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
-    return (int) $basePrice;
+    return $basePrice;
   }
   
   protected function getterArmorTrainingCost() {
@@ -136,7 +136,7 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     }
     $basePrice = ($this->armor - $this->baseArmor + 1) * 30;
     $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
-    return (int) $basePrice;
+    return $basePrice;
   }
   
   protected function getterDamageTrainingCostT() {
@@ -164,7 +164,7 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     }
     $this->birth = time();
     if($this->owner->id === 0) {
-      $this->onMarket = 1;
+      $this->onMarket = true;
     }
   }
 }

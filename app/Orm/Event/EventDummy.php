@@ -97,10 +97,6 @@ class EventDummy extends DummyEntity {
     return $this->repairingDiscount;
   }
   
-  function getCaringDiscount(): int {
-    return $this->caringDiscount;
-  }
-  
   function getShoppingDiscount(): int {
     return $this->shoppingDiscount;
   }

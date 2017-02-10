@@ -33,7 +33,8 @@
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
         "nette/tester": "dev-master",
-        "dg/ftp-deployment": "^2.6"
+        "dg/ftp-deployment": "^2.6",
+        "phpstan/phpstan-nette": "^0.6.2"
     },
     "autoload": {
         "psr-4": {

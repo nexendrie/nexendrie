@@ -24,7 +24,7 @@ class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * @param User|int $user
    * @param Skill|int $skill
-   * @return User|NULL
+   * @return UserSkill|NULL
    */
   function getByUserAndSkill($user, $skill) {
     return $this->getBy(["user" => $user, "skill" => $skill]);

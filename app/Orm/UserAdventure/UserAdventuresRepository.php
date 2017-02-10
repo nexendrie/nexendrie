@@ -34,7 +34,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * Find specified user's active adventure
    * 
    * @param int $user User's id
-   * @return UserJob|NULL
+   * @return UserAdventure|NULL
    */
   function getUserActiveAdventure(int $user) {
     return $this->getBy(["user" => $user, "progress<" => 10]);

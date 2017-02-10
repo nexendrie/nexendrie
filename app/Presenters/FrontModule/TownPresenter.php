@@ -89,7 +89,7 @@ class TownPresenter extends BasePresenter {
    */
   function actionMove(int $id) {
     try {
-      $this->model->moveToTown((int) $id);
+      $this->model->moveToTown($id);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
         $message = "Přestěhovala jsi se do vybraného města.";
       } else {
