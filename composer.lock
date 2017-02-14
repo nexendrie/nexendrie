@@ -93,12 +93,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/EventCalendar.git",
-                "reference": "af051afa20bad65091c85edc1bc5f8d51bc2022f"
+                "reference": "6b8de9c767a02e3fb50d3005387e2bf611df8b01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/af051afa20bad65091c85edc1bc5f8d51bc2022f",
-                "reference": "af051afa20bad65091c85edc1bc5f8d51bc2022f",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/6b8de9c767a02e3fb50d3005387e2bf611df8b01",
+                "reference": "6b8de9c767a02e3fb50d3005387e2bf611df8b01",
                 "shasum": ""
             },
             "require": {
@@ -143,7 +143,7 @@
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
             "homepage": "http://www.nimral.cz/calendar",
-            "time": "2017-01-22T09:37:43+00:00"
+            "time": "2017-02-14T13:05:48+00:00"
         },
         {
             "name": "latte/latte",
@@ -2035,12 +2035,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/code-quality.git",
-                "reference": "b1e2c01871b59a5160496268f7fef5cb6aa47368"
+                "reference": "d30fa7509bb638979aeee02fbae4c5fb5b442c46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/code-quality/zipball/b1e2c01871b59a5160496268f7fef5cb6aa47368",
-                "reference": "b1e2c01871b59a5160496268f7fef5cb6aa47368",
+                "url": "https://api.github.com/repos/nexendrie/code-quality/zipball/d30fa7509bb638979aeee02fbae4c5fb5b442c46",
+                "reference": "d30fa7509bb638979aeee02fbae4c5fb5b442c46",
                 "shasum": ""
             },
             "require": {
@@ -2070,20 +2070,20 @@
                 "quality",
                 "testing"
             ],
-            "time": "2017-02-10T08:08:28+00:00"
+            "time": "2017-02-10T14:23:03+00:00"
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.0.3",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "5b8182cc0abb4b0ff290ba9df6c0e1323286013a"
+                "reference": "0bf561dfe75ba80441c22adecc0529056671a7d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/5b8182cc0abb4b0ff290ba9df6c0e1323286013a",
-                "reference": "5b8182cc0abb4b0ff290ba9df6c0e1323286013a",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/0bf561dfe75ba80441c22adecc0529056671a7d2",
+                "reference": "0bf561dfe75ba80441c22adecc0529056671a7d2",
                 "shasum": ""
             },
             "require": {
@@ -2121,7 +2121,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-02-03T21:57:31+00:00"
+            "time": "2017-02-10T20:20:03+00:00"
         },
         {
             "name": "phpstan/phpstan",

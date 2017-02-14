@@ -17,5 +17,4 @@ parameters:
         - '#Property Nexendrie\\Orm\\[a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ \([a-zA-Z0-9\\|_]+\) does not accept int#'
         - '#Cannot access property [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ from current scope#'
         - '#Undefined variable: \$user #'
-        - '#Property EventCalendar\\AbstractCalendar::\$events \(EventCalendar\\ICalendarEvent\) does not accept Nexendrie\\Model\\Events#'
         - '#Property Nexendrie\\Orm\\Job::\$award \(int\) does not accept string#'
