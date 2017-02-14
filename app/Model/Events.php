@@ -25,7 +25,7 @@ class Events implements \EventCalendar\IEventModel {
   protected $sr;
   /** @var \Nette\Application\LinkGenerator */
   protected $lg;
-  /** @var Event[] */
+  /** @var Event[]|\Nextras\Orm\Collection\ICollection */
   private $events;
   
   use \Nette\SmartObject;
