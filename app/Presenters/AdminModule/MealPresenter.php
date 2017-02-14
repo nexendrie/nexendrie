@@ -32,8 +32,8 @@ class MealPresenter extends BasePresenter {
    */
   protected function createComponentAddMealForm(AddEditMealFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->addMeal($form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->addMeal($values);
       $this->flashMessage("Jídlo přidáno.");
       $this->redirect("Content:meals");
     };

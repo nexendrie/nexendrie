@@ -47,8 +47,8 @@ class JobPresenter extends BasePresenter {
    */
   protected function createComponentAddJobForm(AddEditJobFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
-      $this->model->addJob($form->getValues(true));
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->addJob($values);
       $this->flashMessage("Práce přidána.");
       $this->redirect("Content:jobs");
     };

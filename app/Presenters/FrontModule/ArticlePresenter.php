@@ -45,8 +45,7 @@ class ArticlePresenter extends BasePresenter {
    * @param Form $form
    * @return void
    */
-  function addCommentFormSucceeded(Form $form) {
-    $values = $form->getValues(true);
+  function addCommentFormSucceeded(Form $form, array $values) {
     $values["article"] = $this->getParameter("id");
     try {
       $this->model->addComment($values);

@@ -15,7 +15,6 @@ parameters:
         - "#Casting to [a-z\\_]+ something that's already [a-z\\_]+#"
         - '#Call to an undefined method [a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+\(\)#'
         - '#Property Nexendrie\\Orm\\[a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ \([a-zA-Z0-9\\|_]+\) does not accept int#'
-        - '#Parameter \#[0-9]+ $[a-zA-Z0-9\\_]+ of method [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ expects mixed\[\], mixed\[\]|Nette\\Utils\\ArrayHash given#'
         - '#Cannot access property [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ from current scope#'
         - '#Undefined variable: \$user #'
         - '#Property EventCalendar\\AbstractCalendar::\$events \(EventCalendar\\ICalendarEvent\) does not accept Nexendrie\\Model\\Events#'
