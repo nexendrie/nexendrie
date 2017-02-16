@@ -322,7 +322,7 @@ class Monastery {
     }
     $monastery = new MonasteryEntity;
     $this->orm->monasteries->attach($monastery);
-    $monastery->name = (string) $name;
+    $monastery->name = $name;
     $monastery->leader = $user;
     $monastery->town = $this->user->identity->town;
     $monastery->leader->lastActive = time();
