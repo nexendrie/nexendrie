@@ -71,7 +71,7 @@ class Job {
     } else {
       $job->count = 1;
     }
-    $offer->award = $this->localeModel->money(array_sum($this->calculateReward($job)));
+    $offer->award = array_sum($this->calculateReward($job));
     $o = (object) $offer->toArray();
     $o->award = $offer->awardT;
     $offer->award = $oldAward;
