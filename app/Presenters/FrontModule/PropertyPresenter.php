@@ -103,7 +103,7 @@ class PropertyPresenter extends BasePresenter {
   }
   
   protected function createComponentAppointMayorForm(AppointMayorFormFactory $factory): Form {
-    $form = $factory->create($this->getParameter("id"));
+    $form = $factory->create($this->town->id);
     $form->onSuccess[] = function() {
       $this->flashMessage("Rychář jmenován.");
     };
@@ -251,7 +251,7 @@ class PropertyPresenter extends BasePresenter {
    * @return Form
    */
   protected function createComponentMakeCitizenForm(MakeCitizenFormFactory $factory): Form {
-    $form = $factory->create($this->getParameter("id"));
+    $form = $factory->create($this->town->id);
     $form->onSuccess[] = function() {
       $this->flashMessage("Provedeno.");
     };
