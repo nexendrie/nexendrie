@@ -60,6 +60,7 @@ class WorkPresenter extends BasePresenter {
       $this->template->canWork = $this->model->canWork();
       $nextShift = $job->lastAction + ($job->job->shift * 60);
       $this->template->nextShift = $this->localeModel->formatDateTime($nextShift);
+      $this->template->successChance = $this->model->calculateSuccessRate($job);
     } else {
       $this->template->canWork = false;
     }

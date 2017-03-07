@@ -4,6 +4,7 @@ Version 1.0.0-beta3+dev
 - added some unit tests
 - fixed some invalid types of arguments
 - some refactoring
+- show success chance for work
 
 Version 1.0.0-beta3
 - forbid prosing marriage to the queen
