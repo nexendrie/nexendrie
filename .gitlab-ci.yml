@@ -11,7 +11,7 @@ build:
 
   script:
   - mkdir temp/cache
-  - composer install --prefer-dist -a
+  - composer install --prefer-dist
 
   cache:
     paths:
