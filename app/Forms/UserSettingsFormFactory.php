@@ -37,7 +37,7 @@ class UserSettingsFormFactory {
    */
   static function getStylesList(): array {
     $styles = [];
-    $dir = WWW_DIR . "/styles";
+    $dir = __DIR__ . "/../../styles";
     $file = file_get_contents("$dir/list.neon");
     $list = Neon::decode($file);
     foreach(Finder::findFiles("*.css")->in($dir) as $style) {
