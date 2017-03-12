@@ -1,10 +1,7 @@
 includes:
+    - vendor/nexendrie/code-quality/phpstan.neon
     - vendor/phpstan/phpstan-nette/extension.neon
 parameters:
-    excludes_analyse:
-        - %rootDir%/../../../tests/_temp/*
-    autoload_directories:
-        - %rootDir%/../../../tests
     universalObjectCratesClasses:
         - Nette\Security\IIdentity
         - Nextras\Orm\Entity\IEntity
@@ -13,4 +10,3 @@ parameters:
         - '#Call to an undefined method [a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+\(\)#'
         - '#Property Nexendrie\\Orm\\[a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ \([a-zA-Z0-9\\|_]+\) does not accept int#'
         - '#Cannot access property [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ from current scope#'
-        - '#Undefined variable: \$user #'
