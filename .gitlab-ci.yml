@@ -1,4 +1,4 @@
-image: shipito/php:7.0
+image: chialab/php:7.0
 
 stages:
   - build
@@ -53,7 +53,6 @@ analyze:phpstan:
     APP_PASSWORD: qwerty
 
   before_script:
-  - docker-php-ext-install mysqli
   - php ci/setup_db.php
 
   script:
@@ -75,7 +74,7 @@ test:default:
   <<: *test_job
 
 test:cc:
-  image: shipito/php:7.0-xdebug
+  image: chialab/php-dev:7.0
   <<: *test_job
   script:
   - ./vendor/bin/run-tests -p php tests --coverage ./coverage.html --coverage-src ./app
@@ -85,7 +84,7 @@ test:cc:
     - coverage.html
 
 test:php71:
-  image: shipito/php:7.1
+  image: chialab/php:7.1
   <<: *test_job
 
 deploy:alpha:
