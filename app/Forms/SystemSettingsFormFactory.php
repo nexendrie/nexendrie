@@ -147,7 +147,7 @@ class SystemSettingsFormFactory {
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());
     $form->onValidate[] = [$this, "validate"];
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -174,7 +174,7 @@ class SystemSettingsFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->sr->save($values);
     } catch(\Nette\IOException $e) {

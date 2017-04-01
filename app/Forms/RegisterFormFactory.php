@@ -45,7 +45,7 @@ class RegisterFormFactory {
         ->setOption("description", "Registrace na tomto serveru vyžaduje heslo.");
     }
     $form->addSubmit("register", "Zaregistrovat se");
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -54,7 +54,7 @@ class RegisterFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->register($values);
     } catch(RegistrationException $e) {

@@ -73,7 +73,7 @@ class UserSettingsFormFactory {
     $form->addSubmit("save", "Uložit změny");
     $form->setDefaults($this->model->getSettings());
     $form->onValidate[] = [$this, "validate"];
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -96,7 +96,7 @@ class UserSettingsFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->changeSettings($values);
     } catch (SettingsException $e) {

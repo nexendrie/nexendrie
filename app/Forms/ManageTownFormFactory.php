@@ -42,7 +42,7 @@ class ManageTownFormFactory {
     $form->addCheckbox("onMarket", "Na prodej");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($town->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -51,7 +51,7 @@ class ManageTownFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     $this->model->edit($this->id, $values);
   }
 }

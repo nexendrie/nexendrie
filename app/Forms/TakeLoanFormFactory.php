@@ -29,7 +29,7 @@ class TakeLoanFormFactory {
       ->addRule(Form::INTEGER, "Částka musí být celé číslo.")
       ->addRule(Form::RANGE, "Částka musí být v rozmezí 1-$maxLoan.", [1, $maxLoan]);
     $form->addSubmit("submit", "Půjčit si");
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -38,7 +38,7 @@ class TakeLoanFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     $this->model->takeLoan($values["amount"]);
   }
 }

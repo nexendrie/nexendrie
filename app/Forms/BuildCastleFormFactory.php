@@ -33,7 +33,7 @@ class BuildCastleFormFactory {
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Postavit");
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -42,7 +42,7 @@ class BuildCastleFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->build($values);
     } catch(CannotBuildCastleException $e) {

@@ -36,7 +36,7 @@ class ManageCastleFormFactory {
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($castle->toArray());
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -45,7 +45,7 @@ class ManageCastleFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->editCastle($this->id, $values);
     } catch(CastleNameInUseException $e) {

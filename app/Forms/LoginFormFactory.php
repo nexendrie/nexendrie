@@ -31,7 +31,7 @@ class LoginFormFactory {
     $form->addPassword("password", "Heslo:")
       ->setRequired("Zadej heslo.");
     $form->addSubmit("login", "Přihlásit se");
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -40,7 +40,7 @@ class LoginFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->user->login($values["username"], $values["password"]);
     } catch(AuthenticationException $e) {

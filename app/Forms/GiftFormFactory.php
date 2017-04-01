@@ -63,7 +63,7 @@ class GiftFormFactory {
     $form->addTextArea("message", "Zpráva pro příjemce:");
     $form->addSubmit("submit", "Darovat");
     $form->onValidate[] = [$this, "validate"];
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -72,7 +72,7 @@ class GiftFormFactory {
    * @param array $values
    * @return void
    */
-  function validate(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     if($values["money"] === 0 AND $values["item"] === NULL) {
       $form->addError("Musíš zadat částku (a)nebo vybrat věc.");
     }

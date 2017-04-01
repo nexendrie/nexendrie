@@ -6,6 +6,7 @@ Version 1.0.0-beta3+dev
 - some refactoring
 - show success chance for work
 - raised minimal version of PHP to 7.1
+- renamed forms' processing method to process
 
 Version 1.0.0-beta3
 - forbid prosing marriage to the queen

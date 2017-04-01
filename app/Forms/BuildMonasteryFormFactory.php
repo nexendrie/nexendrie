@@ -29,7 +29,7 @@ class BuildMonasteryFormFactory {
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno");
     $form->addSubmit("submit", "Založit klášter");
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -38,7 +38,7 @@ class BuildMonasteryFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->build($values["name"]);
     } catch(CannotBuildMonasteryException $e) {

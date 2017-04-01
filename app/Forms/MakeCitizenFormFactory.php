@@ -30,7 +30,7 @@ class MakeCitizenFormFactory {
     $form->addSelect("user", "Uživatel:", $this->model->getTownPeasants($town))
       ->setRequired();
     $form->addSubmit("submit", "Povýsit");
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -39,7 +39,7 @@ class MakeCitizenFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->makeCitizen($values["user"]);
     } catch(UserNotFoundException $e) {

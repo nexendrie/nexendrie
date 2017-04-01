@@ -30,7 +30,7 @@ class MonasteryDonateFormFactory {
       ->addRule(Form::INTEGER, "Množství musí být celé číslo")
       ->addRule(Form::MIN, "Musíš darovat minimálně 1 groš.", 1);
     $form->addSubmit("submit", "Darovat");
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -39,7 +39,7 @@ class MonasteryDonateFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->donate($values["amount"]);
     } catch(NotInMonasteryException $e) {

@@ -34,7 +34,7 @@ class AppointMayorFormFactory {
     $form->addSelect("mayor", "Nový rychtář:", $this->model->getTownCitizens($townId))
       ->setRequired("Vyber nového rychtáře.");
     $form->addSubmit("submit", "Jmenovat");
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -43,7 +43,7 @@ class AppointMayorFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->appointMayor($this->town->id, $values["mayor"]);
     } catch(TownNotOwnedException $e) {

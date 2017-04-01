@@ -49,7 +49,7 @@ class ManageGuildFormFactory {
       ->setRequired("Vyber dovednost.");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($guild->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -58,7 +58,7 @@ class ManageGuildFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->editGuild($this->id, $values);
     } catch(GuildNameInUseException $e) {

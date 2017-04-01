@@ -40,7 +40,7 @@ class ChangeWeddingTermFormFactory {
       ->setValue($default);
     $form->addSubmit("submit", "Změnit");
     $form->onValidate[] = [$this, "validate"];
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -49,7 +49,7 @@ class ChangeWeddingTermFormFactory {
    * @param array $values
    * @return void
    */
-  function validate(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     $term = $values["term"]->getTimestamp();
     if($term < time()) {
       $form->addError("Datum nemůže být v minulosti.");

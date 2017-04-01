@@ -35,7 +35,7 @@ class ManageMonasteryFormFactory {
     $form->addSelect("leader", "Vůdce:", $this->model->highClerics($id));
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($this->model->get($id)->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -44,7 +44,7 @@ class ManageMonasteryFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->edit($this->id, $values);
     } catch(MonasteryNotFoundException $e) {

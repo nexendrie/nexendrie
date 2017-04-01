@@ -39,7 +39,7 @@ class ManageOrderFormFactory {
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($guild->toArray());
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -48,7 +48,7 @@ class ManageOrderFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     try {
       $this->model->editOrder($this->id, $values);
     } catch(OrderNameInUseException $e) {

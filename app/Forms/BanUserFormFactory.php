@@ -35,7 +35,7 @@ class BanUserFormFactory {
       ->addRule(Form::INTEGER, "Počet směn musí být celé číslo.")
       ->addRule(Form::RANGE, "Počet směn musí být v rozmezí 1-9999.", [1, 9999]);
     $form->addSubmit("ban", "Uvěznit");
-    $form->onSuccess[] = [$this, "submitted"];
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -44,7 +44,7 @@ class BanUserFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     $user = $this->orm->users->getById($this->userId);
     $user->banned = true;
     $punishment = new Punishment;
