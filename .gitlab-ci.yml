@@ -21,7 +21,7 @@ build:
     paths:
     - vendor
     - temp/cache
-    expire_in: 10 mins
+    expire_in: 1 hour
 
 analyze:lint:
   stage: analyze
