@@ -28,20 +28,20 @@ class GroupTest extends \Tester\TestCase {
   function testGet() {
     $group = $this->model->get(1);
     Assert::type(GroupDummy::class, $group);
-    Assert::false($this->model->get(50));
+    Assert::null($this->model->get(50));
   }
   
   function testGetByLevel() {
     $group = $this->model->getByLevel(10000);
     Assert::type(GroupDummy::class, $group);
     Assert::same(1, $group->id);
-    Assert::false($this->model->getByLevel(100000));
+    Assert::null($this->model->getByLevel(100000));
   }
   
   function testOrmGet() {
     $group = $this->model->ormGet(1);
     Assert::type(GroupEntity::class, $group);
-    Assert::false($this->model->ormGet(50));
+    Assert::null($this->model->ormGet(50));
   }
   
   function testExists() {

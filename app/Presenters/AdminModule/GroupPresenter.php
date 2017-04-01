@@ -68,7 +68,7 @@ class GroupPresenter extends BasePresenter {
    */
   function renderMembers(int $id): void {
     $group = $this->model->ormGet($id);
-    if(!$group) {
+    if(is_null($group)) {
       throw new \Nette\Application\BadRequestException;
     }
     else $this->template->group = $group;

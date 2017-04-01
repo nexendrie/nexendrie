@@ -62,11 +62,11 @@ class Group {
    * Get specified group
    * 
    * @param int $id Group's id
-   * @return GroupDummy|bool
+   * @return GroupDummy|NULL
    */
   function get(int $id) {
     $groups = $this->listOfGroups();
-    $group = Arrays::get($groups, $id, false);
+    $group = Arrays::get($groups, $id, NULL);
     return $group;
   }
   
@@ -74,26 +74,26 @@ class Group {
    * Get group of specified level
    * 
    * @param int $level Group's level
-   * @return GroupDummy|bool
+   * @return GroupDummy|NULL
    */
-  function getByLevel(int $level) {
+  function getByLevel(int $level): ?GroupDummy {
     $groups = $this->listOfGroups();
     foreach($groups as $group) {
       if($group->level === $level) {
         return $group;
       }
     }
-    return false;
+    return NULL;
   }
   
   /**
    * @param int $id
-   * @return GroupEntity|bool
+   * @return GroupEntity|NULL
    */
-  function ormGet(int $id) {
+  function ormGet(int $id): ?GroupEntity {
     $group = $this->orm->groups->getById($id);
     if(!$group) {
-      return false;
+      return NULL;
     }
     else {
       return $group;
