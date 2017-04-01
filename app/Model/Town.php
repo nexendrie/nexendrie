@@ -143,7 +143,7 @@ class Town {
    * @param int $town
    * @return \Nexendrie\Orm\User|NULL
    */
-  function getMayor(int $town) {
+  function getMayor(int $town): ?\Nexendrie\Orm\User {
     $mayor = $this->orm->users->getTownMayor($town);
     if($mayor) {
       return $mayor;

@@ -65,7 +65,7 @@ class Castle {
    * Check whetever a name can be used
    * 
    * @param string $name
-   * @param int|NULL $id
+   * @param int $id
    * @return bool
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
@@ -140,10 +140,10 @@ class Castle {
   /**
    * Get specified user's castle
    * 
-   * @param int|NULL $user
+   * @param int $user
    * @return CastleEntity|NULL
    */
-  function getUserCastle(int $user = NULL) {
+  function getUserCastle(int $user = NULL): ?CastleEntity {
     if($user === NULL) {
       $user = $this->user->id;
     }

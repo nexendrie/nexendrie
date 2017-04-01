@@ -241,7 +241,7 @@ class Inventory {
    * @param int $user
    * @return UserItemEntity|NULL
    */
-  function getWeapon(int $user) {
+  function getWeapon(int $user): ?UserItemEntity {
     $weapon = $this->orm->userItems->getWornWeapon($user);
     if($weapon) {
       return $weapon;
@@ -254,7 +254,7 @@ class Inventory {
    * @param int $user
    * @return UserItemEntity|NULL
    */
-  function getArmor(int $user) {
+  function getArmor(int $user): ?UserItemEntity {
     $armor = $this->orm->userItems->getWornArmor($user);
     if($armor) {
       return $armor;
@@ -267,7 +267,7 @@ class Inventory {
    * @param int $user
    * @return UserItemEntity|NULL
    */
-  function getHelmet(int $user) {
+  function getHelmet(int $user): ?UserItemEntity {
     $armor = $this->orm->userItems->getWornHelmet($user);
     if($armor) {
       return $armor;
@@ -280,7 +280,7 @@ class Inventory {
    * @param int $user
    * @return ItemSetEntity|NULL
    */
-  function getUserItemSet(int $user) {
+  function getUserItemSet(int $user): ?ItemSetEntity {
     $weapon = $this->getWeapon($user);
     $armor = $this->getArmor($user);
     $helmet = $this->getHelmet($user);

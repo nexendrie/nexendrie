@@ -35,7 +35,7 @@ class Skills {
   /**
    * Get list of all skills
    * 
-   * @param string|NULL $type
+   * @param string $type
    * @return SkillEntity[]|ICollection
    */
   function listOfSkills(string $type = NULL): ICollection {
@@ -101,7 +101,7 @@ class Skills {
    * @return UserSkillEntity|NULL
    * @throws AuthenticationNeededException
    */
-  function getUserSkill(int $skill) {
+  function getUserSkill(int $skill): ?UserSkillEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } else {

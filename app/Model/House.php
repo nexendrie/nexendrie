@@ -33,7 +33,7 @@ class House {
    * @param int $user
    * @return HouseEntity|NULL
    */
-  function getUserHouse(int $user = 0) {
+  function getUserHouse(int $user = 0): ?HouseEntity {
     if($user === 0) {
       $user = $this->user->id;
     }

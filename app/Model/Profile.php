@@ -78,7 +78,7 @@ class Profile {
     * @param int $id 
     * @return UserEntity|NULL
     */
-  function getPartner(int $id) {
+  function getPartner(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getActiveMarriage($id)->fetch();
     if($marriage AND $marriage->user1->id === $id) {
       return $marriage->user2;
@@ -95,7 +95,7 @@ class Profile {
     * @param int $id 
     * @return UserEntity|NULL
     */
-  function getFiance(int $id) {
+  function getFiance(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getAcceptedMarriage($id)->fetch();
     if($marriage AND $marriage->user1->id === $id) {
       return $marriage->user2;

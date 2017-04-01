@@ -75,7 +75,7 @@ class Guild {
    * Check whetever a name can be used
    * 
    * @param string $name
-   * @param int|NULL $id
+   * @param int $id
    * @return bool
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
@@ -117,7 +117,7 @@ class Guild {
    * @param int $uid
    * @return GuildEntity|NULL
    */
-  function getUserGuild(int $uid = 0) {
+  function getUserGuild(int $uid = 0): ?GuildEntity {
     if($uid === 0) {
       $uid = $this->user->id;
     }

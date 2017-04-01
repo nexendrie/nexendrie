@@ -67,7 +67,7 @@ class Order {
    * Check whetever a name can be used
    * 
    * @param string $name
-   * @param int|NULL $id
+   * @param int $id
    * @return bool
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
@@ -109,7 +109,7 @@ class Order {
    * @param int $uid
    * @return OrderEntity|NULL
    */
-  function getUserOrder(int $uid = 0) {
+  function getUserOrder(int $uid = 0): ?OrderEntity {
     if($uid === 0) {
       $uid = $this->user->id;
     }

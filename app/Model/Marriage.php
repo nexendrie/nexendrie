@@ -199,10 +199,10 @@ class Marriage {
   /**
    * Get user's current marriage
    * 
-   * @return NULL|MarriageEntity
+   * @return MarriageEntity|NULL
    * @throws AuthenticationNeededException
    */
-  function getCurrentMarriage() {
+  function getCurrentMarriage(): ?MarriageEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

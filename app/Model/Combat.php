@@ -55,7 +55,7 @@ class Combat {
    * Calculate specified user's damage
    * 
    * @param UserEntity $user
-   * @param MountEntity|NULL $mount
+   * @param MountEntity $mount
    * @return int
    */
   function calculateUserDamage(UserEntity $user, MountEntity $mount = NULL): int {
@@ -84,7 +84,7 @@ class Combat {
    * Calculate specified user's armor
    * 
    * @param UserEntity $user
-   * @param MountEntity|NULL $mount
+   * @param MountEntity $mount
    * @return int
    */
   function calculateUserArmor(UserEntity $user, MountEntity $mount = NULL) {
@@ -113,7 +113,7 @@ class Combat {
    * Get specified user's combat stats
    * 
    * @param UserEntity $user
-   * @param MountEntity|NULL $mount
+   * @param MountEntity $mount
    * @return int[]
    */
   function userCombatStats(UserEntity $user, MountEntity $mount = NULL): array {

@@ -37,7 +37,7 @@ class Bank {
    * @return LoanEntity|NULL
    * @throws AuthenticationNeededException
    */
-  function getActiveLoan() {
+  function getActiveLoan(): ?LoanEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
