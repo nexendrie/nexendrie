@@ -42,7 +42,7 @@ class NewMessageFormFactory {
    * @return void
    */
   function process(Form $form, array $values): void {
-    $this->model->send($values);;
+    $this->model->send($values);
   }
 }
 ?>
