@@ -55,7 +55,7 @@ class Tavern {
    * @param array $data
    * @return void
    */
-  function addMeal(array $data) {
+  function addMeal(array $data): void {
     $meal = new MealEntity;
     foreach($data as $key => $value) {
       $meal->$key = $value;
@@ -71,7 +71,7 @@ class Tavern {
    * @return void
    * @throws MealNotFoundException
    */
-  function editMeal(int $id, array $data) {
+  function editMeal(int $id, array $data): void {
     try {
       $meal = $this->getMeal($id);
     } catch(MealNotFoundException $e) {

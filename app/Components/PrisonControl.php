@@ -43,7 +43,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function render() {
+  function render(): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/prison.latte");
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
@@ -67,7 +67,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function handleWork() {
+  function handleWork(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     if(!$punishment === NULL) {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -102,7 +102,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function handleRelease() {
+  function handleRelease(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     $release = false;
     if(!$punishment === NULL) {

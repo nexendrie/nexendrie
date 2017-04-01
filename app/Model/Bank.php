@@ -89,7 +89,7 @@ class Bank {
    * @throws TooHighLoanException
    * @throws CannotTakeMoreLoansException
    */
-  function takeLoan(int $amount) {
+  function takeLoan(int $amount): void {
     if($amount > $this->maxLoan()) {
       throw new TooHighLoanException;
     } elseif($this->getActiveLoan()) {
@@ -111,7 +111,7 @@ class Bank {
    * @throws NoLoanException
    * @throws InsufficientFundsException
    */
-  function returnLoan() {
+  function returnLoan(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

@@ -39,7 +39,7 @@ class MonasteryDonateFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->model->donate($values["amount"]);
     } catch(NotInMonasteryException $e) {

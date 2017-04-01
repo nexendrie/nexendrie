@@ -35,7 +35,7 @@ class WorkPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionDefault() {
+  function actionDefault(): void {
     if(!$this->model->isWorking()) {
       $this->redirect("offers");
     }
@@ -44,7 +44,7 @@ class WorkPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $job = $this->model->getCurrentJob();
     $this->template->jobName = $job->job->name;
     $this->template->jobCount = $job->count;
@@ -69,7 +69,7 @@ class WorkPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionOffers() {
+  function actionOffers(): void {
     if($this->model->isWorking()) {
       $this->flashMessage("Už pracuješ.");
       $this->redirect("default");
@@ -79,7 +79,7 @@ class WorkPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderOffers() {
+  function renderOffers(): void {
     $this->template->offers = $this->model->findAvailableJobs();
   }
   
@@ -87,7 +87,7 @@ class WorkPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionStart(int $id) {
+  function actionStart(int $id): void {
     try {
       $this->model->startJob($id);
       $this->flashMessage("Práce zahájena.");
@@ -106,7 +106,7 @@ class WorkPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionFinish() {
+  function actionFinish(): void {
     try {
       $rewards = $this->model->finishJob();
       $this->template->reward = $this->localeModel->money($rewards["reward"]);
@@ -127,7 +127,7 @@ class WorkPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionWork() {
+  function actionWork(): void {
     try {
       $result = $this->model->work();
       $this->flashMessage($result->message);

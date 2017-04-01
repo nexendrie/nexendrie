@@ -96,7 +96,7 @@ class Guild {
    * @throws GuildNotFoundException
    * @throws GuildNameInUseException
    */
-  function editGuild(int $id, array $data) {
+  function editGuild(int $id, array $data): void {
     try {
       $guild = $this->getGuild($id);
     } catch(GuildNotFoundException $e) {
@@ -153,7 +153,7 @@ class Guild {
    * @throws GuildNameInUseException
    * @throws InsufficientFundsException
    */
-  function found(array $data) {
+  function found(array $data): void {
     if(!$this->canFound()) {
       throw new CannotFoundGuildException;
     }
@@ -225,7 +225,7 @@ class Guild {
    * @throws CannotJoinGuildException
    * @throws GuildNotFoundException
    */
-  function join(int $id) {
+  function join(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canJoin()) {
@@ -267,7 +267,7 @@ class Guild {
    * @throws AuthenticationNeededException
    * @throws CannotLeaveGuildException
    */
-  function leave() {
+  function leave(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -327,7 +327,7 @@ class Guild {
    * @throws CannotUpgradeGuildException
    * @throws InsufficientFundsException
    */
-  function upgrade() {
+  function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -375,7 +375,7 @@ class Guild {
    * @throws UserNotInYourGuildException
    * @throws CannotPromoteMemberException
    */
-  function promote(int $userId) {
+  function promote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canManage()) {
@@ -404,7 +404,7 @@ class Guild {
    * @throws UserNotInYourGuildException
    * @throws CannotDemoteMemberException
    */
-  function demote(int $userId) {
+  function demote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canManage()) {
@@ -435,7 +435,7 @@ class Guild {
    * @throws UserNotInYourGuildException
    * @throws CannotKickMemberException
    */
-  function kick(int $userId) {
+  function kick(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canManage()) {

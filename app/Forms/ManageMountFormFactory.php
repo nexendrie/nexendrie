@@ -48,7 +48,7 @@ class ManageMountFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     $this->model->edit($this->id, $values);
   }
 }

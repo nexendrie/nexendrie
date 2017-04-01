@@ -15,7 +15,7 @@ class SettingsPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionDefault() {
+  function actionDefault(): void {
     $this->requiresPermissions("site", "settings");
   }
   

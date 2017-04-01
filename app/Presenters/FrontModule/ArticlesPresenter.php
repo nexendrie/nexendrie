@@ -17,7 +17,7 @@ class ArticlesPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $this->template->categories = ArticleEntity::getCategories();
   }
   
@@ -26,7 +26,7 @@ class ArticlesPresenter extends BasePresenter {
    * @param int $page
    * @return void
    */
-  function actionCategory(string $category, int $page = 1) {
+  function actionCategory(string $category, int $page = 1): void {
     if(!array_key_exists($category, ArticleEntity::getCategories())) {
       $this->redirect("Homepage:");
     } elseif($category === ArticleEntity::CATEGORY_NEWS) {
@@ -41,7 +41,7 @@ class ArticlesPresenter extends BasePresenter {
    * @param int $page
    * @return void
    */
-  function renderCategory(string $category, int $page = 1) {
+  function renderCategory(string $category, int $page = 1): void {
     $paginator = new \Nette\Utils\Paginator;
     $paginator->page = $page;
     $this->template->category = ArticleEntity::getCategories()[$category];

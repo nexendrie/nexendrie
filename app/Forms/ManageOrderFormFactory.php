@@ -48,7 +48,7 @@ class ManageOrderFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->model->editOrder($this->id, $values);
     } catch(OrderNameInUseException $e) {

@@ -44,7 +44,7 @@ class MonasteryPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     try {
       $this->template->monastery = $this->model->getByUser();
       $this->template->canPray = $this->model->canPray();
@@ -61,7 +61,7 @@ class MonasteryPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderList() {
+  function renderList(): void {
     $this->template->monasteries = $this->model->listOfMonasteries();
     $this->template->canJoin = $this->model->canJoin();
   }
@@ -71,7 +71,7 @@ class MonasteryPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderDetail(int $id) {
+  function renderDetail(int $id): void {
     try {
       $this->template->monastery = $this->model->get($id);
     } catch(MonasteryNotFoundException $e) {
@@ -82,7 +82,7 @@ class MonasteryPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionBuild() {
+  function actionBuild(): void {
     if(!$this->model->canBuild()) {
       $this->flashMessage("Nemůžeš postavit klášter.");
       $this->redirect("Homepage:");
@@ -108,7 +108,7 @@ class MonasteryPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionJoin(int $id) {
+  function actionJoin(int $id): void {
     try {
       $this->model->join($id);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -132,7 +132,7 @@ class MonasteryPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionLeave() {
+  function actionLeave(): void {
     try {
       $this->model->leave();
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -151,7 +151,7 @@ class MonasteryPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionPray() {
+  function actionPray(): void {
     try {
       $this->model->pray();
       $this->flashMessage("Modlidba ti přidala 5 životů.");
@@ -177,7 +177,7 @@ class MonasteryPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionManage() {
+  function actionManage(): void {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat klášter.");
       $this->redirect("Homepage:");
@@ -203,7 +203,7 @@ class MonasteryPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleUpgrade() {
+  function handleUpgrade(): void {
     try {
       $this->model->upgrade();
       $this->flashMessage("Klášter vylepšen.");
@@ -220,7 +220,7 @@ class MonasteryPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleRepair() {
+  function handleRepair(): void {
     try {
       $this->model->repair();
       $this->flashMessage("Klášter opraven.");

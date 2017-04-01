@@ -59,7 +59,7 @@ class Town {
    * @param array $data
    * @return void
    */
-  function add(array $data) {
+  function add(array $data): void {
     $town = new TownEntity;
     $this->orm->towns->attach($town);
     foreach($data as $key => $value) {
@@ -76,7 +76,7 @@ class Town {
    * @return void
    * @throws TownNotFoundException
    */
-  function edit(int $id, array $data) {
+  function edit(int $id, array $data): void {
     try {
       $town = $this->get($id);
     } catch(TownNotFoundException $e) {
@@ -107,7 +107,7 @@ class Town {
    * @throws InsufficientLevelForTownException
    * @throws InsufficientFundsException
    */
-  function buy(int $id) {
+  function buy(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -176,7 +176,7 @@ class Town {
    * @throws UserDoesNotLiveInTheTownException
    * @throws InsufficientLevelForMayorException
    */
-  function appointMayor(int $townId, int $newMayorId) {
+  function appointMayor(int $townId, int $newMayorId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -242,7 +242,7 @@ class Town {
    * @throws CannotMoveToSameTownException
    * @throws CannotMoveToTownException
    */
-  function moveToTown(int $id) {
+  function moveToTown(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -273,7 +273,7 @@ class Town {
    * @throws CannotFoundTownException
    * @throws TownNameInUseException
    */
-  function found(array $data) {
+  function found(array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -326,7 +326,7 @@ class Town {
    * @throws UserDoesNotLiveInTheTownException
    * @throws TooHighLevelException
    */
-  function makeCitizen(int $id) {
+  function makeCitizen(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

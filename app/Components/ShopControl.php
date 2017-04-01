@@ -74,7 +74,7 @@ class ShopControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function render() {
+  function render(): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/shop.latte");
     $template->shop = $this->getShop();
@@ -86,7 +86,7 @@ class ShopControl extends \Nette\Application\UI\Control {
    * @param int $item
    * @return void
    */
-  function handleBuy(int $item) {
+  function handleBuy(int $item): void {
     try {
       $this->model->buy($item, $this->shop->id);
       $this->presenter->flashMessage("Věc koupena.");

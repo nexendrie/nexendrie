@@ -26,14 +26,14 @@ class PollsPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $this->template->polls = $this->model->all();
   }
   
   /**
    * @return void
    */
-  function actionAdd() {
+  function actionAdd(): void {
     $this->requiresPermissions("poll", "add");
   }
   
@@ -57,7 +57,7 @@ class PollsPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id) {
+  function actionEdit(int $id): void {
     $this->requiresPermissions("poll", "add");
     if(!$this->model->exists($id)) throw new \Nette\Application\BadRequestException;
   }

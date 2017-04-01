@@ -45,7 +45,7 @@ class ManageCastleFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->model->editCastle($this->id, $values);
     } catch(CastleNameInUseException $e) {

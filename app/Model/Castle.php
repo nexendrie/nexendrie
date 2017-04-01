@@ -86,7 +86,7 @@ class Castle {
    * @throws CastleNotFoundException
    * @throws CastleNameInUseException
    */
-  function editCastle(int $id, array $data) {
+  function editCastle(int $id, array $data): void {
     try {
       $castle = $this->getCastle($id);
     } catch(CastleNotFoundException $e) {
@@ -112,7 +112,7 @@ class Castle {
    * @throws CastleNameInUseException
    * @throws InsufficientFundsException
    */
-  function build(array $data) {
+  function build(array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -178,7 +178,7 @@ class Castle {
    * @throws CannotUpgradeCastleException
    * @throws InsufficientFundsException
    */
-  function upgrade() {
+  function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canUpgrade()) {
@@ -221,7 +221,7 @@ class Castle {
    * @throws CannotRepairCastleException
    * @throws InsufficientFundsException
    */
-  function repair() {
+  function repair(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canRepair()) {

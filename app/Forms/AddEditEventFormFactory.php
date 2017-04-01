@@ -66,7 +66,7 @@ class AddEditEventFormFactory {
    * @param array $values
    * @return void
    */
-  function validate(Form $form, array $values) {
+  function validate(Form $form, array $values): void {
     $format = $this->sr->settings["locale"]["dateTimeFormat"];
     $start = DateTime::createFromFormat($format, $values["start"]);
     if(!$start) {

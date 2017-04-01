@@ -21,21 +21,21 @@ class ChroniclePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $this->template->articles = $this->model->articles();
   }
   
   /**
    * @return void
    */
-  function renderCrimes() {
+  function renderCrimes(): void {
     $this->template->crimes = $this->model->crimes();
   }
   
   /**
    * @return void
    */
-  function renderMarriages() {
+  function renderMarriages(): void {
     $this->template->marriages = $this->marriagesModel->listOfMarriages();
   }
   

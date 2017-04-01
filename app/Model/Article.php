@@ -106,7 +106,7 @@ class Article {
    * @throws MissingPermissionsException
    * @return void
    */
-  function addArticle(array $data) {
+  function addArticle(array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -131,7 +131,7 @@ class Article {
    * @throws MissingPermissionsException
    * @return void
    */
-  function addComment(array $data) {
+  function addComment(array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -158,7 +158,7 @@ class Article {
    * @throws MissingPermissionsException
    * @throws ArticleNotFoundException
    */
-  function editArticle(int $id, array $data) {
+  function editArticle(int $id, array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }

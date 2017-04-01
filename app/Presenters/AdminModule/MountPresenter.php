@@ -23,7 +23,7 @@ class MountPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionAdd() {
+  function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
@@ -46,7 +46,7 @@ class MountPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id) {
+  function actionEdit(int $id): void {
     $this->requiresPermissions("content", "edit");
     try {
       $this->mount = $this->model->get($id);

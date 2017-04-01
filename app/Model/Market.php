@@ -85,7 +85,7 @@ class Market {
    * @param array $data
    * @return void
    */
-  function editShop(int $id, array $data) {
+  function editShop(int $id, array $data): void {
     $shop = $this->orm->shops->getById($id);
     foreach($data as $key => $value) {
       $shop->$key = $value;
@@ -99,7 +99,7 @@ class Market {
    * @param array $data
    * @return void
    */
-  function addShop(array $data) {
+  function addShop(array $data): void {
     $shop = new ShopEntity;
     foreach($data as $key => $value) {
       $shop->$key = $value;
@@ -130,7 +130,7 @@ class Market {
    * @param array $data
    * @return void
    */
-  function editItem(int $id, array $data) {
+  function editItem(int $id, array $data): void {
     $item = $this->orm->items->getById($id);
     foreach($data as $key => $value) {
       $item->$key = $value;
@@ -144,7 +144,7 @@ class Market {
    * @param array $data
    * @return void
    */
-  function addItem(array $data) {
+  function addItem(array $data): void {
     $item = new ItemEntity;
     $this->orm->items->attach($item);
     foreach($data as $key => $value) {
@@ -162,7 +162,7 @@ class Market {
    * @throws WrongShopException
    * @throws InsufficientFundsException
    */
-  function buy(int $item, int $shop) {
+  function buy(int $item, int $shop): void {
     $itemRow = $this->orm->items->getById($item);
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;

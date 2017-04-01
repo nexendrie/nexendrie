@@ -42,7 +42,7 @@ class MarriagePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionDefault() {
+  function actionDefault(): void {
     $partner = $this->profileModel->getPartner($this->user->id);
     $fiance = $this->profileModel->getFiance($this->user->id);
     if(!$partner AND !$fiance) {
@@ -61,7 +61,7 @@ class MarriagePresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionPropose(int $id) {
+  function actionPropose(int $id): void {
     try {
       $this->model->proposeMarriage($id);
       $this->flashMessage("Sňatek navržen.");
@@ -74,7 +74,7 @@ class MarriagePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderProposals() {
+  function renderProposals(): void {
     $this->requiresLogin();
     $this->template->proposals = $this->model->listOfProposals();
   }
@@ -84,7 +84,7 @@ class MarriagePresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionAccept(int $id) {
+  function actionAccept(int $id): void {
     try {
       $this->model->acceptProposal($id);
       $this->flashMessage("Návrh přijat. Nyní jste zasnoubení.");
@@ -105,7 +105,7 @@ class MarriagePresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionDecline(int $id) {
+  function actionDecline(int $id): void {
     try {
       $this->model->declineProposal($id);
       $this->flashMessage("Návrh zamítut.");
@@ -126,7 +126,7 @@ class MarriagePresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionCeremony(int $id) {
+  function actionCeremony(int $id): void {
     try {
       $this->marriage = $this->model->getMarriage($id);
     } catch(MarriageNotFoundException $e) {
@@ -157,7 +157,7 @@ class MarriagePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleCancelWedding() {
+  function handleCancelWedding(): void {
     try {
       $this->model->cancelWedding();
       $this->flashMessage("Zasnoubení zrušeno.");
@@ -179,7 +179,7 @@ class MarriagePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleFileForDivorce() {
+  function handleFileForDivorce(): void {
     try {
       $this->model->fileForDivorce();
       $this->flashMessage("Žádost podána.");
@@ -201,7 +201,7 @@ class MarriagePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleAcceptDivorce() {
+  function handleAcceptDivorce(): void {
     try {
       $this->model->acceptDivorce();
       $this->flashMessage("Vaše manželství skončilo.");
@@ -223,7 +223,7 @@ class MarriagePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleDeclineDivorce() {
+  function handleDeclineDivorce(): void {
     try {
       $this->model->declineDivorce();
       $this->flashMessage("Žádost zamítnuta.");
@@ -245,7 +245,7 @@ class MarriagePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleTakeBackDivorce() {
+  function handleTakeBackDivorce(): void {
     try {
       $this->model->takeBackDivorce();
       $this->flashMessage("Žádost stáhnuta.");
@@ -276,7 +276,7 @@ class MarriagePresenter extends BasePresenter {
    * @param int $item
    * @return void
    */
-  function handleBoostIntimacy(int $item) {
+  function handleBoostIntimacy(int $item): void {
     try {
       $this->inventoryModel->boostIntimacy($item);
       $this->flashMessage("Věc použita.");

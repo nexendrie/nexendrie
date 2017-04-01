@@ -31,7 +31,7 @@ class StablesControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function render() {
+  function render(): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/stables.latte");
     $template->mounts = $this->orm->mounts->findByOwner($this->user->id);
@@ -42,7 +42,7 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @param int $mountId
    * @return void
    */
-  function renderTrain(int $mountId) {
+  function renderTrain(int $mountId): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/stablesTrain.latte");
     $template->mount = $this->orm->mounts->getById($mountId);
@@ -61,7 +61,7 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @throws InsufficientFundsException
    * @throws CareNotNeededException
    */
-  protected function increaseLife(int $mountId, int $hp, int $price) {
+  protected function increaseLife(int $mountId, int $hp, int $price): void {
     $mount = $this->orm->mounts->getById($mountId);
     if(!$mount) {
       throw new MountNotFoundException;
@@ -84,7 +84,7 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @param int $mountId
    * @return void
    */
-  function handleCare(int $mountId) {
+  function handleCare(int $mountId): void {
     try {
       $this->increaseLife($mountId, 3, 4);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -109,7 +109,7 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @param int $mountId
    * @return void
    */
-  function handleFeed(int $mountId) {
+  function handleFeed(int $mountId): void {
     try {
       $this->increaseLife($mountId, 10, 12);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -142,7 +142,7 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @throws MountInBadConditionException
    * @throws InsufficientFundsException
    */
-  protected function train(int $mountId, string $stat) {
+  protected function train(int $mountId, string $stat): void {
     $stats = ["damage", "armor"];
     if(!in_array($stat, $stats)) {
       return;
@@ -171,7 +171,7 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @param int $mount
    * @return void
    */
-  function handleTrainDamage(int $mount) {
+  function handleTrainDamage(int $mount): void {
     try {
       $this->train($mount, "damage");
       $this->presenter->flashMessage("Trénink byl úspěšný.");
@@ -193,7 +193,7 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @param int $mount
    * @return void
    */
-  function handleTrainArmor(int $mount) {
+  function handleTrainArmor(int $mount): void {
     try {
       $this->train($mount, "armor");
       $this->presenter->flashMessage("Trénink byl úspěšný.");

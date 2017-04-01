@@ -44,7 +44,7 @@ class ManageMonasteryFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->model->edit($this->id, $values);
     } catch(MonasteryNotFoundException $e) {

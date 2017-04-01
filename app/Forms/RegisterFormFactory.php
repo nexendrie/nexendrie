@@ -54,7 +54,7 @@ class RegisterFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->model->register($values);
     } catch(RegistrationException $e) {

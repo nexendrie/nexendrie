@@ -70,7 +70,7 @@ class Events implements \EventCalendar\IEventModel {
    * @param array $data
    * @return void
    */
-  function addEvent(array $data) {
+  function addEvent(array $data): void {
     $event = new Event;
     foreach($data as $key => $value) {
       if($key === "start" OR $key === "end") {
@@ -90,7 +90,7 @@ class Events implements \EventCalendar\IEventModel {
    * @return void
    * @throws EventNotFoundException
    */
-  function editEvent(int $id, array $data) {
+  function editEvent(int $id, array $data): void {
     $event = $this->orm->events->getById($id);
     if(!$event) {
       throw new EventNotFoundException;
@@ -113,7 +113,7 @@ class Events implements \EventCalendar\IEventModel {
    * @throws EventNotFoundException
    * @throws CannotDeleteStartedEventException
    */
-  function deleteEvent(int $id) {
+  function deleteEvent(int $id): void {
     $event = $this->orm->events->getById($id);
     if(!$event) {
       throw new EventNotFoundException;
@@ -133,7 +133,7 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $month
    * @return void
    */
-  function loadEvents(int $year = 0, int $month = 0) {
+  function loadEvents(int $year = 0, int $month = 0): void {
     $this->events = $this->orm->events->findFromMonth($year, $month);
   }
   

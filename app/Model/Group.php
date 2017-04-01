@@ -34,7 +34,6 @@ class Group {
   
   /**
    * @param \Nette\Security\User $user
-   * @return void
    */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
@@ -120,7 +119,7 @@ class Group {
    * @throws \Nette\Application\ForbiddenRequestException
    * @return void
    */
-  function edit(int $id, array $data) {
+  function edit(int $id, array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }

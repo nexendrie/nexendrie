@@ -49,7 +49,7 @@ class House {
    * @throws CannotBuyHouseException
    * @throws InsufficientFundsException
    */
-  function buyHouse() {
+  function buyHouse(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif($this->getUserHouse()) {
@@ -97,7 +97,7 @@ class House {
    * @throws CannotUpgradeHouseException
    * @throws InsufficientFundsException
    */
-  function upgrade() {
+  function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canUpgrade()) {
@@ -140,7 +140,7 @@ class House {
    * @throws CannotRepairHouseException
    * @throws InsufficientFundsException
    */
-  function repair() {
+  function repair(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canRepair()) {

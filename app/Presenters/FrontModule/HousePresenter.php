@@ -40,7 +40,7 @@ class HousePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $house = $this->model->getUserHouse();
     if(!$house) {
       $this->flashMessage("Nevlastníš dům.");
@@ -55,7 +55,7 @@ class HousePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionBuy() {
+  function actionBuy(): void {
     try {
       $this->model->buyHouse();
       $this->flashMessage("Dům zakoupen.");
@@ -72,7 +72,7 @@ class HousePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleUpgrade() {
+  function handleUpgrade(): void {
     try {
       $this->model->upgrade();
       $this->flashMessage("Dům vylepšen.");
@@ -89,7 +89,7 @@ class HousePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleRepair() {
+  function handleRepair(): void {
     try {
       $this->model->repair();
       $this->flashMessage("Dům opraven.");
@@ -106,7 +106,7 @@ class HousePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleUpgradeBrewery() {
+  function handleUpgradeBrewery(): void {
     try {
       $newLevel = $this->model->upgradeBrewery();
       if($newLevel === 1) {
@@ -127,7 +127,7 @@ class HousePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleProduceBeer() {
+  function handleProduceBeer(): void {
     try {
       $result = $this->model->produceBeer();
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {

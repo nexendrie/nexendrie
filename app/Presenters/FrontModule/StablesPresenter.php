@@ -36,7 +36,7 @@ class StablesPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $this->template->mounts = $this->model->listOfMounts($this->user->id);
   }
   
@@ -53,7 +53,7 @@ class StablesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionManage(int $id) {
+  function actionManage(int $id): void {
     try {
       $this->mount = $this->model->get($id);
     } catch(MountNotFoundException $e) {
@@ -81,7 +81,7 @@ class StablesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionTrain(int $id) {
+  function actionTrain(int $id): void {
     try {
       $mount = $this->model->get($id);
     } catch(MountNotFoundException $e) {

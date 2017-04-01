@@ -116,7 +116,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function render() {
+  function render(): void {
     $this->template->setFile(__DIR__ . "/elections.latte");
     $this->template->state = $this->getState();
     switch($this->template->state) {
@@ -136,7 +136,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
    * @param int $candidate
    * @return void
    */
-  function handleVote(int $candidate) {
+  function handleVote(int $candidate): void {
     if(!$this->canVote()) {
       $this->presenter->flashMessage("Nemůžeš hlasovat.");
       $this->presenter->redirect(":Front:Homepage:");

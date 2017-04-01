@@ -15,7 +15,7 @@ class CronPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionDefault() {
+  function actionDefault(): void {
     $this->cronner->run();
   }
 }

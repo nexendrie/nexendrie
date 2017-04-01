@@ -82,7 +82,7 @@ class UserSettingsFormFactory {
    * @param array $values
    * @return void
    */
-  function validate(Form $form, array $values) {
+  function validate(Form $form, array $values): void {
     if(empty($values["password_old"]) AND !empty($values["password_new"])) {
       $form->addError("Musíš zadat současné heslo.");
     }
@@ -96,7 +96,7 @@ class UserSettingsFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->model->changeSettings($values);
     } catch (SettingsException $e) {

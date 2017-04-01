@@ -22,7 +22,7 @@ class AdventurePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionAdd() {
+  function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   

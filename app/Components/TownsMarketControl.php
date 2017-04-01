@@ -29,7 +29,7 @@ class TownsMarketControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function render() {
+  function render(): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/townsMarket.latte");
     $template->towns = $this->model->townsOnSale();
@@ -38,8 +38,9 @@ class TownsMarketControl extends \Nette\Application\UI\Control {
   
   /**
    * @param int $townId
+   * @return void
    */
-  function handleBuy(int $townId) {
+  function handleBuy(int $townId): void {
     try {
       $this->model->buy($townId);
       $this->presenter->flashMessage("Město koupeno.");

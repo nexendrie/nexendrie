@@ -22,7 +22,7 @@ class SkillPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionAdd() {
+  function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
@@ -45,7 +45,7 @@ class SkillPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id) {
+  function actionEdit(int $id): void {
     $this->requiresPermissions("content", "edit");
     try {
       $this->skill = $this->model->get($id);

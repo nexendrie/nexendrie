@@ -40,7 +40,7 @@ class LoginFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->user->login($values["username"], $values["password"]);
     } catch(AuthenticationException $e) {

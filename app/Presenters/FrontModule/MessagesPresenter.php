@@ -28,14 +28,14 @@ class MessagesPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $this->template->messages = $this->model->inbox();
   }
   
   /**
    * @return void
    */
-  function renderSent() {
+  function renderSent(): void {
     $this->template->messages = $this->model->outbox();
   }
   
@@ -44,7 +44,7 @@ class MessagesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderView(int $id) {
+  function renderView(int $id): void {
     try {
       $this->template->message = $this->model->show($id);
     } catch(AccessDeniedException $e) {
@@ -58,7 +58,7 @@ class MessagesPresenter extends BasePresenter {
    * @param int|NULL $id Receiver's id
    * @return void
    */
-  function actionNew(int $id = NULL) {
+  function actionNew(int $id = NULL): void {
     
   }
   

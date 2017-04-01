@@ -45,7 +45,7 @@ class OrderPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $order = $this->model->getUserOrder();
     if(!$order) {
       $this->flashMessage("Nejsi v řádu.");
@@ -59,7 +59,7 @@ class OrderPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderList() {
+  function renderList(): void {
     $this->template->orders = $this->model->listOfOrders();
     $this->template->canJoin = $this->model->canJoin();
   }
@@ -69,7 +69,7 @@ class OrderPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderDetail(int $id) {
+  function renderDetail(int $id): void {
     try {
       $this->template->order = $this->model->getOrder($id);
     } catch(OrderNotFoundException $e) {
@@ -80,7 +80,7 @@ class OrderPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionFound() {
+  function actionFound(): void {
     if(!$this->model->canFound()) {
       $this->flashMessage("Nemůžeš založit řád.");
       $this->redirect("Homepage:");
@@ -106,7 +106,7 @@ class OrderPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionJoin(int $id) {
+  function actionJoin(int $id): void {
     try {
       $this->model->join($id);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -127,7 +127,7 @@ class OrderPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionLeave() {
+  function actionLeave(): void {
     try {
       $this->model->leave();
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -146,7 +146,7 @@ class OrderPresenter extends BasePresenter {
   /**
     * @return void
     */
-  function actionManage() {
+  function actionManage(): void {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat řád.");
       $this->redirect("Homepage:");
@@ -171,7 +171,7 @@ class OrderPresenter extends BasePresenter {
    /**
     * @return void
     */
-  function handleUpgrade() {
+  function handleUpgrade(): void {
     try {
       $this->model->upgrade();
       $this->flashMessage("Řád vylepšen.");
@@ -188,7 +188,7 @@ class OrderPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionMembers() {
+  function actionMembers(): void {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat řád.");
       $this->redirect("Homepage:");
@@ -202,7 +202,7 @@ class OrderPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handlePromote(int $user) {
+  function handlePromote(int $user): void {
     try {
       $this->model->promote($user);
       $this->flashMessage("Povýšen(a)");
@@ -229,7 +229,7 @@ class OrderPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handleDemote(int $user) {
+  function handleDemote(int $user): void {
     try {
       $this->model->demote($user);
       $this->flashMessage("Degradován(a)");
@@ -256,7 +256,7 @@ class OrderPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handleKick(int $user) {
+  function handleKick(int $user): void {
     try {
       $this->model->kick($user);
       $this->flashMessage("Vyloučen(a)");

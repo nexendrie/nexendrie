@@ -40,7 +40,7 @@ class CronTasks {
    * @cronner-period 1 week
    * @cronner-time 01:00 - 02:00
    */
-  function mountsStatus() {
+  function mountsStatus(): void {
     $twoMonths = 60 * 60 * 24 * 30 * 2;
     echo "Starting mounts status update ...\n";
     $mounts = $this->orm->mounts->findOwnedMounts();
@@ -73,7 +73,7 @@ class CronTasks {
    * @cronner-period 1 day
    * @cronner-time 01:00 - 02:00
    */
-  function taxes() {
+  function taxes(): void {
     $date = new \DateTime;
     $date->setTimestamp(time());
     if($date->format("j") != 1) return;
@@ -103,7 +103,7 @@ class CronTasks {
    * @cronner-period 1 day
    * @cronner-time 01:00 - 02:00
    */
-  function guildFees() {
+  function guildFees(): void {
     $date = new \DateTime;
     $date->setTimestamp(time());
     if($date->format("j") != 1) return;
@@ -129,7 +129,7 @@ class CronTasks {
    * @cronner-period 1 day
    * @cronner-time 01:00 - 02:00
    */
-  function orderFees() {
+  function orderFees(): void {
     $date = new \DateTime;
     $date->setTimestamp(time());
     if($date->format("j") != 1) return;
@@ -155,7 +155,7 @@ class CronTasks {
    * @cronner-period 1 day
    * @cronner-time 00:00 - 01:00
    */
-  function closeAdventures() {
+  function closeAdventures(): void {
     echo "Starting closing adventures ...\n";
     $adventures = $this->orm->userAdventures->findOpenAdventures();
     foreach($adventures as $adventure) {
@@ -175,7 +175,7 @@ class CronTasks {
    * @cronner-period 1 week
    * @cronner-time 01:00 - 02:00
    */
-  function monasteriesStatus() {
+  function monasteriesStatus(): void {
     echo "Starting monasteries status update ...\n";
     $monasteries = $this->orm->monasteries->findLedMonasteries();
     foreach($monasteries as $monastery) {
@@ -197,7 +197,7 @@ class CronTasks {
    * @cronner-period 1 week
    * @cronner-time 01:00 - 02:00
    */
-  function castlesStatus() {
+  function castlesStatus(): void {
     echo "Starting castles status update ...\n";
     $castles = $this->orm->castles->findOwnedCastles();
     foreach($castles as $castle) {
@@ -219,7 +219,7 @@ class CronTasks {
    * @cronner-period 1 week
    * @cronner-time 01:00 - 02:00
    */
-  function housesStatus() {
+  function housesStatus(): void {
     echo "Starting houses status update ...\n";
     $houses = $this->orm->houses->findOwnedHouses();
     foreach($houses as $house) {
@@ -240,7 +240,7 @@ class CronTasks {
    * @cronner-task Close weddings
    * @cronner-period 1 hour
    */
-  function closeWeddings() {
+  function closeWeddings(): void {
     echo "Starting closing weddings ...\n";
     $weddings = $this->orm->marriages->findOpenWeddings();
     foreach($weddings as $wedding) {
@@ -262,7 +262,7 @@ class CronTasks {
    * @param int $month
    * @return array
    */
-  protected function getElectionResults($town, $year, $month) {
+  protected function getElectionResults($town, $year, $month): array {
     $votes = $this->orm->elections->findVotedInMonth($town, $year, $month);
     $results = [];
     foreach($votes as $vote) {
@@ -289,7 +289,7 @@ class CronTasks {
    * @cronner-period 1 day
    * @cronner-time 01:00 - 02:00
    */
-  function municipalElections() {
+  function municipalElections(): void {
     $date = new \DateTime;
     $date->setTimestamp(time());
     if($date->format("j") != 1) return;

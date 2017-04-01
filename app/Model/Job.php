@@ -122,7 +122,7 @@ class Job {
    * @param array $data
    * @return void
    */
-  function addJob(array $data) {
+  function addJob(array $data): void {
     $job = new JobEntity;
     $this->orm->jobs->attach($job);
     foreach($data as $key => $value) {
@@ -139,7 +139,7 @@ class Job {
    * @return void
    * @throws JobNotFoundException
    */
-  function editJob(int $id, array $data) {
+  function editJob(int $id, array $data): void {
     try {
       $job = $this->getJob($id);
     } catch(JobNotFoundException $e) {
@@ -161,7 +161,7 @@ class Job {
    * @throws JobNotFoundException
    * @throws InsufficientLevelForJobException
    */
-  function startJob(int $id) {
+  function startJob(int $id): void {
     if($this->isWorking()) {
       throw new AlreadyWorkingException;
     }
@@ -441,7 +441,7 @@ class Job {
    * @param array $data
    * @return void
    */
-  function addMessage(array $data) {
+  function addMessage(array $data): void {
     $message = new JobMessageEntity;
     $this->orm->jobMessages->attach($message);
     foreach($data as $key => $value) {
@@ -460,7 +460,7 @@ class Job {
    * @param array $data
    * @return void
    */
-  function editMessage(int $id, array $data) {
+  function editMessage(int $id, array $data): void {
     $message = $this->orm->jobMessages->getById($id);
     foreach($data as $key => $value) {
       if($key === "success") {
@@ -478,7 +478,7 @@ class Job {
    * @return int
    * @throws JobMessageNotFoundException
    */
-  function deleteMessage(int $id) {
+  function deleteMessage(int $id): int {
     $message = $this->orm->jobMessages->getById($id);
     if(!$message) {
       throw new JobMessageNotFoundException;

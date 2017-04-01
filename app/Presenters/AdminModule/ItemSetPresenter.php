@@ -23,7 +23,7 @@ class ItemSetPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionAdd() {
+  function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
@@ -46,7 +46,7 @@ class ItemSetPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id) {
+  function actionEdit(int $id): void {
     $this->requiresPermissions("content", "edit");
     try {
       $this->set = $this->model->get($id);
@@ -75,7 +75,7 @@ class ItemSetPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionDelete(int $id) {
+  function actionDelete(int $id): void {
     $this->requiresPermissions("content", "delete");
     try {
       $this->model->delete($id);

@@ -86,7 +86,7 @@ class Adventure {
    * @param array $data
    * @return void
    */
-  function addAdventure(array $data) {
+  function addAdventure(array $data): void {
     $adventure = new AdventureEntity;
     foreach($data as $key => $value) {
       $adventure->$key = $value;
@@ -102,7 +102,7 @@ class Adventure {
    * @return void
    * @throws AdventureNotFoundException
    */
-  function editAdventure(int $id, array $data) {
+  function editAdventure(int $id, array $data): void {
     try {
       $adventure = $this->get($id);
     } catch(AdventureNotFoundException $e) {
@@ -136,7 +136,7 @@ class Adventure {
    * @param array $data
    * @return void
    */
-  function addNpc(array $data) {
+  function addNpc(array $data): void {
     $npc = new AdventureNpcEntity;
     $this->orm->adventureNpcs->attach($npc);
     foreach($data as $key => $value) {
@@ -153,7 +153,7 @@ class Adventure {
    * @return void
    * @throws AdventureNpcNotFoundException
    */
-  function editNpc(int $id, array $data) {
+  function editNpc(int $id, array $data): void {
     try {
       $npc = $this->getNpc($id);
     } catch(AdventureNpcNotFoundException $e) {
@@ -172,7 +172,7 @@ class Adventure {
    * @return int
    * @throws AdventureNpcNotFoundException
    */
-  function deleteNpc(int $id) {
+  function deleteNpc(int $id): int {
     try {
       $npc = $this->getNpc($id);
     } catch(AdventureNpcNotFoundException $e) {
@@ -225,7 +225,7 @@ class Adventure {
    * @throws MountInBadConditionException
    * @throws AdventureNotAccessibleException
    */
-  function startAdventure(int $adventureId, int $mountId) {
+  function startAdventure(int $adventureId, int $mountId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -324,7 +324,12 @@ class Adventure {
     return $result;
   }
   
-  protected function saveVictory(UserAdventureEntity $adventure, AdventureNpcEntity $enemy) {
+  /**
+   * @param UserAdventureEntity $adventure
+   * @param AdventureNpcEntity $enemy
+   * @return void
+   */
+  protected function saveVictory(UserAdventureEntity $adventure, AdventureNpcEntity $enemy): void {
     $reward = $enemy->reward;
     $reward += $this->eventsModel->calculateAdventuresBonus($reward);
     $reward += $this->orderModel->calculateOrderIncomeBonus($reward);
@@ -376,7 +381,7 @@ class Adventure {
    * @throws NotOnAdventureException
    * @throws NotAllEnemiesDefeateException
    */
-  function finishAdventure() {
+  function finishAdventure(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

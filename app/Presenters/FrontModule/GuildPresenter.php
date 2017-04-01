@@ -44,7 +44,7 @@ class GuildPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $guild = $this->model->getUserGuild();
     if(!$guild) {
       $this->flashMessage("Nejsi v cechu.");
@@ -58,7 +58,7 @@ class GuildPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderList() {
+  function renderList(): void {
     $this->template->guilds = $this->model->listOfGuilds();
     $this->template->canJoin = $this->model->canJoin();
   }
@@ -68,7 +68,7 @@ class GuildPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderDetail(int $id) {
+  function renderDetail(int $id): void {
     try {
       $this->template->guild = $this->model->getGuild($id);
     } catch(GuildNotFoundException $e) {
@@ -79,7 +79,7 @@ class GuildPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionFound() {
+  function actionFound(): void {
     if(!$this->model->canFound()) {
       $this->flashMessage("Nemůžeš založit cech.");
       $this->redirect("Homepage:");
@@ -105,7 +105,7 @@ class GuildPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionJoin(int $id) {
+  function actionJoin(int $id): void {
     try {
       $this->model->join($id);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -126,7 +126,7 @@ class GuildPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionLeave() {
+  function actionLeave(): void {
     try {
       $this->model->leave();
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -145,7 +145,7 @@ class GuildPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionManage() {
+  function actionManage(): void {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat cech.");
       $this->redirect("Homepage:");
@@ -170,7 +170,7 @@ class GuildPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function handleUpgrade() {
+  function handleUpgrade(): void {
     try {
       $this->model->upgrade();
       $this->flashMessage("Cech vylepšen.");
@@ -187,7 +187,7 @@ class GuildPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionMembers() {
+  function actionMembers(): void {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat cech.");
       $this->redirect("Homepage:");
@@ -201,7 +201,7 @@ class GuildPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handlePromote(int $user) {
+  function handlePromote(int $user): void {
     try {
       $this->model->promote($user);
       $this->flashMessage("Povýšen(a)");
@@ -228,7 +228,7 @@ class GuildPresenter extends BasePresenter {
    * @param int $user
    * @return void
    */
-  function handleDemote(int $user) {
+  function handleDemote(int $user): void {
     try {
       $this->model->demote($user);
       $this->flashMessage("Degradován(a)");

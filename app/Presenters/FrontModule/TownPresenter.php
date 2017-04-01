@@ -47,7 +47,7 @@ class TownPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $this->template->town = $this->model->get($this->user->identity->town);
     $user = $this->userManager->get($this->user->id);
     $this->template->path = $user->group->path;
@@ -59,7 +59,7 @@ class TownPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderList() {
+  function renderList(): void {
     $this->template->towns = $this->model->listOfTowns();
   }
   
@@ -68,7 +68,7 @@ class TownPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderDetail(int $id) {
+  function renderDetail(int $id): void {
     try {
       $this->template->town = $this->model->get($id);
       if(!$this->user->isLoggedIn()) {
@@ -87,7 +87,7 @@ class TownPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionMove(int $id) {
+  function actionMove(int $id): void {
     try {
       $this->model->moveToTown($id);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -112,7 +112,7 @@ class TownPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionFound() {
+  function actionFound(): void {
     $path = $this->profileModel->getPath();
     if($path != GroupEntity::PATH_TOWER) {
       $this->flashMessage("Jen šlechtici mohou zakládat města.");
@@ -136,7 +136,7 @@ class TownPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionElections() {
+  function actionElections(): void {
     $this->requiresPermissions("town", "elect");
     $this->town = $this->model->get($this->user->identity->town);
   }

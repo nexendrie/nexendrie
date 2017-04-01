@@ -155,7 +155,7 @@ class UserManager implements IAuthenticator {
    * @return void
    * @throws AuthenticationNeededException
    */
-  function refreshIdentity() {
+  function refreshIdentity(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -170,7 +170,7 @@ class UserManager implements IAuthenticator {
    * @return void
    * @throws RegistrationException
    */
-  function register(array $data) {
+  function register(array $data): void {
     if(!$this->nameAvailable($data["username"])) {
       throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
     }
@@ -217,7 +217,7 @@ class UserManager implements IAuthenticator {
    * @throws SettingsException
    * @return void
    */
-  function changeSettings(array $settings) {
+  function changeSettings(array $settings): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -262,7 +262,7 @@ class UserManager implements IAuthenticator {
    * @param array $values
    * @return void
    */
-  function edit(int $id, array $values) {
+  function edit(int $id, array $values): void {
     $user = $this->orm->users->getById($id);
     foreach($values as $key => $value) {
       $user->$key = $value;

@@ -36,7 +36,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function renderList() {
+  function renderList(): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/adventureList.latte");
     $template->adventures = $this->model->findAvailableAdventures();
@@ -47,7 +47,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
    * @param int $adventure
    * @return void
    */
-  function renderMounts(int $adventure) {
+  function renderMounts(int $adventure): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/adventureMounts.latte");
     $template->mounts = $this->model->findGoodMounts();
@@ -58,7 +58,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function render() {
+  function render(): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/adventure.latte");
     $template->adventure = $adventure = $this->model->getCurrentAdventure();
@@ -71,7 +71,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
    * @param int $mount
    * @return void
    */
-  function handleStart(int $adventure, int $mount) {
+  function handleStart(int $adventure, int $mount): void {
     try {
       $this->model->startAdventure($adventure, $mount);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -103,7 +103,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function handleFight() {
+  function handleFight(): void {
     try {
       $result = $this->model->fight();
       $this->template->message = $result["message"];
@@ -119,7 +119,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function handleFinish() {
+  function handleFinish(): void {
     try {
       $this->model->finishAdventure();
       $this->presenter->redirect("Homepage:");

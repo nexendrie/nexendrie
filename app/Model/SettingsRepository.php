@@ -37,7 +37,7 @@ class SettingsRepository {
    * @param array $settings
    * @return void
    */
-  function save(array $settings) {
+  function save(array $settings): void {
     $filename = APP_DIR . "/config/local.neon";
     $config = Neon::decode(file_get_contents($filename));
     $config += ["nexendrie" => $settings];

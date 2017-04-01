@@ -30,14 +30,14 @@ class EventPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $this->template->events = $this->model->listOfEvents();
   }
   
   /**
    * @return void
    */
-  function actionAdd() {
+  function actionAdd(): void {
     $this->requiresPermissions("event", "add");
   }
   
@@ -60,7 +60,7 @@ class EventPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id) {
+  function actionEdit(int $id): void {
     $this->requiresPermissions("event", "edit");
     try {
       $this->event = $this->model->getEvent($id);
@@ -89,7 +89,7 @@ class EventPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionDelete(int $id) {
+  function actionDelete(int $id): void {
     $this->requiresPermissions("event", "delete");
     try {
       $this->model->deleteEvent($id);

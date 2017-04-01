@@ -27,7 +27,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     }
   }
   
-  function beforeRender() {
+  /**
+   * @return void
+   */
+  protected function beforeRender() {
     $this->template->versionSuffix = $this->sr->settings["site"]["versionSuffix"];
   }
   
@@ -38,7 +41,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * @param string $action
    * @return void
    */
-  protected function requiresPermissions(string $resource, string $action) {
+  protected function requiresPermissions(string $resource, string $action): void {
     if(!$this->user->isAllowed($resource, $action)) {
       $this->flashMessage("K zobrazení této stránky nemáš práva.");
       $this->redirect("Homepage:");

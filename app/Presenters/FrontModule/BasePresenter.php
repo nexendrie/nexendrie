@@ -26,7 +26,7 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
    * 
    * @return void
    */
-  protected function requiresLogin() {
+  protected function requiresLogin(): void {
     if(!$this->user->isLoggedIn()) {
       $this->flashMessage("K zobrazení této stránky musíš být přihlášen.");
       $this->redirect("User:login");
@@ -38,7 +38,7 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
    * 
    * @return void
    */
-  protected function mustNotBeLoggedIn() {
+  protected function mustNotBeLoggedIn(): void {
     if($this->user->isLoggedIn()) {
       $this->flashMessage("Už jsi přihlášen.");
       $this->redirect("Homepage:");
@@ -50,7 +50,7 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
    * 
    * @return void
    */
-  protected function mustNotBeBanned() {
+  protected function mustNotBeBanned(): void {
     if($this->user->identity->banned) {
       $this->flashMessage("Ještě neskončil tvůj trest.");
       $this->redirect("Prison:");
@@ -62,7 +62,7 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
    * 
    * @return void
    */
-  protected function mustNotBeTavelling() {
+  protected function mustNotBeTavelling(): void {
     if($this->user->isLoggedIn() AND $this->user->identity->travelling) {
       $this->flashMessage("Toto nemůžet dělat, když jsi na cestách.");
       $this->redirect("Homepage:");

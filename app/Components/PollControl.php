@@ -85,7 +85,7 @@ class PollControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function render() {
+  function render(): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/poll.latte");
     $poll = $this->getPoll();
@@ -126,7 +126,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @throws PollVotingException
    * @return void
    */
-  protected function vote(int $answer) {
+  protected function vote(int $answer): void {
     if(!$this->canVote()) {
       throw new AccessDeniedException("You can't vote in this poll.");
     }
@@ -146,7 +146,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @param int $answer
    * @return void
    */
-  function handleVote(int $answer) {
+  function handleVote(int $answer): void {
     try {
       $this->vote($answer);
       $this->presenter->flashMessage("Hlas uložen.");

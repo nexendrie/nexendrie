@@ -32,7 +32,7 @@ class AcademyControl extends \Nette\Application\UI\Control {
    * @param string $type
    * @return void
    */
-  function render(string $type = "work") {
+  function render(string $type = "work"): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/academy.latte");
     $types = ["work", "combat"];
@@ -60,7 +60,7 @@ class AcademyControl extends \Nette\Application\UI\Control {
    * @param int $skillId
    * @return void
    */
-  function handleLearn(int $skillId) {
+  function handleLearn(int $skillId): void {
     try {
       $this->model->learn($skillId);
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {

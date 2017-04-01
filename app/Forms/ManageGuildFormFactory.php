@@ -58,7 +58,7 @@ class ManageGuildFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->model->editGuild($this->id, $values);
     } catch(GuildNameInUseException $e) {

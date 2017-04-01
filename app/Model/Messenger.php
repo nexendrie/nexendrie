@@ -102,7 +102,7 @@ class Messenger {
    * @param array $data
    * @return void
    */
-  function send(array $data) {
+  function send(array $data): void {
     $message = new MessageEntity;
     $this->orm->messages->attach($message);
     $message->subject = $data["subject"];

@@ -52,7 +52,7 @@ class ItemSet {
    * @param array $data
    * @return void
    */
-  function add(array $data) {
+  function add(array $data): void {
     $set = new ItemSetEntity;
     $this->orm->itemSets->attach($set);
     foreach($data as $key => $value) {
@@ -69,7 +69,7 @@ class ItemSet {
    * @return void
    * @throws ItemSetNotFoundException
    */
-  function edit(int $id, array $data) {
+  function edit(int $id, array $data): void {
     try {
       $npc = $this->get($id);
     } catch(ItemSetNotFoundException $e) {
@@ -87,7 +87,7 @@ class ItemSet {
    * @param int $id
    * @throws ItemSetNotFoundException
    */
-  function delete(int $id) {
+  function delete(int $id): void {
     try {
       $set = $this->get($id);
     } catch(ItemSetNotFoundException $e) {

@@ -41,7 +41,7 @@ class FoundTownFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->model->found($values);
     } catch(InsufficientLevelForFoundTownException $e) {

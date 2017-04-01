@@ -149,7 +149,7 @@ class Monastery {
    * @throws MonasteryNotFoundException
    * @throws CannotJoinOwnMonasteryException
    */
-  function join(int $id) {
+  function join(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canJoin()) {
@@ -213,7 +213,7 @@ class Monastery {
    * @throws AuthenticationNeededException
    * @throws CannotPrayException
    */
-  function pray() {
+  function pray(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -254,7 +254,7 @@ class Monastery {
    * @throws AuthenticationNeededException
    * @throws CannotLeaveMonasteryException
    */
-  function leave() {
+  function leave(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -306,7 +306,7 @@ class Monastery {
    * @throws MonasteryNameInUseException
    * @throws InsufficientFundsException
    */
-  function build(string $name) {
+  function build(string $name): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -341,7 +341,7 @@ class Monastery {
    * @throws NotInMonasteryException
    * @throws InsufficientFundsException
    */
-  function donate(int $amount) {
+  function donate(int $amount): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -369,7 +369,7 @@ class Monastery {
    * @throws MonasteryNotFoundException
    * @throws MonasteryNameInUseException
    */
-  function edit(int $id, array $data) {
+  function edit(int $id, array $data): void {
     try {
       $monastery = $this->get($id);
     } catch(MonasteryNotFoundException $e) {
@@ -471,7 +471,7 @@ class Monastery {
    * @throws CannotUpgradeMonasteryException
    * @throws InsufficientFundsException
    */
-  function upgrade() {
+  function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -518,7 +518,7 @@ class Monastery {
    * @throws CannotRepairMonasteryException
    * @throws InsufficientFundsException
    */
-  function repair() {
+  function repair(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

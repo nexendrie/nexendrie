@@ -67,7 +67,7 @@ class Polls {
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    */
-  function add(array $data) {
+  function add(array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -103,7 +103,7 @@ class Polls {
    * @throws MissingPermissionsException
    * @throws PollNotFoundException
    */
-  function edit(int $id, array $data) {
+  function edit(int $id, array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }

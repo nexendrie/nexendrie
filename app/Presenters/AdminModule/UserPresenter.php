@@ -22,7 +22,7 @@ class UserPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $this->requiresPermissions("user", "list");
     $this->template->users = $this->model->listOfUsers();
   }
@@ -31,7 +31,7 @@ class UserPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionEdit(int $id) {
+  function actionEdit(int $id): void {
     $this->requiresPermissions("user", "edit");
   }
   
@@ -52,7 +52,7 @@ class UserPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionBan(int $id) {
+  function actionBan(int $id): void {
     $this->requiresPermissions("user", "ban");
     if($id == 0) {
       $this->flashMessage("Neoprávněná operace.");

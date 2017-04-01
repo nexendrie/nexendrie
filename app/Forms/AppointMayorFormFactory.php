@@ -43,7 +43,7 @@ class AppointMayorFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->model->appointMayor($this->town->id, $values["mayor"]);
     } catch(TownNotOwnedException $e) {

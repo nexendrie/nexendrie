@@ -38,7 +38,7 @@ class TakeLoanFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     $this->model->takeLoan($values["amount"]);
   }
 }

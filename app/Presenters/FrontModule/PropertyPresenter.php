@@ -56,7 +56,7 @@ class PropertyPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $data = $this->inventoryModel->possessions();
     $this->template->money = $data["money"];
     $this->template->items = $data["items"];
@@ -68,7 +68,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function actionTown(int $id) {
+  function actionTown(int $id): void {
     try {
       $this->town = $this->townModel->get($id);
     } catch(TownNotFoundException $e) {
@@ -85,7 +85,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $id
    * @return void
    */
-  function renderTown(int $id) {
+  function renderTown(int $id): void {
     $this->template->town = $this->town;
     $this->template->mayor = $this->townModel->getMayor($this->town->id);
   }
@@ -113,7 +113,7 @@ class PropertyPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderBudget() {
+  function renderBudget(): void {
     $budget = $this->model->budget();
     $this->template->incomes = $this->localeModel->money(array_sum($budget["incomes"]));
     $this->template->expenses = $this->localeModel->money(array_sum($budget["expenses"]));
@@ -130,7 +130,7 @@ class PropertyPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderEquipment() {
+  function renderEquipment(): void {
     $this->template->items = $this->inventoryModel->equipment();
     $this->template->currentSet = $this->inventoryModel->getUserItemSet($this->user->id);
   }
@@ -138,7 +138,7 @@ class PropertyPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderPotions() {
+  function renderPotions(): void {
     $user = $this->userManager->get($this->user->id);
     $this->template->life = $user->life;
     $this->template->maxLife = $user->maxLife;
@@ -152,7 +152,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $item
    * @return void
    */
-  function handleEquip(int $item) {
+  function handleEquip(int $item): void {
     try {
       $this->inventoryModel->equipItem($item);
       $this->flashMessage("Věc nasazena.");
@@ -172,7 +172,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $item
    * @return void
    */
-  function handleUnequip(int $item) {
+  function handleUnequip(int $item): void {
     try {
       $this->inventoryModel->unequipItem($item);
       $this->flashMessage("Věc sundána.");
@@ -190,7 +190,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $potion
    * @return void
    */
-  function handleDrink(int $potion) {
+  function handleDrink(int $potion): void {
     try {
       $life = $this->inventoryModel->drinkPotion($potion);
       $this->flashMessage("Doplnil sis $life životů.");
@@ -210,7 +210,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $item
    * @return void
    */
-  function handleSell(int $item) {
+  function handleSell(int $item): void {
     try {
       $price = $this->inventoryModel->sellItem($item);
       $this->flashMessage("Věc prodána za " . $this->localeModel->money($price) . ".");
@@ -228,7 +228,7 @@ class PropertyPresenter extends BasePresenter {
    * @param int $item
    * @return void
    */
-  function handleUpgrade(int $item) {
+  function handleUpgrade(int $item): void {
     try {
       $this->inventoryModel->upgradeItem($item);
       $this->flashMessage("Věc vylepšena.");

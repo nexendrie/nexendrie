@@ -23,7 +23,7 @@ class ArticlePresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderView(int $id) {
+  function renderView(int $id): void {
     try {
       $this->template->article = $this->model->view($id);
     } catch(ArticleNotFoundException $e) {
@@ -43,9 +43,10 @@ class ArticlePresenter extends BasePresenter {
   
   /**
    * @param Form $form
+   * @param array $values
    * @return void
    */
-  function addCommentFormSucceeded(Form $form, array $values) {
+  function addCommentFormSucceeded(Form $form, array $values): void {
     $values["article"] = $this->getParameter("id");
     try {
       $this->model->addComment($values);

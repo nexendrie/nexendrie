@@ -81,7 +81,7 @@ class Mount {
    * @param array $data
    * @return void
    */
-  function add(array $data) {
+  function add(array $data): void {
     $mount = new MountEntity;
     $this->orm->mounts->attach($mount);
     foreach($data as $key => $value) {
@@ -99,7 +99,7 @@ class Mount {
    * @return void
    * @throws MountNotFoundException
    */
-  function edit(int $id, array $data) {
+  function edit(int $id, array $data): void {
     try {
       $mount = $this->get($id);
     } catch(MountNotFoundException $e) {
@@ -123,7 +123,7 @@ class Mount {
    * @throws InsufficientLevelForMountException
    * @throws InsufficientFundsException
    */
-  function buy(int $id) {
+  function buy(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

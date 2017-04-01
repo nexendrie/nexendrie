@@ -107,7 +107,7 @@ class Marriage {
    * @return void
    * @throws CannotProposeMarriageException
    */
-  function proposeMarriage(int $id) {
+  function proposeMarriage(int $id): void {
     if(!$this->canPropose($id)) {
       throw new CannotProposeMarriageException;
     }
@@ -143,7 +143,7 @@ class Marriage {
    * @throws CannotProposeMarriageException
    * @throws MarriageProposalAlreadyHandledException
    */
-  function acceptProposal(int $id) {
+  function acceptProposal(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -178,7 +178,7 @@ class Marriage {
    * @throws CannotProposeMarriageException
    * @throws MarriageProposalAlreadyHandledException
    */
-  function declineProposal(int $id) {
+  function declineProposal(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -221,7 +221,7 @@ class Marriage {
    * @throws NotEngagedException
    * @throws WeddingAlreadyHappenedException
    */
-  function cancelWedding() {
+  function cancelWedding(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -244,7 +244,7 @@ class Marriage {
    * @throws NotMarriedException
    * @throws AlreadyInDivorceException
    */
-  function fileForDivorce() {
+  function fileForDivorce(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -270,7 +270,7 @@ class Marriage {
    * @throws NotMarriedException
    * @throws NotInDivorceException
    */
-  function acceptDivorce() {
+  function acceptDivorce(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -292,7 +292,7 @@ class Marriage {
    * @throws NotMarriedException
    * @throws NotInDivorceException
    */
-  function declineDivorce() {
+  function declineDivorce(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -313,7 +313,7 @@ class Marriage {
    * @throws NotInDivorceException
    * @throws CannotTakeBackDivorceException
    */
-  function takeBackDivorce() {
+  function takeBackDivorce(): void {
     if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
     if(is_null($marriage)) {

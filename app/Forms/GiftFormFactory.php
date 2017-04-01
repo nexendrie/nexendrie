@@ -72,7 +72,7 @@ class GiftFormFactory {
    * @param array $values
    * @return void
    */
-  function validate(Form $form, array $values) {
+  function validate(Form $form, array $values): void {
     if($values["money"] === 0 AND $values["item"] === NULL) {
       $form->addError("Musíš zadat částku (a)nebo vybrat věc.");
     }
@@ -111,7 +111,7 @@ class GiftFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     $user = $this->orm->users->getById($values["user"]);
     $queen = $this->orm->users->getById(0);
     $money = $values["money"];

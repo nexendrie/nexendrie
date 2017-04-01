@@ -16,7 +16,7 @@ class HomepagePresenter extends BasePresenter {
    * @param int $page
    * @return void
    */
-  function renderPage(int $page = 1) {
+  function renderPage(int $page = 1): void {
     $paginator = new \Nette\Utils\Paginator;
     $paginator->page = $page;
     $this->template->news = $this->model->listOfNews($paginator);

@@ -52,7 +52,7 @@ class Skills {
    * @param array $data
    * @return void
    */
-  function add(array $data) {
+  function add(array $data): void {
     $skill = new SkillEntity;
     foreach($data as $key => $value) {
       $skill->$key = $value;
@@ -68,7 +68,7 @@ class Skills {
    * @return void
    * @throws SkillNotFoundException
    */
-  function edit(int $id, array $data) {
+  function edit(int $id, array $data): void {
     try {
       $skill = $this->get($id);
     } catch(SkillNotFoundException $e) {
@@ -139,7 +139,7 @@ class Skills {
    * @throws SkillMaxLevelReachedException
    * @throws InsufficientFundsException
    */
-  function learn(int $id) {
+  function learn(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

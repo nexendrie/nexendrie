@@ -29,7 +29,7 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function render() {
+  function render(): void {
     $template = $this->template;
     $template->setFile(__DIR__ . "/mountsMarket.latte");
     $template->mounts = $this->model->mountsOnSale();
@@ -38,8 +38,9 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
   
   /**
    * @param int $mountId
+   * @return void
    */
-  function handleBuy(int $mountId) {
+  function handleBuy(int $mountId): void {
     try {
       $this->model->buy($mountId);
       $this->presenter->flashMessage("Jezdecké zvíře koupeno.");

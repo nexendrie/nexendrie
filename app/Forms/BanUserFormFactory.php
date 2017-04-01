@@ -44,7 +44,7 @@ class BanUserFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     $user = $this->orm->users->getById($this->userId);
     $user->banned = true;
     $punishment = new Punishment;

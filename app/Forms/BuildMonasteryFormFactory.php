@@ -38,7 +38,7 @@ class BuildMonasteryFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->model->build($values["name"]);
     } catch(CannotBuildMonasteryException $e) {

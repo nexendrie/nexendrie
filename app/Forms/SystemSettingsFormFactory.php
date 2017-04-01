@@ -156,7 +156,7 @@ class SystemSettingsFormFactory {
    * @param array $values
    * @return void
    */
-  function validate(Form $form, array $values) {
+  function validate(Form $form, array $values): void {
     $plural = explode("\n", $values["locale"]["plural"]);
     if(count($plural) != 3) {
       $form->addError("Plurály musí obsahovat právě 3 řádky.");
@@ -174,7 +174,7 @@ class SystemSettingsFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values) {
+  function submitted(Form $form, array $values): void {
     try {
       $this->sr->save($values);
     } catch(\Nette\IOException $e) {

@@ -24,7 +24,7 @@ class BankPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     if($this->user->isLoggedIn()) {
       $this->template->loan = $this->model->getActiveLoan();
     }
@@ -57,7 +57,7 @@ class BankPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionReturn() {
+  function actionReturn(): void {
     $this->requiresLogin();
     try {
       $this->model->returnLoan();

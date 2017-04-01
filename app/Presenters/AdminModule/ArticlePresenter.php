@@ -19,14 +19,14 @@ class ArticlePresenter extends BasePresenter {
   /**
    * @return void
    */
-  function renderDefault() {
+  function renderDefault(): void {
     $this->template->articles = $this->model->listOfArticles();
   }
   
   /**
    * @return void
    */
-  function actionAdd() {
+  function actionAdd(): void {
     $this->requiresPermissions("article", "add");
   }
   
@@ -51,7 +51,7 @@ class ArticlePresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id) {
+  function actionEdit(int $id): void {
     try {
       $article = $this->model->view($id);
     } catch(ArticleNotFoundException $e) {

@@ -23,7 +23,7 @@ class UserPresenter extends BasePresenter {
    * 
    * @return void
    */
-  function actionLogin() {
+  function actionLogin(): void {
     $this->mustNotBeLoggedIn();
   }
   
@@ -60,7 +60,7 @@ class UserPresenter extends BasePresenter {
    * @todo return to previous page if possible
    * @return void
    */
-  function actionLogout() {
+  function actionLogout(): void {
     if($this->user->isLoggedIn()) {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
         $message = "Byla jsi úspěšně odhlášena.";
@@ -80,7 +80,7 @@ class UserPresenter extends BasePresenter {
    * 
    * @return void
    */
-  function actionRegister() {
+  function actionRegister(): void {
     $this->mustNotBeLoggedIn();
   }
   
@@ -100,7 +100,7 @@ class UserPresenter extends BasePresenter {
   /**
    * @return void
    */
-  function actionSettings() {
+  function actionSettings(): void {
     $this->requiresLogin();
   }
   

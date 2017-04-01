@@ -52,7 +52,7 @@ class AddEditSkillFormFactory {
    * @param array $values  
    * @return void
    */
-  function validate(Form $form, array $values) {
+  function validate(Form $form, array $values): void {
     if($values["type"] === "work" AND $values["stat"] != NULL) {
       $form->addError("Neplatná kombinace: vybrána vlastnost u pracovní dovednosti.");
     }

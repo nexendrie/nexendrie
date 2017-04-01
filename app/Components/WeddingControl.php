@@ -43,7 +43,7 @@ class WeddingControl extends \Nette\Application\UI\Control {
   /**
    * @return void
    */
-  function render() {
+  function render(): void {
     $this->template->setFile(__DIR__ . "/wedding.latte");
     $this->template->marriage = $this->marriage;
     $this->template->texts = $this->getTexts();

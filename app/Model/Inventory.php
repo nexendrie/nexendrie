@@ -96,7 +96,7 @@ class Inventory {
    * @throws ItemNotEquipableException
    * @throws ItemAlreadyWornException
    */
-  function equipItem(int $id) {
+  function equipItem(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -132,7 +132,7 @@ class Inventory {
    * @throws ItemNotEquipableException
    * @throws ItemNotWornException
    */
-  function unequipItem(int $id) {
+  function unequipItem(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -204,7 +204,7 @@ class Inventory {
    * @throws ItemNotUsableException
    * @throws MaxIntimacyReachedException
    */
-  function boostIntimacy(int $id) {
+  function boostIntimacy(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -337,7 +337,7 @@ class Inventory {
    * @throws ItemMaxLevelReachedException
    * @throws InsufficientFundsException
    */
-  function upgradeItem(int $id) {
+  function upgradeItem(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

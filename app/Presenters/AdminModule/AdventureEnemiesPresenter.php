@@ -29,7 +29,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionList(int $id) {
+  function actionList(int $id): void {
     $this->requiresPermissions("content", "list");
     try {
       $this->template->npcs = $this->model->listOfNpcs($id);
@@ -44,7 +44,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionAdd(int $id) {
+  function actionAdd(int $id): void {
     $this->requiresPermissions("content", "add");
     try {
       $this->adventure = $this->model->get($id);
@@ -74,7 +74,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id) {
+  function actionEdit(int $id): void {
     $this->requiresPermissions("content", "edit");
     try {
       $this->npc = $this->model->getNpc($id);
@@ -103,7 +103,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function actionDelete(int $id) {
+  function actionDelete(int $id): void {
     try {
       $adventure = $this->model->deleteNpc($id);
       $this->flashMessage("Nepřítel smazán.");

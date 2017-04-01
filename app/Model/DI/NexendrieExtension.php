@@ -52,7 +52,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /**
    * @return void
    */
-  function loadConfiguration() {
+  function loadConfiguration(): void {
     $this->addModels();
     $this->addComponents();
     $this->addForms();
@@ -61,7 +61,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /**
    * @return void
    */
-  protected function addModels() {
+  protected function addModels(): void {
     $builder = $this->getContainerBuilder();
     $config = $this->getConfig($this->defaults);
     $builder->addDefinition($this->prefix("model.group"))
@@ -141,7 +141,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /**
    * @return void
    */
-  protected function addComponents() {
+  protected function addComponents(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition($this->prefix("component.poll"))
       ->setImplement(Nexendrie\Components\PollControlFactory::class);
@@ -174,7 +174,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /**
    * @return void
    */
-  protected function addForms() {
+  protected function addForms(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition($this->prefix("form.addEditArticle"))
       ->setFactory(Nexendrie\Forms\AddEditArticleFormFactory::class);
@@ -262,7 +262,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
    * @param \Nette\PhpGenerator\ClassType $class
    * @return void
    */
-  function afterCompile(\Nette\PhpGenerator\ClassType $class) {
+  function afterCompile(\Nette\PhpGenerator\ClassType $class): void {
     $roles = $this->getConfig($this->defaults)["roles"];
     $initialize = $class->methods["initialize"];
     $initialize->addBody('$groupModel = $this->getByType(?);
