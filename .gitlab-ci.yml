@@ -1,4 +1,4 @@
-image: chialab/php:7.0
+image: chialab/php:7.1
 
 stages:
   - build
@@ -74,7 +74,7 @@ test:default:
   <<: *test_job
 
 test:cc:
-  image: chialab/php-dev:7.0
+  image: chialab/php-dev:7.1
   <<: *test_job
   script:
   - ./vendor/bin/run-tests -p php tests --coverage ./coverage.html --coverage-src ./app
@@ -82,10 +82,6 @@ test:cc:
     name: "Code coverage"
     paths:
     - coverage.html
-
-test:php71:
-  image: chialab/php:7.1
-  <<: *test_job
 
 deploy:alpha:
   <<: *deploy_job

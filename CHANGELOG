@@ -5,6 +5,7 @@ Version 1.0.0-beta3+dev
 - fixed some invalid types of arguments
 - some refactoring
 - show success chance for work
+- raised minimal version of PHP to 7.1
 
 Version 1.0.0-beta3
 - forbid prosing marriage to the queen
