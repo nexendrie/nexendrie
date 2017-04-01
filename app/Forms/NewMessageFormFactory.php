@@ -32,10 +32,17 @@ class NewMessageFormFactory {
     $form->addTextArea("text", "Text:")
       ->setRequired("Zadej text.");
     $form->addSubmit("send", "Odeslat");
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->send($values);
-    };
+    $form->onSuccess[] = [$this, "process"];
     return $form;
+  }
+  
+  /**
+   * @param Form $form
+   * @param array $values
+   * @return void
+   */
+  function process(Form $form, array $values): void {
+    $this->model->send($values);;
   }
 }
 ?>

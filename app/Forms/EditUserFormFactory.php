@@ -89,9 +89,7 @@ class EditUserFormFactory {
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");
     $form->onValidate[] = [$this, "validate"];
-    $form->onSuccess[] = function (Form $form, array $values) {
-      $this->model->edit($this->uid, $values);
-    };
+    $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
@@ -104,6 +102,15 @@ class EditUserFormFactory {
     if($values["group"] == 0 AND $this->uid != 0) {
       $form->addError("Neplatná skupina.");
     }
+  }
+  
+  /**
+   * @param Form $form
+   * @param array $values
+   * @return void
+   */
+  function process(Form $form, array $values): void {
+    $this->model->edit($this->uid, $values);
   }
 }
 ?>
