@@ -43,7 +43,9 @@ test:cc:
 
 deploy:alpha:
   <<: *deploy_job
-  environment: alpha
+  environment:
+    name: alpha
+    url: http://alpha.nexendrie.cz
   only:
     - master@nexendrie/nexendrie
   variables:
@@ -51,7 +53,9 @@ deploy:alpha:
 
 deploy:beta:
   <<: *deploy_job
-  environment: beta
+  environment:
+    name: beta
+    url: https://beta.nexendrie.cz
   only:
     - tags
   variables:
