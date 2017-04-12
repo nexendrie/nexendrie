@@ -37,6 +37,7 @@ test:cc:
   <<: *test_job
   script:
   - ./phing test-coverage
+  coverage: '/(\d+\%) covered/'
   artifacts:
     name: "Code coverage"
     paths:
