@@ -11,7 +11,12 @@
       <arg value="|"/>
       <arg value="php"/>
     </exec>
-    <composer command="install"/>
+    <composer command="install">
+      <arg value="--prefer-dist"/>
+      <arg value="--no-progress"/>
+      <arg value="--no-suggest"/>
+      <arg value="--no-interaction"/>
+    </composer>
   </target>
   <target name="install-dev">
     <copy file="app/config/local.sample.neon" tofile="app/config/local.neon"/>
