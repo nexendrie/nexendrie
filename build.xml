@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="Nexendrie" basedir="." default="test">
-  <target name="test" depends="lint,cs,phpstan,setup-db,tests,clean-db"/>
-  <target name="test-coverage" depends="lint,cs,phpstan,setup-db,tests-coverage,clean-db"/>
-  <target name="test-phpdbg" depends="lint,cs,phpstan,setup-db,tests-phpdbg,clean-db"/>
+  <target name="test" depends="lint,cs,phpstan,tests,clean-db"/>
+  <target name="test-coverage" depends="lint,cs,phpstan,tests-coverage,clean-db"/>
+  <target name="test-phpdbg" depends="lint,cs,phpstan,tests-phpdbg,clean-db"/>
   <target name="install-ci">
     <mkdir dir="temp/cache"/>
     <exec executable="curl" logoutput="true" passthru="true" checkreturn="true">
