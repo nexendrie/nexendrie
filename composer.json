@@ -34,8 +34,10 @@
         "nexendrie/code-quality": "dev-master",
         "nette/tester": "dev-master",
         "dg/ftp-deployment": "^2.6",
-        "phpstan/phpstan-nette": "^0.6.2",
-        "phing/phing": "^2.16.0"
+        "phpstan/phpstan-nette": "^0.6.2"
+    },
+    "replace": {
+      "satooshi/php-coveralls": "*"
     },
     "autoload": {
         "psr-4": {

@@ -22,13 +22,13 @@ before_script:
     APP_PASSWORD: qwerty
 
   script:
-  - ./vendor/bin/phing test
+  - ./phing test
 
 .job_template: &deploy_job
   stage: deploy
 
   script:
-  - ./vendor/bin/phing deploy
+  - ./phing deploy
 
 test:default:
   <<: *test_job
@@ -37,7 +37,7 @@ test:cc:
   image: chialab/php-dev:7.1
   <<: *test_job
   script:
-  - ./vendor/bin/phing test-coverage
+  - ./phing test-coverage
   artifacts:
     name: "Code coverage"
     paths:
