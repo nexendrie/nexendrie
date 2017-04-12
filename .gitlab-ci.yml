@@ -4,6 +4,9 @@ stages:
   - test
   - deploy
 
+before_script:
+- ./install.sh
+
 .job_template: &test_job
   stage: test
 
@@ -16,18 +19,11 @@ stages:
     APP_USER: admin
     APP_PASSWORD: qwerty
 
-  before_script:
-  - mkdir temp/cache
-  - composer install --prefer-dist
-
   script:
   - ./vendor/bin/phing test
 
 .job_template: &deploy_job
   stage: deploy
-
-  before_script:
-  - composer install --prefer-dist
 
   script:
   - ./vendor/bin/phing deploy
