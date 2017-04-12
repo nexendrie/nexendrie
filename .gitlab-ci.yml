@@ -1,44 +1,8 @@
 image: chialab/php:7.1
 
 stages:
-  - build
-  - analyze
   - test
   - deploy
-
-build:
-  stage: build
-
-  script:
-  - mkdir temp/cache
-  - composer install --prefer-dist
-
-  cache:
-    paths:
-    - vendor
-
-  artifacts:
-    paths:
-    - vendor
-    - temp/cache
-    expire_in: 1 hour
-
-analyze:lint:
-  stage: analyze
-  script:
-  - ./vendor/bin/parallel-lint . -e php,phpt --exclude vendor --exclude temp --exclude tests/_temp
-
-analyze:cs:
-  stage: analyze
-
-  script:
-  - ./vendor/bin/phpcs --extensions=php,phpt . --standard=vendor/nexendrie/code-quality/ruleset.xml --colors
-
-analyze:phpstan:
-  stage: analyze
-
-  script:
-  - ./vendor/bin/phpstan analyze -l 5 -c phpstan.neon app tests
 
 .job_template: &test_job
   stage: test
@@ -53,22 +17,20 @@ analyze:phpstan:
     APP_PASSWORD: qwerty
 
   before_script:
-  - php ci/setup_db.php
+  - mkdir temp/cache
+  - composer install --prefer-dist
 
   script:
-  - ./vendor/bin/run-tests -p php tests
+  - ./vendor/bin/phing test
 
 .job_template: &deploy_job
   stage: deploy
 
-  dependencies:
-  - build
-
   before_script:
-  - php ci/prepare_deploy.php
+  - composer install --prefer-dist
 
   script:
-  - ./vendor/bin/deployment deployment.ini
+  - ./vendor/bin/phing deploy
 
 test:default:
   <<: *test_job
@@ -77,7 +39,7 @@ test:cc:
   image: chialab/php-dev:7.1
   <<: *test_job
   script:
-  - ./vendor/bin/run-tests -p php tests --coverage ./coverage.html --coverage-src ./app
+  - ./vendor/bin/phing test-coverage
   artifacts:
     name: "Code coverage"
     paths:

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Nexendrie" basedir="." default="test">
+  <target name="test" depends="lint,cs,phpstan,setup-db,tests,clean-db"/>
+  <target name="test-coverage" depends="lint,cs,phpstan,setup-db,tests-coverage,clean-db"/>
+  <target name="test-phpdbg" depends="lint,cs,phpstan,setup-db,tests-phpdbg,clean-db"/>
+  <target name="deploy">
+    <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
+      <arg path="ci/prepare_deploy.php"/>
+    </exec>
+    <exec executable="vendor/bin/deployment" logoutput="true" passthru="true" checkreturn="true">
+      <arg path="deployment.ini"/>
+    </exec>
+  </target>
+  <target name="lint" description="Syntax checks" >
+    <exec executable="vendor/bin/parallel-lint" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="."/>
+      <arg value="-e"/>
+      <arg value="php,phpt"/>
+      <arg value="--exclude"/>
+      <arg path="vendor"/>
+      <arg value="--exclude"/>
+      <arg path="temp"/>
+      <arg value="--exclude"/>
+      <arg path="tests/_temp"/>
+    </exec>
+  </target>
+  <target name="cs" description="Coding standards compliance">
+    <exec executable="vendor/bin/phpcs" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="--extensions=php,phpt"/>
+      <arg value="."/>
+      <arg value="--standard=vendor/nexendrie/code-quality/ruleset.xml"/>
+      <arg value="--colors"/>
+    </exec>
+  </target>
+  <target name="phpstan" description="PHPStan analyzes">
+    <exec executable="vendor/bin/phpstan" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="analyze"/>
+      <arg value="-l"/>
+      <arg value="5"/>
+      <arg value="-c"/>
+      <arg path="phpstan.neon"/>
+      <arg path="app"/>
+      <arg path="tests"/>
+    </exec>
+  </target>
+  <target name="setup-db">
+    <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
+      <arg path="ci/setup_db.php"/>
+    </exec>
+  </target>
+  <target name="tests" description="Unit tests" depends="setup-db">
+    <exec executable="vendor/bin/run-tests" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="-p"/>
+      <arg value="php"/>
+      <arg path="tests"/>
+    </exec>
+  </target>
+  <target name="tests-coverage" description="Unit tests with code coverage (XDebug)" depends="setup-db">
+    <exec executable="vendor/bin/run-tests" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="-p"/>
+      <arg value="php"/>
+      <arg path="tests"/>
+      <arg value="--coverage"/>
+      <arg path="./coverage.html"/>
+      <arg value="--coverage-src"/>
+      <arg path="./app"/>
+    </exec>
+  </target>
+  <target name="tests-phpdbg" description="Unit tests with code coverage (phpdbg)" depends="setup-db">
+    <exec executable="vendor/bin/run-tests" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="-p"/>
+      <arg value="phpdbg"/>
+      <arg path="tests"/>
+      <arg value="--coverage"/>
+      <arg path="./coverage.html"/>
+      <arg value="--coverage-src"/>
+      <arg path="./app"/>
+    </exec>
+  </target>
+  <target name="clean-db">
+    <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
+      <arg path="ci/clean_db.php"/>
+    </exec>
+  </target>
+</project>
