@@ -1,12 +1,6 @@
 #!/bin/bash
-cp app/config/local.sample.neon app/config/local.neon
-
-mkdir temp/cache
-mkdir temp/sessions
-
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar composer
-chmod +x composer
-./composer install --ignore-platform-reqs
-
+curl -sS https://www.phing.info/get/phing-latest.phar > phing
+mv phing-latest.phar phing
+chmod +x phing
+./phing install
 exit 0
