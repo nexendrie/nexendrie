@@ -4,6 +4,10 @@ stages:
   - test
   - deploy
 
+cache:
+  paths:
+  - vendor/
+
 before_script:
 - curl -sS https://www.phing.info/get/phing-latest.phar > phing
 - chmod +x phing
