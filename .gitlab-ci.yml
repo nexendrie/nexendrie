@@ -7,7 +7,6 @@ stages:
 before_script:
 - curl -sS https://www.phing.info/get/phing-latest.phar > phing
 - chmod +x phing
-- ./phing install-ci
 
 .job_template: &test_job
   stage: test
@@ -22,7 +21,7 @@ before_script:
     APP_PASSWORD: qwerty
 
   script:
-  - ./phing test
+  - ./phing test-ci
 
 .job_template: &deploy_job
   stage: deploy

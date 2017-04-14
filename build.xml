@@ -3,31 +3,23 @@
   <target name="test" depends="lint,cs,phpstan,tests,clean-db"/>
   <target name="test-coverage" depends="lint,cs,phpstan,tests-coverage,clean-db"/>
   <target name="test-phpdbg" depends="lint,cs,phpstan,tests-phpdbg,clean-db"/>
+  <target name="test-ci" depends="install-ci,test"/>
   <target name="install-ci">
     <mkdir dir="temp/cache"/>
-    <exec executable="curl" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="-sS"/>
-      <arg value="https://getcomposer.org/installer"/>
-      <arg value="|"/>
-      <arg value="php"/>
-    </exec>
-    <composer command="install">
+    <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="install"/>
       <arg value="--prefer-dist"/>
       <arg value="--no-progress"/>
       <arg value="--no-suggest"/>
       <arg value="--no-interaction"/>
-    </composer>
+    </exec>
   </target>
   <target name="install-dev">
     <copy file="app/config/local.sample.neon" tofile="app/config/local.neon"/>
     <mkdir dir="temp/cache"/>
     <mkdir dir="temp/sessions"/>
-    <exec executable="curl" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="-sS"/>
-      <arg value="https://getcomposer.org/installer"/>
-      <arg value="|"/>
-      <arg value="php"/>
-      <composer command="install"/>
+    <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="install"/>
     </exec>
   </target>
   <target name="install-production">
@@ -45,7 +37,7 @@
       <arg value="--no-dev"/>
     </composer>
   </target>
-  <target name="deploy">
+  <target name="deploy" depends="install-ci">
     <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
       <arg path="ci/prepare_deploy.php"/>
     </exec>
