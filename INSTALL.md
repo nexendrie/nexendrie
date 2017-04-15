@@ -3,7 +3,7 @@ Installation instructions
 
 Requirements
 ------------
-Obviously, you need PHP. Version 7.1 or later is required. Then you need web server (preferably Apache or Nginx) and sql server (MySql, PostgreSql, MariaDb, etc.).
+Obviously, you need PHP. Version 7.1 or later is required. Then you need web server (preferably Apache or Nginx) and sql server (MySql, PostgreSql or MariaDb).
 The game uses Composer to manage its dependecies so you have to have it installed. You also need Git if you want to contribute.
 
 Downloading
@@ -34,7 +34,7 @@ The game uses Composer to manage its dependencies. If you do not have them insta
 
 Database
 --------
-The game needs a database to store its data. We use nextras/orm to access it. It supports only MySql/MariaDB and PostgreSql. Before you can run the game for first time, you have to create tables and fill the with at least basic data. For now, you have to do everything by yourself. See the entites to get an idea about tables definitions or files in folder app/sqls for actual queries for MySql/MariaDB.
+The game needs a database to store its data. We use nextras/orm with nextras/dbal to access it which currently supports only MySQL/MariaDB and PostgreSQL. Before you can run the game for first time, you have to create tables and fill the with at least basic data. For now, you have to do everything by yourself. See the entites to get an idea about tables definitions or files in folder app/sqls for actual queries for MySql/MariaDB.
 
 After that, do not forget to write access data (name of database, username and password) to file app/config/local.neon so the game will know where to look for data.
 
