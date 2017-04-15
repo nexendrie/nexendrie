@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fa7ae4366dc1d5adbc0cbbdfb329bae",
+    "content-hash": "02e7cc3a236bd6d21fe05ff8e0a2a154",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1174,32 +1174,30 @@
         },
         {
             "name": "nexendrie/book-component",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/book-component.git",
-                "reference": "8ecdef1ffdebc182afb7f096103d22c06d7f695d"
+                "reference": "ae03011c142079da45e7cd3cd1574f84899c31d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/book-component/zipball/8ecdef1ffdebc182afb7f096103d22c06d7f695d",
-                "reference": "8ecdef1ffdebc182afb7f096103d22c06d7f695d",
+                "url": "https://api.github.com/repos/nexendrie/book-component/zipball/ae03011c142079da45e7cd3cd1574f84899c31d8",
+                "reference": "ae03011c142079da45e7cd3cd1574f84899c31d8",
                 "shasum": ""
             },
             "require": {
                 "latte/latte": "^2.4",
                 "nette/application": "^2.4",
                 "nette/utils": "^2.4",
-                "nexendrie/translation": "^0.1",
-                "php": ">=5.6.0"
-            },
-            "replace": {
-                "konecnyjakub/book-component": "~1.0"
+                "nexendrie/translation": "^0.3",
+                "php": ">=7.1.0"
             },
             "require-dev": {
                 "nette/tester": "dev-master",
                 "nexendrie/code-quality": "dev-master",
                 "nexendrie/site-generator": "1.0.x-dev",
+                "phpstan/phpstan-nette": "^0.6.2",
                 "tracy/tracy": "^2.4"
             },
             "type": "library",
@@ -1232,7 +1230,7 @@
                 "component",
                 "nette"
             ],
-            "time": "2016-11-12T10:56:33+00:00"
+            "time": "2017-04-15T11:54:15+00:00"
         },
         {
             "name": "nexendrie/rss",
@@ -1300,32 +1298,36 @@
         },
         {
             "name": "nexendrie/translation",
-            "version": "0.1.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/translation.git",
-                "reference": "eba3e139efe5c07b33340e9addd075724fad762b"
+                "reference": "b2ba4df9f6598fff4607362bf8d9da4039657ad7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/translation/zipball/eba3e139efe5c07b33340e9addd075724fad762b",
-                "reference": "eba3e139efe5c07b33340e9addd075724fad762b",
+                "url": "https://api.github.com/repos/nexendrie/translation/zipball/b2ba4df9f6598fff4607362bf8d9da4039657ad7",
+                "reference": "b2ba4df9f6598fff4607362bf8d9da4039657ad7",
                 "shasum": ""
             },
             "require": {
                 "nette/finder": "^2.4",
-                "nette/neon": "^2.4",
                 "nette/utils": "^2.4",
                 "php": ">=5.6.0"
             },
             "require-dev": {
                 "nette/di": "^2.4",
+                "nette/neon": "^2.4",
                 "nette/tester": "dev-master",
                 "nexendrie/code-quality": "dev-master",
+                "symfony/yaml": "^3.1",
                 "tracy/tracy": "^2.4"
             },
             "suggest": {
+                "ext-json": "To use JsonLoader",
                 "nette/di": "To use TranslationExtension",
+                "nette/neon": "To use NeonLoader",
+                "symfony/yaml": "To use YamlLoader",
                 "tracy/tracy": "For debugger panel"
             },
             "type": "library",
@@ -1353,16 +1355,19 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Easy translating of Nette applications with neon",
+            "description": "Easy translating of PHP applications",
             "homepage": "https://nexendrie.gitlab.io",
             "keywords": [
+                "ini",
+                "json",
                 "localization",
                 "neon",
                 "nette",
                 "translating",
-                "translation"
+                "translation",
+                "yaml"
             ],
-            "time": "2016-11-10T21:09:12+00:00"
+            "time": "2017-02-09T13:12:57+00:00"
         },
         {
             "name": "nextras/dbal",
