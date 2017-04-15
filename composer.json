@@ -1,6 +1,9 @@
 {
     "name": "nexendrie/nexendrie",
     "description": "Nexendrie website",
+    "keywords": [
+        "online", "game", "browser", "medieval", "renaissance", "fantasy"
+    ],
     "homepage": "https://nexendrie.cz/",
     "license": "proprietary",
     "type": "project",
@@ -8,9 +11,13 @@
         {
             "name": "Jakub Konečný",
             "email": "jakub.konecny2@centrum.cz",
-            "role": "Developer"
+            "role": "Architect"
         }
     ],
+    "support": {
+        "source": "https://gitlab.com/nexendrie/nexendrie",
+        "issues": "https://gitlab.com/nexendrie/nexendrie/issues"
+    },
     "require": {
         "php": ">=7.1.0",
         "nette/application": "~2.4",
