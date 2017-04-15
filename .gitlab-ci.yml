@@ -39,12 +39,8 @@ test:default:
 test:cc:
   image: chialab/php-dev:7.1
   <<: *test_job
-  before_script:
-  - curl -sS https://www.phing.info/get/phing-latest.phar > phing
-  - chmod +x phing
-  - ./phing install-ci
   script:
-  - ./phing test-coverage
+  - ./phing test-ci-coverage
   coverage: '/(\d+\%) covered/'
   artifacts:
     name: "Code coverage"
