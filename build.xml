@@ -40,7 +40,7 @@
   </target>
   <target name="deploy" depends="install-ci">
     <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
-      <arg path="ci/prepare_deploy.php"/>
+      <arg path="tools/prepare_deploy.php"/>
     </exec>
     <exec executable="vendor/bin/deployment" logoutput="true" passthru="true" checkreturn="true">
       <arg path="deployment.ini"/>
@@ -80,7 +80,7 @@
   </target>
   <target name="setup-db">
     <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
-      <arg path="ci/setup_db.php"/>
+      <arg path="tools/setup_db.php"/>
     </exec>
   </target>
   <target name="tests" description="Unit tests" depends="setup-db">
@@ -114,7 +114,7 @@
   </target>
   <target name="clean-db">
     <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
-      <arg path="ci/clean_db.php"/>
+      <arg path="tools/clean_db.php"/>
     </exec>
   </target>
 </project>
