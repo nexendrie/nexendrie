@@ -15,6 +15,23 @@
       <arg value="--no-interaction"/>
     </exec>
   </target>
+  <target name="config-db">
+    <echo message="Enter database configuration"/>
+    <input propertyName="driver" validargs="mysqli,pgsql" defaultValue="mysqli" message="Database driver " promptChar=":"/>
+    <input propertyName="host" defaultValue="localhost" message="Database host" promptChar=":"/>
+    <input propertyName="dbname" defaultValue="nexendrie" message="Database name" promptChar=":"/>
+    <input propertyName="user" defaultValue="nexendrie" message="Database user" promptChar=":"/>
+    <input propertyName="password" defaultValue="nexendrie" message="Database password" promptChar=":"/>
+    <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
+      <arg path="tools/config_db.php"/>
+      <arg value="${driver}"/>
+      <arg value="${host}"/>
+      <arg value="${dbname}"/>
+      <arg value="${user}"/>
+      <arg value="${password}"/>
+    </exec>
+    <echo message="Settings written to app/config/local.neon."/>
+  </target>
   <target name="install-dev">
     <copy file="app/config/local.sample.neon" tofile="app/config/local.neon"/>
     <mkdir dir="temp/cache"/>
@@ -22,6 +39,7 @@
     <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
       <arg value="install"/>
     </exec>
+    <phingcall target="config-db"/>
   </target>
   <target name="install-production">
     <copy file="app/config/local.sample.neon" tofile="app/config/local.neon"/>
@@ -37,6 +55,7 @@
       <arg value="--ignore-platform-reqs"/>
       <arg value="--no-dev"/>
     </composer>
+    <phingcall target="config-db"/>
   </target>
   <target name="deploy" depends="install-ci">
     <exec executable="php" logoutput="true" passthru="true" checkreturn="true">

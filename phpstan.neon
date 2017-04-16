@@ -11,3 +11,4 @@ parameters:
         - '#Call to an undefined method Nette\\Application\\UI\\Form::addDateTime\(\)#'
         - '#Property Nexendrie\\Orm\\[a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ \([a-zA-Z0-9\\|_]+\) does not accept int#'
         - '#Cannot access property [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ from current scope#'
+        - '#Undefined variable: \$argv#'
