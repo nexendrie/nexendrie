@@ -15,7 +15,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $founded
  * @property User $owner {m:1 User::$ownedTowns}
  * @property int $price {default 5000}
- * @property bool $onMarket {default 0}
+ * @property bool $onMarket {default false}
  * @property OneHasMany|User[] $denizens {1:m User::$town, orderBy=group}
  * @property OneHasMany|Monastery[] $monasteries {1:m Monastery::$town}
  * @property OneHasMany|Guild[] $guilds {1:m Guild::$town}

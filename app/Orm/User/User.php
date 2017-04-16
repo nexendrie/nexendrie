@@ -22,10 +22,10 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int|NULL $lastPrayer {default NULL}
  * @property int|NULL $lastTransfer {default NULL} 
  * @property Group $group {m:1 Group::$members}
- * @property bool $infomails {default 0}
+ * @property bool $infomails {default false}
  * @property string $style {default "blu-sky"}
  * @property string $gender {enum self::GENDER_*} {default self::GENDER_MALE}
- * @property bool $banned {default 0}
+ * @property bool $banned {default false}
  * @property int $life {default 60}
  * @property int $maxLife {default 60}
  * @property int $money {default 2}

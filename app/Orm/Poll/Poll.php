@@ -16,7 +16,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property User $author {m:1 User::$polls}
  * @property int $added
  * @property-read string $addedAt {virtual}
- * @property bool $locked {default 0}
+ * @property bool $locked {default false}
  * @property OneHasMany|PollVote[] $votes {1:m PollVote::$poll}
  * 
  */

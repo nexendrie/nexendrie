@@ -16,7 +16,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $category {enum self::CATEGORY_*}
  * @property int $added
  * @property-read string $addedAt {virtual}
- * @property bool $allowedComments {default 1}
+ * @property bool $allowedComments {default true}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
  * @property-read string $categoryCZ {virtual}
  */

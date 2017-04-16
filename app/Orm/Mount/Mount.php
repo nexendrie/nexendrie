@@ -15,7 +15,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property MountType $type {m:1 MountType::$mounts}
  * @property User $owner {m:1 User::$mounts}
  * @property int $price
- * @property bool $onMarket {default 0}
+ * @property bool $onMarket {default false}
  * @property int $birth
  * @property int $hp {default 100}
  * @property int $damage {default 0}

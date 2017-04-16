@@ -32,6 +32,21 @@ cache:
 test:default:
   <<: *test_job
 
+test:pgsql:
+  <<: *test_job
+  services:
+  - postgres
+  variables:
+    POSTGRES_DB: nexendrie_test
+    POSTGRES_USER: root
+    POSTGRES_PASSWORD: root
+    APP_USER: admin
+    APP_PASSWORD: qwerty
+  before_script:
+  - cp tests/ci.neon tests/local.neon
+  - php tools/pgsql_setup.php
+  allow_failure: true
+
 test:cc:
   <<: *test_job
   script:
