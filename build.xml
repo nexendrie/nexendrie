@@ -76,6 +76,7 @@
       <arg path="phpstan.neon"/>
       <arg path="app"/>
       <arg path="tests"/>
+      <arg path="tools"/>
     </exec>
   </target>
   <target name="setup-db">
