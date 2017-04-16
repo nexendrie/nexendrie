@@ -9,7 +9,7 @@ require WWW_DIR . "/vendor/autoload.php";
 
 $filename = APP_DIR . "/config/local.neon";
 $db = [
-  "driver" => Arrays::get($argv, 1, "mysql"),
+  "driver" => Arrays::get($argv, 1, "mysqli"),
   "host" => Arrays::get($argv, 2, "localhost"),
   "dbname" => Arrays::get($argv, 3, "nexendrie"),
   "user" => Arrays::get($argv, 4, "nexendrie"),
