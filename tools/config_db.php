@@ -1,6 +1,7 @@
 <?php
 use Nette\Neon\Neon,
-    Nette\Utils\Arrays;
+    Nette\Utils\Arrays,
+    Nextras\Dbal\Utils\FileImporter;
 
 const WWW_DIR = __DIR__ . "/..";
 const APP_DIR = WWW_DIR . "/app";
@@ -19,4 +20,20 @@ $db = [
 $config = Neon::decode(file_get_contents($filename));
 $config["dbal"] = $db;
 file_put_contents($filename, Neon::encode($config, Neon::BLOCK));
+echo "Settings written to " . realpath($filename) . ".\n";
+
+if($db["driver"] !== "mysqli") {
+  echo "PostgreSql database cannot be set up automatically at the moment.\n";
+  exit(0);
+} else {
+  $sqlsFolder = APP_DIR . "/sqls";
+}
+
+echo "Setting up database ...\n";
+$connection = new Nextras\Dbal\Connection($config["dbal"]);
+$files = ["structure", "data_basic"];
+foreach($files as $file) {
+  FileImporter::executeFile($connection, "$sqlsFolder/$file.sql");
+}
+echo "Tables were created and filled with basic data.\n";
 ?>

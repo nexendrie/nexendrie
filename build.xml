@@ -30,7 +30,6 @@
       <arg value="${user}"/>
       <arg value="${password}"/>
     </exec>
-    <echo message="Settings written to app/config/local.neon."/>
   </target>
   <target name="install-dev">
     <copy file="app/config/local.sample.neon" tofile="app/config/local.neon"/>
