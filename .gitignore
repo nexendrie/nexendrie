@@ -12,4 +12,3 @@ temp/
 output/
 *.actual
 coverage.*
-phing*
