@@ -17,7 +17,7 @@
   </target>
   <target name="config-db">
     <echo message="Enter database configuration"/>
-    <input propertyName="driver" validargs="mysqli,pgsql" defaultValue="mysqli" message="Database driver " promptChar=":"/>
+    <input propertyName="driver" validArgs="mysqli,pgsql" defaultValue="mysqli" message="Database driver " promptChar=":"/>
     <input propertyName="host" defaultValue="localhost" message="Database host" promptChar=":"/>
     <input propertyName="dbname" defaultValue="nexendrie" message="Database name" promptChar=":"/>
     <input propertyName="user" defaultValue="nexendrie" message="Database user" promptChar=":"/>
@@ -64,7 +64,7 @@
       <arg path="deployment.ini"/>
     </exec>
   </target>
-  <target name="lint" description="Syntax checks" >
+  <target name="lint" description="Syntax checks">
     <exec executable="vendor/bin/parallel-lint" logoutput="true" passthru="true" checkreturn="true">
       <arg value="."/>
       <arg value="-e"/>
