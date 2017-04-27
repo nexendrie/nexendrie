@@ -30,10 +30,9 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function render(): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/mountsMarket.latte");
-    $template->mounts = $this->model->mountsOnSale();
-    $template->render();
+    $this->template->setFile(__DIR__ . "/mountsMarket.latte");
+    $this->template->mounts = $this->model->mountsOnSale();
+    $this->template->render();
   }
   
   /**

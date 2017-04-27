@@ -86,8 +86,7 @@ class PollControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function render(): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/poll.latte");
+    $this->template->setFile(__DIR__ . "/poll.latte");
     $poll = $this->getPoll();
     $this->template->poll = $poll;
     $votes = $this->getVotes();
@@ -97,9 +96,9 @@ class PollControl extends \Nette\Application\UI\Control {
       }
     }
     $this->template->votes = $votes;
-    $template->canVote = $this->canVote();
-    $template->canEdit = $this->user->isAllowed("poll", "add");
-    $template->render();
+    $this->template->canVote = $this->canVote();
+    $this->template->canEdit = $this->user->isAllowed("poll", "add");
+    $this->template->render();
   }
   
   /**

@@ -75,11 +75,10 @@ class ShopControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function render(): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/shop.latte");
-    $template->shop = $this->getShop();
-    $template->discount = $this->eventsModel->getShoppingDiscount();
-    $template->render();
+    $this->template->setFile(__DIR__ . "/shop.latte");
+    $this->template->shop = $this->getShop();
+    $this->template->discount = $this->eventsModel->getShoppingDiscount();
+    $this->template->render();
   }
   
   /**

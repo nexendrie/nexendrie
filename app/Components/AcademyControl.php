@@ -33,13 +33,12 @@ class AcademyControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function render(string $type = "work"): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/academy.latte");
+    $this->template->setFile(__DIR__ . "/academy.latte");
     $types = ["work", "combat"];
     if(!in_array($type, $types)) {
       $type = "work";
     }
-    $template->type = $type;
+    $this->template->type = $type;
     $skillsRows = $this->model->listOfSkills($type);
     $skills = [];
     foreach($skillsRows as $skill) {
@@ -52,8 +51,8 @@ class AcademyControl extends \Nette\Application\UI\Control {
       $s->price = $this->localeModel->money($price);
       $skills[] = $s;
     }
-    $template->skills = $skills;
-    $template->render();
+    $this->template->skills = $skills;
+    $this->template->render();
   }
   
   /**

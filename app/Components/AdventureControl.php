@@ -37,10 +37,9 @@ class AdventureControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function renderList(): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/adventureList.latte");
-    $template->adventures = $this->model->findAvailableAdventures();
-    $template->render();
+    $this->template->setFile(__DIR__ . "/adventureList.latte");
+    $this->template->adventures = $this->model->findAvailableAdventures();
+    $this->template->render();
   }
   
   /**
@@ -48,22 +47,20 @@ class AdventureControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function renderMounts(int $adventure): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/adventureMounts.latte");
-    $template->mounts = $this->model->findGoodMounts();
-    $template->adventure = $adventure;
-    $template->render();
+    $this->template->setFile(__DIR__ . "/adventureMounts.latte");
+    $this->template->mounts = $this->model->findGoodMounts();
+    $this->template->adventure = $adventure;
+    $this->template->render();
   }
   
   /**
    * @return void
    */
   function render(): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/adventure.latte");
-    $template->adventure = $adventure = $this->model->getCurrentAdventure();
-    $template->nextEnemy = $this->model->getNextNpc($adventure);
-    $template->render();
+    $this->template->setFile(__DIR__ . "/adventure.latte");
+    $this->template->adventure = $adventure = $this->model->getCurrentAdventure();
+    $this->template->nextEnemy = $this->model->getNextNpc($adventure);
+    $this->template->render();
   }
   
   /**

@@ -30,10 +30,9 @@ class TownsMarketControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function render(): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/townsMarket.latte");
-    $template->towns = $this->model->townsOnSale();
-    $template->render();
+    $this->template->setFile(__DIR__ . "/townsMarket.latte");
+    $this->template->towns = $this->model->townsOnSale();
+    $this->template->render();
   }
   
   /**

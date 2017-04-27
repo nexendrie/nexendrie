@@ -28,14 +28,13 @@ class TavernControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function render(): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/tavern.latte");
+    $this->template->setFile(__DIR__ . "/tavern.latte");
     if($this->user->isLoggedIn()) {
-      $template->meals = $this->model->listOfMeals()
+      $this->template->meals = $this->model->listOfMeals()
         ->orderBy("life")
         ->orderBy("price");
     }
-    $template->render();
+    $this->template->render();
   }
   
   /**

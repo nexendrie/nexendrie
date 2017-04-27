@@ -32,10 +32,9 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function render(): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/stables.latte");
-    $template->mounts = $this->orm->mounts->findByOwner($this->user->id);
-    $template->render();
+    $this->template->setFile(__DIR__ . "/stables.latte");
+    $this->template->mounts = $this->orm->mounts->findByOwner($this->user->id);
+    $this->template->render();
   }
   
   /**
@@ -43,10 +42,9 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function renderTrain(int $mountId): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/stablesTrain.latte");
-    $template->mount = $this->orm->mounts->getById($mountId);
-    $template->render();
+    $this->template->setFile(__DIR__ . "/stablesTrain.latte");
+    $this->template->mount = $this->orm->mounts->getById($mountId);
+    $this->template->render();
   }
   
   /**

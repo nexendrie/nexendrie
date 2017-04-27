@@ -44,24 +44,23 @@ class PrisonControl extends \Nette\Application\UI\Control {
    * @return void
    */
   function render(): void {
-    $template = $this->template;
-    $template->setFile(__DIR__ . "/prison.latte");
+    $this->template->setFile(__DIR__ . "/prison.latte");
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
-    $template->noCrime = $template->release = false;
+    $this->template->noCrime = $this->template->release = false;
     if($punishment === NULL) {
-      $template->noCrime = true;
+      $this->template->noCrime = true;
     } else {
       if($punishment->count >= $punishment->numberOfShifts) {
-        $template->release = true;
+        $this->template->release = true;
       }
-      $template->punishment = $punishment;
+      $this->template->punishment = $punishment;
       $canWork = $this->canWork($punishment);
-      $template->canWork = $canWork;
+      $this->template->canWork = $canWork;
       if(!$canWork) {
-        $template->nextShift = $this->localeModel->formatDateTime($punishment->nextShift);
+        $this->template->nextShift = $this->localeModel->formatDateTime($punishment->nextShift);
       }
     }
-    $template->render();
+    $this->template->render();
   }
   
   /**
