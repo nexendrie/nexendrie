@@ -56,9 +56,4 @@ class TownsMarketControl extends \Nette\Application\UI\Control {
     }
   }
 }
-
-interface TownsMarketControlFactory {
-  /** @return TownsMarketControl */
-  function create();
-}
 ?>

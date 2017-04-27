@@ -101,9 +101,4 @@ class ShopControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect(":Front:Market:shop", ["id" => $this->shop->id]);
   }
 }
-
-interface ShopControlFactory {
-  /** @return ShopControl */
-  function create();
-}
 ?>

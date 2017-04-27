@@ -33,9 +33,4 @@ class HistoryControl extends BookControl {
     return $storage;
   }
 }
-
-interface HistoryControlFactory {
-  /** @return HistoryControl */
-  function create();
-}
 ?>

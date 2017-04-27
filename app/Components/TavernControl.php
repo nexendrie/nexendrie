@@ -54,9 +54,4 @@ class TavernControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect("default");
   }
 }
-
-interface TavernControlFactory {
-  /** @return TavernControl */
-  function create();
-}
 ?>

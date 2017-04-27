@@ -56,9 +56,4 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
     }
   }
 }
-
-interface MountsMarketControlFactory {
-  /** @return MountsMarketControl */
-  function create();
-}
 ?>

@@ -156,9 +156,4 @@ class ElectionsControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect(":Front:Town:elections");
   }
 }
-
-interface ElectionsControlFactory {
-  /** @return ElectionsControl */
-  function create();
-}
 ?>

@@ -137,9 +137,4 @@ class PrisonControl extends \Nette\Application\UI\Control {
     }
   }
 }
-
-interface PrisonControlFactory {
-  /** @return PrisonControl */
-  function create();
-}
 ?>

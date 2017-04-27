@@ -50,9 +50,4 @@ class WeddingControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
 }
-
-interface WeddingControlFactory {
-  /** @return WeddingControl */
-  function create();
-}
 ?>

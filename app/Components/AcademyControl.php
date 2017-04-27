@@ -83,9 +83,4 @@ class AcademyControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect("default");
   }
 }
-
-interface AcademyControlFactory {
-  /** @return AcademyControl */
-  function create();
-}
 ?>

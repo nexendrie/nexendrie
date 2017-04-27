@@ -209,9 +209,4 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect("default");
   }
 }
-
-interface StablesControlFactory {
-  /** @return StablesControl */
-  function create();
-}
 ?>

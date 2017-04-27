@@ -131,9 +131,4 @@ class HelpControl extends BookControl {
     $this->template->maxLevel = OrderEntity::MAX_LEVEL;
   }
 }
-
-interface HelpControlFactory {
-  /** @return HelpControl */
-  function create();
-}
 ?>

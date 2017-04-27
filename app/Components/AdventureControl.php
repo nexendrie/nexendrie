@@ -129,9 +129,4 @@ class AdventureControl extends \Nette\Application\UI\Control {
     }
   }
 }
-
-interface AdventureControlFactory {
-  /** @return AdventureControl */
-  function create();
-}
 ?>

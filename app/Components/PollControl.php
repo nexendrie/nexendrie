@@ -158,9 +158,4 @@ class PollControl extends \Nette\Application\UI\Control {
     }
   }
 }
-
-interface PollControlFactory {
-  /** @return PollControl */
-  function create();
-}
 ?>
