@@ -23,6 +23,7 @@ class ChronicleTest extends \Tester\TestCase {
   function testArticles() {
     $result = $this->model->articles();
     Assert::type(ICollection::class, $result);
+    Assert::type(ArticleEntity::class, $result->fetch());
   }
   
   function testCrimes() {
