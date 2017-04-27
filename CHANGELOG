@@ -1,3 +1,6 @@
+Version 1.0.0-beta4+dev
+- added some unit tests
+
 Version 1.0.0-beta4
 - replaced BETA in pages' title by configurable version suffix
 - separated rss channel generating into package nexendrie/rss

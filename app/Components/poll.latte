@@ -3,7 +3,7 @@
     <h3>{$poll->question}</h3>
     <ul>
     {foreach $poll->parsedAnswers as $answer}
-      <li>{if $canVote}<a n:href="vote! $iterator->counter">{$answer}</a> {else}{$answer} ({$votes["answers"][$iterator->counter]}){/if}</li>
+      <li>{if $canVote}<a n:href="vote! $iterator->counter">{$answer}</a>{else}{$answer} ({$votes["answers"][$iterator->counter]}){/if}</li>
     {/foreach}
     </ul>
     <p>Celkem hlasů: {$votes["total"]}</p>

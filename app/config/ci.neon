@@ -6,3 +6,5 @@ dbal:
     dbname: nexendrie_test
     user: root
     password: root
+services:
+    testbench.presenterMock: Testbench\Mocks\PresenterMock
