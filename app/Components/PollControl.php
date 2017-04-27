@@ -14,6 +14,7 @@ use Nette\Utils\Arrays,
  * Poll Control
  *
  * @author Jakub Konečný
+ * @property int $id
  */
 class PollControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
