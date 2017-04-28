@@ -128,11 +128,17 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setFactory(\Nette\Caching\Cache::class, ["@cache.storage", "data"]);
     $builder->addDefinition($this->prefix("model.settingsRepository"))
       ->setFactory(Nexendrie\Model\SettingsRepository::class, [$config]);
+    $builder->addDefinition($this->prefix("model.authorizatorFactory"))
+      ->setFactory(Nexendrie\Model\AuthorizatorFactory::class);
     $builder->addDefinition($this->prefix("model.authorizator"))
-      ->setFactory("Nexendrie\Model\AuthorizatorFactory::create");
+      ->setClass(\Nette\Security\Permission::class)
+      ->setFactory("@" . Nexendrie\Model\AuthorizatorFactory::class . "::create");
     $builder->removeDefinition("router");
-    $builder->addDefinition("router")
-      ->setFactory("Nexendrie\Model\RouterFactory::create");
+    $builder->addDefinition($this->prefix("model.routerFactory"))
+      ->setFactory(Nexendrie\Model\RouterFactory::class);
+    $builder->addDefinition($this->prefix("model.router"))
+      ->setClass(\Nette\Application\Routers\RouteList::class)
+      ->setFactory("@" . Nexendrie\Model\RouterFactory::class . "::create");
     $builder->addDefinition($this->prefix("cronTasks"))
        ->setFactory(Nexendrie\Model\CronTasks::class)
        ->addTag("cronner.tasks");

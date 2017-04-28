@@ -15,26 +15,38 @@ use Nexendrie\Orm\PermissionDummy,
  * @author Jakub Konečný
  */
 class AuthorizatorFactory {
+  use \Nette\SmartObject;
   
-  use \Nette\StaticClass;
+  /** @var Cache */
+  protected $cache;
+  /** @var ORM */
+  protected $orm;
+  
+  /**
+   * AuthorizatorFactory constructor.
+   * @param Cache $cache
+   * @param ORM $orm
+   */
+  function __construct(Cache $cache, ORM $orm) {
+    $this->cache = $cache;
+    $this->orm = $orm;
+  }
   
   /**
    * Get list of all groups ordered by level
    * 
-   * @param Cache $cache
-   * @param ORM $orm
    * @return \stdClass[]
    */
-  static function getGroups(Cache $cache, ORM $orm): array {
-    $groups = $cache->load("groups_by_level");
+  function getGroups(): array {
+    $groups = $this->cache->load("groups_by_level");
     if($groups === NULL) {
       $groups = [];
-      $groupsRows = $orm->groups->findAll()->orderBy("level");
+      $groupsRows = $this->orm->groups->findAll()->orderBy("level");
       /** @var \Nexendrie\Orm\Group $row */
       foreach($groupsRows as $row) {
         $groups[$row->id] = $row->dummy();
       }
-      $cache->save("groups_by_level", $groups);
+      $this->cache->save("groups_by_level", $groups);
     }
     return $groups;
   }
@@ -42,35 +54,31 @@ class AuthorizatorFactory {
   /**
    * Get permissions
    * 
-   * @param Cache $cache
-   * @param ORM $orm
    * @return PermissionDummy[]
    */
-  static function getPermissions(Cache $cache, ORM $orm): array {
-    $return = $cache->load("permissions");
+  function getPermissions(): array {
+    $return = $this->cache->load("permissions");
     if($return === NULL) {
-      $rows = $orm->permissions->findAll();
+      $rows = $this->orm->permissions->findAll();
       /** @var \Nexendrie\Orm\Permission $row */
       foreach($rows as $row) {
         $return[] = $row->dummy();
       }
-      $cache->save("permissions", $return);
+      $this->cache->save("permissions", $return);
     }
     return $return;
   }
   
   /**
   * Factory for Authorizator
-  * 
-  * @param  $cache
-  * @param ORM $orm
+  *
   * @return Permission
   */
-  static function create(Cache $cache, ORM $orm): Permission {
+  function create(): Permission {
     $permission = new Permission;
     
-    $groups = self::getGroups($cache, $orm);
-    $permissions = self::getPermissions($cache, $orm);
+    $groups = $this->getGroups();
+    $permissions = $this->getPermissions();
     
     foreach($groups as $i => $row) {
       if($row->level === 0) {

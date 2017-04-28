@@ -12,13 +12,12 @@ use Nette\Application\Routers\RouteList,
  * @author Jakub Konečný
  */
 class RouterFactory {
-  
-  use \Nette\StaticClass;
+  use \Nette\SmartObject;
   
   /**
    * @return RouteList
    */
-  static function create(): RouteList {
+  function create(): RouteList {
     $router = new RouteList;
     $frontRouter = new RouteList("Front");
     $frontRouter[] = new Route("/", "Homepage:page");
