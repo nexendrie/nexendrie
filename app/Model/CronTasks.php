@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Nexendrie;
+namespace Nexendrie\Model;
 
 use Nexendrie\Utils\Arrays,
-    Nexendrie\Orm\Mount,
-    Nexendrie\Orm\Marriage,
+    Nexendrie\Orm\Mount as MountEntity,
+    Nexendrie\Orm\Marriage as MarriageEntity,
     Nexendrie\Orm\ElectionResult;
 
 /**
@@ -16,14 +16,14 @@ use Nexendrie\Utils\Arrays,
 class CronTasks {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
-  /** @var \Nexendrie\Model\Taxes */
+  /** @var Taxes */
   protected $taxesModel;
-  /** @var \Nexendrie\Model\Marriage */
+  /** @var Marriage */
   protected $marriageModel;
-  /** @var \Nexendrie\Model\Elections */
+  /** @var Elections */
   protected $electionsModel;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Taxes $taxesModel, \Nexendrie\Model\Marriage $marriageModel, \Nexendrie\Model\Elections $electionsModel) {
+  function __construct(\Nexendrie\Orm\Model $orm, Taxes $taxesModel, Marriage $marriageModel, Elections $electionsModel) {
     $this->orm = $orm;
     $this->taxesModel = $taxesModel;
     $this->marriageModel = $marriageModel;
@@ -47,13 +47,13 @@ class CronTasks {
     foreach($mounts as $mount) {
       $mount->hp -= 5;
       echo "Decreasing (#$mount->id) $mount->name's life by 5.";
-      if($mount->gender === Mount::GENDER_YOUNG AND $mount->birth + $twoMonths < time()) {
+      if($mount->gender === MountEntity::GENDER_YOUNG AND $mount->birth + $twoMonths < time()) {
         echo "The mount is too old. It becomes adult.";
         $roll = mt_rand(0, 1);
         if($roll === 0) {
-          $mount->gender = Mount::GENDER_MALE;
+          $mount->gender = MountEntity::GENDER_MALE;
         } else {
-          $mount->gender = Mount::GENDER_FEMALE;
+          $mount->gender = MountEntity::GENDER_FEMALE;
         }
       }
       $this->orm->mounts->persist($mount);
@@ -248,7 +248,7 @@ class CronTasks {
         echo "Wedding (#$wedding->id) cannot be finished!\n";
       } else {
         echo "Closed wedding (#$wedding->id).\n";
-        $wedding->status = Marriage::STATUS_ACTIVE;
+        $wedding->status = MarriageEntity::STATUS_ACTIVE;
         $this->orm->marriages->persist($wedding);
       }
     }
