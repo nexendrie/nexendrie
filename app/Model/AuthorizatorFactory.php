@@ -38,34 +38,33 @@ class AuthorizatorFactory {
    * @return \stdClass[]
    */
   function getGroups(): array {
-    $groups = $this->cache->load("groups_by_level");
-    if($groups === NULL) {
+    $groups = $this->cache->load("groups_by_level", function(& $dependencies) {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll()->orderBy("level");
       /** @var \Nexendrie\Orm\Group $row */
       foreach($groupsRows as $row) {
         $groups[$row->id] = $row->dummy();
       }
-      $this->cache->save("groups_by_level", $groups);
-    }
+      return $groups;
+    });
     return $groups;
   }
   
   /**
    * Get permissions
-   * 
+   *
    * @return PermissionDummy[]
    */
   function getPermissions(): array {
-    $return = $this->cache->load("permissions");
-    if($return === NULL) {
+    $return = $this->cache->load("permissions", function(& $dependencies) {
+      $return = [];
       $rows = $this->orm->permissions->findAll();
       /** @var \Nexendrie\Orm\Permission $row */
       foreach($rows as $row) {
         $return[] = $row->dummy();
       }
-      $this->cache->save("permissions", $return);
-    }
+      return $return;
+    });
     return $return;
   }
   

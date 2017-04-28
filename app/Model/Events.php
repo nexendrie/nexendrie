@@ -178,17 +178,15 @@ class Events implements \EventCalendar\IEventModel {
    * @return EventDummy[]
    */
   function getCurrentEvents(): array {
-    $return = $this->cache->load("events");
-    if($return === NULL) {
+    $return = $this->cache->load("events", function(& $dependencies) {
+      $dependencies[Cache::EXPIRE] = "15 minutes";
+      $return = [];
       $events = $this->orm->events->findForTime();
       foreach($events as $event) {
         $return[] = $event->dummy();
       }
-      if($return === NULL) {
-        $return = [];
-      }
-      $this->cache->save("events", $return, [Cache::EXPIRE => "15 minutes"]);
-    }
+      return $return;
+    });
     return $return;
   }
   

@@ -45,16 +45,15 @@ class Group {
    * @return GroupDummy[]
    */
   function listOfGroups(): array {
-    $groups = $this->cache->load("groups");
-    if($groups === NULL) {
+    $groups = $this->cache->load("groups", function(& $dependencies) {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll();
       /** @var \Nexendrie\Orm\Group $row */
       foreach($groupsRows as $row) {
         $groups[$row->id] = $row->dummy();
       }
-      $this->cache->save("groups", $groups);
-    }
+      return $groups;
+    });
     return $groups;
   }
   
