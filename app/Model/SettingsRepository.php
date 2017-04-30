@@ -39,6 +39,7 @@ class SettingsRepository {
    * 
    * @param array $settings
    * @return void
+   * @throws IOException
    */
   function save(array $settings): void {
     $filename = $this->appDir . "/config/local.neon";
