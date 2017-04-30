@@ -3,12 +3,9 @@ use Nette\Neon\Neon,
     Nette\Utils\Arrays,
     Nextras\Dbal\Utils\FileImporter;
 
-const WWW_DIR = __DIR__ . "/..";
-const APP_DIR = WWW_DIR . "/app";
+require __DIR__ . "/../vendor/autoload.php";
 
-require WWW_DIR . "/vendor/autoload.php";
-
-$filename = APP_DIR . "/config/local.neon";
+$filename = __DIR__ . "../app/config/local.neon";
 $db = [
   "driver" => Arrays::get($argv, 1, "mysqli"),
   "host" => Arrays::get($argv, 2, "localhost"),
@@ -26,7 +23,7 @@ if($db["driver"] !== "mysqli") {
   echo "PostgreSql database cannot be set up automatically at the moment.\n";
   exit(0);
 } else {
-  $sqlsFolder = APP_DIR . "/sqls";
+  $sqlsFolder = __DIR__ . "/../app/sqls";
 }
 
 echo "Setting up database ...\n";

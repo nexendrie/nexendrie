@@ -2,15 +2,12 @@
 use Nette\Neon\Neon,
     Nextras\Dbal\Utils\FileImporter;
 
-const WWW_DIR = __DIR__ . "/..";
-const APP_DIR = WWW_DIR . "/app";
+require __DIR__ . "/../vendor/autoload.php";
 
-require WWW_DIR . "/vendor/autoload.php";
-
-$config = Neon::decode(file_get_contents(APP_DIR . "/config/ci.neon"));
+$config = Neon::decode(file_get_contents(__DIR__ . "/../app/config/ci.neon"));
 
 $connection = new Nextras\Dbal\Connection($config["dbal"]);
-$sqlsFolder = APP_DIR . "/sqls";
+$sqlsFolder = __DIR__ . "/../app/sqls";
 $files = ["structure", "data_basic", "data_test"];
 foreach($files as $file) {
   FileImporter::executeFile($connection, "$sqlsFolder/$file.sql");
