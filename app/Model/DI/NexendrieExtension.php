@@ -126,8 +126,9 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setFactory(Nexendrie\Model\Order::class, [$config["fees"]["foundOrder"]]);
     $builder->addDefinition("cache.cache")
       ->setFactory(\Nette\Caching\Cache::class, ["@cache.storage", "data"]);
+    $appDir = $builder->expand("%appDir%");
     $builder->addDefinition($this->prefix("model.settingsRepository"))
-      ->setFactory(Nexendrie\Model\SettingsRepository::class, [$config]);
+      ->setFactory(Nexendrie\Model\SettingsRepository::class, [$config, $appDir]);
     $builder->addDefinition($this->prefix("model.authorizatorFactory"))
       ->setClass(Nexendrie\Model\AuthorizatorFactory::class);
     $builder->addDefinition($this->prefix("model.authorizator"))

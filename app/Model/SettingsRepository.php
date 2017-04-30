@@ -17,11 +17,14 @@ use Nette\Neon\Neon,
 class SettingsRepository {
   /** @var array */
   protected $settings = [];
+  /** @var string */
+  protected $appDir;
   
   use \Nette\SmartObject;
   
-  function __construct(array $settings) {
+  function __construct(array $settings, string $appDir) {
     $this->settings = $settings;
+    $this->appDir = $appDir;
   }
   
   /**
@@ -38,7 +41,7 @@ class SettingsRepository {
    * @return void
    */
   function save(array $settings): void {
-    $filename = APP_DIR . "/config/local.neon";
+    $filename = $this->appDir . "/config/local.neon";
     $config = Neon::decode(file_get_contents($filename));
     $config += ["nexendrie" => $settings];
     if(is_string($config["nexendrie"]["locale"]["plural"])) {
