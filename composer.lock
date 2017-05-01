@@ -1992,12 +1992,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "676174fc6b8f822f5b6043fb37d7b92edc8cb263"
+                "reference": "b14d4a7d1173ccd7a9b2f7e743e216015d2de2f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/676174fc6b8f822f5b6043fb37d7b92edc8cb263",
-                "reference": "676174fc6b8f822f5b6043fb37d7b92edc8cb263",
+                "url": "https://api.github.com/repos/nette/tester/zipball/b14d4a7d1173ccd7a9b2f7e743e216015d2de2f1",
+                "reference": "b14d4a7d1173ccd7a9b2f7e743e216015d2de2f1",
                 "shasum": ""
             },
             "require": {
@@ -2046,7 +2046,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2017-04-01T15:58:00+00:00"
+            "time": "2017-04-27T15:25:34+00:00"
         },
         {
             "name": "nexendrie/code-quality",
@@ -2054,12 +2054,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/code-quality.git",
-                "reference": "337d8b8c62678656da4669e165d177a08eb5de8b"
+                "reference": "5f73999c53968b67c0a2d8234b60b4ddeca1b960"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/code-quality/zipball/337d8b8c62678656da4669e165d177a08eb5de8b",
-                "reference": "337d8b8c62678656da4669e165d177a08eb5de8b",
+                "url": "https://api.github.com/repos/nexendrie/code-quality/zipball/5f73999c53968b67c0a2d8234b60b4ddeca1b960",
+                "reference": "5f73999c53968b67c0a2d8234b60b4ddeca1b960",
                 "shasum": ""
             },
             "require": {
@@ -2089,7 +2089,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2017-04-01 14:16:21"
+            "time": "2017-04-19T08:49:02+00:00"
         },
         {
             "name": "nikic/php-parser",
