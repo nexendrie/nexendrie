@@ -139,7 +139,7 @@ class CronTasks {
       $orderFee = $user->orderRank->orderFee;
       echo "$user->publicname (#$user->id} will pay {$orderFee} to his/her order.\n";
       $user->money -= $orderFee;
-      $user->guild->money += $orderFee;
+      $user->order->money += $orderFee;
       $this->orm->users->persistAndFlush($user);
     }
     echo "Finished paying order fees ...\n";
