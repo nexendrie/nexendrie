@@ -91,7 +91,8 @@ class PollControl extends \Nette\Application\UI\Control {
     $poll = $this->getPoll();
     $this->template->poll = $poll;
     $votes = $this->getVotes();
-    for($i = 1; $i <= count($poll->parsedAnswers); $i++) {
+    $count = count($poll->parsedAnswers);
+    for($i = 1; $i <= $count; $i++) {
       if(!isset($votes["answers"][$i])) {
         $votes["answers"][$i] = 0;
       }
