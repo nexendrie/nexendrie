@@ -382,7 +382,9 @@ class Guild {
       throw new MissingPermissionsException;
     }
     $user = $this->orm->users->getById($userId);
-    if(!$user) throw new UserNotFoundException;
+    if(!$user) {
+      throw new UserNotFoundException;
+    }
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) {
       throw new UserNotInYourGuildException;

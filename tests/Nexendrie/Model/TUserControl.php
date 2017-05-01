@@ -22,8 +22,12 @@ trait TUserControl {
   function login($username = "", $password = "") {
     /** @var \Nette\Security\User $user */
     $user = $this->getService(\Nette\Security\User::class);
-    if($username === "") $username = getenv("APP_USER");
-    if($password === "") $password = getenv("APP_PASSWORD");
+    if($username === "") {
+      $username = getenv("APP_USER");
+    }
+    if($password === "") {
+      $password = getenv("APP_PASSWORD");
+    }
     $user->login($username, $password);
   }
   

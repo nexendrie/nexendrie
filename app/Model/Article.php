@@ -163,7 +163,9 @@ class Article {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
     $article = $this->orm->articles->getById($id);
-    if(!$article) throw new ArticleNotFoundException;
+    if(!$article) {
+      throw new ArticleNotFoundException;
+    }
     if(!$this->user->isAllowed("article", "edit") AND $article->author->id != $this->user->id) {
       throw new MissingPermissionsException("You don't have permissions for editting articles.");
     }

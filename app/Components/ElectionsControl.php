@@ -49,8 +49,11 @@ class ElectionsControl extends \Nette\Application\UI\Control {
       $date->setDate((int) date("Y"), (int) date("n") + 1, 1);
       $date->setTime(0, 0, 0);
       $date->modify("-7 days");
-      if($fakeDay->getTimestamp() > $date->getTimestamp()) $state = "voting";
-      else $state = "nothing";
+      if($fakeDay->getTimestamp() > $date->getTimestamp()) {
+        $state = "voting";
+      } else {
+        $state = "nothing";
+      }
     }
     return $state;
   }

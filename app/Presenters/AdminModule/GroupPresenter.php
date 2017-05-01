@@ -70,8 +70,9 @@ class GroupPresenter extends BasePresenter {
     $group = $this->model->ormGet($id);
     if(is_null($group)) {
       throw new \Nette\Application\BadRequestException;
+    } else {
+      $this->template->group = $group;
     }
-    else $this->template->group = $group;
   }
 }
 ?>

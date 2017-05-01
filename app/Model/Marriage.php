@@ -299,7 +299,9 @@ class Marriage {
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
     if(is_null($marriage)) {
       throw new NotMarriedException;
-    } elseif($marriage->divorce < 1 OR $marriage->divorce > 2) throw new NotInDivorceException;
+    } elseif($marriage->divorce < 1 OR $marriage->divorce > 2) {
+      throw new NotInDivorceException;
+    }
     $marriage->divorce += 2;
     $this->orm->marriages->persistAndFlush($marriage);
   }
@@ -314,7 +316,9 @@ class Marriage {
    * @throws CannotTakeBackDivorceException
    */
   function takeBackDivorce(): void {
-    if(!$this->user->isLoggedIn()) throw new AuthenticationNeededException;
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
     if(is_null($marriage)) {
       throw new NotMarriedException;
