@@ -35,7 +35,8 @@
         "konecnyjakub/event-calendar": "dev-master",
         "nella/forms-datetime": "^2.4",
         "nexendrie/book-component": "^1.2",
-        "nexendrie/rss": "^0.3"
+        "nexendrie/rss": "^0.3",
+        "symfony/options-resolver": "^3.2"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "02e7cc3a236bd6d21fe05ff8e0a2a154",
+    "content-hash": "e67d9e2fb1d721a1480579fbb98eb38d",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1545,6 +1545,60 @@
                 "task"
             ],
             "time": "2017-02-01T14:41:59+00:00"
+        },
+        {
+            "name": "symfony/options-resolver",
+            "version": "v3.2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/options-resolver.git",
+                "reference": "8cbb4f23414e2a5e92690cf67680a979a461113c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/8cbb4f23414e2a5e92690cf67680a979a461113c",
+                "reference": "8cbb4f23414e2a5e92690cf67680a979a461113c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\OptionsResolver\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony OptionsResolver Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "config",
+                "configuration",
+                "options"
+            ],
+            "time": "2017-04-12T14:13:17+00:00"
         },
         {
             "name": "tracy/tracy",

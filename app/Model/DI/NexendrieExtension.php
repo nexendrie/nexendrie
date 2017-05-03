@@ -12,13 +12,6 @@ use Nexendrie\Model\SettingsRepository;
  * @author Jakub Konečný
  */
 class NexendrieExtension extends \Nette\DI\CompilerExtension {
-  /** @var array */
-  protected $defaults;
-  
-  function __construct() {
-    $this->defaults = SettingsRepository::getDefaults();
-  }
-  
   /**
    * @return void
    */
@@ -33,7 +26,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
    */
   protected function addModels(): void {
     $builder = $this->getContainerBuilder();
-    $config = $this->getConfig($this->defaults);
+    $config = $this->getConfig();
     $builder->addDefinition($this->prefix("model.group"))
       ->setClass(Nexendrie\Model\Group::class);
     $builder->addDefinition($this->prefix("model.market"))
