@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model\DI;
 
 use Nexendrie;
+use Nexendrie\Model\SettingsRepository;
 
 /**
  * Nexendrie Extension for DIC
@@ -12,42 +13,11 @@ use Nexendrie;
  */
 class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /** @var array */
-  protected $defaults = [
-    "roles" => [
-      "guestRole" => 13,
-      "loggedInRole" => 12,
-      "bannedRole" => 14
-    ],
-    "locale" => [
-      "dateFormat" => "j.n.Y",
-      "dateTimeFormat" => "j.n.Y G:i",
-      "plural" => [
-        0 => 1, "2-4", 5
-      ]
-    ],
-    "pagination" => [
-      "news" => 10
-    ],
-    "newUser" => [
-      "style" => "blue-sky",
-      "money" => 30,
-      "town" => 3
-    ],
-    "fees" => [
-      "incomeTax" => 10,
-      "loanInterest" => 15,
-      "buildMonastery" => 1000,
-      "buildCastle" => 1500,
-      "foundGuild" => 1000,
-      "foundOrder" => 1200
-    ],
-    "registration" => [
-      "token" => ""
-    ],
-    "site" => [
-      "versionSuffix" => ""
-    ]
-  ];
+  protected $defaults;
+  
+  function __construct() {
+    $this->defaults = SettingsRepository::getDefaults();
+  }
   
   /**
    * @return void

@@ -34,6 +34,45 @@ class SettingsRepository {
     return $this->settings;
   }
   
+  static function getDefaults() {
+    return [
+      "roles" => [
+        "guestRole" => 13,
+        "loggedInRole" => 12,
+        "bannedRole" => 14
+      ],
+      "locale" => [
+        "dateFormat" => "j.n.Y",
+        "dateTimeFormat" => "j.n.Y G:i",
+        "plural" => [
+          0 => 1, "2-4", 5
+        ]
+      ],
+      "pagination" => [
+        "news" => 10
+      ],
+      "newUser" => [
+        "style" => "blue-sky",
+        "money" => 30,
+        "town" => 3
+      ],
+      "fees" => [
+        "incomeTax" => 10,
+        "loanInterest" => 15,
+        "buildMonastery" => 1000,
+        "buildCastle" => 1500,
+        "foundGuild" => 1000,
+        "foundOrder" => 1200
+      ],
+      "registration" => [
+        "token" => ""
+      ],
+      "site" => [
+        "versionSuffix" => ""
+      ]
+    ];
+  }
+  
   /**
    * Save new settings
    * 
