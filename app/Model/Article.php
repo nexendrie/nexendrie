@@ -22,10 +22,10 @@ class Article {
   
   use \Nette\SmartObject;
   
-  function __construct($itemsPerPage, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->itemsPerPage = (int) $itemsPerPage;
+    $this->itemsPerPage = (int) $sr->settings["pagination"]["news"];
   }
   
   /**

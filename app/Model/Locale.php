@@ -15,11 +15,8 @@ class Locale {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param array $formats
-   */
-  function __construct(array $formats) {
-    $this->formats = $formats;
+  function __construct(SettingsRepository $sr) {
+    $this->formats = $sr->settings["locale"];
     $this->formats["plural"][1] = array_map(function($value) {
       return (int) $value;
     }, explode("-", $this->formats["plural"][1]));

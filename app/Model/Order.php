@@ -25,10 +25,10 @@ class Order {
   
   use \Nette\SmartObject;
   
-  function __construct(int $foundingPrice, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->foundingPrice = $foundingPrice;
+    $this->foundingPrice = $sr->settings["fees"]["foundOrder"];
   }
   
   /**

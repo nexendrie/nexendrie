@@ -35,15 +35,10 @@ class UserManager implements IAuthenticator {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param array $roles
-   * @param array $newUser
-   * @param ORM $orm
-   */
-  function __construct(array $roles, array $newUser, ORM $orm) {
+  function __construct(ORM $orm, SettingsRepository $sr) {
     $this->orm = $orm;
-    $this->roles = $roles;
-    $this->newUser = $newUser;
+    $this->roles = $sr->settings["roles"];
+    $this->newUser = $sr->settings["newUser"];
   }
   
   /**

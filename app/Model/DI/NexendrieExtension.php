@@ -107,23 +107,23 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition($this->prefix("model.elections"))
       ->setClass(Nexendrie\Model\Elections::class);
     $builder->addDefinition($this->prefix("model.article"))
-      ->setFactory(Nexendrie\Model\Article::class, [$config["pagination"]["news"]]);
+      ->setClass(Nexendrie\Model\Article::class);
     $builder->addDefinition($this->prefix("model.userManager"))
-      ->setFactory(Nexendrie\Model\UserManager::class, [$config["roles"], $config["newUser"]]);
+      ->setClass(Nexendrie\Model\UserManager::class);
     $builder->addDefinition($this->prefix("model.locale"))
-      ->setFactory(Nexendrie\Model\Locale::class, [$config["locale"]]);
+      ->setClass(Nexendrie\Model\Locale::class);
     $builder->addDefinition($this->prefix("model.bank"))
-       ->setFactory(Nexendrie\Model\Bank::class, [$config["fees"]["loanInterest"]]);
+       ->setClass(Nexendrie\Model\Bank::class);
     $builder->addDefinition($this->prefix("model.taxes"))
-        ->setFactory(Nexendrie\Model\Taxes::class, [$config["fees"]["incomeTax"]]);
+        ->setClass(Nexendrie\Model\Taxes::class);
     $builder->addDefinition($this->prefix("model.monastery"))
-      ->setFactory(Nexendrie\Model\Monastery::class, [$config["fees"]["buildMonastery"]]);
+      ->setClass(Nexendrie\Model\Monastery::class);
     $builder->addDefinition($this->prefix("model.castle"))
-      ->setFactory(Nexendrie\Model\Castle::class, [$config["fees"]["buildCastle"]]);
+      ->setClass(Nexendrie\Model\Castle::class);
     $builder->addDefinition($this->prefix("model.guild"))
-      ->setFactory(Nexendrie\Model\Guild::class, [$config["fees"]["foundGuild"]]);
+      ->setClass(Nexendrie\Model\Guild::class);
     $builder->addDefinition($this->prefix("model.order"))
-      ->setFactory(Nexendrie\Model\Order::class, [$config["fees"]["foundOrder"]]);
+      ->setClass(Nexendrie\Model\Order::class);
     $builder->addDefinition("cache.cache")
       ->setFactory(\Nette\Caching\Cache::class, ["@cache.storage", "data"]);
     $appDir = $builder->expand("%appDir%");

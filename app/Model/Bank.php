@@ -20,15 +20,10 @@ class Bank {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param int $interest
-   * @param \Nexendrie\Orm\Model $orm
-   * @param \Nette\Security\User $user
-   */
-  function __construct(int $interest, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->interest = $interest;
+    $this->interest = $sr->settings["fees"]["loanInterest"];
   }
   
   /**

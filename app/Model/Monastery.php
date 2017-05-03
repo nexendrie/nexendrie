@@ -31,21 +31,13 @@ class Monastery {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param int $buildingPrice
-   * @param Events $eventsModel
-   * @param Guild $guildModel
-   * @param Order $orderModel
-   * @param \Nexendrie\Orm\Model $orm
-   * @param \Nette\Security\User $user
-   */
-  function __construct(int $buildingPrice, Events $eventsModel, Guild $guildModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(Events $eventsModel, Guild $guildModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->eventsModel = $eventsModel;
     $this->guildModel = $guildModel;
     $this->orderModel = $orderModel;
     $this->orm = $orm;
     $this->user = $user;
-    $this->buildingPrice = $buildingPrice;
+    $this->buildingPrice = $sr->settings["fees"]["buildMonastery"];
   }
   
   /**

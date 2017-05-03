@@ -23,10 +23,10 @@ class Castle {
   
   use \Nette\SmartObject;
   
-  function __construct($buildingPrice, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->buildingPrice = (int) $buildingPrice;
+    $this->buildingPrice = (int) $sr->settings["fees"]["buildCastle"];
   }
   
   /**

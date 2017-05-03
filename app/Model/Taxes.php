@@ -20,17 +20,11 @@ class Taxes {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param int $taxRate
-   * @param \Nexendrie\Orm\Model $orm
-   * @param Job $jobModel
-   * @param Adventure $adventureModel
-   */
-  function __construct(int $taxRate, \Nexendrie\Orm\Model $orm, Job $jobModel, Adventure $adventureModel) {
+  function __construct(\Nexendrie\Orm\Model $orm, Job $jobModel, Adventure $adventureModel, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->jobModel = $jobModel;
     $this->adventureModel = $adventureModel;
-    $this->taxRate = $taxRate;
+    $this->taxRate = $sr->settings["fees"]["incomeTax"];
   }
   
   /**
