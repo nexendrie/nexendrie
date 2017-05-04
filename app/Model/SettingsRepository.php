@@ -163,15 +163,12 @@ class SettingsRepository {
    * @return array
    */
   protected function validateSettings(array $settings): array {
-    return [
-      "roles" => $this->validateSection("roles", $settings),
-      "pagination" => $this->validateSection("pagination", $settings),
-      "locale" => $this->validateSection("locale", $settings),
-      "newUser" => $this->validateSection("newUser", $settings),
-      "fees" => $this->validateSection("fees", $settings),
-      "registration" => $this->validateSection("registration", $settings),
-      "site" => $this->validateSection("site", $settings),
-    ];
+    $return = [];
+    $sections = array_keys($this->defaults);
+    foreach($sections as $section) {
+      $return[$section] = $this->validateSection($section, $settings);
+    }
+    return $return;
   }
   
   /**
