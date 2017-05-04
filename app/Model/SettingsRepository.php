@@ -8,7 +8,8 @@ use Nette\Neon\Neon,
     Nette\IOException,
     Nette\Neon\Encoder,
     Nette\Utils\Arrays,
-    Symfony\Component\OptionsResolver\OptionsResolver;
+    Symfony\Component\OptionsResolver\OptionsResolver,
+    Nexendrie\Forms\UserSettingsFormFactory;
 
 /**
  * Settings Repository
@@ -56,6 +57,22 @@ class SettingsRepository {
   ];
   
   /** @var array */
+  protected $rules = [
+    "newUser" => [
+      "style" => "validateStyle",
+      "money" => "validateMoney",
+    ],
+    "fees" => [
+      "incomeTax" => "validatePercent",
+      "loanInterest" => "validatePercent",
+      "buildMonastery" => "validateFee",
+      "buildCastle" => "validateFee",
+      "foundGuild" => "validateFee",
+      "foundOrder" => "validateFee",
+    ]
+  ];
+  
+  /** @var array */
   protected $settings = [];
   
   /** @var string */
@@ -66,6 +83,56 @@ class SettingsRepository {
   function __construct(array $settings, string $appDir) {
     $this->settings = $this->validateSettings($settings);
     $this->appDir = $appDir;
+  }
+  
+  /**
+   * @param string $value
+   * @return bool
+   */
+  protected function validateStyle($value): bool {
+    return array_key_exists($value, UserSettingsFormFactory::getStylesList());
+  }
+  
+  /**
+   * @param int $value
+   * @return bool
+   */
+  protected function validatePercent($value): bool {
+    if(!is_int($value)) {
+      return false;
+    } elseif($value < 0 OR $value > 100) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
+  /**
+   * @param int $value
+   * @return bool
+   */
+  protected function validateMoney($value): bool {
+    if(!is_int($value)) {
+      return false;
+    } elseif($value < 1 OR $value > 100) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
+  /**
+   * @param int $value
+   * @return bool
+   */
+  protected function validateFee($value): bool {
+    if(!is_int($value)) {
+      return false;
+    } elseif($value < 0 OR $value > 5000) {
+      return false;
+    } else {
+      return true;
+    }
   }
   
   /**
@@ -82,6 +149,11 @@ class SettingsRepository {
     $resolver->setDefaults($defaults);
     foreach($defaults as $key => $value) {
       $resolver->setAllowedTypes($key, gettype($value));
+      if(isset($this->rules[$name][$key])) {
+        $resolver->setAllowedValues($key, function($value) use($name, $key) {
+          return call_user_func([$this, $this->rules[$name][$key]], $value);
+        });
+      }
     }
     return $resolver->resolve($values);
   }
