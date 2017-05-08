@@ -58,9 +58,6 @@ class UserManager implements IAuthenticator {
    * @throws InvalidArgumentException
    */
   function nameAvailable(string $name, string $type = "username", int $uid = NULL): bool {
-    if(!is_int($uid) AND !is_null($uid)) {
-      throw new InvalidArgumentException("Parameter uid for " . __METHOD__ . " must be either integer or null.");
-    }
     $types = ["username", "publicname"];
     if(!in_array($type, $types)) {
       throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
