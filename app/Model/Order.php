@@ -347,7 +347,7 @@ class Order {
    */
   function getMaxRank(): int {
     static $rank = NULL;
-    if($rank === NULL) {
+    if(is_null($rank)) {
       $rank = $this->orm->orderRanks->findAll()->countStored();
     }
     return $rank;

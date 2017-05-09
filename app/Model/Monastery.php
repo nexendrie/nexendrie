@@ -122,7 +122,7 @@ class Monastery {
     } elseif($user->group->path === GroupEntity::PATH_CHURCH) {
       if($user->monasteriesLed->countStored()) {
         return false;
-      } elseif($user->lastTransfer === NULL) {
+      } elseif(is_null($user->lastTransfer)) {
         return true;
       } elseif($user->lastTransfer  + $month < time()) {
         return true;

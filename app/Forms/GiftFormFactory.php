@@ -73,7 +73,7 @@ class GiftFormFactory {
    * @return void
    */
   function process(Form $form, array $values): void {
-    if($values["money"] === 0 AND $values["item"] === NULL) {
+    if($values["money"] === 0 AND is_null($values["item"])) {
       $form->addError("Musíš zadat částku (a)nebo vybrat věc.");
     }
     $money = $values["money"];

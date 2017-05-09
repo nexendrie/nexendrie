@@ -144,10 +144,7 @@ class Castle {
    * @return CastleEntity|NULL
    */
   function getUserCastle(int $user = NULL): ?CastleEntity {
-    if($user === NULL) {
-      $user = $this->user->id;
-    }
-    return $this->orm->castles->getByOwner($user);
+    return $this->orm->castles->getByOwner($user ?? $this->user->id);
   }
   
   /**

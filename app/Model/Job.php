@@ -394,7 +394,7 @@ class Job {
     } catch(AccessDeniedException $e) {
       throw $e;
     }
-    if($job->lastAction === NULL) {
+    if(is_null($job->lastAction)) {
       return true;
     } elseif($job->lastAction + ($job->job->shift * 60) > time()) {
       return false;

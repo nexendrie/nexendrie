@@ -39,7 +39,7 @@ class Skills {
    * @return SkillEntity[]|ICollection
    */
   function listOfSkills(string $type = NULL): ICollection {
-    if($type === NULL) {
+    if(is_null($type)) {
       return $this->orm->skills->findAll();
     } else {
       return $this->orm->skills->findByType($type);
@@ -149,7 +149,7 @@ class Skills {
       throw $e;
     }
     $userSkill = $this->getUserSkill($id);
-    if($userSkill === NULL) {
+    if(is_null($userSkill)) {
       $userSkill = new UserSkillEntity;
       $userSkill->skill = $skill;
       $userSkill->user = $this->orm->users->getById($this->user->id);

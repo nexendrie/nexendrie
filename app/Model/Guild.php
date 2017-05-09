@@ -189,7 +189,7 @@ class Guild {
     $user = $this->orm->users->getById($job->user->id);
     if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
       $use = false;
-      if($user->guild->skill === NULL) {
+      if(is_null($user->guild->skill)) {
         $use = true;
       } elseif($job->job->neededSkill->id === $user->guild->skill->id) {
         $use = true;
@@ -358,7 +358,7 @@ class Guild {
    */
   function getMaxRank(): int {
     static $rank = NULL;
-    if($rank === NULL) {
+    if(is_null($rank)) {
       $rank = $this->orm->guildRanks->findAll()->countStored();
     }
     return $rank;

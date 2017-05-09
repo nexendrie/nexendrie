@@ -40,7 +40,7 @@ class Punishment extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterNextShift(): int {
-    if($this->lastAction === NULL) {
+    if(is_null($this->lastAction)) {
       return time();
     } else {
       return $this->lastAction + (60 * 60);

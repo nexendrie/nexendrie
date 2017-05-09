@@ -51,10 +51,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Event[]
    */
   function findForTime(int $time = NULL): ICollection {
-    if($time === NULL) {
-      $time = time();
-    }
-    return $this->findBy(["start<=" => $time, "end>=" => $time])
+    return $this->findBy(["start<=" => $time, "end>=" => $time ?? time()])
       ->orderBy("start");
   }
 }

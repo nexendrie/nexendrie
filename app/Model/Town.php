@@ -221,7 +221,7 @@ class Town {
       return false;
     } elseif($user->group->path === GroupEntity::PATH_CITY AND $user->group->level != 100) {
       return false;
-    } elseif($user->lastTransfer === NULL) {
+    } elseif(is_null($user->lastTransfer)) {
       return true;
     } elseif($user->lastTransfer + $month > time()) {
       return false;

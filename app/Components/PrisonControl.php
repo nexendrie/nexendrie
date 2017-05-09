@@ -31,7 +31,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
    * @return bool
    */
   protected function canWork(Punishment $punishment): bool {
-    if($punishment->lastAction === NULL) {
+    if(is_null($punishment->lastAction)) {
       return true;
     } elseif(time() >$punishment->nextShift) {
       return true;
@@ -47,7 +47,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
     $this->template->setFile(__DIR__ . "/prison.latte");
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     $this->template->noCrime = $this->template->release = false;
-    if($punishment === NULL) {
+    if(is_null($punishment)) {
       $this->template->noCrime = true;
     } else {
       if($punishment->count >= $punishment->numberOfShifts) {
@@ -68,7 +68,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
    */
   function handleWork(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
-    if(!$punishment === NULL) {
+    if(!is_null($punishment)) {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
         $message = "Nejsi uvězněná.";
       } else {
@@ -104,7 +104,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
   function handleRelease(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     $release = false;
-    if(!$punishment === NULL) {
+    if(!is_null($punishment)) {
       $release = true;
       $user = $this->orm->users->getById($this->user->id);
       $user->banned = false;

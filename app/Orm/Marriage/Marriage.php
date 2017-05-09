@@ -54,7 +54,7 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterAcceptedT(): string {
-    if($this->accepted === NULL) {
+    if(is_null($this->accepted)) {
       return "";
     } else {
       return $this->localeModel->formatDateTime($this->accepted);
@@ -62,7 +62,7 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterTermT(): string {
-    if($this->term === NULL) {
+    if(is_null($this->term)) {
       return "";
     } else {
       return $this->localeModel->formatDateTime($this->term);
@@ -70,7 +70,7 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterCancelledT(): string {
-    if($this->cancelled === NULL) {
+    if(is_null($this->cancelled)) {
       return "";
     } else {
       return $this->localeModel->formatDateTime($this->cancelled);
