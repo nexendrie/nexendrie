@@ -497,12 +497,9 @@ class Job {
    * @param int $year
    * @return int
    */
-  function calculateMonthJobIncome(int $userId = 0, int $month = 0, int $year = 0): int {
+  function calculateMonthJobIncome(int $userId = NULL, int $month = NULL, int $year = NULL): int {
     $income = 0;
-    if($userId === 0) {
-      $userId = $this->user->id;
-    }
-    $jobs = $this->orm->userJobs->findFromMonth($userId, $month, $year);
+    $jobs = $this->orm->userJobs->findFromMonth($userId ?? $this->user->id, $month, $year);
     foreach($jobs as $job) {
       $income += array_sum($this->calculateReward($job));
     }

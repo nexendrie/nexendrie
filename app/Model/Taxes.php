@@ -45,11 +45,11 @@ class Taxes {
    * @param int $year
    * @return int[]
    */
-  function calculateIncome(int $user, int $month = 0, int $year = 0): array {
-    if($month === 0) {
+  function calculateIncome(int $user, int $month = NULL, int $year = NULL): array {
+    if(is_null($month)) {
       $month = (int) date("n");
     }
-    if($year === 0) {
+    if(is_null($year)) {
       $year = (int) date("Y");
     }
     $workIncome = $this->jobModel->calculateMonthJobIncome($user, $month, $year);
@@ -65,17 +65,11 @@ class Taxes {
    * @param int $year
    * @return \stdClass
    */
-  function calculateTownTaxes(\Nexendrie\Orm\Town $town, int $month = 0, int $year = 0): \stdClass {
+  function calculateTownTaxes(\Nexendrie\Orm\Town $town, int $month = NULL, int $year = NULL): \stdClass {
     $return = (object) [
       "id" => $town->id, "name" => $town->name, "owner" => 0,
       "taxes" => 0, "denizens" => []
     ];
-    if($month === 0) {
-      $month = (int) date("n");
-    }
-    if($year === 0) {
-      $year = (int) date("Y");
-    }
     $return->owner = $town->owner->id;
     foreach($town->denizens as $denizen) {
       if($denizen->id === 0) continue;
@@ -88,7 +82,7 @@ class Taxes {
         $return->denizens[$d->id] = $d;
         continue;
       }
-      $d->income = array_sum($this->calculateIncome($denizen->id, $month, $year));
+      $d->income = array_sum($this->calculateIncome($denizen->id, $month ?? (int) date("n"), $year ?? (int) date("Y")));
       $d->tax = $this->calculateTax($d->income);
       $return->denizens[$d->id] = $d;
       $return->taxes += $d->tax;

@@ -82,11 +82,8 @@ class Monastery {
    * @throws UserNotFoundException
    * @throws NotInMonasteryException
    */
-  function getByUser(int $id = 0): MonasteryEntity {
-    if($id === 0) {
-      $id = $this->user->id;
-    }
-    $user = $this->orm->users->getById($id);
+  function getByUser(int $id = NULL): MonasteryEntity {
+    $user = $this->orm->users->getById($id ?? $this->user->id);
     if(!$user) {
       throw new UserNotFoundException;
     } elseif(!$user->monastery) {

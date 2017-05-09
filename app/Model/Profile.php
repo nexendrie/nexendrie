@@ -59,11 +59,8 @@ class Profile {
    * @param int $id  
    * @return string
    */
-  function getPath(int $id = 0): string {
-    if($id === 0) {
-      $id = $this->user->id;
-    }
-    $user = $this->orm->users->getById($id);
+  function getPath(int $id = NULL): string {
+    $user = $this->orm->users->getById($id ?? $this->user->id);
     if(!$user) {
       throw new UserNotFoundException;
     } else {

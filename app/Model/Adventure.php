@@ -411,12 +411,9 @@ class Adventure {
    * @param int $year
    * @return int
    */
-  function calculateMonthAdventuresIncome(int $user = 0, int $month = 0, int $year = 0): int {
+  function calculateMonthAdventuresIncome(int $user = NULL, int $month = NULL, int $year = NULL): int {
     $income = 0;
-    if($user === 0) {
-      $user = $this->user->id;
-    }
-    $adventures = $this->orm->userAdventures->findFromMonth($user, $month, $year);
+    $adventures = $this->orm->userAdventures->findFromMonth($user ?? $this->user->id, $month, $year);
     foreach($adventures as $adventure) {
       $income += $adventure->reward + $adventure->loot;
     }

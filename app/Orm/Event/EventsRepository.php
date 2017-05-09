@@ -28,14 +28,8 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $month
    * @return ICollection|Event[]
    */
-  function findFromMonth(int $year = 0, int $month = 0): ICollection {
-    if($month === 0) {
-      $month = (int) date("n");
-    }
-    if($year === 0) {
-      $year = (int) date("Y");
-    }
-    $startTS = mktime(0, 0, 0, $month, 1, $year);
+  function findFromMonth(int $year = NULL, int $month = NULL): ICollection {
+    $startTS = mktime(0, 0, 0, $month ?? (int) date("n"), 1, $year ?? (int) date("Y"));
     $date = new \DateTime;
     $date->setTimestamp($startTS);
     $date->modify("+1 month");
