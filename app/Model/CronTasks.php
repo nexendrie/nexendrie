@@ -76,7 +76,9 @@ class CronTasks {
   function taxes(): void {
     $date = new \DateTime;
     $date->setTimestamp(time());
-    if($date->format("j") != 1) return;
+    if($date->format("j") != 1) {
+      return;
+    }
     echo "Starting paying taxes ...\n";
     $result = $this->taxesModel->payTaxes();
     foreach($result as $town) {
@@ -106,7 +108,9 @@ class CronTasks {
   function guildFees(): void {
     $date = new \DateTime;
     $date->setTimestamp(time());
-    if($date->format("j") != 1) return;
+    if($date->format("j") != 1) {
+      return;
+    }
     echo "Starting paying guild fees ...\n";
     $users = $this->orm->users->findInGuild();
     foreach($users as $user) {
@@ -132,7 +136,9 @@ class CronTasks {
   function orderFees(): void {
     $date = new \DateTime;
     $date->setTimestamp(time());
-    if($date->format("j") != 1) return;
+    if($date->format("j") != 1) {
+      return;
+    }
     echo "Starting paying order fees ...\n";
     $users = $this->orm->users->findInOrder();
     foreach($users as $user) {
@@ -266,7 +272,9 @@ class CronTasks {
     $votes = $this->orm->elections->findVotedInMonth($town, $year, $month);
     $results = [];
     foreach($votes as $vote) {
-      if(!in_array($vote->candidate->id, $this->electionsModel->getCandidates($town)->fetchPairs(NULL, "id"))) continue;
+      if(!in_array($vote->candidate->id, $this->electionsModel->getCandidates($town)->fetchPairs(NULL, "id"))) {
+        continue;
+      }
       $index = $vote->candidate->username;
       if(isset($results[$index])) {
         $results[$index]["amount"]++;
@@ -292,7 +300,9 @@ class CronTasks {
   function municipalElections(): void {
     $date = new \DateTime;
     $date->setTimestamp(time());
-    if($date->format("j") != 1) return;
+    if($date->format("j") != 1) {
+      return;
+    }
     echo "Starting proccessing results of municipal elections ...\n";
     $date->modify("-1 day");
     $year = (int) $date->format("Y");

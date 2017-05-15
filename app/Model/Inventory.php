@@ -114,7 +114,9 @@ class Inventory {
     $this->orm->userItems->persist($item);
     $items = $this->orm->userItems->findByType($this->user->id, $item->item->type);
     foreach($items as $i) {
-      if($i->id === $item->id) continue;
+      if($i->id === $item->id) {
+        continue;
+      }
       $i->worn = false;
       $this->orm->userItems->persist($i);
     }

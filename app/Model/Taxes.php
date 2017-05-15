@@ -72,7 +72,9 @@ class Taxes {
     ];
     $return->owner = $town->owner->id;
     foreach($town->denizens as $denizen) {
-      if($denizen->id === 0) continue;
+      if($denizen->id === 0) {
+        continue;
+      }
       /** @var \stdClass $d */
       $d = (object) [
         "id" => $denizen->id, "publicname" => $denizen->publicname,
@@ -111,7 +113,9 @@ class Taxes {
       if($result->taxes > 0) {
         $town->owner->money += $result->taxes;
         foreach($town->denizens as $denizen) {
-          if(!isset($result->denizens[$denizen->id])) continue;
+          if(!isset($result->denizens[$denizen->id])) {
+            continue;
+          }
           $denizen->money -= $result->denizens[$denizen->id]->tax;
         }
         $this->orm->towns->persistAndFlush($town);

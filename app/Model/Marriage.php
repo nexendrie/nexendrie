@@ -160,7 +160,9 @@ class Marriage {
     $proposal->status = MarriageEntity::STATUS_ACCEPTED;
     $this->orm->marriages->persist($proposal);
     foreach($this->orm->marriages->findProposals($this->user->id) as $row) {
-      if($row->id === $id) continue;
+      if($row->id === $id) {
+        continue;
+      }
       $row->status = MarriageEntity::STATUS_DECLINED;
       $this->orm->marriages->persist($row);
     }

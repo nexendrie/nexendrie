@@ -194,7 +194,9 @@ class Order {
    * @return bool
    */
   function canJoin(): bool {
-    if(!$this->user->isLoggedIn()) return false;
+    if(!$this->user->isLoggedIn()) {
+      return false;
+    }
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path === GroupEntity::PATH_TOWER AND !$user->order) {
       return true;

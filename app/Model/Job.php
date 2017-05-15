@@ -93,7 +93,9 @@ class Job {
     foreach($offers as $offer) {
       if($offer->neededSkillLevel > 0) {
         $userSkillLevel = $this->skillsModel->getLevelOfSkill($offer->neededSkill->id);
-        if($userSkillLevel < $offer->neededSkillLevel) continue;
+        if($userSkillLevel < $offer->neededSkillLevel) {
+          continue;
+        }
       }
       $return[] = $this->calculateAward($offer);
     }
