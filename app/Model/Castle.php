@@ -54,7 +54,7 @@ class Castle {
    */
   function getCastle(int $id): CastleEntity {
     $castle = $this->orm->castles->getById($id);
-    if(!$castle) {
+    if(is_null($castle)) {
       throw new CastleNotFoundException;
     } else {
       return $castle;
@@ -143,6 +143,7 @@ class Castle {
    * @param int $user
    * @return CastleEntity|NULL
    */
+  // @codingStandardsIgnoreLine
   function getUserCastle(int $user = NULL): ?CastleEntity {
     return $this->orm->castles->getByOwner($user ?? $this->user->id);
   }

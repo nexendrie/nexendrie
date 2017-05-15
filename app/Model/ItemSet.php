@@ -39,7 +39,7 @@ class ItemSet {
    */
   function get(int $id): ItemSetEntity {
     $set = $this->orm->itemSets->getById($id);
-    if(!$set) {
+    if(is_null($set)) {
       throw new ItemSetNotFoundException;
     } else {
       return $set;

@@ -71,7 +71,7 @@ class Market {
    */
   function getShop(int $id): ShopEntity {
     $shop = $this->orm->shops->getById($id);
-    if(!$shop) {
+    if(is_null($shop)) {
       throw new ShopNotFoundException("Specified shop was not found.");
     } else {
       return $shop;
@@ -116,7 +116,7 @@ class Market {
    */
   function getItem(int $id): ItemEntity {
     $item = $this->orm->items->getById($id);
-    if(!$item) {
+    if(is_null($item)) {
       throw new ItemNotFoundException("Specified item was not found.");
     } else {
       return $item;

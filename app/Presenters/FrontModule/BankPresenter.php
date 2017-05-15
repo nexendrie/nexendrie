@@ -25,12 +25,13 @@ class BankPresenter extends BasePresenter {
    * @return void
    */
   function renderDefault(): void {
-    if($this->user->isLoggedIn()) {
-      $this->template->loan = $this->model->getActiveLoan();
-    }
     $this->template->maxLoan = $this->localeModel->money($this->model->maxLoan());
     $this->template->interest = $this->sr->settings["fees"]["loanInterest"];
-    if($this->user->isLoggedIn() AND $this->template->loan) {
+    if(!$this->user->isLoggedIn()) {
+      return;
+    }
+    $this->template->loan = $this->model->getActiveLoan();
+    if(!is_null($this->template->loan)) {
       $returnMoney = $this->template->loan->amount + $this->model->calculateInterest($this->template->loan);
       $this->template->returnMoney = $this->localeModel->money($returnMoney);
     }

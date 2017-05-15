@@ -34,7 +34,7 @@ class Mount {
    */
   function get(int $id): MountEntity {
     $mount = $this->orm->mounts->getById($id);
-    if(!$mount) {
+    if(is_null($mount)) {
       throw new MountNotFoundException;
     } else {
       return $mount;
@@ -44,7 +44,7 @@ class Mount {
   /**
    * Get list of all mounts
    * 
-   * @param int $owner Return only mounts owned by specified use. NULL = all users
+   * @param int $owner Return only mounts owned by specified user. NULL = all users
    * @return MountEntity[]|ICollection
    */
   function listOfMounts(int $owner = NULL): ICollection {

@@ -89,7 +89,7 @@ class Skills {
    */
   function get(int $id): SkillEntity {
     $skill = $this->orm->skills->getById($id);
-    if(!$skill) {
+    if(is_null($skill)) {
       throw new SkillNotFoundException;
     } else {
       return $skill;

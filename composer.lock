@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e67d9e2fb1d721a1480579fbb98eb38d",
+    "content-hash": "fa893c3abf049891456458c1570b6101",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1110,16 +1110,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v2.4.5",
+            "version": "v2.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "28ad4e2a6dcf143c23bde969a825f10a5d513602"
+                "reference": "266160aec0d99516e0ea510de1dfa24a0dc1e76e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/28ad4e2a6dcf143c23bde969a825f10a5d513602",
-                "reference": "28ad4e2a6dcf143c23bde969a825f10a5d513602",
+                "url": "https://api.github.com/repos/nette/utils/zipball/266160aec0d99516e0ea510de1dfa24a0dc1e76e",
+                "reference": "266160aec0d99516e0ea510de1dfa24a0dc1e76e",
                 "shasum": ""
             },
             "require": {
@@ -1138,8 +1138,7 @@
                 "ext-intl": "for script transliteration in Strings::webalize() and toAscii()",
                 "ext-json": "to use Nette\\Utils\\Json",
                 "ext-mbstring": "to use Strings::lower() etc...",
-                "ext-xml": "to use Strings::length() etc. when mbstring is not available",
-                "https://nette.org/donate": "\u001b[1;37;42m Please consider supporting Nette via a donation \u001b[0m"
+                "ext-xml": "to use Strings::length() etc. when mbstring is not available"
             },
             "type": "library",
             "extra": {
@@ -1170,7 +1169,7 @@
             ],
             "description": "Nette Utility Classes",
             "homepage": "https://nette.org",
-            "time": "2017-03-29T16:55:54+00:00"
+            "time": "2017-04-26T10:04:49+00:00"
         },
         {
             "name": "nexendrie/book-component",
@@ -1488,17 +1487,68 @@
             "time": "2017-02-19T22:29:06+00:00"
         },
         {
-            "name": "stekycz/cronner",
-            "version": "v2.0.0",
+            "name": "stekycz/critical-section",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/stekycz/Cronner.git",
-                "reference": "3fbe3cd7fd8a4b6dcf0126f0d5505dbc26dfd7d4"
+                "url": "https://github.com/stekycz/CriticalSection.git",
+                "reference": "016148a6188319175eb2bff89967f4f5794957f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/3fbe3cd7fd8a4b6dcf0126f0d5505dbc26dfd7d4",
-                "reference": "3fbe3cd7fd8a4b6dcf0126f0d5505dbc26dfd7d4",
+                "url": "https://api.github.com/repos/stekycz/CriticalSection/zipball/016148a6188319175eb2bff89967f4f5794957f8",
+                "reference": "016148a6188319175eb2bff89967f4f5794957f8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "^0.9",
+                "mockery/mockery": "^0.9",
+                "nette/tester": "^1.7",
+                "phpstan/phpstan": "^0.6"
+            },
+            "suggest": {
+                "ext-redis": "The php redis extension https://github.com/nicolasff/phpredis/ is required for connecting to redis server"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "stekycz\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Štekl",
+                    "email": "martin.stekl@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Lightweight class supporting critical section locking",
+            "keywords": [
+                "critical-section",
+                "locks",
+                "parallel"
+            ],
+            "time": "2017-05-10T16:47:36+00:00"
+        },
+        {
+            "name": "stekycz/cronner",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stekycz/Cronner.git",
+                "reference": "d79cb2a319c9847b8c51bc57094e828d8a26d182"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/d79cb2a319c9847b8c51bc57094e828d8a26d182",
+                "reference": "d79cb2a319c9847b8c51bc57094e828d8a26d182",
                 "shasum": ""
             },
             "require": {
@@ -1508,6 +1558,7 @@
                 "nette/safe-stream": "^2.3",
                 "nette/utils": "^2.4",
                 "php": ">=7.0.0",
+                "stekycz/critical-section": "^1.0",
                 "tracy/tracy": "^2.4"
             },
             "require-dev": {
@@ -1544,7 +1595,7 @@
                 "nette",
                 "task"
             ],
-            "time": "2017-02-01T14:41:59+00:00"
+            "time": "2017-05-10T16:05:28+00:00"
         },
         {
             "name": "symfony/options-resolver",
@@ -1602,16 +1653,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.4.6",
+            "version": "v2.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "c9fbca15b0a11d904c7783b7aad114182618d8d4"
+                "reference": "e9e93b778a75760a939593384e326fb65f9a0da2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/c9fbca15b0a11d904c7783b7aad114182618d8d4",
-                "reference": "c9fbca15b0a11d904c7783b7aad114182618d8d4",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/e9e93b778a75760a939593384e326fb65f9a0da2",
+                "reference": "e9e93b778a75760a939593384e326fb65f9a0da2",
                 "shasum": ""
             },
             "require": {
@@ -1622,6 +1673,9 @@
             "require-dev": {
                 "nette/di": "~2.3",
                 "nette/tester": "~2.0"
+            },
+            "suggest": {
+                "https://nette.org/donate": "\u001b[1;37;42m Please consider supporting Tracy via a donation \u001b[0m"
             },
             "type": "library",
             "extra": {
@@ -1653,14 +1707,16 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "Tracy: useful PHP debugger",
+            "description": "😎 Tracy: the addictive tool to ease debugging PHP code for cool developers. Friendly design, logging, profiler, advanced features like debugging AJAX calls or CLI support. You will love it.",
             "homepage": "https://tracy.nette.org",
             "keywords": [
+                "Xdebug",
                 "debug",
                 "debugger",
-                "nette"
+                "nette",
+                "profiler"
             ],
-            "time": "2017-01-29T19:39:20+00:00"
+            "time": "2017-05-11T14:28:35+00:00"
         }
     ],
     "packages-dev": [
@@ -2108,12 +2164,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/code-quality.git",
-                "reference": "5f73999c53968b67c0a2d8234b60b4ddeca1b960"
+                "reference": "77dc1ccfb922a80c05aa3baabb862a5d26df0af7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/code-quality/zipball/5f73999c53968b67c0a2d8234b60b4ddeca1b960",
-                "reference": "5f73999c53968b67c0a2d8234b60b4ddeca1b960",
+                "url": "https://api.github.com/repos/nexendrie/code-quality/zipball/77dc1ccfb922a80c05aa3baabb862a5d26df0af7",
+                "reference": "77dc1ccfb922a80c05aa3baabb862a5d26df0af7",
                 "shasum": ""
             },
             "require": {
@@ -2121,9 +2177,9 @@
                 "jakub-onderka/php-parallel-lint": "^0.9.2",
                 "mrtnzlml/testbench": "^2.4.2",
                 "nette/tester": "2.0.x-dev",
-                "phpstan/phpstan": "^0.6.3",
+                "phpstan/phpstan": "^0.7",
                 "satooshi/php-coveralls": "^1.0",
-                "squizlabs/php_codesniffer": "^2.8"
+                "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2143,7 +2199,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2017-04-19 08:49:02"
+            "time": "2017-05-15T08:19:42+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2198,16 +2254,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.6.4",
+            "version": "0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "55ee8b0c451546ac069c2c4130ce505c4a4cf409"
+                "reference": "8da03c084b2c8e4a92d48f6926f6191c2c7783ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/55ee8b0c451546ac069c2c4130ce505c4a4cf409",
-                "reference": "55ee8b0c451546ac069c2c4130ce505c4a4cf409",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8da03c084b2c8e4a92d48f6926f6191c2c7783ad",
+                "reference": "8da03c084b2c8e4a92d48f6926f6191c2c7783ad",
                 "shasum": ""
             },
             "require": {
@@ -2223,11 +2279,11 @@
             },
             "require-dev": {
                 "consistence/coding-standard": "~0.13.0",
-                "jakub-onderka/php-parallel-lint": "^0.9",
-                "phing/phing": "^2.13.0",
-                "phpunit/phpunit": "^5.6",
+                "jakub-onderka/php-parallel-lint": "^0.9.2",
+                "phing/phing": "^2.16.0",
+                "phpunit/phpunit": "^6.0.7",
                 "satooshi/php-coveralls": "^1.0",
-                "slevomat/coding-standard": "dev-2.0-dev#2b8e2b0992f31205e4c1d2fb5c39af05274c7c4d"
+                "slevomat/coding-standard": "^2.0"
             },
             "bin": [
                 "bin/phpstan"
@@ -2235,7 +2291,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.6-dev"
+                    "dev-master": "0.7-dev"
                 }
             },
             "autoload": {
@@ -2248,20 +2304,20 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2017-02-20T20:45:32+00:00"
+            "time": "2017-05-14T20:37:59+00:00"
         },
         {
             "name": "phpstan/phpstan-nette",
-            "version": "0.6.3",
+            "version": "0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-nette.git",
-                "reference": "295e25d6bda17b06d8b94d55fb735599a2cdefb1"
+                "reference": "aea27d521725a8899e18ace4afe6ee9df9ea27ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-nette/zipball/295e25d6bda17b06d8b94d55fb735599a2cdefb1",
-                "reference": "295e25d6bda17b06d8b94d55fb735599a2cdefb1",
+                "url": "https://api.github.com/repos/phpstan/phpstan-nette/zipball/aea27d521725a8899e18ace4afe6ee9df9ea27ab",
+                "reference": "aea27d521725a8899e18ace4afe6ee9df9ea27ab",
                 "shasum": ""
             },
             "require": {
@@ -2270,7 +2326,7 @@
                 "nette/forms": "^2.3.0 || ^3.0.0",
                 "nette/utils": "^2.3.0 || ^3.0.0",
                 "php": "~7.0",
-                "phpstan/phpstan": "^0.6"
+                "phpstan/phpstan": "^0.7"
             },
             "require-dev": {
                 "consistence/coding-standard": "~0.13.0",
@@ -2281,6 +2337,11 @@
                 "slevomat/coding-standard": "^2.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.7-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "PHPStan\\": "src/"
@@ -2291,7 +2352,7 @@
                 "MIT"
             ],
             "description": "Nette Framework class reflection extension for PHPStan",
-            "time": "2017-03-12T11:29:16+00:00"
+            "time": "2017-05-08T11:30:43+00:00"
         },
         {
             "name": "psr/log",
@@ -2342,63 +2403,36 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.8.1",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "d7cf0d894e8aa4c73712ee4a331cc1eaa37cdc7d"
+                "reference": "b95ff2c3b122a3ee4b57d149a57d2afce65522c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/d7cf0d894e8aa4c73712ee4a331cc1eaa37cdc7d",
-                "reference": "d7cf0d894e8aa4c73712ee4a331cc1eaa37cdc7d",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/b95ff2c3b122a3ee4b57d149a57d2afce65522c3",
+                "reference": "b95ff2c3b122a3ee4b57d149a57d2afce65522c3",
                 "shasum": ""
             },
             "require": {
                 "ext-simplexml": "*",
                 "ext-tokenizer": "*",
                 "ext-xmlwriter": "*",
-                "php": ">=5.1.2"
+                "php": ">=5.4.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.0"
             },
             "bin": [
-                "scripts/phpcs",
-                "scripts/phpcbf"
+                "bin/phpcs",
+                "bin/phpcbf"
             ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-master": "3.x-dev"
                 }
-            },
-            "autoload": {
-                "classmap": [
-                    "CodeSniffer.php",
-                    "CodeSniffer/CLI.php",
-                    "CodeSniffer/Exception.php",
-                    "CodeSniffer/File.php",
-                    "CodeSniffer/Fixer.php",
-                    "CodeSniffer/Report.php",
-                    "CodeSniffer/Reporting.php",
-                    "CodeSniffer/Sniff.php",
-                    "CodeSniffer/Tokens.php",
-                    "CodeSniffer/Reports/",
-                    "CodeSniffer/Tokenizers/",
-                    "CodeSniffer/DocGenerators/",
-                    "CodeSniffer/Standards/AbstractPatternSniff.php",
-                    "CodeSniffer/Standards/AbstractScopeSniff.php",
-                    "CodeSniffer/Standards/AbstractVariableSniff.php",
-                    "CodeSniffer/Standards/IncorrectPatternException.php",
-                    "CodeSniffer/Standards/Generic/Sniffs/",
-                    "CodeSniffer/Standards/MySource/Sniffs/",
-                    "CodeSniffer/Standards/PEAR/Sniffs/",
-                    "CodeSniffer/Standards/PSR1/Sniffs/",
-                    "CodeSniffer/Standards/PSR2/Sniffs/",
-                    "CodeSniffer/Standards/Squiz/Sniffs/",
-                    "CodeSniffer/Standards/Zend/Sniffs/"
-                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2416,7 +2450,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-03-01T22:17:45+00:00"
+            "time": "2017-05-04T00:33:04+00:00"
         },
         {
             "name": "symfony/console",

@@ -56,7 +56,7 @@ class Order {
    */
   function getOrder(int $id): OrderEntity {
     $order = $this->orm->orders->getById($id);
-    if(!$order) {
+    if(is_null($order)) {
       throw new OrderNotFoundException;
     } else {
       return $order;
@@ -109,6 +109,7 @@ class Order {
    * @param int $uid
    * @return OrderEntity|NULL
    */
+  // @codingStandardsIgnoreLine
   function getUserOrder(int $uid = NULL): ?OrderEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
     return $user->order;
@@ -368,7 +369,7 @@ class Order {
       throw new MissingPermissionsException;
     }
     $user = $this->orm->users->getById($userId);
-    if(!$user) {
+    if(is_null($user)) {
       throw new UserNotFoundException;
     }
     $admin = $this->orm->users->getById($this->user->id);
@@ -399,7 +400,7 @@ class Order {
       throw new MissingPermissionsException;
     }
     $user = $this->orm->users->getById($userId);
-    if(!$user) {
+    if(is_null($user)) {
       throw new UserNotFoundException;
     }
     $admin = $this->orm->users->getById($this->user->id);
@@ -430,7 +431,7 @@ class Order {
       throw new MissingPermissionsException;
     }
     $user = $this->orm->users->getById($userId);
-    if(!$user) {
+    if(is_null($user)) {
       throw new UserNotFoundException;
     }
     $admin = $this->orm->users->getById($this->user->id);

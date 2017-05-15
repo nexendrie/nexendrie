@@ -111,7 +111,7 @@ class Bank {
       throw new AuthenticationNeededException;
     }
     $loan = $this->getActiveLoan();
-    if(!$loan) {
+    if(is_null($loan)) {
       throw new NoLoanException;
     }
     $returnMoney = $loan->amount + $this->calculateInterest($loan);

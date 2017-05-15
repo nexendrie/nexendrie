@@ -73,7 +73,7 @@ class Adventure {
    */
   function get(int $id): AdventureEntity {
     $adventure = $this->orm->adventures->getById($id);
-    if(!$adventure) {
+    if(is_null($adventure)) {
       throw new AdventureNotFoundException;
     } else {
       return $adventure;
@@ -123,7 +123,7 @@ class Adventure {
    */
   function getNpc(int $id): AdventureNpcEntity {
     $npc = $this->orm->adventureNpcs->getById($id);
-    if(!$npc) {
+    if(is_null($npc)) {
       throw new AdventureNpcNotFoundException;
     } else {
       return $npc;

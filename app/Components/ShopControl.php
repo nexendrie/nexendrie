@@ -51,7 +51,7 @@ class ShopControl extends \Nette\Application\UI\Control {
   function getShop(): ShopEntity {
     if(!isset($this->shop)) {
       $shop = $this->orm->shops->getById($this->id);
-      if(!$shop) {
+      if(is_null($shop)) {
         throw new ShopNotFoundException("Specified shop does not exist.");
       }
       $this->shop = $shop;

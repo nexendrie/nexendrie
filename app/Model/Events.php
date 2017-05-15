@@ -56,10 +56,9 @@ class Events implements \EventCalendar\IEventModel {
    */
   function getEvent($id): Event {
     $event = $this->orm->events->getById($id);
-    if(!$event) {
+    if(is_null($event)) {
       throw new EventNotFoundException;
-    }
-    else {
+    } else {
       return $event;
     }
   }

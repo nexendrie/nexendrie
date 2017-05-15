@@ -63,10 +63,9 @@ class Guild {
    */
   function getGuild(int $id): GuildEntity {
     $guild = $this->orm->guilds->getById($id);
-    if(!$guild) {
+    if(is_null($guild)) {
       throw new GuildNotFoundException;
-    }
-    else {
+    } else {
       return $guild;
     }
   }
@@ -117,6 +116,7 @@ class Guild {
    * @param int $uid
    * @return GuildEntity|NULL
    */
+  // @codingStandardsIgnoreLine
   function getUserGuild(int $uid = NULL): ?GuildEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
     return $user->guild;

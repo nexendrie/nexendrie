@@ -33,6 +33,7 @@ class House {
    * @param int $user
    * @return HouseEntity|NULL
    */
+  // @codingStandardsIgnoreLine
   function getUserHouse(int $user = NULL): ?HouseEntity {
     return $this->orm->houses->getByOwner($user ?? $this->user->id);
   }

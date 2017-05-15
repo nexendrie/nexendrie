@@ -77,7 +77,7 @@ class Article {
    */
   function view(int $id): ArticleEntity {
     $article = $this->orm->articles->getById($id);
-    if(!$article) {
+    if(is_null($article)) {
       throw new ArticleNotFoundException;
     } else {
       return $article;

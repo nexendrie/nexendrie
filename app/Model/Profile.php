@@ -36,7 +36,7 @@ class Profile {
    */
   function view(string $username): UserEntity {
     $user = $this->orm->users->getByUsername($username);
-    if(!$user) {
+    if(is_null($user)) {
       throw new UserNotFoundException("Specified user does not exist.");
     } else {
       return $user;

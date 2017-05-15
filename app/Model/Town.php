@@ -37,7 +37,7 @@ class Town {
    */
   function get(int $id): TownEntity {
     $town = $this->orm->towns->getById($id);
-    if(!$town) {
+    if(is_null($town)) {
       throw new TownNotFoundException;
     } else {
       return $town;
@@ -112,7 +112,7 @@ class Town {
       throw new AuthenticationNeededException;
     }
     $town = $this->orm->towns->getById($id);
-    if(!$town) {
+    if(is_null($town)) {
       throw new TownNotFoundException;
     }
     if(!$town->onMarket) {
@@ -187,7 +187,7 @@ class Town {
       throw new TownNotOwnedException;
     }
     $newMayor = $this->orm->users->getById($newMayorId);
-    if(!$newMayor) {
+    if(is_null($newMayor)) {
       throw new UserNotFoundException;
     } elseif($newMayor->town->id != $townId) {
       throw new UserDoesNotLiveInTheTownException;
@@ -197,7 +197,7 @@ class Town {
       throw new InsufficientLevelForMayorException;
     }
     $oldMayor = $this->orm->users->getTownMayor($townId);
-    if($oldMayor) {
+    if(!is_null($oldMayor)) {
       $oldMayor->group = $this->orm->groups->getByLevel(100);
       $this->orm->users->persist($oldMayor);
     }
@@ -331,7 +331,7 @@ class Town {
       throw new AuthenticationNeededException;
     }
     $citizen = $this->orm->users->getById($id);
-    if(!$citizen) {
+    if(is_null($citizen)) {
       throw new UserNotFoundException;
     }
     $owner = $this->orm->users->getById($this->user->id);

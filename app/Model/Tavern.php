@@ -42,10 +42,10 @@ class Tavern {
    */
   function getMeal(int $id): MealEntity {
     $meal = $this->orm->meals->getById($id);
-    if($meal) {
-      return $meal;
-    } else {
+    if(is_null($meal)) {
       throw new MealNotFoundException;
+    } else {
+      return $meal;
     }
   }
   

@@ -90,13 +90,7 @@ class Group {
    * @return GroupEntity|NULL
    */
   function ormGet(int $id): ?GroupEntity {
-    $group = $this->orm->groups->getById($id);
-    if(!$group) {
-      return NULL;
-    }
-    else {
-      return $group;
-    }
+    return $this->orm->groups->getById($id);
   }
   
   /**

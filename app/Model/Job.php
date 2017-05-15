@@ -109,7 +109,7 @@ class Job {
    */
   function getJob(int $id): JobEntity {
     $job = $this->orm->jobs->getById($id);
-    if(!$job) {
+    if(is_null($job)) {
       throw new JobNotFoundException("Specified job was not found.");
     } else {
       return $job;
@@ -354,7 +354,7 @@ class Job {
       throw new AuthenticationNeededException;
     }
     $job = $this->orm->userJobs->getUserActiveJob($this->user->id);
-    if(!$job) {
+    if(is_null($job)) {
       throw new NotWorkingException;
     } else {
       return $job;
@@ -428,7 +428,7 @@ class Job {
    */
   function getMessage(int $id): JobMessageEntity {
     $message = $this->orm->jobMessages->getById($id);
-    if(!$message) {
+    if(is_null($message)) {
       throw new JobMessageNotFoundException;
     } else {
       return $message;

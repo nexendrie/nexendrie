@@ -269,7 +269,7 @@ class UserManager implements IAuthenticator {
    */
   function get(int $id): UserEntity {
     $user = $this->orm->users->getById($id);
-    if(!$user) {
+    if(is_null($user)) {
       throw new UserNotFoundException;
     } else {
       return $user;

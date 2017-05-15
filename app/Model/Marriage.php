@@ -42,7 +42,7 @@ class Marriage {
    */
   function getMarriage(int $id): MarriageEntity {
     $marriage = $this->orm->marriages->getById($id);
-    if(!$marriage) {
+    if(is_null($marriage)) {
       throw new MarriageNotFoundException;
     } else {
       return $marriage;

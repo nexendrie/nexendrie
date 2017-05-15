@@ -42,7 +42,7 @@
         "nexendrie/code-quality": "dev-master",
         "nette/tester": "dev-master",
         "dg/ftp-deployment": "^2.6",
-        "phpstan/phpstan-nette": "^0.6.2"
+        "phpstan/phpstan-nette": "^0.7"
     },
     "replace": {
       "satooshi/php-coveralls": "*"
