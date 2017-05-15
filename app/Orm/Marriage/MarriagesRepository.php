@@ -7,8 +7,8 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Marriage|NULL getActiveMarriage($user)
- * @method Marriage|NULL getAcceptedMarriage($user)
+ * @method ICollection|Marriage[] getActiveMarriage($user)
+ * @method ICollection|Marriage[] getAcceptedMarriage($user)
  */
 class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
