@@ -9,6 +9,7 @@ Testbench\Bootstrap::setup(__DIR__ . "/_temp", function (\Nette\Configurator $co
     "appDir" => __DIR__ . "/../app",
   ]);
   $configurator->addConfig(__DIR__ . "/../app/config/main.neon");
-  $configurator->addConfig(__DIR__ . "/../app/config/ci.neon");
+  $configurator->addConfig(__DIR__ . "/tests.neon");
+  $configurator->addConfig(__DIR__ . "/local.neon");
 });
 ?>

@@ -7,6 +7,7 @@
   <target name="test-ci-coverage" depends="install-ci,test-coverage"/>
   <target name="install-ci">
     <mkdir dir="temp/cache"/>
+    <copy file="tests/ci.neon" tofile="tests/local.neon"/>
     <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
       <arg value="install"/>
       <arg value="--prefer-dist"/>
@@ -39,6 +40,7 @@
       <arg value="install"/>
     </exec>
     <phingcall target="config-db"/>
+    <copy file="app/config/local.neon" todir="tests"/>
   </target>
   <target name="install-production">
     <copy file="app/config/local.sample.neon" tofile="app/config/local.neon"/>

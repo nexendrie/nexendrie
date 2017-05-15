@@ -5,7 +5,7 @@ temp/
 /.idea/
 /log/
 !/log/.htaccess
-/app/config/local.neon
+local.neon
 /doc/
 /vendor/
 /tests/_temp/
