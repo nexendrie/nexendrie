@@ -68,7 +68,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
    */
   function handleWork(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
-    if(!is_null($punishment)) {
+    if(is_null($punishment)) {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
         $message = "Nejsi uvězněná.";
       } else {
@@ -104,7 +104,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
   function handleRelease(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     $release = false;
-    if(!is_null($punishment)) {
+    if(is_null($punishment)) {
       $release = true;
       $user = $this->orm->users->getById($this->user->id);
       $user->banned = false;
