@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-interface AdventureControlFactory {
+interface IAdventureControlFactory {
   /** @return AdventureControl */
   function create();
 }

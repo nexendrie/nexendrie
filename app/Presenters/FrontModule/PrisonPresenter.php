@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\PrisonControlFactory,
+use Nexendrie\Components\IPrisonControlFactory,
     Nexendrie\Components\PrisonControl;
 
 /**
@@ -25,10 +25,10 @@ class PrisonPresenter extends BasePresenter {
   }
   
   /**
-   * @param PrisonControlFactory $factory
+   * @param IPrisonControlFactory $factory
    * @return PrisonControl
    */
-  protected function createComponentPrison(PrisonControlFactory $factory): PrisonControl {
+  protected function createComponentPrison(IPrisonControlFactory $factory): PrisonControl {
     return $factory->create();
   }
 }

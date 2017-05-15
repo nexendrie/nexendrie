@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-interface WeddingControlFactory {
+interface IWeddingControlFactory {
   /** @return WeddingControl */
   function create();
 }

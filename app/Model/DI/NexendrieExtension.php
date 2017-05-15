@@ -114,31 +114,31 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   protected function addComponents(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition($this->prefix("component.poll"))
-      ->setImplement(Nexendrie\Components\PollControlFactory::class);
+      ->setImplement(Nexendrie\Components\IPollControlFactory::class);
     $builder->addDefinition($this->prefix("component.shop"))
-      ->setImplement(Nexendrie\Components\ShopControlFactory::class);
+      ->setImplement(Nexendrie\Components\IShopControlFactory::class);
     $builder->addDefinition($this->prefix("component.mountsMarket"))
-      ->setImplement(Nexendrie\Components\MountsMarketControlFactory::class);
+      ->setImplement(Nexendrie\Components\IMountsMarketControlFactory::class);
     $builder->addDefinition($this->prefix("component.academy"))
-      ->setImplement(Nexendrie\Components\AcademyControlFactory::class);
+      ->setImplement(Nexendrie\Components\IAcademyControlFactory::class);
     $builder->addDefinition($this->prefix("component.townsMarket"))
-      ->setImplement(Nexendrie\Components\TownsMarketControlFactory::class);
+      ->setImplement(Nexendrie\Components\ITownsMarketControlFactory::class);
     $builder->addDefinition($this->prefix("component.help"))
-      ->setImplement(Nexendrie\Components\HelpControlFactory::class);
+      ->setImplement(Nexendrie\Components\IHelpControlFactory::class);
     $builder->addDefinition($this->prefix("component.stables"))
-      ->setImplement(Nexendrie\Components\StablesControlFactory::class);
+      ->setImplement(Nexendrie\Components\IStablesControlFactory::class);
     $builder->addDefinition($this->prefix("component.prison"))
-      ->setImplement(Nexendrie\Components\PrisonControlFactory::class);
+      ->setImplement(Nexendrie\Components\IPrisonControlFactory::class);
     $builder->addDefinition($this->prefix("component.tavern"))
-      ->setImplement(Nexendrie\Components\TavernControlFactory::class);
+      ->setImplement(Nexendrie\Components\ITavernControlFactory::class);
     $builder->addDefinition($this->prefix("component.adventure"))
-      ->setImplement(Nexendrie\Components\AdventureControlFactory::class);
+      ->setImplement(Nexendrie\Components\IAdventureControlFactory::class);
     $builder->addDefinition($this->prefix("component.history"))
-      ->setImplement(Nexendrie\Components\HistoryControlFactory::class);
+      ->setImplement(Nexendrie\Components\IHistoryControlFactory::class);
     $builder->addDefinition($this->prefix("component.wedding"))
-      ->setImplement(Nexendrie\Components\WeddingControlFactory::class);
+      ->setImplement(Nexendrie\Components\IWeddingControlFactory::class);
     $builder->addDefinition($this->prefix("component.elections"))
-      ->setImplement(Nexendrie\Components\ElectionsControlFactory::class);
+      ->setImplement(Nexendrie\Components\IElectionsControlFactory::class);
   }
   
   /**

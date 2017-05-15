@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\ShopControlFactory,
-    Nexendrie\Components\MountsMarketControlFactory,
+use Nexendrie\Components\IShopControlFactory,
+    Nexendrie\Components\IMountsMarketControlFactory,
     Nexendrie\Components\MountsMarketControl,
-    Nexendrie\Components\TownsMarketControlFactory,
+    Nexendrie\Components\ITownsMarketControlFactory,
     Nexendrie\Components\TownsMarketControl;
 
 /**
@@ -46,10 +46,10 @@ class MarketPresenter extends BasePresenter {
   }
   
   /**
-   * @param ShopControlFactory $factory
+   * @param IShopControlFactory $factory
    * @return \Nette\Application\UI\Multiplier
    */
-  protected function createComponentShop(ShopControlFactory $factory): \Nette\Application\UI\Multiplier {
+  protected function createComponentShop(IShopControlFactory $factory): \Nette\Application\UI\Multiplier {
     return new \Nette\Application\UI\Multiplier(function ($id) use ($factory) {
       $shop = $factory->create();
       $shop->id = $id;
@@ -75,10 +75,10 @@ class MarketPresenter extends BasePresenter {
   }
   
   /**
-   * @param MountsMarketControlFactory $factory
+   * @param IMountsMarketControlFactory $factory
    * @return MountsMarketControl
    */
-  protected function createComponentMountsMarket(MountsMarketControlFactory $factory): MountsMarketControl {
+  protected function createComponentMountsMarket(IMountsMarketControlFactory $factory): MountsMarketControl {
     return $factory->create();
   }
   
@@ -91,10 +91,10 @@ class MarketPresenter extends BasePresenter {
   }
   
   /**
-   * @param TownsMarketControlFactory $factory
+   * @param ITownsMarketControlFactory $factory
    * @return TownsMarketControl
    */
-  protected function createComponentTownsMarket(TownsMarketControlFactory $factory): TownsMarketControl {
+  protected function createComponentTownsMarket(ITownsMarketControlFactory $factory): TownsMarketControl {
     return $factory->create();
   }
 }

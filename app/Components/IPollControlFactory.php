@@ -1,8 +1,8 @@
 <?php
 namespace Nexendrie\Components;
 
-interface PrisonControlFactory {
-  /** @return PrisonControl */
+interface IPollControlFactory {
+  /** @return PollControl */
   function create();
 }
 ?>

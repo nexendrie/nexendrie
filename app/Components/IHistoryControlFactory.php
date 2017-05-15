@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-interface HistoryControlFactory {
+interface IHistoryControlFactory {
   /** @return HistoryControl */
   function create();
 }

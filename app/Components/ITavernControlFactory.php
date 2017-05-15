@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-interface TavernControlFactory {
+interface ITavernControlFactory {
   /** @return TavernControl */
   function create();
 }

@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-interface MountsMarketControlFactory {
+interface IMountsMarketControlFactory {
   /** @return MountsMarketControl */
   function create();
 }

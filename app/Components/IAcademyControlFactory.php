@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-interface AcademyControlFactory {
+interface IAcademyControlFactory {
   /** @return AcademyControl */
   function create();
 }

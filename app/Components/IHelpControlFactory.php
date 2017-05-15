@@ -1,8 +1,8 @@
 <?php
 namespace Nexendrie\Components;
 
-interface PollControlFactory {
-  /** @return PollControl */
+interface IHelpControlFactory {
+  /** @return HelpControl */
   function create();
 }
 ?>

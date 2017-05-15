@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-interface ElectionsControlFactory {
+interface IElectionsControlFactory {
   /** @return ElectionsControl */
   function create();
 }

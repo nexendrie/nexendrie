@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\HelpControlFactory,
+use Nexendrie\Components\IHelpControlFactory,
     Nexendrie\Components\HelpControl;
 
 /**
@@ -21,10 +21,10 @@ class HelpPresenter extends BasePresenter {
   }
   
   /**
-   * @param HelpControlFactory $factory
+   * @param IHelpControlFactory $factory
    * @return HelpControl
    */
-  protected function createComponentHelp(HelpControlFactory $factory): HelpControl {
+  protected function createComponentHelp(IHelpControlFactory $factory): HelpControl {
     return $factory->create();
   }
 }

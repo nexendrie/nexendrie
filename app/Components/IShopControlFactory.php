@@ -1,8 +1,8 @@
 <?php
 namespace Nexendrie\Components;
 
-interface HelpControlFactory {
-  /** @return HelpControl */
+interface IShopControlFactory {
+  /** @return ShopControl */
   function create();
 }
 ?>

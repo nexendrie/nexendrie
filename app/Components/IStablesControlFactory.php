@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-interface StablesControlFactory {
+interface IStablesControlFactory {
   /** @return StablesControl */
   function create();
 }

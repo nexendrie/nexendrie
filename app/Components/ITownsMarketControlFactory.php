@@ -1,7 +1,7 @@
 <?php
 namespace Nexendrie\Components;
 
-interface TownsMarketControlFactory {
+interface ITownsMarketControlFactory {
   /** @return TownsMarketControl */
   function create();
 }

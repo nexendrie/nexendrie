@@ -8,7 +8,7 @@ use Nexendrie\Model\TownNotFoundException,
     Nexendrie\Model\CannotMoveToTownException,
     Nexendrie\Forms\FoundTownFormFactory,
     Nette\Application\UI\Form,
-    Nexendrie\Components\ElectionsControlFactory,
+    Nexendrie\Components\IElectionsControlFactory,
     Nexendrie\Components\ElectionsControl,
     Nexendrie\Orm\User as UserEntity,
     Nexendrie\Orm\Group as GroupEntity;
@@ -142,10 +142,10 @@ class TownPresenter extends BasePresenter {
   }
   
   /**
-   * @param ElectionsControlFactory $factory
+   * @param IElectionsControlFactory $factory
    * @return ElectionsControl
    */
-  protected function createComponentElections(ElectionsControlFactory $factory): ElectionsControl {
+  protected function createComponentElections(IElectionsControlFactory $factory): ElectionsControl {
     $elections = $factory->create();
     $elections->town = $this->town;
     return $elections;

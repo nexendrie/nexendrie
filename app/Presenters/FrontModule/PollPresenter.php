@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\PollControlFactory;
+use Nexendrie\Components\IPollControlFactory;
 
 /**
  * Presenter Poll
@@ -27,10 +27,10 @@ class PollPresenter extends BasePresenter {
   }
   
   /**
-   * @param PollControlFactory $factory
+   * @param IPollControlFactory $factory
    * @return \Nette\Application\UI\Multiplier
    */
-  protected function createComponentPoll(PollControlFactory $factory): \Nette\Application\UI\Multiplier {
+  protected function createComponentPoll(IPollControlFactory $factory): \Nette\Application\UI\Multiplier {
     return new \Nette\Application\UI\Multiplier(function ($id) use ($factory) {
       $poll = $factory->create();
       $poll->id = $id;

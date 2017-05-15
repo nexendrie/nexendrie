@@ -19,7 +19,7 @@ use Nette\Application\UI\Form,
     Nexendrie\Model\ItemNotFoundException,
     Nexendrie\Model\ItemNotUsableException,
     Nexendrie\Model\ItemNotOwnedException,
-    Nexendrie\Components\WeddingControlFactory,
+    Nexendrie\Components\IWeddingControlFactory,
     Nexendrie\Components\WeddingControl,
     Nexendrie\Orm\Marriage as MarriageEntity,
     Nexendrie\Orm\User as UserEntity;
@@ -145,10 +145,10 @@ class MarriagePresenter extends BasePresenter {
   }
   
   /**
-   * @param WeddingControlFactory $factory
+   * @param IWeddingControlFactory $factory
    * @return WeddingControl
    */
-  protected function createComponentWedding(WeddingControlFactory $factory): WeddingControl {
+  protected function createComponentWedding(IWeddingControlFactory $factory): WeddingControl {
     $wedding = $factory->create();
     $wedding->marriage = $this->marriage;
     return $wedding;
