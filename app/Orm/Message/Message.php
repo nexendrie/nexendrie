@@ -13,7 +13,7 @@ namespace Nexendrie\Orm;
  * @property User $from {m:1 User::$sentMessages}
  * @property User $to {m:1 User::$receivedMessages}
  * @property int $sent
- * @property bool $read {default 0}
+ * @property bool $read {default false}
  * @property-read string $sentAt {virtual}
  */
 class Message extends \Nextras\Orm\Entity\Entity {

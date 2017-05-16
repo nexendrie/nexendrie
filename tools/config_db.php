@@ -19,18 +19,21 @@ $config["dbal"] = $db;
 file_put_contents($filename, Neon::encode($config, Neon::BLOCK));
 echo "Settings written to " . realpath($filename) . ".\n";
 
-if($db["driver"] !== "mysqli") {
-  echo "PostgreSql database cannot be set up automatically at the moment.\n";
-  exit(0);
+if($db["driver"] === "mysqli") {
+  $files = ["structure", "data_basic"];
+  $extension = "mysql";
 } else {
-  $sqlsFolder = __DIR__ . "/../app/sqls";
+  $files = ["structure", "data_basic", "final"];
+  $extension = "mysql";
 }
 
 echo "Setting up database ...\n";
 $connection = new Nextras\Dbal\Connection($config["dbal"]);
-$files = ["structure", "data_basic"];
+$sqlsFolder = __DIR__ . "/../app/sqls";
 foreach($files as $file) {
-  FileImporter::executeFile($connection, "$sqlsFolder/$file.sql");
+  echo "Executing file: $file.$extension";
+  FileImporter::executeFile($connection, "$sqlsFolder/$file.$extension");
+  echo " ... Done\n";
 }
 echo "Tables were created and filled with basic data.\n";
 ?>

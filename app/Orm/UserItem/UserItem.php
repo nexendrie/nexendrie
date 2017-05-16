@@ -11,7 +11,7 @@ namespace Nexendrie\Orm;
  * @property Item $item {m:1 Item::$userItems}
  * @property User $user {m:1 User::$items}
  * @property int $amount {default 1}
- * @property bool $worn {default 0}
+ * @property bool $worn {default false}
  * @property int $level {default 0}
  * @property-read int $maxLevel {virtual}
  * @property-read int $upgradePrice {virtual}
