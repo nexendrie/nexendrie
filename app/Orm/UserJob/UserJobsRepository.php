@@ -7,12 +7,26 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method UserJob|NULL getById($id)
- * @method ICollection|UserJob[] findByUser($user)
  */
 class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [UserJob::class];
+  }
+  
+  /**
+   * @param int $id
+   * @return UserJob|NULL
+   */
+  function getById($id): ?UserJob {
+    return $this->getBy(["id" => $id]);
+  }
+  
+  /**
+   * @param User|int $user
+   * @return ICollection|UserJob[]
+   */
+  function findByUser($user): ICollection {
+    return $this->findBy(["user" => $user]);
   }
   
   /**

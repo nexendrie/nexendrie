@@ -7,13 +7,28 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method ICollection|MonasteryDonation[] findByUser($user)
- * @method ICollection|MonasteryDonation[] findByMonastery($monastery)
  */
 class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
     return [MonasteryDonation::class];
   }
+  
+  /**
+   * @param User|int $user
+   * @return ICollection|MonasteryDonation[]
+   */
+  function findByUser($user): ICollection {
+    return $this->findBy(["user" => $user]);
+  }
+  
+  /**
+   * @param Monastery|int $monastery
+   * @return ICollection|MonasteryDonation[]
+   */
+  function findByMonastery($monastery): ICollection {
+    return $this->findBy(["monastery" => $monastery]);
+  }
+  
   /**
    * Get donations made this month by specified user
    * 
