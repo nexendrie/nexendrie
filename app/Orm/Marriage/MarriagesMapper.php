@@ -14,7 +14,7 @@ class MarriagesMapper extends \Nextras\Orm\Mapper\Mapper {
    * @return QueryBuilder
    */
   function getActiveMarriage($user): QueryBuilder {
-    return $this->builder()->where("status=\"active\" AND (user1=$user OR user2=$user)");
+    return $this->builder()->where("status='active' AND (user1=$user OR user2=$user)");
   }
   
   /**
@@ -22,7 +22,7 @@ class MarriagesMapper extends \Nextras\Orm\Mapper\Mapper {
    * @return QueryBuilder
    */
   function getAcceptedMarriage($user): QueryBuilder {
-    return $this->builder()->where("status=\"accepted\" AND (user1=$user OR user2=$user)");
+    return $this->builder()->where("status='accepted' AND (user1=$user OR user2=$user)");
   }
 }
 ?>
