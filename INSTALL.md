@@ -13,7 +13,7 @@ Clone the repository with git clone.
 Auto install
 ------------
 
-After cloning the repository, you have to install the dependencies and create certain folders, local configuration file and database with basic data. You can do that manually but a tool called [Phing] (https://www.phing.info) can make it easier for you. Just download it and run *install-dev* task. After running it you can skip to part Database.
+After cloning the repository, you have to install the dependencies and create certain folders, local configuration file and database with basic data. You can do that manually but a tool called [Phing] (https://www.phing.info) can make it easier for you. Just download it and run *install-dev* task. After running it you can skip to part Web server.
 
 Creating folders
 ----------------
@@ -34,7 +34,7 @@ The game uses Composer to manage its dependencies. If you do not have them insta
 
 Database
 --------
-The game needs a database to store its data. We use nextras/orm with nextras/dbal to access it which currently supports only MySQL/MariaDB and PostgreSQL. Before you can run the game for first time, you have to create tables and fill the with at least basic data. For now, you have to do everything by yourself. See the entites to get an idea about tables definitions or files in folder app/sqls for actual queries for MySql/MariaDB.
+The game needs a database to store its data. We use nextras/orm with nextras/dbal to access it which currently supports only MySQL/MariaDB and PostgreSQL. Before you can run the game for first time, you have to create tables and fill them with at least basic data. Folder app/sqls contains all needed queries for both MySQL/MariaDB and PostreSQL.
 
 After that, do not forget to write access data (name of database, username and password) to file app/config/local.neon so the game will know where to look for data.
 
