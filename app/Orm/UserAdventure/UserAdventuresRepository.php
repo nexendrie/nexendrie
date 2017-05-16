@@ -7,7 +7,6 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method ICollection|UserAdventure[] getLastAdventure($user)
  */
 class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
@@ -38,6 +37,16 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    */
   function getUserActiveAdventure(int $user) {
     return $this->getBy(["user" => $user, "progress<" => 10]);
+  }
+  
+  /**
+   * @param User|int $user
+   * @return UserAdventure|NULL
+   */
+  function getLastAdventure($user): ?UserAdventure {
+    return $this->findBy(["user" => $user])
+      ->orderBy("started", ICollection::DESC)
+      ->fetch();
   }
   
   /**

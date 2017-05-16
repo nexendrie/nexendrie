@@ -7,7 +7,6 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method ICollection|BeerProduction[] getLastProduction($house)
  */
 class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
   static function getEntityClassNames() {
@@ -36,6 +35,16 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
    */
   function findByHouse($house): ICollection {
     return $this->findBy(["house" => $house]);
+  }
+  
+  /**
+   * @param House|int $house
+   * @return BeerProduction|null
+   */
+  function getLastProduction($house): ?BeerProduction {
+    return $this->findBy(["house" => $house])
+      ->orderBy("when", ICollection::DESC)
+      ->fetch();
   }
   
   /**

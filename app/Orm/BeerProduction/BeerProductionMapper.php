@@ -10,15 +10,5 @@ class BeerProductionMapper extends \Nextras\Orm\Mapper\Mapper {
   function getTableName() {
     return "beer_production";
   }
-  
-  /**
-   * Get user's last production
-   * 
-   * @param int $house
-   * @return \Nextras\Dbal\QueryBuilder\QueryBuilder
-   */
-  function getLastProduction($house) {
-    return $this->builder()->where("house=$house")->orderBy("`when` DESC")->limitBy(1);
-  }
 }
 ?>

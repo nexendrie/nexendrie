@@ -430,11 +430,11 @@ class Adventure {
       throw new AuthenticationNeededException;
     }
     $adventure = $this->orm->userAdventures->getLastAdventure($this->user->id);
-    if(!$adventure->count()) {
+    if(is_null($adventure)) {
       return true;
     }
     $next = new \DateTime;
-    $next->setTimestamp($adventure->fetch()->started + $twoDays);
+    $next->setTimestamp($adventure->started + $twoDays);
     $next->setTime(0, 0, 0);
     if($next->getTimestamp() < time()) {
       return true;

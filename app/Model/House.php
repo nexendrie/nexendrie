@@ -219,9 +219,9 @@ class House {
       return false;
     }
     $lastProduction = $this->orm->beerProduction->getLastProduction($house->id);
-    if(!$lastProduction->count()) {
+    if(is_null($lastProduction)) {
       return true;
-    } elseif($lastProduction->fetch()->when + $sevenDays < time()) {
+    } elseif($lastProduction->when + $sevenDays < time()) {
       return true;
     } else {
       return false;
