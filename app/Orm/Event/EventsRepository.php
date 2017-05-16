@@ -17,7 +17,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Event|NULL
    */
-  function getById($id) {
+  function getById($id): ?Event {
     return $this->getBy(["id" => $id]);
   }
   

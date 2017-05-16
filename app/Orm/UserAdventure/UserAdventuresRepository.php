@@ -17,7 +17,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return UserAdventure|NULL
    */
-  function getById($id) {
+  function getById($id): ?UserAdventure {
     return $this->getBy(["id" => $id]);
   }
   
@@ -35,7 +35,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user User's id
    * @return UserAdventure|NULL
    */
-  function getUserActiveAdventure(int $user) {
+  function getUserActiveAdventure(int $user): ?UserAdventure {
     return $this->getBy(["user" => $user, "progress<" => 10]);
   }
   
@@ -57,7 +57,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $year
    * @return ICollection|UserAdventure[]
    */
-  function findFromMonth(int $user, int $month = NULL, int $year = NULL) {
+  function findFromMonth(int $user, int $month = NULL, int $year = NULL): ICollection {
     $startOfMonthTS = mktime(0, 0, 0, $month ?? (int) date("n"), 1, $year ?? (int) date("Y"));
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);

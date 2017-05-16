@@ -17,7 +17,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return User|NULL
    */
-  function getById($id) {
+  function getById($id): ?User {
     return $this->getBy(["id" => $id]);
   }
   
@@ -25,7 +25,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $username
    * @return User|NULL
    */
-  function getByUsername(string $username) {
+  function getByUsername(string $username): ?User {
     return $this->getBy(["username" => $username]);
   }
   
@@ -33,7 +33,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $publicname
    * @return User|NULL
    */
-  function getByPublicname(string $publicname) {
+  function getByPublicname(string $publicname): ?User {
     return $this->getBy(["publicname" => $publicname]);
   }
   
@@ -41,7 +41,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $email
    * @return User|NULL
    */
-  function getByEmail(string $email) {
+  function getByEmail(string $email): ?User {
     return $this->getBy(["email" => $email]);
   }
   
@@ -67,7 +67,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $town
    * @return User|NULL
    */
-  function getTownMayor(int $town) {
+  function getTownMayor(int $town): ?User {
     return $this->getBy(["town" => $town, "this->group->level" => 345]);
   }
   

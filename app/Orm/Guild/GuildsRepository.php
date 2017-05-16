@@ -17,7 +17,7 @@ class GuildsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Guild|NULL
    */
-  function getById($id) {
+  function getById($id): ?Guild {
     return $this->getBy(["id" => $id]);
   }
   
@@ -25,7 +25,7 @@ class GuildsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $name
    * @return Guild|NULL
    */
-  function getByName(int $name) {
+  function getByName(int $name): ?Guild {
     return $this->getBy(["name" => $name]);
   }
   

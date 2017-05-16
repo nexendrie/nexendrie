@@ -17,7 +17,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Loan|NULL
    */
-  function getById($id) {
+  function getById($id): ?Loan {
     return $this->getBy(["id" => $id]);
   }
   
@@ -35,7 +35,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return Loan|NULL
    */
-  function getActiveLoan(int $user) {
+  function getActiveLoan(int $user): ?Loan {
     return $this->getBy(["user" => $user, "returned" => NULL]);
   }
   

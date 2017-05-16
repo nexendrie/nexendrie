@@ -15,7 +15,7 @@ class GroupsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Group|NULL
    */
-  function getById($id) {
+  function getById($id): ?Group {
     return $this->getBy(["id" => $id]);
   }
   
@@ -23,7 +23,7 @@ class GroupsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $level
    * @return Group|NULL
    */
-  function getByLevel(int $level) {
+  function getByLevel(int $level): ?Group {
     return $this->getBy(["level" => $level]);
   }
 }

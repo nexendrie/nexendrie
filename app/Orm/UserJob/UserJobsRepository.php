@@ -35,7 +35,7 @@ class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user User's id
    * @return UserJob|NULL
    */
-  function getUserActiveJob(int $user) {
+  function getUserActiveJob(int $user): ?UserJob {
     return $this->getBy(["user" => $user, "finished" => false]);
   }
   

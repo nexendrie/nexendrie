@@ -17,7 +17,7 @@ class MountsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Mount|NULL
    */
-  function getById($id) {
+  function getById($id): ?Mount {
     return $this->getBy(["id" => $id]);
   }
   

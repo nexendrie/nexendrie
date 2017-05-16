@@ -17,15 +17,15 @@ class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Election|NULL
    */
-  function getById($id) {
+  function getById($id): ?Election {
     return $this->getBy(["id" => $id]);
   }
   
   /**
    * @param Town|int $town
-   * @return Election|NULL
+   * @return ICollection|Election[]
    */
-  function findByTown($town) {
+  function findByTown($town): ICollection {
     return $this->findBy(["town" => $town]);
   }
   

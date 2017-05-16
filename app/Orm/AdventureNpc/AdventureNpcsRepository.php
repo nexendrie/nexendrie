@@ -17,7 +17,7 @@ class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return AdventureNpc|NULL
    */
-  function getById($id) {
+  function getById($id): ?AdventureNpc {
     return $this->getBy(["id" => $id]);
   }
   
@@ -27,7 +27,7 @@ class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
    * @param Order|int $order
    * @return AdventureNPC|NULL
    */
-  function getByAdventureAndOrder($adventure, $order) {
+  function getByAdventureAndOrder($adventure, $order): ?AdventureNpc {
     return $this->getBy(["adventure" => $adventure, "order" => $order]);
   }
   

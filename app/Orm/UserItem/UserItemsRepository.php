@@ -17,7 +17,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return UserItem|NULL
    */
-  function getById($id) {
+  function getById($id): ?UserItem {
     return $this->getBy(["id" => $id]);
   }
   
@@ -26,7 +26,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param Item|int $item
    * @return UserItem|NULL
    */
-  function getByUserAndItem($user, $item) {
+  function getByUserAndItem($user, $item): ?UserItem {
     return $this->getBy(["user" => $user, "item" => $item]);
   }
   
@@ -83,7 +83,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return UserItem|NULL
    */
-  function getWornWeapon(int $user) {
+  function getWornWeapon(int $user): ?UserItem {
     return $this->getBy(["user" => $user, "this->item->type" => "weapon", "worn" => true]);
   }
   
@@ -93,7 +93,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return UserItem|NULL
    */
-  function getWornArmor(int $user) {
+  function getWornArmor(int $user): ?UserItem {
     return $this->getBy(["user" => $user, "this->item->type" => "armor", "worn" => true]);
   }
   
@@ -103,7 +103,7 @@ class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return UserItem|NULL
    */
-  function getWornHelmet(int $user) {
+  function getWornHelmet(int $user): ?UserItem {
     return $this->getBy(["user" => $user, "this->item->type" => "helmet", "worn" => true]);
   }
 }
