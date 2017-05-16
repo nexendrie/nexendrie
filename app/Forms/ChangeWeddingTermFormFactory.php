@@ -49,7 +49,7 @@ class ChangeWeddingTermFormFactory {
    * @param array $values
    * @return void
    */
-  function process(Form $form, array $values): void {
+  function validate(Form $form, array $values): void {
     $term = $values["term"]->getTimestamp();
     if($term < time()) {
       $form->addError("Datum nemůže být v minulosti.");
@@ -61,7 +61,7 @@ class ChangeWeddingTermFormFactory {
    * @param array $values
    * @return void
    */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     $this->marriage->term = $values["term"]->getTimestamp();
     $this->orm->marriages->persistAndFlush($this->marriage);
   }
