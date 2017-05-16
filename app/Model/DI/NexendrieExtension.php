@@ -89,9 +89,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setClass(Nexendrie\Model\Order::class);
     $builder->addDefinition("cache.cache")
       ->setFactory(\Nette\Caching\Cache::class, ["@cache.storage", "data"]);
-    $appDir = $builder->expand("%appDir%");
     $builder->addDefinition($this->prefix("model.settingsRepository"))
-      ->setFactory(Nexendrie\Model\SettingsRepository::class, [$config, $appDir]);
+      ->setFactory(Nexendrie\Model\SettingsRepository::class, [$config]);
     $builder->addDefinition($this->prefix("model.authorizatorFactory"))
       ->setClass(Nexendrie\Model\AuthorizatorFactory::class);
     $builder->addDefinition($this->prefix("model.authorizator"))
@@ -162,8 +161,9 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setClass(Nexendrie\Forms\AddCommentFormFactory::class);
     $builder->addDefinition($this->prefix("form.editGroup"))
       ->setClass(Nexendrie\Forms\EditGroupFormFactory::class);
+    $appDir = $builder->expand("%appDir%");
     $builder->addDefinition($this->prefix("form.systemSettings"))
-      ->setClass(Nexendrie\Forms\SystemSettingsFormFactory::class);
+      ->setFactory(Nexendrie\Forms\SystemSettingsFormFactory::class, [$appDir]);
     $builder->addDefinition($this->prefix("form.editUser"))
       ->setClass(Nexendrie\Forms\EditUserFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditShop"))

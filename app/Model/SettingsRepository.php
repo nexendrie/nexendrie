@@ -3,11 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Neon\Neon,
-    Nette\Utils\FileSystem,
-    Nette\IOException,
-    Nette\Neon\Encoder,
-    Nette\Utils\Arrays,
+use Nette\Utils\Arrays,
     Symfony\Component\OptionsResolver\OptionsResolver,
     Nexendrie\Forms\UserSettingsFormFactory;
 
@@ -75,14 +71,10 @@ class SettingsRepository {
   /** @var array */
   protected $settings = [];
   
-  /** @var string */
-  protected $appDir;
-  
   use \Nette\SmartObject;
   
-  function __construct(array $settings, string $appDir) {
+  function __construct(array $settings) {
     $this->settings = $this->validateSettings($settings);
-    $this->appDir = $appDir;
   }
   
   /**
@@ -176,28 +168,6 @@ class SettingsRepository {
    */
   function getSettings(): array {
     return $this->settings;
-  }
-  
-  /**
-   * Save new settings
-   * 
-   * @param array $settings
-   * @return void
-   * @throws IOException
-   */
-  function save(array $settings): void {
-    $filename = $this->appDir . "/config/local.neon";
-    $config = Neon::decode(file_get_contents($filename));
-    $config += ["nexendrie" => $settings];
-    if(is_string($config["nexendrie"]["locale"]["plural"])) {
-      $config["nexendrie"]["locale"]["plural"] = explode("\n", $config["nexendrie"]["locale"]["plural"]);
-    }
-    try {
-      $content = Neon::encode($config, Encoder::BLOCK);
-      FileSystem::write($filename, $content);
-    } catch(IOException $e) {
-      throw $e;
-    }
   }
 }
 ?>

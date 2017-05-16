@@ -6,7 +6,9 @@ namespace Nexendrie\Forms;
 use Nette\Application\UI\Form,
     Nexendrie\Model\Group,
     Nexendrie\Model\SettingsRepository,
-    Nexendrie\Model\Town;
+    Nexendrie\Model\Town,
+    Nette\Neon\Neon,
+    Nette\Utils\FileSystem;
 
 /**
  * Factory for form SystemSettings
@@ -20,11 +22,14 @@ class SystemSettingsFormFactory {
   protected $groupModel;
   /** @var Town */
   protected $townModel;
+  /** @var string */
+  protected $appDir;
   
-  function __construct(SettingsRepository $settingsRepository, Group $groupModel, Town $townModel) {
+  function __construct(string $appDir, SettingsRepository $settingsRepository, Group $groupModel, Town $townModel) {
     $this->sr = $settingsRepository;
     $this->groupModel = $groupModel;
     $this->townModel = $townModel;
+    $this->appDir = $appDir;
   }
   
   /**
@@ -176,8 +181,15 @@ class SystemSettingsFormFactory {
    * @return void
    */
   function process(Form $form, array $values): void {
+    $filename = $this->appDir . "/config/local.neon";
+    $config = Neon::decode(file_get_contents($filename));
+    $config += ["nexendrie" => $values];
+    if(is_string($config["nexendrie"]["locale"]["plural"])) {
+      $config["nexendrie"]["locale"]["plural"] = explode("\n", $config["nexendrie"]["locale"]["plural"]);
+    }
     try {
-      $this->sr->save($values);
+      $content = Neon::encode($config, Neon::BLOCK);
+      FileSystem::write($filename, $content);
     } catch(\Nette\IOException $e) {
       $form->addError("Došlo k chybě při ukládání nastavení. Ujisti se, že máš právo zápisu do souboru.");
     }
