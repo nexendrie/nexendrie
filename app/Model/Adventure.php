@@ -57,7 +57,7 @@ class Adventure {
    */
   function listOfNpcs(int $adventureId): OneHasMany {
     $adventure = $this->orm->adventures->getById($adventureId);
-    if(!$adventure) {
+    if(is_null($adventure)) {
       throw new AdventureNotFoundException;
     } else {
       return $adventure->npcs;
@@ -236,14 +236,14 @@ class Adventure {
       throw new CannotDoAdventureException;
     }
     $adventure = $this->orm->adventures->getById($adventureId);
-    if(!$adventure) {
+    if(is_null($adventure)) {
       throw new AdventureNotFoundException;
     }
     if($adventure->level > $this->user->identity->level) {
       throw new InsufficientLevelForAdventureException;
     }
     $mount = $this->orm->mounts->getById($mountId);
-    if(!$mount) {
+    if(is_null($mount)) {
       throw new MountNotFoundException;
     } elseif($mount->owner->id != $this->user->id) {
       throw new MountNotOwnedException;
@@ -352,14 +352,14 @@ class Adventure {
       throw new AuthenticationNeededException;
     }
     $adventure = $this->getCurrentAdventure();
-    if(!$adventure) {
+    if(is_null($adventure)) {
       throw new NotOnAdventureException;
     }
     if($adventure->progress > 9) {
       throw new NoEnemyRemainException;
     }
     $enemy = $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
-    if(!$enemy) {
+    if(is_null($enemy)) {
       throw new NoEnemyRemainException;
     }
     $success = $this->fightNpc($enemy, $adventure->mount);
@@ -386,7 +386,7 @@ class Adventure {
       throw new AuthenticationNeededException;
     }
     $adventure = $this->getCurrentAdventure();
-    if(!$adventure) {
+    if(is_null($adventure)) {
       throw new NotOnAdventureException;
     }
     if($this->getNextNpc($adventure)) {

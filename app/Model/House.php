@@ -78,7 +78,7 @@ class House {
       throw new AuthenticationNeededException;
     }
     $house = $this->getUserHouse();
-    if(!$house) {
+    if(is_null($house)) {
       return false;
     } elseif($house->luxuryLevel >= HouseEntity::MAX_LEVEL) {
       return false;
@@ -121,7 +121,7 @@ class House {
       throw new AuthenticationNeededException;
     }
     $house = $this->getUserHouse();
-    if(!$house) {
+    if(is_null($house)) {
       return false;
     } elseif($house->hp >= 100) {
       return false;
@@ -164,7 +164,7 @@ class House {
       throw new AuthenticationNeededException;
     }
     $house = $this->getUserHouse();
-    if(!$house) {
+    if(is_null($house)) {
       return false;
     } elseif($house->breweryLevel >= HouseEntity::MAX_LEVEL) {
       return false;
@@ -209,7 +209,7 @@ class House {
       throw new AuthenticationNeededException;
     }
     $house = $this->getUserHouse();
-    if(!$house) {
+    if(is_null($house)) {
       return false;
     } elseif($house->owner->group->path != GroupEntity::PATH_CITY) {
       return false;

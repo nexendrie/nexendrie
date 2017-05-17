@@ -97,7 +97,7 @@ class Tavern {
       throw new AuthenticationNeededException;
     }
     $meal = $this->orm->meals->getById($id);
-    if(!$meal) {
+    if(is_null($meal)) {
       throw new MealNotFoundException;
     }
     $user = $this->orm->users->getById($this->user->id);

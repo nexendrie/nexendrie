@@ -181,7 +181,7 @@ class Town {
       throw new AuthenticationNeededException;
     }
     $town = $this->orm->towns->getById($townId);
-    if(!$town) {
+    if(is_null($town)) {
       throw new TownNotFoundException;
     } elseif($town->owner->id != $this->user->id) {
       throw new TownNotOwnedException;
@@ -247,7 +247,7 @@ class Town {
       throw new AuthenticationNeededException;
     }
     $town = $this->orm->towns->getById($id);
-    if(!$town) {
+    if(is_null($town)) {
       throw new TownNotFoundException;
     }
     $user = $this->orm->users->getById($this->user->id);
@@ -285,7 +285,7 @@ class Town {
       throw new InsufficientFundsException;
     }
     $item = $this->orm->userItems->getByUserAndItem($user->id, 15);
-    if(!$item) {
+    if(is_null($item)) {
       throw new CannotFoundTownException;
     }
     if($this->orm->towns->getByName($data["name"])) {

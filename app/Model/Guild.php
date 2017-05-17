@@ -252,7 +252,7 @@ class Guild {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->guild) {
+    if(is_null($user->guild)) {
       return false;
     } else {
       return !($user->guildRank->id === $this->getMaxRank());
@@ -289,7 +289,7 @@ class Guild {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->guild) {
+    if(is_null($user->guild)) {
       return false;
     } else {
       return ($user->guildRank->id === $this->getMaxRank());
@@ -307,7 +307,7 @@ class Guild {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->guild) {
+    if(is_null($user->guild)) {
       return false;
     } elseif($user->guildRank->id != $this->getMaxRank()) {
       return false;
@@ -381,7 +381,7 @@ class Guild {
       throw new MissingPermissionsException;
     }
     $user = $this->orm->users->getById($userId);
-    if(!$user) {
+    if(is_null($user)) {
       throw new UserNotFoundException;
     }
     $admin = $this->orm->users->getById($this->user->id);
@@ -412,7 +412,7 @@ class Guild {
       throw new MissingPermissionsException;
     }
     $user = $this->orm->users->getById($userId);
-    if(!$user) {
+    if(is_null($user)) {
       throw new UserNotFoundException;
     }
     $admin = $this->orm->users->getById($this->user->id);
@@ -443,7 +443,7 @@ class Guild {
       throw new MissingPermissionsException;
     }
     $user = $this->orm->users->getById($userId);
-    if(!$user) {
+    if(is_null($user)) {
       throw new UserNotFoundException;
     }
     $admin = $this->orm->users->getById($this->user->id);

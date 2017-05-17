@@ -45,7 +45,7 @@ class Article {
    */
   function listOfNews(\Nette\Utils\Paginator $paginator = NULL): ICollection {
     $news = $this->orm->articles->findNews();
-    if($paginator) {
+    if(!is_null($paginator)) {
       $paginator->itemsPerPage = $this->itemsPerPage;
       $news = $news->limitBy($paginator->getLength(), $paginator->getOffset());
     }
@@ -61,7 +61,7 @@ class Article {
    */
   function category($name, \Nette\Utils\Paginator $paginator = NULL): ICollection {
     $articles = $this->orm->articles->findByCategory($name);
-    if($paginator) {
+    if(!is_null($paginator)) {
       $paginator->itemsPerPage = $this->itemsPerPage;
       $articles = $articles->limitBy($paginator->getLength(), $paginator->getOffset());
     }

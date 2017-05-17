@@ -64,7 +64,7 @@ class Marriage {
       return false;
     }
     $user = $this->orm->users->getById($id);
-    if(!$user) {
+    if(is_null($user)) {
       return false;
     } elseif(!is_null($this->orm->marriages->getActiveMarriage($id)->fetch())) {
       return false;
@@ -148,7 +148,7 @@ class Marriage {
       throw new AuthenticationNeededException;
     }
     $proposal = $this->orm->marriages->getById($id);
-    if(!$proposal) {
+    if(is_null($proposal)) {
       throw new MarriageNotFoundException;
     } elseif($proposal->user2->id != $this->user->id) {
       throw new AccessDeniedException;
@@ -185,7 +185,7 @@ class Marriage {
       throw new AuthenticationNeededException;
     }
     $proposal = $this->orm->marriages->getById($id);
-    if(!$proposal) {
+    if(is_null($proposal)) {
       throw new MarriageNotFoundException;
     } elseif($proposal->user2->id != $this->user->id) {
       throw new AccessDeniedException;

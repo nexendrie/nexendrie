@@ -242,7 +242,7 @@ class Order {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->order) {
+    if(is_null($user->order)) {
       return false;
     } else {
       return !($user->orderRank->id === $this->maxRank);
@@ -279,7 +279,7 @@ class Order {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->order) {
+    if(is_null($user->order)) {
       return false;
     } else {
       return ($user->orderRank->id === $this->maxRank);
@@ -297,7 +297,7 @@ class Order {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->order) {
+    if(is_null($user->order)) {
       return false;
     } elseif($user->orderRank->id != $this->maxRank) {
       return false;

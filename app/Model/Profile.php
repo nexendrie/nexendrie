@@ -61,7 +61,7 @@ class Profile {
    */
   function getPath(int $id = NULL): string {
     $user = $this->orm->users->getById($id ?? $this->user->id);
-    if(!$user) {
+    if(is_null($user)) {
       throw new UserNotFoundException;
     } else {
       return $user->group->path;
@@ -77,9 +77,11 @@ class Profile {
     */
   function getPartner(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getActiveMarriage($id)->fetch();
-    if($marriage AND $marriage->user1->id === $id) {
+    if(is_null($marriage)) {
+      return NULL;
+    } elseif($marriage->user1->id === $id) {
       return $marriage->user2;
-    } elseif($marriage AND $marriage->user2->id === $id) {
+    } elseif($marriage->user2->id === $id) {
       return $marriage->user1;
     } else {
       return NULL;
@@ -94,9 +96,11 @@ class Profile {
     */
   function getFiance(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getAcceptedMarriage($id)->fetch();
-    if($marriage AND $marriage->user1->id === $id) {
+    if(is_null($marriage)) {
+      return NULL;
+    } elseif($marriage->user1->id === $id) {
       return $marriage->user2;
-    } elseif($marriage AND $marriage->user2->id === $id) {
+    } elseif($marriage->user2->id === $id) {
       return $marriage->user1;
     } else {
       return NULL;

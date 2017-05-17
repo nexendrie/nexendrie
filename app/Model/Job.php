@@ -168,7 +168,7 @@ class Job {
       throw new AlreadyWorkingException;
     }
     $row = $this->orm->jobs->getById($id);
-    if(!$row) {
+    if(is_null($row)) {
       throw new JobNotFoundException;
     }
     if($row->level > $this->user->identity->level) {
@@ -414,7 +414,7 @@ class Job {
    */
   function listOfMessages(int $jobId): OneHasMany {
     $job = $this->orm->jobs->getById($jobId);
-    if(!$job) {
+    if(is_null($job)) {
       throw new JobNotFoundException;
     } else {
       return $job->messages;
@@ -482,7 +482,7 @@ class Job {
    */
   function deleteMessage(int $id): int {
     $message = $this->orm->jobMessages->getById($id);
-    if(!$message) {
+    if(is_null($message)) {
       throw new JobMessageNotFoundException;
     } else {
       $return = $message->job->id;

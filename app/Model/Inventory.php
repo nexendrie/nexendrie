@@ -101,7 +101,7 @@ class Inventory {
       throw new AuthenticationNeededException;
     }
     $item = $this->orm->userItems->getById($id);
-    if(!$item) {
+    if(is_null($item)) {
       throw new ItemNotFoundException;
     } elseif($item->user->id != $this->user->id) {
       throw new ItemNotOwnedException;
@@ -139,7 +139,7 @@ class Inventory {
       throw new AuthenticationNeededException;
     }
     $item = $this->orm->userItems->getById($id);
-    if(!$item) {
+    if(is_null($item)) {
       throw new ItemNotFoundException;
     } elseif($item->user->id != $this->user->id) {
       throw new ItemNotOwnedException;
@@ -168,7 +168,7 @@ class Inventory {
       throw new AuthenticationNeededException;
     }
     $item = $this->orm->userItems->getById($id);
-    if(!$item) {
+    if(is_null($item)) {
       throw new ItemNotFoundException;
     } elseif($item->user->id != $this->user->id) {
       throw new ItemNotOwnedException;
@@ -215,7 +215,7 @@ class Inventory {
       throw new NotMarriedException;
     }
     $item = $this->orm->userItems->getById($id);
-    if(!$item) {
+    if(is_null($item)) {
       throw new ItemNotFoundException;
     } elseif($item->user->id != $this->user->id) {
       throw new ItemNotOwnedException;
@@ -244,12 +244,7 @@ class Inventory {
    * @return UserItemEntity|NULL
    */
   function getWeapon(int $user): ?UserItemEntity {
-    $weapon = $this->orm->userItems->getWornWeapon($user);
-    if($weapon) {
-      return $weapon;
-    } else {
-      return NULL;
-    }
+    return $this->orm->userItems->getWornWeapon($user);
   }
   
   /**
@@ -257,12 +252,7 @@ class Inventory {
    * @return UserItemEntity|NULL
    */
   function getArmor(int $user): ?UserItemEntity {
-    $armor = $this->orm->userItems->getWornArmor($user);
-    if($armor) {
-      return $armor;
-    } else {
-      return NULL;
-    }
+    return $this->orm->userItems->getWornArmor($user);
   }
   
   /**
@@ -270,12 +260,7 @@ class Inventory {
    * @return UserItemEntity|NULL
    */
   function getHelmet(int $user): ?UserItemEntity {
-    $armor = $this->orm->userItems->getWornHelmet($user);
-    if($armor) {
-      return $armor;
-    } else {
-      return NULL;
-    }
+    return $this->orm->userItems->getWornHelmet($user);
   }
   
   /**
@@ -307,7 +292,7 @@ class Inventory {
       throw new AuthenticationNeededException;
     }
     $item = $this->orm->userItems->getById($id);
-    if(!$item) {
+    if(is_null($item)) {
       throw new ItemNotFoundException;
     } elseif($item->user->id != $this->user->id) {
       throw new ItemNotOwnedException;
@@ -344,7 +329,7 @@ class Inventory {
       throw new AuthenticationNeededException;
     }
     $item = $this->orm->userItems->getById($id);
-    if(!$item) {
+    if(is_null($item)) {
       throw new ItemNotFoundException;
     } elseif($item->user->id != $this->user->id) {
       throw new ItemNotOwnedException;

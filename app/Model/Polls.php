@@ -111,7 +111,7 @@ class Polls {
       throw new MissingPermissionsException("You don't have permissions for editing polls.");
     }
     $poll = $this->orm->polls->getById($id);
-    if(!$poll) {
+    if(is_null($poll)) {
       throw new PollNotFoundException("Specified poll does not exist.");
     }
     foreach($data as $key => $value) {

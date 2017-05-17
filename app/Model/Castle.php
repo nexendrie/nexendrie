@@ -159,7 +159,7 @@ class Castle {
       throw new AuthenticationNeededException;
     }
     $castle = $this->getUserCastle();
-    if(!$castle) {
+    if(is_null($castle)) {
       return false;
     } elseif($castle->level >= CastleEntity::MAX_LEVEL) {
       return false;

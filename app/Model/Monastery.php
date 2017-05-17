@@ -67,7 +67,7 @@ class Monastery {
    */
   function get(int $id): MonasteryEntity {
     $monastery = $this->orm->monasteries->getById($id);
-    if(!$monastery) {
+    if(is_null($monastery)) {
       throw new MonasteryNotFoundException;
     } else {
       return $monastery;
@@ -84,7 +84,7 @@ class Monastery {
    */
   function getByUser(int $id = NULL): MonasteryEntity {
     $user = $this->orm->users->getById($id ?? $this->user->id);
-    if(!$user) {
+    if(is_null($user)) {
       throw new UserNotFoundException;
     } elseif(!$user->monastery) {
       throw new NotInMonasteryException;
@@ -180,7 +180,7 @@ class Monastery {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) {
+    if(is_null($user->monastery)) {
       return false;
     } elseif($user->monastery->hp <= 30) {
       return false;
@@ -227,7 +227,7 @@ class Monastery {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) {
+    if(is_null($user->monastery)) {
       return false;
     } elseif($user->id === $user->monastery->leader->id) {
       return false;
@@ -335,7 +335,7 @@ class Monastery {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) {
+    if(is_null($user->monastery)) {
       throw new NotInMonasteryException;
     } elseif($user->money < $amount) {
       throw new InsufficientFundsException;
@@ -404,7 +404,7 @@ class Monastery {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) {
+    if(is_null($user->monastery)) {
       return false;
     } elseif($user->monastery->leader->id != $this->user->id) {
       return false;
@@ -423,7 +423,7 @@ class Monastery {
       return 0;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) {
+    if(is_null($user->monastery)) {
       return 0;
     }
     $baseValue = $user->monastery->prayerLife;
@@ -441,7 +441,7 @@ class Monastery {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) {
+    if(is_null($user->monastery)) {
       return false;
     } elseif($user->monastery->leader->id != $this->user->id) {
       return false;
@@ -488,7 +488,7 @@ class Monastery {
       throw new AuthenticationNeededException;
     }
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery) {
+    if(is_null($user->monastery)) {
       return false;
     } elseif($user->monastery->leader->id != $this->user->id) {
       return false;
