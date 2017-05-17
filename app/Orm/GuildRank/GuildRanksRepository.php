@@ -7,7 +7,7 @@ namespace Nexendrie\Orm;
  * @author Jakub Konečný
  */
 class GuildRanksRepository extends \Nextras\Orm\Repository\Repository {
-  static function getEntityClassNames() {
+  static function getEntityClassNames(): array {
     return [GuildRank::class];
   }
   

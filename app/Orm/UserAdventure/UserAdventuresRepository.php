@@ -9,7 +9,7 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
-  static function getEntityClassNames() {
+  static function getEntityClassNames(): array {
     return [UserAdventure::class];
   }
   

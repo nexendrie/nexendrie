@@ -7,7 +7,7 @@ namespace Nexendrie\Orm;
  * @author Jakub Konečný
  */
 class OrdersRepository extends \Nextras\Orm\Repository\Repository {
-  static function getEntityClassNames() {
+  static function getEntityClassNames(): array {
     return [Order::class];
   }
   

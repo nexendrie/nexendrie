@@ -11,7 +11,7 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Marriage[] getAcceptedMarriage($user)
  */
 class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
-  static function getEntityClassNames() {
+  static function getEntityClassNames(): array {
     return [Marriage::class];
   }
   
