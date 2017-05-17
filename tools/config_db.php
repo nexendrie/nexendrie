@@ -21,17 +21,19 @@ $config["dbal"] = $db;
 file_put_contents($filename, Neon::encode($config, Neon::BLOCK));
 echo "Settings written to " . realpath($filename) . ".\n";
 
+echo "Setting up database ...\n";
+
+$connection = new Nextras\Dbal\Connection($config["dbal"]);
+
 if($db["driver"] === "mysqli") {
   $files = ["structure", "data_basic"];
   $extension = "mysql";
 } else {
   $files = ["structure", "data_basic", "final"];
-  $extension = "mysql";
+  $extension = "pgsql";
 }
-
-echo "Setting up database ...\n";
-$connection = new Nextras\Dbal\Connection($config["dbal"]);
 $sqlsFolder = __DIR__ . "/../app/sqls";
+
 foreach($files as $file) {
   echo "Executing file: $file.$extension ... ";
   Tracy\Debugger::timer($file);

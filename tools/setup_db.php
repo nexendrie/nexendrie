@@ -8,6 +8,8 @@ Tracy\Debugger::timer("setup_db");
 
 $config = Neon::decode(file_get_contents(__DIR__ . "/../tests/local.neon"));
 
+echo "Setting up database ...\n";
+
 $connection = new Nextras\Dbal\Connection($config["dbal"]);
 
 if($config["dbal"]["driver"] === "mysqli") {
