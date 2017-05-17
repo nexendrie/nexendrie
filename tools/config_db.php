@@ -5,6 +5,8 @@ use Nette\Neon\Neon,
 
 require __DIR__ . "/../vendor/autoload.php";
 
+Tracy\Debugger::timer("config_db");
+
 $filename = __DIR__ . "../app/config/local.neon";
 $db = [
   "driver" => Arrays::get($argv, 1, "mysqli"),
@@ -31,9 +33,14 @@ echo "Setting up database ...\n";
 $connection = new Nextras\Dbal\Connection($config["dbal"]);
 $sqlsFolder = __DIR__ . "/../app/sqls";
 foreach($files as $file) {
-  echo "Executing file: $file.$extension";
+  echo "Executing file: $file.$extension ... ";
+  Tracy\Debugger::timer($file);
   FileImporter::executeFile($connection, "$sqlsFolder/$file.$extension");
-  echo " ... Done\n";
+  $time = round(Tracy\Debugger::timer($file), 2);
+  echo "Done in $time second(s)\n";
 }
 echo "Tables were created and filled with basic data.\n";
+
+$time = round(Tracy\Debugger::timer("config_db"), 2);
+echo "\nTotal time: $time second(s)\n";
 ?>
