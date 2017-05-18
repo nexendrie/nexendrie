@@ -10,4 +10,3 @@ parameters:
         - '#Call to an undefined method Nette\\Application\\UI\\Form::addDateTime\(\)#'
         - '#Access to (protected|private) property \$[a-zA-Z0-9_]+ of class [a-zA-Z0-9\\_]+#'
         #- '#Parameter \#[0-9] \$[a-zA-Z0-9_]+ of method [a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+ expects [a-zA-Z0-9\\_]+, [a-zA-Z0-9\\_]+|null given#'
-        - '#Method Nexendrie\\Model\\Marriage::getCurrentMarriage\(\) should return  Nexendrie\\Orm\\Marriage|null but returns Nextras\\Orm\\Entity\\IEntity|null#'

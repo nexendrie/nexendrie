@@ -42,7 +42,7 @@ class Combat {
     if($set AND $set->stat === ItemSetEntity::STAT_HITPOINTS) {
       $hpIncrease += $set->bonus;
     }
-    $marriage = $this->orm->marriages->getActiveMarriage($user->id)->fetch();
+    $marriage = $this->orm->marriages->getActiveMarriage($user->id);
     if(!is_null($marriage)) {
       $hpIncrease += $marriage->hpIncrease;
     }

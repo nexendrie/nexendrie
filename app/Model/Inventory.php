@@ -210,7 +210,7 @@ class Inventory {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
-    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
       throw new NotMarriedException;
     }

@@ -66,15 +66,15 @@ class Marriage {
     $user = $this->orm->users->getById($id);
     if(is_null($user)) {
       return false;
-    } elseif(!is_null($this->orm->marriages->getActiveMarriage($id)->fetch())) {
+    } elseif(!is_null($this->orm->marriages->getActiveMarriage($id))) {
       return false;
-    } elseif(!is_null($this->orm->marriages->getAcceptedMarriage($id)->fetch())) {
+    } elseif(!is_null($this->orm->marriages->getAcceptedMarriage($id))) {
       return false;
     }
     $me = $this->orm->users->getById($this->user->id);
-    if(!is_null($this->orm->marriages->getActiveMarriage($this->user->id)->fetch())) {
+    if(!is_null($this->orm->marriages->getActiveMarriage($this->user->id))) {
       return false;
-    } elseif(!is_null($this->orm->marriages->getAcceptedMarriage($this->user->id)->fetch())) {
+    } elseif(!is_null($this->orm->marriages->getAcceptedMarriage($this->user->id))) {
       return false;
     } elseif($user->group->path != $me->group->path) {
       return false;
@@ -89,9 +89,9 @@ class Marriage {
   function canFinish(MarriageEntity $marriage): bool {
     if($marriage->status != MarriageEntity::STATUS_ACCEPTED) {
       return false;
-    } elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user1->id)->fetch())) {
+    } elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user1->id))) {
       return false;
-    } elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user2->id)->fetch())) {
+    } elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user2->id))) {
       return false;
     } elseif($marriage->user1->group->path != $marriage->user2->group->path) {
       return false;
@@ -208,9 +208,9 @@ class Marriage {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
-    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
-      $marriage = $this->orm->marriages->getAcceptedMarriage($this->user->id)->fetch();
+      $marriage = $this->orm->marriages->getAcceptedMarriage($this->user->id);
     }
     return $marriage;
   }
@@ -227,7 +227,7 @@ class Marriage {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
-    $marriage = $this->orm->marriages->getAcceptedMarriage($this->user->id)->fetch();
+    $marriage = $this->orm->marriages->getAcceptedMarriage($this->user->id);
     if(is_null($marriage)) {
       throw new NotEngagedException;
     }
@@ -250,7 +250,7 @@ class Marriage {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
-    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
       throw new NotMarriedException;
     } elseif($marriage->divorce) {
@@ -276,7 +276,7 @@ class Marriage {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
-    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
       throw new NotMarriedException;
     } elseif($marriage->divorce < 1 OR $marriage->divorce > 2) {
@@ -298,7 +298,7 @@ class Marriage {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
-    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
       throw new NotMarriedException;
     } elseif($marriage->divorce < 1 OR $marriage->divorce > 2) {
@@ -321,7 +321,7 @@ class Marriage {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
-    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id)->fetch();
+    $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
       throw new NotMarriedException;
     } elseif($marriage->divorce < 1 OR $marriage->divorce > 4) {
