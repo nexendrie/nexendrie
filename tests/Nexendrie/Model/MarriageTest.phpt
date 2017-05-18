@@ -43,8 +43,12 @@ class MarriageTest extends \Tester\TestCase {
     Assert::false($this->model->canPropose(2));
     $this->login("kazimira");
     Assert::false($this->model->canPropose(1));
+    Assert::false($this->model->canPropose(5));
     $this->login("Rahym");
     Assert::false($this->model->canPropose(0));
+    $this->login("premysl");
+    Assert::false($this->model->canPropose(3));
+    Assert::false($this->model->canPropose(7));
   }
   
   /**
