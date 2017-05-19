@@ -134,7 +134,7 @@ class SettingsRepository {
    * @param array $config
    * @return array
    */
-  protected function validateSection(string $name, array $config) {
+  protected function validateSection(string $name, array $config): array {
     $values = Arrays::get($config, $name, []);
     $resolver = new OptionsResolver;
     $defaults = $this->defaults[$name];
