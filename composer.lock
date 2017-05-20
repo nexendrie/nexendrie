@@ -93,28 +93,28 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/EventCalendar.git",
-                "reference": "6b8de9c767a02e3fb50d3005387e2bf611df8b01"
+                "reference": "04b2471030157953caeef52dc9badd55cb24539c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/6b8de9c767a02e3fb50d3005387e2bf611df8b01",
-                "reference": "6b8de9c767a02e3fb50d3005387e2bf611df8b01",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/04b2471030157953caeef52dc9badd55cb24539c",
+                "reference": "04b2471030157953caeef52dc9badd55cb24539c",
                 "shasum": ""
             },
             "require": {
-                "latte/latte": "~2.3",
-                "nette/application": "~2.3",
-                "nette/neon": "~2.3",
-                "nette/utils": "~2.3",
-                "php": ">= 5.3.0"
+                "latte/latte": "^2.4",
+                "nette/application": "^2.4",
+                "nette/neon": "^2.4",
+                "nette/utils": "^2.4",
+                "php": ">= 5.6.0"
             },
             "replace": {
-                "jaroslav-kubicek/event-calendar": "~0.2"
+                "jaroslav-kubicek/event-calendar": ">=0.2"
             },
             "require-dev": {
-                "nette/bootstrap": "~2.4",
-                "nette/robot-loader": "~2.4",
-                "nette/tester": "@dev",
+                "nette/php-generator": "~2.6",
+                "nexendrie/code-quality": "@dev",
+                "phpstan/phpstan-nette": "^0.7",
                 "tracy/tracy": "~2.4"
             },
             "suggest": {
@@ -127,8 +127,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "EventCalendar\\": "/"
+                "psr-4": {
+                    "EventCalendar\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -143,7 +143,7 @@
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
             "homepage": "http://www.nimral.cz/calendar",
-            "time": "2017-02-14T13:05:48+00:00"
+            "time": "2017-05-19T14:29:49+00:00"
         },
         {
             "name": "latte/latte",
