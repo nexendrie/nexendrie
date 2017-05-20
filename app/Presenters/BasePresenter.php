@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters;
 
+use Nexendrie\Menu\IMenuControlFactory,
+    Nexendrie\Menu\MenuControl;
+
 /**
  * Ultimate ancestor of all presenters
  *
@@ -46,6 +49,14 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
       $this->flashMessage("K zobrazení této stránky nemáš práva.");
       $this->redirect("Homepage:");
     }
+  }
+  
+  /**
+   * @param IMenuControlFactory $factory
+   * @return MenuControl
+   */
+  protected function createComponentMenu(IMenuControlFactory $factory): MenuControl {
+    return $factory->create();
   }
 }
 ?>

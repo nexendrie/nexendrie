@@ -1,6 +1,7 @@
 Version 1.0.0-beta4+dev
 - added some unit tests
 - some refactoring
+- use package nexendrie/menu to generated menus
 
 Version 1.0.0-beta4
 - replaced BETA in pages' title by configurable version suffix

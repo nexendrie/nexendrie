@@ -15,6 +15,7 @@ extensions:
     cronner: stekycz\Cronner\DI\CronnerExtension
     rss: Nexendrie\Rss\Bridges\NetteDI\RssExtension
     translation: Nexendrie\Translation\Bridges\NetteDI\TranslationExtension
+    menu: Nexendrie\Menu\DI\MenuExtension
 orm:
     model: Nexendrie\Orm\Model
 php:
@@ -23,3 +24,117 @@ translation:
     folders:
         - %wwwDir%/vendor/nexendrie/book-component/src/lang
     default: cs
+menu:
+    conditions:
+        banned: Nexendrie\Menu\ConditionBanned
+        path: Nexendrie\Menu\ConditionPath
+    default:
+        title: Menu
+        htmlId: mainMenu
+        items:
+            Úvod: ":Front:Homepage:"
+            Město: "Town:"
+            Dům:
+                link: ":Front:House:"
+                conditions:
+                    path: ::constant(Nexendrie\Orm\Group::PATH_CITY)
+            Cech:
+                link: ":Front:Guild:"
+                conditions:
+                    path: ::constant(Nexendrie\Orm\Group::PATH_CITY)
+            Klášter:
+                link: ":Front:Monastery:"
+                conditions:
+                    path: ::constant(Nexendrie\Orm\Group::PATH_CHURCH)
+            Hrad:
+                link: ":Front:Castle:"
+                conditions:
+                    path: ::constant(Nexendrie\Orm\Group::PATH_TOWER)
+            Řád:
+                link: ":Front:Order:"
+                conditions:
+                    path: ::constant(Nexendrie\Orm\Group::PATH_TOWER)
+            Dobrodružství: "Adventure:"
+            Akademie: ":Front:Academy:"
+            Tržiště: ":Front:Market:"
+            Hostinec: ":Front:Tavern:"
+            Banka: ":Front:Bank:"
+            Práce: ":Front:Work:"
+            Stáje: ":Front:Stables:"
+            Majetek: ":Front:Property:"
+            Vězení:
+                link: ":Front:Prison:"
+                conditions:
+                    banned: true
+            Manželství:
+                link: ":Front:Marriage:"
+                conditions:
+                    loggedIn: true
+            Kronika: ":Front:Chronicle:"
+            Články: ":Front:Articles:"
+            Nápověda: ":Front:Help:"
+    adminPanel:
+        htmlId: adminPanel
+        items:
+            Administrace:
+                link: ":Admin:Homepage:"
+                conditions:
+                    acl: site:manage
+    userPanelFront:
+        htmlId: userPanel
+        items:
+            Přihlásit se:
+                link: ":Front:User:login"
+                conditions:
+                    loggedIn: false
+            Registrovat se:
+                link: ":Front:User:register"
+                conditions:
+                    loggedIn: false
+            Zprávy:
+                link: ":Front:Messages:"
+                conditions:
+                    loggedIn: true
+            Nastavení:
+                link: ":Front:User:settings"
+                conditions:
+                    loggedIn: true
+            Odhlásit se:
+                link: ":Front:User:logout"
+                conditions:
+                    loggedIn: true
+    userPanelAdmin:
+        htmlId: userPanel
+        items:
+            Zprávy: ":Front:Messages:"
+            Nastavení: ":Front:User:settings"
+            Odhlásit se: ":Front:User:logout"
+    admin:
+        htmlId: mainMenu
+        title: Menu
+        items:
+            Články: ":Admin:Article:"
+            Ankety:
+                link: ":Admin:Polls:"
+                conditions:
+                    acl: poll:list
+            Uživatelé:
+                link: ":Admin:User:"
+                conditions:
+                    acl: user:list
+            Skupiny:
+                link: ":Admin:Group:"
+                conditions:
+                    acl: group:list
+            Správa obsahu:
+                link: ":Admin:Content:"
+                conditions:
+                    acl: content:list
+            Akce:
+                link: ":Admin:Event:"
+                conditions:
+                    acl: event:list
+            Nastavení systému:
+                link: ":Admin:Settings:"
+                conditions:
+                    acl: site:settings

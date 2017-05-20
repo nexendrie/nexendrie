@@ -9,7 +9,17 @@
   {ifset #head}{include #head}{/ifset}
 </head>
 <body>
-{include "header.latte"}
+<div id="header">
+  <h2><a href="{$baseUrl}">Nexendrie</a></h2>
+  {control menu adminPanel}
+  {control menu userPanelFront}
+</div>
+{control menu:list}
+<div id="flashes">
+  {foreach $flashes as $flash}
+    <div class="flash {$flash->type}">{$flash->message}</div>
+  {/foreach}
+</div>
 <article id="main">
 {include #content}</article>
 {include "footer.latte"}

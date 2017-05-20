@@ -13,14 +13,6 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   protected $profileModel;
   
   /**
-   * @return void
-   */
-  protected function startup() {
-    parent::startup();
-    $this->template->path = ($this->user->isLoggedIn() ? $this->user->identity->path : NULL);
-  }
-  
-  /**
    * The user must be logged in to see a page
    * 
    * @return void

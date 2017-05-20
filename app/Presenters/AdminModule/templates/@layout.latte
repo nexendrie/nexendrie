@@ -7,7 +7,16 @@
   <link rel="stylesheet" href="{$basePath}/styles/{$style}.css">
 </head>
 <body>
-{include "header.latte"}
+<div id="header">
+  <h2><a n:href="Homepage:">Nexendrie</a></h2>
+  {control menu userPanelAdmin}
+</div>
+{control menu:list admin}
+<div id="flashes">
+{foreach $flashes as $flash}
+  <div class="flash {$flash->type}">{$flash->message}</div>
+{/foreach}
+</div>
 <article id="main">
 {block #content}{/block}</article>
 {include "footer.latte"}

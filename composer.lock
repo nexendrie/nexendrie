@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bd224d482829acd74c4078be22fe85f",
+    "content-hash": "050bd7b732701bcc95ff960706a6fb7e",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1229,6 +1229,68 @@
                 "nette"
             ],
             "time": "2017-04-15T11:54:15+00:00"
+        },
+        {
+            "name": "nexendrie/menu",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nexendrie/menu.git",
+                "reference": "bc06c63249f6fc77a6868d6ad87bf2d27637ab58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nexendrie/menu/zipball/bc06c63249f6fc77a6868d6ad87bf2d27637ab58",
+                "reference": "bc06c63249f6fc77a6868d6ad87bf2d27637ab58",
+                "shasum": ""
+            },
+            "require": {
+                "latte/latte": "^2.4",
+                "nette/application": "^2.4",
+                "nette/di": "^2.4",
+                "nette/utils": "^2.4",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "nette/tester": "dev-master",
+                "nexendrie/code-quality": "dev-master",
+                "nexendrie/site-generator": "1.0.x-dev",
+                "phpstan/phpstan-nette": "^0.7"
+            },
+            "suggest": {
+                "nette/security": "To use menu item conditions related to user"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nexendrie\\Menu\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Konečný",
+                    "email": "jakub.konecny2@centrum.cz",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple menu component",
+            "homepage": "https://nexendrie.gitlab.io",
+            "keywords": [
+                "Simple",
+                "component",
+                "menu",
+                "nette"
+            ],
+            "time": "2017-05-20T15:55:43+00:00"
         },
         {
             "name": "nexendrie/rss",
