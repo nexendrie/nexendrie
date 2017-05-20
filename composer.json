@@ -44,7 +44,7 @@
         "phpstan/phpstan-nette": "^0.7"
     },
     "replace": {
-      "satooshi/php-coveralls": "*"
+        "satooshi/php-coveralls": "*"
     },
     "autoload": {
         "psr-4": {
