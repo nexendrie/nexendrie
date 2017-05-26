@@ -17,8 +17,6 @@ cache:
   variables:
     MYSQL_DATABASE: nexendrie_test
     MYSQL_ROOT_PASSWORD: root
-    APP_USER: admin
-    APP_PASSWORD: qwerty
 
   script:
   - phing test-ci
@@ -40,8 +38,6 @@ test:pgsql:
     POSTGRES_DB: nexendrie_test
     POSTGRES_USER: root
     POSTGRES_PASSWORD: root
-    APP_USER: admin
-    APP_PASSWORD: qwerty
   before_script:
   - cp tests/ci.neon tests/local.neon
   - php tools/pgsql_setup.php

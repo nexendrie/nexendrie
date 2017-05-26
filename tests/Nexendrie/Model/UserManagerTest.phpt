@@ -47,8 +47,8 @@ class UserManagerTest extends \Tester\TestCase {
   }
   
   function testAuthenticate() {
-    $user = getenv("APP_USER");
-    $password = getenv("APP_PASSWORD");
+    $user = "admin";
+    $password = "qwerty";
     $identity = $this->model->authenticate([$user, $password]);
     Assert::type(\Nette\Security\Identity::class, $identity);
     Assert::same(1, $identity->id);
