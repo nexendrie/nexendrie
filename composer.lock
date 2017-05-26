@@ -1232,16 +1232,16 @@
         },
         {
             "name": "nexendrie/menu",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/menu.git",
-                "reference": "bc06c63249f6fc77a6868d6ad87bf2d27637ab58"
+                "reference": "ef7cf306f080bf4c6ba6b98fafac0c923991fd25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/menu/zipball/bc06c63249f6fc77a6868d6ad87bf2d27637ab58",
-                "reference": "bc06c63249f6fc77a6868d6ad87bf2d27637ab58",
+                "url": "https://api.github.com/repos/nexendrie/menu/zipball/ef7cf306f080bf4c6ba6b98fafac0c923991fd25",
+                "reference": "ef7cf306f080bf4c6ba6b98fafac0c923991fd25",
                 "shasum": ""
             },
             "require": {
@@ -1252,9 +1252,9 @@
                 "php": ">=7.1.0"
             },
             "require-dev": {
-                "nette/tester": "dev-master",
+                "nette/tester": "^2.0",
                 "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "1.0.x-dev",
+                "nexendrie/site-generator": "^1.0",
                 "phpstan/phpstan-nette": "^0.7"
             },
             "suggest": {
@@ -1290,7 +1290,7 @@
                 "menu",
                 "nette"
             ],
-            "time": "2017-05-20T15:55:43+00:00"
+            "time": "2017-05-26T12:22:01+00:00"
         },
         {
             "name": "nexendrie/rss",

@@ -16,9 +16,21 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
    * @return void
    */
   function loadConfiguration(): void {
+    $this->registerMenuConditions();
     $this->addModels();
     $this->addComponents();
     $this->addForms();
+  }
+  
+  /**
+   * @return void
+   */
+  protected function registerMenuConditions(): void {
+    $builder = $this->getContainerBuilder();
+    $builder->addDefinition("menu.condition.banned")
+      ->setClass(Nexendrie\Menu\ConditionBanned::class);
+    $builder->addDefinition("menu.condition.path")
+      ->setClass(Nexendrie\Menu\ConditionPath::class);
   }
   
   /**
