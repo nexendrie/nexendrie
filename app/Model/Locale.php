@@ -71,6 +71,14 @@ class Locale {
     return $this->plural("hitpoints", $amount);
   }
   
+  /**
+   * @param int $amount
+   * @return string
+   */
+  function barrels(int $amount): string {
+    return $this->plural("barrels", $amount);
+  }
+  
   function getFormats(): array {
     return $this->formats;
   }
