@@ -21,7 +21,8 @@ orm:
 php:
     date.timezone: Europe/Prague
 translation:
-    folders:
+    localeResolver: fallback
+    folders!:
         - %wwwDir%/vendor/nexendrie/book-component/src/lang
     default: cs
 menu:

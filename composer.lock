@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f848c13c14b2cbcb4cdb3e9f2a62f35",
+    "content-hash": "aec5712031831e3ff7f9d1ca3a18e218",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1172,36 +1172,35 @@
         },
         {
             "name": "nexendrie/book-component",
-            "version": "1.2.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/book-component.git",
-                "reference": "ae03011c142079da45e7cd3cd1574f84899c31d8"
+                "reference": "fab823c91a60a09cacd7f3b416933952ef094766"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/book-component/zipball/ae03011c142079da45e7cd3cd1574f84899c31d8",
-                "reference": "ae03011c142079da45e7cd3cd1574f84899c31d8",
+                "url": "https://api.github.com/repos/nexendrie/book-component/zipball/fab823c91a60a09cacd7f3b416933952ef094766",
+                "reference": "fab823c91a60a09cacd7f3b416933952ef094766",
                 "shasum": ""
             },
             "require": {
                 "latte/latte": "^2.4",
                 "nette/application": "^2.4",
                 "nette/utils": "^2.4",
-                "nexendrie/translation": "^0.3",
+                "nexendrie/translation": "^1.0",
                 "php": ">=7.1.0"
             },
             "require-dev": {
-                "nette/tester": "dev-master",
                 "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "1.0.x-dev",
-                "phpstan/phpstan-nette": "^0.6.2",
+                "nexendrie/site-generator": "^1.0",
+                "phpstan/phpstan-nette": "^0.7",
                 "tracy/tracy": "^2.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -1228,7 +1227,7 @@
                 "component",
                 "nette"
             ],
-            "time": "2017-04-15T11:54:15+00:00"
+            "time": "2017-06-08T12:07:00+00:00"
         },
         {
             "name": "nexendrie/menu",
@@ -1354,34 +1353,39 @@
         },
         {
             "name": "nexendrie/translation",
-            "version": "0.3.0",
+            "version": "1.0.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/translation.git",
-                "reference": "b2ba4df9f6598fff4607362bf8d9da4039657ad7"
+                "reference": "f8a38f9ceea495909813519f227e3c77c8720009"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/translation/zipball/b2ba4df9f6598fff4607362bf8d9da4039657ad7",
-                "reference": "b2ba4df9f6598fff4607362bf8d9da4039657ad7",
+                "url": "https://api.github.com/repos/nexendrie/translation/zipball/f8a38f9ceea495909813519f227e3c77c8720009",
+                "reference": "f8a38f9ceea495909813519f227e3c77c8720009",
                 "shasum": ""
             },
             "require": {
                 "nette/finder": "^2.4",
                 "nette/utils": "^2.4",
-                "php": ">=5.6.0"
+                "nexendrie/utils": "^1.0",
+                "php": ">=7.1.0"
             },
             "require-dev": {
+                "latte/latte": "^2.4",
                 "nette/di": "^2.4",
                 "nette/neon": "^2.4",
-                "nette/tester": "dev-master",
                 "nexendrie/code-quality": "dev-master",
-                "symfony/yaml": "^3.1",
+                "nexendrie/site-generator": "^1.0",
+                "phpstan/phpstan-nette": "^0.7",
+                "symfony/yaml": "^3.3",
                 "tracy/tracy": "^2.4"
             },
             "suggest": {
                 "ext-json": "To use JsonLoader",
-                "nette/di": "To use TranslationExtension",
+                "nette/application": "To use param locale resolver in Nette applications",
+                "nette/di": "For easier integration to Nette applications",
+                "nette/http": "To use session and header locale resolvers",
                 "nette/neon": "To use NeonLoader",
                 "symfony/yaml": "To use YamlLoader",
                 "tracy/tracy": "For debugger panel"
@@ -1395,10 +1399,7 @@
             "autoload": {
                 "psr-4": {
                     "Nexendrie\\Translation\\": "src/"
-                },
-                "classmap": [
-                    "src/exceptions.php"
-                ]
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1423,7 +1424,7 @@
                 "translation",
                 "yaml"
             ],
-            "time": "2017-02-09T13:12:57+00:00"
+            "time": "2017-06-07T12:07:20+00:00"
         },
         {
             "name": "nexendrie/utils",
