@@ -6,6 +6,7 @@ namespace Nexendrie\Model;
 use Nexendrie\Rss\RssResponse,
     Nexendrie\Rss\Generator,
     Nexendrie\Rss\RssChannelItem as Item,
+    Nexendrie\Rss\Collection,
     Nette\Application\LinkGenerator;
 
 /**
@@ -49,7 +50,7 @@ class Rss {
     $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
     $this->generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
     $this->generator->dataSource = function() {
-      $return = [];
+      $return = new Collection;
       $items = $this->articleModel->listOfNews();
       /** @var \Nexendrie\Orm\Article $row */
       foreach($items as $row) {
@@ -79,7 +80,7 @@ class Rss {
     $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
     $this->generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
     $this->generator->dataSource = function() use($id) {
-      $return = [];
+      $return = new Collection;
       $comments = $this->articleModel->viewComments($id);
       /** @var \Nexendrie\Orm\Comment $row */
       foreach($comments as $row) {
