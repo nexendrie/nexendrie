@@ -61,10 +61,6 @@ class SystemSettingsFormFactory {
    */
   protected function getDefaultValues(): array {
     $settings = $this->sr->settings;
-    for($i = 3; $i <= 5; $i++) {
-      unset($settings["locale"]["plural"][$i]);
-    }
-    $settings["locale"]["plural"] = implode("\n", $settings["locale"]["plural"]);
     return $settings;
   }
   
@@ -83,8 +79,6 @@ class SystemSettingsFormFactory {
     $locale->addText("dateTimeFormat", "Formát času:")
       ->setOption("description", "Dokumentace na http://docs.php.net/manual/en/function.date.php")
       ->setRequired("Zadej formát času.");
-    $locale->addTextArea("plural", "Plurály:")
-      ->setRequired("Zadej plurály.");
     $form->addGroup("Role");
     $roles = $form->addContainer("roles");
     $roles->addSelect("guestRole", "Nepřihlášený uživatel:", $groups)
@@ -184,9 +178,6 @@ class SystemSettingsFormFactory {
     $filename = $this->appDir . "/config/local.neon";
     $config = Neon::decode(file_get_contents($filename));
     $config += ["nexendrie" => $values];
-    if(is_string($config["nexendrie"]["locale"]["plural"])) {
-      $config["nexendrie"]["locale"]["plural"] = explode("\n", $config["nexendrie"]["locale"]["plural"]);
-    }
     try {
       $content = Neon::encode($config, Neon::BLOCK);
       FileSystem::write($filename, $content);

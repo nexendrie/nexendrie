@@ -1,0 +1,3 @@
+money: "{0} %count% grošů|{1} %count% groš|[2,4] %count% groše|[5,+Inf[ %count% grošů"
+hitpoints: "{0} %count% životů|{1} %count% život|[2,4] %count% životy|[5,+Inf[ %count% životů"
+barrels: "{0} %count% sudů|{1} %count% sud|[2,4] %count% sudy|[5,+Inf[ %count% sudů"

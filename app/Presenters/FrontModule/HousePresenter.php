@@ -136,7 +136,7 @@ class HousePresenter extends BasePresenter {
         $message = "Uvařil jsi ";
       }
       $message .= $result["amount"] . " ";
-      $message .= $this->localeModel->plural("sud", "sudy", "sudů", $result["amount"]);
+      $message .= $this->localeModel->plural("barrels", $result["amount"]);
       $message .= " piva za ";
       $message .= $this->localeModel->money($result["amount"] * $result["price"]) . ".";
       $this->flashMessage($message);

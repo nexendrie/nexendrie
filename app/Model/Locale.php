@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nette\Localization\ITranslator;
+
 /**
  * Locale Model
  * 
@@ -10,16 +12,16 @@ namespace Nexendrie\Model;
  * @property array $formats
  */
 class Locale {
+  /** @var ITranslator */
+  protected $translator;
   /** @var array */
   protected $formats = [];
   
   use \Nette\SmartObject;
   
-  function __construct(SettingsRepository $sr) {
+  function __construct(SettingsRepository $sr, ITranslator $translator) {
+    $this->translator = $translator;
     $this->formats = $sr->settings["locale"];
-    $this->formats["plural"][1] = array_map(function($value) {
-      return (int) $value;
-    }, explode("-", $this->formats["plural"][1]));
   }
   
   /**
@@ -45,21 +47,12 @@ class Locale {
   /**
    * Selects correct form according to $count
    * 
-   * @param string $word1
-   * @param string $word2
-   * @param string $word3
+   * @param string $message
    * @param int $count
    * @return string
    */
-  function plural(string $word1, string $word2, string $word3, int $count): string {
-    $plural2 = $this->formats["plural"][1];
-    if($count === $this->formats["plural"][0]) {
-      return $word1;
-    } elseif($count >= $plural2[0] AND $count <= $plural2[1]) {
-      return $word2;
-    } else {
-      return $word3;
-    }
+  function plural(string $message, int $count): string {
+    return $this->translator->translate("nexendrie." . $message, $count);
   }
   
   /**
@@ -67,7 +60,7 @@ class Locale {
    * @return string
    */
   function money(int $amount): string {
-    return "$amount " . $this->plural("groš", "groše", "grošů", $amount);
+    return $this->plural("money", $amount);
   }
   
   /**
@@ -75,7 +68,7 @@ class Locale {
    * @return string
    */
   function hitpoints(int $amount): string {
-    return "$amount " . $this->plural("život", "životy", "životů", $amount);
+    return $this->plural("hitpoints", $amount);
   }
   
   function getFormats(): array {

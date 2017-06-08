@@ -50,8 +50,6 @@ class LocaleTest extends \Tester\TestCase {
     Assert::type("array", $formats);
     Assert::type("string", $formats["dateFormat"]);
     Assert::type("string", $formats["dateTimeFormat"]);
-    Assert::type("array", $formats["plural"]);
-    Assert::count(3, $formats["plural"]);
   }
 }
 

@@ -24,9 +24,6 @@ class SettingsRepository {
     "locale" => [
       "dateFormat" => "j.n.Y",
       "dateTimeFormat" => "j.n.Y G:i",
-      "plural" => [
-        0 => 1, "2-4", 5
-      ]
     ],
     "pagination" => [
       "news" => 10
