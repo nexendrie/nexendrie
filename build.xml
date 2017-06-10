@@ -52,10 +52,15 @@
       <arg value="|"/>
       <arg value="php"/>
     </exec>
-    <composer command="install">
+    <move file="composer.phar" tofile="composer"/>
+    <exec executable="chmod" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="+x"/>
+      <arg path="composer"/>
+    </exec>
+    <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
       <arg value="--ignore-platform-reqs"/>
       <arg value="--no-dev"/>
-    </composer>
+    </exec>
     <phingcall target="config-db"/>
   </target>
   <target name="deploy" depends="install-ci">
