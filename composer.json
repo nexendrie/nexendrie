@@ -37,7 +37,7 @@
         "nexendrie/book-component": "^1.3",
         "nexendrie/rss": "^0.4",
         "nexendrie/menu": "^1.0",
-        "symfony/options-resolver": "^3.2"
+        "symfony/options-resolver": "^3.3"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
@@ -46,7 +46,7 @@
         "symplify/easy-coding-standard": "^2.0"
     },
     "replace": {
-        "satooshi/php-coveralls": "*"
+        "codacy/coverage": "*"
     },
     "autoload": {
         "psr-4": {
