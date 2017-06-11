@@ -109,9 +109,8 @@ class Job {
     $job = $this->orm->jobs->getById($id);
     if(is_null($job)) {
       throw new JobNotFoundException("Specified job was not found.");
-    } else {
-      return $job;
     }
+    return $job;
   }
   
   /**
@@ -354,9 +353,8 @@ class Job {
     $job = $this->orm->userJobs->getUserActiveJob($this->user->id);
     if(is_null($job)) {
       throw new NotWorkingException;
-    } else {
-      return $job;
     }
+    return $job;
   }
   
   /**
@@ -367,11 +365,7 @@ class Job {
    */
   function parseJobHelp(UserJobEntity $job): string {
     $oldCount = $job->count;
-    if($job->job->count) {
-      $job->count = $job->job->count;
-    } else {
-      $job->count = 1;
-    }
+    $job->count = ($job->job->count > 0) ? $job->job->count : 1;
     $reward = $this->localeModel->money(array_sum($this->calculateReward($job)));
     $job->count = $oldCount;
     $help = str_replace("%reward%", $reward, $job->job->help);
@@ -396,9 +390,8 @@ class Job {
       return true;
     } elseif($job->lastAction + ($job->job->shift * 60) > time()) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -412,9 +405,8 @@ class Job {
     $job = $this->orm->jobs->getById($jobId);
     if(is_null($job)) {
       throw new JobNotFoundException;
-    } else {
-      return $job->messages;
     }
+    return $job->messages;
   }
   
   /**
@@ -428,9 +420,8 @@ class Job {
     $message = $this->orm->jobMessages->getById($id);
     if(is_null($message)) {
       throw new JobMessageNotFoundException;
-    } else {
-      return $message;
     }
+    return $message;
   }
   
   /**
@@ -480,11 +471,10 @@ class Job {
     $message = $this->orm->jobMessages->getById($id);
     if(is_null($message)) {
       throw new JobMessageNotFoundException;
-    } else {
-      $return = $message->job->id;
-      $this->orm->jobMessages->remove($message);
-      return $return;
     }
+    $return = $message->job->id;
+    $this->orm->jobMessages->remove($message);
+    return $return;
   }
   
   /**

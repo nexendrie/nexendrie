@@ -78,9 +78,8 @@ class Guild {
     $guild = $this->orm->castles->getByName($name);
     if($guild AND $guild->id != $id) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -133,9 +132,8 @@ class Guild {
       return false;
     } elseif($user->guild) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -208,9 +206,8 @@ class Guild {
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path === GroupEntity::PATH_CITY AND !$user->guild) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
   
   /**
@@ -251,9 +248,8 @@ class Guild {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild)) {
       return false;
-    } else {
-      return !($user->guildRank->id === $this->getMaxRank());
     }
+    return !($user->guildRank->id === $this->getMaxRank());
   }
   
   /**
@@ -288,9 +284,8 @@ class Guild {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild)) {
       return false;
-    } else {
-      return ($user->guildRank->id === $this->getMaxRank());
     }
+    return ($user->guildRank->id === $this->getMaxRank());
   }
   
   /**
@@ -310,9 +305,8 @@ class Guild {
       return false;
     } elseif($user->guild->level >= GuildEntity::MAX_LEVEL) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**

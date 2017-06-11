@@ -91,9 +91,8 @@ class SettingsRepository {
       return false;
     } elseif($value < 0 OR $value > 100) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**

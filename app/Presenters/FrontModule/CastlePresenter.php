@@ -46,9 +46,8 @@ class CastlePresenter extends BasePresenter {
       $this->flashMessage("Nemáš hrad.");
       if($this->profileModel->getPath() === GroupEntity::PATH_TOWER) {
         $this->redirect("build");
-      } else {
-        $this->redirect("Homepage:");
       }
+      $this->redirect("Homepage:");
     }
     $this->template->castle = $castle;
     $this->template->canUpgrade = $this->model->canUpgrade();

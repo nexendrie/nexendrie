@@ -87,9 +87,8 @@ class Monastery {
       throw new UserNotFoundException;
     } elseif(!$user->monastery) {
       throw new NotInMonasteryException;
-    } else {
-      return $user->monastery;
     }
+    return $user->monastery;
   }
   
   /**
@@ -106,15 +105,13 @@ class Monastery {
     if(!$user->monastery AND $user->group->path === GroupEntity::PATH_CITY) {
       if($user->guild AND $user->guildRank->id === $this->guildModel->maxRank) {
         return false;
-      } else {
-        return true;
       }
+      return true;
     } elseif(!$user->monastery AND $user->group->path === GroupEntity::PATH_TOWER) {
       if($user->order AND $user->orderRank->id === $this->orderModel->maxRank) {
         return false;
-      } else {
-        return true;
       }
+      return true;
     } elseif($user->group->path === GroupEntity::PATH_CHURCH) {
       if($user->monasteriesLed->countStored()) {
         return false;
@@ -191,9 +188,8 @@ class Monastery {
     $oneDay = 60 * 60 * 24;
     if($user->lastPrayer + $oneDay < time()) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
   
   /**
@@ -230,9 +226,8 @@ class Monastery {
       return false;
     } elseif($user->id === $user->monastery->leader->id) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -251,11 +246,11 @@ class Monastery {
     }
     $user = $this->orm->users->getById($this->user->id);
     $user->monastery = NULL;
+    $level = 50;
     if($user->ownedTowns->countStored() OR $this->orm->castles->getByOwner($this->user->id)) {
-      $user->group = $this->orm->groups->getByLevel(400);
-    } else {
-      $user->group = $this->orm->groups->getByLevel(50);
+      $level = 400;
     }
+    $user->group = $this->orm->groups->getByLevel($level);
     $this->orm->users->persistAndFlush($user);
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;
@@ -279,9 +274,8 @@ class Monastery {
     $user = $this->orm->users->getById($this->user->id);
     if($user->monasteriesLed->countStored() > 0) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -407,9 +401,8 @@ class Monastery {
       return false;
     } elseif($user->monastery->leader->id != $this->user->id) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -446,9 +439,8 @@ class Monastery {
       return false;
     } elseif($user->monastery->level >= MonasteryEntity::MAX_LEVEL) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -493,9 +485,8 @@ class Monastery {
       return false;
     } elseif($user->monastery->hp >= 100) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**

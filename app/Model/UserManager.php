@@ -62,11 +62,7 @@ class UserManager implements IAuthenticator {
     if(!in_array($type, $types)) {
       throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
     }
-    if($type === "username") {
-      $method = "getByUsername";
-    } else {
-      $method = "getByPublicname";
-    }
+    $method = ($type === "username") ? "getByUsername" : "getByPublicname";
     $row = $this->orm->users->$method($name);
     if(!$row) {
       return true;
@@ -74,9 +70,8 @@ class UserManager implements IAuthenticator {
       return false;
     } elseif($row->id === $uid) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
   
   /**
@@ -95,9 +90,8 @@ class UserManager implements IAuthenticator {
       return false;
     } elseif($row->id === $uid) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
   
   /**
@@ -271,9 +265,8 @@ class UserManager implements IAuthenticator {
     $user = $this->orm->users->getById($id);
     if(is_null($user)) {
       throw new UserNotFoundException;
-    } else {
-      return $user;
     }
+    return $user;
   }
 }
 ?>

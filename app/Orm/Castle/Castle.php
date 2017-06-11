@@ -45,9 +45,8 @@ class Castle extends \Nextras\Orm\Entity\Entity {
       return 1;
     } elseif($value > self::MAX_LEVEL) {
       return self::MAX_LEVEL;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function setterHp(int $value): int {
@@ -55,9 +54,8 @@ class Castle extends \Nextras\Orm\Entity\Entity {
       return 1;
     } elseif($value > 100) {
       return 100;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function getterFoundedAt(): string {
@@ -69,9 +67,8 @@ class Castle extends \Nextras\Orm\Entity\Entity {
       return 0;
     } elseif($this->owner->group->path != Group::PATH_TOWER) {
       return 0;
-    } else {
-      return $this->level * self::TAX_BONUS_PER_LEVEL;
     }
+    return $this->level * self::TAX_BONUS_PER_LEVEL;
   }
   
   protected function getterUpgradePrice(): int {

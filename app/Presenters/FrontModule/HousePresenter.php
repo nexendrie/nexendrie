@@ -109,11 +109,8 @@ class HousePresenter extends BasePresenter {
   function handleUpgradeBrewery(): void {
     try {
       $newLevel = $this->model->upgradeBrewery();
-      if($newLevel === 1) {
-        $this->flashMessage("Pivovar pořízen.");
-      } else {
-        $this->flashMessage("Pivovar vylepšen.");
-      }
+      $message = ($newLevel === 1) ? "Pivovar pořízen." : "Pivovar vylepšen.";
+      $this->flashMessage($message);
       $this->redirect("default");
     } catch(CannotUpgradeBreweryException $e) {
       $this->flashMessage("Nemůžeš vylepšit pivovar.");
