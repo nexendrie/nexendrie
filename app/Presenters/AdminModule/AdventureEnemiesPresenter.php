@@ -60,7 +60,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
    */
   protected function createComponentAddAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $for, array $data) {
+    $form->onSuccess[] = function(Form $form, array $data) {
       $data["adventure"] = $this->adventure->id;
       $this->model->addNpc($data);
       $this->flashMessage("Nepřítel přidán.");
