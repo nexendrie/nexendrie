@@ -68,9 +68,8 @@ class Mount extends \Nextras\Orm\Entity\Entity {
       return 100;
     } elseif($value < 0) {
       return 0;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function setterDamage(int $value): int {
@@ -78,9 +77,8 @@ class Mount extends \Nextras\Orm\Entity\Entity {
       return $this->maxDamage;
     } elseif($value < $this->baseDamage) {
       return $this->baseDamage;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function setterArmor(int $value): int {
@@ -88,9 +86,8 @@ class Mount extends \Nextras\Orm\Entity\Entity {
       return $this->maxArmor;
     } elseif($value < $this->baseArmor) {
       return $this->baseArmor;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function getterGenderCZ(): string {

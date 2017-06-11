@@ -58,9 +58,8 @@ class Order {
     $order = $this->orm->orders->getById($id);
     if(is_null($order)) {
       throw new OrderNotFoundException;
-    } else {
-      return $order;
     }
+    return $order;
   }
   
   /**
@@ -72,11 +71,7 @@ class Order {
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
     $guild = $this->orm->orders->getByName($name);
-    if($guild AND $guild->id != $id) {
-      return false;
-    } else {
-      return true;
-    }
+    return ($guild AND $guild->id != $id);
   }
   
   /**
@@ -131,9 +126,8 @@ class Order {
       return false;
     } elseif($user->order) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -200,9 +194,8 @@ class Order {
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path === GroupEntity::PATH_TOWER AND !$user->order) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
   
   /**
@@ -244,9 +237,8 @@ class Order {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->order)) {
       return false;
-    } else {
-      return !($user->orderRank->id === $this->maxRank);
     }
+    return !($user->orderRank->id === $this->maxRank);
   }
   
   /**
@@ -281,9 +273,8 @@ class Order {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->order)) {
       return false;
-    } else {
-      return ($user->orderRank->id === $this->maxRank);
     }
+    return ($user->orderRank->id === $this->maxRank);
   }
   
   /**
@@ -303,9 +294,8 @@ class Order {
       return false;
     } elseif($user->order->level >= OrderEntity::MAX_LEVEL) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**

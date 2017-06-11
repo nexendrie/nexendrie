@@ -59,9 +59,8 @@ class Adventure {
     $adventure = $this->orm->adventures->getById($adventureId);
     if(is_null($adventure)) {
       throw new AdventureNotFoundException;
-    } else {
-      return $adventure->npcs;
     }
+    return $adventure->npcs;
   }
   
   /**
@@ -75,9 +74,8 @@ class Adventure {
     $adventure = $this->orm->adventures->getById($id);
     if(is_null($adventure)) {
       throw new AdventureNotFoundException;
-    } else {
-      return $adventure;
     }
+    return $adventure;
   }
   
   /**
@@ -125,9 +123,8 @@ class Adventure {
     $npc = $this->orm->adventureNpcs->getById($id);
     if(is_null($npc)) {
       throw new AdventureNpcNotFoundException;
-    } else {
-      return $npc;
     }
+    return $npc;
   }
   
   /**
@@ -192,9 +189,8 @@ class Adventure {
   function findAvailableAdventures(): ICollection {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
-    } else {
-      return $this->orm->adventures->findForLevel($this->user->identity->level);
     }
+    return $this->orm->adventures->findForLevel($this->user->identity->level);
   }
   
   /**
@@ -286,9 +282,8 @@ class Adventure {
   function getNextNpc(UserAdventureEntity $adventure): ?AdventureNpcEntity {
     if($adventure->progress >= 9) {
       return NULL;
-    } else {
-      return $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
     }
+    return $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
   }
   
   /**

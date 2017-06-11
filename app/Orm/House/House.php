@@ -47,9 +47,8 @@ class House extends \Nextras\Orm\Entity\Entity {
       return 1;
     } elseif($value > self::MAX_LEVEL) {
       return self::MAX_LEVEL;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function setterBreweryLevel(int $value): int {
@@ -57,9 +56,8 @@ class House extends \Nextras\Orm\Entity\Entity {
       return 0;
     } elseif($value > self::MAX_LEVEL) {
       return self::MAX_LEVEL;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function setterHp(int $value): int {
@@ -67,9 +65,8 @@ class House extends \Nextras\Orm\Entity\Entity {
       return 1;
     } elseif($value > 100) {
       return 100;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function getterWorkIncomeBonus(): int {
@@ -77,9 +74,8 @@ class House extends \Nextras\Orm\Entity\Entity {
       return 0;
     } elseif($this->owner->group->path != Group::PATH_CITY) {
       return 0;
-    } else {
-      return $this->luxuryLevel * self::INCOME_BONUS_PER_LEVEL;
     }
+    return $this->luxuryLevel * self::INCOME_BONUS_PER_LEVEL;
   }
   
   protected function getterUpgradePrice(): int {

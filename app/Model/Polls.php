@@ -54,9 +54,8 @@ class Polls {
     $poll = $this->orm->polls->getById($id);
     if(is_null($poll)) {
       throw new PollNotFoundException("Specified poll does not exist.");
-    } else {
-      return $poll;
     }
+    return $poll;
   }
   
   /**

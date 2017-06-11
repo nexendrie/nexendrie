@@ -106,17 +106,15 @@ class User extends \Nextras\Orm\Entity\Entity {
       return $this->maxLife;
     } elseif($value < 1) {
       return 1;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function getterTitle(): string {
     if($this->gender === self::GENDER_FEMALE) {
       return $this->group->femaleName;
-    } else {
-      return $this->group->singleName;
     }
+    return $this->group->singleName;
   }
   
   protected function getterCompletedAdventures() {

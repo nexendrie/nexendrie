@@ -54,9 +54,8 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
       return 1;
     } elseif($value > self::MAX_LEVEL) {
       return self::MAX_LEVEL;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function setterHp(int $value): int {
@@ -64,9 +63,8 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
       return 1;
     } elseif($value > 100) {
       return 100;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function getterMoneyT(): string {
@@ -76,9 +74,8 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   protected function getterPrayerLife(): int {
     if($this->hp <= 30) {
       return 0;
-    } else {
-      return 2 + ($this->level * 2);
     }
+    return 2 + ($this->level * 2);
   }
   
   protected function getterUpgradePrice(): int {

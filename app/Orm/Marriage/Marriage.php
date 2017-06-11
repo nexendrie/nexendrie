@@ -44,9 +44,8 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
       return 0;
     } elseif($value > 4) {
       return 4;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function getterProposedT(): string {
@@ -56,25 +55,22 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   protected function getterAcceptedT(): string {
     if(is_null($this->accepted)) {
       return "";
-    } else {
-      return $this->localeModel->formatDateTime($this->accepted);
     }
+    return $this->localeModel->formatDateTime($this->accepted);
   }
   
   protected function getterTermT(): string {
     if(is_null($this->term)) {
       return "";
-    } else {
-      return $this->localeModel->formatDateTime($this->term);
     }
+    return $this->localeModel->formatDateTime($this->term);
   }
   
   protected function getterCancelledT(): string {
     if(is_null($this->cancelled)) {
       return "";
-    } else {
-      return $this->localeModel->formatDateTime($this->cancelled);
     }
+    return $this->localeModel->formatDateTime($this->cancelled);
   }
   
   protected function setterIntimacy(int $value): int {
@@ -82,17 +78,15 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
       return 0;
     } elseif($value > self::MAX_INTIMACY) {
       return self::MAX_INTIMACY;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function getterLevel(): int {
     if($this->status != self::STATUS_ACTIVE) {
       return 0;
-    } else {
-      return (int) ($this->intimacy / 100);
     }
+    return (int) ($this->intimacy / 100);
   }
   
   protected function getterHpIncrease(): int {

@@ -39,9 +39,8 @@ class ConditionPath implements IMenuItemCondition {
       return false;
     } elseif(!is_string($parameter)) {
       throw new \InvalidArgumentException("Method " . static::class . "::isAllowed expects string as parameter.");
-    } else {
-      return ($parameter === $this->user->identity->path);
     }
+    return ($parameter === $this->user->identity->path);
   }
 }
 ?>

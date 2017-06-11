@@ -41,9 +41,8 @@ class ItemSet {
     $set = $this->orm->itemSets->getById($id);
     if(is_null($set)) {
       throw new ItemSetNotFoundException;
-    } else {
-      return $set;
     }
+    return $set;
   }
   
   /**

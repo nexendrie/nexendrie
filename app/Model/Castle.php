@@ -56,9 +56,8 @@ class Castle {
     $castle = $this->orm->castles->getById($id);
     if(is_null($castle)) {
       throw new CastleNotFoundException;
-    } else {
-      return $castle;
     }
+    return $castle;
   }
   
   /**
@@ -72,9 +71,8 @@ class Castle {
     $castle = $this->orm->castles->getByName($name);
     if($castle AND $castle->id != $id) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -163,9 +161,8 @@ class Castle {
       return false;
     } elseif($castle->level >= CastleEntity::MAX_LEVEL) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -206,9 +203,8 @@ class Castle {
       return false;
     } elseif($castle->hp >= 100) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**

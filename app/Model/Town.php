@@ -39,9 +39,8 @@ class Town {
     $town = $this->orm->towns->getById($id);
     if(is_null($town)) {
       throw new TownNotFoundException;
-    } else {
-      return $town;
     }
+    return $town;
   }
   
   /**
@@ -222,9 +221,8 @@ class Town {
       return false;
     } elseif($user->guild AND $user->guildRank->id === 4) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**

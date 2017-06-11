@@ -57,9 +57,8 @@ class Bank {
       return 700;
     } elseif($level > 400 AND $level < 10000) {
       return 1500;
-    } else {
-      return 2000;
     }
+    return 2000;
   }
   
   /**

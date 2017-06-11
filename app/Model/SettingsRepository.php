@@ -105,9 +105,8 @@ class SettingsRepository {
       return false;
     } elseif($value < 1 OR $value > 100) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -119,9 +118,8 @@ class SettingsRepository {
       return false;
     } elseif($value < 0 OR $value > 5000) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**

@@ -32,13 +32,10 @@ class Elections {
     $denizens = $this->orm->towns->getById($town)->denizens->countStored();
     if($denizens <= 3) {
       return 0;
-    }
-    elseif($denizens <= 6) {
+    } elseif($denizens <= 6) {
       return 1;
     }
-    else {
-      return (int) ($denizens / 5);
-    }
+    return (int) ($denizens / 5);
   }
   
   /**

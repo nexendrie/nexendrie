@@ -36,9 +36,8 @@ class Loan extends \Nextras\Orm\Entity\Entity {
   protected function getterReturnedT(): string {
     if(is_null($this->returned)) {
       return "";
-    } else {
-      return $this->localeModel->formatDateTime($this->returned);
     }
+    return $this->localeModel->formatDateTime($this->returned);
   }
   
   protected function onBeforeInsert() {

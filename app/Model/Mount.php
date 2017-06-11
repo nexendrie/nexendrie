@@ -36,9 +36,8 @@ class Mount {
     $mount = $this->orm->mounts->getById($id);
     if(is_null($mount)) {
       throw new MountNotFoundException;
-    } else {
-      return $mount;
     }
+    return $mount;
   }
   
   /**
@@ -50,9 +49,8 @@ class Mount {
   function listOfMounts(int $owner = NULL): ICollection {
     if(is_int($owner)) {
       return $this->orm->mounts->findByOwner($owner);
-    } else {
-      return $this->orm->mounts->findAll();
     }
+    return $this->orm->mounts->findAll();
   }
   
   /**

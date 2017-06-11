@@ -66,11 +66,7 @@ class Job {
     $job = new UserJobEntity;
     $job->job = $offer;
     $job->user = $this->orm->users->getById($this->user->id);
-    if($job->job->count) {
-      $job->count = $job->job->count;
-    } else {
-      $job->count = 1;
-    }
+    $job->count = ($job->job->count > 0) ? $job->job->count : 1;
     $offer->award = array_sum($this->calculateReward($job));
     $o = (object) $offer->toArray();
     $o->award = $offer->awardT;

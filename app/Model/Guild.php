@@ -49,9 +49,7 @@ class Guild {
     if($town === 0) {
       return $this->orm->guilds->findAll();
     }
-    else {
-      return $this->orm->guilds->findByTown($town);
-    }
+    return $this->orm->guilds->findByTown($town);
   }
   
   /**
@@ -65,9 +63,8 @@ class Guild {
     $guild = $this->orm->guilds->getById($id);
     if(is_null($guild)) {
       throw new GuildNotFoundException;
-    } else {
-      return $guild;
     }
+    return $guild;
   }
   
   /**

@@ -39,9 +39,8 @@ class Guild extends \Nextras\Orm\Entity\Entity {
       return 1;
     } elseif($value > self::MAX_LEVEL) {
       return self::MAX_LEVEL;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function getterFoundedAt(): string {

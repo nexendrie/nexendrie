@@ -58,9 +58,8 @@ class Events implements \EventCalendar\IEventModel {
     $event = $this->orm->events->getById($id);
     if(is_null($event)) {
       throw new EventNotFoundException;
-    } else {
-      return $event;
     }
+    return $event;
   }
   
   /**
@@ -116,13 +115,10 @@ class Events implements \EventCalendar\IEventModel {
     $event = $this->orm->events->getById($id);
     if(!$event) {
       throw new EventNotFoundException;
-    }
-    elseif($event->start < time()) {
+    } elseif($event->start < time()) {
       throw new CannotDeleteStartedEventException;
     }
-    else {
-      $this->orm->events->removeAndFlush($event);
-    }
+    $this->orm->events->removeAndFlush($event);
   }
   
   /**

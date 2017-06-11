@@ -69,9 +69,8 @@ class Monastery {
     $monastery = $this->orm->monasteries->getById($id);
     if(is_null($monastery)) {
       throw new MonasteryNotFoundException;
-    } else {
-      return $monastery;
     }
+    return $monastery;
   }
   
   /**

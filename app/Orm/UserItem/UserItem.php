@@ -32,9 +32,8 @@ class UserItem extends \Nextras\Orm\Entity\Entity {
   protected function setterAmount(int $value): int {
     if($value < 0) {
       return 0;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function setterLevel(int $value): int {
@@ -42,17 +41,15 @@ class UserItem extends \Nextras\Orm\Entity\Entity {
       return 0;
     } elseif($value > $this->maxLevel) {
       return $this->maxLevel;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function getterMaxLevel(): int {
     if(!in_array($this->item->type, Item::getEquipmentTypes())) {
       return 0;
-    } else {
-      return (int) round($this->item->strength / 2) + 1;
     }
+    return (int) round($this->item->strength / 2) + 1;
   }
   
   protected function getterUpgradePrice(): int {
@@ -60,9 +57,8 @@ class UserItem extends \Nextras\Orm\Entity\Entity {
       return 0;
     } elseif($this->level >= $this->maxLevel) {
       return 0;
-    } else {
-      return ($this->level + 1) * (int) ($this->item->price / 3);
     }
+    return ($this->level + 1) * (int) ($this->item->price / 3);
   }
   
   protected function getterUpgradePriceT(): string {

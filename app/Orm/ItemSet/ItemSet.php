@@ -37,9 +37,8 @@ class ItemSet extends \Nextras\Orm\Entity\Entity {
       return 0;
     } elseif($value > 99) {
       return 99;
-    } else {
-      return $value;
     }
+    return $value;
   }
   
   protected function getterEffect(): string {

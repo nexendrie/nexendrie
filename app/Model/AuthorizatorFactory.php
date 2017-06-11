@@ -80,12 +80,11 @@ class AuthorizatorFactory {
     $permissions = $this->getPermissions();
     
     foreach($groups as $i => $row) {
-      if($row->level === 0) {
-        $permission->addRole($row->singleName);
-      } else {
-        $parent = $groups[$i+1];
-        $permission->addRole($row->singleName, $parent->singleName);
+      $parent = NULL;
+      if($row->level !== 0) {
+        $parent = $groups[$i+1]->singleName;
       }
+      $permission->addRole($row->singleName, $parent);
     }
     
     $permission->deny("vězeň");

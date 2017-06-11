@@ -50,11 +50,7 @@ class CronTasks {
       if($mount->gender === MountEntity::GENDER_YOUNG AND $mount->birth + $twoMonths < time()) {
         echo "The mount is too old. It becomes adult.";
         $roll = mt_rand(0, 1);
-        if($roll === 0) {
-          $mount->gender = MountEntity::GENDER_MALE;
-        } else {
-          $mount->gender = MountEntity::GENDER_FEMALE;
-        }
+        $mount->gender = ($roll === 0) ? MountEntity::GENDER_MALE : MountEntity::GENDER_FEMALE;
       }
       $this->orm->mounts->persist($mount);
       echo "\n";

@@ -28,11 +28,7 @@ class Meal extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterEffect(): string {
-    if($this->life < 0) {
-      $word = "ubere";
-    } else {
-      $word = "přidá";
-    }
+    $word = ($this->life < 0) ? "ubere" : "přidá";
     return $word . " " . $this->localeModel->hitpoints($this->life);
   }
 }

@@ -41,9 +41,8 @@ class Skills {
   function listOfSkills(string $type = NULL): ICollection {
     if(is_null($type)) {
       return $this->orm->skills->findAll();
-    } else {
-      return $this->orm->skills->findByType($type);
     }
+    return $this->orm->skills->findByType($type);
   }
   
   /**
@@ -91,9 +90,8 @@ class Skills {
     $skill = $this->orm->skills->getById($id);
     if(is_null($skill)) {
       throw new SkillNotFoundException;
-    } else {
-      return $skill;
     }
+    return $skill;
   }
   
   /**
@@ -104,9 +102,8 @@ class Skills {
   function getUserSkill(int $skill): ?UserSkillEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
-    } else {
-      return $this->orm->userSkills->getByUserAndSkill($this->user->id, $skill);
     }
+    return $this->orm->userSkills->getByUserAndSkill($this->user->id, $skill);
   }
   
   /**
@@ -186,9 +183,8 @@ class Skills {
     }
     if($skill) {
       return $skill->level;
-    } else {
-      return 0;
     }
+    return 0;
   }
   
   /**

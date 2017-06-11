@@ -79,9 +79,8 @@ class Article {
     $article = $this->orm->articles->getById($id);
     if(is_null($article)) {
       throw new ArticleNotFoundException;
-    } else {
-      return $article;
     }
+    return $article;
   }
   
   /**
@@ -93,9 +92,8 @@ class Article {
   function viewComments(int $article = 0): ICollection {
     if($article === 0) {
       return $this->orm->comments->findAll();
-    } else {
-      return $this->orm->comments->findByArticle($article);
     }
+    return $this->orm->comments->findByArticle($article);
   }
   
   /**

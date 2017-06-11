@@ -38,9 +38,8 @@ class Profile {
     $user = $this->orm->users->getByUsername($username);
     if(is_null($user)) {
       throw new UserNotFoundException("Specified user does not exist.");
-    } else {
-      return $user;
     }
+    return $user;
   }
   
   /**
@@ -63,9 +62,8 @@ class Profile {
     $user = $this->orm->users->getById($id ?? $this->user->id);
     if(is_null($user)) {
       throw new UserNotFoundException;
-    } else {
-      return $user->group->path;
     }
+    return $user->group->path;
   }
    
    
@@ -83,9 +81,8 @@ class Profile {
       return $marriage->user2;
     } elseif($marriage->user2->id === $id) {
       return $marriage->user1;
-    } else {
-      return NULL;
     }
+    return NULL;
   }
    
    /**
@@ -102,9 +99,8 @@ class Profile {
       return $marriage->user2;
     } elseif($marriage->user2->id === $id) {
       return $marriage->user1;
-    } else {
-      return NULL;
     }
+    return NULL;
   }
 }
 ?>

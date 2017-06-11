@@ -44,9 +44,8 @@ class Tavern {
     $meal = $this->orm->meals->getById($id);
     if(is_null($meal)) {
       throw new MealNotFoundException;
-    } else {
-      return $meal;
     }
+    return $meal;
   }
   
   /**

@@ -82,9 +82,8 @@ class House {
       return false;
     } elseif($house->luxuryLevel >= HouseEntity::MAX_LEVEL) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -125,9 +124,8 @@ class House {
       return false;
     } elseif($house->hp >= 100) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -168,9 +166,8 @@ class House {
       return false;
     } elseif($house->breweryLevel >= HouseEntity::MAX_LEVEL) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -223,9 +220,8 @@ class House {
       return true;
     } elseif($lastProduction->when + $sevenDays < time()) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
   
   /**

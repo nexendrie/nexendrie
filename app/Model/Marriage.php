@@ -44,9 +44,8 @@ class Marriage {
     $marriage = $this->orm->marriages->getById($id);
     if(is_null($marriage)) {
       throw new MarriageNotFoundException;
-    } else {
-      return $marriage;
     }
+    return $marriage;
   }
   
   /**
@@ -95,9 +94,8 @@ class Marriage {
       return false;
     } elseif($marriage->user1->group->path != $marriage->user2->group->path) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
   
   /**
@@ -127,9 +125,8 @@ class Marriage {
   function listOfProposals(): ICollection {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
-    } else {
-      return $this->orm->marriages->findProposals($this->user->id);
     }
+    return $this->orm->marriages->findProposals($this->user->id);
   }
   
   /**
@@ -256,11 +253,7 @@ class Marriage {
     } elseif($marriage->divorce) {
       throw new AlreadyInDivorceException;
     }
-    if($marriage->user1->id === $this->user->id) {
-      $marriage->divorce = 1;
-    } else {
-      $marriage->divorce = 2;
-    }
+    $marriage->divorce = ($marriage->user1->id === $this->user->id) ? 1 : 2;
     $this->orm->marriages->persistAndFlush($marriage);
   }
   

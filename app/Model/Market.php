@@ -73,9 +73,8 @@ class Market {
     $shop = $this->orm->shops->getById($id);
     if(is_null($shop)) {
       throw new ShopNotFoundException("Specified shop was not found.");
-    } else {
-      return $shop;
     }
+    return $shop;
   }
   
   /**
@@ -118,9 +117,8 @@ class Market {
     $item = $this->orm->items->getById($id);
     if(is_null($item)) {
       throw new ItemNotFoundException("Specified item was not found.");
-    } else {
-      return $item;
     }
+    return $item;
   }
   
   /**

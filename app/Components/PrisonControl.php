@@ -35,9 +35,8 @@ class PrisonControl extends \Nette\Application\UI\Control {
       return true;
     } elseif(time() >$punishment->nextShift) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
   
   /**

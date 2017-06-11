@@ -39,9 +39,8 @@ class ConditionBanned implements IMenuItemCondition {
       return false;
     } elseif(!is_bool($parameter)) {
       throw new \InvalidArgumentException("Method " . static::class ."::isAllowed expects boolean as parameter.");
-    } else {
-      return ($parameter === $this->user->identity->banned);
     }
+    return ($parameter === $this->user->identity->banned);
   }
 }
 ?>

@@ -69,9 +69,8 @@ class Skill extends \Nextras\Orm\Entity\Entity {
   protected function getterEffect(): string {
     if($this->type === self::TYPE_WORK) {
       return "";
-    } else {
-      return $this->statCZ . " +" . $this->statIncrease;
     }
+    return $this->statCZ . " +" . $this->statIncrease;
   }
 }
 ?>
