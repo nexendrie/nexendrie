@@ -7,7 +7,21 @@
   <target name="test-coverage" depends="lint,cs,phpstan,tests-coverage,clean-db"/>
   <target name="test-phpdbg" depends="lint,cs,phpstan,tests-phpdbg,clean-db"/>
   <target name="test-ci" depends="install-ci,test"/>
-  <target name="test-ci-coverage" depends="install-ci,test-coverage"/>
+  <target name="test-ci-coverage" depends="install-ci,test-coverage">
+    <exec executable="vendor/bin/run-tests" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="-p"/>
+      <arg value="php"/>
+      <arg path="tests"/>
+      <arg value="--coverage"/>
+      <arg path="./coverage.xml"/>
+      <arg value="--coverage-src"/>
+      <arg path="./app"/>
+    </exec>
+    <exec executable="vendor/bin/codacycoverage" logoutput="true" passthru="true">
+      <arg value="clover"/>
+      <arg path="coverage.xml"/>
+    </exec>
+  </target>
   <target name="install-ci">
     <mkdir dir="temp/cache"/>
     <copy file="tests/ci.neon" tofile="tests/local.neon"/>
