@@ -98,7 +98,7 @@ class EditUserFormFactory {
    * @param array $values
    * @return void
    */
-  function validate(Form $form, array  $values): void {
+  function validate(Form $form, array $values): void {
     if($values["group"] == 0 AND $this->uid != 0) {
       $form->addError("Neplatná skupina.");
     }
