@@ -36,6 +36,8 @@ class MarriagePresenter extends BasePresenter {
   protected $profileModel;
   /** @var \Nexendrie\Model\Inventory @autowire */
   protected $inventoryModel;
+  /** @var \Nexendrie\Model\Locale @autowire */
+  protected $localeModel;
   /** @var MarriageEntity */
   private $marriage;
   
@@ -262,11 +264,7 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Nerozvádíte se.");
       $this->redirect("default");
     } catch(CannotTakeBackDivorceException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Nepodala jsi žádost o rozvod.";
-      } else {
-        $message = "Nepodal jsi žádost o rozvod.";
-      }
+      $message = $this->localeModel->genderMessage("Nepodal(a) jsi žádost o rozvod.");
       $this->flashMessage($message);
       $this->redirect("default");
     }

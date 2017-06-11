@@ -17,8 +17,7 @@ use Nexendrie\Forms\FoundGuildFormFactory,
     Nexendrie\Model\UserNotInYourGuildException,
     Nexendrie\Model\CannotPromoteMemberException,
     Nexendrie\Model\CannotDemoteMemberException,
-    Nexendrie\Model\CannotKickMemberException,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Model\CannotKickMemberException;
 
 /**
  * Presenter Guild
@@ -108,11 +107,7 @@ class GuildPresenter extends BasePresenter {
   function actionJoin(int $id): void {
     try {
       $this->model->join($id);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Vstoupila jsi do cechu.";
-      } else {
-        $message = "Vstoupil jsi do cechu.";
-      }
+      $message = $this->localeModel->genderMessage("Vstoupil(a) jsi do cechu.");
       $this->flashMessage($message);
       $this->redirect("default");
     } catch(CannotJoinGuildException $e) {
@@ -129,11 +124,7 @@ class GuildPresenter extends BasePresenter {
   function actionLeave(): void {
     try {
       $this->model->leave();
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Opustila jsi cech.";
-      } else {
-        $message = "Opustil jsi cech.";
-      }
+      $message = $this->localeModel->genderMessage("Opustil(a) jsi cechu.");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(CannotLeaveGuildException $e) {

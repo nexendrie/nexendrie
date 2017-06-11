@@ -8,7 +8,7 @@ use Tester\Assert;
 require __DIR__ . "/../../bootstrap.php";
 
 class LocaleTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
+  use TUserControl;
   
   /** @var Locale */
   protected $model;
@@ -50,6 +50,17 @@ class LocaleTest extends \Tester\TestCase {
     Assert::type("array", $formats);
     Assert::type("string", $formats["dateFormat"]);
     Assert::type("string", $formats["dateTimeFormat"]);
+  }
+  
+  function testGenderMessage() {
+    Assert::exception(function() {
+      $this->model->genderMessage("abc");
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::same("abcab", $this->model->genderMessage("abc(a)ab(a)"));
+    Assert::same("abcý", $this->model->genderMessage("abc(ý|á)"));
+    $this->login("svetlana");
+    Assert::same("abcá", $this->model->genderMessage("abc(ý|á)"));
   }
 }
 

@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Localization\ITranslator;
+use Nette\Localization\ITranslator,
+    Nette\Security\User,
+    Nexendrie\Orm\User as UserEntity;
 
 /**
  * Locale Model
@@ -14,13 +16,16 @@ use Nette\Localization\ITranslator;
 class Locale {
   /** @var ITranslator */
   protected $translator;
+  /** @var User */
+  protected $user;
   /** @var array */
   protected $formats = [];
   
   use \Nette\SmartObject;
   
-  function __construct(SettingsRepository $sr, ITranslator $translator) {
+  function __construct(SettingsRepository $sr, ITranslator $translator, User $user) {
     $this->translator = $translator;
+    $this->user = $user;
     $this->formats = $sr->settings["locale"];
   }
   
@@ -77,6 +82,23 @@ class Locale {
    */
   function barrels(int $amount): string {
     return $this->plural("barrels", $amount);
+  }
+  
+  /**
+   * @param $message
+   * @return string
+   * @throws AuthenticationNeededException
+   */
+  function genderMessage($message): string {
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    if($this->user->identity->gender === UserEntity::GENDER_MALE) {
+      $message = str_replace(["(a)", "(ý|á)"], ["", "ý"], $message);
+    } elseif($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
+      $message = str_replace(["(a)", "(ý|á)"], ["a", "á"], $message);
+    }
+    return $message;
   }
   
   function getFormats(): array {

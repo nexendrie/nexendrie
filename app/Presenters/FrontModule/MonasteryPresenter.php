@@ -15,8 +15,7 @@ use Nexendrie\Model\MonasteryNotFoundException,
     Nexendrie\Model\CannotJoinOwnMonasteryException,
     Nexendrie\Model\CannotUpgradeMonasteryException,
     Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Model\CannotRepairMonasteryException,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Model\CannotRepairMonasteryException;
 
 /**
  * Presenter Monastery
@@ -111,11 +110,7 @@ class MonasteryPresenter extends BasePresenter {
   function actionJoin(int $id): void {
     try {
       $this->model->join($id);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Vstoupila jsi do kláštera";
-      } else {
-        $message = "Vstoupil jsi do kláštera";
-      }
+      $message = $this->localeModel->genderMessage("Vstoupil(a) jsi do kláštera");
       $this->flashMessage($message);
       $this->redirect("default");
     } catch(CannotJoinMonasteryException $e) {
@@ -135,11 +130,7 @@ class MonasteryPresenter extends BasePresenter {
   function actionLeave(): void {
     try {
       $this->model->leave();
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Vystoupila jsi z kláštera.";
-      } else {
-        $message = "Vystoupil jsi z kláštera.";
-      }
+      $message = $this->localeModel->genderMessage("Vystoupil(a) jsi z kláštera");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(CannotLeaveMonasteryException $e) {

@@ -6,8 +6,7 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nette\Application\UI\Form,
     Nexendrie\Forms\LoginFormFactory,
     Nexendrie\Forms\RegisterFormFactory,
-    Nexendrie\Forms\UserSettingsFormFactory,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Forms\UserSettingsFormFactory;
 
 /**
  * Presenter User
@@ -17,6 +16,8 @@ use Nette\Application\UI\Form,
 class UserPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\UserManager @autowire */
   protected $model;
+  /** @var \Nexendrie\Model\Locale */
+  protected $localeModel;
   
   /**
    * Do not allow access login page if the user is already logged in
@@ -34,18 +35,10 @@ class UserPresenter extends BasePresenter {
   protected function createComponentLoginForm(LoginFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, $values) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Byla jsi úspěšně přihlášena.";
-      } else {
-        $message = "Byl jsi úspěšně přihlášen.";
-      }
+      $message = $this->localeModel->genderMessage("Byl(a) jsi úspěšně přihlášen(a).");
       $this->flashMessage($message);
       if($this->user->identity->banned) {
-        if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-          $message = "Stále jsi uvězněná.";
-        } else {
-          $message = "Stále jsi uvězněný.";
-        }
+        $message = $this->localeModel->genderMessage("Stále jsi uvězněn(ý|á).");
         $this->flashMessage($message);
       }
       if($this->user->identity->travelling) {
@@ -62,11 +55,7 @@ class UserPresenter extends BasePresenter {
    */
   function actionLogout(): void {
     if($this->user->isLoggedIn()) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Byla jsi úspěšně odhlášena.";
-      } else {
-        $message = "Byl jsi úspěšně odhlášen.";
-      }
+      $message = $this->localeModel->genderMessage("Byl(a) jsi úspěšně odhlášen(a).");
       $this->flashMessage($message);
       $this->user->logout();
     } else {

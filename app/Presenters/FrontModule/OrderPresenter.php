@@ -18,8 +18,7 @@ use Nexendrie\Forms\FoundOrderFormFactory,
     Nexendrie\Model\CannotPromoteMemberException,
     Nexendrie\Model\CannotDemoteMemberException,
     Nexendrie\Model\CannotKickMemberException,
-    Nexendrie\Model\GuildNotFoundException,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Model\GuildNotFoundException;
 
 /**
  * Presenter Order
@@ -109,11 +108,7 @@ class OrderPresenter extends BasePresenter {
   function actionJoin(int $id): void {
     try {
       $this->model->join($id);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Vstoupila jsi do řádu.";
-      } else {
-        $message = "Vstoupil jsi do řádu.";
-      }
+      $message = $this->localeModel->genderMessage("Vstoupil(a) jsi do řádu.");
       $this->flashMessage($message);
       $this->redirect("default");
     } catch(CannotJoinOrderException $e) {
@@ -130,11 +125,7 @@ class OrderPresenter extends BasePresenter {
   function actionLeave(): void {
     try {
       $this->model->leave();
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Opustila jsi řád.";
-      } else {
-        $message = "Opustil jsi řád.";
-      }
+      $message = $this->localeModel->genderMessage("Opustil(a) jsi řádu.");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(CannotLeaveOrderException $e) {
