@@ -7,7 +7,7 @@
   <target name="test-coverage" depends="lint,cs,phpstan,tests-coverage,clean-db"/>
   <target name="test-phpdbg" depends="lint,cs,phpstan,tests-phpdbg,clean-db"/>
   <target name="test-ci" depends="install-ci,test"/>
-  <target name="test-ci-coverage" depends="install-ci,test-coverage">
+  <target name="test-ci-coverage" depends="install-ci,lint,cs,phpstan">
     <exec executable="vendor/bin/run-tests" logoutput="true" passthru="true" checkreturn="true">
       <arg value="-p"/>
       <arg value="php"/>
@@ -21,6 +21,7 @@
       <arg value="clover"/>
       <arg path="coverage.xml"/>
     </exec>
+    <phingcall target="clean-db"/>
   </target>
   <target name="install-ci">
     <mkdir dir="temp/cache"/>
