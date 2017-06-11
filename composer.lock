@@ -1353,16 +1353,16 @@
         },
         {
             "name": "nexendrie/translation",
-            "version": "1.0.0-rc2",
+            "version": "1.0.0-rc3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nexendrie/translation.git",
-                "reference": "f5791a7167a272efbc320501c8dd9fc77e002f6f"
+                "url": "https://gitlab.com/nexendrie/translation.git",
+                "reference": "b62d8a37a0d9b8d59f007feb2af6749ad6cc4aaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/translation/zipball/f5791a7167a272efbc320501c8dd9fc77e002f6f",
-                "reference": "f5791a7167a272efbc320501c8dd9fc77e002f6f",
+                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=b62d8a37a0d9b8d59f007feb2af6749ad6cc4aaa",
+                "reference": "b62d8a37a0d9b8d59f007feb2af6749ad6cc4aaa",
                 "shasum": ""
             },
             "require": {
@@ -1424,7 +1424,7 @@
                 "translation",
                 "yaml"
             ],
-            "time": "2017-06-09T10:25:11+00:00"
+            "time": "2017-06-10T19:05:21+00:00"
         },
         {
             "name": "nexendrie/utils",
@@ -2629,7 +2629,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2017-06-10T13:23:15+00:00"
+            "time": "2017-06-10 13:23:15"
         },
         {
             "name": "nikic/php-parser",

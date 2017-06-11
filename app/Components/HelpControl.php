@@ -33,8 +33,7 @@ class HelpControl extends BookControl {
     $this->groupModel = $groupModel;
     $this->orm = $orm;
     $this->localeModel = $localeModel;
-    $this->translator = $translator;
-    parent::__construct(":Front:Help", __DIR__ . "/help");
+    parent::__construct(":Front:Help", __DIR__ . "/help", $translator);
   }
   
   /**

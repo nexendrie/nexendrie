@@ -15,8 +15,7 @@ use Nexendrie\BookComponent\BookControl,
  */
 class HistoryControl extends BookControl {
   function __construct(Translator $translator) {
-    $this->translator = $translator;
-    parent::__construct(":Front:History", __DIR__ . "/history");
+    parent::__construct(":Front:History", __DIR__ . "/history", $translator);
   }
   
   /**
