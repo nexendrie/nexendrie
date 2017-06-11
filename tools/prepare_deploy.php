@@ -15,7 +15,6 @@ switch(getenv("DEPLOY_ENVIRONMENT")) {
   default:
     echo "Error: invalid environment";
     exit(1);
-    break;
 }
 $config .= "user=$user
 password=$password
