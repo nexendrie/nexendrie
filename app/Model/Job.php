@@ -249,20 +249,20 @@ class Job {
    */
   function getResultMessage(int $job, bool $success): string {
     $messages = $this->orm->jobMessages->findByJobAndSuccess($job, $success);
-    $message = "";
     if($messages->count() === 0 AND $success) {
-      $message = $this->localeModel->genderMessage("Úspěšně jsi zvládl(a) směnu.");
+      return $this->localeModel->genderMessage("Úspěšně jsi zvládl(a) směnu.");
     } elseif($messages->count() === 0 AND !$success) {
-      $message = $this->localeModel->genderMessage("Nezvládl(a) jsi tuto směnu.");
-    } else {
-      $roll = rand(0, $messages->count() - 1);
-      $i = 0;
-      foreach($messages->fetchAll() as $m) {
-        if($i === $roll) {
-          $message = $m->message;
-        }
-        $i++;
+      return $this->localeModel->genderMessage("Nezvládl(a) jsi tuto směnu.");
+    }
+    $message = "";
+    $roll = rand(0, $messages->count() - 1);
+    $i = 0;
+    /** @var JobMessageEntity $m */
+    foreach($messages->fetchAll() as $m) {
+      if($i === $roll) {
+        $message = $m->message;
       }
+      $i++;
     }
     return $message;
   }

@@ -272,13 +272,12 @@ class CronTasks {
         continue;
       }
       $index = $vote->candidate->username;
-      if(isset($results[$index])) {
-        $results[$index]["amount"]++;
-      } else {
+      if(!isset($results[$index])) {
         $results[$index] = [
-          "candidate" => $vote->candidate, "amount" => 1
+          "candidate" => $vote->candidate, "amount" => 0
         ];
       }
+      $results[$index]["amount"]++;
     }
     return Arrays::orderby($results, "amount", SORT_DESC);
   }

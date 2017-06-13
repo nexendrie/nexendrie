@@ -359,17 +359,16 @@ class Monastery {
     }
     $skip = ["town", "founded", "money"];
     foreach($data as $key => $value) {
+      if(in_array($key, $skip)) {
+        continue;
+      }
       if($key === "name") {
         $m = $this->orm->monasteries->getByName($value);
         if($m AND $m->id != $id) {
           throw new MonasteryNameInUseException;
         }
-        $monastery->$key = $value;
-      } elseif(in_array($key, $skip)) {
-        continue;
-      } else {
-        $monastery->$key = $value;
       }
+      $monastery->$key = $value;
     }
     $this->orm->monasteries->persistAndFlush($monastery);
   }

@@ -165,11 +165,7 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Zasnoubení zrušeno.");
       $this->redirect("default");
     } catch(NotEngagedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Nejsi zasnoubená.";
-      } else {
-        $message = "Nejsi zasnoubený.";
-      }
+      $message = $this->localeModel->genderMessage("Nejsi zasnouben(ý|á).");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(WeddingAlreadyHappenedException $e) {
