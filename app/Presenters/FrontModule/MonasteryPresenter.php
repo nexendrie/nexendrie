@@ -172,11 +172,10 @@ class MonasteryPresenter extends BasePresenter {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat klášter.");
       $this->redirect("Homepage:");
-    } else {
-      $this->template->monastery = $monastery = $this->model->getByUser();
-      $this->monasteryId = $monastery->id;
-      $this->template->canUpgrade = $this->model->canUpgrade();
     }
+    $this->template->monastery = $monastery = $this->model->getByUser();
+    $this->monasteryId = $monastery->id;
+    $this->template->canUpgrade = $this->model->canUpgrade();
   }
   
   /**

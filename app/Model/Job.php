@@ -6,7 +6,6 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\Job as JobEntity,
     Nexendrie\Orm\UserJob as UserJobEntity,
     Nexendrie\Orm\JobMessage as JobMessageEntity,
-    Nexendrie\Orm\User as UserEntity,
     Nextras\Orm\Collection\ICollection,
     Nextras\Orm\Relationships\OneHasMany;
 
@@ -196,15 +195,13 @@ class Job {
     $reward = $extra = 0;
     if($job->job->count === 0) {
       $reward += $job->job->award * $job->count;
-    } else {
-      if($job->count >= $job->job->count) {
-        $reward += $job->job->award;
-        if($job->count >= $job->job->count * 1.2) {
-          $extra += (int) ($job->job->award / 5);
-        }
-        if($job->count >= $job->job->count * 1.5) {
-          $extra += (int) ($job->job->award / 2);
-        }
+    } elseif($job->count >= $job->job->count) {
+      $reward += $job->job->award;
+      if($job->count >= $job->job->count * 1.2) {
+        $extra += (int) ($job->job->award / 5);
+      }
+      if($job->count >= $job->job->count * 1.5) {
+        $extra += (int) ($job->job->award / 2);
       }
     }
     $extra += $this->skillsModel->calculateSkillIncomeBonus($reward, $job->job->neededSkill->id);
@@ -254,17 +251,9 @@ class Job {
     $messages = $this->orm->jobMessages->findByJobAndSuccess($job, $success);
     $message = "";
     if($messages->count() === 0 AND $success) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Úspěšně jsi zvládla směnu.";
-      } else {
-        $message = "Úspěšně jsi zvládl směnu.";
-      }
+      $message = $this->localeModel->genderMessage("Úspěšně jsi zvládl(a) směnu.");
     } elseif($messages->count() === 0 AND !$success) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Nezvládla jsi tuto směnu.";
-      } else {
-        $message = "Nezvládl jsi tuto směnu.";
-      }
+      $message = $this->localeModel->genderMessage("Nezvládl(a) jsi tuto směnu.");
     } else {
       $roll = rand(0, $messages->count() - 1);
       $i = 0;
@@ -334,9 +323,8 @@ class Job {
     $activeJob = $this->orm->userJobs->getUserActiveJob($this->user->id);
     if($activeJob) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
   
   /**

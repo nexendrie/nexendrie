@@ -8,8 +8,7 @@ use Nexendrie\Model\MountNotFoundException,
     Nexendrie\Model\InsufficientFundsException,
     Nexendrie\Model\CareNotNeededException,
     Nexendrie\Model\MountMaxTrainingLevelReachedException,
-    Nexendrie\Model\MountInBadConditionException,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Model\MountInBadConditionException;
 
 /**
  * StablesControl
@@ -19,12 +18,15 @@ use Nexendrie\Model\MountNotFoundException,
 class StablesControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
+  /** @var \Nexendrie\Model\Locale */
+  protected $localeModel;
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
     parent::__construct();
     $this->orm = $orm;
+    $this->localeModel = $localeModel;
     $this->user = $user;
   }
   
@@ -85,11 +87,7 @@ class StablesControl extends \Nette\Application\UI\Control {
   function handleCare(int $mountId): void {
     try {
       $this->increaseLife($mountId, 3, 4);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Očistila jsi jezdecké zvíře.";
-      } else {
-        $message = "Očistil jsi jezdecké zvíře.";
-      }
+      $message = $this->localeModel->genderMessage("Očistil(a) jsi jezdecké zvíře.");
       $this->presenter->flashMessage($message);
     } catch(MountNotFoundException $e) {
       $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
@@ -110,11 +108,7 @@ class StablesControl extends \Nette\Application\UI\Control {
   function handleFeed(int $mountId): void {
     try {
       $this->increaseLife($mountId, 10, 12);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Nakrmila jsi jezdecké zvíře.";
-      } else {
-        $message = "Nakrmil jsi jezdecké zvíře.";
-      }
+      $message = $this->localeModel->genderMessage("Nakrmil(a) jsi jezdecké zvíře.");
       $this->presenter->flashMessage($message);
     } catch(MountNotFoundException $e) {
       $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");

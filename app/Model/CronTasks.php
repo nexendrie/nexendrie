@@ -248,11 +248,11 @@ class CronTasks {
     foreach($weddings as $wedding) {
       if(!$this->marriageModel->canFinish($wedding)) {
         echo "Wedding (#$wedding->id) cannot be finished!\n";
-      } else {
-        echo "Closed wedding (#$wedding->id).\n";
-        $wedding->status = MarriageEntity::STATUS_ACTIVE;
-        $this->orm->marriages->persist($wedding);
+        continue;
       }
+      echo "Closed wedding (#$wedding->id).\n";
+      $wedding->status = MarriageEntity::STATUS_ACTIVE;
+      $this->orm->marriages->persist($wedding);
     }
     $this->orm->flush();
     echo "Finished closing weddings ...\n";

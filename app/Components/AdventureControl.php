@@ -13,8 +13,7 @@ use Nexendrie\Model\AlreadyOnAdventureException,
     Nexendrie\Model\NoEnemyRemainException,
     Nexendrie\Model\NotAllEnemiesDefeateException,
     Nexendrie\Model\CannotDoAdventureException,
-    Nexendrie\Model\AdventureNotAccessibleException,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Model\AdventureNotAccessibleException;
 
 /**
  * AdventureControl
@@ -24,12 +23,15 @@ use Nexendrie\Model\AlreadyOnAdventureException,
 class AdventureControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Adventure */
   protected $model;
+  /** @var \Nexendrie\Model\Locale */
+  protected $localeModel;
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Model\Adventure $model, \Nette\Security\User $user) {
+  function __construct(\Nexendrie\Model\Adventure $model, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
     parent::__construct();
     $this->model = $model;
+    $this->localeModel = $localeModel;
     $this->user = $user;
   }
   
@@ -71,11 +73,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
   function handleStart(int $adventure, int $mount): void {
     try {
       $this->model->startAdventure($adventure, $mount);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Vydala jsi se na dobrodružství.";
-      } else {
-        $message = "Vydal jsi se na dobrodružství.";
-      }
+      $message = $this->localeModel->genderMessage("Vydal(a) jsi se na dobrodružství.");
       $this->presenter->flashMessage($message);
       $this->presenter->redirect("Adventure:");
     } catch(AlreadyOnAdventureException $e) {
@@ -107,11 +105,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
     } catch(NotOnAdventureException $e) {
       $this->presenter->flashMessage("Nejsi na dobrodružství.");
     } catch(NoEnemyRemainException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Porazila jsi již všechny nepřátele.";
-      } else {
-        $message = "Porazil jsi již všechny nepřátele.";
-      }
+      $message = $this->localeModel->genderMessage("Porazil(a) jsi již všechny nepřátele.");
       $this->presenter->flashMessage($message);
     }
   }
@@ -126,11 +120,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
     } catch(NotOnAdventureException $e) {
       $this->presenter->flashMessage("Nejsi na dobrodružství.");
     } catch(NotAllEnemiesDefeateException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Neporazila jsi všechny nepřátele.";
-      } else {
-        $message = "Neporazil jsi všechny nepřátele.";
-      }
+      $message = $this->localeModel->genderMessage("Neporazil(a) jsi již všechny nepřátele.");
       $this->presenter->flashMessage($message);
     }
   }
