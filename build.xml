@@ -40,7 +40,7 @@
     <mkdir dir="temp/cache"/>
     <mkdir dir="temp/sessions"/>
     <if>
-      <equals arg1="${environment" arg2="ci"/>
+      <equals arg1="${environment}" arg2="ci"/>
       <then>
         <copy file="tests/ci.neon" tofile="tests/local.neon"/>
       </then>
