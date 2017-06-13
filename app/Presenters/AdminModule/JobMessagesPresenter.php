@@ -59,7 +59,7 @@ class JobMessagesPresenter extends BasePresenter {
   protected function createComponentAddJobMessageForm(AddEditJobMessageFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
-      $data["job"] = $this->job->id;
+      $values["job"] = $this->job->id;
       $this->model->addMessage($values);
       $this->flashMessage("Hláška přidána.");
       $this->redirect("list", ["id" => $this->job->id]);
