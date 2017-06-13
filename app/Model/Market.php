@@ -180,9 +180,9 @@ class Market {
       $row = new UserItemEntity;
       $row->user = $user;
       $row->item = $item;
-    } else {
-      $row->amount++;
+      $row->amount = 0;
     }
+    $row->amount++;
     $price = $itemRow->price;
     $price -= $this->eventsModel->calculateShoppingDiscount($price);
     $row->user->money = $user->money - $price;

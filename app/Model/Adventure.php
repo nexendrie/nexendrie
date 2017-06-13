@@ -359,13 +359,11 @@ class Adventure {
     }
     $success = $this->fightNpc($enemy, $adventure->mount);
     if($success) {
-      $message = $enemy->victoryText;
       $this->saveVictory($adventure, $enemy);
-    } else {
-      $message = "$enemy->name se ubránil.";
-      $this->orm->users->persistAndFlush($adventure->user);
+      return ["success" => true, "message" => $enemy->victoryText];
     }
-    return ["success" => $success, "message" => $message];
+    $this->orm->users->persistAndFlush($adventure->user);
+    return ["success" => false, "message" => "$enemy->name se ubránil."];
   }
   
   /**

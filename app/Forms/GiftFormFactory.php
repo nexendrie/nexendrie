@@ -115,7 +115,6 @@ class GiftFormFactory {
     $user = $this->orm->users->getById($values["user"]);
     $queen = $this->orm->users->getById(0);
     $money = $values["money"];
-    $filledMessage = (strlen($values["message"]) > 0);
     $itemName = "";
     if($money > 0) {
       $queen->money -= $money;
@@ -126,20 +125,19 @@ class GiftFormFactory {
     if($values["item"]) {
       $item = $this->orm->items->getById($values["item"]);
       $row = $this->orm->userItems->getByUserAndItem($user->id, $item->id);
-      if($row AND !in_array($item->type, ItemEntity::getEquipmentTypes())) {
-        $row->amount++;
-      } else {
+      if(!$row AND in_array($item->type, ItemEntity::getEquipmentTypes())) {
         $row = new UserItemEntity;
         $row->user = $user;
         $row->item = $item;
+        $row->amount = 0;
       }
+      $row->amount++;
       $this->orm->userItems->persist($row, false);
       $itemName = $item->name;
     }
-    if(!$filledMessage) {
+    $messageText = $values["message"];
+    if(count($messageText) < 1) {
       $messageText = $this->composeMessage($money, $itemName);
-    } else {
-      $messageText = $values["message"];
     }
     $message = new MessageEntity;
     $message->from = $this->orm->users->getById($this->user->id);

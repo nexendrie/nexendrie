@@ -54,13 +54,12 @@ class UserPresenter extends BasePresenter {
    * @return void
    */
   function actionLogout(): void {
+    $message = "Nejsi přihlášen.";
     if($this->user->isLoggedIn()) {
       $message = $this->localeModel->genderMessage("Byl(a) jsi úspěšně odhlášen(a).");
-      $this->flashMessage($message);
       $this->user->logout();
-    } else {
-      $this->flashMessage("Nejsi přihlášen.");
     }
+    $this->flashMessage($message);
     $this->redirect("Homepage:");
   }
   

@@ -5,8 +5,7 @@ namespace Nexendrie\Components;
 
 use Nexendrie\Model\SkillNotFoundException,
     Nexendrie\Model\SkillMaxLevelReachedException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Model\InsufficientFundsException;
 
 /**
  * AcademyControl
@@ -62,20 +61,12 @@ class AcademyControl extends \Nette\Application\UI\Control {
   function handleLearn(int $skillId): void {
     try {
       $this->model->learn($skillId);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Úspěšně jsi se naučila dovednost.";
-      } else {
-        $message = "Úspěšně jsi se naučil dovednost.";
-      }
+      $message = $this->localeModel->genderMessage("Úspěšně jsi se naučil(a) dovednost.");
       $this->presenter->flashMessage($message);
     } catch(SkillNotFoundException $e) {
       $this->presenter->flashMessage("Dovednost nenalezena.");
     } catch(SkillMaxLevelReachedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Dosáhla jsi již maximální úrovně.";
-      } else {
-        $message = "Dosáhl jsi již maximální úrovně.";
-      }
+      $message = $this->localeModel->genderMessage("Dosáhl(a) jsi již maximální úrovně.");
       $this->presenter->flashMessage($message);
     } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");

@@ -118,22 +118,13 @@ class PrisonControl extends \Nette\Application\UI\Control {
     if($release) {
       $this->user->identity->banned = false;
       $this->user->identity->roles = [$punishment->user->group->singleName];
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Byla jsi propuštěna.";
-      } else {
-        $message = "Byl jsi propuštěn.";
-      }
+      $message = $this->localeModel->genderMessage("Byl(a) jsi propuštěn(a).");
       $this->presenter->flashMessage($message);
       $this->presenter->redirect(":Front:Homepage:");
-    } else {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Ještě nemůžeš být propuštěna.";
-      } else {
-        $message = "Ještě nemůžeš být propuštěn.";
-      }
-      $this->presenter->flashMessage($message);
-      $this->presenter->redirect("default");
     }
+    $message = $this->localeModel->genderMessage("Ještě nemůžeš být propuštěn(a).");
+    $this->presenter->flashMessage($message);
+    $this->presenter->redirect("default");
   }
 }
 ?>
