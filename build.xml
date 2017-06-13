@@ -23,16 +23,81 @@
     </exec>
     <phingcall target="clean-db"/>
   </target>
-  <target name="install-ci">
+  <target name="install">
+    <property name="environment" value="production"/>
+    <if>
+      <not>
+        <or>
+          <equals arg1="${environment}" arg2="production"/>
+          <equals arg1="${environment}" arg2="development"/>
+          <equals arg1="${environment}" arg2="ci"/>
+        </or>
+      </not>
+      <then>
+        <fail message="Environment has to be either production, development or ci."/>
+      </then>
+    </if>
     <mkdir dir="temp/cache"/>
-    <copy file="tests/ci.neon" tofile="tests/local.neon"/>
-    <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="install"/>
-      <arg value="--prefer-dist"/>
-      <arg value="--no-progress"/>
-      <arg value="--no-suggest"/>
-      <arg value="--no-interaction"/>
-    </exec>
+    <mkdir dir="temp/sessions"/>
+    <if>
+      <equals arg1="${environment" arg2="ci"/>
+      <then>
+        <copy file="tests/ci.neon" tofile="tests/local.neon"/>
+      </then>
+      <else>
+        <copy file="app/config/local.sample.neon" tofile="app/config/local.neon"/>
+      </else>
+    </if>
+    <if>
+      <not>
+        <equals arg1="${environment}" arg2="production"/>
+      </not>
+      <then>
+        <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
+          <arg value="install"/>
+          <arg value="--prefer-dist"/>
+          <arg value="--no-progress"/>
+          <arg value="--no-suggest"/>
+          <arg value="--no-interaction"/>
+        </exec>
+      </then>
+      <else>
+        <exec executable="curl" logoutput="true" passthru="true" checkreturn="true">
+          <arg value="-sS"/>
+          <arg value="https://getcomposer.org/installer"/>
+          <arg value="|"/>
+          <arg value="php"/>
+        </exec>
+        <move file="composer.phar" tofile="composer"/>
+        <exec executable="chmod" logoutput="true" passthru="true" checkreturn="true">
+          <arg value="+x"/>
+          <arg path="composer"/>
+        </exec>
+        <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
+          <arg value="--ignore-platform-reqs"/>
+          <arg value="--no-dev"/>
+        </exec>
+      </else>
+    </if>
+    <if>
+      <not>
+        <equals arg1="${environment}" arg2="production"/>
+      </not>
+      <then>
+        <phingcall target="config-db"/>
+      </then>
+    </if>
+    <if>
+      <equals arg1="${environment}" arg2="development"/>
+      <then>
+        <copy file="app/config/local.neon" todir="tests"/>
+      </then>
+    </if>
+  </target>
+  <target name="install-ci">
+    <phingcall target="install">
+      <property name="environment" value="ci"/>
+    </phingcall>
   </target>
   <target name="config-db">
     <echo message="Enter database configuration"/>
@@ -49,37 +114,6 @@
       <arg value="${user}"/>
       <arg value="${password}"/>
     </exec>
-  </target>
-  <target name="install-dev">
-    <copy file="app/config/local.sample.neon" tofile="app/config/local.neon"/>
-    <mkdir dir="temp/cache"/>
-    <mkdir dir="temp/sessions"/>
-    <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="install"/>
-    </exec>
-    <phingcall target="config-db"/>
-    <copy file="app/config/local.neon" todir="tests"/>
-  </target>
-  <target name="install-production">
-    <copy file="app/config/local.sample.neon" tofile="app/config/local.neon"/>
-    <mkdir dir="temp/cache"/>
-    <mkdir dir="temp/sessions"/>
-    <exec executable="curl" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="-sS"/>
-      <arg value="https://getcomposer.org/installer"/>
-      <arg value="|"/>
-      <arg value="php"/>
-    </exec>
-    <move file="composer.phar" tofile="composer"/>
-    <exec executable="chmod" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="+x"/>
-      <arg path="composer"/>
-    </exec>
-    <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="--ignore-platform-reqs"/>
-      <arg value="--no-dev"/>
-    </exec>
-    <phingcall target="config-db"/>
   </target>
   <target name="deploy" depends="install-ci">
     <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
