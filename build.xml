@@ -81,7 +81,7 @@
     </if>
     <if>
       <not>
-        <equals arg1="${environment}" arg2="production"/>
+        <equals arg1="${environment}" arg2="ci"/>
       </not>
       <then>
         <phingcall target="config-db"/>
