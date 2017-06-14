@@ -112,7 +112,6 @@ class Guild {
    * @param int $uid
    * @return GuildEntity|NULL
    */
-  // @codingStandardsIgnoreLine
   function getUserGuild(int $uid = NULL): ?GuildEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
     return $user->guild;

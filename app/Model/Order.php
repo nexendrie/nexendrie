@@ -104,7 +104,6 @@ class Order {
    * @param int $uid
    * @return OrderEntity|NULL
    */
-  // @codingStandardsIgnoreLine
   function getUserOrder(int $uid = NULL): ?OrderEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
     return $user->order;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d378064bf2f116bd9930adfe9e9f2efa",
+    "content-hash": "287171fb4f17744f5aa39bde440a5393",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1176,12 +1176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/book-component.git",
-                "reference": "f4fa40f930bb67a7c4b3ce546b0e0a01a43dd273"
+                "reference": "89d040e61e8920b3f9a281ba77242478a3f726d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/book-component/zipball/f4fa40f930bb67a7c4b3ce546b0e0a01a43dd273",
-                "reference": "f4fa40f930bb67a7c4b3ce546b0e0a01a43dd273",
+                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=89d040e61e8920b3f9a281ba77242478a3f726d2",
+                "reference": "89d040e61e8920b3f9a281ba77242478a3f726d2",
                 "shasum": ""
             },
             "require": {
@@ -1227,7 +1227,7 @@
                 "component",
                 "nette"
             ],
-            "time": "2017-06-10 14:01:58"
+            "time": "2017-06-14 07:01:39"
         },
         {
             "name": "nexendrie/menu",
@@ -2692,13 +2692,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nexendrie/code-quality.git",
-                "reference": "7b29a8dcfeb5ad54ae49c2b8144962b1b427e44c"
+                "url": "https://gitlab.com/nexendrie/code-quality.git",
+                "reference": "f5ba9facf0c6dbebcceb8f7323b037a191ea7a2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/code-quality/zipball/7b29a8dcfeb5ad54ae49c2b8144962b1b427e44c",
-                "reference": "7b29a8dcfeb5ad54ae49c2b8144962b1b427e44c",
+                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=f5ba9facf0c6dbebcceb8f7323b037a191ea7a2a",
+                "reference": "f5ba9facf0c6dbebcceb8f7323b037a191ea7a2a",
                 "shasum": ""
             },
             "require": {
@@ -2708,7 +2708,7 @@
                 "mrtnzlml/testbench": "^2.4.2",
                 "nette/tester": "2.0.x-dev",
                 "phpstan/phpstan": "^0.7",
-                "squizlabs/php_codesniffer": "^3.0"
+                "squizlabs/php_codesniffer": "^3.0.1"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2728,7 +2728,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2017-06-10 13:23:15"
+            "time": "2017-06-14T08:49:22+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3081,16 +3081,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "b95ff2c3b122a3ee4b57d149a57d2afce65522c3"
+                "reference": "f9eaf037edf22fdfccf04cb0ab57ebcb1e166219"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/b95ff2c3b122a3ee4b57d149a57d2afce65522c3",
-                "reference": "b95ff2c3b122a3ee4b57d149a57d2afce65522c3",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/f9eaf037edf22fdfccf04cb0ab57ebcb1e166219",
+                "reference": "f9eaf037edf22fdfccf04cb0ab57ebcb1e166219",
                 "shasum": ""
             },
             "require": {
@@ -3128,7 +3128,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2017-05-04T00:33:04+00:00"
+            "time": "2017-06-14T01:23:49+00:00"
         },
         {
             "name": "symfony/console",
@@ -3890,7 +3890,14 @@
             "time": "2017-04-06T11:34:36+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "3.0.0",
+            "alias_normalized": "3.0.0.0",
+            "version": "3.0.1.0",
+            "package": "squizlabs/php_codesniffer"
+        }
+    ],
     "minimum-stability": "dev",
     "stability-flags": {
         "konecnyjakub/event-calendar": 20,

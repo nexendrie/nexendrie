@@ -66,9 +66,3 @@ parameters:
             - tests/_temp/cache/*/*.php
         PHP_CodeSniffer\Standards\PSR1\Sniffs\Files\SideEffectsSniff:
             - tests/Nexendrie/*/*.php
-        # until new version of codesniffer is released
-        PHP_CodeSniffer\Standards\Squiz\Sniffs\ControlStructures\InlineIfDeclarationSniff:
-            - app/Model/Castle.php
-            - app/Model/Guild.php
-            - app/Model/House.php
-            - app/Model/Order.php
