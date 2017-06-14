@@ -33,7 +33,7 @@ class GroupTest extends \Tester\TestCase {
   
   function testGetByLevel() {
     $group = $this->model->getByLevel(10000);
-    Assert::type(GroupDummy::class, $group);
+    Assert::type(GroupEntity::class, $group);
     Assert::same(1, $group->id);
     Assert::null($this->model->getByLevel(100000));
   }

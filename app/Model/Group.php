@@ -73,16 +73,10 @@ class Group {
    * Get group of specified level
    * 
    * @param int $level Group's level
-   * @return GroupDummy|NULL
+   * @return GroupEntity|NULL
    */
-  function getByLevel(int $level): ?GroupDummy {
-    $groups = $this->listOfGroups();
-    foreach($groups as $group) {
-      if($group->level === $level) {
-        return $group;
-      }
-    }
-    return NULL;
+  function getByLevel(int $level): ?GroupEntity {
+    return $this->orm->groups->getByLevel($level);
   }
   
   /**
