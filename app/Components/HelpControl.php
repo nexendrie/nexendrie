@@ -6,7 +6,6 @@ namespace Nexendrie\Components;
 use Nexendrie\BookComponent\BookControl,
     Nexendrie\BookComponent\BookPagesStorage,
     Nexendrie\BookComponent\BookPage,
-    Nexendrie\Model\Group,
     Nexendrie\Orm\Model as ORM,
     Nexendrie\Model\Locale,
     Nexendrie\Orm\Monastery as MonasteryEntity,
@@ -22,15 +21,12 @@ use Nexendrie\BookComponent\BookControl,
  * @author Jakub Konečný
  */
 class HelpControl extends BookControl {
-  /** @var Group */
-  protected $groupModel;
   /** @var ORM */
   protected $orm;
   /** @var Locale */
   protected $localeModel;
   
-  function __construct(Group $groupModel, ORM $orm, Locale $localeModel, Translator $translator) {
-    $this->groupModel = $groupModel;
+  function __construct(ORM $orm, Locale $localeModel, Translator $translator) {
     $this->orm = $orm;
     $this->localeModel = $localeModel;
     parent::__construct(":Front:Help", __DIR__ . "/help", $translator);
@@ -76,7 +72,7 @@ class HelpControl extends BookControl {
         "skillLevel" => $job->neededSkillLevel, "count" => $job->count,
         "award" => $job->awardT, "shift" => $job->shift
       ];
-      $j->rank = $this->groupModel->getByLevel($job->level)->singleName;
+      $j->rank = $this->orm->groups->getByLevel($job->level)->singleName;
       $this->template->jobs[] = $j;
     }
   }

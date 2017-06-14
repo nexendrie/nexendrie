@@ -70,16 +70,6 @@ class Group {
   }
   
   /**
-   * Get group of specified level
-   * 
-   * @param int $level Group's level
-   * @return GroupEntity|NULL
-   */
-  function getByLevel(int $level): ?GroupEntity {
-    return $this->orm->groups->getByLevel($level);
-  }
-  
-  /**
    * @param int $id
    * @return GroupEntity|NULL
    */

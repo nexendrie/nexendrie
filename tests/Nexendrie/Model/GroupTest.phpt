@@ -31,13 +31,6 @@ class GroupTest extends \Tester\TestCase {
     Assert::null($this->model->get(50));
   }
   
-  function testGetByLevel() {
-    $group = $this->model->getByLevel(10000);
-    Assert::type(GroupEntity::class, $group);
-    Assert::same(1, $group->id);
-    Assert::null($this->model->getByLevel(100000));
-  }
-  
   function testOrmGet() {
     $group = $this->model->ormGet(1);
     Assert::type(GroupEntity::class, $group);
