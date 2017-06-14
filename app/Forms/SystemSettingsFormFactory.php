@@ -146,27 +146,8 @@ class SystemSettingsFormFactory {
     $form->setCurrentGroup(NULL);
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());
-    $form->onValidate[] = [$this, "validate"];
     $form->onSuccess[] = [$this, "process"];
     return $form;
-  }
-  
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
-  function validate(Form $form, array $values): void {
-    $plural = explode("\n", $values["locale"]["plural"]);
-    if(count($plural) != 3) {
-      $form->addError("Plurály musí obsahovat právě 3 řádky.");
-    }
-    if(is_int($plural[0])) {
-      $form->addError("První plurál musít být číslo.");
-    }
-    if(is_int($plural[2])) {
-      $form->addError("Třetí plurál musít být číslo.");
-    }
   }
   
   /**
