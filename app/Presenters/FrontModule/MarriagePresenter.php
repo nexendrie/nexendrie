@@ -21,8 +21,7 @@ use Nette\Application\UI\Form,
     Nexendrie\Model\ItemNotOwnedException,
     Nexendrie\Components\IWeddingControlFactory,
     Nexendrie\Components\WeddingControl,
-    Nexendrie\Orm\Marriage as MarriageEntity,
-    Nexendrie\Orm\User as UserEntity;
+    Nexendrie\Orm\Marriage as MarriageEntity;
 
 /**
  * Presenter Marriage
@@ -183,11 +182,7 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Žádost podána.");
       $this->redirect("default");
     } catch(NotMarriedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Nejsi vdaná.";
-      } else {
-        $message = "Nejsi ženatý.";
-      }
+      $message = $this->localeModel->genderMessage("Nejsi (ženatý|vdaná).");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(AlreadyInDivorceException $e) {
@@ -205,11 +200,7 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Vaše manželství skončilo.");
       $this->redirect("Homepage:");
     } catch(NotMarriedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Nejsi vdaná.";
-      } else {
-        $message = "Nejsi ženatý.";
-      }
+      $message = $this->localeModel->genderMessage("Nejsi (ženatý|vdaná).");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(NotInDivorceException $e) {
@@ -227,11 +218,7 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Žádost zamítnuta.");
       $this->redirect("default");
     } catch(NotMarriedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Nejsi vdaná.";
-      } else {
-        $message = "Nejsi ženatý.";
-      }
+      $message = $this->localeModel->genderMessage("Nejsi (ženatý|vdaná).");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(NotInDivorceException $e) {
@@ -249,11 +236,7 @@ class MarriagePresenter extends BasePresenter {
       $this->flashMessage("Žádost stáhnuta.");
       $this->redirect("default");
     } catch(NotMarriedException $e) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Nejsi vdaná.";
-      } else {
-        $message = "Nejsi ženatý.";
-      }
+      $message = $this->localeModel->genderMessage("Nejsi (ženatý|vdaná).");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
     } catch(NotInDivorceException $e) {

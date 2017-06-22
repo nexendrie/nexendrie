@@ -59,8 +59,9 @@ class LocaleTest extends \Tester\TestCase {
     $this->login();
     Assert::same("abcab", $this->model->genderMessage("abc(a)ab(a)"));
     Assert::same("abcý", $this->model->genderMessage("abc(ý|á)"));
+    Assert::same("abcýss", $this->model->genderMessage("abc(ýss|ásd)"));
     $this->login("svetlana");
-    Assert::same("abcá", $this->model->genderMessage("abc(ý|á)"));
+    Assert::same("abcásd", $this->model->genderMessage("abc(ýss|ásd)"));
   }
 }
 

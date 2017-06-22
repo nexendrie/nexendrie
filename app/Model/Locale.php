@@ -93,12 +93,21 @@ class Locale {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    $pattern = [
+      '#\(a\)#',
+      '#([\(])([[:alpha:]]+)(\|)([[:alpha:]]+)(\))#u',
+    ];
+    $replace = [
+      "", "",
+    ];
     if($this->user->identity->gender === UserEntity::GENDER_MALE) {
-      $message = str_replace(["(a)", "(ý|á)"], ["", "ý"], $message);
+      $replace[1] = "\$2";
     } elseif($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-      $message = str_replace(["(a)", "(ý|á)"], ["a", "á"], $message);
+      $replace = [
+        "a", "\$4"
+      ];
     }
-    return $message;
+    return preg_replace($pattern, $replace, $message);
   }
   
   function getFormats(): array {
