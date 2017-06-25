@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Components;
 
 use Nexendrie\BookComponent\BookControl,
-    Nexendrie\BookComponent\BookPagesStorage,
     Nexendrie\BookComponent\BookPage,
     Nexendrie\Translation\Translator;
 
@@ -16,20 +15,12 @@ use Nexendrie\BookComponent\BookControl,
 class HistoryControl extends BookControl {
   function __construct(Translator $translator) {
     parent::__construct(":Front:History", __DIR__ . "/history", $translator);
-  }
-  
-  /**
-   * @return BookPagesStorage
-   */
-  function getPages(): BookPagesStorage {
-    $storage = new BookPagesStorage;
-    $storage[] = new BookPage("ancient", "Dávné časy");
-    $storage[] = new BookPage("empire", "Čas císařství");
-    $storage[] = new BookPage("principalities", "Éra knížectví");
-    $storage[] = new BookPage("unification", "Sjednocování");
-    $storage[] = new BookPage("greatwar", "Velká válka");
-    $storage[] = new BookPage("afterwar", "Po válce");
-    return $storage;
+    $this->pages[] = new BookPage("ancient", "Dávné časy");
+    $this->pages[] = new BookPage("empire", "Čas císařství");
+    $this->pages[] = new BookPage("principalities", "Éra knížectví");
+    $this->pages[] = new BookPage("unification", "Sjednocování");
+    $this->pages[] = new BookPage("greatwar", "Velká válka");
+    $this->pages[] = new BookPage("afterwar", "Po válce");
   }
 }
 ?>

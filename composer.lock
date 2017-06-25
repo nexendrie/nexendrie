@@ -1176,12 +1176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/book-component.git",
-                "reference": "831892e770cea59d6cbf4e862e6ccd3a17ffb23a"
+                "reference": "543b9df8b2e76cd1414e93b2c02a89684d65875a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=831892e770cea59d6cbf4e862e6ccd3a17ffb23a",
-                "reference": "831892e770cea59d6cbf4e862e6ccd3a17ffb23a",
+                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=543b9df8b2e76cd1414e93b2c02a89684d65875a",
+                "reference": "543b9df8b2e76cd1414e93b2c02a89684d65875a",
                 "shasum": ""
             },
             "require": {
@@ -1228,7 +1228,7 @@
                 "component",
                 "nette"
             ],
-            "time": "2017-06-16 11:44:56"
+            "time": "2017-06-25 17:01:43"
         },
         {
             "name": "nexendrie/menu",

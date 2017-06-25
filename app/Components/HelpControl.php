@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Components;
 
 use Nexendrie\BookComponent\BookControl,
-    Nexendrie\BookComponent\BookPagesStorage,
     Nexendrie\BookComponent\BookPage,
     Nexendrie\Orm\Model as ORM,
     Nexendrie\Model\Locale,
@@ -27,33 +26,25 @@ class HelpControl extends BookControl {
   protected $localeModel;
   
   function __construct(ORM $orm, Locale $localeModel, Translator $translator) {
+    parent::__construct(":Front:Help", __DIR__ . "/help", $translator);
     $this->orm = $orm;
     $this->localeModel = $localeModel;
-    parent::__construct(":Front:Help", __DIR__ . "/help", $translator);
-  }
-  
-  /**
-   * @return BookPagesStorage
-   */
-  function getPages(): BookPagesStorage {
-    $storage = new BookPagesStorage;
-    $storage[] = new BookPage("introduction", "Úvod");
-    $storage[] = new BookPage("titles", "Tituly");
-    $storage[] = new BookPage("towns", "Města");
-    $storage[] = new BookPage("castle", "Hrad");
-    $storage[] = new BookPage("monastery", "Klášter");
-    $storage[] = new BookPage("house", "Dům");
-    $storage[] = new BookPage("money", "Peníze");
-    $storage[] = new BookPage("work", "Práce");
-    $storage[] = new BookPage("adventures", "Dobrodružství");
-    $storage[] = new BookPage("bank", "Banka");
-    $storage[] = new BookPage("academy", "Akademie");
-    $storage[] = new BookPage("market", "Tržiště");
-    $storage[] = new BookPage("stables", "Stáje");
-    $storage[] = new BookPage("guild", "Cechy");
-    $storage[] = new BookPage("order", "Řády");
-    $storage[] = new BookPage("marriage", "Manželství");
-    return $storage;
+    $this->pages[] = new BookPage("introduction", "Úvod");
+    $this->pages[] = new BookPage("titles", "Tituly");
+    $this->pages[] = new BookPage("towns", "Města");
+    $this->pages[] = new BookPage("castle", "Hrad");
+    $this->pages[] = new BookPage("monastery", "Klášter");
+    $this->pages[] = new BookPage("house", "Dům");
+    $this->pages[] = new BookPage("money", "Peníze");
+    $this->pages[] = new BookPage("work", "Práce");
+    $this->pages[] = new BookPage("adventures", "Dobrodružství");
+    $this->pages[] = new BookPage("bank", "Banka");
+    $this->pages[] = new BookPage("academy", "Akademie");
+    $this->pages[] = new BookPage("market", "Tržiště");
+    $this->pages[] = new BookPage("stables", "Stáje");
+    $this->pages[] = new BookPage("guild", "Cechy");
+    $this->pages[] = new BookPage("order", "Řády");
+    $this->pages[] = new BookPage("marriage", "Manželství");
   }
   
   /**
