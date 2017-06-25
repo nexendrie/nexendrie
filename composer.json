@@ -42,8 +42,7 @@
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
         "dg/ftp-deployment": "^2.6",
-        "phpstan/phpstan-nette": "^0.7",
-        "symplify/easy-coding-standard": "^2.0"
+        "phpstan/phpstan-nette": "^0.7"
     },
     "autoload": {
         "psr-4": {
