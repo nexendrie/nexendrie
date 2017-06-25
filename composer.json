@@ -44,6 +44,9 @@
         "dg/ftp-deployment": "^2.6",
         "phpstan/phpstan-nette": "^0.7"
     },
+    "replace": {
+        "codacy/coverage": "*"
+    },
     "autoload": {
         "psr-4": {
             "Nexendrie\\": [

@@ -48,6 +48,11 @@ test:cc:
   script:
   - phing test-ci-coverage
   coverage: '/(\d+\%) covered/'
+  artifacts:
+    name: "Code coverage"
+    paths:
+    - coverage.html
+
 
 deploy:alpha:
   <<: *deploy_job
