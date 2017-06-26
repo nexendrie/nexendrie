@@ -1354,16 +1354,16 @@
         },
         {
             "name": "nexendrie/translation",
-            "version": "1.0.0-rc3",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/translation.git",
-                "reference": "b62d8a37a0d9b8d59f007feb2af6749ad6cc4aaa"
+                "reference": "e11b0960e2b435a3799db2624b77c7ec3483378a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=b62d8a37a0d9b8d59f007feb2af6749ad6cc4aaa",
-                "reference": "b62d8a37a0d9b8d59f007feb2af6749ad6cc4aaa",
+                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=e11b0960e2b435a3799db2624b77c7ec3483378a",
+                "reference": "e11b0960e2b435a3799db2624b77c7ec3483378a",
                 "shasum": ""
             },
             "require": {
@@ -1425,7 +1425,7 @@
                 "translation",
                 "yaml"
             ],
-            "time": "2017-06-10T19:05:21+00:00"
+            "time": "2017-06-26T16:03:54+00:00"
         },
         {
             "name": "nexendrie/utils",
