@@ -7,8 +7,6 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Marriage|NULL getActiveMarriage($user)
- * @method Marriage|NULL getAcceptedMarriage($user)
  */
 class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
@@ -58,6 +56,40 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
   public function findOpenWeddings(): ICollection {
     return $this->findBy([
       "status" => Marriage::STATUS_ACCEPTED, "term<=" => time() + 60 * 60
+    ]);
+  }
+  
+  /**
+   * @param User|int $user
+   */
+  public function getActiveMarriage($user): ?Marriage {
+    return $this->getBy([
+      ICollection::OR,
+      [
+        "status" => Marriage::STATUS_ACTIVE,
+        "user1" => $user
+      ],
+      [
+        "status" => Marriage::STATUS_ACTIVE,
+        "user2" => $user
+      ]
+    ]);
+  }
+  
+  /**
+   * @param User|int $user
+   */
+  public function getAcceptedMarriage($user): ?Marriage {
+    return $this->getBy([
+      ICollection::OR,
+      [
+        "status" => Marriage::STATUS_ACCEPTED,
+        "user1" => $user
+      ],
+      [
+        "status" => Marriage::STATUS_ACCEPTED,
+        "user2" => $user
+      ]
     ]);
   }
 }
