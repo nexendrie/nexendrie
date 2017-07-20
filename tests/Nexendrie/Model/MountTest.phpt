@@ -16,11 +16,11 @@ class MountTest extends \Tester\TestCase {
   /** @var Mount */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Mount::class);
   }
   
-  function testGet() {
+  public function testGet() {
     $mount = $this->model->get(1);
     Assert::type(MountEntity::class, $mount);
     Assert::exception(function() {
@@ -28,7 +28,7 @@ class MountTest extends \Tester\TestCase {
     }, MountNotFoundException::class);
   }
   
-  function testListOfMounts() {
+  public function testListOfMounts() {
     $result1 = $this->model->listOfMounts();
     Assert::type(ICollection::class, $result1);
     Assert::count(12, $result1);
@@ -41,7 +41,7 @@ class MountTest extends \Tester\TestCase {
     Assert::same(0, $mount->owner->id);
   }
   
-  function testMountsOnSale() {
+  public function testMountsOnSale() {
     $result = $this->model->mountsOnSale();
     Assert::type(ICollection::class, $result);
     /** @var MountEntity $mount */
@@ -50,20 +50,20 @@ class MountTest extends \Tester\TestCase {
     Assert::true($mount->onMarket);
   }
   
-  function testListOfMountTypes() {
+  public function testListOfMountTypes() {
     $result = $this->model->listOfMountTypes();
     Assert::type(ICollection::class, $result);
     Assert::count(5, $result);
     Assert::type(MountTypeEntity::class, $result->fetch());
   }
   
-  function testEdit() {
+  public function testEdit() {
     Assert::exception(function() {
       $this->model->edit(50, []);
     }, MountNotFoundException::class);
   }
   
-  function testBuy() {
+  public function testBuy() {
     Assert::exception(function() {
       $this->model->buy(1);
     }, AuthenticationNeededException::class);

@@ -25,7 +25,7 @@ class SystemSettingsFormFactory {
   /** @var string */
   protected $appDir;
   
-  function __construct(string $appDir, SettingsRepository $settingsRepository, Group $groupModel, Town $townModel) {
+  public function __construct(string $appDir, SettingsRepository $settingsRepository, Group $groupModel, Town $townModel) {
     $this->sr = $settingsRepository;
     $this->groupModel = $groupModel;
     $this->townModel = $townModel;
@@ -58,7 +58,7 @@ class SystemSettingsFormFactory {
   /**
    * @todo use SettingsRepository to validate settings
    */
-  function create(): Form {
+  public function create(): Form {
     $groups = $this->getListOfGroups();
     $form = new Form;
     $form->addGroup("Lokální nastavení");
@@ -140,7 +140,7 @@ class SystemSettingsFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     $filename = $this->appDir . "/config/local.neon";
     $config = Neon::decode(file_get_contents($filename));
     $config += ["nexendrie" => $values];

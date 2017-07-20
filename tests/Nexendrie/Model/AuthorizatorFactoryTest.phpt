@@ -13,11 +13,11 @@ class AuthorizatorFactoryTest extends \Tester\TestCase {
   /** @var \Nette\Security\Permission */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(\Nette\Security\Permission::class);
   }
   
-  function testRoles() {
+  public function testRoles() {
     $roles = [
       "vězeň", "cizinec", "sedlák", "bratr", "akolyta", "měšťan", "konšel", "rychtář", "kněz",
       "rytíř", "vyšší kněz", "lord", "vévoda", "jeho Jasnost", "jeho Veličenstvo"
@@ -37,7 +37,7 @@ class AuthorizatorFactoryTest extends \Tester\TestCase {
     }
   }
   
-  function testResources() {
+  public function testResources() {
     $resources = ["site", "poll", "article", "comment", "group", "user", "content", "event", "town"];
     foreach($resources as $resource) {
       Assert::true($this->model->hasResource($resource));

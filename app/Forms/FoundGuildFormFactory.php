@@ -19,7 +19,7 @@ class FoundGuildFormFactory {
   /** @var \Nexendrie\Model\Skills */
   protected $skillsModel;
   
-  function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Skills $skillsModel) {
+  public function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Skills $skillsModel) {
     $this->model = $model;
     $this->skillsModel = $skillsModel;
   }
@@ -28,7 +28,7 @@ class FoundGuildFormFactory {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
@@ -42,7 +42,7 @@ class FoundGuildFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->found($values);
     } catch(CannotFoundGuildException $e) {

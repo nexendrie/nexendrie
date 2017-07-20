@@ -18,7 +18,7 @@ class Profile {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -28,7 +28,7 @@ class Profile {
    *
    * @throws UserNotFoundException
    */
-  function view(string $username): UserEntity {
+  public function view(string $username): UserEntity {
     $user = $this->orm->users->getByUsername($username);
     if(is_null($user)) {
       throw new UserNotFoundException("Specified user does not exist.");
@@ -41,7 +41,7 @@ class Profile {
    * 
    * @return string[]
    */
-  function getListOfLords(): array {
+  public function getListOfLords(): array {
     return $this->orm->users->findBy(["this->group->level>=" => 350])
       ->fetchPairs("id", "publicname");
   }
@@ -49,7 +49,7 @@ class Profile {
   /**
    * Get specified user's path
    */
-  function getPath(int $id = NULL): string {
+  public function getPath(int $id = NULL): string {
     $user = $this->orm->users->getById($id ?? $this->user->id);
     if(is_null($user)) {
       throw new UserNotFoundException;
@@ -61,7 +61,7 @@ class Profile {
    /**
     * Get specified user's partner
     */
-  function getPartner(int $id): ?UserEntity {
+  public function getPartner(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getActiveMarriage($id);
     if(is_null($marriage)) {
       return NULL;
@@ -76,7 +76,7 @@ class Profile {
    /**
     * Get specified user's fiance(e)
     */
-  function getFiance(int $id): ?UserEntity {
+  public function getFiance(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getAcceptedMarriage($id);
     if(is_null($marriage)) {
       return NULL;

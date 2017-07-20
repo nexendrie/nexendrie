@@ -11,7 +11,7 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 class AddEditAdventureEnemyFormFactory {
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

@@ -17,15 +17,15 @@ class GuildTest extends \Tester\TestCase {
   /** @var Guild */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Guild::class);
   }
   
-  function testGetFoundingPrice() {
+  public function testGetFoundingPrice() {
     Assert::type("int", $this->model->foundingPrice);
   }
   
-  function testListOfGuilds() {
+  public function testListOfGuilds() {
     $result1 = $this->model->listOfGuilds();
     Assert::type(ICollection::class, $result1);
     Assert::count(1, $result1);
@@ -39,7 +39,7 @@ class GuildTest extends \Tester\TestCase {
     Assert::count(0, $result3);
   }
   
-  function testGetGuild() {
+  public function testGetGuild() {
     $guild = $this->model->getGuild(1);
     Assert::type(GuildEntity::class, $guild);
     Assert::exception(function() {
@@ -47,19 +47,19 @@ class GuildTest extends \Tester\TestCase {
     }, GuildNotFoundException::class);
   }
   
-  function testEditGuild() {
+  public function testEditGuild() {
     Assert::exception(function() {
       $this->model->editGuild(50, []);
     }, GuildNotFoundException::class);
   }
   
-  function testGetUserGuild() {
+  public function testGetUserGuild() {
     $guild = $this->model->getUserGuild(3);
     Assert::type(GuildEntity::class, $guild);
     Assert::null($this->model->getUserGuild(1));
   }
   
-  function testCanFound() {
+  public function testCanFound() {
     Assert::false($this->model->canFound());
     $this->login();
     Assert::false($this->model->canFound());
@@ -69,13 +69,13 @@ class GuildTest extends \Tester\TestCase {
     Assert::true($this->model->canFound());
   }
   
-  function testFound() {
+  public function testFound() {
     Assert::exception(function() {
       $this->model->found([]);
     }, CannotFoundGuildException::class);
   }
   
-  function testCalculateGuildIncomeBonus() {
+  public function testCalculateGuildIncomeBonus() {
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
     $job = new UserJob;
@@ -100,7 +100,7 @@ class GuildTest extends \Tester\TestCase {
     $orm->userJobs->detach($job);
   }
   
-  function testCanJoin() {
+  public function testCanJoin() {
     Assert::false($this->model->canJoin());
     $this->login();
     Assert::false($this->model->canJoin());
@@ -108,7 +108,7 @@ class GuildTest extends \Tester\TestCase {
     Assert::false($this->model->canJoin());
   }
   
-  function testJoin() {
+  public function testJoin() {
     Assert::exception(function() {
       $this->model->join(1);
     }, AuthenticationNeededException::class);
@@ -122,7 +122,7 @@ class GuildTest extends \Tester\TestCase {
     }, GuildNotFoundException::class);
   }
   
-  function testCanLeave() {
+  public function testCanLeave() {
     Assert::exception(function() {
       $this->model->canLeave();
     }, AuthenticationNeededException::class);
@@ -132,7 +132,7 @@ class GuildTest extends \Tester\TestCase {
     Assert::false($this->model->canLeave());
   }
   
-  function testLeave() {
+  public function testLeave() {
     Assert::exception(function() {
       $this->model->leave();
     }, AuthenticationNeededException::class);
@@ -142,7 +142,7 @@ class GuildTest extends \Tester\TestCase {
     }, CannotLeaveGuildException::class);
   }
   
-  function testCanManage() {
+  public function testCanManage() {
     Assert::exception(function() {
       $this->model->canManage();
     }, AuthenticationNeededException::class);
@@ -152,7 +152,7 @@ class GuildTest extends \Tester\TestCase {
     Assert::true($this->model->canManage());
   }
   
-  function testCanUpgrade() {
+  public function testCanUpgrade() {
     Assert::exception(function() {
       $this->model->canUpgrade();
     }, AuthenticationNeededException::class);
@@ -162,7 +162,7 @@ class GuildTest extends \Tester\TestCase {
     Assert::type("bool", $this->model->canUpgrade());
   }
   
-  function testUpgrade() {
+  public function testUpgrade() {
     Assert::exception(function() {
       $this->model->upgrade();
     }, AuthenticationNeededException::class);
@@ -172,20 +172,20 @@ class GuildTest extends \Tester\TestCase {
     }, CannotUpgradeGuildException::class);
   }
   
-  function testGetMembers() {
+  public function testGetMembers() {
     $result = $this->model->getMembers(1);
     Assert::type(ICollection::class, $result);
     Assert::count(1, $result);
     Assert::type(UserEntity::class, $result->fetch());
   }
   
-  function testGetMaxRank() {
+  public function testGetMaxRank() {
     $rank = $this->model->maxRank;
     Assert::type("int", $rank);
     Assert::same(4, $rank);
   }
   
-  function testPromote() {
+  public function testPromote() {
     Assert::exception(function() {
       $this->model->promote(1);
     }, AuthenticationNeededException::class);
@@ -205,7 +205,7 @@ class GuildTest extends \Tester\TestCase {
     }, CannotPromoteMemberException::class);
   }
   
-  function testDemote() {
+  public function testDemote() {
     Assert::exception(function() {
       $this->model->demote(1);
     }, AuthenticationNeededException::class);
@@ -225,7 +225,7 @@ class GuildTest extends \Tester\TestCase {
     }, CannotDemoteMemberException::class);
   }
   
-  function testKick() {
+  public function testKick() {
     Assert::exception(function() {
       $this->model->kick(1);
     }, AuthenticationNeededException::class);

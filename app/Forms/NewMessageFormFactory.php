@@ -14,11 +14,11 @@ class NewMessageFormFactory {
   /** @var \Nexendrie\Model\Messenger */
   protected $model;
   
-  function __construct(\Nexendrie\Model\Messenger $model) {
+  public function __construct(\Nexendrie\Model\Messenger $model) {
     $this->model = $model;
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addSelect("to", "Pro:", $this->model->usersList())
       ->setPrompt("Vyber příjemce")
@@ -33,7 +33,7 @@ class NewMessageFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     $this->model->send($values);
   }
 }

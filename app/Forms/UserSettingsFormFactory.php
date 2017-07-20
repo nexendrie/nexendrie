@@ -24,7 +24,7 @@ class UserSettingsFormFactory {
   /** @var User */
   protected $user;
   
-  function __construct(UserManager $model, User $user) {
+  public function __construct(UserManager $model, User $user) {
     $this->model = $model;
     $this->user = $user;
     $this->model->user = $this->user;
@@ -46,7 +46,7 @@ class UserSettingsFormFactory {
     return $styles;
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addGroup("Účet");
     $form->addText("publicname", "Zobrazované jméno:")
@@ -72,7 +72,7 @@ class UserSettingsFormFactory {
     return $form;
   }
   
-  function validate(Form $form, array $values): void {
+  public function validate(Form $form, array $values): void {
     if(empty($values["password_old"]) AND !empty($values["password_new"])) {
       $form->addError("Musíš zadat současné heslo.");
     }
@@ -81,7 +81,7 @@ class UserSettingsFormFactory {
     }
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->changeSettings($values);
     } catch (SettingsException $e) {

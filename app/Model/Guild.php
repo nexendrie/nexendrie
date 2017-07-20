@@ -26,13 +26,13 @@ class Guild {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
     $this->foundingPrice = $sr->settings["fees"]["foundGuild"];
   }
   
-  function getFoundingPrice(): int {
+  public function getFoundingPrice(): int {
     return $this->foundingPrice;
   }
   
@@ -42,7 +42,7 @@ class Guild {
    * @param int $town
    * @return GuildEntity[]|ICollection
    */
-  function listOfGuilds(int $town = 0): ICollection {
+  public function listOfGuilds(int $town = 0): ICollection {
     if($town === 0) {
       return $this->orm->guilds->findAll();
     }
@@ -54,7 +54,7 @@ class Guild {
    *
    * @throws GuildNotFoundException
    */
-  function getGuild(int $id): GuildEntity {
+  public function getGuild(int $id): GuildEntity {
     $guild = $this->orm->guilds->getById($id);
     if(is_null($guild)) {
       throw new GuildNotFoundException;
@@ -79,7 +79,7 @@ class Guild {
    * @throws GuildNotFoundException
    * @throws GuildNameInUseException
    */
-  function editGuild(int $id, array $data): void {
+  public function editGuild(int $id, array $data): void {
     try {
       $guild = $this->getGuild($id);
     } catch(GuildNotFoundException $e) {
@@ -97,7 +97,7 @@ class Guild {
   /**
    * Get specified user's guild
    */
-  function getUserGuild(int $uid = NULL): ?GuildEntity {
+  public function getUserGuild(int $uid = NULL): ?GuildEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
     return $user->guild;
   }
@@ -105,7 +105,7 @@ class Guild {
   /**
    * Check whether the user can found a guild
    */
-  function canFound(): bool {
+  public function canFound(): bool {
     if(!$this->user->isLoggedIn()) {
       return false;
     }
@@ -125,7 +125,7 @@ class Guild {
    * @throws GuildNameInUseException
    * @throws InsufficientFundsException
    */
-  function found(array $data): void {
+  public function found(array $data): void {
     if(!$this->canFound()) {
       throw new CannotFoundGuildException;
     }
@@ -148,7 +148,7 @@ class Guild {
     $this->orm->users->persistAndFlush($user);
   }
   
-  function calculateGuildIncomeBonus(int $baseIncome, UserJobEntity $job): int {
+  public function calculateGuildIncomeBonus(int $baseIncome, UserJobEntity $job): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -172,7 +172,7 @@ class Guild {
   /**
    * Check whether the user can join a guild
    */
-  function canJoin(): bool {
+  public function canJoin(): bool {
     if(!$this->user->isLoggedIn()) {
       return false;
     }
@@ -190,7 +190,7 @@ class Guild {
    * @throws CannotJoinGuildException
    * @throws GuildNotFoundException
    */
-  function join(int $id): void {
+  public function join(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canJoin()) {
@@ -211,7 +211,7 @@ class Guild {
    * Check whether the user can leave guild
    * @throws AuthenticationNeededException
    */
-  function canLeave(): bool {
+  public function canLeave(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -228,7 +228,7 @@ class Guild {
    * @throws AuthenticationNeededException
    * @throws CannotLeaveGuildException
    */
-  function leave(): void {
+  public function leave(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -245,7 +245,7 @@ class Guild {
    *
    * @throws AuthenticationNeededException
    */
-  function canManage(): bool {
+  public function canManage(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -261,7 +261,7 @@ class Guild {
    *
    * @throws AuthenticationNeededException
    */
-  function canUpgrade(): bool {
+  public function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -283,7 +283,7 @@ class Guild {
    * @throws CannotUpgradeGuildException
    * @throws InsufficientFundsException
    */
-  function upgrade(): void {
+  public function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -305,11 +305,11 @@ class Guild {
    * @param int $guild
    * @return UserEntity[]|ICollection
    */
-  function getMembers(int $guild): ICollection {
+  public function getMembers(int $guild): ICollection {
     return $this->orm->users->findByGuild($guild);
   }
   
-  function getMaxRank(): int {
+  public function getMaxRank(): int {
     static $rank = NULL;
     if(is_null($rank)) {
       $rank = $this->orm->guildRanks->findAll()->countStored();
@@ -326,7 +326,7 @@ class Guild {
    * @throws UserNotInYourGuildException
    * @throws CannotPromoteMemberException
    */
-  function promote(int $userId): void {
+  public function promote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canManage()) {
@@ -355,7 +355,7 @@ class Guild {
    * @throws UserNotInYourGuildException
    * @throws CannotDemoteMemberException
    */
-  function demote(int $userId): void {
+  public function demote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canManage()) {
@@ -384,7 +384,7 @@ class Guild {
    * @throws UserNotInYourGuildException
    * @throws CannotKickMemberException
    */
-  function kick(int $userId): void {
+  public function kick(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canManage()) {

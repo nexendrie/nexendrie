@@ -17,7 +17,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return UserAdventure|NULL
    */
-  function getById($id): ?UserAdventure {
+  public function getById($id): ?UserAdventure {
     return $this->getBy(["id" => $id]);
   }
   
@@ -26,7 +26,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $user
    * @return ICollection|UserAdventure[]
    */
-  function findByUser($user): ICollection {
+  public function findByUser($user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   /**
@@ -35,7 +35,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user User's id
    * @return UserAdventure|NULL
    */
-  function getUserActiveAdventure(int $user): ?UserAdventure {
+  public function getUserActiveAdventure(int $user): ?UserAdventure {
     return $this->getBy(["user" => $user, "progress<" => 10]);
   }
   
@@ -43,7 +43,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $user
    * @return UserAdventure|NULL
    */
-  function getLastAdventure($user): ?UserAdventure {
+  public function getLastAdventure($user): ?UserAdventure {
     return $this->findBy(["user" => $user])
       ->orderBy("started", ICollection::DESC)
       ->fetch();
@@ -57,7 +57,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $year
    * @return ICollection|UserAdventure[]
    */
-  function findFromMonth(int $user, int $month = NULL, int $year = NULL): ICollection {
+  public function findFromMonth(int $user, int $month = NULL, int $year = NULL): ICollection {
     $startOfMonthTS = mktime(0, 0, 0, $month ?? (int) date("n"), 1, $year ?? (int) date("Y"));
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);
@@ -73,7 +73,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * 
    * @return ICollection|UserAdventure[]
    */
-  function findOpenAdventures(): ICollection {
+  public function findOpenAdventures(): ICollection {
     $day = date("j");
     $month = date("n");
     $ts = mktime(0, 0, 0, (int) $month, (int) $day);

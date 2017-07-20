@@ -13,11 +13,11 @@ class PropertyTest extends \Tester\TestCase {
   /** @var Property */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Property::class);
   }
   
-  function testBudget() {
+  public function testBudget() {
     Assert::exception(function() {
       $this->model->budget();
     }, AuthenticationNeededException::class);

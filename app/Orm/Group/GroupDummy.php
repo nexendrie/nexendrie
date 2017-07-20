@@ -33,7 +33,7 @@ class GroupDummy {
   
   use \Nette\SmartObject;
   
-  function __construct(Group $g) {
+  public function __construct(Group $g) {
     $this->id = $g->id;
     $this->name = $g->name;
     $this->singleName = $g->singleName;
@@ -43,27 +43,27 @@ class GroupDummy {
     $this->members = $g->members->countStored();
   }
   
-  function getId(): int {
+  public function getId(): int {
     return $this->id;
   }
   
-  function getName(): string {
+  public function getName(): string {
     return $this->name;
   }
   
-  function getSingleName(): string {
+  public function getSingleName(): string {
     return $this->singleName;
   }
   
-  function getLevel(): int {
+  public function getLevel(): int {
     return $this->level;
   }
   
-  function getPath(): string {
+  public function getPath(): string {
     return $this->path;
   }
   
-  function getMembers(): int {
+  public function getMembers(): int {
     return $this->members;
   }
 }

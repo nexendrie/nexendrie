@@ -15,16 +15,16 @@ class ElectionsTest extends \Tester\TestCase {
   /** @var Elections */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Elections::class);
   }
   
-  function testGetNumberOfCouncillors() {
+  public function testGetNumberOfCouncillors() {
     Assert::same(0, $this->model->getNumberOfCouncillors(1));
     Assert::same(1, $this->model->getNumberOfCouncillors(2));
   }
   
-  function testGetCandidates() {
+  public function testGetCandidates() {
     $result = $this->model->getCandidates(2);
     Assert::type(ICollection::class, $result);
     Assert::type(UserEntity::class, $result->fetch());

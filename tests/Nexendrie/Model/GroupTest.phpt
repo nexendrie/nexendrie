@@ -15,34 +15,34 @@ class GroupTest extends \Tester\TestCase {
   /** @var Group */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Group::class);
   }
   
-  function testListOfGroups() {
+  public function testListOfGroups() {
     $result = $this->model->listOfGroups();
     Assert::type("array", $result);
     Assert::type(GroupDummy::class, $result[1]);
   }
   
-  function testGet() {
+  public function testGet() {
     $group = $this->model->get(1);
     Assert::type(GroupDummy::class, $group);
     Assert::null($this->model->get(50));
   }
   
-  function testOrmGet() {
+  public function testOrmGet() {
     $group = $this->model->ormGet(1);
     Assert::type(GroupEntity::class, $group);
     Assert::null($this->model->ormGet(50));
   }
   
-  function testExists() {
+  public function testExists() {
     Assert::true($this->model->exists(1));
     Assert::false($this->model->exists(50));
   }
   
-  function testEdit() {
+  public function testEdit() {
     $this->model->user = $this->getService(\Nette\Security\User::class);
     Assert::exception(function() {
       $this->model->edit(1, []);

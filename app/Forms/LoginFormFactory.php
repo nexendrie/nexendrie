@@ -17,11 +17,11 @@ class LoginFormFactory {
   /** @var User */
   protected $user;
   
-  function __construct(User $user) {
+  public function __construct(User $user) {
     $this->user = $user;
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("username", "Uživatelské jméno:")
       ->setRequired("Zadej jméno.");
@@ -32,7 +32,7 @@ class LoginFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->user->login($values["username"], $values["password"]);
     } catch(AuthenticationException $e) {

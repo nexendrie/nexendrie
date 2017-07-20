@@ -17,17 +17,17 @@ class JobTest extends \Tester\TestCase {
   /** @var Job */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Job::class);
   }
   
-  function testListOfJobs() {
+  public function testListOfJobs() {
     $result = $this->model->listOfJobs();
     Assert::type(ICollection::class, $result);
     Assert::type(JobEntity::class, $result->fetch());
   }
   
-  function testCalculateAward() {
+  public function testCalculateAward() {
     Assert::exception(function() {
       $this->model->calculateAward(new JobEntity);
     }, AuthenticationNeededException::class);
@@ -39,7 +39,7 @@ class JobTest extends \Tester\TestCase {
     Assert::contains("groš", $result->award);
   }
   
-  function testFindAvailableJobs() {
+  public function testFindAvailableJobs() {
     Assert::exception(function() {
       $this->model->findAvailableJobs();
     }, AuthenticationNeededException::class);
@@ -49,7 +49,7 @@ class JobTest extends \Tester\TestCase {
     Assert::type(\stdClass::class, $result[0]);
   }
   
-  function testGetJob() {
+  public function testGetJob() {
     $job = $this->model->getJob(1);
     Assert::type(JobEntity::class, $job);
     Assert::exception(function() {
@@ -57,7 +57,7 @@ class JobTest extends \Tester\TestCase {
     }, JobNotFoundException::class);
   }
   
-  function testEditJob() {
+  public function testEditJob() {
     Assert::exception(function() {
       $this->model->editJob(50, []);
     }, JobNotFoundException::class);
@@ -68,7 +68,7 @@ class JobTest extends \Tester\TestCase {
     $this->model->editJob($job->id, ["name" => $name]);
   }
   
-  function testIsWorking() {
+  public function testIsWorking() {
     Assert::exception(function() {
       $this->model->isWorking();
     }, AuthenticationNeededException::class);
@@ -77,7 +77,7 @@ class JobTest extends \Tester\TestCase {
   }
   
   
-  function testListOfMessages() {
+  public function testListOfMessages() {
     $result = $this->model->listOfMessages(1);
     Assert::type(OneHasMany::class, $result);
     Assert::type(JobMessage::class, $result->get()->fetch());
@@ -86,7 +86,7 @@ class JobTest extends \Tester\TestCase {
     }, JobNotFoundException::class);
   }
   
-  function testGetMessage() {
+  public function testGetMessage() {
     $message = $this->model->getMessage(1);
     Assert::type(JobMessage::class, $message);
     Assert::exception(function() {

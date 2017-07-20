@@ -17,7 +17,7 @@ class EventPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function renderView(int $id): void {
+  public function renderView(int $id): void {
     try {
       $this->template->event = $event = $this->model->getEvent($id);
       $time = time();

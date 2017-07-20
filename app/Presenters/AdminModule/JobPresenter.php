@@ -23,7 +23,7 @@ class JobPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id): void {
+  public function actionEdit(int $id): void {
     $this->requiresPermissions("content", "edit");
     try {
       $this->job = $this->model->getJob($id);
@@ -32,7 +32,7 @@ class JobPresenter extends BasePresenter {
     }
   }
   
-  function actionAdd(): void {
+  public function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   

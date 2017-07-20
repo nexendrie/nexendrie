@@ -12,7 +12,7 @@ use Nexendrie\Forms\SystemSettingsFormFactory,
  * @author Jakub Konečný
  */
 class SettingsPresenter extends BasePresenter {
-  function actionDefault(): void {
+  public function actionDefault(): void {
     $this->requiresPermissions("site", "settings");
   }
   

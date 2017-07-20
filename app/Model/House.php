@@ -22,7 +22,7 @@ class House {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -30,7 +30,7 @@ class House {
   /**
    * Get specified user's house
    */
-  function getUserHouse(int $user = NULL): ?HouseEntity {
+  public function getUserHouse(int $user = NULL): ?HouseEntity {
     return $this->orm->houses->getByOwner($user ?? $this->user->id);
   }
   
@@ -42,7 +42,7 @@ class House {
    * @throws CannotBuyHouseException
    * @throws InsufficientFundsException
    */
-  function buyHouse(): void {
+  public function buyHouse(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif($this->getUserHouse()) {
@@ -67,7 +67,7 @@ class House {
    *
    * @throws AuthenticationNeededException
    */
-  function canUpgrade(): bool {
+  public function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -87,7 +87,7 @@ class House {
    * @throws CannotUpgradeHouseException
    * @throws InsufficientFundsException
    */
-  function upgrade(): void {
+  public function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canUpgrade()) {
@@ -107,7 +107,7 @@ class House {
    *
    * @throws AuthenticationNeededException
    */
-  function canRepair(): bool {
+  public function canRepair(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -127,7 +127,7 @@ class House {
    * @throws CannotRepairHouseException
    * @throws InsufficientFundsException
    */
-  function repair(): void {
+  public function repair(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canRepair()) {
@@ -147,7 +147,7 @@ class House {
    *
    * @throws AuthenticationNeededException
    */
-  function canUpgradeBrewery(): bool {
+  public function canUpgradeBrewery(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -168,7 +168,7 @@ class House {
    * @throws CannotUpgradeBreweryException
    * @throws InsufficientFundsException
    */
-  function upgradeBrewery(): int {
+  public function upgradeBrewery(): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canUpgradeBrewery()) {
@@ -189,7 +189,7 @@ class House {
    *
    * @throws AuthenticationNeededException
    */
-  function canProduceBeer(): bool {
+  public function canProduceBeer(): bool {
     $sevenDays = 60 * 60 * 24 * 7;
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
@@ -220,7 +220,7 @@ class House {
    * @throws AuthenticationNeededException
    * @throws CannotProduceBeerException
    */
-  function produceBeer(): array {
+  public function produceBeer(): array {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canProduceBeer()) {

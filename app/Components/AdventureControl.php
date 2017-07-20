@@ -28,34 +28,34 @@ class AdventureControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Model\Adventure $model, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Adventure $model, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
     parent::__construct();
     $this->model = $model;
     $this->localeModel = $localeModel;
     $this->user = $user;
   }
   
-  function renderList(): void {
+  public function renderList(): void {
     $this->template->setFile(__DIR__ . "/adventureList.latte");
     $this->template->adventures = $this->model->findAvailableAdventures();
     $this->template->render();
   }
   
-  function renderMounts(int $adventure): void {
+  public function renderMounts(int $adventure): void {
     $this->template->setFile(__DIR__ . "/adventureMounts.latte");
     $this->template->mounts = $this->model->findGoodMounts();
     $this->template->adventure = $adventure;
     $this->template->render();
   }
   
-  function render(): void {
+  public function render(): void {
     $this->template->setFile(__DIR__ . "/adventure.latte");
     $this->template->adventure = $adventure = $this->model->getCurrentAdventure();
     $this->template->nextEnemy = $this->model->getNextNpc($adventure);
     $this->template->render();
   }
   
-  function handleStart(int $adventure, int $mount): void {
+  public function handleStart(int $adventure, int $mount): void {
     try {
       $this->model->startAdventure($adventure, $mount);
       $message = $this->localeModel->genderMessage("Vydal(a) jsi se na dobrodružství.");
@@ -80,7 +80,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
     }
   }
   
-  function handleFight(): void {
+  public function handleFight(): void {
     try {
       $result = $this->model->fight();
       $this->template->message = $result["message"];
@@ -92,7 +92,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
     }
   }
   
-  function handleFinish(): void {
+  public function handleFinish(): void {
     try {
       $this->model->finishAdventure();
       $this->presenter->redirect("Homepage:");

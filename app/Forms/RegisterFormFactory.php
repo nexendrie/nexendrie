@@ -19,12 +19,12 @@ class RegisterFormFactory {
   /** @var SettingsRepository */
   protected $sr;
   
-  function __construct(UserManager $model, SettingsRepository $sr) {
+  public function __construct(UserManager $model, SettingsRepository $sr) {
     $this->model = $model;
     $this->sr = $sr;
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("username", "Uživatelské jméno:")
       ->addRule(Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků.", 25)
@@ -46,7 +46,7 @@ class RegisterFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->register($values);
     } catch(RegistrationException $e) {

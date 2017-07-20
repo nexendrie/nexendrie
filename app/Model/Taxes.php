@@ -20,7 +20,7 @@ class Taxes {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, Job $jobModel, Adventure $adventureModel, SettingsRepository $sr) {
+  public function __construct(\Nexendrie\Orm\Model $orm, Job $jobModel, Adventure $adventureModel, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->jobModel = $jobModel;
     $this->adventureModel = $adventureModel;
@@ -30,7 +30,7 @@ class Taxes {
   /**
    * Calculate tax
    */
-  function calculateTax(int $income): int {
+  public function calculateTax(int $income): int {
     return (int) round(@($income / 100 * $this->taxRate));
   }
   
@@ -42,7 +42,7 @@ class Taxes {
    * @param int $year
    * @return int[]
    */
-  function calculateIncome(int $user, int $month = NULL, int $year = NULL): array {
+  public function calculateIncome(int $user, int $month = NULL, int $year = NULL): array {
     if(is_null($month)) {
       $month = (int) date("n");
     }
@@ -57,7 +57,7 @@ class Taxes {
   /**
    * Calculate taxes for a town
    */
-  function calculateTownTaxes(\Nexendrie\Orm\Town $town, int $month = NULL, int $year = NULL): \stdClass {
+  public function calculateTownTaxes(\Nexendrie\Orm\Town $town, int $month = NULL, int $year = NULL): \stdClass {
     $return = (object) [
       "id" => $town->id, "name" => $town->name, "owner" => 0,
       "taxes" => 0, "denizens" => []
@@ -88,7 +88,7 @@ class Taxes {
     return $return;
   }
   
-  function payTaxes(): array {
+  public function payTaxes(): array {
     $return = [];
     $date = new \DateTime;
     $date->setTimestamp(time());

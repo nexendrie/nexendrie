@@ -17,7 +17,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Event|NULL
    */
-  function getById($id): ?Event {
+  public function getById($id): ?Event {
     return $this->getBy(["id" => $id]);
   }
   
@@ -28,7 +28,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $month
    * @return ICollection|Event[]
    */
-  function findFromMonth(int $year = NULL, int $month = NULL): ICollection {
+  public function findFromMonth(int $year = NULL, int $month = NULL): ICollection {
     $startTS = mktime(0, 0, 0, $month ?? (int) date("n"), 1, $year ?? (int) date("Y"));
     $date = new \DateTime;
     $date->setTimestamp($startTS);
@@ -44,7 +44,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $time
    * @return ICollection|Event[]
    */
-  function findForTime(int $time = NULL): ICollection {
+  public function findForTime(int $time = NULL): ICollection {
     return $this->findBy(["start<=" => $time, "end>=" => $time ?? time()])
       ->orderBy("start");
   }

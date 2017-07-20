@@ -17,14 +17,14 @@ class Elections {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
   }
   
   /**
    * Get number of councillors for the town
    */
-  function getNumberOfCouncillors(int $town): int {
+  public function getNumberOfCouncillors(int $town): int {
     /** @var int */
     $denizens = $this->orm->towns->getById($town)->denizens->countStored();
     if($denizens <= 3) {
@@ -41,7 +41,7 @@ class Elections {
    * @param int $town
    * @return UserEntity[]|ICollection
    */
-  function getCandidates(int $town): ICollection {
+  public function getCandidates(int $town): ICollection {
     return $this->orm->users->findTownCitizens($town);
   }
 }

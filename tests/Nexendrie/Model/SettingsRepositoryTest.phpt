@@ -14,11 +14,11 @@ class SettingsRepositoryTest extends \Tester\TestCase {
   /** @var SettingsRepository */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(SettingsRepository::class);
   }
   
-  function testGetSettings() {
+  public function testGetSettings() {
     $result = $this->model->settings;
     Assert::type("array", $result);
   }

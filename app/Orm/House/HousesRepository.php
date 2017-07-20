@@ -17,7 +17,7 @@ class HousesRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return House|NULL
    */
-  function getById($id): ?House {
+  public function getById($id): ?House {
     return $this->getBy(["id" => $id]);
   }
   
@@ -25,7 +25,7 @@ class HousesRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $owner
    * @return House|NULL
    */
-  function getByOwner($owner): ?House {
+  public function getByOwner($owner): ?House {
     return $this->getBy(["owner" => $owner]);
   }
   
@@ -34,7 +34,7 @@ class HousesRepository extends \Nextras\Orm\Repository\Repository {
    * 
    * @return ICollection|House[]
    */
-  function findOwnedHouses(): ICollection {
+  public function findOwnedHouses(): ICollection {
     return $this->findBy(["this->owner->id>" => 0]);
   }
 }

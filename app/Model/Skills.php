@@ -26,7 +26,7 @@ class Skills {
   
   use \Nette\SmartObject;
   
-  function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->eventsModel = $eventsModel;
     $this->orm = $orm;
     $this->user = $user;
@@ -38,7 +38,7 @@ class Skills {
    * @param string $type
    * @return SkillEntity[]|ICollection
    */
-  function listOfSkills(string $type = NULL): ICollection {
+  public function listOfSkills(string $type = NULL): ICollection {
     if(is_null($type)) {
       return $this->orm->skills->findAll();
     }
@@ -48,7 +48,7 @@ class Skills {
   /**
    * Add new skill
    */
-  function add(array $data): void {
+  public function add(array $data): void {
     $skill = new SkillEntity;
     foreach($data as $key => $value) {
       $skill->$key = $value;
@@ -61,7 +61,7 @@ class Skills {
    *
    * @throws SkillNotFoundException
    */
-  function edit(int $id, array $data): void {
+  public function edit(int $id, array $data): void {
     try {
       $skill = $this->get($id);
     } catch(SkillNotFoundException $e) {
@@ -78,7 +78,7 @@ class Skills {
    *
    * @throws SkillNotFoundException
    */
-  function get(int $id): SkillEntity {
+  public function get(int $id): SkillEntity {
     $skill = $this->orm->skills->getById($id);
     if(is_null($skill)) {
       throw new SkillNotFoundException;
@@ -89,7 +89,7 @@ class Skills {
   /**
    * @throws AuthenticationNeededException
    */
-  function getUserSkill(int $skill): ?UserSkillEntity {
+  public function getUserSkill(int $skill): ?UserSkillEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -99,7 +99,7 @@ class Skills {
   /**
    * Calculate price of learning of next level
    */
-  function calculateLearningPrice(int $basePrice, int $newLevel, int $maxLevel = 5): int {
+  public function calculateLearningPrice(int $basePrice, int $newLevel, int $maxLevel = 5): int {
     if($newLevel === 1) {
       return ($basePrice - $this->eventsModel->calculateTrainingDiscount($basePrice));
     }
@@ -119,7 +119,7 @@ class Skills {
    * @throws SkillMaxLevelReachedException
    * @throws InsufficientFundsException
    */
-  function learn(int $id): void {
+  public function learn(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -156,7 +156,7 @@ class Skills {
    *
    * @throws AuthenticationNeededException
    */
-  function getLevelOfSkill(int $skillId): int {
+  public function getLevelOfSkill(int $skillId): int {
     try {
       $skill = $this->getUserSkill($skillId);
     } catch(AuthenticationNeededException $e) {
@@ -173,7 +173,7 @@ class Skills {
    *
    * @throws AuthenticationNeededException
    */
-  function calculateSkillIncomeBonus(int $baseIncome, int $skillId): int {
+  public function calculateSkillIncomeBonus(int $baseIncome, int $skillId): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -191,7 +191,7 @@ class Skills {
    *
    * @throws AuthenticationNeededException
    */
-  function calculateSkillSuccessBonus(int $skillId): int {
+  public function calculateSkillSuccessBonus(int $skillId): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

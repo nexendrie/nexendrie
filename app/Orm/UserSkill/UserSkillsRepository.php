@@ -17,7 +17,7 @@ class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return UserSkill|NULL
    */
-  function getById($id): ?UserSkill {
+  public function getById($id): ?UserSkill {
     return $this->getBy(["id" => $id]);
   }
   
@@ -26,7 +26,7 @@ class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
    * @param Skill|int $skill
    * @return UserSkill|NULL
    */
-  function getByUserAndSkill($user, $skill): ?UserSkill {
+  public function getByUserAndSkill($user, $skill): ?UserSkill {
     return $this->getBy(["user" => $user, "skill" => $skill]);
   }
   
@@ -34,7 +34,7 @@ class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $user
    * @return ICollection|UserSkill[]
    */
-  function findByUser($user): ICollection {
+  public function findByUser($user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   
@@ -44,7 +44,7 @@ class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $stat
    * @return ICollection|UserSkill[]
    */
-  function findByUserAndStat(int $user, string $stat): ICollection {
+  public function findByUserAndStat(int $user, string $stat): ICollection {
     return $this->findBy([
       "user" => $user, "this->skill->stat" => $stat
     ]);

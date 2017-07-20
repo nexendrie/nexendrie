@@ -44,11 +44,11 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   const GENDER_FEMALE = "female";
   const GENDER_YOUNG = "young";
   
-  function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
   }
   
-  function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
+  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
     $this->eventsModel = $eventsModel;
   }
   

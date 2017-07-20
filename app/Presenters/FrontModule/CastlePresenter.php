@@ -34,7 +34,7 @@ class CastlePresenter extends BasePresenter {
     }
   }
   
-  function actionDefault(): void {
+  public function actionDefault(): void {
     $castle = $this->model->getUserCastle();
     if(!$castle) {
       $this->flashMessage("Nemáš hrad.");
@@ -47,14 +47,14 @@ class CastlePresenter extends BasePresenter {
     $this->template->canUpgrade = $this->model->canUpgrade();
   }
   
-  function renderList(): void {
+  public function renderList(): void {
     $this->template->castles = $this->model->listOfCastles();
   }
   
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function renderDetail(int $id): void {
+  public function renderDetail(int $id): void {
     try {
       $this->template->castle = $this->model->getCastle($id);
     } catch(CastleNotFoundException $e) {
@@ -62,7 +62,7 @@ class CastlePresenter extends BasePresenter {
     }
   }
   
-  function actionBuild(): void {
+  public function actionBuild(): void {
     $user = $this->userManager->get($this->user->id);
     if($user->group->path != GroupEntity::PATH_TOWER) {
       $this->flashMessage("Nejsi šlechtic.");
@@ -83,7 +83,7 @@ class CastlePresenter extends BasePresenter {
     return $form;
   }
   
-  function handleUpgrade(): void {
+  public function handleUpgrade(): void {
     try {
       $this->model->upgrade();
       $this->flashMessage("Hrad vylepšen.");
@@ -97,7 +97,7 @@ class CastlePresenter extends BasePresenter {
     }
   }
   
-  function handleRepair(): void {
+  public function handleRepair(): void {
     try {
       $this->model->repair();
       $this->flashMessage("Hrad opraven.");

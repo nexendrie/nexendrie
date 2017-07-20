@@ -15,17 +15,17 @@ class TavernTest extends \Tester\TestCase {
   /** @var Tavern */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Tavern::class);
   }
   
-  function testListOfMeals() {
+  public function testListOfMeals() {
     $result = $this->model->listOfMeals();
     Assert::type(ICollection::class, $result);
     Assert::type(Meal::class, $result->fetch());
   }
   
-  function testGetMeal() {
+  public function testGetMeal() {
     $meal = $this->model->getMeal(1);
     Assert::type(Meal::class, $meal);
     Assert::exception(function() {
@@ -33,7 +33,7 @@ class TavernTest extends \Tester\TestCase {
     }, MealNotFoundException::class);
   }
   
-  function testEditMeal() {
+  public function testEditMeal() {
     Assert::exception(function() {
       $this->model->editMeal(50, []);
     }, MealNotFoundException::class);
@@ -44,7 +44,7 @@ class TavernTest extends \Tester\TestCase {
     $this->model->editMeal($meal->id, ["name" => $name]);
   }
   
-  function testBuyMeal() {
+  public function testBuyMeal() {
     Assert::exception(function() {
       $this->model->buyMeal(1);
     }, AuthenticationNeededException::class);

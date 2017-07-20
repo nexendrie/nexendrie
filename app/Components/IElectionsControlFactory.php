@@ -2,6 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IElectionsControlFactory {
-  function create(): ElectionsControl;
+  public function create(): ElectionsControl;
 }
 ?>

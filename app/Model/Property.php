@@ -24,7 +24,7 @@ class Property {
   
   use \Nette\SmartObject;
   
-  function __construct(Job $jobModel, Bank $bankModel, Taxes $taxesModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(Job $jobModel, Bank $bankModel, Taxes $taxesModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->jobModel = $jobModel;
     $this->bankModel = $bankModel;
     $this->taxesModel = $taxesModel;
@@ -37,7 +37,7 @@ class Property {
    *
    * @throws AuthenticationNeededException
    */
-  function budget(): array {
+  public function budget(): array {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

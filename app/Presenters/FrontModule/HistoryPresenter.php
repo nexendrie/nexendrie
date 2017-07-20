@@ -12,7 +12,7 @@ use Nexendrie\Components\IHistoryControlFactory,
  * @author Jakub Konečný
  */
 class HistoryPresenter extends BasePresenter {
-  function renderDefault(string $page = "index"): void {
+  public function renderDefault(string $page = "index"): void {
     $this->template->page = $page;
   }
   

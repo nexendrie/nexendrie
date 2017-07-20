@@ -13,7 +13,7 @@ use Nexendrie\BookComponent\BookControl,
  * @author Jakub Konečný
  */
 class HistoryControl extends BookControl {
-  function __construct(Translator $translator) {
+  public function __construct(Translator $translator) {
     parent::__construct(":Front:History", __DIR__ . "/history", $translator);
     $this->pages[] = new BookPage("ancient", "Dávné časy");
     $this->pages[] = new BookPage("empire", "Čas císařství");

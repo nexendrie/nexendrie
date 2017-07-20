@@ -35,13 +35,13 @@ class UserManager implements IAuthenticator {
   
   use \Nette\SmartObject;
   
-  function __construct(ORM $orm, SettingsRepository $sr) {
+  public function __construct(ORM $orm, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->roles = $sr->settings["roles"];
     $this->newUser = $sr->settings["newUser"];
   }
   
-  function setUser(User $user) {
+  public function setUser(User $user) {
     $this->user = $user;
   }
   
@@ -54,7 +54,7 @@ class UserManager implements IAuthenticator {
    * @return bool
    * @throws InvalidArgumentException
    */
-  function nameAvailable(string $name, string $type = "username", int $uid = NULL): bool {
+  public function nameAvailable(string $name, string $type = "username", int $uid = NULL): bool {
     $types = ["username", "publicname"];
     if(!in_array($type, $types)) {
       throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
@@ -79,7 +79,7 @@ class UserManager implements IAuthenticator {
    * @return bool
    * @throws InvalidArgumentException
    */
-  function emailAvailable(string $email, int $uid = NULL): bool {
+  public function emailAvailable(string $email, int $uid = NULL): bool {
     $row = $this->orm->users->getByEmail($email);
     if(!$row) {
       return true;
@@ -113,7 +113,7 @@ class UserManager implements IAuthenticator {
    *
    * @throws AuthenticationException
    */
-  function authenticate(array $credentials): Identity {
+  public function authenticate(array $credentials): Identity {
     list($username, $password) = $credentials;
     $user = $this->orm->users->getByUsername($username);
     if(!$user) {
@@ -132,7 +132,7 @@ class UserManager implements IAuthenticator {
    *
    * @throws AuthenticationNeededException
    */
-  function refreshIdentity(): void {
+  public function refreshIdentity(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -145,7 +145,7 @@ class UserManager implements IAuthenticator {
    *
    * @throws RegistrationException
    */
-  function register(array $data): void {
+  public function register(array $data): void {
     if(!$this->nameAvailable($data["username"])) {
       throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
     }
@@ -171,7 +171,7 @@ class UserManager implements IAuthenticator {
    *
    * @throws AuthenticationNeededException
    */
-  function getSettings(): array {
+  public function getSettings(): array {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -189,7 +189,7 @@ class UserManager implements IAuthenticator {
    * @throws AuthenticationNeededException
    * @throws SettingsException
    */
-  function changeSettings(array $settings): void {
+  public function changeSettings(array $settings): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -225,11 +225,11 @@ class UserManager implements IAuthenticator {
    * 
    * @return UserEntity[]|ICollection
    */
-  function listOfUsers(): ICollection {
+  public function listOfUsers(): ICollection {
     return $this->orm->users->findAll()->orderBy("group")->orderBy("id");
   }
   
-  function edit(int $id, array $values): void {
+  public function edit(int $id, array $values): void {
     $user = $this->orm->users->getById($id);
     foreach($values as $key => $value) {
       $user->$key = $value;
@@ -237,7 +237,7 @@ class UserManager implements IAuthenticator {
     $this->orm->users->persistAndFlush($user);
   }
   
-  function get(int $id): UserEntity {
+  public function get(int $id): UserEntity {
     $user = $this->orm->users->getById($id);
     if(is_null($user)) {
       throw new UserNotFoundException;

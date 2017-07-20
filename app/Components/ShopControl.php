@@ -30,7 +30,7 @@ class ShopControl extends \Nette\Application\UI\Control {
   /** @var int */
   protected $id;
   
-  function __construct(\Nexendrie\Model\Market $model, \Nexendrie\Model\Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Market $model, \Nexendrie\Model\Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     parent::__construct();
     $this->model = $model;
     $this->eventsModel = $eventsModel;
@@ -41,7 +41,7 @@ class ShopControl extends \Nette\Application\UI\Control {
   /**
    * @throws ShopNotFoundException
    */
-  function getShop(): ShopEntity {
+  public function getShop(): ShopEntity {
     if(!isset($this->shop)) {
       $shop = $this->orm->shops->getById($this->id);
       if(is_null($shop)) {
@@ -52,7 +52,7 @@ class ShopControl extends \Nette\Application\UI\Control {
     return $this->shop;
   }
   
-  function setId(int $id) {
+  public function setId(int $id) {
     try {
       $this->id = $id;
       $this->getShop();
@@ -61,14 +61,14 @@ class ShopControl extends \Nette\Application\UI\Control {
     }
   }
   
-  function render(): void {
+  public function render(): void {
     $this->template->setFile(__DIR__ . "/shop.latte");
     $this->template->shop = $this->getShop();
     $this->template->discount = $this->eventsModel->getShoppingDiscount();
     $this->template->render();
   }
   
-  function handleBuy(int $item): void {
+  public function handleBuy(int $item): void {
     try {
       $this->model->buy($item, $this->shop->id);
       $this->presenter->flashMessage("Věc koupena.");

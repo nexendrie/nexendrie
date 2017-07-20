@@ -22,18 +22,18 @@ class MessagesPresenter extends BasePresenter {
     $this->requiresLogin();
   }
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $this->template->messages = $this->model->inbox();
   }
   
-  function renderSent(): void {
+  public function renderSent(): void {
     $this->template->messages = $this->model->outbox();
   }
   
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function renderView(int $id): void {
+  public function renderView(int $id): void {
     try {
       $this->template->message = $this->model->show($id);
     } catch(AccessDeniedException $e) {
@@ -47,7 +47,7 @@ class MessagesPresenter extends BasePresenter {
    * @param int|NULL $id Receiver's id
    * @return void
    */
-  function actionNew(int $id = NULL): void {
+  public function actionNew(int $id = NULL): void {
     
   }
   

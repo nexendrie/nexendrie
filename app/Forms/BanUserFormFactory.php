@@ -17,11 +17,11 @@ class BanUserFormFactory {
   /** @var int */
   protected $userId;
   
-  function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
   }
   
-  function create(int $userId): Form {
+  public function create(int $userId): Form {
     $this->userId = $userId;
     $form = new Form;
     $form->addTextArea("crime", "Zločin:")
@@ -35,7 +35,7 @@ class BanUserFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     $user = $this->orm->users->getById($this->userId);
     $user->banned = true;
     $punishment = new Punishment;

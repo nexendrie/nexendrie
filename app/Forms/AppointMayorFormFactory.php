@@ -20,11 +20,11 @@ class AppointMayorFormFactory {
   /** @var \Nexendrie\Orm\Town */
   private $town;
   
-  function __construct(\Nexendrie\Model\Town $model) {
+  public function __construct(\Nexendrie\Model\Town $model) {
     $this->model = $model;
   }
   
-  function create(int $townId): Form {
+  public function create(int $townId): Form {
     $this->town = $this->model->get($townId);
     $form = new Form;
     $form->addSelect("mayor", "Nový rychtář:", $this->model->getTownCitizens($townId))
@@ -34,7 +34,7 @@ class AppointMayorFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->appointMayor($this->town->id, $values["mayor"]);
     } catch(TownNotOwnedException $e) {

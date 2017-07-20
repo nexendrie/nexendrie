@@ -17,28 +17,28 @@ class ItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Item|NULL
    */
-  function getById($id): ?Item {
+  public function getById($id): ?Item {
     return $this->getBy(["id" => $id]);
   }
   
   /**
    * @return Item[]|ICollection
    */
-  function findWeapons(): ICollection {
+  public function findWeapons(): ICollection {
     return $this->findBy(["type" => Item::TYPE_WEAPON]);
   }
   
   /**
    * @return Item[]|ICollection
    */
-  function findArmors(): ICollection {
+  public function findArmors(): ICollection {
     return $this->findBy(["type" => Item::TYPE_ARMOR]);
   }
   
   /**
    * @return Item[]|ICollection
    */
-  function findHelmets(): ICollection {
+  public function findHelmets(): ICollection {
     return $this->findBy(["type" => Item::TYPE_HELMET]);
   }
 }

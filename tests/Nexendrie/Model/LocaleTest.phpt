@@ -13,21 +13,21 @@ class LocaleTest extends \Tester\TestCase {
   /** @var Locale */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Locale::class);
   }
   
-  function testFormatDateTime() {
+  public function testFormatDateTime() {
     $result = $this->model->formatDateTime(time());
     Assert::type("string", $result);
   }
   
-  function testFormatDate() {
+  public function testFormatDate() {
     $result = $this->model->formatDate(time());
     Assert::type("string", $result);
   }
   
-  function testMoney() {
+  public function testMoney() {
     Assert::same("0 grošů", $this->model->money(0));
     Assert::same("1 groš", $this->model->money(1));
     Assert::same("2 groše", $this->model->money(2));
@@ -36,7 +36,7 @@ class LocaleTest extends \Tester\TestCase {
     Assert::same("5 grošů", $this->model->money(5));
   }
   
-  function testHitpoints() {
+  public function testHitpoints() {
     Assert::same("0 životů", $this->model->hitpoints(0));
     Assert::same("1 život", $this->model->hitpoints(1));
     Assert::same("2 životy", $this->model->hitpoints(2));
@@ -45,14 +45,14 @@ class LocaleTest extends \Tester\TestCase {
     Assert::same("5 životů", $this->model->hitpoints(5));
   }
   
-  function testGetFormats() {
+  public function testGetFormats() {
     $formats = $this->model->formats;
     Assert::type("array", $formats);
     Assert::type("string", $formats["dateFormat"]);
     Assert::type("string", $formats["dateTimeFormat"]);
   }
   
-  function testGenderMessage() {
+  public function testGenderMessage() {
     Assert::exception(function() {
       $this->model->genderMessage("abc");
     }, AuthenticationNeededException::class);

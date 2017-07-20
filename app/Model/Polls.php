@@ -20,11 +20,11 @@ class Polls {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
   }
   
-  function setUser(\Nette\Security\User $user) {
+  public function setUser(\Nette\Security\User $user) {
     $this->user = $user;
   }
   
@@ -33,7 +33,7 @@ class Polls {
    * 
    * @return PollEntity[]|ICollection
    */
-  function all(): ICollection {
+  public function all(): ICollection {
     return $this->orm->polls->findAll();
   }
   
@@ -42,7 +42,7 @@ class Polls {
    *
    * @throws PollNotFoundException
    */
-  function view(int $id): PollEntity {
+  public function view(int $id): PollEntity {
     $poll = $this->orm->polls->getById($id);
     if(is_null($poll)) {
       throw new PollNotFoundException("Specified poll does not exist.");
@@ -56,7 +56,7 @@ class Polls {
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    */
-  function add(array $data): void {
+  public function add(array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -75,7 +75,7 @@ class Polls {
   /**
    * Check whether specified poll exists
    */
-  function exists(int $id): bool {
+  public function exists(int $id): bool {
     return (bool) $this->orm->polls->getById($id);
   }
   
@@ -86,7 +86,7 @@ class Polls {
    * @throws MissingPermissionsException
    * @throws PollNotFoundException
    */
-  function edit(int $id, array $data): void {
+  public function edit(int $id, array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }

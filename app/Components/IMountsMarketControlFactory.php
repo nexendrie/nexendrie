@@ -2,6 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IMountsMarketControlFactory {
-  function create(): MountsMarketControl;
+  public function create(): MountsMarketControl;
 }
 ?>

@@ -2,6 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IPrisonControlFactory {
-  function create(): PrisonControl;
+  public function create(): PrisonControl;
 }
 ?>

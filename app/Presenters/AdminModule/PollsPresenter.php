@@ -20,11 +20,11 @@ class PollsPresenter extends BasePresenter {
     $this->requiresPermissions("content", "list");
   }
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $this->template->polls = $this->model->all();
   }
   
-  function actionAdd(): void {
+  public function actionAdd(): void {
     $this->requiresPermissions("poll", "add");
   }
   
@@ -42,7 +42,7 @@ class PollsPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id): void {
+  public function actionEdit(int $id): void {
     $this->requiresPermissions("poll", "add");
     if(!$this->model->exists($id)) {
       throw new \Nette\Application\BadRequestException;

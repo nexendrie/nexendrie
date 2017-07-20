@@ -23,7 +23,7 @@ class Locale {
   
   use \Nette\SmartObject;
   
-  function __construct(SettingsRepository $sr, ITranslator $translator, User $user) {
+  public function __construct(SettingsRepository $sr, ITranslator $translator, User $user) {
     $this->translator = $translator;
     $this->user = $user;
     $this->formats = $sr->settings["locale"];
@@ -32,40 +32,40 @@ class Locale {
   /**
    * Formats date and time
    */
-  function formatDateTime(int $date): string {
+  public function formatDateTime(int $date): string {
     return date($this->formats["dateTimeFormat"], $date);
   }
   
   /**
    * Formats date
    */
-  function formatDate(int $date): string {
+  public function formatDate(int $date): string {
     return date($this->formats["dateFormat"], $date);
   }
   
   /**
    * Selects correct form according to $count
    */
-  function plural(string $message, int $count): string {
+  public function plural(string $message, int $count): string {
     return $this->translator->translate("nexendrie." . $message, $count);
   }
   
-  function money(int $amount): string {
+  public function money(int $amount): string {
     return $this->plural("money", $amount);
   }
   
-  function hitpoints(int $amount): string {
+  public function hitpoints(int $amount): string {
     return $this->plural("hitpoints", $amount);
   }
   
-  function barrels(int $amount): string {
+  public function barrels(int $amount): string {
     return $this->plural("barrels", $amount);
   }
   
   /**
    * @throws AuthenticationNeededException
    */
-  function genderMessage($message): string {
+  public function genderMessage($message): string {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -86,7 +86,7 @@ class Locale {
     return preg_replace($pattern, $replace, $message);
   }
   
-  function getFormats(): array {
+  public function getFormats(): array {
     return $this->formats;
   }
 }

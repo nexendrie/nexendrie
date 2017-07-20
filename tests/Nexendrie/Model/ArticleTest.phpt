@@ -16,29 +16,29 @@ class ArticleTest extends \Tester\TestCase {
   /** @var Article */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Article::class);
   }
   
-  function testListOfArticles() {
+  public function testListOfArticles() {
     $result = $this->model->listOfArticles();
     Assert::type(ICollection::class, $result);
     Assert::type(ArticleEntity::class, $result->fetch());
   }
   
-  function testListOfNews() {
+  public function testListOfNews() {
     $result = $this->model->listOfNews();
     Assert::type(ICollection::class, $result);
     Assert::type(ArticleEntity::class, $result->fetch());
   }
   
-  function testCategory() {
+  public function testCategory() {
     $result = $this->model->category(ArticleEntity::CATEGORY_CHRONICLE);
     Assert::type(ICollection::class, $result);
     Assert::type(ArticleEntity::class, $result->fetch());
   }
   
-  function testView() {
+  public function testView() {
     $article = $this->model->view(1);
     Assert::type(ArticleEntity::class, $article);
     Assert::exception(function() {
@@ -46,7 +46,7 @@ class ArticleTest extends \Tester\TestCase {
     }, ArticleNotFoundException::class);
   }
   
-  function testViewComments() {
+  public function testViewComments() {
     $result1 = $this->model->viewComments();
     Assert::type(ICollection::class, $result1);
     Assert::type(CommentEntity::class, $result1->fetch());
@@ -57,7 +57,7 @@ class ArticleTest extends \Tester\TestCase {
     Assert::count(1, $result2);
   }
   
-  function testAddArticle() {
+  public function testAddArticle() {
     Assert::exception(function() {
       $this->model->addArticle([]);
     }, AuthenticationNeededException::class);
@@ -67,7 +67,7 @@ class ArticleTest extends \Tester\TestCase {
     }, MissingPermissionsException::class);
   }
   
-  function testEditArticle() {
+  public function testEditArticle() {
     Assert::exception(function() {
       $this->model->editArticle(1, []);
     }, AuthenticationNeededException::class);
@@ -86,7 +86,7 @@ class ArticleTest extends \Tester\TestCase {
     $this->model->editArticle($article->id, ["title" => $title]);
   }
   
-  function testExists() {
+  public function testExists() {
     Assert::true($this->model->exists(1));
     Assert::false($this->model->exists(50));
   }

@@ -14,7 +14,7 @@ class AddEditAdventureFormFactory {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   
-  function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
   }
   
@@ -27,7 +27,7 @@ class AddEditAdventureFormFactory {
     return $this->orm->events->findAll()->fetchPairs("id", "name");
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

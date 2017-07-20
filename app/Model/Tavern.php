@@ -19,7 +19,7 @@ class Tavern {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -29,7 +29,7 @@ class Tavern {
    * 
    * @return MealEntity[]|ICollection
    */
-  function listOfMeals(): ICollection {
+  public function listOfMeals(): ICollection {
     return $this->orm->meals->findAll();
   }
   
@@ -38,7 +38,7 @@ class Tavern {
    *
    * @throws MealNotFoundException
    */
-  function getMeal(int $id): MealEntity {
+  public function getMeal(int $id): MealEntity {
     $meal = $this->orm->meals->getById($id);
     if(is_null($meal)) {
       throw new MealNotFoundException;
@@ -49,7 +49,7 @@ class Tavern {
   /**
    * Add new meal
    */
-  function addMeal(array $data): void {
+  public function addMeal(array $data): void {
     $meal = new MealEntity;
     foreach($data as $key => $value) {
       $meal->$key = $value;
@@ -62,7 +62,7 @@ class Tavern {
    *
    * @throws MealNotFoundException
    */
-  function editMeal(int $id, array $data): void {
+  public function editMeal(int $id, array $data): void {
     try {
       $meal = $this->getMeal($id);
     } catch(MealNotFoundException $e) {
@@ -81,7 +81,7 @@ class Tavern {
    * @throws MealNotFoundException
    * @throws InsufficientFundsException
    */
-  function buyMeal(int $id): string {
+  public function buyMeal(int $id): string {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

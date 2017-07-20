@@ -20,7 +20,7 @@ class TownPresenter extends BasePresenter {
   /** @var TownEntity */
   private $town;
   
-  function actionAdd(): void {
+  public function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
@@ -37,7 +37,7 @@ class TownPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id): void {
+  public function actionEdit(int $id): void {
     $this->requiresPermissions("content", "edit");
     try {
       $this->town = $this->model->get($id);

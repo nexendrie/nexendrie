@@ -14,15 +14,15 @@ class ConditionPathTest extends \Tester\TestCase {
   /** @var ConditionPath */
   protected $condition;
   
-  function setUp() {
+  public function setUp() {
     $this->condition = $this->getService(ConditionPath::class);
   }
   
-  function testGetName() {
+  public function testGetName() {
     Assert::type("string", $this->condition->getName());
   }
   
-  function testIsAllowed() {
+  public function testIsAllowed() {
     Assert::false($this->condition->isAllowed());
     $this->login("jakub");
     Assert::false($this->condition->isAllowed("site:manage"));

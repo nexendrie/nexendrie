@@ -19,7 +19,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
     parent::__construct();
     $this->orm = $orm;
     $this->localeModel = $localeModel;
@@ -35,7 +35,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
     return false;
   }
   
-  function render(): void {
+  public function render(): void {
     $this->template->setFile(__DIR__ . "/prison.latte");
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     $this->template->noCrime = $this->template->release = false;
@@ -55,7 +55,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  function handleWork(): void {
+  public function handleWork(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     if(is_null($punishment)) {
       if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
@@ -87,7 +87,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect("default");
   }
   
-  function handleRelease(): void {
+  public function handleRelease(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     $release = false;
     if(is_null($punishment)) {

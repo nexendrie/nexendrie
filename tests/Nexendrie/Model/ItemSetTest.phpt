@@ -15,17 +15,17 @@ class ItemSetTest extends \Tester\TestCase {
   /** @var ItemSet */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(ItemSet::class);
   }
   
-  function testListOfSets() {
+  public function testListOfSets() {
     $result = $this->model->listOfSets();
     Assert::type(ICollection::class, $result);
     Assert::type(ItemSetEntity::class, $result->fetch());
   }
   
-  function testGet() {
+  public function testGet() {
     $set = $this->model->get(1);
     Assert::type(ItemSetEntity::class, $set);
     Assert::exception(function() {
@@ -33,13 +33,13 @@ class ItemSetTest extends \Tester\TestCase {
     }, ItemSetNotFoundException::class);
   }
   
-  function testEdit() {
+  public function testEdit() {
     Assert::exception(function() {
       $this->model->edit(50, []);
     }, ItemSetNotFoundException::class);
   }
   
-  function testDelete() {
+  public function testDelete() {
     Assert::exception(function() {
       $this->model->delete(50);
     }, ItemSetNotFoundException::class);

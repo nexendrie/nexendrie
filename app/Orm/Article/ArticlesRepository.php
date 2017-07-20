@@ -17,7 +17,7 @@ class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Article|NULL
    */
-  function getById($id): ?Article {
+  public function getById($id): ?Article {
     return $this->getBy(["id" => $id]);
   }
   
@@ -25,21 +25,21 @@ class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $category
    * @return ICollection|Article[]
    */
-  function findByCategory(string $category): ICollection {
+  public function findByCategory(string $category): ICollection {
     return $this->findBy(["category" => $category]);
   }
   
   /**
    * @return ICollection|Article[]
    */
-  function findNews(): ICollection {
+  public function findNews(): ICollection {
     return $this->findBy(["category" => Article::CATEGORY_NEWS])->orderBy("added", ICollection::DESC);
   }
   
   /**
    * @return ICollection|Article[]
    */
-  function findChronicle(): ICollection {
+  public function findChronicle(): ICollection {
     return $this->findBy(["category" => Article::CATEGORY_CHRONICLE])->orderBy("added", ICollection::DESC);
   }
 }

@@ -20,14 +20,14 @@ class AcademyControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Model\Skills $model, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Skills $model, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
     parent::__construct();
     $this->model = $model;
     $this->localeModel = $localeModel;
     $this->user = $user;
   }
   
-  function render(string $type = "work"): void {
+  public function render(string $type = "work"): void {
     $this->template->setFile(__DIR__ . "/academy.latte");
     $types = ["work", "combat"];
     if(!in_array($type, $types)) {
@@ -50,7 +50,7 @@ class AcademyControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  function handleLearn(int $skillId): void {
+  public function handleLearn(int $skillId): void {
     try {
       $this->model->learn($skillId);
       $message = $this->localeModel->genderMessage("Úspěšně jsi se naučil(a) dovednost.");

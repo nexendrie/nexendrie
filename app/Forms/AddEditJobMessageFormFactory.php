@@ -11,7 +11,7 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 class AddEditJobMessageFormFactory {
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addTextArea("message", "Zpráva:")
       ->setRequired("Zadej zprávu.");

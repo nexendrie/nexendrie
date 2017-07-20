@@ -18,11 +18,11 @@ class BuildCastleFormFactory {
   /** @var \Nexendrie\Model\Castle */
   protected $model;
   
-  function __construct(\Nexendrie\Model\Castle $model) {
+  public function __construct(\Nexendrie\Model\Castle $model) {
     $this->model = $model;
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
@@ -34,7 +34,7 @@ class BuildCastleFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->build($values);
     } catch(CannotBuildCastleException $e) {

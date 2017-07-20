@@ -29,13 +29,13 @@ class WorkPresenter extends BasePresenter {
     $this->mustNotBeTavelling();
   }
   
-  function actionDefault(): void {
+  public function actionDefault(): void {
     if(!$this->model->isWorking()) {
       $this->redirect("offers");
     }
   }
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $job = $this->model->getCurrentJob();
     $this->template->jobName = $job->job->name;
     $this->template->jobCount = $job->count;
@@ -57,18 +57,18 @@ class WorkPresenter extends BasePresenter {
     }
   }
   
-  function actionOffers(): void {
+  public function actionOffers(): void {
     if($this->model->isWorking()) {
       $this->flashMessage("Už pracuješ.");
       $this->redirect("default");
     }
   }
   
-  function renderOffers(): void {
+  public function renderOffers(): void {
     $this->template->offers = $this->model->findAvailableJobs();
   }
   
-  function actionStart(int $id): void {
+  public function actionStart(int $id): void {
     try {
       $this->model->startJob($id);
       $this->flashMessage("Práce zahájena.");
@@ -84,7 +84,7 @@ class WorkPresenter extends BasePresenter {
     $this->redirect("default");
   }
   
-  function actionFinish(): void {
+  public function actionFinish(): void {
     try {
       $rewards = $this->model->finishJob();
       $this->template->reward = $this->localeModel->money($rewards["reward"]);
@@ -102,7 +102,7 @@ class WorkPresenter extends BasePresenter {
     }
   }
   
-  function actionWork(): void {
+  public function actionWork(): void {
     try {
       $result = $this->model->work();
       $this->flashMessage($result->message);

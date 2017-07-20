@@ -17,7 +17,7 @@ class TownsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Town|NULL
    */
-  function getById($id): ?Town {
+  public function getById($id): ?Town {
     return $this->getBy(["id" => $id]);
   }
   
@@ -25,7 +25,7 @@ class TownsRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $name
    * @return Town|NULL
    */
-  function getByName(string $name): ?Town {
+  public function getByName(string $name): ?Town {
     return $this->getBy(["name" => $name]);
   }
   
@@ -33,7 +33,7 @@ class TownsRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $owner
    * @return ICollection|Town[]
    */
-  function findByOwner($owner): ICollection {
+  public function findByOwner($owner): ICollection {
     return $this->findBy(["owner" => $owner]);
   }
   
@@ -42,7 +42,7 @@ class TownsRepository extends \Nextras\Orm\Repository\Repository {
    * 
    * @return ICollection|Town[]
    */
-  function findOnMarket(): ICollection {
+  public function findOnMarket(): ICollection {
     return $this->findBy(["onMarket" => true]);
   }
 }

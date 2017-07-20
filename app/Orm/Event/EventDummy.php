@@ -43,7 +43,7 @@ class EventDummy extends DummyEntity {
   /** @var int */
   protected $shoppingDiscount;
   
-  function __construct(Event $event) {
+  public function __construct(Event $event) {
     $this->id = $event->id;
     $this->name = $event->name;
     $this->description = $event->description;
@@ -57,47 +57,47 @@ class EventDummy extends DummyEntity {
     $this->shoppingDiscount = $event->shoppingDiscount;
   }
   
-  function getId(): int {
+  public function getId(): int {
     return $this->id;
   }
   
-  function getName(): string {
+  public function getName(): string {
     return $this->name;
   }
   
-  function getDescription(): string {
+  public function getDescription(): string {
     return $this->description;
   }
   
-  function getStart(): string {
+  public function getStart(): string {
     return $this->start;
   }
   
-  function getEnd(): string {
+  public function getEnd(): string {
     return $this->end;
   }
   
-  function getAdventuresBonus(): int {
+  public function getAdventuresBonus(): int {
     return $this->adventuresBonus;
   }
   
-  function getWorkBonus(): int {
+  public function getWorkBonus(): int {
     return $this->workBonus;
   }
   
-  function getPrayerLifeBonus(): int {
+  public function getPrayerLifeBonus(): int {
     return $this->prayerLifeBonus;
   }
   
-  function getTrainingDiscount(): int {
+  public function getTrainingDiscount(): int {
     return $this->trainingDiscount;
   }
   
-  function getRepairingDiscount(): int {
+  public function getRepairingDiscount(): int {
     return $this->repairingDiscount;
   }
   
-  function getShoppingDiscount(): int {
+  public function getShoppingDiscount(): int {
     return $this->shoppingDiscount;
   }
 }

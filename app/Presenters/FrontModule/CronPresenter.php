@@ -12,7 +12,7 @@ class CronPresenter extends BasePresenter {
   /** @var \stekycz\Cronner\Cronner @autowire */
   protected $cronner;
   
-  function actionDefault(): void {
+  public function actionDefault(): void {
     $this->cronner->run();
   }
 }

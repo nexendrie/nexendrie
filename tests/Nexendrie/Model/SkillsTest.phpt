@@ -15,11 +15,11 @@ class SkillsTest extends \Tester\TestCase {
   /** @var Skills */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Skills::class);
   }
   
-  function testListOfSkills() {
+  public function testListOfSkills() {
     $result1 = $this->model->listOfSkills();
     Assert::type(ICollection::class, $result1);
     Assert::count(9, $result1);
@@ -32,7 +32,7 @@ class SkillsTest extends \Tester\TestCase {
     Assert::same(Skill::TYPE_COMBAT, $skill->type);
   }
   
-  function testEdit() {
+  public function testEdit() {
     Assert::exception(function() {
       $this->model->edit(50, []);
     }, SkillNotFoundException::class);
@@ -43,7 +43,7 @@ class SkillsTest extends \Tester\TestCase {
     $this->model->edit($skill->id, ["name" => $name]);
   }
   
-  function testGet() {
+  public function testGet() {
     $skill = $this->model->get(1);
     Assert::type(Skill::class, $skill);
     Assert::exception(function() {
@@ -51,14 +51,14 @@ class SkillsTest extends \Tester\TestCase {
     }, SkillNotFoundException::class);
   }
   
-  function testCalculateLearningPrice() {
+  public function testCalculateLearningPrice() {
     Assert::same(100, $this->model->calculateLearningPrice(100, 1));
     $result = $this->model->calculateLearningPrice(100, 5);
     Assert::type("int", $result);
     Assert::true($result > 100);
   }
   
-  function testLearn() {
+  public function testLearn() {
     Assert::exception(function() {
       $this->model->learn(1);
     }, AuthenticationNeededException::class);
@@ -71,7 +71,7 @@ class SkillsTest extends \Tester\TestCase {
     }, SkillMaxLevelReachedException::class);
   }
   
-  function testGetLevelOfSkill() {
+  public function testGetLevelOfSkill() {
     Assert::exception(function() {
       $this->model->getLevelOfSkill(1);
     }, AuthenticationNeededException::class);
@@ -82,7 +82,7 @@ class SkillsTest extends \Tester\TestCase {
     Assert::same(5, $level);
   }
   
-  function testCalculateSkillSuccessBonus() {
+  public function testCalculateSkillSuccessBonus() {
     Assert::exception(function() {
       $this->model->calculateSkillSuccessBonus(1);
     }, AuthenticationNeededException::class);

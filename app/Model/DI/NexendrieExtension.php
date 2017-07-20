@@ -12,7 +12,7 @@ use Nexendrie\Model\SettingsRepository;
  * @author Jakub Konečný
  */
 class NexendrieExtension extends \Nette\DI\CompilerExtension {
-  function loadConfiguration(): void {
+  public function loadConfiguration(): void {
     $this->registerMenuConditions();
     $this->addModels();
     $this->addComponents();
@@ -225,7 +225,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setClass(Nexendrie\Forms\ChangeWeddingTermFormFactory::class);
   }
   
-  function afterCompile(\Nette\PhpGenerator\ClassType $class): void {
+  public function afterCompile(\Nette\PhpGenerator\ClassType $class): void {
     $initialize = $class->methods["initialize"];
     $initialize->addBody('$roles = $this->getByType(?)->settings["roles"];
 $groupModel = $this->getByType(?);

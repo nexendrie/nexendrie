@@ -20,7 +20,7 @@ class Bank {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
     $this->interest = $sr->settings["fees"]["loanInterest"];
@@ -31,14 +31,14 @@ class Bank {
    *
    * @throws AuthenticationNeededException
    */
-  function getActiveLoan(): ?LoanEntity {
+  public function getActiveLoan(): ?LoanEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
     return $this->orm->loans->getActiveLoan($this->user->id);
   }
   
-  function maxLoan(): int {
+  public function maxLoan(): int {
     if(!$this->user->isLoggedIn()) {
       return 0;
     }
@@ -60,7 +60,7 @@ class Bank {
   /**
    * Calculate interest from a loan
    */
-  function calculateInterest(LoanEntity $loan): int {
+  public function calculateInterest(LoanEntity $loan): int {
     $start = $loan->taken;
     $end = ($loan->returned) ? $loan->returned : time();
     $duration = ($end - $start) / (60 * 60 * 24);
@@ -74,7 +74,7 @@ class Bank {
    * @throws TooHighLoanException
    * @throws CannotTakeMoreLoansException
    */
-  function takeLoan(int $amount): void {
+  public function takeLoan(int $amount): void {
     if($amount > $this->maxLoan()) {
       throw new TooHighLoanException;
     } elseif($this->getActiveLoan()) {
@@ -95,7 +95,7 @@ class Bank {
    * @throws NoLoanException
    * @throws InsufficientFundsException
    */
-  function returnLoan(): void {
+  public function returnLoan(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

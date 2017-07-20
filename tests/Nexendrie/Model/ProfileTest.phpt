@@ -15,11 +15,11 @@ class ProfileTest extends \Tester\TestCase {
   /** @var Profile */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Profile::class);
   }
   
-  function testView() {
+  public function testView() {
     $user = $this->model->view("system");
     Assert::type(UserEntity::class, $user);
     Assert::exception(function() {
@@ -27,7 +27,7 @@ class ProfileTest extends \Tester\TestCase {
     }, UserNotFoundException::class);
   }
   
-  function testGetListOfLords() {
+  public function testGetListOfLords() {
     $result = $this->model->getListOfLords();
     Assert::type("array", $result);
     Assert::count(4, $result);
@@ -37,7 +37,7 @@ class ProfileTest extends \Tester\TestCase {
     }
   }
   
-  function testGetPath() {
+  public function testGetPath() {
     Assert::same(Group::PATH_TOWER, $this->model->getPath(1));
     Assert::same(Group::PATH_CHURCH, $this->model->getPath(2));
     Assert::same(Group::PATH_CITY, $this->model->getPath(3));
@@ -46,7 +46,7 @@ class ProfileTest extends \Tester\TestCase {
     }, UserNotFoundException::class);
   }
   
-  function testGetPartner() {
+  public function testGetPartner() {
     $partner1 = $this->model->getPartner(4);
     Assert::type(UserEntity::class, $partner1);
     Assert::same(1, $partner1->id);
@@ -56,7 +56,7 @@ class ProfileTest extends \Tester\TestCase {
     Assert::null($this->model->getPartner(2));
   }
   
-  function testGetFiance() {
+  public function testGetFiance() {
     $partner1 = $this->model->getFiance(3);
     Assert::type(UserEntity::class, $partner1);
     Assert::same(6, $partner1->id);

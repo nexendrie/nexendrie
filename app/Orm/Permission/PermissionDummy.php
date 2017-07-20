@@ -24,26 +24,26 @@ class PermissionDummy {
   
   use \Nette\SmartObject;
   
-  function __construct(Permission $p) {
+  public function __construct(Permission $p) {
     $this->id = $p->id;
     $this->resource = $p->resource;
     $this->action = $p->action;
     $this->group = $p->group->id;
   }
   
-  function getId(): int {
+  public function getId(): int {
     return $this->id;
   }
   
-  function getResource(): string {
+  public function getResource(): string {
     return $this->resource;
   }
   
-  function getAction(): string {
+  public function getAction(): string {
     return $this->action;
   }
   
-  function getGroup(): int {
+  public function getGroup(): int {
     return $this->group;
   }
 }

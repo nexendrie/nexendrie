@@ -19,7 +19,7 @@ class Marriage {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -29,7 +29,7 @@ class Marriage {
    * 
    * @return MarriageEntity[]|ICollection
    */
-  function listOfMarriages(): ICollection {
+  public function listOfMarriages(): ICollection {
     return $this->orm->marriages->findAll();
   }
   
@@ -38,7 +38,7 @@ class Marriage {
    *
    * @throws MarriageNotFoundException
    */
-  function getMarriage(int $id): MarriageEntity {
+  public function getMarriage(int $id): MarriageEntity {
     $marriage = $this->orm->marriages->getById($id);
     if(is_null($marriage)) {
       throw new MarriageNotFoundException;
@@ -49,7 +49,7 @@ class Marriage {
   /**
    * Check whether the user can propose someone
    */
-  function canPropose(int $id): bool {
+  public function canPropose(int $id): bool {
     if(!$this->user->isLoggedIn()) {
       return false;
     } elseif($id === $this->user->id) {
@@ -76,7 +76,7 @@ class Marriage {
     return true;
   }
   
-  function canFinish(MarriageEntity $marriage): bool {
+  public function canFinish(MarriageEntity $marriage): bool {
     if($marriage->status != MarriageEntity::STATUS_ACCEPTED) {
       return false;
     } elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user1->id))) {
@@ -94,7 +94,7 @@ class Marriage {
    *
    * @throws CannotProposeMarriageException
    */
-  function proposeMarriage(int $id): void {
+  public function proposeMarriage(int $id): void {
     if(!$this->canPropose($id)) {
       throw new CannotProposeMarriageException;
     }
@@ -111,7 +111,7 @@ class Marriage {
    * @return MarriageEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function listOfProposals(): ICollection {
+  public function listOfProposals(): ICollection {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -127,7 +127,7 @@ class Marriage {
    * @throws CannotProposeMarriageException
    * @throws MarriageProposalAlreadyHandledException
    */
-  function acceptProposal(int $id): void {
+  public function acceptProposal(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -162,7 +162,7 @@ class Marriage {
    * @throws CannotProposeMarriageException
    * @throws MarriageProposalAlreadyHandledException
    */
-  function declineProposal(int $id): void {
+  public function declineProposal(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -185,7 +185,7 @@ class Marriage {
    *
    * @throws AuthenticationNeededException
    */
-  function getCurrentMarriage(): ?MarriageEntity {
+  public function getCurrentMarriage(): ?MarriageEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -203,7 +203,7 @@ class Marriage {
    * @throws NotEngagedException
    * @throws WeddingAlreadyHappenedException
    */
-  function cancelWedding(): void {
+  public function cancelWedding(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -225,7 +225,7 @@ class Marriage {
    * @throws NotMarriedException
    * @throws AlreadyInDivorceException
    */
-  function fileForDivorce(): void {
+  public function fileForDivorce(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -246,7 +246,7 @@ class Marriage {
    * @throws NotMarriedException
    * @throws NotInDivorceException
    */
-  function acceptDivorce(): void {
+  public function acceptDivorce(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -267,7 +267,7 @@ class Marriage {
    * @throws NotMarriedException
    * @throws NotInDivorceException
    */
-  function declineDivorce(): void {
+  public function declineDivorce(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -289,7 +289,7 @@ class Marriage {
    * @throws NotInDivorceException
    * @throws CannotTakeBackDivorceException
    */
-  function takeBackDivorce(): void {
+  public function takeBackDivorce(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

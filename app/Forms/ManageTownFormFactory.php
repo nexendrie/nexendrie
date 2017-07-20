@@ -17,11 +17,11 @@ class ManageTownFormFactory {
   /** @var int */
   private $id;
   
-  function __construct(\Nexendrie\Model\Town $model) {
+  public function __construct(\Nexendrie\Model\Town $model) {
     $this->model = $model;
   }
   
-  function create(int $townId): Form {
+  public function create(int $townId): Form {
     $form = new Form;
     $this->id = $townId;
     $town = $this->model->get($this->id);
@@ -42,7 +42,7 @@ class ManageTownFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     $this->model->edit($this->id, $values);
   }
 }

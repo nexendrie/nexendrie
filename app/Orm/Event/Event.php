@@ -29,7 +29,7 @@ class Event extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
-  function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
   }
   
@@ -113,14 +113,14 @@ class Event extends \Nextras\Orm\Entity\Entity {
   /**
    * @return EventDummy
    */
-  function dummy(): EventDummy {
+  public function dummy(): EventDummy {
     return new EventDummy($this);
   }
   
   /**
    * @return array
    */
-  function dummyArray(): array {
+  public function dummyArray(): array {
     return $this->dummy()->toArray();
   }
 }

@@ -21,7 +21,7 @@ class GiftFormFactory {
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Model\Locale $localeModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Locale $localeModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->localeModel = $localeModel;
     $this->orm = $orm;
     $this->user = $user;
@@ -47,7 +47,7 @@ class GiftFormFactory {
     return $this->orm->items->findAll()->fetchPairs("id", "name");
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addSelect("user", "Uživatel:", $this->getUsersList())
       ->setRequired("Vyber uživatele.");
@@ -64,7 +64,7 @@ class GiftFormFactory {
     return $form;
   }
   
-  function validate(Form $form, array $values): void {
+  public function validate(Form $form, array $values): void {
     if($values["money"] === 0 AND is_null($values["item"])) {
       $form->addError("Musíš zadat částku (a)nebo vybrat věc.");
     }
@@ -93,7 +93,7 @@ class GiftFormFactory {
     return $message;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     $user = $this->orm->users->getById($values["user"]);
     $queen = $this->orm->users->getById(0);
     $money = $values["money"];

@@ -31,7 +31,7 @@ class Monastery {
   
   use \Nette\SmartObject;
   
-  function __construct(Events $eventsModel, Guild $guildModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
+  public function __construct(Events $eventsModel, Guild $guildModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->eventsModel = $eventsModel;
     $this->guildModel = $guildModel;
     $this->orderModel = $orderModel;
@@ -40,7 +40,7 @@ class Monastery {
     $this->buildingPrice = $sr->settings["fees"]["buildMonastery"];
   }
   
-  function getBuildingPrice() :int {
+  public function getBuildingPrice() :int {
     return $this->buildingPrice;
   }
   
@@ -49,7 +49,7 @@ class Monastery {
    * 
    * @return MonasteryEntity[]|ICollection
    */
-  function listOfMonasteries(): ICollection {
+  public function listOfMonasteries(): ICollection {
     return $this->orm->monasteries->findAll()
       ->orderBy("level", ICollection::DESC)
       ->orderBy("founded");
@@ -60,7 +60,7 @@ class Monastery {
    *
    * @throws MonasteryNotFoundException
    */
-  function get(int $id): MonasteryEntity {
+  public function get(int $id): MonasteryEntity {
     $monastery = $this->orm->monasteries->getById($id);
     if(is_null($monastery)) {
       throw new MonasteryNotFoundException;
@@ -74,7 +74,7 @@ class Monastery {
    * @throws UserNotFoundException
    * @throws NotInMonasteryException
    */
-  function getByUser(int $id = NULL): MonasteryEntity {
+  public function getByUser(int $id = NULL): MonasteryEntity {
     $user = $this->orm->users->getById($id ?? $this->user->id);
     if(is_null($user)) {
       throw new UserNotFoundException;
@@ -87,7 +87,7 @@ class Monastery {
   /**
    * Check whether the user can join a monastery
    */
-  function canJoin(): bool {
+  public function canJoin(): bool {
     $month = 60 * 60 * 24 * 31;
     if(!$this->user->isLoggedIn()) {
       return false;
@@ -123,7 +123,7 @@ class Monastery {
    * @throws MonasteryNotFoundException
    * @throws CannotJoinOwnMonasteryException
    */
-  function join(int $id): void {
+  public function join(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canJoin()) {
@@ -159,7 +159,7 @@ class Monastery {
    *
    * @throws AuthenticationNeededException
    */
-  function canPray(): bool {
+  public function canPray(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -184,7 +184,7 @@ class Monastery {
    * @throws AuthenticationNeededException
    * @throws CannotPrayException
    */
-  function pray(): void {
+  public function pray(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -203,7 +203,7 @@ class Monastery {
    *
    * @throws AuthenticationNeededException
    */
-  function canLeave(): bool {
+  public function canLeave(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -222,7 +222,7 @@ class Monastery {
    * @throws AuthenticationNeededException
    * @throws CannotLeaveMonasteryException
    */
-  function leave(): void {
+  public function leave(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -248,7 +248,7 @@ class Monastery {
    *
    * @throws AuthenticationNeededException
    */
-  function canBuild(): bool {
+  public function canBuild(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -270,7 +270,7 @@ class Monastery {
    * @throws MonasteryNameInUseException
    * @throws InsufficientFundsException
    */
-  function build(string $name): void {
+  public function build(string $name): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -303,7 +303,7 @@ class Monastery {
    * @throws NotInMonasteryException
    * @throws InsufficientFundsException
    */
-  function donate(int $amount): void {
+  public function donate(int $amount): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -328,7 +328,7 @@ class Monastery {
    * @throws MonasteryNotFoundException
    * @throws MonasteryNameInUseException
    */
-  function edit(int $id, array $data): void {
+  public function edit(int $id, array $data): void {
     try {
       $monastery = $this->get($id);
     } catch(MonasteryNotFoundException $e) {
@@ -356,7 +356,7 @@ class Monastery {
    * @param int $id Monastery' id
    * @return string[] id => publicname
    */
-  function highClerics(int $id): array {
+  public function highClerics(int $id): array {
     return $this->orm->users->findByMonastery($id)
       ->findBy(["this->group->level" => 550])
       ->fetchPairs("id", "publicname");
@@ -367,7 +367,7 @@ class Monastery {
    *
    * @throws AuthenticationNeededException
    */
-  function canManage(): bool {
+  public function canManage(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -383,7 +383,7 @@ class Monastery {
   /**
    * How many hitpoints will the prayer add
    */
-  function prayerLife(): int {
+  public function prayerLife(): int {
     if(!$this->user->isLoggedIn()) {
       return 0;
     }
@@ -400,7 +400,7 @@ class Monastery {
    *
    * @throws AuthenticationNeededException
    */
-  function canUpgrade(): bool {
+  public function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -422,7 +422,7 @@ class Monastery {
    * @throws CannotUpgradeMonasteryException
    * @throws InsufficientFundsException
    */
-  function upgrade(): void {
+  public function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -444,7 +444,7 @@ class Monastery {
    *
    * @throws AuthenticationNeededException
    */
-  function canRepair(): bool {
+  public function canRepair(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -466,7 +466,7 @@ class Monastery {
    * @throws CannotRepairMonasteryException
    * @throws InsufficientFundsException
    */
-  function repair(): void {
+  public function repair(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

@@ -15,11 +15,11 @@ class AddEditEventFormFactory {
   /** @var \Nexendrie\Model\SettingsRepository */
   protected $sr;
   
-  function __construct(\Nexendrie\Model\SettingsRepository $sr) {
+  public function __construct(\Nexendrie\Model\SettingsRepository $sr) {
     $this->sr = $sr;
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.");
@@ -58,7 +58,7 @@ class AddEditEventFormFactory {
     return $form;
   }
   
-  function validate(Form $form, array $values): void {
+  public function validate(Form $form, array $values): void {
     $format = $this->sr->settings["locale"]["dateTimeFormat"];
     $start = DateTime::createFromFormat($format, $values["start"]);
     if(!$start) {

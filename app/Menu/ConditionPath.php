@@ -18,11 +18,11 @@ class ConditionPath implements IMenuItemCondition {
   /** @var string */
   protected $name = "path";
   
-  function __construct(User $user) {
+  public function __construct(User $user) {
     $this->user = $user;
   }
   
-  function getName(): string {
+  public function getName(): string {
     return $this->name;
   }
   
@@ -31,7 +31,7 @@ class ConditionPath implements IMenuItemCondition {
    * @return bool
    * @throws \InvalidArgumentException
    */
-  function isAllowed($parameter = NULL): bool {
+  public function isAllowed($parameter = NULL): bool {
     if(!$this->user->isLoggedIn()) {
       return false;
     } elseif(!is_string($parameter)) {

@@ -19,12 +19,12 @@ class ChangeWeddingTermFormFactory {
   /** @var Marriage */
   private $marriage;
   
-  function __construct(\Nexendrie\Model\SettingsRepository $sr, \Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Model\SettingsRepository $sr, \Nexendrie\Orm\Model $orm) {
     $this->sr = $sr;
     $this->orm = $orm;
   }
   
-  function create(Marriage $marriage): Form {
+  public function create(Marriage $marriage): Form {
     $format = explode(" ", $this->sr->settings["locale"]["dateTimeFormat"]);
     $this->marriage = $marriage;
     $default = new \DateTime();
@@ -40,14 +40,14 @@ class ChangeWeddingTermFormFactory {
     return $form;
   }
   
-  function validate(Form $form, array $values): void {
+  public function validate(Form $form, array $values): void {
     $term = $values["term"]->getTimestamp();
     if($term < time()) {
       $form->addError("Datum nemůže být v minulosti.");
     }
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     $this->marriage->term = $values["term"]->getTimestamp();
     $this->orm->marriages->persistAndFlush($this->marriage);
   }

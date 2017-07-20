@@ -16,17 +16,17 @@ class ChronicleTest extends \Tester\TestCase {
   /** @var Chronicle */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Chronicle::class);
   }
   
-  function testArticles() {
+  public function testArticles() {
     $result = $this->model->articles();
     Assert::type(ICollection::class, $result);
     Assert::type(ArticleEntity::class, $result->fetch());
   }
   
-  function testCrimes() {
+  public function testCrimes() {
     $result = $this->model->crimes();
     Assert::type(ICollection::class, $result);
     Assert::type(PunishmentEntity::class, $result->fetch());

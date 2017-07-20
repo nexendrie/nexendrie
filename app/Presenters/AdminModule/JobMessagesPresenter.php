@@ -24,7 +24,7 @@ class JobMessagesPresenter extends BasePresenter {
   /** @var JobEntity */
   private $job;
   
-  function actionList(int $id): void {
+  public function actionList(int $id): void {
     $this->requiresPermissions("content", "list");
     try {
       $this->template->messages = $this->model->listOfMessages($id);
@@ -34,7 +34,7 @@ class JobMessagesPresenter extends BasePresenter {
     }
   }
   
-  function actionAdd(int $id): void {
+  public function actionAdd(int $id): void {
     $this->requiresPermissions("content", "add");
     try {
       $this->job = $this->model->getJob($id);
@@ -58,7 +58,7 @@ class JobMessagesPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id): void {
+  public function actionEdit(int $id): void {
     $this->requiresPermissions("content", "edit");
     try {
       $this->message = $this->model->getMessage($id);
@@ -80,7 +80,7 @@ class JobMessagesPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function actionDelete(int $id): void {
+  public function actionDelete(int $id): void {
     try {
       $job = $this->model->deleteMessage($id);
       $this->flashMessage("Hláška smazána.");

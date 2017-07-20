@@ -23,20 +23,20 @@ class StablesControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
     parent::__construct();
     $this->orm = $orm;
     $this->localeModel = $localeModel;
     $this->user = $user;
   }
   
-  function render(): void {
+  public function render(): void {
     $this->template->setFile(__DIR__ . "/stables.latte");
     $this->template->mounts = $this->orm->mounts->findByOwner($this->user->id);
     $this->template->render();
   }
   
-  function renderTrain(int $mountId): void {
+  public function renderTrain(int $mountId): void {
     $this->template->setFile(__DIR__ . "/stablesTrain.latte");
     $this->template->mount = $this->orm->mounts->getById($mountId);
     $this->template->render();
@@ -69,7 +69,7 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->orm->mounts->persistAndFlush($mount);
   }
   
-  function handleCare(int $mountId): void {
+  public function handleCare(int $mountId): void {
     try {
       $this->increaseLife($mountId, 3, 4);
       $message = $this->localeModel->genderMessage("Očistil(a) jsi jezdecké zvíře.");
@@ -86,7 +86,7 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect("default");
   }
   
-  function handleFeed(int $mountId): void {
+  public function handleFeed(int $mountId): void {
     try {
       $this->increaseLife($mountId, 10, 12);
       $message = $this->localeModel->genderMessage("Nakrmil(a) jsi jezdecké zvíře.");
@@ -137,7 +137,7 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->orm->mounts->persistAndFlush($mount);
   }
   
-  function handleTrainDamage(int $mount): void {
+  public function handleTrainDamage(int $mount): void {
     try {
       $this->train($mount, "damage");
       $this->presenter->flashMessage("Trénink byl úspěšný.");
@@ -155,7 +155,7 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect("default");
   }
   
-  function handleTrainArmor(int $mount): void {
+  public function handleTrainArmor(int $mount): void {
     try {
       $this->train($mount, "armor");
       $this->presenter->flashMessage("Trénink byl úspěšný.");

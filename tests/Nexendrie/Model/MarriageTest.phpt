@@ -16,17 +16,17 @@ class MarriageTest extends \Tester\TestCase {
   /** @var Marriage */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Marriage::class);
   }
   
-  function testListOfMarriages() {
+  public function testListOfMarriages() {
     $result = $this->model->listOfMarriages();
     Assert::type(ICollection::class, $result);
     Assert::type(MarriageEntity::class, $result->fetch());
   }
   
-  function testGetMarriage() {
+  public function testGetMarriage() {
     $marriage = $this->model->getMarriage(1);
     Assert::type(MarriageEntity::class, $marriage);
     Assert::exception(function() {
@@ -34,7 +34,7 @@ class MarriageTest extends \Tester\TestCase {
     }, MarriageNotFoundException::class);
   }
   
-  function testCanPropose() {
+  public function testCanPropose() {
     Assert::false($this->model->canPropose(1));
     $this->login();
     Assert::false($this->model->canPropose(1));
@@ -54,7 +54,7 @@ class MarriageTest extends \Tester\TestCase {
   /**
    *
    */
-  function testCanFinish() {
+  public function testCanFinish() {
     /** @var \Nexendrie\Orm\Model $orm */
     //$orm = $this->getService(\Nexendrie\Orm\Model::class);
     $marriage1 = $this->model->getMarriage(1);
@@ -71,7 +71,7 @@ class MarriageTest extends \Tester\TestCase {
     Assert::true($this->model->canFinish($marriage2));
   }
   
-  function testListOfProposals() {
+  public function testListOfProposals() {
     Assert::exception(function() {
       $this->model->listOfProposals();
     }, AuthenticationNeededException::class);
@@ -80,7 +80,7 @@ class MarriageTest extends \Tester\TestCase {
     Assert::type(ICollection::class, $result);
   }
   
-  function testAcceptProposal() {
+  public function testAcceptProposal() {
     Assert::exception(function() {
       $this->model->acceptProposal(1);
     }, AuthenticationNeededException::class);
@@ -96,7 +96,7 @@ class MarriageTest extends \Tester\TestCase {
     }, MarriageProposalAlreadyHandledException::class);
   }
   
-  function testDeclineProposal() {
+  public function testDeclineProposal() {
     Assert::exception(function() {
       $this->model->declineProposal(1);
     }, AuthenticationNeededException::class);
@@ -112,7 +112,7 @@ class MarriageTest extends \Tester\TestCase {
     }, MarriageProposalAlreadyHandledException::class);
   }
   
-  function testGetCurrentMarriage() {
+  public function testGetCurrentMarriage() {
     Assert::exception(function() {
       $this->model->getCurrentMarriage();
     }, AuthenticationNeededException::class);
@@ -124,7 +124,7 @@ class MarriageTest extends \Tester\TestCase {
     Assert::null($this->model->getCurrentMarriage());
   }
   
-  function testCancelWedding() {
+  public function testCancelWedding() {
     Assert::exception(function() {
       $this->model->cancelWedding();
     }, AuthenticationNeededException::class);

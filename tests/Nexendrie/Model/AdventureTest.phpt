@@ -18,17 +18,17 @@ class AdventureTest extends \Tester\TestCase {
   /** @var Adventure */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Adventure::class);
   }
   
-  function testListOfAdventures() {
+  public function testListOfAdventures() {
     $result = $this->model->listOfAdventures();
     Assert::type(ICollection::class, $result);
     Assert::type(AdventureEntity::class, $result->fetch());
   }
   
-  function testListOfNpcs() {
+  public function testListOfNpcs() {
     $result = $this->model->listOfNpcs(1);
     Assert::type(OneHasMany::class, $result);
     Assert::type(AdventureNpc::class, $result->get()->fetch());
@@ -38,7 +38,7 @@ class AdventureTest extends \Tester\TestCase {
     }, AdventureNotFoundException::class);
   }
   
-  function testGet() {
+  public function testGet() {
     $adventure = $this->model->get(1);
     Assert::type(AdventureEntity::class, $adventure);
     Assert::exception(function() {
@@ -46,7 +46,7 @@ class AdventureTest extends \Tester\TestCase {
     }, AdventureNotFoundException::class);
   }
   
-  function testEditAdventure() {
+  public function testEditAdventure() {
     Assert::exception(function() {
       $this->model->editAdventure(50, []);
     }, AdventureNotFoundException::class);
@@ -57,7 +57,7 @@ class AdventureTest extends \Tester\TestCase {
     $this->model->editAdventure($adventure->id, ["name" => $name]);
   }
   
-  function testGetNpc() {
+  public function testGetNpc() {
     $npc = $this->model->getNpc(1);
     Assert::type(AdventureNpc::class, $npc);
     Assert::exception(function() {
@@ -65,19 +65,19 @@ class AdventureTest extends \Tester\TestCase {
     }, AdventureNpcNotFoundException::class);
   }
   
-  function testEditNpc() {
+  public function testEditNpc() {
     Assert::exception(function() {
       $this->model->editNpc(50, []);
     }, AdventureNpcNotFoundException::class);
   }
   
-  function testDeleteNpc() {
+  public function testDeleteNpc() {
     Assert::exception(function() {
       $this->model->deleteNpc(50);
     }, AdventureNpcNotFoundException::class);
   }
   
-  function testFindAvailableAdventures() {
+  public function testFindAvailableAdventures() {
     Assert::exception(function() {
       $this->model->findAvailableAdventures();
     }, AuthenticationNeededException::class);
@@ -87,7 +87,7 @@ class AdventureTest extends \Tester\TestCase {
     Assert::type(AdventureEntity::class, $result->fetch());
   }
   
-  function testFindGoodMounts() {
+  public function testFindGoodMounts() {
     Assert::exception(function() {
       $this->model->findGoodMounts();
     }, AuthenticationNeededException::class);
@@ -100,7 +100,7 @@ class AdventureTest extends \Tester\TestCase {
     Assert::true($mount->hp >= 30);
   }
   
-  function testGetNextNpc() {
+  public function testGetNextNpc() {
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
     $adventure = new \Nexendrie\Orm\UserAdventure;
@@ -120,11 +120,11 @@ class AdventureTest extends \Tester\TestCase {
     $orm->userAdventures->detach($adventure);
   }
   
-  function testCalculateMonthAdventuresIncome() {
+  public function testCalculateMonthAdventuresIncome() {
     Assert::type("int", $this->model->calculateMonthAdventuresIncome(1));
   }
   
-  function testCanDoAdventure() {
+  public function testCanDoAdventure() {
     Assert::exception(function() {
       $this->model->canDoAdventure();
     }, AuthenticationNeededException::class);

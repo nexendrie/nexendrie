@@ -17,7 +17,7 @@ class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $user
    * @return ICollection|MonasteryDonation[]
    */
-  function findByUser($user): ICollection {
+  public function findByUser($user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   
@@ -25,7 +25,7 @@ class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
    * @param Monastery|int $monastery
    * @return ICollection|MonasteryDonation[]
    */
-  function findByMonastery($monastery): ICollection {
+  public function findByMonastery($monastery): ICollection {
     return $this->findBy(["monastery" => $monastery]);
   }
   
@@ -35,7 +35,7 @@ class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return ICollection|MonasteryDonation[]
    */
-  function findDonatedThisMonth($user): ICollection {
+  public function findDonatedThisMonth($user): ICollection {
     $month = date("n");
     $year = date("Y");
     $startOfMonthTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);

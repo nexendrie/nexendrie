@@ -16,11 +16,11 @@ class ArticlePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Article @autowire */
   protected $model;
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $this->template->articles = $this->model->listOfArticles();
   }
   
-  function actionAdd(): void {
+  public function actionAdd(): void {
     $this->requiresPermissions("article", "add");
   }
   
@@ -40,7 +40,7 @@ class ArticlePresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id): void {
+  public function actionEdit(int $id): void {
     try {
       $article = $this->model->view($id);
     } catch(ArticleNotFoundException $e) {

@@ -50,7 +50,7 @@ class PropertyPresenter extends BasePresenter {
     $this->mustNotBeBanned();
   }
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $data = $this->inventoryModel->possessions();
     $this->template->money = $data["money"];
     $this->template->items = $data["items"];
@@ -58,7 +58,7 @@ class PropertyPresenter extends BasePresenter {
     $this->template->loan = $data["loan"];
   }
   
-  function actionTown(int $id): void {
+  public function actionTown(int $id): void {
     try {
       $this->town = $this->townModel->get($id);
     } catch(TownNotFoundException $e) {
@@ -71,7 +71,7 @@ class PropertyPresenter extends BasePresenter {
     }
   }
   
-  function renderTown(int $id): void {
+  public function renderTown(int $id): void {
     $this->template->town = $this->town;
     $this->template->mayor = $this->townModel->getMayor($this->town->id);
   }
@@ -92,7 +92,7 @@ class PropertyPresenter extends BasePresenter {
     return $form;
   }
   
-  function renderBudget(): void {
+  public function renderBudget(): void {
     $budget = $this->model->budget();
     $this->template->incomes = $this->localeModel->money(array_sum($budget["incomes"]));
     $this->template->expenses = $this->localeModel->money(array_sum($budget["expenses"]));
@@ -106,12 +106,12 @@ class PropertyPresenter extends BasePresenter {
     $this->template->membershipFee = $this->localeModel->money($budget["expenses"]["membershipFee"]);
   }
   
-  function renderEquipment(): void {
+  public function renderEquipment(): void {
     $this->template->items = $this->inventoryModel->equipment();
     $this->template->currentSet = $this->inventoryModel->getUserItemSet($this->user->id);
   }
   
-  function renderPotions(): void {
+  public function renderPotions(): void {
     $user = $this->userManager->get($this->user->id);
     $this->template->life = $user->life;
     $this->template->maxLife = $user->maxLife;
@@ -121,7 +121,7 @@ class PropertyPresenter extends BasePresenter {
     $this->template->maxLifeCombat = $combatLife["maxLife"];
   }
   
-  function handleEquip(int $item): void {
+  public function handleEquip(int $item): void {
     try {
       $this->inventoryModel->equipItem($item);
       $this->flashMessage("Věc nasazena.");
@@ -137,7 +137,7 @@ class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  function handleUnequip(int $item): void {
+  public function handleUnequip(int $item): void {
     try {
       $this->inventoryModel->unequipItem($item);
       $this->flashMessage("Věc sundána.");
@@ -151,7 +151,7 @@ class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  function handleDrink(int $potion): void {
+  public function handleDrink(int $potion): void {
     try {
       $life = $this->inventoryModel->drinkPotion($potion);
       $this->flashMessage("Doplnil sis $life životů.");
@@ -167,7 +167,7 @@ class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  function handleSell(int $item): void {
+  public function handleSell(int $item): void {
     try {
       $price = $this->inventoryModel->sellItem($item);
       $this->flashMessage("Věc prodána za " . $this->localeModel->money($price) . ".");
@@ -181,7 +181,7 @@ class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  function handleUpgrade(int $item): void {
+  public function handleUpgrade(int $item): void {
     try {
       $this->inventoryModel->upgradeItem($item);
       $this->flashMessage("Věc vylepšena.");

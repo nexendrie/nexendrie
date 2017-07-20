@@ -70,7 +70,7 @@ class SettingsRepository {
   
   use \Nette\SmartObject;
   
-  function __construct(array $settings) {
+  public function __construct(array $settings) {
     $this->settings = $this->validateSettings($settings);
   }
   
@@ -133,7 +133,7 @@ class SettingsRepository {
     return $return;
   }
   
-  function getSettings(): array {
+  public function getSettings(): array {
     return $this->settings;
   }
 }

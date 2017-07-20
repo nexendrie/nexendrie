@@ -2,6 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IWeddingControlFactory {
-  function create(): WeddingControl;
+  public function create(): WeddingControl;
 }
 ?>

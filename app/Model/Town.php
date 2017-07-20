@@ -23,7 +23,7 @@ class Town {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -33,7 +33,7 @@ class Town {
    *
    * @throws TownNotFoundException
    */
-  function get(int $id): TownEntity {
+  public function get(int $id): TownEntity {
     $town = $this->orm->towns->getById($id);
     if(is_null($town)) {
       throw new TownNotFoundException;
@@ -46,14 +46,14 @@ class Town {
    * 
    * @return TownEntity[]|ICollection
    */
-  function listOfTowns(): ICollection {
+  public function listOfTowns(): ICollection {
     return $this->orm->towns->findAll();
   }
   
   /**
    * Add new town
    */
-  function add(array $data): void {
+  public function add(array $data): void {
     $town = new TownEntity;
     $this->orm->towns->attach($town);
     foreach($data as $key => $value) {
@@ -67,7 +67,7 @@ class Town {
    *
    * @throws TownNotFoundException
    */
-  function edit(int $id, array $data): void {
+  public function edit(int $id, array $data): void {
     try {
       $town = $this->get($id);
     } catch(TownNotFoundException $e) {
@@ -82,7 +82,7 @@ class Town {
   /**
    * @return TownEntity[]|ICollection
    */
-  function townsOnSale(): ICollection {
+  public function townsOnSale(): ICollection {
     return $this->orm->towns->findOnMarket();
   }
   
@@ -96,7 +96,7 @@ class Town {
    * @throws InsufficientLevelForTownException
    * @throws InsufficientFundsException
    */
-  function buy(int $id): void {
+  public function buy(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -128,7 +128,7 @@ class Town {
     $this->orm->flush();
   }
   
-  function getMayor(int $town): ?\Nexendrie\Orm\User {
+  public function getMayor(int $town): ?\Nexendrie\Orm\User {
     return $this->orm->users->getTownMayor($town);
   }
   
@@ -138,7 +138,7 @@ class Town {
    * @param int $town
    * @return string[] id => publicname
    */
-  function getTownCitizens(int $town): array {
+  public function getTownCitizens(int $town): array {
     return $this->orm->users->findTownCitizens($town)
       ->fetchPairs("id", "publicname");
   }
@@ -153,7 +153,7 @@ class Town {
    * @throws UserDoesNotLiveInTheTownException
    * @throws InsufficientLevelForMayorException
    */
-  function appointMayor(int $townId, int $newMayorId): void {
+  public function appointMayor(int $townId, int $newMayorId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -187,7 +187,7 @@ class Town {
    *
    * @throws AuthenticationNeededException
    */
-  function canMove(): bool {
+  public function canMove(): bool {
     $month = 60 * 60 * 24 * 31;
     if(!$this->user->isLoggedIn()) {
       return false;
@@ -215,7 +215,7 @@ class Town {
    * @throws CannotMoveToSameTownException
    * @throws CannotMoveToTownException
    */
-  function moveToTown(int $id): void {
+  public function moveToTown(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -244,7 +244,7 @@ class Town {
    * @throws CannotFoundTownException
    * @throws TownNameInUseException
    */
-  function found(array $data): void {
+  public function found(array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -282,7 +282,7 @@ class Town {
    * @param int $town
    * @return string[] id => publicname
    */
-  function getTownPeasants(int $town): array {
+  public function getTownPeasants(int $town): array {
     return $this->orm->users->findTownPeasants($town)
       ->fetchPairs("id", "publicname");
   }
@@ -295,7 +295,7 @@ class Town {
    * @throws UserDoesNotLiveInTheTownException
    * @throws TooHighLevelException
    */
-  function makeCitizen(int $id): void {
+  public function makeCitizen(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

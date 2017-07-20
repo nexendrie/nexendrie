@@ -15,7 +15,7 @@ class AddEditMountFormFactory {
   /** @var \Nexendrie\Model\Mount */
   protected $model;
   
-  function __construct(\Nexendrie\Model\Mount $model) {
+  public function __construct(\Nexendrie\Model\Mount $model) {
     $this->model = $model;
   }
   
@@ -31,7 +31,7 @@ class AddEditMountFormFactory {
     return $this->model->listOfMountTypes()->fetchPairs("id", "name");
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

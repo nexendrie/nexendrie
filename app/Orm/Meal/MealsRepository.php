@@ -15,7 +15,7 @@ class MealsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Meal|NULL
    */
-  function getById($id): ?Meal {
+  public function getById($id): ?Meal {
     return $this->getBy(["id" => $id]);
   }
 }

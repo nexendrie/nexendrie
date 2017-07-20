@@ -25,7 +25,7 @@ class HelpControl extends BookControl {
   /** @var Locale */
   protected $localeModel;
   
-  function __construct(ORM $orm, Locale $localeModel, Translator $translator) {
+  public function __construct(ORM $orm, Locale $localeModel, Translator $translator) {
     parent::__construct(":Front:Help", __DIR__ . "/help", $translator);
     $this->orm = $orm;
     $this->localeModel = $localeModel;
@@ -47,7 +47,7 @@ class HelpControl extends BookControl {
     $this->pages[] = new BookPage("marriage", "Manželství");
   }
   
-  function renderWork(): void {
+  public function renderWork(): void {
     $this->template->jobs = [];
     $jobs = $this->orm->jobs->findAll()
       ->orderBy("level")
@@ -65,33 +65,33 @@ class HelpControl extends BookControl {
     }
   }
   
-  function renderAcademy(): void {
+  public function renderAcademy(): void {
     $this->template->skills = $this->orm->skills->findAll()
       ->orderBy("type")
       ->orderBy("maxLevel")
       ->orderBy("price");
   }
   
-  function renderMonastery(): void {
+  public function renderMonastery(): void {
     $this->template->maxLevel = MonasteryEntity::MAX_LEVEL;
   }
   
-  function renderCastle(): void {
+  public function renderCastle(): void {
     $this->template->maxLevel = CastleEntity::MAX_LEVEL;
     $this->template->taxBonusPerLevel = $this->localeModel->money(CastleEntity::TAX_BONUS_PER_LEVEL);
   }
   
-  function renderHouse(): void {
+  public function renderHouse(): void {
     $this->template->maxLevel = HouseEntity::MAX_LEVEL;
     $this->template->incomeBonusPerLevel = HouseEntity::INCOME_BONUS_PER_LEVEL;
   }
   
-  function renderGuild(): void {
+  public function renderGuild(): void {
     $this->template->ranks = $this->orm->guildRanks->findAll();
     $this->template->maxLevel = GuildEntity::MAX_LEVEL;
   }
   
-  function renderOrder(): void {
+  public function renderOrder(): void {
     $this->template->ranks = $this->orm->orderRanks->findAll();
     $this->template->maxLevel = OrderEntity::MAX_LEVEL;
   }

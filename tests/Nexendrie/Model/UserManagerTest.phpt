@@ -18,11 +18,11 @@ class UserManagerTest extends \Tester\TestCase {
   /** @var UserManager */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(UserManager::class);
   }
   
-  function testNameAvailable() {
+  public function testNameAvailable() {
     Assert::true($this->model->nameAvailable("abc"));
     Assert::true($this->model->nameAvailable("abc", "publicname"));
     Assert::exception(function() {
@@ -39,14 +39,14 @@ class UserManagerTest extends \Tester\TestCase {
     Assert::false($this->model->nameAvailable("Vladěna", "publicname", 1));
   }
   
-  function testEmailAvailable() {
+  public function testEmailAvailable() {
     Assert::true($this->model->emailAvailable("abc"));
     Assert::false($this->model->emailAvailable("admin@localhost"));
     Assert::true($this->model->emailAvailable("admin@localhost", 0));
     Assert::false($this->model->emailAvailable("admin@localhost", 1));
   }
   
-  function testAuthenticate() {
+  public function testAuthenticate() {
     $user = "admin";
     $password = "qwerty";
     $identity = $this->model->authenticate([$user, $password]);
@@ -60,7 +60,7 @@ class UserManagerTest extends \Tester\TestCase {
     }, AuthenticationException::class);
   }
   
-  function testRefreshIdentity() {
+  public function testRefreshIdentity() {
     /** @var User $user */
     $user = $this->getService(User::class);
     $this->model->user = $user;
@@ -71,7 +71,7 @@ class UserManagerTest extends \Tester\TestCase {
     $this->model->refreshIdentity();
   }
   
-  function testRegister() {
+  public function testRegister() {
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
     $user = $orm->users->getById(1);
@@ -83,7 +83,7 @@ class UserManagerTest extends \Tester\TestCase {
     }, RegistrationException::class, NULL, UserManager::REG_DUPLICATE_EMAIL);
   }
   
-  function testGetSettings() {
+  public function testGetSettings() {
     Assert::exception(function() {
       $this->model->getSettings();
     }, AuthenticationNeededException::class);
@@ -91,13 +91,13 @@ class UserManagerTest extends \Tester\TestCase {
     Assert::type("array", $this->model->getSettings());
   }
   
-  function testListOfUsers() {
+  public function testListOfUsers() {
     $result = $this->model->listOfUsers();
     Assert::type(ICollection::class, $result);
     Assert::type(UserEntity::class, $result->fetch());
   }
   
-  function testGet() {
+  public function testGet() {
     $user = $this->model->get(0);
     Assert::type(UserEntity::class, $user);
     Assert::exception(function() {

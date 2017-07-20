@@ -12,7 +12,7 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 class AddEditSkillFormFactory {
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
@@ -49,7 +49,7 @@ class AddEditSkillFormFactory {
    * @param array $values  
    * @return void
    */
-  function validate(Form $form, array $values): void {
+  public function validate(Form $form, array $values): void {
     if($values["type"] === "work" AND $values["stat"] != NULL) {
       $form->addError("Neplatná kombinace: vybrána vlastnost u pracovní dovednosti.");
     }

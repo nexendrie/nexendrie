@@ -22,7 +22,7 @@ class AuthorizatorFactory {
   /** @var ORM */
   protected $orm;
   
-  function __construct(Cache $cache, ORM $orm) {
+  public function __construct(Cache $cache, ORM $orm) {
     $this->cache = $cache;
     $this->orm = $orm;
   }
@@ -32,7 +32,7 @@ class AuthorizatorFactory {
    * 
    * @return \stdClass[]
    */
-  function getGroups(): array {
+  public function getGroups(): array {
     $groups = $this->cache->load("groups_by_level", function(& $dependencies) {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll()->orderBy("level");
@@ -50,7 +50,7 @@ class AuthorizatorFactory {
    *
    * @return PermissionDummy[]
    */
-  function getPermissions(): array {
+  public function getPermissions(): array {
     $return = $this->cache->load("permissions", function(& $dependencies) {
       $return = [];
       $rows = $this->orm->permissions->findAll();
@@ -66,7 +66,7 @@ class AuthorizatorFactory {
   /**
   * Factory for Authorizator
   */
-  function create(): Permission {
+  public function create(): Permission {
     $permission = new Permission;
     
     $groups = $this->getGroups();

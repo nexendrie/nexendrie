@@ -15,17 +15,17 @@ class PollsTest extends \Tester\TestCase {
   /** @var Polls */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Polls::class);
   }
   
-  function testAll() {
+  public function testAll() {
     $result = $this->model->all();
     Assert::type(ICollection::class, $result);
     Assert::type(Poll::class, $result->fetch());
   }
   
-  function testView() {
+  public function testView() {
     $poll = $this->model->view(1);
     Assert::type(Poll::class, $poll);
     Assert::exception(function() {
@@ -33,12 +33,12 @@ class PollsTest extends \Tester\TestCase {
     }, PollNotFoundException::class);
   }
   
-  function testExists() {
+  public function testExists() {
     Assert::true($this->model->exists(1));
     Assert::false($this->model->exists(50));
   }
   
-  function testAdd() {
+  public function testAdd() {
     $this->model->user = $this->getService(\Nette\Security\User::class);
     Assert::exception(function() {
       $this->model->add([]);
@@ -49,7 +49,7 @@ class PollsTest extends \Tester\TestCase {
     }, MissingPermissionsException::class);
   }
   
-  function testEdit() {
+  public function testEdit() {
     $this->model->user = $this->getService(\Nette\Security\User::class);
     Assert::exception(function() {
       $this->model->edit(1, []);

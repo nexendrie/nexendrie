@@ -14,11 +14,11 @@ class TakeLoanFormFactory {
   /** @var \Nexendrie\Model\Bank @autowire */
   protected $model;
   
-  function __construct(\Nexendrie\Model\Bank $model) {
+  public function __construct(\Nexendrie\Model\Bank $model) {
     $this->model = $model;
   }
   
-  function create(): Form {
+  public function create(): Form {
     $maxLoan = $this->model->maxLoan();
     $form = new Form;
     $form->addText("amount", "Částka:")
@@ -30,7 +30,7 @@ class TakeLoanFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     $this->model->takeLoan($values["amount"]);
   }
 }

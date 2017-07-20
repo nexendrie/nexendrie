@@ -25,13 +25,13 @@ class Order {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
     $this->foundingPrice = $sr->settings["fees"]["foundOrder"];
   }
   
-  function getFoundingPrice(): int {
+  public function getFoundingPrice(): int {
     return $this->foundingPrice;
   }
   
@@ -40,7 +40,7 @@ class Order {
    * 
    * @return OrderEntity[]|ICollection
    */
-  function listOfOrders(): ICollection {
+  public function listOfOrders(): ICollection {
     return $this->orm->orders->findAll();
   }
   
@@ -49,7 +49,7 @@ class Order {
    *
    * @throws OrderNotFoundException
    */
-  function getOrder(int $id): OrderEntity {
+  public function getOrder(int $id): OrderEntity {
     $order = $this->orm->orders->getById($id);
     if(is_null($order)) {
       throw new OrderNotFoundException;
@@ -73,7 +73,7 @@ class Order {
    * @throws OrderNotFoundException
    * @throws OrderNameInUseException
    */
-  function editOrder(int $id, array $data): void {
+  public function editOrder(int $id, array $data): void {
     try {
       $order = $this->getOrder($id);
     } catch(OrderNotFoundException $e) {
@@ -91,7 +91,7 @@ class Order {
   /**
    * Get specified user's order
    */
-  function getUserOrder(int $uid = NULL): ?OrderEntity {
+  public function getUserOrder(int $uid = NULL): ?OrderEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
     return $user->order;
   }
@@ -99,7 +99,7 @@ class Order {
   /**
    * Check whether the user can found an order
    */
-  function canFound(): bool {
+  public function canFound(): bool {
     if(!$this->user->isLoggedIn()) {
       return false;
     }
@@ -121,7 +121,7 @@ class Order {
    * @throws OrderNameInUseException
    * @throws InsufficientFundsException
    */
-  function found(array $data): void {
+  public function found(array $data): void {
     if(!$this->canFound()) {
       throw new CannotFoundOrderException;
     }
@@ -147,7 +147,7 @@ class Order {
     $this->orm->flush();
   }
   
-  function calculateOrderIncomeBonus(int $baseIncome): int {
+  public function calculateOrderIncomeBonus(int $baseIncome): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -163,7 +163,7 @@ class Order {
   /**
    * Check whether the user can join an order
    */
-  function canJoin(): bool {
+  public function canJoin(): bool {
     if(!$this->user->isLoggedIn()) {
       return false;
     }
@@ -181,7 +181,7 @@ class Order {
    * @throws CannotJoinOrderException
    * @throws OrderNotFoundException
    */
-  function join(int $id): void {
+  public function join(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canJoin()) {
@@ -203,7 +203,7 @@ class Order {
    *
    * @throws AuthenticationNeededException
    */
-  function canLeave(): bool {
+  public function canLeave(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -220,7 +220,7 @@ class Order {
    * @throws AuthenticationNeededException
    * @throws CannotLeaveOrderException
    */
-  function leave(): void {
+  public function leave(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -237,7 +237,7 @@ class Order {
    *
    * @throws AuthenticationNeededException
    */
-  function canManage(): bool {
+  public function canManage(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -253,7 +253,7 @@ class Order {
    *
    * @throws AuthenticationNeededException
    */
-  function canUpgrade(): bool {
+  public function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -275,7 +275,7 @@ class Order {
    * @throws CannotUpgradeOrderException
    * @throws InsufficientFundsException
    */
-  function upgrade(): void {
+  public function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -297,11 +297,11 @@ class Order {
    * @param int $order
    * @return UserEntity[]|ICollection
    */
-  function getMembers(int $order): ICollection {
+  public function getMembers(int $order): ICollection {
     return $this->orm->users->findByOrder($order);
   }
   
-  function getMaxRank(): int {
+  public function getMaxRank(): int {
     static $rank = NULL;
     if(is_null($rank)) {
       $rank = $this->orm->orderRanks->findAll()->countStored();
@@ -318,7 +318,7 @@ class Order {
    * @throws UserNotInYourOrderException
    * @throws CannotPromoteMemberException
    */
-  function promote(int $userId): void {
+  public function promote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canManage()) {
@@ -347,7 +347,7 @@ class Order {
    * @throws UserNotInYourOrderException
    * @throws CannotDemoteMemberException
    */
-  function demote(int $userId): void {
+  public function demote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canManage()) {
@@ -376,7 +376,7 @@ class Order {
    * @throws UserNotInYourOrderException
    * @throws CannotKickMemberException
    */
-  function kick(int $userId): void {
+  public function kick(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canManage()) {

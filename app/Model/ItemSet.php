@@ -17,7 +17,7 @@ class ItemSet {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
   }
   
@@ -26,7 +26,7 @@ class ItemSet {
    * 
    * @return ItemSetEntity[]|ICollection
    */
-  function listOfSets(): ICollection {
+  public function listOfSets(): ICollection {
     return $this->orm->itemSets->findAll();
   }
   
@@ -35,7 +35,7 @@ class ItemSet {
    *
    * @throws ItemSetNotFoundException
    */
-  function get(int $id): ItemSetEntity {
+  public function get(int $id): ItemSetEntity {
     $set = $this->orm->itemSets->getById($id);
     if(is_null($set)) {
       throw new ItemSetNotFoundException;
@@ -46,7 +46,7 @@ class ItemSet {
   /**
    * Add new item set
    */
-  function add(array $data): void {
+  public function add(array $data): void {
     $set = new ItemSetEntity;
     $this->orm->itemSets->attach($set);
     foreach($data as $key => $value) {
@@ -60,7 +60,7 @@ class ItemSet {
    *
    * @throws ItemSetNotFoundException
    */
-  function edit(int $id, array $data): void {
+  public function edit(int $id, array $data): void {
     try {
       $npc = $this->get($id);
     } catch(ItemSetNotFoundException $e) {
@@ -77,7 +77,7 @@ class ItemSet {
    *
    * @throws ItemSetNotFoundException
    */
-  function delete(int $id): void {
+  public function delete(int $id): void {
     try {
       $set = $this->get($id);
     } catch(ItemSetNotFoundException $e) {

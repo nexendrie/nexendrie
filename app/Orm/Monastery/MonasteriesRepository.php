@@ -17,7 +17,7 @@ class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Monastery|NULL
    */
-  function getById($id): ?Monastery {
+  public function getById($id): ?Monastery {
     return $this->getBy(["id" => $id]);
   }
   
@@ -25,7 +25,7 @@ class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $leader
    * @return Monastery|null
    */
-  function getByLeader($leader): ?Monastery {
+  public function getByLeader($leader): ?Monastery {
     return $this->getBy(["leader" => $leader]);
   }
   
@@ -33,7 +33,7 @@ class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
    * @param Town|int $town
    * @return ICollection|Monastery[]
    */
-  function findByTown($town): ICollection {
+  public function findByTown($town): ICollection {
     return $this->findBy(["town" => $town]);
   }
   
@@ -41,7 +41,7 @@ class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $name
    * @return Monastery|null
    */
-  function getByName(string $name): ?Monastery {
+  public function getByName(string $name): ?Monastery {
     return $this->getBy(["name" => $name]);
   }
   
@@ -50,7 +50,7 @@ class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
    * 
    * @return ICollection|Monastery[]
    */
-  function findLedMonasteries(): ICollection {
+  public function findLedMonasteries(): ICollection {
     return $this->findBy(["this->leader->id>" => 0]);
   }
 }

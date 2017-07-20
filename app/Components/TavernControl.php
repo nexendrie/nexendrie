@@ -18,13 +18,13 @@ class TavernControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Model\Tavern $model, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Tavern $model, \Nette\Security\User $user) {
     parent::__construct();
     $this->model = $model;
     $this->user = $user;
   }
   
-  function render(): void {
+  public function render(): void {
     $this->template->setFile(__DIR__ . "/tavern.latte");
     if($this->user->isLoggedIn()) {
       $this->template->meals = $this->model->listOfMeals()
@@ -34,7 +34,7 @@ class TavernControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  function handleEat(int $mealId): void {
+  public function handleEat(int $mealId): void {
     try {
       $this->template->message = $this->model->buyMeal($mealId);
     } catch(AuthenticationNeededException $e) {

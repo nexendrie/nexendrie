@@ -14,11 +14,11 @@ class BankTest extends \Tester\TestCase {
   /** @var Bank */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Bank::class);
   }
   
-  function testGetActiveLoan() {
+  public function testGetActiveLoan() {
     Assert::exception(function() {
       $this->model->getActiveLoan();
     }, AuthenticationNeededException::class);
@@ -26,13 +26,13 @@ class BankTest extends \Tester\TestCase {
     Assert::null($this->model->getActiveLoan());
   }
   
-  function testMaxLoan() {
+  public function testMaxLoan() {
     Assert::same(0, $this->model->maxLoan());
     $this->login();
     Assert::same(2000, $this->model->maxLoan());
   }
   
-  function testCalculateInterest() {
+  public function testCalculateInterest() {
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
     $loan = new Loan;
@@ -46,14 +46,14 @@ class BankTest extends \Tester\TestCase {
     $orm->loans->detach($loan);
   }
   
-  function testTakeLoan() {
+  public function testTakeLoan() {
     $this->login();
     Assert::exception(function() {
       $this->model->takeLoan($this->model->maxLoan() + 1);
     }, TooHighLoanException::class);
   }
   
-  function testReturnLoan() {
+  public function testReturnLoan() {
     Assert::exception(function() {
       $this->model->returnLoan();
     }, AuthenticationNeededException::class);

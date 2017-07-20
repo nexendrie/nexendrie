@@ -18,11 +18,11 @@ class FoundTownFormFactory {
   /** @var \Nexendrie\Model\Town */
   protected $model;
   
-  function __construct(\Nexendrie\Model\Town $model) {
+  public function __construct(\Nexendrie\Model\Town $model) {
     $this->model = $model;
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.");
@@ -33,7 +33,7 @@ class FoundTownFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->found($values);
     } catch(InsufficientLevelForFoundTownException $e) {

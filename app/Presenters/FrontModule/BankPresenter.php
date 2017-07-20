@@ -20,7 +20,7 @@ class BankPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\SettingsRepository @autowire */
   protected $sr;
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $this->template->maxLoan = $this->localeModel->money($this->model->maxLoan());
     $this->template->interest = $this->sr->settings["fees"]["loanInterest"];
     if(!$this->user->isLoggedIn()) {
@@ -43,7 +43,7 @@ class BankPresenter extends BasePresenter {
     return $form;
   }
   
-  function actionReturn(): void {
+  public function actionReturn(): void {
     $this->requiresLogin();
     try {
       $this->model->returnLoan();

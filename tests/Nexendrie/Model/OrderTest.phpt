@@ -16,21 +16,21 @@ class OrderTest extends \Tester\TestCase {
   /** @var Order */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Order::class);
   }
   
-  function testGetFoundingPrice() {
+  public function testGetFoundingPrice() {
     Assert::type("int", $this->model->foundingPrice);
   }
   
-  function testListOfOrders() {
+  public function testListOfOrders() {
     $result = $this->model->listOfOrders();
     Assert::type(ICollection::class, $result);
     Assert::type(OrderEntity::class, $result->fetch());
   }
   
-  function testGetOrder() {
+  public function testGetOrder() {
     $order = $this->model->getOrder(1);
     Assert::type(OrderEntity::class, $order);
     Assert::exception(function() {
@@ -38,19 +38,19 @@ class OrderTest extends \Tester\TestCase {
     }, OrderNotFoundException::class);
   }
   
-  function testEditOrder() {
+  public function testEditOrder() {
     Assert::exception(function() {
       $this->model->editOrder(50, []);
     }, OrderNotFoundException::class);
   }
   
-  function testGetUserOrder() {
+  public function testGetUserOrder() {
     $order = $this->model->getUserOrder(1);
     Assert::type(OrderEntity::class, $order);
     Assert::null($this->model->getUserOrder(2));
   }
   
-  function testCanFound() {
+  public function testCanFound() {
     Assert::false($this->model->canFound());
     $this->login();
     Assert::false($this->model->canFound());
@@ -62,7 +62,7 @@ class OrderTest extends \Tester\TestCase {
     Assert::false($this->model->canFound());
   }
   
-  function testFound() {
+  public function testFound() {
     $order = $this->model->getOrder(1);
     $data = ["name" => $order->name];
     Assert::exception(function() use($data) {
@@ -70,7 +70,7 @@ class OrderTest extends \Tester\TestCase {
     }, CannotFoundOrderException::class);
   }
   
-  function testCalculateOrderIncomeBonus() {
+  public function testCalculateOrderIncomeBonus() {
     Assert::exception(function() {
       $this->model->calculateOrderIncomeBonus(100);
     }, AuthenticationNeededException::class);
@@ -82,7 +82,7 @@ class OrderTest extends \Tester\TestCase {
     Assert::same(0, $this->model->calculateOrderIncomeBonus(100));
   }
   
-  function testCanJoin() {
+  public function testCanJoin() {
     Assert::false($this->model->canJoin());
     $this->login();
     Assert::false($this->model->canJoin());
@@ -94,7 +94,7 @@ class OrderTest extends \Tester\TestCase {
     Assert::false($this->model->canJoin());
   }
   
-  function testJoin() {
+  public function testJoin() {
     Assert::exception(function() {
       $this->model->join(1);
     }, AuthenticationNeededException::class);
@@ -104,7 +104,7 @@ class OrderTest extends \Tester\TestCase {
     }, CannotJoinOrderException::class);
   }
   
-  function testCanLeave() {
+  public function testCanLeave() {
     Assert::exception(function() {
       $this->model->canLeave();
     }, AuthenticationNeededException::class);
@@ -118,7 +118,7 @@ class OrderTest extends \Tester\TestCase {
     Assert::true($this->model->canLeave());
   }
   
-  function testLeave() {
+  public function testLeave() {
     Assert::exception(function() {
       $this->model->leave();
     }, AuthenticationNeededException::class);
@@ -128,7 +128,7 @@ class OrderTest extends \Tester\TestCase {
     }, CannotLeaveOrderException::class);
   }
   
-  function testCanManage() {
+  public function testCanManage() {
     Assert::exception(function() {
       $this->model->canManage();
     }, AuthenticationNeededException::class);
@@ -142,7 +142,7 @@ class OrderTest extends \Tester\TestCase {
     Assert::false($this->model->canManage());
   }
   
-  function testCanUpgrade() {
+  public function testCanUpgrade() {
     Assert::exception(function() {
       $this->model->canUpgrade();
     }, AuthenticationNeededException::class);
@@ -156,7 +156,7 @@ class OrderTest extends \Tester\TestCase {
     Assert::false($this->model->canUpgrade());
   }
   
-  function testUpgrade() {
+  public function testUpgrade() {
     Assert::exception(function() {
       $this->model->upgrade();
     }, AuthenticationNeededException::class);
@@ -166,7 +166,7 @@ class OrderTest extends \Tester\TestCase {
     }, CannotUpgradeOrderException::class);
   }
   
-  function testGetMembers() {
+  public function testGetMembers() {
     $result1 = $this->model->getMembers(1);
     Assert::type(ICollection::class, $result1);
     Assert::count(2, $result1);
@@ -176,13 +176,13 @@ class OrderTest extends \Tester\TestCase {
     Assert::count(0, $result2);
   }
   
-  function testGetMaxRank() {
+  public function testGetMaxRank() {
     $rank = $this->model->maxRank;
     Assert::type("int", $rank);
     Assert::same(4, $rank);
   }
   
-  function testPromote() {
+  public function testPromote() {
     Assert::exception(function() {
       $this->model->promote(1);
     }, AuthenticationNeededException::class);
@@ -202,7 +202,7 @@ class OrderTest extends \Tester\TestCase {
     }, CannotPromoteMemberException::class);
   }
   
-  function testDemote() {
+  public function testDemote() {
     Assert::exception(function() {
       $this->model->demote(1);
     }, AuthenticationNeededException::class);
@@ -219,7 +219,7 @@ class OrderTest extends \Tester\TestCase {
     }, UserNotInYourOrderException::class);
   }
   
-  function testKick() {
+  public function testKick() {
     Assert::exception(function() {
       $this->model->kick(1);
     }, AuthenticationNeededException::class);

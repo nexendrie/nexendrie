@@ -23,12 +23,12 @@ class Group {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
     $this->cache = $cache;
   }
   
-  function setUser(\Nette\Security\User $user) {
+  public function setUser(\Nette\Security\User $user) {
     $this->user = $user;
   }
   
@@ -37,7 +37,7 @@ class Group {
    * 
    * @return GroupDummy[]
    */
-  function listOfGroups(): array {
+  public function listOfGroups(): array {
     $groups = $this->cache->load("groups", function(& $dependencies) {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll();
@@ -53,20 +53,20 @@ class Group {
   /**
    * Get specified group
    */
-  function get(int $id) {
+  public function get(int $id) {
     $groups = $this->listOfGroups();
     $group = Arrays::get($groups, $id, NULL);
     return $group;
   }
   
-  function ormGet(int $id): ?GroupEntity {
+  public function ormGet(int $id): ?GroupEntity {
     return $this->orm->groups->getById($id);
   }
   
   /**
    * Check whether specified guild exists
    */
-  function exists(int $id): bool {
+  public function exists(int $id): bool {
     $group = $this->orm->groups->getById($id);
     return (bool) $group;
   }
@@ -77,7 +77,7 @@ class Group {
    * @throws \Nette\Application\ForbiddenRequestException
    * @return void
    */
-  function edit(int $id, array $data): void {
+  public function edit(int $id, array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }

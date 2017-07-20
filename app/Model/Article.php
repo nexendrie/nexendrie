@@ -22,7 +22,7 @@ class Article {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
     $this->itemsPerPage = (int) $sr->settings["pagination"]["news"];
@@ -33,7 +33,7 @@ class Article {
    * 
    * @return ArticleEntity[]|ICollection
    */
-  function listOfArticles(): ICollection {
+  public function listOfArticles(): ICollection {
     return $this->orm->articles->findAll()->orderBy("added", ICollection::DESC);
   }
   
@@ -43,7 +43,7 @@ class Article {
    * @param \Nette\Utils\Paginator $paginator
    * @return ArticleEntity[]|ICollection
    */
-  function listOfNews(\Nette\Utils\Paginator $paginator = NULL): ICollection {
+  public function listOfNews(\Nette\Utils\Paginator $paginator = NULL): ICollection {
     $news = $this->orm->articles->findNews();
     if(!is_null($paginator)) {
       $paginator->itemsPerPage = $this->itemsPerPage;
@@ -59,7 +59,7 @@ class Article {
    * @param \Nette\Utils\Paginator $paginator
    * @return ArticleEntity[]|ICollection
    */
-  function category($name, \Nette\Utils\Paginator $paginator = NULL): ICollection {
+  public function category($name, \Nette\Utils\Paginator $paginator = NULL): ICollection {
     $articles = $this->orm->articles->findByCategory($name);
     if(!is_null($paginator)) {
       $paginator->itemsPerPage = $this->itemsPerPage;
@@ -73,7 +73,7 @@ class Article {
    *
    * @throws ArticleNotFoundException
    */
-  function view(int $id): ArticleEntity {
+  public function view(int $id): ArticleEntity {
     $article = $this->orm->articles->getById($id);
     if(is_null($article)) {
       throw new ArticleNotFoundException;
@@ -87,7 +87,7 @@ class Article {
    * @param int $article
    * @return CommentEntity[]|ICollection
    */
-  function viewComments(int $article = 0): ICollection {
+  public function viewComments(int $article = 0): ICollection {
     if($article === 0) {
       return $this->orm->comments->findAll();
     }
@@ -101,7 +101,7 @@ class Article {
    * @throws MissingPermissionsException
    * @return void
    */
-  function addArticle(array $data): void {
+  public function addArticle(array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -125,7 +125,7 @@ class Article {
    * @throws MissingPermissionsException
    * @return void
    */
-  function addComment(array $data): void {
+  public function addComment(array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -149,7 +149,7 @@ class Article {
    * @throws MissingPermissionsException
    * @throws ArticleNotFoundException
    */
-  function editArticle(int $id, array $data): void {
+  public function editArticle(int $id, array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -169,7 +169,7 @@ class Article {
   /**
    * Check whether specified article exists
    */
-  function exists(int $id): bool {
+  public function exists(int $id): bool {
     $row = $this->orm->articles->getById($id);
     return (bool) $row;
   }

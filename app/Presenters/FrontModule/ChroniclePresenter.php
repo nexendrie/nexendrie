@@ -18,15 +18,15 @@ class ChroniclePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Marriage @autowire */
   protected $marriagesModel;
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $this->template->articles = $this->model->articles();
   }
   
-  function renderCrimes(): void {
+  public function renderCrimes(): void {
     $this->template->crimes = $this->model->crimes();
   }
   
-  function renderMarriages(): void {
+  public function renderMarriages(): void {
     $this->template->marriages = $this->marriagesModel->listOfMarriages();
   }
   

@@ -31,7 +31,7 @@ class Adventure {
   
   use \Nette\SmartObject;
   
-  function __construct(Combat $combatModel, Events $eventsModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(Combat $combatModel, Events $eventsModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->combatModel = $combatModel;
     $this->eventsModel = $eventsModel;
     $this->orderModel = $orderModel;
@@ -44,7 +44,7 @@ class Adventure {
    * 
    * @return AdventureEntity[]|ICollection
    */
-  function listOfAdventures() {
+  public function listOfAdventures() {
     return $this->orm->adventures->findAll();
   }
   
@@ -55,7 +55,7 @@ class Adventure {
    * @return AdventureNpcEntity[]|OneHasMany
    * @throws AdventureNotFoundException
    */
-  function listOfNpcs(int $adventureId): OneHasMany {
+  public function listOfNpcs(int $adventureId): OneHasMany {
     $adventure = $this->orm->adventures->getById($adventureId);
     if(is_null($adventure)) {
       throw new AdventureNotFoundException;
@@ -68,7 +68,7 @@ class Adventure {
    *
    * @throws AdventureNotFoundException
    */
-  function get(int $id): AdventureEntity {
+  public function get(int $id): AdventureEntity {
     $adventure = $this->orm->adventures->getById($id);
     if(is_null($adventure)) {
       throw new AdventureNotFoundException;
@@ -79,7 +79,7 @@ class Adventure {
   /**
    * Add new adventure
    */
-  function addAdventure(array $data): void {
+  public function addAdventure(array $data): void {
     $adventure = new AdventureEntity;
     foreach($data as $key => $value) {
       $adventure->$key = $value;
@@ -92,7 +92,7 @@ class Adventure {
    *
    * @throws AdventureNotFoundException
    */
-  function editAdventure(int $id, array $data): void {
+  public function editAdventure(int $id, array $data): void {
     try {
       $adventure = $this->get($id);
     } catch(AdventureNotFoundException $e) {
@@ -109,7 +109,7 @@ class Adventure {
    *
    * @throws AdventureNpcNotFoundException
    */
-  function getNpc(int $id): AdventureNpcEntity {
+  public function getNpc(int $id): AdventureNpcEntity {
     $npc = $this->orm->adventureNpcs->getById($id);
     if(is_null($npc)) {
       throw new AdventureNpcNotFoundException;
@@ -120,7 +120,7 @@ class Adventure {
   /**
    * Add new npc
    */
-  function addNpc(array $data): void {
+  public function addNpc(array $data): void {
     $npc = new AdventureNpcEntity;
     $this->orm->adventureNpcs->attach($npc);
     foreach($data as $key => $value) {
@@ -134,7 +134,7 @@ class Adventure {
    *
    * @throws AdventureNpcNotFoundException
    */
-  function editNpc(int $id, array $data): void {
+  public function editNpc(int $id, array $data): void {
     try {
       $npc = $this->getNpc($id);
     } catch(AdventureNpcNotFoundException $e) {
@@ -151,7 +151,7 @@ class Adventure {
    *
    * @throws AdventureNpcNotFoundException
    */
-  function deleteNpc(int $id): int {
+  public function deleteNpc(int $id): int {
     try {
       $npc = $this->getNpc($id);
     } catch(AdventureNpcNotFoundException $e) {
@@ -168,7 +168,7 @@ class Adventure {
    * @return AdventureEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function findAvailableAdventures(): ICollection {
+  public function findAvailableAdventures(): ICollection {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -181,7 +181,7 @@ class Adventure {
    * @return MountEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function findGoodMounts(): ICollection {
+  public function findGoodMounts(): ICollection {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -200,7 +200,7 @@ class Adventure {
    * @throws MountInBadConditionException
    * @throws AdventureNotAccessibleException
    */
-  function startAdventure(int $adventureId, int $mountId): void {
+  public function startAdventure(int $adventureId, int $mountId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -241,7 +241,7 @@ class Adventure {
    *
    * @throws AuthenticationNeededException
    */
-  function getCurrentAdventure(): ?UserAdventureEntity {
+  public function getCurrentAdventure(): ?UserAdventureEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif($this->adventure) {
@@ -254,7 +254,7 @@ class Adventure {
   /**
    * Get next enemy for adventure
    */
-  function getNextNpc(UserAdventureEntity $adventure): ?AdventureNpcEntity {
+  public function getNextNpc(UserAdventureEntity $adventure): ?AdventureNpcEntity {
     if($adventure->progress >= 9) {
       return NULL;
     }
@@ -311,7 +311,7 @@ class Adventure {
    * @throws NotOnAdventureException
    * @throws NoEnemyRemainException
    */
-  function fight(): array {
+  public function fight(): array {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -342,7 +342,7 @@ class Adventure {
    * @throws NotOnAdventureException
    * @throws NotAllEnemiesDefeateException
    */
-  function finishAdventure(): void {
+  public function finishAdventure(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -367,7 +367,7 @@ class Adventure {
   /**
    * Calculate income from user's adventures from a month
    */
-  function calculateMonthAdventuresIncome(int $user = NULL, int $month = NULL, int $year = NULL): int {
+  public function calculateMonthAdventuresIncome(int $user = NULL, int $month = NULL, int $year = NULL): int {
     $income = 0;
     $adventures = $this->orm->userAdventures->findFromMonth($user ?? $this->user->id, $month, $year);
     foreach($adventures as $adventure) {
@@ -379,7 +379,7 @@ class Adventure {
   /**
    * @throws AuthenticationNeededException
    */
-  function canDoAdventure(): bool {
+  public function canDoAdventure(): bool {
     $twoDays = 60 * 60 * 24 * 2;
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;

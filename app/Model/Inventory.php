@@ -22,7 +22,7 @@ class Inventory {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -32,7 +32,7 @@ class Inventory {
    *
    * @throws AuthenticationNeededException
    */
-  function possessions(): array {
+  public function possessions(): array {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -51,7 +51,7 @@ class Inventory {
    * @return UserItemEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function equipment(): ICollection {
+  public function equipment(): ICollection {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -64,7 +64,7 @@ class Inventory {
    * @return UserItemEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function potions(): ICollection {
+  public function potions(): ICollection {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -77,7 +77,7 @@ class Inventory {
    * @return UserItemEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function intimacyBoosters(): ICollection {
+  public function intimacyBoosters(): ICollection {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -93,7 +93,7 @@ class Inventory {
    * @throws ItemNotEquipableException
    * @throws ItemAlreadyWornException
    */
-  function equipItem(int $id): void {
+  public function equipItem(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -129,7 +129,7 @@ class Inventory {
    * @throws ItemNotEquipableException
    * @throws ItemNotWornException
    */
-  function unequipItem(int $id): void {
+  public function unequipItem(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -156,7 +156,7 @@ class Inventory {
    * @throws ItemNotDrinkableException
    * @throws HealingNotNeeded
    */
-  function drinkPotion(int $id): int {
+  public function drinkPotion(int $id): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -197,7 +197,7 @@ class Inventory {
    * @throws ItemNotUsableException
    * @throws MaxIntimacyReachedException
    */
-  function boostIntimacy(int $id): void {
+  public function boostIntimacy(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -230,19 +230,19 @@ class Inventory {
     $this->orm->flush();
   }
   
-  function getWeapon(int $user): ?UserItemEntity {
+  public function getWeapon(int $user): ?UserItemEntity {
     return $this->orm->userItems->getWornWeapon($user);
   }
   
-  function getArmor(int $user): ?UserItemEntity {
+  public function getArmor(int $user): ?UserItemEntity {
     return $this->orm->userItems->getWornArmor($user);
   }
   
-  function getHelmet(int $user): ?UserItemEntity {
+  public function getHelmet(int $user): ?UserItemEntity {
     return $this->orm->userItems->getWornHelmet($user);
   }
   
-  function getUserItemSet(int $user): ?ItemSetEntity {
+  public function getUserItemSet(int $user): ?ItemSetEntity {
     $weapon = $this->getWeapon($user);
     $armor = $this->getArmor($user);
     $helmet = $this->getHelmet($user);
@@ -260,7 +260,7 @@ class Inventory {
    * @throws ItemNotOwnedException
    * @throws ItemNotForSaleException
    */
-  function sellItem(int $id) {
+  public function sellItem(int $id) {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -295,7 +295,7 @@ class Inventory {
    * @throws ItemMaxLevelReachedException
    * @throws InsufficientFundsException
    */
-  function upgradeItem(int $id): void {
+  public function upgradeItem(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

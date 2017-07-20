@@ -15,11 +15,11 @@ class MessengerTest extends \Tester\TestCase {
   /** @var Messenger */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Messenger::class);
   }
   
-  function testInbox() {
+  public function testInbox() {
     Assert::exception(function() {
       $this->model->inbox();
     }, AuthenticationNeededException::class);
@@ -32,7 +32,7 @@ class MessengerTest extends \Tester\TestCase {
     Assert::same(1, $message->to->id);
   }
   
-  function testOutbox() {
+  public function testOutbox() {
     Assert::exception(function() {
       $this->model->outbox();
     }, AuthenticationNeededException::class);
@@ -45,7 +45,7 @@ class MessengerTest extends \Tester\TestCase {
     Assert::same(1, $message->from->id);
   }
   
-  function testShow() {
+  public function testShow() {
     Assert::exception(function() {
       $this->model->show(1);
     }, AuthenticationNeededException::class);
@@ -61,7 +61,7 @@ class MessengerTest extends \Tester\TestCase {
     }, AccessDeniedException::class);
   }
   
-  function testUsersList() {
+  public function testUsersList() {
     $result = $this->model->usersList();
     Assert::type("array", $result);
     Assert::count(8, $result);

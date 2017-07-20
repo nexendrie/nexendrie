@@ -17,7 +17,7 @@ class MessagesRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Message|NULL
    */
-  function getById($id): ?Message {
+  public function getById($id): ?Message {
     return $this->getBy(["id" => $id]);
   }
   
@@ -25,7 +25,7 @@ class MessagesRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $from
    * @return ICollection|Message[]
    */
-  function findByFrom($from): ICollection {
+  public function findByFrom($from): ICollection {
     return $this->findBy(["from" => $from]);
   }
   
@@ -33,7 +33,7 @@ class MessagesRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $to
    * @return ICollection|Message[]
    */
-  function findByTo($to): ICollection {
+  public function findByTo($to): ICollection {
     return $this->findBy(["to" => $to]);
   }
 }

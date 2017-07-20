@@ -15,7 +15,7 @@ class GroupPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Group @autowire */
   protected $model;
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $this->requiresPermissions("group", "list");
     $groups = $this->model->listOfGroups();
     $this->template->groups = $groups;
@@ -24,7 +24,7 @@ class GroupPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id): void {
+  public function actionEdit(int $id): void {
     $this->requiresPermissions("group", "edit");
     if(!$this->model->exists($id)) {
       throw new \Nette\Application\BadRequestException;
@@ -44,14 +44,14 @@ class GroupPresenter extends BasePresenter {
     return $form;
   }
   
-  function actionMembers(int $id): void {
+  public function actionMembers(int $id): void {
     $this->requiresPermissions("group", "list");
   }
   
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function renderMembers(int $id): void {
+  public function renderMembers(int $id): void {
     $group = $this->model->ormGet($id);
     if(is_null($group)) {
       throw new \Nette\Application\BadRequestException;

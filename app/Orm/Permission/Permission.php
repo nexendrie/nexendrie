@@ -16,7 +16,7 @@ class Permission extends \Nextras\Orm\Entity\Entity {
   /**
    * @return PermissionDummy
    */
-  function dummy(): PermissionDummy {
+  public function dummy(): PermissionDummy {
     return new PermissionDummy($this);
   }
 }

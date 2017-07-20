@@ -19,11 +19,11 @@ class ManageMonasteryFormFactory {
   /** @var int */
   protected $id;
   
-  function __construct(\Nexendrie\Model\Monastery $model) {
+  public function __construct(\Nexendrie\Model\Monastery $model) {
     $this->model = $model;
   }
   
-  function create(int $id): Form {
+  public function create(int $id): Form {
     $this->id = $id;
     $form = new Form;
     $form->addText("name", "Jméno:")
@@ -35,7 +35,7 @@ class ManageMonasteryFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->edit($this->id, $values);
     } catch(MonasteryNotFoundException $e) {

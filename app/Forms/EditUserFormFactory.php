@@ -27,7 +27,7 @@ class EditUserFormFactory {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, UserManager $model, Group $groupModel, Town $townModel) {
+  public function __construct(\Nexendrie\Orm\Model $orm, UserManager $model, Group $groupModel, Town $townModel) {
     $this->orm = $orm;
     $this->model = $model;
     $this->groupModel = $groupModel;
@@ -63,7 +63,7 @@ class EditUserFormFactory {
     ];
   }
   
-  function create(int $uid): Form {
+  public function create(int $uid): Form {
     $form = new Form;
     $this->uid = $uid;
     $form->addText("username", "Uživatelské jméno:")
@@ -81,13 +81,13 @@ class EditUserFormFactory {
     return $form;
   }
   
-  function validate(Form $form, array $values): void {
+  public function validate(Form $form, array $values): void {
     if($values["group"] == 0 AND $this->uid != 0) {
       $form->addError("Neplatná skupina.");
     }
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     $this->model->edit($this->uid, $values);
   }
 }

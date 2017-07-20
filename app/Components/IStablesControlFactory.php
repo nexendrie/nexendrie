@@ -2,6 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IStablesControlFactory {
-  function create(): StablesControl;
+  public function create(): StablesControl;
 }
 ?>

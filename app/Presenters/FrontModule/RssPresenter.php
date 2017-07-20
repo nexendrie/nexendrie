@@ -12,7 +12,7 @@ class RssPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Rss @autowire */
   protected $model;
   
-  function renderNews() {
+  public function renderNews() {
     $this->sendResponse($this->model->newsFeed());
   }
   
@@ -21,7 +21,7 @@ class RssPresenter extends BasePresenter {
    * @return void
    * @throws \Nette\Application\BadRequestException
    */
-  function renderComments(int $news): void {
+  public function renderComments(int $news): void {
     if(is_null($news)) {
       throw new \Nette\Application\BadRequestException;
     }

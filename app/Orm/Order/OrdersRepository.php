@@ -15,7 +15,7 @@ class OrdersRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Order|NULL
    */
-  function getById($id): ?Order {
+  public function getById($id): ?Order {
     return $this->getBy(["id" => $id]);
   }
   
@@ -23,7 +23,7 @@ class OrdersRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $name
    * @return Order|NULL
    */
-  function getByName(string $name): ?Order {
+  public function getByName(string $name): ?Order {
     return $this->getBy(["name" => $name]);
   }
 }

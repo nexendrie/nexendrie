@@ -19,12 +19,12 @@ class UserPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Group @autowire */
   protected $groupModel;
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $this->requiresPermissions("user", "list");
     $this->template->users = $this->model->listOfUsers();
   }
   
-  function actionEdit(int $id): void {
+  public function actionEdit(int $id): void {
     $this->requiresPermissions("user", "edit");
   }
   
@@ -37,7 +37,7 @@ class UserPresenter extends BasePresenter {
     return $form;
   }
   
-  function actionBan(int $id): void {
+  public function actionBan(int $id): void {
     $this->requiresPermissions("user", "ban");
     if($id == 0) {
       $this->flashMessage("Neoprávněná operace.");

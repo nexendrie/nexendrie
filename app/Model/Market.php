@@ -23,7 +23,7 @@ class Market {
   
   use \Nette\SmartObject;
   
-  function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->eventsModel = $eventsModel;
     $this->orm = $orm;
     $this->user = $user;
@@ -34,7 +34,7 @@ class Market {
    * 
    * @return ShopEntity[]|ICollection
    */
-  function listOfShops(): ICollection {
+  public function listOfShops(): ICollection {
     return $this->orm->shops->findAll();
   }
   
@@ -43,14 +43,14 @@ class Market {
    * 
    * @return ItemEntity[]|ICollection
    */
-  function listOfItems(): ICollection {
+  public function listOfItems(): ICollection {
     return $this->orm->items->findAll();
   }
   
   /**
    * Check whether specified shop exists
    */
-  function exists(int $id): bool {
+  public function exists(int $id): bool {
     return (bool) $this->orm->shops->getById($id);
   }
   
@@ -59,7 +59,7 @@ class Market {
    *
    * @throws ShopNotFoundException
    */
-  function getShop(int $id): ShopEntity {
+  public function getShop(int $id): ShopEntity {
     $shop = $this->orm->shops->getById($id);
     if(is_null($shop)) {
       throw new ShopNotFoundException("Specified shop was not found.");
@@ -70,7 +70,7 @@ class Market {
   /**
    * Edit specified shop
    */
-  function editShop(int $id, array $data): void {
+  public function editShop(int $id, array $data): void {
     $shop = $this->orm->shops->getById($id);
     foreach($data as $key => $value) {
       $shop->$key = $value;
@@ -81,7 +81,7 @@ class Market {
   /**
    * Add new shop
    */
-  function addShop(array $data): void {
+  public function addShop(array $data): void {
     $shop = new ShopEntity;
     foreach($data as $key => $value) {
       $shop->$key = $value;
@@ -94,7 +94,7 @@ class Market {
    *
    * @throws ItemNotFoundException
    */
-  function getItem(int $id): ItemEntity {
+  public function getItem(int $id): ItemEntity {
     $item = $this->orm->items->getById($id);
     if(is_null($item)) {
       throw new ItemNotFoundException("Specified item was not found.");
@@ -105,7 +105,7 @@ class Market {
   /**
    * Edit specified item
    */
-  function editItem(int $id, array $data): void {
+  public function editItem(int $id, array $data): void {
     $item = $this->orm->items->getById($id);
     foreach($data as $key => $value) {
       $item->$key = $value;
@@ -116,7 +116,7 @@ class Market {
   /**
    * Add new item
    */
-  function addItem(array $data): void {
+  public function addItem(array $data): void {
     $item = new ItemEntity;
     $this->orm->items->attach($item);
     foreach($data as $key => $value) {
@@ -131,7 +131,7 @@ class Market {
    * @throws WrongShopException
    * @throws InsufficientFundsException
    */
-  function buy(int $item, int $shop): void {
+  public function buy(int $item, int $shop): void {
     $itemRow = $this->orm->items->getById($item);
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;

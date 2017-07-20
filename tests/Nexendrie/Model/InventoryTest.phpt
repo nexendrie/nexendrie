@@ -16,11 +16,11 @@ class InventoryTest extends \Tester\TestCase {
   /** @var Inventory */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Inventory::class);
   }
   
-  function testPossessions() {
+  public function testPossessions() {
     Assert::exception(function() {
       $this->model->possessions();
     }, AuthenticationNeededException::class);
@@ -34,7 +34,7 @@ class InventoryTest extends \Tester\TestCase {
     Assert::type(TownEntity::class, $result["towns"]->get()->fetch());
   }
   
-  function testEquipment() {
+  public function testEquipment() {
     Assert::exception(function() {
       $this->model->equipment();
     }, AuthenticationNeededException::class);
@@ -43,7 +43,7 @@ class InventoryTest extends \Tester\TestCase {
     Assert::type(ICollection::class, $result);
   }
   
-  function testPotions() {
+  public function testPotions() {
     Assert::exception(function() {
       $this->model->potions();
     }, AuthenticationNeededException::class);
@@ -52,7 +52,7 @@ class InventoryTest extends \Tester\TestCase {
     Assert::type(ICollection::class, $result);
   }
   
-  function testIntimacyBoosters() {
+  public function testIntimacyBoosters() {
     Assert::exception(function() {
       $this->model->intimacyBoosters();
     }, AuthenticationNeededException::class);
@@ -61,7 +61,7 @@ class InventoryTest extends \Tester\TestCase {
     Assert::type(ICollection::class, $result);
   }
   
-  function testEquipItem() {
+  public function testEquipItem() {
     Assert::exception(function() {
       $this->model->equipItem(1);
     }, AuthenticationNeededException::class);
@@ -71,7 +71,7 @@ class InventoryTest extends \Tester\TestCase {
     }, ItemNotFoundException::class);
   }
   
-  function testUnequipItem() {
+  public function testUnequipItem() {
     Assert::exception(function() {
       $this->model->unequipItem(1);
     }, AuthenticationNeededException::class);
@@ -81,7 +81,7 @@ class InventoryTest extends \Tester\TestCase {
     }, ItemNotFoundException::class);
   }
   
-  function testDrinkPotion() {
+  public function testDrinkPotion() {
     Assert::exception(function() {
       $this->model->drinkPotion(1);
     }, AuthenticationNeededException::class);
@@ -91,7 +91,7 @@ class InventoryTest extends \Tester\TestCase {
     }, ItemNotFoundException::class);
   }
   
-  function testBoostIntimacy() {
+  public function testBoostIntimacy() {
     Assert::exception(function() {
       $this->model->boostIntimacy(1);
     }, AuthenticationNeededException::class);
@@ -105,7 +105,7 @@ class InventoryTest extends \Tester\TestCase {
     }, ItemNotFoundException::class);
   }
   
-  function testSellItem() {
+  public function testSellItem() {
     Assert::exception(function() {
       $this->model->sellItem(1);
     }, AuthenticationNeededException::class);
@@ -115,7 +115,7 @@ class InventoryTest extends \Tester\TestCase {
     }, ItemNotFoundException::class);
   }
   
-  function testUpgradetem() {
+  public function testUpgradetem() {
     Assert::exception(function() {
       $this->model->upgradeItem(1);
     }, AuthenticationNeededException::class);

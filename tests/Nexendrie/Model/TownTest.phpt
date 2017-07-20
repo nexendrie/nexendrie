@@ -15,22 +15,22 @@ class TownTest extends \Tester\TestCase {
   /** @var Town */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Town::class);
   }
   
-  function testGet() {
+  public function testGet() {
     $town = $this->model->get(1);
     Assert::type(TownEntity::class, $town);
   }
   
-  function testListOfTowns() {
+  public function testListOfTowns() {
     $result = $this->model->listOfTowns();
     Assert::type(ICollection::class, $result);
     Assert::type(TownEntity::class, $result->fetch());
   }
   
-  function testEdit() {
+  public function testEdit() {
     Assert::exception(function() {
       $this->model->edit(50, []);
     }, TownNotFoundException::class);
@@ -41,7 +41,7 @@ class TownTest extends \Tester\TestCase {
     $this->model->edit($town->id, ["name" => $name]);
   }
   
-  function testTownsOnSale() {
+  public function testTownsOnSale() {
     $result = $this->model->townsOnSale();
     Assert::type(ICollection::class, $result);
     /** @var TownEntity $town */
@@ -50,7 +50,7 @@ class TownTest extends \Tester\TestCase {
     Assert::true($town->onMarket);
   }
   
-  function testBuy() {
+  public function testBuy() {
     Assert::exception(function() {
       $this->model->buy(1);
     }, AuthenticationNeededException::class);
@@ -70,11 +70,11 @@ class TownTest extends \Tester\TestCase {
     }, CannotBuyOwnTownException::class);
   }
   
-  function testGetMayor() {
+  public function testGetMayor() {
     Assert::null($this->model->getMayor(1));
   }
   
-  function testGetTownCitizens() {
+  public function testGetTownCitizens() {
     $result = $this->model->getTownCitizens(2);
     Assert::type("array", $result);
     Assert::count(2, $result);
@@ -84,7 +84,7 @@ class TownTest extends \Tester\TestCase {
     }
   }
   
-  function testAppointMayor() {
+  public function testAppointMayor() {
     Assert::exception(function() {
       $this->model->appointMayor(1, 1);
     }, AuthenticationNeededException::class);
@@ -106,7 +106,7 @@ class TownTest extends \Tester\TestCase {
     }, InsufficientLevelForMayorException::class);
   }
   
-  function testCanMove() {
+  public function testCanMove() {
     Assert::false($this->model->canMove());
     $this->login("Rahym");
     Assert::false($this->model->canMove());
@@ -118,7 +118,7 @@ class TownTest extends \Tester\TestCase {
     Assert::type("bool", $this->model->canMove());
   }
   
-  function testMoveToTown() {
+  public function testMoveToTown() {
     Assert::exception(function() {
       $this->model->moveToTown(1);
     }, AuthenticationNeededException::class);
@@ -135,7 +135,7 @@ class TownTest extends \Tester\TestCase {
     }, CannotMoveToTownException::class);
   }
   
-  function testFound() {
+  public function testFound() {
     Assert::exception(function() {
       $this->model->found([]);
     }, AuthenticationNeededException::class);
@@ -145,7 +145,7 @@ class TownTest extends \Tester\TestCase {
     }, InsufficientLevelForFoundTownException::class);
   }
   
-  function testGetTownPeasants() {
+  public function testGetTownPeasants() {
     $result = $this->model->getTownPeasants(2);
     Assert::type("array", $result);
     Assert::count(1, $result);
@@ -155,7 +155,7 @@ class TownTest extends \Tester\TestCase {
     }
   }
   
-  function testMakeCitizen() {
+  public function testMakeCitizen() {
     Assert::exception(function() {
       $this->model->makeCitizen(1);
     }, AuthenticationNeededException::class);

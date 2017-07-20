@@ -14,7 +14,7 @@ class AddEditJobFormFactory {
   /** @var \Nexendrie\Model\Skills */
   protected $skillsModel;
   
-  function __construct(\Nexendrie\Model\Skills $skillsModel) {
+  public function __construct(\Nexendrie\Model\Skills $skillsModel) {
     $this->skillsModel = $skillsModel;
   }
   
@@ -25,7 +25,7 @@ class AddEditJobFormFactory {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

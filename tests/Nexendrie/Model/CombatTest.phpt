@@ -15,12 +15,12 @@ class CombatTest extends \Tester\TestCase {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Combat::class);
     $this->orm = $this->getService(\Nexendrie\Orm\Model::class);
   }
   
-  function testCalculateUserLife() {
+  public function testCalculateUserLife() {
     $result = $this->model->calculateUserLife($this->orm->users->getById(1));
     Assert::type("array", $result);
     Assert::count(2, $result);
@@ -28,7 +28,7 @@ class CombatTest extends \Tester\TestCase {
     Assert::type("int", $result["life"]);
   }
   
-  function testCalculateUserDamage() {
+  public function testCalculateUserDamage() {
     $damage1 = $this->model->calculateUserDamage($this->orm->users->getById(1));
     Assert::type("int", $damage1);
     $damage2 = $this->model->calculateUserDamage($this->orm->users->getById(1), $this->orm->mounts->getById(2));
@@ -36,7 +36,7 @@ class CombatTest extends \Tester\TestCase {
     Assert::true($damage2 === $damage1 + 7);
   }
   
-  function testCalculateUserArmor() {
+  public function testCalculateUserArmor() {
     $armor1 = $this->model->calculateUserArmor($this->orm->users->getById(1));
     Assert::type("int", $armor1);
     $armor2 = $this->model->calculateUserArmor($this->orm->users->getById(1), $this->orm->mounts->getById(2));
@@ -44,7 +44,7 @@ class CombatTest extends \Tester\TestCase {
     Assert::true($armor2 === $armor1 + 5);
   }
   
-  function testUserCombatStats() {
+  public function testUserCombatStats() {
     $result = $this->model->userCombatStats($this->orm->users->getById(1));
     Assert::type("array", $result);
     Assert::count(4, $result);

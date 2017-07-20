@@ -19,7 +19,7 @@ class AdventurePresenter extends BasePresenter {
   /** @var \Nexendrie\Orm\Adventure */
   private $adventure;
   
-  function actionAdd(): void {
+  public function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
@@ -33,7 +33,7 @@ class AdventurePresenter extends BasePresenter {
     return $form;
   }
   
-  function actionEdit(int $id): void {
+  public function actionEdit(int $id): void {
     $this->requiresPermissions("content", "edit");
     try {
       $this->adventure = $this->model->get($id);

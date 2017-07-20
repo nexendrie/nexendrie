@@ -26,7 +26,7 @@ class PollControl extends \Nette\Application\UI\Control {
   /** @var int */
   protected $id;
   
-  function __construct(\Nette\Security\User $user, \Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nette\Security\User $user, \Nexendrie\Orm\Model $orm) {
     parent::__construct();
     $this->user = $user;
     $this->orm = $orm;
@@ -35,7 +35,7 @@ class PollControl extends \Nette\Application\UI\Control {
   /**
    * @throws PollNotFoundException
    */
-  function getPoll(): PollEntity {
+  public function getPoll(): PollEntity {
     if(isset($this->poll)) {
       return $this->poll;
     }
@@ -50,7 +50,7 @@ class PollControl extends \Nette\Application\UI\Control {
   /**
    * @throws PollNotFoundException
    */
-  function setId(int $id) {
+  public function setId(int $id) {
     try {
       $this->id = $id;
       $this->getPoll();
@@ -62,7 +62,7 @@ class PollControl extends \Nette\Application\UI\Control {
   /**
    * Get votes for the poll
    */
-  function getVotes(): array {
+  public function getVotes(): array {
     $return = ["total" => 0, "answers" => []];
     $votes = $this->orm->pollVotes->findByPoll($this->id);
     if($votes->count() > 0) {
@@ -75,7 +75,7 @@ class PollControl extends \Nette\Application\UI\Control {
     return $return;
   }
   
-  function render(): void {
+  public function render(): void {
     $this->template->setFile(__DIR__ . "/poll.latte");
     $poll = $this->getPoll();
     $this->template->poll = $poll;
@@ -128,7 +128,7 @@ class PollControl extends \Nette\Application\UI\Control {
     $this->orm->pollVotes->persistAndFlush($vote);
   }
   
-  function handleVote(int $answer): void {
+  public function handleVote(int $answer): void {
     try {
       $this->vote($answer);
       $this->presenter->flashMessage("Hlas uložen.");

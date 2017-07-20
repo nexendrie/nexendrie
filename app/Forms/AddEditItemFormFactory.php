@@ -15,7 +15,7 @@ class AddEditItemFormFactory {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   
-  function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
   }
   
@@ -23,7 +23,7 @@ class AddEditItemFormFactory {
     return $this->orm->shops->findAll()->fetchPairs("id", "name");
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")

@@ -20,7 +20,7 @@ class Mount {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -30,7 +30,7 @@ class Mount {
    *
    * @throws MountNotFoundException
    */
-  function get(int $id): MountEntity {
+  public function get(int $id): MountEntity {
     $mount = $this->orm->mounts->getById($id);
     if(is_null($mount)) {
       throw new MountNotFoundException;
@@ -44,7 +44,7 @@ class Mount {
    * @param int $owner Return only mounts owned by specified user. NULL = all users
    * @return MountEntity[]|ICollection
    */
-  function listOfMounts(int $owner = NULL): ICollection {
+  public function listOfMounts(int $owner = NULL): ICollection {
     if(is_int($owner)) {
       return $this->orm->mounts->findByOwner($owner);
     }
@@ -56,7 +56,7 @@ class Mount {
    * 
    * @return MountEntity[]|ICollection
    */
-  function mountsOnSale(): ICollection {
+  public function mountsOnSale(): ICollection {
     return $this->orm->mounts->findOnMarket()
       ->orderBy("this->type->id", ICollection::DESC)
       ->orderBy("price", ICollection::DESC);
@@ -67,14 +67,14 @@ class Mount {
    * 
    * @return MountTypeEntity[]|ICollection
    */
-  function listOfMountTypes(): ICollection {
+  public function listOfMountTypes(): ICollection {
     return $this->orm->mountTypes->findAll();
   }
   
   /**
    * Add new mount
    */
-  function add(array $data): void {
+  public function add(array $data): void {
     $mount = new MountEntity;
     $this->orm->mounts->attach($mount);
     foreach($data as $key => $value) {
@@ -89,7 +89,7 @@ class Mount {
    *
    * @throws MountNotFoundException
    */
-  function edit(int $id, array $data): void {
+  public function edit(int $id, array $data): void {
     try {
       $mount = $this->get($id);
     } catch(MountNotFoundException $e) {
@@ -111,7 +111,7 @@ class Mount {
    * @throws InsufficientLevelForMountException
    * @throws InsufficientFundsException
    */
-  function buy(int $id): void {
+  public function buy(int $id): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }

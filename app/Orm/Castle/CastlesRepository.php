@@ -17,7 +17,7 @@ class CastlesRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Castle|NULL
    */
-  function getById($id): ?Castle {
+  public function getById($id): ?Castle {
     return $this->getBy(["id" => $id]);
   }
   
@@ -25,7 +25,7 @@ class CastlesRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $owner
    * @return Castle|NULL
    */
-  function getByOwner($owner): ?Castle {
+  public function getByOwner($owner): ?Castle {
     return $this->getBy(["owner" => $owner]);
   }
   
@@ -33,7 +33,7 @@ class CastlesRepository extends \Nextras\Orm\Repository\Repository {
    * @param string $name
    * @return Castle|NULL
    */
-  function getByName(string $name): ?Castle {
+  public function getByName(string $name): ?Castle {
     return $this->getBy(["name" => $name]);
   }
   
@@ -42,7 +42,7 @@ class CastlesRepository extends \Nextras\Orm\Repository\Repository {
    * 
    * @return ICollection|Castle[]
    */
-  function findOwnedCastles(): ICollection {
+  public function findOwnedCastles(): ICollection {
     return $this->findBy(["this->owner->id>" => 0]);
   }
 }

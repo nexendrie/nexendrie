@@ -21,7 +21,7 @@ class Messenger {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, Profile $profileModel) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, Profile $profileModel) {
     $this->orm = $orm;
     $this->user = $user;
     $this->profileModel = $profileModel;
@@ -33,7 +33,7 @@ class Messenger {
    * @return MessageEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function inbox(): ICollection {
+  public function inbox(): ICollection {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -46,7 +46,7 @@ class Messenger {
    * @return MessageEntity[]|ICollection
    * @throws AuthenticationNeededException
    */
-  function outbox(): ICollection {
+  public function outbox(): ICollection {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -60,7 +60,7 @@ class Messenger {
    * @throws MessageNotFoundException
    * @throws AccessDeniedException
    */
-  function show(int $id): MessageEntity {
+  public function show(int $id): MessageEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
@@ -83,7 +83,7 @@ class Messenger {
    * 
    * @return array id => publicname
    */
-  function usersList(): array {
+  public function usersList(): array {
     return $this->orm->users->findBy(
         ["id!=" => $this->user->id]
     )->fetchPairs("id", "publicname");
@@ -92,7 +92,7 @@ class Messenger {
   /**
    * Sends new message
    */
-  function send(array $data): void {
+  public function send(array $data): void {
     $message = new MessageEntity;
     $this->orm->messages->attach($message);
     $message->subject = $data["subject"];

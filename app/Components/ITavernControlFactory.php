@@ -2,6 +2,6 @@
 namespace Nexendrie\Components;
 
 interface ITavernControlFactory {
-  function create(): TavernControl;
+  public function create(): TavernControl;
 }
 ?>

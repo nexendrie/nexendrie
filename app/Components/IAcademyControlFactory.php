@@ -2,6 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IAcademyControlFactory {
-  function create(): AcademyControl;
+  public function create(): AcademyControl;
 }
 ?>

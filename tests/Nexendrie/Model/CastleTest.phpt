@@ -15,21 +15,21 @@ class CastleTest extends \Tester\TestCase {
   /** @var Castle */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Castle::class);
   }
   
-  function testGetBuildingPrice() {
+  public function testGetBuildingPrice() {
     Assert::type("int", $this->model->buildingPrice);
   }
   
-  function testListOfCastles() {
+  public function testListOfCastles() {
     $result = $this->model->listOfCastles();
     Assert::type(ICollection::class, $result);
     Assert::type(CastleEntity::class, $result->fetch());
   }
   
-  function testGetCastle() {
+  public function testGetCastle() {
     $castle = $this->model->getCastle(1);
     Assert::type(CastleEntity::class, $castle);
     Assert::exception(function() {
@@ -37,13 +37,13 @@ class CastleTest extends \Tester\TestCase {
     }, CastleNotFoundException::class);
   }
   
-  function testEditCastle() {
+  public function testEditCastle() {
     Assert::exception(function() {
       $this->model->editCastle(50, []);
     }, CastleNotFoundException::class);
   }
   
-  function testBuild() {
+  public function testBuild() {
     Assert::exception(function() {
       $this->model->build([]);
     }, AuthenticationNeededException::class);
@@ -57,14 +57,14 @@ class CastleTest extends \Tester\TestCase {
     }, CannotBuildMoreCastlesException::class);
   }
   
-  function testGetUserCastle() {
+  public function testGetUserCastle() {
     $castle = $this->model->getUserCastle(1);
     Assert::type(CastleEntity::class, $castle);
     Assert::null($this->model->getUserCastle(2));
     Assert::null($this->model->getUserCastle(50));
   }
   
-  function testCanUpgrade() {
+  public function testCanUpgrade() {
     Assert::exception(function() {
       $this->model->canUpgrade();
     }, AuthenticationNeededException::class);
@@ -72,7 +72,7 @@ class CastleTest extends \Tester\TestCase {
     Assert::type("bool", $this->model->canUpgrade());
   }
   
-  function testCanRepair() {
+  public function testCanRepair() {
     Assert::exception(function() {
       $this->model->canRepair();
     }, AuthenticationNeededException::class);

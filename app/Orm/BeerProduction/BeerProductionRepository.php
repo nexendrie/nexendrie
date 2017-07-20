@@ -17,7 +17,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return BeerProduction|NULL
    */
-  function getById($id): ?BeerProduction {
+  public function getById($id): ?BeerProduction {
     return $this->getBy(["id" => $id]);
   }
   
@@ -25,7 +25,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
    * @param User|int $user
    * @return ICollection|BeerProduction[]
    */
-  function findByUser($user): ICollection {
+  public function findByUser($user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   
@@ -33,7 +33,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
    * @param House|int $house
    * @return ICollection|BeerProduction[]
    */
-  function findByHouse($house): ICollection {
+  public function findByHouse($house): ICollection {
     return $this->findBy(["house" => $house]);
   }
   
@@ -41,7 +41,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
    * @param House|int $house
    * @return BeerProduction|null
    */
-  function getLastProduction($house): ?BeerProduction {
+  public function getLastProduction($house): ?BeerProduction {
     return $this->findBy(["house" => $house])
       ->orderBy("when", ICollection::DESC)
       ->fetch();
@@ -53,7 +53,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user
    * @return ICollection|BeerProduction[]
    */
-  function findProducedThisMonth(int $user): ICollection {
+  public function findProducedThisMonth(int $user): ICollection {
     $month = (int) date("n");
     $year = (int) date("Y");
     $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);

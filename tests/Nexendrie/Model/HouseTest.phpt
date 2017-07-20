@@ -14,18 +14,18 @@ class HouseTest extends \Tester\TestCase {
   /** @var House */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(House::class);
   }
   
-  function testGetUserHouse() {
+  public function testGetUserHouse() {
     $house = $this->model->getUserHouse(3);
     Assert::type(HouseEntity::class, $house);
     Assert::null($this->model->getUserHouse(1));
     Assert::null($this->model->getUserHouse(50));
   }
   
-  function testBuyHouse() {
+  public function testBuyHouse() {
     Assert::exception(function() {
       $this->model->buyHouse();
     }, AuthenticationNeededException::class);
@@ -39,7 +39,7 @@ class HouseTest extends \Tester\TestCase {
     }, CannotBuyHouseException::class);
   }
   
-  function testCanUpgrade() {
+  public function testCanUpgrade() {
     Assert::exception(function() {
       $this->model->canUpgrade();
     }, AuthenticationNeededException::class);
@@ -49,7 +49,7 @@ class HouseTest extends \Tester\TestCase {
     Assert::false($this->model->canUpgrade());
   }
   
-  function testUpgrade() {
+  public function testUpgrade() {
     Assert::exception(function() {
       $this->model->upgrade();
     }, AuthenticationNeededException::class);
@@ -59,7 +59,7 @@ class HouseTest extends \Tester\TestCase {
     }, CannotUpgradeHouseException::class);
   }
   
-  function testCanRepair() {
+  public function testCanRepair() {
     Assert::exception(function() {
       $this->model->canRepair();
     }, AuthenticationNeededException::class);
@@ -69,7 +69,7 @@ class HouseTest extends \Tester\TestCase {
     Assert::false($this->model->canRepair());
   }
   
-  function testRepair() {
+  public function testRepair() {
     Assert::exception(function() {
       $this->model->repair();
     }, AuthenticationNeededException::class);
@@ -79,7 +79,7 @@ class HouseTest extends \Tester\TestCase {
     }, CannotRepairHouseException::class);
   }
   
-  function testCanUpgradeBrewery() {
+  public function testCanUpgradeBrewery() {
     Assert::exception(function() {
       $this->model->canUpgradeBrewery();
     }, AuthenticationNeededException::class);
@@ -89,7 +89,7 @@ class HouseTest extends \Tester\TestCase {
     Assert::false($this->model->canUpgradeBrewery());
   }
   
-  function testCanProduceBeer() {
+  public function testCanProduceBeer() {
     Assert::exception(function() {
       $this->model->canProduceBeer();
     }, AuthenticationNeededException::class);

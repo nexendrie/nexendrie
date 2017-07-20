@@ -16,28 +16,28 @@ class MarketTest extends \Tester\TestCase {
   /** @var Market */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Market::class);
   }
   
-  function testListOfShops() {
+  public function testListOfShops() {
     $result = $this->model->listOfShops();
     Assert::type(ICollection::class, $result);
     Assert::type(ShopEntity::class, $result->fetch());
   }
   
-  function testListOfItems() {
+  public function testListOfItems() {
     $result = $this->model->listOfItems();
     Assert::type(ICollection::class, $result);
     Assert::type(ItemEntity::class, $result->fetch());
   }
   
-  function testExists() {
+  public function testExists() {
     Assert::true($this->model->exists(1));
     Assert::false($this->model->exists(50));
   }
   
-  function testGetShop() {
+  public function testGetShop() {
     $shop = $this->model->getShop(1);
     Assert::type(ShopEntity::class, $shop);
     Assert::exception(function() {
@@ -45,7 +45,7 @@ class MarketTest extends \Tester\TestCase {
     }, ShopNotFoundException::class);
   }
   
-  function testEditShop() {
+  public function testEditShop() {
     $shop = $this->model->getShop(1);
     $name = $shop->name;
     $this->model->editShop($shop->id, ["name" => "abc"]);
@@ -53,7 +53,7 @@ class MarketTest extends \Tester\TestCase {
     $this->model->editShop($shop->id, ["name" => $name]);
   }
   
-  function testGetItem() {
+  public function testGetItem() {
     $item = $this->model->getItem(1);
     Assert::type(ItemEntity::class, $item);
     Assert::exception(function() {
@@ -61,7 +61,7 @@ class MarketTest extends \Tester\TestCase {
     }, ItemNotFoundException::class);
   }
   
-  function testEditItem() {
+  public function testEditItem() {
     $item = $this->model->getItem(1);
     $name = $item->name;
     $this->model->editItem($item->id, ["name" => "abc"]);

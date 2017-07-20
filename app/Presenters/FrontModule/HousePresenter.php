@@ -33,7 +33,7 @@ class HousePresenter extends BasePresenter {
     }
   }
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $house = $this->model->getUserHouse();
     if(!$house) {
       $this->flashMessage("Nevlastníš dům.");
@@ -45,7 +45,7 @@ class HousePresenter extends BasePresenter {
     $this->template->canProduceBeer = $this->model->canProduceBeer();
   }
   
-  function actionBuy(): void {
+  public function actionBuy(): void {
     try {
       $this->model->buyHouse();
       $this->flashMessage("Dům zakoupen.");
@@ -59,7 +59,7 @@ class HousePresenter extends BasePresenter {
     }
   }
   
-  function handleUpgrade(): void {
+  public function handleUpgrade(): void {
     try {
       $this->model->upgrade();
       $this->flashMessage("Dům vylepšen.");
@@ -73,7 +73,7 @@ class HousePresenter extends BasePresenter {
     }
   }
   
-  function handleRepair(): void {
+  public function handleRepair(): void {
     try {
       $this->model->repair();
       $this->flashMessage("Dům opraven.");
@@ -87,7 +87,7 @@ class HousePresenter extends BasePresenter {
     }
   }
   
-  function handleUpgradeBrewery(): void {
+  public function handleUpgradeBrewery(): void {
     try {
       $newLevel = $this->model->upgradeBrewery();
       $message = ($newLevel === 1) ? "Pivovar pořízen." : "Pivovar vylepšen.";
@@ -102,7 +102,7 @@ class HousePresenter extends BasePresenter {
     }
   }
   
-  function handleProduceBeer(): void {
+  public function handleProduceBeer(): void {
     try {
       $result = $this->model->produceBeer();
       $message = $this->localeModel->genderMessage("Uvařil(a) jsi ");

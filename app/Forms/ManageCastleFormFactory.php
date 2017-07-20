@@ -17,11 +17,11 @@ class ManageCastleFormFactory {
   /** @var int */
   private $id;
   
-  function __construct(\Nexendrie\Model\Castle $model) {
+  public function __construct(\Nexendrie\Model\Castle $model) {
     $this->model = $model;
   }
   
-  function create(int $castleId): Form {
+  public function create(int $castleId): Form {
     $form = new Form;
     $this->id = $castleId;
     $castle = $this->model->getCastle($this->id);
@@ -36,7 +36,7 @@ class ManageCastleFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->editCastle($this->id, $values);
     } catch(CastleNameInUseException $e) {

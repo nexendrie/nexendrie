@@ -14,11 +14,11 @@ class ArticlesPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Article @autowire */
   protected $model;
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $this->template->categories = ArticleEntity::getCategories();
   }
   
-  function actionCategory(string $category, int $page = 1): void {
+  public function actionCategory(string $category, int $page = 1): void {
     if(!array_key_exists($category, ArticleEntity::getCategories())) {
       $this->redirect("Homepage:");
     } elseif($category === ArticleEntity::CATEGORY_NEWS) {
@@ -28,7 +28,7 @@ class ArticlesPresenter extends BasePresenter {
     }
   }
   
-  function renderCategory(string $category, int $page = 1): void {
+  public function renderCategory(string $category, int $page = 1): void {
     $paginator = new \Nette\Utils\Paginator;
     $paginator->page = $page;
     $this->template->category = ArticleEntity::getCategories()[$category];

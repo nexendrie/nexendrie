@@ -17,7 +17,7 @@ class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $id
    * @return Election|NULL
    */
-  function getById($id): ?Election {
+  public function getById($id): ?Election {
     return $this->getBy(["id" => $id]);
   }
   
@@ -25,7 +25,7 @@ class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
    * @param Town|int $town
    * @return ICollection|Election[]
    */
-  function findByTown($town): ICollection {
+  public function findByTown($town): ICollection {
     return $this->findBy(["town" => $town]);
   }
   
@@ -37,7 +37,7 @@ class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $month
    * @return ICollection|Election[]
    */
-  function findVotedInMonth($town, int $year, int $month): ICollection {
+  public function findVotedInMonth($town, int $year, int $month): ICollection {
     $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
     $date = new \DateTime;
     $date->setTimestamp($startOfMonthTS);

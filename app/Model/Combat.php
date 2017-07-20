@@ -20,7 +20,7 @@ class Combat {
   
   use \Nette\SmartObject;
   
-  function __construct(Inventory $inventoryModel, \Nexendrie\Orm\Model $orm) {
+  public function __construct(Inventory $inventoryModel, \Nexendrie\Orm\Model $orm) {
     $this->inventoryModel = $inventoryModel;
     $this->orm = $orm;
   }
@@ -31,7 +31,7 @@ class Combat {
    * @param UserEntity $user
    * @return int[]
    */
-  function calculateUserLife(UserEntity $user): array {
+  public function calculateUserLife(UserEntity $user): array {
     $maxLife = $life = $user->maxLife;
     $hpIncrease = 0;
     $helmet = $this->inventoryModel->getHelmet($user->id);
@@ -54,7 +54,7 @@ class Combat {
   /**
    * Calculate specified user's damage
    */
-  function calculateUserDamage(UserEntity $user, MountEntity $mount = NULL): int {
+  public function calculateUserDamage(UserEntity $user, MountEntity $mount = NULL): int {
     $damage = 0;
     $weapon = $this->inventoryModel->getWeapon($user->id);
     if($weapon) {
@@ -79,7 +79,7 @@ class Combat {
   /**
    * Calculate specified user's armor
    */
-  function calculateUserArmor(UserEntity $user, MountEntity $mount = NULL) {
+  public function calculateUserArmor(UserEntity $user, MountEntity $mount = NULL) {
     $armorValue = 0;
     $armor = $this->inventoryModel->getArmor($user->id);
     if($armor) {
@@ -108,7 +108,7 @@ class Combat {
    * @param MountEntity $mount
    * @return int[]
    */
-  function userCombatStats(UserEntity $user, MountEntity $mount = NULL): array {
+  public function userCombatStats(UserEntity $user, MountEntity $mount = NULL): array {
     $stats = $this->calculateUserLife($user);
     $stats["damage"] = $this->calculateUserDamage($user, $mount);
     $stats["armor"] = $this->calculateUserArmor($user, $mount);

@@ -23,13 +23,13 @@ class Castle {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
     $this->buildingPrice = (int) $sr->settings["fees"]["buildCastle"];
   }
   
-  function getBuildingPrice(): int {
+  public function getBuildingPrice(): int {
     return $this->buildingPrice;
   }
   
@@ -38,7 +38,7 @@ class Castle {
    * 
    * @return CastleEntity[]|ICollection
    */
-  function listOfCastles(): ICollection {
+  public function listOfCastles(): ICollection {
     return $this->orm->castles->findAll();
   }
   
@@ -47,7 +47,7 @@ class Castle {
    *
    * @throws CastleNotFoundException
    */
-  function getCastle(int $id): CastleEntity {
+  public function getCastle(int $id): CastleEntity {
     $castle = $this->orm->castles->getById($id);
     if(is_null($castle)) {
       throw new CastleNotFoundException;
@@ -72,7 +72,7 @@ class Castle {
    * @throws CastleNotFoundException
    * @throws CastleNameInUseException
    */
-  function editCastle(int $id, array $data): void {
+  public function editCastle(int $id, array $data): void {
     try {
       $castle = $this->getCastle($id);
     } catch(CastleNotFoundException $e) {
@@ -96,7 +96,7 @@ class Castle {
    * @throws CastleNameInUseException
    * @throws InsufficientFundsException
    */
-  function build(array $data): void {
+  public function build(array $data): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -124,7 +124,7 @@ class Castle {
   /**
    * Get specified user's castle
    */
-  function getUserCastle(int $user = NULL): ?CastleEntity {
+  public function getUserCastle(int $user = NULL): ?CastleEntity {
     return $this->orm->castles->getByOwner($user ?? $this->user->id);
   }
   
@@ -133,7 +133,7 @@ class Castle {
    *
    * @throws AuthenticationNeededException
    */
-  function canUpgrade(): bool {
+  public function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -153,7 +153,7 @@ class Castle {
    * @throws CannotUpgradeCastleException
    * @throws InsufficientFundsException
    */
-  function upgrade(): void {
+  public function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canUpgrade()) {
@@ -173,7 +173,7 @@ class Castle {
    *
    * @throws AuthenticationNeededException
    */
-  function canRepair(): bool {
+  public function canRepair(): bool {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -193,7 +193,7 @@ class Castle {
    * @throws CannotRepairCastleException
    * @throws InsufficientFundsException
    */
-  function repair(): void {
+  public function repair(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     } elseif(!$this->canRepair()) {

@@ -20,19 +20,19 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Model\Mount $model, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Mount $model, \Nette\Security\User $user) {
     parent::__construct();
     $this->model = $model;
     $this->user = $user;
   }
   
-  function render(): void {
+  public function render(): void {
     $this->template->setFile(__DIR__ . "/mountsMarket.latte");
     $this->template->mounts = $this->model->mountsOnSale();
     $this->template->render();
   }
   
-  function handleBuy(int $mountId): void {
+  public function handleBuy(int $mountId): void {
     try {
       $this->model->buy($mountId);
       $this->presenter->flashMessage("Jezdecké zvíře koupeno.");

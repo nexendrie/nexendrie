@@ -20,19 +20,19 @@ class TownsMarketControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
   protected $user;
   
-  function __construct(\Nexendrie\Model\Town $model, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Town $model, \Nette\Security\User $user) {
     parent::__construct();
     $this->model = $model;
     $this->user = $user;
   }
   
-  function render(): void {
+  public function render(): void {
     $this->template->setFile(__DIR__ . "/townsMarket.latte");
     $this->template->towns = $this->model->townsOnSale();
     $this->template->render();
   }
   
-  function handleBuy(int $townId): void {
+  public function handleBuy(int $townId): void {
     try {
       $this->model->buy($townId);
       $this->presenter->flashMessage("Město koupeno.");

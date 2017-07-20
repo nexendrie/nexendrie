@@ -18,7 +18,7 @@ class Chronicle {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
   }
   
@@ -28,7 +28,7 @@ class Chronicle {
    * @param \Nette\Utils\Paginator $paginator
    * @return ArticleEntity[]|ICollection
    */
-  function articles(\Nette\Utils\Paginator $paginator = NULL): ICollection {
+  public function articles(\Nette\Utils\Paginator $paginator = NULL): ICollection {
     $articles = $this->orm->articles->findChronicle();
     if(!is_null($paginator)) {
       //$paginator->itemsPerPage = $this->itemsPerPage;
@@ -42,7 +42,7 @@ class Chronicle {
    * 
    * @return PunishmentEntity[]|ICollection
    */
-  function crimes(): ICollection {
+  public function crimes(): ICollection {
     return $this->orm->punishments->findAll()->orderBy("imprisoned", ICollection::DESC);
   }
 }

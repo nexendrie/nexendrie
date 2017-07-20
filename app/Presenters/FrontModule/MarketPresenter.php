@@ -23,14 +23,14 @@ class MarketPresenter extends BasePresenter {
     $this->mustNotBeTavelling();
   }
   
-  function renderDefault(): void {
+  public function renderDefault(): void {
     $this->template->shops = $this->model->listOfShops();
   }
   
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function actionShop(int $id): void {
+  public function actionShop(int $id): void {
     if(!$this->model->exists($id)) {
       throw new \Nette\Application\BadRequestException;
     }
@@ -45,12 +45,12 @@ class MarketPresenter extends BasePresenter {
     });
   }
   
-  function actionBuy(int $id): void {
+  public function actionBuy(int $id): void {
     $this->requiresLogin();
     $this->mustNotBeBanned();
   }
   
-  function renderMounts(): void {
+  public function renderMounts(): void {
     $this->requiresLogin();
     $this->mustNotBeBanned();
   }
@@ -59,7 +59,7 @@ class MarketPresenter extends BasePresenter {
     return $factory->create();
   }
   
-  function renderTowns(): void {
+  public function renderTowns(): void {
     $this->requiresLogin();
     $this->mustNotBeBanned();
   }

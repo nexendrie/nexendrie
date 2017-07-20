@@ -14,11 +14,11 @@ class AddEditTownFormFactory {
   /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
   
-  function __construct(\Nexendrie\Model\Profile $profileModel) {
+  public function __construct(\Nexendrie\Model\Profile $profileModel) {
     $this->profileModel = $profileModel;
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno")
       ->setRequired("Zadej jméno.")

@@ -16,7 +16,7 @@ class PollControlTest extends \Tester\TestCase {
   /** @var PollControl */
   protected $control;
   
-  function setUp() {
+  public function setUp() {
     static $control = NULL;
     if(is_null($control)) {
       $control = $this->getService(IPollControlFactory::class)->create();
@@ -25,29 +25,29 @@ class PollControlTest extends \Tester\TestCase {
     $this->attachToPresenter($this->control);
   }
   
-  function testInvalidId() {
+  public function testInvalidId() {
     Assert::exception(function() {
       $this->control->id = 50;
     }, PollNotFoundException::class);
   }
   
-  function testGetPoll() {
+  public function testGetPoll() {
     $this->control->id = 1;
     Assert::type(Poll::class, $this->control->getPoll());
   }
   
-  function testRender() {
+  public function testRender() {
     $this->control->id = 1;
     $this->checkRenderOutput($this->control, __DIR__ . "/pollExpected.latte");
   }
   
-  function testRenderUserLoggedIn() {
+  public function testRenderUserLoggedIn() {
     $this->login("jakub");
     $this->control->id = 1;
     $this->checkRenderOutput($this->control, __DIR__ . "/pollUserExpected.latte");
   }
   
-  function testRenderAdminLoggedIn() {
+  public function testRenderAdminLoggedIn() {
     $this->login();
     $this->control->id = 1;
     $this->checkRenderOutput($this->control, __DIR__ . "/pollAdminExpected.latte");

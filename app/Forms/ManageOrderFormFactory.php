@@ -19,12 +19,12 @@ class ManageOrderFormFactory {
   /** @var int */
   private $id;
   
-  function __construct(\Nexendrie\Model\Order $model, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Order $model, \Nette\Security\User $user) {
     $this->model = $model;
     $this->user = $user;
   }
   
-  function create(int $guildId): Form {
+  public function create(int $guildId): Form {
     $form = new Form;
     $this->id = $guildId;
     $guild = $this->model->getOrder($this->id);
@@ -39,7 +39,7 @@ class ManageOrderFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->editOrder($this->id, $values);
     } catch(OrderNameInUseException $e) {

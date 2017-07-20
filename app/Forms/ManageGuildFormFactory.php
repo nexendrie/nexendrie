@@ -22,7 +22,7 @@ class ManageGuildFormFactory {
   /** @var int */
   private $id;
   
-  function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Skills $skillsModel, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Skills $skillsModel, \Nette\Security\User $user) {
     $this->model = $model;
     $this->skillsModel = $skillsModel;
     $this->user = $user;
@@ -32,7 +32,7 @@ class ManageGuildFormFactory {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   
-  function create(int $guildId): Form {
+  public function create(int $guildId): Form {
     $form = new Form;
     $this->id = $guildId;
     $guild = $this->model->getGuild($this->id);
@@ -49,7 +49,7 @@ class ManageGuildFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->editGuild($this->id, $values);
     } catch(GuildNameInUseException $e) {

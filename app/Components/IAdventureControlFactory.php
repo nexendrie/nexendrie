@@ -2,6 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IAdventureControlFactory {
-  function create(): AdventureControl;
+  public function create(): AdventureControl;
 }
 ?>

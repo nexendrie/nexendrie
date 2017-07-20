@@ -17,11 +17,11 @@ class MakeCitizenFormFactory {
   /** @var \Nexendrie\Model\Town */
   protected $model;
   
-  function __construct(\Nexendrie\Model\Town $model) {
+  public function __construct(\Nexendrie\Model\Town $model) {
     $this->model = $model;
   }
   
-  function create($town): Form {
+  public function create($town): Form {
     $form = new Form;
     $form->addSelect("user", "Uživatel:", $this->model->getTownPeasants($town))
       ->setRequired();
@@ -30,7 +30,7 @@ class MakeCitizenFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->makeCitizen($values["user"]);
     } catch(UserNotFoundException $e) {

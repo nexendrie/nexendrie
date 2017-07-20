@@ -17,11 +17,11 @@ class ManageMountFormFactory {
   /** @var int */
   private $id;
   
-  function __construct(\Nexendrie\Model\Mount $model) {
+  public function __construct(\Nexendrie\Model\Mount $model) {
     $this->model = $model;
   }
   
-  function create(int $mountId): Form {
+  public function create(int $mountId): Form {
     $form = new Form;
     $this->id = $mountId;
     $mount = $this->model->get($this->id);
@@ -39,7 +39,7 @@ class ManageMountFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     $this->model->edit($this->id, $values);
   }
 }

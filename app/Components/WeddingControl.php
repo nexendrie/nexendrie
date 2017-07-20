@@ -21,14 +21,14 @@ class WeddingControl extends \Nette\Application\UI\Control {
   /** @var MarriageEntity */
   protected $marriage;
   
-  function __construct(\Nexendrie\Model\Marriage $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Marriage $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     parent::__construct();
     $this->model = $model;
     $this->orm = $orm;
     $this->user = $user;
   }
   
-  function setMarriage(MarriageEntity $marriage) {
+  public function setMarriage(MarriageEntity $marriage) {
     $this->marriage = $marriage;
   }
   
@@ -40,7 +40,7 @@ class WeddingControl extends \Nette\Application\UI\Control {
     return $texts;
   }
   
-  function render(): void {
+  public function render(): void {
     $this->template->setFile(__DIR__ . "/wedding.latte");
     $this->template->marriage = $this->marriage;
     $this->template->texts = $this->getTexts();

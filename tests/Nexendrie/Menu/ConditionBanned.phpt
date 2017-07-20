@@ -14,15 +14,15 @@ class ConditionBannedTest extends \Tester\TestCase {
   /** @var ConditionBanned */
   protected $condition;
   
-  function setUp() {
+  public function setUp() {
     $this->condition = $this->getService(ConditionBanned::class);
   }
   
-  function testGetName() {
+  public function testGetName() {
     Assert::type("string", $this->condition->getName());
   }
   
-  function testIsAllowed() {
+  public function testIsAllowed() {
     Assert::false($this->condition->isAllowed());
     $this->login();
     Assert::false($this->condition->isAllowed(true));

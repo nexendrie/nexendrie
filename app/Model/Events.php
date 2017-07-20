@@ -30,7 +30,7 @@ class Events implements \EventCalendar\IEventModel {
   
   use \Nette\SmartObject;
   
-  function __construct(\Nexendrie\Orm\Model $orm, Cache $cache, \Nette\Security\User $user, SettingsRepository $sr, \Nette\Application\LinkGenerator $lg) {
+  public function __construct(\Nexendrie\Orm\Model $orm, Cache $cache, \Nette\Security\User $user, SettingsRepository $sr, \Nette\Application\LinkGenerator $lg) {
     $this->orm = $orm;
     $this->cache = $cache;
     $this->user = $user;
@@ -43,7 +43,7 @@ class Events implements \EventCalendar\IEventModel {
    * 
    * @return Event[]|ICollection
    */
-  function listOfEvents(): ICollection {
+  public function listOfEvents(): ICollection {
     return $this->orm->events->findAll();
   }
   
@@ -52,7 +52,7 @@ class Events implements \EventCalendar\IEventModel {
    *
    * @throws EventNotFoundException
    */
-  function getEvent($id): Event {
+  public function getEvent($id): Event {
     $event = $this->orm->events->getById($id);
     if(is_null($event)) {
       throw new EventNotFoundException;
@@ -63,7 +63,7 @@ class Events implements \EventCalendar\IEventModel {
   /**
    * Add new event
    */
-  function addEvent(array $data): void {
+  public function addEvent(array $data): void {
     $event = new Event;
     foreach($data as $key => $value) {
       if($key === "start" OR $key === "end") {
@@ -80,7 +80,7 @@ class Events implements \EventCalendar\IEventModel {
    *
    * @throws EventNotFoundException
    */
-  function editEvent(int $id, array $data): void {
+  public function editEvent(int $id, array $data): void {
     $event = $this->orm->events->getById($id);
     if(!$event) {
       throw new EventNotFoundException;
@@ -101,7 +101,7 @@ class Events implements \EventCalendar\IEventModel {
    * @throws EventNotFoundException
    * @throws CannotDeleteStartedEventException
    */
-  function deleteEvent(int $id): void {
+  public function deleteEvent(int $id): void {
     $event = $this->orm->events->getById($id);
     if(!$event) {
       throw new EventNotFoundException;
@@ -114,7 +114,7 @@ class Events implements \EventCalendar\IEventModel {
   /**
    * Load events from a month
    */
-  function loadEvents(int $year = 0, int $month = 0): void {
+  public function loadEvents(int $year = 0, int $month = 0): void {
     $this->events = $this->orm->events->findFromMonth($year, $month);
   }
   
@@ -124,7 +124,7 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $day
    * @return Event[]|ICollection
    */
-  function getForDate($year, $month, $day) {
+  public function getForDate($year, $month, $day) {
     if(is_null($this->events)) {
       $this->loadEvents($year, $month);
     }
@@ -149,7 +149,7 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $day
    * @return bool
    */
-  function isForDate($year, $month, $day) {
+  public function isForDate($year, $month, $day) {
     return (bool) count($this->getForDate($year, $month, $day));
   }
   
@@ -158,7 +158,7 @@ class Events implements \EventCalendar\IEventModel {
    * 
    * @return EventDummy[]
    */
-  function getCurrentEvents(): array {
+  public function getCurrentEvents(): array {
     $return = $this->cache->load("events", function(& $dependencies) {
       $dependencies[Cache::EXPIRE] = "15 minutes";
       $return = [];
@@ -174,7 +174,7 @@ class Events implements \EventCalendar\IEventModel {
   /**
    * Calculate current bonus for adventures
    */
-  function calculateAdventuresBonus(int $baseIncome): int {
+  public function calculateAdventuresBonus(int $baseIncome): int {
     $bonus = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
@@ -188,7 +188,7 @@ class Events implements \EventCalendar\IEventModel {
   /**
    * Calculate current bonus for work
    */
-  function calculateWorkBonus(int $baseIncome): int {
+  public function calculateWorkBonus(int $baseIncome): int {
     $bonus = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
@@ -202,7 +202,7 @@ class Events implements \EventCalendar\IEventModel {
   /**
    * Calculate current bonus for praying
    */
-  function calculatePrayerLifeBonus(int $baseValue): int {
+  public function calculatePrayerLifeBonus(int $baseValue): int {
     $bonus = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
@@ -216,7 +216,7 @@ class Events implements \EventCalendar\IEventModel {
   /**
    * Calculate current discount for training
    */
-  function calculateTrainingDiscount(int $basePrice): int {
+  public function calculateTrainingDiscount(int $basePrice): int {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
@@ -230,7 +230,7 @@ class Events implements \EventCalendar\IEventModel {
   /**
    * Calculate current discount for shopping
    */
-  function calculateShoppingDiscount(int $basePrice): int {
+  public function calculateShoppingDiscount(int $basePrice): int {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
@@ -244,7 +244,7 @@ class Events implements \EventCalendar\IEventModel {
   /**
    * Get current shopping discount
    */
-  function getShoppingDiscount(): int {
+  public function getShoppingDiscount(): int {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
@@ -258,7 +258,7 @@ class Events implements \EventCalendar\IEventModel {
   /**
    * Calculate current discount for repairing castles and monasteries
    */
-  function calculateRepairingDiscount(int $basePrice): int {
+  public function calculateRepairingDiscount(int $basePrice): int {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {

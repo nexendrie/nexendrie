@@ -34,11 +34,11 @@ class House extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
   
-  function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
   }
   
-  function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
+  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
     $this->eventsModel = $eventsModel;
   }
   

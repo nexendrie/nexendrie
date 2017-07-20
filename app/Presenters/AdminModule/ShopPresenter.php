@@ -22,7 +22,7 @@ class ShopPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  function actionEdit(int $id): void {
+  public function actionEdit(int $id): void {
     $this->requiresPermissions("content", "edit");
     try {
       $this->shop = $this->model->getShop($id);
@@ -31,7 +31,7 @@ class ShopPresenter extends BasePresenter {
     }
   }
   
-  function actionAdd(): void {
+  public function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   

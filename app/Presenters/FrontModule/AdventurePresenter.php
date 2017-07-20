@@ -25,7 +25,7 @@ class AdventurePresenter extends BasePresenter {
     }
   }
   
-  function actionDefault(): void {
+  public function actionDefault(): void {
     if($this->model->getCurrentAdventure()) {
       return;
     } elseif($this->model->canDoAdventure())  {
@@ -39,7 +39,7 @@ class AdventurePresenter extends BasePresenter {
     return $factory->create();
   }
   
-  function actionMounts(int $id): void {
+  public function actionMounts(int $id): void {
     if($this->model->getCurrentAdventure()) {
       $this->redirect("default");
     }

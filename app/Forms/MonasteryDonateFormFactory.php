@@ -16,11 +16,11 @@ class MonasteryDonateFormFactory {
   /** @var \Nexendrie\Model\Monastery */
   protected $model;
   
-  function __construct(\Nexendrie\Model\Monastery $model) {
+  public function __construct(\Nexendrie\Model\Monastery $model) {
     $this->model = $model;
   }
   
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("amount", "Množství:")
       ->setRequired("Zadej množství.")
@@ -31,7 +31,7 @@ class MonasteryDonateFormFactory {
     return $form;
   }
   
-  function process(Form $form, array $values): void {
+  public function process(Form $form, array $values): void {
     try {
       $this->model->donate($values["amount"]);
     } catch(NotInMonasteryException $e) {

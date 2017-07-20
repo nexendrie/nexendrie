@@ -2,6 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IPollControlFactory {
-  function create(): PollControl;
+  public function create(): PollControl;
 }
 ?>

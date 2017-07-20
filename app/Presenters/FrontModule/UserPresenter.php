@@ -22,7 +22,7 @@ class UserPresenter extends BasePresenter {
   /**
    * Do not allow access login page if the user is already logged in
    */
-  function actionLogin(): void {
+  public function actionLogin(): void {
     $this->mustNotBeLoggedIn();
   }
   
@@ -46,7 +46,7 @@ class UserPresenter extends BasePresenter {
   /**
    * @todo return to previous page if possible
    */
-  function actionLogout(): void {
+  public function actionLogout(): void {
     $message = "Nejsi přihlášen.";
     if($this->user->isLoggedIn()) {
       $message = $this->localeModel->genderMessage("Byl(a) jsi úspěšně odhlášen(a).");
@@ -59,7 +59,7 @@ class UserPresenter extends BasePresenter {
   /**
    * Prevent registration when logged in
    */
-  function actionRegister(): void {
+  public function actionRegister(): void {
     $this->mustNotBeLoggedIn();
   }
   
@@ -72,7 +72,7 @@ class UserPresenter extends BasePresenter {
     return $form;
   }
   
-  function actionSettings(): void {
+  public function actionSettings(): void {
     $this->requiresLogin();
   }
   

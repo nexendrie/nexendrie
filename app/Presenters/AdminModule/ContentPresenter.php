@@ -34,43 +34,43 @@ class ContentPresenter extends BasePresenter {
     $this->requiresPermissions("content", "list");
   }
   
-  function renderShops(): void {
+  public function renderShops(): void {
     $this->template->shops = $this->marketModel->listOfShops();
   }
   
-  function renderItems(): void {
+  public function renderItems(): void {
     $this->template->items = $this->marketModel->listOfItems();
   }
   
-  function renderJobs(): void {
+  public function renderJobs(): void {
     $this->template->jobs = $this->jobModel->listOfJobs();
   }
   
-  function renderTowns(): void {
+  public function renderTowns(): void {
     $this->template->towns = $this->townModel->listOfTowns();
   }
   
-  function renderMounts(): void {
+  public function renderMounts(): void {
     $this->template->mounts = $this->mountModel->listOfMounts();
   }
   
-  function renderSkills(): void {
+  public function renderSkills(): void {
     $this->template->skills = $this->skillsModel->listOfSkills();
   }
   
-  function renderMeals(): void {
+  public function renderMeals(): void {
     $this->template->meals = $this->tavernModel->listOfMeals();
   }
   
-  function renderAdventures(): void {
+  public function renderAdventures(): void {
     $this->template->adventures = $this->adventureModel->listOfAdventures();
   }
   
-  function renderItemSets(): void {
+  public function renderItemSets(): void {
     $this->template->sets = $this->itemSetModel->listOfSets();
   }
   
-  function actionGift(int $id = 0): void {
+  public function actionGift(int $id = 0): void {
     $this->requiresPermissions("content", "gift");
   }
   

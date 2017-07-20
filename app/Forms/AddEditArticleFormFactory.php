@@ -12,7 +12,7 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 class AddEditArticleFormFactory {
-  function create(): Form {
+  public function create(): Form {
     $form = new Form;
     $form->addText("title", "Titulek:")
       ->addRule(Form::MAX_LENGTH, "Titulek může mít maximálně 30 znaků.", 30)

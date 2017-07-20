@@ -15,17 +15,17 @@ class EventsTest extends \Tester\TestCase {
   /** @var Events */
   protected $model;
   
-  function setUp() {
+  public function setUp() {
     $this->model = $this->getService(Events::class);
   }
   
-  function testListOfEvents() {
+  public function testListOfEvents() {
     $result = $this->model->listOfEvents();
     Assert::type(ICollection::class, $result);
     Assert::type(Event::class, $result->fetch());
   }
   
-  function testGetEvent() {
+  public function testGetEvent() {
     $event = $this->model->getEvent(1);
     Assert::type(Event::class, $event);
     Assert::exception(function() {
@@ -33,13 +33,13 @@ class EventsTest extends \Tester\TestCase {
     }, EventNotFoundException::class);
   }
   
-  function testEditEvent() {
+  public function testEditEvent() {
     Assert::exception(function() {
       $this->model->editEvent(50, []);
     }, EventNotFoundException::class);
   }
   
-  function testDeleteEvent() {
+  public function testDeleteEvent() {
     Assert::exception(function() {
       $this->model->deleteEvent(50);
     }, EventNotFoundException::class);
@@ -48,42 +48,42 @@ class EventsTest extends \Tester\TestCase {
     }, CannotDeleteStartedEventException::class);
   }
   
-  function testGetCurrentEvents() {
+  public function testGetCurrentEvents() {
     $events = $this->model->getCurrentEvents();
     Assert::type("array", $events);
   }
   
-  function testCalculateAdventuresBonus() {
+  public function testCalculateAdventuresBonus() {
     $result = $this->model->calculateAdventuresBonus(100);
     Assert::type("int", $result);
   }
   
-  function testCalculateWorkBonus() {
+  public function testCalculateWorkBonus() {
     $result = $this->model->calculateWorkBonus(100);
     Assert::type("int", $result);
   }
   
-  function testCalculatePrayerLifeBonus() {
+  public function testCalculatePrayerLifeBonus() {
     $result = $this->model->calculatePrayerLifeBonus(100);
     Assert::type("int", $result);
   }
   
-  function testCalculateTrainingDiscount() {
+  public function testCalculateTrainingDiscount() {
     $result = $this->model->calculateTrainingDiscount(100);
     Assert::type("int", $result);
   }
   
-  function testCalculateShoppingDiscount() {
+  public function testCalculateShoppingDiscount() {
     $result = $this->model->calculateShoppingDiscount(100);
     Assert::type("int", $result);
   }
   
-  function testGetShoppingDiscount() {
+  public function testGetShoppingDiscount() {
     $result = $this->model->getShoppingDiscount();
     Assert::type("int", $result);
   }
   
-  function testCalculateRepairingDiscount() {
+  public function testCalculateRepairingDiscount() {
     $result = $this->model->calculateRepairingDiscount(100);
     Assert::type("int", $result);
   }

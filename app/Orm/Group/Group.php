@@ -27,7 +27,7 @@ class Group extends \Nextras\Orm\Entity\Entity {
   /**
    * @return GroupDummy
    */
-  function dummy(): GroupDummy {
+  public function dummy(): GroupDummy {
     return new GroupDummy($this);
   }
 }

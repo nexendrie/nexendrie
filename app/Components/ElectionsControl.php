@@ -23,14 +23,14 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Orm\Town */
   private $town;
   
-  function __construct(\Nexendrie\Model\Elections $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Elections $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     parent::__construct();
     $this->model = $model;
     $this->orm = $orm;
     $this->user = $user;
   }
   
-  function setTown(\Nexendrie\Orm\Town $town) {
+  public function setTown(\Nexendrie\Orm\Town $town) {
     $this->town = $town;
   }
   
@@ -109,7 +109,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
     return $this->orm->electionResults->findByTownAndYearAndMonth($this->town->id, (int) $date->format("Y"), (int) $date->format("n"));
   }
   
-  function render(): void {
+  public function render(): void {
     $this->template->setFile(__DIR__ . "/elections.latte");
     $this->template->state = $this->getState();
     switch($this->template->state) {
@@ -125,7 +125,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  function handleVote(int $candidate): void {
+  public function handleVote(int $candidate): void {
     if(!$this->canVote()) {
       $this->presenter->flashMessage("Nemůžeš hlasovat.");
       $this->presenter->redirect(":Front:Homepage:");
