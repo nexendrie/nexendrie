@@ -21,9 +21,6 @@ class LoginFormFactory {
     $this->user = $user;
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("username", "Uživatelské jméno:")
@@ -35,11 +32,6 @@ class LoginFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->user->login($values["username"], $values["password"]);

@@ -25,8 +25,6 @@ class AdventureEnemiesPresenter extends BasePresenter {
   private $npc;
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionList(int $id): void {
@@ -40,8 +38,6 @@ class AdventureEnemiesPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionAdd(int $id): void {
@@ -54,10 +50,6 @@ class AdventureEnemiesPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditAdventureEnemyFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $data) {
@@ -70,8 +62,6 @@ class AdventureEnemiesPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -83,10 +73,6 @@ class AdventureEnemiesPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditAdventureEnemyFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->npc->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
@@ -99,8 +85,6 @@ class AdventureEnemiesPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionDelete(int $id): void {

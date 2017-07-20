@@ -21,9 +21,6 @@ class FoundOrderFormFactory {
     $this->model = $model;
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
@@ -36,11 +33,6 @@ class FoundOrderFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->model->found($values);

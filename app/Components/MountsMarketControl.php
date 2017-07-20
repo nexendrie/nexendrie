@@ -26,19 +26,12 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
     $this->user = $user;
   }
   
-  /**
-   * @return void
-   */
   function render(): void {
     $this->template->setFile(__DIR__ . "/mountsMarket.latte");
     $this->template->mounts = $this->model->mountsOnSale();
     $this->template->render();
   }
   
-  /**
-   * @param int $mountId
-   * @return void
-   */
   function handleBuy(int $mountId): void {
     try {
       $this->model->buy($mountId);
@@ -50,7 +43,7 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
     } catch(CannotBuyOwnMountException $e) {
       $this->presenter->flashMessage("Toto jezdecké zvíře je již tvé.");
     } catch(InsufficientLevelForMountException $e) {
-      $this->presenter->flashMessage("Nemůže si ještě koupit tento druh jezdeckého zvíře.");
+      $this->presenter->flashMessage("Nemůžeš si ještě koupit tento druh jezdeckého zvíře.");
     } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");
     }

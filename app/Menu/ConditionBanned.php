@@ -22,9 +22,6 @@ class ConditionBanned implements IMenuItemCondition {
     $this->user = $user;
   }
   
-  /**
-   * @return string
-   */
   function getName(): string {
     return $this->name;
   }

@@ -26,12 +26,6 @@ class Rss {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param Article $articleModel
-   * @param LinkGenerator $linkGenerator
-   * @param Locale $localeModel
-   * @param Generator $generator
-   */
   function __construct(Article $articleModel, LinkGenerator $linkGenerator, Locale $localeModel, Generator $generator) {
     $this->articleModel = $articleModel;
     $this->linkGenerator = $linkGenerator;
@@ -41,8 +35,6 @@ class Rss {
   
   /**
    * Generate feed for news
-   * 
-   * @return RssResponse
    */
   function newsFeed(): RssResponse {
     $this->generator->title = "Nexendrie - Novinky";
@@ -64,9 +56,7 @@ class Rss {
   
   /**
    * Generate feed for comments
-   * 
-   * @param int $id
-   * @return RssResponse
+   *
    * @throws ArticleNotFoundException
    */
   function commentsFeed(int $id): RssResponse {

@@ -12,9 +12,6 @@ use Nexendrie\Model\SettingsRepository;
  * @author Jakub Konečný
  */
 class NexendrieExtension extends \Nette\DI\CompilerExtension {
-  /**
-   * @return void
-   */
   function loadConfiguration(): void {
     $this->registerMenuConditions();
     $this->addModels();
@@ -22,9 +19,6 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $this->addForms();
   }
   
-  /**
-   * @return void
-   */
   protected function registerMenuConditions(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition("menu.condition.banned")
@@ -33,9 +27,6 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setClass(Nexendrie\Menu\ConditionPath::class);
   }
   
-  /**
-   * @return void
-   */
   protected function addModels(): void {
     $builder = $this->getContainerBuilder();
     $config = $this->getConfig();
@@ -119,9 +110,6 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
        ->addTag("cronner.tasks");
   }
   
-  /**
-   * @return void
-   */
   protected function addComponents(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition($this->prefix("component.poll"))
@@ -152,9 +140,6 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setImplement(Nexendrie\Components\IElectionsControlFactory::class);
   }
   
-  /**
-   * @return void
-   */
   protected function addForms(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition($this->prefix("form.addEditArticle"))
@@ -240,10 +225,6 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setClass(Nexendrie\Forms\ChangeWeddingTermFormFactory::class);
   }
   
-  /**
-   * @param \Nette\PhpGenerator\ClassType $class
-   * @return void
-   */
   function afterCompile(\Nette\PhpGenerator\ClassType $class): void {
     $initialize = $class->methods["initialize"];
     $initialize->addBody('$roles = $this->getByType(?)->settings["roles"];

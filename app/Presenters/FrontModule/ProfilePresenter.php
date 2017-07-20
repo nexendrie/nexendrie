@@ -19,8 +19,6 @@ class ProfilePresenter extends BasePresenter {
   protected $marriageModel;
   
   /**
-   * @param string $username
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function renderDefault(?string $username): void {

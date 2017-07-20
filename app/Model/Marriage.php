@@ -35,9 +35,7 @@ class Marriage {
   
   /**
    * Get marriage
-   * 
-   * @param int $id
-   * @return MarriageEntity
+   *
    * @throws MarriageNotFoundException
    */
   function getMarriage(int $id): MarriageEntity {
@@ -49,10 +47,7 @@ class Marriage {
   }
   
   /**
-   * Check whetever the user can propose someone
-   *  
-   * @param int $id
-   * @return bool
+   * Check whether the user can propose someone
    */
   function canPropose(int $id): bool {
     if(!$this->user->isLoggedIn()) {
@@ -81,10 +76,6 @@ class Marriage {
     return true;
   }
   
-  /**
-   * @param MarriageEntity $marriage
-   * @return bool
-   */
   function canFinish(MarriageEntity $marriage): bool {
     if($marriage->status != MarriageEntity::STATUS_ACCEPTED) {
       return false;
@@ -100,9 +91,7 @@ class Marriage {
   
   /**
    * Propose someone marriage
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws CannotProposeMarriageException
    */
   function proposeMarriage(int $id): void {
@@ -131,9 +120,7 @@ class Marriage {
   
   /**
    * Accept a marriage proposal
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MarriageNotFoundException
    * @throws AccessDeniedException
@@ -168,9 +155,7 @@ class Marriage {
   
   /**
    * Decline a marriage proposal
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MarriageNotFoundException
    * @throws AccessDeniedException
@@ -197,8 +182,7 @@ class Marriage {
   
   /**
    * Get user's current marriage
-   * 
-   * @return MarriageEntity|NULL
+   *
    * @throws AuthenticationNeededException
    */
   function getCurrentMarriage(): ?MarriageEntity {
@@ -214,8 +198,7 @@ class Marriage {
   
   /**
    * Cancel wedding
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws NotEngagedException
    * @throws WeddingAlreadyHappenedException
@@ -237,8 +220,7 @@ class Marriage {
   
   /**
    * File for divorce
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws NotMarriedException
    * @throws AlreadyInDivorceException
@@ -259,8 +241,7 @@ class Marriage {
   
   /**
    * Accept divorce
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws NotMarriedException
    * @throws NotInDivorceException
@@ -281,8 +262,7 @@ class Marriage {
   
   /**
    * Decline divorce
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws NotMarriedException
    * @throws NotInDivorceException
@@ -303,8 +283,7 @@ class Marriage {
   
   /**
    * Take back divorce
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws NotMarriedException
    * @throws NotInDivorceException

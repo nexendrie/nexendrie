@@ -18,9 +18,6 @@ class NewMessageFormFactory {
     $this->model = $model;
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addSelect("to", "Pro:", $this->model->usersList())
@@ -36,11 +33,6 @@ class NewMessageFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     $this->model->send($values);
   }

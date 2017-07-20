@@ -47,9 +47,6 @@ class GiftFormFactory {
     return $this->orm->items->findAll()->fetchPairs("id", "name");
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addSelect("user", "Uživatel:", $this->getUsersList())
@@ -67,12 +64,7 @@ class GiftFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
-  function process(Form $form, array $values): void {
+  function validate(Form $form, array $values): void {
     if($values["money"] === 0 AND is_null($values["item"])) {
       $form->addError("Musíš zadat částku (a)nebo vybrat věc.");
     }
@@ -86,11 +78,6 @@ class GiftFormFactory {
     }
   }
   
-  /**
-   * @param int $money
-   * @param string $item
-   * @return string
-   */
   protected function composeMessage($money, $item): string {
     $message = "Dostal jsi ";
     if($money > 0) {
@@ -106,12 +93,7 @@ class GiftFormFactory {
     return $message;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
-  function submitted(Form $form, array $values): void {
+  function process(Form $form, array $values): void {
     $user = $this->orm->users->getById($values["user"]);
     $queen = $this->orm->users->getById(0);
     $money = $values["money"];

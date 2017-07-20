@@ -24,9 +24,6 @@ class RegisterFormFactory {
     $this->sr = $sr;
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("username", "Uživatelské jméno:")
@@ -49,11 +46,6 @@ class RegisterFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->model->register($values);

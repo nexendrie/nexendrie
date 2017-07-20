@@ -21,10 +21,6 @@ class ManageCastleFormFactory {
     $this->model = $model;
   }
   
-  /**
-   * @param int $castleId
-   * @return Form
-   */
   function create(int $castleId): Form {
     $form = new Form;
     $this->id = $castleId;
@@ -40,11 +36,6 @@ class ManageCastleFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->model->editCastle($this->id, $values);

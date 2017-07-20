@@ -32,9 +32,6 @@ class Guild {
     $this->foundingPrice = $sr->settings["fees"]["foundGuild"];
   }
   
-  /**
-   * return int
-   */
   function getFoundingPrice(): int {
     return $this->foundingPrice;
   }
@@ -54,9 +51,7 @@ class Guild {
   
   /**
    * Get specified guild
-   * 
-   * @param int $id
-   * @return GuildEntity
+   *
    * @throws GuildNotFoundException
    */
   function getGuild(int $id): GuildEntity {
@@ -68,11 +63,7 @@ class Guild {
   }
   
   /**
-   * Check whetever a name can be used
-   * 
-   * @param string $name
-   * @param int $id
-   * @return bool
+   * Check whether a name can be used
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
     $guild = $this->orm->castles->getByName($name);
@@ -84,10 +75,7 @@ class Guild {
   
   /**
    * Edit specified guild
-   * 
-   * @param int $id
-   * @param array $data
-   * @return void
+   *
    * @throws GuildNotFoundException
    * @throws GuildNameInUseException
    */
@@ -108,9 +96,6 @@ class Guild {
   
   /**
    * Get specified user's guild
-   * 
-   * @param int $uid
-   * @return GuildEntity|NULL
    */
   function getUserGuild(int $uid = NULL): ?GuildEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
@@ -118,9 +103,7 @@ class Guild {
   }
   
   /**
-   * Check whetever the user can found a guild
-   * 
-   * @return bool
+   * Check whether the user can found a guild
    */
   function canFound(): bool {
     if(!$this->user->isLoggedIn()) {
@@ -137,9 +120,7 @@ class Guild {
   
   /**
    * Found a guild
-   * 
-   * @param array $data
-   * @return void
+   *
    * @throws CannotFoundGuildException
    * @throws GuildNameInUseException
    * @throws InsufficientFundsException
@@ -167,11 +148,6 @@ class Guild {
     $this->orm->users->persistAndFlush($user);
   }
   
-  /**
-   * @param int $baseIncome
-   * @param UserJobEntity $job
-   * @return int
-   */
   function calculateGuildIncomeBonus(int $baseIncome, UserJobEntity $job): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
@@ -194,9 +170,7 @@ class Guild {
   }
   
   /**
-   * Check whetever the user can join a guild
-   * 
-   * @return bool
+   * Check whether the user can join a guild
    */
   function canJoin(): bool {
     if(!$this->user->isLoggedIn()) {
@@ -211,8 +185,7 @@ class Guild {
   
   /**
    * Join a guild
-   * 
-   * @param int $id
+   *
    * @throws AuthenticationNeededException
    * @throws CannotJoinGuildException
    * @throws GuildNotFoundException
@@ -235,9 +208,7 @@ class Guild {
   }
   
   /**
-   * Check whetever the user can leave guild
-   * 
-   * @return bool
+   * Check whether the user can leave guild
    * @throws AuthenticationNeededException
    */
   function canLeave(): bool {
@@ -253,8 +224,7 @@ class Guild {
   
   /**
    * Leave guild
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotLeaveGuildException
    */
@@ -271,9 +241,8 @@ class Guild {
   }
   
   /**
-   * Check whetever the user can manage guild
-   * 
-   * @return bool
+   * Check whether the user can manage guild
+   *
    * @throws AuthenticationNeededException
    */
   function canManage(): bool {
@@ -288,9 +257,8 @@ class Guild {
   }
   
   /**
-   * Check whetever the user can upgrade guild
-   * 
-   * @return bool
+   * Check whether the user can upgrade guild
+   *
    * @throws AuthenticationNeededException
    */
   function canUpgrade(): bool {
@@ -310,8 +278,7 @@ class Guild {
   
   /**
    * Upgrade guild
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotUpgradeGuildException
    * @throws InsufficientFundsException
@@ -342,9 +309,6 @@ class Guild {
     return $this->orm->users->findByGuild($guild);
   }
   
-  /**
-   * @return int
-   */
   function getMaxRank(): int {
     static $rank = NULL;
     if(is_null($rank)) {
@@ -355,9 +319,7 @@ class Guild {
   
   /**
    * Promote a user
-   * 
-   * @param int $userId User's id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws UserNotFoundException
@@ -386,9 +348,7 @@ class Guild {
   
   /**
    * Demote a user
-   * 
-   * @param int $userId User's id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws UserNotFoundException
@@ -417,9 +377,7 @@ class Guild {
   
   /**
    * Kick a user
-   * 
-   * @param int $userId User's id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws UserNotFoundException

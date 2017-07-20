@@ -19,26 +19,15 @@ class UserPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Group @autowire */
   protected $groupModel;
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->requiresPermissions("user", "list");
     $this->template->users = $this->model->listOfUsers();
   }
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function actionEdit(int $id): void {
     $this->requiresPermissions("user", "edit");
   }
   
-  /**
-   * @param EditUserFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditUser(EditUserFormFactory $factory): Form {
     $form = $factory->create((int) $this->getParameter("id"));
     $form->onSuccess[] = function(\Nette\Application\UI\Form $form) {
@@ -48,10 +37,6 @@ class UserPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function actionBan(int $id): void {
     $this->requiresPermissions("user", "ban");
     if($id == 0) {
@@ -74,10 +59,6 @@ class UserPresenter extends BasePresenter {
     $this->template->name = $user->publicname;
   }
   
-  /**
-   * @param BanUserFormFactory $factory
-   * @return Form
-   */
   protected function createComponentBanUserForm(BanUserFormFactory $factory): Form {
     $form = $factory->create($this->getParameter("id"));
     $form->onSuccess[] = function(\Nette\Application\UI\Form $form) {

@@ -15,32 +15,19 @@ class PollsPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Polls @autowire */
   protected $model;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->requiresPermissions("content", "list");
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->template->polls = $this->model->all();
   }
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("poll", "add");
   }
   
-  /**
-   * @param AddEditPollFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddPollForm(AddEditPollFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -53,8 +40,6 @@ class PollsPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -64,10 +49,6 @@ class PollsPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditPollFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditPollForm(AddEditPollFormFactory $factory): Form {
     $poll = $this->model->view($this->getParameter("id"));
     $form = $factory->create();

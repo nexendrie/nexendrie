@@ -35,9 +35,7 @@ class Tavern {
   
   /**
    * Get specified meal
-   * 
-   * @param int $id Meal's id
-   * @return MealEntity
+   *
    * @throws MealNotFoundException
    */
   function getMeal(int $id): MealEntity {
@@ -50,9 +48,6 @@ class Tavern {
   
   /**
    * Add new meal
-   * 
-   * @param array $data
-   * @return void
    */
   function addMeal(array $data): void {
     $meal = new MealEntity;
@@ -64,10 +59,7 @@ class Tavern {
   
   /**
    * Edit specified meal
-   * 
-   * @param int $id Meal's id
-   * @param array $data
-   * @return void
+   *
    * @throws MealNotFoundException
    */
   function editMeal(int $id, array $data): void {
@@ -84,9 +76,7 @@ class Tavern {
   
   /**
    * Buy a meal
-   * 
-   * @param int $id Meal's id
-   * @return string
+   *
    * @throws AuthenticationNeededException
    * @throws MealNotFoundException
    * @throws InsufficientFundsException

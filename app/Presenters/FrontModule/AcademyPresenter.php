@@ -12,20 +12,13 @@ use Nexendrie\Components\AcademyControl,
  * @author Jakub Konečný
  */
 class AcademyPresenter extends BasePresenter {
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeBanned();
     $this->mustNotBeTavelling();
   }
   
-  /**
-   * @param IAcademyControlFactory $factory
-   * @return AcademyControl
-   */
   protected function createComponentAcademy(IAcademyControlFactory $factory): AcademyControl {
     return $factory->create();
   }

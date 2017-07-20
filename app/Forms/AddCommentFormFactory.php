@@ -11,9 +11,6 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 class AddCommentFormFactory {
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("title", "Titulek:")

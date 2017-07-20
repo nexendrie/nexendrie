@@ -2,7 +2,6 @@
 namespace Nexendrie\Components;
 
 interface ITownsMarketControlFactory {
-  /** @return TownsMarketControl */
-  function create();
+  function create(): TownsMarketControl;
 }
 ?>

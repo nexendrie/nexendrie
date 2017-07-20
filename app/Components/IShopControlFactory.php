@@ -2,7 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IShopControlFactory {
-  /** @return ShopControl */
-  function create();
+  function create(): ShopControl;
 }
 ?>

@@ -19,17 +19,10 @@ class MealPresenter extends BasePresenter {
   /** @var MealEntity */
   private $meal;
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
-  /**
-   * @param AddEditMealFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddMealForm(AddEditMealFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -41,8 +34,6 @@ class MealPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -54,10 +45,6 @@ class MealPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditMealFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditMealForm(AddEditMealFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->meal->toArray());

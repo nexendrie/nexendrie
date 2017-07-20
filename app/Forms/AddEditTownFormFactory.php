@@ -18,9 +18,6 @@ class AddEditTownFormFactory {
     $this->profileModel = $profileModel;
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno")

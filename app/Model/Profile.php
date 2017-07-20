@@ -18,10 +18,6 @@ class Profile {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param \Nexendrie\Orm\Model $orm
-   * @param \Nette\Security\User $user
-   */
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;
     $this->user = $user;
@@ -29,9 +25,7 @@ class Profile {
   
   /**
    * Show user's profile
-   * 
-   * @param string $username
-   * @return UserEntity
+   *
    * @throws UserNotFoundException
    */
   function view(string $username): UserEntity {
@@ -54,9 +48,6 @@ class Profile {
   
   /**
    * Get specified user's path
-   * 
-   * @param int $id  
-   * @return string
    */
   function getPath(int $id = NULL): string {
     $user = $this->orm->users->getById($id ?? $this->user->id);
@@ -69,9 +60,6 @@ class Profile {
    
    /**
     * Get specified user's partner
-    * 
-    * @param int $id 
-    * @return UserEntity|NULL
     */
   function getPartner(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getActiveMarriage($id);
@@ -87,9 +75,6 @@ class Profile {
    
    /**
     * Get specified user's fiance(e)
-    * 
-    * @param int $id 
-    * @return UserEntity|NULL
     */
   function getFiance(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getAcceptedMarriage($id);

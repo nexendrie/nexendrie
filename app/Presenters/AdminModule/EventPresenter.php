@@ -19,32 +19,19 @@ class EventPresenter extends BasePresenter {
   /** @var \Nexendrie\Orm\Event */
   private $event;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->requiresPermissions("content", "list");
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->template->events = $this->model->listOfEvents();
   }
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("event", "add");
   }
   
-  /**
-   * @param AddEditEventFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddEventForm(AddEditEventFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSubmit[] = function(Form $form, array $values) {
@@ -56,8 +43,6 @@ class EventPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -69,10 +54,6 @@ class EventPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditEventFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditEventForm(AddEditEventFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->event->dummyArray());
@@ -85,8 +66,6 @@ class EventPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionDelete(int $id): void {

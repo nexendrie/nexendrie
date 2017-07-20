@@ -34,19 +34,13 @@ class TownPresenter extends BasePresenter {
   /** @var \Nexendrie\Orm\Town */
   private $town;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     if($this->action != "detail" AND $this->action != "list") {
       $this->requiresLogin();
     }
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->template->town = $this->model->get($this->user->identity->town);
     $user = $this->userManager->get($this->user->id);
@@ -56,16 +50,11 @@ class TownPresenter extends BasePresenter {
     $this->template->order = $this->orderModel->getUserOrder();
   }
   
-  /**
-   * @return void
-   */
   function renderList(): void {
     $this->template->towns = $this->model->listOfTowns();
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function renderDetail(int $id): void {
@@ -83,10 +72,6 @@ class TownPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function actionMove(int $id): void {
     try {
       $this->model->moveToTown($id);
@@ -109,9 +94,6 @@ class TownPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionFound(): void {
     $path = $this->profileModel->getPath();
     if($path != GroupEntity::PATH_TOWER) {
@@ -120,10 +102,6 @@ class TownPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param FoundTownFormFactory $factory
-   * @return Form
-   */
   protected function createComponentFoundTownForm(FoundTownFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function() {
@@ -133,18 +111,11 @@ class TownPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @return void
-   */
   function actionElections(): void {
     $this->requiresPermissions("town", "elect");
     $this->town = $this->model->get($this->user->identity->town);
   }
   
-  /**
-   * @param IElectionsControlFactory $factory
-   * @return ElectionsControl
-   */
   protected function createComponentElections(IElectionsControlFactory $factory): ElectionsControl {
     $elections = $factory->create();
     $elections->town = $this->town;

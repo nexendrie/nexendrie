@@ -27,9 +27,7 @@ class Mount {
   
   /**
    * Get specified mount
-   * 
-   * @param int $id Mount's id
-   * @return MountEntity
+   *
    * @throws MountNotFoundException
    */
   function get(int $id): MountEntity {
@@ -75,9 +73,6 @@ class Mount {
   
   /**
    * Add new mount
-   * 
-   * @param array $data
-   * @return void
    */
   function add(array $data): void {
     $mount = new MountEntity;
@@ -91,10 +86,7 @@ class Mount {
   
   /**
    * Edit specified mount
-   * 
-   * @param int $id Mount's id
-   * @param array $data
-   * @return void
+   *
    * @throws MountNotFoundException
    */
   function edit(int $id, array $data): void {
@@ -111,9 +103,7 @@ class Mount {
   
   /**
    * Buy specified mount
-   * 
-   * @param int $id Mount's id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MountNotFoundException
    * @throws MountNotOnSaleException

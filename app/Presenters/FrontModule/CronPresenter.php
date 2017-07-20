@@ -12,9 +12,6 @@ class CronPresenter extends BasePresenter {
   /** @var \stekycz\Cronner\Cronner @autowire */
   protected $cronner;
   
-  /**
-   * @return void
-   */
   function actionDefault(): void {
     $this->cronner->run();
   }

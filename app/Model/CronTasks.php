@@ -32,10 +32,7 @@ class CronTasks {
   
   /**
    * Mounts status update
-   * 
-   * @author Jakub Konečný
-   * @return void
-   * 
+   *
    * @cronner-task Mounts status update
    * @cronner-period 1 week
    * @cronner-time 01:00 - 02:00
@@ -61,10 +58,7 @@ class CronTasks {
   
   /**
    * Taxes
-   * 
-   * @author Jakub Konečný
-   * @return void
-   * 
+   *
    * @cronner-task Taxes
    * @cronner-period 1 day
    * @cronner-time 01:00 - 02:00
@@ -93,10 +87,7 @@ class CronTasks {
   
   /**
    * Guild fees
-   * 
-   * @author Jakub Konečný
-   * @return void
-   * 
+   *
    * @cronner-task Guild fees
    * @cronner-period 1 day
    * @cronner-time 01:00 - 02:00
@@ -121,10 +112,7 @@ class CronTasks {
   
   /**
    * Guild fees
-   * 
-   * @author Jakub Konečný
-   * @return void
-   * 
+   *
    * @cronner-task Order fees
    * @cronner-period 1 day
    * @cronner-time 01:00 - 02:00
@@ -149,10 +137,7 @@ class CronTasks {
   
   /**
    * Close adventures
-   * 
-   * @author Jakub Konečný
-   * @return void
-   * 
+   *
    * @cronner-task Close adventures
    * @cronner-period 1 day
    * @cronner-time 00:00 - 01:00
@@ -169,10 +154,7 @@ class CronTasks {
   
   /**
    * Monasteries status update
-   * 
-   * @author Jakub Konečný
-   * @return void
-   * 
+   *
    * @cronner-task Monasteries status update
    * @cronner-period 1 week
    * @cronner-time 01:00 - 02:00
@@ -191,10 +173,7 @@ class CronTasks {
   
   /**
    * Castles status update
-   * 
-   * @author Jakub Konečný
-   * @return void
-   * 
+   *
    * @cronner-task Castles status update
    * @cronner-period 1 week
    * @cronner-time 01:00 - 02:00
@@ -213,10 +192,7 @@ class CronTasks {
   
   /**
    * Houses status update
-   * 
-   * @author Jakub Konečný
-   * @return void
-   * 
+   *
    * @cronner-task Houses status update
    * @cronner-period 1 week
    * @cronner-time 01:00 - 02:00
@@ -235,10 +211,7 @@ class CronTasks {
   
   /**
    * Close weddings
-   * 
-   * @author Jakub Konečný
-   * @return void
-   * 
+   *
    * @cronner-task Close weddings
    * @cronner-period 1 hour
    */
@@ -258,13 +231,7 @@ class CronTasks {
     echo "Finished closing weddings ...\n";
   }
   
-  /**
-   * @param int $town
-   * @param int $year
-   * @param int $month
-   * @return array
-   */
-  protected function getElectionResults($town, $year, $month): array {
+  protected function getElectionResults(int $town, int $year, int $month): array {
     $votes = $this->orm->elections->findVotedInMonth($town, $year, $month);
     $results = [];
     foreach($votes as $vote) {
@@ -284,10 +251,7 @@ class CronTasks {
   
   /**
    * Municipal elections
-   * 
-   * @author Jakub Konečný
-   * @return void
-   * 
+   *
    * @cronner-task Municipal elections
    * @cronner-period 1 day
    * @cronner-time 01:00 - 02:00
@@ -306,7 +270,7 @@ class CronTasks {
     foreach($towns as $town) {
       echo "Town (#$town->id) $town->name ...\n";
       $councillors = $this->electionsModel->getNumberOfCouncillors($town->id);
-      $results = $this->getElectionResults($town, $year, $month);
+      $results = $this->getElectionResults($town->id, $year, $month);
       if(!count($results)) {
         echo "No votes found.\n";
         continue;

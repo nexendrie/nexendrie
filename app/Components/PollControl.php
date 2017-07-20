@@ -26,10 +26,6 @@ class PollControl extends \Nette\Application\UI\Control {
   /** @var int */
   protected $id;
   
-  /**
-   * @param \Nette\Security\User $user
-   * @param \Nexendrie\Orm\Model $orm
-   */
   function __construct(\Nette\Security\User $user, \Nexendrie\Orm\Model $orm) {
     parent::__construct();
     $this->user = $user;
@@ -37,7 +33,6 @@ class PollControl extends \Nette\Application\UI\Control {
   }
   
   /**
-   * @return PollEntity
    * @throws PollNotFoundException
    */
   function getPoll(): PollEntity {
@@ -53,7 +48,6 @@ class PollControl extends \Nette\Application\UI\Control {
   }
   
   /**
-   * @param int $id
    * @throws PollNotFoundException
    */
   function setId(int $id) {
@@ -67,8 +61,6 @@ class PollControl extends \Nette\Application\UI\Control {
   
   /**
    * Get votes for the poll
-   * 
-   * @return array
    */
   function getVotes(): array {
     $return = ["total" => 0, "answers" => []];
@@ -83,9 +75,6 @@ class PollControl extends \Nette\Application\UI\Control {
     return $return;
   }
   
-  /**
-   * @return void
-   */
   function render(): void {
     $this->template->setFile(__DIR__ . "/poll.latte");
     $poll = $this->getPoll();
@@ -104,9 +93,7 @@ class PollControl extends \Nette\Application\UI\Control {
   }
   
   /**
-   * Check whetever the user can vote in the poll
-   * 
-   * @return bool
+   * Check whether the user can vote in the poll
    */
   protected function canVote(): bool {
     if(!$this->user->isLoggedIn()) {
@@ -120,12 +107,10 @@ class PollControl extends \Nette\Application\UI\Control {
   
   /**
    * Vote in the poll
-   * 
-   * @param int $answer
+   *
    * @throws \Nette\InvalidArgumentException
    * @throws AccessDeniedException
    * @throws PollVotingException
-   * @return void
    */
   protected function vote(int $answer): void {
     if(!$this->canVote()) {
@@ -143,10 +128,6 @@ class PollControl extends \Nette\Application\UI\Control {
     $this->orm->pollVotes->persistAndFlush($vote);
   }
   
-  /**
-   * @param int $answer
-   * @return void
-   */
   function handleVote(int $answer): void {
     try {
       $this->vote($answer);

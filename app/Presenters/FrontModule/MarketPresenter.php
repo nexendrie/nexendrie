@@ -18,24 +18,16 @@ class MarketPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Market @autowire */
   protected $model;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->mustNotBeTavelling();
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->template->shops = $this->model->listOfShops();
   }
   
   /**
-   * @param int $id Shop's id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionShop(int $id): void {
@@ -45,10 +37,6 @@ class MarketPresenter extends BasePresenter {
     $this->template->shopId = $id;
   }
   
-  /**
-   * @param IShopControlFactory $factory
-   * @return \Nette\Application\UI\Multiplier
-   */
   protected function createComponentShop(IShopControlFactory $factory): \Nette\Application\UI\Multiplier {
     return new \Nette\Application\UI\Multiplier(function ($id) use ($factory) {
       $shop = $factory->create();
@@ -57,43 +45,25 @@ class MarketPresenter extends BasePresenter {
     });
   }
   
-  /**
-   * @param int $id Item's id
-   * @return void
-   */
   function actionBuy(int $id): void {
     $this->requiresLogin();
     $this->mustNotBeBanned();
   }
   
-  /**
-   * @return void
-   */
   function renderMounts(): void {
     $this->requiresLogin();
     $this->mustNotBeBanned();
   }
   
-  /**
-   * @param IMountsMarketControlFactory $factory
-   * @return MountsMarketControl
-   */
   protected function createComponentMountsMarket(IMountsMarketControlFactory $factory): MountsMarketControl {
     return $factory->create();
   }
   
-  /**
-   * @return void
-   */
   function renderTowns(): void {
     $this->requiresLogin();
     $this->mustNotBeBanned();
   }
   
-  /**
-   * @param ITownsMarketControlFactory $factory
-   * @return TownsMarketControl
-   */
   protected function createComponentTownsMarket(ITownsMarketControlFactory $factory): TownsMarketControl {
     return $factory->create();
   }

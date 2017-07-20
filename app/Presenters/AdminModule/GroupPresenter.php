@@ -15,9 +15,6 @@ class GroupPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Group @autowire */
   protected $model;
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->requiresPermissions("group", "list");
     $groups = $this->model->listOfGroups();
@@ -25,8 +22,6 @@ class GroupPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -36,10 +31,6 @@ class GroupPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param EditGroupFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditGroupForm(EditGroupFormFactory $factory): Form {
     $group = $this->model->ormGet((int) $this->getParameter("id"));
     $form = $factory->create();
@@ -53,17 +44,11 @@ class GroupPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function actionMembers(int $id): void {
     $this->requiresPermissions("group", "list");
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function renderMembers(int $id): void {

@@ -32,9 +32,6 @@ class SystemSettingsFormFactory {
     $this->appDir = $appDir;
   }
   
-  /**
-   * @return array
-   */
   protected function getListOfGroups(): array {
     $return = [];
     $groups = $this->groupModel->listOfGroups();
@@ -44,9 +41,6 @@ class SystemSettingsFormFactory {
     return $return;
   }
   
-  /**
-   * @return array
-   */
   protected function getListOfTowns(): array {
     $return = [];
     $towns = $this->townModel->listOfTowns();
@@ -56,9 +50,6 @@ class SystemSettingsFormFactory {
     return $return;
   }
   
-  /**
-   * @return array
-   */
   protected function getDefaultValues(): array {
     $settings = $this->sr->settings;
     return $settings;
@@ -66,7 +57,6 @@ class SystemSettingsFormFactory {
   
   /**
    * @todo use SettingsRepository to validate settings
-   * @return Form
    */
   function create(): Form {
     $groups = $this->getListOfGroups();
@@ -150,11 +140,6 @@ class SystemSettingsFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     $filename = $this->appDir . "/config/local.neon";
     $config = Neon::decode(file_get_contents($filename));

@@ -19,9 +19,6 @@ class AddEditEventFormFactory {
     $this->sr = $sr;
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
@@ -61,11 +58,6 @@ class AddEditEventFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function validate(Form $form, array $values): void {
     $format = $this->sr->settings["locale"]["dateTimeFormat"];
     $start = DateTime::createFromFormat($format, $values["start"]);

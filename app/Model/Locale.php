@@ -31,9 +31,6 @@ class Locale {
   
   /**
    * Formats date and time
-   * 
-   * @param int $date
-   * @return string
    */
   function formatDateTime(int $date): string {
     return date($this->formats["dateTimeFormat"], $date);
@@ -41,9 +38,6 @@ class Locale {
   
   /**
    * Formats date
-   * 
-   * @param int $date
-   * @return string
    */
   function formatDate(int $date): string {
     return date($this->formats["dateFormat"], $date);
@@ -51,42 +45,24 @@ class Locale {
   
   /**
    * Selects correct form according to $count
-   * 
-   * @param string $message
-   * @param int $count
-   * @return string
    */
   function plural(string $message, int $count): string {
     return $this->translator->translate("nexendrie." . $message, $count);
   }
   
-  /**
-   * @param int $amount
-   * @return string
-   */
   function money(int $amount): string {
     return $this->plural("money", $amount);
   }
   
-  /**
-   * @param int $amount
-   * @return string
-   */
   function hitpoints(int $amount): string {
     return $this->plural("hitpoints", $amount);
   }
   
-  /**
-   * @param int $amount
-   * @return string
-   */
   function barrels(int $amount): string {
     return $this->plural("barrels", $amount);
   }
   
   /**
-   * @param $message
-   * @return string
    * @throws AuthenticationNeededException
    */
   function genderMessage($message): string {

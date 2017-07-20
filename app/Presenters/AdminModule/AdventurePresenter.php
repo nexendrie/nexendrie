@@ -19,17 +19,10 @@ class AdventurePresenter extends BasePresenter {
   /** @var \Nexendrie\Orm\Adventure */
   private $adventure;
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
-  /*
-   * @param AddEditAdventureFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddAdventureForm(AddEditAdventureFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -40,7 +33,7 @@ class AdventurePresenter extends BasePresenter {
     return $form;
   }
   
-  function actionEdit(int $id) {
+  function actionEdit(int $id): void {
     $this->requiresPermissions("content", "edit");
     try {
       $this->adventure = $this->model->get($id);
@@ -49,10 +42,6 @@ class AdventurePresenter extends BasePresenter {
     }
   }
   
-  /*
-   * @param AddEditAdventureFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditAdventureForm(AddEditAdventureFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->adventure->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));

@@ -18,9 +18,6 @@ class TakeLoanFormFactory {
     $this->model = $model;
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $maxLoan = $this->model->maxLoan();
     $form = new Form;
@@ -33,11 +30,6 @@ class TakeLoanFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     $this->model->takeLoan($values["amount"]);
   }

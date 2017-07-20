@@ -19,8 +19,6 @@ class ArticlePresenter extends BasePresenter {
   protected $model;
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function renderView(int $id): void {
@@ -31,21 +29,12 @@ class ArticlePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddCommentFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddCommentForm(AddCommentFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = [$this, "addCommentFormSucceeded"];
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function addCommentFormSucceeded(Form $form, array $values): void {
     $values["article"] = $this->getParameter("id");
     try {

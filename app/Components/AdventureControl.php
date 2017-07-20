@@ -35,19 +35,12 @@ class AdventureControl extends \Nette\Application\UI\Control {
     $this->user = $user;
   }
   
-  /**
-   * @return void
-   */
   function renderList(): void {
     $this->template->setFile(__DIR__ . "/adventureList.latte");
     $this->template->adventures = $this->model->findAvailableAdventures();
     $this->template->render();
   }
   
-  /**
-   * @param int $adventure
-   * @return void
-   */
   function renderMounts(int $adventure): void {
     $this->template->setFile(__DIR__ . "/adventureMounts.latte");
     $this->template->mounts = $this->model->findGoodMounts();
@@ -55,9 +48,6 @@ class AdventureControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  /**
-   * @return void
-   */
   function render(): void {
     $this->template->setFile(__DIR__ . "/adventure.latte");
     $this->template->adventure = $adventure = $this->model->getCurrentAdventure();
@@ -65,11 +55,6 @@ class AdventureControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  /**
-   * @param int $adventure
-   * @param int $mount
-   * @return void
-   */
   function handleStart(int $adventure, int $mount): void {
     try {
       $this->model->startAdventure($adventure, $mount);
@@ -95,9 +80,6 @@ class AdventureControl extends \Nette\Application\UI\Control {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleFight(): void {
     try {
       $result = $this->model->fight();
@@ -110,9 +92,6 @@ class AdventureControl extends \Nette\Application\UI\Control {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleFinish(): void {
     try {
       $this->model->finishAdventure();

@@ -26,19 +26,12 @@ class TownsMarketControl extends \Nette\Application\UI\Control {
     $this->user = $user;
   }
   
-  /**
-   * @return void
-   */
   function render(): void {
     $this->template->setFile(__DIR__ . "/townsMarket.latte");
     $this->template->towns = $this->model->townsOnSale();
     $this->template->render();
   }
   
-  /**
-   * @param int $townId
-   * @return void
-   */
   function handleBuy(int $townId): void {
     try {
       $this->model->buy($townId);

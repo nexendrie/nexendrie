@@ -12,9 +12,6 @@ class RssPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Rss @autowire */
   protected $model;
   
-  /**
-   * @return void
-   */
   function renderNews() {
     $this->sendResponse($this->model->newsFeed());
   }

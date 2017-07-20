@@ -30,12 +30,6 @@ class ShopControl extends \Nette\Application\UI\Control {
   /** @var int */
   protected $id;
   
-  /**
-   * @param \Nexendrie\Model\Market $model
-   * @param \Nexendrie\Model\Events $eventsModel
-   * @param \Nexendrie\Orm\Model $orm
-   * @param \Nette\Security\User $user
-   */
   function __construct(\Nexendrie\Model\Market $model, \Nexendrie\Model\Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     parent::__construct();
     $this->model = $model;
@@ -45,7 +39,6 @@ class ShopControl extends \Nette\Application\UI\Control {
   }
   
   /**
-   * @return ShopEntity
    * @throws ShopNotFoundException
    */
   function getShop(): ShopEntity {
@@ -59,9 +52,6 @@ class ShopControl extends \Nette\Application\UI\Control {
     return $this->shop;
   }
   
-  /**
-   * @param int $id
-   */
   function setId(int $id) {
     try {
       $this->id = $id;
@@ -71,9 +61,6 @@ class ShopControl extends \Nette\Application\UI\Control {
     }
   }
   
-  /**
-   * @return void
-   */
   function render(): void {
     $this->template->setFile(__DIR__ . "/shop.latte");
     $this->template->shop = $this->getShop();
@@ -81,10 +68,6 @@ class ShopControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  /**
-   * @param int $item
-   * @return void
-   */
   function handleBuy(int $item): void {
     try {
       $this->model->buy($item, $this->shop->id);

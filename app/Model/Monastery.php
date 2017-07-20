@@ -40,9 +40,6 @@ class Monastery {
     $this->buildingPrice = $sr->settings["fees"]["buildMonastery"];
   }
   
-  /**
-   * @return int
-   */
   function getBuildingPrice() :int {
     return $this->buildingPrice;
   }
@@ -60,9 +57,7 @@ class Monastery {
   
   /**
    * Get specified monastery
-   * 
-   * @param int $id
-   * @return MonasteryEntity
+   *
    * @throws MonasteryNotFoundException
    */
   function get(int $id): MonasteryEntity {
@@ -74,10 +69,8 @@ class Monastery {
   }
   
   /**
-   * Get specified user's monastary
-   * 
-   * @param int $id
-   * @return MonasteryEntity
+   * Get specified user's monastery
+   *
    * @throws UserNotFoundException
    * @throws NotInMonasteryException
    */
@@ -92,9 +85,7 @@ class Monastery {
   }
   
   /**
-   * Check whetever the user can join a monastery
-   * 
-   * @return bool
+   * Check whether the user can join a monastery
    */
   function canJoin(): bool {
     $month = 60 * 60 * 24 * 31;
@@ -126,9 +117,7 @@ class Monastery {
   
   /**
    * Join a monastery
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotJoinMonasteryException
    * @throws MonasteryNotFoundException
@@ -166,9 +155,8 @@ class Monastery {
   }
   
   /**
-   * Check whetever the user can pray (now)
-   * 
-   * @return bool
+   * Check whether the user can pray (now)
+   *
    * @throws AuthenticationNeededException
    */
   function canPray(): bool {
@@ -193,7 +181,6 @@ class Monastery {
   }
   
   /**
-   * @return void
    * @throws AuthenticationNeededException
    * @throws CannotPrayException
    */
@@ -212,9 +199,8 @@ class Monastery {
   }
   
   /**
-   * Check whetever the user can leave monastery
-   * 
-   * @return bool
+   * Check whether the user can leave monastery
+   *
    * @throws AuthenticationNeededException
    */
   function canLeave(): bool {
@@ -232,8 +218,7 @@ class Monastery {
   
   /**
    * Leave monastery
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotLeaveMonasteryException
    */
@@ -259,9 +244,8 @@ class Monastery {
   }
   
   /**
-   * Check whetever the user can build monastery
-   * 
-   * @return bool
+   * Check whether the user can build monastery
+   *
    * @throws AuthenticationNeededException
    */
   function canBuild(): bool {
@@ -280,9 +264,7 @@ class Monastery {
   
   /**
    * Build a monastery
-   * 
-   * @param string $name
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotBuildMonasteryException
    * @throws MonasteryNameInUseException
@@ -316,9 +298,7 @@ class Monastery {
   
   /**
    * Donate money to monastery
-   * 
-   * @param int $amount
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws NotInMonasteryException
    * @throws InsufficientFundsException
@@ -344,10 +324,7 @@ class Monastery {
   
   /**
    * Edit specified monastery
-   * 
-   * @param int $id
-   * @param array $data
-   * @return void
+   *
    * @throws MonasteryNotFoundException
    * @throws MonasteryNameInUseException
    */
@@ -386,9 +363,8 @@ class Monastery {
   }
   
   /**
-   * Check whetever the user can manage monastery
-   * 
-   * @return bool
+   * Check whether the user can manage monastery
+   *
    * @throws AuthenticationNeededException
    */
   function canManage(): bool {
@@ -406,8 +382,6 @@ class Monastery {
   
   /**
    * How many hitpoints will the prayer add
-   * 
-   * @return int
    */
   function prayerLife(): int {
     if(!$this->user->isLoggedIn()) {
@@ -422,9 +396,8 @@ class Monastery {
   }
   
   /**
-   * Check whetever the user can upgrade monastery
-   * 
-   * @return bool
+   * Check whether the user can upgrade monastery
+   *
    * @throws AuthenticationNeededException
    */
   function canUpgrade(): bool {
@@ -444,8 +417,7 @@ class Monastery {
   
   /**
    * Upgrade monastery
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotUpgradeMonasteryException
    * @throws InsufficientFundsException
@@ -468,9 +440,8 @@ class Monastery {
   }
   
   /**
-   * Check whetever the user can repair monastery
-   * 
-   * @return bool
+   * Check whether the user can repair monastery
+   *
    * @throws AuthenticationNeededException
    */
   function canRepair(): bool {
@@ -490,8 +461,7 @@ class Monastery {
   
   /**
    * Repair monastery
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotRepairMonasteryException
    * @throws InsufficientFundsException

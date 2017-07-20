@@ -12,10 +12,6 @@ class HomepagePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Article @autowire */
   protected $model;
   
-  /**
-   * @param int $page
-   * @return void
-   */
   function renderPage(int $page = 1): void {
     $paginator = new \Nette\Utils\Paginator;
     $paginator->page = $page;

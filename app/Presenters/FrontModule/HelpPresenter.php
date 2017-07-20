@@ -12,18 +12,10 @@ use Nexendrie\Components\IHelpControlFactory,
  * @author Jakub Konečný
  */
 class HelpPresenter extends BasePresenter {
-  /**
-   * @param string $page
-   * @return void
-   */
   function renderDefault(string $page = "index") {
     $this->template->page = $page;
   }
   
-  /**
-   * @param IHelpControlFactory $factory
-   * @return HelpControl
-   */
   protected function createComponentHelp(IHelpControlFactory $factory): HelpControl {
     return $factory->create();
   }

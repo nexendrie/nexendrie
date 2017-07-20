@@ -14,9 +14,6 @@ use Nette\Application\Routers\RouteList,
 class RouterFactory {
   use \Nette\SmartObject;
   
-  /**
-   * @return RouteList
-   */
   function create(): RouteList {
     $router = new RouteList;
     $frontRouter = new RouteList("Front");

@@ -21,11 +21,6 @@ class Messenger {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param \Nexendrie\Orm\Model $orm
-   * @param \Nette\Security\User $user
-   * @param \Nexendrie\Model\Profile $profileModel
-   */
   function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, Profile $profileModel) {
     $this->orm = $orm;
     $this->user = $user;
@@ -60,9 +55,7 @@ class Messenger {
   
   /**
    * Show specified message
-   * 
-   * @param int $id Message's id
-   * @return MessageEntity
+   *
    * @throws AuthenticationNeededException
    * @throws MessageNotFoundException
    * @throws AccessDeniedException
@@ -98,9 +91,6 @@ class Messenger {
   
   /**
    * Sends new message
-   * 
-   * @param array $data
-   * @return void
    */
   function send(array $data): void {
     $message = new MessageEntity;

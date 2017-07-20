@@ -36,8 +36,6 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   
   /**
    * Get current state of elections
-   * 
-   * @return string
    */
   protected function getState(): string {
     $fakeDay = new \DateTime;
@@ -57,8 +55,6 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   
   /**
    * Check if the user can vote
-   * 
-   * @return bool
    */
   protected function canVote(): bool {
     if(!$this->user->isAllowed("town", "elect")) {
@@ -113,9 +109,6 @@ class ElectionsControl extends \Nette\Application\UI\Control {
     return $this->orm->electionResults->findByTownAndYearAndMonth($this->town->id, (int) $date->format("Y"), (int) $date->format("n"));
   }
   
-  /**
-   * @return void
-   */
   function render(): void {
     $this->template->setFile(__DIR__ . "/elections.latte");
     $this->template->state = $this->getState();
@@ -132,10 +125,6 @@ class ElectionsControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  /**
-   * @param int $candidate
-   * @return void
-   */
   function handleVote(int $candidate): void {
     if(!$this->canVote()) {
       $this->presenter->flashMessage("Nemůžeš hlasovat.");

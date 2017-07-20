@@ -27,19 +27,13 @@ class CastlePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Profile @autowire */
   protected $profileModel;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     if($this->action != "detail" AND $this->action != "list") {
       $this->requiresLogin();
     }
   }
   
-  /**
-   * @return void
-   */
   function actionDefault(): void {
     $castle = $this->model->getUserCastle();
     if(!$castle) {
@@ -53,16 +47,11 @@ class CastlePresenter extends BasePresenter {
     $this->template->canUpgrade = $this->model->canUpgrade();
   }
   
-  /**
-   * @return void
-   */
   function renderList(): void {
     $this->template->castles = $this->model->listOfCastles();
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function renderDetail(int $id): void {
@@ -73,9 +62,6 @@ class CastlePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionBuild(): void {
     $user = $this->userManager->get($this->user->id);
     if($user->group->path != GroupEntity::PATH_TOWER) {
@@ -88,10 +74,6 @@ class CastlePresenter extends BasePresenter {
     $this->template->buildingPrice = $this->localeModel->money($this->model->buildingPrice);
   }
   
-  /**
-   * @param BuildCastleFormFactory $factory
-   * @return Form
-   */
   protected function createComponentBuildCastleForm(BuildCastleFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function() {
@@ -101,9 +83,6 @@ class CastlePresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @return void
-   */
   function handleUpgrade(): void {
     try {
       $this->model->upgrade();
@@ -118,9 +97,6 @@ class CastlePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleRepair(): void {
     try {
       $this->model->repair();
@@ -135,10 +111,6 @@ class CastlePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param ManageCastleFormFactory $factory
-   * @return Form
-   */
   protected function createComponentManageCastleForm(ManageCastleFormFactory $factory): Form {
     $form = $factory->create($this->template->castle->id);
     $form->onSuccess[] = function() {

@@ -41,15 +41,12 @@ class UserManager implements IAuthenticator {
     $this->newUser = $sr->settings["newUser"];
   }
   
-  /**
-   * @param User $user
-   */
   function setUser(User $user) {
     $this->user = $user;
   }
   
   /**
-   * Checks whetever a name is available
+   * Checks whether a name is available
    * 
    * @param string $name
    * @param string $type username/publicname
@@ -75,7 +72,7 @@ class UserManager implements IAuthenticator {
   }
   
   /**
-   * Checks whetever an e-mail is available
+   * Checks whether an e-mail is available
    * 
    * @param string $email
    * @param int $uid Id of user who can use the e-mail
@@ -96,9 +93,6 @@ class UserManager implements IAuthenticator {
   
   /**
    * Get user's identity
-   * 
-   * @param UserEntity $user
-   * @return Identity
    */
   protected function getIdentity(UserEntity $user): Identity {
     if($user->banned) {
@@ -116,9 +110,7 @@ class UserManager implements IAuthenticator {
   
   /**
    * Logins the user
-   * 
-   * @param array $credentials
-   * @return Identity User's identity
+   *
    * @throws AuthenticationException
    */
   function authenticate(array $credentials): Identity {
@@ -137,8 +129,7 @@ class UserManager implements IAuthenticator {
   
   /**
    * Refresh user's identity
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    */
   function refreshIdentity(): void {
@@ -151,9 +142,7 @@ class UserManager implements IAuthenticator {
   
   /**
    * Register new user
-   * 
-   * @param array $data
-   * @return void
+   *
    * @throws RegistrationException
    */
   function register(array $data): void {
@@ -179,8 +168,7 @@ class UserManager implements IAuthenticator {
   
   /**
    * Get user's settings
-   * 
-   * @return array
+   *
    * @throws AuthenticationNeededException
    */
   function getSettings(): array {
@@ -197,11 +185,9 @@ class UserManager implements IAuthenticator {
   
   /**
    * Change user's settings
-   * 
-   * @param array $settings
+   *
    * @throws AuthenticationNeededException
    * @throws SettingsException
-   * @return void
    */
   function changeSettings(array $settings): void {
     if(!$this->user->isLoggedIn()) {
@@ -243,11 +229,6 @@ class UserManager implements IAuthenticator {
     return $this->orm->users->findAll()->orderBy("group")->orderBy("id");
   }
   
-  /**
-   * @param int $id User's id
-   * @param array $values
-   * @return void
-   */
   function edit(int $id, array $values): void {
     $user = $this->orm->users->getById($id);
     foreach($values as $key => $value) {
@@ -256,11 +237,6 @@ class UserManager implements IAuthenticator {
     $this->orm->users->persistAndFlush($user);
   }
   
-  /**
-   * @param int $id
-   * @return UserEntity
-   * @throws UserNotFoundException
-   */
   function get(int $id): UserEntity {
     $user = $this->orm->users->getById($id);
     if(is_null($user)) {

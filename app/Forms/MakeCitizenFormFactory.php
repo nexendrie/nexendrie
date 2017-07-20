@@ -21,10 +21,6 @@ class MakeCitizenFormFactory {
     $this->model = $model;
   }
   
-  /**
-   * @param int $town
-   * @return Form
-   */
   function create($town): Form {
     $form = new Form;
     $form->addSelect("user", "Uživatel:", $this->model->getTownPeasants($town))
@@ -34,11 +30,6 @@ class MakeCitizenFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->model->makeCitizen($values["user"]);

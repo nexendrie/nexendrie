@@ -20,9 +20,6 @@ class MonasteryDonateFormFactory {
     $this->model = $model;
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("amount", "Množství:")
@@ -34,11 +31,6 @@ class MonasteryDonateFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->model->donate($values["amount"]);

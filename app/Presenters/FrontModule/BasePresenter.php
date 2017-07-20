@@ -14,8 +14,6 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   
   /**
    * The user must be logged in to see a page
-   * 
-   * @return void
    */
   protected function requiresLogin(): void {
     if(!$this->user->isLoggedIn()) {
@@ -26,8 +24,6 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   
   /**
    * The user must not be logged in to see a page
-   * 
-   * @return void
    */
   protected function mustNotBeLoggedIn(): void {
     if($this->user->isLoggedIn()) {
@@ -38,8 +34,6 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   
   /**
    * The user must not be banned to see a page
-   * 
-   * @return void
    */
   protected function mustNotBeBanned(): void {
     if($this->user->identity->banned) {
@@ -50,8 +44,6 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   
   /**
    * The user must not be on adventure to see a page
-   * 
-   * @return void
    */
   protected function mustNotBeTavelling(): void {
     if($this->user->isLoggedIn() AND $this->user->identity->travelling) {

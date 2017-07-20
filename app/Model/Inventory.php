@@ -29,8 +29,7 @@ class Inventory {
   
   /**
    * Show user's possessions
-   * 
-   * @return array
+   *
    * @throws AuthenticationNeededException
    */
   function possessions(): array {
@@ -87,9 +86,7 @@ class Inventory {
   
   /**
    * Equip an item
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws ItemNotFoundException
    * @throws ItemNotOwnedException
@@ -125,9 +122,7 @@ class Inventory {
   
   /**
    * Unequip an item
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws ItemNotFoundException
    * @throws ItemNotOwnedException
@@ -154,16 +149,14 @@ class Inventory {
   
   /**
    * Drink a potion
-   * 
-   * @param int $id
-   * @return int
+   *
    * @throws AuthenticationNeededException
    * @throws ItemNotFoundException
    * @throws ItemNotOwnedException
    * @throws ItemNotDrinkableException
    * @throws HealingNotNeeded
    */
-  function drinkPotion(int $id) {
+  function drinkPotion(int $id): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -197,8 +190,6 @@ class Inventory {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws AuthenticationNeededException
    * @throws NotMarriedException
    * @throws ItemNotFoundException
@@ -239,34 +230,18 @@ class Inventory {
     $this->orm->flush();
   }
   
-  /**
-   * @param int $user
-   * @return UserItemEntity|NULL
-   */
   function getWeapon(int $user): ?UserItemEntity {
     return $this->orm->userItems->getWornWeapon($user);
   }
   
-  /**
-   * @param int $user
-   * @return UserItemEntity|NULL
-   */
   function getArmor(int $user): ?UserItemEntity {
     return $this->orm->userItems->getWornArmor($user);
   }
   
-  /**
-   * @param int $user
-   * @return UserItemEntity|NULL
-   */
   function getHelmet(int $user): ?UserItemEntity {
     return $this->orm->userItems->getWornHelmet($user);
   }
   
-  /**
-   * @param int $user
-   * @return ItemSetEntity|NULL
-   */
   function getUserItemSet(int $user): ?ItemSetEntity {
     $weapon = $this->getWeapon($user);
     $armor = $this->getArmor($user);
@@ -279,9 +254,7 @@ class Inventory {
   
   /**
    * Sell an item
-   * 
-   * @param int $id
-   * @return int
+   *
    * @throws AuthenticationNeededException
    * @throws ItemNotFoundException
    * @throws ItemNotOwnedException
@@ -314,9 +287,7 @@ class Inventory {
   
   /**
    * Upgrade an item
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws ItemNotFoundException
    * @throws ItemNotOwnedException

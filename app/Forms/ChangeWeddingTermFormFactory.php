@@ -24,10 +24,6 @@ class ChangeWeddingTermFormFactory {
     $this->orm = $orm;
   }
   
-  /**
-   * @param Marriage $marriage
-   * @return Form
-   */
   function create(Marriage $marriage): Form {
     $format = explode(" ", $this->sr->settings["locale"]["dateTimeFormat"]);
     $this->marriage = $marriage;
@@ -44,11 +40,6 @@ class ChangeWeddingTermFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function validate(Form $form, array $values): void {
     $term = $values["term"]->getTimestamp();
     if($term < time()) {
@@ -56,11 +47,6 @@ class ChangeWeddingTermFormFactory {
     }
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     $this->marriage->term = $values["term"]->getTimestamp();
     $this->orm->marriages->persistAndFlush($this->marriage);

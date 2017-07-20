@@ -21,17 +21,11 @@ class UserPresenter extends BasePresenter {
   
   /**
    * Do not allow access login page if the user is already logged in
-   * 
-   * @return void
    */
   function actionLogin(): void {
     $this->mustNotBeLoggedIn();
   }
   
-  /**
-   * @param LoginFormFactory $factory
-   * @return Form
-   */
   protected function createComponentLoginForm(LoginFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, $values) {
@@ -51,7 +45,6 @@ class UserPresenter extends BasePresenter {
   
   /**
    * @todo return to previous page if possible
-   * @return void
    */
   function actionLogout(): void {
     $message = "Nejsi přihlášen.";
@@ -65,17 +58,11 @@ class UserPresenter extends BasePresenter {
   
   /**
    * Prevent registration when logged in
-   * 
-   * @return void
    */
   function actionRegister(): void {
     $this->mustNotBeLoggedIn();
   }
   
-  /**
-   * @param RegisterFormFactory $factory
-   * @return Form
-   */
   protected function createComponentRegisterForm(RegisterFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -85,17 +72,10 @@ class UserPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @return void
-   */
   function actionSettings(): void {
     $this->requiresLogin();
   }
   
-  /**
-   * @param UserSettingsFormFactory $factory
-   * @return Form
-   */
   protected function createComponentUserSettingsForm(UserSettingsFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, $values) {

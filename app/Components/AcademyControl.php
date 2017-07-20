@@ -27,10 +27,6 @@ class AcademyControl extends \Nette\Application\UI\Control {
     $this->user = $user;
   }
   
-  /**
-   * @param string $type
-   * @return void
-   */
   function render(string $type = "work"): void {
     $this->template->setFile(__DIR__ . "/academy.latte");
     $types = ["work", "combat"];
@@ -54,10 +50,6 @@ class AcademyControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  /**
-   * @param int $skillId
-   * @return void
-   */
   function handleLearn(int $skillId): void {
     try {
       $this->model->learn($skillId);

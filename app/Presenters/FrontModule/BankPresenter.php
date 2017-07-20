@@ -20,9 +20,6 @@ class BankPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\SettingsRepository @autowire */
   protected $sr;
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->template->maxLoan = $this->localeModel->money($this->model->maxLoan());
     $this->template->interest = $this->sr->settings["fees"]["loanInterest"];
@@ -36,10 +33,6 @@ class BankPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param TakeLoanFormFactory $factory
-   * @return Form
-   */
   protected function createComponentTakeLoanForm(TakeLoanFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -50,9 +43,6 @@ class BankPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @return void
-   */
   function actionReturn(): void {
     $this->requiresLogin();
     try {

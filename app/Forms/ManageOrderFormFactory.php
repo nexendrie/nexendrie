@@ -24,10 +24,6 @@ class ManageOrderFormFactory {
     $this->user = $user;
   }
   
-  /**
-   * @param int $guildId
-   * @return Form
-   */
   function create(int $guildId): Form {
     $form = new Form;
     $this->id = $guildId;
@@ -43,11 +39,6 @@ class ManageOrderFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->model->editOrder($this->id, $values);

@@ -49,9 +49,7 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Get details of specified event
-   * 
-   * @param int $id
-   * @return Event
+   *
    * @throws EventNotFoundException
    */
   function getEvent($id): Event {
@@ -64,9 +62,6 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Add new event
-   * 
-   * @param array $data
-   * @return void
    */
   function addEvent(array $data): void {
     $event = new Event;
@@ -82,10 +77,7 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Edit specified event
-   * 
-   * @param int $id
-   * @param array $data
-   * @return void
+   *
    * @throws EventNotFoundException
    */
   function editEvent(int $id, array $data): void {
@@ -105,9 +97,7 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Delete specified events
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws EventNotFoundException
    * @throws CannotDeleteStartedEventException
    */
@@ -123,10 +113,6 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Load events from a month
-   * 
-   * @param int $year
-   * @param int $month
-   * @return void
    */
   function loadEvents(int $year = 0, int $month = 0): void {
     $this->events = $this->orm->events->findFromMonth($year, $month);
@@ -187,9 +173,6 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Calculate current bonus for adventures
-   * 
-   * @param int $baseIncome
-   * @return int
    */
   function calculateAdventuresBonus(int $baseIncome): int {
     $bonus = 0;
@@ -204,9 +187,6 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Calculate current bonus for work
-   * 
-   * @param int $baseIncome
-   * @return int
    */
   function calculateWorkBonus(int $baseIncome): int {
     $bonus = 0;
@@ -221,9 +201,6 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Calculate current bonus for praying
-   * 
-   * @param int $baseValue
-   * @return int
    */
   function calculatePrayerLifeBonus(int $baseValue): int {
     $bonus = 0;
@@ -238,9 +215,6 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Calculate current discount for training
-   * 
-   * @param int $basePrice
-   * @return int
    */
   function calculateTrainingDiscount(int $basePrice): int {
     $discount = 0;
@@ -255,9 +229,6 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Calculate current discount for shopping
-   * 
-   * @param int $basePrice
-   * @return int
    */
   function calculateShoppingDiscount(int $basePrice): int {
     $discount = 0;
@@ -272,8 +243,6 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Get current shopping discount
-   *
-   * @return int
    */
   function getShoppingDiscount(): int {
     $discount = 0;
@@ -288,9 +257,6 @@ class Events implements \EventCalendar\IEventModel {
   
   /**
    * Calculate current discount for repairing castles and monasteries
-   * 
-   * @param int $basePrice
-   * @return int
    */
   function calculateRepairingDiscount(int $basePrice): int {
     $discount = 0;

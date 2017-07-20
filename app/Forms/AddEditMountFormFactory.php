@@ -27,16 +27,10 @@ class AddEditMountFormFactory {
     
   }
   
-  /**
-   * @return array
-   */
   protected function getMountTypes(): array {
     return $this->model->listOfMountTypes()->fetchPairs("id", "name");
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")

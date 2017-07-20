@@ -23,18 +23,11 @@ class Group {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param \Nette\Caching\Cache $cache
-   * @param \Nexendrie\Orm\Model $orm
-   */
   function __construct(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
     $this->cache = $cache;
   }
   
-  /**
-   * @param \Nette\Security\User $user
-   */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
   }
@@ -59,9 +52,6 @@ class Group {
   
   /**
    * Get specified group
-   * 
-   * @param int $id Group's id
-   * @return GroupDummy|NULL
    */
   function get(int $id) {
     $groups = $this->listOfGroups();
@@ -69,19 +59,12 @@ class Group {
     return $group;
   }
   
-  /**
-   * @param int $id
-   * @return GroupEntity|NULL
-   */
   function ormGet(int $id): ?GroupEntity {
     return $this->orm->groups->getById($id);
   }
   
   /**
-   * Check whetever specified guild exists
-   *
-   * @param int $id Guild's id
-   * @return bool
+   * Check whether specified guild exists
    */
   function exists(int $id): bool {
     $group = $this->orm->groups->getById($id);
@@ -90,9 +73,7 @@ class Group {
   
   /**
    * Edit specified group
-   * 
-   * @param int $id Group's id
-   * @param array $data
+   *
    * @throws \Nette\Application\ForbiddenRequestException
    * @return void
    */

@@ -30,19 +30,13 @@ class GuildPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Locale @autowire */
   protected $localeModel;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     if($this->action != "detail" AND $this->action != "list") {
       $this->requiresLogin();
     }
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $guild = $this->model->getUserGuild();
     if(!$guild) {
@@ -54,17 +48,12 @@ class GuildPresenter extends BasePresenter {
     $this->template->canManage = $this->model->canManage();
   }
   
-  /**
-   * @return void
-   */
   function renderList(): void {
     $this->template->guilds = $this->model->listOfGuilds();
     $this->template->canJoin = $this->model->canJoin();
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function renderDetail(int $id): void {
@@ -75,9 +64,6 @@ class GuildPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionFound(): void {
     if(!$this->model->canFound()) {
       $this->flashMessage("Nemůžeš založit cech.");
@@ -86,10 +72,6 @@ class GuildPresenter extends BasePresenter {
     $this->template->foundingPrice = $this->localeModel->money($this->model->foundingPrice);
   }
   
-  /**
-   * @param FoundGuildFormFactory $factory
-   * @return Form
-   */
   protected function createComponentFoundGuildForm(FoundGuildFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function() {
@@ -100,8 +82,6 @@ class GuildPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionJoin(int $id): void {
@@ -118,9 +98,6 @@ class GuildPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionLeave(): void {
     try {
       $this->model->leave();
@@ -133,9 +110,6 @@ class GuildPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionManage(): void {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat cech.");
@@ -145,10 +119,6 @@ class GuildPresenter extends BasePresenter {
       $this->template->canUpgrade = $this->model->canUpgrade();
   }
   
-  /**
-   * @param ManageGuildFormFactory $factory
-   * @return Form
-   */
   protected function createComponentManageGuildForm(ManageGuildFormFactory $factory): Form {
     $form = $factory->create($this->model->getUserGuild()->id);
     $form->onSuccess[] = function() {
@@ -157,9 +127,6 @@ class GuildPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @return void
-   */
   function handleUpgrade(): void {
     try {
       $this->model->upgrade();
@@ -174,9 +141,6 @@ class GuildPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionMembers(): void {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat cech.");
@@ -187,10 +151,6 @@ class GuildPresenter extends BasePresenter {
     $this->template->maxRank = $this->model->maxRank;
   }
   
-  /**
-   * @param int $user
-   * @return void
-   */
   function handlePromote(int $user): void {
     try {
       $this->model->promote($user);
@@ -214,10 +174,6 @@ class GuildPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param int $user
-   * @return void
-   */
   function handleDemote(int $user): void {
     try {
       $this->model->demote($user);
@@ -241,10 +197,6 @@ class GuildPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param int $user
-   * @return void
-   */
   function handleKick(int $user) {
     try {
       $this->model->kick($user);

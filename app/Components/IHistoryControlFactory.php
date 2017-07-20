@@ -2,7 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IHistoryControlFactory {
-  /** @return HistoryControl */
-  function create();
+  function create(): HistoryControl;
 }
 ?>

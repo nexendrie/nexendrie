@@ -21,8 +21,6 @@ class JobPresenter extends BasePresenter {
   private $job;
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -34,17 +32,10 @@ class JobPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
-  /**
-   * @param AddEditJobFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddJobForm(AddEditJobFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -55,10 +46,6 @@ class JobPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @param AddEditJobFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditJobForm(AddEditJobFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->job->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));

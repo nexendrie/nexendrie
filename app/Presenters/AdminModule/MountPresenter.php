@@ -20,17 +20,10 @@ class MountPresenter extends BasePresenter {
   /** @var MountEntity */
   private $mount;
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
-  /**
-   * @param AddEditMountFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddMountForm(AddEditMountFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -42,8 +35,6 @@ class MountPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -55,10 +46,6 @@ class MountPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditMountFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditMountForm(AddEditMountFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->mount->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));

@@ -20,17 +20,10 @@ class ItemSetPresenter extends BasePresenter {
   /** @var ItemSetEntity */
   private $set;
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
-  /**
-   * @param AddEditItemSetFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddItemSetForm(AddEditItemSetFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -42,8 +35,6 @@ class ItemSetPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -55,10 +46,6 @@ class ItemSetPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditItemSetFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditItemSetForm(AddEditItemSetFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->set->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
@@ -71,8 +58,6 @@ class ItemSetPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionDelete(int $id): void {

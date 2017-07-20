@@ -20,16 +20,10 @@ class Polls {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param \Nexendrie\Orm\Model $orm
-   */
   function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
   }
   
-  /**
-   * @param \Nette\Security\User $user
-   */
   function setUser(\Nette\Security\User $user) {
     $this->user = $user;
   }
@@ -45,9 +39,7 @@ class Polls {
   
   /**
    * Show specified poll
-   * 
-   * @param int $id Poll's id
-   * @return PollEntity
+   *
    * @throws PollNotFoundException
    */
   function view(int $id): PollEntity {
@@ -60,9 +52,7 @@ class Polls {
   
   /**
    * Add poll
-   * 
-   * @param array $data
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    */
@@ -83,10 +73,7 @@ class Polls {
   }
   
   /**
-   * Check whetever specified poll exists
-   * 
-   * @param int $id News' id
-   * @return bool
+   * Check whether specified poll exists
    */
   function exists(int $id): bool {
     return (bool) $this->orm->polls->getById($id);
@@ -94,10 +81,7 @@ class Polls {
   
   /**
    * Edit specified poll
-   * 
-   * @param int $id Poll's id
-   * @param array $data
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws PollNotFoundException

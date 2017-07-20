@@ -70,9 +70,7 @@ class Article {
   
   /**
    * Show specified article
-   * 
-   * @param int $id
-   * @return ArticleEntity
+   *
    * @throws ArticleNotFoundException
    */
   function view(int $id): ArticleEntity {
@@ -98,8 +96,7 @@ class Article {
   
   /**
    * Add article
-   * 
-   * @param array $data
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @return void
@@ -123,8 +120,7 @@ class Article {
   
   /**
    * Adds comment to article
-   * 
-   * @param array $data
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @return void
@@ -148,10 +144,7 @@ class Article {
   
   /**
    * Edit specified article
-   * 
-   * @param int $id Article' id
-   * @param array $data
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws ArticleNotFoundException
@@ -174,10 +167,7 @@ class Article {
   }
   
   /**
-   * Check whetever specified article exists
-   * 
-   * @param int $id News' id
-   * @return bool
+   * Check whether specified article exists
    */
   function exists(int $id): bool {
     $row = $this->orm->articles->getById($id);

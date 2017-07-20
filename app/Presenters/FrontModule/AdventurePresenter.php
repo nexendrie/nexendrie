@@ -15,10 +15,7 @@ class AdventurePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Adventure @autowire */
   protected $model;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeBanned();
@@ -28,9 +25,6 @@ class AdventurePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionDefault(): void {
     if($this->model->getCurrentAdventure()) {
       return;
@@ -41,18 +35,10 @@ class AdventurePresenter extends BasePresenter {
     $this->redirect("Homepage:");
   }
   
-  /**
-   * @param IAdventureControlFactory $factory
-   * @return AdventureControl
-   */
   protected function createComponentAdventure(IAdventureControlFactory $factory): AdventureControl {
     return $factory->create();
   }
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function actionMounts(int $id): void {
     if($this->model->getCurrentAdventure()) {
       $this->redirect("default");

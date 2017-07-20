@@ -21,8 +21,6 @@ class ItemPresenter extends BasePresenter {
   private $item;
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -34,17 +32,10 @@ class ItemPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
-  /**
-   * @param AddEditItemFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddItemForm(AddEditItemFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -55,10 +46,6 @@ class ItemPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @param AddEditItemFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditItemForm(AddEditItemFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->item->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));

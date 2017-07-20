@@ -99,9 +99,7 @@ class Job {
   
   /**
    * Get specified job's details
-   * 
-   * @param int $id
-   * @return JobEntity
+   *
    * @throws JobNotFoundException
    */
   function getJob(int $id): JobEntity {
@@ -114,9 +112,6 @@ class Job {
   
   /**
    * Add new job
-   * 
-   * @param array $data
-   * @return void
    */
   function addJob(array $data): void {
     $job = new JobEntity;
@@ -129,10 +124,7 @@ class Job {
   
   /**
    * Edit specified job
-   * 
-   * @param int $id Job's id
-   * @param array $data
-   * @return void
+   *
    * @throws JobNotFoundException
    */
   function editJob(int $id, array $data): void {
@@ -149,9 +141,7 @@ class Job {
   
   /**
    * Start new job
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws AlreadyWorkingException
    * @throws JobNotFoundException
@@ -242,10 +232,6 @@ class Job {
   
   /**
    * Get result message
-   * 
-   * @param int $job
-   * @param bool $success
-   * @return string
    */
   function getResultMessage(int $job, bool $success): string {
     $messages = $this->orm->jobMessages->findByJobAndSuccess($job, $success);
@@ -269,9 +255,6 @@ class Job {
   
   /**
    * Calculate success rate for job
-   * 
-   * @param UserJobEntity $job
-   * @return int
    */
   function calculateSuccessRate(UserJobEntity $job): int {
     $successRate = self::BASE_SUCCESS_RATE;
@@ -281,8 +264,7 @@ class Job {
   
   /**
    * Do one operation in job
-   * 
-   * @return \stdClass Results
+   *
    * @throws AuthenticationNeededException
    * @throws NotWorkingException
    * @throws CannotWorkException
@@ -311,9 +293,8 @@ class Job {
   }
   
   /**
-   * Check whetever the use is currently working
-   * 
-   * @return bool
+   * Check whether the use is currently working
+   *
    * @throws AuthenticationNeededException
    */
   function isWorking(): bool {
@@ -329,8 +310,7 @@ class Job {
   
   /**
    * Get user's current job
-   * 
-   * @return UserJobEntity
+   *
    * @throws AuthenticationNeededException
    * @throws NotWorkingException
    */
@@ -347,9 +327,6 @@ class Job {
   
   /**
    * Parse job's help text
-   * 
-   * @param UserJobEntity $job
-   * @return string   
    */
   function parseJobHelp(UserJobEntity $job): string {
     $oldCount = $job->count;
@@ -362,9 +339,8 @@ class Job {
   }
   
   /**
-   * Check whetever user can work now
-   * 
-   * @return bool
+   * Check whether user can work now
+   *
    * @throws AuthenticationNeededException
    * @throws NotWorkingException
    */
@@ -399,9 +375,7 @@ class Job {
   
   /**
    * Get specified job message
-   * 
-   * @param int $id
-   * @return JobMessageEntity
+   *
    * @throws JobMessageNotFoundException
    */
   function getMessage(int $id): JobMessageEntity {
@@ -414,9 +388,6 @@ class Job {
   
   /**
    * Add new job message
-   * 
-   * @param array $data
-   * @return void
    */
   function addMessage(array $data): void {
     $message = new JobMessageEntity;
@@ -432,10 +403,6 @@ class Job {
   
   /**
    * Edit specified job message
-   * 
-   * @param int $id Message's id
-   * @param array $data
-   * @return void
    */
   function editMessage(int $id, array $data): void {
     $message = $this->orm->jobMessages->getById($id);
@@ -450,9 +417,7 @@ class Job {
   
   /**
    * Remove specified job message
-   * 
-   * @param int $id
-   * @return int
+   *
    * @throws JobMessageNotFoundException
    */
   function deleteMessage(int $id): int {
@@ -467,11 +432,6 @@ class Job {
   
   /**
    * Calculate income from user's jobs from a month
-   * 
-   * @param int $userId
-   * @param int $month
-   * @param int $year
-   * @return int
    */
   function calculateMonthJobIncome(int $userId = NULL, int $month = NULL, int $year = NULL): int {
     $income = 0;

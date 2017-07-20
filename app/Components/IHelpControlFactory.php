@@ -2,7 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IHelpControlFactory {
-  /** @return HelpControl */
-  function create();
+  function create(): HelpControl;
 }
 ?>

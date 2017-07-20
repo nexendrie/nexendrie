@@ -21,10 +21,6 @@ class BanUserFormFactory {
     $this->orm = $orm;
   }
   
-  /**
-   * @param int $userId
-   * @return Form
-   */
   function create(int $userId): Form {
     $this->userId = $userId;
     $form = new Form;
@@ -39,11 +35,6 @@ class BanUserFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     $user = $this->orm->users->getById($this->userId);
     $user->banned = true;

@@ -7,9 +7,8 @@ class Arrays {
   /**
    * @author jimpoz jimpoz@jimpoz.com
    * @license http://creativecommons.org/licenses/by/3.0/ CC-BY-3.0
-   * @return array
    */
-  static function orderby() {
+  static function orderby(): array {
     $args = func_get_args();
     $data = array_shift($args);
     foreach ($args as $n => $field) {

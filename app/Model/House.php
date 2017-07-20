@@ -29,9 +29,6 @@ class House {
   
   /**
    * Get specified user's house
-   * 
-   * @param int $user
-   * @return HouseEntity|NULL
    */
   function getUserHouse(int $user = NULL): ?HouseEntity {
     return $this->orm->houses->getByOwner($user ?? $this->user->id);
@@ -39,8 +36,7 @@ class House {
   
   /**
    * Buy a house
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotBuyMoreHousesException
    * @throws CannotBuyHouseException
@@ -67,9 +63,8 @@ class House {
   }
   
   /**
-   * Check whetever the user can upgrade house
-   * 
-   * @return bool
+   * Check whether the user can upgrade house
+   *
    * @throws AuthenticationNeededException
    */
   function canUpgrade(): bool {
@@ -87,8 +82,7 @@ class House {
   
   /**
    * Upgrade house
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotUpgradeHouseException
    * @throws InsufficientFundsException
@@ -109,9 +103,8 @@ class House {
   }
   
   /**
-   * Check whetever the user can repair house
-   * 
-   * @return bool
+   * Check whether the user can repair house
+   *
    * @throws AuthenticationNeededException
    */
   function canRepair(): bool {
@@ -129,8 +122,7 @@ class House {
   
   /**
    * Repair house
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotRepairHouseException
    * @throws InsufficientFundsException
@@ -151,9 +143,8 @@ class House {
   }
   
   /**
-   * Check whetever the user can upgrade brewery
-   * 
-   * @return bool
+   * Check whether the user can upgrade brewery
+   *
    * @throws AuthenticationNeededException
    */
   function canUpgradeBrewery(): bool {
@@ -194,9 +185,8 @@ class House {
   }
   
   /**
-   * Check whetever the user can produce beer
-   * 
-   * @return bool
+   * Check whether the user can produce beer
+   *
    * @throws AuthenticationNeededException
    */
   function canProduceBeer(): bool {

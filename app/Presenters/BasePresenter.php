@@ -20,29 +20,20 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   
   /**
    * Set website's style
-   * 
-   * @return void
    */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     if($this->user->isLoggedIn()) {
       $this->template->style = $this->user->identity->style;
     }
   }
   
-  /**
-   * @return void
-   */
-  protected function beforeRender() {
+  protected function beforeRender(): void {
     $this->template->versionSuffix = $this->sr->settings["site"]["versionSuffix"];
   }
   
   /**
    * The user must have specified rights to see a page
-   * 
-   * @param string $resource
-   * @param string $action
-   * @return void
    */
   protected function requiresPermissions(string $resource, string $action): void {
     if(!$this->user->isAllowed($resource, $action)) {
@@ -51,10 +42,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     }
   }
   
-  /**
-   * @param IMenuControlFactory $factory
-   * @return MenuControl
-   */
   protected function createComponentMenu(IMenuControlFactory $factory): MenuControl {
     return $factory->create();
   }

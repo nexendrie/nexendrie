@@ -34,8 +34,7 @@ class Property {
   
   /**
    * Show user's budget
-   * 
-   * @return array
+   *
    * @throws AuthenticationNeededException
    */
   function budget(): array {

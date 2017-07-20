@@ -23,9 +23,6 @@ class Elections {
   
   /**
    * Get number of councillors for the town
-   * 
-   * @param int $town
-   * @return int
    */
   function getNumberOfCouncillors(int $town): int {
     /** @var int */

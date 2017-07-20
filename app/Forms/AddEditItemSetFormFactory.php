@@ -31,9 +31,6 @@ class AddEditItemSetFormFactory {
     return $this->orm->items->findHelmets()->fetchPairs("id", "name");
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")

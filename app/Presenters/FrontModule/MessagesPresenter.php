@@ -17,31 +17,20 @@ class MessagesPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Messenger @autowire */
   protected $model;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->requiresLogin();
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->template->messages = $this->model->inbox();
   }
   
-  /**
-   * @return void
-   */
   function renderSent(): void {
     $this->template->messages = $this->model->outbox();
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function renderView(int $id): void {
@@ -62,10 +51,6 @@ class MessagesPresenter extends BasePresenter {
     
   }
   
-  /**
-   * @param NewMessageFormFactory $factory
-   * @return Form
-   */
   protected function createComponentNewMessageForm(NewMessageFormFactory $factory): Form {
     $form = $factory->create();
     try {

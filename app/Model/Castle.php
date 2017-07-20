@@ -29,9 +29,6 @@ class Castle {
     $this->buildingPrice = (int) $sr->settings["fees"]["buildCastle"];
   }
   
-  /**
-   * @return int
-   */
   function getBuildingPrice(): int {
     return $this->buildingPrice;
   }
@@ -47,9 +44,7 @@ class Castle {
   
   /**
    * Get details of specified castle
-   * 
-   * @param int $id
-   * @return CastleEntity
+   *
    * @throws CastleNotFoundException
    */
   function getCastle(int $id): CastleEntity {
@@ -61,11 +56,7 @@ class Castle {
   }
   
   /**
-   * Check whetever a name can be used
-   * 
-   * @param string $name
-   * @param int $id
-   * @return bool
+   * Check whether a name can be used
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
     $castle = $this->orm->castles->getByName($name);
@@ -77,10 +68,7 @@ class Castle {
   
   /**
    * Edit specified castle
-   * 
-   * @param int $id
-   * @param array $data
-   * @return void
+   *
    * @throws CastleNotFoundException
    * @throws CastleNameInUseException
    */
@@ -101,9 +89,7 @@ class Castle {
   
   /**
    * Build castle
-   * 
-   * @param array $data
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotBuildCastleException
    * @throws CannotBuildMoreCastlesException
@@ -137,18 +123,14 @@ class Castle {
   
   /**
    * Get specified user's castle
-   * 
-   * @param int $user
-   * @return CastleEntity|NULL
    */
   function getUserCastle(int $user = NULL): ?CastleEntity {
     return $this->orm->castles->getByOwner($user ?? $this->user->id);
   }
   
   /**
-   * Check whetever the user can upgrade castle
-   * 
-   * @return bool
+   * Check whether the user can upgrade castle
+   *
    * @throws AuthenticationNeededException
    */
   function canUpgrade(): bool {
@@ -166,8 +148,7 @@ class Castle {
   
   /**
    * Upgrade castle
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotUpgradeCastleException
    * @throws InsufficientFundsException
@@ -188,9 +169,8 @@ class Castle {
   }
   
   /**
-   * Check whetever the user can repair castle
-   * 
-   * @return bool
+   * Check whether the user can repair castle
+   *
    * @throws AuthenticationNeededException
    */
   function canRepair(): bool {
@@ -208,8 +188,7 @@ class Castle {
   
   /**
    * Repair castle
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotRepairCastleException
    * @throws InsufficientFundsException

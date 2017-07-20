@@ -24,10 +24,6 @@ class JobMessagesPresenter extends BasePresenter {
   /** @var JobEntity */
   private $job;
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function actionList(int $id): void {
     $this->requiresPermissions("content", "list");
     try {
@@ -38,10 +34,6 @@ class JobMessagesPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function actionAdd(int $id): void {
     $this->requiresPermissions("content", "add");
     try {
@@ -52,10 +44,6 @@ class JobMessagesPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditJobMessageFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddJobMessageForm(AddEditJobMessageFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -68,8 +56,6 @@ class JobMessagesPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -81,10 +67,6 @@ class JobMessagesPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditJobMessageFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditJobMessageForm(AddEditJobMessageFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->message->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
@@ -96,8 +78,6 @@ class JobMessagesPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionDelete(int $id): void {

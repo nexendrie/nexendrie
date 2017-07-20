@@ -12,10 +12,7 @@ use Nexendrie\Components\IPrisonControlFactory,
  * @author Jakub Konečný
  */
 class PrisonPresenter extends BasePresenter {
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     if(!$this->user->isLoggedIn()) {
       $this->redirect("Homepage:");
@@ -24,10 +21,6 @@ class PrisonPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param IPrisonControlFactory $factory
-   * @return PrisonControl
-   */
   protected function createComponentPrison(IPrisonControlFactory $factory): PrisonControl {
     return $factory->create();
   }

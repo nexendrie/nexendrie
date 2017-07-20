@@ -23,11 +23,6 @@ class Market {
   
   use \Nette\SmartObject;
   
-  /**
-   * @param \Nexendrie\Model\Events $eventsModel
-   * @param \Nexendrie\Orm\Model $orm
-   * @param \Nette\Security\User $user
-   */
   function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->eventsModel = $eventsModel;
     $this->orm = $orm;
@@ -53,10 +48,7 @@ class Market {
   }
   
   /**
-   * Check whetever specified shop exists
-   * 
-   * @param int $id Shop's id
-   * @return bool
+   * Check whether specified shop exists
    */
   function exists(int $id): bool {
     return (bool) $this->orm->shops->getById($id);
@@ -64,9 +56,7 @@ class Market {
   
   /**
    * Get specified shop's details
-   * 
-   * @param int $id Shop's id
-   * @return ShopEntity
+   *
    * @throws ShopNotFoundException
    */
   function getShop(int $id): ShopEntity {
@@ -79,10 +69,6 @@ class Market {
   
   /**
    * Edit specified shop
-   * 
-   * @param int $id
-   * @param array $data
-   * @return void
    */
   function editShop(int $id, array $data): void {
     $shop = $this->orm->shops->getById($id);
@@ -94,9 +80,6 @@ class Market {
   
   /**
    * Add new shop
-   * 
-   * @param array $data
-   * @return void
    */
   function addShop(array $data): void {
     $shop = new ShopEntity;
@@ -108,9 +91,7 @@ class Market {
   
   /**
    * Get specified item's details
-   * 
-   * @param int $id
-   * @return ItemEntity
+   *
    * @throws ItemNotFoundException
    */
   function getItem(int $id): ItemEntity {
@@ -123,10 +104,6 @@ class Market {
   
   /**
    * Edit specified item
-   * 
-   * @param int $id
-   * @param array $data
-   * @return void
    */
   function editItem(int $id, array $data): void {
     $item = $this->orm->items->getById($id);
@@ -138,9 +115,6 @@ class Market {
   
   /**
    * Add new item
-   * 
-   * @param array $data
-   * @return void
    */
   function addItem(array $data): void {
     $item = new ItemEntity;
@@ -152,9 +126,6 @@ class Market {
   }
   
   /**
-   * @param int $item
-   * @param int $shop  
-   * @return void
    * @throws AuthenticationNeededException
    * @throws ItemNotFoundException
    * @throws WrongShopException

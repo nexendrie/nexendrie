@@ -74,18 +74,10 @@ class SettingsRepository {
     $this->settings = $this->validateSettings($settings);
   }
   
-  /**
-   * @param string $value
-   * @return bool
-   */
   protected function validateStyle($value): bool {
     return array_key_exists($value, UserSettingsFormFactory::getStylesList());
   }
   
-  /**
-   * @param int $value
-   * @return bool
-   */
   protected function validatePercent($value): bool {
     if(!is_int($value)) {
       return false;
@@ -95,10 +87,6 @@ class SettingsRepository {
     return true;
   }
   
-  /**
-   * @param int $value
-   * @return bool
-   */
   protected function validateMoney($value): bool {
     if(!is_int($value)) {
       return false;
@@ -108,10 +96,6 @@ class SettingsRepository {
     return true;
   }
   
-  /**
-   * @param int $value
-   * @return bool
-   */
   protected function validateFee($value): bool {
     if(!is_int($value)) {
       return false;
@@ -123,10 +107,6 @@ class SettingsRepository {
   
   /**
    * Validate section $name of config
-   *
-   * @param string $name
-   * @param array $config
-   * @return array
    */
   protected function validateSection(string $name, array $config): array {
     $values = Arrays::get($config, $name, []);
@@ -144,10 +124,6 @@ class SettingsRepository {
     return $resolver->resolve($values);
   }
   
-  /**
-   * @param array $settings
-   * @return array
-   */
   protected function validateSettings(array $settings): array {
     $return = [];
     $sections = array_keys($this->defaults);
@@ -157,9 +133,6 @@ class SettingsRepository {
     return $return;
   }
   
-  /**
-   * @return array
-   */
   function getSettings(): array {
     return $this->settings;
   }

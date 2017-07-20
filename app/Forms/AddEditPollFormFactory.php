@@ -11,9 +11,6 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 class AddEditPollFormFactory {
-  /**
-   * @return \Nette\Application\UI\Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("question", "Otázka:")

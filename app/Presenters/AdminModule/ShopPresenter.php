@@ -20,8 +20,6 @@ class ShopPresenter extends BasePresenter {
   private $shop;
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -33,17 +31,10 @@ class ShopPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
-  /**
-   * @param AddEditShopFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddShopForm(AddEditShopFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -54,10 +45,6 @@ class ShopPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @param AddEditShopFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditShopForm(AddEditShopFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->shop->toArray());

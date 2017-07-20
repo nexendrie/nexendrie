@@ -25,9 +25,6 @@ class AddEditJobFormFactory {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")

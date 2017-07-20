@@ -19,16 +19,10 @@ class AddEditItemFormFactory {
     $this->orm = $orm;
   }
   
-  /**
-   * @return array
-   */
   protected function getShops(): array {
     return $this->orm->shops->findAll()->fetchPairs("id", "name");
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")

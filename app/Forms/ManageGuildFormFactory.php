@@ -32,10 +32,6 @@ class ManageGuildFormFactory {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   
-  /**
-   * @param int $guildId
-   * @return Form
-   */
   function create(int $guildId): Form {
     $form = new Form;
     $this->id = $guildId;
@@ -53,11 +49,6 @@ class ManageGuildFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->model->editGuild($this->id, $values);

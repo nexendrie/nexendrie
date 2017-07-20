@@ -31,9 +31,6 @@ class Order {
     $this->foundingPrice = $sr->settings["fees"]["foundOrder"];
   }
   
-  /**
-   * @return int
-   */
   function getFoundingPrice(): int {
     return $this->foundingPrice;
   }
@@ -49,9 +46,7 @@ class Order {
   
   /**
    * Get specified order
-   * 
-   * @param int $id
-   * @return OrderEntity
+   *
    * @throws OrderNotFoundException
    */
   function getOrder(int $id): OrderEntity {
@@ -63,10 +58,8 @@ class Order {
   }
   
   /**
-   * Check whetever a name can be used
-   * 
-   * @param string $name
-   * @param int $id
+   * Check whether a name can be used
+   *
    * @return bool
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
@@ -76,10 +69,7 @@ class Order {
   
   /**
    * Edit specified order
-   * 
-   * @param int $id
-   * @param array $data
-   * @return void
+   *
    * @throws OrderNotFoundException
    * @throws OrderNameInUseException
    */
@@ -100,9 +90,6 @@ class Order {
   
   /**
    * Get specified user's order
-   * 
-   * @param int $uid
-   * @return OrderEntity|NULL
    */
   function getUserOrder(int $uid = NULL): ?OrderEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
@@ -110,9 +97,7 @@ class Order {
   }
   
   /**
-   * Check whetever the user can found an order
-   * 
-   * @return bool
+   * Check whether the user can found an order
    */
   function canFound(): bool {
     if(!$this->user->isLoggedIn()) {
@@ -131,9 +116,7 @@ class Order {
   
   /**
    * Found an order
-   * 
-   * @param array $data
-   * @return void
+   *
    * @throws CannotFoundOrderException
    * @throws OrderNameInUseException
    * @throws InsufficientFundsException
@@ -164,10 +147,6 @@ class Order {
     $this->orm->flush();
   }
   
-  /**
-   * @param int $baseIncome
-   * @return int
-   */
   function calculateOrderIncomeBonus(int $baseIncome): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
@@ -182,9 +161,7 @@ class Order {
   }
   
   /**
-   * Check whetever the user can join an order
-   * 
-   * @return bool
+   * Check whether the user can join an order
    */
   function canJoin(): bool {
     if(!$this->user->isLoggedIn()) {
@@ -199,9 +176,7 @@ class Order {
   
   /**
    * Join an order
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotJoinOrderException
    * @throws OrderNotFoundException
@@ -224,9 +199,8 @@ class Order {
   }
   
   /**
-   * Check whetever the user can leave order
-   * 
-   * @return bool
+   * Check whether the user can leave order
+   *
    * @throws AuthenticationNeededException
    */
   function canLeave(): bool {
@@ -242,8 +216,7 @@ class Order {
   
   /**
    * Leave order
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotLeaveOrderException
    */
@@ -260,9 +233,8 @@ class Order {
   }
   
   /**
-   * Check whetever the user can manage order
-   * 
-   * @return bool
+   * Check whether the user can manage order
+   *
    * @throws AuthenticationNeededException
    */
   function canManage(): bool {
@@ -277,9 +249,8 @@ class Order {
   }
   
   /**
-   * Check whetever the user can upgrade order
-   * 
-   * @return bool
+   * Check whether the user can upgrade order
+   *
    * @throws AuthenticationNeededException
    */
   function canUpgrade(): bool {
@@ -299,8 +270,7 @@ class Order {
   
   /**
    * Upgrade order
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws CannotUpgradeOrderException
    * @throws InsufficientFundsException
@@ -331,9 +301,6 @@ class Order {
     return $this->orm->users->findByOrder($order);
   }
   
-  /**
-   * @return int
-   */
   function getMaxRank(): int {
     static $rank = NULL;
     if(is_null($rank)) {
@@ -344,9 +311,7 @@ class Order {
   
   /**
    * Promote a user
-   * 
-   * @param int $userId User's id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws UserNotFoundException
@@ -375,9 +340,7 @@ class Order {
   
   /**
    * Demote a user
-   * 
-   * @param int $userId User's id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws UserNotFoundException
@@ -406,9 +369,7 @@ class Order {
   
   /**
    * Kick a user
-   * 
-   * @param int $userId User's id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    * @throws UserNotFoundException

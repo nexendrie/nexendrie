@@ -16,25 +16,16 @@ class ArticlePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Article @autowire */
   protected $model;
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->template->articles = $this->model->listOfArticles();
   }
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("article", "add");
   }
   
   /**
    * @todo redirect to the added article
-   * 
-   * @param AddEditArticleFormFactory $factory
-   * @return Form
    */
   protected function createComponentAddArticleForm(AddEditArticleFormFactory $factory): Form {
     $form = $factory->create();
@@ -47,8 +38,6 @@ class ArticlePresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -62,10 +51,6 @@ class ArticlePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditArticleFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditArticleForm(AddEditArticleFormFactory $factory): Form {
     $news = $this->model->view($this->getParameter("id"));
     $form = $factory->create();

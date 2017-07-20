@@ -12,18 +12,11 @@ use Nexendrie\Components\ITavernControlFactory,
  * @author Jakub Konečný
  */
 class TavernPresenter extends BasePresenter {
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->mustNotBeTavelling();
   }
   
-  /**
-   * @param ITavernControlFactory $factory
-   * @return TavernControl
-   */
   protected function createComponentTavern(ITavernControlFactory $factory): TavernControl {
     return $factory->create();
   }

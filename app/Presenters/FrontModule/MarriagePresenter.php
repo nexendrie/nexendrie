@@ -40,9 +40,6 @@ class MarriagePresenter extends BasePresenter {
   /** @var MarriageEntity */
   private $marriage;
   
-  /**
-   * @return void
-   */
   function actionDefault(): void {
     $partner = $this->profileModel->getPartner($this->user->id);
     $fiance = $this->profileModel->getFiance($this->user->id);
@@ -58,10 +55,6 @@ class MarriagePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function actionPropose(int $id): void {
     try {
       $this->model->proposeMarriage($id);
@@ -72,17 +65,12 @@ class MarriagePresenter extends BasePresenter {
     $this->redirect("Homepage:");
   }
   
-  /**
-   * @return void
-   */
   function renderProposals(): void {
     $this->requiresLogin();
     $this->template->proposals = $this->model->listOfProposals();
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionAccept(int $id): void {
@@ -102,8 +90,6 @@ class MarriagePresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionDecline(int $id): void {
@@ -123,8 +109,6 @@ class MarriagePresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionCeremony(int $id): void {
@@ -145,19 +129,12 @@ class MarriagePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param IWeddingControlFactory $factory
-   * @return WeddingControl
-   */
   protected function createComponentWedding(IWeddingControlFactory $factory): WeddingControl {
     $wedding = $factory->create();
     $wedding->marriage = $this->marriage;
     return $wedding;
   }
   
-  /**
-   * @return void
-   */
   function handleCancelWedding(): void {
     try {
       $this->model->cancelWedding();
@@ -173,9 +150,6 @@ class MarriagePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleFileForDivorce(): void {
     try {
       $this->model->fileForDivorce();
@@ -191,9 +165,6 @@ class MarriagePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleAcceptDivorce(): void {
     try {
       $this->model->acceptDivorce();
@@ -209,9 +180,6 @@ class MarriagePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleDeclineDivorce(): void {
     try {
       $this->model->declineDivorce();
@@ -227,9 +195,6 @@ class MarriagePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleTakeBackDivorce(): void {
     try {
       $this->model->takeBackDivorce();
@@ -249,10 +214,6 @@ class MarriagePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param int $item
-   * @return void
-   */
   function handleBoostIntimacy(int $item): void {
     try {
       $this->inventoryModel->boostIntimacy($item);
@@ -272,10 +233,6 @@ class MarriagePresenter extends BasePresenter {
     $this->redirect("default");
   }
   
-  /**
-   * @param ChangeWeddingTermFormFactory $factory
-   * @return Form
-   */
   protected function createComponentChangeWeddingTermForm(ChangeWeddingTermFormFactory $factory): Form {
     $form = $factory->create($this->marriage);
     $form->onSuccess[] = function() {

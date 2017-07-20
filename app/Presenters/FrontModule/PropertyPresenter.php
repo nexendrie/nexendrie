@@ -44,18 +44,12 @@ class PropertyPresenter extends BasePresenter {
   /** @var TownEntity */
   private $town;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeBanned();
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $data = $this->inventoryModel->possessions();
     $this->template->money = $data["money"];
@@ -64,10 +58,6 @@ class PropertyPresenter extends BasePresenter {
     $this->template->loan = $data["loan"];
   }
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function actionTown(int $id): void {
     try {
       $this->town = $this->townModel->get($id);
@@ -81,19 +71,11 @@ class PropertyPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function renderTown(int $id): void {
     $this->template->town = $this->town;
     $this->template->mayor = $this->townModel->getMayor($this->town->id);
   }
   
-  /**
-   * @param ManageTownFormFactory $factory
-   * @return Form
-   */
   protected function createComponentManageTownForm(ManageTownFormFactory $factory): Form {
     $form = $factory->create($this->town->id);
     $form->onSuccess[] = function(Form $form) {
@@ -110,9 +92,6 @@ class PropertyPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @return void
-   */
   function renderBudget(): void {
     $budget = $this->model->budget();
     $this->template->incomes = $this->localeModel->money(array_sum($budget["incomes"]));
@@ -127,17 +106,11 @@ class PropertyPresenter extends BasePresenter {
     $this->template->membershipFee = $this->localeModel->money($budget["expenses"]["membershipFee"]);
   }
   
-  /**
-   * @return void
-   */
   function renderEquipment(): void {
     $this->template->items = $this->inventoryModel->equipment();
     $this->template->currentSet = $this->inventoryModel->getUserItemSet($this->user->id);
   }
   
-  /**
-   * @return void
-   */
   function renderPotions(): void {
     $user = $this->userManager->get($this->user->id);
     $this->template->life = $user->life;
@@ -148,10 +121,6 @@ class PropertyPresenter extends BasePresenter {
     $this->template->maxLifeCombat = $combatLife["maxLife"];
   }
   
-  /**
-   * @param int $item
-   * @return void
-   */
   function handleEquip(int $item): void {
     try {
       $this->inventoryModel->equipItem($item);
@@ -168,10 +137,6 @@ class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  /**
-   * @param int $item
-   * @return void
-   */
   function handleUnequip(int $item): void {
     try {
       $this->inventoryModel->unequipItem($item);
@@ -186,10 +151,6 @@ class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  /**
-   * @param int $potion
-   * @return void
-   */
   function handleDrink(int $potion): void {
     try {
       $life = $this->inventoryModel->drinkPotion($potion);
@@ -206,10 +167,6 @@ class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  /**
-   * @param int $item
-   * @return void
-   */
   function handleSell(int $item): void {
     try {
       $price = $this->inventoryModel->sellItem($item);
@@ -224,10 +181,6 @@ class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  /**
-   * @param int $item
-   * @return void
-   */
   function handleUpgrade(int $item): void {
     try {
       $this->inventoryModel->upgradeItem($item);
@@ -246,10 +199,6 @@ class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  /**
-   * @param MakeCitizenFormFactory $factory
-   * @return Form
-   */
   protected function createComponentMakeCitizenForm(MakeCitizenFormFactory $factory): Form {
     $form = $factory->create($this->town->id);
     $form->onSuccess[] = function() {

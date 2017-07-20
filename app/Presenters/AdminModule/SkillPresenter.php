@@ -19,17 +19,10 @@ class SkillPresenter extends BasePresenter {
   /** @var SkillEntity */
   private $skill;
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
-  /**
-   * @param AddEditSkillFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddSkillForm(AddEditSkillFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -41,8 +34,6 @@ class SkillPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -54,10 +45,6 @@ class SkillPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditSkillFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditSkillForm(AddEditSkillFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->skill->toArray());

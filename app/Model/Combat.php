@@ -53,10 +53,6 @@ class Combat {
   
   /**
    * Calculate specified user's damage
-   * 
-   * @param UserEntity $user
-   * @param MountEntity $mount
-   * @return int
    */
   function calculateUserDamage(UserEntity $user, MountEntity $mount = NULL): int {
     $damage = 0;
@@ -82,10 +78,6 @@ class Combat {
   
   /**
    * Calculate specified user's armor
-   * 
-   * @param UserEntity $user
-   * @param MountEntity $mount
-   * @return int
    */
   function calculateUserArmor(UserEntity $user, MountEntity $mount = NULL) {
     $armorValue = 0;

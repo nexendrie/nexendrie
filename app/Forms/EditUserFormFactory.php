@@ -22,7 +22,6 @@ class EditUserFormFactory {
   protected $groupModel;
   /** @var Town */
   protected $townModel;
-  
   /** @var int */
   protected $uid;
   
@@ -35,9 +34,6 @@ class EditUserFormFactory {
     $this->townModel = $townModel;
   }
   
-  /**
-   * @return array
-   */
   protected function getListOfGroups(): array {
     $return = [];
     $groups = $this->groupModel->listOfGroups();
@@ -47,15 +43,11 @@ class EditUserFormFactory {
     return $return;
   }
   
-  /**
-   * @return array
-   */
   protected function getListOfTowns(): array {
     return $this->townModel->listOfTowns()->fetchPairs("id", "name");
   }
   
   /**
-   * @return array
    * @throws \Nette\ArgumentOutOfRangeException
    */
   protected function getDefaultValues(): array {
@@ -71,10 +63,6 @@ class EditUserFormFactory {
     ];
   }
   
-  /**
-   * @param int $uid
-   * @return Form
-   */
   function create(int $uid): Form {
     $form = new Form;
     $this->uid = $uid;
@@ -93,22 +81,12 @@ class EditUserFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function validate(Form $form, array $values): void {
     if($values["group"] == 0 AND $this->uid != 0) {
       $form->addError("Neplatná skupina.");
     }
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     $this->model->edit($this->uid, $values);
   }

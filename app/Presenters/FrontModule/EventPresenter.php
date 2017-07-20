@@ -15,8 +15,6 @@ class EventPresenter extends BasePresenter {
   protected $model;
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function renderView(int $id): void {

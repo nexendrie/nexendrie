@@ -24,9 +24,6 @@ class TavernControl extends \Nette\Application\UI\Control {
     $this->user = $user;
   }
   
-  /**
-   * @return void
-   */
   function render(): void {
     $this->template->setFile(__DIR__ . "/tavern.latte");
     if($this->user->isLoggedIn()) {
@@ -37,10 +34,6 @@ class TavernControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  /**
-   * @param int $mealId
-   * @return void
-   */
   function handleEat(int $mealId): void {
     try {
       $this->template->message = $this->model->buyMeal($mealId);

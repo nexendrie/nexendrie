@@ -47,9 +47,6 @@ class HelpControl extends BookControl {
     $this->pages[] = new BookPage("marriage", "Manželství");
   }
   
-  /**
-   * @return void
-   */
   function renderWork(): void {
     $this->template->jobs = [];
     $jobs = $this->orm->jobs->findAll()
@@ -68,9 +65,6 @@ class HelpControl extends BookControl {
     }
   }
   
-  /**
-   * @return void
-   */
   function renderAcademy(): void {
     $this->template->skills = $this->orm->skills->findAll()
       ->orderBy("type")
@@ -78,40 +72,25 @@ class HelpControl extends BookControl {
       ->orderBy("price");
   }
   
-  /**
-   * @return void
-   */
   function renderMonastery(): void {
     $this->template->maxLevel = MonasteryEntity::MAX_LEVEL;
   }
   
-  /**
-   * @return void
-   */
   function renderCastle(): void {
     $this->template->maxLevel = CastleEntity::MAX_LEVEL;
     $this->template->taxBonusPerLevel = $this->localeModel->money(CastleEntity::TAX_BONUS_PER_LEVEL);
   }
   
-  /**
-   * @return void
-   */
   function renderHouse(): void {
     $this->template->maxLevel = HouseEntity::MAX_LEVEL;
     $this->template->incomeBonusPerLevel = HouseEntity::INCOME_BONUS_PER_LEVEL;
   }
   
-  /**
-   * @return void
-   */
   function renderGuild(): void {
     $this->template->ranks = $this->orm->guildRanks->findAll();
     $this->template->maxLevel = GuildEntity::MAX_LEVEL;
   }
   
-  /**
-   * @return void
-   */
   function renderOrder(): void {
     $this->template->ranks = $this->orm->orderRanks->findAll();
     $this->template->maxLevel = OrderEntity::MAX_LEVEL;

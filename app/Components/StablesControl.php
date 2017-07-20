@@ -30,19 +30,12 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->user = $user;
   }
   
-  /**
-   * @return void
-   */
   function render(): void {
     $this->template->setFile(__DIR__ . "/stables.latte");
     $this->template->mounts = $this->orm->mounts->findByOwner($this->user->id);
     $this->template->render();
   }
   
-  /**
-   * @param int $mountId
-   * @return void
-   */
   function renderTrain(int $mountId): void {
     $this->template->setFile(__DIR__ . "/stablesTrain.latte");
     $this->template->mount = $this->orm->mounts->getById($mountId);
@@ -51,11 +44,7 @@ class StablesControl extends \Nette\Application\UI\Control {
   
   /**
    * Increase specified mount's life
-   * 
-   * @param int $mountId
-   * @param int $hp
-   * @param int $price
-   * @return void
+   *
    * @throws MountNotFoundException
    * @throws MountNotOwnedException
    * @throws InsufficientFundsException
@@ -80,10 +69,6 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->orm->mounts->persistAndFlush($mount);
   }
   
-  /**
-   * @param int $mountId
-   * @return void
-   */
   function handleCare(int $mountId): void {
     try {
       $this->increaseLife($mountId, 3, 4);
@@ -101,10 +86,6 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect("default");
   }
   
-  /**
-   * @param int $mountId
-   * @return void
-   */
   function handleFeed(int $mountId): void {
     try {
       $this->increaseLife($mountId, 10, 12);
@@ -124,10 +105,7 @@ class StablesControl extends \Nette\Application\UI\Control {
   
   /**
    * Train specified mount
-   * 
-   * @param int $mountId
-   * @param string $stat
-   * @return void
+   *
    * @throws MountNotFoundException
    * @throws MountNotOwnedException
    * @throws MountMaxTrainingLevelReachedException
@@ -159,10 +137,6 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->orm->mounts->persistAndFlush($mount);
   }
   
-  /**
-   * @param int $mount
-   * @return void
-   */
   function handleTrainDamage(int $mount): void {
     try {
       $this->train($mount, "damage");
@@ -181,10 +155,6 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect("default");
   }
   
-  /**
-   * @param int $mount
-   * @return void
-   */
   function handleTrainArmor(int $mount): void {
     try {
       $this->train($mount, "armor");

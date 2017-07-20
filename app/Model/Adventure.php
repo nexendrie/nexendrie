@@ -65,9 +65,7 @@ class Adventure {
   
   /**
    * Get specified adventure
-   *  
-   * @param int $id
-   * @return AdventureEntity
+   *
    * @throws AdventureNotFoundException
    */
   function get(int $id): AdventureEntity {
@@ -80,9 +78,6 @@ class Adventure {
   
   /**
    * Add new adventure
-   * 
-   * @param array $data
-   * @return void
    */
   function addAdventure(array $data): void {
     $adventure = new AdventureEntity;
@@ -94,10 +89,7 @@ class Adventure {
   
   /**
    * Edit adventure
-   * 
-   * @param int $id
-   * @param array $data
-   * @return void
+   *
    * @throws AdventureNotFoundException
    */
   function editAdventure(int $id, array $data): void {
@@ -114,9 +106,7 @@ class Adventure {
   
   /**
    * Get specified npc
-   * 
-   * @param int $id
-   * @return AdventureNpcEntity
+   *
    * @throws AdventureNpcNotFoundException
    */
   function getNpc(int $id): AdventureNpcEntity {
@@ -129,9 +119,6 @@ class Adventure {
   
   /**
    * Add new npc
-   * 
-   * @param array $data
-   * @return void
    */
   function addNpc(array $data): void {
     $npc = new AdventureNpcEntity;
@@ -144,10 +131,7 @@ class Adventure {
   
   /**
    * Edit specified npc
-   * 
-   * @param int $id
-   * @param array $data
-   * @return void
+   *
    * @throws AdventureNpcNotFoundException
    */
   function editNpc(int $id, array $data): void {
@@ -164,9 +148,7 @@ class Adventure {
   
   /**
    * Remove specified npc
-   * 
-   * @param int $id
-   * @return int
+   *
    * @throws AdventureNpcNotFoundException
    */
   function deleteNpc(int $id): int {
@@ -208,10 +190,7 @@ class Adventure {
   
   /**
    * Start an adventure
-   * 
-   * @param int $adventureId
-   * @param int $mountId
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws AlreadyOnAdventureException
    * @throws AdventureNotFoundException
@@ -259,8 +238,7 @@ class Adventure {
   
   /**
    * Get user's active adventure
-   * 
-   * @return UserAdventureEntity|NULL
+   *
    * @throws AuthenticationNeededException
    */
   function getCurrentAdventure(): ?UserAdventureEntity {
@@ -275,9 +253,6 @@ class Adventure {
   
   /**
    * Get next enemy for adventure
-   * 
-   * @param UserAdventureEntity $adventure
-   * @return AdventureNpcEntity|NULL
    */
   function getNextNpc(UserAdventureEntity $adventure): ?AdventureNpcEntity {
     if($adventure->progress >= 9) {
@@ -291,7 +266,7 @@ class Adventure {
    * 
    * @param AdventureNpcEntity $npc
    * @param MountEntity $mount  
-   * @return bool Whetever the user won
+   * @return bool Whether the user won
    */
   protected function fightNpc(AdventureNpcEntity $npc, MountEntity $mount): bool {
     $finished = $result = false;
@@ -319,11 +294,6 @@ class Adventure {
     return $result;
   }
   
-  /**
-   * @param UserAdventureEntity $adventure
-   * @param AdventureNpcEntity $enemy
-   * @return void
-   */
   protected function saveVictory(UserAdventureEntity $adventure, AdventureNpcEntity $enemy): void {
     $reward = $enemy->reward;
     $reward += $this->eventsModel->calculateAdventuresBonus($reward);
@@ -336,8 +306,7 @@ class Adventure {
   
   /**
    * Fight next enemy
-   * 
-   * @return array
+   *
    * @throws AuthenticationNeededException
    * @throws NotOnAdventureException
    * @throws NoEnemyRemainException
@@ -368,8 +337,7 @@ class Adventure {
   
   /**
    * Finish adventure
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws NotOnAdventureException
    * @throws NotAllEnemiesDefeateException
@@ -398,11 +366,6 @@ class Adventure {
   
   /**
    * Calculate income from user's adventures from a month
-   * 
-   * @param int $user
-   * @param int $month
-   * @param int $year
-   * @return int
    */
   function calculateMonthAdventuresIncome(int $user = NULL, int $month = NULL, int $year = NULL): int {
     $income = 0;
@@ -414,7 +377,6 @@ class Adventure {
   }
   
   /**
-   * @return bool
    * @throws AuthenticationNeededException
    */
   function canDoAdventure(): bool {

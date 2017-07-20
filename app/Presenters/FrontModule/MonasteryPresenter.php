@@ -30,19 +30,13 @@ class MonasteryPresenter extends BasePresenter {
   /** @var int*/
   private $monasteryId;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     if($this->action != "detail" AND $this->action != "list") {
       $this->requiresLogin();
     }
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     try {
       $this->template->monastery = $this->model->getByUser();
@@ -57,17 +51,12 @@ class MonasteryPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function renderList(): void {
     $this->template->monasteries = $this->model->listOfMonasteries();
     $this->template->canJoin = $this->model->canJoin();
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function renderDetail(int $id): void {
@@ -78,9 +67,6 @@ class MonasteryPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionBuild(): void {
     if(!$this->model->canBuild()) {
       $this->flashMessage("Nemůžeš postavit klášter.");
@@ -89,10 +75,6 @@ class MonasteryPresenter extends BasePresenter {
     $this->template->buildingPrice = $this->localeModel->money($this->model->buildingPrice);
   }
   
-  /**
-   * @param BuildMonasteryFormFactory $factory
-   * @return Form
-   */
   protected function createComponentBuildMonasteryForm(BuildMonasteryFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[]= function(Form $form) {
@@ -103,8 +85,6 @@ class MonasteryPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionJoin(int $id): void {
@@ -124,9 +104,6 @@ class MonasteryPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionLeave(): void {
     try {
       $this->model->leave();
@@ -139,9 +116,6 @@ class MonasteryPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionPray(): void {
     try {
       $this->model->pray();
@@ -153,10 +127,6 @@ class MonasteryPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param MonasteryDonateFormFactory $factory
-   * @return Form
-   */
   protected function createComponentMonasteryDonateForm(MonasteryDonateFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form) {
@@ -165,9 +135,6 @@ class MonasteryPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @return void
-   */
   function actionManage(): void {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat klášter.");
@@ -178,10 +145,6 @@ class MonasteryPresenter extends BasePresenter {
     $this->template->canUpgrade = $this->model->canUpgrade();
   }
   
-  /**
-   * @param ManageMonasteryFormFactory $factory
-   * @return Form
-   */
   protected function createComponentManageMonasteryForm(ManageMonasteryFormFactory $factory): Form {
     $form = $factory->create($this->monasteryId);
     $form->onSuccess[] = function() {
@@ -190,9 +153,6 @@ class MonasteryPresenter extends BasePresenter {
     return $form;
   }
   
-  /**
-   * @return void
-   */
   function handleUpgrade(): void {
     try {
       $this->model->upgrade();
@@ -207,9 +167,6 @@ class MonasteryPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleRepair(): void {
     try {
       $this->model->repair();

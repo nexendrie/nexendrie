@@ -18,30 +18,18 @@ class ChroniclePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Marriage @autowire */
   protected $marriagesModel;
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->template->articles = $this->model->articles();
   }
   
-  /**
-   * @return void
-   */
   function renderCrimes(): void {
     $this->template->crimes = $this->model->crimes();
   }
   
-  /**
-   * @return void
-   */
   function renderMarriages(): void {
     $this->template->marriages = $this->marriagesModel->listOfMarriages();
   }
   
-  /**
-   * @return Calendar
-   */
   protected function createComponentEventsCalendar(): Calendar {
     $calendar = new Calendar;
     $calendar->language = Calendar::LANG_CZ;

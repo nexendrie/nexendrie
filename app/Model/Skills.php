@@ -47,9 +47,6 @@ class Skills {
   
   /**
    * Add new skill
-   * 
-   * @param array $data
-   * @return void
    */
   function add(array $data): void {
     $skill = new SkillEntity;
@@ -61,10 +58,7 @@ class Skills {
   
   /**
    * Edit specified skill
-   * 
-   * @param int $id Skill's id
-   * @param array $data
-   * @return void
+   *
    * @throws SkillNotFoundException
    */
   function edit(int $id, array $data): void {
@@ -81,9 +75,7 @@ class Skills {
   
   /**
    * Get details of specified skill
-   * 
-   * @param int $id
-   * @return SkillEntity
+   *
    * @throws SkillNotFoundException
    */
   function get(int $id): SkillEntity {
@@ -95,8 +87,6 @@ class Skills {
   }
   
   /**
-   * @param int $skill
-   * @return UserSkillEntity|NULL
    * @throws AuthenticationNeededException
    */
   function getUserSkill(int $skill): ?UserSkillEntity {
@@ -108,11 +98,6 @@ class Skills {
   
   /**
    * Calculate price of learning of next level
-   * 
-   * @param int $basePrice
-   * @param int $newLevel
-   * @param int $maxLevel
-   * @return int
    */
   function calculateLearningPrice(int $basePrice, int $newLevel, int $maxLevel = 5): int {
     if($newLevel === 1) {
@@ -128,9 +113,7 @@ class Skills {
   
   /**
    * Learn new/improve existing skill
-   * 
-   * @param int $id Skill's id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws SkillNotFoundException
    * @throws SkillMaxLevelReachedException
@@ -170,9 +153,7 @@ class Skills {
   
   /**
    * Get level of user's specified skill
-   * 
-   * @param int $skillId
-   * @return int
+   *
    * @throws AuthenticationNeededException
    */
   function getLevelOfSkill(int $skillId): int {
@@ -189,10 +170,7 @@ class Skills {
   
   /**
    * Calculate bonus income from skill level
-   * 
-   * @param int $baseIncome
-   * @param int $skillId
-   * @return int
+   *
    * @throws AuthenticationNeededException
    */
   function calculateSkillIncomeBonus(int $baseIncome, int $skillId): int {
@@ -210,9 +188,7 @@ class Skills {
   
   /**
    * Calculate bonus success rate from skill level
-   * 
-   * @param int $skillId
-   * @return int
+   *
    * @throws AuthenticationNeededException
    */
   function calculateSkillSuccessBonus(int $skillId): int {

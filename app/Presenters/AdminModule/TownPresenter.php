@@ -20,17 +20,10 @@ class TownPresenter extends BasePresenter {
   /** @var TownEntity */
   private $town;
   
-  /**
-   * @return void
-   */
   function actionAdd(): void {
     $this->requiresPermissions("content", "add");
   }
   
-  /**
-   * @param AddEditTownFormFactory $factory
-   * @return Form
-   */
   protected function createComponentAddTownForm(AddEditTownFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
@@ -42,8 +35,6 @@ class TownPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionEdit(int $id): void {
@@ -55,10 +46,6 @@ class TownPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param AddEditTownFormFactory $factory
-   * @return Form
-   */
   protected function createComponentEditTownForm(AddEditTownFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->town->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));

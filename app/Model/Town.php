@@ -30,9 +30,7 @@ class Town {
   
   /**
    * Get specified town
-   * 
-   * @param int $id Town's id
-   * @return TownEntity
+   *
    * @throws TownNotFoundException
    */
   function get(int $id): TownEntity {
@@ -54,9 +52,6 @@ class Town {
   
   /**
    * Add new town
-   * 
-   * @param array $data
-   * @return void
    */
   function add(array $data): void {
     $town = new TownEntity;
@@ -69,10 +64,7 @@ class Town {
   
   /**
    * Edit specified town
-   * 
-   * @param int $id Town's id
-   * @param array $data
-   * @return void
+   *
    * @throws TownNotFoundException
    */
   function edit(int $id, array $data): void {
@@ -96,9 +88,7 @@ class Town {
   
   /**
    * Buy specified mount
-   * 
-   * @param int $id Mount's id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws TownNotFoundException
    * @throws TownNotOnSaleException
@@ -138,10 +128,6 @@ class Town {
     $this->orm->flush();
   }
   
-  /**
-   * @param int $town
-   * @return \Nexendrie\Orm\User|NULL
-   */
   function getMayor(int $town): ?\Nexendrie\Orm\User {
     return $this->orm->users->getTownMayor($town);
   }
@@ -159,10 +145,7 @@ class Town {
   
   /**
    * Appoint new mayor of a town
-   * 
-   * @param int $townId
-   * @param int $newMayorId
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws TownNotFoundException
    * @throws TownNotOwnedException
@@ -200,9 +183,8 @@ class Town {
   }
   
   /**
-   * Check whetever the user can move to different town (now)
-   * 
-   * @return bool
+   * Check whether the user can move to different town (now)
+   *
    * @throws AuthenticationNeededException
    */
   function canMove(): bool {
@@ -227,9 +209,7 @@ class Town {
   
   /**
    * Move to specified town
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws TownNotFoundException
    * @throws CannotMoveToSameTownException
@@ -257,9 +237,7 @@ class Town {
   
   /**
    * Found new town
-   * 
-   * @param array $data
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws InsufficientLevelForFoundTownException
    * @throws InsufficientFundsException
@@ -311,9 +289,7 @@ class Town {
   
   /**
    * Promote a peasant to citizen
-   * 
-   * @param int $id
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws UserNotFoundException
    * @throws UserDoesNotLiveInTheTownException

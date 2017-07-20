@@ -31,19 +31,13 @@ class OrderPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Locale @autowire */
   protected $localeModel;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     if($this->action != "detail" AND $this->action != "list") {
       $this->requiresLogin();
     }
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $order = $this->model->getUserOrder();
     if(!$order) {
@@ -55,17 +49,12 @@ class OrderPresenter extends BasePresenter {
     $this->template->canManage = $this->model->canManage();
   }
   
-  /**
-   * @return void
-   */
   function renderList(): void {
     $this->template->orders = $this->model->listOfOrders();
     $this->template->canJoin = $this->model->canJoin();
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function renderDetail(int $id): void {
@@ -76,9 +65,6 @@ class OrderPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionFound(): void {
     if(!$this->model->canFound()) {
       $this->flashMessage("Nemůžeš založit řád.");
@@ -87,10 +73,6 @@ class OrderPresenter extends BasePresenter {
     $this->template->foundingPrice = $this->localeModel->money($this->model->foundingPrice);
   }
   
-  /**
-   * @param FoundOrderFormFactory $factory
-   * @return Form
-   */
   protected function createComponentFoundOrderForm(FoundOrderFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function() {
@@ -101,8 +83,6 @@ class OrderPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionJoin(int $id): void {
@@ -119,9 +99,6 @@ class OrderPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionLeave(): void {
     try {
       $this->model->leave();
@@ -134,9 +111,6 @@ class OrderPresenter extends BasePresenter {
     }
   }
   
-  /**
-    * @return void
-    */
   function actionManage(): void {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat řád.");
@@ -146,10 +120,6 @@ class OrderPresenter extends BasePresenter {
       $this->template->canUpgrade = $this->model->canUpgrade();
   }
   
-  /**
-   * @param ManageOrderFormFactory $factory
-   * @return Form
-   */
   protected function createComponentManageOrderForm(ManageOrderFormFactory $factory): Form {
     $form = $factory->create($this->model->getUserOrder()->id);
     $form->onSuccess[] = function() {
@@ -157,10 +127,7 @@ class OrderPresenter extends BasePresenter {
     };
     return $form;
   }
-   
-   /**
-    * @return void
-    */
+  
   function handleUpgrade(): void {
     try {
       $this->model->upgrade();
@@ -175,9 +142,6 @@ class OrderPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionMembers(): void {
     if(!$this->model->canManage()) {
       $this->flashMessage("Nemůžeš spravovat řád.");
@@ -188,10 +152,6 @@ class OrderPresenter extends BasePresenter {
     $this->template->maxRank = $this->model->maxRank;
   }
   
-  /**
-   * @param int $user
-   * @return void
-   */
   function handlePromote(int $user): void {
     try {
       $this->model->promote($user);
@@ -215,10 +175,6 @@ class OrderPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param int $user
-   * @return void
-   */
   function handleDemote(int $user): void {
     try {
       $this->model->demote($user);
@@ -242,10 +198,6 @@ class OrderPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param int $user
-   * @return void
-   */
   function handleKick(int $user): void {
     try {
       $this->model->kick($user);

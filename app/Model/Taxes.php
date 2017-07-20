@@ -29,9 +29,6 @@ class Taxes {
   
   /**
    * Calculate tax
-   * 
-   * @param int $income
-   * @return int
    */
   function calculateTax(int $income): int {
     return (int) round(@($income / 100 * $this->taxRate));
@@ -59,11 +56,6 @@ class Taxes {
   
   /**
    * Calculate taxes for a town
-   * 
-   * @param \Nexendrie\Orm\Town $town
-   * @param int $month
-   * @param int $year
-   * @return \stdClass
    */
   function calculateTownTaxes(\Nexendrie\Orm\Town $town, int $month = NULL, int $year = NULL): \stdClass {
     $return = (object) [
@@ -96,9 +88,6 @@ class Taxes {
     return $return;
   }
   
-  /**
-   * @return array
-   */
   function payTaxes(): array {
     $return = [];
     $date = new \DateTime;

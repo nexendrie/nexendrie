@@ -23,34 +23,22 @@ class StablesPresenter extends BasePresenter {
   /** @var MountEntity */
   private $mount;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeBanned();
     $this->mustNotBeTavelling();
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $this->template->mounts = $this->model->listOfMounts($this->user->id);
   }
   
-  /**
-   * @param IStablesControlFactory $factory
-   * @return StablesControl
-   */
   protected function createComponentStables(IStablesControlFactory $factory): StablesControl {
     return $factory->create();
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionManage(int $id): void {
@@ -64,10 +52,6 @@ class StablesPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @param ManageMountFormFactory $factory
-   * @return Form
-   */
   protected function createComponentManageMountForm(ManageMountFormFactory $factory): Form {
     $form = $factory->create($this->mount->id);
     $form->onSuccess[] = function(Form $form) {
@@ -77,8 +61,6 @@ class StablesPresenter extends BasePresenter {
   }
   
   /**
-   * @param int $id
-   * @return void
    * @throws \Nette\Application\BadRequestException
    */
   function actionTrain(int $id): void {

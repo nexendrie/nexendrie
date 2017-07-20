@@ -2,7 +2,6 @@
 namespace Nexendrie\Components;
 
 interface IAdventureControlFactory {
-  /** @return AdventureControl */
-  function create();
+  function create(): AdventureControl;
 }
 ?>

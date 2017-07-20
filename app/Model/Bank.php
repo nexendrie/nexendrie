@@ -28,8 +28,7 @@ class Bank {
   
   /**
    * Get user's active loan
-   * 
-   * @return LoanEntity|NULL
+   *
    * @throws AuthenticationNeededException
    */
   function getActiveLoan(): ?LoanEntity {
@@ -39,9 +38,6 @@ class Bank {
     return $this->orm->loans->getActiveLoan($this->user->id);
   }
   
-  /**
-   * @return int
-   */
   function maxLoan(): int {
     if(!$this->user->isLoggedIn()) {
       return 0;
@@ -63,9 +59,6 @@ class Bank {
   
   /**
    * Calculate interest from a loan
-   * 
-   * @param LoanEntity $loan
-   * @return int
    */
   function calculateInterest(LoanEntity $loan): int {
     $start = $loan->taken;
@@ -77,9 +70,7 @@ class Bank {
   
   /**
    * Take a loan
-   * 
-   * @param int $amount
-   * @return void
+   *
    * @throws TooHighLoanException
    * @throws CannotTakeMoreLoansException
    */
@@ -99,8 +90,7 @@ class Bank {
   
   /**
    * Return loan
-   * 
-   * @return void
+   *
    * @throws AuthenticationNeededException
    * @throws NoLoanException
    * @throws InsufficientFundsException

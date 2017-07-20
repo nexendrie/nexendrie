@@ -24,10 +24,6 @@ class AppointMayorFormFactory {
     $this->model = $model;
   }
   
-  /**
-   * @param int $townId
-   * @return Form
-   */
   function create(int $townId): Form {
     $this->town = $this->model->get($townId);
     $form = new Form;
@@ -38,11 +34,6 @@ class AppointMayorFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->model->appointMayor($this->town->id, $values["mayor"]);

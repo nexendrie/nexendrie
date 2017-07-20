@@ -24,10 +24,7 @@ class HousePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Locale @autowire */
   protected $localeModel;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeTavelling();
@@ -36,9 +33,6 @@ class HousePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $house = $this->model->getUserHouse();
     if(!$house) {
@@ -51,9 +45,6 @@ class HousePresenter extends BasePresenter {
     $this->template->canProduceBeer = $this->model->canProduceBeer();
   }
   
-  /**
-   * @return void
-   */
   function actionBuy(): void {
     try {
       $this->model->buyHouse();
@@ -68,9 +59,6 @@ class HousePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleUpgrade(): void {
     try {
       $this->model->upgrade();
@@ -85,9 +73,6 @@ class HousePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleRepair(): void {
     try {
       $this->model->repair();
@@ -102,9 +87,6 @@ class HousePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleUpgradeBrewery(): void {
     try {
       $newLevel = $this->model->upgradeBrewery();
@@ -120,9 +102,6 @@ class HousePresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function handleProduceBeer(): void {
     try {
       $result = $this->model->produceBeer();

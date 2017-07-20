@@ -24,16 +24,10 @@ class FoundGuildFormFactory {
     $this->skillsModel = $skillsModel;
   }
   
-  /**
-   * @return array
-   */
   protected function getListOfSkills(): array {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")
@@ -48,11 +42,6 @@ class FoundGuildFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->model->found($values);

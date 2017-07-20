@@ -22,11 +22,6 @@ class AuthorizatorFactory {
   /** @var ORM */
   protected $orm;
   
-  /**
-   * AuthorizatorFactory constructor.
-   * @param Cache $cache
-   * @param ORM $orm
-   */
   function __construct(Cache $cache, ORM $orm) {
     $this->cache = $cache;
     $this->orm = $orm;
@@ -70,8 +65,6 @@ class AuthorizatorFactory {
   
   /**
   * Factory for Authorizator
-  *
-  * @return Permission
   */
   function create(): Permission {
     $permission = new Permission;

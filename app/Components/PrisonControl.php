@@ -26,10 +26,6 @@ class PrisonControl extends \Nette\Application\UI\Control {
     $this->user = $user;
   }
   
-  /**
-   * @param Punishment $punishment
-   * @return bool
-   */
   protected function canWork(Punishment $punishment): bool {
     if(is_null($punishment->lastAction)) {
       return true;
@@ -39,9 +35,6 @@ class PrisonControl extends \Nette\Application\UI\Control {
     return false;
   }
   
-  /**
-   * @return void
-   */
   function render(): void {
     $this->template->setFile(__DIR__ . "/prison.latte");
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
@@ -62,9 +55,6 @@ class PrisonControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  /**
-   * @return void
-   */
   function handleWork(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     if(is_null($punishment)) {
@@ -97,9 +87,6 @@ class PrisonControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect("default");
   }
   
-  /**
-   * @return void
-   */
   function handleRelease(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     $release = false;

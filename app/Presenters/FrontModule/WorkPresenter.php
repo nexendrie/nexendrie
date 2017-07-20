@@ -22,28 +22,19 @@ class WorkPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Locale @autowire */
   protected $localeModel;
   
-  /**
-   * @return void
-   */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     $this->requiresLogin();
     $this->mustNotBeBanned();
     $this->mustNotBeTavelling();
   }
   
-  /**
-   * @return void
-   */
   function actionDefault(): void {
     if(!$this->model->isWorking()) {
       $this->redirect("offers");
     }
   }
   
-  /**
-   * @return void
-   */
   function renderDefault(): void {
     $job = $this->model->getCurrentJob();
     $this->template->jobName = $job->job->name;
@@ -66,9 +57,6 @@ class WorkPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionOffers(): void {
     if($this->model->isWorking()) {
       $this->flashMessage("Už pracuješ.");
@@ -76,17 +64,10 @@ class WorkPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function renderOffers(): void {
     $this->template->offers = $this->model->findAvailableJobs();
   }
   
-  /**
-   * @param int $id
-   * @return void
-   */
   function actionStart(int $id): void {
     try {
       $this->model->startJob($id);
@@ -103,9 +84,6 @@ class WorkPresenter extends BasePresenter {
     $this->redirect("default");
   }
   
-  /**
-   * @return void
-   */
   function actionFinish(): void {
     try {
       $rewards = $this->model->finishJob();
@@ -124,9 +102,6 @@ class WorkPresenter extends BasePresenter {
     }
   }
   
-  /**
-   * @return void
-   */
   function actionWork(): void {
     try {
       $result = $this->model->work();

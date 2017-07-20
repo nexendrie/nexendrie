@@ -27,9 +27,6 @@ class AddEditAdventureFormFactory {
     return $this->orm->events->findAll()->fetchPairs("id", "name");
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addText("name", "Jméno:")

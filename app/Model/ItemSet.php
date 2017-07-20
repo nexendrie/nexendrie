@@ -32,9 +32,7 @@ class ItemSet {
   
   /**
    * Get specified item set
-   *  
-   * @param int $id
-   * @return ItemSetEntity
+   *
    * @throws ItemSetNotFoundException
    */
   function get(int $id): ItemSetEntity {
@@ -47,9 +45,6 @@ class ItemSet {
   
   /**
    * Add new item set
-   * 
-   * @param array $data
-   * @return void
    */
   function add(array $data): void {
     $set = new ItemSetEntity;
@@ -62,10 +57,7 @@ class ItemSet {
   
   /**
    * Edit specified item set
-   * 
-   * @param int $id
-   * @param array $data
-   * @return void
+   *
    * @throws ItemSetNotFoundException
    */
   function edit(int $id, array $data): void {
@@ -82,8 +74,7 @@ class ItemSet {
   
   /**
    * Remove specified item set
-   * 
-   * @param int $id
+   *
    * @throws ItemSetNotFoundException
    */
   function delete(int $id): void {

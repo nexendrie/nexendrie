@@ -11,10 +11,8 @@ namespace Nexendrie\Presenters\AdminModule;
 abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   /**
    * Check if the user is logged in and if he/she can enter administration
-   * 
-   * @return void
    */
-  protected function startup() {
+  protected function startup(): void {
     parent::startup();
     if(!$this->user->isLoggedIn()) {
       $this->flashMessage("Pro přístup do administrace musíš být přihlášený.");

@@ -32,8 +32,6 @@ class UserSettingsFormFactory {
   
   /**
    * Gets list of styles
-   * 
-   * @return array
    */
   static function getStylesList(): array {
     $styles = [];
@@ -48,9 +46,6 @@ class UserSettingsFormFactory {
     return $styles;
   }
   
-  /**
-   * @return Form
-   */
   function create(): Form {
     $form = new Form;
     $form->addGroup("Účet");
@@ -77,11 +72,6 @@ class UserSettingsFormFactory {
     return $form;
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function validate(Form $form, array $values): void {
     if(empty($values["password_old"]) AND !empty($values["password_new"])) {
       $form->addError("Musíš zadat současné heslo.");
@@ -91,11 +81,6 @@ class UserSettingsFormFactory {
     }
   }
   
-  /**
-   * @param Form $form
-   * @param array $values
-   * @return void
-   */
   function process(Form $form, array $values): void {
     try {
       $this->model->changeSettings($values);
