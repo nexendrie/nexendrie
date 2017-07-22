@@ -22,9 +22,9 @@ class ArticlesPresenter extends BasePresenter {
     if(!array_key_exists($category, ArticleEntity::getCategories())) {
       $this->redirect("Homepage:");
     } elseif($category === ArticleEntity::CATEGORY_NEWS) {
-      $this->redirect("Homepage:", ["page" => $this->getParameter("page")]);
+      $this->redirect("Homepage:", ["page" => $page]);
     } elseif($category === ArticleEntity::CATEGORY_CHRONICLE) {
-      $this->redirect("Chronicle:", ["page" => $this->getParameter("page")]);
+      $this->redirect("Chronicle:", ["page" => $page]);
     }
   }
   
