@@ -50,8 +50,8 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @throws InsufficientFundsException
    * @throws CareNotNeededException
    */
-  protected function increaseLife(int $mountId, int $hp, int $price): void {
-    $mount = $this->orm->mounts->getById($mountId);
+  protected function increaseLife(int $id, int $hp, int $price): void {
+    $mount = $this->orm->mounts->getById($id);
     if(!$mount) {
       throw new MountNotFoundException;
     }
@@ -69,9 +69,9 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->orm->mounts->persistAndFlush($mount);
   }
   
-  public function handleCare(int $mountId): void {
+  public function handleCare(int $mount): void {
     try {
-      $this->increaseLife($mountId, 3, 4);
+      $this->increaseLife($mount, 3, 4);
       $message = $this->localeModel->genderMessage("Očistil(a) jsi jezdecké zvíře.");
       $this->presenter->flashMessage($message);
     } catch(MountNotFoundException $e) {
@@ -86,9 +86,9 @@ class StablesControl extends \Nette\Application\UI\Control {
     $this->presenter->redirect("default");
   }
   
-  public function handleFeed(int $mountId): void {
+  public function handleFeed(int $mount): void {
     try {
-      $this->increaseLife($mountId, 10, 12);
+      $this->increaseLife($mount, 10, 12);
       $message = $this->localeModel->genderMessage("Nakrmil(a) jsi jezdecké zvíře.");
       $this->presenter->flashMessage($message);
     } catch(MountNotFoundException $e) {
@@ -112,12 +112,12 @@ class StablesControl extends \Nette\Application\UI\Control {
    * @throws MountInBadConditionException
    * @throws InsufficientFundsException
    */
-  protected function train(int $mountId, string $stat): void {
+  protected function train(int $id, string $stat): void {
     $stats = ["damage", "armor"];
     if(!in_array($stat, $stats)) {
       return;
     }
-    $mount = $this->orm->mounts->getById($mountId);
+    $mount = $this->orm->mounts->getById($id);
     if(!$mount) {
       throw new MountNotFoundException;
     } elseif($mount->owner->id != $this->user->id) {

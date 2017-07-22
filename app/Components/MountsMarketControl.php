@@ -32,9 +32,9 @@ class MountsMarketControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  public function handleBuy(int $mountId): void {
+  public function handleBuy(int $mount): void {
     try {
-      $this->model->buy($mountId);
+      $this->model->buy($mount);
       $this->presenter->flashMessage("Jezdecké zvíře koupeno.");
     } catch(MountNotFoundException $e) {
       $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");

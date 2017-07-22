@@ -50,9 +50,9 @@ class AcademyControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  public function handleLearn(int $skillId): void {
+  public function handleLearn(int $skill): void {
     try {
-      $this->model->learn($skillId);
+      $this->model->learn($skill);
       $message = $this->localeModel->genderMessage("Úspěšně jsi se naučil(a) dovednost.");
       $this->presenter->flashMessage($message);
     } catch(SkillNotFoundException $e) {

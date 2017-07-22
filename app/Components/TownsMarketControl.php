@@ -32,9 +32,9 @@ class TownsMarketControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  public function handleBuy(int $townId): void {
+  public function handleBuy(int $town): void {
     try {
-      $this->model->buy($townId);
+      $this->model->buy($town);
       $this->presenter->flashMessage("Město koupeno.");
     } catch(TownNotFoundException $e) {
       $this->presenter->flashMessage("Město nenalezeno.");

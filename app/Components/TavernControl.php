@@ -34,9 +34,9 @@ class TavernControl extends \Nette\Application\UI\Control {
     $this->template->render();
   }
   
-  public function handleEat(int $mealId): void {
+  public function handleEat(int $meal): void {
     try {
-      $this->template->message = $this->model->buyMeal($mealId);
+      $this->template->message = $this->model->buyMeal($meal);
     } catch(AuthenticationNeededException $e) {
       $this->flashMessage("Musíš být přihlášený");
     } catch(MealNotFoundException $e) {
