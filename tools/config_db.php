@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 use Nette\Neon\Neon,
     Nette\Utils\Arrays,
     Nextras\Dbal\Utils\FileImporter;

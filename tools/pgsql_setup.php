@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 use Nette\Neon\Neon;
 
 require __DIR__ . "/../vendor/autoload.php";
