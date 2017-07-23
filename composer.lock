@@ -2232,12 +2232,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "c126385e78d9cf1437982550fed9c6869a07b329"
+                "reference": "bcc1fba1cd165e7fd90ffb3aff71699747afc390"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/c126385e78d9cf1437982550fed9c6869a07b329",
-                "reference": "c126385e78d9cf1437982550fed9c6869a07b329",
+                "url": "https://api.github.com/repos/nette/tester/zipball/bcc1fba1cd165e7fd90ffb3aff71699747afc390",
+                "reference": "bcc1fba1cd165e7fd90ffb3aff71699747afc390",
                 "shasum": ""
             },
             "require": {
@@ -2286,7 +2286,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2017-07-18T07:08:56+00:00"
+            "time": "2017-07-21T18:12:18+00:00"
         },
         {
             "name": "nexendrie/code-quality",
@@ -2328,7 +2328,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2017-06-28T15:56:43+00:00"
+            "time": "2017-06-28 13:56:43"
         },
         {
             "name": "nikic/php-parser",
