@@ -134,8 +134,7 @@ class Town {
   
   /**
    * Get citizens of specified town
-   * 
-   * @param int $town
+   *
    * @return string[] id => publicname
    */
   public function getTownCitizens(int $town): array {
@@ -278,8 +277,7 @@ class Town {
   
   /**
    * Get peasants from specified town
-   * 
-   * @param int $town
+   *
    * @return string[] id => publicname
    */
   public function getTownPeasants(int $town): array {

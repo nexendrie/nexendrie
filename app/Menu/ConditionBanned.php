@@ -28,7 +28,6 @@ class ConditionBanned implements IMenuItemCondition {
   
   /**
    * @param bool $parameter
-   * @return bool
    * @throws \InvalidArgumentException
    */
   public function isAllowed($parameter = NULL): bool {

@@ -75,7 +75,6 @@ class Group {
    * Edit specified group
    *
    * @throws \Nette\Application\ForbiddenRequestException
-   * @return void
    */
   public function edit(int $id, array $data): void {
     if(!$this->user->isLoggedIn()) {

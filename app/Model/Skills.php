@@ -34,8 +34,7 @@ class Skills {
   
   /**
    * Get list of all skills
-   * 
-   * @param string $type
+   *
    * @return SkillEntity[]|ICollection
    */
   public function listOfSkills(string $type = NULL): ICollection {

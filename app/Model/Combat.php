@@ -27,8 +27,7 @@ class Combat {
   
   /**
    * Calculate specified user's life and max life
-   * 
-   * @param UserEntity $user
+   *
    * @return int[]
    */
   public function calculateUserLife(UserEntity $user): array {
@@ -103,9 +102,7 @@ class Combat {
   
   /**
    * Get specified user's combat stats
-   * 
-   * @param UserEntity $user
-   * @param MountEntity $mount
+   *
    * @return int[]
    */
   public function userCombatStats(UserEntity $user, MountEntity $mount = NULL): array {

@@ -59,8 +59,6 @@ class Order {
   
   /**
    * Check whether a name can be used
-   *
-   * @return bool
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
     $guild = $this->orm->orders->getByName($name);
@@ -293,8 +291,7 @@ class Order {
   
   /**
    * Get members of specified order
-   * 
-   * @param int $order
+   *
    * @return UserEntity[]|ICollection
    */
   public function getMembers(int $order): ICollection {

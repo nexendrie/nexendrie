@@ -39,8 +39,7 @@ class Article {
   
   /**
    * Get list of news
-   * 
-   * @param \Nette\Utils\Paginator $paginator
+   *
    * @return ArticleEntity[]|ICollection
    */
   public function listOfNews(\Nette\Utils\Paginator $paginator = NULL): ICollection {
@@ -54,9 +53,7 @@ class Article {
   
   /**
    * Get list of articles from specified category
-   * 
-   * @param string $name
-   * @param \Nette\Utils\Paginator $paginator
+   *
    * @return ArticleEntity[]|ICollection
    */
   public function category($name, \Nette\Utils\Paginator $paginator = NULL): ICollection {
@@ -83,8 +80,7 @@ class Article {
   
   /**
    * Get comments meeting specified rules
-   * 
-   * @param int $article
+   *
    * @return CommentEntity[]|ICollection
    */
   public function viewComments(int $article = 0): ICollection {
@@ -99,7 +95,6 @@ class Article {
    *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
-   * @return void
    */
   public function addArticle(array $data): void {
     if(!$this->user->isLoggedIn()) {
@@ -123,7 +118,6 @@ class Article {
    *
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
-   * @return void
    */
   public function addComment(array $data): void {
     if(!$this->user->isLoggedIn()) {

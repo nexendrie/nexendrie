@@ -50,8 +50,7 @@ class Adventure {
   
   /**
    * Get npcs from specified adventure
-   * 
-   * @param int $adventureId
+   *
    * @return AdventureNpcEntity[]|OneHasMany
    * @throws AdventureNotFoundException
    */
@@ -263,9 +262,7 @@ class Adventure {
   
   /**
    * Fight a npc
-   * 
-   * @param AdventureNpcEntity $npc
-   * @param MountEntity $mount  
+   *
    * @return bool Whether the user won
    */
   protected function fightNpc(AdventureNpcEntity $npc, MountEntity $mount): bool {

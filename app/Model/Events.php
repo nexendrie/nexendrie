@@ -124,7 +124,7 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $day
    * @return Event[]|ICollection
    */
-  public function getForDate($year, $month, $day) {
+  public function getForDate($year, $month, $day): ICollection {
     if(is_null($this->events)) {
       $this->loadEvents($year, $month);
     }
@@ -147,9 +147,8 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $year
    * @param int $month
    * @param int $day
-   * @return bool
    */
-  public function isForDate($year, $month, $day) {
+  public function isForDate($year, $month, $day): bool {
     return (bool) count($this->getForDate($year, $month, $day));
   }
   

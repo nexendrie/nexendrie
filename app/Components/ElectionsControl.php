@@ -75,9 +75,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   
   /**
    * Get votes from specified month
-   * 
-   * @param int $year
-   * @param int $month
+   *
    * @return ElectionEntity[]|ICollection
    */
   protected function getVotes(int $year, int $month): ICollection {

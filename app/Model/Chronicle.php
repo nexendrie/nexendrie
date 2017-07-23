@@ -24,8 +24,7 @@ class Chronicle {
   
   /**
    * Get list of chronicle records
-   * 
-   * @param \Nette\Utils\Paginator $paginator
+   *
    * @return ArticleEntity[]|ICollection
    */
   public function articles(\Nette\Utils\Paginator $paginator = NULL): ICollection {

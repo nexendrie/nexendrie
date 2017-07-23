@@ -53,7 +53,6 @@ class Job {
   /**
    * Calculate reward from an offer
    *
-   * @param JobEntity $offer
    * @return \stdClass
    * @throws AuthenticationNeededException
    */
@@ -174,8 +173,7 @@ class Job {
   
   /**
    * Calculate reward from job
-   * 
-   * @param UserJobEntity $job
+   *
    * @return int[] Reward
    */
   public function calculateReward(UserJobEntity $job): array {
@@ -360,8 +358,7 @@ class Job {
   
   /**
    * Get messages for specified job
-   * 
-   * @param int $jobId
+   *
    * @return JobMessageEntity[]|OneHasMany
    * @throws JobNotFoundException
    */

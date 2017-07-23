@@ -37,8 +37,7 @@ class Elections {
   
   /**
    * Get candidates for elections
-   * 
-   * @param int $town
+   *
    * @return UserEntity[]|ICollection
    */
   public function getCandidates(int $town): ICollection {

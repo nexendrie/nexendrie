@@ -38,8 +38,7 @@ class Guild {
   
   /**
    * Get list of guild from specified town
-   * 
-   * @param int $town
+   *
    * @return GuildEntity[]|ICollection
    */
   public function listOfGuilds(int $town = 0): ICollection {
@@ -301,8 +300,7 @@ class Guild {
   
   /**
    * Get members of specified order
-   * 
-   * @param int $guild
+   *
    * @return UserEntity[]|ICollection
    */
   public function getMembers(int $guild): ICollection {

@@ -47,11 +47,9 @@ class UserManager implements IAuthenticator {
   
   /**
    * Checks whether a name is available
-   * 
-   * @param string $name
+   *
    * @param string $type username/publicname
    * @param int $uid Id of user who can use the name
-   * @return bool
    * @throws InvalidArgumentException
    */
   public function nameAvailable(string $name, string $type = "username", int $uid = NULL): bool {
@@ -73,10 +71,8 @@ class UserManager implements IAuthenticator {
   
   /**
    * Checks whether an e-mail is available
-   * 
-   * @param string $email
+   *
    * @param int $uid Id of user who can use the e-mail
-   * @return bool
    * @throws InvalidArgumentException
    */
   public function emailAvailable(string $email, int $uid = NULL): bool {

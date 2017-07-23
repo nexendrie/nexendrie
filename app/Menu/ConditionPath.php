@@ -28,7 +28,6 @@ class ConditionPath implements IMenuItemCondition {
   
   /**
    * @param string $parameter
-   * @return bool
    * @throws \InvalidArgumentException
    */
   public function isAllowed($parameter = NULL): bool {
