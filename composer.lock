@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b2478ffd25f5174e68c03f8cc2b8e50b",
+    "content-hash": "dddfa22eb030fd38b1656c03ccfc7b40",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1249,16 +1249,16 @@
         },
         {
             "name": "nexendrie/menu",
-            "version": "1.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/menu.git",
-                "reference": "ef7cf306f080bf4c6ba6b98fafac0c923991fd25"
+                "reference": "9f62da589e39e491001b27b1fdeae6d6467a2b2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/menu/zipball/ef7cf306f080bf4c6ba6b98fafac0c923991fd25",
-                "reference": "ef7cf306f080bf4c6ba6b98fafac0c923991fd25",
+                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Fmenu/repository/archive.zip?sha=9f62da589e39e491001b27b1fdeae6d6467a2b2c",
+                "reference": "9f62da589e39e491001b27b1fdeae6d6467a2b2c",
                 "shasum": ""
             },
             "require": {
@@ -1266,10 +1266,10 @@
                 "nette/application": "^2.4",
                 "nette/di": "^2.4",
                 "nette/utils": "^2.4",
+                "nexendrie/utils": "^1.0",
                 "php": ">=7.1.0"
             },
             "require-dev": {
-                "nette/tester": "^2.0",
                 "nexendrie/code-quality": "dev-master",
                 "nexendrie/site-generator": "^1.0",
                 "phpstan/phpstan-nette": "^0.7"
@@ -1280,7 +1280,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -1307,7 +1307,7 @@
                 "menu",
                 "nette"
             ],
-            "time": "2017-05-26T12:22:01+00:00"
+            "time": "2017-07-23 10:06:44"
         },
         {
             "name": "nexendrie/rss",

@@ -19,7 +19,7 @@ class ConditionBannedTest extends \Tester\TestCase {
   }
   
   public function testGetName() {
-    Assert::type("string", $this->condition->getName());
+    Assert::same("banned", $this->condition->getName());
   }
   
   public function testIsAllowed() {

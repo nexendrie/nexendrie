@@ -10,20 +10,12 @@ use Nette\Security\User;
  *
  * @author Jakub Konečný
  */
-class ConditionBanned implements IMenuItemCondition {
-  use \Nette\SmartObject;
-  
+class ConditionBanned extends BaseCondition {
   /** @var User */
   protected $user;
-  /** @var string */
-  protected $name = "banned";
   
   public function __construct(User $user) {
     $this->user = $user;
-  }
-  
-  public function getName(): string {
-    return $this->name;
   }
   
   /**

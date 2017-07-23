@@ -19,7 +19,7 @@ class ConditionPathTest extends \Tester\TestCase {
   }
   
   public function testGetName() {
-    Assert::type("string", $this->condition->getName());
+    Assert::same("path", $this->condition->getName());
   }
   
   public function testIsAllowed() {

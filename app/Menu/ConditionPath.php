@@ -10,20 +10,12 @@ use Nette\Security\User;
  *
  * @author Jakub Konečný
  */
-class ConditionPath implements IMenuItemCondition {
-  use \Nette\SmartObject;
-  
+class ConditionPath extends BaseCondition {
   /** @var User */
   protected $user;
-  /** @var string */
-  protected $name = "path";
   
   public function __construct(User $user) {
     $this->user = $user;
-  }
-  
-  public function getName(): string {
-    return $this->name;
   }
   
   /**
