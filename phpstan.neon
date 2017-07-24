@@ -8,5 +8,6 @@ parameters:
     ignoreErrors:
         - "#Casting to [a-z\\_]+ something that's already [a-z\\_]+#"
         - '#Call to an undefined method Nette\\Application\\UI\\Form::addDateTime\(\)#'
-        - '#Access to (protected|private) property \$[a-zA-Z0-9_]+ of class [a-zA-Z0-9\\_]+#'
+        - '#Property EventCalendar\\AbstractCalendar::\$firstDay \(string\) does not accept int#'
+        - '#Parameter \#1 \$arr of static method Nette\\Utils\\Arrays::get\(\) expects mixed\[\], mixed\[\]\|int\|mixed given#'
         #- '#Parameter \#[0-9] \$[a-zA-Z0-9_]+ of method [a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+ expects [a-zA-Z0-9\\_]+, [a-zA-Z0-9\\_]+|null given#'
