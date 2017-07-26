@@ -15,14 +15,12 @@ class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Article|NULL
    */
   public function getById($id): ?Article {
     return $this->getBy(["id" => $id]);
   }
   
   /**
-   * @param string $category
    * @return ICollection|Article[]
    */
   public function findByCategory(string $category): ICollection {

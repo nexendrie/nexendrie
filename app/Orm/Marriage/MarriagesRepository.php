@@ -17,7 +17,6 @@ class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Marriage|NULL
    */
   public function getById($id): ?Marriage {
     return $this->getBy(["id" => $id]);

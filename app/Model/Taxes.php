@@ -36,10 +36,7 @@ class Taxes {
   
   /**
    * Calculate specified user's income from a month
-   * 
-   * @param int $user
-   * @param int $month
-   * @param int $year
+   *
    * @return int[]
    */
   public function calculateIncome(int $user, int $month = NULL, int $year = NULL): array {

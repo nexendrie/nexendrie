@@ -13,7 +13,6 @@ class ItemSetsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return ItemSet|NULL
    */
   public function getById($id): ?ItemSet {
     return $this->getBy(["id" => $id]);
@@ -23,7 +22,6 @@ class ItemSetsRepository extends \Nextras\Orm\Repository\Repository {
    * @param Item|int $weapon
    * @param Item|int $armor
    * @param Item|int $helmet
-   * @return ItemSet|NULL
    */
   public function getByWeaponAndArmorAndHelmet($weapon, $armor, $helmet): ?ItemSet {
     return $this->getBy(["weapon" => $weapon, "armor" => $armor, "helmet" => $helmet]);

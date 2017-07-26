@@ -352,8 +352,7 @@ class Monastery {
   
   /**
    * Get high clerics of a monastery
-   * 
-   * @param int $id Monastery' id
+   *
    * @return string[] id => publicname
    */
   public function highClerics(int $id): array {

@@ -15,7 +15,6 @@ class JobMessagesRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return JobMessage|NULL
    */
   public function getById($id): ?JobMessage {
     return $this->getBy(["id" => $id]);
@@ -23,7 +22,6 @@ class JobMessagesRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param Job|int $job
-   * @param bool $success
    * @return ICollection|JobMessage[]
    */
   public function findByJobAndSuccess($job, bool $success): ICollection {

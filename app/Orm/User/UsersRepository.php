@@ -15,32 +15,19 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return User|NULL
    */
   public function getById($id): ?User {
     return $this->getBy(["id" => $id]);
   }
   
-  /**
-   * @param string $username
-   * @return User|NULL
-   */
   public function getByUsername(string $username): ?User {
     return $this->getBy(["username" => $username]);
   }
   
-  /**
-   * @param string $publicname
-   * @return User|NULL
-   */
   public function getByPublicname(string $publicname): ?User {
     return $this->getBy(["publicname" => $publicname]);
   }
   
-  /**
-   * @param string $email
-   * @return User|NULL
-   */
   public function getByEmail(string $email): ?User {
     return $this->getBy(["email" => $email]);
   }
@@ -63,9 +50,6 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get mayor of a town
-   * 
-   * @param int $town
-   * @return User|NULL
    */
   public function getTownMayor(int $town): ?User {
     return $this->getBy(["town" => $town, "this->group->level" => 345]);
@@ -73,8 +57,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get citizens of specified town
-   * 
-   * @param int $town
+   *
    * @return ICollection|User[]
    */
   public function findTownCitizens(int $town): ICollection {
@@ -86,8 +69,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get peasants from specified town
-   * 
-   * @param int $town
+   *
    * @return ICollection|User[]
    */
   public function findTownPeasants(int $town): ICollection {
@@ -123,8 +105,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get members of specified order
-   * 
-   * @param int $order
+   *
    * @return ICollection|User[]
    */
   public function findByOrder(int $order): ICollection {
@@ -134,8 +115,7 @@ class UsersRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get members of specified guild
-   * 
-   * @param int $guild
+   *
    * @return ICollection|User[]
    */
   public function findByGuild(int $guild): ICollection {

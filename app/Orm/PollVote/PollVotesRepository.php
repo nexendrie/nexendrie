@@ -15,7 +15,6 @@ class PollVotesRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return PollVote|NULL
    */
   public function getById($id): ?PollVote {
     return $this->getBy(["id" => $id]);
@@ -24,7 +23,6 @@ class PollVotesRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * @param Poll|int $poll
    * @param User|int $user
-   * @return PollVote|NULL
    */
   public function getByPollAndUser($poll, $user): ?PollVote {
     return $this->getBy(["poll" => $poll, "user" => $user]);

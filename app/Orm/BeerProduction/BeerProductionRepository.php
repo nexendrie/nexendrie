@@ -15,7 +15,6 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return BeerProduction|NULL
    */
   public function getById($id): ?BeerProduction {
     return $this->getBy(["id" => $id]);
@@ -49,8 +48,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get beer made this month by specified user
-   * 
-   * @param int $user
+   *
    * @return ICollection|BeerProduction[]
    */
   public function findProducedThisMonth(int $user): ICollection {

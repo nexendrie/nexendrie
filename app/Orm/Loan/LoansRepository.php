@@ -15,7 +15,6 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Loan|NULL
    */
   public function getById($id): ?Loan {
     return $this->getBy(["id" => $id]);
@@ -31,9 +30,6 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get specified user's active loan
-   * 
-   * @param int $user
-   * @return Loan|NULL
    */
   public function getActiveLoan(int $user): ?Loan {
     return $this->getBy(["user" => $user, "returned" => NULL]);
@@ -41,8 +37,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get loans returned this month by specified user
-   * 
-   * @param int $user
+   *
    * @return ICollection|Loan[]
    */
   public function findReturnedThisMonth(int $user): ICollection {

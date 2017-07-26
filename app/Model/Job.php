@@ -53,7 +53,6 @@ class Job {
   /**
    * Calculate reward from an offer
    *
-   * @return \stdClass
    * @throws AuthenticationNeededException
    */
   public function calculateAward(JobEntity $offer): \stdClass {

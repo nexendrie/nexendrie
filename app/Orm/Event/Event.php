@@ -110,16 +110,10 @@ class Event extends \Nextras\Orm\Entity\Entity {
     return false;
   }
   
-  /**
-   * @return EventDummy
-   */
   public function dummy(): EventDummy {
     return new EventDummy($this);
   }
   
-  /**
-   * @return array
-   */
   public function dummyArray(): array {
     return $this->dummy()->toArray();
   }

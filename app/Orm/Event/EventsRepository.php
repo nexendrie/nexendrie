@@ -15,17 +15,12 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Event|NULL
    */
   public function getById($id): ?Event {
     return $this->getBy(["id" => $id]);
   }
   
   /**
-   * Get events from specified month
-   * 
-   * @param int $year
-   * @param int $month
    * @return ICollection|Event[]
    */
   public function findFromMonth(int $year = NULL, int $month = NULL): ICollection {
@@ -40,8 +35,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
   }
   /**
    * Get ongoing events (at specified time)
-   * 
-   * @param int $time
+   *
    * @return ICollection|Event[]
    */
   public function findForTime(int $time = NULL): ICollection {

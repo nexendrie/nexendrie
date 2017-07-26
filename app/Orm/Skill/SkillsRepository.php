@@ -15,7 +15,6 @@ class SkillsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Skill|NULL
    */
   public function getById($id): ?Skill {
     return $this->getBy(["id" => $id]);

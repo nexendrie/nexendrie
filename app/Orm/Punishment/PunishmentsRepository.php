@@ -15,7 +15,6 @@ class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Punishment|NULL
    */
   public function getById($id): ?Punishment {
     return $this->getBy(["id" => $id]);
@@ -33,7 +32,6 @@ class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
    * Find specified user's active punishment
    * 
    * @param int $user User's id
-   * @return Punishment|NULL
    */
   public function getActivePunishment(int $user): ?Punishment {
     return $this->getBy(["user" => $user, "released" => NULL]);

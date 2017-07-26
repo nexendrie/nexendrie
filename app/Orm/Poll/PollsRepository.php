@@ -13,7 +13,6 @@ class PollsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Poll|NULL
    */
   public function getById($id): ?Poll {
     return $this->getBy(["id" => $id]);

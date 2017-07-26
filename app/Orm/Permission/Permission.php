@@ -13,9 +13,6 @@ namespace Nexendrie\Orm;
  * @property Group $group {m:1 Group::$permissions}
  */
 class Permission extends \Nextras\Orm\Entity\Entity {
-  /**
-   * @return PermissionDummy
-   */
   public function dummy(): PermissionDummy {
     return new PermissionDummy($this);
   }

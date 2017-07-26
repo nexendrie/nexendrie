@@ -24,9 +24,6 @@ class Group extends \Nextras\Orm\Entity\Entity {
   const PATH_CHURCH = "church";
   const PATH_TOWER = "tower";
   
-  /**
-   * @return GroupDummy
-   */
   public function dummy(): GroupDummy {
     return new GroupDummy($this);
   }

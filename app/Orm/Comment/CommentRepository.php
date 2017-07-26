@@ -15,7 +15,6 @@ class CommentsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Comment|NULL
    */
   public function getById($id): ?Comment {
     return $this->getBy(["id" => $id]);

@@ -15,7 +15,6 @@ class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Monastery|NULL
    */
   public function getById($id): ?Monastery {
     return $this->getBy(["id" => $id]);
@@ -23,7 +22,6 @@ class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param User|int $leader
-   * @return Monastery|null
    */
   public function getByLeader($leader): ?Monastery {
     return $this->getBy(["leader" => $leader]);
@@ -37,10 +35,6 @@ class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
     return $this->findBy(["town" => $town]);
   }
   
-  /**
-   * @param string $name
-   * @return Monastery|null
-   */
   public function getByName(string $name): ?Monastery {
     return $this->getBy(["name" => $name]);
   }

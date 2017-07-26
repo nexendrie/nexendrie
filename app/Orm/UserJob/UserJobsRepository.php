@@ -15,7 +15,6 @@ class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return UserJob|NULL
    */
   public function getById($id): ?UserJob {
     return $this->getBy(["id" => $id]);
@@ -31,9 +30,6 @@ class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Find specified user's active job
-   * 
-   * @param int $user User's id
-   * @return UserJob|NULL
    */
   public function getUserActiveJob(int $user): ?UserJob {
     return $this->getBy(["user" => $user, "finished" => false]);
@@ -41,10 +37,7 @@ class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get specified user's jobs from month
-   * 
-   * @param int $user
-   * @param int $month
-   * @param int $year
+   *
    * @return ICollection|UserJob[]
    */
   public function findFromMonth(int $user, int $month = 0, int $year = 0) {

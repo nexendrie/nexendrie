@@ -13,16 +13,11 @@ class GroupsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Group|NULL
    */
   public function getById($id): ?Group {
     return $this->getBy(["id" => $id]);
   }
   
-  /**
-   * @param int $level
-   * @return Group|NULL
-   */
   public function getByLevel(int $level): ?Group {
     return $this->getBy(["level" => $level]);
   }

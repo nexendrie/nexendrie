@@ -15,7 +15,6 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return UserAdventure|NULL
    */
   public function getById($id): ?UserAdventure {
     return $this->getBy(["id" => $id]);
@@ -33,7 +32,6 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * Find specified user's active adventure
    * 
    * @param int $user User's id
-   * @return UserAdventure|NULL
    */
   public function getUserActiveAdventure(int $user): ?UserAdventure {
     return $this->getBy(["user" => $user, "progress<" => 10]);
@@ -41,7 +39,6 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param User|int $user
-   * @return UserAdventure|NULL
    */
   public function getLastAdventure($user): ?UserAdventure {
     return $this->findBy(["user" => $user])
@@ -51,10 +48,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get specified user's adventures from month
-   * 
-   * @param int $user
-   * @param int $month
-   * @param int $year
+   *
    * @return ICollection|UserAdventure[]
    */
   public function findFromMonth(int $user, int $month = NULL, int $year = NULL): ICollection {
