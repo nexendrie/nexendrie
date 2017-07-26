@@ -14,12 +14,8 @@ trait TUserControl {
   
   /**
    * Login a user
-   *
-   * @param string $username
-   * @param string $password
-   * @return void
    */
-  public function login($username = NULL, $password = NULL) {
+  public function login(string $username = NULL, string $password = NULL): void {
     /** @var \Nette\Security\User $user */
     $user = $this->getService(\Nette\Security\User::class);
     $user->login($username ?? "admin", $password ?? "qwerty");
@@ -27,10 +23,8 @@ trait TUserControl {
   
   /**
    * Logout the user
-   *
-   * @return void
    */
-  public function logout() {
+  public function logout(): void {
     /** @var \Nette\Security\User $user */
     $user = $this->getService(\Nette\Security\User::class);
     $user->logout(true);
