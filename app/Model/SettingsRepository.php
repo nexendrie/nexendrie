@@ -5,7 +5,8 @@ namespace Nexendrie\Model;
 
 use Nette\Utils\Arrays,
     Symfony\Component\OptionsResolver\OptionsResolver,
-    Nexendrie\Forms\UserSettingsFormFactory;
+    Nexendrie\Forms\UserSettingsFormFactory,
+    Nexendrie\Utils\Intervals;
 
 /**
  * Settings Repository
@@ -81,28 +82,22 @@ class SettingsRepository {
   protected function validatePercent($value): bool {
     if(!is_int($value)) {
       return false;
-    } elseif($value < 0 OR $value > 100) {
-      return false;
     }
-    return true;
+    return Intervals::isInInterval($value, "[0,100]");
   }
   
   protected function validateMoney($value): bool {
     if(!is_int($value)) {
       return false;
-    } elseif($value < 1 OR $value > 100) {
-      return false;
     }
-    return true;
+    return Intervals::isInInterval($value, "[1,100]");
   }
   
   protected function validateFee($value): bool {
     if(!is_int($value)) {
       return false;
-    } elseif($value < 0 OR $value > 5000) {
-      return false;
     }
-    return true;
+    return Intervals::isInInterval($value, "[0,5000]");
   }
   
   /**
