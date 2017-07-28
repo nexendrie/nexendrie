@@ -1253,12 +1253,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/menu.git",
-                "reference": "9f62da589e39e491001b27b1fdeae6d6467a2b2c"
+                "reference": "758713beaeea58b9c4a38d84f4bbc325c15963b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Fmenu/repository/archive.zip?sha=9f62da589e39e491001b27b1fdeae6d6467a2b2c",
-                "reference": "9f62da589e39e491001b27b1fdeae6d6467a2b2c",
+                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Fmenu/repository/archive.zip?sha=758713beaeea58b9c4a38d84f4bbc325c15963b4",
+                "reference": "758713beaeea58b9c4a38d84f4bbc325c15963b4",
                 "shasum": ""
             },
             "require": {
@@ -1271,8 +1271,7 @@
             },
             "require-dev": {
                 "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "^1.0",
-                "phpstan/phpstan-nette": "^0.7"
+                "nexendrie/site-generator": "^1.0"
             },
             "suggest": {
                 "nette/security": "To use menu item conditions related to user"
@@ -1307,7 +1306,7 @@
                 "menu",
                 "nette"
             ],
-            "time": "2017-07-23 10:06:44"
+            "time": "2017-07-28 09:08:06"
         },
         {
             "name": "nexendrie/rss",
@@ -2232,12 +2231,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "aef15cb81da1209d056ae26baf6150fe97646a2f"
+                "reference": "df5e87ffef69c546a67dfada20977b4e0504119d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/aef15cb81da1209d056ae26baf6150fe97646a2f",
-                "reference": "aef15cb81da1209d056ae26baf6150fe97646a2f",
+                "url": "https://api.github.com/repos/nette/tester/zipball/df5e87ffef69c546a67dfada20977b4e0504119d",
+                "reference": "df5e87ffef69c546a67dfada20977b4e0504119d",
                 "shasum": ""
             },
             "require": {
@@ -2286,7 +2285,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2017-07-23T17:35:28+00:00"
+            "time": "2017-07-24 14:21:38"
         },
         {
             "name": "nexendrie/code-quality",
@@ -2328,7 +2327,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2017-07-24T09:53:01+00:00"
+            "time": "2017-07-24 07:53:01"
         },
         {
             "name": "nikic/php-parser",
@@ -2436,16 +2435,16 @@
         },
         {
             "name": "phpstan/phpstan-nette",
-            "version": "0.8",
+            "version": "0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-nette.git",
-                "reference": "d5b19fd2f72ee164a43b40ec072899d6c3a2f3e4"
+                "reference": "a8f79aa620b0d4eb11e1b88b58978d719a2b2978"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-nette/zipball/d5b19fd2f72ee164a43b40ec072899d6c3a2f3e4",
-                "reference": "d5b19fd2f72ee164a43b40ec072899d6c3a2f3e4",
+                "url": "https://api.github.com/repos/phpstan/phpstan-nette/zipball/a8f79aa620b0d4eb11e1b88b58978d719a2b2978",
+                "reference": "a8f79aa620b0d4eb11e1b88b58978d719a2b2978",
                 "shasum": ""
             },
             "require": {
@@ -2480,7 +2479,7 @@
                 "MIT"
             ],
             "description": "Nette Framework class reflection extension for PHPStan",
-            "time": "2017-07-15T18:01:47+00:00"
+            "time": "2017-07-28T06:57:46+00:00"
         },
         {
             "name": "psr/log",
