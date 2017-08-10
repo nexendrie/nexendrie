@@ -80,23 +80,14 @@ class SettingsRepository {
   }
   
   protected function validatePercent($value): bool {
-    if(!is_int($value)) {
-      return false;
-    }
     return Intervals::isInInterval($value, "[0,100]");
   }
   
   protected function validateMoney($value): bool {
-    if(!is_int($value)) {
-      return false;
-    }
     return Intervals::isInInterval($value, "[1,100]");
   }
   
   protected function validateFee($value): bool {
-    if(!is_int($value)) {
-      return false;
-    }
     return Intervals::isInInterval($value, "[0,5000]");
   }
   
