@@ -1,6 +1,7 @@
 includes:
     - vendor/nexendrie/code-quality/phpstan.neon
     - vendor/phpstan/phpstan-nette/extension.neon
+    - vendor/phpstan/phpstan-nette/rules.neon
 parameters:
     universalObjectCratesClasses:
         - Nette\Security\IIdentity
