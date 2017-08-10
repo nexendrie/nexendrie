@@ -45,6 +45,15 @@ class LocaleTest extends \Tester\TestCase {
     Assert::same("5 životů", $this->model->hitpoints(5));
   }
   
+  public function testBarrels() {
+    Assert::same("0 sudů", $this->model->barrels(0));
+    Assert::same("1 sud", $this->model->barrels(1));
+    Assert::same("2 sudy", $this->model->barrels(2));
+    Assert::same("3 sudy", $this->model->barrels(3));
+    Assert::same("4 sudy", $this->model->barrels(4));
+    Assert::same("5 sudů", $this->model->barrels(5));
+  }
+  
   public function testGetFormats() {
     $formats = $this->model->formats;
     Assert::type("array", $formats);
