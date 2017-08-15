@@ -71,7 +71,7 @@ class NoEnemyRemainException extends AccessDeniedException {
   
 }
 
-class NotAllEnemiesDefeateException extends AccessDeniedException {
+class NotAllEnemiesDefeatedException extends AccessDeniedException {
   
 }
 

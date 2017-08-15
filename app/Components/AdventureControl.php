@@ -11,7 +11,7 @@ use Nexendrie\Model\AlreadyOnAdventureException,
     Nexendrie\Model\MountInBadConditionException,
     Nexendrie\Model\NotOnAdventureException,
     Nexendrie\Model\NoEnemyRemainException,
-    Nexendrie\Model\NotAllEnemiesDefeateException,
+    Nexendrie\Model\NotAllEnemiesDefeatedException,
     Nexendrie\Model\CannotDoAdventureException,
     Nexendrie\Model\AdventureNotAccessibleException;
 
@@ -98,7 +98,7 @@ class AdventureControl extends \Nette\Application\UI\Control {
       $this->presenter->redirect("Homepage:");
     } catch(NotOnAdventureException $e) {
       $this->presenter->flashMessage("Nejsi na dobrodružství.");
-    } catch(NotAllEnemiesDefeateException $e) {
+    } catch(NotAllEnemiesDefeatedException $e) {
       $message = $this->localeModel->genderMessage("Neporazil(a) jsi již všechny nepřátele.");
       $this->presenter->flashMessage($message);
     }

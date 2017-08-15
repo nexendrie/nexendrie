@@ -337,7 +337,7 @@ class Adventure {
    *
    * @throws AuthenticationNeededException
    * @throws NotOnAdventureException
-   * @throws NotAllEnemiesDefeateException
+   * @throws NotAllEnemiesDefeatedException
    */
   public function finishAdventure(): void {
     if(!$this->user->isLoggedIn()) {
@@ -348,7 +348,7 @@ class Adventure {
       throw new NotOnAdventureException;
     }
     if($this->getNextNpc($adventure)) {
-      throw new NotAllEnemiesDefeateException;
+      throw new NotAllEnemiesDefeatedException;
     }
     $adventure->progress = 10;
     $reward = $adventure->adventure->reward;
