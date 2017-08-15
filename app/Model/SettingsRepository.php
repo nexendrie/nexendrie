@@ -75,19 +75,19 @@ class SettingsRepository {
     $this->settings = $this->validateSettings($settings);
   }
   
-  protected function validateStyle($value): bool {
+  protected function validateStyle(string $value): bool {
     return array_key_exists($value, UserSettingsFormFactory::getStylesList());
   }
   
-  protected function validatePercent($value): bool {
+  protected function validatePercent(int $value): bool {
     return Intervals::isInInterval($value, "[0,100]");
   }
   
-  protected function validateMoney($value): bool {
+  protected function validateMoney(int $value): bool {
     return Intervals::isInInterval($value, "[1,100]");
   }
   
-  protected function validateFee($value): bool {
+  protected function validateFee(int $value): bool {
     return Intervals::isInInterval($value, "[0,5000]");
   }
   
