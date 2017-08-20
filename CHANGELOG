@@ -3,6 +3,7 @@ Version 1.0.0-beta4+dev
 - some refactoring
 - use package nexendrie/menu to generate menus
 - rewritten Locale::plural() to use translator, changed its parameters
+- redirect to the added article
 
 Version 1.0.0-beta4
 - replaced BETA in pages' title by configurable version suffix

@@ -93,10 +93,11 @@ class Article {
   /**
    * Add article
    *
+   * @return int Id of the new article
    * @throws AuthenticationNeededException
    * @throws MissingPermissionsException
    */
-  public function addArticle(array $data): void {
+  public function addArticle(array $data): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
@@ -111,6 +112,7 @@ class Article {
     $article->author = $this->user->id;
     $article->author->lastActive = time();
     $this->orm->articles->persistAndFlush($article);
+    return $article->id;
   }
   
   /**

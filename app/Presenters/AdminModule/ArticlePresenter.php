@@ -24,15 +24,12 @@ class ArticlePresenter extends BasePresenter {
     $this->requiresPermissions("article", "add");
   }
   
-  /**
-   * @todo redirect to the added article
-   */
   protected function createComponentAddArticleForm(AddEditArticleFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->addArticle($values);
-      $this->flashMessage("Novinka byla přidána.");
-      $this->redirect("Article:");
+      $id = $this->model->addArticle($values);
+      $this->flashMessage("Článek byla přidán.");
+      $this->redirect(":Front:Article:", ["id" => $id]);
     };
     return $form;
   }
