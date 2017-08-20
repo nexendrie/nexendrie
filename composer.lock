@@ -1782,16 +1782,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.4.8",
+            "version": "v2.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "4538cbe7f11d03d78afd34a168ca1c966792a3d6"
+                "reference": "efe45da0aa3a50ce5356be39f2168d7925d94f3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/4538cbe7f11d03d78afd34a168ca1c966792a3d6",
-                "reference": "4538cbe7f11d03d78afd34a168ca1c966792a3d6",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/efe45da0aa3a50ce5356be39f2168d7925d94f3d",
+                "reference": "efe45da0aa3a50ce5356be39f2168d7925d94f3d",
                 "shasum": ""
             },
             "require": {
@@ -1801,7 +1801,7 @@
             },
             "require-dev": {
                 "nette/di": "~2.3",
-                "nette/tester": "~2.0"
+                "nette/tester": "~1.7"
             },
             "suggest": {
                 "https://nette.org/donate": "Please support Tracy via a donation"
@@ -1845,7 +1845,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2017-07-14T06:38:56+00:00"
+            "time": "2017-08-16T17:13:36+00:00"
         }
     ],
     "packages-dev": [
@@ -2276,12 +2276,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "bb560d1e4ae91d9a2b066a0fdfea52a5510dcd61"
+                "reference": "258e148624e54887031fbdecebf766a329403955"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/bb560d1e4ae91d9a2b066a0fdfea52a5510dcd61",
-                "reference": "bb560d1e4ae91d9a2b066a0fdfea52a5510dcd61",
+                "url": "https://api.github.com/repos/nette/tester/zipball/258e148624e54887031fbdecebf766a329403955",
+                "reference": "258e148624e54887031fbdecebf766a329403955",
                 "shasum": ""
             },
             "require": {
@@ -2330,7 +2330,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2017-08-13T20:03:05+00:00"
+            "time": "2017-08-19T11:55:46+00:00"
         },
         {
             "name": "nexendrie/code-quality",
@@ -2475,16 +2475,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.8.2",
+            "version": "0.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "61271b083bb181795909a927f6e42f35c3b1a800"
+                "reference": "ccc046ca473dcdb5ce9225cc05d7808f2e327f40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/61271b083bb181795909a927f6e42f35c3b1a800",
-                "reference": "61271b083bb181795909a927f6e42f35c3b1a800",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ccc046ca473dcdb5ce9225cc05d7808f2e327f40",
+                "reference": "ccc046ca473dcdb5ce9225cc05d7808f2e327f40",
                 "shasum": ""
             },
             "require": {
@@ -2525,7 +2525,7 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2017-08-13T21:13:24+00:00"
+            "time": "2017-08-15T18:51:04+00:00"
         },
         {
             "name": "phpstan/phpstan-nette",
@@ -2849,16 +2849,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "f29dca382a6485c3cbe6379f0c61230167681937"
+                "reference": "7c8fae0ac1d216eb54349e6a8baa57d515fe8803"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/f29dca382a6485c3cbe6379f0c61230167681937",
-                "reference": "f29dca382a6485c3cbe6379f0c61230167681937",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7c8fae0ac1d216eb54349e6a8baa57d515fe8803",
+                "reference": "7c8fae0ac1d216eb54349e6a8baa57d515fe8803",
                 "shasum": ""
             },
             "require": {
@@ -2870,7 +2870,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.5-dev"
                 }
             },
             "autoload": {
@@ -2904,7 +2904,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-06-09T14:24:12+00:00"
+            "time": "2017-06-14T15:44:48+00:00"
         }
     ],
     "aliases": [],
