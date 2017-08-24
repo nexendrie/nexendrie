@@ -3,7 +3,7 @@ SET escape_string_warning=off;
 SET CONSTRAINTS ALL DEFERRED;
 
 CREATE TABLE "adventure_npcs" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(30) NOT NULL,
     "adventure" integer NOT NULL,
     "order" integer NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE "adventure_npcs" (
 );
 
 CREATE TABLE "adventures" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(40) NOT NULL,
     "description" text NOT NULL,
     "intro" text NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE "adventures" (
 
 CREATE TYPE articles_category AS ENUM ('news','chronicle','poetry','short_story','essay','novella','fairy_tale','uncategorized'); 
 CREATE TABLE "articles" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "title" varchar(60) NOT NULL,
     "text" text NOT NULL,
     "author" integer NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE "articles" (
 );
 
 CREATE TABLE "beer_production" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "user" integer NOT NULL,
     "house" integer NOT NULL,
     "amount" integer NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE "beer_production" (
 );
 
 CREATE TABLE "castles" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(40) NOT NULL,
     "description" text NOT NULL,
     "founded" integer NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE "castles" (
 );
 
 CREATE TABLE "comments" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "title" varchar(50) NOT NULL,
     "text" text NOT NULL,
     "article" integer NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE "comments" (
 );
 
 CREATE TABLE "election_results" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "candidate" integer NOT NULL,
     "town" integer NOT NULL,
     "votes" integer NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE "election_results" (
 );
 
 CREATE TABLE "elections" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "candidate" integer NOT NULL,
     "voter" integer NOT NULL,
     "town" integer NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE "elections" (
 );
 
 CREATE TABLE "events" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(40) NOT NULL,
     "description" text NOT NULL,
     "start" integer NOT NULL,
@@ -109,7 +109,7 @@ CREATE TABLE "events" (
 
 CREATE TYPE groups_path AS ENUM ('city','church','tower'); 
 CREATE TABLE "groups" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(60) NOT NULL,
     "single_name" varchar(60) NOT NULL,
     "female_name" varchar(60) NOT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE "groups" (
 );
 
 CREATE TABLE "guild_ranks" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(20) NOT NULL,
     "income_bonus" integer NOT NULL DEFAULT 5,
     "guild_fee" integer NOT NULL,
@@ -127,7 +127,7 @@ CREATE TABLE "guild_ranks" (
 );
 
 CREATE TABLE "guilds" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(50) NOT NULL,
     "description" text NOT NULL,
     "level" integer NOT NULL DEFAULT 1,
@@ -140,7 +140,7 @@ CREATE TABLE "guilds" (
 );
 
 CREATE TABLE "houses" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "owner" integer NOT NULL,
     "luxury_level" integer NOT NULL DEFAULT 1,
     "brewery_level" integer NOT NULL DEFAULT 0,
@@ -150,7 +150,7 @@ CREATE TABLE "houses" (
 
 CREATE TYPE item_sets_stat AS ENUM ('damage','armor','hitpoints'); 
 CREATE TABLE "item_sets" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" text NOT NULL,
     "weapon" integer DEFAULT NULL,
     "armor" integer DEFAULT NULL,
@@ -162,7 +162,7 @@ CREATE TABLE "item_sets" (
 
 CREATE TYPE items_type AS ENUM ('item','weapon','armor','helmet','potion','material','charter','intimacy_boost');
 CREATE TABLE "items" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(60) NOT NULL,
     "description" text NOT NULL,
     "price" integer NOT NULL,
@@ -174,7 +174,7 @@ CREATE TABLE "items" (
 );
 
 CREATE TABLE "job_messages" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "job" integer NOT NULL,
     "success" boolean NOT NULL,
     "message" text NOT NULL,
@@ -182,7 +182,7 @@ CREATE TABLE "job_messages" (
 );
 
 CREATE TABLE "jobs" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(40) NOT NULL,
     "description" text NOT NULL,
     "help" text NOT NULL,
@@ -196,7 +196,7 @@ CREATE TABLE "jobs" (
 );
 
 CREATE TABLE "loans" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "user" integer NOT NULL,
     "amount" integer NOT NULL,
     "taken" integer NOT NULL,
@@ -207,7 +207,7 @@ CREATE TABLE "loans" (
 
 CREATE TYPE marriages_status AS ENUM ('proposed','accepted','declined','active','cancelled'); 
 CREATE TABLE "marriages" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "user1" integer NOT NULL,
     "user2" integer NOT NULL,
     "status" marriages_status NOT NULL,
@@ -221,7 +221,7 @@ CREATE TABLE "marriages" (
 );
 
 CREATE TABLE "meals" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(30) NOT NULL,
     "message" text NOT NULL,
     "price" integer NOT NULL,
@@ -230,7 +230,7 @@ CREATE TABLE "meals" (
 );
 
 CREATE TABLE "messages" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "subject" varchar(60) NOT NULL,
     "text" text NOT NULL,
     "from" integer NOT NULL,
@@ -241,7 +241,7 @@ CREATE TABLE "messages" (
 );
 
 CREATE TABLE "monasteries" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(40) NOT NULL,
     "leader" integer NOT NULL,
     "town" integer NOT NULL,
@@ -253,7 +253,7 @@ CREATE TABLE "monasteries" (
 );
 
 CREATE TABLE "monastery_donations" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "user" integer NOT NULL,
     "monastery" integer NOT NULL,
     "amount" integer NOT NULL,
@@ -262,7 +262,7 @@ CREATE TABLE "monastery_donations" (
 );
 
 CREATE TABLE "mount_types" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(24) NOT NULL,
     "female_name" varchar(24) NOT NULL,
     "young_name" varchar(24) NOT NULL,
@@ -276,7 +276,7 @@ CREATE TABLE "mount_types" (
 
 CREATE TYPE mounts_gender AS ENUM ('male','female','young'); 
 CREATE TABLE "mounts" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(50) NOT NULL,
     "gender" mounts_gender NOT NULL,
     "type" integer NOT NULL,
@@ -291,7 +291,7 @@ CREATE TABLE "mounts" (
 );
 
 CREATE TABLE "order_ranks" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(20) NOT NULL,
     "adventure_bonus" integer NOT NULL DEFAULT 5,
     "order_fee" integer NOT NULL,
@@ -299,7 +299,7 @@ CREATE TABLE "order_ranks" (
 );
 
 CREATE TABLE "orders" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(50) NOT NULL,
     "description" text NOT NULL,
     "level" integer NOT NULL DEFAULT 1,
@@ -309,7 +309,7 @@ CREATE TABLE "orders" (
 );
 
 CREATE TABLE "permissions" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "resource" varchar(30) NOT NULL,
     "action" varchar(30) NOT NULL,
     "group" integer NOT NULL,
@@ -317,7 +317,7 @@ CREATE TABLE "permissions" (
 );
 
 CREATE TABLE "poll_votes" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "poll" integer NOT NULL,
     "user" integer NOT NULL,
     "answer" integer NOT NULL,
@@ -326,7 +326,7 @@ CREATE TABLE "poll_votes" (
 );
 
 CREATE TABLE "polls" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "question" varchar(120) NOT NULL,
     "answers" text NOT NULL,
     "author" integer NOT NULL,
@@ -337,7 +337,7 @@ CREATE TABLE "polls" (
 );
 
 CREATE TABLE "punishments" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "user" integer NOT NULL,
     "crime" text NOT NULL,
     "imprisoned" integer NOT NULL,
@@ -349,7 +349,7 @@ CREATE TABLE "punishments" (
 );
 
 CREATE TABLE "shops" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(60) NOT NULL,
     "description" text NOT NULL,
     PRIMARY KEY ("id"),
@@ -359,7 +359,7 @@ CREATE TABLE "shops" (
 CREATE TYPE skills_type AS ENUM ('work','combat'); 
 CREATE TYPE skills_stat AS ENUM ('hitpoints','damage','armor'); 
 CREATE TABLE "skills" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(50) NOT NULL,
     "price" integer NOT NULL,
     "max_level" integer NOT NULL,
@@ -370,7 +370,7 @@ CREATE TABLE "skills" (
 );
 
 CREATE TABLE "towns" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "name" varchar(40) NOT NULL,
     "description" text NOT NULL,
     "founded" integer NOT NULL,
@@ -381,7 +381,7 @@ CREATE TABLE "towns" (
 );
 
 CREATE TABLE "user_adventures" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "user" integer NOT NULL,
     "adventure" integer NOT NULL,
     "started" integer NOT NULL,
@@ -393,7 +393,7 @@ CREATE TABLE "user_adventures" (
 );
 
 CREATE TABLE "user_items" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "item" integer NOT NULL,
     "user" integer NOT NULL,
     "amount" integer NOT NULL DEFAULT 1,
@@ -403,7 +403,7 @@ CREATE TABLE "user_items" (
 );
 
 CREATE TABLE "user_jobs" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "user" integer NOT NULL,
     "job" integer NOT NULL,
     "started" integer NOT NULL,
@@ -416,7 +416,7 @@ CREATE TABLE "user_jobs" (
 );
 
 CREATE TABLE "user_skills" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "user" integer NOT NULL,
     "skill" integer NOT NULL,
     "level" integer NOT NULL,
@@ -425,7 +425,7 @@ CREATE TABLE "user_skills" (
 
 CREATE TYPE users_gender AS ENUM ('male','female');
 CREATE TABLE "users" (
-    "id" integer NOT NULL,
+    "id" SERIAL NOT NULL,
     "username" varchar(50) NOT NULL,
     "publicname" varchar(50) NOT NULL,
     "password" varchar(120) NOT NULL,
