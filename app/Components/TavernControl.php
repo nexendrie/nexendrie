@@ -29,7 +29,8 @@ class TavernControl extends \Nette\Application\UI\Control {
     if($this->user->isLoggedIn()) {
       $this->template->meals = $this->model->listOfMeals()
         ->orderBy("life")
-        ->orderBy("price");
+        ->orderBy("price")
+        ->orderBy("id");
     }
     $this->template->render();
   }
