@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "03337aa1e7c78c7c0129e6fb6a6cf8a3",
+    "content-hash": "5d6feddd72e9b8ded3e06c0f17fb40b9",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1249,16 +1249,16 @@
         },
         {
             "name": "nexendrie/menu",
-            "version": "dev-master",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/menu.git",
-                "reference": "1f57d30c0896fbba1c4ba3a0d5acbe07139a6a36"
+                "reference": "1cee8bd06f2562f382e0a6e2165727cbde16d8d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fmenu/repository/archive.zip?sha=1f57d30c0896fbba1c4ba3a0d5acbe07139a6a36",
-                "reference": "1f57d30c0896fbba1c4ba3a0d5acbe07139a6a36",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fmenu/repository/archive.zip?sha=1cee8bd06f2562f382e0a6e2165727cbde16d8d8",
+                "reference": "1cee8bd06f2562f382e0a6e2165727cbde16d8d8",
                 "shasum": ""
             },
             "require": {
@@ -1306,7 +1306,7 @@
                 "menu",
                 "nette"
             ],
-            "time": "2017-08-10 08:39:54"
+            "time": "2017-08-24T11:45:52+00:00"
         },
         {
             "name": "nexendrie/rss",
@@ -2203,6 +2203,7 @@
                 }
             ],
             "description": "Simple integration testing tool for Nette Framework applications",
+            "abandoned": true,
             "time": "2017-02-06T13:39:41+00:00"
         },
         {
@@ -2276,12 +2277,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "258e148624e54887031fbdecebf766a329403955"
+                "reference": "134bb931beedf97aa57384c4d54b3cdf86412623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/258e148624e54887031fbdecebf766a329403955",
-                "reference": "258e148624e54887031fbdecebf766a329403955",
+                "url": "https://api.github.com/repos/nette/tester/zipball/134bb931beedf97aa57384c4d54b3cdf86412623",
+                "reference": "134bb931beedf97aa57384c4d54b3cdf86412623",
                 "shasum": ""
             },
             "require": {
@@ -2330,7 +2331,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2017-08-19T11:55:46+00:00"
+            "time": "2017-08-24 07:32:20"
         },
         {
             "name": "nexendrie/code-quality",
