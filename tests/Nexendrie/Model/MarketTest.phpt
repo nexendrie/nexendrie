@@ -46,11 +46,12 @@ class MarketTest extends \Tester\TestCase {
   }
   
   public function testEditShop() {
-    $shop = $this->model->getShop(1);
+    $shop = $this->model->getShop(2);
     $name = $shop->name;
     $this->model->editShop($shop->id, ["name" => "abc"]);
     Assert::same("abc", $shop->name);
     $this->model->editShop($shop->id, ["name" => $name]);
+    Assert::notSame("abc", $shop->name);
   }
   
   public function testGetItem() {
