@@ -122,9 +122,9 @@ class Events implements \EventCalendar\IEventModel {
    * @param int $year
    * @param int $month
    * @param int $day
-   * @return Event[]|ICollection
+   * @return string[]
    */
-  public function getForDate($year, $month, $day): ICollection {
+  public function getForDate($year, $month, $day): array {
     if(is_null($this->events)) {
       $this->loadEvents($year, $month);
     }

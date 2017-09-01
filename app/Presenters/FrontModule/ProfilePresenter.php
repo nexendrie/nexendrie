@@ -21,7 +21,7 @@ class ProfilePresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  public function renderDefault(?string $username): void {
+  public function renderDefault(?string $username = NULL): void {
     if(is_null($username)) {
       throw new \Nette\Application\BadRequestException;
     }
