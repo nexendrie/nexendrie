@@ -17,8 +17,7 @@ use Nexendrie\Forms\FoundOrderFormFactory,
     Nexendrie\Model\UserNotInYourOrderException,
     Nexendrie\Model\CannotPromoteMemberException,
     Nexendrie\Model\CannotDemoteMemberException,
-    Nexendrie\Model\CannotKickMemberException,
-    Nexendrie\Model\GuildNotFoundException;
+    Nexendrie\Model\CannotKickMemberException;
 
 /**
  * Presenter Order
@@ -94,7 +93,7 @@ class OrderPresenter extends BasePresenter {
     } catch(CannotJoinOrderException $e) {
       $this->flashMessage("Nemůžeš vstoupit do řádu.");
       $this->redirect("Homepage:");
-    } catch(GuildNotFoundException $e) {
+    } catch(OrderNotFoundException $e) {
       throw new \Nette\Application\BadRequestException;
     }
   }
