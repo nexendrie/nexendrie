@@ -31,6 +31,8 @@ class TownPresenter extends BasePresenter {
   protected $guildModel;
   /** @var \Nexendrie\Model\Order @autowire */
   protected $orderModel;
+  /** @var \Nexendrie\Model\Locale @autowire */
+  protected $localeModel;
   /** @var \Nexendrie\Orm\Town */
   private $town;
   
@@ -75,11 +77,7 @@ class TownPresenter extends BasePresenter {
   public function actionMove(int $id): void {
     try {
       $this->model->moveToTown($id);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Přestěhovala jsi se do vybraného města.";
-      } else {
-        $message = "Přestěhoval jsi se do vybraného města.";
-      }
+      $message = $this->localeModel->genderMessage("Přestěhoval(a) jsi se do vybraného města.");
       $this->flashMessage($message);
       $this->redirect("Town:");
     } catch(TownNotFoundException $e) {
