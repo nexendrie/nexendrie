@@ -32,7 +32,7 @@ class ItemPresenter extends BasePresenter {
     }
   }
   
-  public function actionAdd(): void {
+  public function actionNew(): void {
     $this->requiresPermissions("content", "add");
   }
   

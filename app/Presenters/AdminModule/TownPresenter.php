@@ -20,7 +20,7 @@ class TownPresenter extends BasePresenter {
   /** @var TownEntity */
   private $town;
   
-  public function actionAdd(): void {
+  public function actionNew(): void {
     $this->requiresPermissions("content", "add");
   }
   

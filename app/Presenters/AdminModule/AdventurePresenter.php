@@ -19,7 +19,7 @@ class AdventurePresenter extends BasePresenter {
   /** @var \Nexendrie\Orm\Adventure */
   private $adventure;
   
-  public function actionAdd(): void {
+  public function actionNew(): void {
     $this->requiresPermissions("content", "add");
   }
   

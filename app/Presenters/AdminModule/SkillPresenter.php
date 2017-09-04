@@ -19,7 +19,7 @@ class SkillPresenter extends BasePresenter {
   /** @var SkillEntity */
   private $skill;
   
-  public function actionAdd(): void {
+  public function actionNew(): void {
     $this->requiresPermissions("content", "add");
   }
   
