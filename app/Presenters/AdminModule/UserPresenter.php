@@ -26,6 +26,11 @@ class UserPresenter extends BasePresenter {
   
   public function actionEdit(int $id): void {
     $this->requiresPermissions("user", "edit");
+    try {
+      $this->model->get($id);
+    } catch(UserNotFoundException $e) {
+      throw new \Nette\Application\BadRequestException;
+    }
   }
   
   protected function createComponentEditUser(EditUserFormFactory $factory): Form {
