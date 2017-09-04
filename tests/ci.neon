@@ -1,6 +1,6 @@
 dbal:
     driver: mysqli
     host: mysql
-    dbname: nexendrie_test
+    dbname: nexendrie
     user: root
     password: root

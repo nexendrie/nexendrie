@@ -13,8 +13,8 @@ $connection = new Nextras\Dbal\Connection($config["dbal"]);
 try {
   $connection->query("SET foreign_key_checks = 0");
   $tables = $connection->query("SHOW TABLES");
-  foreach($tables as $table) {
-    $connection->query("DROP TABLE $table->Tables_in_nexendrie_test");
+  while($table = $tables->fetchField(0)) {
+    $connection->query("DROP TABLE $table");
   }
 } catch(QueryException $e) {
 
