@@ -19,7 +19,7 @@ class MealPresenter extends BasePresenter {
   /** @var MealEntity */
   private $meal;
   
-  public function actionAdd(): void {
+  public function actionNew(): void {
     $this->requiresPermissions("content", "add");
   }
   
