@@ -15,7 +15,7 @@ cache:
   - mysql
 
   variables:
-    MYSQL_DATABASE: nexendrie_test
+    MYSQL_DATABASE: nexendrie
     MYSQL_ROOT_PASSWORD: root
 
   script:
