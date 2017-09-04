@@ -40,7 +40,7 @@ test:pgsql:
   services:
   - postgres
   variables:
-    POSTGRES_DB: nexendrie_test
+    POSTGRES_DB: nexendrie
     POSTGRES_USER: root
     POSTGRES_PASSWORD: root
   before_script:
