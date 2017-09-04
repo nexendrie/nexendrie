@@ -54,7 +54,8 @@ class GiftFormFactory {
     $form->addText("money", "Peníze:")
       ->addRule(Form::INTEGER, "Zadej celé číslo.")
       ->addRule(Form::RANGE, "Zadej číslo v rozmezí 0-2000.", [0, 2000])
-      ->setValue(0);
+      ->setValue(0)
+      ->setRequired("Zadej částku.");
     $form->addSelect("item", "Věc:", $this->getItemsList())
       ->setPrompt("-");
     $form->addTextArea("message", "Zpráva pro příjemce:");
