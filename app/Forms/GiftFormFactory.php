@@ -71,6 +71,7 @@ class GiftFormFactory {
     }
     $money = $values["money"];
     if($money > 0) {
+      /** @var \Nexendrie\Orm\User $queen */
       $queen = $this->orm->users->getById(0);
       if($queen->money < $money) {
         $form->addError("V pokladně není požadované množství peněz.");
@@ -95,7 +96,9 @@ class GiftFormFactory {
   }
   
   public function process(Form $form, array $values): void {
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($values["user"]);
+    /** @var \Nexendrie\Orm\User $queen */
     $queen = $this->orm->users->getById(0);
     $money = $values["money"];
     $itemName = "";
@@ -106,9 +109,10 @@ class GiftFormFactory {
       $this->orm->users->persist($user);
     }
     if($values["item"]) {
+      /** @var ItemEntity $item */
       $item = $this->orm->items->getById($values["item"]);
       $row = $this->orm->userItems->getByUserAndItem($user->id, $item->id);
-      if(!$row AND in_array($item->type, ItemEntity::getEquipmentTypes())) {
+      if(is_null($row) AND in_array($item->type, ItemEntity::getEquipmentTypes())) {
         $row = new UserItemEntity;
         $row->user = $user;
         $row->item = $item;

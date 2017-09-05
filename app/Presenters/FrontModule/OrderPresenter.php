@@ -120,7 +120,9 @@ class OrderPresenter extends BasePresenter {
   }
   
   protected function createComponentManageOrderForm(ManageOrderFormFactory $factory): Form {
-    $form = $factory->create($this->model->getUserOrder()->id);
+    /** @var \Nexendrie\Orm\Order $order */
+    $order = $this->model->getUserOrder();
+    $form = $factory->create($order->id);
     $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");
     };
@@ -146,8 +148,9 @@ class OrderPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš spravovat řád.");
       $this->redirect("Homepage:");
     }
-    $order = $this->model->getUserOrder()->id;
-    $this->template->members = $this->model->getMembers($order);
+    /** @var \Nexendrie\Orm\Order $order */
+    $order = $this->model->getUserOrder();
+    $this->template->members = $this->model->getMembers($order->id);
     $this->template->maxRank = $this->model->maxRank;
   }
   

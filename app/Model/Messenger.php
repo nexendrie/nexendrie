@@ -97,7 +97,9 @@ class Messenger {
     $this->orm->messages->attach($message);
     $message->subject = $data["subject"];
     $message->text = $data["text"];
-    $message->from = $this->orm->users->getById($this->user->id);
+    /** @var \Nexendrie\Orm\User $from */
+    $from = $this->orm->users->getById($this->user->id);
+    $message->from = $from;
     $message->from->lastActive = time();
     $message->to = $data["to"];
     $this->orm->messages->persistAndFlush($message);

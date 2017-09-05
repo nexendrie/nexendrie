@@ -48,6 +48,7 @@ class House {
     } elseif($this->getUserHouse()) {
       throw new CannotBuyMoreHousesException;
     }
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != GroupEntity::PATH_CITY) {
       throw new CannotBuyHouseException;
@@ -93,6 +94,7 @@ class House {
     } elseif(!$this->canUpgrade()) {
       throw new CannotUpgradeHouseException;
     }
+    /** @var HouseEntity $house */
     $house = $this->getUserHouse();
     if($house->owner->money < $house->upgradePrice) {
       throw new InsufficientFundsException;
@@ -111,6 +113,7 @@ class House {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var HouseEntity $house */
     $house = $this->getUserHouse();
     if(is_null($house)) {
       return false;
@@ -133,6 +136,7 @@ class House {
     } elseif(!$this->canRepair()) {
       throw new CannotRepairHouseException;
     }
+    /** @var HouseEntity $house */
     $house = $this->getUserHouse();
     if($house->owner->money < $house->repairPrice) {
       throw new InsufficientFundsException;
@@ -174,6 +178,7 @@ class House {
     } elseif(!$this->canUpgradeBrewery()) {
       throw new CannotUpgradeBreweryException;
     }
+    /** @var HouseEntity $house */
     $house = $this->getUserHouse();
     if($house->owner->money < $house->breweryUpgradePrice) {
       throw new InsufficientFundsException;
@@ -226,6 +231,7 @@ class House {
     } elseif(!$this->canProduceBeer()) {
       throw new CannotProduceBeerException;
     }
+    /** @var HouseEntity $house */
     $house = $this->getUserHouse();
     $production = new BeerProduction;
     $production->house = $house;

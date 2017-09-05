@@ -267,6 +267,7 @@ class Adventure {
    */
   protected function fightNpc(AdventureNpcEntity $npc, MountEntity $mount): bool {
     $finished = $result = false;
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     $userStats = $this->combatModel->userCombatStats($user, $mount);
     $user->life += $userStats["maxLife"] - $user->maxLife;

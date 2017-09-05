@@ -92,7 +92,9 @@ class UserManager implements IAuthenticator {
    */
   protected function getIdentity(UserEntity $user): Identity {
     if($user->banned) {
-      $role = $this->orm->groups->getById($this->roles["bannedRole"])->singleName;
+      /** @var \Nexendrie\Orm\Group $group */
+      $group = $this->orm->groups->getById($this->roles["bannedRole"]);
+      $role = $group->singleName;
     } else {
       $role = $user->group->singleName;
     }
@@ -132,6 +134,7 @@ class UserManager implements IAuthenticator {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $this->user->login($this->getIdentity($user));
   }
@@ -171,6 +174,7 @@ class UserManager implements IAuthenticator {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $settings = [
       "publicname" => $user->publicname, "email" => $user->email, "infomails" =>  $user->infomails,
@@ -195,6 +199,7 @@ class UserManager implements IAuthenticator {
     if(!$this->emailAvailable($settings["email"], $this->user->id)) {
       throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     foreach($settings as $key => $value) {
       switch($key) {

@@ -126,6 +126,7 @@ class Mount {
     if($mount->owner->id === $this->user->id) {
       throw new CannotBuyOwnMountException;
     }
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->level < $mount->type->level) {
       throw new InsufficientLevelForMountException;

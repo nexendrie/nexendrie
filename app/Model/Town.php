@@ -110,6 +110,7 @@ class Town {
     if($town->owner->id === $this->user->id) {
       throw new CannotBuyOwnTownException;
     }
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->level < 350) {
       throw new InsufficientLevelForTownException;
@@ -191,6 +192,7 @@ class Town {
     if(!$this->user->isLoggedIn()) {
       return false;
     }
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path === GroupEntity::PATH_CHURCH) {
       return false;
@@ -222,6 +224,7 @@ class Town {
     if(is_null($town)) {
       throw new TownNotFoundException;
     }
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($id === $user->town->id) {
       throw new CannotMoveToSameTownException;
@@ -247,6 +250,7 @@ class Town {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != GroupEntity::PATH_TOWER) {
       throw new InsufficientLevelForFoundTownException;
@@ -301,6 +305,7 @@ class Town {
     if(is_null($citizen)) {
       throw new UserNotFoundException;
     }
+    /** @var \Nexendrie\Orm\User $owner */
     $owner = $this->orm->users->getById($this->user->id);
     if($citizen->town->owner->id != $owner->id) {
       throw new UserDoesNotLiveInTheTownException;

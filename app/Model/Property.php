@@ -72,6 +72,7 @@ class Property {
         $budget["expenses"]["incomeTax"] = 0;
       }
     }
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
       $budget["expenses"]["membershipFee"] += $user->guildRank->guildFee;

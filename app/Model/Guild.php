@@ -65,11 +65,11 @@ class Guild {
    * Check whether a name can be used
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
-    $guild = $this->orm->castles->getByName($name);
-    if($guild AND $guild->id != $id) {
-      return false;
+    $guild = $this->orm->guilds->getByName($name);
+    if(is_null($guild)) {
+      return true;
     }
-    return true;
+    return ($guild->id === $id);
   }
   
   /**
@@ -108,6 +108,7 @@ class Guild {
     if(!$this->user->isLoggedIn()) {
       return false;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != GroupEntity::PATH_CITY) {
       return false;
@@ -128,6 +129,7 @@ class Guild {
     if(!$this->canFound()) {
       throw new CannotFoundGuildException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(!$this->checkNameAvailability($data["name"])) {
       throw new GuildNameInUseException;
@@ -152,6 +154,7 @@ class Guild {
       throw new AuthenticationNeededException;
     }
     $bonus = $increase = 0;
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($job->user->id);
     if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
       $use = false;
@@ -175,6 +178,7 @@ class Guild {
     if(!$this->user->isLoggedIn()) {
       return false;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path === GroupEntity::PATH_CITY AND !$user->guild) {
       return true;
@@ -200,6 +204,7 @@ class Guild {
     } catch(GuildNotFoundException $e) {
       throw $e;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $user->guild = $guild;
     $user->guildRank = 1;
@@ -214,6 +219,7 @@ class Guild {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild)) {
       return false;
@@ -234,6 +240,7 @@ class Guild {
     if(!$this->canLeave()) {
       throw new CannotLeaveGuildException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $user->guild = $user->guildRank = NULL;
     $this->orm->users->persistAndFlush($user);
@@ -248,6 +255,7 @@ class Guild {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild)) {
       return false;
@@ -264,6 +272,7 @@ class Guild {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild)) {
       return false;
@@ -289,6 +298,7 @@ class Guild {
     if(!$this->canUpgrade()) {
       throw new CannotUpgradeGuildException;
     }
+    /** @var GuildEntity $guild */
     $guild = $this->getUserGuild();
     if($guild->money < $guild->upgradePrice) {
       throw new InsufficientFundsException;
@@ -334,6 +344,7 @@ class Guild {
     if(is_null($user)) {
       throw new UserNotFoundException;
     }
+    /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) {
       throw new UserNotInYourGuildException;
@@ -363,6 +374,7 @@ class Guild {
     if(is_null($user)) {
       throw new UserNotFoundException;
     }
+    /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) {
       throw new UserNotInYourGuildException;
@@ -392,6 +404,7 @@ class Guild {
     if(is_null($user)) {
       throw new UserNotFoundException;
     }
+    /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) {
       throw new UserNotInYourGuildException;

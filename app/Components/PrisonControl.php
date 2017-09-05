@@ -92,6 +92,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
     $release = false;
     if(is_null($punishment)) {
       $release = true;
+      /** @var UserEntity $user */
       $user = $this->orm->users->getById($this->user->id);
       $user->banned = false;
       $user->lastActive = time();

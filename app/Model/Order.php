@@ -61,8 +61,11 @@ class Order {
    * Check whether a name can be used
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
-    $guild = $this->orm->orders->getByName($name);
-    return ($guild AND $guild->id != $id);
+    $order = $this->orm->orders->getByName($name);
+    if(is_null($order)) {
+      return true;
+    }
+    return ($order->id === $id);
   }
   
   /**
@@ -101,6 +104,7 @@ class Order {
     if(!$this->user->isLoggedIn()) {
       return false;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != GroupEntity::PATH_TOWER) {
       return false;
@@ -126,6 +130,7 @@ class Order {
     if(!$this->checkNameAvailability($data["name"])) {
       throw new OrderNameInUseException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < $this->foundingPrice) {
       throw new InsufficientFundsException;
@@ -139,6 +144,7 @@ class Order {
     $user->order = $order;
     $user->orderRank = $this->maxRank;
     $this->orm->users->persist($user);
+    /** @var UserEntity $queen */
     $queen = $this->orm->users->getById(0);
     $queen->money += $this->foundingPrice;
     $this->orm->users->persist($queen);
@@ -150,6 +156,7 @@ class Order {
       throw new AuthenticationNeededException;
     }
     $bonus = $increase = 0;
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
       $increase += $user->orderRank->adventureBonus + ($user->order->level * 2.5) - 2.5;
@@ -165,6 +172,7 @@ class Order {
     if(!$this->user->isLoggedIn()) {
       return false;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path === GroupEntity::PATH_TOWER AND !$user->order) {
       return true;
@@ -190,6 +198,7 @@ class Order {
     } catch(OrderNotFoundException $e) {
       throw $e;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $user->order = $order;
     $user->orderRank = 1;
@@ -205,6 +214,7 @@ class Order {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->order)) {
       return false;
@@ -225,6 +235,7 @@ class Order {
     if(!$this->canLeave()) {
       throw new CannotLeaveOrderException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $user->order = $user->orderRank = NULL;
     $this->orm->users->persistAndFlush($user);
@@ -239,6 +250,7 @@ class Order {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->order)) {
       return false;
@@ -255,6 +267,7 @@ class Order {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->order)) {
       return false;
@@ -280,6 +293,7 @@ class Order {
     if(!$this->canUpgrade()) {
       throw new CannotUpgradeOrderException;
     }
+    /** @var OrderEntity $order */
     $order = $this->getUserOrder();
     if($order->money < $order->upgradePrice) {
       throw new InsufficientFundsException;
@@ -325,6 +339,7 @@ class Order {
     if(is_null($user)) {
       throw new UserNotFoundException;
     }
+    /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->order) OR $user->order->id != $admin->order->id) {
       throw new UserNotInYourOrderException;
@@ -354,6 +369,7 @@ class Order {
     if(is_null($user)) {
       throw new UserNotFoundException;
     }
+    /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->order) OR $user->order->id != $admin->order->id) {
       throw new UserNotInYourOrderException;
@@ -383,6 +399,7 @@ class Order {
     if(is_null($user)) {
       throw new UserNotFoundException;
     }
+    /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->order) OR $user->order->id != $admin->order->id) {
       throw new UserNotInYourOrderException;

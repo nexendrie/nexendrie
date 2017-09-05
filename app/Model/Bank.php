@@ -81,7 +81,9 @@ class Bank {
       throw new CannotTakeMoreLoansException;
     }
     $loan = new LoanEntity;
-    $loan->user = $this->orm->users->getById($this->user->id);
+    /** @var \Nexendrie\Orm\User $user */
+    $user = $this->orm->users->getById($this->user->id);
+    $loan->user = $user;
     $loan->user->money += $amount;
     $loan->interest = $this->interest;
     $loan->amount = $amount;

@@ -142,12 +142,14 @@ class Market {
     if($itemRow->shop->id != $shop) {
       throw new WrongShopException;
     }
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < $itemRow->price) {
       throw new InsufficientFundsException;
     }
+    /** @var UserItemEntity $row */
     $row = $this->orm->userItems->getByUserAndItem($user->id, $item);
-    if(!$row OR in_array($itemRow->type, ItemEntity::getEquipmentTypes())) {
+    if(is_null($row) OR in_array($itemRow->type, ItemEntity::getEquipmentTypes())) {
       $row = new UserItemEntity;
       $row->user = $user;
       $row->item = $item;

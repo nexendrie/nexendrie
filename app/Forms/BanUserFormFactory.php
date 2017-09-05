@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
-    Nexendrie\Orm\Punishment;
+    Nexendrie\Orm\Punishment,
+    Nexendrie\Orm\User;
 
 /**
  * Factory for form BanUser
@@ -36,6 +37,7 @@ class BanUserFormFactory {
   }
   
   public function process(Form $form, array $values): void {
+    /** @var User $user */
     $user = $this->orm->users->getById($this->userId);
     $user->banned = true;
     $punishment = new Punishment;

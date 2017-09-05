@@ -12,6 +12,7 @@ $connection = new Nextras\Dbal\Connection($config["dbal"]);
 
 try {
   $connection->query("SET foreign_key_checks = 0");
+  /** @var \Nextras\Dbal\Result\Result $tables */
   $tables = $connection->query("SHOW TABLES");
   while($table = $tables->fetchField(0)) {
     $connection->query("DROP TABLE $table");

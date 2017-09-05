@@ -37,6 +37,7 @@ class Inventory {
       throw new AuthenticationNeededException;
     }
     $return = [];
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     $return["money"] = $user->moneyT;
     $return["items"] = $user->items->get()->findBy(["this->item->type" => ItemEntity::getCommonTypes()]);
@@ -177,6 +178,7 @@ class Inventory {
       $life += $item->user->monastery->level;
     }
     if($item->amount < 1) {
+      /** @var \Nexendrie\Orm\User $user */
       $user = $this->orm->users->getById($this->user->id);
       $this->orm->userItems->remove($item);
       $user->life += $life;
@@ -219,6 +221,7 @@ class Inventory {
     $item->amount -= 1;
     $marriage->intimacy += $item->item->strength;
     if($item->amount < 1) {
+      /** @var \Nexendrie\Orm\User $user */
       $user = $this->orm->users->getById($this->user->id);
       $this->orm->userItems->remove($item);
       $this->orm->users->persist($user);

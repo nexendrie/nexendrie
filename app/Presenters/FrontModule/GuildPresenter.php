@@ -120,7 +120,9 @@ class GuildPresenter extends BasePresenter {
   }
   
   protected function createComponentManageGuildForm(ManageGuildFormFactory $factory): Form {
-    $form = $factory->create($this->model->getUserGuild()->id);
+    /** @var \Nexendrie\Orm\Guild $guild */
+    $guild = $this->model->getUserGuild();
+    $form = $factory->create($guild->id);
     $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");
     };
@@ -146,8 +148,9 @@ class GuildPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš spravovat cech.");
       $this->redirect("Homepage:");
     }
-    $guild = $this->model->getUserGuild()->id;
-    $this->template->members = $this->model->getMembers($guild);
+    /** @var \Nexendrie\Orm\Guild $guild */
+    $guild = $this->model->getUserGuild();
+    $this->template->members = $this->model->getMembers($guild->id);
     $this->template->maxRank = $this->model->maxRank;
   }
   

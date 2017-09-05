@@ -60,10 +60,10 @@ class Castle {
    */
   private function checkNameAvailability(string $name, int $id = NULL): bool {
     $castle = $this->orm->castles->getByName($name);
-    if($castle AND $castle->id != $id) {
-      return false;
+    if(is_null($castle)) {
+      return true;
     }
-    return true;
+    return ($castle->id === $id);
   }
   
   /**
@@ -100,6 +100,7 @@ class Castle {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != GroupEntity::PATH_TOWER) {
       throw new CannotBuildCastleException;
@@ -159,6 +160,7 @@ class Castle {
     } elseif(!$this->canUpgrade()) {
       throw new CannotUpgradeCastleException;
     }
+    /** @var CastleEntity $castle */
     $castle = $this->getUserCastle();
     if($castle->owner->money < $castle->upgradePrice) {
       throw new InsufficientFundsException;
@@ -199,6 +201,7 @@ class Castle {
     } elseif(!$this->canRepair()) {
       throw new CannotRepairCastleException;
     }
+    /** @var CastleEntity $castle */
     $castle = $this->getUserCastle();
     if($castle->owner->money < $castle->repairPrice) {
       throw new InsufficientFundsException;

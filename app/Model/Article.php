@@ -133,7 +133,9 @@ class Article {
     foreach($data as $key => $value) {
       $comment->$key = $value;
     }
-    $comment->author = $this->orm->users->getById($this->user->id);
+    /** @var \Nexendrie\Orm\User $author */
+    $author = $this->orm->users->getById($this->user->id);
+    $comment->author = $author;
     $comment->author->lastActive = time();
     $this->orm->comments->persistAndFlush($comment);
   }

@@ -6,6 +6,7 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\Monastery as MonasteryEntity,
     Nexendrie\Orm\MonasteryDonation,
     Nexendrie\Orm\Group as GroupEntity,
+    Nexendrie\Orm\User as UserEntity,
     Nextras\Orm\Collection\ICollection;
 
 /**
@@ -92,6 +93,7 @@ class Monastery {
     if(!$this->user->isLoggedIn()) {
       return false;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery AND $user->group->path === GroupEntity::PATH_CITY) {
       if($user->guild AND $user->guildRank->id === $this->guildModel->maxRank) {
@@ -134,6 +136,7 @@ class Monastery {
     } catch(MonasteryNotFoundException $e) {
       throw $e;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->monastery AND $user->monastery->id === $monastery->id) {
       throw new CannotJoinOwnMonasteryException;
@@ -163,6 +166,7 @@ class Monastery {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
@@ -191,6 +195,7 @@ class Monastery {
     if(!$this->canPray()) {
       throw new CannotPrayException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $user->lastPrayer = time();
     $user->life += $this->prayerLife();
@@ -207,6 +212,7 @@ class Monastery {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
@@ -229,13 +235,16 @@ class Monastery {
     if(!$this->canLeave()) {
       throw new CannotLeaveMonasteryException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $user->monastery = NULL;
     $level = 50;
     if($user->ownedTowns->countStored() OR $this->orm->castles->getByOwner($this->user->id)) {
       $level = 400;
     }
-    $user->group = $this->orm->groups->getByLevel($level);
+    /** @var GroupEntity $group */
+    $group = $this->orm->groups->getByLevel($level);
+    $user->group = $group;
     $this->orm->users->persistAndFlush($user);
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;
@@ -255,6 +264,7 @@ class Monastery {
     if($this->user->identity->level != 550) {
       return false;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->monasteriesLed->countStored() > 0) {
       return false;
@@ -280,6 +290,7 @@ class Monastery {
     if($this->orm->monasteries->getByName($name)) {
       throw new MonasteryNameInUseException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < $this->buildingPrice) {
       throw new InsufficientFundsException;
@@ -307,6 +318,7 @@ class Monastery {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       throw new NotInMonasteryException;
@@ -370,6 +382,7 @@ class Monastery {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
@@ -386,6 +399,7 @@ class Monastery {
     if(!$this->user->isLoggedIn()) {
       return 0;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return 0;
@@ -403,6 +417,7 @@ class Monastery {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
@@ -428,6 +443,7 @@ class Monastery {
     if(!$this->canUpgrade()) {
       throw new CannotUpgradeMonasteryException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $upgradePrice = $user->monastery->upgradePrice;
     if($user->monastery->money < $upgradePrice) {
@@ -447,6 +463,7 @@ class Monastery {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
@@ -472,6 +489,7 @@ class Monastery {
     if(!$this->canRepair()) {
       throw new CannotRepairMonasteryException;
     }
+    /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $repairPrice = $user->monastery->repairPrice;
     if($user->monastery->money < $repairPrice) {

@@ -65,6 +65,7 @@ class Marriage {
     } elseif(!is_null($this->orm->marriages->getAcceptedMarriage($id))) {
       return false;
     }
+    /** @var \Nexendrie\Orm\User $me */
     $me = $this->orm->users->getById($this->user->id);
     if(!is_null($this->orm->marriages->getActiveMarriage($this->user->id))) {
       return false;

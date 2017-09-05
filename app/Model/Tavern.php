@@ -89,6 +89,7 @@ class Tavern {
     if(is_null($meal)) {
       throw new MealNotFoundException;
     }
+    /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < $meal->price) {
       throw new InsufficientFundsException;
