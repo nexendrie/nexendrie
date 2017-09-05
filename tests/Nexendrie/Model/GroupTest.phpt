@@ -51,6 +51,10 @@ class GroupTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->edit(1, []);
     }, MissingPermissionsException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->edit(5000, []);
+    }, GroupNotFoundException::class);
   }
 }
 

@@ -52,6 +52,9 @@ class MarketTest extends \Tester\TestCase {
     Assert::same("abc", $shop->name);
     $this->model->editShop($shop->id, ["name" => $name]);
     Assert::notSame("abc", $shop->name);
+    Assert::exception(function() {
+      $this->model->editShop(5000, []);
+    }, ShopNotFoundException::class);
   }
   
   public function testGetItem() {
@@ -68,6 +71,9 @@ class MarketTest extends \Tester\TestCase {
     $this->model->editItem($item->id, ["name" => "abc"]);
     Assert::same("abc", $item->name);
     $this->model->editItem($item->id, ["name" => $name]);
+    Assert::exception(function() {
+      $this->model->editItem(5000, []);
+    }, ItemNotFoundException::class);
   }
 }
 

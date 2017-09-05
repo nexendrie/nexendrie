@@ -399,9 +399,15 @@ class Job {
   
   /**
    * Edit specified job message
+   *
+   * @throws JobMessageNotFoundException
    */
   public function editMessage(int $id, array $data): void {
-    $message = $this->orm->jobMessages->getById($id);
+    try {
+      $message = $this->getMessage($id);
+    } catch(JobMessageNotFoundException $e) {
+      throw $e;
+    }
     foreach($data as $key => $value) {
       if($key === "success") {
         $value = (int) $value;

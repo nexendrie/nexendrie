@@ -230,8 +230,15 @@ class UserManager implements IAuthenticator {
     return $this->orm->users->findAll()->orderBy("group")->orderBy("id");
   }
   
+  /**
+   * @throws UserNotFoundException
+   */
   public function edit(int $id, array $values): void {
-    $user = $this->orm->users->getById($id);
+    try {
+      $user = $this->get($id);
+    } catch(UserNotFoundException $e) {
+      throw $e;
+    }
     foreach($values as $key => $value) {
       $user->$key = $value;
     }

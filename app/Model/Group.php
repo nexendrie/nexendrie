@@ -74,16 +74,21 @@ class Group {
   /**
    * Edit specified group
    *
-   * @throws \Nette\Application\ForbiddenRequestException
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws GroupNotFoundException
    */
   public function edit(int $id, array $data): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException();
+      throw new AuthenticationNeededException;
     }
     if(!$this->user->isAllowed("group", "edit")) {
-      throw new MissingPermissionsException();
+      throw new MissingPermissionsException;
     }
     $group = $this->orm->groups->getById($id);
+    if(is_null($group)) {
+      throw new GroupNotFoundException;
+    }
     foreach($data as $key => $value) {
       $group->$key = $value;
     }

@@ -69,9 +69,15 @@ class Market {
   
   /**
    * Edit specified shop
+   *
+   * @throws ShopNotFoundException
    */
   public function editShop(int $id, array $data): void {
-    $shop = $this->orm->shops->getById($id);
+    try {
+      $shop = $this->getShop($id);
+    } catch(ShopNotFoundException $e) {
+      throw $e;
+    }
     foreach($data as $key => $value) {
       $shop->$key = $value;
     }
@@ -104,9 +110,15 @@ class Market {
   
   /**
    * Edit specified item
+   *
+   * @throws ItemNotFoundException
    */
   public function editItem(int $id, array $data): void {
-    $item = $this->orm->items->getById($id);
+    try {
+      $item = $this->getItem($id);
+    } catch(ItemNotFoundException $e) {
+      throw $e;
+    }
     foreach($data as $key => $value) {
       $item->$key = $value;
     }
