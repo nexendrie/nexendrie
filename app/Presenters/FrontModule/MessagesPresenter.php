@@ -45,7 +45,6 @@ class MessagesPresenter extends BasePresenter {
   
   /**
    * @param int|NULL $id Receiver's id
-   * @return void
    */
   public function actionNew(int $id = NULL): void {
     

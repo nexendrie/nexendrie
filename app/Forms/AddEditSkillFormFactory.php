@@ -46,8 +46,7 @@ class AddEditSkillFormFactory {
   
   /**
    * @param Form $form
-   * @param array $values  
-   * @return void
+   * @param array $values
    */
   public function validate(Form $form, array $values): void {
     if($values["type"] === "work" AND $values["stat"] != NULL) {
