@@ -56,6 +56,7 @@
           <arg path="composer"/>
         </exec>
         <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
+          <arg value="install"/>
           <arg value="--ignore-platform-reqs"/>
           <arg value="--no-dev"/>
         </exec>
