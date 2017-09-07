@@ -7,7 +7,7 @@ use Tester\Assert;
 
 require __DIR__ . "/../../bootstrap.php";
 
-class PropertyTest extends \Tester\TestCase {
+final class PropertyTest extends \Tester\TestCase {
   use TUserControl;
   
   /** @var Property */

@@ -8,7 +8,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class ShopControlTest extends \Tester\TestCase {
+final class ShopControlTest extends \Tester\TestCase {
   use \Nexendrie\Model\TUserControl;
   use \Testbench\TComponent;
   

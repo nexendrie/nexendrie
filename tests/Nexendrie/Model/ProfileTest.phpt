@@ -9,7 +9,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class ProfileTest extends \Tester\TestCase {
+final class ProfileTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
   
   /** @var Profile */

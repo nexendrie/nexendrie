@@ -7,7 +7,7 @@ use Tester\Assert;
 
 require __DIR__ . "/../../bootstrap.php";
 
-class AuthorizatorFactoryTest extends \Tester\TestCase {
+final class AuthorizatorFactoryTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
   
   /** @var \Nette\Security\Permission */

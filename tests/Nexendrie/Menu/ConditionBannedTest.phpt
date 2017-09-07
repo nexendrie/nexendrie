@@ -8,7 +8,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class ConditionBannedTest extends \Tester\TestCase {
+final class ConditionBannedTest extends \Tester\TestCase {
   use TUserControl;
   
   /** @var ConditionBanned */

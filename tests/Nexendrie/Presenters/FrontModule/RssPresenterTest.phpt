@@ -8,7 +8,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../../bootstrap.php";
 
-class RssPresenterTest extends \Tester\TestCase {
+final class RssPresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   
   public function testNews() {

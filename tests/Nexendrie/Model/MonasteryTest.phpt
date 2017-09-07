@@ -9,7 +9,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class MonasteryTest extends \Tester\TestCase {
+final class MonasteryTest extends \Tester\TestCase {
   use TUserControl;
   
   /** @var Monastery */

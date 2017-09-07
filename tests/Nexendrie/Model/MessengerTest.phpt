@@ -9,7 +9,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class MessengerTest extends \Tester\TestCase {
+final class MessengerTest extends \Tester\TestCase {
   use TUserControl;
   
   /** @var Messenger */

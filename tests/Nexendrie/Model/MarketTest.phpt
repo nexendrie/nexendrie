@@ -10,7 +10,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class MarketTest extends \Tester\TestCase {
+final class MarketTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
   
   /** @var Market */

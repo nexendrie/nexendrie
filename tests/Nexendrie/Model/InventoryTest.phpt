@@ -10,7 +10,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class InventoryTest extends \Tester\TestCase {
+final class InventoryTest extends \Tester\TestCase {
   use TUserControl;
   
   /** @var Inventory */

@@ -5,7 +5,7 @@ namespace Nexendrie\Presenters\FrontModule;
 
 require __DIR__ . "/../../../bootstrap.php";
 
-class HousePresenterTest extends \Tester\TestCase {
+final class HousePresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   
   public function testDefault() {

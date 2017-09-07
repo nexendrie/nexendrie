@@ -8,7 +8,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../../bootstrap.php";
 
-class OrderPresenterTest extends \Tester\TestCase {
+final class OrderPresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   
   protected function defaultChecks(string $action): void {

@@ -8,7 +8,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class ConditionPathTest extends \Tester\TestCase {
+final class ConditionPathTest extends \Tester\TestCase {
   use TUserControl;
   
   /** @var ConditionPath */

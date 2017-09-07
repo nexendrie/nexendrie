@@ -5,7 +5,7 @@ namespace Nexendrie\Presenters\FrontModule;
 
 require __DIR__ . "/../../../bootstrap.php";
 
-class PropertyPresenterTest extends \Tester\TestCase {
+final class PropertyPresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   
   protected function defaultChecks(string $action): void {

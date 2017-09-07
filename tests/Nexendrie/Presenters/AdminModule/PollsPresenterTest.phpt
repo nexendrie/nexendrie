@@ -8,7 +8,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../../bootstrap.php";
 
-class PollsPresenterTest extends \Tester\TestCase {
+final class PollsPresenterTest extends \Tester\TestCase {
   use TAdminPresenter;
   
   public function testDefault() {

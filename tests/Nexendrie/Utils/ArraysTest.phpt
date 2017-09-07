@@ -7,7 +7,7 @@ use Tester\Assert;
 
 require __DIR__ . "/../../bootstrap.php";
 
-class ArraysTest extends \Tester\TestCase {
+final class ArraysTest extends \Tester\TestCase {
   /**
    * @return string[]
    */

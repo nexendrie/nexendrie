@@ -7,7 +7,7 @@ use Tester\Assert;
 
 require __DIR__ . "/../../bootstrap.php";
 
-class LocaleTest extends \Tester\TestCase {
+final class LocaleTest extends \Tester\TestCase {
   use TUserControl;
   
   /** @var Locale */

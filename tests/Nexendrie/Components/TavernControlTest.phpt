@@ -5,7 +5,7 @@ namespace Nexendrie\Components;
 
 require __DIR__ . "/../../bootstrap.php";
 
-class TavernControlTest extends \Tester\TestCase {
+final class TavernControlTest extends \Tester\TestCase {
   use \Nexendrie\Model\TUserControl;
   use \Testbench\TComponent;
   

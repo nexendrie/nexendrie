@@ -8,7 +8,7 @@ use Tester\Assert;
 require __DIR__ . "/../../bootstrap.php";
 
 
-class SettingsRepositoryTest extends \Tester\TestCase {
+final class SettingsRepositoryTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
   
   /** @var SettingsRepository */

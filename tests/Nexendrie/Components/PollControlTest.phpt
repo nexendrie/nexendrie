@@ -9,7 +9,7 @@ use Nexendrie\Model\PollNotFoundException,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class PollControlTest extends \Tester\TestCase {
+final class PollControlTest extends \Tester\TestCase {
   use \Nexendrie\Model\TUserControl;
   use \Testbench\TComponent;
   

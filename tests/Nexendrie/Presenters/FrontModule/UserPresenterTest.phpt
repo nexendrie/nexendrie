@@ -7,7 +7,7 @@ use Tester\Assert;
 
 require __DIR__ . "/../../../bootstrap.php";
 
-class UserPresenterTest extends \Tester\TestCase {
+final class UserPresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   
   protected function defaultChecks(string $action): void {

@@ -9,7 +9,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class EventsTest extends \Tester\TestCase {
+final class EventsTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
   
   /** @var Events */

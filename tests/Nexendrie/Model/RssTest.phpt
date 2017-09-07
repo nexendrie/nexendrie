@@ -8,7 +8,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class RssTest extends \Tester\TestCase {
+final class RssTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
   
   /** @var Rss */

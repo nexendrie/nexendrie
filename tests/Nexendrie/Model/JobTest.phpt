@@ -11,7 +11,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class JobTest extends \Tester\TestCase {
+final class JobTest extends \Tester\TestCase {
   use TUserControl;
   
   /** @var Job */

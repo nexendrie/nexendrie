@@ -7,7 +7,7 @@ use Nexendrie\Orm\Article;
 
 require __DIR__ . "/../../../bootstrap.php";
 
-class ArticlesPresenterTest extends \Tester\TestCase {
+final class ArticlesPresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   
   public function testRedirects() {

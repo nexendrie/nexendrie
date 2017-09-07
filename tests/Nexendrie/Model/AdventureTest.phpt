@@ -12,7 +12,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class AdventureTest extends \Tester\TestCase {
+final class AdventureTest extends \Tester\TestCase {
   use TUserControl;
   
   /** @var Adventure */

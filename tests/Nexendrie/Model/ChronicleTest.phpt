@@ -10,7 +10,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class ChronicleTest extends \Tester\TestCase {
+final class ChronicleTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
   
   /** @var Chronicle */

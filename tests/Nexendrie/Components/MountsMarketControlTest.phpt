@@ -8,7 +8,7 @@ require __DIR__ . "/../../bootstrap.php";
 /**
  * @skip
  */
-class MountsMarketControlTest extends \Tester\TestCase {
+final class MountsMarketControlTest extends \Tester\TestCase {
   use \Nexendrie\Model\TUserControl;
   use \Testbench\TComponent;
   

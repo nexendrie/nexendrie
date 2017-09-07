@@ -10,7 +10,7 @@ use Tester\Assert,
 
 require __DIR__ . "/../../bootstrap.php";
 
-class MountTest extends \Tester\TestCase {
+final class MountTest extends \Tester\TestCase {
   use TUserControl;
   
   /** @var Mount */
