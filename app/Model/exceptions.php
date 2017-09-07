@@ -283,7 +283,7 @@ class MarriageNotFoundException extends RecordNotFoundException {
   
 }
 
-class MarriageProposalAlreadyHandledException extends RecordNotFoundException {
+class MarriageProposalAlreadyHandledException extends AccessDeniedException {
   
 }
 
@@ -419,11 +419,6 @@ class UserNotInYourOrderException extends AccessDeniedException {
   
 }
 
-/**
- * Poll voting exception
- *
- * @author Jakub Konečný
- */
 class PollVotingException extends \Exception {
   
 }
@@ -500,20 +495,10 @@ class TooHighLevelException extends AccessDeniedException {
   
 }
 
-/**
- * Registration exception
- * 
- * @author Jakub Konečný
- */
 class RegistrationException extends \Exception {
   
 }
 
-/**
- * Settings exception
- * 
- * @author Jakub Konečný
- */
 class SettingsException extends \Exception {
   
 }

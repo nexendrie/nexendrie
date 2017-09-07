@@ -81,10 +81,10 @@ class MarriagePresenter extends BasePresenter {
       throw new \Nette\Application\BadRequestException;
     } catch(CannotProposeMarriageException $e) {
       $this->flashMessage("Nemůžete se zasnoubit.");
-    } catch(AccessDeniedException $e) {
-      $this->flashMessage("Nemůžeš přijmout tento návrh.");
     } catch(MarriageProposalAlreadyHandledException $e) {
       $this->flashMessage("Tento návrh byl již vyřízen.");
+    } catch(AccessDeniedException $e) {
+      $this->flashMessage("Nemůžeš přijmout tento návrh.");
     }
     $this->redirect("Homepage:");
   }
@@ -100,10 +100,10 @@ class MarriagePresenter extends BasePresenter {
       throw new \Nette\Application\BadRequestException;
     } catch(CannotProposeMarriageException $e) {
       $this->flashMessage("Nemůžete se zasnoubit.");
-    } catch(AccessDeniedException $e) {
-      $this->flashMessage("Nemůžeš přijmout tento návrh.");
     } catch(MarriageProposalAlreadyHandledException $e) {
       $this->flashMessage("Tento návrh byl již vyřízen.");
+    } catch(AccessDeniedException $e) {
+      $this->flashMessage("Nemůžeš přijmout tento návrh.");
     }
     $this->redirect("Homepage:");
   }
