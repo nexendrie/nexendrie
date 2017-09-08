@@ -93,12 +93,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/EventCalendar.git",
-                "reference": "66e6617ff393d4ebfe798252257e69bdc295df2a"
+                "reference": "4791edac62abe2f4ca28b3e0ee3c55c10ce719dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/66e6617ff393d4ebfe798252257e69bdc295df2a",
-                "reference": "66e6617ff393d4ebfe798252257e69bdc295df2a",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/4791edac62abe2f4ca28b3e0ee3c55c10ce719dd",
+                "reference": "4791edac62abe2f4ca28b3e0ee3c55c10ce719dd",
                 "shasum": ""
             },
             "require": {
@@ -114,7 +114,7 @@
             "require-dev": {
                 "nette/php-generator": "~2.6",
                 "nexendrie/code-quality": "@dev",
-                "phpstan/phpstan-nette": "^0.7",
+                "phpstan/phpstan-nette": "^0.8",
                 "tracy/tracy": "~2.4"
             },
             "suggest": {
@@ -143,7 +143,7 @@
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
             "homepage": "http://www.nimral.cz/calendar",
-            "time": "2017-05-21T10:13:15+00:00"
+            "time": "2017-09-08T12:48:41+00:00"
         },
         {
             "name": "latte/latte",
@@ -2398,7 +2398,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2017-08-29 13:43:27"
+            "time": "2017-08-29T13:43:27+00:00"
         },
         {
             "name": "nexendrie/code-quality",
@@ -2440,7 +2440,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2017-07-24 07:53:01"
+            "time": "2017-07-24T07:53:01+00:00"
         },
         {
             "name": "nikic/php-parser",
