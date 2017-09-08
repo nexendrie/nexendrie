@@ -90,10 +90,10 @@ class PrisonControl extends \Nette\Application\UI\Control {
   public function handleRelease(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     $release = false;
+    /** @var UserEntity $user */
+    $user = $this->orm->users->getById($this->user->id);
     if(is_null($punishment)) {
       $release = true;
-      /** @var UserEntity $user */
-      $user = $this->orm->users->getById($this->user->id);
       $user->banned = false;
       $user->lastActive = time();
       $this->orm->users->persistAndFlush($user);
@@ -105,7 +105,7 @@ class PrisonControl extends \Nette\Application\UI\Control {
     }
     if($release) {
       $this->user->identity->banned = false;
-      $this->user->identity->roles = [$punishment->user->group->singleName];
+      $this->user->identity->roles = [$user->group->singleName];
       $message = $this->localeModel->genderMessage("Byl(a) jsi propuštěn(a).");
       $this->presenter->flashMessage($message);
       $this->presenter->redirect(":Front:Homepage:");

@@ -43,12 +43,14 @@ class MarriagePresenter extends BasePresenter {
   public function actionDefault(): void {
     $partner = $this->profileModel->getPartner($this->user->id);
     $fiance = $this->profileModel->getFiance($this->user->id);
-    if(!$partner AND !$fiance) {
+    if(is_null($partner) AND is_null($fiance)) {
       $this->redirect("proposals");
     }
     $this->template->partner = $partner;
     $this->template->fiance = $fiance;
-    $this->template->marriage = $this->marriage = $this->model->getCurrentMarriage();
+    /** @var MarriageEntity $marriage */
+    $marriage = $this->model->getCurrentMarriage();
+    $this->template->marriage = $this->marriage = $marriage;
     if(!is_null($partner)) {
       $this->template->boosters = $this->inventoryModel->intimacyBoosters();
       $this->template->maxIntimacy = MarriageEntity::MAX_INTIMACY;

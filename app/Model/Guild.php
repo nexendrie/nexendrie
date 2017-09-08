@@ -98,6 +98,9 @@ class Guild {
    */
   public function getUserGuild(int $uid = NULL): ?GuildEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
+    if(is_null($user)) {
+      return NULL;
+    }
     return $user->guild;
   }
   

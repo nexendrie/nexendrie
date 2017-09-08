@@ -94,6 +94,9 @@ class Order {
    */
   public function getUserOrder(int $uid = NULL): ?OrderEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
+    if(is_null($user)) {
+      return NULL;
+    }
     return $user->order;
   }
   

@@ -112,7 +112,7 @@ class GiftFormFactory {
       /** @var ItemEntity $item */
       $item = $this->orm->items->getById($values["item"]);
       $row = $this->orm->userItems->getByUserAndItem($user->id, $item->id);
-      if(is_null($row) AND in_array($item->type, ItemEntity::getEquipmentTypes())) {
+      if(is_null($row)) {
         $row = new UserItemEntity;
         $row->user = $user;
         $row->item = $item;
