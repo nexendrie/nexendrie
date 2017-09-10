@@ -106,7 +106,6 @@ class HousePresenter extends BasePresenter {
     try {
       $result = $this->model->produceBeer();
       $message = $this->localeModel->genderMessage("Uvařil(a) jsi ");
-      $message .= $result["amount"] . " ";
       $message .= $this->localeModel->barrels($result["amount"]);
       $message .= " piva za ";
       $message .= $this->localeModel->money($result["amount"] * $result["price"]) . ".";
