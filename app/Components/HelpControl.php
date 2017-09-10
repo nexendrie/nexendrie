@@ -7,6 +7,7 @@ use Nexendrie\BookComponent\BookControl,
     Nexendrie\BookComponent\BookPage,
     Nexendrie\Orm\Model as ORM,
     Nexendrie\Model\Locale,
+    Nexendrie\Model\SettingsRepository,
     Nexendrie\Orm\Monastery as MonasteryEntity,
     Nexendrie\Orm\Castle as CastleEntity,
     Nexendrie\Orm\House as HouseEntity,
@@ -24,11 +25,14 @@ class HelpControl extends BookControl {
   protected $orm;
   /** @var Locale */
   protected $localeModel;
+  /** @var SettingsRepository */
+  protected $sr;
   
-  public function __construct(ORM $orm, Locale $localeModel, Translator $translator) {
+  public function __construct(ORM $orm, Locale $localeModel, SettingsRepository $sr, Translator $translator) {
     parent::__construct(":Front:Help", __DIR__ . "/help", $translator);
     $this->orm = $orm;
     $this->localeModel = $localeModel;
+    $this->sr = $sr;
     $this->pages[] = new BookPage("introduction", "Úvod");
     $this->pages[] = new BookPage("titles", "Tituly");
     $this->pages[] = new BookPage("towns", "Města");
@@ -96,6 +100,12 @@ class HelpControl extends BookControl {
   public function renderOrder(): void {
     $this->template->ranks = $this->orm->orderRanks->findAll();
     $this->template->maxLevel = OrderEntity::MAX_LEVEL;
+  }
+  
+  public function renderTowns(): void {
+    /** @var \Nexendrie\Orm\Town $startingTown */
+    $startingTown = $this->orm->towns->getById($this->sr->settings["newUser"]["town"]);
+    $this->template->startingTown = $startingTown;
   }
 }
 ?>
