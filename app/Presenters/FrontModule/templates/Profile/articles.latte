@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Články uživatele{/block}
+{block content}
+  <h1>Články uživatele</h1>
+  {if $articles->count() === 0}
+  <p>Uživatel zatím nenapsal žádné články.</p>
+  {else}
+  {foreach $articles as $article}
+  <a n:href="Article:view $article->id">{$article->title}</a><br>
+  {/foreach}
+  {/if}
+{/block}

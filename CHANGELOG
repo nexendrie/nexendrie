@@ -7,6 +7,7 @@ Version 1.0.0-beta4+dev
 - fixed name of caught exception in RssPresenter::renderComments() and OrderPresenter::actionJoin()
 - added missing setRequired() for field money in GiftForm
 - throw an exception in UserPresenter::actionEdit() if the user does not exist
+- added profile sub-pages articles and skills
 
 Version 1.0.0-beta4
 - replaced BETA in pages' title by configurable version suffix

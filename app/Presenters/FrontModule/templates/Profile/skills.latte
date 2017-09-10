@@ -1,0 +1,12 @@
+{layout "../@layout.latte"}
+{block title}Dovednosti uživatele{/block}
+{block content}
+  <h1>Dovednosti uživatele</h1>
+  {if $skills->count() === 0}
+  <p>Uživatel nemá žádné dovednosti.</p>
+  {else}
+  {foreach $skills as $skill}
+  {$skill->skill->name} na úrovni {$skill->level}/{$skill->skill->maxLevel}<br>
+  {/foreach}
+  {/if}
+{/block}

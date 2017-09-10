@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\User as UserEntity;
+use Nexendrie\Orm\User as UserEntity,
+    Nextras\Orm\Relationships\OneHasMany,
+    Nexendrie\Orm\Article as ArticleEntity,
+    Nexendrie\Orm\UserSkill;
 
 /**
  * Profile Model
@@ -86,6 +89,30 @@ class Profile {
       return $marriage->user1;
     }
     return NULL;
+  }
+  
+  /**
+   * @return OneHasMany|ArticleEntity[]
+   * @throws UserNotFoundException
+   */
+  public function getArticles(string $username): OneHasMany {
+    $user = $this->orm->users->getByUsername($username);
+    if(is_null($user)) {
+      throw new UserNotFoundException("Specified user does not exist.");
+    }
+    return $user->articles;
+  }
+  
+  /**
+   * @return OneHasMany|UserSkill[]
+   * @throws UserNotFoundException
+   */
+  public function getSkills(string $username): OneHasMany {
+    $user = $this->orm->users->getByUsername($username);
+    if(is_null($user)) {
+      throw new UserNotFoundException("Specified user does not exist.");
+    }
+    return $user->skills;
   }
 }
 ?>

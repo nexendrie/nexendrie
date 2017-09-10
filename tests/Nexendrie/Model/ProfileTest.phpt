@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Tester\Assert,
+    Nextras\Orm\Relationships\OneHasMany,
     Nexendrie\Orm\User as UserEntity,
     Nexendrie\Orm\Group;
 
@@ -64,6 +65,24 @@ final class ProfileTest extends \Tester\TestCase {
     Assert::type(UserEntity::class, $partner2);
     Assert::same(3, $partner2->id);
     Assert::null($this->model->getFiance(2));
+  }
+  
+  public function testGetArticles() {
+    $articles = $this->model->getArticles("admin");
+    Assert::type(OneHasMany::class, $articles);
+    Assert::count(12, $articles);
+    Assert::exception(function() {
+      $this->model->getArticles("abc");
+    }, UserNotFoundException::class);
+  }
+  
+  public function testGetSkills() {
+    $articles = $this->model->getSkills("admin");
+    Assert::type(OneHasMany::class, $articles);
+    Assert::count(3, $articles);
+    Assert::exception(function() {
+      $this->model->getSkills("abc");
+    }, UserNotFoundException::class);
   }
 }
 

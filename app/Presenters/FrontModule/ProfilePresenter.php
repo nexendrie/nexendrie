@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\UserNotFoundException;
+use Nexendrie\Model\UserNotFoundException,
+    Nette\Application\BadRequestException;
 
 /**
  * Presenter Profile
@@ -19,11 +20,11 @@ class ProfilePresenter extends BasePresenter {
   protected $marriageModel;
   
   /**
-   * @throws \Nette\Application\BadRequestException
+   * @throws BadRequestException
    */
   public function renderDefault(?string $username = NULL): void {
     if(is_null($username)) {
-      throw new \Nette\Application\BadRequestException;
+      throw new BadRequestException;
     }
     try {
       $user = $this->model->view($username);
@@ -33,7 +34,23 @@ class ProfilePresenter extends BasePresenter {
       $this->template->fiance = $this->model->getFiance($user->id);
       $this->template->canProposeMarriage = $this->marriageModel->canPropose($user->id);
     } catch(UserNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new BadRequestException;
+    }
+  }
+  
+  public function renderArticles(string $username): void {
+    try {
+      $this->template->articles = $this->model->getArticles($username);
+    } catch(UserNotFoundException $e) {
+      throw new BadRequestException;
+    }
+  }
+  
+  public function renderSkills(string $username): void {
+    try {
+      $this->template->skills = $this->model->getSkills($username);
+    } catch(UserNotFoundException $e) {
+      throw new BadRequestException;
     }
   }
 }
