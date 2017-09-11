@@ -58,30 +58,18 @@ class PrisonControl extends \Nette\Application\UI\Control {
   public function handleWork(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     if(is_null($punishment)) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Nejsi uvězněná.";
-      } else {
-        $message = "Nejsi uvězněný.";
-      }
+      $message = $this->localeModel->genderMessage("Nejsi (uvězněný|uvězněná).");
       $this->presenter->flashMessage($message);
     } elseif(!$this->canWork($punishment)) {
       $this->presenter->flashMessage("Ještě nemůžeš pracovat.");
     } elseif($punishment->count >= $punishment->numberOfShifts) {
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Už jsi odpracovala svůj trest.";
-      } else {
-        $message = "Už jsi odpracoval svůj trest.";
-      }
+      $message = $this->localeModel->genderMessage("Už jsi odpracoval(a) svůj trest.");
       $this->presenter->flashMessage($message);
     } else {
       $punishment->count++;
       $punishment->lastAction = $punishment->user->lastActive = time();
       $this->orm->punishments->persistAndFlush($punishment);
-      if($this->user->identity->gender === UserEntity::GENDER_FEMALE) {
-        $message = "Úspěšně jsi zvládla směnu.";
-      } else {
-        $message = "Úspěšně jsi zvládl směnu.";
-      }
+      $message = $this->localeModel->genderMessage("Úspěšně jsi zvládl(a) směnu.");
       $this->presenter->flashMessage($message);
     }
     $this->presenter->redirect("default");
