@@ -93,12 +93,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/EventCalendar.git",
-                "reference": "4791edac62abe2f4ca28b3e0ee3c55c10ce719dd"
+                "reference": "6ea11fa9a9f82d7c5e427f03b3367b28fb6d98c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/4791edac62abe2f4ca28b3e0ee3c55c10ce719dd",
-                "reference": "4791edac62abe2f4ca28b3e0ee3c55c10ce719dd",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/6ea11fa9a9f82d7c5e427f03b3367b28fb6d98c3",
+                "reference": "6ea11fa9a9f82d7c5e427f03b3367b28fb6d98c3",
                 "shasum": ""
             },
             "require": {
@@ -143,7 +143,7 @@
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
             "homepage": "http://www.nimral.cz/calendar",
-            "time": "2017-09-08T12:48:41+00:00"
+            "time": "2017-09-11T07:20:10+00:00"
         },
         {
             "name": "latte/latte",
@@ -1129,20 +1129,20 @@
         },
         {
             "name": "nette/tokenizer",
-            "version": "v2.2.4",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tokenizer.git",
-                "reference": "ac9978efdb8add01ad9497b26bb90181cb0a4c1e"
+                "reference": "88373e9f79007245af0ccd8132fde117421723b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tokenizer/zipball/ac9978efdb8add01ad9497b26bb90181cb0a4c1e",
-                "reference": "ac9978efdb8add01ad9497b26bb90181cb0a4c1e",
+                "url": "https://api.github.com/repos/nette/tokenizer/zipball/88373e9f79007245af0ccd8132fde117421723b2",
+                "reference": "88373e9f79007245af0ccd8132fde117421723b2",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.1"
+                "php": ">=5.4"
             },
             "conflict": {
                 "nette/nette": "<2.2"
@@ -1152,6 +1152,11 @@
                 "tracy/tracy": "^2.3"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -1175,7 +1180,7 @@
             ],
             "description": "Nette Tokenizer",
             "homepage": "https://nette.org",
-            "time": "2017-07-11T19:30:23+00:00"
+            "time": "2017-09-08T14:16:06+00:00"
         },
         {
             "name": "nette/utils",
@@ -2344,12 +2349,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "a602a9789ca7c0aacbca902bb9527793d0eb2039"
+                "reference": "c4f81338bfac6b4e8a3ae13c78516a29123d832a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/a602a9789ca7c0aacbca902bb9527793d0eb2039",
-                "reference": "a602a9789ca7c0aacbca902bb9527793d0eb2039",
+                "url": "https://api.github.com/repos/nette/tester/zipball/c4f81338bfac6b4e8a3ae13c78516a29123d832a",
+                "reference": "c4f81338bfac6b4e8a3ae13c78516a29123d832a",
                 "shasum": ""
             },
             "require": {
@@ -2398,7 +2403,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2017-08-29T13:43:27+00:00"
+            "time": "2017-09-10T15:52:48+00:00"
         },
         {
             "name": "nexendrie/code-quality",
