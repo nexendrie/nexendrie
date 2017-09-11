@@ -161,9 +161,7 @@ class Guild {
     $user = $this->orm->users->getById($job->user->id);
     if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
       $use = false;
-      if(is_null($user->guild->skill)) {
-        $use = true;
-      } elseif($job->job->neededSkill->id === $user->guild->skill->id) {
+      if($job->job->neededSkill->id === $user->guild->skill->id) {
         $use = true;
       }
       if($use) {
