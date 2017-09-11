@@ -31,6 +31,8 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   const STATUS_ACTIVE = "active";
   const STATUS_CANCELLED = "cancelled";
   const MAX_INTIMACY = 1000;
+  const INTIMACY_FOR_LEVEL = 100;
+  const HP_INCREASE_PER_LEVEL = 2;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
@@ -86,11 +88,11 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
     if($this->status != self::STATUS_ACTIVE) {
       return 0;
     }
-    return (int) ($this->intimacy / 100);
+    return (int) ($this->intimacy / self::INTIMACY_FOR_LEVEL);
   }
   
   protected function getterHpIncrease(): int {
-    return $this->level * 2;
+    return $this->level * self::HP_INCREASE_PER_LEVEL;
   }
   
   protected function onBeforeInsert() {

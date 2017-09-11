@@ -13,6 +13,7 @@ use Nexendrie\BookComponent\BookControl,
     Nexendrie\Orm\House as HouseEntity,
     Nexendrie\Orm\Guild as GuildEntity,
     Nexendrie\Orm\Order as OrderEntity,
+    Nexendrie\Orm\Marriage as MarriageEntity,
     Nexendrie\Translation\Translator;
 
 /**
@@ -106,6 +107,12 @@ class HelpControl extends BookControl {
     /** @var \Nexendrie\Orm\Town $startingTown */
     $startingTown = $this->orm->towns->getById($this->sr->settings["newUser"]["town"]);
     $this->template->startingTown = $startingTown;
+  }
+  
+  public function renderMarriage(): void {
+    $amount = MarriageEntity::HP_INCREASE_PER_LEVEL;
+    $this->template->hpIncreasePerLevel = $this->localeModel->hitpoints($amount);
+    $this->template->intimacyForLevel = MarriageEntity::INTIMACY_FOR_LEVEL;
   }
 }
 ?>
