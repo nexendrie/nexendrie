@@ -22,6 +22,7 @@ final class ElectionsTest extends \Tester\TestCase {
   public function testGetNumberOfCouncillors() {
     Assert::same(0, $this->model->getNumberOfCouncillors(1));
     Assert::same(1, $this->model->getNumberOfCouncillors(2));
+    Assert::same(0, $this->model->getNumberOfCouncillors(5000));
   }
   
   public function testGetCandidates() {

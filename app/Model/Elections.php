@@ -25,8 +25,11 @@ class Elections {
    * Get number of councillors for the town
    */
   public function getNumberOfCouncillors(int $town): int {
-    /** @var int */
-    $denizens = $this->orm->towns->getById($town)->denizens->countStored();
+    $town = $this->orm->towns->getById($town);
+    if(is_null($town)) {
+      return 0;
+    }
+    $denizens = $town->denizens->countStored();
     if($denizens <= 3) {
       return 0;
     } elseif($denizens <= 6) {
