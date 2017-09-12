@@ -21,6 +21,16 @@ final class ItemSetPresenterTest extends \Tester\TestCase {
       $this->check(":Admin:ItemSet:edit", ["id" => 5000]);
     }, BadRequestException::class);
   }
+  
+  public function testDelete() {
+    $this->checkRedirect(":Admin:ItemSet:delete", "/user/login", ["id" => 1]);
+    $this->login("kazimira");
+    $this->checkRedirect(":Admin:ItemSet:delete", "/", ["id" => 1]);
+    $this->login();
+    Assert::exception(function() {
+      $this->check(":Admin:ItemSet:delete", ["id" => 5000]);
+    }, BadRequestException::class);
+  }
 }
 
 $test = new ItemSetPresenterTest;

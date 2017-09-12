@@ -61,6 +61,11 @@ final class MountTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->edit(50, []);
     }, MountNotFoundException::class);
+    $mount = $this->model->get(1);
+    $name = $mount->name;
+    $this->model->edit(1, ["name" => "abc"]);
+    Assert::same("abc", $mount->name);
+    $this->model->edit(1, ["name" => $name]);
   }
   
   public function testBuy() {

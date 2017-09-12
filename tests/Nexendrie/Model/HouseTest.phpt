@@ -89,6 +89,16 @@ final class HouseTest extends \Tester\TestCase {
     Assert::false($this->model->canUpgradeBrewery());
   }
   
+  public function testUpgradeBrewery() {
+    Assert::exception(function() {
+      $this->model->upgradeBrewery();
+    }, AuthenticationNeededException::class);
+    $this->login("jakub");
+    Assert::exception(function() {
+      $this->model->upgradeBrewery();
+    }, CannotUpgradeBreweryException::class);
+  }
+  
   public function testCanProduceBeer() {
     Assert::exception(function() {
       $this->model->canProduceBeer();
@@ -97,6 +107,16 @@ final class HouseTest extends \Tester\TestCase {
     Assert::false($this->model->canProduceBeer());
     $this->login("jakub");
     Assert::type("bool", $this->model->canProduceBeer());
+  }
+  
+  public function testProduceBeer() {
+    Assert::exception(function() {
+      $this->model->produceBeer();
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->produceBeer();
+    }, CannotProduceBeerException::class);
   }
 }
 

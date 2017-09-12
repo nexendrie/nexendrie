@@ -97,6 +97,17 @@ final class UserManagerTest extends \Tester\TestCase {
     Assert::type(UserEntity::class, $result->fetch());
   }
   
+  public function testEdit() {
+    Assert::exception(function() {
+      $this->model->edit(50, []);
+    }, UserNotFoundException::class);
+    $user = $this->model->get(1);
+    $money = $user->money;
+    $this->model->edit(1, ["money" => 1]);
+    Assert::same(1, $user->money);
+    $this->model->edit(1, ["money" => $money]);
+  }
+  
   public function testGet() {
     $user = $this->model->get(0);
     Assert::type(UserEntity::class, $user);

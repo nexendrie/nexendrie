@@ -51,12 +51,18 @@ final class GuildTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->editGuild(50, []);
     }, GuildNotFoundException::class);
+    $guild = $this->model->getGuild(1);
+    $name = $guild->name;
+    $this->model->editGuild(1, ["name" => "abc"]);
+    Assert::same("abc", $guild->name);
+    $this->model->editGuild(1, ["name" => $name]);
   }
   
   public function testGetUserGuild() {
     $guild = $this->model->getUserGuild(3);
     Assert::type(GuildEntity::class, $guild);
     Assert::null($this->model->getUserGuild(1));
+    Assert::null($this->model->getUserGuild(50));
   }
   
   public function testCanFound() {

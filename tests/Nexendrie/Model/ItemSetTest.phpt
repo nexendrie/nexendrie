@@ -37,6 +37,11 @@ final class ItemSetTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->edit(50, []);
     }, ItemSetNotFoundException::class);
+    $set = $this->model->get(1);
+    $name = $set->name;
+    $this->model->edit(1, ["name" => "abc"]);
+    Assert::same("abc", $set->name);
+    $this->model->edit(1, ["name" => $name]);
   }
   
   public function testDelete() {

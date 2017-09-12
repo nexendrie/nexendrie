@@ -7,7 +7,8 @@ use Testbench\TPresenter as BaseTrait,
     Nexendrie\Model\TUserControl,
     Tester\Assert,
     Nexendrie\Rss\RssResponse,
-    Nette\Application\Responses\ForwardResponse;
+    Nette\Application\Responses\ForwardResponse,
+    Nette\Application\IResponse;
 
 /**
  * TPresenter
@@ -51,6 +52,15 @@ trait TPresenter {
       }
     }
     return $response;
+  }
+  
+  /**
+   * @param bool|string $redirect
+   */
+  protected function checkSignal(string $destination, string $signal, array $params = [], array $post = [], $redirect = false): IResponse {
+    return $this->checkRedirect($destination, $redirect, [
+        "do" => $signal,
+      ] + $params, $post);
   }
 }
 ?>

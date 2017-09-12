@@ -69,6 +69,11 @@ final class AdventureTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->editNpc(50, []);
     }, AdventureNpcNotFoundException::class);
+    $npc = $this->model->getNpc(1);
+    $name = $npc->name;
+    $this->model->editNpc(1, ["name" => "abc"]);
+    Assert::same("abc", $npc->name);
+    $this->model->editNpc(1, ["name" => $name]);
   }
   
   public function testDeleteNpc() {

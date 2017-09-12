@@ -13,6 +13,10 @@ final class BankPresenterTest extends \Tester\TestCase {
     $this->login();
     $this->checkAction(":Front:Bank:default");
   }
+  
+  public function testReturn() {
+    $this->checkRedirect(":Front:Bank:return", "/user/login");
+  }
 }
 
 $test = new BankPresenterTest;

@@ -41,6 +41,15 @@ final class CastleTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->editCastle(50, []);
     }, CastleNotFoundException::class);
+    $castle1 = $this->model->getCastle(1);
+    $name = $castle1->name;
+    $castle2 = $this->model->getCastle(2);
+    Assert::exception(function() use($castle2) {
+      $this->model->editCastle(1, ["name" => $castle2->name]);
+    }, CastleNameInUseException::class);
+    $this->model->editCastle(1, ["name" => "abc"]);
+    Assert::same("abc", $castle1->name);
+    $this->model->editCastle(1, ["name" => $name]);
   }
   
   public function testBuild() {
@@ -68,16 +77,42 @@ final class CastleTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->canUpgrade();
     }, AuthenticationNeededException::class);
+    $this->login("jakub");
+    Assert::false($this->model->canUpgrade());
     $this->login();
-    Assert::type("bool", $this->model->canUpgrade());
+    Assert::false($this->model->canUpgrade());
+    $this->login("svetlana");
+    Assert::true($this->model->canUpgrade());
+  }
+  
+  public function testUpgrade() {
+    Assert::exception(function() {
+      $this->model->upgrade();
+    }, AuthenticationNeededException::class);
+    $this->login("jakub");
+    Assert::exception(function() {
+      $this->model->upgrade();
+    }, CannotUpgradeCastleException::class);
   }
   
   public function testCanRepair() {
     Assert::exception(function() {
       $this->model->canRepair();
     }, AuthenticationNeededException::class);
+    $this->login("jakub");
+    Assert::false($this->model->canRepair());
     $this->login();
-    Assert::type("bool", $this->model->canRepair());
+    Assert::false($this->model->canRepair());
+  }
+  
+  public function testRepair() {
+    Assert::exception(function() {
+      $this->model->repair();
+    }, AuthenticationNeededException::class);
+    $this->login("jakub");
+    Assert::exception(function() {
+      $this->model->repair();
+    }, CannotRepairCastleException::class);
   }
 }
 

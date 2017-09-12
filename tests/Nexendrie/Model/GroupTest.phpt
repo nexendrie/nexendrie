@@ -55,6 +55,11 @@ final class GroupTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->edit(5000, []);
     }, GroupNotFoundException::class);
+    $group = $this->model->ormGet(1);
+    $level = $group->level;
+    $this->model->edit(1, ["level" => 1]);
+    Assert::same(1, $group->level);
+    $this->model->edit(1, ["level" => $level]);
   }
 }
 

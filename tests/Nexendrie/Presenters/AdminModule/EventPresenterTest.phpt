@@ -25,6 +25,16 @@ final class EventPresenterTest extends \Tester\TestCase {
       $this->check(":Admin:Event:edit", ["id" => 5000]);
     }, BadRequestException::class);
   }
+  
+  public function testDelete() {
+    $this->checkRedirect(":Admin:Event:delete", "/user/login", ["id" => 1]);
+    $this->login("kazimira");
+    $this->checkRedirect(":Admin:Event:delete", "/", ["id" => 1]);
+    $this->login();
+    Assert::exception(function() {
+      $this->check(":Admin:Event:delete", ["id" => 5000]);
+    }, BadRequestException::class);
+  }
 }
 
 $test = new EventPresenterTest;

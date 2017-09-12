@@ -42,6 +42,11 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->editOrder(50, []);
     }, OrderNotFoundException::class);
+    $order = $this->model->getOrder(1);
+    $name = $order->name;
+    $this->model->editOrder(1, ["name" => "abc"]);
+    Assert::same("abc", $order->name);
+    $this->model->editOrder(1, ["name" => $name]);
   }
   
   public function testGetUserOrder() {

@@ -180,7 +180,7 @@ class Castle {
       throw new AuthenticationNeededException;
     }
     $castle = $this->getUserCastle();
-    if(!$castle) {
+    if(is_null($castle)) {
       return false;
     } elseif($castle->hp >= 100) {
       return false;
