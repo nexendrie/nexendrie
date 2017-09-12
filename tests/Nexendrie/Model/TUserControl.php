@@ -15,10 +15,10 @@ trait TUserControl {
   /**
    * Login a user
    */
-  public function login(string $username = NULL, string $password = NULL): void {
+  public function login(string $username = "admin", string $password = "qwerty"): void {
     /** @var \Nette\Security\User $user */
     $user = $this->getService(\Nette\Security\User::class);
-    $user->login($username ?? "admin", $password ?? "qwerty");
+    $user->login($username, $password);
   }
   
   /**
