@@ -74,6 +74,10 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->join(50);
     }, MonasteryNotFoundException::class);
+    $this->login("bozena");
+    Assert::exception(function() {
+      $this->model->join(1);
+    }, CannotJoinOwnMonasteryException::class);
   }
   
   public function testCanPray() {
@@ -104,6 +108,8 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::false($this->model->canLeave());
     $this->login("Rahym");
     Assert::false($this->model->canLeave());
+    $this->login("bozena");
+    Assert::true($this->model->canLeave());
   }
   
   public function testLeave() {
@@ -150,6 +156,21 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->edit(50, []);
     }, MonasteryNotFoundException::class);
+    $monastery1 = $this->model->get(1);
+    $name = $monastery1->name;
+    $money = $monastery1->money;
+    $monastery2 = $this->model->get(2);
+    Assert::exception(function() use($monastery2) {
+      $this->model->edit(1, ["name" => $monastery2->name]);
+    }, MonasteryNameInUseException::class);
+    $this->model->edit(1, [
+      "name" => "abc", "money" => 1
+    ]);
+    Assert::same("abc", $monastery1->name);
+    Assert::same($money, $monastery1->money);
+    $this->model->edit(1, [
+      "name" => $name
+    ]);
   }
   
   public function testHighClerics() {
@@ -170,6 +191,8 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::false($this->model->canManage());
     $this->login("Rahym");
     Assert::true($this->model->canManage());
+    $this->login("bozena");
+    Assert::false($this->model->canManage());
   }
   
   public function testPrayerLife() {
@@ -189,7 +212,9 @@ final class MonasteryTest extends \Tester\TestCase {
     $this->login();
     Assert::false($this->model->canUpgrade());
     $this->login("Rahym");
-    Assert::type("bool", $this->model->canUpgrade());
+    Assert::false($this->model->canUpgrade());
+    $this->login("bozena");
+    Assert::false($this->model->canUpgrade());
   }
   
   public function testUpgrade() {
@@ -209,7 +234,9 @@ final class MonasteryTest extends \Tester\TestCase {
     $this->login();
     Assert::false($this->model->canRepair());
     $this->login("Rahym");
-    Assert::type("bool", $this->model->canRepair());
+    Assert::false($this->model->canRepair());
+    $this->login("bozena");
+    Assert::false($this->model->canRepair());
   }
   
   public function testRepair() {

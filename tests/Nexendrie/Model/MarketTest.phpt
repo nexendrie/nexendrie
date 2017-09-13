@@ -11,7 +11,7 @@ use Tester\Assert,
 require __DIR__ . "/../../bootstrap.php";
 
 final class MarketTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
+  use TUserControl;
   
   /** @var Market */
   protected $model;
@@ -74,6 +74,19 @@ final class MarketTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->editItem(5000, []);
     }, ItemNotFoundException::class);
+  }
+  
+  public function testBuy() {
+    Assert::exception(function() {
+      $this->model->buy(50, 50);
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->buy(50, 50);
+    }, ItemNotFoundException::class);
+    Assert::exception(function() {
+      $this->model->buy(1, 50);
+    }, WrongShopException::class);
   }
 }
 

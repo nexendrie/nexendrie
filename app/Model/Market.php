@@ -144,11 +144,11 @@ class Market {
    * @throws InsufficientFundsException
    */
   public function buy(int $item, int $shop): void {
-    $itemRow = $this->orm->items->getById($item);
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException;
     }
-    if(!$itemRow) {
+    $itemRow = $this->orm->items->getById($item);
+    if(is_null($itemRow)) {
       throw new ItemNotFoundException("Specified item does not exist.");
     }
     if($itemRow->shop->id != $shop) {

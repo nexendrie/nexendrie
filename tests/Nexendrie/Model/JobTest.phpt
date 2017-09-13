@@ -68,6 +68,22 @@ final class JobTest extends \Tester\TestCase {
     $this->model->editJob($job->id, ["name" => $name]);
   }
   
+  public function testGetResultMessage() {
+    $this->login();
+    $message = $this->model->getResultMessage(1, true);
+    Assert::type("string", $message);
+    Assert::notSame("Úspěšně jsi zvládl směnu.", $message);
+    $message = $this->model->getResultMessage(1, false);
+    Assert::type("string", $message);
+    Assert::notSame("Nezvládl jsi tuto směnu.", $message);
+    $message = $this->model->getResultMessage(8, true);
+    Assert::type("string", $message);
+    Assert::same("Úspěšně jsi zvládl směnu.", $message);
+    $message = $this->model->getResultMessage(8, false);
+    Assert::type("string", $message);
+    Assert::same("Nezvládl jsi tuto směnu.", $message);
+  }
+  
   public function testIsWorking() {
     Assert::exception(function() {
       $this->model->isWorking();

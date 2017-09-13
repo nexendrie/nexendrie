@@ -8,18 +8,28 @@ require __DIR__ . "/../../../bootstrap.php";
 final class AdventurePresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   
-  protected function defaultChecks(string $action): void {
-    $this->checkRedirect($action, "/user/login");
+  protected function defaultChecks(string $action, array $params = []): void {
+    $this->checkRedirect($action, "/user/login", $params);
     $this->login("kazimira");
-    $this->checkRedirect($action, "/");
+    $this->checkRedirect($action, "/", $params);
   }
   
   public function testDefault() {
     $this->defaultChecks(":Front:Adventure:default");
+    $this->login();
+    $this->checkRedirect(":Front:Adventure:default", "/adventure/list");
   }
   
   public function testMounts() {
-    $this->defaultChecks(":Front:Adventure:mounts");
+    $this->defaultChecks(":Front:Adventure:mounts", ["id" => 1]);
+    $this->login();
+    $this->checkAction(":Front:Adventure:mounts", ["id" => 1]);
+  }
+  
+  public function testList() {
+    $this->defaultChecks(":Front:Adventure:list");
+    $this->login();
+    $this->checkAction(":Front:Adventure:list");
   }
 }
 
