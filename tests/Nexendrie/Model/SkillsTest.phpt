@@ -69,6 +69,11 @@ final class SkillsTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->learn(3);
     }, SkillMaxLevelReachedException::class);
+    Assert::exception(function() {
+      $this->modifyUser(["money" => 1], function() {
+        $this->model->learn(1);
+      });
+    }, InsufficientFundsException::class);
   }
   
   public function testGetLevelOfSkill() {
@@ -80,6 +85,19 @@ final class SkillsTest extends \Tester\TestCase {
     $level = $this->model->getLevelOfSkill(3);
     Assert::type("int", $level);
     Assert::same(5, $level);
+  }
+  
+  public function testCalculateSkillIncomeBonus() {
+    Assert::exception(function() {
+      $this->model->calculateSkillIncomeBonus(100, 5000);
+    }, AuthenticationNeededException::class);
+    $this->login();
+    $result = $this->model->calculateSkillIncomeBonus(100, 1);
+    Assert::type("int", $result);
+    Assert::same(0, $result);
+    $result = $this->model->calculateSkillIncomeBonus(100, 3);
+    Assert::type("int", $result);
+    Assert::true($result > 0);
   }
   
   public function testCalculateSkillSuccessBonus() {

@@ -91,6 +91,28 @@ final class UserManagerTest extends \Tester\TestCase {
     Assert::type("array", $this->model->getSettings());
   }
   
+  public function testChangeSettings() {
+    /** @var User $userService */
+    $userService = $this->getService(User::class);
+    $this->model->user = $userService;
+    Assert::exception(function() {
+      $this->model->changeSettings([]);
+    }, AuthenticationNeededException::class);
+    $this->login();
+    $user = $this->getUser();
+    /** @var \Nexendrie\Orm\Model $orm */
+    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    $user2 = $orm->users->getById(0);
+    Assert::exception(function() use($user2) {
+      $this->model->changeSettings(["publicname" => $user2->publicname]);
+    }, SettingsException::class, null, UserManager::REG_DUPLICATE_USERNAME);
+    Assert::exception(function() use($user, $user2) {
+      $this->model->changeSettings([
+        "email" => $user2->email, "publicname" => $user->publicname
+      ]);
+    }, SettingsException::class, null, UserManager::REG_DUPLICATE_EMAIL);
+  }
+  
   public function testListOfUsers() {
     $result = $this->model->listOfUsers();
     Assert::type(ICollection::class, $result);

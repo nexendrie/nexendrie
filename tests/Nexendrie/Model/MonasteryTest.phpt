@@ -140,6 +140,18 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->build("abc");
     }, CannotBuildMonasteryException::class);
+    $this->login("bozena");
+    Assert::exception(function() {
+      $this->modifyUser(["group" => 4], function() {
+        $monastery = $this->model->get(1);
+        $this->model->build($monastery->name);
+      });
+    }, MonasteryNameInUseException::class);
+    Assert::exception(function() {
+      $this->modifyUser(["group" => 4, "money" => 1], function() {
+        $this->model->build("abc");
+      });
+    }, InsufficientFundsException::class);
   }
   
   public function testDonate() {
@@ -150,6 +162,12 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->donate(1);
     }, NotInMonasteryException::class);
+    $this->login("Rahym");
+    Assert::exception(function() {
+      /** @var int $money */
+      $money = $this->getUserStat("money");
+      $this->model->donate($money + 1);
+    }, InsufficientFundsException::class);
   }
   
   public function testEdit() {

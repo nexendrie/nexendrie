@@ -87,6 +87,11 @@ final class MarketTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->buy(1, 50);
     }, WrongShopException::class);
+    Assert::exception(function() {
+      $this->modifyUser(["money" => 1], function() {
+        $this->model->buy(1, 2);
+      });
+    }, InsufficientFundsException::class);
   }
 }
 

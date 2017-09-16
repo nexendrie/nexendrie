@@ -390,7 +390,7 @@ class Job {
     $this->orm->jobMessages->attach($message);
     foreach($data as $key => $value) {
       if($key === "success") {
-        $value = (int) $value;
+        $value = (bool) $value;
       }
       $message->$key = $value;
     }
@@ -410,7 +410,7 @@ class Job {
     }
     foreach($data as $key => $value) {
       if($key === "success") {
-        $value = (int) $value;
+        $value = (bool) $value;
       }
       $message->$key = $value;
     }

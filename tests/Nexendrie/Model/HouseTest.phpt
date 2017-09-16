@@ -37,6 +37,12 @@ final class HouseTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->buyHouse();
     }, CannotBuyHouseException::class);
+    $this->login("premysl");
+    Assert::exception(function() {
+      $this->modifyUser(["money" => 1], function() {
+        $this->model->buyHouse();
+      });
+    }, InsufficientFundsException::class);
   }
   
   public function testCanUpgrade() {

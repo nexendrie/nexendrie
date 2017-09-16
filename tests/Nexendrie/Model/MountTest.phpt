@@ -86,6 +86,11 @@ final class MountTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->buy(9);
     }, InsufficientLevelForMountException::class);
+    Assert::exception(function() {
+      $this->modifyUser(["money" => 1], function() {
+        $this->model->buy(7);
+      });
+    }, InsufficientFundsException::class);
   }
 }
 

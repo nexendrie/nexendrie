@@ -68,6 +68,12 @@ final class TownTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->buy(5);
     }, CannotBuyOwnTownException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->modifyUser(["money" => 1], function() {
+        $this->model->buy(5);
+      });
+    }, InsufficientFundsException::class);
   }
   
   public function testGetMayor() {
@@ -143,6 +149,12 @@ final class TownTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->found([]);
     }, InsufficientLevelForFoundTownException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->modifyUser(["money" => 1], function() {
+        $this->model->found([]);
+      });
+    }, InsufficientFundsException::class);
   }
   
   public function testGetTownPeasants() {

@@ -52,6 +52,11 @@ final class TavernTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->buyMeal(50);
     }, MealNotFoundException::class);
+    Assert::exception(function() {
+      $this->modifyUser(["money" => 1], function() {
+        $this->model->buyMeal(1);
+      });
+    }, InsufficientFundsException::class);
   }
 }
 
