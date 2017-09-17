@@ -77,9 +77,9 @@ final class ProfileTest extends \Tester\TestCase {
   }
   
   public function testGetSkills() {
-    $skills = $this->model->getSkills("admin");
+    $skills = $this->model->getSkills("Rahym");
     Assert::type(OneHasMany::class, $skills);
-    Assert::count(3, $skills);
+    Assert::count(2, $skills);
     Assert::exception(function() {
       $this->model->getSkills("abc");
     }, UserNotFoundException::class);
