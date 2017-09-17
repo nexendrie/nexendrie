@@ -69,8 +69,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read int[] $messagesCount {virtual}
  */
 class User extends \Nextras\Orm\Entity\Entity {
-  const GENDER_MALE = "male";
-  const GENDER_FEMALE = "female";
+  public const GENDER_MALE = "male";
+  public const GENDER_FEMALE = "female";
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

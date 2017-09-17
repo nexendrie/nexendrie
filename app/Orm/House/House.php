@@ -24,10 +24,10 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $repairPriceT {virtual}
  */
 class House extends \Nextras\Orm\Entity\Entity {
-  const MAX_LEVEL = 5;
-  const BASE_UPGRADE_PRICE = 250;
-  const BASE_REPAIR_PRICE = 15;
-  const INCOME_BONUS_PER_LEVEL = 3;
+  public const MAX_LEVEL = 5;
+  public const BASE_UPGRADE_PRICE = 250;
+  public const BASE_REPAIR_PRICE = 15;
+  public const INCOME_BONUS_PER_LEVEL = 3;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

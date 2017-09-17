@@ -28,9 +28,9 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $repairPriceT {virtual}
  */
 class Monastery extends \Nextras\Orm\Entity\Entity {
-  const MAX_LEVEL = 6;
-  const BASE_UPGRADE_PRICE = 700;
-  const BASE_REPAIR_PRICE = 30;
+  public const MAX_LEVEL = 6;
+  public const BASE_UPGRADE_PRICE = 700;
+  public const BASE_REPAIR_PRICE = 30;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

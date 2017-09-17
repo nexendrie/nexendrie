@@ -21,14 +21,14 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $categoryCZ {virtual}
  */
 class Article extends \Nextras\Orm\Entity\Entity {
-  const CATEGORY_NEWS = "news";
-  const CATEGORY_CHRONICLE = "chronicle";
-  const CATEGORY_POETRY = "poetry";
-  const CATEGORY_SHORT_STORY = "short_story";
-  const CATEGORY_ESSAY = "essay";
-  const CATEGORY_NOVELLA = "novella";
-  const CATEGORY_FAIRY_TALE = "fairy_tale";
-  const CATEGORY_UNCATEGORIZED = "uncategorized";
+  public const CATEGORY_NEWS = "news";
+  public const CATEGORY_CHRONICLE = "chronicle";
+  public const CATEGORY_POETRY = "poetry";
+  public const CATEGORY_SHORT_STORY = "short_story";
+  public const CATEGORY_ESSAY = "essay";
+  public const CATEGORY_NOVELLA = "novella";
+  public const CATEGORY_FAIRY_TALE = "fairy_tale";
+  public const CATEGORY_UNCATEGORIZED = "uncategorized";
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

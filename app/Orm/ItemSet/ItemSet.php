@@ -17,9 +17,9 @@ namespace Nexendrie\Orm;
  * @property-read string $effect {virtual}
  */
 class ItemSet extends \Nextras\Orm\Entity\Entity {
-  const STAT_DAMAGE = "damage";
-  const STAT_ARMOR = "armor";
-  const STAT_HITPOINTS = "hitpoints";
+  public const STAT_DAMAGE = "damage";
+  public const STAT_ARMOR = "armor";
+  public const STAT_HITPOINTS = "hitpoints";
   
   /**
    * @return string[]

@@ -24,11 +24,11 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $effect {virtual}
  */
 class Skill extends \Nextras\Orm\Entity\Entity {
-  const TYPE_WORK = "work";
-  const TYPE_COMBAT = "combat";
-  const STAT_HITPOINTS = "hitpoints";
-  const STAT_DAMAGE = "damage";
-  const STAT_ARMOR = "armor";
+  public const TYPE_WORK = "work";
+  public const TYPE_COMBAT = "combat";
+  public const STAT_HITPOINTS = "hitpoints";
+  public const STAT_DAMAGE = "damage";
+  public const STAT_ARMOR = "armor";
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

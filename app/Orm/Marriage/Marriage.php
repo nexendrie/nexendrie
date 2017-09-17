@@ -25,14 +25,14 @@ namespace Nexendrie\Orm;
  * @property-read int $hpIncrease {virtual}
  */
 class Marriage extends \Nextras\Orm\Entity\Entity {
-  const STATUS_PROPOSED = "proposed";
-  const STATUS_ACCEPTED = "accepted";
-  const STATUS_DECLINED = "declined";
-  const STATUS_ACTIVE = "active";
-  const STATUS_CANCELLED = "cancelled";
-  const MAX_INTIMACY = 1000;
-  const INTIMACY_FOR_LEVEL = 100;
-  const HP_INCREASE_PER_LEVEL = 2;
+  public const STATUS_PROPOSED = "proposed";
+  public const STATUS_ACCEPTED = "accepted";
+  public const STATUS_DECLINED = "declined";
+  public const STATUS_ACTIVE = "active";
+  public const STATUS_CANCELLED = "cancelled";
+  public const MAX_INTIMACY = 1000;
+  public const INTIMACY_FOR_LEVEL = 100;
+  public const HP_INCREASE_PER_LEVEL = 2;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

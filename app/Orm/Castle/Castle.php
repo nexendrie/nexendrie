@@ -22,10 +22,10 @@ namespace Nexendrie\Orm;
  * @property-read string $repairPriceT {virtual}
  */
 class Castle extends \Nextras\Orm\Entity\Entity {
-  const MAX_LEVEL = 5;
-  const BASE_UPGRADE_PRICE = 500;
-  const BASE_REPAIR_PRICE = 35;
-  const TAX_BONUS_PER_LEVEL = 30;
+  public const MAX_LEVEL = 5;
+  public const BASE_UPGRADE_PRICE = 500;
+  public const BASE_REPAIR_PRICE = 35;
+  public const TAX_BONUS_PER_LEVEL = 30;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

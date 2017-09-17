@@ -29,7 +29,7 @@ class UserManager implements IAuthenticator {
   /** @var array */
   protected $newUser;
   /** Exception error code */
-  const REG_DUPLICATE_USERNAME = 1,
+  public const REG_DUPLICATE_USERNAME = 1,
     REG_DUPLICATE_EMAIL = 2,
     SET_INVALID_PASSWORD = 3;
   

@@ -20,9 +20,9 @@ class Skills {
   /** @var \Nette\Security\User */
   protected $user;
   /** Increase of success rate per skill level (in %) */
-  const SKILL_LEVEL_SUCCESS_RATE = 5;
+  public const SKILL_LEVEL_SUCCESS_RATE = 5;
   /** Increase of income per skill level (in %) */
-  const SKILL_LEVEL_INCOME = 15;
+  public const SKILL_LEVEL_INCOME = 15;
   
   use \Nette\SmartObject;
   

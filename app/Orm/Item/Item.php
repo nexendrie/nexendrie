@@ -24,14 +24,14 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|ItemSet[] $helmetSets {1:m ItemSet::$helmet}
  */
 class Item extends \Nextras\Orm\Entity\Entity {
-  const TYPE_ITEM = "item";
-  const TYPE_WEAPON = "weapon";
-  const TYPE_ARMOR = "armor";
-  const TYPE_HELMET = "helmet";
-  const TYPE_POTION = "potion";
-  const TYPE_MATERIAL = "material";
-  const TYPE_CHARTER = "charter";
-  const TYPE_INTIMACY_BOOST = "intimacy_boost";
+  public const TYPE_ITEM = "item";
+  public const TYPE_WEAPON = "weapon";
+  public const TYPE_ARMOR = "armor";
+  public const TYPE_HELMET = "helmet";
+  public const TYPE_POTION = "potion";
+  public const TYPE_MATERIAL = "material";
+  public const TYPE_CHARTER = "charter";
+  public const TYPE_INTIMACY_BOOST = "intimacy_boost";
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

@@ -22,8 +22,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $upgradePriceT {virtual}
  */
 class Order extends \Nextras\Orm\Entity\Entity {
-  const MAX_LEVEL = 6;
-  const BASE_UPGRADE_PRICE = 800;
+  public const MAX_LEVEL = 6;
+  public const BASE_UPGRADE_PRICE = 800;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
