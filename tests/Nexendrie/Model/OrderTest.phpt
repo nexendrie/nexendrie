@@ -53,6 +53,7 @@ final class OrderTest extends \Tester\TestCase {
     $order = $this->model->getUserOrder(1);
     Assert::type(OrderEntity::class, $order);
     Assert::null($this->model->getUserOrder(2));
+    Assert::null($this->model->getUserOrder(5000));
   }
   
   public function testCanFound() {
@@ -73,6 +74,15 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() use($data) {
       $this->model->found($data);
     }, CannotFoundOrderException::class);
+    $this->login("system");
+    Assert::exception(function() use($data) {
+      $this->model->found($data);
+    }, OrderNameInUseException::class);
+    Assert::exception(function() {
+      $this->modifyUser(["money" => 1], function() {
+        $this->model->found(["name" => "abc"]);
+      });
+    }, InsufficientFundsException::class);
   }
   
   public function testCalculateOrderIncomeBonus() {
@@ -107,6 +117,10 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->join(1);
     }, CannotJoinOrderException::class);
+    $this->login("system");
+    Assert::exception(function() {
+      $this->model->join(5000);
+    }, OrderNotFoundException::class);
   }
   
   public function testCanLeave() {

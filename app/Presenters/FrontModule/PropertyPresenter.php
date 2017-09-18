@@ -13,7 +13,7 @@ use Nexendrie\Orm\Town as TownEntity,
     Nexendrie\Model\ItemAlreadyWornException,
     Nexendrie\Model\ItemNotWornException,
     Nexendrie\Model\ItemNotDrinkableException,
-    Nexendrie\Model\HealingNotNeeded,
+    Nexendrie\Model\HealingNotNeededException,
     Nexendrie\Forms\AppointMayorFormFactory,
     Nexendrie\Model\ItemNotForSaleException,
     Nexendrie\Model\ItemNotUpgradableException,
@@ -161,7 +161,7 @@ class PropertyPresenter extends BasePresenter {
       $this->flashMessage("Zadaná věc ti nepatří.");
     } catch(ItemNotDrinkableException $e) {
       $this->flashMessage("Zadanou věc nelze vypít.");
-    } catch(HealingNotNeeded $e) {
+    } catch(HealingNotNeededException $e) {
       $this->flashMessage("Nepotřebuješ léčení.");
     }
     $this->redirect("equipment");

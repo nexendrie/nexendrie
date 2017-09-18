@@ -255,7 +255,7 @@ class ItemNotDrinkableException extends ItemNotUsableException {
 
 }
 
-class HealingNotNeeded extends AccessDeniedException {
+class HealingNotNeededException extends AccessDeniedException {
 
 }
 

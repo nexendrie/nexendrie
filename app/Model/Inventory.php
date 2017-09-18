@@ -155,7 +155,7 @@ class Inventory {
    * @throws ItemNotFoundException
    * @throws ItemNotOwnedException
    * @throws ItemNotDrinkableException
-   * @throws HealingNotNeeded
+   * @throws HealingNotNeededException
    */
   public function drinkPotion(int $id): int {
     if(!$this->user->isLoggedIn()) {
@@ -170,7 +170,7 @@ class Inventory {
       throw new ItemNotDrinkableException;
     }
     if($item->user->life >= $item->user->maxLife) {
-      throw new HealingNotNeeded;
+      throw new HealingNotNeededException;
     }
     $item->amount -= 1;
     $life = $item->item->strength;

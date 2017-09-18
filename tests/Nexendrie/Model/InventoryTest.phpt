@@ -63,46 +63,87 @@ final class InventoryTest extends \Tester\TestCase {
   
   public function testEquipItem() {
     Assert::exception(function() {
-      $this->model->equipItem(1);
+      $this->model->equipItem(5000);
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::exception(function() {
-      $this->model->equipItem(50);
+      $this->model->equipItem(5000);
     }, ItemNotFoundException::class);
+    $this->login("jakub");
+    Assert::exception(function() {
+      $this->model->equipItem(3);
+    }, ItemNotOwnedException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->equipItem(3);
+    }, ItemNotEquipableException::class);
+    Assert::exception(function() {
+      $this->model->equipItem(1);
+    }, ItemAlreadyWornException::class);
   }
   
   public function testUnequipItem() {
     Assert::exception(function() {
-      $this->model->unequipItem(1);
+      $this->model->unequipItem(5000);
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::exception(function() {
-      $this->model->unequipItem(50);
+      $this->model->unequipItem(5000);
     }, ItemNotFoundException::class);
+    $this->login("jakub");
+    Assert::exception(function() {
+      $this->model->unequipItem(3);
+    }, ItemNotOwnedException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->unequipItem(3);
+    }, ItemNotEquipableException::class);
+    Assert::exception(function() {
+      $this->model->unequipItem(23);
+    }, ItemNotWornException::class);
   }
   
   public function testDrinkPotion() {
     Assert::exception(function() {
-      $this->model->drinkPotion(1);
+      $this->model->drinkPotion(5000);
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::exception(function() {
-      $this->model->drinkPotion(50);
+      $this->model->drinkPotion(5000);
     }, ItemNotFoundException::class);
+    $this->login("jakub");
+    Assert::exception(function() {
+      $this->model->drinkPotion(3);
+    }, ItemNotOwnedException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->drinkPotion(1);
+    }, ItemNotDrinkableException::class);
+    Assert::exception(function() {
+      $this->model->drinkPotion(3);
+    }, HealingNotNeededException::class);
   }
   
   public function testBoostIntimacy() {
     Assert::exception(function() {
-      $this->model->boostIntimacy(1);
+      $this->model->boostIntimacy(5000);
     }, AuthenticationNeededException::class);
     $this->login("jakub");
     Assert::exception(function() {
-      $this->model->boostIntimacy(50);
+      $this->model->boostIntimacy(5000);
     }, NotMarriedException::class);
     $this->login();
     Assert::exception(function() {
-      $this->model->boostIntimacy(50);
+      $this->model->boostIntimacy(5000);
     }, ItemNotFoundException::class);
+    $this->login("svetlana");
+    Assert::exception(function() {
+      $this->model->boostIntimacy(19);
+    }, ItemNotOwnedException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->boostIntimacy(3);
+    }, ItemNotUsableException::class);
   }
   
   public function testSellItem() {
@@ -113,9 +154,17 @@ final class InventoryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->sellItem(50);
     }, ItemNotFoundException::class);
+    $this->login("jakub");
+    Assert::exception(function() {
+      $this->model->sellItem(3);
+    }, ItemNotOwnedException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->sellItem(19);
+    }, ItemNotForSaleException::class);
   }
   
-  public function testUpgradetem() {
+  public function testUpgradeItem() {
     Assert::exception(function() {
       $this->model->upgradeItem(1);
     }, AuthenticationNeededException::class);
@@ -123,6 +172,22 @@ final class InventoryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->upgradeItem(50);
     }, ItemNotFoundException::class);
+    $this->login("jakub");
+    Assert::exception(function() {
+      $this->model->upgradeItem(3);
+    }, ItemNotOwnedException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->upgradeItem(3);
+    }, ItemNotUpgradableException::class);
+    Assert::exception(function() {
+      $this->model->upgradeItem(1);
+    }, ItemMaxLevelReachedException::class);
+    Assert::exception(function() {
+      $this->modifyUser(["money" => 0], function() {
+        $this->model->upgradeItem(23);
+      });
+    }, InsufficientFundsException::class);
   }
 }
 
