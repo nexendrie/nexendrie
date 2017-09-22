@@ -61,6 +61,41 @@ trait TUserControl {
   }
   
   /**
+   * Perform an action and revert some stats to original values
+   *
+   * @param string[] $stats
+   * @throws AuthenticationNeededException
+   */
+  protected function preserveStats(array $stats, callable $callback): void {
+    /** @var \Nette\Security\User $user */
+    $user = $this->getService(\Nette\Security\User::class);
+    if(!$user->isLoggedIn()) {
+      throw new AuthenticationNeededException;
+    }
+    /** @var \Nexendrie\Orm\Model $orm */
+    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    $data = $orm->users->getById($user->id);
+    $oldStats = [];
+    foreach($stats as $stat) {
+      $oldStats[$stat] = $data->$stat;
+    }
+    $orm->users->persistAndFlush($data);
+    /** @var \Nexendrie\Model\UserManager $userManager */
+    $userManager = $user->getAuthenticator();
+    $userManager->user = $user;
+    $userManager->refreshIdentity();
+    try {
+      $callback();
+    } finally {
+      foreach($oldStats as $stat => $oldValue) {
+        $data->$stat = $oldValue;
+      }
+      $orm->users->persistAndFlush($data);
+      $userManager->refreshIdentity();
+    }
+  }
+  
+  /**
    * Modify the user and perform some action with modified stats
    *
    * @throws AuthenticationNeededException

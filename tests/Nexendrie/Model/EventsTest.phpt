@@ -26,8 +26,7 @@ final class EventsTest extends \Tester\TestCase {
   }
   
   public function testGetEvent() {
-    $event = $this->model->getEvent(1);
-    Assert::type(Event::class, $event);
+    Assert::type(Event::class, $this->model->getEvent(1));
     Assert::exception(function() {
       $this->model->getEvent(50);
     }, EventNotFoundException::class);
@@ -37,6 +36,10 @@ final class EventsTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->editEvent(50, []);
     }, EventNotFoundException::class);
+    $event = $this->model->getEvent(1);
+    $this->model->editEvent(1, ["start" => $event->startAt, "name" => "abc"]);
+    Assert::same("abc", $event->name);
+    $this->model->editEvent(1, ["name" => $event->name]);
   }
   
   public function testDeleteEvent() {

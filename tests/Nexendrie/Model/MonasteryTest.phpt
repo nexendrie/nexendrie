@@ -78,6 +78,18 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->join(1);
     }, CannotJoinOwnMonasteryException::class);
+    $this->login("svetlana");
+    $user = $this->getUser();
+    $stats = [
+      "monastery", "group", "order", "orderRank", "town"
+    ];
+    $this->preserveStats($stats, function() use($user) {
+      $this->model->join(1);
+      Assert::type(\Nexendrie\Orm\Monastery::class, $user->monastery);
+      Assert::null($user->order);
+      Assert::null($user->orderRank);
+      Assert::same(55, $user->group->level);
+    });
   }
   
   public function testCanPray() {
@@ -120,6 +132,13 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->leave();
     }, CannotLeaveMonasteryException::class);
+    $this->login("bozena");
+    $user = $this->getUser();
+    $this->preserveStats(["monastery", "group"], function() use($user) {
+      $this->model->leave();
+      Assert::null($user->monastery);
+      Assert::same(50, $user->group->level);
+    });
   }
   
   public function testCanBuild() {

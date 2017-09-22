@@ -93,6 +93,12 @@ final class CastleTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->upgrade();
     }, CannotUpgradeCastleException::class);
+    $this->login("svetlana");
+    Assert::exception(function() {
+      $this->modifyUser(["money" => 1], function() {
+        $this->model->upgrade();
+      });
+    }, InsufficientFundsException::class);
   }
   
   public function testCanRepair() {

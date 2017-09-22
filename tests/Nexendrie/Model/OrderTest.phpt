@@ -145,6 +145,13 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->leave();
     }, CannotLeaveOrderException::class);
+    $this->login("svetlana");
+    $user = $this->getUser();
+    $this->preserveStats(["order", "orderRank"], function() use($user) {
+      $this->model->leave();
+      Assert::null($user->order);
+      Assert::null($user->orderRank);
+    });
   }
   
   public function testCanManage() {

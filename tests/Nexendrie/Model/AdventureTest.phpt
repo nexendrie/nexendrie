@@ -99,10 +99,30 @@ final class AdventureTest extends \Tester\TestCase {
     $this->login();
     $result = $this->model->findGoodMounts();
     Assert::type(ICollection::class, $result);
-    /** @var MountEntity $mount */
-    $mount = $result->fetch();
-    Assert::type(MountEntity::class, $mount);
-    Assert::true($mount->hp >= 30);
+    foreach($result as $mount) {
+      Assert::type(MountEntity::class, $mount);
+      Assert::true($mount->hp >= 30);
+    }
+  }
+  
+  public function testStartAdventure() {
+    Assert::exception(function() {
+      $this->model->startAdventure(50, 50);
+    }, AuthenticationNeededException::class);
+    $this->login("kazimira");
+    Assert::exception(function() {
+      $this->model->startAdventure(50, 50);
+    }, AdventureNotFoundException::class);
+    Assert::exception(function() {
+      $this->model->startAdventure(1, 50);
+    }, InsufficientLevelForAdventureException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->startAdventure(1, 50);
+    }, MountNotFoundException::class);
+    Assert::exception(function() {
+      $this->model->startAdventure(1, 1);
+    }, MountNotOwnedException::class);
   }
   
   public function testGetNextNpc() {

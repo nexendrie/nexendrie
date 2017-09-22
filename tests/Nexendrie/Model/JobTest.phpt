@@ -195,6 +195,12 @@ final class JobTest extends \Tester\TestCase {
     Assert::true($message->success);
     $this->model->editMessage(1, ["success" => $success]);
   }
+  
+  public function testDeleteJob() {
+    Assert::exception(function() {
+      $this->model->deleteMessage(5000);
+    }, JobMessageNotFoundException::class);
+  }
 }
 
 $test = new JobTest;
