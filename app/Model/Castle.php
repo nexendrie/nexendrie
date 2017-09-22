@@ -50,7 +50,7 @@ class Castle {
   public function getCastle(int $id): CastleEntity {
     $castle = $this->orm->castles->getById($id);
     if(is_null($castle)) {
-      throw new CastleNotFoundException;
+      throw new CastleNotFoundException();
     }
     return $castle;
   }
@@ -80,7 +80,7 @@ class Castle {
     }
     foreach($data as $key => $value) {
       if($key === "name" AND !$this->checkNameAvailability($value, $id)) {
-        throw new CastleNameInUseException;
+        throw new CastleNameInUseException();
       }
       $castle->$key = $value;
     }
@@ -98,20 +98,20 @@ class Castle {
    */
   public function build(array $data): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != GroupEntity::PATH_TOWER) {
-      throw new CannotBuildCastleException;
+      throw new CannotBuildCastleException();
     } elseif($this->getUserCastle()) {
-      throw new CannotBuildMoreCastlesException;
+      throw new CannotBuildMoreCastlesException();
     } elseif(!$this->checkNameAvailability($data["name"])) {
-      throw new CastleNameInUseException;
+      throw new CastleNameInUseException();
     } elseif($user->money < $this->buildingPrice) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
-    $castle = new CastleEntity;
+    $castle = new CastleEntity();
     $castle->name = $data["name"];
     $castle->description = $data["description"];
     $castle->owner = $user;
@@ -136,7 +136,7 @@ class Castle {
    */
   public function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $castle = $this->getUserCastle();
     if(is_null($castle)) {
@@ -156,14 +156,14 @@ class Castle {
    */
   public function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     } elseif(!$this->canUpgrade()) {
-      throw new CannotUpgradeCastleException;
+      throw new CannotUpgradeCastleException();
     }
     /** @var CastleEntity $castle */
     $castle = $this->getUserCastle();
     if($castle->owner->money < $castle->upgradePrice) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $castle->owner->money -= $castle->upgradePrice;
     $castle->level++;
@@ -177,7 +177,7 @@ class Castle {
    */
   public function canRepair(): bool {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $castle = $this->getUserCastle();
     if(is_null($castle)) {
@@ -197,14 +197,14 @@ class Castle {
    */
   public function repair(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     } elseif(!$this->canRepair()) {
-      throw new CannotRepairCastleException;
+      throw new CannotRepairCastleException();
     }
     /** @var CastleEntity $castle */
     $castle = $this->getUserCastle();
     if($castle->owner->money < $castle->repairPrice) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $castle->owner->money -= $castle->repairPrice;
     $castle->hp = 100;

@@ -21,7 +21,7 @@ class MonasteryDonateFormFactory {
   }
   
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addText("amount", "Množství:")
       ->setRequired("Zadej množství.")
       ->addRule(Form::INTEGER, "Množství musí být celé číslo")

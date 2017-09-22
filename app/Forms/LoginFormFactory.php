@@ -22,7 +22,7 @@ class LoginFormFactory {
   }
   
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addText("username", "Uživatelské jméno:")
       ->setRequired("Zadej jméno.");
     $form->addPassword("password", "Heslo:")

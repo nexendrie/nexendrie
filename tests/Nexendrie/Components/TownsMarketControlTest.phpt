@@ -27,6 +27,6 @@ final class TownsMarketControlTest extends \Tester\TestCase {
   }
 }
 
-$test = new TownsMarketControlTest;
+$test = new TownsMarketControlTest();
 $test->run();
 ?>

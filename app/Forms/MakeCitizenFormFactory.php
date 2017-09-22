@@ -22,7 +22,7 @@ class MakeCitizenFormFactory {
   }
   
   public function create($town): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addSelect("user", "Uživatel:", $this->model->getTownPeasants($town))
       ->setRequired();
     $form->addSubmit("submit", "Povýsit");

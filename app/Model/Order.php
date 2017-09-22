@@ -52,7 +52,7 @@ class Order {
   public function getOrder(int $id): OrderEntity {
     $order = $this->orm->orders->getById($id);
     if(is_null($order)) {
-      throw new OrderNotFoundException;
+      throw new OrderNotFoundException();
     }
     return $order;
   }
@@ -82,7 +82,7 @@ class Order {
     }
     foreach($data as $key => $value) {
       if($key === "name" AND !$this->checkNameAvailability($value, $id)) {
-        throw new OrderNameInUseException;
+        throw new OrderNameInUseException();
       }
       $order->$key = $value;
     }
@@ -128,17 +128,17 @@ class Order {
    */
   public function found(array $data): void {
     if(!$this->canFound()) {
-      throw new CannotFoundOrderException;
+      throw new CannotFoundOrderException();
     }
     if(!$this->checkNameAvailability($data["name"])) {
-      throw new OrderNameInUseException;
+      throw new OrderNameInUseException();
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < $this->foundingPrice) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
-    $order = new OrderEntity;
+    $order = new OrderEntity();
     $this->orm->orders->attach($order);
     $order->name = $data["name"];
     $order->description = $data["description"];
@@ -156,7 +156,7 @@ class Order {
   
   public function calculateOrderIncomeBonus(int $baseIncome): int {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $bonus = $increase = 0;
     /** @var UserEntity $user */
@@ -192,9 +192,9 @@ class Order {
    */
   public function join(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     } elseif(!$this->canJoin()) {
-      throw new CannotJoinOrderException;
+      throw new CannotJoinOrderException();
     }
     try {
       $order = $this->getOrder($id);
@@ -215,7 +215,7 @@ class Order {
    */
   public function canLeave(): bool {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
@@ -233,10 +233,10 @@ class Order {
    */
   public function leave(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     if(!$this->canLeave()) {
-      throw new CannotLeaveOrderException;
+      throw new CannotLeaveOrderException();
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
@@ -251,7 +251,7 @@ class Order {
    */
   public function canManage(): bool {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
@@ -268,7 +268,7 @@ class Order {
    */
   public function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
@@ -291,15 +291,15 @@ class Order {
    */
   public function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     if(!$this->canUpgrade()) {
-      throw new CannotUpgradeOrderException;
+      throw new CannotUpgradeOrderException();
     }
     /** @var OrderEntity $order */
     $order = $this->getUserOrder();
     if($order->money < $order->upgradePrice) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $order->money -= $order->upgradePrice;
     $order->level++;
@@ -334,20 +334,20 @@ class Order {
    */
   public function promote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     } elseif(!$this->canManage()) {
-      throw new MissingPermissionsException;
+      throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
     if(is_null($user)) {
-      throw new UserNotFoundException;
+      throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->order) OR $user->order->id != $admin->order->id) {
-      throw new UserNotInYourOrderException;
+      throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id >= $this->maxRank - 1) {
-      throw new CannotPromoteMemberException;
+      throw new CannotPromoteMemberException();
     }
     $user->orderRank = $this->orm->orderRanks->getById($user->orderRank->id + 1);
     $this->orm->users->persistAndFlush($user);
@@ -364,20 +364,20 @@ class Order {
    */
   public function demote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     } elseif(!$this->canManage()) {
-      throw new MissingPermissionsException;
+      throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
     if(is_null($user)) {
-      throw new UserNotFoundException;
+      throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->order) OR $user->order->id != $admin->order->id) {
-      throw new UserNotInYourOrderException;
+      throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id < 2 OR $user->orderRank->id === $this->maxRank) {
-      throw new CannotDemoteMemberException;
+      throw new CannotDemoteMemberException();
     }
     $user->orderRank = $this->orm->orderRanks->getById($user->orderRank->id - 1);
     $this->orm->users->persistAndFlush($user);
@@ -394,20 +394,20 @@ class Order {
    */
   public function kick(int $userId): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     } elseif(!$this->canManage()) {
-      throw new MissingPermissionsException;
+      throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
     if(is_null($user)) {
-      throw new UserNotFoundException;
+      throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->order) OR $user->order->id != $admin->order->id) {
-      throw new UserNotInYourOrderException;
+      throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id === $this->maxRank) {
-      throw new CannotKickMemberException;
+      throw new CannotKickMemberException();
     }
     $user->order = $user->orderRank = NULL;
     $this->orm->users->persistAndFlush($user);

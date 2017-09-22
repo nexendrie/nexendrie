@@ -47,7 +47,7 @@ class UserSettingsFormFactory {
   }
   
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addGroup("Účet");
     $form->addText("publicname", "Zobrazované jméno:")
       ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25)

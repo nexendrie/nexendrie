@@ -23,6 +23,6 @@ final class MealPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new MealPresenterTest;
+$test = new MealPresenterTest();
 $test->run();
 ?>

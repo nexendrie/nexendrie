@@ -72,6 +72,6 @@ final class MessengerTest extends \Tester\TestCase {
   }
 }
 
-$test = new MessengerTest;
+$test = new MessengerTest();
 $test->run();
 ?>

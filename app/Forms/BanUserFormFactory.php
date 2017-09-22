@@ -24,7 +24,7 @@ class BanUserFormFactory {
   
   public function create(int $userId): Form {
     $this->userId = $userId;
-    $form = new Form;
+    $form = new Form();
     $form->addTextArea("crime", "Zločin:")
       ->setRequired("Zadej zločin.");
     $form->addText("numberOfShifts", "Počet směn:")
@@ -40,7 +40,7 @@ class BanUserFormFactory {
     /** @var User $user */
     $user = $this->orm->users->getById($this->userId);
     $user->banned = true;
-    $punishment = new Punishment;
+    $punishment = new Punishment();
     $punishment->user = $user;
     $punishment->numberOfShifts = $values["numberOfShifts"];
     $punishment->crime = $values["crime"];

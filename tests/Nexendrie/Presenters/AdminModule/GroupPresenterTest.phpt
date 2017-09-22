@@ -30,6 +30,6 @@ final class GroupPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new GroupPresenterTest;
+$test = new GroupPresenterTest();
 $test->run();
 ?>

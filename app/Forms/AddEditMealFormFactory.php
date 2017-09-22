@@ -12,7 +12,7 @@ use Nette\Application\UI\Form;
  */
 class AddEditMealFormFactory {
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
       ->addRule(Form::MAX, "Jméno může mít maximálně 15 znaků.", 15);

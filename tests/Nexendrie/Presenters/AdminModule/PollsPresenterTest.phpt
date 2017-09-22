@@ -27,6 +27,6 @@ final class PollsPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new PollsPresenterTest;
+$test = new PollsPresenterTest();
 $test->run();
 ?>

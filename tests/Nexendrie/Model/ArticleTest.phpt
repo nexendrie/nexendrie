@@ -92,6 +92,6 @@ final class ArticleTest extends \Tester\TestCase {
   }
 }
 
-$test = new ArticleTest;
+$test = new ArticleTest();
 $test->run();
 ?>

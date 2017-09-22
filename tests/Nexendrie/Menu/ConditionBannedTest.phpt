@@ -33,6 +33,6 @@ final class ConditionBannedTest extends \Tester\TestCase {
   }
 }
 
-$test = new ConditionBannedTest;
+$test = new ConditionBannedTest();
 $test->run();
 ?>

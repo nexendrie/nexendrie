@@ -23,6 +23,6 @@ final class ShopPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new ShopPresenterTest;
+$test = new ShopPresenterTest();
 $test->run();
 ?>

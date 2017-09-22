@@ -38,7 +38,7 @@ class ItemSet {
   public function get(int $id): ItemSetEntity {
     $set = $this->orm->itemSets->getById($id);
     if(is_null($set)) {
-      throw new ItemSetNotFoundException;
+      throw new ItemSetNotFoundException();
     }
     return $set;
   }
@@ -47,7 +47,7 @@ class ItemSet {
    * Add new item set
    */
   public function add(array $data): void {
-    $set = new ItemSetEntity;
+    $set = new ItemSetEntity();
     $this->orm->itemSets->attach($set);
     foreach($data as $key => $value) {
       $set->$key = $value;

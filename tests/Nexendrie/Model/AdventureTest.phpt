@@ -128,7 +128,7 @@ final class AdventureTest extends \Tester\TestCase {
   public function testGetNextNpc() {
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
-    $adventure = new \Nexendrie\Orm\UserAdventure;
+    $adventure = new \Nexendrie\Orm\UserAdventure();
     $orm->userAdventures->attach($adventure);
     $adventure->started = time();
     $adventure->user = 1;
@@ -158,6 +158,6 @@ final class AdventureTest extends \Tester\TestCase {
   }
 }
 
-$test = new AdventureTest;
+$test = new AdventureTest();
 $test->run();
 ?>

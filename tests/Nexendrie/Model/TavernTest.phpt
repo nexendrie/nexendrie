@@ -60,6 +60,6 @@ final class TavernTest extends \Tester\TestCase {
   }
 }
 
-$test = new TavernTest;
+$test = new TavernTest();
 $test->run();
 ?>

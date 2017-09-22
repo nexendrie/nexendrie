@@ -19,6 +19,6 @@ final class BankPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new BankPresenterTest;
+$test = new BankPresenterTest();
 $test->run();
 ?>

@@ -41,7 +41,7 @@ class Marriage {
   public function getMarriage(int $id): MarriageEntity {
     $marriage = $this->orm->marriages->getById($id);
     if(is_null($marriage)) {
-      throw new MarriageNotFoundException;
+      throw new MarriageNotFoundException();
     }
     return $marriage;
   }
@@ -97,9 +97,9 @@ class Marriage {
    */
   public function proposeMarriage(int $id): void {
     if(!$this->canPropose($id)) {
-      throw new CannotProposeMarriageException;
+      throw new CannotProposeMarriageException();
     }
-    $marriage = new MarriageEntity;
+    $marriage = new MarriageEntity();
     $this->orm->marriages->attach($marriage);
     $marriage->user1 = $this->user->id;
     $marriage->user2 = $id;
@@ -114,7 +114,7 @@ class Marriage {
    */
   public function listOfProposals(): ICollection {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     return $this->orm->marriages->findProposals($this->user->id);
   }
@@ -130,17 +130,17 @@ class Marriage {
    */
   public function acceptProposal(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $proposal = $this->orm->marriages->getById($id);
     if(is_null($proposal)) {
-      throw new MarriageNotFoundException;
+      throw new MarriageNotFoundException();
     } elseif($proposal->user2->id != $this->user->id) {
-      throw new AccessDeniedException;
+      throw new AccessDeniedException();
     } elseif($proposal->status != MarriageEntity::STATUS_PROPOSED) {
-      throw new MarriageProposalAlreadyHandledException;
+      throw new MarriageProposalAlreadyHandledException();
     } elseif(!$this->canPropose($proposal->user1->id)) {
-      throw new CannotProposeMarriageException;
+      throw new CannotProposeMarriageException();
     }
     $proposal->status = MarriageEntity::STATUS_ACCEPTED;
     $this->orm->marriages->persist($proposal);
@@ -165,17 +165,17 @@ class Marriage {
    */
   public function declineProposal(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $proposal = $this->orm->marriages->getById($id);
     if(is_null($proposal)) {
-      throw new MarriageNotFoundException;
+      throw new MarriageNotFoundException();
     } elseif($proposal->user2->id != $this->user->id) {
-      throw new AccessDeniedException;
+      throw new AccessDeniedException();
     } elseif($proposal->status != MarriageEntity::STATUS_PROPOSED) {
-      throw new MarriageProposalAlreadyHandledException;
+      throw new MarriageProposalAlreadyHandledException();
     } elseif(!$this->canPropose($proposal->user1->id)) {
-      throw new CannotProposeMarriageException;
+      throw new CannotProposeMarriageException();
     }
     $proposal->status = MarriageEntity::STATUS_DECLINED;
     $this->orm->marriages->persistAndFlush($proposal);
@@ -188,7 +188,7 @@ class Marriage {
    */
   public function getCurrentMarriage(): ?MarriageEntity {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
@@ -206,14 +206,14 @@ class Marriage {
    */
   public function cancelWedding(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $marriage = $this->orm->marriages->getAcceptedMarriage($this->user->id);
     if(is_null($marriage)) {
-      throw new NotEngagedException;
+      throw new NotEngagedException();
     }
     if($marriage->term < time()) {
-      throw new WeddingAlreadyHappenedException;
+      throw new WeddingAlreadyHappenedException();
     }
     $marriage->status = MarriageEntity::STATUS_CANCELLED;
     $this->orm->marriages->persistAndFlush($marriage);
@@ -228,13 +228,13 @@ class Marriage {
    */
   public function fileForDivorce(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
-      throw new NotMarriedException;
+      throw new NotMarriedException();
     } elseif($marriage->divorce) {
-      throw new AlreadyInDivorceException;
+      throw new AlreadyInDivorceException();
     }
     $marriage->divorce = ($marriage->user1->id === $this->user->id) ? 1 : 2;
     $this->orm->marriages->persistAndFlush($marriage);
@@ -249,13 +249,13 @@ class Marriage {
    */
   public function acceptDivorce(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
-      throw new NotMarriedException;
+      throw new NotMarriedException();
     } elseif($marriage->divorce < 1 OR $marriage->divorce > 2) {
-      throw new NotInDivorceException;
+      throw new NotInDivorceException();
     }
     $marriage->status = MarriageEntity::STATUS_CANCELLED;
     $this->orm->marriages->persistAndFlush($marriage);
@@ -270,13 +270,13 @@ class Marriage {
    */
   public function declineDivorce(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
-      throw new NotMarriedException;
+      throw new NotMarriedException();
     } elseif($marriage->divorce < 1 OR $marriage->divorce > 2) {
-      throw new NotInDivorceException;
+      throw new NotInDivorceException();
     }
     $marriage->divorce += 2;
     $this->orm->marriages->persistAndFlush($marriage);
@@ -292,15 +292,15 @@ class Marriage {
    */
   public function takeBackDivorce(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
-      throw new NotMarriedException;
+      throw new NotMarriedException();
     } elseif($marriage->divorce < 1 OR $marriage->divorce > 4) {
-      throw new NotInDivorceException;
+      throw new NotInDivorceException();
     } elseif(($marriage->divorce === 3 AND $this->user->id != $marriage->user1->id) OR ($marriage->divorce === 4 AND $this->user->id != $marriage->user2->id)) {
-      throw new CannotTakeBackDivorceException;
+      throw new CannotTakeBackDivorceException();
     }
     $marriage->divorce = 0;
     $this->orm->marriages->persistAndFlush($marriage);

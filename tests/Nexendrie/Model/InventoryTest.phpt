@@ -191,6 +191,6 @@ final class InventoryTest extends \Tester\TestCase {
   }
 }
 
-$test = new InventoryTest;
+$test = new InventoryTest();
 $test->run();
 ?>

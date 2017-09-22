@@ -41,6 +41,6 @@ final class MessagesPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new MessagesPresenterTest;
+$test = new MessagesPresenterTest();
 $test->run();
 ?>

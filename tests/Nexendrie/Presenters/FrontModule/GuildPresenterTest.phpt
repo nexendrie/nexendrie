@@ -95,6 +95,6 @@ final class GuildPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new GuildPresenterTest;
+$test = new GuildPresenterTest();
 $test->run();
 ?>

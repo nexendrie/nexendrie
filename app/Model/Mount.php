@@ -33,7 +33,7 @@ class Mount {
   public function get(int $id): MountEntity {
     $mount = $this->orm->mounts->getById($id);
     if(is_null($mount)) {
-      throw new MountNotFoundException;
+      throw new MountNotFoundException();
     }
     return $mount;
   }
@@ -75,7 +75,7 @@ class Mount {
    * Add new mount
    */
   public function add(array $data): void {
-    $mount = new MountEntity;
+    $mount = new MountEntity();
     $this->orm->mounts->attach($mount);
     foreach($data as $key => $value) {
       $mount->$key = $value;
@@ -113,7 +113,7 @@ class Mount {
    */
   public function buy(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     try {
       $mount = $this->get($id);
@@ -121,18 +121,18 @@ class Mount {
       throw $e;
     }
     if(!$mount->onMarket) {
-      throw new MountNotOnSaleException;
+      throw new MountNotOnSaleException();
     }
     if($mount->owner->id === $this->user->id) {
-      throw new CannotBuyOwnMountException;
+      throw new CannotBuyOwnMountException();
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->level < $mount->type->level) {
-      throw new InsufficientLevelForMountException;
+      throw new InsufficientLevelForMountException();
     }
     if($user->money < $mount->price) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $seller = $mount->owner;
     $seller->money += $mount->price;

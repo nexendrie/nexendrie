@@ -15,7 +15,7 @@ class RouterFactory {
   use \Nette\SmartObject;
   
   public function create(): RouteList {
-    $router = new RouteList;
+    $router = new RouteList();
     $frontRouter = new RouteList("Front");
     $frontRouter[] = new Route("/", "Homepage:page");
     $frontRouter[] = new Route("profile[/<action>]/<username>", "Profile:default");

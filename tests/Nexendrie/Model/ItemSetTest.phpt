@@ -51,6 +51,6 @@ final class ItemSetTest extends \Tester\TestCase {
   }
 }
 
-$test = new ItemSetTest;
+$test = new ItemSetTest();
 $test->run();
 ?>

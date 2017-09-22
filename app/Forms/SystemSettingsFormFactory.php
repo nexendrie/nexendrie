@@ -60,7 +60,7 @@ class SystemSettingsFormFactory {
    */
   public function create(): Form {
     $groups = $this->getListOfGroups();
-    $form = new Form;
+    $form = new Form();
     $form->addGroup("Lokální nastavení");
     $locale = $form->addContainer("locale");
     $locale->addText("dateFormat", "Formát datumu:")

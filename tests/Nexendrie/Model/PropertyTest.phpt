@@ -28,6 +28,6 @@ final class PropertyTest extends \Tester\TestCase {
   }
 }
 
-$test = new PropertyTest;
+$test = new PropertyTest();
 $test->run();
 ?>

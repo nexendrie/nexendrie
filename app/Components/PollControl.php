@@ -120,7 +120,7 @@ class PollControl extends \Nette\Application\UI\Control {
     if($answer > count($poll->parsedAnswers)) {
       throw new PollVotingException("The poll has less then $answer answers.");
     }
-    $vote = new PollVoteEntity;
+    $vote = new PollVoteEntity();
     $this->orm->pollVotes->attach($vote);
     $vote->poll = $this->poll;
     $vote->user = $this->user->id;

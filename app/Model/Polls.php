@@ -63,7 +63,7 @@ class Polls {
     if(!$this->user->isAllowed("poll", "add")) {
       throw new MissingPermissionsException("You don't have permissions for adding news.");
     }
-    $poll = new PollEntity;
+    $poll = new PollEntity();
     $this->orm->polls->attach($poll);
     foreach($data as $key => $value) {
       $poll->$key = $value;

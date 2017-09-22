@@ -20,7 +20,7 @@ class TakeLoanFormFactory {
   
   public function create(): Form {
     $maxLoan = $this->model->maxLoan();
-    $form = new Form;
+    $form = new Form();
     $form->addText("amount", "Částka:")
       ->setRequired("Zadej částku.")
       ->addRule(Form::INTEGER, "Částka musí být celé číslo.")

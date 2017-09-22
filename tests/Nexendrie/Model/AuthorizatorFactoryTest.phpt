@@ -45,6 +45,6 @@ final class AuthorizatorFactoryTest extends \Tester\TestCase {
   }
 }
 
-$test = new AuthorizatorFactoryTest;
+$test = new AuthorizatorFactoryTest();
 $test->run();
 ?>

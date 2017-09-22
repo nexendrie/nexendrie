@@ -13,6 +13,6 @@ final class SettingsPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new SettingsPresenterTest;
+$test = new SettingsPresenterTest();
 $test->run();
 ?>

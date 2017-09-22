@@ -64,7 +64,7 @@ class CronTasks {
    * @cronner-time 01:00 - 02:00
    */
   public function taxes(): void {
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setTimestamp(time());
     if($date->format("j") != 1) {
       return;
@@ -93,7 +93,7 @@ class CronTasks {
    * @cronner-time 01:00 - 02:00
    */
   public function guildFees(): void {
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setTimestamp(time());
     if($date->format("j") != 1) {
       return;
@@ -118,7 +118,7 @@ class CronTasks {
    * @cronner-time 01:00 - 02:00
    */
   public function orderFees(): void {
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setTimestamp(time());
     if($date->format("j") != 1) {
       return;
@@ -257,7 +257,7 @@ class CronTasks {
    * @cronner-time 01:00 - 02:00
    */
   public function municipalElections(): void {
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setTimestamp(time());
     if($date->format("j") != 1) {
       return;
@@ -277,7 +277,7 @@ class CronTasks {
       }
       echo sprintf("Found %d possible candidates, the town can have %d councillors.\n", count($results), $councillors);
       foreach($results as $row) {
-        $record = new ElectionResult;
+        $record = new ElectionResult();
         $record->candidate = $row["candidate"];
         $record->town = $town;
         $record->votes = $row["amount"];

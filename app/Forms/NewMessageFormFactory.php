@@ -19,7 +19,7 @@ class NewMessageFormFactory {
   }
   
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addSelect("to", "Pro:", $this->model->usersList())
       ->setPrompt("Vyber příjemce")
       ->setRequired("Vyber příjemce.");

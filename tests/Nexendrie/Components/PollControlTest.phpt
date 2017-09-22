@@ -54,6 +54,6 @@ final class PollControlTest extends \Tester\TestCase {
   }
 }
 
-$test = new PollControlTest;
+$test = new PollControlTest();
 $test->run();
 ?>

@@ -25,7 +25,7 @@ class RegisterFormFactory {
   }
   
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addText("username", "Uživatelské jméno:")
       ->addRule(Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků.", 25)
       ->setRequired("Zadej jméno.")

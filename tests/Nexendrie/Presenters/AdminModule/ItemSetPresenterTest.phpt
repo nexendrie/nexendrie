@@ -33,6 +33,6 @@ final class ItemSetPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new ItemSetPresenterTest;
+$test = new ItemSetPresenterTest();
 $test->run();
 ?>

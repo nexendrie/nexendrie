@@ -34,7 +34,7 @@ class Inventory {
    */
   public function possessions(): array {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $return = [];
     /** @var \Nexendrie\Orm\User $user */
@@ -54,7 +54,7 @@ class Inventory {
    */
   public function equipment(): ICollection {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     return $this->orm->userItems->findEquipment($this->user->id)->orderBy("this->item->strength");
   }
@@ -67,7 +67,7 @@ class Inventory {
    */
   public function potions(): ICollection {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     return $this->orm->userItems->findByType($this->user->id, "potion");
   }
@@ -80,7 +80,7 @@ class Inventory {
    */
   public function intimacyBoosters(): ICollection {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     return $this->orm->userItems->findByType($this->user->id, "intimacy_boost");
   }
@@ -96,17 +96,17 @@ class Inventory {
    */
   public function equipItem(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
-      throw new ItemNotFoundException;
+      throw new ItemNotFoundException();
     } elseif($item->user->id != $this->user->id) {
-      throw new ItemNotOwnedException;
+      throw new ItemNotOwnedException();
     } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes())) {
-      throw new ItemNotEquipableException;
+      throw new ItemNotEquipableException();
     } elseif($item->worn) {
-      throw new ItemAlreadyWornException;
+      throw new ItemAlreadyWornException();
     }
     $item->worn = true;
     $this->orm->userItems->persist($item);
@@ -132,17 +132,17 @@ class Inventory {
    */
   public function unequipItem(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
-      throw new ItemNotFoundException;
+      throw new ItemNotFoundException();
     } elseif($item->user->id != $this->user->id) {
-      throw new ItemNotOwnedException;
+      throw new ItemNotOwnedException();
     } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes())) {
-      throw new ItemNotEquipableException;
+      throw new ItemNotEquipableException();
     } elseif(!$item->worn) {
-      throw new ItemNotWornException;
+      throw new ItemNotWornException();
     }
     $item->worn = false;
     $this->orm->userItems->persistAndFlush($item);
@@ -159,18 +159,18 @@ class Inventory {
    */
   public function drinkPotion(int $id): int {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
-      throw new ItemNotFoundException;
+      throw new ItemNotFoundException();
     } elseif($item->user->id != $this->user->id) {
-      throw new ItemNotOwnedException;
+      throw new ItemNotOwnedException();
     } elseif($item->item->type != ItemEntity::TYPE_POTION) {
-      throw new ItemNotDrinkableException;
+      throw new ItemNotDrinkableException();
     }
     if($item->user->life >= $item->user->maxLife) {
-      throw new HealingNotNeededException;
+      throw new HealingNotNeededException();
     }
     $item->amount -= 1;
     $life = $item->item->strength;
@@ -201,22 +201,22 @@ class Inventory {
    */
   public function boostIntimacy(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
-      throw new NotMarriedException;
+      throw new NotMarriedException();
     }
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
-      throw new ItemNotFoundException;
+      throw new ItemNotFoundException();
     } elseif($item->user->id != $this->user->id) {
-      throw new ItemNotOwnedException;
+      throw new ItemNotOwnedException();
     } elseif($item->item->type != ItemEntity::TYPE_INTIMACY_BOOST) {
-      throw new ItemNotUsableException;
+      throw new ItemNotUsableException();
     }
     if($marriage->intimacy + $item->item->strength > MarriageEntity::MAX_INTIMACY) {
-      throw new MaxIntimacyReachedException;
+      throw new MaxIntimacyReachedException();
     }
     $item->amount -= 1;
     $marriage->intimacy += $item->item->strength;
@@ -265,15 +265,15 @@ class Inventory {
    */
   public function sellItem(int $id) {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
-      throw new ItemNotFoundException;
+      throw new ItemNotFoundException();
     } elseif($item->user->id != $this->user->id) {
-      throw new ItemNotOwnedException;
+      throw new ItemNotOwnedException();
     } elseif(in_array($item->item->type, ItemEntity::getNotForSale())) {
-      throw new ItemNotForSaleException;
+      throw new ItemNotForSaleException();
     }
     $item->amount -= 1;
     $price = $item->sellPrice;
@@ -300,19 +300,19 @@ class Inventory {
    */
   public function upgradeItem(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
-      throw new ItemNotFoundException;
+      throw new ItemNotFoundException();
     } elseif($item->user->id != $this->user->id) {
-      throw new ItemNotOwnedException;
+      throw new ItemNotOwnedException();
     } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes())) {
-      throw new ItemNotUpgradableException;
+      throw new ItemNotUpgradableException();
     } elseif($item->level >= $item->maxLevel) {
-      throw new ItemMaxLevelReachedException;
+      throw new ItemMaxLevelReachedException();
     } elseif($item->user->money < $item->upgradePrice) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $item->user->money -= $item->upgradePrice;
     $item->level++;

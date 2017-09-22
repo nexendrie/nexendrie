@@ -25,6 +25,6 @@ final class ChroniclePresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new ChroniclePresenterTest;
+$test = new ChroniclePresenterTest();
 $test->run();
 ?>

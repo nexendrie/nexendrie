@@ -15,6 +15,6 @@ final class AcademyPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new AcademyPresenterTest;
+$test = new AcademyPresenterTest();
 $test->run();
 ?>

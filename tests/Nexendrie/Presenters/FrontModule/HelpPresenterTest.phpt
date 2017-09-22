@@ -15,6 +15,6 @@ final class HelpPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new HelpPresenterTest;
+$test = new HelpPresenterTest();
 $test->run();
 ?>

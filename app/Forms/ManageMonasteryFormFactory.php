@@ -25,7 +25,7 @@ class ManageMonasteryFormFactory {
   
   public function create(int $id): Form {
     $this->id = $id;
-    $form = new Form;
+    $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno");
     $form->addSelect("leader", "Vůdce:", $this->model->highClerics($id));

@@ -29,7 +29,7 @@ class ChangeWeddingTermFormFactory {
     $this->marriage = $marriage;
     $default = new \DateTime();
     $default->setTimestamp($marriage->term);
-    $form = new Form;
+    $form = new Form();
     $form->addDateTime("term", "Nový termín:", $format[0], $format[1])
       ->setRequired("Zadej datum a čas.")
       ->addRule([$form["term"], "validateDateTime"], "Neplatné datum.")

@@ -36,7 +36,7 @@ class Town {
   public function get(int $id): TownEntity {
     $town = $this->orm->towns->getById($id);
     if(is_null($town)) {
-      throw new TownNotFoundException;
+      throw new TownNotFoundException();
     }
     return $town;
   }
@@ -54,7 +54,7 @@ class Town {
    * Add new town
    */
   public function add(array $data): void {
-    $town = new TownEntity;
+    $town = new TownEntity();
     $this->orm->towns->attach($town);
     foreach($data as $key => $value) {
       $town->$key = $value;
@@ -98,25 +98,25 @@ class Town {
    */
   public function buy(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $town = $this->orm->towns->getById($id);
     if(is_null($town)) {
-      throw new TownNotFoundException;
+      throw new TownNotFoundException();
     }
     if(!$town->onMarket) {
-      throw new TownNotOnSaleException;
+      throw new TownNotOnSaleException();
     }
     if($town->owner->id === $this->user->id) {
-      throw new CannotBuyOwnTownException;
+      throw new CannotBuyOwnTownException();
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->level < 350) {
-      throw new InsufficientLevelForTownException;
+      throw new InsufficientLevelForTownException();
     }
     if($user->money < $town->price) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $seller = $town->owner;
     $seller->money += $town->price;
@@ -155,23 +155,23 @@ class Town {
    */
   public function appointMayor(int $townId, int $newMayorId): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $town = $this->orm->towns->getById($townId);
     if(is_null($town)) {
-      throw new TownNotFoundException;
+      throw new TownNotFoundException();
     } elseif($town->owner->id != $this->user->id) {
-      throw new TownNotOwnedException;
+      throw new TownNotOwnedException();
     }
     $newMayor = $this->orm->users->getById($newMayorId);
     if(is_null($newMayor)) {
-      throw new UserNotFoundException;
+      throw new UserNotFoundException();
     } elseif($newMayor->town->id != $townId) {
-      throw new UserDoesNotLiveInTheTownException;
+      throw new UserDoesNotLiveInTheTownException();
     }
     $newMayorRank = $newMayor->group->level;
     if(!in_array($newMayorRank, [100, 300])) {
-      throw new InsufficientLevelForMayorException;
+      throw new InsufficientLevelForMayorException();
     }
     $oldMayor = $this->orm->users->getTownMayor($townId);
     if(!is_null($oldMayor)) {
@@ -218,18 +218,18 @@ class Town {
    */
   public function moveToTown(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $town = $this->orm->towns->getById($id);
     if(is_null($town)) {
-      throw new TownNotFoundException;
+      throw new TownNotFoundException();
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($id === $user->town->id) {
-      throw new CannotMoveToSameTownException;
+      throw new CannotMoveToSameTownException();
     } elseif(!$this->canMove()) {
-      throw new CannotMoveToTownException;
+      throw new CannotMoveToTownException();
     }
     $this->user->identity->town = $user->town = $id;
     $user->lastTransfer = $user->lastActive = time();
@@ -248,28 +248,28 @@ class Town {
    */
   public function found(array $data): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != GroupEntity::PATH_TOWER) {
-      throw new InsufficientLevelForFoundTownException;
+      throw new InsufficientLevelForFoundTownException();
     }
     if($user->money < $this->foundingPrice) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $item = $this->orm->userItems->getByUserAndItem($user->id, 15);
     if(is_null($item)) {
-      throw new CannotFoundTownException;
+      throw new CannotFoundTownException();
     }
     if($this->orm->towns->getByName($data["name"])) {
-      throw new TownNameInUseException;
+      throw new TownNameInUseException();
     }
     $item->amount--;
     if($item->amount < 1) {
       $this->orm->userItems->removeAndFlush($item, false);
     }
-    $town = new TownEntity;
+    $town = new TownEntity();
     $town->name = $data["name"];
     $town->description = $data["description"];
     $town->owner = $user;
@@ -299,21 +299,21 @@ class Town {
    */
   public function makeCitizen(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $citizen = $this->orm->users->getById($id);
     if(is_null($citizen)) {
-      throw new UserNotFoundException;
+      throw new UserNotFoundException();
     }
     /** @var \Nexendrie\Orm\User $owner */
     $owner = $this->orm->users->getById($this->user->id);
     if($citizen->town->owner->id != $owner->id) {
-      throw new UserDoesNotLiveInTheTownException;
+      throw new UserDoesNotLiveInTheTownException();
     } elseif($citizen->group->level > 50) {
-      throw new TooHighLevelException;
+      throw new TooHighLevelException();
     }
     $citizen->group = $this->orm->groups->getByLevel(100);
-    $message = new MessageEntity;
+    $message = new MessageEntity();
     $message->from = $owner;
     $message->to = $citizen;
     $message->sent = time();

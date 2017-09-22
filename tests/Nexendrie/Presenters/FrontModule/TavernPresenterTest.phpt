@@ -15,6 +15,6 @@ final class TavernPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new TavernPresenterTest;
+$test = new TavernPresenterTest();
 $test->run();
 ?>

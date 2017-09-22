@@ -44,7 +44,7 @@ class LoansRepository extends \Nextras\Orm\Repository\Repository {
     $month = (int) date("n");
     $year = (int) date("Y");
     $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp();
     $date->modify("+ 1 month");

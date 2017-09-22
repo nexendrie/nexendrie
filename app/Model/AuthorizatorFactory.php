@@ -67,7 +67,7 @@ class AuthorizatorFactory {
   * Factory for Authorizator
   */
   public function create(): Permission {
-    $permission = new Permission;
+    $permission = new Permission();
     
     $groups = $this->getGroups();
     $permissions = $this->getPermissions();

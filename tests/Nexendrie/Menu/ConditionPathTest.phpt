@@ -32,6 +32,6 @@ final class ConditionPathTest extends \Tester\TestCase {
   }
 }
 
-$test = new ConditionPathTest;
+$test = new ConditionPathTest();
 $test->run();
 ?>

@@ -29,6 +29,6 @@ final class JobMessagesPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new JobMessagesPresenterTest;
+$test = new JobMessagesPresenterTest();
 $test->run();
 ?>

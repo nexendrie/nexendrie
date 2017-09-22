@@ -22,7 +22,7 @@ class ManageMountFormFactory {
   }
   
   public function create(int $mountId): Form {
-    $form = new Form;
+    $form = new Form();
     $this->id = $mountId;
     $mount = $this->model->get($this->id);
     $form->addText("name", "Jméno:")

@@ -31,6 +31,6 @@ final class TavernControlTest extends \Tester\TestCase {
   }
 }
 
-$test = new TavernControlTest;
+$test = new TavernControlTest();
 $test->run();
 ?>

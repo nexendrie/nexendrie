@@ -38,12 +38,12 @@ class ElectionsControl extends \Nette\Application\UI\Control {
    * Get current state of elections
    */
   protected function getState(): string {
-    $fakeDay = new \DateTime;
+    $fakeDay = new \DateTime();
     $fakeDay->setDate((int) date("Y"), (int) date("n"), (int) date("j"));
     if($fakeDay->format("j") <= 7) {
       return "results";
     }
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setDate((int) date("Y"), (int) date("n") + 1, 1);
     $date->setTime(0, 0, 0);
     $date->modify("-7 days");
@@ -88,7 +88,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
    * @return ElectionResultEntity[]|ICollection
    */
   protected function getResults(): ICollection {
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setTimestamp(mktime(0, 0, 0, (int) date("n"), 1, (int) date("Y")));
     //$date->modify("-1 month");
     /*$votes = $this->getVotes($date->format("Y"), $date->format("n"));
@@ -132,7 +132,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Neplatný kandidát.");
       $this->presenter->redirect(":Front:Homepage:");
     }
-    $vote = new ElectionEntity;
+    $vote = new ElectionEntity();
     $this->orm->elections->attach($vote);
     $vote->town = $this->town;
     $vote->voter = $this->user->id;

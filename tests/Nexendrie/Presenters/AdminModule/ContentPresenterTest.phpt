@@ -53,6 +53,6 @@ final class ContentPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new ContentPresenterTest;
+$test = new ContentPresenterTest();
 $test->run();
 ?>

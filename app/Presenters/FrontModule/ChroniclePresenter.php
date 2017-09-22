@@ -31,7 +31,7 @@ class ChroniclePresenter extends BasePresenter {
   }
   
   protected function createComponentEventsCalendar(): Calendar {
-    $calendar = new Calendar;
+    $calendar = new Calendar();
     $calendar->language = Calendar::LANG_CZ;
     $calendar->firstDay = Calendar::FIRST_MONDAY;
     $calendar->options = [

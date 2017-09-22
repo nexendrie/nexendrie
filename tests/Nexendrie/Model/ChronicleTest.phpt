@@ -33,6 +33,6 @@ final class ChronicleTest extends \Tester\TestCase {
   }
 }
 
-$test = new ChronicleTest;
+$test = new ChronicleTest();
 $test->run();
 ?>

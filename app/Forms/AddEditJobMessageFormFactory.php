@@ -12,7 +12,7 @@ use Nette\Application\UI\Form;
  */
 class AddEditJobMessageFormFactory {
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addTextArea("message", "Zpráva:")
       ->setRequired("Zadej zprávu.");
     $form->addCheckbox("success", "Zobrazit při úspěchu");

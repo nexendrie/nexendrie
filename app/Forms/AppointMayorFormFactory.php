@@ -26,7 +26,7 @@ class AppointMayorFormFactory {
   
   public function create(int $townId): Form {
     $this->town = $this->model->get($townId);
-    $form = new Form;
+    $form = new Form();
     $form->addSelect("mayor", "Nový rychtář:", $this->model->getTownCitizens($townId))
       ->setRequired("Vyber nového rychtáře.");
     $form->addSubmit("submit", "Jmenovat");

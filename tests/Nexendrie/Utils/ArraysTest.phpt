@@ -40,6 +40,6 @@ final class ArraysTest extends \Tester\TestCase {
   }
 }
 
-$test = new ArraysTest;
+$test = new ArraysTest();
 $test->run();
 ?>

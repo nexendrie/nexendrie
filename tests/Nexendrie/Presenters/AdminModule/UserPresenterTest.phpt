@@ -30,6 +30,6 @@ final class UserPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new UserPresenterTest;
+$test = new UserPresenterTest();
 $test->run();
 ?>

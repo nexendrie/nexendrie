@@ -126,6 +126,6 @@ final class HouseTest extends \Tester\TestCase {
   }
 }
 
-$test = new HouseTest;
+$test = new HouseTest();
 $test->run();
 ?>

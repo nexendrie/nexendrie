@@ -22,7 +22,7 @@ class BuildMonasteryFormFactory {
   }
   
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno");
     $form->addSubmit("submit", "Založit klášter");

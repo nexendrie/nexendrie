@@ -184,6 +184,6 @@ final class TownTest extends \Tester\TestCase {
   }
 }
 
-$test = new TownTest;
+$test = new TownTest();
 $test->run();
 ?>

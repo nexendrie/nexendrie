@@ -287,6 +287,6 @@ final class MonasteryTest extends \Tester\TestCase {
   }
 }
 
-$test = new MonasteryTest;
+$test = new MonasteryTest();
 $test->run();
 ?>

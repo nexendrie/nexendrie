@@ -32,6 +32,6 @@ final class RssTest extends \Tester\TestCase {
   }
 }
 
-$test = new RssTest;
+$test = new RssTest();
 $test->run();
 ?>

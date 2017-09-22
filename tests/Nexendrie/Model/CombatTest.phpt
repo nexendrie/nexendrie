@@ -54,6 +54,6 @@ final class CombatTest extends \Tester\TestCase {
   }
 }
 
-$test = new CombatTest;
+$test = new CombatTest();
 $test->run();
 ?>

@@ -42,7 +42,7 @@ class ItemSetPresenter extends BasePresenter {
     try {
       $this->set = $this->model->get($id);
     } catch(ItemSetNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
   
@@ -67,7 +67,7 @@ class ItemSetPresenter extends BasePresenter {
       $this->flashMessage("Sada smazána.");
       $this->redirect("Content:ItemSets");
     } catch(ItemSetNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
 }

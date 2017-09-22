@@ -74,6 +74,6 @@ final class LocaleTest extends \Tester\TestCase {
   }
 }
 
-$test = new LocaleTest;
+$test = new LocaleTest();
 $test->run();
 ?>

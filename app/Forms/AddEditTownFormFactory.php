@@ -19,7 +19,7 @@ class AddEditTownFormFactory {
   }
   
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addText("name", "Jméno")
       ->setRequired("Zadej jméno.")
       ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 20 znaků.", 20);

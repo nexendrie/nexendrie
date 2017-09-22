@@ -29,7 +29,7 @@ class ArticlesPresenter extends BasePresenter {
   }
   
   public function renderCategory(string $category, int $page = 1): void {
-    $paginator = new \Nette\Utils\Paginator;
+    $paginator = new \Nette\Utils\Paginator();
     $paginator->page = $page;
     $this->template->category = ArticleEntity::getCategories()[$category];
     $this->template->articles = $this->model->category($category, $paginator);

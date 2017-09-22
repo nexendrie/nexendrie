@@ -48,7 +48,7 @@ class GiftFormFactory {
   }
   
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addSelect("user", "Uživatel:", $this->getUsersList())
       ->setRequired("Vyber uživatele.");
     $form->addText("money", "Peníze:")
@@ -113,7 +113,7 @@ class GiftFormFactory {
       $item = $this->orm->items->getById($values["item"]);
       $row = $this->orm->userItems->getByUserAndItem($user->id, $item->id);
       if(is_null($row)) {
-        $row = new UserItemEntity;
+        $row = new UserItemEntity();
         $row->user = $user;
         $row->item = $item;
         $row->amount = 0;
@@ -126,7 +126,7 @@ class GiftFormFactory {
     if(count($messageText) < 1) {
       $messageText = $this->composeMessage($money, $itemName);
     }
-    $message = new MessageEntity;
+    $message = new MessageEntity();
     $message->from = $this->orm->users->getById($this->user->id);
     $message->to = $user;
     $message->subject = "Dárek";

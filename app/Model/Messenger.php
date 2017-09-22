@@ -93,7 +93,7 @@ class Messenger {
    * Sends new message
    */
   public function send(array $data): void {
-    $message = new MessageEntity;
+    $message = new MessageEntity();
     $this->orm->messages->attach($message);
     $message->subject = $data["subject"];
     $message->text = $data["text"];

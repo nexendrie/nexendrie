@@ -23,6 +23,6 @@ final class TownPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new TownPresenterTest;
+$test = new TownPresenterTest();
 $test->run();
 ?>

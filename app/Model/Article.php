@@ -73,7 +73,7 @@ class Article {
   public function view(int $id): ArticleEntity {
     $article = $this->orm->articles->getById($id);
     if(is_null($article)) {
-      throw new ArticleNotFoundException;
+      throw new ArticleNotFoundException();
     }
     return $article;
   }
@@ -99,12 +99,12 @@ class Article {
    */
   public function addArticle(array $data): int {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     if(!$this->user->isAllowed("article", "add")) {
-      throw new MissingPermissionsException;
+      throw new MissingPermissionsException();
     }
-    $article = new ArticleEntity;
+    $article = new ArticleEntity();
     $this->orm->articles->attach($article);
     foreach($data as $key => $value) {
       $article->$key = $value;
@@ -128,7 +128,7 @@ class Article {
     if(!$this->user->isAllowed("comment", "add")) {
       throw new MissingPermissionsException("You don't have permissions for adding comments.");
     }
-    $comment = new CommentEntity;
+    $comment = new CommentEntity();
     $this->orm->comments->attach($comment);
     foreach($data as $key => $value) {
       $comment->$key = $value;
@@ -153,7 +153,7 @@ class Article {
     }
     $article = $this->orm->articles->getById($id);
     if(!$article) {
-      throw new ArticleNotFoundException;
+      throw new ArticleNotFoundException();
     }
     if(!$this->user->isAllowed("article", "edit") AND $article->author->id != $this->user->id) {
       throw new MissingPermissionsException("You don't have permissions for editting articles.");

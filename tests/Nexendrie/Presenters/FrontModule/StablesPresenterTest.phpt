@@ -42,6 +42,6 @@ final class StablesPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new StablesPresenterTest;
+$test = new StablesPresenterTest();
 $test->run();
 ?>

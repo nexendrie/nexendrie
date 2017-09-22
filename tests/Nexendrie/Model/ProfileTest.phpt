@@ -86,6 +86,6 @@ final class ProfileTest extends \Tester\TestCase {
   }
 }
 
-$test = new ProfileTest;
+$test = new ProfileTest();
 $test->run();
 ?>

@@ -84,7 +84,7 @@ final class GuildTest extends \Tester\TestCase {
   public function testCalculateGuildIncomeBonus() {
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
-    $job = new UserJob;
+    $job = new UserJob();
     $job->started = time();
     $orm->userJobs->attach($job);
     $job->job = 1;
@@ -252,6 +252,6 @@ final class GuildTest extends \Tester\TestCase {
   }
 }
 
-$test = new GuildTest;
+$test = new GuildTest();
 $test->run();
 ?>

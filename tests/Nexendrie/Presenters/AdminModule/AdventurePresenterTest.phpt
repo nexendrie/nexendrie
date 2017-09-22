@@ -23,6 +23,6 @@ final class AdventurePresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new AdventurePresenterTest;
+$test = new AdventurePresenterTest();
 $test->run();
 ?>

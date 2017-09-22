@@ -20,7 +20,7 @@ class AddEditEventFormFactory {
   }
   
   public function create(): Form {
-    $form = new Form;
+    $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.");
     $form->addTextArea("description", "Popis:")

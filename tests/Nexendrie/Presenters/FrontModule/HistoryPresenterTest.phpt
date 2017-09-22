@@ -15,6 +15,6 @@ final class HistoryPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new HistoryPresenterTest;
+$test = new HistoryPresenterTest();
 $test->run();
 ?>

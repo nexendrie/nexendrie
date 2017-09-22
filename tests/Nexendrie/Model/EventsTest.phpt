@@ -92,6 +92,6 @@ final class EventsTest extends \Tester\TestCase {
   }
 }
 
-$test = new EventsTest;
+$test = new EventsTest();
 $test->run();
 ?>

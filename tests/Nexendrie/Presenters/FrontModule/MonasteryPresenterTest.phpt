@@ -63,6 +63,6 @@ final class MonasteryPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new MonasteryPresenterTest;
+$test = new MonasteryPresenterTest();
 $test->run();
 ?>

@@ -22,7 +22,7 @@ class ManageCastleFormFactory {
   }
   
   public function create(int $castleId): Form {
-    $form = new Form;
+    $form = new Form();
     $this->id = $castleId;
     $castle = $this->model->getCastle($this->id);
     $form->addText("name", "Jméno:")

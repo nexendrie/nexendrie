@@ -25,6 +25,6 @@ final class HousePresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new HousePresenterTest;
+$test = new HousePresenterTest();
 $test->run();
 ?>

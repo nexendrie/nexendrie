@@ -33,7 +33,7 @@ class Bank {
    */
   public function getActiveLoan(): ?LoanEntity {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     return $this->orm->loans->getActiveLoan($this->user->id);
   }
@@ -76,11 +76,11 @@ class Bank {
    */
   public function takeLoan(int $amount): void {
     if($amount > $this->maxLoan()) {
-      throw new TooHighLoanException;
+      throw new TooHighLoanException();
     } elseif($this->getActiveLoan()) {
-      throw new CannotTakeMoreLoansException;
+      throw new CannotTakeMoreLoansException();
     }
-    $loan = new LoanEntity;
+    $loan = new LoanEntity();
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     $loan->user = $user;
@@ -99,15 +99,15 @@ class Bank {
    */
   public function returnLoan(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $loan = $this->getActiveLoan();
     if(is_null($loan)) {
-      throw new NoLoanException;
+      throw new NoLoanException();
     }
     $returnMoney = $loan->amount + $this->calculateInterest($loan);
     if($returnMoney > $loan->user->money) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $loan->returned = time();
     $loan->user->money -= $returnMoney;

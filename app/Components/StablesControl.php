@@ -53,16 +53,16 @@ class StablesControl extends \Nette\Application\UI\Control {
   protected function increaseLife(int $id, int $hp, int $price): void {
     $mount = $this->orm->mounts->getById($id);
     if(!$mount) {
-      throw new MountNotFoundException;
+      throw new MountNotFoundException();
     }
     if($mount->owner->id != $this->user->id) {
-      throw new MountNotOwnedException;
+      throw new MountNotOwnedException();
     }
     if($mount->owner->money < $price) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     if($mount->hp >= 100) {
-      throw new CareNotNeededException;
+      throw new CareNotNeededException();
     }
     $mount->hp += $hp;
     $mount->owner->money -= $price;
@@ -119,17 +119,17 @@ class StablesControl extends \Nette\Application\UI\Control {
     }
     $mount = $this->orm->mounts->getById($id);
     if(!$mount) {
-      throw new MountNotFoundException;
+      throw new MountNotFoundException();
     } elseif($mount->owner->id != $this->user->id) {
-      throw new MountNotOwnedException;
+      throw new MountNotOwnedException();
     }
     $statCap = ucfirst($stat);
     if($mount->$stat >= $mount->{"max" . $statCap}) {
-      throw new MountMaxTrainingLevelReachedException;
+      throw new MountMaxTrainingLevelReachedException();
     } elseif($mount->hp < 40) {
-      throw new MountInBadConditionException;
+      throw new MountInBadConditionException();
     } elseif($mount->owner->money < $mount->{$stat . "TrainingCost"}) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $mount->owner->money -= $mount->{$stat . "TrainingCost"};
     $mount->$stat++;

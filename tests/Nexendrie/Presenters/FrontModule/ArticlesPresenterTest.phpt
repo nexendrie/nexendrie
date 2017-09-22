@@ -25,6 +25,6 @@ final class ArticlesPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new ArticlesPresenterTest;
+$test = new ArticlesPresenterTest();
 $test->run();
 ?>

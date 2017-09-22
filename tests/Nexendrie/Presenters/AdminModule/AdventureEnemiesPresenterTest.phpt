@@ -33,6 +33,6 @@ final class AdventureEnemiesPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new AdventureEnemiesPresenterTest;
+$test = new AdventureEnemiesPresenterTest();
 $test->run();
 ?>

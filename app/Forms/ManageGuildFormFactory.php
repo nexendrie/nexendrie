@@ -33,7 +33,7 @@ class ManageGuildFormFactory {
   }
   
   public function create(int $guildId): Form {
-    $form = new Form;
+    $form = new Form();
     $this->id = $guildId;
     $guild = $this->model->getGuild($this->id);
     $form->addText("name", "Jméno:")

@@ -266,6 +266,6 @@ final class OrderTest extends \Tester\TestCase {
   }
 }
 
-$test = new OrderTest;
+$test = new OrderTest();
 $test->run();
 ?>

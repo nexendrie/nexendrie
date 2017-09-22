@@ -19,6 +19,6 @@ final class EventPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new EventPresenterTest;
+$test = new EventPresenterTest();
 $test->run();
 ?>

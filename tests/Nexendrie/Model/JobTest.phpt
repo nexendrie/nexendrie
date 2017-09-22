@@ -93,7 +93,7 @@ final class JobTest extends \Tester\TestCase {
   }
   
   public function testCalculateReward() {
-    $job = new UserJobEntity;
+    $job = new UserJobEntity();
     $job->finished = true;
     $job->earned = 2;
     $job->extra = 1;
@@ -151,7 +151,7 @@ final class JobTest extends \Tester\TestCase {
   
   public function testParseJobHelp() {
     $this->login("bozena");
-    $job = new UserJobEntity;
+    $job = new UserJobEntity();
     $job->user = $this->getUser();
     $job->job = $this->orm->jobs->getById(3);
     $result = $this->model->parseJobHelp($job);
@@ -203,6 +203,6 @@ final class JobTest extends \Tester\TestCase {
   }
 }
 
-$test = new JobTest;
+$test = new JobTest();
 $test->run();
 ?>

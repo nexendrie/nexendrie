@@ -30,6 +30,6 @@ final class MountsMarketControlTest extends \Tester\TestCase {
   }
 }
 
-$test = new MountsMarketControlTest;
+$test = new MountsMarketControlTest();
 $test->run();
 ?>

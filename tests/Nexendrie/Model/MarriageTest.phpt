@@ -60,7 +60,7 @@ final class MarriageTest extends \Tester\TestCase {
     $marriage1 = $this->model->getMarriage(1);
     $marriage2 = $this->model->getMarriage(2);
     Assert::false($this->model->canFinish($marriage1));
-    /*$marriage = new MarriageEntity;
+    /*$marriage = new MarriageEntity();
     $marriage->status = MarriageEntity::STATUS_ACCEPTED;
     $marriage->proposed = time();
     $orm->marriages->attach($marriage);
@@ -135,6 +135,6 @@ final class MarriageTest extends \Tester\TestCase {
   }
 }
 
-$test = new MarriageTest;
+$test = new MarriageTest();
 $test->run();
 ?>

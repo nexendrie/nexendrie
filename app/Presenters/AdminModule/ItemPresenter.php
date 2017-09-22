@@ -28,7 +28,7 @@ class ItemPresenter extends BasePresenter {
     try {
       $this->item = $this->model->getItem($id);
     } catch(ItemNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
   

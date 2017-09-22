@@ -42,6 +42,6 @@ final class ShopControlTest extends \Tester\TestCase {
   }
 }
 
-$test = new ShopControlTest;
+$test = new ShopControlTest();
 $test->run();
 ?>

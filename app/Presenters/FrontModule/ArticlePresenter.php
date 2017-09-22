@@ -25,7 +25,7 @@ class ArticlePresenter extends BasePresenter {
     try {
       $this->template->article = $this->model->view($id);
     } catch(ArticleNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
   

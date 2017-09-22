@@ -41,7 +41,7 @@ class Tavern {
   public function getMeal(int $id): MealEntity {
     $meal = $this->orm->meals->getById($id);
     if(is_null($meal)) {
-      throw new MealNotFoundException;
+      throw new MealNotFoundException();
     }
     return $meal;
   }
@@ -50,7 +50,7 @@ class Tavern {
    * Add new meal
    */
   public function addMeal(array $data): void {
-    $meal = new MealEntity;
+    $meal = new MealEntity();
     foreach($data as $key => $value) {
       $meal->$key = $value;
     }
@@ -83,16 +83,16 @@ class Tavern {
    */
   public function buyMeal(int $id): string {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $meal = $this->orm->meals->getById($id);
     if(is_null($meal)) {
-      throw new MealNotFoundException;
+      throw new MealNotFoundException();
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < $meal->price) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $message = $meal->message;
     $user->money -= $meal->price;

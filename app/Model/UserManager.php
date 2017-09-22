@@ -151,7 +151,7 @@ class UserManager implements IAuthenticator {
     if(!$this->emailAvailable($data["email"])) {
       throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
     }
-    $user = new UserEntity;
+    $user = new UserEntity();
     $this->orm->users->attach($user);
     $data += $this->newUser;
     foreach($data as $key => $value) {
@@ -248,7 +248,7 @@ class UserManager implements IAuthenticator {
   public function get(int $id): UserEntity {
     $user = $this->orm->users->getById($id);
     if(is_null($user)) {
-      throw new UserNotFoundException;
+      throw new UserNotFoundException();
     }
     return $user;
   }

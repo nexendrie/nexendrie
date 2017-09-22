@@ -56,7 +56,7 @@ class Guild {
   public function getGuild(int $id): GuildEntity {
     $guild = $this->orm->guilds->getById($id);
     if(is_null($guild)) {
-      throw new GuildNotFoundException;
+      throw new GuildNotFoundException();
     }
     return $guild;
   }
@@ -86,7 +86,7 @@ class Guild {
     }
     foreach($data as $key => $value) {
       if($key === "name" AND !$this->checkNameAvailability($value, $id)) {
-        throw new GuildNameInUseException;
+        throw new GuildNameInUseException();
       }
       $guild->$key = $value;
     }
@@ -130,17 +130,17 @@ class Guild {
    */
   public function found(array $data): void {
     if(!$this->canFound()) {
-      throw new CannotFoundGuildException;
+      throw new CannotFoundGuildException();
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(!$this->checkNameAvailability($data["name"])) {
-      throw new GuildNameInUseException;
+      throw new GuildNameInUseException();
     }
     if($user->money < $this->foundingPrice) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
-    $guild = new GuildEntity;
+    $guild = new GuildEntity();
     $this->orm->guilds->attach($guild);
     $guild->name = $data["name"];
     $guild->description = $data["description"];
@@ -154,7 +154,7 @@ class Guild {
   
   public function calculateGuildIncomeBonus(int $baseIncome, UserJobEntity $job): int {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $bonus = $increase = 0;
     /** @var UserEntity $user */
@@ -196,9 +196,9 @@ class Guild {
    */
   public function join(int $id): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     } elseif(!$this->canJoin()) {
-      throw new CannotJoinGuildException;
+      throw new CannotJoinGuildException();
     }
     try {
       $guild = $this->getGuild($id);
@@ -218,7 +218,7 @@ class Guild {
    */
   public function canLeave(): bool {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
@@ -236,10 +236,10 @@ class Guild {
    */
   public function leave(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     if(!$this->canLeave()) {
-      throw new CannotLeaveGuildException;
+      throw new CannotLeaveGuildException();
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
@@ -254,7 +254,7 @@ class Guild {
    */
   public function canManage(): bool {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
@@ -271,7 +271,7 @@ class Guild {
    */
   public function canUpgrade(): bool {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
@@ -294,15 +294,15 @@ class Guild {
    */
   public function upgrade(): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     if(!$this->canUpgrade()) {
-      throw new CannotUpgradeGuildException;
+      throw new CannotUpgradeGuildException();
     }
     /** @var GuildEntity $guild */
     $guild = $this->getUserGuild();
     if($guild->money < $guild->upgradePrice) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     $guild->money -= $guild->upgradePrice;
     $guild->level++;
@@ -337,20 +337,20 @@ class Guild {
    */
   public function promote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     } elseif(!$this->canManage()) {
-      throw new MissingPermissionsException;
+      throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
     if(is_null($user)) {
-      throw new UserNotFoundException;
+      throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) {
-      throw new UserNotInYourGuildException;
+      throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id >= $this->maxRank - 1) {
-      throw new CannotPromoteMemberException;
+      throw new CannotPromoteMemberException();
     }
     $user->guildRank = $this->orm->guildRanks->getById($user->guildRank->id + 1);
     $this->orm->users->persistAndFlush($user);
@@ -367,20 +367,20 @@ class Guild {
    */
   public function demote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     } elseif(!$this->canManage()) {
-      throw new MissingPermissionsException;
+      throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
     if(is_null($user)) {
-      throw new UserNotFoundException;
+      throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) {
-      throw new UserNotInYourGuildException;
+      throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id < 2 OR $user->guildRank->id === $this->maxRank) {
-      throw new CannotDemoteMemberException;
+      throw new CannotDemoteMemberException();
     }
     $user->guildRank = $this->orm->guildRanks->getById($user->guildRank->id - 1);
     $this->orm->users->persistAndFlush($user);
@@ -397,20 +397,20 @@ class Guild {
    */
   public function kick(int $userId): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     } elseif(!$this->canManage()) {
-      throw new MissingPermissionsException;
+      throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
     if(is_null($user)) {
-      throw new UserNotFoundException;
+      throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
     if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) {
-      throw new UserNotInYourGuildException;
+      throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id === $this->maxRank) {
-      throw new CannotKickMemberException;
+      throw new CannotKickMemberException();
     }
     $user->guild = $user->guildRank = NULL;
     $this->orm->users->persistAndFlush($user);

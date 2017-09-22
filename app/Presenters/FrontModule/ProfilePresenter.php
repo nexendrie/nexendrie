@@ -24,7 +24,7 @@ class ProfilePresenter extends BasePresenter {
    */
   public function renderDefault(?string $username = NULL): void {
     if(is_null($username)) {
-      throw new BadRequestException;
+      throw new BadRequestException();
     }
     try {
       $user = $this->model->view($username);
@@ -34,7 +34,7 @@ class ProfilePresenter extends BasePresenter {
       $this->template->fiance = $this->model->getFiance($user->id);
       $this->template->canProposeMarriage = $this->marriageModel->canPropose($user->id);
     } catch(UserNotFoundException $e) {
-      throw new BadRequestException;
+      throw new BadRequestException();
     }
   }
   
@@ -42,7 +42,7 @@ class ProfilePresenter extends BasePresenter {
     try {
       $this->template->articles = $this->model->getArticles($username);
     } catch(UserNotFoundException $e) {
-      throw new BadRequestException;
+      throw new BadRequestException();
     }
   }
   
@@ -50,7 +50,7 @@ class ProfilePresenter extends BasePresenter {
     try {
       $this->template->skills = $this->model->getSkills($username);
     } catch(UserNotFoundException $e) {
-      throw new BadRequestException;
+      throw new BadRequestException();
     }
   }
 }

@@ -122,6 +122,6 @@ final class CastleTest extends \Tester\TestCase {
   }
 }
 
-$test = new CastleTest;
+$test = new CastleTest();
 $test->run();
 ?>

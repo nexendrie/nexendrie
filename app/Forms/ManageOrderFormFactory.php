@@ -25,7 +25,7 @@ class ManageOrderFormFactory {
   }
   
   public function create(int $guildId): Form {
-    $form = new Form;
+    $form = new Form();
     $this->id = $guildId;
     $guild = $this->model->getOrder($this->id);
     $form->addText("name", "Jméno:")

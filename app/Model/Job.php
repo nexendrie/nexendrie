@@ -57,10 +57,10 @@ class Job {
    */
   public function calculateAward(JobEntity $offer): \stdClass {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $oldAward = $offer->award;
-    $job = new UserJobEntity;
+    $job = new UserJobEntity();
     $job->job = $offer;
     $job->user = $this->orm->users->getById($this->user->id);
     $job->count = ($job->job->count > 0) ? $job->job->count : 1;
@@ -79,7 +79,7 @@ class Job {
    */
   public function findAvailableJobs(): array {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $return = [];
     $offers = $this->orm->jobs->findForLevel($this->user->identity->level);
@@ -112,7 +112,7 @@ class Job {
    * Add new job
    */
   public function addJob(array $data): void {
-    $job = new JobEntity;
+    $job = new JobEntity();
     $this->orm->jobs->attach($job);
     foreach($data as $key => $value) {
       $job->$key = $value;
@@ -147,22 +147,22 @@ class Job {
    */
   public function startJob(int $id): void {
     if($this->isWorking()) {
-      throw new AlreadyWorkingException;
+      throw new AlreadyWorkingException();
     }
     $row = $this->orm->jobs->getById($id);
     if(is_null($row)) {
-      throw new JobNotFoundException;
+      throw new JobNotFoundException();
     }
     if($row->level > $this->user->identity->level) {
-      throw new InsufficientLevelForJobException;
+      throw new InsufficientLevelForJobException();
     }
     if($row->neededSkillLevel > 0) {
       $userSkillLevel = $this->skillsModel->getLevelOfSkill($row->neededSkill->id);
       if($userSkillLevel < $row->neededSkillLevel) {
-        throw new InsufficientSkillLevelForJobException;
+        throw new InsufficientSkillLevelForJobException();
       }
     }
-    $job = new UserJobEntity;
+    $job = new UserJobEntity();
     $this->orm->userJobs->attach($job);
     $job->user = $this->user->id;
     $job->job = $id;
@@ -216,7 +216,7 @@ class Job {
       throw $e;
     }
     if(time() < $currentJob->finishTime) {
-      throw new JobNotFinishedException;
+      throw new JobNotFinishedException();
     }
     $rewards = $this->calculateReward($currentJob);
     $currentJob->finished = true;
@@ -270,7 +270,7 @@ class Job {
     try {
       $canWork = $this->canWork();
       if(!$canWork) {
-        throw new CannotWorkException;
+        throw new CannotWorkException();
       }
     } catch(AccessDeniedException $e) {
       throw $e;
@@ -296,7 +296,7 @@ class Job {
    */
   public function isWorking(): bool {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $activeJob = $this->orm->userJobs->getUserActiveJob($this->user->id);
     if($activeJob) {
@@ -313,11 +313,11 @@ class Job {
    */
   public function getCurrentJob(): UserJobEntity {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $job = $this->orm->userJobs->getUserActiveJob($this->user->id);
     if(is_null($job)) {
-      throw new NotWorkingException;
+      throw new NotWorkingException();
     }
     return $job;
   }
@@ -364,7 +364,7 @@ class Job {
   public function listOfMessages(int $jobId): OneHasMany {
     $job = $this->orm->jobs->getById($jobId);
     if(is_null($job)) {
-      throw new JobNotFoundException;
+      throw new JobNotFoundException();
     }
     return $job->messages;
   }
@@ -377,7 +377,7 @@ class Job {
   public function getMessage(int $id): JobMessageEntity {
     $message = $this->orm->jobMessages->getById($id);
     if(is_null($message)) {
-      throw new JobMessageNotFoundException;
+      throw new JobMessageNotFoundException();
     }
     return $message;
   }
@@ -386,7 +386,7 @@ class Job {
    * Add new job message
    */
   public function addMessage(array $data): void {
-    $message = new JobMessageEntity;
+    $message = new JobMessageEntity();
     $this->orm->jobMessages->attach($message);
     foreach($data as $key => $value) {
       if($key === "success") {
@@ -425,7 +425,7 @@ class Job {
   public function deleteMessage(int $id): int {
     $message = $this->orm->jobMessages->getById($id);
     if(is_null($message)) {
-      throw new JobMessageNotFoundException;
+      throw new JobMessageNotFoundException();
     }
     $return = $message->job->id;
     $this->orm->jobMessages->remove($message);

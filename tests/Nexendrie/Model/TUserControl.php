@@ -37,7 +37,7 @@ trait TUserControl {
     /** @var \Nette\Security\User $user */
     $user = $this->getService(\Nette\Security\User::class);
     if(!$user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
@@ -52,7 +52,7 @@ trait TUserControl {
     /** @var \Nette\Security\User $user */
     $user = $this->getService(\Nette\Security\User::class);
     if(!$user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
@@ -70,7 +70,7 @@ trait TUserControl {
     /** @var \Nette\Security\User $user */
     $user = $this->getService(\Nette\Security\User::class);
     if(!$user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
@@ -104,7 +104,7 @@ trait TUserControl {
     /** @var \Nette\Security\User $user */
     $user = $this->getService(\Nette\Security\User::class);
     if(!$user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);

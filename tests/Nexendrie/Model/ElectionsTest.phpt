@@ -32,6 +32,6 @@ final class ElectionsTest extends \Tester\TestCase {
   }
 }
 
-$test = new ElectionsTest;
+$test = new ElectionsTest();
 $test->run();
 ?>

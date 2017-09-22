@@ -94,6 +94,6 @@ final class MountTest extends \Tester\TestCase {
   }
 }
 
-$test = new MountTest;
+$test = new MountTest();
 $test->run();
 ?>

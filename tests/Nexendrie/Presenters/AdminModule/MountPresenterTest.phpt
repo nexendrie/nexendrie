@@ -23,6 +23,6 @@ final class MountPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new MountPresenterTest;
+$test = new MountPresenterTest();
 $test->run();
 ?>

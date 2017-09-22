@@ -22,7 +22,7 @@ class ManageTownFormFactory {
   }
   
   public function create(int $townId): Form {
-    $form = new Form;
+    $form = new Form();
     $this->id = $townId;
     $town = $this->model->get($this->id);
     $form->addText("name", "Jméno:")

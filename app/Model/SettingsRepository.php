@@ -96,7 +96,7 @@ class SettingsRepository {
    */
   protected function validateSection(string $name, array $config): array {
     $values = Arrays::get($config, $name, []);
-    $resolver = new OptionsResolver;
+    $resolver = new OptionsResolver();
     $defaults = $this->defaults[$name];
     $resolver->setDefaults($defaults);
     foreach($defaults as $key => $value) {

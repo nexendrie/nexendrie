@@ -15,6 +15,6 @@ final class PrisonPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new PrisonPresenterTest;
+$test = new PrisonPresenterTest();
 $test->run();
 ?>

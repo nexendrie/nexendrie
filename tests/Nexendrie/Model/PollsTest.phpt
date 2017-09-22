@@ -70,6 +70,6 @@ final class PollsTest extends \Tester\TestCase {
   }
 }
 
-$test = new PollsTest;
+$test = new PollsTest();
 $test->run();
 ?>

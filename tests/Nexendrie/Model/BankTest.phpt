@@ -44,7 +44,7 @@ final class BankTest extends \Tester\TestCase {
   public function testCalculateInterest() {
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
-    $loan = new Loan;
+    $loan = new Loan();
     $orm->loans->attach($loan);
     $loan->amount = 2000;
     $loan->interest = 10;
@@ -73,6 +73,6 @@ final class BankTest extends \Tester\TestCase {
   }
 }
 
-$test = new BankTest;
+$test = new BankTest();
 $test->run();
 ?>

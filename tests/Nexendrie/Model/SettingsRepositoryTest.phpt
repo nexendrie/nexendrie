@@ -24,6 +24,6 @@ final class SettingsRepositoryTest extends \Tester\TestCase {
   }
 }
 
-$test = new SettingsRepositoryTest;
+$test = new SettingsRepositoryTest();
 $test->run();
 ?>

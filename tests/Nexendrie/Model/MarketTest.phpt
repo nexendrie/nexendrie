@@ -95,6 +95,6 @@ final class MarketTest extends \Tester\TestCase {
   }
 }
 
-$test = new MarketTest;
+$test = new MarketTest();
 $test->run();
 ?>

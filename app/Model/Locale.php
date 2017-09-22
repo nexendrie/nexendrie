@@ -67,7 +67,7 @@ class Locale {
    */
   public function genderMessage($message): string {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $pattern = [
       '#\(a\)#',

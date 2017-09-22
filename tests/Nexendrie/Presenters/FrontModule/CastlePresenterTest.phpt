@@ -41,6 +41,6 @@ final class CastlePresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new CastlePresenterTest;
+$test = new CastlePresenterTest();
 $test->run();
 ?>

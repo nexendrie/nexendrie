@@ -112,6 +112,6 @@ final class SkillsTest extends \Tester\TestCase {
   }
 }
 
-$test = new SkillsTest;
+$test = new SkillsTest();
 $test->run();
 ?>

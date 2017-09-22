@@ -41,6 +41,6 @@ final class MarketPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new MarketPresenterTest;
+$test = new MarketPresenterTest();
 $test->run();
 ?>

@@ -88,7 +88,7 @@ class Market {
    * Add new shop
    */
   public function addShop(array $data): void {
-    $shop = new ShopEntity;
+    $shop = new ShopEntity();
     foreach($data as $key => $value) {
       $shop->$key = $value;
     }
@@ -129,7 +129,7 @@ class Market {
    * Add new item
    */
   public function addItem(array $data): void {
-    $item = new ItemEntity;
+    $item = new ItemEntity();
     $this->orm->items->attach($item);
     foreach($data as $key => $value) {
       $item->$key = $value;
@@ -145,24 +145,24 @@ class Market {
    */
   public function buy(int $item, int $shop): void {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $itemRow = $this->orm->items->getById($item);
     if(is_null($itemRow)) {
       throw new ItemNotFoundException("Specified item does not exist.");
     }
     if($itemRow->shop->id != $shop) {
-      throw new WrongShopException;
+      throw new WrongShopException();
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->money < $itemRow->price) {
-      throw new InsufficientFundsException;
+      throw new InsufficientFundsException();
     }
     /** @var UserItemEntity $row */
     $row = $this->orm->userItems->getByUserAndItem($user->id, $item);
     if(is_null($row) OR in_array($itemRow->type, ItemEntity::getEquipmentTypes())) {
-      $row = new UserItemEntity;
+      $row = new UserItemEntity();
       $row->user = $user;
       $row->item = $item;
       $row->amount = 0;

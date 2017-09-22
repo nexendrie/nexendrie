@@ -40,6 +40,6 @@ final class PropertyPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new PropertyPresenterTest;
+$test = new PropertyPresenterTest();
 $test->run();
 ?>

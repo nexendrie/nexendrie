@@ -39,7 +39,7 @@ class Property {
    */
   public function budget(): array {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException;
+      throw new AuthenticationNeededException();
     }
     $budget = [
       "incomes" => 

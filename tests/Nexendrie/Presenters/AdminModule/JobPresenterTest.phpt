@@ -23,6 +23,6 @@ final class JobPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new JobPresenterTest;
+$test = new JobPresenterTest();
 $test->run();
 ?>

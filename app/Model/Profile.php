@@ -55,7 +55,7 @@ class Profile {
   public function getPath(int $id = NULL): string {
     $user = $this->orm->users->getById($id ?? $this->user->id);
     if(is_null($user)) {
-      throw new UserNotFoundException;
+      throw new UserNotFoundException();
     }
     return $user->group->path;
   }

@@ -85,6 +85,6 @@ final class OrderPresenterTest extends \Tester\TestCase {
   }
 }
 
-$test = new OrderPresenterTest;
+$test = new OrderPresenterTest();
 $test->run();
 ?>

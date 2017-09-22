@@ -63,6 +63,6 @@ final class GroupTest extends \Tester\TestCase {
   }
 }
 
-$test = new GroupTest;
+$test = new GroupTest();
 $test->run();
 ?>

@@ -25,7 +25,7 @@ class EventsRepository extends \Nextras\Orm\Repository\Repository {
    */
   public function findFromMonth(int $year = NULL, int $month = NULL): ICollection {
     $startTS = mktime(0, 0, 0, $month ?? (int) date("n"), 1, $year ?? (int) date("Y"));
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setTimestamp($startTS);
     $date->modify("+1 month");
     $date->modify("-1 second");
