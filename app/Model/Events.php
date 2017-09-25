@@ -119,18 +119,15 @@ class Events implements \EventCalendar\IEventModel {
   }
   
   /**
-   * @param int $year
-   * @param int $month
-   * @param int $day
    * @return string[]
    */
-  public function getForDate($year, $month, $day): array {
+  public function getForDate(int $year, int $month, int $day): array {
     if(is_null($this->events)) {
       $this->loadEvents($year, $month);
     }
     $events = [];
     foreach($this->events as $event) {
-      $startTS = mktime(0, 0, 0, (int) $month, (int) $day, (int) $year);
+      $startTS = mktime(0, 0, 0, $month, $day, $year);
       $date = new \DateTime;
       $date->setTimestamp($startTS);
       $date->modify("+1 day");
@@ -143,12 +140,7 @@ class Events implements \EventCalendar\IEventModel {
     return $events;
   }
   
-  /**
-   * @param int $year
-   * @param int $month
-   * @param int $day
-   */
-  public function isForDate($year, $month, $day): bool {
+  public function isForDate(int $year, int $month, int $day): bool {
     return (bool) count($this->getForDate($year, $month, $day));
   }
   

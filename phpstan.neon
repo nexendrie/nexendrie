@@ -7,6 +7,5 @@ parameters:
         - Nette\Security\IIdentity
         - Nextras\Orm\Entity\IEntity
     ignoreErrors:
-        - "#Casting to [a-z\\_]+ something that's already [a-z\\_]+#"
         - '#Call to an undefined method Nette\\Application\\UI\\Form::addDateTime\(\)#'
         - '#Parameter \#1 \$arr of static method Nette\\Utils\\Arrays::get\(\) expects mixed\[\], mixed\[\]\|int\|mixed given#'
