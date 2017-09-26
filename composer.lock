@@ -93,12 +93,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/EventCalendar.git",
-                "reference": "9e3b27e0154b247ebdd57039b4141ca02d0142be"
+                "reference": "4f16c90cdea3d57f97f5d49191cea520c964ab80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/9e3b27e0154b247ebdd57039b4141ca02d0142be",
-                "reference": "9e3b27e0154b247ebdd57039b4141ca02d0142be",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/4f16c90cdea3d57f97f5d49191cea520c964ab80",
+                "reference": "4f16c90cdea3d57f97f5d49191cea520c964ab80",
                 "shasum": ""
             },
             "require": {
@@ -142,7 +142,7 @@
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
             "homepage": "http://www.nimral.cz/calendar",
-            "time": "2017-09-25T14:21:33+00:00"
+            "time": "2017-09-26T12:45:44+00:00"
         },
         {
             "name": "latte/latte",
@@ -2348,12 +2348,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "c4f81338bfac6b4e8a3ae13c78516a29123d832a"
+                "reference": "8cf24cf8c07defa85de7e2543c92db7bd3ded5a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/c4f81338bfac6b4e8a3ae13c78516a29123d832a",
-                "reference": "c4f81338bfac6b4e8a3ae13c78516a29123d832a",
+                "url": "https://api.github.com/repos/nette/tester/zipball/8cf24cf8c07defa85de7e2543c92db7bd3ded5a0",
+                "reference": "8cf24cf8c07defa85de7e2543c92db7bd3ded5a0",
                 "shasum": ""
             },
             "require": {
@@ -2402,7 +2402,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2017-09-10T15:52:48+00:00"
+            "time": "2017-09-26T11:21:20+00:00"
         },
         {
             "name": "nexendrie/code-quality",
