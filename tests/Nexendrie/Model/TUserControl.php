@@ -3,6 +3,10 @@ declare(strict_types = 1);
 
 namespace Nexendrie\Model;
 
+use Nette\Security\User,
+    Nexendrie\Orm\User as UserEntity,
+    Nexendrie\Orm\Model as ORM;
+
 /**
  * TUserControl
  * Simplifies working with users in a test suit
@@ -16,8 +20,8 @@ trait TUserControl {
    * Login a user
    */
   protected function login(string $username = "admin", string $password = "qwerty"): void {
-    /** @var \Nette\Security\User $user */
-    $user = $this->getService(\Nette\Security\User::class);
+    /** @var User $user */
+    $user = $this->getService(User::class);
     $user->login($username, $password);
   }
   
@@ -25,22 +29,22 @@ trait TUserControl {
    * Logout the user
    */
   protected function logout(): void {
-    /** @var \Nette\Security\User $user */
-    $user = $this->getService(\Nette\Security\User::class);
+    /** @var User $user */
+    $user = $this->getService(User::class);
     $user->logout(true);
   }
   
   /**
    * @throws AuthenticationNeededException
    */
-  protected function getUser(): \Nexendrie\Orm\User {
-    /** @var \Nette\Security\User $user */
-    $user = $this->getService(\Nette\Security\User::class);
+  protected function getUser(): UserEntity {
+    /** @var User $user */
+    $user = $this->getService(User::class);
     if(!$user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    /** @var \Nexendrie\Orm\Model $orm */
-    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    /** @var ORM $orm */
+    $orm = $this->getService(ORM::class);
     return $orm->users->getById($user->id);
   }
   
@@ -49,13 +53,13 @@ trait TUserControl {
    * @throws AuthenticationNeededException
    */
   protected function getUserStat(string $stat) {
-    /** @var \Nette\Security\User $user */
-    $user = $this->getService(\Nette\Security\User::class);
+    /** @var User $user */
+    $user = $this->getService(User::class);
     if(!$user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    /** @var \Nexendrie\Orm\Model $orm */
-    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    /** @var ORM $orm */
+    $orm = $this->getService(ORM::class);
     $data = $orm->users->getById($user->id);
     return $data->$stat;
   }
@@ -67,20 +71,20 @@ trait TUserControl {
    * @throws AuthenticationNeededException
    */
   protected function preserveStats(array $stats, callable $callback): void {
-    /** @var \Nette\Security\User $user */
-    $user = $this->getService(\Nette\Security\User::class);
+    /** @var User $user */
+    $user = $this->getService(User::class);
     if(!$user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    /** @var \Nexendrie\Orm\Model $orm */
-    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    /** @var ORM $orm */
+    $orm = $this->getService(ORM::class);
     $data = $orm->users->getById($user->id);
     $oldStats = [];
     foreach($stats as $stat) {
       $oldStats[$stat] = $data->$stat;
     }
     $orm->users->persistAndFlush($data);
-    /** @var \Nexendrie\Model\UserManager $userManager */
+    /** @var UserManager $userManager */
     $userManager = $user->getAuthenticator();
     $userManager->user = $user;
     $userManager->refreshIdentity();
@@ -101,13 +105,13 @@ trait TUserControl {
    * @throws AuthenticationNeededException
    */
   protected function modifyUser(array $stats, callable $callback): void {
-    /** @var \Nette\Security\User $user */
-    $user = $this->getService(\Nette\Security\User::class);
+    /** @var User $user */
+    $user = $this->getService(User::class);
     if(!$user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    /** @var \Nexendrie\Orm\Model $orm */
-    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    /** @var ORM $orm */
+    $orm = $this->getService(ORM::class);
     $data = $orm->users->getById($user->id);
     $oldStats = [];
     foreach($stats as $stat => $newValue) {
@@ -115,7 +119,7 @@ trait TUserControl {
       $data->$stat = $newValue;
     }
     $orm->users->persistAndFlush($data);
-    /** @var \Nexendrie\Model\UserManager $userManager */
+    /** @var UserManager $userManager */
     $userManager = $user->getAuthenticator();
     $userManager->user = $user;
     $userManager->refreshIdentity();
