@@ -38,7 +38,7 @@ trait TPresenter {
     return $response;
   }
   
-  protected function checkForward(string $destination, string $to = "", array $params = [], array $post = []) {
+  protected function checkForward(string $destination, string $to = "", array $params = [], array $post = []): ForwardResponse {
     /** @var ForwardResponse $response */
     $response = $this->check($destination, $params, $post);
     if(!$this->__testbench_exception) {
