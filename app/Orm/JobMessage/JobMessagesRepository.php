@@ -9,7 +9,7 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 class JobMessagesRepository extends \Nextras\Orm\Repository\Repository {
-  static function getEntityClassNames(): array {
+  public static function getEntityClassNames(): array {
     return [JobMessage::class];
   }
   

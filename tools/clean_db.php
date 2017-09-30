@@ -17,7 +17,7 @@ try {
   while($table = $tables->fetchField(0)) {
     $connection->query("DROP TABLE $table");
   }
-} catch(QueryException $e) {
+} catch(QueryException $e) { // @codingStandardsIgnoreLine
 
 }
 ?>

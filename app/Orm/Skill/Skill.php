@@ -44,7 +44,7 @@ class Skill extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getTypes(): array {
+  public static function getTypes(): array {
     return [
       self::TYPE_WORK => "práce",
       self::TYPE_COMBAT => "boj",
@@ -54,7 +54,7 @@ class Skill extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getStats(): array {
+  public static function getStats(): array {
     return [
       self::STAT_HITPOINTS => "maximum životů",
       self::STAT_DAMAGE => "poškození",

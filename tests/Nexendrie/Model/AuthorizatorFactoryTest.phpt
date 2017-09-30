@@ -13,7 +13,7 @@ final class AuthorizatorFactoryTest extends \Tester\TestCase {
   /** @var \Nette\Security\Permission */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(\Nette\Security\Permission::class);
   }
   

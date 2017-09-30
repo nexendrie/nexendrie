@@ -14,7 +14,7 @@ final class HouseTest extends \Tester\TestCase {
   /** @var House */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(House::class);
   }
   

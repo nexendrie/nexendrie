@@ -15,7 +15,7 @@ final class MonasteryTest extends \Tester\TestCase {
   /** @var Monastery */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Monastery::class);
   }
   

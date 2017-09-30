@@ -15,7 +15,7 @@ final class TownTest extends \Tester\TestCase {
   /** @var Town */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Town::class);
   }
   

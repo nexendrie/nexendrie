@@ -16,7 +16,7 @@ final class ArticleTest extends \Tester\TestCase {
   /** @var Article */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Article::class);
   }
   

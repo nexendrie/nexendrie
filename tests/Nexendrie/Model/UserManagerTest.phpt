@@ -18,7 +18,7 @@ final class UserManagerTest extends \Tester\TestCase {
   /** @var UserManager */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(UserManager::class);
   }
   

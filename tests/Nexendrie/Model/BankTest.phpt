@@ -14,7 +14,7 @@ final class BankTest extends \Tester\TestCase {
   /** @var Bank */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Bank::class);
   }
   

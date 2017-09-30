@@ -14,7 +14,7 @@ final class RssTest extends \Tester\TestCase {
   /** @var Rss */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Rss::class);
   }
   

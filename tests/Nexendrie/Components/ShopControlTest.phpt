@@ -15,7 +15,7 @@ final class ShopControlTest extends \Tester\TestCase {
   /** @var ShopControl */
   protected $control;
   
-  public function setUp() {
+  protected function setUp() {
     static $control = NULL;
     if(is_null($control)) {
       $control = $this->getService(IShopControlFactory::class)->create();

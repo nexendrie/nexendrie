@@ -17,7 +17,7 @@ final class GuildTest extends \Tester\TestCase {
   /** @var Guild */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Guild::class);
   }
   

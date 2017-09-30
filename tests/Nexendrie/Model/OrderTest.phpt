@@ -16,7 +16,7 @@ final class OrderTest extends \Tester\TestCase {
   /** @var Order */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Order::class);
   }
   

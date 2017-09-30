@@ -14,7 +14,7 @@ final class SettingsRepositoryTest extends \Tester\TestCase {
   /** @var SettingsRepository */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(SettingsRepository::class);
   }
   

@@ -33,7 +33,7 @@ class UserSettingsFormFactory {
   /**
    * Gets list of styles
    */
-  static function getStylesList(): array {
+  public static function getStylesList(): array {
     $styles = [];
     $dir = __DIR__ . "/../../styles";
     $file = file_get_contents("$dir/list.neon");

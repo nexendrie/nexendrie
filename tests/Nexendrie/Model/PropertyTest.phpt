@@ -13,7 +13,7 @@ final class PropertyTest extends \Tester\TestCase {
   /** @var Property */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Property::class);
   }
   

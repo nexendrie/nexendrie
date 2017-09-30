@@ -90,7 +90,7 @@ class User extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getGenders(): array {
+  public static function getGenders(): array {
     return [
       self::GENDER_MALE => "muž",
       self::GENDER_FEMALE => "žena"

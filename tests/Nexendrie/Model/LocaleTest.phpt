@@ -13,7 +13,7 @@ final class LocaleTest extends \Tester\TestCase {
   /** @var Locale */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Locale::class);
   }
   

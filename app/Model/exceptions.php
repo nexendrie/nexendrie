@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+// @codingStandardsIgnoreFile
+
 class AccessDeniedException extends \RuntimeException {
   
 }

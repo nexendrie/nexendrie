@@ -12,7 +12,7 @@ final class TownsMarketControlTest extends \Tester\TestCase {
   /** @var TownsMarketControl */
   protected $control;
   
-  public function setUp() {
+  protected function setUp() {
     static $control = NULL;
     if(is_null($control)) {
       $control = $this->getService(ITownsMarketControlFactory::class)->create();
@@ -21,7 +21,7 @@ final class TownsMarketControlTest extends \Tester\TestCase {
     $this->attachToPresenter($this->control);
   }
   
-  function testRender() {
+  public function testRender() {
     $this->login();
     $this->checkRenderOutput($this->control, __DIR__ . "/townsMarketExpected.latte");
   }

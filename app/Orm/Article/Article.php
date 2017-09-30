@@ -40,7 +40,7 @@ class Article extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getCategories(): array {
+  public static function getCategories(): array {
     return [
       self::CATEGORY_NEWS => "Novinky",
       self::CATEGORY_CHRONICLE => "Kronika",

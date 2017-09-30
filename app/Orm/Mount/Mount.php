@@ -55,7 +55,7 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getGenders(): array {
+  public static function getGenders(): array {
     return [
       self::GENDER_MALE => "hřebec",
       self::GENDER_FEMALE => "klisna",

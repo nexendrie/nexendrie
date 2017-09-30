@@ -16,7 +16,7 @@ final class MarketTest extends \Tester\TestCase {
   /** @var Market */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Market::class);
   }
   

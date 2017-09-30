@@ -15,7 +15,7 @@ final class MessengerTest extends \Tester\TestCase {
   /** @var Messenger */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Messenger::class);
   }
   

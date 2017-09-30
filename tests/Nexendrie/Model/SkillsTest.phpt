@@ -15,7 +15,7 @@ final class SkillsTest extends \Tester\TestCase {
   /** @var Skills */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Skills::class);
   }
   

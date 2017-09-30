@@ -15,7 +15,7 @@ final class MountsMarketControlTest extends \Tester\TestCase {
   /** @var MountsMarketControl */
   protected $control;
   
-  public function setUp() {
+  protected function setUp() {
     static $control = NULL;
     if(is_null($control)) {
       $control = $this->getService(IMountsMarketControlFactory::class)->create();
@@ -24,7 +24,7 @@ final class MountsMarketControlTest extends \Tester\TestCase {
     $this->attachToPresenter($this->control);
   }
   
-  function testRender() {
+  public function testRender() {
     $this->login();
     $this->checkRenderOutput($this->control, __DIR__ . "/mountsMarketExpected.latte");
   }

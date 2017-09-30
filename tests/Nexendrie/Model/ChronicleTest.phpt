@@ -16,7 +16,7 @@ final class ChronicleTest extends \Tester\TestCase {
   /** @var Chronicle */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Chronicle::class);
   }
   

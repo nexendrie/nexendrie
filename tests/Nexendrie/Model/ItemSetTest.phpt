@@ -15,7 +15,7 @@ final class ItemSetTest extends \Tester\TestCase {
   /** @var ItemSet */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(ItemSet::class);
   }
   

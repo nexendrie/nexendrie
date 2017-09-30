@@ -16,7 +16,7 @@ final class MountTest extends \Tester\TestCase {
   /** @var Mount */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Mount::class);
   }
   

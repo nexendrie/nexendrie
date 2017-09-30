@@ -16,7 +16,7 @@ final class MarriageTest extends \Tester\TestCase {
   /** @var Marriage */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Marriage::class);
   }
   

@@ -7,7 +7,7 @@ namespace Nexendrie\Orm;
  * @author Jakub Konečný
  */
 class ItemSetsRepository extends \Nextras\Orm\Repository\Repository {
-  static function getEntityClassNames(): array {
+  public static function getEntityClassNames(): array {
     return [ItemSet::class];
   }
   

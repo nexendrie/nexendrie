@@ -18,7 +18,7 @@ final class AdventureTest extends \Tester\TestCase {
   /** @var Adventure */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Adventure::class);
   }
   

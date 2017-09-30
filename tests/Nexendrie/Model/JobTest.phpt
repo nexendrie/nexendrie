@@ -20,7 +20,7 @@ final class JobTest extends \Tester\TestCase {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Job::class);
     $this->orm = $this->getService(\Nexendrie\Orm\Model::class);
   }

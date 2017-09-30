@@ -15,7 +15,7 @@ final class TavernTest extends \Tester\TestCase {
   /** @var Tavern */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Tavern::class);
   }
   

@@ -15,7 +15,7 @@ final class PollsTest extends \Tester\TestCase {
   /** @var Polls */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Polls::class);
   }
   

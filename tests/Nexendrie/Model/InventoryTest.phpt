@@ -16,7 +16,7 @@ final class InventoryTest extends \Tester\TestCase {
   /** @var Inventory */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Inventory::class);
   }
   

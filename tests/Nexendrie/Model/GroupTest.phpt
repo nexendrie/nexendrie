@@ -15,7 +15,7 @@ final class GroupTest extends \Tester\TestCase {
   /** @var Group */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Group::class);
   }
   

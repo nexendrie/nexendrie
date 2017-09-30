@@ -24,7 +24,7 @@ class ItemSet extends \Nextras\Orm\Entity\Entity {
   /**
    * @return string[]
    */
-  static function getStats(): array {
+  public static function getStats(): array {
     return [
       self::STAT_HITPOINTS => "maximum životů",
       self::STAT_DAMAGE => "poškození",

@@ -15,7 +15,7 @@ final class EventsTest extends \Tester\TestCase {
   /** @var Events */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Events::class);
   }
   

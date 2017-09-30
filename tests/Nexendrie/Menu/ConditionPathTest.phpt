@@ -14,7 +14,7 @@ final class ConditionPathTest extends \Tester\TestCase {
   /** @var ConditionPath */
   protected $condition;
   
-  public function setUp() {
+  protected function setUp() {
     $this->condition = $this->getService(ConditionPath::class);
   }
   

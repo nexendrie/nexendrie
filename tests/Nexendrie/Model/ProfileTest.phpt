@@ -16,7 +16,7 @@ final class ProfileTest extends \Tester\TestCase {
   /** @var Profile */
   protected $model;
   
-  public function setUp() {
+  protected function setUp() {
     $this->model = $this->getService(Profile::class);
   }
   

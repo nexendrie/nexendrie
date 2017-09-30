@@ -14,7 +14,7 @@ final class ConditionBannedTest extends \Tester\TestCase {
   /** @var ConditionBanned */
   protected $condition;
   
-  public function setUp() {
+  protected function setUp() {
     $this->condition = $this->getService(ConditionBanned::class);
   }
   
