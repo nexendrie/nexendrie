@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d6feddd72e9b8ded3e06c0f17fb40b9",
+    "content-hash": "ea6f5346162c916b9dd319bfc586e727",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -89,16 +89,16 @@
         },
         {
             "name": "konecnyjakub/event-calendar",
-            "version": "dev-master",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/EventCalendar.git",
-                "reference": "4f16c90cdea3d57f97f5d49191cea520c964ab80"
+                "reference": "09f25f2ec91ea21bdacca0bb2e870ba7d39263bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/4f16c90cdea3d57f97f5d49191cea520c964ab80",
-                "reference": "4f16c90cdea3d57f97f5d49191cea520c964ab80",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/09f25f2ec91ea21bdacca0bb2e870ba7d39263bc",
+                "reference": "09f25f2ec91ea21bdacca0bb2e870ba7d39263bc",
                 "shasum": ""
             },
             "require": {
@@ -142,7 +142,7 @@
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
             "homepage": "http://www.nimral.cz/calendar",
-            "time": "2017-09-26T12:45:44+00:00"
+            "time": "2017-09-30T09:28:18+00:00"
         },
         {
             "name": "latte/latte",
@@ -2982,7 +2982,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "konecnyjakub/event-calendar": 20,
         "nexendrie/code-quality": 20
     },
     "prefer-stable": true,
