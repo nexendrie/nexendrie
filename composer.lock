@@ -1322,16 +1322,16 @@
         },
         {
             "name": "nexendrie/menu",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/menu.git",
-                "reference": "1cee8bd06f2562f382e0a6e2165727cbde16d8d8"
+                "reference": "8d3cbb39ae013e1a4552f8ed096e82fed7cdd720"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fmenu/repository/archive.zip?sha=1cee8bd06f2562f382e0a6e2165727cbde16d8d8",
-                "reference": "1cee8bd06f2562f382e0a6e2165727cbde16d8d8",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fmenu/repository/archive.zip?sha=8d3cbb39ae013e1a4552f8ed096e82fed7cdd720",
+                "reference": "8d3cbb39ae013e1a4552f8ed096e82fed7cdd720",
                 "shasum": ""
             },
             "require": {
@@ -1379,7 +1379,7 @@
                 "menu",
                 "nette"
             ],
-            "time": "2017-08-24T11:45:52+00:00"
+            "time": "2017-10-03T13:16:54+00:00"
         },
         {
             "name": "nexendrie/rss",
@@ -2410,12 +2410,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "ec58996471987c8f7913c945de9af5c48dd08896"
+                "reference": "b3e7bc423d9133d8eeece81465cf893faaf1c1ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=ec58996471987c8f7913c945de9af5c48dd08896",
-                "reference": "ec58996471987c8f7913c945de9af5c48dd08896",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=b3e7bc423d9133d8eeece81465cf893faaf1c1ee",
+                "reference": "b3e7bc423d9133d8eeece81465cf893faaf1c1ee",
                 "shasum": ""
             },
             "require": {
@@ -2444,7 +2444,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2017-09-30T10:33:40+00:00"
+            "time": "2017-10-02T10:23:46+00:00"
         },
         {
             "name": "nikic/php-parser",
