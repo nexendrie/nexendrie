@@ -1855,16 +1855,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.4.9",
+            "version": "v2.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "efe45da0aa3a50ce5356be39f2168d7925d94f3d"
+                "reference": "5b302790edd71924dfe4ec44f499ef61df3f53a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/efe45da0aa3a50ce5356be39f2168d7925d94f3d",
-                "reference": "efe45da0aa3a50ce5356be39f2168d7925d94f3d",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/5b302790edd71924dfe4ec44f499ef61df3f53a2",
+                "reference": "5b302790edd71924dfe4ec44f499ef61df3f53a2",
                 "shasum": ""
             },
             "require": {
@@ -1918,7 +1918,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2017-08-16T17:13:36+00:00"
+            "time": "2017-10-04T18:43:42+00:00"
         }
     ],
     "packages-dev": [
@@ -2410,12 +2410,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "b3e7bc423d9133d8eeece81465cf893faaf1c1ee"
+                "reference": "5f54f6cd96e4a41ba9c80c2dc1dd308065ae5127"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=b3e7bc423d9133d8eeece81465cf893faaf1c1ee",
-                "reference": "b3e7bc423d9133d8eeece81465cf893faaf1c1ee",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=5f54f6cd96e4a41ba9c80c2dc1dd308065ae5127",
+                "reference": "5f54f6cd96e4a41ba9c80c2dc1dd308065ae5127",
                 "shasum": ""
             },
             "require": {
@@ -2444,7 +2444,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2017-10-02T10:23:46+00:00"
+            "time": "2017-10-05T15:25:30+00:00"
         },
         {
             "name": "nikic/php-parser",
