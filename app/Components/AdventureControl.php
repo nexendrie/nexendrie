@@ -19,6 +19,7 @@ use Nexendrie\Model\AlreadyOnAdventureException,
  * AdventureControl
  *
  * @author Jakub Konečný
+ * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
  */
 class AdventureControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Adventure */

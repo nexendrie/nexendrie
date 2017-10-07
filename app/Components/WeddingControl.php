@@ -9,6 +9,7 @@ use Nexendrie\Orm\Marriage as MarriageEntity;
  * WeddingControl
  *
  * @author Jakub Konečný
+ * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
  * @property-write MarriageEntity $marriage
  */
 class WeddingControl extends \Nette\Application\UI\Control {

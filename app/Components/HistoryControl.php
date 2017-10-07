@@ -11,6 +11,7 @@ use Nexendrie\BookComponent\BookControl,
  * HelpControl
  *
  * @author Jakub Konečný
+ * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
  */
 class HistoryControl extends BookControl {
   public function __construct(Translator $translator) {

@@ -11,6 +11,7 @@ use Nexendrie\Model\AuthenticationNeededException,
  * TavernControl
  *
  * @author Jakub Konečný
+ * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
  */
 class TavernControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Tavern */
