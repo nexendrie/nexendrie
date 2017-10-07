@@ -181,10 +181,7 @@ class Guild {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path === GroupEntity::PATH_CITY AND !$user->guild) {
-      return true;
-    }
-    return false;
+    return ($user->group->path === GroupEntity::PATH_CITY AND !$user->guild);
   }
   
   /**

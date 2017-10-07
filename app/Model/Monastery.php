@@ -96,15 +96,9 @@ class Monastery {
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if(!$user->monastery AND $user->group->path === GroupEntity::PATH_CITY) {
-      if($user->guild AND $user->guildRank->id === $this->guildModel->maxRank) {
-        return false;
-      }
-      return true;
+      return !($user->guild AND $user->guildRank->id === $this->guildModel->maxRank);
     } elseif(!$user->monastery AND $user->group->path === GroupEntity::PATH_TOWER) {
-      if($user->order AND $user->orderRank->id === $this->orderModel->maxRank) {
-        return false;
-      }
-      return true;
+      return !($user->order AND $user->orderRank->id === $this->orderModel->maxRank);
     } elseif($user->group->path === GroupEntity::PATH_CHURCH) {
       if($user->monasteriesLed->countStored()) {
         return false;
@@ -178,10 +172,7 @@ class Monastery {
       return true;
     }
     $oneDay = 60 * 60 * 24;
-    if($user->lastPrayer + $oneDay < time()) {
-      return true;
-    }
-    return false;
+    return ($user->lastPrayer + $oneDay < time());
   }
   
   /**
@@ -266,10 +257,7 @@ class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monasteriesLed->countStored() > 0) {
-      return false;
-    }
-    return true;
+    return !($user->monasteriesLed->countStored() > 0);
   }
   
   /**

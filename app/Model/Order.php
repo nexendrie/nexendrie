@@ -177,10 +177,7 @@ class Order {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path === GroupEntity::PATH_TOWER AND !$user->order) {
-      return true;
-    }
-    return false;
+    return ($user->group->path === GroupEntity::PATH_TOWER AND !$user->order);
   }
   
   /**

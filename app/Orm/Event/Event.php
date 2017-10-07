@@ -104,10 +104,7 @@ class Event extends \Nextras\Orm\Entity\Entity {
   
   protected function getterActive(): bool {
     $time = time();
-    if($this->start <= $time AND $this->end >= $time) {
-      return true;
-    }
-    return false;
+    return ($this->start <= $time AND $this->end >= $time);
   }
   
   public function dummy(): EventDummy {

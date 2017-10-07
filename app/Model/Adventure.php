@@ -389,10 +389,7 @@ class Adventure {
     $next = new \DateTime;
     $next->setTimestamp($adventure->started + $twoDays);
     $next->setTime(0, 0, 0);
-    if($next->getTimestamp() < time()) {
-      return true;
-    }
-    return false;
+    return ($next->getTimestamp() < time());
   }
 }
 ?>

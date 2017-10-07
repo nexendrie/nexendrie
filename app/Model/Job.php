@@ -299,10 +299,7 @@ class Job {
       throw new AuthenticationNeededException();
     }
     $activeJob = $this->orm->userJobs->getUserActiveJob($this->user->id);
-    if($activeJob) {
-      return true;
-    }
-    return false;
+    return !(is_null($activeJob));
   }
   
   /**
