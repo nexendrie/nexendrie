@@ -1,5 +1,7 @@
 checks:
     php:
+        code_rating: true
+        duplication: true
         verify_property_names: true
         uppercase_constants: true
         simplify_boolean_return: true
