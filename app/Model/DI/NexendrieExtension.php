@@ -22,91 +22,91 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   protected function registerMenuConditions(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition("menu.condition.banned")
-      ->setClass(Nexendrie\Menu\ConditionBanned::class);
+      ->setType(Nexendrie\Menu\ConditionBanned::class);
     $builder->addDefinition("menu.condition.path")
-      ->setClass(Nexendrie\Menu\ConditionPath::class);
+      ->setType(Nexendrie\Menu\ConditionPath::class);
   }
   
   protected function addModels(): void {
     $builder = $this->getContainerBuilder();
     $config = $this->getConfig();
     $builder->addDefinition($this->prefix("model.group"))
-      ->setClass(Nexendrie\Model\Group::class);
+      ->setType(Nexendrie\Model\Group::class);
     $builder->addDefinition($this->prefix("model.market"))
-      ->setClass(Nexendrie\Model\Market::class);
+      ->setType(Nexendrie\Model\Market::class);
     $builder->addDefinition($this->prefix("model.messenger"))
-      ->setClass(Nexendrie\Model\Messenger::class);
+      ->setType(Nexendrie\Model\Messenger::class);
     $builder->addDefinition($this->prefix("model.polls"))
-      ->setClass(Nexendrie\Model\Polls::class);
+      ->setType(Nexendrie\Model\Polls::class);
     $builder->addDefinition($this->prefix("model.profile"))
-      ->setClass(Nexendrie\Model\Profile::class);
+      ->setType(Nexendrie\Model\Profile::class);
     $builder->addDefinition($this->prefix("model.rss"))
-      ->setClass(Nexendrie\Model\Rss::class);
+      ->setType(Nexendrie\Model\Rss::class);
     $builder->addDefinition($this->prefix("model.property"))
-      ->setClass(Nexendrie\Model\Property::class);
+      ->setType(Nexendrie\Model\Property::class);
     $builder->addDefinition($this->prefix("model.job"))
-      ->setClass(Nexendrie\Model\Job::class);
+      ->setType(Nexendrie\Model\Job::class);
     $builder->addDefinition($this->prefix("model.town"))
-      ->setClass(Nexendrie\Model\Town::class);
+      ->setType(Nexendrie\Model\Town::class);
     $builder->addDefinition($this->prefix("model.mount"))
-      ->setClass(Nexendrie\Model\Mount::class);
+      ->setType(Nexendrie\Model\Mount::class);
     $builder->addDefinition($this->prefix("model.skills"))
-      ->setClass(Nexendrie\Model\Skills::class);
+      ->setType(Nexendrie\Model\Skills::class);
     $builder->addDefinition($this->prefix("model.chronicle"))
-      ->setClass(Nexendrie\Model\Chronicle::class);
+      ->setType(Nexendrie\Model\Chronicle::class);
     $builder->addDefinition($this->prefix("model.tavern"))
-      ->setClass(Nexendrie\Model\Tavern::class);
+      ->setType(Nexendrie\Model\Tavern::class);
     $builder->addDefinition($this->prefix("model.inventory"))
-      ->setClass(Nexendrie\Model\Inventory::class);
+      ->setType(Nexendrie\Model\Inventory::class);
     $builder->addDefinition($this->prefix("model.adventure"))
-      ->setClass(Nexendrie\Model\Adventure::class);
+      ->setType(Nexendrie\Model\Adventure::class);
     $builder->addDefinition($this->prefix("model.combat"))
-      ->setClass(Nexendrie\Model\Combat::class);
+      ->setType(Nexendrie\Model\Combat::class);
     $builder->addDefinition($this->prefix("model.events"))
-      ->setClass(Nexendrie\Model\Events::class);
+      ->setType(Nexendrie\Model\Events::class);
     $builder->addDefinition($this->prefix("model.house"))
-      ->setClass(Nexendrie\Model\House::class);
+      ->setType(Nexendrie\Model\House::class);
     $builder->addDefinition($this->prefix("model.itemSet"))
-      ->setClass(Nexendrie\Model\ItemSet::class);
+      ->setType(Nexendrie\Model\ItemSet::class);
     $builder->addDefinition($this->prefix("model.marriage"))
-      ->setClass(Nexendrie\Model\Marriage::class);
+      ->setType(Nexendrie\Model\Marriage::class);
     $builder->addDefinition($this->prefix("model.elections"))
-      ->setClass(Nexendrie\Model\Elections::class);
+      ->setType(Nexendrie\Model\Elections::class);
     $builder->addDefinition($this->prefix("model.article"))
-      ->setClass(Nexendrie\Model\Article::class);
+      ->setType(Nexendrie\Model\Article::class);
     $builder->addDefinition($this->prefix("model.userManager"))
-      ->setClass(Nexendrie\Model\UserManager::class);
+      ->setType(Nexendrie\Model\UserManager::class);
     $builder->addDefinition($this->prefix("model.locale"))
-      ->setClass(Nexendrie\Model\Locale::class);
+      ->setType(Nexendrie\Model\Locale::class);
     $builder->addDefinition($this->prefix("model.bank"))
-       ->setClass(Nexendrie\Model\Bank::class);
+       ->setType(Nexendrie\Model\Bank::class);
     $builder->addDefinition($this->prefix("model.taxes"))
-        ->setClass(Nexendrie\Model\Taxes::class);
+        ->setType(Nexendrie\Model\Taxes::class);
     $builder->addDefinition($this->prefix("model.monastery"))
-      ->setClass(Nexendrie\Model\Monastery::class);
+      ->setType(Nexendrie\Model\Monastery::class);
     $builder->addDefinition($this->prefix("model.castle"))
-      ->setClass(Nexendrie\Model\Castle::class);
+      ->setType(Nexendrie\Model\Castle::class);
     $builder->addDefinition($this->prefix("model.guild"))
-      ->setClass(Nexendrie\Model\Guild::class);
+      ->setType(Nexendrie\Model\Guild::class);
     $builder->addDefinition($this->prefix("model.order"))
-      ->setClass(Nexendrie\Model\Order::class);
+      ->setType(Nexendrie\Model\Order::class);
     $builder->addDefinition("cache.cache")
       ->setFactory(\Nette\Caching\Cache::class, ["@cache.storage", "data"]);
     $builder->addDefinition($this->prefix("model.settingsRepository"))
       ->setFactory(Nexendrie\Model\SettingsRepository::class, [$config]);
     $builder->addDefinition($this->prefix("model.authorizatorFactory"))
-      ->setClass(Nexendrie\Model\AuthorizatorFactory::class);
+      ->setType(Nexendrie\Model\AuthorizatorFactory::class);
     $builder->addDefinition($this->prefix("model.authorizator"))
-      ->setClass(\Nette\Security\Permission::class)
+      ->setType(\Nette\Security\Permission::class)
       ->setFactory("@" . Nexendrie\Model\AuthorizatorFactory::class . "::create");
     $builder->removeDefinition("router");
     $builder->addDefinition($this->prefix("model.routerFactory"))
-      ->setClass(Nexendrie\Model\RouterFactory::class);
+      ->setType(Nexendrie\Model\RouterFactory::class);
     $builder->addDefinition($this->prefix("model.router"))
-      ->setClass(\Nette\Application\Routers\RouteList::class)
+      ->setType(\Nette\Application\Routers\RouteList::class)
       ->setFactory("@" . Nexendrie\Model\RouterFactory::class . "::create");
     $builder->addDefinition($this->prefix("cronTasks"))
-       ->setClass(Nexendrie\Model\CronTasks::class)
+       ->setType(Nexendrie\Model\CronTasks::class)
        ->addTag("cronner.tasks");
   }
   
@@ -143,86 +143,86 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   protected function addForms(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition($this->prefix("form.addEditArticle"))
-      ->setClass(Nexendrie\Forms\AddEditArticleFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditArticleFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditPoll"))
-      ->setClass(Nexendrie\Forms\AddEditPollFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditPollFormFactory::class);
     $builder->addDefinition($this->prefix("form.newMessage"))
-      ->setClass(Nexendrie\Forms\NewMessageFormFactory::class);
+      ->setType(Nexendrie\Forms\NewMessageFormFactory::class);
     $builder->addDefinition($this->prefix("form.register"))
-      ->setClass(Nexendrie\Forms\RegisterFormFactory::class);
+      ->setType(Nexendrie\Forms\RegisterFormFactory::class);
     $builder->addDefinition($this->prefix("form.login"))
-      ->setClass(Nexendrie\Forms\LoginFormFactory::class);
+      ->setType(Nexendrie\Forms\LoginFormFactory::class);
     $builder->addDefinition($this->prefix("form.userSettings"))
-      ->setClass(Nexendrie\Forms\UserSettingsFormFactory::class);
+      ->setType(Nexendrie\Forms\UserSettingsFormFactory::class);
     $builder->addDefinition($this->prefix("form.addComment"))
-      ->setClass(Nexendrie\Forms\AddCommentFormFactory::class);
+      ->setType(Nexendrie\Forms\AddCommentFormFactory::class);
     $builder->addDefinition($this->prefix("form.editGroup"))
-      ->setClass(Nexendrie\Forms\EditGroupFormFactory::class);
+      ->setType(Nexendrie\Forms\EditGroupFormFactory::class);
     $appDir = $builder->expand("%appDir%");
     $builder->addDefinition($this->prefix("form.systemSettings"))
       ->setFactory(Nexendrie\Forms\SystemSettingsFormFactory::class, [$appDir]);
     $builder->addDefinition($this->prefix("form.editUser"))
-      ->setClass(Nexendrie\Forms\EditUserFormFactory::class);
+      ->setType(Nexendrie\Forms\EditUserFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditShop"))
-      ->setClass(Nexendrie\Forms\AddEditShopFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditShopFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditItem"))
-      ->setClass(Nexendrie\Forms\AddEditItemFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditItemFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditJob"))
-      ->setClass(Nexendrie\Forms\AddEditJobFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditJobFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditJobMessage"))
-      ->setClass(Nexendrie\Forms\AddEditJobMessageFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditJobMessageFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditTown"))
-      ->setClass(Nexendrie\Forms\AddEditTownFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditTownFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditMount"))
-      ->setClass(Nexendrie\Forms\AddEditMountFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditMountFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditSkill"))
-      ->setClass(Nexendrie\Forms\AddEditSkillFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditSkillFormFactory::class);
     $builder->addDefinition($this->prefix("form.manageMount"))
-      ->setClass(Nexendrie\Forms\ManageMountFormFactory::class);
+      ->setType(Nexendrie\Forms\ManageMountFormFactory::class);
     $builder->addDefinition($this->prefix("form.manageTown"))
-      ->setClass(Nexendrie\Forms\ManageTownFormFactory::class);
+      ->setType(Nexendrie\Forms\ManageTownFormFactory::class);
     $builder->addDefinition($this->prefix("form.banUser"))
-      ->setClass(Nexendrie\Forms\BanUserFormFactory::class);
+      ->setType(Nexendrie\Forms\BanUserFormFactory::class);
     $builder->addDefinition($this->prefix("form.takeLoan"))
-      ->setClass(Nexendrie\Forms\TakeLoanFormFactory::class);
+      ->setType(Nexendrie\Forms\TakeLoanFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditMeal"))
-      ->setClass(Nexendrie\Forms\AddEditMealFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditMealFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditAdventure"))
-      ->setClass(Nexendrie\Forms\AddEditAdventureFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditAdventureFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditAdventureEnemy"))
-      ->setClass(Nexendrie\Forms\AddEditAdventureEnemyFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditAdventureEnemyFormFactory::class);
     $builder->addDefinition($this->prefix("form.buildMonastery"))
-      ->setClass(Nexendrie\Forms\BuildMonasteryFormFactory::class);
+      ->setType(Nexendrie\Forms\BuildMonasteryFormFactory::class);
     $builder->addDefinition($this->prefix("form.monasteryDonate"))
-      ->setClass(Nexendrie\Forms\MonasteryDonateFormFactory::class);
+      ->setType(Nexendrie\Forms\MonasteryDonateFormFactory::class);
     $builder->addDefinition($this->prefix("form.manageMonastery"))
-      ->setClass(Nexendrie\Forms\ManageMonasteryFormFactory::class);
+      ->setType(Nexendrie\Forms\ManageMonasteryFormFactory::class);
     $builder->addDefinition($this->prefix("form.appointMayor"))
-      ->setClass(Nexendrie\Forms\AppointMayorFormFactory::class);
+      ->setType(Nexendrie\Forms\AppointMayorFormFactory::class);
     $builder->addDefinition($this->prefix("form.buildCastle"))
-      ->setClass(Nexendrie\Forms\BuildCastleFormFactory::class);
+      ->setType(Nexendrie\Forms\BuildCastleFormFactory::class);
     $builder->addDefinition($this->prefix("form.gift"))
-      ->setClass(Nexendrie\Forms\GiftFormFactory::class);
+      ->setType(Nexendrie\Forms\GiftFormFactory::class);
     $builder->addDefinition($this->prefix("form.foundTown"))
-      ->setClass(Nexendrie\Forms\FoundTownFormFactory::class);
+      ->setType(Nexendrie\Forms\FoundTownFormFactory::class);
     $builder->addDefinition($this->prefix("form.makeCitizen"))
-      ->setClass(Nexendrie\Forms\MakeCitizenFormFactory::class);
+      ->setType(Nexendrie\Forms\MakeCitizenFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditEvent"))
-      ->setClass(Nexendrie\Forms\AddEditEventFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditEventFormFactory::class);
     $builder->addDefinition($this->prefix("form.foundGuild"))
-      ->setClass(Nexendrie\Forms\FoundGuildFormFactory::class);
+      ->setType(Nexendrie\Forms\FoundGuildFormFactory::class);
     $builder->addDefinition($this->prefix("form.manageGuild"))
-      ->setClass(Nexendrie\Forms\ManageGuildFormFactory::class);
+      ->setType(Nexendrie\Forms\ManageGuildFormFactory::class);
     $builder->addDefinition($this->prefix("form.foundOrder"))
-      ->setClass(Nexendrie\Forms\FoundOrderFormFactory::class);
+      ->setType(Nexendrie\Forms\FoundOrderFormFactory::class);
     $builder->addDefinition($this->prefix("form.manageOrder"))
-      ->setClass(Nexendrie\Forms\ManageOrderFormFactory::class);
+      ->setType(Nexendrie\Forms\ManageOrderFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditItemSet"))
-      ->setClass(Nexendrie\Forms\AddEditItemSetFormFactory::class);
+      ->setType(Nexendrie\Forms\AddEditItemSetFormFactory::class);
     $builder->addDefinition($this->prefix("form.manageCastle"))
-      ->setClass(Nexendrie\Forms\ManageCastleFormFactory::class);
+      ->setType(Nexendrie\Forms\ManageCastleFormFactory::class);
     $builder->addDefinition($this->prefix("form.changeWeddingTerm"))
-      ->setClass(Nexendrie\Forms\ChangeWeddingTermFormFactory::class);
+      ->setType(Nexendrie\Forms\ChangeWeddingTermFormFactory::class);
   }
   
   public function afterCompile(\Nette\PhpGenerator\ClassType $class): void {
