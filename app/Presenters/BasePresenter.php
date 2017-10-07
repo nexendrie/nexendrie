@@ -10,7 +10,7 @@ use Nexendrie\Menu\IMenuControlFactory,
  * Ultimate ancestor of all presenters
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
+ * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   use \Kdyby\Autowired\AutowireProperties;

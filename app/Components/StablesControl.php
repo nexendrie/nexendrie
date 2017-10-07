@@ -14,7 +14,7 @@ use Nexendrie\Model\MountNotFoundException,
  * StablesControl
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
+ * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 class StablesControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Orm\Model */

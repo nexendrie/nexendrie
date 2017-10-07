@@ -11,7 +11,7 @@ use Nexendrie\Model\SkillNotFoundException,
  * AcademyControl
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
+ * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 class AcademyControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Skills */

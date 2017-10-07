@@ -14,7 +14,7 @@ use Nexendrie\Orm\Shop as ShopEntity,
  * Shop Control
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
+ * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  * @property-write int $id
  */
 class ShopControl extends \Nette\Application\UI\Control {

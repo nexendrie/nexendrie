@@ -10,7 +10,7 @@ use Nexendrie\Orm\Punishment,
  * Prison Control
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
+ * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 class PrisonControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Orm\Model */

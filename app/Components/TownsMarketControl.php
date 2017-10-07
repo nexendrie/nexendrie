@@ -13,7 +13,7 @@ use Nexendrie\Model\TownNotFoundException,
  * TownsMarketControl
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
+ * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 class TownsMarketControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Town */

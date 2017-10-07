@@ -14,7 +14,7 @@ use Nette\Utils\Arrays,
  * Poll Control
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template|\stdClass $template
+ * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  * @property int $id
  */
 class PollControl extends \Nette\Application\UI\Control {
