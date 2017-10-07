@@ -160,6 +160,7 @@ build:
         postgresql: false
         redis: false
         rabbitmq: false
+        mysql: 5.5
     tests:
         override:
             - wget https://www.phing.info/get/phing-latest.phar && mv phing-latest.phar phing && chmod +x phing
@@ -168,3 +169,8 @@ build:
                analysis:
                     file: codesniffer.cs
                     format: 'general-checkstyle'
+            -
+                command: ./phing scrutinizer-coverage
+                coverage:
+                    file: coverage.xml
+                    format: php-clover
