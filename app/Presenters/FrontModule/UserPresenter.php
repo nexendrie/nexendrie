@@ -65,7 +65,7 @@ class UserPresenter extends BasePresenter {
   
   protected function createComponentRegisterForm(RegisterFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
+    $form->onSuccess[] = function() {
       $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
       $this->redirect("Homepage:");
     };
@@ -78,7 +78,7 @@ class UserPresenter extends BasePresenter {
   
   protected function createComponentUserSettingsForm(UserSettingsFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, $values) {
+    $form->onSuccess[] = function() {
       $this->model->refreshIdentity();
       $this->flashMessage("Změny uloženy.");
       $this->redirect("this");

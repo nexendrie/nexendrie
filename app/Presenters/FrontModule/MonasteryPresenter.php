@@ -77,7 +77,7 @@ class MonasteryPresenter extends BasePresenter {
   
   protected function createComponentBuildMonasteryForm(BuildMonasteryFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[]= function(Form $form) {
+    $form->onSuccess[]= function() {
       $this->flashMessage("Klášter založen.");
       $this->redirect("default");
     };
