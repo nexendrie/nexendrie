@@ -168,7 +168,7 @@ class Monastery {
       return false;
     } elseif($user->life >= $user->maxLife) {
       return false;
-    } elseif(!$user->lastPrayer) {
+    } elseif(is_null($user->lastPrayer)) {
       return true;
     }
     $oneDay = 60 * 60 * 24;
