@@ -54,7 +54,7 @@ class StablesPresenter extends BasePresenter {
   
   protected function createComponentManageMountForm(ManageMountFormFactory $factory): Form {
     $form = $factory->create($this->mount->id);
-    $form->onSuccess[] = function(Form $form) {
+    $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;

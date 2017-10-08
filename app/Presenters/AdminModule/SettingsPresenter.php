@@ -18,7 +18,7 @@ class SettingsPresenter extends BasePresenter {
   
   protected function createComponentSystemSettingsForm(SystemSettingsFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
+    $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;

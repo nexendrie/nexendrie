@@ -78,7 +78,7 @@ class PropertyPresenter extends BasePresenter {
   
   protected function createComponentManageTownForm(ManageTownFormFactory $factory): Form {
     $form = $factory->create($this->town->id);
-    $form->onSuccess[] = function(Form $form) {
+    $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;

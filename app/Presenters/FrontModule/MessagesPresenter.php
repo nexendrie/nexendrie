@@ -58,7 +58,7 @@ class MessagesPresenter extends BasePresenter {
     } catch(\Nette\InvalidArgumentException $e) { // @codingStandardsIgnoreLine
       
     }
-    $form->onSuccess[] = function(Form $form, $values) {
+    $form->onSuccess[] = function() {
       $this->flashMessage("Zpráva byla odeslána.");
       $this->redirect("Messages:sent");
     };

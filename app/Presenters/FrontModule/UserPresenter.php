@@ -28,7 +28,7 @@ class UserPresenter extends BasePresenter {
   
   protected function createComponentLoginForm(LoginFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, $values) {
+    $form->onSuccess[] = function() {
       $message = $this->localeModel->genderMessage("Byl(a) jsi úspěšně přihlášen(a).");
       $this->flashMessage($message);
       if($this->user->identity->banned) {

@@ -33,7 +33,7 @@ class AuthorizatorFactory {
    * @return \stdClass[]
    */
   public function getGroups(): array {
-    $groups = $this->cache->load("groups_by_level", function(& $dependencies) {
+    $groups = $this->cache->load("groups_by_level", function() {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll()->orderBy("level");
       /** @var \Nexendrie\Orm\Group $row */
@@ -51,7 +51,7 @@ class AuthorizatorFactory {
    * @return PermissionDummy[]
    */
   public function getPermissions(): array {
-    $return = $this->cache->load("permissions", function(& $dependencies) {
+    $return = $this->cache->load("permissions", function() {
       $return = [];
       $rows = $this->orm->permissions->findAll();
       /** @var \Nexendrie\Orm\Permission $row */

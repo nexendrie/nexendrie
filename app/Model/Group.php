@@ -38,7 +38,7 @@ class Group {
    * @return GroupDummy[]
    */
   public function listOfGroups(): array {
-    $groups = $this->cache->load("groups", function(& $dependencies) {
+    $groups = $this->cache->load("groups", function() {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll();
       /** @var \Nexendrie\Orm\Group $row */

@@ -129,7 +129,7 @@ class MonasteryPresenter extends BasePresenter {
   
   protected function createComponentMonasteryDonateForm(MonasteryDonateFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form) {
+    $form->onSuccess[] = function() {
       $this->flashMessage("Příspěvek proveden.");
     };
     return $form;
