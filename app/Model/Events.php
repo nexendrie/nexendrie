@@ -150,7 +150,7 @@ class Events implements \EventCalendar\IEventModel {
    * @return EventDummy[]
    */
   public function getCurrentEvents(): array {
-    $return = $this->cache->load("events", function() {
+    $return = $this->cache->load("events", function(&$dependencies) {
       $dependencies[Cache::EXPIRE] = "15 minutes";
       $return = [];
       $events = $this->orm->events->findForTime();
