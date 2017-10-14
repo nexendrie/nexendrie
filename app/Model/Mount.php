@@ -41,7 +41,7 @@ class Mount {
   /**
    * Get list of all mounts
    * 
-   * @param int $owner Return only mounts owned by specified user. NULL = all users
+   * @param int|NULL $owner Return only mounts owned by specified user. NULL = all users
    * @return MountEntity[]|ICollection
    */
   public function listOfMounts(int $owner = NULL): ICollection {
