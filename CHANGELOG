@@ -1,4 +1,4 @@
-Version 1.0.0-beta4+dev
+Version 1.0.0-beta5
 - some refactoring
 - use package nexendrie/menu to generate menus
 - rewritten Locale::plural() to use translator, changed its parameters
