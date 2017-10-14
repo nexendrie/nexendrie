@@ -59,7 +59,7 @@ class UserManager implements IAuthenticator {
     }
     $method = ($type === "username") ? "getByUsername" : "getByPublicname";
     $row = $this->orm->users->$method($name);
-    if(!$row) {
+    if(is_null($row)) {
       return true;
     } elseif(!is_int($uid)) {
       return false;
@@ -77,7 +77,7 @@ class UserManager implements IAuthenticator {
    */
   public function emailAvailable(string $email, int $uid = NULL): bool {
     $row = $this->orm->users->getByEmail($email);
-    if(!$row) {
+    if(is_null($row)) {
       return true;
     } elseif(!is_int($uid)) {
       return false;
