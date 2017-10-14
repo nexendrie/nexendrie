@@ -12,6 +12,13 @@ use Nexendrie\Model\SettingsRepository;
  * @author Jakub Konečný
  */
 class NexendrieExtension extends \Nette\DI\CompilerExtension {
+  /** @var string */
+  protected $appDir;
+  
+  public function __construct(string $appDir) {
+    $this->appDir = $appDir;
+  }
+  
   public function loadConfiguration(): void {
     $this->registerMenuConditions();
     $this->addModels();
@@ -158,9 +165,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Forms\AddCommentFormFactory::class);
     $builder->addDefinition($this->prefix("form.editGroup"))
       ->setType(Nexendrie\Forms\EditGroupFormFactory::class);
-    $appDir = $builder->expand("%appDir%");
     $builder->addDefinition($this->prefix("form.systemSettings"))
-      ->setFactory(Nexendrie\Forms\SystemSettingsFormFactory::class, [$appDir]);
+      ->setFactory(Nexendrie\Forms\SystemSettingsFormFactory::class, [$this->appDir]);
     $builder->addDefinition($this->prefix("form.editUser"))
       ->setType(Nexendrie\Forms\EditUserFormFactory::class);
     $builder->addDefinition($this->prefix("form.addEditShop"))

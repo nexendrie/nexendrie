@@ -9,7 +9,7 @@ session:
     name: NEXSESSID
     expiration: 4 hours
 extensions:
-    nexendrie: Nexendrie\Model\DI\NexendrieExtension
+    nexendrie: Nexendrie\Model\DI\NexendrieExtension(%appDir%)
     dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
     orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
     cronner: stekycz\Cronner\DI\CronnerExtension
