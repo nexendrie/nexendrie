@@ -31,7 +31,7 @@ class Taxes {
    * Calculate tax
    */
   public function calculateTax(int $income): int {
-    return (int) round(@($income / 100 * $this->taxRate));
+    return (int) round($income / 100 * $this->taxRate);
   }
   
   /**
