@@ -24,8 +24,8 @@ class Elections {
   /**
    * Get number of councillors for the town
    */
-  public function getNumberOfCouncillors(int $town): int {
-    $town = $this->orm->towns->getById($town);
+  public function getNumberOfCouncillors(int $townId): int {
+    $town = $this->orm->towns->getById($townId);
     if(is_null($town)) {
       return 0;
     }
