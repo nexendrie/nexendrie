@@ -32,6 +32,41 @@ class Property {
     $this->user = $user;
   }
   
+  protected function calculateBeerProduction(): int {
+    $result = 0;
+    $beerProduction = $this->orm->beerProduction->findProducedThisMonth($this->user->id);
+    foreach($beerProduction as $production) {
+      $result += $production->amount * $production->price;
+    }
+    return $result;
+  }
+  
+  protected function calculateLoansInterest(): int {
+    $result = 0;
+    $loans = $this->orm->loans->findReturnedThisMonth($this->user->id);
+    foreach($loans as $loan) {
+      $result += $this->bankModel->calculateInterest($loan);
+    }
+    return $result;
+  }
+  
+  protected function calculateMembershipFee(): int {
+    $result = 0;
+    $donations = $this->orm->monasteryDonations->findDonatedThisMonth($this->user->id);
+    foreach($donations as $donation) {
+      $result += $donation->amount;
+    }
+    /** @var \Nexendrie\Orm\User $user */
+    $user = $this->orm->users->getById($this->user->id);
+    if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
+      $result += $user->guildRank->guildFee;
+    }
+    if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
+      $result += $user->orderRank->orderFee;
+    }
+    return $result;
+  }
+  
   /**
    * Show user's budget
    *
@@ -43,42 +78,23 @@ class Property {
     }
     $budget = [
       "incomes" => 
-        $this->taxesModel->calculateIncome($this->user->id) + ["taxes" => 0, "beerProduction" => 0]
+        $this->taxesModel->calculateIncome($this->user->id) + [
+          "taxes" => 0, "beerProduction" => $this->calculateBeerProduction(),
+          ]
       ,
       "expenses" => [
         "incomeTax" => 0,
-        "loansInterest" => 0,
-        "membershipFee" => 0
+        "loansInterest" => $this->calculateLoansInterest(),
+        "membershipFee" => $this->calculateMembershipFee(),
       ]
     ];
     $budget["expenses"]["incomeTax"] = $this->taxesModel->calculateTax(array_sum($budget["incomes"]));
-    $loans = $this->orm->loans->findReturnedThisMonth($this->user->id);
-    foreach($loans as $loan) {
-      $budget["expenses"]["loansInterest"] += $this->bankModel->calculateInterest($loan);
-    }
-    $donations = $this->orm->monasteryDonations->findDonatedThisMonth($this->user->id);
-    foreach($donations as $donation) {
-      $budget["expenses"]["membershipFee"] += $donation->amount;
-    }
-    $beerProduction = $this->orm->beerProduction->findProducedThisMonth($this->user->id);
-    foreach($beerProduction as $production) {
-      $budget["incomes"]["beerProduction"] += $production->amount * $production->price;
-    }
     $towns = $this->orm->towns->findByOwner($this->user->id);
     foreach($towns as $town) {
       $budget["incomes"]["taxes"] += $this->taxesModel->calculateTownTaxes($town)->taxes;
-      $current = ($town->id === $this->user->identity->town) AND ($town->owner->id === $this->user->id);
-      if($current) {
+      if(($town->id === $this->user->identity->town) AND ($town->owner->id === $this->user->id)) {
         $budget["expenses"]["incomeTax"] = 0;
       }
-    }
-    /** @var \Nexendrie\Orm\User $user */
-    $user = $this->orm->users->getById($this->user->id);
-    if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
-      $budget["expenses"]["membershipFee"] += $user->guildRank->guildFee;
-    }
-    if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
-      $budget["expenses"]["membershipFee"] += $user->orderRank->orderFee;
     }
     return $budget;
   }
