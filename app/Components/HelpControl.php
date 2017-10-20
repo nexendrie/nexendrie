@@ -14,7 +14,7 @@ use Nexendrie\BookComponent\BookControl,
     Nexendrie\Orm\Guild as GuildEntity,
     Nexendrie\Orm\Order as OrderEntity,
     Nexendrie\Orm\Marriage as MarriageEntity,
-    Nexendrie\Translation\Translator;
+    Nette\Localization\ITranslator;
 
 /**
  * HelpControl
@@ -30,7 +30,7 @@ class HelpControl extends BookControl {
   /** @var SettingsRepository */
   protected $sr;
   
-  public function __construct(ORM $orm, Locale $localeModel, SettingsRepository $sr, Translator $translator) {
+  public function __construct(ORM $orm, Locale $localeModel, SettingsRepository $sr, ITranslator $translator) {
     parent::__construct(":Front:Help", __DIR__ . "/help", $translator);
     $this->orm = $orm;
     $this->localeModel = $localeModel;

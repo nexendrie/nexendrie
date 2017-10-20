@@ -5,7 +5,7 @@ namespace Nexendrie\Components;
 
 use Nexendrie\BookComponent\BookControl,
     Nexendrie\BookComponent\BookPage,
-    Nexendrie\Translation\Translator;
+    Nette\Localization\ITranslator;
 
 /**
  * HelpControl
@@ -14,7 +14,7 @@ use Nexendrie\BookComponent\BookControl,
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 class HistoryControl extends BookControl {
-  public function __construct(Translator $translator) {
+  public function __construct(ITranslator $translator) {
     parent::__construct(":Front:History", __DIR__ . "/history", $translator);
     $this->pages[] = new BookPage("ancient", "Dávné časy");
     $this->pages[] = new BookPage("empire", "Čas císařství");
