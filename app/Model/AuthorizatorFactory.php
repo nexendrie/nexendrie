@@ -17,6 +17,11 @@ use Nexendrie\Orm\PermissionDummy,
 class AuthorizatorFactory {
   use \Nette\SmartObject;
   
+  /** @internal */
+  public const GUILD_RANK_ROLE_PREFIX = "cech";
+  /** @internal */
+  public const ORDER_RANK_ROLE_PREFIX = "řád";
+  
   /** @var Cache */
   protected $cache;
   /** @var ORM */
@@ -46,6 +51,38 @@ class AuthorizatorFactory {
   }
   
   /**
+   * @return string[]
+   */
+  public function getGuildRanks(): array {
+    $ranks = $this->cache->load("guild_ranks", function() {
+      $ranks = [];
+      $rows = $this->orm->guildRanks->findAll();
+      /** @var \Nexendrie\Orm\GuildRank $row */
+      foreach($rows as $row) {
+        $ranks[$row->id] = $row->name;
+      }
+      return $ranks;
+    });
+    return $ranks;
+  }
+  
+  /**
+   * @return string[]
+   */
+  public function getOrderRanks(): array {
+    $ranks = $this->cache->load("order_ranks", function() {
+      $ranks = [];
+      $rows = $this->orm->orderRanks->findAll();
+      /** @var \Nexendrie\Orm\OrderRank $row */
+      foreach($rows as $row) {
+        $ranks[$row->id] = $row->name;
+      }
+      return $ranks;
+    });
+    return $ranks;
+  }
+  
+  /**
    * Get permissions
    *
    * @return PermissionDummy[]
@@ -63,6 +100,16 @@ class AuthorizatorFactory {
     return $return;
   }
   
+  protected function addRanks(array $ranks, Permission &$permission, string $type): void {
+    foreach($ranks as $id => $rank) {
+      $parent = NULL;
+      if($id > 1) {
+        $parent = $type .  "^" . $ranks[$id-1];
+      }
+      $permission->addRole($type .  "^" . $rank, $parent);
+    }
+  }
+  
   /**
   * Factory for Authorizator
   */
@@ -70,6 +117,8 @@ class AuthorizatorFactory {
     $permission = new Permission();
     
     $groups = $this->getGroups();
+    $guildRanks = $this->getGuildRanks();
+    $orderRanks = $this->getOrderRanks();
     $permissions = $this->getPermissions();
     
     foreach($groups as $i => $row) {
@@ -79,6 +128,8 @@ class AuthorizatorFactory {
       }
       $permission->addRole($row->singleName, $parent);
     }
+    $this->addRanks($guildRanks, $permission, static::GUILD_RANK_ROLE_PREFIX);
+    $this->addRanks($orderRanks, $permission, static::ORDER_RANK_ROLE_PREFIX);
     
     $permission->deny("vězeň");
     foreach($permissions as $row) {

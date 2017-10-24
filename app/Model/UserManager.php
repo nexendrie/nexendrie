@@ -91,19 +91,25 @@ class UserManager implements IAuthenticator {
    * Get user's identity
    */
   protected function getIdentity(UserEntity $user): Identity {
+    $roles = [];
     if($user->banned) {
       /** @var \Nexendrie\Orm\Group $group */
       $group = $this->orm->groups->getById($this->roles["bannedRole"]);
-      $role = $group->singleName;
+      $roles[0] = $group->singleName;
     } else {
-      $role = $user->group->singleName;
+      $roles[0] = $user->group->singleName;
+    }
+    if(!is_null($user->guildRank) AND $user->group->path === \Nexendrie\Orm\Group::PATH_CITY) {
+      $roles[1] = AuthorizatorFactory::GUILD_RANK_ROLE_PREFIX . "^" . $user->guildRank->name;
+    } elseif(!is_null($user->orderRank) AND $user->group->path === \Nexendrie\Orm\Group::PATH_TOWER) {
+      $roles[1] = AuthorizatorFactory::ORDER_RANK_ROLE_PREFIX . "^" . $user->orderRank->name;
     }
     $adventure = $this->orm->userAdventures->getUserActiveAdventure($user->id);
     $data = [
       "name" => $user->publicname, "group" => $user->group->id,
       "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "path" => $user->group->path, "town" => $user->town->id, "banned" => $user->banned, "travelling" => !(is_null($adventure))
     ];
-    return new Identity($user->id, $role, $data);
+    return new Identity($user->id, $roles, $data);
   }
   
   /**

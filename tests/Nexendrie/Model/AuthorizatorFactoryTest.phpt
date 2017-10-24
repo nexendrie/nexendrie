@@ -37,6 +37,42 @@ final class AuthorizatorFactoryTest extends \Tester\TestCase {
     }
   }
   
+  public function testGuildRanks() {
+    $prefix = AuthorizatorFactory::GUILD_RANK_ROLE_PREFIX;
+    $ranks = [
+      1 => "učedník", "tovaryš", "mistr", "cechmistr",
+    ];
+    foreach($ranks as $id => $rank) {
+      $rank = "$prefix^$rank";
+      Assert::true($this->model->hasRole($rank));
+      $parents = $this->model->getRoleParents($rank);
+      if($id === 1) {
+        Assert::count(0, $parents);
+      } else {
+        Assert::count(1, $parents);
+        Assert::true($this->model->roleInheritsFrom($rank, "$prefix^" . $ranks[$id-1]));
+      }
+    }
+  }
+  
+  public function testOrderRanks() {
+    $prefix = AuthorizatorFactory::ORDER_RANK_ROLE_PREFIX;
+    $ranks = [
+      1 => "zbrojnoš", "rytíř", "mistr", "velmistr",
+    ];
+    foreach($ranks as $id => $rank) {
+      $rank = "$prefix^$rank";
+      Assert::true($this->model->hasRole($rank));
+      $parents = $this->model->getRoleParents($rank);
+      if($id === 1) {
+        Assert::count(0, $parents);
+      } else {
+        Assert::count(1, $parents);
+        Assert::true($this->model->roleInheritsFrom($rank, "$prefix^" . $ranks[$id-1]));
+      }
+    }
+  }
+  
   public function testResources() {
     $resources = ["site", "poll", "article", "comment", "group", "user", "content", "event", "town"];
     foreach($resources as $resource) {
