@@ -26,10 +26,13 @@ class AuthorizatorFactory {
   protected $cache;
   /** @var ORM */
   protected $orm;
+  /** @var SettingsRepository */
+  protected $sr;
   
-  public function __construct(Cache $cache, ORM $orm) {
+  public function __construct(Cache $cache, ORM $orm, SettingsRepository $sr) {
     $this->cache = $cache;
     $this->orm = $orm;
+    $this->sr = $sr;
   }
   
   /**
@@ -131,7 +134,8 @@ class AuthorizatorFactory {
     $this->addRanks($guildRanks, $permission, static::GUILD_RANK_ROLE_PREFIX);
     $this->addRanks($orderRanks, $permission, static::ORDER_RANK_ROLE_PREFIX);
     
-    $permission->deny("vězeň");
+    $bannedRole = $groups[$this->sr->settings["roles"]["bannedRole"]]->singleName;
+    $permission->deny($bannedRole);
     foreach($permissions as $row) {
       if(!$permission->hasResource($row->resource)) {
         $permission->addResource($row->resource);
