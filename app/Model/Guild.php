@@ -253,12 +253,7 @@ class Guild {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    /** @var UserEntity $user */
-    $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->guild)) {
-      return false;
-    }
-    return ($user->guildRank->id === $this->getMaxRank());
+    return $this->user->isAllowed(AuthorizatorFactory::GUILD_RESOURCE_NAME, "manage");
   }
   
   /**
@@ -272,9 +267,7 @@ class Guild {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->guild)) {
-      return false;
-    } elseif($user->guildRank->id != $this->getMaxRank()) {
+    if(!$this->user->isAllowed(AuthorizatorFactory::GUILD_RESOURCE_NAME, "upgrade")) {
       return false;
     } elseif($user->guild->level >= GuildEntity::MAX_LEVEL) {
       return false;
@@ -335,7 +328,7 @@ class Guild {
   public function promote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
-    } elseif(!$this->canManage()) {
+    } elseif(!$this->user->isAllowed(AuthorizatorFactory::GUILD_RESOURCE_NAME, "promote")) {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
@@ -365,7 +358,7 @@ class Guild {
   public function demote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
-    } elseif(!$this->canManage()) {
+    } elseif(!$this->user->isAllowed(AuthorizatorFactory::GUILD_RESOURCE_NAME, "demote")) {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
@@ -395,7 +388,7 @@ class Guild {
   public function kick(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
-    } elseif(!$this->canManage()) {
+    } elseif(!$this->user->isAllowed(AuthorizatorFactory::GUILD_RESOURCE_NAME, "kick")) {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);

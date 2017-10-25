@@ -1,3 +1,6 @@
+Version 1.0.0-beta5+dev
+- guild/order actions now use acl
+
 Version 1.0.0-beta5
 - some refactoring
 - use package nexendrie/menu to generate menus

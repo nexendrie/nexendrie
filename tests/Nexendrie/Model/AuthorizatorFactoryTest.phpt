@@ -52,6 +52,15 @@ final class AuthorizatorFactoryTest extends \Tester\TestCase {
         Assert::count(1, $parents);
         Assert::true($this->model->roleInheritsFrom($rank, "$prefix^" . $ranks[$id-1]));
       }
+      if($id === 4) {
+        foreach(AuthorizatorFactory::ORGANIZATION_PRIVILEGES as $privilege) {
+          Assert::true($this->model->isAllowed($rank, AuthorizatorFactory::GUILD_RESOURCE_NAME, $privilege));
+        }
+      } else {
+        foreach(AuthorizatorFactory::ORGANIZATION_PRIVILEGES as $privilege) {
+          Assert::false($this->model->isAllowed($rank, AuthorizatorFactory::GUILD_RESOURCE_NAME, $privilege));
+        }
+      }
     }
   }
   

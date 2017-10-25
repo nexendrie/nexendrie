@@ -250,12 +250,7 @@ class Order {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    /** @var UserEntity $user */
-    $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order)) {
-      return false;
-    }
-    return ($user->orderRank->id === $this->maxRank);
+    return $this->user->isAllowed(AuthorizatorFactory::ORDER_RESOURCE_NAME, "manage");
   }
   
   /**
@@ -271,7 +266,7 @@ class Order {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->order)) {
       return false;
-    } elseif($user->orderRank->id != $this->maxRank) {
+    } elseif(!$this->user->isAllowed(AuthorizatorFactory::ORDER_RESOURCE_NAME, "upgrade")) {
       return false;
     } elseif($user->order->level >= OrderEntity::MAX_LEVEL) {
       return false;
@@ -332,7 +327,7 @@ class Order {
   public function promote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
-    } elseif(!$this->canManage()) {
+    } elseif(!$this->user->isAllowed(AuthorizatorFactory::ORDER_RESOURCE_NAME, "promote")) {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
@@ -362,7 +357,7 @@ class Order {
   public function demote(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
-    } elseif(!$this->canManage()) {
+    } elseif(!$this->user->isAllowed(AuthorizatorFactory::ORDER_RESOURCE_NAME, "demote")) {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
@@ -392,7 +387,7 @@ class Order {
   public function kick(int $userId): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
-    } elseif(!$this->canManage()) {
+    } elseif(!$this->user->isAllowed(AuthorizatorFactory::ORDER_RESOURCE_NAME, "kick")) {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);

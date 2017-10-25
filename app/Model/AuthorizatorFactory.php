@@ -20,7 +20,13 @@ class AuthorizatorFactory {
   /** @internal */
   public const GUILD_RANK_ROLE_PREFIX = "cech";
   /** @internal */
+  public const GUILD_RESOURCE_NAME = "guild";
+  /** @internal */
   public const ORDER_RANK_ROLE_PREFIX = "řád";
+  /** @internal */
+  public const ORDER_RESOURCE_NAME = "order";
+  /** @internal */
+  public const ORGANIZATION_PRIVILEGES = ["manage", "upgrade", "promote", "demote", "kick",];
   
   /** @var Cache */
   protected $cache;
@@ -113,6 +119,16 @@ class AuthorizatorFactory {
     }
   }
   
+  protected function addOrganizationPrivileges(array $roles, Permission &$permission, string $name): void {
+    $permission->addResource($name);
+    $lowestRank = min(array_keys($roles));
+    $highestRank = max(array_keys($roles));
+    $permission->deny($roles[$lowestRank]);
+    foreach(static::ORGANIZATION_PRIVILEGES as $privilege) {
+      $permission->allow($roles[$highestRank], $name, $privilege);
+    }
+  }
+  
   /**
   * Factory for Authorizator
   */
@@ -132,7 +148,14 @@ class AuthorizatorFactory {
       $permission->addRole($row->singleName, $parent);
     }
     $this->addRanks($guildRanks, $permission, static::GUILD_RANK_ROLE_PREFIX);
+    $addPrefix = function(&$value, $key, $prefix) {
+      $value = $prefix . "^" . $value;
+    };
+    array_walk($guildRanks, $addPrefix, static::GUILD_RANK_ROLE_PREFIX);
+    $this->addOrganizationPrivileges($guildRanks, $permission, static::GUILD_RESOURCE_NAME);
     $this->addRanks($orderRanks, $permission, static::ORDER_RANK_ROLE_PREFIX);
+    array_walk($orderRanks, $addPrefix, static::ORDER_RANK_ROLE_PREFIX);
+    $this->addOrganizationPrivileges($orderRanks, $permission, static::ORDER_RESOURCE_NAME);
     
     $bannedRole = $groups[$this->sr->settings["roles"]["bannedRole"]]->singleName;
     $permission->deny($bannedRole);
