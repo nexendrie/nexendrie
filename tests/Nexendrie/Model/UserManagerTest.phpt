@@ -5,7 +5,6 @@ namespace Nexendrie\Model;
 
 use Tester\Assert,
     Nette\InvalidArgumentException,
-    Nette\Security\AuthenticationException,
     Nextras\Orm\Collection\ICollection,
     Nexendrie\Orm\User as UserEntity,
     Nette\Security\User;
@@ -46,31 +45,6 @@ final class UserManagerTest extends \Tester\TestCase {
     Assert::false($this->model->emailAvailable("admin@localhost", 1));
   }
   
-  public function testAuthenticate() {
-    $user = "admin";
-    $password = "qwerty";
-    $identity = $this->model->authenticate([$user, $password]);
-    Assert::type(\Nette\Security\Identity::class, $identity);
-    Assert::same(1, $identity->id);
-    Assert::exception(function() use($user) {
-      $this->model->authenticate([$user, "abc"]);
-    }, AuthenticationException::class);
-    Assert::exception(function() {
-      $this->model->authenticate(["abc", "abc"]);
-    }, AuthenticationException::class);
-  }
-  
-  public function testRefreshIdentity() {
-    /** @var User $user */
-    $user = $this->getService(User::class);
-    $this->model->user = $user;
-    Assert::exception(function() {
-      $this->model->refreshIdentity();
-    }, AuthenticationNeededException::class);
-    $this->login();
-    $this->model->refreshIdentity();
-  }
-  
   public function testRegister() {
     /** @var \Nexendrie\Orm\Model $orm */
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
@@ -85,6 +59,9 @@ final class UserManagerTest extends \Tester\TestCase {
   
   public function testGetSettings() {
     Assert::exception(function() {
+      /** @var User $userService */
+      $userService = $this->getService(User::class);
+      $this->model->user = $userService;
       $this->model->getSettings();
     }, AuthenticationNeededException::class);
     $this->login();

@@ -1,5 +1,6 @@
 Version 1.0.0-beta5+dev
 - guild/order actions now use acl
+- separated authenticator from user manager
 
 Version 1.0.0-beta5
 - some refactoring

@@ -14,7 +14,7 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 class UserPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\UserManager @autowire */
+  /** @var \Nexendrie\Model\Authenticator @autowire */
   protected $model;
   /** @var \Nexendrie\Model\Locale @autowire */
   protected $localeModel;

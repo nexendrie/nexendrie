@@ -83,6 +83,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Model\Article::class);
     $builder->addDefinition($this->prefix("model.userManager"))
       ->setType(Nexendrie\Model\UserManager::class);
+    $builder->addDefinition($this->prefix("model.authenticator"))
+      ->setType(Nexendrie\Model\Authenticator::class);
     $builder->addDefinition($this->prefix("model.locale"))
       ->setType(Nexendrie\Model\Locale::class);
     $builder->addDefinition($this->prefix("model.bank"))
