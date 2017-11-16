@@ -84,10 +84,10 @@ trait TUserControl {
       $oldStats[$stat] = $data->$stat;
     }
     $orm->users->persistAndFlush($data);
-    /** @var UserManager $userManager */
-    $userManager = $user->getAuthenticator();
-    $userManager->user = $user;
-    $userManager->refreshIdentity();
+    /** @var Authenticator $authenticator */
+    $authenticator = $user->getAuthenticator();
+    $authenticator->user = $user;
+    $authenticator->refreshIdentity();
     try {
       $callback();
     } finally {
@@ -95,7 +95,7 @@ trait TUserControl {
         $data->$stat = $oldValue;
       }
       $orm->users->persistAndFlush($data);
-      $userManager->refreshIdentity();
+      $authenticator->refreshIdentity();
     }
   }
   
@@ -119,10 +119,10 @@ trait TUserControl {
       $data->$stat = $newValue;
     }
     $orm->users->persistAndFlush($data);
-    /** @var UserManager $userManager */
-    $userManager = $user->getAuthenticator();
-    $userManager->user = $user;
-    $userManager->refreshIdentity();
+    /** @var Authenticator $authenticator */
+    $authenticator = $user->getAuthenticator();
+    $authenticator->user = $user;
+    $authenticator->refreshIdentity();
     try {
       $callback();
     } finally {
@@ -130,7 +130,7 @@ trait TUserControl {
         $data->$stat = $oldValue;
       }
       $orm->users->persistAndFlush($data);
-      $userManager->refreshIdentity();
+      $authenticator->refreshIdentity();
     }
   }
   
