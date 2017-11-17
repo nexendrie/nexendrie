@@ -8,7 +8,7 @@
     {foreach $news as $new}
   <article id="news-{$new->id}">
     <h3><a n:href="Article:view $new->id">{$new->title}</a></h3>
-    Autor: <a n:href="Profile:default $new->author->username">{$new->author->publicname}</a> Přidáno: {$new->addedAt} Komentářů: {$new->comments->countStored()}<br>
+    Autor: <a n:href="Profile:default $new->author->username">{$new->author->publicname}</a> Přidáno: {$new->addedAt} Komentářů: <a href="{link Article:view $new->id}#comments">{$new->comments->countStored()}</a><br>
     {$new->text|truncate:150}
   </article>
     {/foreach}
