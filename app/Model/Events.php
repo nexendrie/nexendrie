@@ -67,6 +67,7 @@ class Events implements \EventCalendar\IEventModel {
     $event = new Event();
     foreach($data as $key => $value) {
       if($key === "start" OR $key === "end") {
+        /** @var \Nette\Utils\DateTime $time */
         $time = DateTime::createFromFormat($this->sr->settings["locale"]["dateTimeFormat"], $value);
         $value = $time->getTimestamp();
       }
@@ -87,6 +88,7 @@ class Events implements \EventCalendar\IEventModel {
     }
     foreach($data as $key => $value) {
       if($key === "start" OR $key === "end") {
+        /** @var \Nette\Utils\DateTime $time */
         $time = DateTime::createFromFormat($this->sr->settings["locale"]["dateTimeFormat"], $value);
         $value = $time->getTimestamp();
       }

@@ -60,10 +60,12 @@ class AddEditEventFormFactory {
   
   public function validate(Form $form, array $values): void {
     $format = $this->sr->settings["locale"]["dateTimeFormat"];
+    /** @var \Nette\Utils\DateTime $start */
     $start = DateTime::createFromFormat($format, $values["start"]);
     if(!$start) {
       $form->addError("Neplatný čas začátku.");
     }
+    /** @var \Nette\Utils\DateTime $end */
     $end = DateTime::createFromFormat($format, $values["end"]);
     if(!$end) {
       $form->addError("Neplatný čas konce.");

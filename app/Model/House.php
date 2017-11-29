@@ -113,7 +113,6 @@ class House {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    /** @var HouseEntity $house */
     $house = $this->getUserHouse();
     if(is_null($house)) {
       return false;

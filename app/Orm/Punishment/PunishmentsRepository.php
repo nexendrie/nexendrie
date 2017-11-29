@@ -22,7 +22,7 @@ class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param User|int $user
-   * @return ICollection|Punishment
+   * @return ICollection|Punishment[]
    */
   public function findByUser($user): ICollection {
     return $this->findBy(["user" => $user]);
