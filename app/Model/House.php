@@ -45,7 +45,7 @@ class House {
   public function buyHouse(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
-    } elseif($this->getUserHouse()) {
+    } elseif(!is_null($this->getUserHouse())) {
       throw new CannotBuyMoreHousesException();
     }
     /** @var \Nexendrie\Orm\User $user */

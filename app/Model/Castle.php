@@ -104,7 +104,7 @@ class Castle {
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != GroupEntity::PATH_TOWER) {
       throw new CannotBuildCastleException();
-    } elseif($this->getUserCastle()) {
+    } elseif(!is_null($this->getUserCastle())) {
       throw new CannotBuildMoreCastlesException();
     } elseif(!$this->checkNameAvailability($data["name"])) {
       throw new CastleNameInUseException();

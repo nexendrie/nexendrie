@@ -103,7 +103,7 @@ class Inventory {
       throw new ItemNotFoundException();
     } elseif($item->user->id != $this->user->id) {
       throw new ItemNotOwnedException();
-    } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes())) {
+    } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes(), true)) {
       throw new ItemNotEquipableException();
     } elseif($item->worn) {
       throw new ItemAlreadyWornException();
@@ -139,7 +139,7 @@ class Inventory {
       throw new ItemNotFoundException();
     } elseif($item->user->id != $this->user->id) {
       throw new ItemNotOwnedException();
-    } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes())) {
+    } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes(), true)) {
       throw new ItemNotEquipableException();
     } elseif(!$item->worn) {
       throw new ItemNotWornException();
@@ -249,9 +249,9 @@ class Inventory {
     $weapon = $this->getWeapon($user);
     $armor = $this->getArmor($user);
     $helmet = $this->getHelmet($user);
-    $w = ($weapon) ? $weapon->item : NULL;
-    $a = ($armor) ? $armor->item : NULL;
-    $h = ($helmet) ? $helmet->item : NULL;
+    $w = (!is_null($weapon)) ? $weapon->item : NULL;
+    $a = (!is_null($armor)) ? $armor->item : NULL;
+    $h = (!is_null($helmet)) ? $helmet->item : NULL;
     return $this->orm->itemSets->getByWeaponAndArmorAndHelmet($w, $a, $h);
   }
   
@@ -272,7 +272,7 @@ class Inventory {
       throw new ItemNotFoundException();
     } elseif($item->user->id != $this->user->id) {
       throw new ItemNotOwnedException();
-    } elseif(in_array($item->item->type, ItemEntity::getNotForSale())) {
+    } elseif(in_array($item->item->type, ItemEntity::getNotForSale(), true)) {
       throw new ItemNotForSaleException();
     }
     $item->amount -= 1;
@@ -307,7 +307,7 @@ class Inventory {
       throw new ItemNotFoundException();
     } elseif($item->user->id != $this->user->id) {
       throw new ItemNotOwnedException();
-    } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes())) {
+    } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes(), true)) {
       throw new ItemNotUpgradableException();
     } elseif($item->level >= $item->maxLevel) {
       throw new ItemMaxLevelReachedException();

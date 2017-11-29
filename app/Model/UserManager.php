@@ -51,7 +51,7 @@ class UserManager {
    */
   public function nameAvailable(string $name, string $type = "username", int $uid = NULL): bool {
     $types = ["username", "publicname"];
-    if(!in_array($type, $types)) {
+    if(!in_array($type, $types, true)) {
       throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
     }
     $method = ($type === "username") ? "getByUsername" : "getByPublicname";
@@ -159,7 +159,7 @@ class UserManager {
   break;
       }
       $skip = ["password_old", "password_new", "password_check"];
-      if(!in_array($key, $skip)) {
+      if(!in_array($key, $skip, true)) {
         $user->$key = $value;
       }
     }

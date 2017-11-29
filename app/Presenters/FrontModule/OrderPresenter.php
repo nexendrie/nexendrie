@@ -39,7 +39,7 @@ class OrderPresenter extends BasePresenter {
   
   public function renderDefault(): void {
     $order = $this->model->getUserOrder();
-    if(!$order) {
+    if(is_null($order)) {
       $this->flashMessage("Nejsi v řádu.");
       $this->redirect("Homepage:");
     }

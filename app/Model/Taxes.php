@@ -79,7 +79,7 @@ class Taxes {
       $return->taxes += $d->tax;
     }
     $castle = $this->orm->castles->getByOwner($town->owner->id);
-    if($castle) {
+    if(!is_null($castle)) {
       $return->taxes += $castle->taxesBonusIncome;
     }
     return $return;

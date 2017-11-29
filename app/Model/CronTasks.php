@@ -235,7 +235,7 @@ class CronTasks {
     $votes = $this->orm->elections->findVotedInMonth($town, $year, $month);
     $results = [];
     foreach($votes as $vote) {
-      if(!in_array($vote->candidate->id, $this->electionsModel->getCandidates($town)->fetchPairs(NULL, "id"))) {
+      if(!in_array($vote->candidate->id, $this->electionsModel->getCandidates($town)->fetchPairs(NULL, "id"), true)) {
         continue;
       }
       $index = $vote->candidate->username;
@@ -271,7 +271,7 @@ class CronTasks {
       echo "Town (#$town->id) $town->name ...\n";
       $councillors = $this->electionsModel->getNumberOfCouncillors($town->id);
       $results = $this->getElectionResults($town->id, $year, $month);
-      if(!count($results)) {
+      if(count($results) === 0) {
         echo "No votes found.\n";
         continue;
       }

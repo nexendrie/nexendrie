@@ -60,7 +60,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   protected function canVote(): bool {
     if(!$this->user->isAllowed("town", "elect")) {
       return false;
-    } elseif(!$this->model->getNumberOfCouncillors($this->town->id)) {
+    } elseif($this->model->getNumberOfCouncillors($this->town->id) === 0) {
       return false;
     } elseif($this->getState() != "voting") {
       return false;
@@ -116,7 +116,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Nemůžeš hlasovat.");
       $this->presenter->redirect(":Front:Homepage:");
     }
-    if(!in_array($candidate, $this->model->getCandidates($this->town->id)->fetchPairs(NULL, "id"))) {
+    if(!in_array($candidate, $this->model->getCandidates($this->town->id)->fetchPairs(NULL, "id"), true)) {
       $this->presenter->flashMessage("Neplatný kandidát.");
       $this->presenter->redirect(":Front:Homepage:");
     }

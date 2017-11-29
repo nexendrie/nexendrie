@@ -46,14 +46,14 @@ class UserItem extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterMaxLevel(): int {
-    if(!in_array($this->item->type, Item::getEquipmentTypes())) {
+    if(!in_array($this->item->type, Item::getEquipmentTypes(), true)) {
       return 0;
     }
     return (int) round($this->item->strength / 2) + 1;
   }
   
   protected function getterUpgradePrice(): int {
-    if(!in_array($this->item->type, Item::getEquipmentTypes())) {
+    if(!in_array($this->item->type, Item::getEquipmentTypes(), true)) {
       return 0;
     } elseif($this->level >= $this->maxLevel) {
       return 0;

@@ -275,7 +275,7 @@ class Monastery {
     if(!$this->canBuild()) {
       throw new CannotBuildMonasteryException();
     }
-    if($this->orm->monasteries->getByName($name)) {
+    if(!is_null($this->orm->monasteries->getByName($name))) {
       throw new MonasteryNameInUseException();
     }
     /** @var UserEntity $user */
@@ -336,7 +336,7 @@ class Monastery {
     }
     $skip = ["town", "founded", "money"];
     foreach($data as $key => $value) {
-      if(in_array($key, $skip)) {
+      if(in_array($key, $skip, true)) {
         continue;
       }
       if($key === "name") {

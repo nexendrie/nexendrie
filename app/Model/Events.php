@@ -83,7 +83,7 @@ class Events implements \EventCalendar\IEventModel {
    */
   public function editEvent(int $id, array $data): void {
     $event = $this->orm->events->getById($id);
-    if(!$event) {
+    if(is_null($event)) {
       throw new EventNotFoundException();
     }
     foreach($data as $key => $value) {
@@ -105,7 +105,7 @@ class Events implements \EventCalendar\IEventModel {
    */
   public function deleteEvent(int $id): void {
     $event = $this->orm->events->getById($id);
-    if(!$event) {
+    if(is_null($event)) {
       throw new EventNotFoundException();
     } elseif($event->start < time()) {
       throw new CannotDeleteStartedEventException();
@@ -171,7 +171,7 @@ class Events implements \EventCalendar\IEventModel {
     $bonus = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
-      if($event->adventuresBonus) {
+      if($event->adventuresBonus > 0) {
         $bonus += $event->adventuresBonus;
       }
     }
@@ -185,7 +185,7 @@ class Events implements \EventCalendar\IEventModel {
     $bonus = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
-      if($event->workBonus) {
+      if($event->workBonus > 0) {
         $bonus += $event->workBonus;
       }
     }
@@ -199,7 +199,7 @@ class Events implements \EventCalendar\IEventModel {
     $bonus = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
-      if($event->prayerLifeBonus) {
+      if($event->prayerLifeBonus > 0) {
         $bonus += $event->prayerLifeBonus;
       }
     }
@@ -213,7 +213,7 @@ class Events implements \EventCalendar\IEventModel {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
-      if($event->trainingDiscount) {
+      if($event->trainingDiscount > 0) {
         $discount += $event->trainingDiscount;
       }
     }
@@ -227,7 +227,7 @@ class Events implements \EventCalendar\IEventModel {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
-      if($event->shoppingDiscount) {
+      if($event->shoppingDiscount > 0) {
         $discount += $event->shoppingDiscount;
       }
     }
@@ -241,7 +241,7 @@ class Events implements \EventCalendar\IEventModel {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
-      if($event->shoppingDiscount) {
+      if($event->shoppingDiscount > 0) {
         $discount += $event->shoppingDiscount;
       }
     }
@@ -255,7 +255,7 @@ class Events implements \EventCalendar\IEventModel {
     $discount = 0;
     $events = $this->getCurrentEvents();
     foreach($events as $event) {
-      if($event->repairingDiscount) {
+      if($event->repairingDiscount > 0) {
         $discount += $event->repairingDiscount;
       }
     }

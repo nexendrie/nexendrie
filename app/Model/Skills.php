@@ -161,10 +161,10 @@ class Skills {
     } catch(AuthenticationNeededException $e) {
       throw $e;
     }
-    if($skill) {
-      return $skill->level;
+    if(is_null($skill)) {
+      return 0;
     }
-    return 0;
+    return $skill->level;
   }
   
   /**
@@ -178,7 +178,7 @@ class Skills {
     }
     $bonus = 0;
     $userSkillLevel = $this->getLevelOfSkill($skillId);
-    if($userSkillLevel) {
+    if(!is_null($userSkillLevel)) {
       $increase = $userSkillLevel * self::SKILL_LEVEL_INCOME;
       $bonus += (int) ($baseIncome /100 * $increase);
     }
@@ -196,7 +196,7 @@ class Skills {
     }
     $bonus = 0;
     $userSkillLevel = $this->getLevelOfSkill($skillId);
-    if($userSkillLevel) {
+    if(!is_null($userSkillLevel)) {
       $bonus += $userSkillLevel * self::SKILL_LEVEL_SUCCESS_RATE;
     }
     return $bonus;

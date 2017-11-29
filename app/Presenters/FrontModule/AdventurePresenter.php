@@ -26,7 +26,7 @@ class AdventurePresenter extends BasePresenter {
   }
   
   public function actionDefault(): void {
-    if($this->model->getCurrentAdventure()) {
+    if(!is_null($this->model->getCurrentAdventure())) {
       return;
     } elseif($this->model->canDoAdventure())  {
       $this->redirect("list");
@@ -40,7 +40,7 @@ class AdventurePresenter extends BasePresenter {
   }
   
   public function actionMounts(int $id): void {
-    if($this->model->getCurrentAdventure()) {
+    if(!is_null($this->model->getCurrentAdventure())) {
       $this->redirect("default");
     }
     $this->template->adventure = $id;

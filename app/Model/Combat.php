@@ -35,7 +35,7 @@ class Combat {
     $hpIncrease = 0;
     $helmet = $this->inventoryModel->getHelmet($user->id);
     $set = $this->inventoryModel->getUserItemSet($user->id);
-    if($helmet) {
+    if(!is_null($helmet)) {
       $hpIncrease = ($helmet->item->strength + $helmet->level) * 5;
     }
     if($set AND $set->stat === ItemSetEntity::STAT_HITPOINTS) {
@@ -56,17 +56,17 @@ class Combat {
   public function calculateUserDamage(UserEntity $user, MountEntity $mount = NULL): int {
     $damage = 0;
     $weapon = $this->inventoryModel->getWeapon($user->id);
-    if($weapon) {
+    if(!is_null($weapon)) {
       $damage += $weapon->item->strength + $weapon->level;
     }
     $damageSkills = $this->orm->userSkills->findByUserAndStat($user->id, "damage");
     $set = $this->inventoryModel->getUserItemSet($user->id);
-    if($damageSkills) {
+    if($damageSkills->count() > 0) {
       foreach($damageSkills as $damageSkill) {
         $damage += $damageSkill->skill->statIncrease * $damageSkill->level;
       }
     }
-    if($mount) {
+    if(!is_null($mount)) {
       $damage += $mount->damage;
     }
     if($set AND $set->stat === ItemSetEntity::STAT_DAMAGE) {
@@ -81,17 +81,17 @@ class Combat {
   public function calculateUserArmor(UserEntity $user, MountEntity $mount = NULL) {
     $armorValue = 0;
     $armor = $this->inventoryModel->getArmor($user->id);
-    if($armor) {
+    if(!is_null($armor)) {
       $armorValue += $armor->item->strength + $armor->level;
     }
     $armorSkills = $this->orm->userSkills->findByUserAndStat($user->id, "armor");
     $set = $this->inventoryModel->getUserItemSet($user->id);
-    if($armorSkills) {
+    if($armorSkills->count() > 0) {
       foreach($armorSkills as $armorSkill) {
         $armorValue += $armorSkill->skill->statIncrease * $armorSkill->level;
       }
     }
-    if($mount) {
+    if(!is_null($mount)) {
       $armorValue += $mount->armor;
     }
     if($set AND $set->stat === ItemSetEntity::STAT_ARMOR) {

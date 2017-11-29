@@ -170,7 +170,7 @@ class Town {
       throw new UserDoesNotLiveInTheTownException();
     }
     $newMayorRank = $newMayor->group->level;
-    if(!in_array($newMayorRank, [100, 300])) {
+    if(!in_array($newMayorRank, [100, 300], true)) {
       throw new InsufficientLevelForMayorException();
     }
     $oldMayor = $this->orm->users->getTownMayor($townId);
@@ -262,7 +262,7 @@ class Town {
     if(is_null($item)) {
       throw new CannotFoundTownException();
     }
-    if($this->orm->towns->getByName($data["name"])) {
+    if(!is_null($this->orm->towns->getByName($data["name"]))) {
       throw new TownNameInUseException();
     }
     $item->amount--;

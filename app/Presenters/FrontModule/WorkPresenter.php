@@ -88,7 +88,7 @@ class WorkPresenter extends BasePresenter {
     try {
       $rewards = $this->model->finishJob();
       $this->template->reward = $this->localeModel->money($rewards["reward"]);
-      if($rewards["extra"]) {
+      if($rewards["extra"] > 0) {
         $this->template->extra = $this->localeModel->money($rewards["extra"]);
       } else {
         $this->template->extra = false;

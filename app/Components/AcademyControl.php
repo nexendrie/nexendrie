@@ -31,7 +31,7 @@ class AcademyControl extends \Nette\Application\UI\Control {
   public function render(string $type = "work"): void {
     $this->template->setFile(__DIR__ . "/academy.latte");
     $types = ["work", "combat"];
-    if(!in_array($type, $types)) {
+    if(!in_array($type, $types, true)) {
       $type = "work";
     }
     $this->template->type = $type;

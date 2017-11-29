@@ -39,7 +39,7 @@ class GuildPresenter extends BasePresenter {
   
   public function renderDefault(): void {
     $guild = $this->model->getUserGuild();
-    if(!$guild) {
+    if(is_null($guild)) {
       $this->flashMessage("Nejsi v cechu.");
       $this->redirect("Homepage:");
     }

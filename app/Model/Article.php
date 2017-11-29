@@ -152,7 +152,7 @@ class Article {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
     $article = $this->orm->articles->getById($id);
-    if(!$article) {
+    if(is_null($article)) {
       throw new ArticleNotFoundException();
     }
     if(!$this->user->isAllowed("article", "edit") AND $article->author->id != $this->user->id) {

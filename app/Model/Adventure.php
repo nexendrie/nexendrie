@@ -203,7 +203,7 @@ class Adventure {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    if($this->getCurrentAdventure()) {
+    if(!is_null($this->getCurrentAdventure())) {
       throw new AlreadyOnAdventureException();
     }
     if(!$this->canDoAdventure()) {
@@ -243,7 +243,7 @@ class Adventure {
   public function getCurrentAdventure(): ?UserAdventureEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
-    } elseif($this->adventure) {
+    } elseif(!is_null($this->adventure)) {
       return $this->adventure;
     }
     $this->adventure = $this->orm->userAdventures->getUserActiveAdventure($this->user->id);
@@ -348,7 +348,7 @@ class Adventure {
     if(is_null($adventure)) {
       throw new NotOnAdventureException();
     }
-    if($this->getNextNpc($adventure)) {
+    if(!is_null($this->getNextNpc($adventure))) {
       throw new NotAllEnemiesDefeatedException();
     }
     $adventure->progress = 10;

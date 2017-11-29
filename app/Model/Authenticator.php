@@ -69,7 +69,7 @@ class Authenticator implements IAuthenticator {
   public function authenticate(array $credentials): Identity {
     list($username, $password) = $credentials;
     $user = $this->orm->users->getByUsername($username);
-    if(!$user) {
+    if(is_null($user)) {
       throw new AuthenticationException("User not found.", self::IDENTITY_NOT_FOUND);
     }
     if(!Passwords::verify($password, $user->password)) {

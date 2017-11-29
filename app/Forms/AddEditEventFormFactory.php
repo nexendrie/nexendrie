@@ -62,12 +62,12 @@ class AddEditEventFormFactory {
     $format = $this->sr->settings["locale"]["dateTimeFormat"];
     /** @var \Nette\Utils\DateTime $start */
     $start = DateTime::createFromFormat($format, $values["start"]);
-    if(!$start) {
+    if($start == false) {
       $form->addError("Neplatný čas začátku.");
     }
     /** @var \Nette\Utils\DateTime $end */
     $end = DateTime::createFromFormat($format, $values["end"]);
-    if(!$end) {
+    if($end == false) {
       $form->addError("Neplatný čas konce.");
     }
     if($end->getTimestamp() < $start->getTimestamp()) {

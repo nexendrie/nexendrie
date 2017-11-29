@@ -77,7 +77,7 @@ class Bank {
   public function takeLoan(int $amount): void {
     if($amount > $this->maxLoan()) {
       throw new TooHighLoanException();
-    } elseif($this->getActiveLoan()) {
+    } elseif(!is_null($this->getActiveLoan())) {
       throw new CannotTakeMoreLoansException();
     }
     $loan = new LoanEntity();

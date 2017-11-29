@@ -194,7 +194,7 @@ class Job {
     $extra += $this->skillsModel->calculateSkillIncomeBonus($reward, $job->job->neededSkill->id);
     $extra += $this->eventsModel->calculateWorkBonus($reward);
     $house = $this->orm->houses->getByOwner($job->user->id);
-    if($house) {
+    if(!is_null($house)) {
       $extra += (int) ($reward / 100 * $house->workIncomeBonus);
     }
     $extra += $this->guildModel->calculateGuildIncomeBonus($reward, $job);
