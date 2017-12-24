@@ -8,5 +8,4 @@ parameters:
         - Nette\Security\IIdentity
         - Nextras\Orm\Entity\IEntity
     ignoreErrors:
-        - '#Argument of an invalid type \$this\(Nexendrie\\Orm\\DummyEntity\) supplied for foreach, only iterables are supported#'
         - '#Call to function is_null\(\) will always evaluate to false#'

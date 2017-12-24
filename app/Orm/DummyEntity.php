@@ -13,7 +13,7 @@ abstract class DummyEntity {
   
   public function toArray(): array {
     $return = [];
-    foreach($this as $key => $value) {
+    foreach(get_object_vars($this) as $key => $value) {
       $return[$key] = $value;
     }
     return $return;
