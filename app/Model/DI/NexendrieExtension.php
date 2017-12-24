@@ -239,9 +239,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
 $groupModel = $this->getByType(?);
 $user = $this->getByType(?);
 $user->guestRole = $groupModel->get($roles["guestRole"])->singleName;
-$user->authenticatedRole = $groupModel->get($roles["loggedInRole"])->singleName;
-\Nella\Forms\DateTime\DateInput::register();
-\Nella\Forms\DateTime\DateTimeInput::register();', [SettingsRepository::class, Nexendrie\Model\Group::class, \Nette\Security\User::class]);
+$user->authenticatedRole = $groupModel->get($roles["loggedInRole"])->singleName;', [SettingsRepository::class, Nexendrie\Model\Group::class, \Nette\Security\User::class]);
   }
 }
 ?>

@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
-    Nexendrie\Orm\Marriage;
+    Nexendrie\Orm\Marriage,
+    Nella\Forms\DateTime\DateTimeInput;
 
 /**
  * Factory for form ChangeWeddingTerm
@@ -30,10 +31,11 @@ class ChangeWeddingTermFormFactory {
     $default = new \DateTime();
     $default->setTimestamp($marriage->term);
     $form = new Form();
-    $form->addDateTime("term", "Nový termín:", $format[0], $format[1])
-      ->setRequired("Zadej datum a čas.")
-      ->addRule([$form["term"], "validateDateTime"], "Neplatné datum.")
-      ->setValue($default);
+    $term = new DateTimeInput($format[0], $format[1], "Nový termín:");
+    $term->setRequired("Zadej datum a čas.");
+    $term->addRule([$term, "validateDateTime"], "Neplatné datum.");
+    $term->setValue($default);
+    $form->addComponent($term, "term");
     $form->addSubmit("submit", "Změnit");
     $form->onValidate[] = [$this, "validate"];
     $form->onSuccess[] = [$this, "process"];
