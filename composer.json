@@ -29,7 +29,7 @@
         "nette/utils": "~2.4",
         "tracy/tracy": "~2.4",
         "latte/latte": "~2.4",
-        "kdyby/autowired": "^1.4",
+        "kdyby/autowired": "^1.5",
         "nextras/orm": "^2.2",
         "stekycz/cronner": "^2.2",
         "konecnyjakub/event-calendar": "^0.3",
@@ -39,7 +39,7 @@
         "nexendrie/rss": "^0.4",
         "nexendrie/menu": "^1.2",
         "nexendrie/utils": "^1.1",
-        "symfony/options-resolver": "^3.3"
+        "symfony/options-resolver": "^4.0"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
