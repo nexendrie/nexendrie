@@ -9,8 +9,13 @@ namespace Nexendrie\Presenters\FrontModule;
  * @author Jakub Konečný
  */
 class HomepagePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Article @autowire */
+  /** @var \Nexendrie\Model\Article */
   protected $model;
+  
+  public function __construct(\Nexendrie\Model\Article $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   public function renderPage(int $page = 1): void {
     $paginator = new \Nette\Utils\Paginator();

@@ -17,12 +17,17 @@ use Nexendrie\Model\AdventureNotFoundException,
  * @author Jakub Konečný
  */
 class AdventureEnemiesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Adventure @autowire */
+  /** @var \Nexendrie\Model\Adventure */
   protected $model;
   /** @var AdventureEntity */
   private $adventure;
   /** @var AdventureNpcEntity */
   private $npc;
+  
+  public function __construct(\Nexendrie\Model\Adventure $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   /**
    * @throws \Nette\Application\BadRequestException

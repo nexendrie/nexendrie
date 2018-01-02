@@ -14,10 +14,15 @@ use Nexendrie\Forms\AddEditMealFormFactory,
  * @author Jakub Konečný
  */
 class MealPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Tavern @autowire */
+  /** @var \Nexendrie\Model\Tavern */
   protected $model;
   /** @var MealEntity */
   private $meal;
+  
+  public function __construct(\Nexendrie\Model\Tavern $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   public function actionNew(): void {
     $this->requiresPermissions("content", "add");

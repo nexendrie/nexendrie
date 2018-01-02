@@ -12,8 +12,13 @@ use Nexendrie\Components\IAdventureControlFactory,
  * @author Jakub Konečný
  */
 class AdventurePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Adventure @autowire */
+  /** @var \Nexendrie\Model\Adventure */
   protected $model;
+  
+  public function __construct(\Nexendrie\Model\Adventure $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   protected function startup(): void {
     parent::startup();

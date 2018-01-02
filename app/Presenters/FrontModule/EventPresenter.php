@@ -11,8 +11,13 @@ use Nexendrie\Model\EventNotFoundException;
  * @author Jakub Konečný
  */
 class EventPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Events @autowire */
+  /** @var \Nexendrie\Model\Events */
   protected $model;
+  
+  public function __construct(\Nexendrie\Model\Events $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   /**
    * @throws \Nette\Application\BadRequestException

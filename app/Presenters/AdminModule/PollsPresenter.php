@@ -12,8 +12,13 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 class PollsPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Polls @autowire */
+  /** @var \Nexendrie\Model\Polls */
   protected $model;
+  
+  public function __construct(\Nexendrie\Model\Polls $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   protected function startup(): void {
     parent::startup();

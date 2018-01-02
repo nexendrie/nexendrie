@@ -15,10 +15,15 @@ use Nexendrie\Forms\AddEditJobFormFactory,
  * @author Jakub Konečný
  */
 class JobPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Job @autowire */
+  /** @var \Nexendrie\Model\Job */
   protected $model;
   /** @var JobEntity */
   private $job;
+  
+  public function __construct(\Nexendrie\Model\Job $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   /**
    * @throws \Nette\Application\BadRequestException

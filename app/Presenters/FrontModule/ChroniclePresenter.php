@@ -11,12 +11,19 @@ use EventCalendar\Simple\SimpleCalendar as Calendar;
  * @author Jakub Konečný
  */
 class ChroniclePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Chronicle @autowire */
+  /** @var \Nexendrie\Model\Chronicle */
   protected $model;
-  /** @var \Nexendrie\Model\Events @autowire */
+  /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
-  /** @var \Nexendrie\Model\Marriage @autowire */
+  /** @var \Nexendrie\Model\Marriage */
   protected $marriagesModel;
+  
+  public function __construct(\Nexendrie\Model\Chronicle $model, \Nexendrie\Model\Events $eventsModel, \Nexendrie\Model\Marriage $marriagesModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->eventsModel = $eventsModel;
+    $this->marriagesModel = $marriagesModel;
+  }
   
   public function renderDefault(): void {
     $this->template->articles = $this->model->articles();

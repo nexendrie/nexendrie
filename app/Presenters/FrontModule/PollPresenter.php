@@ -11,8 +11,13 @@ use Nexendrie\Components\IPollControlFactory;
  * @author Jakub Konečný
  */
 class PollPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Polls @autowire */
+  /** @var \Nexendrie\Model\Polls */
   protected $model;
+  
+  public function __construct(\Nexendrie\Model\Polls $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   /**
    * @throws \Nette\Application\BadRequestException

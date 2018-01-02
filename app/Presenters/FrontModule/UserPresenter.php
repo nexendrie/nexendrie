@@ -14,10 +14,16 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 class UserPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Authenticator @autowire */
+  /** @var \Nexendrie\Model\Authenticator */
   protected $model;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
+  
+  public function __construct(\Nexendrie\Model\Authenticator $model, \Nexendrie\Model\Locale $localeModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->localeModel = $localeModel;
+  }
   
   /**
    * Do not allow access login page if the user is already logged in

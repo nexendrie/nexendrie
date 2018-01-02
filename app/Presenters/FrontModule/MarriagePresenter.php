@@ -29,16 +29,24 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 class MarriagePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Marriage @autowire */
+  /** @var \Nexendrie\Model\Marriage */
   protected $model;
-  /** @var \Nexendrie\Model\Profile @autowire */
+  /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
-  /** @var \Nexendrie\Model\Inventory @autowire */
+  /** @var \Nexendrie\Model\Inventory */
   protected $inventoryModel;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var MarriageEntity */
   private $marriage;
+  
+  public function __construct(\Nexendrie\Model\Marriage $model, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Inventory $inventoryModel, \Nexendrie\Model\Locale $localeModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->profileModel = $profileModel;
+    $this->inventoryModel = $inventoryModel;
+    $this->localeModel = $localeModel;
+  }
   
   public function actionDefault(): void {
     $partner = $this->profileModel->getPartner($this->user->id);

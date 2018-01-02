@@ -17,12 +17,17 @@ use Nexendrie\Model\JobNotFoundException,
  * @author Jakub Konečný
  */
 class JobMessagesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Job @autowire */
+  /** @var \Nexendrie\Model\Job */
   protected $model;
   /** @var JobMessageEntity */
   private $message;
   /** @var JobEntity */
   private $job;
+  
+  public function __construct(\Nexendrie\Model\Job $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   public function actionList(int $id): void {
     $this->requiresPermissions("content", "list");

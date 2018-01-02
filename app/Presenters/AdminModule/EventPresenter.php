@@ -14,10 +14,15 @@ use Nexendrie\Forms\AddEditEventFormFactory,
  * @author Jakub Konečný
  */
 class EventPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Events @autowire */
+  /** @var \Nexendrie\Model\Events */
   protected $model;
   /** @var \Nexendrie\Orm\Event */
   private $event;
+  
+  public function __construct(\Nexendrie\Model\Events $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   protected function startup(): void {
     parent::startup();

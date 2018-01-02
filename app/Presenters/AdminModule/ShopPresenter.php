@@ -14,10 +14,15 @@ use Nexendrie\Orm\Shop as ShopEntity,
  * @author Jakub Konečný
  */
 class ShopPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Market @autowire */
+  /** @var \Nexendrie\Model\Market */
   protected $model;
   /** @var ShopEntity */
   private $shop;
+  
+  public function __construct(\Nexendrie\Model\Market $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   /**
    * @throws \Nette\Application\BadRequestException

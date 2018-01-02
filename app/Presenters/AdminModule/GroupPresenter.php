@@ -12,8 +12,13 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 class GroupPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Group @autowire */
+  /** @var \Nexendrie\Model\Group */
   protected $model;
+  
+  public function __construct(\Nexendrie\Model\Group $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   public function renderDefault(): void {
     $this->requiresPermissions("group", "list");

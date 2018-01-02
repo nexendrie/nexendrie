@@ -15,10 +15,15 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 class ItemPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Market @autowire */
+  /** @var \Nexendrie\Model\Market */
   protected $model;
   /** @var ItemEntity */
   private $item;
+  
+  public function __construct(\Nexendrie\Model\Market $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   /**
    * @throws \Nette\Application\BadRequestException

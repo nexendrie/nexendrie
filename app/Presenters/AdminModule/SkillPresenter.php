@@ -14,10 +14,15 @@ use Nexendrie\Orm\Skill as SkillEntity,
  * @author Jakub Konečný
  */
 class SkillPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Skills @autowire */
+  /** @var \Nexendrie\Model\Skills */
   protected $model;
   /** @var SkillEntity */
   private $skill;
+  
+  public function __construct(\Nexendrie\Model\Skills $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   public function actionNew(): void {
     $this->requiresPermissions("content", "add");

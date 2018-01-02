@@ -17,10 +17,16 @@ use Nexendrie\Model\AlreadyWorkingException,
  * @author Jakub Konečný
  */
 class WorkPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Job @autowire */
+  /** @var \Nexendrie\Model\Job */
   protected $model;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
+  
+  public function __construct(\Nexendrie\Model\Job $model, \Nexendrie\Model\Locale $localeModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->localeModel = $localeModel;
+  }
   
   protected function startup(): void {
     parent::startup();

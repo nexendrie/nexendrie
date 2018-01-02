@@ -15,10 +15,15 @@ use Nexendrie\Forms\AddEditTownFormFactory,
  * @author Jakub Konečný
  */
 class TownPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Town @autowire */
+  /** @var \Nexendrie\Model\Town */
   protected $model;
   /** @var TownEntity */
   private $town;
+  
+  public function __construct(\Nexendrie\Model\Town $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   public function actionNew(): void {
     $this->requiresPermissions("content", "add");

@@ -12,22 +12,34 @@ use Nexendrie\Forms\GiftFormFactory,
  * @author Jakub Konečný
  */
 class ContentPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Market @autowire */
+  /** @var \Nexendrie\Model\Market */
   protected $marketModel;
-  /** @var \Nexendrie\Model\Job @autowire */
+  /** @var \Nexendrie\Model\Job */
   protected $jobModel;
-  /** @var \Nexendrie\Model\Town @autowire */
+  /** @var \Nexendrie\Model\Town */
   protected $townModel;
-  /** @var \Nexendrie\Model\Mount @autowire */
+  /** @var \Nexendrie\Model\Mount */
   protected $mountModel;
-  /** @var \Nexendrie\Model\Skills @autowire */
+  /** @var \Nexendrie\Model\Skills */
   protected $skillsModel;
-  /** @var \Nexendrie\Model\Tavern @autowire */
+  /** @var \Nexendrie\Model\Tavern */
   protected $tavernModel;
-  /** @var \Nexendrie\Model\Adventure @autowire */
+  /** @var \Nexendrie\Model\Adventure */
   protected $adventureModel;
-  /** @var \Nexendrie\Model\ItemSet @autowire */
+  /** @var \Nexendrie\Model\ItemSet */
   protected $itemSetModel;
+  
+  public function __construct(\Nexendrie\Model\Market $marketModel, \Nexendrie\Model\Job $jobModel, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Mount $mountModel, \Nexendrie\Model\Skills $skillsModel, \Nexendrie\Model\Tavern $tavernModel, \Nexendrie\Model\Adventure $adventureModel, \Nexendrie\Model\ItemSet $itemSetModel) {
+    parent::__construct();
+    $this->marketModel = $marketModel;
+    $this->jobModel = $jobModel;
+    $this->townModel = $townModel;
+    $this->mountModel = $mountModel;
+    $this->skillsModel = $skillsModel;
+    $this->tavernModel = $tavernModel;
+    $this->adventureModel = $adventureModel;
+    $this->itemSetModel = $itemSetModel;
+  }
   
   protected function startup(): void {
     parent::startup();

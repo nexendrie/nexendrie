@@ -14,8 +14,13 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 class MessagesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Messenger @autowire */
+  /** @var \Nexendrie\Model\Messenger */
   protected $model;
+  
+  public function __construct(\Nexendrie\Model\Messenger $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   protected function startup(): void {
     parent::startup();

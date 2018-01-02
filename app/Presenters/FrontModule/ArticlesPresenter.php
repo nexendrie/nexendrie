@@ -11,8 +11,13 @@ use Nexendrie\Orm\Article as ArticleEntity;
  * @author Jakub Konečný
  */
 class ArticlesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Article @autowire */
+  /** @var \Nexendrie\Model\Article */
   protected $model;
+  
+  public function __construct(\Nexendrie\Model\Article $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   public function renderDefault(): void {
     $this->template->categories = ArticleEntity::getCategories();

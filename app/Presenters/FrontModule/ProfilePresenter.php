@@ -12,12 +12,19 @@ use Nexendrie\Model\UserNotFoundException,
  * @author Jakub Konečný
  */
 class ProfilePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Profile @autowire */
+  /** @var \Nexendrie\Model\Profile */
   protected $model;
-  /** @var \Nexendrie\Model\Castle @autowire */
+  /** @var \Nexendrie\Model\Castle */
   protected $castleModel;
-  /** @var \Nexendrie\Model\Marriage @autowire */
+  /** @var \Nexendrie\Model\Marriage */
   protected $marriageModel;
+  
+  public function __construct(\Nexendrie\Model\Profile $model, \Nexendrie\Model\Castle $castleModel, \Nexendrie\Model\Marriage $marriageModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->castleModel = $castleModel;
+    $this->marriageModel = $marriageModel;
+  }
   
   /**
    * @throws BadRequestException

@@ -23,12 +23,18 @@ use Nexendrie\Model\MonasteryNotFoundException,
  * @author Jakub Konečný
  */
 class MonasteryPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Monastery @autowire */
+  /** @var \Nexendrie\Model\Monastery */
   protected $model;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var int*/
   private $monasteryId;
+  
+  public function __construct(\Nexendrie\Model\Monastery $model, \Nexendrie\Model\Locale $localeModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->localeModel = $localeModel;
+  }
   
   protected function startup(): void {
     parent::startup();

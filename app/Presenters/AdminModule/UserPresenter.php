@@ -14,10 +14,16 @@ use Nexendrie\Forms\EditUserFormFactory,
  * @author Jakub Konečný
  */
 class UserPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\UserManager @autowire */
+  /** @var \Nexendrie\Model\UserManager */
   protected $model;
-  /** @var \Nexendrie\Model\Group @autowire */
+  /** @var \Nexendrie\Model\Group */
   protected $groupModel;
+  
+  public function __construct(\Nexendrie\Model\UserManager $model, \Nexendrie\Model\Group $groupModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->groupModel = $groupModel;
+  }
   
   public function renderDefault(): void {
     $this->requiresPermissions("user", "list");

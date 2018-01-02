@@ -15,8 +15,13 @@ use Nexendrie\Components\IShopControlFactory,
  * @author Jakub Konečný
  */
 class MarketPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Market @autowire */
+  /** @var \Nexendrie\Model\Market */
   protected $model;
+  
+  public function __construct(\Nexendrie\Model\Market $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   protected function startup(): void {
     parent::startup();

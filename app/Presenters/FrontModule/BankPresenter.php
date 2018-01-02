@@ -13,12 +13,19 @@ use Nexendrie\Forms\TakeLoanFormFactory,
  * @author Jakub Konečný
  */
 class BankPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Bank @autowire */
+  /** @var \Nexendrie\Model\Bank */
   protected $model;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
-  /** @var \Nexendrie\Model\SettingsRepository @autowire */
+  /** @var \Nexendrie\Model\SettingsRepository */
   protected $sr;
+  
+  public function __construct(\Nexendrie\Model\Bank $model, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\SettingsRepository $sr) {
+    parent::__construct();
+    $this->model = $model;
+    $this->localeModel = $localeModel;
+    $this->sr = $sr;
+  }
   
   public function renderDefault(): void {
     $this->template->maxLoan = $this->localeModel->money($this->model->maxLoan());

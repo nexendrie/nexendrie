@@ -27,22 +27,33 @@ use Nexendrie\Orm\Town as TownEntity,
  * @author Jakub Konečný
  */
 class PropertyPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Property @autowire */
+  /** @var \Nexendrie\Model\Property */
   protected $model;
-  /** @var \Nexendrie\Model\Town @autowire */
+  /** @var \Nexendrie\Model\Town */
   protected $townModel;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
-  /** @var \Nexendrie\Model\Inventory @autowire */
+  /** @var \Nexendrie\Model\Inventory */
   protected $inventoryModel;
-  /** @var \Nexendrie\Model\Profile @autowire */
+  /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
-  /** @var \Nexendrie\Model\Combat @autowire */
+  /** @var \Nexendrie\Model\Combat */
   protected $combatModel;
-  /** @var \Nexendrie\Model\UserManager @autowire */
+  /** @var \Nexendrie\Model\UserManager */
   protected $userManager;
   /** @var TownEntity */
   private $town;
+  
+  public function __construct(\Nexendrie\Model\Property $model, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\Inventory $inventoryModel, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Combat $combatModel, \Nexendrie\Model\UserManager $userManager) {
+    parent::__construct();
+    $this->model = $model;
+    $this->townModel = $townModel;
+    $this->localeModel = $localeModel;
+    $this->inventoryModel = $inventoryModel;
+    $this->profileModel = $profileModel;
+    $this->combatModel = $combatModel;
+    $this->userManager = $userManager;
+  }
   
   protected function startup(): void {
     parent::startup();

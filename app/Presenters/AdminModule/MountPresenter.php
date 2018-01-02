@@ -15,10 +15,15 @@ use Nexendrie\Forms\AddEditMountFormFactory,
  * @author Jakub Konečný
  */
 class MountPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Mount @autowire */
+  /** @var \Nexendrie\Model\Mount */
   protected $model;
   /** @var MountEntity */
   private $mount;
+  
+  public function __construct(\Nexendrie\Model\Mount $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   public function actionNew(): void {
     $this->requiresPermissions("content", "add");

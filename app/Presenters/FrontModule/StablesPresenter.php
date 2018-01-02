@@ -18,10 +18,15 @@ use Nexendrie\Orm\Mount as MountEntity,
  * @author Jakub Konečný
  */
 class StablesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Mount @autowire */
+  /** @var \Nexendrie\Model\Mount */
   protected $model;
   /** @var MountEntity */
   private $mount;
+  
+  public function __construct(\Nexendrie\Model\Mount $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   protected function startup(): void {
     parent::startup();

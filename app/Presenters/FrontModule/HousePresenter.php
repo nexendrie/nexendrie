@@ -17,12 +17,19 @@ use Nexendrie\Model\CannotBuyMoreHousesException,
  * @author Jakub Konečný
  */
 class HousePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\House @autowire */
+  /** @var \Nexendrie\Model\House */
   protected $model;
-  /** @var \Nexendrie\Model\Profile @autowire */
+  /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
+  
+  public function __construct(\Nexendrie\Model\House $model, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->profileModel = $profileModel;
+    $this->localeModel = $localeModel;
+  }
   
   protected function startup(): void {
     parent::startup();

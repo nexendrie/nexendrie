@@ -25,10 +25,16 @@ use Nexendrie\Forms\FoundOrderFormFactory,
  * @author Jakub Konečný
  */
 class OrderPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Order @autowire  */
+  /** @var \Nexendrie\Model\Order  */
   protected $model;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
+  
+  public function __construct(\Nexendrie\Model\Order $model, \Nexendrie\Model\Locale $localeModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->localeModel = $localeModel;
+  }
   
   protected function startup(): void {
     parent::startup();

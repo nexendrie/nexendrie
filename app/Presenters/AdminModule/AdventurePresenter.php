@@ -14,10 +14,15 @@ use Nexendrie\Forms\AddEditAdventureFormFactory,
  * @author Jakub Konečný
  */
 class AdventurePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Adventure @autowire */
+  /** @var \Nexendrie\Model\Adventure */
   protected $model;
   /** @var \Nexendrie\Orm\Adventure */
   private $adventure;
+  
+  public function __construct(\Nexendrie\Model\Adventure $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   public function actionNew(): void {
     $this->requiresPermissions("content", "add");

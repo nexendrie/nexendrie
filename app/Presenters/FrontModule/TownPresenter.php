@@ -19,22 +19,35 @@ use Nexendrie\Model\TownNotFoundException,
  * @author Jakub Konečný
  */
 class TownPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Town @autowire */
+  /** @var \Nexendrie\Model\Town */
   protected $model;
-  /** @var \Nexendrie\Model\UserManager @autowire */
+  /** @var \Nexendrie\Model\UserManager */
   protected $userManager;
-  /** @var \Nexendrie\Model\Profile @autowire */
+  /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
-  /** @var \Nexendrie\Model\House @autowire */
+  /** @var \Nexendrie\Model\House */
   protected $houseModel;
-  /** @var \Nexendrie\Model\Guild @autowire */
+  /** @var \Nexendrie\Model\Guild */
   protected $guildModel;
-  /** @var \Nexendrie\Model\Order @autowire */
+  /** @var \Nexendrie\Model\Order */
   protected $orderModel;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var \Nexendrie\Orm\Town */
   private $town;
+  
+  /**
+   */
+  public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\House $houseModel, \Nexendrie\Model\Guild $guildModel, \Nexendrie\Model\Order $orderModel, \Nexendrie\Model\Locale $localeModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->userManager = $userManager;
+    $this->profileModel = $profileModel;
+    $this->houseModel = $houseModel;
+    $this->guildModel = $guildModel;
+    $this->orderModel = $orderModel;
+    $this->localeModel = $localeModel;
+  }
   
   protected function startup(): void {
     parent::startup();

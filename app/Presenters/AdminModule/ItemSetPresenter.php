@@ -15,10 +15,15 @@ use Nexendrie\Model\ItemSetNotFoundException,
  * @author Jakub Konečný
  */
 class ItemSetPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\ItemSet @autowire */
+  /** @var \Nexendrie\Model\ItemSet */
   protected $model;
   /** @var ItemSetEntity */
   private $set;
+  
+  public function __construct(\Nexendrie\Model\ItemSet $model) {
+    parent::__construct();
+    $this->model = $model;
+  }
   
   public function actionNew(): void {
     $this->requiresPermissions("content", "add");

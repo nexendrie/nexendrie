@@ -25,10 +25,16 @@ use Nexendrie\Forms\FoundGuildFormFactory,
  * @author Jakub Konečný
  */
 class GuildPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Guild @autowire */
+  /** @var \Nexendrie\Model\Guild */
   protected $model;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
+  
+  public function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Locale $localeModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->localeModel = $localeModel;
+  }
   
   protected function startup(): void {
     parent::startup();

@@ -18,14 +18,22 @@ use Nexendrie\Model\CastleNotFoundException,
  * @author Jakub Konečný
  */
 class CastlePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Castle @autowire */
+  /** @var \Nexendrie\Model\Castle */
   protected $model;
-  /** @var \Nexendrie\Model\Locale @autowire */
+  /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
-  /** @var \Nexendrie\Model\UserManager @autowire */
+  /** @var \Nexendrie\Model\UserManager */
   protected $userManager;
-  /** @var \Nexendrie\Model\Profile @autowire */
+  /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
+  
+  public function __construct(\Nexendrie\Model\Castle $model, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel) {
+    parent::__construct();
+    $this->model = $model;
+    $this->localeModel = $localeModel;
+    $this->userManager = $userManager;
+    $this->profileModel = $profileModel;
+  }
   
   protected function startup(): void {
     parent::startup();
