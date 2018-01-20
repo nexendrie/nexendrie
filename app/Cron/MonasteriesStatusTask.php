@@ -21,7 +21,7 @@ class MonasteriesStatusTask {
   /**
    * @cronner-task Monasteries status update
    * @cronner-period 1 week
-   * @cronner-time 01:00 - 02:00
+   * @cronner-time 00:00 - 01:00
    */
   public function run(): void {
     echo "Starting monasteries status update ...\n";

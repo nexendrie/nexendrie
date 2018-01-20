@@ -24,7 +24,7 @@ class TaxesTask {
   /**
    * @cronner-task Taxes
    * @cronner-period 1 day
-   * @cronner-time 01:00 - 02:00
+   * @cronner-time 00:00 - 01:00
    */
   public function run(): void {
     $date = new \DateTime();
