@@ -8,9 +8,7 @@ namespace Nexendrie\Cron;
  *
  * @author Jakub Konečný
  */
-class TaxesTask {
-  use \Nette\SmartObject;
-  
+class TaxesTask extends BaseMonthlyCronTask {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nexendrie\Model\Taxes */
@@ -29,7 +27,7 @@ class TaxesTask {
   public function run(): void {
     $date = new \DateTime();
     $date->setTimestamp(time());
-    if($date->format("j") != 1) {
+    if(!$this->isDue($date)) {
       return;
     }
     echo "Starting paying taxes ...\n";

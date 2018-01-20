@@ -8,9 +8,7 @@ namespace Nexendrie\Cron;
  *
  * @author Jakub Konečný
  */
-class GuildFeesTask {
-  use \Nette\SmartObject;
-  
+class GuildFeesTask extends BaseMonthlyCronTask {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   
@@ -19,8 +17,6 @@ class GuildFeesTask {
   }
   
   /**
-   * Guild fees
-   *
    * @cronner-task Guild fees
    * @cronner-period 1 day
    * @cronner-time 00:00 - 01:00
@@ -28,7 +24,7 @@ class GuildFeesTask {
   public function run(): void {
     $date = new \DateTime();
     $date->setTimestamp(time());
-    if($date->format("j") != 1) {
+    if(!$this->isDue($date)) {
       return;
     }
     echo "Starting paying guild fees ...\n";

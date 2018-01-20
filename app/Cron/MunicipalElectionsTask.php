@@ -12,9 +12,7 @@ use Nexendrie\Model\Elections,
  *
  * @author Jakub Konečný
  */
-class MunicipalElectionsTask {
-  use \Nette\SmartObject;
-  
+class MunicipalElectionsTask extends BaseMonthlyCronTask {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var Elections */
@@ -51,7 +49,7 @@ class MunicipalElectionsTask {
   public function run(): void {
     $date = new \DateTime();
     $date->setTimestamp(time());
-    if($date->format("j") != 1) {
+    if(!$this->isDue($date)) {
       return;
     }
     echo "Starting proccessing results of municipal elections ...\n";

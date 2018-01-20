@@ -8,9 +8,7 @@ namespace Nexendrie\Cron;
  *
  * @author Jakub Konečný
  */
-class OrderFeesTask {
-  use \Nette\SmartObject;
-  
+class OrderFeesTask extends BaseMonthlyCronTask {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   
@@ -26,7 +24,7 @@ class OrderFeesTask {
   public function run(): void {
     $date = new \DateTime();
     $date->setTimestamp(time());
-    if($date->format("j") != 1) {
+    if(!$this->isDue($date)) {
       return;
     }
     echo "Starting paying order fees ...\n";
