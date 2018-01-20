@@ -22,6 +22,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   public function loadConfiguration(): void {
     $this->registerMenuConditions();
     $this->addModels();
+    $this->addCronTasks();
     $this->addComponents();
     $this->addForms();
   }
@@ -114,9 +115,41 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition($this->prefix("model.router"))
       ->setType(\Nette\Application\Routers\RouteList::class)
       ->setFactory("@" . Nexendrie\Model\RouterFactory::class . "::create");
-    $builder->addDefinition($this->prefix("cronTasks"))
-       ->setType(Nexendrie\Model\CronTasks::class)
-       ->addTag("cronner.tasks");
+  }
+  
+  protected function addCronTasks(): void {
+    $builder = $this->getContainerBuilder();
+    $tag = "cronner.tasks";
+    $builder->addDefinition($this->prefix("cron.mountsStatus"))
+      ->setType(Nexendrie\Cron\MountsStatusTask::class)
+      ->addTag($tag);
+    $builder->addDefinition($this->prefix("cron.taxes"))
+      ->setType(Nexendrie\Cron\TaxesTask::class)
+      ->addTag($tag);
+    $builder->addDefinition($this->prefix("cron.guildFees"))
+      ->setType(Nexendrie\Cron\GuildFeesTask::class)
+      ->addTag($tag);
+    $builder->addDefinition($this->prefix("cron.orderFees"))
+      ->setType(Nexendrie\Cron\OrderFeesTask::class)
+      ->addTag($tag);
+    $builder->addDefinition($this->prefix("cron.closeAdventures"))
+      ->setType(Nexendrie\Cron\CloseAdventuresTask::class)
+      ->addTag($tag);
+    $builder->addDefinition($this->prefix("cron.monasteriesStatus"))
+      ->setType(Nexendrie\Cron\MonasteriesStatusTask::class)
+      ->addTag($tag);
+    $builder->addDefinition($this->prefix("cron.castlesStatus"))
+      ->setType(Nexendrie\Cron\CastlesStatusTask::class)
+      ->addTag($tag);
+    $builder->addDefinition($this->prefix("cron.housesStatus"))
+      ->setType(Nexendrie\Cron\HousesStatusTask::class)
+      ->addTag($tag);
+    $builder->addDefinition($this->prefix("cron.closeWeddings"))
+      ->setType(Nexendrie\Cron\CloseWeddingsTask::class)
+      ->addTag($tag);
+    $builder->addDefinition($this->prefix("cron.municipalElections"))
+      ->setType(Nexendrie\Cron\MunicipalElectionsTask::class)
+      ->addTag($tag);
   }
   
   protected function addComponents(): void {
