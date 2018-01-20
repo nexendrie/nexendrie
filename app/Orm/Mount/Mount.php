@@ -20,6 +20,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $hp {default 100}
  * @property int $damage {default 0}
  * @property int $armor {default 0}
+ * @property bool $autoFeed {default false}
  * @property OneHasMany|UserAdventure[] $adventures {1:m UserAdventure::$mount}
  * @property-read string $genderCZ {virtual}
  * @property-read string $priceT {virtual}

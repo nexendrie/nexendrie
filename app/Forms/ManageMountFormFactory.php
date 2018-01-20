@@ -33,6 +33,7 @@ class ManageMountFormFactory {
       ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
       ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", [0,999999]);
     $form->addCheckbox("onMarket", "Na prodej");
+    $form->addCheckbox("autoFeed", "Automaticky krmit");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($mount->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = [$this, "process"];

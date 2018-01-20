@@ -115,5 +115,9 @@ class HelpControl extends BookControl {
     $this->template->hpIncreasePerLevel = $this->localeModel->hitpoints($amount);
     $this->template->intimacyForLevel = MarriageEntity::INTIMACY_FOR_LEVEL;
   }
+  
+  public function renderStables(): void {
+    $this->template->autoFeedingCost = $this->sr->settings["fees"]["autoFeedMount"];
+  }
 }
 ?>

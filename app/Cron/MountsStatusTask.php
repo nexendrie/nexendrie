@@ -15,14 +15,22 @@ class MountsStatusTask {
   
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
+  /** @var int */
+  protected $autoFeedingCost;
   
-  public function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\SettingsRepository $sr) {
     $this->orm = $orm;
+    $this->autoFeedingCost = $sr->settings["fees"]["autoFeedMount"];
   }
   
   protected function decreaseHitpoints(MountEntity $mount): void {
-    $mount->hp -= 5;
-    echo "Decreasing (#$mount->id) $mount->name's life by 5.";
+    if($mount->autoFeed) {
+      echo "Mount $mount->name ($mount->id) is fed automatically.";
+      $mount->owner->money -= $this->autoFeedingCost;
+    } else {
+      $mount->hp -= 5;
+      echo "Decreasing (#$mount->id) $mount->name's life by 5.";
+    }
   }
   
   protected function makeAdult(MountEntity $mount): void {

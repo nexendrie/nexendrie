@@ -40,7 +40,8 @@ class SettingsRepository {
       "buildMonastery" => 1000,
       "buildCastle" => 1500,
       "foundGuild" => 1000,
-      "foundOrder" => 1200
+      "foundOrder" => 1200,
+      "autoFeedMount" => 8,
     ],
     "registration" => [
       "token" => ""

@@ -124,6 +124,11 @@ class SystemSettingsFormFactory {
       ->setRequired("Zadej cenu založení řádu.")
       ->addRule(Form::INTEGER, "Cena založení řádu musí být celé číslo.")
       ->addRule(Form::RANGE, "Cena založení řádu musí být v rozmezí 0-5000.", [0, 5000]);
+    $fees->addText("autoFeedMount", "Automatické krmení jezdeckého zvířete:")
+      ->setOption("description", "Cena automatické krmení jezdeckého zvířete v groších (za týden).")
+      ->setRequired("Zadej cenu automatické krmení jezdeckého zvířete.")
+      ->addRule(Form::INTEGER, "Cena automatické krmení jezdeckého zvířete musí být celé číslo.")
+      ->addRule(Form::RANGE, "Cena automatické krmení jezdeckého zvířete musí být v rozmezí 0-20.", [0, 20]);
     $form->addGroup("Registrace");
     $registration = $form->addContainer("registration");
     $registration->addText("token", "Heslo:")
