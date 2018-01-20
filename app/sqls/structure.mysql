@@ -356,6 +356,7 @@ CREATE TABLE `mounts` (
   `hp` int(3) NOT NULL DEFAULT '100',
   `damage` int(1) NOT NULL DEFAULT '0',
   `armor` int(1) NOT NULL DEFAULT '0',
+  `auto_feed` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `owner` (`owner`),
   KEY `type` (`type`),

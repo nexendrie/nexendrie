@@ -287,6 +287,7 @@ CREATE TABLE "mounts" (
     "hp" integer NOT NULL DEFAULT 100,
     "damage" integer NOT NULL DEFAULT 0,
     "armor" integer NOT NULL DEFAULT 0,
+    "auto_feed" integer NOT NULL DEFAULT 0,
     PRIMARY KEY ("id")
 );
 
