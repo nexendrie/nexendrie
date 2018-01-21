@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\PermissionDummy,
+    Nexendrie\Orm\GroupDummy,
     Nette\Security\Permission,
     Nette\Caching\Cache,
     Nette\Utils\Arrays,
@@ -44,7 +45,7 @@ class AuthorizatorFactory {
   /**
    * Get list of all groups ordered by level
    * 
-   * @return \stdClass[]
+   * @return GroupDummy[]
    */
   public function getGroups(): array {
     $groups = $this->cache->load("groups_by_level", function() {
