@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "89d93d85b53af7958d8037babf3974e6",
+    "content-hash": "dd7c7893c61896aea1141c572d2013f8",
     "packages": [
         {
             "name": "kdyby/autowired",
@@ -1318,16 +1318,16 @@
         },
         {
             "name": "nexendrie/menu",
-            "version": "1.2.2",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/menu.git",
-                "reference": "792b2f21c060d80da0fd20323134f1b12b1134e2"
+                "reference": "82679574fbb24a2faa9b8bc45fa51e6cf9843a4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fmenu/repository/archive.zip?sha=792b2f21c060d80da0fd20323134f1b12b1134e2",
-                "reference": "792b2f21c060d80da0fd20323134f1b12b1134e2",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fmenu/repository/archive.zip?sha=82679574fbb24a2faa9b8bc45fa51e6cf9843a4a",
+                "reference": "82679574fbb24a2faa9b8bc45fa51e6cf9843a4a",
                 "shasum": ""
             },
             "require": {
@@ -1348,7 +1348,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -1375,7 +1375,7 @@
                 "menu",
                 "nette"
             ],
-            "time": "2017-12-28T13:12:39+00:00"
+            "time": "2018-01-22T14:27:05+00:00"
         },
         {
             "name": "nexendrie/rss",
@@ -1439,16 +1439,16 @@
         },
         {
             "name": "nexendrie/translation",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/translation.git",
-                "reference": "e11b0960e2b435a3799db2624b77c7ec3483378a"
+                "reference": "735fafc7ab5ded604fddf629098d5db1d4a3bf72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=e11b0960e2b435a3799db2624b77c7ec3483378a",
-                "reference": "e11b0960e2b435a3799db2624b77c7ec3483378a",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=735fafc7ab5ded604fddf629098d5db1d4a3bf72",
+                "reference": "735fafc7ab5ded604fddf629098d5db1d4a3bf72",
                 "shasum": ""
             },
             "require": {
@@ -1459,12 +1459,11 @@
             },
             "require-dev": {
                 "latte/latte": "^2.4",
-                "nette/di": "^2.4",
+                "nette/di": "^2.4.10",
                 "nette/neon": "^2.4",
                 "nexendrie/code-quality": "dev-master",
                 "nexendrie/site-generator": "^1.0",
-                "phpstan/phpstan-nette": "^0.7",
-                "symfony/yaml": "^3.3",
+                "symfony/yaml": "^3.3 || ^4.0",
                 "tracy/tracy": "^2.4"
             },
             "suggest": {
@@ -1479,7 +1478,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -1510,7 +1509,7 @@
                 "translation",
                 "yaml"
             ],
-            "time": "2017-06-26T16:03:54+00:00"
+            "time": "2018-01-22T14:17:59+00:00"
         },
         {
             "name": "nexendrie/utils",
@@ -2111,16 +2110,16 @@
         },
         {
             "name": "jean85/pretty-package-versions",
-            "version": "1.0.3",
+            "version": "1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Jean85/pretty-package-versions.git",
-                "reference": "3c8487fdd6c750ff3f10c32ddfdd2a7803c1d461"
+                "reference": "d457344b6a035ef99236bdda4729ad7eeb233f54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/3c8487fdd6c750ff3f10c32ddfdd2a7803c1d461",
-                "reference": "3c8487fdd6c750ff3f10c32ddfdd2a7803c1d461",
+                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/d457344b6a035ef99236bdda4729ad7eeb233f54",
+                "reference": "d457344b6a035ef99236bdda4729ad7eeb233f54",
                 "shasum": ""
             },
             "require": {
@@ -2131,6 +2130,11 @@
                 "phpunit/phpunit": "^6.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Jean85\\": "src/"
@@ -2148,9 +2152,12 @@
             ],
             "description": "A wrapper for ocramius/pretty-package-versions to get pretty versions strings",
             "keywords": [
-                "package versions"
+                "composer",
+                "package",
+                "release",
+                "versions"
             ],
-            "time": "2017-11-30T22:02:29+00:00"
+            "time": "2018-01-21T13:54:22+00:00"
         },
         {
             "name": "kdyby/fake-session",
@@ -2270,7 +2277,7 @@
                 }
             ],
             "description": "Simple integration testing tool for Nette Framework applications",
-            "abandoned": true,
+            "abandoned": "mangoweb/presenter-tester",
             "time": "2017-10-14T13:41:39+00:00"
         },
         {
