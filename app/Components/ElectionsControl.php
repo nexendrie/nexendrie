@@ -91,7 +91,7 @@ class ElectionsControl extends \Nette\Application\UI\Control {
   protected function getResults(): ICollection {
     $date = new \DateTime();
     $date->setTimestamp(mktime(0, 0, 0, (int) date("n"), 1, (int) date("Y")));
-    //$date->modify("-1 month");
+    $date->modify("-1 month");
     return $this->orm->electionResults->findByTownAndYearAndMonth($this->town->id, (int) $date->format("Y"), (int) $date->format("n"));
   }
   
