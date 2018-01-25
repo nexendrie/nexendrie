@@ -72,11 +72,11 @@ class Rss {
     $this->generator->dataSource = function() use($id) {
       $return = new Collection();
       $comments = $this->articleModel->viewComments($id);
-      /** @var \Nexendrie\Orm\Comment $row */
-      foreach($comments as $row) {
+      /** @var \Nexendrie\Orm\Comment $comment */
+      foreach($comments as $comment) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
-        $link .= "#comment-$row->id";
-        $return[] = new Item($row->title, $row->text, $link, $row->addedAt);
+        $link .= "#comment-$comment->id";
+        $return[] = new Item($comment->title, $comment->text, $link, $comment->addedAt);
       }
       return $return;
     };
