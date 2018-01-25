@@ -55,20 +55,19 @@ final class MarriageTest extends \Tester\TestCase {
    *
    */
   public function testCanFinish() {
-    /** @var \Nexendrie\Orm\Model $orm */
-    //$orm = $this->getService(\Nexendrie\Orm\Model::class);
     $marriage1 = $this->model->getMarriage(1);
     $marriage2 = $this->model->getMarriage(2);
     Assert::false($this->model->canFinish($marriage1));
-    /*$marriage = new MarriageEntity();
+    Assert::true($this->model->canFinish($marriage2));
+    /** @var \Nexendrie\Orm\Model $orm */
+    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    $marriage = new MarriageEntity();
     $marriage->status = MarriageEntity::STATUS_ACCEPTED;
     $marriage->proposed = time();
-    $orm->marriages->attach($marriage);
-    $marriage->user1 = 1;
-    $marriage->user2 = 0;
+    $marriage->user1 = $orm->users->getById(1);
+    $marriage->user2 = $orm->users->getById(0);
     Assert::false($this->model->canFinish($marriage));
-    $orm->marriages->detach($marriage);*/
-    Assert::true($this->model->canFinish($marriage2));
+    $orm->marriages->removeAndFlush($marriage);
   }
   
   public function testListOfProposals() {
