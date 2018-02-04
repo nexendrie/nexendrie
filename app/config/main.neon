@@ -71,6 +71,7 @@ menu:
                     loggedIn: true
             Kronika: "Front:Chronicle:"
             Články: "Front:Articles:"
+            Seznamy: "Front:Lists:"
             Nápověda: "Front:Help:"
     adminPanel:
         htmlId: adminPanel
