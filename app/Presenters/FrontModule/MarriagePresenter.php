@@ -48,6 +48,11 @@ class MarriagePresenter extends BasePresenter {
     $this->localeModel = $localeModel;
   }
   
+  protected function startup(): void {
+    parent::startup();
+    $this->requiresLogin();
+  }
+  
   public function actionDefault(): void {
     $partner = $this->profileModel->getPartner($this->user->id);
     $fiance = $this->profileModel->getFiance($this->user->id);
@@ -76,7 +81,6 @@ class MarriagePresenter extends BasePresenter {
   }
   
   public function renderProposals(): void {
-    $this->requiresLogin();
     $this->template->proposals = $this->model->listOfProposals();
   }
   
@@ -105,7 +109,7 @@ class MarriagePresenter extends BasePresenter {
   public function actionDecline(int $id): void {
     try {
       $this->model->declineProposal($id);
-      $this->flashMessage("Návrh zamítut.");
+      $this->flashMessage("Návrh zamítnut.");
     } catch(MarriageNotFoundException $e) {
       throw new \Nette\Application\BadRequestException;
     } catch(CannotProposeMarriageException $e) {
