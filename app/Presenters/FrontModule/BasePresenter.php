@@ -47,7 +47,7 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
    */
   protected function mustNotBeTavelling(): void {
     if($this->user->isLoggedIn() AND $this->user->identity->travelling) {
-      $this->flashMessage("Toto nemůžet dělat, když jsi na cestách.");
+      $this->flashMessage("Toto nemůžeš dělat, když jsi na cestách.");
       $this->redirect("Homepage:");
     }
   }
