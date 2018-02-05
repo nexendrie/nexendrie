@@ -108,6 +108,9 @@ final class CastleTest extends \Tester\TestCase {
     $this->login("jakub");
     Assert::false($this->model->canRepair());
     $this->login();
+    $this->modifyCastle(["hp" => 99], function() {
+      Assert::true($this->model->canRepair());
+    });
     Assert::false($this->model->canRepair());
   }
   

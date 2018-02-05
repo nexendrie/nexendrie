@@ -9,7 +9,9 @@ final class HousePresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   
   public function testDefault() {
-    
+    $this->checkRedirect(":Front:House:default", "/user/login");
+    $this->login();
+    $this->checkRedirect(":Front:House:default", "/");
     $this->login("premysl");
     $this->checkRedirect(":Front:House:default", "/");
     $this->login("jakub");
@@ -22,6 +24,48 @@ final class HousePresenterTest extends \Tester\TestCase {
     $this->checkRedirect(":Front:House:buy", "/");
     $this->login("jakub");
     $this->checkRedirect(":Front:House:buy", "/house");
+    $this->login("premysl");
+    $this->modifyUser(["money" => 1], function() {
+      $this->checkRedirect(":Front:House:buy", "/");
+    });
+  }
+  
+  public function testSignalUpgrade() {
+    $this->checkSignal(":Front:House:default", "upgrade", [], [], "/user/login");
+    $this->login();
+    $this->checkSignal(":Front:House:default", "upgrade", [], [], "/");
+    $this->login("premysl");
+    $this->checkSignal(":Front:House:default", "upgrade", [], [], "/");
+    $this->login("jakub");
+    $this->checkSignal(":Front:House:default", "upgrade", [], [], "/");
+  }
+  
+  public function testSignalRepair() {
+    $this->checkSignal(":Front:House:default", "repair", [], [], "/user/login");
+    $this->login();
+    $this->checkSignal(":Front:House:default", "repair", [], [], "/");
+    $this->login("premysl");
+    $this->checkSignal(":Front:House:default", "repair", [], [], "/");
+    $this->login("jakub");
+    $this->checkSignal(":Front:House:default", "repair", [], [], "/");
+  }
+  
+  public function testSignalUpgradeBrewery() {
+    $this->checkSignal(":Front:House:default", "upgradeBrewery", [], [], "/user/login");
+    $this->login();
+    $this->checkSignal(":Front:House:default", "upgradeBrewery", [], [], "/");
+    $this->login("premysl");
+    $this->checkSignal(":Front:House:default", "upgradeBrewery", [], [], "/");
+    $this->login("jakub");
+    $this->checkSignal(":Front:House:default", "upgradeBrewery", [], [], "/");
+  }
+  
+  public function testSignalProduceBeer() {
+    $this->checkSignal(":Front:House:default", "produceBeer", [], [], "/user/login");
+    $this->login();
+    $this->checkSignal(":Front:House:default", "produceBeer", [], [], "/");
+    $this->login("premysl");
+    $this->checkSignal(":Front:House:default", "produceBeer", [], [], "/");
   }
 }
 

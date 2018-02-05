@@ -34,6 +34,7 @@ final class EventPresenterTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->check(":Admin:Event:delete", ["id" => 5000]);
     }, BadRequestException::class);
+    $this->checkRedirect(":Admin:Event:delete", "/admin/", ["id" => 1]);
   }
 }
 

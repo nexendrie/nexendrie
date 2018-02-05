@@ -75,10 +75,8 @@ class House {
     $house = $this->getUserHouse();
     if(is_null($house)) {
       return false;
-    } elseif($house->luxuryLevel >= HouseEntity::MAX_LEVEL) {
-      return false;
     }
-    return true;
+    return ($house->luxuryLevel < HouseEntity::MAX_LEVEL);
   }
   
   /**
@@ -116,10 +114,8 @@ class House {
     $house = $this->getUserHouse();
     if(is_null($house)) {
       return false;
-    } elseif($house->hp >= 100) {
-      return false;
     }
-    return true;
+    return ($house->hp < 100);
   }
   
   /**
@@ -157,10 +153,8 @@ class House {
     $house = $this->getUserHouse();
     if(is_null($house)) {
       return false;
-    } elseif($house->breweryLevel >= HouseEntity::MAX_LEVEL) {
-      return false;
     }
-    return true;
+    return ($house->breweryLevel < HouseEntity::MAX_LEVEL);
   }
   
   /**
@@ -211,10 +205,8 @@ class House {
     $lastProduction = $this->orm->beerProduction->getLastProduction($house->id);
     if(is_null($lastProduction)) {
       return true;
-    } elseif($lastProduction->when + $sevenDays < time()) {
-      return true;
     }
-    return false;
+    return ($lastProduction->when + $sevenDays < time());
   }
   
   /**

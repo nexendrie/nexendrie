@@ -134,6 +134,74 @@ trait TUserControl {
     }
   }
   
+  /**
+   * Modify user's house and perform some action with modified stats
+   *
+   * @throws AuthenticationNeededException
+   * @throws \RuntimeException
+   */
+  protected function modifyHouse(array $stats, callable $callback): void {
+    /** @var User $user */
+    $user = $this->getService(User::class);
+    if(!$user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    /** @var ORM $orm */
+    $orm = $this->getService(ORM::class);
+    $data = $orm->houses->getByOwner($user->id);
+    if(is_null($data)) {
+      throw new \RuntimeException("Current user does not own house.");
+    }
+    $oldStats = [];
+    foreach($stats as $stat => $newValue) {
+      $oldStats[$stat] = $data->$stat;
+      $data->$stat = $newValue;
+    }
+    $orm->houses->persistAndFlush($data);
+    try {
+      $callback();
+    } finally {
+      foreach($oldStats as $stat => $oldValue) {
+        $data->$stat = $oldValue;
+      }
+      $orm->houses->persistAndFlush($data);
+    }
+  }
+  
+  /**
+   * Modify user's castle and perform some action with modified stats
+   *
+   * @throws AuthenticationNeededException
+   * @throws \RuntimeException
+   */
+  protected function modifyCastle(array $stats, callable $callback): void {
+    /** @var User $user */
+    $user = $this->getService(User::class);
+    if(!$user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    /** @var ORM $orm */
+    $orm = $this->getService(ORM::class);
+    $data = $orm->castles->getByOwner($user->id);
+    if(is_null($data)) {
+      throw new \RuntimeException("Current user does not own castle.");
+    }
+    $oldStats = [];
+    foreach($stats as $stat => $newValue) {
+      $oldStats[$stat] = $data->$stat;
+      $data->$stat = $newValue;
+    }
+    $orm->castles->persistAndFlush($data);
+    try {
+      $callback();
+    } finally {
+      foreach($oldStats as $stat => $oldValue) {
+        $data->$stat = $oldValue;
+      }
+      $orm->castles->persistAndFlush($data);
+    }
+  }
+  
   public function tearDown() {
     $this->logout();
   }

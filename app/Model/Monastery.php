@@ -207,10 +207,8 @@ class Monastery {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
-    } elseif($user->id === $user->monastery->leader->id) {
-      return false;
     }
-    return true;
+    return !($user->id === $user->monastery->leader->id);
   }
   
   /**
@@ -374,10 +372,8 @@ class Monastery {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
-    } elseif($user->monastery->leader->id != $this->user->id) {
-      return false;
     }
-    return true;
+    return ($user->monastery->leader->id === $this->user->id);
   }
   
   /**

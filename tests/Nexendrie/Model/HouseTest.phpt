@@ -52,6 +52,9 @@ final class HouseTest extends \Tester\TestCase {
     $this->login();
     Assert::false($this->model->canUpgrade());
     $this->login("jakub");
+    $this->modifyHouse(["luxuryLevel" => 1], function() {
+      Assert::true($this->model->canUpgrade());
+    });
     Assert::false($this->model->canUpgrade());
   }
   
@@ -92,6 +95,9 @@ final class HouseTest extends \Tester\TestCase {
     $this->login();
     Assert::false($this->model->canUpgradeBrewery());
     $this->login("jakub");
+    $this->modifyHouse(["breweryLevel" => 1], function() {
+      Assert::true($this->model->canUpgradeBrewery());
+    });
     Assert::false($this->model->canUpgradeBrewery());
   }
   
@@ -112,6 +118,12 @@ final class HouseTest extends \Tester\TestCase {
     $this->login();
     Assert::false($this->model->canProduceBeer());
     $this->login("jakub");
+    $this->modifyHouse(["breweryLevel" => 0], function() {
+      Assert::false($this->model->canProduceBeer());
+    });
+    $this->modifyHouse(["hp" => 30], function() {
+      Assert::false($this->model->canProduceBeer());
+    });
     Assert::type("bool", $this->model->canProduceBeer());
   }
   

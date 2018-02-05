@@ -31,6 +31,16 @@ final class AdventureEnemiesPresenterTest extends \Tester\TestCase {
       $this->check(":Admin:AdventureEnemies:edit", ["id" => 5000]);
     }, BadRequestException::class);
   }
+  
+  public function testDelete() {
+    $this->checkRedirect(":Admin:AdventureEnemies:delete", "/user/login", ["id" => 1]);
+    $this->login("kazimira");
+    $this->checkRedirect(":Admin:AdventureEnemies:delete", "/", ["id" => 1]);
+    $this->login();
+    Assert::exception(function() {
+      $this->check(":Admin:AdventureEnemies:delete", ["id" => 5000]);
+    }, BadRequestException::class);
+  }
 }
 
 $test = new AdventureEnemiesPresenterTest();

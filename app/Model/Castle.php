@@ -141,10 +141,8 @@ class Castle {
     $castle = $this->getUserCastle();
     if(is_null($castle)) {
       return false;
-    } elseif($castle->level >= CastleEntity::MAX_LEVEL) {
-      return false;
     }
-    return true;
+    return ($castle->level < CastleEntity::MAX_LEVEL);
   }
   
   /**
@@ -182,10 +180,8 @@ class Castle {
     $castle = $this->getUserCastle();
     if(is_null($castle)) {
       return false;
-    } elseif($castle->hp >= 100) {
-      return false;
     }
-    return true;
+    return ($castle->hp < 100);
   }
   
   /**
