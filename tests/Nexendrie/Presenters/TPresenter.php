@@ -21,6 +21,9 @@ trait TPresenter {
     TUserControl::logout insteadof BaseTrait;
   }
   
+  /**
+   * @throws \Exception
+   */
   protected function checkRss(string $destination, array $params = [], array $post = []): RssResponse {
     /** @var RssResponse $response */
     $response = $this->check($destination, $params, $post);
@@ -38,6 +41,9 @@ trait TPresenter {
     return $response;
   }
   
+  /**
+   * @throws \Exception
+   */
   protected function checkForward(string $destination, string $to = "", array $params = [], array $post = []): ForwardResponse {
     /** @var ForwardResponse $response */
     $response = $this->check($destination, $params, $post);
@@ -56,6 +62,7 @@ trait TPresenter {
   
   /**
    * @param bool|string $redirect
+   * @throws \Exception
    */
   protected function checkSignal(string $destination, string $signal, array $params = [], array $post = [], $redirect = false): IResponse {
     return $this->checkRedirect($destination, $redirect, [
