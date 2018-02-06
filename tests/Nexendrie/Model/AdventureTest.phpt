@@ -143,7 +143,7 @@ final class AdventureTest extends \Tester\TestCase {
     $adventure->progress = UserAdventureEntity::PROGRESS_COMPLETED;
     $npc = $this->model->getNextNpc($adventure);
     Assert::null($npc);
-    $orm->userAdventures->detach($adventure);
+    $orm->userAdventures->removeAndFlush($adventure);
   }
   
   public function testCalculateMonthAdventuresIncome() {

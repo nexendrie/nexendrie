@@ -103,7 +103,7 @@ final class GuildTest extends \Tester\TestCase {
     $result2 = $this->model->calculateGuildIncomeBonus(100, $job);
     Assert::type("int", $result2);
     Assert::true($result2 > 0);
-    $orm->userJobs->detach($job);
+    $orm->userJobs->removeAndFlush($job);
   }
   
   public function testCanJoin() {

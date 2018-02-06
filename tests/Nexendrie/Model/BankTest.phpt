@@ -52,7 +52,7 @@ final class BankTest extends \Tester\TestCase {
     $interest = $this->model->calculateInterest($loan);
     Assert::type("int", $interest);
     Assert::true($interest >= 1);
-    $orm->loans->detach($loan);
+    $orm->loans->removeAndFlush($loan);
   }
   
   public function testTakeLoan() {
