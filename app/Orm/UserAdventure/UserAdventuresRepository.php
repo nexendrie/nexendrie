@@ -34,7 +34,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user User's id
    */
   public function getUserActiveAdventure(int $user): ?UserAdventure {
-    return $this->getBy(["user" => $user, "progress<" => 10]);
+    return $this->getBy(["user" => $user, "progress<" => UserAdventure::PROGRESS_COMPLETED]);
   }
   
   /**
@@ -71,7 +71,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
     $day = date("j");
     $month = date("n");
     $ts = mktime(0, 0, 0, (int) $month, (int) $day);
-    return $this->findBy(["started<" => $ts, "progress<" => 10]);
+    return $this->findBy(["started<" => $ts, "progress<" => UserAdventure::PROGRESS_COMPLETED]);
   }
 }
 ?>

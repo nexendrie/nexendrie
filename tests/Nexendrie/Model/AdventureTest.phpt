@@ -8,7 +8,8 @@ use Tester\Assert,
     Nextras\Orm\Relationships\OneHasMany,
     Nexendrie\Orm\Adventure as AdventureEntity,
     Nexendrie\Orm\AdventureNpc,
-    Nexendrie\Orm\Mount as MountEntity;
+    Nexendrie\Orm\Mount as MountEntity,
+    Nexendrie\Orm\UserAdventure as UserAdventureEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 
@@ -139,7 +140,7 @@ final class AdventureTest extends \Tester\TestCase {
     $adventure->progress = 2;
     $npc = $this->model->getNextNpc($adventure);
     Assert::null($npc);
-    $adventure->progress = 10;
+    $adventure->progress = UserAdventureEntity::PROGRESS_COMPLETED;
     $npc = $this->model->getNextNpc($adventure);
     Assert::null($npc);
     $orm->userAdventures->detach($adventure);

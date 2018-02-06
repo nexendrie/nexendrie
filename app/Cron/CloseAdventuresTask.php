@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
+use Nexendrie\Orm\UserAdventure;
+
 /**
  * CloseAdventureTask
  *
@@ -27,7 +29,7 @@ class CloseAdventuresTask {
     echo "Starting closing adventures ...\n";
     $adventures = $this->orm->userAdventures->findOpenAdventures();
     foreach($adventures as $adventure) {
-      $adventure->progress = 11;
+      $adventure->progress = UserAdventure::PROGRESS_CLOSED;
       $this->orm->userAdventures->persistAndFlush($adventure);
     }
     echo "Finished closing adventures ...\n";

@@ -317,7 +317,7 @@ class Adventure {
     if(is_null($adventure)) {
       throw new NotOnAdventureException();
     }
-    if($adventure->progress > 9) {
+    if($adventure->progress >= UserAdventureEntity::PROGRESS_COMPLETED) {
       throw new NoEnemyRemainException();
     }
     $enemy = $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
@@ -351,7 +351,7 @@ class Adventure {
     if(!is_null($this->getNextNpc($adventure))) {
       throw new NotAllEnemiesDefeatedException();
     }
-    $adventure->progress = 10;
+    $adventure->progress = UserAdventureEntity::PROGRESS_COMPLETED;
     $reward = $adventure->adventure->reward;
     $reward += $this->eventsModel->calculateAdventuresBonus($reward);
     $reward += $this->orderModel->calculateOrderIncomeBonus($reward);

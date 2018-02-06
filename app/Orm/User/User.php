@@ -118,7 +118,7 @@ class User extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterCompletedAdventures() {
-    return $this->adventures->get()->findBy(["progress" => 10])->countStored();
+    return $this->adventures->get()->findBy(["progress" => UserAdventure::PROGRESS_COMPLETED])->countStored();
   }
   
   protected function getterProducedBeers() {
