@@ -27,7 +27,7 @@ class CloseAdventuresTask {
     echo "Starting closing adventures ...\n";
     $adventures = $this->orm->userAdventures->findOpenAdventures();
     foreach($adventures as $adventure) {
-      $adventure->progress = 10;
+      $adventure->progress = 11;
       $this->orm->userAdventures->persistAndFlush($adventure);
     }
     echo "Finished closing adventures ...\n";
