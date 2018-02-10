@@ -63,6 +63,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|ElectionResult[] $elections {1:m ElectionResult::$candidate}
  * @property-read string $title {virtual}
  * @property-read int $completedAdventures {virtual}
+ * @property-read int $completedJobs {virtual}
  * @property-read int $producedBeers {virtual}
  * @property-read int $punishmentsCount {virtual}
  * @property-read int $lessonsTaken {virtual}
@@ -119,6 +120,10 @@ class User extends \Nextras\Orm\Entity\Entity {
   
   protected function getterCompletedAdventures() {
     return $this->adventures->get()->findBy(["progress" => UserAdventure::PROGRESS_COMPLETED])->countStored();
+  }
+  
+  protected function getterCompletedJobs() {
+    return $this->jobs->get()->findBy(["finished" => true, "earned>" => 0])->countStored();
   }
   
   protected function getterProducedBeers() {
