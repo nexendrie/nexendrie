@@ -17,8 +17,6 @@
     <table>
       <tr><td>Napsaných článků</td><td><a n:href="Profile:articles $profile->username">{$profile->articles->countStored()}</a></td></tr>
       <tr><td>Napsaných komentářů</td><td>{$profile->comments->countStored()}</td></tr>
-      <tr><td>Odeslaných zpráv</td><td>{$profile->messagesCount["sent"]}</td></tr>
-      <tr><td>Přijatých zpráv</td><td>{$profile->messagesCount["recieved"]}</td></tr>
       <tr><td>Dokončených dobrodružství</td><td>{$profile->completedAdventures}</td></tr>
       <tr><td>Odpracováno týdnů</td><td>{$profile->completedJobs}</td></tr>
       <tr><td>Vyprodukovaných sudů piv</td><td>{$profile->producedBeers}</td></tr>

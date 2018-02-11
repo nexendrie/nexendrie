@@ -4,7 +4,7 @@ Version 1.0.0-beta5+dev
 - added option to auto feed mounts
 - do not show price for skills on max level in academy
 - closed adventures are now marked differently than completed ones
-- user's profile now contains number of finished jobs
+- user's profile now contains number of finished jobs, removed number of sent/received messages
 
 Version 1.0.0-beta5
 - some refactoring

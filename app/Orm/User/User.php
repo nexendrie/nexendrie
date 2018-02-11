@@ -67,7 +67,6 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read int $producedBeers {virtual}
  * @property-read int $punishmentsCount {virtual}
  * @property-read int $lessonsTaken {virtual}
- * @property-read int[] $messagesCount {virtual}
  */
 class User extends \Nextras\Orm\Entity\Entity {
   public const GENDER_MALE = "male";
@@ -144,10 +143,6 @@ class User extends \Nextras\Orm\Entity\Entity {
       $amount += $lesson->level;
     }
     return $amount;
-  }
-  
-  protected function getterMessagesCount() {
-    return ["sent" => $this->sentMessages->get()->countStored(), "recieved" => $this->receivedMessages->get()->countStored()];
   }
   
   protected function onBeforeInsert() {
