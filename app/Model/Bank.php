@@ -16,14 +16,14 @@ class Bank {
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
-  protected $interest;
+  protected $loanInterest;
   
   use \Nette\SmartObject;
   
   public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->interest = $sr->settings["fees"]["loanInterest"];
+    $this->loanInterest = $sr->settings["fees"]["loanInterest"];
   }
   
   /**
@@ -85,7 +85,7 @@ class Bank {
     $user = $this->orm->users->getById($this->user->id);
     $loan->user = $user;
     $loan->user->money += $amount;
-    $loan->interest = $this->interest;
+    $loan->interest = $this->loanInterest;
     $loan->amount = $amount;
     $this->orm->loans->persistAndFlush($loan);
   }
