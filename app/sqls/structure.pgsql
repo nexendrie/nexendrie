@@ -201,7 +201,7 @@ CREATE TABLE "loans" (
     "amount" integer NOT NULL,
     "taken" integer NOT NULL,
     "returned" integer DEFAULT NULL,
-    "interest" integer NOT NULL,
+    "interest_rate" integer NOT NULL,
     PRIMARY KEY ("id")
 );
 

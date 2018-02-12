@@ -12,7 +12,7 @@ namespace Nexendrie\Orm;
  * @property int $amount
  * @property int $taken
  * @property int|NULL $returned {default NULL}
- * @property int $interest
+ * @property int $interestRate
  * @property string $amountT {virtual}
  * @property-read string $takenT {virtual}
  * @property-read string $returnedT {virtual}

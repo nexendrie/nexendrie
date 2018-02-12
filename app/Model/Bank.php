@@ -64,7 +64,7 @@ class Bank {
     $start = $loan->taken;
     $end = ($loan->returned) ? $loan->returned : time();
     $duration = ($end - $start) / (60 * 60 * 24);
-    $interest = (int) ($loan->amount * $loan->interest * $duration / 36500);
+    $interest = (int) ($loan->amount * $loan->interestRate * $duration / 36500);
     return max([1, $interest]);
   }
   
@@ -85,7 +85,7 @@ class Bank {
     $user = $this->orm->users->getById($this->user->id);
     $loan->user = $user;
     $loan->user->money += $amount;
-    $loan->interest = $this->loanInterest;
+    $loan->interestRate = $this->loanInterest;
     $loan->amount = $amount;
     $this->orm->loans->persistAndFlush($loan);
   }

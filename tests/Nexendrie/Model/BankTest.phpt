@@ -47,7 +47,7 @@ final class BankTest extends \Tester\TestCase {
     $loan = new Loan();
     $orm->loans->attach($loan);
     $loan->amount = 2000;
-    $loan->interest = 10;
+    $loan->interestRate = 10;
     $loan->taken = time();
     $interest = $this->model->calculateInterest($loan);
     Assert::type("int", $interest);

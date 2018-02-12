@@ -261,7 +261,7 @@ CREATE TABLE `loans` (
   `amount` int(5) NOT NULL,
   `taken` int(11) NOT NULL,
   `returned` int(11) DEFAULT NULL,
-  `interest` int(2) NOT NULL,
+  `interest_rate` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   CONSTRAINT `loans_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
