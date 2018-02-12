@@ -33,7 +33,7 @@ class BankPresenter extends BasePresenter {
   public function renderDefault(): void {
     $this->template->maxLoan = $this->localeModel->money($this->model->maxLoan());
     $this->template->loanInterest = $this->sr->settings["fees"]["loanInterest"];
-    $this->template->depositInterest = \Nexendrie\Model\Bank::DEPOSIT_INTEREST;
+    $this->template->depositInterest = $this->sr->settings["fees"]["depositInterest"];
     if(!$this->user->isLoggedIn()) {
       return;
     }

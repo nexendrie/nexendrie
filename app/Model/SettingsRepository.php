@@ -42,6 +42,7 @@ class SettingsRepository {
       "foundGuild" => 1000,
       "foundOrder" => 1200,
       "autoFeedMount" => 8,
+      "depositInterest" => 3,
     ],
     "registration" => [
       "token" => ""
@@ -64,6 +65,7 @@ class SettingsRepository {
       "buildCastle" => "validateFee",
       "foundGuild" => "validateFee",
       "foundOrder" => "validateFee",
+      "depositInterest" => "validatePercent"
     ]
   ];
   

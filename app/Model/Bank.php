@@ -12,13 +12,14 @@ use Nexendrie\Orm\Loan as LoanEntity,
  * @author Jakub Konečný
  */
 class Bank {
-  public const DEPOSIT_INTEREST = 3;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
   protected $loanInterest;
+  /** @var int */
+  protected $depositInterest;
   
   use \Nette\SmartObject;
   
@@ -26,6 +27,7 @@ class Bank {
     $this->orm = $orm;
     $this->user = $user;
     $this->loanInterest = $sr->settings["fees"]["loanInterest"];
+    $this->depositInterest = $sr->settings["fees"]["depositInterest"];
   }
   
   /**
@@ -144,7 +146,7 @@ class Bank {
     $deposit->user = $user;
     $deposit->amount = $amount;
     $deposit->user->money -= $amount;
-    $deposit->interestRate = self::DEPOSIT_INTEREST;
+    $deposit->interestRate = $this->depositInterest;
     $deposit->term = $term;
     $this->orm->deposits->persistAndFlush($deposit);
   }

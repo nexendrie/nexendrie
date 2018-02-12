@@ -63,20 +63,20 @@ class SystemSettingsFormFactory {
     $form = new Form();
     $form->addGroup("Lokální nastavení");
     $locale = $form->addContainer("locale");
-    $locale->addText("dateFormat", "Formát datumu:")
+    $locale->addText("dateFormat", "Formát data:")
       ->setOption("description", "Pro funkci date()")
-      ->setRequired("Zadej formát datumu.");
+      ->setRequired("Zadej formát data.");
     $locale->addText("dateTimeFormat", "Formát času:")
       ->setOption("description", "Dokumentace na http://docs.php.net/manual/en/function.date.php")
       ->setRequired("Zadej formát času.");
     $form->addGroup("Role");
     $roles = $form->addContainer("roles");
     $roles->addSelect("guestRole", "Nepřihlášený uživatel:", $groups)
-      ->setRequired("Vyyber roli pro nepřihlášeného uživatele.");
+      ->setRequired("Vyber roli pro nepřihlášeného uživatele.");
     $roles->addSelect("loggedInRole", "Přihlášený uživatel:", $groups)
       ->setRequired("Vyyber roli pro přihlášeného uživatele.");
     $roles->addSelect("bannedRole", "Zablokovaný uživatel:", $groups)
-      ->setRequired("Vyyber roli pro zablokovaného uživatele.");
+      ->setRequired("Vyber roli pro zablokovaného uživatele.");
     $form->addGroup("Stránkování");
     $pagination = $form->addContainer("pagination");
     $pagination->addText("news", "Novinek na stránku:")
@@ -104,6 +104,11 @@ class SystemSettingsFormFactory {
       ->setRequired("Zadej úrok z půjčky.")
       ->addRule(Form::INTEGER, "Úrok z půjčky musí být celé číslo.")
       ->addRule(Form::RANGE, "Úrok z půjčky musí být v rozmezí 0-100.", [0, 100]);
+    $fees->addText("depositInterest", "Úrok u termínovaných vkladů:")
+      ->setOption("description", "% ročně")
+      ->setRequired("Zadej úrok u termínovaných vkladů.")
+      ->addRule(Form::INTEGER, "Úrok u termínovaných vkladů musí být celé číslo.")
+      ->addRule(Form::RANGE, "Úrok u termínovaných vkladů musí být v rozmezí 0-100.", [0, 100]);
     $fees->addText("buildMonastery", "Založení kláštera:")
       ->setOption("description", "Cena založení kláštera v groších.")
       ->setRequired("Zadej cenu založení kláštera.")
