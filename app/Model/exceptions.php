@@ -504,4 +504,24 @@ class RegistrationException extends \Exception {
 class SettingsException extends \Exception {
   
 }
+
+class TooHighDepositException extends AccessDeniedException {
+
+}
+
+class CannotOpenMoreDepositAccountsException extends AccessDeniedException {
+
+}
+
+class InvalidDateException extends \RuntimeException {
+
+}
+
+class NoDepositAccountException extends AccessDeniedException {
+
+}
+
+class DepositAccountNotDueException extends AccessDeniedException {
+
+}
 ?>

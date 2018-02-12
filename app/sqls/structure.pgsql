@@ -71,6 +71,17 @@ CREATE TABLE "comments" (
     PRIMARY KEY ("id")
 );
 
+CREATE TABLE "deposits" (
+    "id" int NOT NULL,
+    "user" int NOT NULL,
+    "amount" int NOT NULL,
+    "opened" int NOT NULL,
+    "term" int NOT NULL,
+    "closed" boolean DEFAULT NULL DEFAULT FALSE,
+    "interest_rate" int NOT NULL,
+    PRIMARY KEY ("id")
+);
+
 CREATE TABLE "election_results" (
     "id" SERIAL NOT NULL,
     "candidate" integer NOT NULL,

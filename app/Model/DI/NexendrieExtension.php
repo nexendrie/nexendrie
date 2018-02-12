@@ -264,6 +264,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Forms\ManageCastleFormFactory::class);
     $builder->addDefinition($this->prefix("form.changeWeddingTerm"))
       ->setType(Nexendrie\Forms\ChangeWeddingTermFormFactory::class);
+    $builder->addDefinition($this->prefix("form.openDepositAccount"))
+      ->setType(Nexendrie\Forms\OpenDepositAccountFormFactory::class);
   }
   
   public function afterCompile(\Nette\PhpGenerator\ClassType $class): void {

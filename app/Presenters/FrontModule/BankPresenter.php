@@ -4,9 +4,12 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Forms\TakeLoanFormFactory,
+    Nexendrie\Forms\OpenDepositAccountFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Model\NoLoanException,
-    Nexendrie\Model\InsufficientFundsException;
+    Nexendrie\Model\InsufficientFundsException,
+    Nexendrie\Model\NoDepositAccountException,
+    Nexendrie\Model\DepositAccountNotDueException;
 /**
  * Presenter Bank
  *
@@ -29,7 +32,8 @@ class BankPresenter extends BasePresenter {
   
   public function renderDefault(): void {
     $this->template->maxLoan = $this->localeModel->money($this->model->maxLoan());
-    $this->template->interest = $this->sr->settings["fees"]["loanInterest"];
+    $this->template->loanInterest = $this->sr->settings["fees"]["loanInterest"];
+    $this->template->depositInterest = \Nexendrie\Model\Bank::DEPOSIT_INTEREST;
     if(!$this->user->isLoggedIn()) {
       return;
     }
@@ -38,6 +42,7 @@ class BankPresenter extends BasePresenter {
       $returnMoney = $this->template->loan->amount + $this->template->loan->interest;
       $this->template->returnMoney = $this->localeModel->money($returnMoney);
     }
+    $this->template->deposit = $this->model->getActiveDeposit();
   }
   
   protected function createComponentTakeLoanForm(TakeLoanFormFactory $factory): Form {
@@ -46,6 +51,14 @@ class BankPresenter extends BasePresenter {
       $text = $this->localeModel->genderMessage("Přijal(a) jsi půjčku %s.");
       $message = sprintf($text, $this->localeModel->money($values["amount"]));
       $this->flashMessage($message);
+    };
+    return $form;
+  }
+  
+  protected function createComponentOpenDepositAccountForm(OpenDepositAccountFormFactory $factory): Form {
+    $form = $factory->create();
+    $form->onSuccess[] = function() {
+      $this->flashMessage("Termínovaný účet otevřen.");
     };
     return $form;
   }
@@ -60,6 +73,19 @@ class BankPresenter extends BasePresenter {
       $this->flashMessage("Nemáš žádnou půjčku.");
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nemáš dostatek peněz.");
+    }
+    $this->redirect("default");
+  }
+  
+  public function actionClose(): void {
+    $this->requiresLogin();
+    try {
+      $this->model->closeDeposit();
+      $this->flashMessage("Termínovaný účet uzavřen.");
+    } catch(NoDepositAccountException $e) {
+      $this->flashMessage("Nemáš otevřený termínovaný účet.");
+    } catch(DepositAccountNotDueException $e) {
+      $this->flashMessage("Termínovaný účet není splatný.");
     }
     $this->redirect("default");
   }

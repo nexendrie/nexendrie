@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Loan as LoanEntity;
+use Nexendrie\Orm\Loan as LoanEntity,
+    Nexendrie\Orm\Deposit as DepositEntity;
 
 /**
  * Bank Model
@@ -11,6 +12,7 @@ use Nexendrie\Orm\Loan as LoanEntity;
  * @author Jakub Konečný
  */
 class Bank {
+  public const DEPOSIT_INTEREST = 3;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -101,6 +103,70 @@ class Bank {
     $loan->returned = time();
     $loan->user->money -= $returnMoney;
     $this->orm->loans->persistAndFlush($loan);
+  }
+  
+  /**
+   * Get user's active deposit account
+   *
+   * @throws AuthenticationNeededException
+   */
+  public function getActiveDeposit(): ?DepositEntity {
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    return $this->orm->deposits->getActiveDeposit($this->user->id);
+  }
+  
+  public function maxDeposit(): int {
+    if(!$this->user->isLoggedIn()) {
+      return 0;
+    }
+    $user = $this->orm->users->getById($this->user->id);
+    return $user->money;
+  }
+  
+  /**
+   * @throws TooHighDepositException
+   * @throws InvalidDateException
+   * @throws CannotOpenMoreDepositAccountsException
+   */
+  public function openDeposit(int $amount, int $term): void {
+    if($amount > $this->maxDeposit()) {
+      throw new TooHighDepositException();
+    } elseif($term < time()) {
+      throw new InvalidDateException();
+    } elseif(!is_null($this->getActiveDeposit())) {
+      throw new CannotOpenMoreDepositAccountsException();
+    }
+    $deposit = new DepositEntity();
+    /** @var \Nexendrie\Orm\User $user */
+    $user = $this->orm->users->getById($this->user->id);
+    $deposit->user = $user;
+    $deposit->amount = $amount;
+    $deposit->user->money -= $amount;
+    $deposit->interestRate = self::DEPOSIT_INTEREST;
+    $deposit->term = $term;
+    $this->orm->deposits->persistAndFlush($deposit);
+  }
+  
+  /**
+   * @throws AuthenticationNeededException
+   * @throws NoDepositAccountException
+   * @throws DepositAccountNotDueException
+   */
+  public function closeDeposit(): void {
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    $deposit = $this->getActiveDeposit();
+    if(is_null($deposit)) {
+      throw new NoDepositAccountException();
+    } elseif(!$deposit->due) {
+      throw new DepositAccountNotDueException();
+    }
+    $deposit->closed = true;
+    $deposit->user->money += $deposit->amount + $deposit->interest;
+    $this->orm->deposits->persistAndFlush($deposit);
   }
 }
 ?>

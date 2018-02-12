@@ -46,6 +46,7 @@ namespace Nexendrie\Orm;
  * @property-read MarriagesRepository $marriages
  * @property-read ElectionsRepository $elections
  * @property-read ElectionResultsRepository $electionResults
+ * @property-read DepositsRepository $deposits
  */
 class Model extends \Nextras\Orm\Model\Model {
   

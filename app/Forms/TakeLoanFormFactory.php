@@ -11,7 +11,7 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 class TakeLoanFormFactory {
-  /** @var \Nexendrie\Model\Bank @autowire */
+  /** @var \Nexendrie\Model\Bank */
   protected $model;
   
   public function __construct(\Nexendrie\Model\Bank $model) {

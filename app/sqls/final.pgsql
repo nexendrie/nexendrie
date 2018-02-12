@@ -15,6 +15,8 @@ ALTER TABLE comments ADD CONSTRAINT comments_ibfk_2 FOREIGN KEY (author) REFEREN
 CREATE INDEX ON comments (author);
 ALTER TABLE comments ADD CONSTRAINT comments_ibfk_3 FOREIGN KEY (article) REFERENCES articles (id) DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX ON comments (article);
+ALTER TABLE deposits ADD CONSTRAINT deposits FOREIGN KEY ("user") REFERENCES users (id) DEFERRABLE INITIALLY DEFERRED;
+CREATE INDEX ON deposits ("user");
 ALTER TABLE election_results ADD CONSTRAINT election_results_ibfk_1 FOREIGN KEY (candidate) REFERENCES users (id) DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX ON election_results (candidate);
 ALTER TABLE election_results ADD CONSTRAINT election_results_ibfk_2 FOREIGN KEY (town) REFERENCES towns (id) DEFERRABLE INITIALLY DEFERRED;

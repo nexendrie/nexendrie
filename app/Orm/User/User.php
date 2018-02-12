@@ -61,6 +61,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Election[] $receivedVotes {1:m Election::$candidate}
  * @property OneHasMany|Election[] $castedVotes {1:m Election::$voter}
  * @property OneHasMany|ElectionResult[] $elections {1:m ElectionResult::$candidate}
+ * @property OneHasMany|Deposit[] $deposits {1:m Deposit::$user}
  * @property-read string $title {virtual}
  * @property-read int $completedAdventures {virtual}
  * @property-read int $completedJobs {virtual}

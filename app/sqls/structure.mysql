@@ -602,5 +602,17 @@ CREATE TABLE `user_skills` (
   CONSTRAINT `user_skills_ibfk_2` FOREIGN KEY (`skill`) REFERENCES `skills` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `deposits` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `amount` int(5) NOT NULL,
+  `opened` int(11) NOT NULL,
+  `term` int(11) NOT NULL,
+  `closed` int(1) DEFAULT NULL DEFAULT '0',
+  `interest_rate` int(2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  CONSTRAINT `deposits_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 -- 2016-09-25 09:05:29
