@@ -77,7 +77,7 @@ CREATE TABLE "deposits" (
     "amount" int NOT NULL,
     "opened" int NOT NULL,
     "term" int NOT NULL,
-    "closed" boolean DEFAULT NULL DEFAULT FALSE,
+    "closed" boolean DEFAULT FALSE,
     "interest_rate" int NOT NULL,
     PRIMARY KEY ("id")
 );
