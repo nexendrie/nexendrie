@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nexendrie\Orm\Loan;
+use Tester\Assert;
 
 require __DIR__ . "/../../bootstrap.php";
 
@@ -39,20 +38,6 @@ final class BankTest extends \Tester\TestCase {
     $this->checkMaxLoan("svetlana", 700);
     $this->checkMaxLoan("Rahym", 1500);
     $this->checkMaxLoan("admin", 2000);
-  }
-  
-  public function testCalculateInterest() {
-    /** @var \Nexendrie\Orm\Model $orm */
-    $orm = $this->getService(\Nexendrie\Orm\Model::class);
-    $loan = new Loan();
-    $orm->loans->attach($loan);
-    $loan->amount = 2000;
-    $loan->interestRate = 10;
-    $loan->taken = time();
-    $interest = $this->model->calculateInterest($loan);
-    Assert::type("int", $interest);
-    Assert::true($interest >= 1);
-    $orm->loans->removeAndFlush($loan);
   }
   
   public function testTakeLoan() {

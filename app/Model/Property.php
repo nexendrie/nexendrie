@@ -45,7 +45,7 @@ class Property {
     $result = 0;
     $loans = $this->orm->loans->findReturnedThisMonth($this->user->id);
     foreach($loans as $loan) {
-      $result += $this->bankModel->calculateInterest($loan);
+      $result += $loan->interest;
     }
     return $result;
   }

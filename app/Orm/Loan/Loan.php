@@ -16,6 +16,7 @@ namespace Nexendrie\Orm;
  * @property string $amountT {virtual}
  * @property-read string $takenT {virtual}
  * @property-read string $returnedT {virtual}
+ * @property-read int $interest {virtual}
  */
 class Loan extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
@@ -38,6 +39,14 @@ class Loan extends \Nextras\Orm\Entity\Entity {
       return "";
     }
     return $this->localeModel->formatDateTime($this->returned);
+  }
+  
+  protected function getterInterest(): int {
+    $start = $this->taken;
+    $end = ($this->returned) ? $this->returned : time();
+    $duration = ($end - $start) / (60 * 60 * 24);
+    $interest = (int) ($this->amount * $this->interestRate * $duration / 36500);
+    return max([1, $interest]);
   }
   
   protected function onBeforeInsert() {

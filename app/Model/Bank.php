@@ -58,17 +58,6 @@ class Bank {
   }
   
   /**
-   * Calculate interest from a loan
-   */
-  public function calculateInterest(LoanEntity $loan): int {
-    $start = $loan->taken;
-    $end = ($loan->returned) ? $loan->returned : time();
-    $duration = ($end - $start) / (60 * 60 * 24);
-    $interest = (int) ($loan->amount * $loan->interestRate * $duration / 36500);
-    return max([1, $interest]);
-  }
-  
-  /**
    * Take a loan
    *
    * @throws TooHighLoanException
@@ -105,7 +94,7 @@ class Bank {
     if(is_null($loan)) {
       throw new NoLoanException();
     }
-    $returnMoney = $loan->amount + $this->calculateInterest($loan);
+    $returnMoney = $loan->amount + $loan->interest;
     if($returnMoney > $loan->user->money) {
       throw new InsufficientFundsException();
     }

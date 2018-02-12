@@ -35,7 +35,7 @@ class BankPresenter extends BasePresenter {
     }
     $this->template->loan = $this->model->getActiveLoan();
     if(!is_null($this->template->loan)) {
-      $returnMoney = $this->template->loan->amount + $this->model->calculateInterest($this->template->loan);
+      $returnMoney = $this->template->loan->amount + $this->template->loan->interest;
       $this->template->returnMoney = $this->localeModel->money($returnMoney);
     }
   }
