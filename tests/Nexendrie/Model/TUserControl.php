@@ -202,6 +202,41 @@ trait TUserControl {
     }
   }
   
+  /**
+   * Modify user's order and perform some action with modified stats
+   *
+   * @throws AuthenticationNeededException
+   * @throws \RuntimeException
+   */
+  protected function modifyOrder(array $stats, callable $callback): void {
+    /** @var User $user */
+    $user = $this->getService(User::class);
+    if(!$user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    /** @var ORM $orm */
+    $orm = $this->getService(ORM::class);
+    $userEntity = $orm->users->getById($user->id);
+    $data = $userEntity->order;
+    if(is_null($data)) {
+      throw new \RuntimeException("Current user does not belong to an order.");
+    }
+    $oldStats = [];
+    foreach($stats as $stat => $newValue) {
+      $oldStats[$stat] = $data->$stat;
+      $data->$stat = $newValue;
+    }
+    $orm->orders->persistAndFlush($data);
+    try {
+      $callback();
+    } finally {
+      foreach($oldStats as $stat => $oldValue) {
+        $data->$stat = $oldValue;
+      }
+      $orm->orders->persistAndFlush($data);
+    }
+  }
+  
   public function tearDown() {
     $this->logout();
   }

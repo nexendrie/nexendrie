@@ -173,7 +173,10 @@ final class OrderTest extends \Tester\TestCase {
       $this->model->canUpgrade();
     }, AuthenticationNeededException::class);
     $this->login();
-    Assert::type("bool", $this->model->canUpgrade());
+    Assert::true($this->model->canUpgrade());
+    $this->modifyOrder(["level" => OrderEntity::MAX_LEVEL], function() {
+      Assert::false($this->model->canUpgrade());
+    });
     $this->login("jakub");
     Assert::false($this->model->canUpgrade());
     $this->login("system");
@@ -190,6 +193,12 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->upgrade();
     }, CannotUpgradeOrderException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->modifyOrder(["money" => 0], function() {
+        $this->model->upgrade();
+      });
+    }, InsufficientFundsException::class);
   }
   
   public function testGetMembers() {

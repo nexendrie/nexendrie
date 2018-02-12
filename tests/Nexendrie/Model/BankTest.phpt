@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Tester\Assert,
-    Nexendrie\Orm\Deposit as DepositEntity;
+    Nexendrie\Orm\Deposit as DepositEntity,
+    Nexendrie\Orm\Loan as LoanEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 
@@ -46,6 +47,19 @@ final class BankTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->takeLoan($this->model->maxLoan() + 1);
     }, TooHighLoanException::class);
+    $this->preserveStats(["money"], function() {
+      $money = $this->getUserStat("money");
+      $this->model->takeLoan(1);
+      Assert::same($money + 1, $this->getUserStat("money"));
+      $loan = $this->model->getActiveLoan();
+      Assert::type(LoanEntity::class, $loan);
+      Assert::exception(function() {
+        $this->model->takeLoan(1);
+      }, CannotTakeMoreLoansException::class);
+      /** @var \Nexendrie\Orm\Model $orm */
+      $orm = $this->getService(\Nexendrie\Orm\Model::class);
+      $orm->loans->removeAndFlush($loan);
+    });
   }
   
   public function testReturnLoan() {
@@ -56,6 +70,21 @@ final class BankTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->returnLoan();
     }, NoLoanException::class);
+    $this->preserveStats(["money"], function() {
+      $money = $this->getUserStat("money");
+      $this->model->takeLoan(1);
+      $loan = $this->model->getActiveLoan();
+      Assert::exception(function() {
+        $this->modifyUser(["money" => 0], function() {
+          $this->model->returnLoan();
+        });
+      }, InsufficientFundsException::class);
+      $this->model->returnLoan();
+      Assert::same($money - 1, $this->getUserStat("money"));
+      /** @var \Nexendrie\Orm\Model $orm */
+      $orm = $this->getService(\Nexendrie\Orm\Model::class);
+      $orm->loans->removeAndFlush($loan);
+    });
   }
   
   public function testGetActiveDeposit() {
@@ -89,6 +118,9 @@ final class BankTest extends \Tester\TestCase {
       Assert::same($money - 1, $this->getUserStat("money"));
       $deposit = $this->model->getActiveDeposit();
       Assert::type(DepositEntity::class, $deposit);
+      Assert::exception(function() {
+        $this->model->openDeposit(1, time());
+      }, CannotOpenMoreDepositAccountsException::class);
       /** @var \Nexendrie\Orm\Model $orm */
       $orm = $this->getService(\Nexendrie\Orm\Model::class);
       $orm->deposits->removeAndFlush($deposit);
@@ -105,8 +137,12 @@ final class BankTest extends \Tester\TestCase {
     }, NoDepositAccountException::class);
     $this->preserveStats(["money"], function() {
       $money = $this->getUserStat("money");
-      $this->model->openDeposit(1, time());
+      $this->model->openDeposit(1, time() + 60 * 60 * 24);
       $deposit = $this->model->getActiveDeposit();
+      Assert::exception(function() {
+        $this->model->closeDeposit();
+      }, DepositAccountNotDueException::class);
+      $deposit->term = time();
       $this->model->closeDeposit();
       Assert::same($money + 1, $this->getUserStat("money"));
       /** @var \Nexendrie\Orm\Model $orm */

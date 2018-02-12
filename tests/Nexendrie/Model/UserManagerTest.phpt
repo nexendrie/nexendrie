@@ -6,8 +6,7 @@ namespace Nexendrie\Model;
 use Tester\Assert,
     Nette\InvalidArgumentException,
     Nextras\Orm\Collection\ICollection,
-    Nexendrie\Orm\User as UserEntity,
-    Nette\Security\User;
+    Nexendrie\Orm\User as UserEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 
@@ -55,6 +54,15 @@ final class UserManagerTest extends \Tester\TestCase {
     Assert::exception(function() use($user) {
       $this->model->register(["email" => $user->email, "username" => "abc"]);
     }, RegistrationException::class, NULL, UserManager::REG_DUPLICATE_EMAIL);
+    $data = [
+      "username" => "abc", "email" => "abc", "password" => "abcd",
+    ];
+    $this->model->register($data);
+    $user = $orm->users->getByUsername($data["username"]);
+    Assert::type(UserEntity::class, $user);
+    Assert::same($data["username"], $user->publicname);
+    Assert::notSame($data["password"], $user->password);
+    $orm->users->removeAndFlush($user);
   }
   
   public function testGetSettings() {

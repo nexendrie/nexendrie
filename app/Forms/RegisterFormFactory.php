@@ -47,6 +47,7 @@ class RegisterFormFactory {
   }
   
   public function process(Form $form, array $values): void {
+    unset($values["token"]);
     try {
       $this->model->register($values);
     } catch(RegistrationException $e) {
