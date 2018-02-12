@@ -67,6 +67,15 @@ class Property {
     return $result;
   }
   
+  protected function calculateDepositInterest(): int {
+    $result = 0;
+    $deposits = $this->orm->deposits->findDueThisMonth($this->user->id);
+    foreach($deposits as $deposit) {
+      $result += $deposit->interest;
+    }
+    return $result;
+  }
+  
   /**
    * Show user's budget
    *
@@ -80,6 +89,7 @@ class Property {
       "incomes" => 
         $this->taxesModel->calculateIncome($this->user->id) + [
           "taxes" => 0, "beerProduction" => $this->calculateBeerProduction(),
+          "depositInterest" => $this->calculateDepositInterest(),
           ]
       ,
       "expenses" => [
