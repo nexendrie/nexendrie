@@ -70,10 +70,8 @@ class Profile {
       return NULL;
     } elseif($marriage->user1->id === $id) {
       return $marriage->user2;
-    } elseif($marriage->user2->id === $id) {
-      return $marriage->user1;
     }
-    return NULL;
+    return $marriage->user1;
   }
    
    /**
@@ -85,10 +83,8 @@ class Profile {
       return NULL;
     } elseif($marriage->user1->id === $id) {
       return $marriage->user2;
-    } elseif($marriage->user2->id === $id) {
-      return $marriage->user1;
     }
-    return NULL;
+    return $marriage->user1;
   }
   
   /**
