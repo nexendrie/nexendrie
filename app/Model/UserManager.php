@@ -14,7 +14,6 @@ use Nette\Security\User,
  * User Manager
  *
  * @author Jakub Konečný
- * @property-write User $user
  */
 class UserManager {
   /** @var ORM */
@@ -32,14 +31,11 @@ class UserManager {
   
   use \Nette\SmartObject;
   
-  public function __construct(ORM $orm, SettingsRepository $sr) {
+  public function __construct(ORM $orm, SettingsRepository $sr, User $user) {
     $this->orm = $orm;
+    $this->user = $user;
     $this->roles = $sr->settings["roles"];
     $this->newUser = $sr->settings["newUser"];
-  }
-  
-  public function setUser(User $user) {
-    $this->user = $user;
   }
   
   /**

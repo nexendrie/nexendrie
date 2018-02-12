@@ -59,9 +59,6 @@ final class UserManagerTest extends \Tester\TestCase {
   
   public function testGetSettings() {
     Assert::exception(function() {
-      /** @var User $userService */
-      $userService = $this->getService(User::class);
-      $this->model->user = $userService;
       $this->model->getSettings();
     }, AuthenticationNeededException::class);
     $this->login();
@@ -69,9 +66,6 @@ final class UserManagerTest extends \Tester\TestCase {
   }
   
   public function testChangeSettings() {
-    /** @var User $userService */
-    $userService = $this->getService(User::class);
-    $this->model->user = $userService;
     Assert::exception(function() {
       $this->model->changeSettings([]);
     }, AuthenticationNeededException::class);

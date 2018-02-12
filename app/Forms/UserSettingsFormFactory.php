@@ -27,7 +27,6 @@ class UserSettingsFormFactory {
   public function __construct(UserManager $model, User $user) {
     $this->model = $model;
     $this->user = $user;
-    $this->model->user = $this->user;
   }
   
   /**
