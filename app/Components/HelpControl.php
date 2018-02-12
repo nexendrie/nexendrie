@@ -14,7 +14,8 @@ use Nexendrie\BookComponent\BookControl,
     Nexendrie\Orm\Guild as GuildEntity,
     Nexendrie\Orm\Order as OrderEntity,
     Nexendrie\Orm\Marriage as MarriageEntity,
-    Nette\Localization\ITranslator;
+    Nette\Localization\ITranslator,
+    Nexendrie\Model\Bank;
 
 /**
  * HelpControl
@@ -118,6 +119,11 @@ class HelpControl extends BookControl {
   
   public function renderStables(): void {
     $this->template->autoFeedingCost = $this->sr->settings["fees"]["autoFeedMount"];
+  }
+  
+  public function renderBank(): void {
+    $this->template->loanInterest = $this->sr->settings["fees"]["loanInterest"];
+    $this->template->depositInterest = Bank::DEPOSIT_INTEREST;
   }
 }
 ?>
