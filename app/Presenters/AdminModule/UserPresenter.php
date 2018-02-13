@@ -71,7 +71,7 @@ class UserPresenter extends BasePresenter {
   }
   
   protected function createComponentBanUserForm(BanUserFormFactory $factory): Form {
-    $form = $factory->create($this->getParameter("id"));
+    $form = $factory->create((int) $this->getParameter("id"));
     $form->onSuccess[] = function() {
       $this->flashMessage("Uživatel uvězněn.");
     };

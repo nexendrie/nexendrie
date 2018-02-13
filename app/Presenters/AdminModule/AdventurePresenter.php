@@ -51,7 +51,7 @@ class AdventurePresenter extends BasePresenter {
     $form = $factory->create();
     $form->setDefaults($this->adventure->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->editAdventure($this->getParameter("id"), $values);
+      $this->model->editAdventure((int) $this->getParameter("id"), $values);
       $this->flashMessage("Dobrodružství upraveno.");
       $this->redirect("Content:adventures");
     };

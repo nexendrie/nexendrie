@@ -54,7 +54,7 @@ class ShopPresenter extends BasePresenter {
     $form = $factory->create();
     $form->setDefaults($this->shop->toArray());
     $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->editShop($this->getParameter("id"), $values);
+      $this->model->editShop((int) $this->getParameter("id"), $values);
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:shops");
     };

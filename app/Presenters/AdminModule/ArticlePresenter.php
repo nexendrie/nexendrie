@@ -54,10 +54,10 @@ class ArticlePresenter extends BasePresenter {
   }
   
   protected function createComponentEditArticleForm(AddEditArticleFormFactory $factory): Form {
-    $news = $this->model->view($this->getParameter("id"));
+    $news = $this->model->view((int) $this->getParameter("id"));
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->editArticle($this->getParameter("id"), $values);
+      $this->model->editArticle((int) $this->getParameter("id"), $values);
       $this->flashMessage("Článek upraven.");
     };
     $form->setDefaults($news->toArray());

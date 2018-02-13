@@ -54,7 +54,7 @@ class SkillPresenter extends BasePresenter {
     $form = $factory->create();
     $form->setDefaults($this->skill->toArray());
     $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->edit($this->getParameter("id"), $values);
+      $this->model->edit((int) $this->getParameter("id"), $values);
       $this->flashMessage("Dovednost upravena.");
       $this->redirect("Content:skills");
     };

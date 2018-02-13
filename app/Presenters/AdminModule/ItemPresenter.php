@@ -55,7 +55,7 @@ class ItemPresenter extends BasePresenter {
     $form = $factory->create();
     $form->setDefaults($this->item->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->editItem($this->getParameter("id"), $values);
+      $this->model->editItem((int) $this->getParameter("id"), $values);
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:items");
     };

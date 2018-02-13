@@ -54,7 +54,7 @@ class MealPresenter extends BasePresenter {
     $form = $factory->create();
     $form->setDefaults($this->meal->toArray());
     $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->editMeal($this->getParameter("id"), $values);
+      $this->model->editMeal((int) $this->getParameter("id"), $values);
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:meals");
     };

@@ -39,7 +39,7 @@ class EventPresenter extends BasePresenter {
   
   protected function createComponentAddEventForm(AddEditEventFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSubmit[] = function(Form $form, array $values) {
+    $form->onSuccess[] = function(Form $form, array $values) {
       $this->model->addEvent($values);
       $this->flashMessage("Akce přidána.");
       $this->redirect("default");
@@ -62,8 +62,8 @@ class EventPresenter extends BasePresenter {
   protected function createComponentEditEventForm(AddEditEventFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->event->dummyArray());
-    $form->onSubmit[] = function(Form $form, array $values) {
-      $this->model->editEvent($this->getParameter("id"), $values);
+    $form->onSuccess[] = function(Form $form, array $values) {
+      $this->model->editEvent((int) $this->getParameter("id"), $values);
       $this->flashMessage("Akce upravena.");
       $this->redirect("default");
     };

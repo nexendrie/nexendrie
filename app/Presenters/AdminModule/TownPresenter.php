@@ -55,7 +55,7 @@ class TownPresenter extends BasePresenter {
     $form = $factory->create();
     $form->setDefaults($this->town->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->edit($this->getParameter("id"), $values);
+      $this->model->edit((int) $this->getParameter("id"), $values);
       $this->flashMessage("Město upraveno.");
       $this->redirect("Content:towns");
     };

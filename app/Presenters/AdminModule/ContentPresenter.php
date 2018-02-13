@@ -88,7 +88,7 @@ class ContentPresenter extends BasePresenter {
   
   protected function createComponentGiftForm(GiftFormFactory $factory): Form {
     $form = $factory->create();
-    $user = $this->getParameter("id");
+    $user = (int) $this->getParameter("id");
     if($user > 0) {
       $form["user"]->setDefaultValue($user);
     }

@@ -55,11 +55,11 @@ class PollsPresenter extends BasePresenter {
   }
   
   protected function createComponentEditPollForm(AddEditPollFormFactory $factory): Form {
-    $poll = $this->model->view($this->getParameter("id"));
+    $poll = $this->model->view((int) $this->getParameter("id"));
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
       $this->model->user = $this->user;
-      $this->model->edit($this->getParameter("id"), $values);
+      $this->model->edit((int) $this->getParameter("id"), $values);
       $this->flashMessage("Anketa upravena.");
       $this->redirect("Polls:");
     };

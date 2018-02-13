@@ -42,7 +42,7 @@ class GroupPresenter extends BasePresenter {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
       $this->model->user = $this->user;
-      $this->model->edit($this->getParameter("id"), $values);
+      $this->model->edit((int) $this->getParameter("id"), $values);
       $this->flashMessage("Skupina upravena.");
       $this->redirect("default");
     };

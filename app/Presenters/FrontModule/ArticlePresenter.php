@@ -37,7 +37,7 @@ class ArticlePresenter extends BasePresenter {
   protected function createComponentAddCommentForm(AddCommentFormFactory $factory): Form {
     $form = $factory->create();
     $form->onSuccess[] = function(Form $form, array $values) {
-      $values["article"] = $this->getParameter("id");
+      $values["article"] = (int) $this->getParameter("id");
       try {
         $this->model->addComment($values);
         $this->flashMessage("Komentář přidán.");

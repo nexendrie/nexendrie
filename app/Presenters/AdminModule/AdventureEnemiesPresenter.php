@@ -82,7 +82,7 @@ class AdventureEnemiesPresenter extends BasePresenter {
     $form = $factory->create();
     $form->setDefaults($this->npc->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->editNpc($this->getParameter("id"), $values);
+      $this->model->editNpc((int) $this->getParameter("id"), $values);
       $this->flashMessage("Nepřítel upraven.");
       $this->redirect("list", ["id" => $this->npc->adventure->id]);
     };

@@ -55,7 +55,7 @@ class JobPresenter extends BasePresenter {
     $form = $factory->create();
     $form->setDefaults($this->job->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->editJob($this->getParameter("id"), $values);
+      $this->model->editJob((int) $this->getParameter("id"), $values);
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:jobs");
     };
