@@ -131,6 +131,19 @@ final class JobTest extends \Tester\TestCase {
     Assert::same("Nezvládl jsi tuto směnu.", $message);
   }
   
+  public function testCalculateSuccessRate() {
+    $job = new UserJobEntity();
+    $this->orm->userJobs->attach($job);
+    $job->user = 5;
+    $job->job = 5;
+    $this->login("premysl");
+    Assert::same(55, $this->model->calculateSuccessRate($job));
+    $job->user = 1;
+    $this->login();
+    Assert::same(80, $this->model->calculateSuccessRate($job));
+    $this->orm->userJobs->removeAndFlush($job);
+  }
+  
   public function testIsWorking() {
     Assert::exception(function() {
       $this->model->isWorking();
