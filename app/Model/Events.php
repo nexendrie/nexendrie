@@ -60,6 +60,12 @@ class Events implements \EventCalendar\IEventModel {
     return $event;
   }
   
+  protected function getTimestamp(string $date): int {
+    /** @var \Nette\Utils\DateTime $time */
+    $time = DateTime::createFromFormat($this->sr->settings["locale"]["dateTimeFormat"], $date);
+    return (int) $time->getTimestamp();
+  }
+  
   /**
    * Add new event
    */
@@ -67,9 +73,7 @@ class Events implements \EventCalendar\IEventModel {
     $event = new Event();
     foreach($data as $key => $value) {
       if($key === "start" OR $key === "end") {
-        /** @var \Nette\Utils\DateTime $time */
-        $time = DateTime::createFromFormat($this->sr->settings["locale"]["dateTimeFormat"], $value);
-        $value = $time->getTimestamp();
+        $value = $this->getTimestamp($value);
       }
       $event->$key = $value;
     }
@@ -88,9 +92,7 @@ class Events implements \EventCalendar\IEventModel {
     }
     foreach($data as $key => $value) {
       if($key === "start" OR $key === "end") {
-        /** @var \Nette\Utils\DateTime $time */
-        $time = DateTime::createFromFormat($this->sr->settings["locale"]["dateTimeFormat"], $value);
-        $value = $time->getTimestamp();
+        $value = $this->getTimestamp($value);
       }
       $event->$key = $value;
     }
