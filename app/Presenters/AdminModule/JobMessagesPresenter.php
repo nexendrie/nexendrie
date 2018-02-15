@@ -9,7 +9,7 @@ use Nexendrie\Model\JobNotFoundException,
     Nexendrie\Orm\Job as JobEntity,
     Nette\Application\UI\Form,
     Nexendrie\Forms\AddEditJobMessageFormFactory,
-    Nextras\Orm\Entity\IEntity;
+    Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Presenter JobMessages
@@ -74,7 +74,7 @@ class JobMessagesPresenter extends BasePresenter {
   
   protected function createComponentEditJobMessageForm(AddEditJobMessageFormFactory $factory): Form {
     $form = $factory->create();
-    $form->setDefaults($this->message->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
+    $form->setDefaults($this->message->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form, array $values) {
       $this->model->editMessage($this->message->id, $values);
       $this->flashMessage("Hláška upravena.");

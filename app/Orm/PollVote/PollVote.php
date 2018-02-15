@@ -26,7 +26,7 @@ class PollVote extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->formatDateTime($this->voted);
   }
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->voted = time();
   }

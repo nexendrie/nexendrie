@@ -9,3 +9,4 @@ parameters:
         - Nextras\Orm\Entity\IEntity
     ignoreErrors:
         - '#Call to function is_null\(\) will always evaluate to false#'
+        - '#Method Nexendrie\\Orm\[a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+ should return Nexendrie\\Orm[a-zA-Z0-9\\_]+|null but returns Nextras\\Orm\\IEntity|null#'

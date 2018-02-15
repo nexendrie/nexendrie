@@ -45,7 +45,7 @@ class Punishment extends \Nextras\Orm\Entity\Entity {
     return $this->lastAction + (60 * 60);
   }
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->imprisoned = time();
   }

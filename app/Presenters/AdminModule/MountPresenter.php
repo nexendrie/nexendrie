@@ -7,7 +7,7 @@ use Nexendrie\Forms\AddEditMountFormFactory,
     Nette\Application\UI\Form,
     Nexendrie\Orm\Mount as MountEntity,
     Nexendrie\Model\MountNotFoundException,
-    Nextras\Orm\Entity\IEntity;
+    Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Presenter Mount
@@ -53,7 +53,7 @@ class MountPresenter extends BasePresenter {
   
   protected function createComponentEditMountForm(AddEditMountFormFactory $factory): Form {
     $form = $factory->create();
-    $form->setDefaults($this->mount->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
+    $form->setDefaults($this->mount->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     $form->onSuccess[] = function(Form $form, array $values) {
       $this->model->edit((int) $this->getParameter("id"), $values);
       $this->flashMessage("Jezdecké zvíře upraveno.");

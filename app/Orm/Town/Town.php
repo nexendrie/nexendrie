@@ -40,7 +40,7 @@ class Town extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->money($this->price);
   }
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->founded = time();
     if($this->owner->id === 0) {

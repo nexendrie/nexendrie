@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
-    Nextras\Orm\Entity\IEntity;
+    Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Factory for form AddEditMount
@@ -35,7 +35,7 @@ class ManageMountFormFactory {
     $form->addCheckbox("onMarket", "Na prodej");
     $form->addCheckbox("autoFeed", "Automaticky krmit");
     $form->addSubmit("submit", "Odeslat");
-    $form->setDefaults($mount->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
+    $form->setDefaults($mount->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     $form->onSuccess[] = [$this, "process"];
     return $form;
   }

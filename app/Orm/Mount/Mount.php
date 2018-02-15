@@ -149,7 +149,7 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     return $this->type->{$this->gender . "Name"};
   }
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     if(!$this->price) {
       $this->price = $this->type->price;

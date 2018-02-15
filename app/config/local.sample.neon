@@ -3,6 +3,6 @@ tracy:
 dbal:
     driver: mysqli
     host: localhost
-    dbname: nexendrie
-    user: nexendrie
+    database: nexendrie
+    username: nexendrie
     password: nexendrie

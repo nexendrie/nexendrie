@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form,
-    Nextras\Orm\Entity\IEntity;
+    Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Factory for form ManageTown
@@ -37,7 +37,7 @@ class ManageTownFormFactory {
       ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", [0,999999]);
     $form->addCheckbox("onMarket", "Na prodej");
     $form->addSubmit("submit", "Odeslat");
-    $form->setDefaults($town->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID));
+    $form->setDefaults($town->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     $form->onSuccess[] = [$this, "process"];
     return $form;
   }

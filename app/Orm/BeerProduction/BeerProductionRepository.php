@@ -42,6 +42,7 @@ class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
   public function getLastProduction($house): ?BeerProduction {
     return $this->findBy(["house" => $house])
       ->orderBy("when", ICollection::DESC)
+      ->limitBy(1)
       ->fetch();
   }
   
