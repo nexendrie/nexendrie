@@ -20,6 +20,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property Skill $skill {m:1 Skill::$guilds}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|User[] $members {1:m User::$guild, orderBy=[guildRank,DESC]}
+ * @property OneHasMany|GuildFee[] $fees {1:m GuildFee::$guild}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}
  */

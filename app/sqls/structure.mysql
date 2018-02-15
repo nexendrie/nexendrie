@@ -613,6 +613,30 @@ CREATE TABLE `deposits` (
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   CONSTRAINT `deposits_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `order_fees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `order` int(11) NOT NULL,
+  `amount` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_order` (`user`,`order`),
+  KEY `order` (`order`),
+  CONSTRAINT `order_fees_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  CONSTRAINT `order_fees_ibfk_2` FOREIGN KEY (`order`) REFERENCES `orders` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `guild_fees` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `guild` int(11) NOT NULL,
+  `amount` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_guild` (`user`,`guild`),
+  KEY `guild` (`guild`),
+  CONSTRAINT `guild_fees_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  CONSTRAINT `guild_fees_ibfk_2` FOREIGN KEY (`guild`) REFERENCES `guilds` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 2016-09-25 09:05:29

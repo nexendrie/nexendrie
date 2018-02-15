@@ -47,6 +47,8 @@ namespace Nexendrie\Orm;
  * @property-read ElectionsRepository $elections
  * @property-read ElectionResultsRepository $electionResults
  * @property-read DepositsRepository $deposits
+ * @property-read GuildFeesRepository $guildFees
+ * @property-read OrderFeesRepository $orderFees
  */
 class Model extends \Nextras\Orm\Model\Model {
   

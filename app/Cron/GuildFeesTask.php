@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
+use Nexendrie\Orm\GuildFee;
+
 /**
  * GuildFeesTask
  *
@@ -14,6 +16,17 @@ class GuildFeesTask extends BaseMonthlyCronTask {
   
   public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
+  }
+  
+  protected function getFeeRecord(\Nexendrie\Orm\User $user): GuildFee {
+    $fee = $this->orm->guildFees->getByUserAndGuild($user, $user->guild);
+    if(!is_null($fee)) {
+      return $fee;
+    }
+    $fee = new GuildFee();
+    $fee->user = $user;
+    $fee->guild = $user->guild;
+    return $fee;
   }
   
   /**
@@ -34,7 +47,10 @@ class GuildFeesTask extends BaseMonthlyCronTask {
       echo "$user->publicname (#$user->id} will pay {$guildFee} to his/her guild.\n";
       $user->money -= $guildFee;
       $user->guild->money += $guildFee;
-      $this->orm->users->persistAndFlush($user);
+      $this->orm->users->persist($user);
+      $fee = $this->getFeeRecord($user);
+      $fee->amount += $guildFee;
+      $this->orm->guildFees->persistAndFlush($fee);
     }
     echo "Finished paying guild fees ...\n";
   }

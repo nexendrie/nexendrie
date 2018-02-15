@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
+use Nexendrie\Orm\OrderFee;
+
 /**
  * OrderFeesTask
  *
@@ -14,6 +16,17 @@ class OrderFeesTask extends BaseMonthlyCronTask {
   
   public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
+  }
+  
+  protected function getFeeRecord(\Nexendrie\Orm\User $user): OrderFee {
+    $fee = $this->orm->orderFees->getByUserAndOrder($user, $user->order);
+    if(!is_null($fee)) {
+      return $fee;
+    }
+    $fee = new OrderFee();
+    $fee->user = $user;
+    $fee->order = $user->order;
+    return $fee;
   }
   
   /**
@@ -34,7 +47,10 @@ class OrderFeesTask extends BaseMonthlyCronTask {
       echo "$user->publicname (#$user->id} will pay {$orderFee} to his/her order.\n";
       $user->money -= $orderFee;
       $user->order->money += $orderFee;
-      $this->orm->users->persistAndFlush($user);
+      $this->orm->users->persist($user);
+      $fee = $this->getFeeRecord($user);
+      $fee->amount += $orderFee;
+      $this->orm->orderFees->persistAndFlush($fee);
     }
     echo "Finished paying order fees ...\n";
   }

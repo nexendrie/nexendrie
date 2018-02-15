@@ -129,6 +129,15 @@ CREATE TABLE "groups" (
     PRIMARY KEY ("id")
 );
 
+CREATE TABLE "guild_fees" (
+  "id" SERIAL NOT NULL,
+  "user" integer NOT NULL,
+  "guild" integer NOT NULL,
+  "amount" integer NOT NULL DEFAULT 0,
+  PRIMARY KEY ("id"),
+  UNIQUE ("user", "guild")
+);
+
 CREATE TABLE "guild_ranks" (
     "id" SERIAL NOT NULL,
     "name" varchar(20) NOT NULL,
@@ -300,6 +309,15 @@ CREATE TABLE "mounts" (
     "armor" integer NOT NULL DEFAULT 0,
     "auto_feed" integer NOT NULL DEFAULT 0,
     PRIMARY KEY ("id")
+);
+
+CREATE TABLE "order_fees" (
+    "id" SERIAL  NOT NULL,
+    "user" INTEGER NOT NULL,
+    "order" INTEGER NOT NULL,
+    "amount" INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY ("id"),
+    UNIQUE ("user", "order")
 );
 
 CREATE TABLE "order_ranks" (

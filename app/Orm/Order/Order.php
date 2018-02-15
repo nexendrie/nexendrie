@@ -18,6 +18,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $money {default 0}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|User[] $members {1:m User::$order, orderBy=[orderRank,DESC]}
+ * @property OneHasMany|OrderFee[] $fees {1:m OrderFee::$order}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}
  */
