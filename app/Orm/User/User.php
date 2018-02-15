@@ -70,6 +70,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read int $producedBeers {virtual}
  * @property-read int $punishmentsCount {virtual}
  * @property-read int $lessonsTaken {virtual}
+ * @property-read int $currentOrderContribution {virtual}
+ * @property-read int $currentGuildContribution {virtual}
  */
 class User extends \Nextras\Orm\Entity\Entity {
   public const GENDER_MALE = "male";
@@ -146,6 +148,30 @@ class User extends \Nextras\Orm\Entity\Entity {
       $amount += $lesson->level;
     }
     return $amount;
+  }
+  
+  protected function getterCurrentOrderContribution(): int {
+    if(is_null($this->order)) {
+      return 0;
+    }
+    /** @var OrderFee|NULL $record */
+    $record = $this->orderFees->get()->getBy(["order" => $this->order]);
+    if(is_null($record)) {
+      return 0;
+    }
+    return $record->amount;
+  }
+  
+  protected function getterCurrentGuildContribution(): int {
+    if(is_null($this->guild)) {
+      return 0;
+    }
+    /** @var GuildFee|NULL $record */
+    $record = $this->guildFees->get()->getBy(["guild" => $this->guild]);
+    if(is_null($record)) {
+      return 0;
+    }
+    return $record->amount;
   }
   
   protected function onBeforeInsert() {
