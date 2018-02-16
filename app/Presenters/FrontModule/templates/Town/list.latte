@@ -3,11 +3,13 @@
 {block content}
   <h1>Seznam měst</h1>
   <table id="towns">
-    <tr><th>Jméno</th><th>Vládce</th><th>Obyvatel</th><th></th></tr>
+    <tr><th>Jméno</th><th>Vládce</th><th>Obyvatel</th><th>Cechů</th><th>Klášterů</th><th></th></tr>
     <tr n:foreach="$towns as $town">
       <td>{$town->name}</td>
       <td><a n:href="Profile: $town->owner->username">{$town->owner->publicname}</a></td>
       <td>{$town->denizens->countStored()}</td>
+      <td>{$town->guilds->countStored()}</td>
+      <td>{$town->monasteries->countStored()}</td>
       <td><a n:href="detail $town->id">Detaily</a></td>
     </tr>
   </table>
