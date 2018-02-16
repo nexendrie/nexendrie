@@ -62,7 +62,7 @@ class Skill extends \Nextras\Orm\Entity\Entity {
     ];
   }
   
-  protected function getterStatCZ() {
+  protected function getterStatCZ(): ?string {
     return ($this->stat != NULL) ? self::getStats()[$this->stat] : NULL;
   }
   

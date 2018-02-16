@@ -88,7 +88,7 @@ class User extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->formatDate($this->joined);
   }
   
-  protected function getterLastActiveAt() {
+  protected function getterLastActiveAt(): string {
     return $this->localeModel->formatDate($this->lastActive);
   }
   
@@ -122,15 +122,15 @@ class User extends \Nextras\Orm\Entity\Entity {
     return $this->group->singleName;
   }
   
-  protected function getterCompletedAdventures() {
+  protected function getterCompletedAdventures(): int {
     return $this->adventures->get()->findBy(["progress" => UserAdventure::PROGRESS_COMPLETED])->countStored();
   }
   
-  protected function getterCompletedJobs() {
+  protected function getterCompletedJobs(): int {
     return $this->jobs->get()->findBy(["finished" => true, "earned>" => 0])->countStored();
   }
   
-  protected function getterProducedBeers() {
+  protected function getterProducedBeers(): int {
     $amount = 0;
     foreach($this->beerProduction as $row) {
       $amount += $row->amount;
@@ -138,11 +138,11 @@ class User extends \Nextras\Orm\Entity\Entity {
     return $amount;
   }
   
-  protected function getterPunishmentsCount() {
+  protected function getterPunishmentsCount(): int {
     return $this->punishments->countStored();
   }
   
-  protected function getterLessonsTaken() {
+  protected function getterLessonsTaken(): int {
     $amount = 0;
     foreach($this->skills as $lesson) {
       $amount += $lesson->level;

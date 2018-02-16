@@ -12,7 +12,7 @@ use Nexendrie\Components\IHelpControlFactory,
  * @author Jakub Konečný
  */
 class HelpPresenter extends BasePresenter {
-  public function renderDefault(string $page = "index") {
+  public function renderDefault(string $page = "index"): void {
     $this->template->page = $page;
   }
   

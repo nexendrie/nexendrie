@@ -44,7 +44,7 @@ class Adventure {
    * 
    * @return AdventureEntity[]|ICollection
    */
-  public function listOfAdventures() {
+  public function listOfAdventures(): ICollection {
     return $this->orm->adventures->findAll();
   }
   

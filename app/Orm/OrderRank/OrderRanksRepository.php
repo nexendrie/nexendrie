@@ -14,7 +14,7 @@ class OrderRanksRepository extends \Nextras\Orm\Repository\Repository {
   /**
    * @param int $id
    */
-  public function getById($id) {
+  public function getById($id): ?OrderRank {
     return $this->getBy(["id" => $id]);
   }
 }

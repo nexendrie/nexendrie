@@ -17,7 +17,7 @@ class RssPresenter extends BasePresenter {
     $this->model = $model;
   }
   
-  public function renderNews() {
+  public function renderNews(): void {
     $this->sendResponse($this->model->newsFeed());
   }
   

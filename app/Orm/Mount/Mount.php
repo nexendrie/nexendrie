@@ -103,23 +103,23 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->formatDateTime($this->birth);
   }
   
-  protected function getterBaseDamage() {
+  protected function getterBaseDamage(): int {
     return $this->type->damage;
   }
   
-  protected function getterBaseArmor() {
+  protected function getterBaseArmor(): int {
     return $this->type->armor;
   }
   
-  protected function getterMaxDamage() {
+  protected function getterMaxDamage(): int {
     return ($this->type->damage * 2) + 1;
   }
   
-  protected function getterMaxArmor() {
+  protected function getterMaxArmor(): int {
     return ($this->type->armor * 2) + 1;
   }
   
-  protected function getterDamageTrainingCost() {
+  protected function getterDamageTrainingCost(): int {
     if($this->damage >= $this->maxDamage) {
       return 0;
     }
@@ -128,7 +128,7 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     return $basePrice;
   }
   
-  protected function getterArmorTrainingCost() {
+  protected function getterArmorTrainingCost(): int {
     if($this->armor >= $this->maxArmor) {
       return 0;
     }
@@ -137,15 +137,15 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     return $basePrice;
   }
   
-  protected function getterDamageTrainingCostT() {
+  protected function getterDamageTrainingCostT(): string {
     return $this->localeModel->money($this->damageTrainingCost);
   }
   
-  protected function getterArmorTrainingCostT() {
+  protected function getterArmorTrainingCostT(): string {
     return $this->localeModel->money($this->armorTrainingCost);
   }
   
-  protected function getterTypeGenderName() {
+  protected function getterTypeGenderName(): string {
     return $this->type->{$this->gender . "Name"};
   }
   

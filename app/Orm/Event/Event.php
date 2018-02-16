@@ -33,7 +33,7 @@ class Event extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterStartAt() {
+  protected function getterStartAt(): string {
     return $this->localeModel->formatDateTime($this->start);
   }
   

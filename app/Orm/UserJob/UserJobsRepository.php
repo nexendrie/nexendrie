@@ -40,7 +40,7 @@ class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
    *
    * @return ICollection|UserJob[]
    */
-  public function findFromMonth(int $user, int $month = 0, int $year = 0) {
+  public function findFromMonth(int $user, int $month = 0, int $year = 0): ICollection {
     $sixDays = 60 * 60 * 24 * 6;
     $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
     $date = new \DateTime;

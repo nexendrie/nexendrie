@@ -263,7 +263,7 @@ class Inventory {
    * @throws ItemNotOwnedException
    * @throws ItemNotForSaleException
    */
-  public function sellItem(int $id) {
+  public function sellItem(int $id): int {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }

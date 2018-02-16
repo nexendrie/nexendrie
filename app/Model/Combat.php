@@ -78,7 +78,7 @@ class Combat {
   /**
    * Calculate specified user's armor
    */
-  public function calculateUserArmor(UserEntity $user, MountEntity $mount = NULL) {
+  public function calculateUserArmor(UserEntity $user, MountEntity $mount = NULL): int {
     $armorValue = 0;
     $armor = $this->inventoryModel->getArmor($user->id);
     if(!is_null($armor)) {

@@ -206,7 +206,7 @@ class GuildPresenter extends BasePresenter {
     }
   }
   
-  public function handleKick(int $user) {
+  public function handleKick(int $user): void {
     try {
       $this->model->kick($user);
       $this->flashMessage("Vyloučen(a)");

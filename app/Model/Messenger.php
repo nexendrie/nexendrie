@@ -81,7 +81,7 @@ class Messenger {
   /**
    * Get list of users
    * 
-   * @return array id => publicname
+   * @return string[] id => publicname
    */
   public function usersList(): array {
     return $this->orm->users->findBy(
