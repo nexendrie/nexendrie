@@ -74,6 +74,6 @@ deploy:beta:
     name: beta
     url: https://beta.nexendrie.cz
   only:
-    - tags
+    - tags@nexendrie/nexendrie
   variables:
     DEPLOY_ENVIRONMENT: beta
