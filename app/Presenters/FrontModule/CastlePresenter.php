@@ -79,7 +79,7 @@ class CastlePresenter extends BasePresenter {
       $this->flashMessage("Můžeš postavit jen 1 hrad.");
       $this->redirect("default");
     }
-    $this->template->buildingPrice = $this->localeModel->money($this->model->buildingPrice);
+    $this->template->buildingPrice = $this->localeModel->money($this->sr->settings["fees"]["buildCastle"]);
   }
   
   protected function createComponentBuildCastleForm(BuildCastleFormFactory $factory): Form {

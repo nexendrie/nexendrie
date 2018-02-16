@@ -13,7 +13,6 @@ use Nexendrie\Orm\Monastery as MonasteryEntity,
  * Monastery Model
  *
  * @author Jakub Konečný
- * @property-read int $buildingPrice
  * 
  */
 class Monastery {
@@ -39,10 +38,6 @@ class Monastery {
     $this->orm = $orm;
     $this->user = $user;
     $this->buildingPrice = $sr->settings["fees"]["buildMonastery"];
-  }
-  
-  public function getBuildingPrice() :int {
-    return $this->buildingPrice;
   }
   
   /**

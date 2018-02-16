@@ -19,10 +19,6 @@ final class CastleTest extends \Tester\TestCase {
     $this->model = $this->getService(Castle::class);
   }
   
-  public function testGetBuildingPrice() {
-    Assert::type("int", $this->model->buildingPrice);
-  }
-  
   public function testListOfCastles() {
     $result = $this->model->listOfCastles();
     Assert::type(ICollection::class, $result);

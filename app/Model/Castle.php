@@ -11,7 +11,6 @@ use Nexendrie\Orm\Castle as CastleEntity,
  * Castle Model
  *
  * @author Jakub Konečný
- * @property-read int $buildingPrice
  */
 class Castle {
   /** @var \Nexendrie\Orm\Model */
@@ -26,11 +25,7 @@ class Castle {
   public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->buildingPrice = (int) $sr->settings["fees"]["buildCastle"];
-  }
-  
-  public function getBuildingPrice(): int {
-    return $this->buildingPrice;
+    $this->buildingPrice = $sr->settings["fees"]["buildCastle"];
   }
   
   /**
