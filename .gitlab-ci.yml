@@ -29,6 +29,7 @@ cache:
 
 test:default:
   <<: *test_job
+  retry: 2
 
 test:php7.2:
   <<: *test_job
@@ -57,6 +58,7 @@ test:cc:
     name: "Code coverage"
     paths:
     - coverage.html
+  retry: 2
 
 deploy:alpha:
   <<: *deploy_job
