@@ -117,6 +117,7 @@ CREATE TABLE "groups" (
     "level" integer NOT NULL,
     "path" groups_path NOT NULL
 );
+ALTER SEQUENCE groups_id_seq MINVALUE 0 RESTART WITH 0;
 
 CREATE TABLE "guild_fees" (
   "id" SERIAL PRIMARY KEY,
@@ -437,3 +438,4 @@ CREATE TABLE "users" (
     "order" integer DEFAULT NULL,
     "order_rank" integer DEFAULT NULL
 );
+ALTER SEQUENCE users_id_seq MINVALUE 0 RESTART WITH 0;
