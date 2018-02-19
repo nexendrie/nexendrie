@@ -90,6 +90,22 @@ final class UserManagerTest extends \Tester\TestCase {
         "email" => $user2->email, "publicname" => $user->publicname
       ]);
     }, SettingsException::class, null, UserManager::REG_DUPLICATE_EMAIL);
+    Assert::exception(function() use($user) {
+      $this->model->changeSettings([
+        "email" => $user->email, "publicname" => $user->publicname, "password_old" => "abc",
+        "password_new" => "abc"
+      ]);
+    }, SettingsException::class, null, UserManager::SET_INVALID_PASSWORD);
+    $this->preserveStats(["password", "money"], function() use($user) {
+      $password = $user->password;
+      $this->model->changeSettings([
+        "email" => $user->email, "publicname" => $user->publicname, "password_old" => "qwerty",
+        "password_new" => "abc", "money" => 1
+      ]);
+      Assert::notSame($password, $user->password);
+      Assert::notSame("abc", $user->password);
+      Assert::same(1, $user->money);
+    });
   }
   
   public function testListOfUsers() {

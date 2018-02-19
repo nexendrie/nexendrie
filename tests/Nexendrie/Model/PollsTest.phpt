@@ -47,6 +47,16 @@ final class PollsTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->add([]);
     }, MissingPermissionsException::class);
+    $this->login();
+    $data = [
+      "question" => "ABCDE", "answers" => "A\nB\nC\nD\nE",
+    ];
+    $this->model->add($data);
+    /** @var \Nexendrie\Orm\Model $orm */
+    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    $poll = $orm->polls->getBy(["question" => $data["question"]]);
+    Assert::type(Poll::class, $poll);
+    $orm->polls->removeAndFlush($poll);
   }
   
   public function testEdit() {

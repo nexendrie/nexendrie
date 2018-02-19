@@ -65,6 +65,16 @@ final class ArticleTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->addArticle([]);
     }, MissingPermissionsException::class);
+    $this->login();
+    $data = [
+      "title" => "ABCDE", "text" => "abcde", "category" => ArticleEntity::CATEGORY_CHRONICLE
+    ];
+    $id = $this->model->addArticle($data);
+    /** @var \Nexendrie\Orm\Model $orm */
+    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    $article = $orm->articles->getById($id);
+    Assert::type(ArticleEntity::class, $article);
+    $orm->articles->removeAndFlush($article);
   }
   
   public function testEditArticle() {
