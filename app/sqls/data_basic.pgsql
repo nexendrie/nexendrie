@@ -66,7 +66,7 @@ INSERT INTO items ("name", "description", "price", "shop", "type", "strength") V
   ('Dřevěný meč','Obyčejný dřevěný meč',5,3,'weapon',1),
   ('Železný meč','Obyčejný meč ze železa',21,3,'weapon',2),
   ('Košile','Čistá bílá košile. Nosí se při slavnostních příležitostech nebo v krajní nouzi i v boji.',10,6,'armor',1),
-  ('Stříbný meč','Meč ze zvláštní stříbrné slitiny',52,3,'weapon',3),
+  ('Stříbrný meč','Meč ze zvláštní stříbrné slitiny',52,3,'weapon',3),
   ('Zlatý meč','Meč z kvalitního zlata.',86,3,'weapon',4),
   ('Sekyrka','Nejobyčejnější sekera',21,3,'weapon',2),
   ('Válečná sekera','Kvalitní dvoubřitvá sekera',126,3,'weapon',5),
@@ -103,7 +103,7 @@ INSERT INTO items ("name", "description", "price", "shop", "type", "strength") V
   ('Klobouk mistra','Velký šedý klobouk používaný mistry čaroději',73,4,'helmet',3),
   ('Arcimágův klobouk','Zdobený černý klobouk',103,4,'helmet',4),
   ('Malé srdce','Zvýší důvěrnost manželů o 1',17,NULL,'intimacy_boost',1),
-  ('Střední srce','Zvýší důvěrnost manželů o 2',28,NULL,'intimacy_boost',2),
+  ('Střední srdce','Zvýší důvěrnost manželů o 2',28,NULL,'intimacy_boost',2),
   ('Velké srdce','Zvýší důvěrnost manželů o 5',83,NULL,'intimacy_boost',5);
 
 INSERT INTO job_messages ("job", "success", "message") VALUES
