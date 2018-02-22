@@ -34,7 +34,7 @@ test:default:
 test:php7.2:
   <<: *test_job
   image: nexendrie/php:7.2
-  allow_failure: true
+  retry: 2
 
 test:pgsql:
   <<: *test_job
