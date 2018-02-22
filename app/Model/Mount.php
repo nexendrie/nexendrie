@@ -97,13 +97,6 @@ class Mount {
     }
     foreach($data as $key => $value) {
       $mount->$key = $value;
-      if($key === "autoFeed" AND $value) {
-        foreach($mount->owner->mounts as $otherMount) {
-          if($otherMount->id !== $id AND $otherMount->autoFeed) {
-            $otherMount->autoFeed = false;
-          }
-        }
-      }
     }
     $this->orm->mounts->persistAndFlush($mount);
   }
