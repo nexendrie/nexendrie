@@ -6,8 +6,6 @@ use Nette\Neon\Neon,
 
 require __DIR__ . "/../vendor/autoload.php";
 
-Tracy\Debugger::timer("config_db");
-
 $filename = __DIR__ . "../app/config/local.neon";
 $db = [
   "driver" => Arrays::get($argv, 1, "mysqli"),
