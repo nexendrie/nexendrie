@@ -20,7 +20,7 @@ class UserAdventure extends \Nextras\Orm\Entity\Entity {
   public const PROGRESS_COMPLETED = 10;
   public const PROGRESS_CLOSED = 11;
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->started = time();
   }

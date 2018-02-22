@@ -30,7 +30,7 @@
         "tracy/tracy": "~2.4",
         "latte/latte": "~2.4",
         "kdyby/autowired": "^1.5",
-        "nextras/orm": "^2.2",
+        "nextras/orm": "^3.0",
         "stekycz/cronner": "^2.2",
         "konecnyjakub/event-calendar": "^0.3",
         "nella/forms-datetime": "^2.4",

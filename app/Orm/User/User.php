@@ -174,7 +174,7 @@ class User extends \Nextras\Orm\Entity\Entity {
     return $record->amount;
   }
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->joined = $this->lastActive = time();
   }

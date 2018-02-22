@@ -23,7 +23,7 @@ class UserJob extends \Nextras\Orm\Entity\Entity {
     return $this->started + (60 * 60 * 24 * 7);
   }
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->started = time();
   }

@@ -102,7 +102,7 @@ class Castle extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->money($this->repairPrice);
   }
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->founded = time();
   }

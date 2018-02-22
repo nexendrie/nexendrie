@@ -12,8 +12,8 @@ $filename = __DIR__ . "../app/config/local.neon";
 $db = [
   "driver" => Arrays::get($argv, 1, "mysqli"),
   "host" => Arrays::get($argv, 2, "localhost"),
-  "dbname" => Arrays::get($argv, 3, "nexendrie"),
-  "user" => Arrays::get($argv, 4, "nexendrie"),
+  "database" => Arrays::get($argv, 3, "nexendrie"),
+  "username" => Arrays::get($argv, 4, "nexendrie"),
   "password" => Arrays::get($argv, 5, "nexendrie"),
 ];
 

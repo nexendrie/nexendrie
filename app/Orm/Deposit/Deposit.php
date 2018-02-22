@@ -42,7 +42,7 @@ class Deposit extends \Nextras\Orm\Entity\Entity {
     return (time() >= $this->term);
   }
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->opened = time();
   }

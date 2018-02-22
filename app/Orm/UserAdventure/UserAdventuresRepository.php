@@ -43,6 +43,7 @@ class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository {
   public function getLastAdventure($user): ?UserAdventure {
     return $this->findBy(["user" => $user])
       ->orderBy("started", ICollection::DESC)
+      ->limitBy(1)
       ->fetch();
   }
   

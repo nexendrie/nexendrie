@@ -15,7 +15,7 @@ namespace Nexendrie\Orm;
  * @property bool $elected {default false}
  */
 class Election extends \Nextras\Orm\Entity\Entity {
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->when = time();
   }

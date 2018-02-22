@@ -95,12 +95,12 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
     return $this->level * self::HP_INCREASE_PER_LEVEL;
   }
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->proposed = time();
   }
   
-  protected function onBeforeUpdate() {
+  public function onBeforeUpdate() {
     parent::onBeforeUpdate();
     if($this->status === self::STATUS_ACCEPTED AND is_null($this->accepted)) {
       $this->accepted = time();

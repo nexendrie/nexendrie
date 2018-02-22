@@ -14,7 +14,7 @@ namespace Nexendrie\Orm;
  * @property int $when
  */
 class MonasteryDonation extends \Nextras\Orm\Entity\Entity {
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->when = time();
   }

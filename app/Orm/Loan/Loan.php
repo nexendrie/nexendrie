@@ -49,7 +49,7 @@ class Loan extends \Nextras\Orm\Entity\Entity {
     return max([1, $interest]);
   }
   
-  protected function onBeforeInsert() {
+  public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->taken = time();
   }
