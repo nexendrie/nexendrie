@@ -4,7 +4,7 @@
   <target name="test-coverage" depends="lint,cs,phpstan,tests-coverage,clean-db"/>
   <target name="test-phpdbg" depends="lint,cs,phpstan,tests-phpdbg,clean-db"/>
   <target name="test-ci" depends="install-ci,test"/>
-  <target name="test-ci-coverage" depends="install-ci,test-coverage"/>
+  <target name="test-ci-coverage" depends="install-ci,test-phpdbg"/>
   <target name="install">
     <property name="environment" value="production"/>
     <if>
