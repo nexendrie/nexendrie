@@ -271,16 +271,16 @@
         },
         {
             "name": "nette/application",
-            "version": "v2.4.10",
+            "version": "v2.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/application.git",
-                "reference": "c7fea54e04011fa3f9b808cd5513e53b76d621db"
+                "reference": "2379b1ddeb1f2aebf21b73db67659575442c588a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/application/zipball/c7fea54e04011fa3f9b808cd5513e53b76d621db",
-                "reference": "c7fea54e04011fa3f9b808cd5513e53b76d621db",
+                "url": "https://api.github.com/repos/nette/application/zipball/2379b1ddeb1f2aebf21b73db67659575442c588a",
+                "reference": "2379b1ddeb1f2aebf21b73db67659575442c588a",
                 "shasum": ""
             },
             "require": {
@@ -354,7 +354,7 @@
                 "routing",
                 "seo"
             ],
-            "time": "2018-02-05T18:42:29+00:00"
+            "time": "2018-03-07T16:04:13+00:00"
         },
         {
             "name": "nette/bootstrap",
@@ -685,16 +685,16 @@
         },
         {
             "name": "nette/forms",
-            "version": "v2.4.6",
+            "version": "v2.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/forms.git",
-                "reference": "70224011c6ca3941f5aeeb4efbe31d2cb3b13652"
+                "reference": "a5e96ad1fb0647f7a68d0e3049b539bfb5dd568a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/forms/zipball/70224011c6ca3941f5aeeb4efbe31d2cb3b13652",
-                "reference": "70224011c6ca3941f5aeeb4efbe31d2cb3b13652",
+                "url": "https://api.github.com/repos/nette/forms/zipball/a5e96ad1fb0647f7a68d0e3049b539bfb5dd568a",
+                "reference": "a5e96ad1fb0647f7a68d0e3049b539bfb5dd568a",
                 "shasum": ""
             },
             "require": {
@@ -749,7 +749,7 @@
                 "nette",
                 "validation"
             ],
-            "time": "2017-08-25T12:45:48+00:00"
+            "time": "2018-03-07T16:29:18+00:00"
         },
         {
             "name": "nette/http",
