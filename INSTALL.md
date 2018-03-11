@@ -3,7 +3,7 @@ Installation instructions
 
 Requirements
 ------------
-Obviously, you need PHP. Version 7.1 or later is required. Then you need web server (preferably Apache or Nginx) and sql server (MySql, PostgreSql or MariaDb).
+Obviously, you need PHP. Version 7.2 or later is required. Then you need web server (preferably Apache or Nginx) and sql server (MySql, PostgreSql or MariaDb).
 The game uses Composer to manage its dependencies so you have to have it installed. You also need Git if you want to contribute.
 
 Downloading

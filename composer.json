@@ -19,7 +19,7 @@
         "issues": "https://gitlab.com/nexendrie/nexendrie/issues"
     },
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=7.2.0",
         "nette/application": "~2.4",
         "nette/bootstrap": "~2.4",
         "nette/caching": "~2.4",

@@ -1,4 +1,4 @@
-image: nexendrie/php:7.1
+image: nexendrie/php:7.2
 
 stages:
   - test
@@ -29,11 +29,6 @@ cache:
 
 test:default:
   <<: *test_job
-  retry: 2
-
-test:php7.2:
-  <<: *test_job
-  image: nexendrie/php:7.2
   retry: 2
 
 test:pgsql:
