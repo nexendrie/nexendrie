@@ -49,10 +49,10 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|UserJob[] $jobs {1:m UserJob::$user}
  * @property OneHasMany|Town[] $ownedTowns {1:m Town::$owner}
  * @property OneHasMany|Mount[] $mounts {1:m Mount::$owner}
- * @property OneHasMany|UserSkill $skills {1:m UserSkill::$user}
+ * @property OneHasMany|UserSkill[] $skills {1:m UserSkill::$user}
  * @property OneHasMany|Punishment[] $punishments {1:m Punishment::$user}
  * @property OneHasMany|Loan[] $loans {1:m Loan::$user}
- * @property OneHasMany|UserAdventure $adventures {1:m UserAdventure::$user}
+ * @property OneHasMany|UserAdventure[] $adventures {1:m UserAdventure::$user}
  * @property OneHasMany|Monastery[] $monasteriesLed {1:m Monastery::$leader}
  * @property OneHasMany|MonasteryDonation[] $monasteryDonations {1:m MonasteryDonation::$user}
  * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$user}
