@@ -90,6 +90,15 @@ class MonasteryPresenter extends BasePresenter {
     return $form;
   }
   
+  public function actionChat(): void {
+    try {
+      $this->model->getByUser();
+    } catch(NotInMonasteryException $e) {
+      $this->flashMessage("Nejsi v klášteře.");
+      $this->redirect("Homepage:");
+    }
+  }
+  
   /**
    * @throws \Nette\Application\BadRequestException
    */

@@ -19,6 +19,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $hp {default 100}
  * @property OneHasMany|User[] $members {1:m User::$monastery, orderBy=group}
  * @property OneHasMany|MonasteryDonation[] $donations {1:m MonasteryDonation::$monastery}
+ * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$monastery}
  * @property-read string $foundedAt {virtual}
  * @property-read string $moneyT {virtual}
  * @property-read int $prayerLife {virtual}

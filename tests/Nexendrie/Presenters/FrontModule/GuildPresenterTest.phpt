@@ -93,6 +93,10 @@ final class GuildPresenterTest extends \Tester\TestCase {
     $this->checkSignal(":Front:Guild:members", "kick", ["user" => 1], [], "/");
     $this->checkSignal(":Front:Guild:members", "kick", ["user" => 3], [], "/guild/members");
   }
+  
+  public function testChat() {
+    $this->defaultChecks(":Front:Guild:chat");
+  }
 }
 
 $test = new GuildPresenterTest();

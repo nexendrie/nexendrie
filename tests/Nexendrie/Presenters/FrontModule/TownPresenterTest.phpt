@@ -54,6 +54,12 @@ final class TownPresenterTest extends \Tester\TestCase {
     $this->login();
     $this->checkAction(":Front:Town:elections");
   }
+  
+  public function testChat() {
+    $this->checkRedirect(":Front:Town:chat", "/user/login");
+    $this->login();
+    $this->checkAction(":Front:Town:chat");
+  }
 }
 
 $test = new TownPresenterTest();

@@ -639,4 +639,26 @@ CREATE TABLE `guild_fees` (
   CONSTRAINT `guild_fees_ibfk_2` FOREIGN KEY (`guild`) REFERENCES `guilds` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `chat_messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `message` text NOT NULL,
+  `when` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  `town` int(11) DEFAULT NULL,
+  `monastery` int(11) DEFAULT NULL,
+  `guild` int(11) DEFAULT NULL,
+  `order` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  KEY `town` (`town`),
+  KEY `monastery` (`monastery`),
+  KEY `guild` (`guild`),
+  KEY `order` (`order`),
+  CONSTRAINT `chat_messages_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  CONSTRAINT `chat_messages_ibfk_2` FOREIGN KEY (`town`) REFERENCES `towns` (`id`),
+  CONSTRAINT `chat_messages_ibfk_3` FOREIGN KEY (`monastery`) REFERENCES `monasteries` (`id`),
+  CONSTRAINT `chat_messages_ibfk_4` FOREIGN KEY (`guild`) REFERENCES `guilds` (`id`),
+  CONSTRAINT `chat_messages_ibfk_5` FOREIGN KEY (`order`) REFERENCES `orders` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
 -- 2016-09-25 09:05:29

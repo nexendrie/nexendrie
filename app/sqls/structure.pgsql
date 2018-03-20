@@ -56,6 +56,18 @@ CREATE TABLE "castles" (
     "hp" varchar(6) NOT NULL DEFAULT 100
 );
 
+
+CREATE TABLE "chat_messages" (
+  "id" SERIAL PRIMARY KEY,
+  "message" text NOT NULL,
+  "when" integer NOT NULL,
+  "user" integer NOT NULL,
+  "town" integer DEFAULT NULL,
+  "monastery" integer DEFAULT NULL,
+  "guild" integer DEFAULT NULL,
+  "order" integer DEFAULT NULL
+);
+
 CREATE TABLE "comments" (
     "id" SERIAL PRIMARY KEY,
     "title" varchar(50) NOT NULL,

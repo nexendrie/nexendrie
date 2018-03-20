@@ -16,6 +16,7 @@ extensions:
     rss: Nexendrie\Rss\Bridges\NetteDI\RssExtension
     translation: Nexendrie\Translation\Bridges\NetteDI\TranslationExtension
     menu: Nexendrie\Menu\DI\MenuExtension
+    chat: Nexendrie\Chat\DI\ChatExtension
 orm:
     model: Nexendrie\Orm\Model
 php:
@@ -26,6 +27,13 @@ translation:
         folders:
             - %wwwDir%/vendor/nexendrie/book-component/src/lang
     default: cs
+chat:
+    databaseAdapter: Nexendrie\Chat\NextrasOrmAdapter
+    chats:
+        town: Nexendrie\Chat\ITownChatControlFactory
+        monastery: Nexendrie\Chat\IMonasteryChatControlFactory
+        guild: Nexendrie\Chat\IGuildChatControlFactory
+        order: Nexendrie\Chat\IOrderChatControlFactory
 menu:
     default:
         title: Menu

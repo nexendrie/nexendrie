@@ -87,6 +87,14 @@ class OrderPresenter extends BasePresenter {
     return $form;
   }
   
+  public function actionChat(): void {
+    $order = $this->model->getUserOrder();
+    if(is_null($order)) {
+      $this->flashMessage("Nejsi v řádu.");
+      $this->redirect("Homepage:");
+    }
+  }
+  
   /**
    * @throws \Nette\Application\BadRequestException
    */

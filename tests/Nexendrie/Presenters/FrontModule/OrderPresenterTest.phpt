@@ -83,6 +83,10 @@ final class OrderPresenterTest extends \Tester\TestCase {
     $this->checkSignal(":Front:Order:members", "kick", ["user" => 3], [], "/");
     $this->checkSignal(":Front:Order:members", "kick", ["user" => 1], [], "/order/members");
   }
+  
+  public function testChat() {
+    $this->defaultChecks(":Front:Order:chat");
+  }
 }
 
 $test = new OrderPresenterTest();
