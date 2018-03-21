@@ -47,7 +47,7 @@ class NextrasOrmAdapter implements IDatabaseAdapter {
     $user->lastActive = time();
     $this->orm->users->persistAndFlush($user);
     $characters = $this->orm->users->findBy([
-      $column => $value, "lastActive>=" => time()
+      $column => $value, "lastActive>=" => time() - 60 * 5
     ]);
     $collection = new ChatCharactersCollection();
     foreach($characters as $character) {
