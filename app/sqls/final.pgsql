@@ -11,6 +11,16 @@ ALTER TABLE beer_production ADD CONSTRAINT beer_production_ibfk_2 FOREIGN KEY (h
 CREATE INDEX ON beer_production (house);
 ALTER TABLE castles ADD CONSTRAINT castles_ibfk_1 FOREIGN KEY (owner) REFERENCES users (id) DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX ON castles (owner);
+ALTER TABLE chat_messages ADD CONSTRAINT chat_messages_ibfk_1 FOREIGN KEY ("user") REFERENCES users (id) DEFERRABLE INITIALLY DEFERRED;
+CREATE INDEX ON chat_messages ("user");
+ALTER TABLE chat_messages ADD CONSTRAINT chat_messages_ibfk_2 FOREIGN KEY (town) REFERENCES towns (id) DEFERRABLE INITIALLY DEFERRED;
+CREATE INDEX ON chat_messages (town);
+ALTER TABLE chat_messages ADD CONSTRAINT chat_messages_ibfk_3 FOREIGN KEY (monastery) REFERENCES monasteries (id) DEFERRABLE INITIALLY DEFERRED;
+CREATE INDEX ON chat_messages (monastery);
+ALTER TABLE chat_messages ADD CONSTRAINT chat_messages_ibfk_4 FOREIGN KEY (guild) REFERENCES guilds (id) DEFERRABLE INITIALLY DEFERRED;
+CREATE INDEX ON chat_messages (guild);
+ALTER TABLE chat_messages ADD CONSTRAINT chat_messages_ibfk_5 FOREIGN KEY ("order") REFERENCES orders (id) DEFERRABLE INITIALLY DEFERRED;
+CREATE INDEX ON chat_messages ("order");
 ALTER TABLE comments ADD CONSTRAINT comments_ibfk_2 FOREIGN KEY (author) REFERENCES users (id) DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX ON comments (author);
 ALTER TABLE comments ADD CONSTRAINT comments_ibfk_3 FOREIGN KEY (article) REFERENCES articles (id) DEFERRABLE INITIALLY DEFERRED;

@@ -21,6 +21,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   
   public function loadConfiguration(): void {
     $this->registerMenuConditions();
+    $this->addChatCommands();
     $this->addModels();
     $this->addCronTasks();
     $this->addComponents();
@@ -33,6 +34,12 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Menu\ConditionBanned::class);
     $builder->addDefinition("menu.condition.path")
       ->setType(Nexendrie\Menu\ConditionPath::class);
+  }
+  
+  protected function addChatCommands(): void {
+    $builder = $this->getContainerBuilder();
+    $builder->addDefinition("chat.command.time")
+      ->setType(Nexendrie\Chat\Commands\TimeCommand::class);
   }
   
   protected function addModels(): void {

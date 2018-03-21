@@ -60,6 +60,9 @@ INSERT INTO comments ("title", "text", "article", "author", "added") VALUES
   ('Hotovo','Přechod již byl úspěšně dokončen.',3,1,1441372474),
   ('Test','text',6,1,1445197436);
 
+INSERT INTO chat_messages ("message", "when", "user", "town", "monastery", "guild", "order") VALUES
+  ('Vítejte v cechu',	1521573723,	3,	NULL,	NULL,	1,	NULL);
+
 INSERT INTO events ("name", "description", "start", "end", "adventures_bonus", "work_bonus", "prayer_life_bonus", "training_discount", "repairing_discount", "shopping_discount") VALUES
   ('Oslavy založení','d',1467756000,1468360740,50,50,50,50,50,50);
 

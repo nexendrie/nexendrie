@@ -61,6 +61,12 @@ final class MonasteryPresenterTest extends \Tester\TestCase {
     $this->login("Rahym");
     $this->checkAction(":Front:Monastery:manage");
   }
+  
+  public function testChat() {
+    $this->defaultChecks(":Front:Monastery:chat");
+    $this->login("Rahym");
+    $this->checkAction(":Front:Monastery:chat");
+  }
 }
 
 $test = new MonasteryPresenterTest();

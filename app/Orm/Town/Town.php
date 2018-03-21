@@ -21,6 +21,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Guild[] $guilds {1:m Guild::$town}
  * @property OneHasMany|Election[] $elections {1:m Election::$town}
  * @property OneHasMany|ElectionResult[] $electionResults {1:m ElectionResult::$town}
+ * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$town}
  * @property-read string $foundedAt {virtual}
  * @property-read string $priceT {virtual}
  */

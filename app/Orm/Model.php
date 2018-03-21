@@ -49,6 +49,7 @@ namespace Nexendrie\Orm;
  * @property-read DepositsRepository $deposits
  * @property-read GuildFeesRepository $guildFees
  * @property-read OrderFeesRepository $orderFees
+ * @property-read ChatMessagesRepository $chatMessages
  */
 class Model extends \Nextras\Orm\Model\Model {
   

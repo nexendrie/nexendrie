@@ -228,5 +228,13 @@ class GuildPresenter extends BasePresenter {
       $this->redirect("members");
     }
   }
+  
+  public function actionChat(): void {
+    $guild = $this->model->getUserGuild();
+    if(is_null($guild)) {
+      $this->flashMessage("Nejsi v cechu.");
+      $this->redirect("Homepage:");
+    }
+  }
 }
 ?>

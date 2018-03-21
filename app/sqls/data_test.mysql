@@ -159,4 +159,8 @@ INSERT INTO `marriages` (`id`, `user1`, `user2`, `status`, `divorce`, `proposed`
   (1,	4,	1,	'active',	0,	1466241338,	1466245558,	1467450938,	NULL,	5),
   (2,	3,	6,	'accepted',	0,	1475264924,	1475264945,	1792007340,	NULL,	0);
 
+
+INSERT INTO `chat_messages` (`id`, `message`, `when`, `user`, `town`, `monastery`, `guild`, `order`) VALUES
+  (1,	'Vítejte v cechu',	1521573723,	3,	NULL,	NULL,	1,	NULL);
+
 -- 2016-09-25 09:13:21
