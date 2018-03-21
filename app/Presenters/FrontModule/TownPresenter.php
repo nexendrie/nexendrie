@@ -10,7 +10,6 @@ use Nexendrie\Model\TownNotFoundException,
     Nette\Application\UI\Form,
     Nexendrie\Components\IElectionsControlFactory,
     Nexendrie\Components\ElectionsControl,
-    Nexendrie\Orm\User as UserEntity,
     Nexendrie\Orm\Group as GroupEntity;
 
 /**
