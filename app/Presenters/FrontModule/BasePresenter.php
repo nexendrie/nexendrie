@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nette\Application\UI\Form,
-    Nexendrie\Chat;
+    Nexendrie\Chat,
+    HeroesofAbenez\Chat\ChatControl;
 
 /**
  * Parent of all front presenters
@@ -81,11 +82,11 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
       default:
         throw new \RuntimeException("Invalid chat $chat.");
     }
-    /** @var Chat\ChatControl $chat */
+    /** @var ChatControl $chat */
     $chat = $factory->create();
     $form->addComponent($chat, "chat");
     $form->onSuccess[] = function(Form $form, array $values) {
-      /** @var Chat\ChatControl $chat */
+      /** @var ChatControl $chat */
       $chat = $form->getComponent("chat");
       $chat->newMessage($values["message"]);
     };

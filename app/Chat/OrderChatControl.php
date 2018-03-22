@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Chat;
 
+use HeroesofAbenez\Chat\ChatControl,
+    HeroesofAbenez\Chat\IDatabaseAdapter;
+
 /**
  * OrderChatControl
  *
@@ -13,7 +16,6 @@ class OrderChatControl extends ChatControl {
     $userRecord = $orm->users->getById($user->id);
     $orderId = ($userRecord->order) ? $userRecord->order->id : 0;
     parent::__construct($databaseAdapter, "order", $orderId);
-    $this->characterProfileLink = ":Front:Profile:";
   }
 }
 ?>

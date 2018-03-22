@@ -4,8 +4,67 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "08beb78c6fb4608d220f9c4e8f2f0c52",
+    "content-hash": "f9221e8f0dfa6d3ac7f63caad3cb3466",
     "packages": [
+        {
+            "name": "heroesofabenez/chat",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/heroesofabenez/chat.git",
+                "reference": "2a100ff839aaf975d94579f5d59585a38340a67c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fchat/repository/archive.zip?sha=2a100ff839aaf975d94579f5d59585a38340a67c",
+                "reference": "2a100ff839aaf975d94579f5d59585a38340a67c",
+                "shasum": ""
+            },
+            "require": {
+                "latte/latte": "^2.4",
+                "nette/application": "^2.4",
+                "nette/di": "^2.4.10",
+                "nette/utils": "^2.4",
+                "nexendrie/translation": "^1.1.1",
+                "nexendrie/utils": "^1.1",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "nexendrie/code-quality": "dev-master",
+                "nexendrie/site-generator": "1.0.x-dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "HeroesofAbenez\\Chat\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Konečný",
+                    "email": "jakub.konecny2@centrum.cz",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple chat component",
+            "homepage": "https://heroesofabenez.gitlab.io",
+            "keywords": [
+                "Simple",
+                "chat",
+                "component",
+                "nette"
+            ],
+            "time": "2018-03-22T13:19:01+00:00"
+        },
         {
             "name": "kdyby/autowired",
             "version": "v1.5.0",
@@ -1446,16 +1505,16 @@
         },
         {
             "name": "nexendrie/translation",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/translation.git",
-                "reference": "735fafc7ab5ded604fddf629098d5db1d4a3bf72"
+                "reference": "b080c25e806706a83a323f81bc25d937ae2e3e66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=735fafc7ab5ded604fddf629098d5db1d4a3bf72",
-                "reference": "735fafc7ab5ded604fddf629098d5db1d4a3bf72",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=b080c25e806706a83a323f81bc25d937ae2e3e66",
+                "reference": "b080c25e806706a83a323f81bc25d937ae2e3e66",
                 "shasum": ""
             },
             "require": {
@@ -1516,7 +1575,7 @@
                 "translation",
                 "yaml"
             ],
-            "time": "2018-01-22T14:17:59+00:00"
+            "time": "2018-03-21T20:43:49+00:00"
         },
         {
             "name": "nexendrie/utils",

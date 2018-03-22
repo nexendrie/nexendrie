@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Chat;
 
+use HeroesofAbenez\Chat\ChatControl,
+    HeroesofAbenez\Chat\IDatabaseAdapter;
+
 /**
  * MonasteryChatControl
  *
@@ -13,7 +16,6 @@ class MonasteryChatControl extends ChatControl {
     $userRecord = $orm->users->getById($user->id);
     $monasteryId = ($userRecord->monastery) ? $userRecord->monastery->id : 0;
     parent::__construct($databaseAdapter, "monastery", $monasteryId);
-    $this->characterProfileLink = ":Front:Profile:";
   }
 }
 ?>

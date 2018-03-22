@@ -16,7 +16,7 @@ extensions:
     rss: Nexendrie\Rss\Bridges\NetteDI\RssExtension
     translation: Nexendrie\Translation\Bridges\NetteDI\TranslationExtension
     menu: Nexendrie\Menu\DI\MenuExtension
-    chat: Nexendrie\Chat\DI\ChatExtension
+    chat: HeroesofAbenez\Chat\DI\ChatExtension
 orm:
     model: Nexendrie\Orm\Model
 php:
