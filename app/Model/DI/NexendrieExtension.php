@@ -75,8 +75,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Model\Inventory::class);
     $builder->addDefinition($this->prefix("model.adventure"))
       ->setType(Nexendrie\Model\Adventure::class);
-    $builder->addDefinition($this->prefix("model.combat"))
-      ->setType(Nexendrie\Model\Combat::class);
+    $builder->addDefinition($this->prefix("model.combatHelper"))
+      ->setType(Nexendrie\Model\CombatHelper::class);
     $builder->addDefinition($this->prefix("model.events"))
       ->setType(Nexendrie\Model\Events::class);
     $builder->addDefinition($this->prefix("model.house"))

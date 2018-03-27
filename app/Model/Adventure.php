@@ -16,7 +16,7 @@ use Nexendrie\Orm\Adventure as AdventureEntity,
  * @author Jakub Konečný
  */
 class Adventure {
-  /** @var Combat */
+  /** @var CombatHelper */
   protected $combatModel;
   /** @var Events */
   protected $eventsModel;
@@ -31,7 +31,7 @@ class Adventure {
   
   use \Nette\SmartObject;
   
-  public function __construct(Combat $combatModel, Events $eventsModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(CombatHelper $combatModel, Events $eventsModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->combatModel = $combatModel;
     $this->eventsModel = $eventsModel;
     $this->orderModel = $orderModel;

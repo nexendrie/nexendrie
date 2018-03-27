@@ -7,16 +7,16 @@ use Tester\Assert;
 
 require __DIR__ . "/../../bootstrap.php";
 
-final class CombatTest extends \Tester\TestCase {
+final class CombatHelperTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
   
-  /** @var Combat */
+  /** @var CombatHelper */
   protected $model;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   
   protected function setUp() {
-    $this->model = $this->getService(Combat::class);
+    $this->model = $this->getService(CombatHelper::class);
     $this->orm = $this->getService(\Nexendrie\Orm\Model::class);
   }
   
@@ -54,6 +54,6 @@ final class CombatTest extends \Tester\TestCase {
   }
 }
 
-$test = new CombatTest();
+$test = new CombatHelperTest();
 $test->run();
 ?>

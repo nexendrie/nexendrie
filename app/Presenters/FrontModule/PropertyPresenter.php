@@ -37,14 +37,14 @@ class PropertyPresenter extends BasePresenter {
   protected $inventoryModel;
   /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
-  /** @var \Nexendrie\Model\Combat */
+  /** @var \Nexendrie\Model\CombatHelper */
   protected $combatModel;
   /** @var \Nexendrie\Model\UserManager */
   protected $userManager;
   /** @var TownEntity */
   private $town;
   
-  public function __construct(\Nexendrie\Model\Property $model, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\Inventory $inventoryModel, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Combat $combatModel, \Nexendrie\Model\UserManager $userManager) {
+  public function __construct(\Nexendrie\Model\Property $model, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\Inventory $inventoryModel, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\CombatHelper $combatModel, \Nexendrie\Model\UserManager $userManager) {
     parent::__construct();
     $this->model = $model;
     $this->townModel = $townModel;
