@@ -1579,16 +1579,16 @@
         },
         {
             "name": "nexendrie/utils",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/utils.git",
-                "reference": "738bb06063d41045fb0e1a835e89cd662455053f"
+                "reference": "3826b4283396187190b9a2cd91a3e53c1d67610b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Futils/repository/archive.zip?sha=738bb06063d41045fb0e1a835e89cd662455053f",
-                "reference": "738bb06063d41045fb0e1a835e89cd662455053f",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Futils/repository/archive.zip?sha=3826b4283396187190b9a2cd91a3e53c1d67610b",
+                "reference": "3826b4283396187190b9a2cd91a3e53c1d67610b",
                 "shasum": ""
             },
             "require": {
@@ -1597,13 +1597,12 @@
             },
             "require-dev": {
                 "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "1.0.x-dev",
-                "phpstan/phpstan-nette": "^0.7"
+                "nexendrie/site-generator": "1.0.x-dev"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -1626,10 +1625,13 @@
             "homepage": "https://nexendrie.gitlab.io",
             "keywords": [
                 "collections",
+                "constants",
                 "intervals",
+                "numbers",
+                "range",
                 "utils"
             ],
-            "time": "2017-06-16T10:04:25+00:00"
+            "time": "2018-03-26T14:00:45+00:00"
         },
         {
             "name": "nextras/dbal",
@@ -1918,16 +1920,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.4.12",
+            "version": "v2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "4182ce7b92f67002509b7fa2fc34bd84deea0b24"
+                "reference": "ead5141731a21cfd0710b092351d923549d2b2ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/4182ce7b92f67002509b7fa2fc34bd84deea0b24",
-                "reference": "4182ce7b92f67002509b7fa2fc34bd84deea0b24",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/ead5141731a21cfd0710b092351d923549d2b2ad",
+                "reference": "ead5141731a21cfd0710b092351d923549d2b2ad",
                 "shasum": ""
             },
             "require": {
@@ -1979,7 +1981,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2018-02-28T00:49:47+00:00"
+            "time": "2018-03-23T17:15:58+00:00"
         }
     ],
     "packages-dev": [
