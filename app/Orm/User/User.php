@@ -26,8 +26,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $style {default "blu-sky"}
  * @property string $gender {enum self::GENDER_*} {default self::GENDER_MALE}
  * @property bool $banned {default false}
- * @property int $life {default 60}
- * @property int $maxLife {default 60}
+ * @property int $life
+ * @property-read int $maxLife {virtual}
  * @property int $money {default 2}
  * @property Town $town {m:1 Town::$denizens}
  * @property Monastery|NULL $monastery {m:1 Monastery::$members} {default NULL}
@@ -107,6 +107,16 @@ class User extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->money($this->money);
   }
   
+  protected function getterMaxLife(): int {
+    $maxLife = 60;
+    /** @var UserSkill[] $lifeSkills */
+    $lifeSkills = $this->skills->get()->findBy(["this->skill->stat" => Skill::STAT_HITPOINTS]);
+    foreach($lifeSkills as $skill) {
+      $maxLife += $skill->skill->statIncrease * $skill->level;
+    }
+    return $maxLife;
+  }
+  
   protected function setterLife(int $value): int {
     if($value > $this->maxLife) {
       return $this->maxLife;
@@ -178,6 +188,7 @@ class User extends \Nextras\Orm\Entity\Entity {
   public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->joined = $this->lastActive = time();
+    $this->life = $this->maxLife;
   }
 }
 ?>

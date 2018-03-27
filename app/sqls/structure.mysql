@@ -504,7 +504,6 @@ CREATE TABLE `users` (
   `gender` enum('male','female') NOT NULL DEFAULT 'male',
   `banned` int(1) NOT NULL DEFAULT '0',
   `life` int(2) NOT NULL DEFAULT '60',
-  `max_life` int(2) NOT NULL DEFAULT '60',
   `money` int(11) NOT NULL DEFAULT '2',
   `town` int(11) NOT NULL DEFAULT '3',
   `monastery` int(11) DEFAULT NULL,

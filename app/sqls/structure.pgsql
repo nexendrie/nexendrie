@@ -438,7 +438,6 @@ CREATE TABLE "users" (
     "gender" users_gender NOT NULL DEFAULT 'male',
     "banned" boolean NOT NULL DEFAULT FALSE,
     "life" integer NOT NULL DEFAULT 60,
-    "max_life" integer NOT NULL DEFAULT 60,
     "money" integer NOT NULL DEFAULT 2,
     "town" integer NOT NULL DEFAULT 3,
     "monastery" integer DEFAULT NULL,
