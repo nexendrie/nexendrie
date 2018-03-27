@@ -152,7 +152,7 @@ INSERT INTO user_skills ("user", "skill", "level") VALUES
   (1,7,10);
 
 INSERT INTO users ("username", "publicname", "password", "email", "joined", "last_active", "last_prayer", "last_transfer", "group", "infomails", "style", "gender", "banned", "life", "money", "town", "monastery", "castle", "house", "prayers", "guild", "guild_rank", "order", "order_rank") VALUES
-  ('Rahym','Rahym','$2y$10$5rhQ8Puifw9YxQ8hdK.HCOeo5AW4EhLzLrDicx1TuE3TEs.tSUmVS','jakub.konecny2@seznam.cz',1435240277,1486402510,1446893589,1447251643,4,TRUE,'blue-sky','male',FALSE,60,14357,1,2,NULL,NULL,2,NULL,NULL,NULL,NULL),
+  ('Rahym','Rahym','$2y$10$5rhQ8Puifw9YxQ8hdK.HCOeo5AW4EhLzLrDicx1TuE3TEs.tSUmVS','jakub.konecny2@seznam.cz',1435240277,1486402510,1446893589,1447251643,4,TRUE,'blue-sky','male',FALSE,110,14357,1,2,NULL,NULL,2,NULL,NULL,NULL,NULL),
   ('jakub','Jakub','$2y$10$ejwYft0LbhlwhLz5vA07FOs2nNZGBb4IVpxkw7i5owXgjQ1JM6iF2','konecnyjakub01@gmail.com',1441219049,1489520003,NULL,1447528739,8,TRUE,'blue-sky','male',FALSE,60,21001,2,NULL,NULL,NULL,0,1,4,NULL,NULL),
   ('svetlana','Světlana','$2y$10$0a7MCizD1w6BECZvV7p4XOyA2aGyepJQPlpzJrFwvvURcSRzGpEL.','svetlana@localhost.k',1455360151,1486402684,1455466667,1455466659,5,FALSE,'dark-sky','female',FALSE,60,14312,3,NULL,NULL,NULL,1,NULL,NULL,1,3),
   ('premysl','premysl','$2y$10$25fvAltDnlF.TOPTj8JlK.VC2BhFmijGJNjV5HxIz1LQ9Pj0L.LQK','premysl@localhost.k',1468050937,1468050937,NULL,NULL,9,FALSE,'blue-sky','male',FALSE,60,30,2,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),

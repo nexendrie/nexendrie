@@ -205,7 +205,7 @@ INSERT INTO skills ("name", "price", "max_level", "type", "stat", "stat_increase
   ('Těžba',15,5,'work',NULL,0),
   ('Zacházení se zbraněmi',30,5,'work',NULL,0),
   ('Obchodování',35,5,'work',NULL,0),
-  ('Výdrž',50,10,'combat','hitpoints',3),
+  ('Výdrž',50,10,'combat','hitpoints',5),
   ('Houževnatost',50,5,'combat','armor',1),
   ('Síla',50,5,'combat','damage',1);
 
@@ -224,4 +224,4 @@ INSERT INTO towns ("name", "description", "founded", "owner", "price", "on_marke
 
 INSERT INTO users ("username", "publicname", "password", "email", "joined", "last_active", "last_prayer", "last_transfer", "group", "infomails", "style", "gender", "banned", "life", "money", "town", "monastery", "castle", "house", "prayers", "guild", "guild_rank", "order", "order_rank") VALUES
   ('system','Vladěna','$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2','admin@localhost',1429779664,1479045692,NULL,NULL,0,FALSE,'blue-sky','female',FALSE,60,560132,1,NULL,1,NULL,0,NULL,NULL,NULL,NULL),
-  ('admin','Trimadyl z Myhru','$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2','jakub.konecny2@centrum.cz',1429779664,1494598141,NULL,1455366455,1,TRUE,'dark-sky','male',FALSE,90,23354,2,NULL,2,NULL,0,NULL,NULL,1,4);
+  ('admin','Trimadyl z Myhru','$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2','jakub.konecny2@centrum.cz',1429779664,1494598141,NULL,1455366455,1,TRUE,'dark-sky','male',FALSE,110,23354,2,NULL,2,NULL,0,NULL,NULL,1,4);
