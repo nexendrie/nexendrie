@@ -38,7 +38,7 @@
         "nexendrie/translation": "^1.1",
         "nexendrie/rss": "^0.4",
         "nexendrie/menu": "^2.0",
-        "nexendrie/utils": "^1.1",
+        "nexendrie/utils": "^1.2",
         "symfony/options-resolver": "^4.0",
         "heroesofabenez/chat": "^1.0"
     },

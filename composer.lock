@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9221e8f0dfa6d3ac7f63caad3cb3466",
+    "content-hash": "a0a873c15905b76b4fa2069857541dca",
     "packages": [
         {
             "name": "heroesofabenez/chat",
