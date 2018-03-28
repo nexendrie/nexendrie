@@ -273,6 +273,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Forms\ChangeWeddingTermFormFactory::class);
     $builder->addDefinition($this->prefix("form.openDepositAccount"))
       ->setType(Nexendrie\Forms\OpenDepositAccountFormFactory::class);
+    $builder->addDefinition($this->prefix("form.siteSearch"))
+      ->setType(Nexendrie\Forms\SiteSearchFormFactory::class);
   }
   
   public function beforeCompile() {

@@ -1,0 +1,18 @@
+{layout "../@layout.latte"}
+{block title}Hledání{/block}
+{block content}
+  <h1>Hledání</h1>
+  {control siteSearchForm}
+  {default $results = false}
+  {if $results}
+  <h1>Výsledky</h1>
+  <p id="searchResultsCount">Počet výsledků: {$results->count()}</p>
+  <div id="searchResults">
+     {foreach $results as $row}
+  {if $row instanceof Nexendrie\Orm\User}<a n:href="Profile: $row->username">{$row->publicname}</a>{if !$iterator->isLast()}<br>{/if}
+  {elseif $row instanceof Nexendrie\Orm\Article}<a n:href="Article:view $row->id">{$row->title}</a>{if !$iterator->isLast()}<br>{/if}
+  {/if}
+     {/foreach}
+  {/if}
+  </div>
+{/block}
