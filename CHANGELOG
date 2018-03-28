@@ -9,6 +9,7 @@ Version 1.0.0-beta5+dev
 - guild and order leader can see how much each member paid on fees
 - raised minimal version of PHP to 7.2
 - added chat
+- added site search
 
 Version 1.0.0-beta5
 - some refactoring
