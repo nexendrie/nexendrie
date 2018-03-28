@@ -12,7 +12,7 @@ namespace Nexendrie\Orm;
  * @property Item|NULL $weapon {m:1 Item::$weaponSets}
  * @property Item|NULL $armor {m:1 Item::$armorSets}
  * @property Item|NULL $helmet {m:1 Item::$helmetSets}
- * @property string $stat {enum self::STAT_*}
+ * @property string $stat {enum static::STAT_*}
  * @property int $bonus
  * @property-read string $effect {virtual}
  */
@@ -26,9 +26,9 @@ class ItemSet extends \Nextras\Orm\Entity\Entity {
    */
   public static function getStats(): array {
     return [
-      self::STAT_HITPOINTS => "maximum životů",
-      self::STAT_DAMAGE => "poškození",
-      self::STAT_ARMOR => "brnění",
+      static::STAT_HITPOINTS => "maximum životů",
+      static::STAT_DAMAGE => "poškození",
+      static::STAT_ARMOR => "brnění",
     ];
   }
   
@@ -42,7 +42,7 @@ class ItemSet extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterEffect(): string {
-    return self::getStats()[$this->stat] . " +" . $this->bonus;
+    return static::getStats()[$this->stat] . " +" . $this->bonus;
   }
 }
 ?>

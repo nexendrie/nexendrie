@@ -11,7 +11,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @author Jakub Konečný
  * @property int $id {primary}
  * @property string $name
- * @property string $gender {enum self::GENDER_*} {default self::GENDER_YOUNG}
+ * @property string $gender {enum static::GENDER_*} {default static::GENDER_YOUNG}
  * @property MountType $type {m:1 MountType::$mounts}
  * @property User $owner {m:1 User::$mounts}
  * @property int $price
@@ -58,9 +58,9 @@ class Mount extends \Nextras\Orm\Entity\Entity {
    */
   public static function getGenders(): array {
     return [
-      self::GENDER_MALE => "hřebec",
-      self::GENDER_FEMALE => "klisna",
-      self::GENDER_YOUNG => "mládě"
+      static::GENDER_MALE => "hřebec",
+      static::GENDER_FEMALE => "klisna",
+      static::GENDER_YOUNG => "mládě"
     ];
   }
   
@@ -92,7 +92,7 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterGenderCZ(): string {
-    return self::getGenders()[$this->gender];
+    return static::getGenders()[$this->gender];
   }
   
   protected function getterPriceT(): string {

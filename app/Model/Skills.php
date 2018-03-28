@@ -176,7 +176,7 @@ class Skills {
     $bonus = 0;
     $userSkillLevel = $this->getLevelOfSkill($skillId);
     if(!is_null($userSkillLevel)) {
-      $increase = $userSkillLevel * self::SKILL_LEVEL_INCOME;
+      $increase = $userSkillLevel * static::SKILL_LEVEL_INCOME;
       $bonus += (int) ($baseIncome / 100 * $increase);
     }
     return $bonus;
@@ -194,7 +194,7 @@ class Skills {
     $bonus = 0;
     $userSkillLevel = $this->getLevelOfSkill($skillId);
     if(!is_null($userSkillLevel)) {
-      $bonus += $userSkillLevel * self::SKILL_LEVEL_SUCCESS_RATE;
+      $bonus += $userSkillLevel * static::SKILL_LEVEL_SUCCESS_RATE;
     }
     return $bonus;
   }

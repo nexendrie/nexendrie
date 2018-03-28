@@ -70,10 +70,10 @@ class Authenticator implements IAuthenticator {
     list($username, $password) = $credentials;
     $user = $this->orm->users->getByUsername($username);
     if(is_null($user)) {
-      throw new AuthenticationException("User not found.", self::IDENTITY_NOT_FOUND);
+      throw new AuthenticationException("User not found.", static::IDENTITY_NOT_FOUND);
     }
     if(!Passwords::verify($password, $user->password)) {
-      throw new AuthenticationException("Invalid password.", self::INVALID_CREDENTIAL);
+      throw new AuthenticationException("Invalid password.", static::INVALID_CREDENTIAL);
     }
     $user->lastActive = time();
     $this->orm->users->persistAndFlush($user);

@@ -45,8 +45,8 @@ class House extends \Nextras\Orm\Entity\Entity {
   protected function setterLuxuryLevel(int $value): int {
     if($value < 1) {
       return 1;
-    } elseif($value > self::MAX_LEVEL) {
-      return self::MAX_LEVEL;
+    } elseif($value > static::MAX_LEVEL) {
+      return static::MAX_LEVEL;
     }
     return $value;
   }
@@ -54,8 +54,8 @@ class House extends \Nextras\Orm\Entity\Entity {
   protected function setterBreweryLevel(int $value): int {
     if($value < 0) {
       return 0;
-    } elseif($value > self::MAX_LEVEL) {
-      return self::MAX_LEVEL;
+    } elseif($value > static::MAX_LEVEL) {
+      return static::MAX_LEVEL;
     }
     return $value;
   }
@@ -75,16 +75,16 @@ class House extends \Nextras\Orm\Entity\Entity {
     } elseif($this->owner->group->path != Group::PATH_CITY) {
       return 0;
     }
-    return $this->luxuryLevel * self::INCOME_BONUS_PER_LEVEL;
+    return $this->luxuryLevel * static::INCOME_BONUS_PER_LEVEL;
   }
   
   protected function getterUpgradePrice(): int {
-    if($this->luxuryLevel === self::MAX_LEVEL) {
+    if($this->luxuryLevel === static::MAX_LEVEL) {
       return 0;
     }
-    $price = self::BASE_UPGRADE_PRICE;
+    $price = static::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->luxuryLevel + 1; $i++) {
-      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+      $price += (int) (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
     }
     return $price;
   }
@@ -94,12 +94,12 @@ class House extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterBreweryUpgradePrice(): int {
-    if($this->breweryLevel === self::MAX_LEVEL) {
+    if($this->breweryLevel === static::MAX_LEVEL) {
       return 0;
     }
-    $price = self::BASE_UPGRADE_PRICE;
+    $price = static::BASE_UPGRADE_PRICE;
     for($i = 1; $i < $this->breweryLevel + 1; $i++) {
-      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+      $price += (int) (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
     }
     return $price;
   }
@@ -116,7 +116,7 @@ class House extends \Nextras\Orm\Entity\Entity {
     if($this->luxuryLevel !== 1) {
       $multiplier = ($this->luxuryLevel - 1) * 10 / 100 + 1;
     }
-    $basePrice = (int) (self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
+    $basePrice = (int) (static::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
     return $basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice);
   }
   

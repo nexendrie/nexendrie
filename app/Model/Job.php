@@ -254,7 +254,7 @@ class Job {
    * Calculate success rate for job
    */
   public function calculateSuccessRate(UserJobEntity $job): int {
-    $successRate = self::BASE_SUCCESS_RATE;
+    $successRate = static::BASE_SUCCESS_RATE;
     $successRate += $this->skillsModel->calculateSkillSuccessBonus($job->job->neededSkill->id);
     return $successRate;
   }

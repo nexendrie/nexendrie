@@ -87,10 +87,10 @@ class UserManager {
    */
   public function register(array $data): void {
     if(!$this->nameAvailable($data["username"])) {
-      throw new RegistrationException("Duplicate username.", self::REG_DUPLICATE_USERNAME);
+      throw new RegistrationException("Duplicate username.", static::REG_DUPLICATE_USERNAME);
     }
     if(!$this->emailAvailable($data["email"])) {
-      throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
+      throw new RegistrationException("Duplicate email.", static::REG_DUPLICATE_EMAIL);
     }
     $user = new UserEntity();
     $this->orm->users->attach($user);
@@ -135,10 +135,10 @@ class UserManager {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
     if(!$this->nameAvailable($settings["publicname"], "publicname", $this->user->id)) {
-      throw new SettingsException("The public name is used by someone else.", self::REG_DUPLICATE_USERNAME);
+      throw new SettingsException("The public name is used by someone else.", static::REG_DUPLICATE_USERNAME);
     }
     if(!$this->emailAvailable($settings["email"], $this->user->id)) {
-      throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
+      throw new SettingsException("The e-mail is used by someone else.", static::REG_DUPLICATE_EMAIL);
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
@@ -147,7 +147,7 @@ class UserManager {
         case "password_new":
           if(!empty($value)) {
             if(!Passwords::verify($settings["password_old"], $user->password)) {
-              throw new SettingsException("Invalid password.", self::SET_INVALID_PASSWORD);
+              throw new SettingsException("Invalid password.", static::SET_INVALID_PASSWORD);
             }
             $user->password = Passwords::hash($value);
           }

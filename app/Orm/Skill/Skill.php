@@ -14,8 +14,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $price
  * @property-read string $priceT {virtual}
  * @property int $maxLevel
- * @property string $type {enum self::TYPE_*}
- * @property string|NULL $stat {enum self::STAT_*} {default NULL}
+ * @property string $type {enum static::TYPE_*}
+ * @property string|NULL $stat {enum static::STAT_*} {default NULL}
  * @property-read string|NULL $statCZ {virtual}
  * @property int $statIncrease {default 0}
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
@@ -46,8 +46,8 @@ class Skill extends \Nextras\Orm\Entity\Entity {
    */
   public static function getTypes(): array {
     return [
-      self::TYPE_WORK => "práce",
-      self::TYPE_COMBAT => "boj",
+      static::TYPE_WORK => "práce",
+      static::TYPE_COMBAT => "boj",
     ];
   }
   
@@ -56,18 +56,18 @@ class Skill extends \Nextras\Orm\Entity\Entity {
    */
   public static function getStats(): array {
     return [
-      self::STAT_HITPOINTS => "maximum životů",
-      self::STAT_DAMAGE => "poškození",
-      self::STAT_ARMOR => "brnění",
+      static::STAT_HITPOINTS => "maximum životů",
+      static::STAT_DAMAGE => "poškození",
+      static::STAT_ARMOR => "brnění",
     ];
   }
   
   protected function getterStatCZ(): ?string {
-    return ($this->stat !== NULL) ? self::getStats()[$this->stat] : NULL;
+    return ($this->stat !== NULL) ? static::getStats()[$this->stat] : NULL;
   }
   
   protected function getterEffect(): string {
-    if($this->type === self::TYPE_WORK) {
+    if($this->type === static::TYPE_WORK) {
       return "";
     }
     return $this->statCZ . " +" . $this->statIncrease;

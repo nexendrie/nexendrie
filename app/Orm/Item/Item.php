@@ -15,7 +15,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $price
  * @property-read string $priceT {virtual}
  * @property Shop|NULL $shop {m:1 Shop::$items}
- * @property string $type {enum self::TYPE_*} {default self::TYPE_ITEM}
+ * @property string $type {enum static::TYPE_*} {default static::TYPE_ITEM}
  * @property int $strength {default 0}
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}
  * @property-read string $typeCZ {virtual}
@@ -45,14 +45,14 @@ class Item extends \Nextras\Orm\Entity\Entity {
    */
   public static function getTypes(): array {
     return [
-      self::TYPE_ITEM => "Věc",
-      self::TYPE_WEAPON => "Zbraň",
-      self::TYPE_ARMOR => "Brnění",
-      self::TYPE_HELMET => "Helma",
-      self::TYPE_POTION => "Lektvar",
-      self::TYPE_POTION => "Surovina",
-      self::TYPE_CHARTER => "Listina",
-      self::TYPE_INTIMACY_BOOST => "Zvýšení důvěrnosti",
+      static::TYPE_ITEM => "Věc",
+      static::TYPE_WEAPON => "Zbraň",
+      static::TYPE_ARMOR => "Brnění",
+      static::TYPE_HELMET => "Helma",
+      static::TYPE_POTION => "Lektvar",
+      static::TYPE_POTION => "Surovina",
+      static::TYPE_CHARTER => "Listina",
+      static::TYPE_INTIMACY_BOOST => "Zvýšení důvěrnosti",
     ];
   }
   
@@ -61,7 +61,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
    */
   public static function getCommonTypes(): array {
     return [
-      self::TYPE_ITEM, self::TYPE_MATERIAL, self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
+      static::TYPE_ITEM, static::TYPE_MATERIAL, static::TYPE_CHARTER, static::TYPE_INTIMACY_BOOST
     ];
   }
   
@@ -70,7 +70,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
    */
   public static function getEquipmentTypes(): array {
     return [
-      self::TYPE_WEAPON, self::TYPE_ARMOR, self::TYPE_HELMET
+      static::TYPE_WEAPON, static::TYPE_ARMOR, static::TYPE_HELMET
     ];
   }
   
@@ -79,7 +79,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
    */
   public static function getNotForSale(): array {
     return [
-      self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
+      static::TYPE_CHARTER, static::TYPE_INTIMACY_BOOST
     ];
   }
   
@@ -88,7 +88,7 @@ class Item extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterTypeCZ(): string {
-    return self::getTypes()[$this->type];
+    return static::getTypes()[$this->type];
   }
 }
 ?>

@@ -24,7 +24,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property Group $group {m:1 Group::$members}
  * @property bool $infomails {default false}
  * @property string $style {default "blu-sky"}
- * @property string $gender {enum self::GENDER_*} {default self::GENDER_MALE}
+ * @property string $gender {enum static::GENDER_*} {default static::GENDER_MALE}
  * @property bool $banned {default false}
  * @property int $life
  * @property-read int $maxLife {virtual}
@@ -98,8 +98,8 @@ class User extends \Nextras\Orm\Entity\Entity {
    */
   public static function getGenders(): array {
     return [
-      self::GENDER_MALE => "muž",
-      self::GENDER_FEMALE => "žena"
+      static::GENDER_MALE => "muž",
+      static::GENDER_FEMALE => "žena"
     ];
   }
   
@@ -127,7 +127,7 @@ class User extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterTitle(): string {
-    if($this->gender === self::GENDER_FEMALE) {
+    if($this->gender === static::GENDER_FEMALE) {
       return $this->group->femaleName;
     }
     return $this->group->singleName;

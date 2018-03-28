@@ -13,7 +13,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $title
  * @property string $text
  * @property User $author {m:1 User::$articles}
- * @property string $category {enum self::CATEGORY_*}
+ * @property string $category {enum static::CATEGORY_*}
  * @property int $added
  * @property-read string $addedAt {virtual}
  * @property bool $allowedComments {default true}
@@ -42,14 +42,14 @@ class Article extends \Nextras\Orm\Entity\Entity {
    */
   public static function getCategories(): array {
     return [
-      self::CATEGORY_NEWS => "Novinky",
-      self::CATEGORY_CHRONICLE => "Kronika",
-      self::CATEGORY_POETRY => "Poezie",
-      self::CATEGORY_SHORT_STORY => "Povídky",
-      self::CATEGORY_ESSAY => "Eseje",
-      self::CATEGORY_NOVELLA => "Novely",
-      self::CATEGORY_FAIRY_TALE => "Pohádky",
-      self::CATEGORY_UNCATEGORIZED => "Nezařazené",
+      static::CATEGORY_NEWS => "Novinky",
+      static::CATEGORY_CHRONICLE => "Kronika",
+      static::CATEGORY_POETRY => "Poezie",
+      static::CATEGORY_SHORT_STORY => "Povídky",
+      static::CATEGORY_ESSAY => "Eseje",
+      static::CATEGORY_NOVELLA => "Novely",
+      static::CATEGORY_FAIRY_TALE => "Pohádky",
+      static::CATEGORY_UNCATEGORIZED => "Nezařazené",
     ];
   }
   
@@ -58,7 +58,7 @@ class Article extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterCategoryCZ(): string {
-    return self::getCategories()[$this->category];
+    return static::getCategories()[$this->category];
   }
   
   public function onBeforeInsert() {

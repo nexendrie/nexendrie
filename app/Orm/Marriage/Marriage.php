@@ -10,7 +10,7 @@ namespace Nexendrie\Orm;
  * @property int $id {primary}
  * @property User $user1 {m:1 User::$sentMarriages}
  * @property User $user2 {m:1 User::$receivedMarriages}
- * @property string $status {enum self::STATUS_*} {default self::STATUS_PROPOSED}
+ * @property string $status {enum static::STATUS_*} {default static::STATUS_PROPOSED}
  * @property int $divorce {default 0}
  * @property int $proposed
  * @property-read string $proposedT {virtual}
@@ -78,21 +78,21 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   protected function setterIntimacy(int $value): int {
     if($value < 0) {
       return 0;
-    } elseif($value > self::MAX_INTIMACY) {
-      return self::MAX_INTIMACY;
+    } elseif($value > static::MAX_INTIMACY) {
+      return static::MAX_INTIMACY;
     }
     return $value;
   }
   
   protected function getterLevel(): int {
-    if($this->status != self::STATUS_ACTIVE) {
+    if($this->status != static::STATUS_ACTIVE) {
       return 0;
     }
-    return (int) ($this->intimacy / self::INTIMACY_FOR_LEVEL);
+    return (int) ($this->intimacy / static::INTIMACY_FOR_LEVEL);
   }
   
   protected function getterHpIncrease(): int {
-    return $this->level * self::HP_INCREASE_PER_LEVEL;
+    return $this->level * static::HP_INCREASE_PER_LEVEL;
   }
   
   public function onBeforeInsert() {
@@ -102,16 +102,16 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   
   public function onBeforeUpdate() {
     parent::onBeforeUpdate();
-    if($this->status === self::STATUS_ACCEPTED AND is_null($this->accepted)) {
+    if($this->status === static::STATUS_ACCEPTED AND is_null($this->accepted)) {
       $this->accepted = time();
     }
-    if($this->status === self::STATUS_ACCEPTED AND is_null($this->term)) {
+    if($this->status === static::STATUS_ACCEPTED AND is_null($this->term)) {
       $this->term = time() + (60 * 60 * 24 * 14);
     }
-    if($this->status === self::STATUS_DECLINED AND is_null($this->accepted)) {
+    if($this->status === static::STATUS_DECLINED AND is_null($this->accepted)) {
       $this->accepted = time();
     }
-    if($this->status === self::STATUS_CANCELLED AND is_null($this->cancelled)) {
+    if($this->status === static::STATUS_CANCELLED AND is_null($this->cancelled)) {
       $this->cancelled = time();
     }
   }

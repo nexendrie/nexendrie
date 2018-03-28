@@ -53,8 +53,8 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   protected function setterLevel(int $value): int {
     if($value < 1) {
       return 1;
-    } elseif($value > self::MAX_LEVEL) {
-      return self::MAX_LEVEL;
+    } elseif($value > static::MAX_LEVEL) {
+      return static::MAX_LEVEL;
     }
     return $value;
   }
@@ -80,12 +80,12 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterUpgradePrice(): int {
-    if($this->level === self::MAX_LEVEL) {
+    if($this->level === static::MAX_LEVEL) {
       return 0;
     }
-    $price = self::BASE_UPGRADE_PRICE;
+    $price = static::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->level + 1; $i++) {
-      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+      $price += (int) (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
     }
     return $price;
   }
@@ -102,7 +102,7 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
     if($this->level !== 1) {
       $multiplier = ($this->level - 1) * 10 / 100 + 1;
     }
-    $basePrice = (int) (self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
+    $basePrice = (int) (static::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
     return $basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice);
   }
   
