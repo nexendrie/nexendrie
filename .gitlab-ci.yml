@@ -43,6 +43,7 @@ test:pgsql:
   - cp tests/ci.neon tests/local.neon
   - php tools/pgsql_setup.php
   allow_failure: true
+  retry: 2
 
 test:cc:
   <<: *test_job
