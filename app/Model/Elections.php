@@ -32,10 +32,8 @@ class Elections {
     $denizens = $town->denizens->countStored();
     if($denizens <= 3) {
       return 0;
-    } elseif($denizens <= 6) {
-      return 1;
     }
-    return (int) ($denizens / 5);
+    return max(1, (int) ($denizens / 5));
   }
   
   /**
