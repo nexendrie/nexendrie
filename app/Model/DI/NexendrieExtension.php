@@ -283,6 +283,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     foreach($chats as $chat => $tags) {
       $service = $builder->getDefinition($chat);
       $service->addSetup("setCharacterProfileLink", [":Front:Profile:"]);
+      $service->addSetup("setTranslator");
     }
   }
   
