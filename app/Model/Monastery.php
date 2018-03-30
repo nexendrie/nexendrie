@@ -159,7 +159,7 @@ class Monastery {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
-    } elseif($user->monastery->hp <= 30) {
+    } elseif($user->monastery->hp < 30) {
       return false;
     } elseif($user->life >= $user->maxLife) {
       return false;

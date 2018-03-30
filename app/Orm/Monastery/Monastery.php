@@ -73,7 +73,7 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterPrayerLife(): int {
-    if($this->hp <= 30) {
+    if($this->hp < 30) {
       return 0;
     }
     return 2 + ($this->level * 2);

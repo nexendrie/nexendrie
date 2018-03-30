@@ -70,7 +70,7 @@ class House extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterWorkIncomeBonus(): int {
-    if($this->hp <= 30) {
+    if($this->hp < 30) {
       return 0;
     } elseif($this->owner->group->path != Group::PATH_CITY) {
       return 0;
