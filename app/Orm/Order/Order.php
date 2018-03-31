@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany,
+    Nexendrie\Utils\Numbers;
 
 /**
  * Order
@@ -35,12 +36,7 @@ class Order extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterLevel(int $value): int {
-    if($value < 1) {
-      return 1;
-    } elseif($value > static::MAX_LEVEL) {
-      return static::MAX_LEVEL;
-    }
-    return $value;
+    return Numbers::range($value, 1, static::MAX_LEVEL);
   }
   
   protected function getterFoundedAt(): string {

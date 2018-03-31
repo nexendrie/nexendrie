@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use Nexendrie\Utils\Numbers;
+
 /**
  * ItemSet
  *
@@ -33,12 +35,7 @@ class ItemSet extends \Nextras\Orm\Entity\Entity {
   }
   
   public function setterBonus(int $value): int {
-    if($value < 0) {
-      return 0;
-    } elseif($value > 99) {
-      return 99;
-    }
-    return $value;
+    return Numbers::range($value, 0, 99);
   }
   
   protected function getterEffect(): string {

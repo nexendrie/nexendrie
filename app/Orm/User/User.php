@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany,
+    Nexendrie\Utils\Numbers;
 
 
 /**
@@ -118,12 +119,7 @@ class User extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterLife(int $value): int {
-    if($value > $this->maxLife) {
-      return $this->maxLife;
-    } elseif($value < 1) {
-      return 1;
-    }
-    return $value;
+    return Numbers::range($value, 1, $this->maxLife);
   }
   
   protected function getterTitle(): string {

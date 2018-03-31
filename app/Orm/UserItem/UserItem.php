@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use Nexendrie\Utils\Numbers;
+
 /**
  * UserItem
  *
@@ -37,12 +39,7 @@ class UserItem extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterLevel(int $value): int {
-    if($value < 0) {
-      return 0;
-    } elseif($value > $this->maxLevel) {
-      return $this->maxLevel;
-    }
-    return $value;
+    return Numbers::range($value, 0, $this->maxLevel);
   }
   
   protected function getterMaxLevel(): int {

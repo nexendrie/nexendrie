@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use Nexendrie\Utils\Numbers;
+
 /**
  * Marriage
  *
@@ -42,12 +44,7 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterDivorce(int $value): int {
-    if($value < 0) {
-      return 0;
-    } elseif($value > 4) {
-      return 4;
-    }
-    return $value;
+    return Numbers::range($value, 0, 4);
   }
   
   protected function getterProposedT(): string {
@@ -76,12 +73,7 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterIntimacy(int $value): int {
-    if($value < 0) {
-      return 0;
-    } elseif($value > static::MAX_INTIMACY) {
-      return static::MAX_INTIMACY;
-    }
-    return $value;
+    return Numbers::range($value, 0, static::MAX_INTIMACY);
   }
   
   protected function getterLevel(): int {

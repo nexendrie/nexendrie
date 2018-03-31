@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany,
+    Nexendrie\Utils\Numbers;
 
 /**
  * Mount
@@ -65,30 +66,15 @@ class Mount extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterHp(int $value): int {
-    if($value > 100) {
-      return 100;
-    } elseif($value < 0) {
-      return 0;
-    }
-    return $value;
+    return Numbers::range($value, 0, 100);
   }
   
   protected function setterDamage(int $value): int {
-    if($value > $this->maxDamage) {
-      return $this->maxDamage;
-    } elseif($value < $this->baseDamage) {
-      return $this->baseDamage;
-    }
-    return $value;
+    return Numbers::range($value, $this->baseDamage, $this->maxDamage);
   }
   
   protected function setterArmor(int $value): int {
-    if($value > $this->maxArmor) {
-      return $this->maxArmor;
-    } elseif($value < $this->baseArmor) {
-      return $this->baseArmor;
-    }
-    return $value;
+    return Numbers::range($value, $this->baseArmor, $this->maxArmor);
   }
   
   protected function getterGenderCZ(): string {

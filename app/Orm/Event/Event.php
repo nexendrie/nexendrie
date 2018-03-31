@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Relationships\OneHasMany;
+use Nextras\Orm\Relationships\OneHasMany,
+    Nexendrie\Utils\Numbers;
 
 /**
  * Event
@@ -49,57 +50,27 @@ class Event extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function setterAdventuresBonus(int $value): int {
-    if($value < 0) {
-      return 0;
-    } elseif($value > 999) {
-      return 999;
-    }
-    return $value;
+    return Numbers::range($value, 0, 999);
   }
   
   protected function setterWorkBonus(int $value): int {
-    if($value < 0) {
-      return 0;
-    } elseif($value > 999) {
-      return 999;
-    }
-    return $value;
+    return Numbers::range($value, 0, 999);
   }
   
   protected function setterPrayerLifeBonus(int $value): int {
-    if($value < 0) {
-      return 0;
-    } elseif($value > 999) {
-      return 999;
-    }
-    return $value;
+    return Numbers::range($value, 0, 999);
   }
   
   protected function setterTrainingDiscount(int $value): int {
-    if($value < 0) {
-      return 0;
-    } elseif($value > 100) {
-      return 100;
-    }
-    return $value;
+    return Numbers::range($value, 0, 100);
   }
   
   protected function setterRepairingDiscount(int $value): int {
-    if($value < 0) {
-      return 0;
-    } elseif($value > 100) {
-      return 100;
-    }
-    return $value;
+    return Numbers::range($value, 0, 100);
   }
   
   protected function setterShoppingDiscount(int $value): int {
-    if($value < 0) {
-      return 0;
-    } elseif($value > 100) {
-      return 100;
-    }
-    return $value;
+    return Numbers::range($value, 0, 100);
   }
   
   protected function getterActive(): bool {
