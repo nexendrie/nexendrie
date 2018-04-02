@@ -126,7 +126,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   
   protected function addCronTasks(): void {
     $builder = $this->getContainerBuilder();
-    $tag = "cronner.tasks";
+    $tag = \stekycz\Cronner\DI\CronnerExtension::TASKS_TAG;
     $builder->addDefinition($this->prefix("cron.mountsStatus"))
       ->setType(Nexendrie\Cron\MountsStatusTask::class)
       ->addTag($tag);
