@@ -5,6 +5,6 @@ Nexendrie
 
 Nexendrie website written in Nette Framework. Requires PHP 7.2 or later.
 
-[Installation instructions] (INSTALL.md)
+[Installation instructions](INSTALL.md)
 
 Copyright (c) 2015 - 2018, Jakub Konečný
