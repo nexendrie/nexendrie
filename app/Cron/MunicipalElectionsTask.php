@@ -56,6 +56,7 @@ class MunicipalElectionsTask extends BaseMonthlyCronTask {
     $date->modify("-1 day");
     $year = (int) $date->format("Y");
     $month = (int) $date->format("n");
+    /** @var \Nexendrie\Orm\Town[] $towns */
     $towns = $this->orm->towns->findAll();
     foreach($towns as $town) {
       echo "Town (#$town->id) $town->name ...\n";
@@ -65,6 +66,7 @@ class MunicipalElectionsTask extends BaseMonthlyCronTask {
         echo "No votes found.\n";
         continue;
       }
+      $newCouncillors = [];
       echo sprintf("Found %d possible candidates, the town can have %d councillors.\n", count($results), $councillors);
       foreach($results as $row) {
         $record = new ElectionResult();
@@ -79,10 +81,19 @@ class MunicipalElectionsTask extends BaseMonthlyCronTask {
           continue;
         }
         echo "{$row["candidate"]->publicname} will become a councillor.\n";
+        $newCouncillors[] = $row["candidate"]->id;
         $record->elected = true;
         $record->candidate->group = $this->orm->groups->getByLevel(300);
         $this->orm->electionResults->persist($record);
         $councillors--;
+      }
+      foreach($town->denizens as $denizen) {
+        if($denizen->group->level !== 300 OR in_array($denizen->id, $newCouncillors, true)) {
+          continue;
+        }
+        echo "$denizen->publicname loses his/her seat in town council.\n";
+        $denizen->group = $this->orm->groups->getByLevel(100);
+        $this->orm->users->persist($denizen);
       }
     }
     $this->orm->flush();
