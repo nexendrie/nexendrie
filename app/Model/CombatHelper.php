@@ -4,8 +4,15 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\User as UserEntity,
+    Nexendrie\Orm\AdventureNpc,
     Nexendrie\Orm\Mount as MountEntity,
-    Nexendrie\Orm\ItemSet as ItemSetEntity;
+    Nexendrie\Orm\ItemSet as ItemSetEntity,
+    Nexendrie\Orm\Item as ItemEntity,
+    Nexendrie\Orm\Skill as SkillEntity,
+    HeroesofAbenez\Combat\Character,
+    HeroesofAbenez\Combat\Equipment,
+    HeroesofAbenez\Combat\CharacterEffect,
+    HeroesofAbenez\Combat\SkillSpecial;
 
 /**
  * Combat Model
@@ -50,66 +57,69 @@ class CombatHelper {
     return ["maxLife" => $maxLife, "life" => $life];
   }
   
-  /**
-   * Calculate specified user's damage
-   */
-  public function calculateUserDamage(UserEntity $user, MountEntity $mount = NULL): int {
-    $damage = 0;
-    $weapon = $this->inventoryModel->getWeapon($user->id);
-    if(!is_null($weapon)) {
-      $damage += $weapon->item->strength + $weapon->level;
-    }
-    $damageSkills = $this->orm->userSkills->findByUserAndStat($user->id, "damage");
-    $set = $this->inventoryModel->getUserItemSet($user->id);
-    if($damageSkills->count() > 0) {
-      foreach($damageSkills as $damageSkill) {
-        $damage += $damageSkill->skill->statIncrease * $damageSkill->level;
-      }
-    }
-    if(!is_null($mount)) {
-      $damage += $mount->damage;
-    }
-    if($set AND $set->stat === ItemSetEntity::STAT_DAMAGE) {
-      $damage += $set->bonus;
-    }
-    return $damage;
+  protected function accuracyCombatEffect(): CharacterEffect {
+    $stats = [
+      "id" => "accuracy", "type" => SkillSpecial::TYPE_BUFF, "stat" => SkillSpecial::STAT_HIT,
+      "value" => 1000, "source" => CharacterEffect::SOURCE_EQUIPMENT, "duration" => CharacterEffect::DURATION_FOREVER,
+    ];
+    return new CharacterEffect($stats);
   }
   
   /**
-   * Calculate specified user's armor
+   * @throws UserNotFoundException
    */
-  public function calculateUserArmor(UserEntity $user, MountEntity $mount = NULL): int {
-    $armorValue = 0;
-    $armor = $this->inventoryModel->getArmor($user->id);
-    if(!is_null($armor)) {
-      $armorValue += $armor->item->strength + $armor->level;
+  public function getCharacter(int $id, ?MountEntity $mount = NULL): Character {
+    $user = $this->orm->users->getById($id);
+    if(is_null($user)) {
+      throw new UserNotFoundException();
     }
-    $armorSkills = $this->orm->userSkills->findByUserAndStat($user->id, "armor");
-    $set = $this->inventoryModel->getUserItemSet($user->id);
-    if($armorSkills->count() > 0) {
-      foreach($armorSkills as $armorSkill) {
-        $armorValue += $armorSkill->skill->statIncrease * $armorSkill->level;
+    $stats = [
+      "id" => $user->id, "name" => $user->publicname, "level" => 1, "strength" => 0, "dexterity" => 0,
+      "intelligence" => 0, "charisma" => 0, "initiativeFormula" => "1d1+CON/1", "gender" => $user->gender,
+    ];
+    $stats["constitution"] = (int) round($user->maxLife / 5);
+    $equipment = [];
+    foreach($user->items as $item) {
+      if(in_array($item->item->type, ItemEntity::getEquipmentTypes(), true) AND $item->worn) {
+        $equipment[] = $item->toCombatEquipment();
       }
     }
+    $character = new Character($stats, $equipment);
+    $character->harm($user->maxLife - $user->life);
+    $character->addEffect($this->accuracyCombatEffect());
     if(!is_null($mount)) {
-      $armorValue += $mount->armor;
+      $character->addEffect($mount->toCombatDamageEffect());
+      $character->addEffect($mount->toCombatDefenseEffect());
     }
-    if($set AND $set->stat === ItemSetEntity::STAT_ARMOR) {
-      $armorValue += $set->bonus;
+    $set = $this->inventoryModel->getUserItemSet($user->id);
+    if(!is_null($set)) {
+      $character->addEffectProvider($set);
     }
-    return $armorValue;
+    $marriage = $this->orm->marriages->getActiveMarriage($user->id);
+    if(!is_null($marriage)) {
+      $character->addEffectProvider($marriage);
+    }
+    foreach($user->skills as $skill) {
+      if($skill->skill->type === SkillEntity::TYPE_COMBAT AND $skill->skill->stat !== SkillEntity::STAT_HITPOINTS) {
+        $character->addEffectProvider($skill);
+      }
+    }
+    return $character;
   }
   
-  /**
-   * Get specified user's combat stats
-   *
-   * @return int[]
-   */
-  public function userCombatStats(UserEntity $user, MountEntity $mount = NULL): array {
-    $stats = $this->calculateUserLife($user);
-    $stats["damage"] = $this->calculateUserDamage($user, $mount);
-    $stats["armor"] = $this->calculateUserArmor($user, $mount);
-    return $stats;
+  public function getAdventureNpc(AdventureNpc $npc): Character {
+    $stats = [
+      "id" => "adventureNpc{$npc->id}", "name" => $npc->name, "level" => 1, "strength" => $npc->strength * 2,
+      "dexterity" => 0, "intelligence" => 0, "charisma" => 0, "initiativeFormula" => "1d1+CHAR/5",
+    ];
+    $stats["constitution"] = (int) round($npc->hitpoints / 5);
+    $armorStats = [
+      "id" => $npc->id, "name" => "Armor", "slot" => Equipment::SLOT_ARMOR, "type" => NULL,
+      "strength" => $npc->armor, "worn" => true,
+    ];
+    $character = new Character($stats, [new Equipment($armorStats)]);
+    $character->addEffect($this->accuracyCombatEffect());
+    return $character;
   }
 }
 ?>

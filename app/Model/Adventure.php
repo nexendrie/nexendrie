@@ -8,7 +8,8 @@ use Nexendrie\Orm\Adventure as AdventureEntity,
     Nexendrie\Orm\UserAdventure as UserAdventureEntity,
     Nexendrie\Orm\Mount as MountEntity,
     Nextras\Orm\Collection\ICollection,
-    Nextras\Orm\Relationships\OneHasMany;
+    Nextras\Orm\Relationships\OneHasMany,
+    HeroesofAbenez\Combat\CombatBase;
 
 /**
  * Adventure Model
@@ -16,8 +17,10 @@ use Nexendrie\Orm\Adventure as AdventureEntity,
  * @author Jakub Konečný
  */
 class Adventure {
+  /** @var CombatBase */
+  protected $combat;
   /** @var CombatHelper */
-  protected $combatModel;
+  protected $combatHelper;
   /** @var Events */
   protected $eventsModel;
   /** @var Order */
@@ -31,8 +34,9 @@ class Adventure {
   
   use \Nette\SmartObject;
   
-  public function __construct(CombatHelper $combatModel, Events $eventsModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->combatModel = $combatModel;
+  public function __construct(CombatBase $combat, CombatHelper $combatHelper, Events $eventsModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+    $this->combat = $combat;
+    $this->combatHelper = $combatHelper;
     $this->eventsModel = $eventsModel;
     $this->orderModel = $orderModel;
     $this->orm = $orm;
@@ -266,30 +270,15 @@ class Adventure {
    * @return bool Whether the user won
    */
   protected function fightNpc(AdventureNpcEntity $npc, MountEntity $mount): bool {
-    $finished = $result = false;
-    /** @var \Nexendrie\Orm\User $user */
+    $combat = $this->combat;
+    $combat->victoryCondition = [$combat, "victoryConditionEliminateSecondTeam"];
+    $player = $this->combatHelper->getCharacter($this->user->id, $mount);
+    $enemy = $this->combatHelper->getAdventureNpc($npc);
+    $combat->setDuelParticipants($player, $enemy);
+    $combat->execute();
     $user = $this->orm->users->getById($this->user->id);
-    $userStats = $this->combatModel->userCombatStats($user, $mount);
-    $user->life += $userStats["maxLife"] - $user->maxLife;
-    $npcLife = $npc->hitpoints;
-    $userAttack = max($userStats["damage"] - $npc->armor, 0);
-    $npcAttack = max($npc->strength - $userStats["armor"], 0);
-    $round = 1;
-    while(!$finished) {
-      $npcLife -= $userAttack;
-      if($npcLife <= 1) {
-        $finished = $result = true;
-      }
-      $user->life -= $npcAttack;
-      if($user->life <= 1) {
-        $finished = true;
-      }
-      $round++;
-      if($round > 30) {
-        $finished = true;
-      }
-    }
-    return $result;
+    $user->life = $player->hitpoints;
+    return ($combat->winner === 1);
   }
   
   protected function saveVictory(UserAdventureEntity $adventure, AdventureNpcEntity $enemy): void {

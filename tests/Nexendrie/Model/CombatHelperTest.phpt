@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert;
+use Tester\Assert,
+    HeroesofAbenez\Combat\Character;
 
 require __DIR__ . "/../../bootstrap.php";
 
@@ -28,29 +29,23 @@ final class CombatHelperTest extends \Tester\TestCase {
     Assert::type("int", $result["life"]);
   }
   
-  public function testCalculateUserDamage() {
-    $damage1 = $this->model->calculateUserDamage($this->orm->users->getById(1));
-    Assert::type("int", $damage1);
-    $damage2 = $this->model->calculateUserDamage($this->orm->users->getById(1), $this->orm->mounts->getById(2));
-    Assert::type("int", $damage2);
-    Assert::true($damage2 === $damage1 + 7);
+  public function testGetCharacter() {
+    Assert::exception(function() {
+      $this->model->getCharacter(5000);
+    }, UserNotFoundException::class);
+    $character = $this->model->getCharacter(1);
+    Assert::type(Character::class, $character);
+    Assert::count(3, $character->equipment);
+    Assert::same(110, $character->maxHitpoints);
   }
   
-  public function testCalculateUserArmor() {
-    $armor1 = $this->model->calculateUserArmor($this->orm->users->getById(1));
-    Assert::type("int", $armor1);
-    $armor2 = $this->model->calculateUserArmor($this->orm->users->getById(1), $this->orm->mounts->getById(2));
-    Assert::type("int", $armor2);
-    Assert::true($armor2 === $armor1 + 5);
-  }
-  
-  public function testUserCombatStats() {
-    $result = $this->model->userCombatStats($this->orm->users->getById(1));
-    Assert::type("array", $result);
-    Assert::count(4, $result);
-    foreach($result as $value) {
-      Assert::type("int", $value);
-    }
+  public function testGetAdventureNpc() {
+    $npc = $this->orm->adventureNpcs->getById(1);
+    $character = $this->model->getAdventureNpc($npc);
+    Assert::type(Character::class, $character);
+    Assert::same(20, $character->maxHitpoints);
+    Assert::count(1, $character->equipment);
+    Assert::same($npc->strength, $character->damage);
   }
 }
 

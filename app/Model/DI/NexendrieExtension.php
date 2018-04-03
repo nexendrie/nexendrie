@@ -22,6 +22,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
   public function loadConfiguration(): void {
     $this->registerMenuConditions();
     $this->addChatCommands();
+    $this->addCombat();
     $this->addModels();
     $this->addCronTasks();
     $this->addComponents();
@@ -40,6 +41,16 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition("chat.command.time")
       ->setType(Nexendrie\Chat\Commands\TimeCommand::class);
+  }
+  
+  protected function addCombat(): void {
+    $builder = $this->getContainerBuilder();
+    $builder->addDefinition($this->prefix("combat.combatHelper"))
+      ->setType(Nexendrie\Model\CombatHelper::class);
+    $builder->addDefinition($this->prefix("combat.combat"))
+      ->setType(\HeroesofAbenez\Combat\CombatBase::class);
+    $builder->addDefinition($this->prefix("combat.logger"))
+      ->setType(\HeroesofAbenez\Combat\CombatLogger::class);
   }
   
   protected function addModels(): void {
@@ -75,8 +86,6 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Model\Inventory::class);
     $builder->addDefinition($this->prefix("model.adventure"))
       ->setType(Nexendrie\Model\Adventure::class);
-    $builder->addDefinition($this->prefix("model.combatHelper"))
-      ->setType(Nexendrie\Model\CombatHelper::class);
     $builder->addDefinition($this->prefix("model.events"))
       ->setType(Nexendrie\Model\Events::class);
     $builder->addDefinition($this->prefix("model.house"))

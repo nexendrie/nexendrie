@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nexendrie\Utils\Numbers;
+use Nexendrie\Utils\Numbers,
+    HeroesofAbenez\Combat\Equipment;
 
 /**
  * UserItem
@@ -82,6 +83,18 @@ class UserItem extends \Nextras\Orm\Entity\Entity {
   
   protected function getterSellPriceT(): string {
     return $this->localeModel->money($this->sellPrice);
+  }
+  
+  public function toCombatEquipment(): ?Equipment {
+    if(!in_array($this->item->type, Item::getEquipmentTypes(), true)) {
+      return NULL;
+    }
+    $stats = [
+      "id" => $this->id, "name" => $this->item->name, "slot" => $this->item->type,
+      "strength" => $this->level + $this->item->strength, "worn" => $this->worn,
+    ];
+    $stats["type"] = ($stats["slot"] === Item::TYPE_WEAPON) ? Equipment::TYPE_SWORD : NULL;
+    return new Equipment($stats);
   }
 }
 ?>

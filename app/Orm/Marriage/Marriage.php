@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nexendrie\Utils\Numbers;
+use Nexendrie\Utils\Numbers,
+    HeroesofAbenez\Combat\CharacterEffect,
+    HeroesofAbenez\Combat\SkillSpecial,
+    HeroesofAbenez\Combat\ICharacterEffectProvider;
 
 /**
  * Marriage
@@ -26,7 +29,7 @@ use Nexendrie\Utils\Numbers;
  * @property-read int $level {virtual}
  * @property-read int $hpIncrease {virtual}
  */
-class Marriage extends \Nextras\Orm\Entity\Entity {
+class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEffectProvider {
   public const STATUS_PROPOSED = "proposed";
   public const STATUS_ACCEPTED = "accepted";
   public const STATUS_DECLINED = "declined";
@@ -106,6 +109,15 @@ class Marriage extends \Nextras\Orm\Entity\Entity {
     if($this->status === static::STATUS_CANCELLED AND is_null($this->cancelled)) {
       $this->cancelled = time();
     }
+  }
+  
+  public function toCombatEffect(): CharacterEffect {
+    $stats = [
+      "id" => "marriageBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->hpIncrease,
+      "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
+      "stat" => SkillSpecial::STAT_HITPOINTS,
+    ];
+    return new CharacterEffect($stats);
   }
 }
 ?>

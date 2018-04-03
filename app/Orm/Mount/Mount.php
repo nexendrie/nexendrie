@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace Nexendrie\Orm;
 
 use Nextras\Orm\Relationships\OneHasMany,
-    Nexendrie\Utils\Numbers;
+    Nexendrie\Utils\Numbers,
+    HeroesofAbenez\Combat\CharacterEffect,
+    HeroesofAbenez\Combat\SkillSpecial;
 
 /**
  * Mount
@@ -150,6 +152,24 @@ class Mount extends \Nextras\Orm\Entity\Entity {
     if($this->owner->id === 0) {
       $this->onMarket = true;
     }
+  }
+  
+  public function toCombatDamageEffect(): CharacterEffect {
+    $stats = [
+      "id" => "mount{$this->id}DamageBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->damage,
+      "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
+      "stat" => SkillSpecial::STAT_DAMAGE,
+    ];
+    return new CharacterEffect($stats);
+  }
+  
+  public function toCombatDefenseEffect(): CharacterEffect {
+    $stats = [
+      "id" => "mount{$this->id}DefenseBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->armor,
+      "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
+      "stat" => SkillSpecial::STAT_DEFENSE,
+    ];
+    return new CharacterEffect($stats);
   }
 }
 ?>
