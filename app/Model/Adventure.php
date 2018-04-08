@@ -9,7 +9,8 @@ use Nexendrie\Orm\Adventure as AdventureEntity,
     Nexendrie\Orm\Mount as MountEntity,
     Nextras\Orm\Collection\ICollection,
     Nextras\Orm\Relationships\OneHasMany,
-    HeroesofAbenez\Combat\CombatBase;
+    HeroesofAbenez\Combat\CombatBase,
+    HeroesofAbenez\Combat\VictoryConditions;
 
 /**
  * Adventure Model
@@ -271,7 +272,7 @@ class Adventure {
    */
   protected function fightNpc(AdventureNpcEntity $npc, MountEntity $mount): bool {
     $combat = $this->combat;
-    $combat->victoryCondition = [$combat, "victoryConditionEliminateSecondTeam"];
+    $combat->victoryCondition = [VictoryConditions::class, "eliminateSecondTeam"];
     $player = $this->combatHelper->getCharacter($this->user->id, $mount);
     $enemy = $this->combatHelper->getAdventureNpc($npc);
     $combat->setDuelParticipants($player, $enemy);

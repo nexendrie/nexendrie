@@ -11,8 +11,7 @@ use Nexendrie\Orm\User as UserEntity,
     Nexendrie\Orm\Skill as SkillEntity,
     HeroesofAbenez\Combat\Character,
     HeroesofAbenez\Combat\Equipment,
-    HeroesofAbenez\Combat\CharacterEffect,
-    HeroesofAbenez\Combat\SkillSpecial;
+    HeroesofAbenez\Combat\ConstantInitiativeFormulaParser;
 
 /**
  * Combat Model
@@ -57,14 +56,6 @@ class CombatHelper {
     return ["maxLife" => $maxLife, "life" => $life];
   }
   
-  protected function accuracyCombatEffect(): CharacterEffect {
-    $stats = [
-      "id" => "accuracy", "type" => SkillSpecial::TYPE_BUFF, "stat" => SkillSpecial::STAT_HIT,
-      "value" => 1000, "source" => CharacterEffect::SOURCE_EQUIPMENT, "duration" => CharacterEffect::DURATION_FOREVER,
-    ];
-    return new CharacterEffect($stats);
-  }
-  
   /**
    * @throws UserNotFoundException
    */
@@ -75,7 +66,7 @@ class CombatHelper {
     }
     $stats = [
       "id" => $user->id, "name" => $user->publicname, "level" => 1, "strength" => 0, "dexterity" => 0,
-      "intelligence" => 0, "charisma" => 0, "initiativeFormula" => "1d1+CON/1", "gender" => $user->gender,
+      "intelligence" => 0, "charisma" => 0, "initiativeFormula" => "1", "gender" => $user->gender,
     ];
     $stats["constitution"] = (int) round($user->maxLife / 5);
     $equipment = [];
@@ -86,7 +77,6 @@ class CombatHelper {
     }
     $character = new Character($stats, $equipment);
     $character->harm($user->maxLife - $user->life);
-    $character->addEffect($this->accuracyCombatEffect());
     if(!is_null($mount)) {
       $character->addEffect($mount->toCombatDamageEffect());
       $character->addEffect($mount->toCombatDefenseEffect());
@@ -104,13 +94,14 @@ class CombatHelper {
         $character->addEffectProvider($skill);
       }
     }
+    $character->initiativeFormulaParser =  new ConstantInitiativeFormulaParser(1);
     return $character;
   }
   
   public function getAdventureNpc(AdventureNpc $npc): Character {
     $stats = [
       "id" => "adventureNpc{$npc->id}", "name" => $npc->name, "level" => 1, "strength" => $npc->strength * 2,
-      "dexterity" => 0, "intelligence" => 0, "charisma" => 0, "initiativeFormula" => "1d1+CHAR/5",
+      "dexterity" => 0, "intelligence" => 0, "charisma" => 0, "initiativeFormula" => "0",
     ];
     $stats["constitution"] = (int) round($npc->hitpoints / 5);
     $armorStats = [
@@ -118,7 +109,7 @@ class CombatHelper {
       "strength" => $npc->armor, "worn" => true,
     ];
     $character = new Character($stats, [new Equipment($armorStats)]);
-    $character->addEffect($this->accuracyCombatEffect());
+    $character->initiativeFormulaParser = new ConstantInitiativeFormulaParser(0);
     return $character;
   }
 }
