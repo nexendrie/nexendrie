@@ -75,7 +75,7 @@ class CombatHelper {
         $equipment[] = $item->toCombatEquipment();
       }
     }
-    $character = new Character($stats, $equipment);
+    $character = new Character($stats, $equipment, [], [], new ConstantInitiativeFormulaParser(1));
     $character->harm($user->maxLife - $user->life);
     if(!is_null($mount)) {
       $character->addEffect($mount->toCombatDamageEffect());
@@ -94,7 +94,6 @@ class CombatHelper {
         $character->addEffectProvider($skill);
       }
     }
-    $character->initiativeFormulaParser =  new ConstantInitiativeFormulaParser(1);
     return $character;
   }
   
@@ -108,8 +107,7 @@ class CombatHelper {
       "id" => $npc->id, "name" => "Armor", "slot" => Equipment::SLOT_ARMOR, "type" => NULL,
       "strength" => $npc->armor, "worn" => true,
     ];
-    $character = new Character($stats, [new Equipment($armorStats)]);
-    $character->initiativeFormulaParser = new ConstantInitiativeFormulaParser(0);
+    $character = new Character($stats, [new Equipment($armorStats)], [], [], new ConstantInitiativeFormulaParser(0));
     return $character;
   }
 }
