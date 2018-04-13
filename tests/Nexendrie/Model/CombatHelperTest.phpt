@@ -37,7 +37,6 @@ final class CombatHelperTest extends \Tester\TestCase {
     Assert::type(Character::class, $character);
     Assert::count(3, $character->equipment);
     Assert::same(110, $character->maxHitpoints);
-    $character->calculateInitiative();
     Assert::same(1, $character->initiative);
   }
   
@@ -48,7 +47,6 @@ final class CombatHelperTest extends \Tester\TestCase {
     Assert::same(20, $character->maxHitpoints);
     Assert::count(1, $character->equipment);
     Assert::same($npc->strength, $character->damage);
-    $character->calculateInitiative();
     Assert::same(0, $character->initiative);
   }
 }

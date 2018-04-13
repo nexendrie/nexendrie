@@ -78,8 +78,7 @@ class CombatHelper {
     $character = new Character($stats, $equipment, [], [], new ConstantInitiativeFormulaParser(1));
     $character->harm($user->maxLife - $user->life);
     if(!is_null($mount)) {
-      $character->addEffect($mount->toCombatDamageEffect());
-      $character->addEffect($mount->toCombatDefenseEffect());
+      $character->addEffectProvider($mount);
     }
     $set = $this->inventoryModel->getUserItemSet($user->id);
     if(!is_null($set)) {

@@ -5,7 +5,7 @@ namespace Nexendrie\Orm;
 
 use HeroesofAbenez\Combat\CharacterEffect,
     HeroesofAbenez\Combat\SkillSpecial,
-    HeroesofAbenez\Combat\ICharacterEffectProvider;
+    HeroesofAbenez\Combat\ICharacterEffectsProvider;
 
 /**
  * UserSkill
@@ -16,10 +16,10 @@ use HeroesofAbenez\Combat\CharacterEffect,
  * @property Skill $skill {m:1 Skill::$userSkills}
  * @property int $level
  */
-class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEffectProvider {
-  public function toCombatEffect(): ?CharacterEffect {
+class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+  public function getCombatEffects(): array {
     if($this->skill->type !== Skill::TYPE_COMBAT) {
-      return NULL;
+      return [];
     }
     $bonusStats = [
       Skill::STAT_HITPOINTS => SkillSpecial::STAT_HITPOINTS, Skill::STAT_DAMAGE => SkillSpecial::STAT_DAMAGE,
@@ -30,7 +30,7 @@ class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEffectPr
       "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
       "stat" => $bonusStats[$this->skill->stat], "value" => $this->skill->statIncrease * $this->level,
     ];
-    return new CharacterEffect($stats);
+    return [new CharacterEffect($stats)];
   }
 }
 ?>

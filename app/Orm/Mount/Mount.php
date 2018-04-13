@@ -6,7 +6,8 @@ namespace Nexendrie\Orm;
 use Nextras\Orm\Relationships\OneHasMany,
     Nexendrie\Utils\Numbers,
     HeroesofAbenez\Combat\CharacterEffect,
-    HeroesofAbenez\Combat\SkillSpecial;
+    HeroesofAbenez\Combat\SkillSpecial,
+    HeroesofAbenez\Combat\ICharacterEffectsProvider;
 
 /**
  * Mount
@@ -38,7 +39,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property-read string $armorTrainingCostT {virtual}
  * @property-read string $typeGenderName {virtual}
  */
-class Mount extends \Nextras\Orm\Entity\Entity {
+class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var \Nexendrie\Model\Events */
@@ -170,6 +171,10 @@ class Mount extends \Nextras\Orm\Entity\Entity {
       "stat" => SkillSpecial::STAT_DEFENSE,
     ];
     return new CharacterEffect($stats);
+  }
+  
+  public function getCombatEffects(): array {
+    return [$this->toCombatDamageEffect(), $this->toCombatDefenseEffect(),];
   }
 }
 ?>

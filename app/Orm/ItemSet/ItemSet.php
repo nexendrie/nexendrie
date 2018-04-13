@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 use Nexendrie\Utils\Numbers,
     HeroesofAbenez\Combat\CharacterEffect,
     HeroesofAbenez\Combat\SkillSpecial,
-    HeroesofAbenez\Combat\ICharacterEffectProvider;
+    HeroesofAbenez\Combat\ICharacterEffectsProvider;
 
 /**
  * ItemSet
@@ -21,7 +21,7 @@ use Nexendrie\Utils\Numbers,
  * @property int $bonus
  * @property-read string $effect {virtual}
  */
-class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffectProvider {
+class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
   public const STAT_DAMAGE = "damage";
   public const STAT_ARMOR = "armor";
   public const STAT_HITPOINTS = "hitpoints";
@@ -45,7 +45,7 @@ class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffectProv
     return static::getStats()[$this->stat] . " +" . $this->bonus;
   }
   
-  public function toCombatEffect(): CharacterEffect {
+  public function getCombatEffects(): array {
     $bonusStats = [
       static::STAT_HITPOINTS => SkillSpecial::STAT_HITPOINTS, static::STAT_DAMAGE => SkillSpecial::STAT_DAMAGE,
       static::STAT_ARMOR => SkillSpecial::STAT_DEFENSE,
@@ -55,7 +55,7 @@ class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffectProv
       "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
       "stat" => $bonusStats[$this->stat],
     ];
-    return new CharacterEffect($stats);
+    return [new CharacterEffect($stats)];
   }
 }
 ?>
