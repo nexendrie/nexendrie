@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Orm;
 
 use Nextras\Orm\Relationships\OneHasMany,
-    Nexendrie\Utils\Numbers;
-
+    Nexendrie\Utils\Numbers,
+    Nexendrie\Forms\UserSettingsFormFactory;
 
 /**
  * User
@@ -24,7 +24,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property int|NULL $lastTransfer {default NULL} 
  * @property Group $group {m:1 Group::$members}
  * @property bool $infomails {default false}
- * @property string $style {default "blu-sky"}
+ * @property string $style {default "blue-sky"}
  * @property string $gender {enum static::GENDER_*} {default static::GENDER_MALE}
  * @property bool $banned {default false}
  * @property int $life
@@ -84,6 +84,13 @@ class User extends \Nextras\Orm\Entity\Entity {
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
     $this->localeModel = $localeModel;
+  }
+  
+  protected function setterStyle(string $value): string {
+    if(array_key_exists($value, UserSettingsFormFactory::getStylesList())) {
+      return $value;
+    }
+    return "blue-sky";
   }
   
   protected function getterJoinedAt(): string {
