@@ -281,6 +281,16 @@ final class MonasteryTest extends \Tester\TestCase {
       $this->model->repair();
     }, CannotRepairMonasteryException::class);
   }
+  
+  public function testCalculateSkillLearningPriceDiscount() {
+    Assert::exception(function() {
+      $this->model->calculateSkillLearningPriceDiscount(100);
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::same(0, $this->model->calculateSkillLearningPriceDiscount(100));
+    $this->login("Rahym");
+    Assert::same(15, $this->model->calculateSkillLearningPriceDiscount(100));
+  }
 }
 
 $test = new MonasteryTest();

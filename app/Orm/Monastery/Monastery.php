@@ -28,6 +28,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property-read string $upgradePriceT {virtual}
  * @property-read int $repairPrice {virtual}
  * @property-read string $repairPriceT {virtual}
+ * @property-read int $skillLearningDiscount {virtual}
  */
 class Monastery extends \Nextras\Orm\Entity\Entity {
   public const MAX_LEVEL = 6;
@@ -99,6 +100,13 @@ class Monastery extends \Nextras\Orm\Entity\Entity {
   
   protected function getterRepairPriceT(): string {
     return $this->localeModel->money($this->repairPrice);
+  }
+  
+  protected function getterSkillLearningDiscount(): int {
+    if($this->hp < 30) {
+      return 0;
+    }
+    return ($this->level - 1) * 3;
   }
   
   public function onBeforeInsert() {

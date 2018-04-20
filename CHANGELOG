@@ -10,6 +10,7 @@ Version 1.0.0-beta5+dev
 - raised minimal version of PHP to 7.2
 - added chat
 - added site search
+- monasteries provide discount for learning skills (since level 2)
 
 Version 1.0.0-beta5
 - some refactoring

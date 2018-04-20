@@ -15,6 +15,8 @@ use Nexendrie\Orm\Skill as SkillEntity,
 class Skills {
   /** @var Events */
   protected $eventsModel;
+  /** @var Monastery */
+  protected $monasteryModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -26,8 +28,9 @@ class Skills {
   
   use \Nette\SmartObject;
   
-  public function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(Events $eventsModel, Monastery $monasteryModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->eventsModel = $eventsModel;
+    $this->monasteryModel = $monasteryModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -104,6 +107,7 @@ class Skills {
       $price += (int) ($basePrice / $maxLevel);
     }
     $price -= $this->eventsModel->calculateTrainingDiscount($price);
+    $price -= $this->monasteryModel->calculateSkillLearningPriceDiscount($price);
     return $price;
   }
   
