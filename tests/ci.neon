@@ -1,6 +1,6 @@
 dbal:
     driver: mysqli
-    host: mysql
+    host: mariadb
     database: nexendrie
     username: root
     password: root
