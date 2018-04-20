@@ -60,7 +60,7 @@ class MessagesPresenter extends BasePresenter {
     try {
       $uid = $this->getParameter("id", NULL);
       $form["to"]->setDefaultValue($uid);
-    } catch(\Nette\InvalidArgumentException $e) { // @codingStandardsIgnoreLine
+    } catch(\Nette\InvalidArgumentException $e) {
       
     }
     $form->onSuccess[] = function() {
