@@ -24,7 +24,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property int|NULL $lastTransfer {default NULL} 
  * @property Group $group {m:1 Group::$members}
  * @property bool $infomails {default false}
- * @property string $style {default "blue-sky"}
+ * @property string $style
  * @property string $gender {enum static::GENDER_*} {default static::GENDER_MALE}
  * @property bool $banned {default false}
  * @property int $life
