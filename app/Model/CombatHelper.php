@@ -88,10 +88,11 @@ class CombatHelper {
     if(!is_null($marriage)) {
       $character->addEffectProvider($marriage);
     }
-    foreach($user->skills as $skill) {
-      if($skill->skill->type === SkillEntity::TYPE_COMBAT AND $skill->skill->stat !== SkillEntity::STAT_HITPOINTS) {
-        $character->addEffectProvider($skill);
-      }
+    $skills = $user->skills->get()->findBy([
+      "this->skill->type" => SkillEntity::TYPE_COMBAT, "this->skill->stat!=" => SkillEntity::STAT_HITPOINTS,
+    ]);
+    foreach($skills as $skill) {
+      $character->addEffectProvider($skill);
     }
     return $character;
   }
