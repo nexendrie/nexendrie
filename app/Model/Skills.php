@@ -99,11 +99,8 @@ class Skills {
    * Calculate price of learning of next level
    */
   public function calculateLearningPrice(int $basePrice, int $newLevel, int $maxLevel = 5): int {
-    if($newLevel === 1) {
-      return ($basePrice - $this->eventsModel->calculateTrainingDiscount($basePrice));
-    }
     $price = $basePrice;
-    for($i = 1; $i < $newLevel; $i++) {
+    for($i = 2; $i <= $newLevel; $i++) {
       $price += (int) ($basePrice / $maxLevel);
     }
     $price -= $this->eventsModel->calculateTrainingDiscount($price);

@@ -53,9 +53,7 @@ final class SkillsTest extends \Tester\TestCase {
   
   public function testCalculateLearningPrice() {
     Assert::same(100, $this->model->calculateLearningPrice(100, 1));
-    $result = $this->model->calculateLearningPrice(100, 5);
-    Assert::type("int", $result);
-    Assert::true($result > 100);
+    Assert::same(180, $this->model->calculateLearningPrice(100, 5));
   }
   
   public function testLearn() {
