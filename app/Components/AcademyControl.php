@@ -5,7 +5,9 @@ namespace Nexendrie\Components;
 
 use Nexendrie\Model\SkillNotFoundException,
     Nexendrie\Model\SkillMaxLevelReachedException,
-    Nexendrie\Model\InsufficientFundsException;
+    Nexendrie\Model\InsufficientFundsException,
+    Nexendrie\Utils\Constants,
+    Nexendrie\Orm\Skill;
 
 /**
  * AcademyControl
@@ -28,9 +30,16 @@ class AcademyControl extends \Nette\Application\UI\Control {
     $this->user = $user;
   }
   
+  /**
+   * @return string[]
+   */
+  protected function getSkillTypes(): array {
+    return Constants::getConstantsValues(Skill::class, "TYPE_");
+  }
+  
   public function render(string $type = "work"): void {
     $this->template->setFile(__DIR__ . "/academy.latte");
-    $types = ["work", "combat"];
+    $types = $this->getSkillTypes();
     if(!in_array($type, $types, true)) {
       $type = "work";
     }
