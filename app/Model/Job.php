@@ -17,10 +17,6 @@ use Nexendrie\Orm\Job as JobEntity,
 class Job {
   /** @var Skills */
   protected $skillsModel;
-  /** @var Events */
-  protected $eventsModel;
-  /** @var Guild */
-  protected $guildModel;
   /** @var Locale @autowire */
   protected $localeModel;
   /** @var \Nexendrie\Orm\Model */
@@ -32,10 +28,8 @@ class Job {
   
   use \Nette\SmartObject;
   
-  public function __construct(Skills $skillsModel, Events $eventsModel, Guild $guildModel, Locale $localeModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(Skills $skillsModel, Locale $localeModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->skillsModel = $skillsModel;
-    $this->eventsModel = $eventsModel;
-    $this->guildModel = $guildModel;
     $this->localeModel = $localeModel;
     $this->orm = $orm;
     $this->user = $user;
@@ -64,7 +58,7 @@ class Job {
     $job->job = $offer;
     $job->user = $this->orm->users->getById($this->user->id);
     $job->count = ($job->job->count > 0) ? $job->job->count : 1;
-    $offer->award = array_sum($this->calculateReward($job));
+    $offer->award = array_sum($job->reward);
     $o = (object) $offer->toArray();
     $o->award = $offer->awardT;
     $offer->award = $oldAward;
@@ -171,37 +165,6 @@ class Job {
   }
   
   /**
-   * Calculate reward from job
-   *
-   * @return int[] Reward
-   */
-  public function calculateReward(UserJobEntity $job): array {
-    if($job->finished) {
-      return ["reward" => $job->earned, "extra" => $job->extra];
-    }
-    $reward = $extra = 0;
-    if($job->job->count === 0) {
-      $reward += $job->job->award * $job->count;
-    } elseif($job->count >= $job->job->count) {
-      $reward += $job->job->award;
-      if($job->count >= $job->job->count * 1.2) {
-        $extra += (int) ($job->job->award / 5);
-      }
-      if($job->count >= $job->job->count * 1.5) {
-        $extra += (int) ($job->job->award / 2);
-      }
-    }
-    $extra += $this->skillsModel->calculateSkillIncomeBonus($reward, $job->job->neededSkill->id);
-    $extra += $this->eventsModel->calculateWorkBonus($reward);
-    $house = $this->orm->houses->getByOwner($job->user->id);
-    if(!is_null($house)) {
-      $extra += (int) ($reward / 100 * $house->workIncomeBonus);
-    }
-    $extra += $this->guildModel->calculateGuildIncomeBonus($reward, $job);
-    return ["reward" => (int) round($reward), "extra" => (int) round($extra)];
-  }
-  
-  /**
    * Finish job
    * 
    * @return int[] Reward
@@ -218,7 +181,7 @@ class Job {
     if(time() < $currentJob->finishTime) {
       throw new JobNotFinishedException();
     }
-    $rewards = $this->calculateReward($currentJob);
+    $rewards = $currentJob->reward;
     $currentJob->finished = true;
     $currentJob->earned = $rewards["reward"];
     $currentJob->extra = $rewards["extra"];
@@ -325,7 +288,7 @@ class Job {
   public function parseJobHelp(UserJobEntity $job): string {
     $oldCount = $job->count;
     $job->count = ($job->job->count > 0) ? $job->job->count : 1;
-    $reward = $this->localeModel->money(array_sum($this->calculateReward($job)));
+    $reward = $this->localeModel->money(array_sum($job->reward));
     $job->count = $oldCount;
     $help = str_replace("%reward%", $reward, $job->job->help);
     $help = str_replace("%count%", $job->job->count, $help);
@@ -436,7 +399,7 @@ class Job {
     $income = 0;
     $jobs = $this->orm->userJobs->findFromMonth($userId ?? $this->user->id, $month, $year);
     foreach($jobs as $job) {
-      $income += array_sum($this->calculateReward($job));
+      $income += array_sum($job->reward);
     }
     return $income;
   }

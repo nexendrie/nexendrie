@@ -50,7 +50,7 @@ class WorkPresenter extends BasePresenter {
     $finished = ($finishTime < time());
     $this->template->finished = $finished;
     $this->template->finishTime = $this->localeModel->formatDateTime($finishTime);
-    $earned = $this->model->calculateReward($job);
+    $earned = $job->reward;
     $this->template->earned = $this->localeModel->money(array_sum($earned));
     if(!$finished) {
       $this->template->help = $this->model->parseJobHelp($job);

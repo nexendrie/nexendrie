@@ -80,19 +80,6 @@ final class SkillsTest extends \Tester\TestCase {
     Assert::same(5, $level);
   }
   
-  public function testCalculateSkillIncomeBonus() {
-    Assert::exception(function() {
-      $this->model->calculateSkillIncomeBonus(100, 5000);
-    }, AuthenticationNeededException::class);
-    $this->login();
-    $result = $this->model->calculateSkillIncomeBonus(100, 1);
-    Assert::type("int", $result);
-    Assert::same(0, $result);
-    $result = $this->model->calculateSkillIncomeBonus(100, 3);
-    Assert::type("int", $result);
-    Assert::true($result > 0);
-  }
-  
   public function testCalculateSkillSuccessBonus() {
     Assert::exception(function() {
       $this->model->calculateSkillSuccessBonus(1);

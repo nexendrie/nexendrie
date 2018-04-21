@@ -92,29 +92,6 @@ final class JobTest extends \Tester\TestCase {
     Assert::same($extra, $reward["extra"]);
   }
   
-  public function testCalculateReward() {
-    $job = new UserJobEntity();
-    $job->finished = true;
-    $job->earned = 2;
-    $job->extra = 1;
-    $this->checkReward($this->model->calculateReward($job), 2, 1);
-    $this->login("bozena");
-    $job->user = $this->getUser();
-    $job->finished = false;
-    $job->earned = $job->extra = 0;
-    $job->job = $this->orm->jobs->getById(1);
-    $job->count = 2;
-    $this->checkReward($this->model->calculateReward($job), 2 * 2, 0);
-    $job->job = $this->orm->jobs->getById(2);
-    $this->checkReward($this->model->calculateReward($job), 0, 0);
-    $job->count = 20;
-    $this->checkReward($this->model->calculateReward($job), 80, 0);
-    $job->count = 25;
-    $this->checkReward($this->model->calculateReward($job), 80, 16);
-    $job->count = 31;
-    $this->checkReward($this->model->calculateReward($job), 80, 56);
-  }
-  
   public function testGetResultMessage() {
     $this->login();
     $message = $this->model->getResultMessage(1, true);

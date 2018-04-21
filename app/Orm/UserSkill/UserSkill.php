@@ -16,8 +16,12 @@ use HeroesofAbenez\Combat\CharacterEffect,
  * @property Skill $skill {m:1 Skill::$userSkills}
  * @property int $level
  * @property-read int $learningPrice {virtual}
+ * @property-read int $jobRewardBonus {virtual}
  */
 class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+  /** Increase of income per skill level (in %) */
+  public const LEVEL_BONUS_INCOME = 15;
+  
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
   
@@ -36,6 +40,10 @@ class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsP
       $price -= (int) ($price / 100 * $monasteryDiscount);
     }
     return $price;
+  }
+  
+  protected function getterJobRewardBonus(): int {
+    return $this->level * static::LEVEL_BONUS_INCOME;
   }
   
   public function getCombatEffects(): array {
