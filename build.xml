@@ -179,10 +179,17 @@
       <arg path="tools/clean_db.php"/>
     </exec>
   </target>
-  <target name="scrutinizer-coverage">
+  <target name="scrutinizer">
     <phingcall target="install">
       <property name="environment" value="ci"/>
     </phingcall>
+    <exec executable="vendor/bin/phpcs" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="--extensions=php,phpt"/>
+      <arg value="."/>
+      <arg value="--standard=vendor/nexendrie/code-quality/ruleset.xml"/>
+      <arg value="--report=checkstyle"/>
+      <arg value="--report-file=codesniffer.cs"/>
+    </exec>
     <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
       <arg path="tools/scrutinizer_setup.php"/>
     </exec>
