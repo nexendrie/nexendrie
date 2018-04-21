@@ -214,15 +214,6 @@ class Job {
   }
   
   /**
-   * Calculate success rate for job
-   */
-  public function calculateSuccessRate(UserJobEntity $job): int {
-    $successRate = static::BASE_SUCCESS_RATE;
-    $successRate += $this->skillsModel->calculateSkillSuccessBonus($job->job->neededSkill->id);
-    return $successRate;
-  }
-  
-  /**
    * Do one operation in job
    *
    * @throws AuthenticationNeededException
@@ -239,7 +230,7 @@ class Job {
       throw $e;
     }
     $job = $this->getCurrentJob();
-    $success = (rand(1, 100) <= $this->calculateSuccessRate($job));
+    $success = (rand(1, 100) <= $job->successRate);
     if($success) {
       $job->count++;
     }

@@ -19,8 +19,6 @@ class Skills {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
-  /** Increase of success rate per skill level (in %) */
-  public const SKILL_LEVEL_SUCCESS_RATE = 5;
   
   use \Nette\SmartObject;
   
@@ -148,23 +146,6 @@ class Skills {
       $this->orm->userSkills->detach($skill);
     }
     return $level;
-  }
-  
-  /**
-   * Calculate bonus success rate from skill level
-   *
-   * @throws AuthenticationNeededException
-   */
-  public function calculateSkillSuccessBonus(int $skillId): int {
-    if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException();
-    }
-    $bonus = 0;
-    $userSkillLevel = $this->getLevelOfSkill($skillId);
-    if(!is_null($userSkillLevel)) {
-      $bonus += $userSkillLevel * static::SKILL_LEVEL_SUCCESS_RATE;
-    }
-    return $bonus;
   }
 }
 ?>

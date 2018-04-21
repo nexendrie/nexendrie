@@ -18,8 +18,12 @@ namespace Nexendrie\Orm;
  * @property int $extra {default 0}
  * @property-read int $finishTime {virtual}
  * @property-read int[] $reward {virtual}
+ * @property-read int $successRate {virtual}
  */
 class UserJob extends \Nextras\Orm\Entity\Entity {
+  /** Base success rate for job (in %) */
+  public const BASE_SUCCESS_RATE = 55;
+  
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
   
@@ -83,6 +87,23 @@ class UserJob extends \Nextras\Orm\Entity\Entity {
     $extra += $this->getGuildRewardBonus($reward);
     $extra += $this->getSkillRewardBonus($reward);
     return ["reward" => (int) round($reward), "extra" => (int) round($extra)];
+  }
+  
+  protected function getSkillSuccessRateBonus(): int {
+    /** @var UserSkill|NULL $userSkill */
+    $userSkill = $this->user->skills->get()->getBy([
+      "id" => $this->job->neededSkill->id
+    ]);
+    if(is_null($userSkill)) {
+      return 0;
+    }
+    return $userSkill->jobSuccessRateBonus;
+  }
+  
+  protected function getterSuccessRate(): int {
+    $successRate = static::BASE_SUCCESS_RATE;
+    $successRate += $this->getSkillSuccessRateBonus();
+    return $successRate;
   }
   
   public function onBeforeInsert() {

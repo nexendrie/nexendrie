@@ -17,8 +17,11 @@ use HeroesofAbenez\Combat\CharacterEffect,
  * @property int $level
  * @property-read int $learningPrice {virtual}
  * @property-read int $jobRewardBonus {virtual}
+ * @property-read int $jobSuccessRateBonus {virtual}
  */
 class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+  /** Increase of success rate per skill level (in %) */
+  public const LEVEL_SUCCESS_RATE = 5;
   /** Increase of income per skill level (in %) */
   public const LEVEL_BONUS_INCOME = 15;
   
@@ -44,6 +47,10 @@ class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsP
   
   protected function getterJobRewardBonus(): int {
     return $this->level * static::LEVEL_BONUS_INCOME;
+  }
+  
+  protected function getterJobSuccessRateBonus(): int {
+    return $this->level * static::LEVEL_SUCCESS_RATE;
   }
   
   public function getCombatEffects(): array {
