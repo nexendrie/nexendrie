@@ -1,5 +1,5 @@
 {
   "ignore": [
-    "ids", "qualified-headings", "unique-headings"
+    "ids", "qualified-headings", "unique-headings", "order-alphabetical"
   ]
 }
