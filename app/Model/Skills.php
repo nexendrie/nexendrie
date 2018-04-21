@@ -91,11 +91,19 @@ class Skills {
   /**
    * @throws AuthenticationNeededException
    */
-  public function getUserSkill(int $skill): ?UserSkillEntity {
+  public function getUserSkill(int $skill): UserSkillEntity {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    return $this->orm->userSkills->getByUserAndSkill($this->user->id, $skill);
+    $userSkill = $this->orm->userSkills->getByUserAndSkill($this->user->id, $skill);
+    if(is_null($userSkill)) {
+      $userSkill = new UserSkillEntity();
+      $this->orm->userSkills->attach($userSkill);
+      $userSkill->skill = $skill;
+      $userSkill->user = $this->user->id;
+      $userSkill->level = 0;
+    }
+    return $userSkill;
   }
   
   /**
@@ -129,12 +137,6 @@ class Skills {
       throw $e;
     }
     $userSkill = $this->getUserSkill($id);
-    if(is_null($userSkill)) {
-      $userSkill = new UserSkillEntity();
-      $userSkill->skill = $skill;
-      $userSkill->user = $this->orm->users->getById($this->user->id);
-      $userSkill->level = 0;
-    }
     if($userSkill->level === $skill->maxLevel) {
       throw new SkillMaxLevelReachedException();
     }
@@ -159,10 +161,11 @@ class Skills {
     } catch(AuthenticationNeededException $e) {
       throw $e;
     }
-    if(is_null($skill)) {
-      return 0;
+    $level = $skill->level;
+    if($level === 0) {
+      $this->orm->userSkills->detach($skill);
     }
-    return $skill->level;
+    return $level;
   }
   
   /**
