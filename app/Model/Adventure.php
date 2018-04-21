@@ -256,16 +256,6 @@ class Adventure {
   }
   
   /**
-   * Get next enemy for adventure
-   */
-  public function getNextNpc(UserAdventureEntity $adventure): ?AdventureNpcEntity {
-    if($adventure->progress >= UserAdventureEntity::PROGRESS_COMPLETED) {
-      return NULL;
-    }
-    return $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
-  }
-  
-  /**
    * Fight a npc
    *
    * @return bool Whether the user won
@@ -310,7 +300,7 @@ class Adventure {
     if($adventure->progress >= UserAdventureEntity::PROGRESS_COMPLETED) {
       throw new NoEnemyRemainException();
     }
-    $enemy = $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
+    $enemy = $adventure->nextEnemy;
     if(is_null($enemy)) {
       throw new NoEnemyRemainException();
     }
@@ -338,7 +328,7 @@ class Adventure {
     if(is_null($adventure)) {
       throw new NotOnAdventureException();
     }
-    if(!is_null($this->getNextNpc($adventure))) {
+    if(!is_null($adventure->nextEnemy)) {
       throw new NotAllEnemiesDefeatedException();
     }
     $adventure->progress = UserAdventureEntity::PROGRESS_COMPLETED;

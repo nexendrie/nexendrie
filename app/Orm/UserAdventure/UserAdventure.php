@@ -15,10 +15,20 @@ namespace Nexendrie\Orm;
  * @property int $progress {default 0}
  * @property int $reward {default 0}
  * @property int $loot {default 0}
+ * @property-read AdventureNpc|NULL $nextEnemy {virtual}
  */
 class UserAdventure extends \Nextras\Orm\Entity\Entity {
   public const PROGRESS_COMPLETED = 10;
   public const PROGRESS_CLOSED = 11;
+  
+  protected function getterNextEnemy(): ?AdventureNpc {
+    if($this->progress >= static::PROGRESS_COMPLETED) {
+      return NULL;
+    }
+    return $this->adventure->npcs->get()->getBy([
+      "order" => $this->progress + 1
+    ]);
+  }
   
   public function onBeforeInsert() {
     parent::onBeforeInsert();

@@ -126,26 +126,6 @@ final class AdventureTest extends \Tester\TestCase {
     }, MountNotOwnedException::class);
   }
   
-  public function testGetNextNpc() {
-    /** @var \Nexendrie\Orm\Model $orm */
-    $orm = $this->getService(\Nexendrie\Orm\Model::class);
-    $adventure = new \Nexendrie\Orm\UserAdventure();
-    $orm->userAdventures->attach($adventure);
-    $adventure->started = time();
-    $adventure->user = 1;
-    $adventure->adventure = 1;
-    $adventure->mount = 2;
-    $npc = $this->model->getNextNpc($adventure);
-    Assert::type(AdventureNpc::class, $npc);
-    $adventure->progress = 2;
-    $npc = $this->model->getNextNpc($adventure);
-    Assert::null($npc);
-    $adventure->progress = UserAdventureEntity::PROGRESS_COMPLETED;
-    $npc = $this->model->getNextNpc($adventure);
-    Assert::null($npc);
-    $orm->userAdventures->removeAndFlush($adventure);
-  }
-  
   public function testCalculateMonthAdventuresIncome() {
     Assert::type("int", $this->model->calculateMonthAdventuresIncome(1));
   }
