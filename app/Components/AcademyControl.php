@@ -51,8 +51,9 @@ class AcademyControl extends \Nette\Application\UI\Control {
         "id" => $skill->id, "name" => $skill->name, "maxLevel" => $skill->maxLevel,
         "effect" => $skill->effect
       ];
-      $s->level = $this->model->getLevelOfSkill($skill->id);
-      $price = $this->model->calculateLearningPrice($skill->price, $s->level + 1, $s->maxLevel);
+      $userSkill = $this->model->getUserSkill($skill->id);
+      $s->level = $userSkill->level;
+      $price = $userSkill->learningPrice;
       $s->price = $this->localeModel->money($price);
       $skills[] = $s;
     }

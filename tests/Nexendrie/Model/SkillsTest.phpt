@@ -51,15 +51,6 @@ final class SkillsTest extends \Tester\TestCase {
     }, SkillNotFoundException::class);
   }
   
-  public function testCalculateLearningPrice() {
-    $this->login();
-    Assert::same(100, $this->model->calculateLearningPrice(100, 1));
-    Assert::same(180, $this->model->calculateLearningPrice(100, 5));
-    $this->login("Rahym");
-    Assert::same(85, $this->model->calculateLearningPrice(100, 1));
-    Assert::same(153, $this->model->calculateLearningPrice(100, 5));
-  }
-  
   public function testLearn() {
     Assert::exception(function() {
       $this->model->learn(1);

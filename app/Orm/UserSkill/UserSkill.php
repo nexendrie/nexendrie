@@ -15,8 +15,29 @@ use HeroesofAbenez\Combat\CharacterEffect,
  * @property User $user {m:1 User::$skills}
  * @property Skill $skill {m:1 Skill::$userSkills}
  * @property int $level
+ * @property-read int $learningPrice {virtual}
  */
 class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+  /** @var \Nexendrie\Model\Events */
+  protected $eventsModel;
+  
+  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
+    $this->eventsModel = $eventsModel;
+  }
+  
+  protected function getterLearningPrice(): int {
+    $price = $basePrice = $this->skill->price;
+    for($i = 2; $i <= $this->level + 1; $i++) {
+      $price += (int) ($basePrice / $this->skill->maxLevel);
+    }
+    $price -= $this->eventsModel->calculateTrainingDiscount($price);
+    if($this->user->monastery AND $this->user->group->path === Group::PATH_CHURCH) {
+      $monasteryDiscount = $this->user->monastery->skillLearningDiscount;
+      $price -= (int) ($price / 100 * $monasteryDiscount);
+    }
+    return $price;
+  }
+  
   public function getCombatEffects(): array {
     if($this->skill->type !== Skill::TYPE_COMBAT) {
       return [];

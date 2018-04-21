@@ -478,19 +478,5 @@ class Monastery {
     $user->monastery->money -= $repairPrice;
     $this->orm->monasteries->persistAndFlush($user->monastery);
   }
-  
-  public function calculateSkillLearningPriceDiscount(int $price): int {
-    if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException();
-    }
-    $bonus = $increase = 0;
-    /** @var UserEntity $user */
-    $user = $this->orm->users->getById($this->user->id);
-    if($user->monastery AND $user->group->path === GroupEntity::PATH_CHURCH) {
-      $increase += $user->monastery->skillLearningDiscount;
-    }
-    $bonus += (int) ($price / 100 * $increase);
-    return $bonus;
-  }
 }
 ?>

@@ -15,8 +15,6 @@ use Nexendrie\Orm\Skill as SkillEntity,
 class Skills {
   /** @var Events */
   protected $eventsModel;
-  /** @var Monastery */
-  protected $monasteryModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -28,9 +26,8 @@ class Skills {
   
   use \Nette\SmartObject;
   
-  public function __construct(Events $eventsModel, Monastery $monasteryModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->eventsModel = $eventsModel;
-    $this->monasteryModel = $monasteryModel;
     $this->orm = $orm;
     $this->user = $user;
   }
@@ -107,19 +104,6 @@ class Skills {
   }
   
   /**
-   * Calculate price of learning of next level
-   */
-  public function calculateLearningPrice(int $basePrice, int $newLevel, int $maxLevel = 5): int {
-    $price = $basePrice;
-    for($i = 2; $i <= $newLevel; $i++) {
-      $price += (int) ($basePrice / $maxLevel);
-    }
-    $price -= $this->eventsModel->calculateTrainingDiscount($price);
-    $price -= $this->monasteryModel->calculateSkillLearningPriceDiscount($price);
-    return $price;
-  }
-  
-  /**
    * Learn new/improve existing skill
    *
    * @throws AuthenticationNeededException
@@ -140,7 +124,7 @@ class Skills {
     if($userSkill->level === $skill->maxLevel) {
       throw new SkillMaxLevelReachedException();
     }
-    $price = $this->calculateLearningPrice($skill->price, $userSkill->level + 1, $skill->maxLevel);
+    $price = $userSkill->learningPrice;
     if($userSkill->user->money < $price) {
       throw new InsufficientFundsException();
     }
