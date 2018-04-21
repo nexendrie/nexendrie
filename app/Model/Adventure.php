@@ -259,7 +259,7 @@ class Adventure {
    * Get next enemy for adventure
    */
   public function getNextNpc(UserAdventureEntity $adventure): ?AdventureNpcEntity {
-    if($adventure->progress >= 9) {
+    if($adventure->progress >= UserAdventureEntity::PROGRESS_COMPLETED) {
       return NULL;
     }
     return $this->orm->adventureNpcs->getByAdventureAndOrder($adventure->adventure->id, $adventure->progress + 1);
