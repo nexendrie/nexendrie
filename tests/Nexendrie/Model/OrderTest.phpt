@@ -20,10 +20,6 @@ final class OrderTest extends \Tester\TestCase {
     $this->model = $this->getService(Order::class);
   }
   
-  public function testGetFoundingPrice() {
-    Assert::type("int", $this->model->foundingPrice);
-  }
-  
   public function testListOfOrders() {
     $result = $this->model->listOfOrders();
     Assert::type(ICollection::class, $result);

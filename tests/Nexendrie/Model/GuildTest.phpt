@@ -6,8 +6,7 @@ namespace Nexendrie\Model;
 use Tester\Assert,
     Nextras\Orm\Collection\ICollection,
     Nexendrie\Orm\Guild as GuildEntity,
-    Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\UserJob;
+    Nexendrie\Orm\User as UserEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 
@@ -19,10 +18,6 @@ final class GuildTest extends \Tester\TestCase {
   
   protected function setUp() {
     $this->model = $this->getService(Guild::class);
-  }
-  
-  public function testGetFoundingPrice() {
-    Assert::type("int", $this->model->foundingPrice);
   }
   
   public function testListOfGuilds() {

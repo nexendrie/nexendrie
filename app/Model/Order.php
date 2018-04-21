@@ -12,7 +12,6 @@ use Nexendrie\Orm\Order as OrderEntity,
  * Order Model
  *
  * @author Jakub Konečný
- * @property-read int $foundingPrice
  * @property-read int $maxRank
  */
 class Order {
@@ -29,10 +28,6 @@ class Order {
     $this->orm = $orm;
     $this->user = $user;
     $this->foundingPrice = $sr->settings["fees"]["foundOrder"];
-  }
-  
-  public function getFoundingPrice(): int {
-    return $this->foundingPrice;
   }
   
   /**

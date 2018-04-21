@@ -75,7 +75,8 @@ class GuildPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš založit cech.");
       $this->redirect("Homepage:");
     }
-    $this->template->foundingPrice = $this->localeModel->money($this->model->foundingPrice);
+    $foundingPrice = $this->sr->settings["fees"]["foundGuild"];
+    $this->template->foundingPrice = $this->localeModel->money($foundingPrice);
   }
   
   protected function createComponentFoundGuildForm(FoundGuildFormFactory $factory): Form {

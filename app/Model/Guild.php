@@ -5,7 +5,6 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Guild as GuildEntity,
     Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\UserJob as UserJobEntity,
     Nexendrie\Orm\Group as GroupEntity,
     Nextras\Orm\Collection\ICollection;
 
@@ -13,7 +12,6 @@ use Nexendrie\Orm\Guild as GuildEntity,
  * Guild Model
  *
  * @author Jakub Konečný
- * @property int $foundingPrice
  * @property-read int $maxRank
  */
 class Guild {
@@ -30,10 +28,6 @@ class Guild {
     $this->orm = $orm;
     $this->user = $user;
     $this->foundingPrice = $sr->settings["fees"]["foundGuild"];
-  }
-  
-  public function getFoundingPrice(): int {
-    return $this->foundingPrice;
   }
   
   /**

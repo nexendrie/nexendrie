@@ -75,7 +75,7 @@ class OrderPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš založit řád.");
       $this->redirect("Homepage:");
     }
-    $this->template->foundingPrice = $this->localeModel->money($this->model->foundingPrice);
+    $this->template->foundingPrice = $this->sr->settings["fees"]["foundOrder"];
   }
   
   protected function createComponentFoundOrderForm(FoundOrderFormFactory $factory): Form {
