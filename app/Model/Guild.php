@@ -152,26 +152,6 @@ class Guild {
     $this->orm->users->persistAndFlush($user);
   }
   
-  public function calculateGuildIncomeBonus(int $baseIncome, UserJobEntity $job): int {
-    if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException();
-    }
-    $bonus = $increase = 0;
-    /** @var UserEntity $user */
-    $user = $this->orm->users->getById($job->user->id);
-    if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
-      $use = false;
-      if($job->job->neededSkill->id === $user->guild->skill->id) {
-        $use = true;
-      }
-      if($use) {
-        $increase += $user->guildRank->incomeBonus + $user->guild->level - 1;
-      }
-    }
-    $bonus += (int) ($baseIncome /100 * $increase);
-    return $bonus;
-  }
-  
   /**
    * Check whether the user can join a guild
    */

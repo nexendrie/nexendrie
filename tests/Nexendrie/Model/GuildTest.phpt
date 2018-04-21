@@ -81,31 +81,6 @@ final class GuildTest extends \Tester\TestCase {
     }, CannotFoundGuildException::class);
   }
   
-  public function testCalculateGuildIncomeBonus() {
-    /** @var \Nexendrie\Orm\Model $orm */
-    $orm = $this->getService(\Nexendrie\Orm\Model::class);
-    $job = new UserJob();
-    $job->started = time();
-    $orm->userJobs->attach($job);
-    $job->job = 1;
-    Assert::exception(function() use($job) {
-      $this->model->calculateGuildIncomeBonus(100, $job);
-    }, AuthenticationNeededException::class);
-    $this->login();
-    $job->user = 1;
-    Assert::same(0, $this->model->calculateGuildIncomeBonus(100, $job));
-    $this->login("jakub");
-    $job->user = 3;
-    $result1 = $this->model->calculateGuildIncomeBonus(100, $job);
-    Assert::type("int", $result1);
-    Assert::same(0, $result1);
-    $job->job = 7;
-    $result2 = $this->model->calculateGuildIncomeBonus(100, $job);
-    Assert::type("int", $result2);
-    Assert::true($result2 > 0);
-    $orm->userJobs->removeAndFlush($job);
-  }
-  
   public function testCanJoin() {
     Assert::false($this->model->canJoin());
     $this->login();
