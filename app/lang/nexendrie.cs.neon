@@ -3,3 +3,10 @@ hitpoints: "{0} %count% životů|{1} %count% život|[2,4] %count% životy|[5,+In
 barrels: "{0} %count% sudů|{1} %count% sud|[2,4] %count% sudy|[5,+Inf[ %count% sudů"
 townElections:
     numberOfCouncillors: "{1}Konšelem se stane %count% kandidát s nejvíce hlasy.|[2,4]Konšely se stane %count% kandidátů s nejvíce hlasy.[5,+Inf[Konšelyem se stanou %count% kandidáti s nejvíce hlasy."
+achievements:
+    completedAdventures: "Dokonči %newCount% dobrodružství (hotovo %oldCount%)."
+    completedJobs: "Odpracuj %newCount% týdnů (hotovo %oldCount%)."
+    lessonsTaken: "Trénuj %newCount%krát v Akademii (hotovo %oldCount%)."
+    producedBeers: "Vyprodukuj %newCount% sudů piva (hotovo %oldCount%)."
+    townsOwned: "Vládni %newCount% městům (hotovo %oldCount%)."
+    mountsOwned: "Vlastni %newCount% jezdeckých zvířat (hotovo %oldCount%)."

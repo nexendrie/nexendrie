@@ -74,6 +74,8 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property-read int $lessonsTaken {virtual}
  * @property-read int $currentOrderContribution {virtual}
  * @property-read int $currentGuildContribution {virtual}
+ * @property-read int $townsOwned {virtual}
+ * @property-read int $mountsOwned {virtual}
  */
 class User extends \Nextras\Orm\Entity\Entity {
   public const GENDER_MALE = "male";
@@ -186,6 +188,14 @@ class User extends \Nextras\Orm\Entity\Entity {
       return 0;
     }
     return $record->amount;
+  }
+  
+  protected function getterTownsOwned(): int {
+    return $this->ownedTowns->countStored();
+  }
+  
+  protected function getterMountsOwned(): int {
+    return $this->mounts->countStored();
   }
   
   public function onBeforeInsert() {

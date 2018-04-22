@@ -79,6 +79,10 @@ menu:
                 link: "Front:Marriage:"
                 conditions:
                     loggedIn: true
+            Úspěchy:
+                link: "Front:Achievements:"
+                conditions:
+                    loggedIn: true
             Kronika: "Front:Chronicle:"
             Články: "Front:Articles:"
             Seznamy: "Front:Lists:"

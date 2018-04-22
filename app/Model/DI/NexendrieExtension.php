@@ -27,6 +27,7 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $this->addCronTasks();
     $this->addComponents();
     $this->addForms();
+    $this->addAchievements();
   }
   
   protected function registerMenuConditions(): void {
@@ -118,6 +119,8 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Model\Guild::class);
     $builder->addDefinition($this->prefix("model.order"))
       ->setType(Nexendrie\Model\Order::class);
+    $builder->addDefinition($this->prefix("model.achievements"))
+      ->setType(Nexendrie\Model\Achievements::class);
     $builder->addDefinition("cache.cache")
       ->setFactory(\Nette\Caching\Cache::class, ["@cache.storage", "data"]);
     $builder->addDefinition($this->prefix("model.settingsRepository"))
@@ -286,6 +289,22 @@ class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Forms\OpenDepositAccountFormFactory::class);
     $builder->addDefinition($this->prefix("form.siteSearch"))
       ->setType(Nexendrie\Forms\SiteSearchFormFactory::class);
+  }
+  
+  protected function addAchievements(): void {
+    $builder = $this->getContainerBuilder();
+    $builder->addDefinition($this->prefix("achievements.completedAdventures"))
+      ->setType(Nexendrie\Achievements\CompletedAdventuresAchievement::class);
+    $builder->addDefinition($this->prefix("achievements.completedJobs"))
+      ->setType(Nexendrie\Achievements\CompletedJobsAchievement::class);
+    $builder->addDefinition($this->prefix("achievements.lessonsTaken"))
+      ->setType(Nexendrie\Achievements\LessonsTakenAchievement::class);
+    $builder->addDefinition($this->prefix("achievements.producedBeers"))
+      ->setType(Nexendrie\Achievements\ProducedBeersAchievement::class);
+    $builder->addDefinition($this->prefix("achievements.townsOwned"))
+      ->setType(Nexendrie\Achievements\TownsOwnedAchievements::class);
+    $builder->addDefinition($this->prefix("achievements.mountsOwned"))
+      ->setType(Nexendrie\Achievements\MountsOwnedAchievement::class);
   }
   
   public function beforeCompile() {

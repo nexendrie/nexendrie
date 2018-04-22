@@ -1,0 +1,7 @@
+{layout "../@layout.latte"}
+{block title}Úspěchy{/block}
+{block content}
+  <h1>Úspěchy</h1>
+  <div n:inner-foreach="$achievements as $achievement" id="achievements">
+    <p class="achievement">{$achievement->getName()} {$achievement->isAchieved($userEntity)}/{$achievement->getMaxLevel()} - {$achievement->getDescription($userEntity)}</p>
+  </div>
