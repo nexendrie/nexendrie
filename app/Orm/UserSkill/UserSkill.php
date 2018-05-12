@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
 
 use HeroesofAbenez\Combat\CharacterEffect,
     HeroesofAbenez\Combat\SkillSpecial,
+    HeroesofAbenez\Combat\Character,
     HeroesofAbenez\Combat\ICharacterEffectsProvider;
 
 /**
@@ -58,8 +59,8 @@ class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsP
       return [];
     }
     $bonusStats = [
-      Skill::STAT_HITPOINTS => SkillSpecial::STAT_HITPOINTS, Skill::STAT_DAMAGE => SkillSpecial::STAT_DAMAGE,
-      Skill::STAT_ARMOR => SkillSpecial::STAT_DEFENSE,
+      Skill::STAT_HITPOINTS => Character::STAT_MAX_HITPOINTS, Skill::STAT_DAMAGE => Character::STAT_DAMAGE,
+      Skill::STAT_ARMOR => Character::STAT_DEFENSE,
     ];
     $stats = [
       "id" => "skill{$this->skill->id}Effect", "type" => SkillSpecial::TYPE_BUFF,

@@ -7,6 +7,7 @@ use Nextras\Orm\Relationships\OneHasMany,
     Nexendrie\Utils\Numbers,
     HeroesofAbenez\Combat\CharacterEffect,
     HeroesofAbenez\Combat\SkillSpecial,
+    HeroesofAbenez\Combat\Character,
     HeroesofAbenez\Combat\ICharacterEffectsProvider;
 
 /**
@@ -159,7 +160,7 @@ class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvi
     $stats = [
       "id" => "mount{$this->id}DamageBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->damage,
       "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
-      "stat" => SkillSpecial::STAT_DAMAGE,
+      "stat" => Character::STAT_DAMAGE,
     ];
     return new CharacterEffect($stats);
   }
@@ -168,7 +169,7 @@ class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvi
     $stats = [
       "id" => "mount{$this->id}DefenseBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->armor,
       "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
-      "stat" => SkillSpecial::STAT_DEFENSE,
+      "stat" => Character::STAT_DEFENSE,
     ];
     return new CharacterEffect($stats);
   }

@@ -6,6 +6,7 @@ namespace Nexendrie\Orm;
 use Nexendrie\Utils\Numbers,
     HeroesofAbenez\Combat\CharacterEffect,
     HeroesofAbenez\Combat\SkillSpecial,
+    HeroesofAbenez\Combat\Character,
     HeroesofAbenez\Combat\ICharacterEffectsProvider;
 
 /**
@@ -47,8 +48,8 @@ class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsPro
   
   public function getCombatEffects(): array {
     $bonusStats = [
-      static::STAT_HITPOINTS => SkillSpecial::STAT_HITPOINTS, static::STAT_DAMAGE => SkillSpecial::STAT_DAMAGE,
-      static::STAT_ARMOR => SkillSpecial::STAT_DEFENSE,
+      static::STAT_HITPOINTS => Character::STAT_MAX_HITPOINTS, static::STAT_DAMAGE => Character::STAT_DAMAGE,
+      static::STAT_ARMOR => Character::STAT_DEFENSE,
     ];
     $stats = [
       "id" => "itemSet{$this->id}BonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->bonus,
