@@ -16,19 +16,19 @@ final class AdventurePresenterTest extends \Tester\TestCase {
   
   public function testDefault() {
     $this->defaultChecks(":Front:Adventure:default");
-    $this->login();
+    $this->login("Rahym");
     $this->checkRedirect(":Front:Adventure:default", "/adventure/list");
   }
   
   public function testMounts() {
     $this->defaultChecks(":Front:Adventure:mounts", ["id" => 1]);
-    $this->login();
+    $this->login("Rahym");
     $this->checkAction(":Front:Adventure:mounts", ["id" => 1]);
   }
   
   public function testList() {
     $this->defaultChecks(":Front:Adventure:list");
-    $this->login();
+    $this->login("Rahym");
     $this->checkAction(":Front:Adventure:list");
   }
 }
