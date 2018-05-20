@@ -8,8 +8,7 @@ use Tester\Assert,
     Nextras\Orm\Relationships\OneHasMany,
     Nexendrie\Orm\Adventure as AdventureEntity,
     Nexendrie\Orm\AdventureNpc,
-    Nexendrie\Orm\Mount as MountEntity,
-    Nexendrie\Orm\UserAdventure as UserAdventureEntity;
+    Nexendrie\Orm\Mount as MountEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 

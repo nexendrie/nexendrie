@@ -5,8 +5,6 @@ namespace Nexendrie\Presenters\FrontModule;
 
 require __DIR__ . "/../../../bootstrap.php";
 
-use Tester\Assert;
-
 final class ChatPresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   
