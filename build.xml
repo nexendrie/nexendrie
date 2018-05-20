@@ -4,6 +4,13 @@
   <target name="test-coverage" depends="lint,cs,phpstan,tests-coverage,clean-db"/>
   <target name="test-phpdbg" depends="lint,cs,phpstan,tests-phpdbg,clean-db"/>
   <target name="test-ci" depends="install-ci,test"/>
+  <target name="test-ci-pgsql">
+    <phingcall target="install-ci"/>
+    <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
+      <arg path="tools/pgsql_setup.php"/>
+    </exec>
+    <phingcall target="test"/>
+  </target>
   <target name="test-ci-coverage" depends="install-ci,test-phpdbg"/>
   <target name="install">
     <property name="environment" value="production"/>

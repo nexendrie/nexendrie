@@ -39,9 +39,8 @@ test:pgsql:
     POSTGRES_DB: nexendrie
     POSTGRES_USER: root
     POSTGRES_PASSWORD: root
-  before_script:
-  - cp tests/ci.neon tests/local.neon
-  - php tools/pgsql_setup.php
+  script:
+  - phing test-ci-pgsql
   allow_failure: true
   retry: 2
 
