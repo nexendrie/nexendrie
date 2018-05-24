@@ -45,7 +45,7 @@
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
-        "dg/ftp-deployment": "^2.9",
+        "dg/ftp-deployment": "^3.0",
         "phpstan/phpstan-nette": "^0.9"
     },
     "autoload": {
