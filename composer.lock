@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/chat.git",
-                "reference": "2a100ff839aaf975d94579f5d59585a38340a67c"
+                "reference": "7e2f483e5f71fe9ee7ab598869fa48d4a28dd309"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fchat/repository/archive.zip?sha=2a100ff839aaf975d94579f5d59585a38340a67c",
-                "reference": "2a100ff839aaf975d94579f5d59585a38340a67c",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fchat/repository/archive.zip?sha=7e2f483e5f71fe9ee7ab598869fa48d4a28dd309",
+                "reference": "7e2f483e5f71fe9ee7ab598869fa48d4a28dd309",
                 "shasum": ""
             },
             "require": {
@@ -63,7 +63,7 @@
                 "component",
                 "nette"
             ],
-            "time": "2018-03-22T13:19:01+00:00"
+            "time": "2018-05-26T12:29:57+00:00"
         },
         {
             "name": "heroesofabenez/combat",
@@ -71,12 +71,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "6e62ff54fdbfae4e61ba2e46b686942ea2e0a835"
+                "reference": "a5d74c1f2addfd34a838436c0c4deec0c74716ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=6e62ff54fdbfae4e61ba2e46b686942ea2e0a835",
-                "reference": "6e62ff54fdbfae4e61ba2e46b686942ea2e0a835",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=a5d74c1f2addfd34a838436c0c4deec0c74716ef",
+                "reference": "a5d74c1f2addfd34a838436c0c4deec0c74716ef",
                 "shasum": ""
             },
             "require": {
@@ -118,7 +118,7 @@
             "keywords": [
                 "combat"
             ],
-            "time": "2018-05-01T11:31:23+00:00"
+            "time": "2018-05-26T12:27:38+00:00"
         },
         {
             "name": "kdyby/autowired",
@@ -1927,7 +1927,7 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.0.10",
+            "version": "v4.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
@@ -1981,16 +1981,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.4.14",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "229249212e041bc3cd5d88f65965d9391dad3852"
+                "reference": "534d4e4f0f31da494026a3761fad020c20b8debf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/229249212e041bc3cd5d88f65965d9391dad3852",
-                "reference": "229249212e041bc3cd5d88f65965d9391dad3852",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/534d4e4f0f31da494026a3761fad020c20b8debf",
+                "reference": "534d4e4f0f31da494026a3761fad020c20b8debf",
                 "shasum": ""
             },
             "require": {
@@ -2008,7 +2008,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -2042,7 +2042,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2018-05-04T11:54:21+00:00"
+            "time": "2018-05-25T09:33:08+00:00"
         }
     ],
     "packages-dev": [
@@ -2940,7 +2940,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.0.10",
+            "version": "v4.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -3008,7 +3008,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.0.10",
+            "version": "v4.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
