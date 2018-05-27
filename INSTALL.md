@@ -13,7 +13,7 @@ Clone the repository with git clone.
 Auto install
 ------------
 
-After cloning the repository, you have to install the dependencies and create certain folders, local configuration file and database with basic data. You can do that manually but a tool called [Phing] (https://www.phing.info) can make it easier for you. Just download it and run *phing install -Denvironment=development*. After running it you can skip to part Web server.
+After cloning the repository, you have to install the dependencies and create certain folders, local configuration file and database with basic data. You can do that manually but a tool called [Phing](https://www.phing.info) can make it easier for you. Just download it and run *phing install -Denvironment=development*. After running it you can skip to part Web server.
 
 Creating folders
 ----------------
