@@ -10,7 +10,7 @@ use Nette\Application\UI\Form;
  *
  * @author Jakub Konečný
  */
-class AddEditJobFormFactory {
+final class AddEditJobFormFactory {
   /** @var \Nexendrie\Model\Skills */
   protected $skillsModel;
   

@@ -12,7 +12,7 @@ use Nexendrie\Model\Elections,
  *
  * @author Jakub Konečný
  */
-class MunicipalElectionsTask extends BaseMonthlyCronTask {
+final class MunicipalElectionsTask extends BaseMonthlyCronTask {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var Elections */

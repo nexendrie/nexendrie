@@ -13,7 +13,7 @@ use Nexendrie\Model\SettingsRepository;
  *
  * @author Jakub Konečný
  */
-class RegisterFormFactory {
+final class RegisterFormFactory {
   /** @var UserManager */
   protected $model;
   /** @var SettingsRepository */

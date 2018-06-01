@@ -12,7 +12,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class BanUserFormFactory {
+final class BanUserFormFactory {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var int */

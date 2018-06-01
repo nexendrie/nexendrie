@@ -16,7 +16,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property int $guildFee
  * @property OneHasMany|User[] $people {1:m User::$guildRank}
  */
-class GuildRank extends \Nextras\Orm\Entity\Entity {
+final class GuildRank extends \Nextras\Orm\Entity\Entity {
   protected function setterIncomeBonus(int $value): int {
     return Numbers::range($value, 0, 99);
   }

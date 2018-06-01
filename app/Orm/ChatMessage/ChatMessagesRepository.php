@@ -8,7 +8,7 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-class ChatMessagesRepository extends \Nextras\Orm\Repository\Repository {
+final class ChatMessagesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [ChatMessage::class];
   }

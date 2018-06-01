@@ -14,7 +14,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class ItemPresenter extends BasePresenter {
+final class ItemPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Market */
   protected $model;
   /** @var ItemEntity */

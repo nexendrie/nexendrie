@@ -8,7 +8,7 @@ namespace Nexendrie\Presenters\FrontModule;
  *
  * @author Jakub Konečný
  */
-class CronPresenter extends BasePresenter {
+final class CronPresenter extends BasePresenter {
   /** @var \stekycz\Cronner\Cronner */
   protected $cronner;
   

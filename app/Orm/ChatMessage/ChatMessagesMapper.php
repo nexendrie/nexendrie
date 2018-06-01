@@ -8,7 +8,7 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-class ChatMessagesMapper extends \Nextras\Orm\Mapper\Mapper {
+final class ChatMessagesMapper extends \Nextras\Orm\Mapper\Mapper {
   
 }
 ?>

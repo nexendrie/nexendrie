@@ -20,7 +20,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|PollVote[] $votes {1:m PollVote::$poll}
  * 
  */
-class Poll extends \Nextras\Orm\Entity\Entity {
+final class Poll extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

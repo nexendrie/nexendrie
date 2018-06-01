@@ -16,7 +16,7 @@ use Nexendrie\Model\AlreadyWorkingException,
  *
  * @author Jakub Konečný
  */
-class WorkPresenter extends BasePresenter {
+final class WorkPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Job */
   protected $model;
   /** @var \Nexendrie\Model\Locale */

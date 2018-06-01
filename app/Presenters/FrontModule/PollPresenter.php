@@ -10,7 +10,7 @@ use Nexendrie\Components\IPollControlFactory;
  *
  * @author Jakub Konečný
  */
-class PollPresenter extends BasePresenter {
+final class PollPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Polls */
   protected $model;
   

@@ -13,7 +13,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class ManageMonasteryFormFactory {
+final class ManageMonasteryFormFactory {
   /** @var \Nexendrie\Model\Monastery */
   protected $model;
   /** @var int */

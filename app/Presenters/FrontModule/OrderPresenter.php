@@ -24,7 +24,7 @@ use Nexendrie\Forms\FoundOrderFormFactory,
  *
  * @author Jakub Konečný
  */
-class OrderPresenter extends BasePresenter {
+final class OrderPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Order  */
   protected $model;
   /** @var \Nexendrie\Model\Locale */

@@ -11,7 +11,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class OpenDepositAccountFormFactory {
+final class OpenDepositAccountFormFactory {
   /** @var \Nexendrie\Model\Bank */
   protected $model;
   /** @var \Nexendrie\Model\SettingsRepository */

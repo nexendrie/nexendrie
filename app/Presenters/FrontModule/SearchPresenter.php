@@ -11,7 +11,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class SearchPresenter extends BasePresenter {
+final class SearchPresenter extends BasePresenter {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   

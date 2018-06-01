@@ -8,7 +8,7 @@ namespace Nexendrie\Presenters\FrontModule;
  *
  * @author Jakub Konečný
  */
-class ListsPresenter extends BasePresenter {
+final class ListsPresenter extends BasePresenter {
   
 }
 ?>

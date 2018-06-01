@@ -19,7 +19,7 @@ namespace Nexendrie\Orm;
  * @property-read string $releasedAt {virtual}
  * @property-read int $nextShift {virtual}
  */
-class Punishment extends \Nextras\Orm\Entity\Entity {
+final class Punishment extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

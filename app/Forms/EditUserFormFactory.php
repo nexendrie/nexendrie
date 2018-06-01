@@ -13,7 +13,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class EditUserFormFactory {
+final class EditUserFormFactory {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var UserManager */

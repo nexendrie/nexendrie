@@ -11,7 +11,7 @@ use Nexendrie\Components\AcademyControl,
  *
  * @author Jakub Konečný
  */
-class AcademyPresenter extends BasePresenter {
+final class AcademyPresenter extends BasePresenter {
   protected function startup(): void {
     parent::startup();
     $this->requiresLogin();

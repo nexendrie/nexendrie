@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Utils;
 
-class Arrays {
+final class Arrays {
   /**
    * @author jimpoz jimpoz@jimpoz.com
    * @license http://creativecommons.org/licenses/by/3.0/ CC-BY-3.0

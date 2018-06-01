@@ -10,7 +10,7 @@ use Nette\Application\UI\Form;
  *
  * @author Jakub Konečný
  */
-class AddEditMealFormFactory {
+final class AddEditMealFormFactory {
   public function create(): Form {
     $form = new Form();
     $form->addText("name", "Jméno:")

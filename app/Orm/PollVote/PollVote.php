@@ -14,7 +14,7 @@ namespace Nexendrie\Orm;
  * @property int $voted
  * @property-read string $votedAt {virtual}
  */
-class PollVote extends \Nextras\Orm\Entity\Entity {
+final class PollVote extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

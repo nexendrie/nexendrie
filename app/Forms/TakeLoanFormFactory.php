@@ -10,7 +10,7 @@ use Nette\Application\UI\Form;
  *
  * @author Jakub Konečný
  */
-class TakeLoanFormFactory {
+final class TakeLoanFormFactory {
   /** @var \Nexendrie\Model\Bank */
   protected $model;
   

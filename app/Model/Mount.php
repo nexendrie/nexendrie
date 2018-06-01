@@ -12,7 +12,7 @@ use Nexendrie\Orm\Mount as MountEntity,
  *
  * @author Jakub Konečný
  */
-class Mount {
+final class Mount {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

@@ -13,7 +13,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class UserPresenter extends BasePresenter {
+final class UserPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Authenticator */
   protected $model;
   /** @var \Nexendrie\Model\Locale */

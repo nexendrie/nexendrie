@@ -11,7 +11,7 @@ use Nexendrie\Forms\GiftFormFactory,
  *
  * @author Jakub Konečný
  */
-class ContentPresenter extends BasePresenter {
+final class ContentPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Market */
   protected $marketModel;
   /** @var \Nexendrie\Model\Job */

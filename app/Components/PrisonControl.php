@@ -12,7 +12,7 @@ use Nexendrie\Orm\Punishment,
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
-class PrisonControl extends \Nette\Application\UI\Control {
+final class PrisonControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nexendrie\Model\Locale */

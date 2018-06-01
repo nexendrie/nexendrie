@@ -16,7 +16,7 @@ use Nexendrie\Model\JobNotFoundException,
  *
  * @author Jakub Konečný
  */
-class JobMessagesPresenter extends BasePresenter {
+final class JobMessagesPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Job */
   protected $model;
   /** @var JobMessageEntity */

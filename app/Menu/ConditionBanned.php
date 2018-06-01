@@ -10,7 +10,7 @@ use Nette\Security\User;
  *
  * @author Jakub Konečný
  */
-class ConditionBanned extends BaseCondition {
+final class ConditionBanned extends BaseCondition {
   /** @var User */
   protected $user;
   

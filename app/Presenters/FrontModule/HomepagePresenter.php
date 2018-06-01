@@ -8,7 +8,7 @@ namespace Nexendrie\Presenters\FrontModule;
  *
  * @author Jakub Konečný
  */
-class HomepagePresenter extends BasePresenter {
+final class HomepagePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Article */
   protected $model;
   

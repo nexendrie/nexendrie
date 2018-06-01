@@ -20,7 +20,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
  * @property-read string $categoryCZ {virtual}
  */
-class Article extends \Nextras\Orm\Entity\Entity {
+final class Article extends \Nextras\Orm\Entity\Entity {
   public const CATEGORY_NEWS = "news";
   public const CATEGORY_CHRONICLE = "chronicle";
   public const CATEGORY_POETRY = "poetry";

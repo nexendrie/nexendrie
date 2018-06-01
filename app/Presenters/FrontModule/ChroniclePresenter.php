@@ -10,7 +10,7 @@ use EventCalendar\Simple\SimpleCalendar as Calendar;
  *
  * @author Jakub Konečný
  */
-class ChroniclePresenter extends BasePresenter {
+final class ChroniclePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Chronicle */
   protected $model;
   /** @var \Nexendrie\Model\Events */

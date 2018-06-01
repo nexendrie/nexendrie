@@ -14,7 +14,7 @@ use Nexendrie\Orm\Job as JobEntity,
  *
  * @author Jakub Konečný
  */
-class Job {
+final class Job {
   /** @var Skills */
   protected $skillsModel;
   /** @var Locale @autowire */

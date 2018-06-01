@@ -17,7 +17,7 @@ use Nette\Security\IAuthenticator,
  * @author Jakub Konečný
  * @property-write User $user
  */
-class Authenticator implements IAuthenticator {
+final class Authenticator implements IAuthenticator {
   /** @var ORM */
   protected $orm;
   /** @var User */

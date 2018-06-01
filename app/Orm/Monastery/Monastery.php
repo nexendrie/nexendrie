@@ -30,7 +30,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property-read string $repairPriceT {virtual}
  * @property-read int $skillLearningDiscount {virtual}
  */
-class Monastery extends \Nextras\Orm\Entity\Entity {
+final class Monastery extends \Nextras\Orm\Entity\Entity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 700;
   public const BASE_REPAIR_PRICE = 30;

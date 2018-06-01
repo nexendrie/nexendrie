@@ -16,7 +16,7 @@ use Nexendrie\Model\CannotBuyMoreHousesException,
  *
  * @author Jakub Konečný
  */
-class HousePresenter extends BasePresenter {
+final class HousePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\House */
   protected $model;
   /** @var \Nexendrie\Model\Profile */

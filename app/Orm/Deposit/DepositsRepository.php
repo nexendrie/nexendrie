@@ -10,7 +10,7 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-class DepositsRepository extends \Nextras\Orm\Repository\Repository {
+final class DepositsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Deposit::class];
   }

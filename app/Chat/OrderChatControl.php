@@ -11,7 +11,7 @@ use HeroesofAbenez\Chat\ChatControl,
  *
  * @author Jakub Konečný
  */
-class OrderChatControl extends ChatControl {
+final class OrderChatControl extends ChatControl {
   public function __construct(IDatabaseAdapter $databaseAdapter, \Nexendrie\Orm\Model $orm,  \Nette\Security\User $user) {
     $userRecord = $orm->users->getById($user->id);
     $orderId = ($userRecord->order) ? $userRecord->order->id : 0;

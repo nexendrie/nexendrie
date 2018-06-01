@@ -12,7 +12,7 @@ use Nexendrie\Orm\Article as ArticleEntity,
  *
  * @author Jakub Konečný
  */
-class Article {
+final class Article {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

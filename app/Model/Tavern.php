@@ -11,7 +11,7 @@ use Nexendrie\Orm\Meal as MealEntity,
  *
  * @author Jakub Konečný
  */
-class Tavern {
+final class Tavern {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

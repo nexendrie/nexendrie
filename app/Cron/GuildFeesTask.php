@@ -10,7 +10,7 @@ use Nexendrie\Orm\GuildFee;
  *
  * @author Jakub Konečný
  */
-class GuildFeesTask extends BaseMonthlyCronTask {
+final class GuildFeesTask extends BaseMonthlyCronTask {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   

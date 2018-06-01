@@ -14,7 +14,7 @@ use Nexendrie\Orm\Guild as GuildEntity,
  * @author Jakub Konečný
  * @property-read int $maxRank
  */
-class Guild {
+final class Guild {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

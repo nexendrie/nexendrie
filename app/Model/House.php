@@ -12,7 +12,7 @@ use Nexendrie\Orm\House as HouseEntity,
  *
  * @author Jakub Konečný
  */
-class House {
+final class House {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

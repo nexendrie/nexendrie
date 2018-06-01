@@ -13,7 +13,7 @@ use Nexendrie\Forms\AddEditMealFormFactory,
  *
  * @author Jakub Konečný
  */
-class MealPresenter extends BasePresenter {
+final class MealPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Tavern */
   protected $model;
   /** @var MealEntity */

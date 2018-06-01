@@ -30,7 +30,7 @@ use Nexendrie\Utils\Numbers,
  * @property-read int $level {virtual}
  * @property-read int $hpIncrease {virtual}
  */
-class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
   public const STATUS_PROPOSED = "proposed";
   public const STATUS_ACCEPTED = "accepted";
   public const STATUS_DECLINED = "declined";

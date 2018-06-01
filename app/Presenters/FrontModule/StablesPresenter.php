@@ -17,7 +17,7 @@ use Nexendrie\Orm\Mount as MountEntity,
  *
  * @author Jakub Konečný
  */
-class StablesPresenter extends BasePresenter {
+final class StablesPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Mount */
   protected $model;
   /** @var MountEntity */

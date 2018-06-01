@@ -51,7 +51,7 @@ namespace Nexendrie\Orm;
  * @property-read OrderFeesRepository $orderFees
  * @property-read ChatMessagesRepository $chatMessages
  */
-class Model extends \Nextras\Orm\Model\Model {
+final class Model extends \Nextras\Orm\Model\Model {
   
 }
 ?>

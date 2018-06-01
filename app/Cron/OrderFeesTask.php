@@ -10,7 +10,7 @@ use Nexendrie\Orm\OrderFee;
  *
  * @author Jakub Konečný
  */
-class OrderFeesTask extends BaseMonthlyCronTask {
+final class OrderFeesTask extends BaseMonthlyCronTask {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   

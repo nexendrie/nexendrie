@@ -12,7 +12,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class ArticlePresenter extends BasePresenter {
+final class ArticlePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Article */
   protected $model;
   

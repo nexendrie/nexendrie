@@ -26,7 +26,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property OneHasMany|Adventure[] $adventures {1:m Adventure::$event}
  * @property-read bool $active {virtual}
  */
-class Event extends \Nextras\Orm\Entity\Entity {
+final class Event extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

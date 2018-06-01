@@ -10,7 +10,7 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Article[] findByLikeTitle(string $title)
  * @method ICollection|Article[] findByText(string $text)
  */
-class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
+final class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Article::class];
   }

@@ -11,7 +11,7 @@ use Nette\Application\UI\Form,
  * 
  * @author Jakub Konečný
  */
-class AddEditArticleFormFactory {
+final class AddEditArticleFormFactory {
   public function create(): Form {
     $form = new Form();
     $form->addText("title", "Titulek:")

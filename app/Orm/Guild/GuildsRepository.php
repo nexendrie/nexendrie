@@ -8,7 +8,7 @@ use Nextras\Orm\Collection\ICollection;
 /**
  * @author Jakub Konečný
  */
-class GuildsRepository extends \Nextras\Orm\Repository\Repository {
+final class GuildsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Guild::class];
   }

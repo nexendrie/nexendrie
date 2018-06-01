@@ -8,7 +8,7 @@ use Nextras\Orm\Collection\ICollection;
 /**
  * @author Jakub Konečný
  */
-class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
+final class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [UserSkill::class];
   }

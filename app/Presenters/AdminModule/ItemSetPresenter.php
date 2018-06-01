@@ -14,7 +14,7 @@ use Nexendrie\Model\ItemSetNotFoundException,
  *
  * @author Jakub Konečný
  */
-class ItemSetPresenter extends BasePresenter {
+final class ItemSetPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\ItemSet */
   protected $model;
   /** @var ItemSetEntity */

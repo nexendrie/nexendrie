@@ -11,7 +11,7 @@ use Nexendrie\Model\UserNotFoundException,
  *
  * @author Jakub Konečný
  */
-class ProfilePresenter extends BasePresenter {
+final class ProfilePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Profile */
   protected $model;
   /** @var \Nexendrie\Model\Castle */

@@ -8,7 +8,7 @@ use Nextras\Orm\Collection\ICollection;
 /**
  * @author Jakub Konečný
  */
-class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
+final class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [MonasteryDonation::class];
   }

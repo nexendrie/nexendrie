@@ -11,7 +11,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class AddEditItemSetFormFactory {
+final class AddEditItemSetFormFactory {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   

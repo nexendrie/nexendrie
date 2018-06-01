@@ -13,7 +13,7 @@ use Nette\Localization\ITranslator,
  * @author Jakub Konečný
  * @property array $formats
  */
-class Locale {
+final class Locale {
   /** @var ITranslator */
   protected $translator;
   /** @var User */

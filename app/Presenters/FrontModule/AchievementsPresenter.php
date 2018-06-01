@@ -8,7 +8,7 @@ namespace Nexendrie\Presenters\FrontModule;
  *
  * @author Jakub Konečný
  */
-class AchievementsPresenter extends BasePresenter {
+final class AchievementsPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Achievements */
   protected $model;
   /** @var \Nexendrie\Orm\Model */

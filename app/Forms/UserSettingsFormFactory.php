@@ -18,7 +18,7 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  * @property-write User $user
  */
-class UserSettingsFormFactory {
+final class UserSettingsFormFactory {
   /** @var UserManager */
   protected $model;
   /** @var User */

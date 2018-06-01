@@ -13,7 +13,7 @@ use Nexendrie\Forms\AddEditAdventureFormFactory,
  *
  * @author Jakub Konečný
  */
-class AdventurePresenter extends BasePresenter {
+final class AdventurePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Adventure */
   protected $model;
   /** @var \Nexendrie\Orm\Adventure */

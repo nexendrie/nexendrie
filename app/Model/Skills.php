@@ -12,7 +12,7 @@ use Nexendrie\Orm\Skill as SkillEntity,
  *
  * @author Jakub Konečný
  */
-class Skills {
+final class Skills {
   /** @var Events */
   protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */

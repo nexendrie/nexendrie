@@ -20,7 +20,7 @@ namespace Nexendrie\Orm;
  * @property-read int[] $reward {virtual}
  * @property-read int $successRate {virtual}
  */
-class UserJob extends \Nextras\Orm\Entity\Entity {
+final class UserJob extends \Nextras\Orm\Entity\Entity {
   /** Base success rate for job (in %) */
   public const BASE_SUCCESS_RATE = 55;
   

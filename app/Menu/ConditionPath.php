@@ -10,7 +10,7 @@ use Nette\Security\User;
  *
  * @author Jakub Konečný
  */
-class ConditionPath extends BaseCondition {
+final class ConditionPath extends BaseCondition {
   /** @var User */
   protected $user;
   

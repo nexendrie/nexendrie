@@ -14,7 +14,7 @@ use Nextras\Dbal\Connection,
  * @property string[] $files
  * @property string $finalMessage
  */
-class DatabaseImporter {
+final class DatabaseImporter {
   use \Nette\SmartObject;
   
   /** @var Connection */

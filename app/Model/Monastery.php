@@ -15,7 +15,7 @@ use Nexendrie\Orm\Monastery as MonasteryEntity,
  * @author Jakub Konečný
  * 
  */
-class Monastery {
+final class Monastery {
   /** @var Events */
   protected $eventsModel;
   /** @var \Nexendrie\Orm\Model */

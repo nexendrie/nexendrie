@@ -15,7 +15,7 @@ use Nexendrie\Orm\PermissionDummy,
  *
  * @author Jakub Konečný
  */
-class AuthorizatorFactory {
+final class AuthorizatorFactory {
   use \Nette\SmartObject;
   
   /** @internal */

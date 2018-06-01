@@ -13,7 +13,7 @@ use Nexendrie\Orm\Shop as ShopEntity,
  *
  * @author Jakub Konečný
  */
-class ShopPresenter extends BasePresenter {
+final class ShopPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Market */
   protected $model;
   /** @var ShopEntity */

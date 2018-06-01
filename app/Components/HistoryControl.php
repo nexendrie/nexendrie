@@ -13,7 +13,7 @@ use Nexendrie\BookComponent\BookControl,
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
-class HistoryControl extends BookControl {
+final class HistoryControl extends BookControl {
   public function __construct(ITranslator $translator) {
     parent::__construct(":Front:History", __DIR__ . "/history", $translator);
     $this->pages[] = new BookPage("ancient", "Dávné časy");

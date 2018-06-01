@@ -11,7 +11,7 @@ use Nexendrie\Components\IPrisonControlFactory,
  *
  * @author Jakub Konečný
  */
-class PrisonPresenter extends BasePresenter {
+final class PrisonPresenter extends BasePresenter {
   protected function startup(): void {
     parent::startup();
     if(!$this->user->isLoggedIn()) {

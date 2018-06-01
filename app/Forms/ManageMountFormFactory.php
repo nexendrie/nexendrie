@@ -11,7 +11,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class ManageMountFormFactory {
+final class ManageMountFormFactory {
   /** @var \Nexendrie\Model\Mount */
   protected $model;
   /** @var int */

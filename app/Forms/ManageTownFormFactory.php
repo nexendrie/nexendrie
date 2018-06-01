@@ -11,7 +11,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class ManageTownFormFactory {
+final class ManageTownFormFactory {
   /** @var \Nexendrie\Model\Town */
   protected $model;
   /** @var int */

@@ -13,7 +13,7 @@ use Nexendrie\Forms\EditUserFormFactory,
  *
  * @author Jakub Konečný
  */
-class UserPresenter extends BasePresenter {
+final class UserPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\UserManager */
   protected $model;
   /** @var \Nexendrie\Model\Group */

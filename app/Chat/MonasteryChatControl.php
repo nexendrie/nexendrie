@@ -11,7 +11,7 @@ use HeroesofAbenez\Chat\ChatControl,
  *
  * @author Jakub Konečný
  */
-class MonasteryChatControl extends ChatControl {
+final class MonasteryChatControl extends ChatControl {
   public function __construct(IDatabaseAdapter $databaseAdapter, \Nexendrie\Orm\Model $orm,  \Nette\Security\User $user) {
     $userRecord = $orm->users->getById($user->id);
     $monasteryId = ($userRecord->monastery) ? $userRecord->monastery->id : 0;

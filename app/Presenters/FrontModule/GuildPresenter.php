@@ -24,7 +24,7 @@ use Nexendrie\Forms\FoundGuildFormFactory,
  *
  * @author Jakub Konečný
  */
-class GuildPresenter extends BasePresenter {
+final class GuildPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Guild */
   protected $model;
   /** @var \Nexendrie\Model\Locale */

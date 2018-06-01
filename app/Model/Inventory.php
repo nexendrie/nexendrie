@@ -14,7 +14,7 @@ use Nexendrie\Orm\UserItem as UserItemEntity,
  *
  * @author Jakub Konečný
  */
-class Inventory {
+final class Inventory {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

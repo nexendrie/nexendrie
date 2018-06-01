@@ -14,7 +14,7 @@ use Nexendrie\Orm\Order as OrderEntity,
  * @author Jakub Konečný
  * @property-read int $maxRank
  */
-class Order {
+final class Order {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

@@ -10,7 +10,7 @@ use Nexendrie\Model\EventNotFoundException;
  *
  * @author Jakub Konečný
  */
-class EventPresenter extends BasePresenter {
+final class EventPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Events */
   protected $model;
   

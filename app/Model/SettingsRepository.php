@@ -14,7 +14,7 @@ use Nette\Utils\Arrays,
  * @author Jakub Konečný
  * @property-read array $settings
  */
-class SettingsRepository {
+final class SettingsRepository {
   /** @var array */
   protected $defaults = [
     "roles" => [

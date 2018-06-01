@@ -11,7 +11,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class PollsPresenter extends BasePresenter {
+final class PollsPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Polls */
   protected $model;
   

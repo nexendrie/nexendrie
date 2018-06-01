@@ -13,7 +13,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class GiftFormFactory {
+final class GiftFormFactory {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var \Nexendrie\Orm\Model */

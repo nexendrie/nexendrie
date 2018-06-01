@@ -11,7 +11,7 @@ use Nexendrie\Model\SettingsRepository;
  *
  * @author Jakub Konečný
  */
-class NexendrieExtension extends \Nette\DI\CompilerExtension {
+final class NexendrieExtension extends \Nette\DI\CompilerExtension {
   /** @var string */
   protected $appDir;
   

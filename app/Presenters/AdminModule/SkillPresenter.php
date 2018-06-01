@@ -13,7 +13,7 @@ use Nexendrie\Orm\Skill as SkillEntity,
  *
  * @author Jakub Konečný
  */
-class SkillPresenter extends BasePresenter {
+final class SkillPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Skills */
   protected $model;
   /** @var SkillEntity */

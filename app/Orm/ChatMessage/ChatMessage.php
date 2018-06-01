@@ -17,7 +17,7 @@ namespace Nexendrie\Orm;
  * @property Guild|NULL $guild {m:1 Guild::$chatMessages}
  * @property Order|NULL $order {m:1 Order::$chatMessages}
  */
-class ChatMessage extends \Nextras\Orm\Entity\Entity {
+final class ChatMessage extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

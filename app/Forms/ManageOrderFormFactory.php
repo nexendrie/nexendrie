@@ -11,7 +11,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class ManageOrderFormFactory {
+final class ManageOrderFormFactory {
   /** @var \Nexendrie\Model\Order */
   protected $model;
   /** @var \Nette\Security\User */

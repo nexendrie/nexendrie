@@ -8,7 +8,7 @@ namespace Nexendrie\Achievements;
  *
  * @author Jakub Konečný
  */
-class MountsOwnedAchievement extends BaseAchievement {
+final class MountsOwnedAchievement extends BaseAchievement {
   protected $field = "mountsOwned";
   protected $name = "Chovatel";
   protected $description = "nexendrie.achievements.mountsOwned";

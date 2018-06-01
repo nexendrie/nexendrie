@@ -8,7 +8,7 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-class GuildFeesRepository extends \Nextras\Orm\Repository\Repository {
+final class GuildFeesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [GuildFee::class];
   }

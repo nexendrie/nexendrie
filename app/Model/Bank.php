@@ -11,7 +11,7 @@ use Nexendrie\Orm\Loan as LoanEntity,
  *
  * @author Jakub Konečný
  */
-class Bank {
+final class Bank {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

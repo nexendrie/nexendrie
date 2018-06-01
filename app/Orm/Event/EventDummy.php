@@ -19,7 +19,7 @@ namespace Nexendrie\Orm;
  * @property-read int $repairingDiscount
  * @property-read int $shoppingDiscount
  */
-class EventDummy extends DummyEntity {
+final class EventDummy extends DummyEntity {
   /** @var int */
   protected $id;
   /** @var string */

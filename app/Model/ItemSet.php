@@ -11,7 +11,7 @@ use Nexendrie\Orm\ItemSet as ItemSetEntity,
  *
  * @author Jakub Konečný
  */
-class ItemSet {
+final class ItemSet {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   

@@ -15,7 +15,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $description
  * @property OneHasMany|Item[] $items {1:m Item::$shop, orderBy=strength}
  */
-class Shop extends \Nextras\Orm\Entity\Entity {
+final class Shop extends \Nextras\Orm\Entity\Entity {
 
 }
 ?>

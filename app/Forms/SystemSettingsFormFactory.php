@@ -15,7 +15,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class SystemSettingsFormFactory {
+final class SystemSettingsFormFactory {
   /** @var SettingsRepository */
   protected $sr;
   /** @var Group */
@@ -74,7 +74,7 @@ class SystemSettingsFormFactory {
     $roles->addSelect("guestRole", "Nepřihlášený uživatel:", $groups)
       ->setRequired("Vyber roli pro nepřihlášeného uživatele.");
     $roles->addSelect("loggedInRole", "Přihlášený uživatel:", $groups)
-      ->setRequired("Vyyber roli pro přihlášeného uživatele.");
+      ->setRequired("Vyber roli pro přihlášeného uživatele.");
     $roles->addSelect("bannedRole", "Zablokovaný uživatel:", $groups)
       ->setRequired("Vyber roli pro zablokovaného uživatele.");
     $form->addGroup("Stránkování");

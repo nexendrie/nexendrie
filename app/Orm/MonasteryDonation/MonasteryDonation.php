@@ -13,7 +13,7 @@ namespace Nexendrie\Orm;
  * @property int $amount
  * @property int $when
  */
-class MonasteryDonation extends \Nextras\Orm\Entity\Entity {
+final class MonasteryDonation extends \Nextras\Orm\Entity\Entity {
   public function onBeforeInsert() {
     parent::onBeforeInsert();
     $this->when = time();

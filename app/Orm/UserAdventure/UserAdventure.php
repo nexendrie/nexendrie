@@ -17,7 +17,7 @@ namespace Nexendrie\Orm;
  * @property int $loot {default 0}
  * @property-read AdventureNpc|NULL $nextEnemy {virtual}
  */
-class UserAdventure extends \Nextras\Orm\Entity\Entity {
+final class UserAdventure extends \Nextras\Orm\Entity\Entity {
   public const PROGRESS_COMPLETED = 10;
   public const PROGRESS_CLOSED = 11;
   

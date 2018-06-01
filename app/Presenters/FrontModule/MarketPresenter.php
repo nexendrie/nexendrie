@@ -14,7 +14,7 @@ use Nexendrie\Components\IShopControlFactory,
  *
  * @author Jakub Konečný
  */
-class MarketPresenter extends BasePresenter {
+final class MarketPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Market */
   protected $model;
   

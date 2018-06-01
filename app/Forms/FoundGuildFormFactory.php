@@ -13,7 +13,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class FoundGuildFormFactory {
+final class FoundGuildFormFactory {
   /** @var \Nexendrie\Model\Guild */
   protected $model;
   /** @var \Nexendrie\Model\Skills */

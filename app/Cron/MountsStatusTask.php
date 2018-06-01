@@ -10,7 +10,7 @@ use Nexendrie\Orm\Mount as MountEntity;
  *
  * @author Jakub Konečný
  */
-class MountsStatusTask {
+final class MountsStatusTask {
   use \Nette\SmartObject;
   
   /** @var \Nexendrie\Orm\Model */

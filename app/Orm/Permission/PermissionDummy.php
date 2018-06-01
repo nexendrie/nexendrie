@@ -12,7 +12,7 @@ namespace Nexendrie\Orm;
  * @property-read string $action
  * @property-read int $group
  */
-class PermissionDummy {
+final class PermissionDummy {
   /** @var int */
   protected $id;
   /** @var string */

@@ -18,7 +18,7 @@ use Nexendrie\Model\NotInMonasteryException,
  *
  * @author Jakub Konečný
  */
-class ChatPresenter extends BasePresenter {
+final class ChatPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Monastery @autowire */
   protected $monasteryModel;
   /** @var \Nexendrie\Model\Order @autowire */

@@ -15,7 +15,7 @@ namespace Nexendrie\Orm;
  * @property int $year
  * @property int $month
  */
-class ElectionResult extends \Nextras\Orm\Entity\Entity {
+final class ElectionResult extends \Nextras\Orm\Entity\Entity {
   
 }
 ?>

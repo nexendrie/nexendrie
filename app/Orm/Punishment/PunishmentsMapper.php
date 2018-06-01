@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-class PunishmentsMapper extends \Nextras\Orm\Mapper\Mapper {
+final class PunishmentsMapper extends \Nextras\Orm\Mapper\Mapper {
   
 }
 ?>

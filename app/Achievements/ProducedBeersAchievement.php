@@ -8,7 +8,7 @@ namespace Nexendrie\Achievements;
  *
  * @author Jakub Konečný
  */
-class ProducedBeersAchievement extends BaseAchievement {
+final class ProducedBeersAchievement extends BaseAchievement {
   protected $field = "producedBeers";
   protected $name = "Pivař";
   protected $description = "nexendrie.achievements.producedBeers";

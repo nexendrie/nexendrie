@@ -24,7 +24,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property-read int $repairPrice {virtual}
  * @property-read string $repairPriceT {virtual}
  */
-class House extends \Nextras\Orm\Entity\Entity {
+final class House extends \Nextras\Orm\Entity\Entity {
   public const MAX_LEVEL = 5;
   public const BASE_UPGRADE_PRICE = 250;
   public const BASE_REPAIR_PRICE = 15;

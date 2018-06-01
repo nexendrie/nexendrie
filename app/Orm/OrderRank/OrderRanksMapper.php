@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-class OrderRanksMapper extends \Nextras\Orm\Mapper\Mapper {
+final class OrderRanksMapper extends \Nextras\Orm\Mapper\Mapper {
   
 }
 ?>

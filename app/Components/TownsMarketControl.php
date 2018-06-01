@@ -15,7 +15,7 @@ use Nexendrie\Model\TownNotFoundException,
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
-class TownsMarketControl extends \Nette\Application\UI\Control {
+final class TownsMarketControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Town */
   protected $model;
   /** @var \Nette\Security\User */

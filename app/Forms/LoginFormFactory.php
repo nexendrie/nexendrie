@@ -13,7 +13,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class LoginFormFactory {
+final class LoginFormFactory {
   /** @var User */
   protected $user;
   

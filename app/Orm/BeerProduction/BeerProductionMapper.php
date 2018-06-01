@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-class BeerProductionMapper extends \Nextras\Orm\Mapper\Mapper {
+final class BeerProductionMapper extends \Nextras\Orm\Mapper\Mapper {
   public function getTableName(): string {
     return "beer_production";
   }

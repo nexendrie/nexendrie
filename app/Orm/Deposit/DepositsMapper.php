@@ -8,7 +8,7 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-class DepositsMapper extends \Nextras\Orm\Mapper\Mapper {
+final class DepositsMapper extends \Nextras\Orm\Mapper\Mapper {
   
 }
 ?>

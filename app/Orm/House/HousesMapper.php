@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-class HousesMapper extends \Nextras\Orm\Mapper\Mapper {
+final class HousesMapper extends \Nextras\Orm\Mapper\Mapper {
   
 }
 ?>

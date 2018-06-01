@@ -77,7 +77,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property-read int $townsOwned {virtual}
  * @property-read int $mountsOwned {virtual}
  */
-class User extends \Nextras\Orm\Entity\Entity {
+final class User extends \Nextras\Orm\Entity\Entity {
   public const GENDER_MALE = "male";
   public const GENDER_FEMALE = "female";
   

@@ -26,7 +26,7 @@ use Nexendrie\Orm\Town as TownEntity,
  *
  * @author Jakub Konečný
  */
-class PropertyPresenter extends BasePresenter {
+final class PropertyPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Property */
   protected $model;
   /** @var \Nexendrie\Model\Town */

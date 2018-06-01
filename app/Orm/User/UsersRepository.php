@@ -9,7 +9,7 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  * @method ICollection|User[] findByLikeName(string $publicname)
  */
-class UsersRepository extends \Nextras\Orm\Repository\Repository {
+final class UsersRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [User::class];
   }

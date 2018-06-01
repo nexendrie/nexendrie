@@ -10,7 +10,7 @@ use Nette\Application\UI\Form;
  *
  * @author Jakub Konečný
  */
-class AddCommentFormFactory {
+final class AddCommentFormFactory {
   public function create(): Form {
     $form = new Form();
     $form->addText("title", "Titulek:")

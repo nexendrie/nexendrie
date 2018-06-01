@@ -10,7 +10,7 @@ use Nette\Application\UI\Form;
  *
  * @author Jakub Konečný
  */
-class AddEditAdventureFormFactory {
+final class AddEditAdventureFormFactory {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   

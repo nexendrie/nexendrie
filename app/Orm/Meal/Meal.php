@@ -15,7 +15,7 @@ namespace Nexendrie\Orm;
  * @property-read string $priceT {virtual}
  * @property-read string $effect {virtual}
  */
-class Meal extends \Nextras\Orm\Entity\Entity {
+final class Meal extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

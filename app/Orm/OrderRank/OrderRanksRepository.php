@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-class OrderRanksRepository extends \Nextras\Orm\Repository\Repository {
+final class OrderRanksRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [OrderRank::class];
   }

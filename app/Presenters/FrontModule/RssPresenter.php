@@ -8,7 +8,7 @@ namespace Nexendrie\Presenters\FrontModule;
  *
  * @author Jakub Konečný
  */
-class RssPresenter extends BasePresenter {
+final class RssPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Rss */
   protected $model;
   

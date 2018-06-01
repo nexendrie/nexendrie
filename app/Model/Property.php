@@ -10,7 +10,7 @@ use Nexendrie\Orm\Group as GroupEntity;
  *
  * @author Jakub Konečný
  */
-class Property {
+final class Property {
   /** @var Job*/
   protected $jobModel;
   /** @var Bank */

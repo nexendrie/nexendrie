@@ -14,7 +14,7 @@ use Nexendrie\Forms\AddEditJobFormFactory,
  *
  * @author Jakub Konečný
  */
-class JobPresenter extends BasePresenter {
+final class JobPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Job */
   protected $model;
   /** @var JobEntity */

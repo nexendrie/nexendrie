@@ -14,7 +14,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class AppointMayorFormFactory {
+final class AppointMayorFormFactory {
   /** @var \Nexendrie\Model\Town */
   protected $model;
   /** @var \Nexendrie\Orm\Town */

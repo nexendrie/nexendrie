@@ -11,7 +11,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class AddEditSkillFormFactory {
+final class AddEditSkillFormFactory {
   public function create(): Form {
     $form = new Form();
     $form->addText("name", "Jméno:")

@@ -15,7 +15,7 @@ use Nette\Security\User,
  *
  * @author Jakub Konečný
  */
-class UserManager {
+final class UserManager {
   /** @var ORM */
   protected $orm;
   /** @var User */

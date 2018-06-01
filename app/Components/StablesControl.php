@@ -16,7 +16,7 @@ use Nexendrie\Model\MountNotFoundException,
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
-class StablesControl extends \Nette\Application\UI\Control {
+final class StablesControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nexendrie\Model\Locale */

@@ -14,7 +14,7 @@ use Nexendrie\Rss\RssResponse,
  *
  * @author Jakub Konečný
  */
-class Rss {
+final class Rss {
   /** @var Article */
   protected $articleModel;
   /** @var LinkGenerator */

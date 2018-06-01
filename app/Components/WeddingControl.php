@@ -12,7 +12,7 @@ use Nexendrie\Orm\Marriage as MarriageEntity;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  * @property-write MarriageEntity $marriage
  */
-class WeddingControl extends \Nette\Application\UI\Control {
+final class WeddingControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Marriage */
   protected $model;
   /** @var \Nexendrie\Orm\Model */

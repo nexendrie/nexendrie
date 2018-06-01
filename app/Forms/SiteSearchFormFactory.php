@@ -10,7 +10,7 @@ use Nette\Application\UI\Form;
  *
  * @author Jakub Konečný
  */
-class SiteSearchFormFactory {
+final class SiteSearchFormFactory {
   public const TYPE_USERS = "users";
   public const TYPE_ARTICLES_TITLES = "articlesTitles";
   public const TYPE_ARTICLES_TEXTS = "articlesTexts";

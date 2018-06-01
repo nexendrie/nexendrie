@@ -16,7 +16,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property int $orderFee
  * @property OneHasMany|User[] $people {1:m User::$orderRank}
  */
-class OrderRank extends \Nextras\Orm\Entity\Entity {
+final class OrderRank extends \Nextras\Orm\Entity\Entity {
   protected function setterIncomeBonus(int $value): int {
     return Numbers::range($value, 0, 99);
   }

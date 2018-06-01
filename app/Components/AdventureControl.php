@@ -21,7 +21,7 @@ use Nexendrie\Model\AlreadyOnAdventureException,
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
-class AdventureControl extends \Nette\Application\UI\Control {
+final class AdventureControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Adventure */
   protected $model;
   /** @var \Nexendrie\Model\Locale */

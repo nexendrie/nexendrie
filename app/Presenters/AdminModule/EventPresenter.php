@@ -13,7 +13,7 @@ use Nexendrie\Forms\AddEditEventFormFactory,
  *
  * @author Jakub Konečný
  */
-class EventPresenter extends BasePresenter {
+final class EventPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Events */
   protected $model;
   /** @var \Nexendrie\Orm\Event */

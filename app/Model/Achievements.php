@@ -10,7 +10,7 @@ use Nexendrie\Achievements\IAchievement;
  *
  * @author Jakub Konečný
  */
-class Achievements {
+final class Achievements {
   use \Nette\SmartObject;
   
   /** @var IAchievement[] */

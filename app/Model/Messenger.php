@@ -11,7 +11,7 @@ use Nexendrie\Orm\Message as MessageEntity,
  *
  * @author Jakub Konečný
  */
-class Messenger {
+final class Messenger {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

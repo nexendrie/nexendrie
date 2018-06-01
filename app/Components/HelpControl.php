@@ -22,7 +22,7 @@ use Nexendrie\BookComponent\BookControl,
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
-class HelpControl extends BookControl {
+final class HelpControl extends BookControl {
   /** @var ORM */
   protected $orm;
   /** @var Locale */

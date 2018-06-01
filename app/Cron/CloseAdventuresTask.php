@@ -10,7 +10,7 @@ use Nexendrie\Orm\UserAdventure;
  *
  * @author Jakub Konečný
  */
-class CloseAdventuresTask {
+final class CloseAdventuresTask {
   use \Nette\SmartObject;
   
   /** @var \Nexendrie\Orm\Model */

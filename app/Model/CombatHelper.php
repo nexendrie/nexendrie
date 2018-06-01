@@ -18,7 +18,7 @@ use Nexendrie\Orm\User as UserEntity,
  *
  * @author Jakub Konečný
  */
-class CombatHelper {
+final class CombatHelper {
   /** @var Inventory */
   protected $inventoryModel;
   /** @var \Nexendrie\Orm\Model */

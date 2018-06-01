@@ -15,7 +15,7 @@ namespace Nexendrie\Orm;
  * @property int $added
  * @property-read string $addedAt {virtual}
  */
-class Comment extends \Nextras\Orm\Entity\Entity {
+final class Comment extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

@@ -8,7 +8,7 @@ namespace Nexendrie\Model;
  *
  * @author Jakub Konečný
  */
-class Taxes {
+final class Taxes {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var Job */

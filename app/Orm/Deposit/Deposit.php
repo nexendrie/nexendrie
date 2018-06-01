@@ -18,7 +18,7 @@ namespace Nexendrie\Orm;
  * @property-read int $interest {virtual}
  * @property-read bool $due {virtual}
  */
-class Deposit extends \Nextras\Orm\Entity\Entity {
+final class Deposit extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

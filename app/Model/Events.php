@@ -14,7 +14,7 @@ use Nexendrie\Orm\Event,
  *
  * @author Jakub Konečný
  */
-class Events implements \EventCalendar\IEventModel {
+final class Events implements \EventCalendar\IEventModel {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Caching\Cache */

@@ -14,7 +14,7 @@ use Nexendrie\Orm\Election as ElectionEntity,
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  * @property-write \Nexendrie\Orm\Town $town
  */
-class ElectionsControl extends \Nette\Application\UI\Control {
+final class ElectionsControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Elections */
   protected $model;
   /** @var \Nexendrie\Orm\Model */

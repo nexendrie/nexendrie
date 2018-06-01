@@ -16,7 +16,7 @@ use Nexendrie\Orm\Model as ORM,
  *
  * @author Jakub Konečný
  */
-class NextrasOrmAdapter implements IDatabaseAdapter {
+final class NextrasOrmAdapter implements IDatabaseAdapter {
   /** @var ORM */
   protected $orm;
   /** @var \Nette\Security\User */
@@ -31,7 +31,7 @@ class NextrasOrmAdapter implements IDatabaseAdapter {
     $count = $this->orm->chatMessages->findBy([
       $column => $value,
     ])->countStored();
-    $paginator = new \Nette\Utils\Paginator;
+    $paginator = new \Nette\Utils\Paginator();
     $paginator->setItemCount($count);
     $paginator->setItemsPerPage($limit);
     $paginator->setPage($paginator->pageCount);

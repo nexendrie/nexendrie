@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-class UserAdventuresMapper extends \Nextras\Orm\Mapper\Mapper {
+final class UserAdventuresMapper extends \Nextras\Orm\Mapper\Mapper {
 
 }
 ?>

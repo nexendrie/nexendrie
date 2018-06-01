@@ -16,7 +16,7 @@ use Nexendrie\Model\AdventureNotFoundException,
  *
  * @author Jakub Konečný
  */
-class AdventureEnemiesPresenter extends BasePresenter {
+final class AdventureEnemiesPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Adventure */
   protected $model;
   /** @var AdventureEntity */

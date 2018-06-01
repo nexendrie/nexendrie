@@ -13,7 +13,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class FoundOrderFormFactory {
+final class FoundOrderFormFactory {
   /** @var \Nexendrie\Model\Order */
   protected $model;
   

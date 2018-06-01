@@ -13,7 +13,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class MessagesPresenter extends BasePresenter {
+final class MessagesPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Messenger */
   protected $model;
   

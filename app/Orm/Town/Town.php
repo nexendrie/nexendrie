@@ -25,7 +25,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $foundedAt {virtual}
  * @property-read string $priceT {virtual}
  */
-class Town extends \Nextras\Orm\Entity\Entity {
+final class Town extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

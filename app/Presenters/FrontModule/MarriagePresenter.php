@@ -28,7 +28,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class MarriagePresenter extends BasePresenter {
+final class MarriagePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Marriage */
   protected $model;
   /** @var \Nexendrie\Model\Profile */

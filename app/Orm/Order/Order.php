@@ -24,7 +24,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}
  */
-class Order extends \Nextras\Orm\Entity\Entity {
+final class Order extends \Nextras\Orm\Entity\Entity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 800;
   

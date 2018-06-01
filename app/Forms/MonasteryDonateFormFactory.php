@@ -12,7 +12,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class MonasteryDonateFormFactory {
+final class MonasteryDonateFormFactory {
   /** @var \Nexendrie\Model\Monastery */
   protected $model;
   

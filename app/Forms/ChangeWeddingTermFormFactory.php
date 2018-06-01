@@ -12,7 +12,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class ChangeWeddingTermFormFactory {
+final class ChangeWeddingTermFormFactory {
   /** @var \Nexendrie\Model\SettingsRepository */
   protected $sr;
   /** @var \Nexendrie\Orm\Model */

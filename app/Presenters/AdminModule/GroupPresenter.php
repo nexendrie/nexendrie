@@ -11,7 +11,7 @@ use Nette\Application\UI\Form,
  *
  * @author Jakub Konečný
  */
-class GroupPresenter extends BasePresenter {
+final class GroupPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Group */
   protected $model;
   

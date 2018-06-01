@@ -10,7 +10,7 @@ use Nette\Application\UI\Form;
  *
  * @author Jakub Konečný
  */
-class NewMessageFormFactory {
+final class NewMessageFormFactory {
   /** @var \Nexendrie\Model\Messenger */
   protected $model;
   

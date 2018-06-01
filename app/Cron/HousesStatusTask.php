@@ -8,7 +8,7 @@ namespace Nexendrie\Cron;
  *
  * @author Jakub Konečný
  */
-class HousesStatusTask {
+final class HousesStatusTask {
   use \Nette\SmartObject;
   
   /** @var \Nexendrie\Orm\Model */

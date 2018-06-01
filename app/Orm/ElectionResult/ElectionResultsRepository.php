@@ -8,7 +8,7 @@ use Nextras\Orm\Collection\ICollection;
 /**
  * @author Jakub Konečný
  */
-class ElectionResultsRepository extends \Nextras\Orm\Repository\Repository {
+final class ElectionResultsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [ElectionResult::class];
   }

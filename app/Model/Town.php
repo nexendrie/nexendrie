@@ -13,7 +13,7 @@ use Nexendrie\Orm\Town as TownEntity,
  *
  * @author Jakub Konečný
  */
-class Town {
+final class Town {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

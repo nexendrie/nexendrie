@@ -17,7 +17,7 @@ use Nexendrie\Orm\Adventure as AdventureEntity,
  *
  * @author Jakub Konečný
  */
-class Adventure {
+final class Adventure {
   /** @var CombatBase */
   protected $combat;
   /** @var CombatHelper */

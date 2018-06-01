@@ -8,7 +8,7 @@ namespace Nexendrie\Achievements;
  *
  * @author Jakub Konečný
  */
-class CompletedAdventuresAchievement extends BaseAchievement {
+final class CompletedAdventuresAchievement extends BaseAchievement {
   protected $field = "completedAdventures";
   protected $name = "Dobrodruh";
   protected $description = "nexendrie.achievements.completedAdventures";

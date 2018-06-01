@@ -8,7 +8,7 @@ use Nextras\Orm\Collection\ICollection;
 /**
  * @author Jakub Konečný
  */
-class UsersMapper extends \Nextras\Orm\Mapper\Mapper {
+final class UsersMapper extends \Nextras\Orm\Mapper\Mapper {
   public function findByLikeName(string $publicname): ICollection {
     return $this->toCollection($this->builder()->where("publicname LIKE '%%$publicname%%'"));
   }

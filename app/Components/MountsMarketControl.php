@@ -15,7 +15,7 @@ use Nexendrie\Model\MountNotFoundException,
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
-class MountsMarketControl extends \Nette\Application\UI\Control {
+final class MountsMarketControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Mount */
   protected $model;
   /** @var \Nette\Security\User */

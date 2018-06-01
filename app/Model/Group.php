@@ -13,7 +13,7 @@ use Nette\Utils\Arrays,
  * @author Jakub Konečný
  * @property \Nette\Security\User $user
  */
-class Group {
+final class Group {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Caching\Cache */

@@ -22,7 +22,7 @@ use Nexendrie\Model\MonasteryNotFoundException,
  *
  * @author Jakub Konečný
  */
-class MonasteryPresenter extends BasePresenter {
+final class MonasteryPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Monastery */
   protected $model;
   /** @var \Nexendrie\Model\Locale */

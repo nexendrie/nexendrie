@@ -11,7 +11,7 @@ use Nexendrie\Orm\Marriage as MarriageEntity,
  *
  * @author Jakub Konečný
  */
-class Marriage {
+final class Marriage {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

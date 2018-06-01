@@ -14,7 +14,7 @@ use Nexendrie\Forms\AddEditTownFormFactory,
  *
  * @author Jakub Konečný
  */
-class TownPresenter extends BasePresenter {
+final class TownPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Town */
   protected $model;
   /** @var TownEntity */

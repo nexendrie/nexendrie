@@ -12,7 +12,7 @@ use Nexendrie\Orm\Castle as CastleEntity,
  *
  * @author Jakub Konečný
  */
-class Castle {
+final class Castle {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

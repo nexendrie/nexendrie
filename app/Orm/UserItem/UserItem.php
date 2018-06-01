@@ -24,7 +24,7 @@ use Nexendrie\Utils\Numbers,
  * @property-read int $sellPrice {virtual}
  * @property-read string $sellPriceT {virtual}
  */
-class UserItem extends \Nextras\Orm\Entity\Entity {
+final class UserItem extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

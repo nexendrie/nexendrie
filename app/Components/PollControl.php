@@ -17,7 +17,7 @@ use Nette\Utils\Arrays,
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  * @property int $id
  */
-class PollControl extends \Nette\Application\UI\Control {
+final class PollControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
   protected $user;
   /** @var \Nexendrie\Orm\Model $orm */

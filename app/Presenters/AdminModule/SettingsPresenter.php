@@ -11,7 +11,7 @@ use Nexendrie\Forms\SystemSettingsFormFactory,
  *
  * @author Jakub Konečný
  */
-class SettingsPresenter extends BasePresenter {
+final class SettingsPresenter extends BasePresenter {
   public function actionDefault(): void {
     $this->requiresPermissions("site", "settings");
   }

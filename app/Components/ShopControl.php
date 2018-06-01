@@ -17,7 +17,7 @@ use Nexendrie\Orm\Shop as ShopEntity,
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  * @property-write int $id
  */
-class ShopControl extends \Nette\Application\UI\Control {
+final class ShopControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Model\Market */
   protected $model;
   /** @var \Nexendrie\Model\Events */

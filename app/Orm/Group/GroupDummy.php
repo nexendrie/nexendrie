@@ -15,7 +15,7 @@ namespace Nexendrie\Orm;
  * @property string $path
  * @property int $members
  */
-class GroupDummy {
+final class GroupDummy {
   /** @var int */
   protected $id;
   /** @var string */

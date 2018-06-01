@@ -40,7 +40,7 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property-read string $armorTrainingCostT {virtual}
  * @property-read string $typeGenderName {virtual}
  */
-class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var \Nexendrie\Model\Events */

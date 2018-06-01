@@ -14,7 +14,7 @@ use Nexendrie\Forms\AddEditMountFormFactory,
  *
  * @author Jakub Konečný
  */
-class MountPresenter extends BasePresenter {
+final class MountPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Mount */
   protected $model;
   /** @var MountEntity */

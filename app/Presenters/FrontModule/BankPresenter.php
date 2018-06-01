@@ -15,7 +15,7 @@ use Nexendrie\Forms\TakeLoanFormFactory,
  *
  * @author Jakub Konečný
  */
-class BankPresenter extends BasePresenter {
+final class BankPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Bank */
   protected $model;
   /** @var \Nexendrie\Model\Locale */

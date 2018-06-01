@@ -11,7 +11,7 @@ use Nexendrie\Model\Marriage,
  *
  * @author Jakub Konečný
  */
-class CloseWeddingsTask {
+final class CloseWeddingsTask {
   use \Nette\SmartObject;
   
   /** @var \Nexendrie\Orm\Model */

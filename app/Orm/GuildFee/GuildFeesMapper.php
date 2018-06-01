@@ -8,7 +8,7 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-class GuildFeesMapper extends \Nextras\Orm\Mapper\Mapper {
+final class GuildFeesMapper extends \Nextras\Orm\Mapper\Mapper {
   
 }
 ?>

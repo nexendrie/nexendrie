@@ -11,7 +11,7 @@ use Nexendrie\Orm\User as UserEntity,
  *
  * @author Jakub Konečný
  */
-class Elections {
+final class Elections {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   

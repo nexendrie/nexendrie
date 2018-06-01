@@ -13,7 +13,7 @@ use Nexendrie\Orm\User as UserEntity,
  *
  * @author Jakub Konečný
  */
-class Profile {
+final class Profile {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var \Nette\Security\User */

@@ -16,7 +16,7 @@ namespace Nexendrie\Orm;
  * @property bool $read {default false}
  * @property-read string $sentAt {virtual}
  */
-class Message extends \Nextras\Orm\Entity\Entity {
+final class Message extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

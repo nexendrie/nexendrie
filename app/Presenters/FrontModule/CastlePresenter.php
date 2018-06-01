@@ -17,7 +17,7 @@ use Nexendrie\Model\CastleNotFoundException,
  *
  * @author Jakub Konečný
  */
-class CastlePresenter extends BasePresenter {
+final class CastlePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Castle */
   protected $model;
   /** @var \Nexendrie\Model\Locale */

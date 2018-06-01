@@ -11,7 +11,7 @@ use Nexendrie\Components\IHistoryControlFactory,
  *
  * @author Jakub Konečný
  */
-class HistoryPresenter extends BasePresenter {
+final class HistoryPresenter extends BasePresenter {
   public function renderDefault(string $page = "index"): void {
     $this->template->page = $page;
   }

@@ -10,7 +10,7 @@ use Nette\Application\UI\Form;
  *
  * @author Jakub Konečný
  */
-class AddEditPollFormFactory {
+final class AddEditPollFormFactory {
   public function create(): Form {
     $form = new Form();
     $form->addText("question", "Otázka:")

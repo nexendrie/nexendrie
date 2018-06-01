@@ -8,7 +8,7 @@ namespace Nexendrie\Achievements;
  *
  * @author Jakub Konečný
  */
-class TownsOwnedAchievements extends BaseAchievement {
+final class TownsOwnedAchievements extends BaseAchievement {
   protected $field = "townsOwned";
   protected $name = "Vládce";
   protected $description = "nexendrie.achievements.townsOwned";

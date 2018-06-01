@@ -12,7 +12,7 @@ use Nextras\Orm\Collection\ICollection,
  *
  * @author Jakub Konečný
  */
-class Chronicle {
+final class Chronicle {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   

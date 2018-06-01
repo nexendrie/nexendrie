@@ -10,7 +10,7 @@ use Nexendrie\Orm\Article as ArticleEntity;
  *
  * @author Jakub Konečný
  */
-class ArticlesPresenter extends BasePresenter {
+final class ArticlesPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Article */
   protected $model;
   
