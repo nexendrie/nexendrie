@@ -13,8 +13,12 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
-  /** @var \Nexendrie\Model\Profile @autowire */
+  /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
+  
+  public function injectProfileModel(\Nexendrie\Model\Profile $profileModel): void {
+    $this->profileModel = $profileModel;
+  }
   
   /**
    * The user must be logged in to see a page

@@ -16,8 +16,12 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   use \Kdyby\Autowired\AutowireProperties;
   use \Kdyby\Autowired\AutowireComponentFactories;
   
-  /** @var \Nexendrie\Model\SettingsRepository @autowire */
+  /** @var \Nexendrie\Model\SettingsRepository */
   protected $sr;
+  
+  public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void {
+    $this->sr = $sr;
+  }
   
   /**
    * Set website's style

@@ -19,12 +19,19 @@ use Nexendrie\Model\NotInMonasteryException,
  * @author Jakub Konečný
  */
 final class ChatPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Monastery @autowire */
+  /** @var \Nexendrie\Model\Monastery */
   protected $monasteryModel;
-  /** @var \Nexendrie\Model\Order @autowire */
+  /** @var \Nexendrie\Model\Order */
   protected $orderModel;
-  /** @var \Nexendrie\Model\Guild @autowire */
+  /** @var \Nexendrie\Model\Guild */
   protected $guildModel;
+  
+  public function __construct(\Nexendrie\Model\Monastery $monasteryModel, \Nexendrie\Model\Order $orderModel, \Nexendrie\Model\Guild $guildModel) {
+    parent::__construct();
+    $this->monasteryModel = $monasteryModel;
+    $this->orderModel = $orderModel;
+    $this->guildModel = $guildModel;
+  }
   
   protected function startup(): void {
     parent::startup();
