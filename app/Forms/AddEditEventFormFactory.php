@@ -12,11 +12,11 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 final class AddEditEventFormFactory {
-  /** @var \Nexendrie\Model\SettingsRepository */
-  protected $sr;
+  /** @var string */
+  protected $dateTimeFormat;
   
   public function __construct(\Nexendrie\Model\SettingsRepository $sr) {
-    $this->sr = $sr;
+    $this->dateTimeFormat = $sr->settings["locale"]["dateTimeFormat"];
   }
   
   public function create(): Form {
@@ -59,7 +59,7 @@ final class AddEditEventFormFactory {
   }
   
   public function validate(Form $form, array $values): void {
-    $format = $this->sr->settings["locale"]["dateTimeFormat"];
+    $format = $this->dateTimeFormat;
     /** @var \Nette\Utils\DateTime $start */
     $start = DateTime::createFromFormat($format, $values["start"]);
     if($start == false) {

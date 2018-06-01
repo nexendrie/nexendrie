@@ -13,20 +13,20 @@ use Nette\Application\UI\Form,
  * @author Jakub Konečný
  */
 final class ChangeWeddingTermFormFactory {
-  /** @var \Nexendrie\Model\SettingsRepository */
-  protected $sr;
+  /** @var string */
+  protected $dateTimeFormat;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var Marriage */
   private $marriage;
   
   public function __construct(\Nexendrie\Model\SettingsRepository $sr, \Nexendrie\Orm\Model $orm) {
-    $this->sr = $sr;
+    $this->dateTimeFormat = $sr->settings["locale"]["dateTimeFormat"];
     $this->orm = $orm;
   }
   
   public function create(Marriage $marriage): Form {
-    $format = explode(" ", $this->sr->settings["locale"]["dateTimeFormat"]);
+    $format = explode(" ", $this->dateTimeFormat);
     $this->marriage = $marriage;
     $default = new \DateTime();
     $default->setTimestamp($marriage->term);

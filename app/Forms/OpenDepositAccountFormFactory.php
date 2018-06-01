@@ -14,16 +14,16 @@ use Nette\Application\UI\Form,
 final class OpenDepositAccountFormFactory {
   /** @var \Nexendrie\Model\Bank */
   protected $model;
-  /** @var \Nexendrie\Model\SettingsRepository */
-  protected $sr;
+  /** @var string */
+  protected $dateTimeFormat;
   
   public function __construct(\Nexendrie\Model\Bank $model, \Nexendrie\Model\SettingsRepository $sr) {
     $this->model = $model;
-    $this->sr = $sr;
+    $this->dateTimeFormat = $sr->settings["locale"]["dateTimeFormat"];
   }
   
   public function create(): Form {
-    $format = explode(" ", $this->sr->settings["locale"]["dateTimeFormat"]);
+    $format = explode(" ", $this->dateTimeFormat);
     $maxDeposit = $this->model->maxDeposit();
     $form = new Form();
     $form->addText("amount", "Částka:")

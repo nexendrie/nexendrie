@@ -16,12 +16,12 @@ use Nexendrie\Model\SettingsRepository;
 final class RegisterFormFactory {
   /** @var UserManager */
   protected $model;
-  /** @var SettingsRepository */
-  protected $sr;
+  /** @var string */
+  protected $registrationToken;
   
   public function __construct(UserManager $model, SettingsRepository $sr) {
     $this->model = $model;
-    $this->sr = $sr;
+    $this->registrationToken = $sr->settings["registration"]["token"];
   }
   
   public function create(): Form {
@@ -35,10 +35,10 @@ final class RegisterFormFactory {
     $form->addText("email", "E-mail:")
       ->addRule(Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.");
-    if($this->sr->settings["registration"]["token"]) {
+    if($this->registrationToken !== "") {
       $form->addText("token", "Token:")
         ->setRequired()
-        ->addRule(Form::EQUAL, "Špatné heslo.", $this->sr->settings["registration"]["token"])
+        ->addRule(Form::EQUAL, "Špatné heslo.", $this->registrationToken)
         ->setOption("description", "Registrace na tomto serveru vyžaduje heslo.");
     }
     $form->addSubmit("register", "Zaregistrovat se");
