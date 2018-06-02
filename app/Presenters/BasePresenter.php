@@ -13,7 +13,6 @@ use Nexendrie\Menu\IMenuControlFactory,
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 abstract class BasePresenter extends \Nette\Application\UI\Presenter {
-  use \Kdyby\Autowired\AutowireProperties;
   use \Kdyby\Autowired\AutowireComponentFactories;
   
   /** @var \Nexendrie\Model\SettingsRepository */
