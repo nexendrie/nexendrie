@@ -12,10 +12,10 @@ namespace Nexendrie\Orm;
  * @property int $when
  * @property string $whenS {virtual}
  * @property User $user {m:1 User::$chatMessages}
- * @property Town|NULL $town {m:1 Town::$chatMessages}
- * @property Monastery|NULL $monastery {m:1 Monastery::$chatMessages}
- * @property Guild|NULL $guild {m:1 Guild::$chatMessages}
- * @property Order|NULL $order {m:1 Order::$chatMessages}
+ * @property Town|null $town {m:1 Town::$chatMessages}
+ * @property Monastery|null $monastery {m:1 Monastery::$chatMessages}
+ * @property Guild|null $guild {m:1 Guild::$chatMessages}
+ * @property Order|null $order {m:1 Order::$chatMessages}
  */
 final class ChatMessage extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */

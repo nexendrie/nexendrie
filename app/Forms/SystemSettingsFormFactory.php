@@ -141,9 +141,9 @@ final class SystemSettingsFormFactory {
     $form->addGroup("Stránky");
     $site = $form->addContainer("site");
     $site->addText("versionSuffix", "Přípona verze:")
-      ->addRule(Form::MAX_LENGTH, NULL, 5)
+      ->addRule(Form::MAX_LENGTH, null, 5)
       ->setRequired(false);
-    $form->setCurrentGroup(NULL);
+    $form->setCurrentGroup(null);
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());
     $form->onSuccess[] = [$this, "process"];

@@ -12,7 +12,7 @@ namespace Nexendrie\Orm;
  * @property Job $job {m:1 Job::$userJobs}
  * @property int $started
  * @property bool $finished {default false}
- * @property int|NULL $lastAction {default NULL}
+ * @property int|null $lastAction {default null}
  * @property int $count {default 0}
  * @property int $earned {default 0}
  * @property int $extra {default 0}
@@ -53,7 +53,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getSkillRewardBonus(int $baseReward): int {
-    /** @var UserSkill|NULL $userSkill */
+    /** @var UserSkill|null $userSkill */
     $userSkill = $this->user->skills->get()->getBy([
       "id" => $this->job->neededSkill->id
     ]);
@@ -90,7 +90,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getSkillSuccessRateBonus(): int {
-    /** @var UserSkill|NULL $userSkill */
+    /** @var UserSkill|null $userSkill */
     $userSkill = $this->user->skills->get()->getBy([
       "id" => $this->job->neededSkill->id
     ]);

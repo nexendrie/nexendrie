@@ -70,7 +70,7 @@ final class Monastery {
    * @throws UserNotFoundException
    * @throws NotInMonasteryException
    */
-  public function getByUser(int $id = NULL): MonasteryEntity {
+  public function getByUser(int $id = null): MonasteryEntity {
     $user = $this->orm->users->getById($id ?? $this->user->id);
     if(is_null($user)) {
       throw new UserNotFoundException();
@@ -136,8 +136,8 @@ final class Monastery {
       $user->group = $this->orm->groups->getByLevel(55);
     }
     $user->town = $monastery->town;
-    $user->guild = $user->guildRank = NULL;
-    $user->order = $user->orderRank = NULL;
+    $user->guild = $user->guildRank = null;
+    $user->order = $user->orderRank = null;
     $this->orm->users->persistAndFlush($user);
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;
@@ -221,7 +221,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    $user->monastery = NULL;
+    $user->monastery = null;
     $level = 50;
     if($user->ownedTowns->countStored() OR $this->orm->castles->getByOwner($this->user->id)) {
       $level = 400;

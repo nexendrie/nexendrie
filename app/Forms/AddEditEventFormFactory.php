@@ -32,27 +32,27 @@ final class AddEditEventFormFactory {
     $form->addText("adventuresBonus", "Bonus k dobrodružstvím:")
       ->setRequired()
       ->addRule(Form::INTEGER)
-      ->addRule(Form::RANGE, NULL, [0, 999]);
+      ->addRule(Form::RANGE, null, [0, 999]);
     $form->addText("workBonus", "Bonus k práci:")
       ->setRequired()
       ->addRule(Form::INTEGER)
-      ->addRule(Form::RANGE, NULL, [0, 999]);
+      ->addRule(Form::RANGE, null, [0, 999]);
     $form->addText("prayerLifeBonus", "Bonus k modlení:")
       ->setRequired()
       ->addRule(Form::INTEGER)
-      ->addRule(Form::RANGE, NULL, [0, 999]);
+      ->addRule(Form::RANGE, null, [0, 999]);
     $form->addText("trainingDiscount", "Sleva na trénink:")
       ->setRequired()
       ->addRule(Form::INTEGER)
-      ->addRule(Form::RANGE, NULL, [0, 100]);
+      ->addRule(Form::RANGE, null, [0, 100]);
     $form->addText("repairingDiscount", "Sleva na opravy:")
       ->setRequired()
       ->addRule(Form::INTEGER)
-      ->addRule(Form::RANGE, NULL, [0, 100]);
+      ->addRule(Form::RANGE, null, [0, 100]);
     $form->addText("shoppingDiscount", "Sleva na nákupy:")
       ->setRequired()
       ->addRule(Form::INTEGER)
-      ->addRule(Form::RANGE, NULL, [0, 100]);
+      ->addRule(Form::RANGE, null, [0, 100]);
     $form->addSubmit("submit", "Odeslat");
     $form->onValidate[] = [$this, "validate"];
     return $form;

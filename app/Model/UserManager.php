@@ -42,10 +42,10 @@ final class UserManager {
    * Checks whether a name is available
    *
    * @param string $type username/publicname
-   * @param int|NULL $uid Id of user who can use the name
+   * @param int|null $uid Id of user who can use the name
    * @throws InvalidArgumentException
    */
-  public function nameAvailable(string $name, string $type = "username", int $uid = NULL): bool {
+  public function nameAvailable(string $name, string $type = "username", int $uid = null): bool {
     $types = ["username", "publicname"];
     if(!in_array($type, $types, true)) {
       throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
@@ -65,10 +65,10 @@ final class UserManager {
   /**
    * Checks whether an e-mail is available
    *
-   * @param int|NULL $uid Id of user who can use the e-mail
+   * @param int|null $uid Id of user who can use the e-mail
    * @throws InvalidArgumentException
    */
-  public function emailAvailable(string $email, int $uid = NULL): bool {
+  public function emailAvailable(string $email, int $uid = null): bool {
     $row = $this->orm->users->getByEmail($email);
     if(is_null($row)) {
       return true;

@@ -15,9 +15,9 @@ use Nexendrie\Utils\Numbers,
  * @author Jakub Konečný
  * @property int $id {primary}
  * @property string $name
- * @property Item|NULL $weapon {m:1 Item::$weaponSets}
- * @property Item|NULL $armor {m:1 Item::$armorSets}
- * @property Item|NULL $helmet {m:1 Item::$helmetSets}
+ * @property Item|null $weapon {m:1 Item::$weaponSets}
+ * @property Item|null $armor {m:1 Item::$armorSets}
+ * @property Item|null $helmet {m:1 Item::$helmetSets}
  * @property string $stat {enum static::STAT_*}
  * @property int $bonus
  * @property-read string $effect {virtual}

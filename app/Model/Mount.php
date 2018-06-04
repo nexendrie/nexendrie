@@ -41,10 +41,10 @@ final class Mount {
   /**
    * Get list of all mounts
    * 
-   * @param int|NULL $owner Return only mounts owned by specified user. NULL = all users
+   * @param int|null $owner Return only mounts owned by specified user. null = all users
    * @return MountEntity[]|ICollection
    */
-  public function listOfMounts(int $owner = NULL): ICollection {
+  public function listOfMounts(int $owner = null): ICollection {
     if(is_int($owner)) {
       return $this->orm->mounts->findByOwner($owner);
     }

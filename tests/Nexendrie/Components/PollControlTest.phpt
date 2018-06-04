@@ -17,7 +17,7 @@ final class PollControlTest extends \Tester\TestCase {
   protected $control;
   
   protected function setUp() {
-    static $control = NULL;
+    static $control = null;
     if(is_null($control)) {
       $control = $this->getService(IPollControlFactory::class)->create();
     }

@@ -15,7 +15,7 @@ namespace Nexendrie\Orm;
  * @property int $progress {default 0}
  * @property int $reward {default 0}
  * @property int $loot {default 0}
- * @property-read AdventureNpc|NULL $nextEnemy {virtual}
+ * @property-read AdventureNpc|null $nextEnemy {virtual}
  */
 final class UserAdventure extends \Nextras\Orm\Entity\Entity {
   public const PROGRESS_COMPLETED = 10;
@@ -23,7 +23,7 @@ final class UserAdventure extends \Nextras\Orm\Entity\Entity {
   
   protected function getterNextEnemy(): ?AdventureNpc {
     if($this->progress >= static::PROGRESS_COMPLETED) {
-      return NULL;
+      return null;
     }
     return $this->adventure->npcs->get()->getBy([
       "order" => $this->progress + 1

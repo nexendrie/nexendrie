@@ -20,12 +20,12 @@ use Nexendrie\Utils\Numbers,
  * @property int $divorce {default 0}
  * @property int $proposed
  * @property-read string $proposedT {virtual}
- * @property int|NULL $accepted {default NULL}
- * @property-read string|NULL $acceptedT {virtual}
- * @property int|NULL $term
- * @property-read string|NULL $termT {virtual}
- * @property int|NULL $cancelled {default NULL}
- * @property-read string|NULL $cancelledT {virtual}
+ * @property int|null $accepted {default null}
+ * @property-read string|null $acceptedT {virtual}
+ * @property int|null $term
+ * @property-read string|null $termT {virtual}
+ * @property int|null $cancelled {default null}
+ * @property-read string|null $cancelledT {virtual}
  * @property int $intimacy {default 0}
  * @property-read int $level {virtual}
  * @property-read int $hpIncrease {virtual}

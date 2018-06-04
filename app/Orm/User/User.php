@@ -20,8 +20,8 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property-read string $joinedAt {virtual}
  * @property int $lastActive
  * @property-read string $lastActiveAt {virtual}
- * @property int|NULL $lastPrayer {default NULL}
- * @property int|NULL $lastTransfer {default NULL} 
+ * @property int|null $lastPrayer {default null}
+ * @property int|null $lastTransfer {default null}
  * @property Group $group {m:1 Group::$members}
  * @property bool $infomails {default false}
  * @property string $style
@@ -31,14 +31,14 @@ use Nextras\Orm\Relationships\OneHasMany,
  * @property-read int $maxLife {virtual}
  * @property int $money {default 2}
  * @property Town $town {m:1 Town::$denizens}
- * @property Monastery|NULL $monastery {m:1 Monastery::$members} {default NULL}
- * @property Castle|NULL $castle {1:1 Castle::$owner} {default NULL}
- * @property House|NULL $house {1:1 House::$owner} {default NULL}
+ * @property Monastery|null $monastery {m:1 Monastery::$members} {default null}
+ * @property Castle|null $castle {1:1 Castle::$owner} {default null}
+ * @property House|null $house {1:1 House::$owner} {default null}
  * @property int $prayers {default 0}
- * @property Guild|NULL $guild {m:1 Guild::$members} {default NULL}
- * @property GuildRank|NULL $guildRank {m:1 GuildRank::$people} {default NULL}
- * @property Order|NULL $order {m:1 Order::$members} {default NULL}
- * @property OrderRank|NULL $orderRank {m:1 OrderRank::$people} {default NULL}
+ * @property Guild|null $guild {m:1 Guild::$members} {default null}
+ * @property GuildRank|null $guildRank {m:1 GuildRank::$people} {default null}
+ * @property Order|null $order {m:1 Order::$members} {default null}
+ * @property OrderRank|null $orderRank {m:1 OrderRank::$people} {default null}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|Article[] $articles {1:m Article::$author}
@@ -170,7 +170,7 @@ final class User extends \Nextras\Orm\Entity\Entity {
     if(is_null($this->order)) {
       return 0;
     }
-    /** @var OrderFee|NULL $record */
+    /** @var OrderFee|null $record */
     $record = $this->orderFees->get()->getBy(["order" => $this->order]);
     if(is_null($record)) {
       return 0;
@@ -182,7 +182,7 @@ final class User extends \Nextras\Orm\Entity\Entity {
     if(is_null($this->guild)) {
       return 0;
     }
-    /** @var GuildFee|NULL $record */
+    /** @var GuildFee|null $record */
     $record = $this->guildFees->get()->getBy(["guild" => $this->guild]);
     if(is_null($record)) {
       return 0;

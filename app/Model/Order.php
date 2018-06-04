@@ -55,7 +55,7 @@ final class Order {
   /**
    * Check whether a name can be used
    */
-  private function checkNameAvailability(string $name, int $id = NULL): bool {
+  private function checkNameAvailability(string $name, int $id = null): bool {
     $order = $this->orm->orders->getByName($name);
     if(is_null($order)) {
       return true;
@@ -87,10 +87,10 @@ final class Order {
   /**
    * Get specified user's order
    */
-  public function getUserOrder(int $uid = NULL): ?OrderEntity {
+  public function getUserOrder(int $uid = null): ?OrderEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
     if(is_null($user)) {
-      return NULL;
+      return null;
     }
     return $user->order;
   }
@@ -232,7 +232,7 @@ final class Order {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    $user->order = $user->orderRank = NULL;
+    $user->order = $user->orderRank = null;
     $this->orm->users->persistAndFlush($user);
   }
   
@@ -303,7 +303,7 @@ final class Order {
   }
   
   public function getMaxRank(): int {
-    static $rank = NULL;
+    static $rank = null;
     if(is_null($rank)) {
       $rank = $this->orm->orderRanks->findAll()->countStored();
     }
@@ -396,7 +396,7 @@ final class Order {
     } elseif($user->orderRank->id === $this->maxRank) {
       throw new CannotKickMemberException();
     }
-    $user->order = $user->orderRank = NULL;
+    $user->order = $user->orderRank = null;
     $this->orm->users->persistAndFlush($user);
   }
 }

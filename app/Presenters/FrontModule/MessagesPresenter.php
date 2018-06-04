@@ -49,16 +49,16 @@ final class MessagesPresenter extends BasePresenter {
   }
   
   /**
-   * @param int|NULL $id Receiver's id
+   * @param int|null $id Receiver's id
    */
-  public function actionNew(int $id = NULL): void {
+  public function actionNew(int $id = null): void {
     
   }
   
   protected function createComponentNewMessageForm(NewMessageFormFactory $factory): Form {
     $form = $factory->create();
     try {
-      $uid = $this->getParameter("id", NULL);
+      $uid = $this->getParameter("id", null);
       $form["to"]->setDefaultValue($uid);
     } catch(\Nette\InvalidArgumentException $e) {
       

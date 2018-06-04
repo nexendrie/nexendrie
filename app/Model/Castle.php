@@ -53,7 +53,7 @@ final class Castle {
   /**
    * Check whether a name can be used
    */
-  private function checkNameAvailability(string $name, int $id = NULL): bool {
+  private function checkNameAvailability(string $name, int $id = null): bool {
     $castle = $this->orm->castles->getByName($name);
     if(is_null($castle)) {
       return true;
@@ -120,7 +120,7 @@ final class Castle {
   /**
    * Get specified user's castle
    */
-  public function getUserCastle(int $user = NULL): ?CastleEntity {
+  public function getUserCastle(int $user = null): ?CastleEntity {
     return $this->orm->castles->getByOwner($user ?? $this->user->id);
   }
   

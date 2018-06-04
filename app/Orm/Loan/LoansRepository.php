@@ -32,7 +32,7 @@ final class LoansRepository extends \Nextras\Orm\Repository\Repository {
    * Get specified user's active loan
    */
   public function getActiveLoan(int $user): ?Loan {
-    return $this->getBy(["user" => $user, "returned" => NULL]);
+    return $this->getBy(["user" => $user, "returned" => null]);
   }
   
   /**

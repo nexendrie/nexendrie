@@ -42,7 +42,7 @@ final class Article {
    *
    * @return ArticleEntity[]|ICollection
    */
-  public function listOfNews(\Nette\Utils\Paginator $paginator = NULL): ICollection {
+  public function listOfNews(\Nette\Utils\Paginator $paginator = null): ICollection {
     $news = $this->orm->articles->findNews();
     if(!is_null($paginator)) {
       $paginator->itemsPerPage = $this->itemsPerPage;
@@ -56,7 +56,7 @@ final class Article {
    *
    * @return ArticleEntity[]|ICollection
    */
-  public function category($name, \Nette\Utils\Paginator $paginator = NULL): ICollection {
+  public function category($name, \Nette\Utils\Paginator $paginator = null): ICollection {
     $articles = $this->orm->articles->findByCategory($name);
     if(!is_null($paginator)) {
       $paginator->itemsPerPage = $this->itemsPerPage;

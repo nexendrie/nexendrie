@@ -14,7 +14,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $description
  * @property int $price
  * @property-read string $priceT {virtual}
- * @property Shop|NULL $shop {m:1 Shop::$items}
+ * @property Shop|null $shop {m:1 Shop::$items}
  * @property string $type {enum static::TYPE_*} {default static::TYPE_ITEM}
  * @property int $strength {default 0}
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}

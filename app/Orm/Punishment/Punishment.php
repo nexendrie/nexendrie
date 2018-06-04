@@ -11,10 +11,10 @@ namespace Nexendrie\Orm;
  * @property User $user {m:1 User::$punishments}
  * @property string $crime
  * @property int $imprisoned
- * @property int|NULL $released
+ * @property int|null $released
  * @property int $numberOfShifts
  * @property int $count {default 0}
- * @property int|NULL $lastAction
+ * @property int|null $lastAction
  * @property-read string $imprisonedAt {virtual}
  * @property-read string $releasedAt {virtual}
  * @property-read int $nextShift {virtual}

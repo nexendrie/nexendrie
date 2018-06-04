@@ -64,7 +64,7 @@ final class UserSettingsFormFactory {
     $form->addPassword("password_old", "Současné heslo:");
     $form->addPassword("password_new", "Nové heslo:");
     $form->addPassword("password_check", "Nové heslo (kontrola):");
-    $form->setCurrentGroup(NULL);
+    $form->setCurrentGroup(null);
     $form->addSubmit("save", "Uložit změny");
     $form->setDefaults($this->model->getSettings());
     $form->onValidate[] = [$this, "validate"];

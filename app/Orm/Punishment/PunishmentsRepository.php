@@ -34,7 +34,7 @@ final class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
    * @param int $user User's id
    */
   public function getActivePunishment(int $user): ?Punishment {
-    return $this->getBy(["user" => $user, "released" => NULL]);
+    return $this->getBy(["user" => $user, "released" => null]);
   }
 }
 ?>

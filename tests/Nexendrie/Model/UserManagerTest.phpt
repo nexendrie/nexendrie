@@ -50,10 +50,10 @@ final class UserManagerTest extends \Tester\TestCase {
     $user = $orm->users->getById(1);
     Assert::exception(function() use($user) {
       $this->model->register(["username" => $user->username]);
-    }, RegistrationException::class, NULL, UserManager::REG_DUPLICATE_USERNAME);
+    }, RegistrationException::class, null, UserManager::REG_DUPLICATE_USERNAME);
     Assert::exception(function() use($user) {
       $this->model->register(["email" => $user->email, "username" => "abc"]);
-    }, RegistrationException::class, NULL, UserManager::REG_DUPLICATE_EMAIL);
+    }, RegistrationException::class, null, UserManager::REG_DUPLICATE_EMAIL);
     $data = [
       "username" => "abc", "email" => "abc", "password" => "abcd",
     ];

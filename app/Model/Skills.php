@@ -33,7 +33,7 @@ final class Skills {
    *
    * @return SkillEntity[]|ICollection
    */
-  public function listOfSkills(string $type = NULL): ICollection {
+  public function listOfSkills(string $type = null): ICollection {
     if(is_null($type)) {
       return $this->orm->skills->findAll();
     }

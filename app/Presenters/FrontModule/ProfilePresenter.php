@@ -29,7 +29,7 @@ final class ProfilePresenter extends BasePresenter {
   /**
    * @throws BadRequestException
    */
-  public function renderDefault(?string $username = NULL): void {
+  public function renderDefault(?string $username = null): void {
     if(is_null($username)) {
       throw new BadRequestException();
     }

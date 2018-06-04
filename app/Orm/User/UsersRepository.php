@@ -87,7 +87,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
    */
   public function findInGuild(): ICollection {
     return $this->findBy([
-      "guild!=" => NULL,
+      "guild!=" => null,
       "this->group->path" => Group::PATH_CITY
     ]);
   }
@@ -99,7 +99,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
    */
   public function findInOrder(): ICollection {
     return $this->findBy([
-      "order!=" => NULL,
+      "order!=" => null,
       "this->group->path" => Group::PATH_TOWER
     ]);
   }

@@ -22,7 +22,7 @@ final class ConditionPath extends BaseCondition {
    * @param string $parameter
    * @throws \InvalidArgumentException
    */
-  public function isAllowed($parameter = NULL): bool {
+  public function isAllowed($parameter = null): bool {
     if(!$this->user->isLoggedIn()) {
       return false;
     } elseif(!is_string($parameter)) {

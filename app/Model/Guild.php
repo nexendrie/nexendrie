@@ -58,7 +58,7 @@ final class Guild {
   /**
    * Check whether a name can be used
    */
-  private function checkNameAvailability(string $name, int $id = NULL): bool {
+  private function checkNameAvailability(string $name, int $id = null): bool {
     $guild = $this->orm->guilds->getByName($name);
     if(is_null($guild)) {
       return true;
@@ -90,10 +90,10 @@ final class Guild {
   /**
    * Get specified user's guild
    */
-  public function getUserGuild(int $uid = NULL): ?GuildEntity {
+  public function getUserGuild(int $uid = null): ?GuildEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
     if(is_null($user)) {
-      return NULL;
+      return null;
     }
     return $user->guild;
   }
@@ -214,7 +214,7 @@ final class Guild {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    $user->guild = $user->guildRank = NULL;
+    $user->guild = $user->guildRank = null;
     $this->orm->users->persistAndFlush($user);
   }
   
@@ -283,7 +283,7 @@ final class Guild {
   }
   
   public function getMaxRank(): int {
-    static $rank = NULL;
+    static $rank = null;
     if(is_null($rank)) {
       $rank = $this->orm->guildRanks->findAll()->countStored();
     }
@@ -376,7 +376,7 @@ final class Guild {
     } elseif($user->guildRank->id === $this->maxRank) {
       throw new CannotKickMemberException();
     }
-    $user->guild = $user->guildRank = NULL;
+    $user->guild = $user->guildRank = null;
     $this->orm->users->persistAndFlush($user);
   }
 }

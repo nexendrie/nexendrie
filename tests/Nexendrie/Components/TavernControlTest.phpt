@@ -13,7 +13,7 @@ final class TavernControlTest extends \Tester\TestCase {
   protected $control;
   
   protected function setUp() {
-    static $control = NULL;
+    static $control = null;
     if(is_null($control)) {
       $control = $this->getService(ITavernControlFactory::class)->create();
     }

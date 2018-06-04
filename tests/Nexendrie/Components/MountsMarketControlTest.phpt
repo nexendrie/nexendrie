@@ -16,7 +16,7 @@ final class MountsMarketControlTest extends \Tester\TestCase {
   protected $control;
   
   protected function setUp() {
-    static $control = NULL;
+    static $control = null;
     if(is_null($control)) {
       $control = $this->getService(IMountsMarketControlFactory::class)->create();
     }

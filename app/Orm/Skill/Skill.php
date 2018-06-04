@@ -15,8 +15,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $priceT {virtual}
  * @property int $maxLevel
  * @property string $type {enum static::TYPE_*}
- * @property string|NULL $stat {enum static::STAT_*} {default NULL}
- * @property-read string|NULL $statCZ {virtual}
+ * @property string|null $stat {enum static::STAT_*} {default null}
+ * @property-read string|null $statCZ {virtual}
  * @property int $statIncrease {default 0}
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
  * @property OneHasMany|UserSkill[] $userSkills {1:m UserSkill::$skill}
@@ -63,7 +63,7 @@ final class Skill extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterStatCZ(): ?string {
-    return ($this->stat !== NULL) ? static::getStats()[$this->stat] : NULL;
+    return ($this->stat !== null) ? static::getStats()[$this->stat] : null;
   }
   
   protected function getterEffect(): string {

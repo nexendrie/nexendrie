@@ -233,7 +233,7 @@ final class Town {
     }
     $this->user->identity->town = $user->town = $id;
     $user->lastTransfer = $user->lastActive = time();
-    $user->guild = $user->guildRank = NULL;
+    $user->guild = $user->guildRank = null;
     $this->orm->users->persistAndFlush($user);
   }
   

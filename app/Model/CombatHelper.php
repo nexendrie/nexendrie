@@ -59,7 +59,7 @@ final class CombatHelper {
   /**
    * @throws UserNotFoundException
    */
-  public function getCharacter(int $id, ?MountEntity $mount = NULL): Character {
+  public function getCharacter(int $id, ?MountEntity $mount = null): Character {
     $user = $this->orm->users->getById($id);
     if(is_null($user)) {
       throw new UserNotFoundException();
@@ -104,7 +104,7 @@ final class CombatHelper {
     ];
     $stats["constitution"] = (int) round($npc->hitpoints / 5);
     $armorStats = [
-      "id" => $npc->id, "name" => "Armor", "slot" => Equipment::SLOT_ARMOR, "type" => NULL,
+      "id" => $npc->id, "name" => "Armor", "slot" => Equipment::SLOT_ARMOR, "type" => null,
       "strength" => $npc->armor, "worn" => true,
     ];
     $character = new Character($stats, [new Equipment($armorStats)], [], [], new ConstantInitiativeFormulaParser(0));

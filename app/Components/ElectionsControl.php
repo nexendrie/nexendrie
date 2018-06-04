@@ -114,7 +114,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Nemůžeš hlasovat.");
       $this->presenter->redirect(":Front:Homepage:");
     }
-    if(!in_array($candidate, $this->model->getCandidates($this->town->id)->fetchPairs(NULL, "id"), true)) {
+    if(!in_array($candidate, $this->model->getCandidates($this->town->id)->fetchPairs(null, "id"), true)) {
       $this->presenter->flashMessage("Neplatný kandidát.");
       $this->presenter->redirect(":Front:Homepage:");
     }

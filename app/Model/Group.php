@@ -55,7 +55,7 @@ final class Group {
    */
   public function get(int $id) {
     $groups = $this->listOfGroups();
-    $group = Arrays::get($groups, $id, NULL);
+    $group = Arrays::get($groups, $id, null);
     return $group;
   }
   

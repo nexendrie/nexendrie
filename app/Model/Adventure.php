@@ -31,7 +31,7 @@ final class Adventure {
   /** @var \Nette\Security\User */
   protected $user;
   /** @var UserAdventureEntity|null */
-  private $adventure = NULL;
+  private $adventure = null;
   
   use \Nette\SmartObject;
   
@@ -345,7 +345,7 @@ final class Adventure {
   /**
    * Calculate income from user's adventures from a month
    */
-  public function calculateMonthAdventuresIncome(int $user = NULL, int $month = NULL, int $year = NULL): int {
+  public function calculateMonthAdventuresIncome(int $user = null, int $month = null, int $year = null): int {
     $income = 0;
     $adventures = $this->orm->userAdventures->findFromMonth($user ?? $this->user->id, $month, $year);
     foreach($adventures as $adventure) {

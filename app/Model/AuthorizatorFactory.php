@@ -112,7 +112,7 @@ final class AuthorizatorFactory {
   
   protected function addRanks(array $ranks, Permission &$permission, string $type): void {
     foreach($ranks as $id => $rank) {
-      $parent = NULL;
+      $parent = null;
       if($id > 1) {
         $parent = $type .  "^" . $ranks[$id-1];
       }
@@ -142,7 +142,7 @@ final class AuthorizatorFactory {
     $permissions = $this->getPermissions();
     
     foreach($groups as $i => $row) {
-      $parent = NULL;
+      $parent = null;
       if($row->level !== 0) {
         $parent = $groups[$i+1]->singleName;
       }

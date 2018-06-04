@@ -249,9 +249,9 @@ final class Inventory {
     $weapon = $this->getWeapon($user);
     $armor = $this->getArmor($user);
     $helmet = $this->getHelmet($user);
-    $w = (!is_null($weapon)) ? $weapon->item : NULL;
-    $a = (!is_null($armor)) ? $armor->item : NULL;
-    $h = (!is_null($helmet)) ? $helmet->item : NULL;
+    $w = (!is_null($weapon)) ? $weapon->item : null;
+    $a = (!is_null($armor)) ? $armor->item : null;
+    $h = (!is_null($helmet)) ? $helmet->item : null;
     return $this->orm->itemSets->getByWeaponAndArmorAndHelmet($w, $a, $h);
   }
   

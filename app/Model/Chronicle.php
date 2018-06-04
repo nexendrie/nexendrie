@@ -27,7 +27,7 @@ final class Chronicle {
    *
    * @return ArticleEntity[]|ICollection
    */
-  public function articles(\Nette\Utils\Paginator $paginator = NULL): ICollection {
+  public function articles(\Nette\Utils\Paginator $paginator = null): ICollection {
     $articles = $this->orm->articles->findChronicle();
     if(!is_null($paginator)) {
       //$paginator->itemsPerPage = $this->itemsPerPage;

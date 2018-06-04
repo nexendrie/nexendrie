@@ -27,7 +27,7 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask {
     $votes = $this->orm->elections->findVotedInMonth($town, $year, $month);
     $results = [];
     foreach($votes as $vote) {
-      if(!in_array($vote->candidate->id, $this->electionsModel->getCandidates($town)->fetchPairs(NULL, "id"), true)) {
+      if(!in_array($vote->candidate->id, $this->electionsModel->getCandidates($town)->fetchPairs(null, "id"), true)) {
         continue;
       }
       $index = $vote->candidate->username;
