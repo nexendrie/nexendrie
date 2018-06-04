@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\Model\AuthenticationNeededException,
-    Nexendrie\Model\MealNotFoundException,
-    Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\AuthenticationNeededException;
+use Nexendrie\Model\MealNotFoundException;
+use Nexendrie\Model\InsufficientFundsException;
 
 /**
  * TavernControl

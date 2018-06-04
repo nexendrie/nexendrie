@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Monastery as MonasteryEntity,
-    Nexendrie\Orm\MonasteryDonation,
-    Nexendrie\Orm\Group as GroupEntity,
-    Nexendrie\Orm\User as UserEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Monastery as MonasteryEntity;
+use Nexendrie\Orm\MonasteryDonation;
+use Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\User as UserEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Monastery Model

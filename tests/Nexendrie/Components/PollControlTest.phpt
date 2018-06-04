@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\Model\PollNotFoundException,
-    Tester\Assert,
-    Nexendrie\Orm\Poll;
+use Nexendrie\Model\PollNotFoundException;
+use Tester\Assert;
+use Nexendrie\Orm\Poll;
 
 require __DIR__ . "/../../bootstrap.php";
 

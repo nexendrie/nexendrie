@@ -5,9 +5,9 @@ namespace Nexendrie\Achievements;
 
 require __DIR__ . "/../../bootstrap.php";
 
-use Tester\Assert,
-    Nexendrie\Orm\UserAdventure,
-    Nexendrie\Orm\User;
+use Tester\Assert;
+use Nexendrie\Orm\UserAdventure;
+use Nexendrie\Orm\User;
 
 final class CompletedAdventuresAchievementTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;

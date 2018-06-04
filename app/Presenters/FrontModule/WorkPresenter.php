@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\AlreadyWorkingException,
-    Nexendrie\Model\JobNotFoundException,
-    Nexendrie\Model\InsufficientLevelForJobException,
-    Nexendrie\Model\NotWorkingException,
-    Nexendrie\Model\CannotWorkException,
-    Nexendrie\Model\JobNotFinishedException,
-    Nexendrie\Model\InsufficientSkillLevelForJobException;
+use Nexendrie\Model\AlreadyWorkingException;
+use Nexendrie\Model\JobNotFoundException;
+use Nexendrie\Model\InsufficientLevelForJobException;
+use Nexendrie\Model\NotWorkingException;
+use Nexendrie\Model\CannotWorkException;
+use Nexendrie\Model\JobNotFinishedException;
+use Nexendrie\Model\InsufficientSkillLevelForJobException;
 
 /**
  * Presenter Work

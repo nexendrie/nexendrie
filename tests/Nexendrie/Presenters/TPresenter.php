@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters;
 
-use Testbench\TPresenter as BaseTrait,
-    Nexendrie\Model\TUserControl,
-    Tester\Assert,
-    Nexendrie\Rss\RssResponse,
-    Nette\Application\Responses\ForwardResponse,
-    Nette\Application\IResponse;
+use Testbench\TPresenter as BaseTrait;
+use Nexendrie\Model\TUserControl;
+use Tester\Assert;
+use Nexendrie\Rss\RssResponse;
+use Nette\Application\Responses\ForwardResponse;
+use Nette\Application\IResponse;
 
 /**
  * TPresenter

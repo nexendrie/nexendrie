@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\CannotBuildMonasteryException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Model\MonasteryNameInUseException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\CannotBuildMonasteryException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\MonasteryNameInUseException;
 
 /**
  * Factory for form BuildMonastery

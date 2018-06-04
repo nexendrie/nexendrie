@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Rss\RssResponse,
-    Nexendrie\Rss\Generator,
-    Nexendrie\Rss\RssChannelItem as Item,
-    Nexendrie\Rss\Collection,
-    Nette\Application\LinkGenerator;
+use Nexendrie\Rss\RssResponse;
+use Nexendrie\Rss\Generator;
+use Nexendrie\Rss\RssChannelItem as Item;
+use Nexendrie\Rss\Collection;
+use Nette\Application\LinkGenerator;
 
 /**
  * Rss channel generator

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Orm\Marriage,
-    Nella\Forms\DateTime\DateTimeInput;
+use Nette\Application\UI\Form;
+use Nexendrie\Orm\Marriage;
+use Nella\Forms\DateTime\DateTimeInput;
 
 /**
  * Factory for form ChangeWeddingTerm

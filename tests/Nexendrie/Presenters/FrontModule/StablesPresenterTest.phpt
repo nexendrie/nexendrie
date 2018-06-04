@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Tester\Assert,
-    Nette\Application\BadRequestException;
+use Tester\Assert;
+use Nette\Application\BadRequestException;
 
 require __DIR__ . "/../../../bootstrap.php";
 

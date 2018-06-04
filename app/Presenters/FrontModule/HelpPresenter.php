@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\IHelpControlFactory,
-    Nexendrie\Components\HelpControl;
+use Nexendrie\Components\IHelpControlFactory;
+use Nexendrie\Components\HelpControl;
 
 /**
  * Presenter Help

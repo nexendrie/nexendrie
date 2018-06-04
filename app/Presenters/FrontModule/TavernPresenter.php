@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\ITavernControlFactory,
-    Nexendrie\Components\TavernControl;
+use Nexendrie\Components\ITavernControlFactory;
+use Nexendrie\Components\TavernControl;
 
 /**
  * Presenter Tavern

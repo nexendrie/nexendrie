@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\IHistoryControlFactory,
-    Nexendrie\Components\HistoryControl;
+use Nexendrie\Components\IHistoryControlFactory;
+use Nexendrie\Components\HistoryControl;
 
 /**
  * Presenter History

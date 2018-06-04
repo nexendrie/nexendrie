@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\CannotBuyMoreHousesException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Model\CannotUpgradeHouseException,
-    Nexendrie\Model\CannotRepairHouseException,
-    Nexendrie\Model\CannotUpgradeBreweryException,
-    Nexendrie\Model\CannotProduceBeerException,
-    Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Model\CannotBuyMoreHousesException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\CannotUpgradeHouseException;
+use Nexendrie\Model\CannotRepairHouseException;
+use Nexendrie\Model\CannotUpgradeBreweryException;
+use Nexendrie\Model\CannotProduceBeerException;
+use Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Presenter House

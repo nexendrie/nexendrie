@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\Group,
-    Nexendrie\Model\SettingsRepository,
-    Nexendrie\Model\Town,
-    Nette\Neon\Neon,
-    Nette\Utils\FileSystem;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\Group;
+use Nexendrie\Model\SettingsRepository;
+use Nexendrie\Model\Town;
+use Nette\Neon\Neon;
+use Nette\Utils\FileSystem;
 
 /**
  * Factory for form SystemSettings

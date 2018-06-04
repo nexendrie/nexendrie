@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\NotInMonasteryException,
-    Nexendrie\Chat\ITownChatControlFactory,
-    Nexendrie\Chat\TownChatControl,
-    Nexendrie\Chat\IMonasteryChatControlFactory,
-    Nexendrie\Chat\MonasteryChatControl,
-    Nexendrie\Chat\IOrderChatControlFactory,
-    Nexendrie\Chat\OrderChatControl,
-    Nexendrie\Chat\IGuildChatControlFactory,
-    Nexendrie\Chat\GuildChatControl;
+use Nexendrie\Model\NotInMonasteryException;
+use Nexendrie\Chat\ITownChatControlFactory;
+use Nexendrie\Chat\TownChatControl;
+use Nexendrie\Chat\IMonasteryChatControlFactory;
+use Nexendrie\Chat\MonasteryChatControl;
+use Nexendrie\Chat\IOrderChatControlFactory;
+use Nexendrie\Chat\OrderChatControl;
+use Nexendrie\Chat\IGuildChatControlFactory;
+use Nexendrie\Chat\GuildChatControl;
 
 /**
  * ChatPresenter

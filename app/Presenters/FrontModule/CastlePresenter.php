@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\CastleNotFoundException,
-    Nexendrie\Forms\BuildCastleFormFactory,
-    Nexendrie\Forms\ManageCastleFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Model\CannotUpgradeCastleException,
-    Nexendrie\Model\CannotRepairCastleException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Model\CastleNotFoundException;
+use Nexendrie\Forms\BuildCastleFormFactory;
+use Nexendrie\Forms\ManageCastleFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\CannotUpgradeCastleException;
+use Nexendrie\Model\CannotRepairCastleException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Presenter Castle

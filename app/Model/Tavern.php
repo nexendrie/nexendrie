@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Meal as MealEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Meal as MealEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Tavern Model

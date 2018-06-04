@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Adventure as AdventureEntity,
-    Nexendrie\Orm\AdventureNpc as AdventureNpcEntity,
-    Nexendrie\Orm\UserAdventure as UserAdventureEntity,
-    Nexendrie\Orm\Mount as MountEntity,
-    Nextras\Orm\Collection\ICollection,
-    Nextras\Orm\Relationships\OneHasMany,
-    HeroesofAbenez\Combat\CombatBase,
-    HeroesofAbenez\Combat\VictoryConditions;
+use Nexendrie\Orm\Adventure as AdventureEntity;
+use Nexendrie\Orm\AdventureNpc as AdventureNpcEntity;
+use Nexendrie\Orm\UserAdventure as UserAdventureEntity;
+use Nexendrie\Orm\Mount as MountEntity;
+use Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Relationships\OneHasMany;
+use HeroesofAbenez\Combat\CombatBase;
+use HeroesofAbenez\Combat\VictoryConditions;
 
 /**
  * Adventure Model

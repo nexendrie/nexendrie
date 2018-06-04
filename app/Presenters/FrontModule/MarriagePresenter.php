@@ -3,25 +3,25 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Forms\ChangeWeddingTermFormFactory,
-    Nexendrie\Model\CannotProposeMarriageException,
-    Nexendrie\Model\MarriageNotFoundException,
-    Nexendrie\Model\AccessDeniedException,
-    Nexendrie\Model\MarriageProposalAlreadyHandledException,
-    Nexendrie\Model\NotEngagedException,
-    Nexendrie\Model\WeddingAlreadyHappenedException,
-    Nexendrie\Model\NotMarriedException,
-    Nexendrie\Model\AlreadyInDivorceException,
-    Nexendrie\Model\NotInDivorceException,
-    Nexendrie\Model\CannotTakeBackDivorceException,
-    Nexendrie\Model\MaxIntimacyReachedException,
-    Nexendrie\Model\ItemNotFoundException,
-    Nexendrie\Model\ItemNotUsableException,
-    Nexendrie\Model\ItemNotOwnedException,
-    Nexendrie\Components\IWeddingControlFactory,
-    Nexendrie\Components\WeddingControl,
-    Nexendrie\Orm\Marriage as MarriageEntity;
+use Nette\Application\UI\Form;
+use Nexendrie\Forms\ChangeWeddingTermFormFactory;
+use Nexendrie\Model\CannotProposeMarriageException;
+use Nexendrie\Model\MarriageNotFoundException;
+use Nexendrie\Model\AccessDeniedException;
+use Nexendrie\Model\MarriageProposalAlreadyHandledException;
+use Nexendrie\Model\NotEngagedException;
+use Nexendrie\Model\WeddingAlreadyHappenedException;
+use Nexendrie\Model\NotMarriedException;
+use Nexendrie\Model\AlreadyInDivorceException;
+use Nexendrie\Model\NotInDivorceException;
+use Nexendrie\Model\CannotTakeBackDivorceException;
+use Nexendrie\Model\MaxIntimacyReachedException;
+use Nexendrie\Model\ItemNotFoundException;
+use Nexendrie\Model\ItemNotUsableException;
+use Nexendrie\Model\ItemNotOwnedException;
+use Nexendrie\Components\IWeddingControlFactory;
+use Nexendrie\Components\WeddingControl;
+use Nexendrie\Orm\Marriage as MarriageEntity;
 
 /**
  * Presenter Marriage

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Localization\ITranslator,
-    Nette\Security\User,
-    Nexendrie\Orm\User as UserEntity;
+use Nette\Localization\ITranslator;
+use Nette\Security\User;
+use Nexendrie\Orm\User as UserEntity;
 
 /**
  * Locale Model

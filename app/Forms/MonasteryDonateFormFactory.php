@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\NotInMonasteryException,
-    Nexendrie\Model\InsufficientFundsException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\NotInMonasteryException;
+use Nexendrie\Model\InsufficientFundsException;
 
 /**
  * Factory for form MonasteryDonate

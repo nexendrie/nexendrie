@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Forms\SiteSearchFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Forms\SiteSearchFormFactory;
 
 /**
  * SearchPresenter

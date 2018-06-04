@@ -5,9 +5,9 @@ namespace Nexendrie\Chat;
 
 require __DIR__ . "/../../bootstrap.php";
 
-use Tester\Assert,
-    HeroesofAbenez\Chat\ChatMessagesCollection,
-    HeroesofAbenez\Chat\ChatCharactersCollection;
+use Tester\Assert;
+use HeroesofAbenez\Chat\ChatMessagesCollection;
+use HeroesofAbenez\Chat\ChatCharactersCollection;
 
 final class NextrasOrmAdapterTest extends \Tester\TestCase {
   use \Nexendrie\Model\TUserControl;

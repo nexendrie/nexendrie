@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nextras\Orm\Collection\ICollection,
-    Nextras\Orm\Relationships\OneHasMany,
-    Nexendrie\Orm\Adventure as AdventureEntity,
-    Nexendrie\Orm\AdventureNpc,
-    Nexendrie\Orm\Mount as MountEntity;
+use Tester\Assert;
+use Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Relationships\OneHasMany;
+use Nexendrie\Orm\Adventure as AdventureEntity;
+use Nexendrie\Orm\AdventureNpc;
+use Nexendrie\Orm\Mount as MountEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 

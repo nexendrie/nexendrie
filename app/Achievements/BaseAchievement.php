@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Achievements;
 
-use Nexendrie\Orm\User,
-    Nette\Localization\ITranslator,
-    Nette\Utils\Arrays;
+use Nexendrie\Orm\User;
+use Nette\Localization\ITranslator;
+use Nette\Utils\Arrays;
 
 /**
  * BaseAchievement

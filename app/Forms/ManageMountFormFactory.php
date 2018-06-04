@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nextras\Orm\Entity\ToArrayConverter;
+use Nette\Application\UI\Form;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Factory for form AddEditMount

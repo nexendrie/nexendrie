@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters;
 
-use Nexendrie\Menu\IMenuControlFactory,
-    Nexendrie\Menu\MenuControl;
+use Nexendrie\Menu\IMenuControlFactory;
+use Nexendrie\Menu\MenuControl;
 
 /**
  * Ultimate ancestor of all presenters

@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\Model\SkillNotFoundException,
-    Nexendrie\Model\SkillMaxLevelReachedException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Utils\Constants,
-    Nexendrie\Orm\Skill;
+use Nexendrie\Model\SkillNotFoundException;
+use Nexendrie\Model\SkillMaxLevelReachedException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Utils\Constants;
+use Nexendrie\Orm\Skill;
 
 /**
  * AcademyControl

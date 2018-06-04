@@ -3,21 +3,21 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Forms\FoundOrderFormFactory,
-    Nexendrie\Forms\ManageOrderFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Model\OrderNotFoundException,
-    Nexendrie\Model\CannotJoinOrderException,
-    Nexendrie\Model\CannotLeaveOrderException,
-    Nexendrie\Model\CannotUpgradeOrderException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Model\AuthenticationNeededException,
-    Nexendrie\Model\MissingPermissionsException,
-    Nexendrie\Model\UserNotFoundException,
-    Nexendrie\Model\UserNotInYourOrderException,
-    Nexendrie\Model\CannotPromoteMemberException,
-    Nexendrie\Model\CannotDemoteMemberException,
-    Nexendrie\Model\CannotKickMemberException;
+use Nexendrie\Forms\FoundOrderFormFactory;
+use Nexendrie\Forms\ManageOrderFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\OrderNotFoundException;
+use Nexendrie\Model\CannotJoinOrderException;
+use Nexendrie\Model\CannotLeaveOrderException;
+use Nexendrie\Model\CannotUpgradeOrderException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\AuthenticationNeededException;
+use Nexendrie\Model\MissingPermissionsException;
+use Nexendrie\Model\UserNotFoundException;
+use Nexendrie\Model\UserNotInYourOrderException;
+use Nexendrie\Model\CannotPromoteMemberException;
+use Nexendrie\Model\CannotDemoteMemberException;
+use Nexendrie\Model\CannotKickMemberException;
 
 /**
  * Presenter Order

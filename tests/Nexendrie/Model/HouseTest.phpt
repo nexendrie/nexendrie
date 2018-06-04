@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nexendrie\Orm\House as HouseEntity;
+use Tester\Assert;
+use Nexendrie\Orm\House as HouseEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 

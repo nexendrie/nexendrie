@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Utils\Arrays,
-    Symfony\Component\OptionsResolver\OptionsResolver,
-    Nexendrie\Forms\UserSettingsFormFactory,
-    Nexendrie\Utils\Intervals;
+use Nette\Utils\Arrays;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Nexendrie\Forms\UserSettingsFormFactory;
+use Nexendrie\Utils\Intervals;
 
 /**
  * Settings Repository

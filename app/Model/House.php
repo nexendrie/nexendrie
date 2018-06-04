@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\House as HouseEntity,
-    Nexendrie\Orm\BeerProduction,
-    Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\House as HouseEntity;
+use Nexendrie\Orm\BeerProduction;
+use Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * House Model

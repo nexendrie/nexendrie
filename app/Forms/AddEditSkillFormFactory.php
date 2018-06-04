@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Orm\Skill as SkillEntity;
+use Nette\Application\UI\Form;
+use Nexendrie\Orm\Skill as SkillEntity;
 
 /**
  * Factory for form AddEditSkill

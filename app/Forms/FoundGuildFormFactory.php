@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\CannotFoundGuildException,
-    Nexendrie\Model\GuildNameInUseException,
-    Nexendrie\Model\InsufficientFundsException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\CannotFoundGuildException;
+use Nexendrie\Model\GuildNameInUseException;
+use Nexendrie\Model\InsufficientFundsException;
 
 /**
  * Factory for form FoundGuild

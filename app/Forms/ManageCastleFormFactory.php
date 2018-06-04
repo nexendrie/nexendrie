@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\CastleNameInUseException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\CastleNameInUseException;
 
 /**
  * Factory for form ManageCastle

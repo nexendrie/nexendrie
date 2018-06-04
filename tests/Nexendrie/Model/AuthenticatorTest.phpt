@@ -5,9 +5,9 @@ namespace Nexendrie\Model;
 
 require __DIR__ . "/../../bootstrap.php";
 
-use Tester\Assert,
-    Nette\Security\AuthenticationException,
-    Nette\Security\User;
+use Tester\Assert;
+use Nette\Security\AuthenticationException;
+use Nette\Security\User;
 
 final class AuthenticatorTest extends \Tester\TestCase {
   use TUserControl;

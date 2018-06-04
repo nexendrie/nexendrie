@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nella\Forms\DateTime\DateInput;
+use Nette\Application\UI\Form;
+use Nella\Forms\DateTime\DateInput;
 
 /**
  *  Factory for form OpenDepositAccount

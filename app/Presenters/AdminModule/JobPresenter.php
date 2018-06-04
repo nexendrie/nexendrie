@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nexendrie\Forms\AddEditJobFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Orm\Job as JobEntity,
-    Nexendrie\Model\JobNotFoundException,
-    Nextras\Orm\Entity\ToArrayConverter;
+use Nexendrie\Forms\AddEditJobFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Orm\Job as JobEntity;
+use Nexendrie\Model\JobNotFoundException;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Presenter Job

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Forms\NewMessageFormFactory,
-    Nexendrie\Model\MessageNotFoundException,
-    Nexendrie\Model\AccessDeniedException;
+use Nette\Application\UI\Form;
+use Nexendrie\Forms\NewMessageFormFactory;
+use Nexendrie\Model\MessageNotFoundException;
+use Nexendrie\Model\AccessDeniedException;
 
 /**
  * Presenter Messages

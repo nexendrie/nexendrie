@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nette\Security\User,
-    Nette\Security\AuthenticationException,
-    Nette\Security\IAuthenticator;
+use Nette\Application\UI\Form;
+use Nette\Security\User;
+use Nette\Security\AuthenticationException;
+use Nette\Security\IAuthenticator;
 
 /**
  * Factory for form Login

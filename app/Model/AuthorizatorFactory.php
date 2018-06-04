@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\PermissionDummy,
-    Nexendrie\Orm\GroupDummy,
-    Nette\Security\Permission,
-    Nette\Caching\Cache,
-    Nette\Utils\Arrays,
-    Nexendrie\Orm\Model as ORM;
+use Nexendrie\Orm\PermissionDummy;
+use Nexendrie\Orm\GroupDummy;
+use Nette\Security\Permission;
+use Nette\Caching\Cache;
+use Nette\Utils\Arrays;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * Authorizator

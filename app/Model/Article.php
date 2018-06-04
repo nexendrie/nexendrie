@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Article as ArticleEntity,
-    Nexendrie\Orm\Comment as CommentEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Article as ArticleEntity;
+use Nexendrie\Orm\Comment as CommentEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Article Model

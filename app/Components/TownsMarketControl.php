@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\Model\TownNotFoundException,
-    Nexendrie\Model\TownNotOnSaleException,
-    Nexendrie\Model\CannotBuyOwnTownException,
-    Nexendrie\Model\InsufficientLevelForTownException,
-    Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\TownNotFoundException;
+use Nexendrie\Model\TownNotOnSaleException;
+use Nexendrie\Model\CannotBuyOwnTownException;
+use Nexendrie\Model\InsufficientLevelForTownException;
+use Nexendrie\Model\InsufficientFundsException;
 
 /**
  * TownsMarketControl

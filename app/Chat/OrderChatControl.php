@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Chat;
 
-use HeroesofAbenez\Chat\ChatControl,
-    HeroesofAbenez\Chat\IDatabaseAdapter;
+use HeroesofAbenez\Chat\ChatControl;
+use HeroesofAbenez\Chat\IDatabaseAdapter;
 
 /**
  * OrderChatControl

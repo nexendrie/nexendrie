@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\CannotFoundOrderException,
-    Nexendrie\Model\OrderNameInUseException,
-    Nexendrie\Model\InsufficientFundsException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\CannotFoundOrderException;
+use Nexendrie\Model\OrderNameInUseException;
+use Nexendrie\Model\InsufficientFundsException;
 
 /**
  * Factory for form FoundOrder

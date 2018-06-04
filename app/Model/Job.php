@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Job as JobEntity,
-    Nexendrie\Orm\UserJob as UserJobEntity,
-    Nexendrie\Orm\JobMessage as JobMessageEntity,
-    Nextras\Orm\Collection\ICollection,
-    Nextras\Orm\Relationships\OneHasMany;
+use Nexendrie\Orm\Job as JobEntity;
+use Nexendrie\Orm\UserJob as UserJobEntity;
+use Nexendrie\Orm\JobMessage as JobMessageEntity;
+use Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Job Model

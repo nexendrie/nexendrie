@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nexendrie\Model\ItemSetNotFoundException,
-    Nexendrie\Forms\AddEditItemSetFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Orm\ItemSet as ItemSetEntity,
-    Nextras\Orm\Entity\ToArrayConverter;
+use Nexendrie\Model\ItemSetNotFoundException;
+use Nexendrie\Forms\AddEditItemSetFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Orm\ItemSet as ItemSetEntity;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Presenter ItemSet

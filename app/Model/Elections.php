@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\User as UserEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\User as UserEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Elections Model

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Shop as ShopEntity,
-    Nexendrie\Orm\Item as ItemEntity,
-    Nexendrie\Orm\UserItem as UserItemEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Shop as ShopEntity;
+use Nexendrie\Orm\Item as ItemEntity;
+use Nexendrie\Orm\UserItem as UserItemEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Market Model

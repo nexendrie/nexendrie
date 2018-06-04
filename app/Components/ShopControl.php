@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\Orm\Shop as ShopEntity,
-    Nexendrie\Model\ShopNotFoundException,
-    Nexendrie\Model\ItemNotFoundException,
-    Nexendrie\Model\WrongShopException,
-    Nexendrie\Model\AuthenticationNeededException,
-    Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Orm\Shop as ShopEntity;
+use Nexendrie\Model\ShopNotFoundException;
+use Nexendrie\Model\ItemNotFoundException;
+use Nexendrie\Model\WrongShopException;
+use Nexendrie\Model\AuthenticationNeededException;
+use Nexendrie\Model\InsufficientFundsException;
 
 /**
  * Shop Control

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nextras\Orm\Collection\ICollection,
-    Nexendrie\Orm\Mount as MountEntity,
-    Nexendrie\Orm\MountType as MountTypeEntity;
+use Tester\Assert;
+use Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Mount as MountEntity;
+use Nexendrie\Orm\MountType as MountTypeEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Marriage as MarriageEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Marriage as MarriageEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Marriage Model

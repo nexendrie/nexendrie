@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nette\Utils\DateTime;
+use Nette\Application\UI\Form;
+use Nette\Utils\DateTime;
 
 /**
  * Factory for form AddEditEvent

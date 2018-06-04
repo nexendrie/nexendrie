@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    HeroesofAbenez\Combat\Character;
+use Tester\Assert;
+use HeroesofAbenez\Combat\Character;
 
 require __DIR__ . "/../../bootstrap.php";
 

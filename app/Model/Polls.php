@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Poll as PollEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Poll as PollEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Polls Model

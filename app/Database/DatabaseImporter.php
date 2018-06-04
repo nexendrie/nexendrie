@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Database;
 
-use Nextras\Dbal\Connection,
-    Nextras\Dbal\Utils\FileImporter;
+use Nextras\Dbal\Connection;
+use Nextras\Dbal\Utils\FileImporter;
 
 /**
  * BaseDatabaseImporter

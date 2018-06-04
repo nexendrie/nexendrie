@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\IAdventureControlFactory,
-    Nexendrie\Components\AdventureControl;
+use Nexendrie\Components\IAdventureControlFactory;
+use Nexendrie\Components\AdventureControl;
 
 /**
  * Presenter Adventure

@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nexendrie\Forms\AddEditTownFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Orm\Town as TownEntity,
-    Nexendrie\Model\TownNotFoundException,
-    Nextras\Orm\Entity\ToArrayConverter;
+use Nexendrie\Forms\AddEditTownFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Orm\Town as TownEntity;
+use Nexendrie\Model\TownNotFoundException;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Presenter Town

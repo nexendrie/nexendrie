@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Orm\Item;
+use Nette\Application\UI\Form;
+use Nexendrie\Orm\Item;
 
 /**
  * Factory for form AddEditItem

@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Event,
-    Nette\Utils\DateTime,
-    Nette\Caching\Cache,
-    Nexendrie\Orm\EventDummy,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Event;
+use Nette\Utils\DateTime;
+use Nette\Caching\Cache;
+use Nexendrie\Orm\EventDummy;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Events Model

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Mount as MountEntity,
-    Nexendrie\Orm\MountType as MountTypeEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Mount as MountEntity;
+use Nexendrie\Orm\MountType as MountTypeEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Mount Model

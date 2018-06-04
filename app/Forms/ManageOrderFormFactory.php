@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\OrderNameInUseException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\OrderNameInUseException;
 
 /**
  * Factory for form ManageOrder

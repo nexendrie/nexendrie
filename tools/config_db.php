@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-use Nette\Neon\Neon,
-    Nette\Utils\Arrays;
+use Nette\Neon\Neon;
+use Nette\Utils\Arrays;
 
 require __DIR__ . "/../vendor/autoload.php";
 

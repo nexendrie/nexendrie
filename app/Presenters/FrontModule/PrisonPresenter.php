@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\IPrisonControlFactory,
-    Nexendrie\Components\PrisonControl;
+use Nexendrie\Components\IPrisonControlFactory;
+use Nexendrie\Components\PrisonControl;
 
 /**
  * Presenter Prison

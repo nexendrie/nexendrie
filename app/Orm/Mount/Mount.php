@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Relationships\OneHasMany,
-    Nexendrie\Utils\Numbers,
-    HeroesofAbenez\Combat\CharacterEffect,
-    HeroesofAbenez\Combat\SkillSpecial,
-    HeroesofAbenez\Combat\Character,
-    HeroesofAbenez\Combat\ICharacterEffectsProvider;
+use Nextras\Orm\Relationships\OneHasMany;
+use Nexendrie\Utils\Numbers;
+use HeroesofAbenez\Combat\CharacterEffect;
+use HeroesofAbenez\Combat\SkillSpecial;
+use HeroesofAbenez\Combat\Character;
+use HeroesofAbenez\Combat\ICharacterEffectsProvider;
 
 /**
  * Mount

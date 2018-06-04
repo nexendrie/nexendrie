@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nexendrie\Forms\GiftFormFactory,
-    Nette\Application\UI\Form;
+use Nexendrie\Forms\GiftFormFactory;
+use Nette\Application\UI\Form;
 
 /**
  * Presenter Content

@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Forms\TakeLoanFormFactory,
-    Nexendrie\Forms\OpenDepositAccountFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Model\NoLoanException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Model\NoDepositAccountException,
-    Nexendrie\Model\DepositAccountNotDueException;
+use Nexendrie\Forms\TakeLoanFormFactory;
+use Nexendrie\Forms\OpenDepositAccountFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\NoLoanException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\NoDepositAccountException;
+use Nexendrie\Model\DepositAccountNotDueException;
+
 /**
  * Presenter Bank
  *

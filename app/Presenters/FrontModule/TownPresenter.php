@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\TownNotFoundException,
-    Nexendrie\Model\CannotMoveToSameTownException,
-    Nexendrie\Model\CannotMoveToTownException,
-    Nexendrie\Forms\FoundTownFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Components\IElectionsControlFactory,
-    Nexendrie\Components\ElectionsControl,
-    Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Model\TownNotFoundException;
+use Nexendrie\Model\CannotMoveToSameTownException;
+use Nexendrie\Model\CannotMoveToTownException;
+use Nexendrie\Forms\FoundTownFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Components\IElectionsControlFactory;
+use Nexendrie\Components\ElectionsControl;
+use Nexendrie\Orm\Group as GroupEntity;
 
 /**
  * Presenter Town

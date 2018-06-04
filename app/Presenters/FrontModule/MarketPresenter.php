@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\IShopControlFactory,
-    Nexendrie\Components\IMountsMarketControlFactory,
-    Nexendrie\Components\MountsMarketControl,
-    Nexendrie\Components\ITownsMarketControlFactory,
-    Nexendrie\Components\TownsMarketControl;
+use Nexendrie\Components\IShopControlFactory;
+use Nexendrie\Components\IMountsMarketControlFactory;
+use Nexendrie\Components\MountsMarketControl;
+use Nexendrie\Components\ITownsMarketControlFactory;
+use Nexendrie\Components\TownsMarketControl;
 
 /**
  * Presenter Market

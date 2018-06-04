@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nextras\Orm\Relationships\OneHasMany,
-    Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\Group;
+use Tester\Assert;
+use Nextras\Orm\Relationships\OneHasMany;
+use Nexendrie\Orm\User as UserEntity;
+use Nexendrie\Orm\Group;
 
 require __DIR__ . "/../../bootstrap.php";
 

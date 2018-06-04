@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nexendrie\Utils\Numbers,
-    HeroesofAbenez\Combat\Equipment;
+use Nexendrie\Utils\Numbers;
+use HeroesofAbenez\Combat\Equipment;
 
 /**
  * UserItem

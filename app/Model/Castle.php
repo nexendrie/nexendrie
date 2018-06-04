@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Castle as CastleEntity,
-    Nexendrie\Orm\Group as GroupEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Castle as CastleEntity;
+use Nexendrie\Orm\Group as GroupEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Castle Model

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Utils\Arrays,
-    Nexendrie\Orm\Group as GroupEntity,
-    Nexendrie\Orm\GroupDummy;
+use Nette\Utils\Arrays;
+use Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\GroupDummy;
 
 /**
  * Group Model

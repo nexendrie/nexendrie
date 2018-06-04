@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Menu;
 
-use Tester\Assert,
-    Nexendrie\Model\TUserControl;
+use Tester\Assert;
+use Nexendrie\Model\TUserControl;
 
 require __DIR__ . "/../../bootstrap.php";
 

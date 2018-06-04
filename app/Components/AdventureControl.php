@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\Model\AlreadyOnAdventureException,
-    Nexendrie\Model\AdventureNotFoundException,
-    Nexendrie\Model\InsufficientLevelForAdventureException,
-    Nexendrie\Model\MountNotFoundException,
-    Nexendrie\Model\MountNotOwnedException,
-    Nexendrie\Model\MountInBadConditionException,
-    Nexendrie\Model\NotOnAdventureException,
-    Nexendrie\Model\NoEnemyRemainException,
-    Nexendrie\Model\NotAllEnemiesDefeatedException,
-    Nexendrie\Model\CannotDoAdventureException,
-    Nexendrie\Model\AdventureNotAccessibleException;
+use Nexendrie\Model\AlreadyOnAdventureException;
+use Nexendrie\Model\AdventureNotFoundException;
+use Nexendrie\Model\InsufficientLevelForAdventureException;
+use Nexendrie\Model\MountNotFoundException;
+use Nexendrie\Model\MountNotOwnedException;
+use Nexendrie\Model\MountInBadConditionException;
+use Nexendrie\Model\NotOnAdventureException;
+use Nexendrie\Model\NoEnemyRemainException;
+use Nexendrie\Model\NotAllEnemiesDefeatedException;
+use Nexendrie\Model\CannotDoAdventureException;
+use Nexendrie\Model\AdventureNotAccessibleException;
 
 /**
  * AdventureControl

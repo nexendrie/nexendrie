@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Loan as LoanEntity,
-    Nexendrie\Orm\Deposit as DepositEntity;
+use Nexendrie\Orm\Loan as LoanEntity;
+use Nexendrie\Orm\Deposit as DepositEntity;
 
 /**
  * Bank Model

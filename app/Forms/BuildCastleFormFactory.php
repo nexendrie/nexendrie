@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\CannotBuildCastleException,
-    Nexendrie\Model\CannotBuildMoreCastlesException,
-    Nexendrie\Model\CastleNameInUseException,
-    Nexendrie\Model\InsufficientFundsException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\CannotBuildCastleException;
+use Nexendrie\Model\CannotBuildMoreCastlesException;
+use Nexendrie\Model\CastleNameInUseException;
+use Nexendrie\Model\InsufficientFundsException;
 
 /**
  * Factory for form BuildCastle

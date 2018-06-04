@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\UserNotFoundException,
-    Nexendrie\Model\UserDoesNotLiveInTheTownException,
-    Nexendrie\Model\TooHighLevelException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\UserNotFoundException;
+use Nexendrie\Model\UserDoesNotLiveInTheTownException;
+use Nexendrie\Model\TooHighLevelException;
 
 /**
  * Factory for form MakeCitizen

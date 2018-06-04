@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nette\Utils\Finder,
-    Nette\Neon\Neon,
-    Nette\Utils\Arrays,
-    Nexendrie\Model\UserManager,
-    Nette\Security\User,
-    Nexendrie\Model\SettingsException,
-    Nexendrie\Orm\User as UserEntity;
+use Nette\Application\UI\Form;
+use Nette\Utils\Finder;
+use Nette\Neon\Neon;
+use Nette\Utils\Arrays;
+use Nexendrie\Model\UserManager;
+use Nette\Security\User;
+use Nexendrie\Model\SettingsException;
+use Nexendrie\Orm\User as UserEntity;
 
 /**
  * Factory for form UserSettings

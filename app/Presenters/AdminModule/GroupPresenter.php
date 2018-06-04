@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Forms\EditGroupFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Forms\EditGroupFormFactory;
 
 /**
  * Presenter Group

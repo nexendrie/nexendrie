@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\User as UserEntity,
-    Nextras\Orm\Relationships\OneHasMany,
-    Nexendrie\Orm\Article as ArticleEntity,
-    Nexendrie\Orm\UserSkill;
+use Nexendrie\Orm\User as UserEntity;
+use Nextras\Orm\Relationships\OneHasMany;
+use Nexendrie\Orm\Article as ArticleEntity;
+use Nexendrie\Orm\UserSkill;
 
 /**
  * Profile Model

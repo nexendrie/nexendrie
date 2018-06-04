@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\UserNotFoundException,
-    Nette\Application\BadRequestException;
+use Nexendrie\Model\UserNotFoundException;
+use Nette\Application\BadRequestException;
 
 /**
  * Presenter Profile

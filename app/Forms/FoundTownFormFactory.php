@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\InsufficientLevelForFoundTownException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Model\CannotFoundTownException,
-    Nexendrie\Model\TownNameInUseException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\InsufficientLevelForFoundTownException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\CannotFoundTownException;
+use Nexendrie\Model\TownNameInUseException;
 
 /**
  * Factory for form FoundTown

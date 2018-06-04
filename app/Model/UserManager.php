@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Security\User,
-    Nette\Security\Passwords,
-    Nexendrie\Orm\Model as ORM,
-    Nexendrie\Orm\User as UserEntity,
-    Nextras\Orm\Collection\ICollection,
-    Nette\InvalidArgumentException;
+use Nette\Security\User;
+use Nette\Security\Passwords;
+use Nexendrie\Orm\Model as ORM;
+use Nexendrie\Orm\User as UserEntity;
+use Nextras\Orm\Collection\ICollection;
+use Nette\InvalidArgumentException;
 
 /**
  * User Manager

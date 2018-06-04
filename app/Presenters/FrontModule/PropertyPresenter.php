@@ -3,23 +3,23 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Orm\Town as TownEntity,
-    Nexendrie\Model\TownNotFoundException,
-    Nexendrie\Forms\ManageTownFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Model\ItemNotFoundException,
-    Nexendrie\Model\ItemNotOwnedException,
-    Nexendrie\Model\ItemNotEquipableException,
-    Nexendrie\Model\ItemAlreadyWornException,
-    Nexendrie\Model\ItemNotWornException,
-    Nexendrie\Model\ItemNotDrinkableException,
-    Nexendrie\Model\HealingNotNeededException,
-    Nexendrie\Forms\AppointMayorFormFactory,
-    Nexendrie\Model\ItemNotForSaleException,
-    Nexendrie\Model\ItemNotUpgradableException,
-    Nexendrie\Model\ItemMaxLevelReachedException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Forms\MakeCitizenFormFactory;
+use Nexendrie\Orm\Town as TownEntity;
+use Nexendrie\Model\TownNotFoundException;
+use Nexendrie\Forms\ManageTownFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\ItemNotFoundException;
+use Nexendrie\Model\ItemNotOwnedException;
+use Nexendrie\Model\ItemNotEquipableException;
+use Nexendrie\Model\ItemAlreadyWornException;
+use Nexendrie\Model\ItemNotWornException;
+use Nexendrie\Model\ItemNotDrinkableException;
+use Nexendrie\Model\HealingNotNeededException;
+use Nexendrie\Forms\AppointMayorFormFactory;
+use Nexendrie\Model\ItemNotForSaleException;
+use Nexendrie\Model\ItemNotUpgradableException;
+use Nexendrie\Model\ItemMaxLevelReachedException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Forms\MakeCitizenFormFactory;
 
 /**
  * Presenter Property

@@ -5,7 +5,6 @@ namespace Nexendrie\Orm;
 
 use Nextras\Orm\Relationships\OneHasMany;
 
-
 /**
  * Shop
  *

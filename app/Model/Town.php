@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Town as TownEntity,
-    Nexendrie\Orm\Message as MessageEntity,
-    Nexendrie\Orm\Group as GroupEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Town as TownEntity;
+use Nexendrie\Orm\Message as MessageEntity;
+use Nexendrie\Orm\Group as GroupEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Town Model

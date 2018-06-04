@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Forms\LoginFormFactory,
-    Nexendrie\Forms\RegisterFormFactory,
-    Nexendrie\Forms\UserSettingsFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Forms\LoginFormFactory;
+use Nexendrie\Forms\RegisterFormFactory;
+use Nexendrie\Forms\UserSettingsFormFactory;
 
 /**
  * Presenter User

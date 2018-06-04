@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nexendrie\Forms\EditUserFormFactory,
-    Nexendrie\Forms\BanUserFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Model\UserNotFoundException;
+use Nexendrie\Forms\EditUserFormFactory;
+use Nexendrie\Forms\BanUserFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\UserNotFoundException;
 
 /**
  * Presenter User

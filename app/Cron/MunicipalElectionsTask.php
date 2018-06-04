@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
-use Nexendrie\Model\Elections,
-    Nexendrie\Utils\Arrays,
-    Nexendrie\Orm\ElectionResult;
+use Nexendrie\Model\Elections;
+use Nexendrie\Utils\Arrays;
+use Nexendrie\Orm\ElectionResult;
 
 /**
  * MunicipalElectionsTask

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nexendrie\Orm\Deposit as DepositEntity,
-    Nexendrie\Orm\Loan as LoanEntity;
+use Tester\Assert;
+use Nexendrie\Orm\Deposit as DepositEntity;
+use Nexendrie\Orm\Loan as LoanEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 

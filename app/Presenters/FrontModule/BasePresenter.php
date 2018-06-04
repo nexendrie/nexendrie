@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Chat,
-    HeroesofAbenez\Chat\ChatControl;
+use Nette\Application\UI\Form;
+use Nexendrie\Chat;
+use HeroesofAbenez\Chat\ChatControl;
 
 /**
  * Parent of all front presenters

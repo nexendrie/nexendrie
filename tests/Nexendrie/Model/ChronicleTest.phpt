@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nextras\Orm\Collection\ICollection,
-    Nexendrie\Orm\Article as ArticleEntity,
-    Nexendrie\Orm\Punishment as PunishmentEntity;
+use Tester\Assert;
+use Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Article as ArticleEntity;
+use Nexendrie\Orm\Punishment as PunishmentEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 

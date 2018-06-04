@@ -3,14 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Orm\Mount as MountEntity,
-    Nexendrie\Model\MountNotFoundException,
-    Nexendrie\Forms\ManageMountFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Components\IStablesControlFactory,
-    Nexendrie\Components\StablesControl;
-
-
+use Nexendrie\Orm\Mount as MountEntity;
+use Nexendrie\Model\MountNotFoundException;
+use Nexendrie\Forms\ManageMountFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Components\IStablesControlFactory;
+use Nexendrie\Components\StablesControl;
 
 /**
  * Presenter Stables

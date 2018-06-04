@@ -3,9 +3,9 @@ declare(strict_types = 1);
 
 namespace Nexendrie\Model;
 
-use Nette\Security\User,
-    Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\Model as ORM;
+use Nette\Security\User;
+use Nexendrie\Orm\User as UserEntity;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * TUserControl

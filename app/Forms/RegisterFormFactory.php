@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\UserManager,
-    Nexendrie\Model\RegistrationException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\UserManager;
+use Nexendrie\Model\RegistrationException;
 use Nexendrie\Model\SettingsRepository;
 
 /**

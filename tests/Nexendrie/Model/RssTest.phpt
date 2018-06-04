@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nexendrie\Rss\RssResponse;
+use Tester\Assert;
+use Nexendrie\Rss\RssResponse;
 
 require __DIR__ . "/../../bootstrap.php";
 

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Orm\UserItem as UserItemEntity,
-    Nexendrie\Orm\Message as MessageEntity,
-    Nexendrie\Orm\Item as ItemEntity;
+use Nette\Application\UI\Form;
+use Nexendrie\Orm\UserItem as UserItemEntity;
+use Nexendrie\Orm\Message as MessageEntity;
+use Nexendrie\Orm\Item as ItemEntity;
 
 /**
  * Factory for form Gift

@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Nexendrie\Chat;
 
-use Nexendrie\Orm\Model as ORM,
-    Nexendrie\Orm\ChatMessage as ChatMessageEntity,
-    HeroesofAbenez\Chat\IDatabaseAdapter,
-    HeroesofAbenez\Chat\ChatMessagesCollection,
-    HeroesofAbenez\Chat\ChatMessage,
-    HeroesofAbenez\Chat\ChatCharactersCollection,
-    HeroesofAbenez\Chat\ChatCharacter;
+use Nexendrie\Orm\Model as ORM;
+use Nexendrie\Orm\ChatMessage as ChatMessageEntity;
+use HeroesofAbenez\Chat\IDatabaseAdapter;
+use HeroesofAbenez\Chat\ChatMessagesCollection;
+use HeroesofAbenez\Chat\ChatMessage;
+use HeroesofAbenez\Chat\ChatCharactersCollection;
+use HeroesofAbenez\Chat\ChatCharacter;
 
 /**
  * NextrasOrmAdapter

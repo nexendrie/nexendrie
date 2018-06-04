@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
-use Nexendrie\Model\Marriage,
-    Nexendrie\Orm\Marriage as MarriageEntity;
+use Nexendrie\Model\Marriage;
+use Nexendrie\Orm\Marriage as MarriageEntity;
 
 /**
  * CloseWeddingsTask

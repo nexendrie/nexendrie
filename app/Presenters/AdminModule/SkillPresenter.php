@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nexendrie\Orm\Skill as SkillEntity,
-    Nexendrie\Forms\AddEditSkillFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Model\SkillNotFoundException;
+use Nexendrie\Orm\Skill as SkillEntity;
+use Nexendrie\Forms\AddEditSkillFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\SkillNotFoundException;
 
 /**
  * Presenter Skills

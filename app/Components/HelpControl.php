@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\BookComponent\BookControl,
-    Nexendrie\BookComponent\BookPage,
-    Nexendrie\Orm\Model as ORM,
-    Nexendrie\Model\Locale,
-    Nexendrie\Model\SettingsRepository,
-    Nexendrie\Orm\Monastery as MonasteryEntity,
-    Nexendrie\Orm\Castle as CastleEntity,
-    Nexendrie\Orm\House as HouseEntity,
-    Nexendrie\Orm\Guild as GuildEntity,
-    Nexendrie\Orm\Order as OrderEntity,
-    Nexendrie\Orm\Marriage as MarriageEntity,
-    Nette\Localization\ITranslator;
+use Nexendrie\BookComponent\BookControl;
+use Nexendrie\BookComponent\BookPage;
+use Nexendrie\Orm\Model as ORM;
+use Nexendrie\Model\Locale;
+use Nexendrie\Model\SettingsRepository;
+use Nexendrie\Orm\Monastery as MonasteryEntity;
+use Nexendrie\Orm\Castle as CastleEntity;
+use Nexendrie\Orm\House as HouseEntity;
+use Nexendrie\Orm\Guild as GuildEntity;
+use Nexendrie\Orm\Order as OrderEntity;
+use Nexendrie\Orm\Marriage as MarriageEntity;
+use Nette\Localization\ITranslator;
 
 /**
  * HelpControl

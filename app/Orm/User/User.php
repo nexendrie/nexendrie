@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Relationships\OneHasMany,
-    Nexendrie\Utils\Numbers,
-    Nexendrie\Forms\UserSettingsFormFactory;
+use Nextras\Orm\Relationships\OneHasMany;
+use Nexendrie\Utils\Numbers;
+use Nexendrie\Forms\UserSettingsFormFactory;
 
 /**
  * User

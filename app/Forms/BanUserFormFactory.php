@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Orm\Punishment,
-    Nexendrie\Orm\User;
+use Nette\Application\UI\Form;
+use Nexendrie\Orm\Punishment;
+use Nexendrie\Orm\User;
 
 /**
  * Factory for form BanUser

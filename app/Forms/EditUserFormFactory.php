@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\UserManager,
-    Nexendrie\Model\Group,
-    Nexendrie\Model\Town;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\UserManager;
+use Nexendrie\Model\Group;
+use Nexendrie\Model\Town;
 
 /**
  * Factory for form EditUser

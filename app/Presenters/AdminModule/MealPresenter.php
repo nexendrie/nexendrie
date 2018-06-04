@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nexendrie\Forms\AddEditMealFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Orm\Meal as MealEntity,
-    Nexendrie\Model\MealNotFoundException;
+use Nexendrie\Forms\AddEditMealFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Orm\Meal as MealEntity;
+use Nexendrie\Model\MealNotFoundException;
 
 /**
  * Presenter Meal

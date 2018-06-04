@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nette\InvalidArgumentException,
-    Nextras\Orm\Collection\ICollection,
-    Nexendrie\Orm\User as UserEntity;
+use Tester\Assert;
+use Nette\InvalidArgumentException;
+use Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\User as UserEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 

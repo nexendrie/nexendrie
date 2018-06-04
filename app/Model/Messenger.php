@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Message as MessageEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Message as MessageEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Messenger Model

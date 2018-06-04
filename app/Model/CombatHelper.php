@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\User as UserEntity,
-    Nexendrie\Orm\AdventureNpc,
-    Nexendrie\Orm\Mount as MountEntity,
-    Nexendrie\Orm\ItemSet as ItemSetEntity,
-    Nexendrie\Orm\Item as ItemEntity,
-    Nexendrie\Orm\Skill as SkillEntity,
-    HeroesofAbenez\Combat\Character,
-    HeroesofAbenez\Combat\Equipment,
-    HeroesofAbenez\Combat\ConstantInitiativeFormulaParser;
+use Nexendrie\Orm\User as UserEntity;
+use Nexendrie\Orm\AdventureNpc;
+use Nexendrie\Orm\Mount as MountEntity;
+use Nexendrie\Orm\ItemSet as ItemSetEntity;
+use Nexendrie\Orm\Item as ItemEntity;
+use Nexendrie\Orm\Skill as SkillEntity;
+use HeroesofAbenez\Combat\Character;
+use HeroesofAbenez\Combat\Equipment;
+use HeroesofAbenez\Combat\ConstantInitiativeFormulaParser;
 
 /**
  * Combat Model

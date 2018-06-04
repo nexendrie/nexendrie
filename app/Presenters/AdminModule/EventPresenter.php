@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nexendrie\Forms\AddEditEventFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Model\EventNotFoundException,
-    Nexendrie\Model\CannotDeleteStartedEventException;
+use Nexendrie\Forms\AddEditEventFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\EventNotFoundException;
+use Nexendrie\Model\CannotDeleteStartedEventException;
 
 /**
  * Presenter Event

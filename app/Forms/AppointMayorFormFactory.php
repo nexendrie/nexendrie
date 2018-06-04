@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\TownNotOwnedException,
-    Nexendrie\Model\UserNotFoundException,
-    Nexendrie\Model\UserDoesNotLiveInTheTownException,
-    Nexendrie\Model\InsufficientLevelForMayorException;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\TownNotOwnedException;
+use Nexendrie\Model\UserNotFoundException;
+use Nexendrie\Model\UserDoesNotLiveInTheTownException;
+use Nexendrie\Model\InsufficientLevelForMayorException;
 
 /**
  * Factory for form AppointMayor

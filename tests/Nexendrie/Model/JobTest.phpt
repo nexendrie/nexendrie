@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nextras\Orm\Collection\ICollection,
-    Nextras\Orm\Relationships\OneHasMany,
-    Nexendrie\Orm\Job as JobEntity,
-    Nexendrie\Orm\UserJob as UserJobEntity,
-    Nexendrie\Orm\JobMessage;
+use Tester\Assert;
+use Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Relationships\OneHasMany;
+use Nexendrie\Orm\Job as JobEntity;
+use Nexendrie\Orm\UserJob as UserJobEntity;
+use Nexendrie\Orm\JobMessage;
 
 require __DIR__ . "/../../bootstrap.php";
 

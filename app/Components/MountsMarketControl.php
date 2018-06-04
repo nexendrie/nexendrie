@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\Model\MountNotFoundException,
-    Nexendrie\Model\MountNotOnSaleException,
-    Nexendrie\Model\CannotBuyOwnMountException,
-    Nexendrie\Model\InsufficientLevelForMountException,
-    Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\MountNotFoundException;
+use Nexendrie\Model\MountNotOnSaleException;
+use Nexendrie\Model\CannotBuyOwnMountException;
+use Nexendrie\Model\InsufficientLevelForMountException;
+use Nexendrie\Model\InsufficientFundsException;
 
 /**
  * MountsMarketControl

@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nette\Utils\Arrays,
-    Nexendrie\Model\PollVotingException,
-    Nexendrie\Model\PollNotFoundException,
-    Nexendrie\Model\AccessDeniedException,
-    Nexendrie\Orm\Poll as PollEntity,
-    Nexendrie\Orm\PollVote as PollVoteEntity;
+use Nette\Utils\Arrays;
+use Nexendrie\Model\PollVotingException;
+use Nexendrie\Model\PollNotFoundException;
+use Nexendrie\Model\AccessDeniedException;
+use Nexendrie\Orm\Poll as PollEntity;
+use Nexendrie\Orm\PollVote as PollVoteEntity;
 
 /**
  * Poll Control

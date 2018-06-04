@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\Model\MountNotFoundException,
-    Nexendrie\Model\MountNotOwnedException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Model\CareNotNeededException,
-    Nexendrie\Model\MountMaxTrainingLevelReachedException,
-    Nexendrie\Model\MountInBadConditionException;
+use Nexendrie\Model\MountNotFoundException;
+use Nexendrie\Model\MountNotOwnedException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\CareNotNeededException;
+use Nexendrie\Model\MountMaxTrainingLevelReachedException;
+use Nexendrie\Model\MountInBadConditionException;
 
 /**
  * StablesControl

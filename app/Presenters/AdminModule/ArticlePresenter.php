@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Forms\AddEditArticleFormFactory,
-    Nexendrie\Model\ArticleNotFoundException;
+use Nette\Application\UI\Form;
+use Nexendrie\Forms\AddEditArticleFormFactory;
+use Nexendrie\Model\ArticleNotFoundException;
 
 /**
  * Presenter Article

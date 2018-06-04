@@ -3,19 +3,19 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\MonasteryNotFoundException,
-    Nexendrie\Model\NotInMonasteryException,
-    Nexendrie\Model\CannotJoinMonasteryException,
-    Nexendrie\Model\CannotPrayException,
-    Nexendrie\Model\CannotLeaveMonasteryException,
-    Nexendrie\Forms\BuildMonasteryFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Forms\MonasteryDonateFormFactory,
-    Nexendrie\Forms\ManageMonasteryFormFactory,
-    Nexendrie\Model\CannotJoinOwnMonasteryException,
-    Nexendrie\Model\CannotUpgradeMonasteryException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Model\CannotRepairMonasteryException;
+use Nexendrie\Model\MonasteryNotFoundException;
+use Nexendrie\Model\NotInMonasteryException;
+use Nexendrie\Model\CannotJoinMonasteryException;
+use Nexendrie\Model\CannotPrayException;
+use Nexendrie\Model\CannotLeaveMonasteryException;
+use Nexendrie\Forms\BuildMonasteryFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Forms\MonasteryDonateFormFactory;
+use Nexendrie\Forms\ManageMonasteryFormFactory;
+use Nexendrie\Model\CannotJoinOwnMonasteryException;
+use Nexendrie\Model\CannotUpgradeMonasteryException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\CannotRepairMonasteryException;
 
 /**
  * Presenter Monastery

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\ItemSet as ItemSetEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\ItemSet as ItemSetEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * ItemSet Model

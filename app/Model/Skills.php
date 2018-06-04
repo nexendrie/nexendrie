@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Orm\Skill as SkillEntity,
-    Nexendrie\Orm\UserSkill as UserSkillEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Skill as SkillEntity;
+use Nexendrie\Orm\UserSkill as UserSkillEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Skills Model

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Tester\Assert,
-    Nextras\Orm\Collection\ICollection,
-    Nexendrie\Orm\ItemSet as ItemSetEntity;
+use Tester\Assert;
+use Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\ItemSet as ItemSetEntity;
 
 require __DIR__ . "/../../bootstrap.php";
 

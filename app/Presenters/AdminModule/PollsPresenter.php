@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Forms\AddEditPollFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Forms\AddEditPollFormFactory;
 
 /**
  * Presenter Polls

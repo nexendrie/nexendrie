@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\ArticleNotFoundException,
-    Nette\Application\UI\Form,
-    Nexendrie\Forms\AddCommentFormFactory,
-    Nexendrie\Model\AuthenticationNeededException,
-    Nexendrie\Model\MissingPermissionsException;
+use Nexendrie\Model\ArticleNotFoundException;
+use Nette\Application\UI\Form;
+use Nexendrie\Forms\AddCommentFormFactory;
+use Nexendrie\Model\AuthenticationNeededException;
+use Nexendrie\Model\MissingPermissionsException;
 
 /**
  * Presenter Article

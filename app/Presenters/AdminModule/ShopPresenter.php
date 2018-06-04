@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nexendrie\Orm\Shop as ShopEntity,
-    Nexendrie\Model\ShopNotFoundException,
-    Nexendrie\Forms\AddEditShopFormFactory,
-    Nette\Application\UI\Form;
+use Nexendrie\Orm\Shop as ShopEntity;
+use Nexendrie\Model\ShopNotFoundException;
+use Nexendrie\Forms\AddEditShopFormFactory;
+use Nette\Application\UI\Form;
 
 /**
  * Presenter Shop

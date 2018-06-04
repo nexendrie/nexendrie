@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
-use Nexendrie\Model\AdventureNotFoundException,
-    Nexendrie\Orm\Adventure as AdventureEntity,
-    Nexendrie\Forms\AddEditAdventureEnemyFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Model\AdventureNpcNotFoundException,
-    Nexendrie\Orm\AdventureNpc as AdventureNpcEntity,
-    Nextras\Orm\Entity\ToArrayConverter;
+use Nexendrie\Model\AdventureNotFoundException;
+use Nexendrie\Orm\Adventure as AdventureEntity;
+use Nexendrie\Forms\AddEditAdventureEnemyFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\AdventureNpcNotFoundException;
+use Nexendrie\Orm\AdventureNpc as AdventureNpcEntity;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Presenter AdventureEnemy

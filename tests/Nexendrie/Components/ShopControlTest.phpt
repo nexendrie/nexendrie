@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Tester\Assert,
-    Nexendrie\Model\ShopNotFoundException;
+use Tester\Assert;
+use Nexendrie\Model\ShopNotFoundException;
 
 require __DIR__ . "/../../bootstrap.php";
 

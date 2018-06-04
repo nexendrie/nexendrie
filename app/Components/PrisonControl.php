@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\Orm\Punishment,
-    Nexendrie\Orm\User as UserEntity;
+use Nexendrie\Orm\Punishment;
+use Nexendrie\Orm\User as UserEntity;
 
 /**
  * Prison Control

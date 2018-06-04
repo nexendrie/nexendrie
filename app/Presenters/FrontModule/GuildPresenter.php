@@ -3,21 +3,21 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Forms\FoundGuildFormFactory,
-    Nette\Application\UI\Form,
-    Nexendrie\Model\GuildNotFoundException,
-    Nexendrie\Model\CannotLeaveGuildException,
-    Nexendrie\Model\CannotJoinGuildException,
-    Nexendrie\Forms\ManageGuildFormFactory,
-    Nexendrie\Model\CannotUpgradeGuildException,
-    Nexendrie\Model\InsufficientFundsException,
-    Nexendrie\Model\AuthenticationNeededException,
-    Nexendrie\Model\MissingPermissionsException,
-    Nexendrie\Model\UserNotFoundException,
-    Nexendrie\Model\UserNotInYourGuildException,
-    Nexendrie\Model\CannotPromoteMemberException,
-    Nexendrie\Model\CannotDemoteMemberException,
-    Nexendrie\Model\CannotKickMemberException;
+use Nexendrie\Forms\FoundGuildFormFactory;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\GuildNotFoundException;
+use Nexendrie\Model\CannotLeaveGuildException;
+use Nexendrie\Model\CannotJoinGuildException;
+use Nexendrie\Forms\ManageGuildFormFactory;
+use Nexendrie\Model\CannotUpgradeGuildException;
+use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\AuthenticationNeededException;
+use Nexendrie\Model\MissingPermissionsException;
+use Nexendrie\Model\UserNotFoundException;
+use Nexendrie\Model\UserNotInYourGuildException;
+use Nexendrie\Model\CannotPromoteMemberException;
+use Nexendrie\Model\CannotDemoteMemberException;
+use Nexendrie\Model\CannotKickMemberException;
 
 /**
  * Presenter Guild

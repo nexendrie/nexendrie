@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Security\IAuthenticator,
-    Nette\Security\User,
-    Nette\Security\Identity,
-    Nette\Security\Passwords,
-    Nexendrie\Orm\Model as ORM,
-    Nexendrie\Orm\User as UserEntity,
-    Nette\Security\AuthenticationException;
+use Nette\Security\IAuthenticator;
+use Nette\Security\User;
+use Nette\Security\Identity;
+use Nette\Security\Passwords;
+use Nexendrie\Orm\Model as ORM;
+use Nexendrie\Orm\User as UserEntity;
+use Nette\Security\AuthenticationException;
 
 /**
  * Authenticator

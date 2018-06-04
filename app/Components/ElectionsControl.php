@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nexendrie\Orm\Election as ElectionEntity,
-    Nexendrie\Orm\ElectionResult as ElectionResultEntity,
-    Nextras\Orm\Collection\ICollection;
+use Nexendrie\Orm\Election as ElectionEntity;
+use Nexendrie\Orm\ElectionResult as ElectionResultEntity;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * ElectionsControl

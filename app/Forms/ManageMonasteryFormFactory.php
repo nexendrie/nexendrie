@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Model\MonasteryNotFoundException,
-    Nexendrie\Model\MonasteryNameInUseException,
-    Nextras\Orm\Entity\ToArrayConverter;
+use Nette\Application\UI\Form;
+use Nexendrie\Model\MonasteryNotFoundException;
+use Nexendrie\Model\MonasteryNameInUseException;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Factory for form ManageMonastery

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
-use Nette\Application\UI\Form,
-    Nexendrie\Orm\Article as ArticleEntity;
+use Nette\Application\UI\Form;
+use Nexendrie\Orm\Article as ArticleEntity;
 
 /**
  * Factory for form AddEditNews
