@@ -86,7 +86,7 @@ final class Property {
       throw new AuthenticationNeededException();
     }
     $budget = [
-      "incomes" => 
+      "incomes" =>
         $this->taxesModel->calculateIncome($this->user->id) + [
           "taxes" => 0, "beerProduction" => $this->calculateBeerProduction(),
           "depositInterest" => $this->calculateDepositInterest(),

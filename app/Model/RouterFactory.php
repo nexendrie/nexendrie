@@ -25,7 +25,7 @@ final class RouterFactory {
         Route::FILTER_TABLE => [
           "message" => "Messages"
         ]
-      ] 
+      ]
     ]);
     $frontRouter[] = new Route("page/<page [0-9]+>", "Homepage:page");
     $frontRouter[] = new Route("rss[/<action>][/<news [0-9]+>]", "Rss:news");
