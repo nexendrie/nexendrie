@@ -5,6 +5,7 @@ namespace Nexendrie\Orm;
 
 use Nexendrie\Utils\Numbers;
 use HeroesofAbenez\Combat\Equipment;
+use HeroesofAbenez\Combat\Weapon;
 
 /**
  * UserItem
@@ -93,7 +94,10 @@ final class UserItem extends \Nextras\Orm\Entity\Entity {
       "id" => $this->id, "name" => $this->item->name, "slot" => $this->item->type,
       "strength" => $this->level + $this->item->strength, "worn" => $this->worn,
     ];
-    $stats["type"] = ($stats["slot"] === Item::TYPE_WEAPON) ? Equipment::TYPE_SWORD : null;
+    if($stats["slot"] === Item::TYPE_WEAPON) {
+      $stats["type"] = Weapon::TYPE_SWORD;
+      return new Weapon($stats);
+    }
     return new Equipment($stats);
   }
 }

@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/chat.git",
-                "reference": "7e2f483e5f71fe9ee7ab598869fa48d4a28dd309"
+                "reference": "de34076d6f194ece3572af4e0cb517a6402ca757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fchat/repository/archive.zip?sha=7e2f483e5f71fe9ee7ab598869fa48d4a28dd309",
-                "reference": "7e2f483e5f71fe9ee7ab598869fa48d4a28dd309",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fchat/repository/archive.zip?sha=de34076d6f194ece3572af4e0cb517a6402ca757",
+                "reference": "de34076d6f194ece3572af4e0cb517a6402ca757",
                 "shasum": ""
             },
             "require": {
@@ -63,7 +63,7 @@
                 "component",
                 "nette"
             ],
-            "time": "2018-05-26T12:29:57+00:00"
+            "time": "2018-06-04T18:15:01+00:00"
         },
         {
             "name": "heroesofabenez/combat",
@@ -71,12 +71,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "843ccdb57e8a8bfbc6933032c2d5e0f22888b4b2"
+                "reference": "b2206c0e3c40f0264c7d844920fdacb975be836f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=843ccdb57e8a8bfbc6933032c2d5e0f22888b4b2",
-                "reference": "843ccdb57e8a8bfbc6933032c2d5e0f22888b4b2",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=b2206c0e3c40f0264c7d844920fdacb975be836f",
+                "reference": "b2206c0e3c40f0264c7d844920fdacb975be836f",
                 "shasum": ""
             },
             "require": {
@@ -118,7 +118,7 @@
             "keywords": [
                 "combat"
             ],
-            "time": "2018-06-04T18:08:55+00:00"
+            "time": "2018-06-06T14:25:53+00:00"
         },
         {
             "name": "kdyby/autowired",
@@ -2048,16 +2048,16 @@
     "packages-dev": [
         {
             "name": "dg/ftp-deployment",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/ftp-deployment.git",
-                "reference": "e73e313086a0116c3c8da2378e55dc162218e42b"
+                "reference": "3d33b69aa1a6267a5b39c13d6f67d3f8aa5c7edc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/e73e313086a0116c3c8da2378e55dc162218e42b",
-                "reference": "e73e313086a0116c3c8da2378e55dc162218e42b",
+                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/3d33b69aa1a6267a5b39c13d6f67d3f8aa5c7edc",
+                "reference": "3d33b69aa1a6267a5b39c13d6f67d3f8aa5c7edc",
                 "shasum": ""
             },
             "require": {
@@ -2106,7 +2106,7 @@
                 "ftp",
                 "ssh"
             ],
-            "time": "2018-05-23T14:51:07+00:00"
+            "time": "2018-06-06T10:58:13+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
