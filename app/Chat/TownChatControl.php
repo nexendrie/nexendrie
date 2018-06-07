@@ -5,16 +5,17 @@ namespace Nexendrie\Chat;
 
 use HeroesofAbenez\Chat\ChatControl;
 use HeroesofAbenez\Chat\IDatabaseAdapter;
+use Nette\Localization\ITranslator;
 
 /**
  * TownChat
  *
  * @author Jakub Konečný
  */
-class TownChatControl extends ChatControl {
-  public function __construct(IDatabaseAdapter $databaseAdapter, \Nette\Security\User $user) {
+final class TownChatControl extends ChatControl {
+  public function __construct(IDatabaseAdapter $databaseAdapter, \Nette\Security\User $user, ITranslator $translator) {
     $townId = $user->identity->town;
-    parent::__construct($databaseAdapter, "town", $townId);
+    parent::__construct($databaseAdapter, "town", $townId, null, null, $translator);
   }
 }
 ?>
