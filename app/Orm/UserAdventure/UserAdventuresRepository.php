@@ -54,7 +54,7 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository 
    */
   public function findFromMonth(int $user, int $month = null, int $year = null): ICollection {
     $startOfMonthTS = mktime(0, 0, 0, $month ?? (int) date("n"), 1, $year ?? (int) date("Y"));
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp();
     $date->modify("+ 1 month");

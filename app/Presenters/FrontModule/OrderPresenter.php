@@ -66,7 +66,7 @@ final class OrderPresenter extends BasePresenter {
     try {
       $this->template->order = $this->model->getOrder($id);
     } catch(OrderNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
   
@@ -108,7 +108,7 @@ final class OrderPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš vstoupit do řádu.");
       $this->redirect("Homepage:");
     } catch(OrderNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
   

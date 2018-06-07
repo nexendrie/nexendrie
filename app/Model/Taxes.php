@@ -87,7 +87,7 @@ final class Taxes {
   
   public function payTaxes(): array {
     $return = [];
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setTimestamp(time());
     $date->modify("-1 day");
     $month = (int) $date->format("n");

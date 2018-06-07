@@ -50,7 +50,7 @@ final class PollsPresenter extends BasePresenter {
   public function actionEdit(int $id): void {
     $this->requiresPermissions("poll", "add");
     if(!$this->model->exists($id)) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
   

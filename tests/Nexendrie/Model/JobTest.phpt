@@ -33,7 +33,7 @@ final class JobTest extends \Tester\TestCase {
   
   public function testCalculateAward() {
     Assert::exception(function() {
-      $this->model->calculateAward(new JobEntity);
+      $this->model->calculateAward(new JobEntity());
     }, AuthenticationNeededException::class);
     $job = $this->model->getJob(1);
     $this->login();

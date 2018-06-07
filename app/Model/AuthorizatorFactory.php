@@ -114,7 +114,7 @@ final class AuthorizatorFactory {
     foreach($ranks as $id => $rank) {
       $parent = null;
       if($id > 1) {
-        $parent = $type .  "^" . $ranks[$id-1];
+        $parent = $type .  "^" . $ranks[$id - 1];
       }
       $permission->addRole($type .  "^" . $rank, $parent);
     }
@@ -144,7 +144,7 @@ final class AuthorizatorFactory {
     foreach($groups as $i => $row) {
       $parent = null;
       if($row->level !== 0) {
-        $parent = $groups[$i+1]->singleName;
+        $parent = $groups[$i + 1]->singleName;
       }
       $permission->addRole($row->singleName, $parent);
     }

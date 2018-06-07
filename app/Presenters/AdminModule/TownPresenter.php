@@ -47,7 +47,7 @@ final class TownPresenter extends BasePresenter {
     try {
       $this->town = $this->model->get($id);
     } catch(TownNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
   

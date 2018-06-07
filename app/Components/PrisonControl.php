@@ -30,7 +30,7 @@ final class PrisonControl extends \Nette\Application\UI\Control {
   protected function canWork(Punishment $punishment): bool {
     if(is_null($punishment->lastAction)) {
       return true;
-    } elseif(time() >$punishment->nextShift) {
+    } elseif(time() > $punishment->nextShift) {
       return true;
     }
     return false;

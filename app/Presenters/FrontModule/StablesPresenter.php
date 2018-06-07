@@ -48,10 +48,10 @@ final class StablesPresenter extends BasePresenter {
     try {
       $this->mount = $this->model->get($id);
     } catch(MountNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
     if($this->mount->owner->id != $this->user->id) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
   
@@ -70,10 +70,10 @@ final class StablesPresenter extends BasePresenter {
     try {
       $mount = $this->model->get($id);
     } catch(MountNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
     if($mount->owner->id != $this->user->id) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
     $this->template->mountId = $id;
   }

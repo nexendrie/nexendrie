@@ -39,7 +39,7 @@ final class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Reposit
     $month = date("n");
     $year = date("Y");
     $startOfMonthTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);
-    $date = new \DateTime;
+    $date = new \DateTime();
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp();
     $date->modify("+ 1 month");

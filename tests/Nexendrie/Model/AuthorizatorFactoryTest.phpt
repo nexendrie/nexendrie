@@ -50,7 +50,7 @@ final class AuthorizatorFactoryTest extends \Tester\TestCase {
         Assert::count(0, $parents);
       } else {
         Assert::count(1, $parents);
-        Assert::true($this->model->roleInheritsFrom($rank, "$prefix^" . $ranks[$id-1]));
+        Assert::true($this->model->roleInheritsFrom($rank, "$prefix^" . $ranks[$id - 1]));
       }
       if($id === 4) {
         foreach(AuthorizatorFactory::ORGANIZATION_PRIVILEGES as $privilege) {
@@ -77,7 +77,7 @@ final class AuthorizatorFactoryTest extends \Tester\TestCase {
         Assert::count(0, $parents);
       } else {
         Assert::count(1, $parents);
-        Assert::true($this->model->roleInheritsFrom($rank, "$prefix^" . $ranks[$id-1]));
+        Assert::true($this->model->roleInheritsFrom($rank, "$prefix^" . $ranks[$id - 1]));
       }
     }
   }

@@ -46,7 +46,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
     if($this->user->guild AND $this->user->group->path === Group::PATH_CITY) {
       if($this->job->neededSkill->id === $this->user->guild->skill->id) {
         $increase = $this->user->guildRank->incomeBonus + $this->user->guild->level - 1;
-        return (int) ($baseReward /100 * $increase);
+        return (int) ($baseReward / 100 * $increase);
       }
     }
     return 0;

@@ -159,7 +159,7 @@ final class Order {
     if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
       $increase += $user->orderRank->adventureBonus + ($user->order->level * 2.5) - 2.5;
     }
-    $bonus += (int) ($baseIncome /100 * $increase);
+    $bonus += (int) ($baseIncome / 100 * $increase);
     return $bonus;
   }
   

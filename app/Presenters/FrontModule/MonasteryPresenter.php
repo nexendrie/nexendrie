@@ -69,7 +69,7 @@ final class MonasteryPresenter extends BasePresenter {
     try {
       $this->template->monastery = $this->model->get($id);
     } catch(MonasteryNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
   
@@ -83,7 +83,7 @@ final class MonasteryPresenter extends BasePresenter {
   
   protected function createComponentBuildMonasteryForm(BuildMonasteryFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[]= function() {
+    $form->onSuccess[] = function() {
       $this->flashMessage("Klášter založen.");
       $this->redirect("default");
     };
@@ -112,7 +112,7 @@ final class MonasteryPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš vstoupit do kláštera.");
       $this->redirect("Homepage:");
     } catch(MonasteryNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     } catch(CannotJoinOwnMonasteryException $e) {
       $this->flashMessage("Už jsi v tomto klášteře.");
       $this->redirect("Homepage:");

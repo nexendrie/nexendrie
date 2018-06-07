@@ -36,6 +36,7 @@ chat:
         monastery: Nexendrie\Chat\IMonasteryChatControlFactory
         guild: Nexendrie\Chat\IGuildChatControlFactory
         order: Nexendrie\Chat\IOrderChatControlFactory
+    characterProfileLink: ":Front:Profile:"
 menu:
     default:
         title: Menu

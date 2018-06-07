@@ -309,15 +309,6 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Achievements\MountsOwnedAchievement::class);
   }
   
-  public function beforeCompile() {
-    $builder = $this->getContainerBuilder();
-    $chats = $builder->findByTag(\HeroesofAbenez\Chat\DI\ChatExtension::TAG_CHAT);
-    foreach($chats as $chat => $tags) {
-      $service = $builder->getDefinition($chat);
-      $service->addSetup("setCharacterProfileLink", [":Front:Profile:"]);
-    }
-  }
-  
   public function afterCompile(\Nette\PhpGenerator\ClassType $class): void {
     $initialize = $class->methods["initialize"];
     $initialize->addBody('$roles = $this->getByType(?)->settings["roles"];

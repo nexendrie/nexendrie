@@ -92,7 +92,7 @@ final class MarriagePresenter extends BasePresenter {
       $this->model->acceptProposal($id);
       $this->flashMessage("Návrh přijat. Nyní jste zasnoubení.");
     } catch(MarriageNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     } catch(CannotProposeMarriageException $e) {
       $this->flashMessage("Nemůžete se zasnoubit.");
     } catch(MarriageProposalAlreadyHandledException $e) {
@@ -111,7 +111,7 @@ final class MarriagePresenter extends BasePresenter {
       $this->model->declineProposal($id);
       $this->flashMessage("Návrh zamítnut.");
     } catch(MarriageNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     } catch(CannotProposeMarriageException $e) {
       $this->flashMessage("Nemůžete se zasnoubit.");
     } catch(MarriageProposalAlreadyHandledException $e) {
@@ -129,7 +129,7 @@ final class MarriagePresenter extends BasePresenter {
     try {
       $this->marriage = $this->model->getMarriage($id);
     } catch(MarriageNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
     if($this->marriage->status != MarriageEntity::STATUS_ACCEPTED) {
       $this->flashMessage("Svatba se nekoná.");

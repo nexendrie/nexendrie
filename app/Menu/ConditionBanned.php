@@ -26,7 +26,7 @@ final class ConditionBanned extends BaseCondition {
     if(!$this->user->isLoggedIn()) {
       return false;
     } elseif(!is_bool($parameter)) {
-      throw new \InvalidArgumentException("Method " . static::class ."::isAllowed expects boolean as parameter.");
+      throw new \InvalidArgumentException("Method " . static::class . "::isAllowed expects boolean as parameter.");
     }
     return ($parameter === $this->user->identity->banned);
   }

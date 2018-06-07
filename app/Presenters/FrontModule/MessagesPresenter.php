@@ -44,7 +44,7 @@ final class MessagesPresenter extends BasePresenter {
     } catch(AccessDeniedException $e) {
       $this->forward("cannotshow");
     } catch(MessageNotFoundException $e) {
-      throw new \Nette\Application\BadRequestException;
+      throw new \Nette\Application\BadRequestException();
     }
   }
   

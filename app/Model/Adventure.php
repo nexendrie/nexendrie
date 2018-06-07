@@ -366,7 +366,7 @@ final class Adventure {
     if(is_null($adventure)) {
       return true;
     }
-    $next = new \DateTime;
+    $next = new \DateTime();
     $next->setTimestamp($adventure->started + $twoDays);
     $next->setTime(0, 0, 0);
     return ($next->getTimestamp() < time());
