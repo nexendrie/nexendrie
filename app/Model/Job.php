@@ -161,7 +161,6 @@ final class Job {
     $job->user = $this->user->id;
     $job->job = $id;
     $this->orm->userJobs->persistAndFlush($job);
-    
   }
   
   /**

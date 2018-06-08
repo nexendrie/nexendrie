@@ -24,7 +24,6 @@ final class AddEditMountFormFactory {
    */
   protected function getGenders(): array {
     return Mount::getGenders();
-    
   }
   
   protected function getMountTypes(): array {

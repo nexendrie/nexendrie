@@ -52,7 +52,6 @@ final class MessagesPresenter extends BasePresenter {
    * @param int|null $id Receiver's id
    */
   public function actionNew(int $id = null): void {
-    
   }
   
   protected function createComponentNewMessageForm(NewMessageFormFactory $factory): Form {
