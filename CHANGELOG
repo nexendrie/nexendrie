@@ -1,4 +1,4 @@
-Version 1.0.0-beta5+dev
+Version 1.0.0-beta6
 - guild/order actions now use acl
 - separated authenticator from user manager
 - added option to auto feed mounts
