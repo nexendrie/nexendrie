@@ -2,11 +2,11 @@
 {block title}Klášter{/block}
 {block content}
   <h1>{$monastery->name}</h1>
-  <p>{$monastery->name} byl založen {$monastery->foundedAt}. V současnosti jej řídí <a n:href="Profile: $monastery->leader->username">{$monastery->leader->publicname}</a>. Klášter je na úrovni {$monastery->level}. Stav: {$monastery->hp}%.</p>
+  <p>{$monastery->name} byl založen {$monastery->foundedAt}. V současnosti jej řídí {control userProfileLink $monastery->leader}. Klášter je na úrovni {$monastery->level}. Stav: {$monastery->hp}%.</p>
   <h3>Obyvatelé</h3>
   <p>
     {foreach $monastery->members as $member}
-    {$member->title} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
+    {control userProfileLink $member,true}{if !$iterator->last}, {/if}
   {/foreach}
   </p>
 {/block}

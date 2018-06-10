@@ -6,7 +6,7 @@
     <tr><th>Jméno</th><th>Vládce</th><th>Obyvatel</th><th>Cechů</th><th>Klášterů</th><th></th></tr>
     <tr n:foreach="$towns as $town">
       <td>{$town->name}</td>
-      <td><a n:href="Profile: $town->owner->username">{$town->owner->publicname}</a></td>
+      <td>{control userProfileLink $town->owner}</td>
       <td>{$town->denizens->countStored()}</td>
       <td>{$town->guilds->countStored()}</td>
       <td>{$town->monasteries->countStored()}</td>

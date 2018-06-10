@@ -1,5 +1,5 @@
   <article id="poll">
-    <p>Přidal <a href="{plink :Front:Profile:default $poll->author->username}">{$poll->author->publicname}</a> {$poll->addedAt}</p>
+    <p>Přidal {control userProfileLink $poll->author} {$poll->addedAt}</p>
     <h3>{$poll->question}</h3>
     <ul>
     {foreach $poll->parsedAnswers as $answer}

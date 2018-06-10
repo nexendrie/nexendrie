@@ -7,7 +7,7 @@
   <h3>Členové</h3>
   <p>
     {foreach $order->members as $member}
-    {$member->orderRank->name} <a n:href="Profile: $member->username">{$member->publicname}</a>{if !$iterator->last}, {/if}
+    {control userProfileLink:order $member}{if !$iterator->last}, {/if}
   {/foreach}
   </p>
 {/block}

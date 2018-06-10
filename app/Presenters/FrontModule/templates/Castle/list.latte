@@ -7,7 +7,7 @@
     <tr><th>Jméno</th><th>Majitel</th><th>Úroveň</th><th></th></tr>
     <tr n:foreach="$castles as $castle">
       <td>{$castle->name}</td>
-      <td><a n:href="Profile: $castle->owner->username">{$castle->owner->publicname}</a></td>
+      <td>{control userProfileLink $castle->owner}</td>
       <td>{$castle->level}</td>
       <td><a n:href="detail $castle->id">Detaily</a></td>
     </tr>

@@ -21,10 +21,11 @@ final class MountsMarketControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
   protected $user;
   
-  public function __construct(\Nexendrie\Model\Mount $model, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Mount $model, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     parent::__construct();
     $this->model = $model;
     $this->user = $user;
+    $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
   }
   
   public function render(): void {

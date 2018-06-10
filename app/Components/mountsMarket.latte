@@ -3,6 +3,6 @@
   Žádná jezdecká zvířata nejsou na prodej.
   {else}
     {foreach $mounts as $mount}
-  {$mount->owner->title} <a href="{plink :Front:Profile:default, username=>$mount->owner->username}">{$mount->owner->publicname}</a> nabízí {$mount->name} ({$mount->typeGenderName}, poškození {$mount->damage}, brnění {$mount->armor}) za {$mount->priceT}. {if $mount->type->level <= $user->identity->level}<a n:href="buy! $mount->id">Koupit</a>{/if}<br>
+  {control userProfileLink $mount->owner,true} nabízí {$mount->name} ({$mount->typeGenderName}, poškození {$mount->damage}, brnění {$mount->armor}) za {$mount->priceT}. {if $mount->type->level <= $user->identity->level}<a n:href="buy! $mount->id">Koupit</a>{/if}<br>
     {/foreach}
   {/if}

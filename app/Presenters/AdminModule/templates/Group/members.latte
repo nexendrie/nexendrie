@@ -5,7 +5,7 @@
   <h3>Členové</h3>
   <p>
   {foreach $group->members as $member}
-    <a n:href=":Front:Profile:default $member->username">{$member->publicname}</a><br>
+    {control userProfileLink $member}<br>
   {/foreach}
   </p>
 {/block}

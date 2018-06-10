@@ -5,6 +5,8 @@ namespace Nexendrie\Presenters;
 
 use Nexendrie\Menu\IMenuControlFactory;
 use Nexendrie\Menu\MenuControl;
+use Nexendrie\Components\IUserProfileLinkControlFactory;
+use Nexendrie\Components\UserProfileLinkControl;
 
 /**
  * Ultimate ancestor of all presenters
@@ -17,9 +19,15 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   
   /** @var \Nexendrie\Model\SettingsRepository */
   protected $sr;
+  /** @var IUserProfileLinkControlFactory */
+  protected $userProfileLinkFactory;
   
   public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void {
     $this->sr = $sr;
+  }
+  
+  public function injectUserProfileLinkFactory(IUserProfileLinkControlFactory $userProfileLinkFactory): void {
+    $this->userProfileLinkFactory = $userProfileLinkFactory;
   }
   
   /**
@@ -49,6 +57,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   
   protected function createComponentMenu(IMenuControlFactory $factory): MenuControl {
     return $factory->create();
+  }
+  
+  protected function createComponentUserProfileLink(): UserProfileLinkControl {
+    return $this->userProfileLinkFactory->create();
   }
 }
 ?>

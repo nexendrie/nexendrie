@@ -24,11 +24,12 @@ final class ElectionsControl extends \Nette\Application\UI\Control {
   /** @var \Nexendrie\Orm\Town */
   private $town;
   
-  public function __construct(\Nexendrie\Model\Elections $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Model\Elections $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     parent::__construct();
     $this->model = $model;
     $this->orm = $orm;
     $this->user = $user;
+    $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
   }
   
   public function setTown(\Nexendrie\Orm\Town $town) {

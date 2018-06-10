@@ -3,15 +3,15 @@
 {block content}
   <h1>{$town->name}</h1>
   {control manageTownForm}
-  <h3>Jmenovat rycháře</h3>
-  <p><b>Současný rychtář:</b> {if $mayor}<a n:href="Profile:default $mayor->username">{$mayor->publicname}</a>{else}nikdo{/if}</p>
+  <h3>Jmenovat rychtáře</h3>
+  <p><b>Současný rychtář:</b> {if $mayor}{control userProfileLink $mayor->username}{else}nikdo{/if}</p>
   {control appointMayorForm}
   <h3>Povýšit na měšťana</h3>
   {control makeCitizenForm}
   <h3>Obyvatelé:</h3>
   <p>
     {foreach $town->denizens as $denizen}
-    {$denizen->group->singleName} <a n:href="Profile:default $denizen->username">{$denizen->publicname}</a>{if !$iterator->last},{else}.{/if}
+    {control userProfileLink $denizen,true}{if !$iterator->last},{else}.{/if}
     {/foreach}
   </p>
 {/block}

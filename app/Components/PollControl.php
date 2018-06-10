@@ -27,10 +27,11 @@ final class PollControl extends \Nette\Application\UI\Control {
   /** @var int */
   protected $id;
   
-  public function __construct(\Nette\Security\User $user, \Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nette\Security\User $user, \Nexendrie\Orm\Model $orm, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     parent::__construct();
     $this->user = $user;
     $this->orm = $orm;
+    $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
   }
   
   /**

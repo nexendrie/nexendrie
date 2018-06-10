@@ -10,18 +10,18 @@
     {if $profile->guild}{$profile->guildRank->name} <a n:href="Guild:detail $profile->guild->id">{$profile->guild->name}</a><br>{/if}
     {if $profile->order}{$profile->orderRank->name} <a n:href="Order:detail $profile->order->id">{$profile->order->name}</a><br>{/if}
     {if $profile->banned}V současnosti si odpykává zasloužený trest v místní šatlavě.<br>{/if}
-    {if $partner}Manžel{if $partner->gender === "female"}ka{/if}: {$partner->title} <a n:href="Profile: $partner->username">{$partner->publicname}</a><br>{/if}
-    {if $fiance}Snouben{if $fiance->gender === "female"}ka{else}ec{/if}: {$fiance->title} <a n:href="Profile: $fiance->username">{$fiance->publicname}</a><br>{/if}
+    {if $partner}Manžel{if $partner->gender === "female"}ka{/if}: {control userProfileLink $partner,true}<br>{/if}
+    {if $fiance}Snouben{if $fiance->gender === "female"}ka{else}ec{/if}: {control userProfileLink $fiance,true}<br>{/if}
     {if $canProposeMarriage}<a n:href="Marriage:propose $profile->id">Navrhnout sňatek</a><br>{/if}
     <h3>Statistiky</h3>
     <table>
-      <tr><td>Napsaných článků</td><td><a n:href="Profile:articles $profile->username">{$profile->articles->countStored()}</a></td></tr>
+      <tr><td>Napsaných článků</td><td>{control userProfileLink:page $profile,"articles",$profile->articles->countStored()}</td></tr>
       <tr><td>Napsaných komentářů</td><td>{$profile->comments->countStored()}</td></tr>
       <tr><td>Dokončených dobrodružství</td><td>{$profile->completedAdventures}</td></tr>
       <tr><td>Odpracováno týdnů</td><td>{$profile->completedJobs}</td></tr>
       <tr><td>Vyprodukovaných sudů piv</td><td>{$profile->producedBeers}</td></tr>
       <tr><td>Uvěznění</td><td>{$profile->punishmentsCount}</td></tr>
-      <tr><td>Lekcí v akademii</td><td><a n:href="Profile:skills $profile->username">{$profile->lessonsTaken}</a></td></tr>
+      <tr><td>Lekcí v akademii</td><td>{control userProfileLink:page $profile,"skills",$profile->lessonsTaken}</td></tr>
     </table>
   </p>
 {/block}
