@@ -16,23 +16,23 @@ final class ProfilePresenterTest extends \Tester\TestCase {
       $this->checkAction(":Front:Profile:default");
     }, BadRequestException::class);
     Assert::exception(function() {
-      $this->checkAction(":Front:Profile:default", ["username" => "abc"]);
+      $this->checkAction(":Front:Profile:default", ["name" => "abc"]);
     }, BadRequestException::class);
-    $this->checkAction(":Front:Profile:default", ["username" => "system"]);
+    $this->checkAction(":Front:Profile:default", ["name" => "Vladěna"]);
   }
   
   public function testArticles() {
     Assert::exception(function() {
-      $this->checkAction(":Front:Profile:articles", ["username" => "abc"]);
+      $this->checkAction(":Front:Profile:articles", ["name" => "abc"]);
     }, BadRequestException::class);
-    $this->checkAction(":Front:Profile:articles", ["username" => "system"]);
+    $this->checkAction(":Front:Profile:articles", ["name" => "Vladěna"]);
   }
   
   public function testSkills() {
     Assert::exception(function() {
-      $this->checkAction(":Front:Profile:skills", ["username" => "abc"]);
+      $this->checkAction(":Front:Profile:skills", ["name" => "abc"]);
     }, BadRequestException::class);
-    $this->checkAction(":Front:Profile:skills", ["username" => "system"]);
+    $this->checkAction(":Front:Profile:skills", ["name" => "Vladěna"]);
   }
 }
 

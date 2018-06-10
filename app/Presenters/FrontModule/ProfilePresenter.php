@@ -29,12 +29,12 @@ final class ProfilePresenter extends BasePresenter {
   /**
    * @throws BadRequestException
    */
-  public function renderDefault(?string $username = null): void {
-    if(is_null($username)) {
+  public function renderDefault(?string $name = null): void {
+    if(is_null($name)) {
       throw new BadRequestException();
     }
     try {
-      $user = $this->model->view($username);
+      $user = $this->model->view($name);
       $this->template->profile = $user;
       $this->template->castle = $this->castleModel->getUserCastle($user->id);
       $this->template->partner = $this->model->getPartner($user->id);
@@ -45,17 +45,17 @@ final class ProfilePresenter extends BasePresenter {
     }
   }
   
-  public function renderArticles(string $username): void {
+  public function renderArticles(string $name): void {
     try {
-      $this->template->articles = $this->model->getArticles($username);
+      $this->template->articles = $this->model->getArticles($name);
     } catch(UserNotFoundException $e) {
       throw new BadRequestException();
     }
   }
   
-  public function renderSkills(string $username): void {
+  public function renderSkills(string $name): void {
     try {
-      $this->template->skills = $this->model->getSkills($username);
+      $this->template->skills = $this->model->getSkills($name);
     } catch(UserNotFoundException $e) {
       throw new BadRequestException();
     }

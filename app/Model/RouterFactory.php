@@ -18,7 +18,7 @@ final class RouterFactory {
     $router = new RouteList();
     $frontRouter = new RouteList("Front");
     $frontRouter[] = new Route("/", "Homepage:page");
-    $frontRouter[] = new Route("profile[/<action>]/<username>", "Profile:default");
+    $frontRouter[] = new Route("profile[/<action>]/<name>", "Profile:default");
     $frontRouter[] = new Route("<presenter message|poll|article|event>/<id [0-9]+>", [
       "action" => "view",
       "presenter" => [

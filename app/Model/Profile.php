@@ -32,7 +32,7 @@ final class Profile {
    * @throws UserNotFoundException
    */
   public function view(string $username): UserEntity {
-    $user = $this->orm->users->getByUsername($username);
+    $user = $this->orm->users->getByPublicname($username);
     if(is_null($user)) {
       throw new UserNotFoundException("Specified user does not exist.");
     }
@@ -92,7 +92,7 @@ final class Profile {
    * @throws UserNotFoundException
    */
   public function getArticles(string $username): OneHasMany {
-    $user = $this->orm->users->getByUsername($username);
+    $user = $this->orm->users->getByPublicname($username);
     if(is_null($user)) {
       throw new UserNotFoundException("Specified user does not exist.");
     }
@@ -104,7 +104,7 @@ final class Profile {
    * @throws UserNotFoundException
    */
   public function getSkills(string $username): OneHasMany {
-    $user = $this->orm->users->getByUsername($username);
+    $user = $this->orm->users->getByPublicname($username);
     if(is_null($user)) {
       throw new UserNotFoundException("Specified user does not exist.");
     }

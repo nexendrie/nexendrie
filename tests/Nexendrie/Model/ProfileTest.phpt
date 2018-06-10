@@ -21,7 +21,7 @@ final class ProfileTest extends \Tester\TestCase {
   }
   
   public function testView() {
-    $user = $this->model->view("system");
+    $user = $this->model->view("Vladěna");
     Assert::type(UserEntity::class, $user);
     Assert::exception(function() {
       $this->model->view("abc");
@@ -68,7 +68,7 @@ final class ProfileTest extends \Tester\TestCase {
   }
   
   public function testGetArticles() {
-    $articles = $this->model->getArticles("admin");
+    $articles = $this->model->getArticles("Trimadyl z Myhru");
     Assert::type(OneHasMany::class, $articles);
     Assert::count(12, $articles);
     Assert::exception(function() {
