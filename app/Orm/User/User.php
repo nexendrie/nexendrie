@@ -96,11 +96,11 @@ final class User extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterJoinedAt(): string {
-    return $this->localeModel->formatDate($this->joined);
+    return $this->localeModel->formatDateTime($this->joined);
   }
   
   protected function getterLastActiveAt(): string {
-    return $this->localeModel->formatDate($this->lastActive);
+    return $this->localeModel->formatDateTime($this->lastActive);
   }
   
   /**
