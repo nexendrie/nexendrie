@@ -83,16 +83,22 @@ final class User extends \Nextras\Orm\Entity\Entity {
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
+  /** @var \Nexendrie\Model\SettingsRepository */
+  protected $sr;
   
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
+  }
+  
+  public function injectSr(\Nexendrie\Model\SettingsRepository $sr): void {
+    $this->sr = $sr;
   }
   
   protected function setterStyle(string $value): string {
     if(array_key_exists($value, UserSettingsFormFactory::getStylesList())) {
       return $value;
     }
-    return "blue-sky";
+    return $this->sr->settings["newUser"]["style"];
   }
   
   protected function getterJoinedAt(): string {
