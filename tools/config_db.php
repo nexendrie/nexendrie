@@ -6,7 +6,7 @@ use Nette\Utils\Arrays;
 
 require __DIR__ . "/../vendor/autoload.php";
 
-$filename = __DIR__ . "../app/config/local.neon";
+$filename = __DIR__ . "/../app/config/local.neon";
 $db = [
   "driver" => Arrays::get($argv, 1, "mysqli"),
   "host" => Arrays::get($argv, 2, "localhost"),
