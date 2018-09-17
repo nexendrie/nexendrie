@@ -50,7 +50,7 @@ final class Item extends \Nextras\Orm\Entity\Entity {
       static::TYPE_ARMOR => "Brnění",
       static::TYPE_HELMET => "Helma",
       static::TYPE_POTION => "Lektvar",
-      static::TYPE_POTION => "Surovina",
+      static::TYPE_MATERIAL => "Surovina",
       static::TYPE_CHARTER => "Listina",
       static::TYPE_INTIMACY_BOOST => "Zvýšení důvěrnosti",
     ];
