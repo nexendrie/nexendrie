@@ -9,8 +9,11 @@ namespace Nexendrie\Achievements;
  * @author Jakub Konečný
  */
 final class LessonsTakenAchievement extends BaseAchievement {
+  /** @var string */
   protected $field = "lessonsTaken";
+  /** @var string */
   protected $name = "Student";
+  /** @var string */
   protected $description = "nexendrie.achievements.lessonsTaken";
   
   public function getRequirements(): array {
