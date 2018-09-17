@@ -69,7 +69,7 @@ final class Castle extends \Nextras\Orm\Entity\Entity {
     }
     $price = static::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->level + 1; $i++) {
-      $price += (int) (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
+      $price += (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
     }
     return $price;
   }

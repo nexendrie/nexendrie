@@ -70,7 +70,7 @@ final class House extends \Nextras\Orm\Entity\Entity {
     }
     $price = static::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->luxuryLevel + 1; $i++) {
-      $price += (int) (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
+      $price += (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
     }
     return $price;
   }
@@ -85,7 +85,7 @@ final class House extends \Nextras\Orm\Entity\Entity {
     }
     $price = static::BASE_UPGRADE_PRICE;
     for($i = 1; $i < $this->breweryLevel + 1; $i++) {
-      $price += (int) (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
+      $price += (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
     }
     return $price;
   }
