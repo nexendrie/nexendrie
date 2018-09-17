@@ -21,7 +21,7 @@ final class MakeCitizenFormFactory {
     $this->model = $model;
   }
   
-  public function create($town): Form {
+  public function create(int $town): Form {
     $form = new Form();
     $form->addSelect("user", "Uživatel:", $this->model->getTownPeasants($town))
       ->setRequired();

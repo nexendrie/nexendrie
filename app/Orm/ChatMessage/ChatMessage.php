@@ -21,7 +21,7 @@ final class ChatMessage extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
   }
   
@@ -29,7 +29,7 @@ final class ChatMessage extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->formatDateTime($this->when);
   }
   
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     $this->when = time();
   }

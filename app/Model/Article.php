@@ -56,7 +56,7 @@ final class Article {
    *
    * @return ArticleEntity[]|ICollection
    */
-  public function category($name, \Nette\Utils\Paginator $paginator = null): ICollection {
+  public function category(string $name, \Nette\Utils\Paginator $paginator = null): ICollection {
     $articles = $this->orm->articles->findByCategory($name);
     if(!is_null($paginator)) {
       $paginator->itemsPerPage = $this->itemsPerPage;

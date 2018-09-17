@@ -18,7 +18,7 @@ final class PollVote extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
   }
   
@@ -26,7 +26,7 @@ final class PollVote extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->formatDateTime($this->voted);
   }
   
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     $this->voted = time();
   }

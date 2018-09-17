@@ -29,7 +29,7 @@ final class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEf
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
   
-  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
+  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;
   }
   

@@ -23,7 +23,7 @@ final class Punishment extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
   }
   
@@ -45,7 +45,7 @@ final class Punishment extends \Nextras\Orm\Entity\Entity {
     return $this->lastAction + (60 * 60);
   }
   
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     $this->imprisoned = time();
   }

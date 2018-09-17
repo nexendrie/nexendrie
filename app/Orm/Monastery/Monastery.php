@@ -40,11 +40,11 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
   
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
   }
   
-  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
+  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;
   }
   
@@ -109,7 +109,7 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
     return ($this->level - 1) * 3;
   }
   
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     $this->founded = time();
   }

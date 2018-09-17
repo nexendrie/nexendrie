@@ -27,7 +27,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
   
-  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
+  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;
   }
   
@@ -106,7 +106,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
     return $successRate;
   }
   
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     $this->started = time();
   }

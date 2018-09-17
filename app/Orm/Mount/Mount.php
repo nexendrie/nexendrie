@@ -50,11 +50,11 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
   public const GENDER_FEMALE = "female";
   public const GENDER_YOUNG = "young";
   
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
   }
   
-  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel) {
+  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;
   }
   
@@ -139,7 +139,7 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
     return $this->type->{$this->gender . "Name"};
   }
   
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     if(!$this->price) {
       $this->price = $this->type->price;

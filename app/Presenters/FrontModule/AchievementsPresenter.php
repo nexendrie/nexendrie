@@ -25,7 +25,7 @@ final class AchievementsPresenter extends BasePresenter {
     $this->requiresLogin();
   }
   
-  public function renderDefault() {
+  public function renderDefault(): void {
     $this->template->achievements = $this->model->getAllAchievements();
     $this->template->userEntity = $this->orm->users->getById($this->user->id);
   }

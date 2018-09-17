@@ -19,7 +19,7 @@ final class Comment extends \Nextras\Orm\Entity\Entity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
   }
   
@@ -27,7 +27,7 @@ final class Comment extends \Nextras\Orm\Entity\Entity {
     return $this->localeModel->formatDateTime($this->added);
   }
   
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     $this->added = time();
   }

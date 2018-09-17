@@ -52,7 +52,7 @@ final class Events implements \EventCalendar\IEventModel {
    *
    * @throws EventNotFoundException
    */
-  public function getEvent($id): Event {
+  public function getEvent(int $id): Event {
     $event = $this->orm->events->getById($id);
     if(is_null($event)) {
       throw new EventNotFoundException();

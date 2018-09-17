@@ -65,7 +65,7 @@ final class Locale {
   /**
    * @throws AuthenticationNeededException
    */
-  public function genderMessage($message): string {
+  public function genderMessage(string $message): string {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }

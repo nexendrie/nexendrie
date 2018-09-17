@@ -53,7 +53,7 @@ final class ShopControl extends \Nette\Application\UI\Control {
     return $this->shop;
   }
   
-  public function setId(int $id) {
+  public function setId(int $id): void {
     try {
       $this->id = $id;
       $this->getShop();

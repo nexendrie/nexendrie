@@ -204,7 +204,7 @@ final class User extends \Nextras\Orm\Entity\Entity {
     return $this->mounts->countStored();
   }
   
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     $this->joined = $this->lastActive = time();
     $this->life = $this->maxLife;

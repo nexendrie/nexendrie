@@ -30,7 +30,7 @@ final class UserAdventure extends \Nextras\Orm\Entity\Entity {
     ]);
   }
   
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     $this->started = time();
   }

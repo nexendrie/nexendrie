@@ -43,7 +43,7 @@ final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEff
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel) {
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
   }
   
@@ -91,12 +91,12 @@ final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEff
     return $this->level * static::HP_INCREASE_PER_LEVEL;
   }
   
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     $this->proposed = time();
   }
   
-  public function onBeforeUpdate() {
+  public function onBeforeUpdate(): void {
     parent::onBeforeUpdate();
     if($this->status === static::STATUS_ACCEPTED AND is_null($this->accepted)) {
       $this->accepted = time();

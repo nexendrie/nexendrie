@@ -28,7 +28,7 @@ final class Group {
     $this->cache = $cache;
   }
   
-  public function setUser(\Nette\Security\User $user) {
+  public function setUser(\Nette\Security\User $user): void {
     $this->user = $user;
   }
   
@@ -53,7 +53,7 @@ final class Group {
   /**
    * Get specified group
    */
-  public function get(int $id) {
+  public function get(int $id): ?GroupDummy {
     $groups = $this->listOfGroups();
     $group = Arrays::get($groups, $id, null);
     return $group;

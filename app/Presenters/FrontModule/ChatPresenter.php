@@ -48,7 +48,7 @@ final class ChatPresenter extends BasePresenter {
     return $factory->create();
   }
   
-  public function actionMonastery() {
+  public function actionMonastery(): void {
     try {
       $this->monasteryModel->getByUser();
     } catch(NotInMonasteryException $e) {
@@ -61,7 +61,7 @@ final class ChatPresenter extends BasePresenter {
     return $factory->create();
   }
   
-  public function actionOrder() {
+  public function actionOrder(): void {
     $order = $this->orderModel->getUserOrder();
     if(is_null($order)) {
       $this->flashMessage("Nejsi v řádu.");
@@ -73,7 +73,7 @@ final class ChatPresenter extends BasePresenter {
     return $factory->create();
   }
   
-  public function actionGuild() {
+  public function actionGuild(): void {
     $guild = $this->guildModel->getUserGuild();
     if(is_null($guild)) {
       $this->flashMessage("Nejsi v cechu.");

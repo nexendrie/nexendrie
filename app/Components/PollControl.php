@@ -52,7 +52,7 @@ final class PollControl extends \Nette\Application\UI\Control {
   /**
    * @throws PollNotFoundException
    */
-  public function setId(int $id) {
+  public function setId(int $id): void {
     try {
       $this->id = $id;
       $this->getPoll();

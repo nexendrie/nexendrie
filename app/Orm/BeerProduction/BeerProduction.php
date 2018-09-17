@@ -15,7 +15,7 @@ namespace Nexendrie\Orm;
  * @property int $when
  */
 final class BeerProduction extends \Nextras\Orm\Entity\Entity {
-  public function onBeforeInsert() {
+  public function onBeforeInsert(): void {
     parent::onBeforeInsert();
     $this->when = time();
   }
