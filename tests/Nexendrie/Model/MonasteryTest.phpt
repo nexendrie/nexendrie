@@ -260,6 +260,28 @@ final class MonasteryTest extends \Tester\TestCase {
     }, CannotUpgradeMonasteryException::class);
   }
   
+  public function testCanUpgradeLibrary() {
+    Assert::exception(function() {
+      $this->model->canUpgradeLibrary();
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::false($this->model->canUpgradeLibrary());
+    $this->login("Rahym");
+    Assert::true($this->model->canUpgradeLibrary());
+    $this->login("bozena");
+    Assert::false($this->model->canUpgradeLibrary());
+  }
+  
+  public function testUpgradeLibrary() {
+    Assert::exception(function() {
+      $this->model->upgradeLibrary();
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->upgradeLibrary();
+    }, CannotUpgradeMonasteryException::class);
+  }
+  
   public function testCanRepair() {
     Assert::exception(function() {
       $this->model->canRepair();

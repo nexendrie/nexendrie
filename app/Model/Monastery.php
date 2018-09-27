@@ -47,7 +47,7 @@ final class Monastery {
    */
   public function listOfMonasteries(): ICollection {
     return $this->orm->monasteries->findAll()
-      ->orderBy("level", ICollection::DESC)
+      ->orderBy("altairLevel", ICollection::DESC)
       ->orderBy("founded");
   }
   
@@ -402,10 +402,8 @@ final class Monastery {
       return false;
     } elseif($user->monastery->leader->id != $this->user->id) {
       return false;
-    } elseif($user->monastery->level >= MonasteryEntity::MAX_LEVEL) {
-      return false;
     }
-    return true;
+    return ($user->monastery->altairLevel < MonasteryEntity::MAX_LEVEL);
   }
   
   /**
@@ -429,10 +427,54 @@ final class Monastery {
       throw new InsufficientFundsException();
     }
     $user->monastery->money -= $upgradePrice;
-    $user->monastery->level++;
+    $user->monastery->altairLevel++;
     $this->orm->monasteries->persistAndFlush($user->monastery);
   }
-  
+
+  /**
+   * Check whether the user can upgrade monastery's library
+   *
+   * @throws AuthenticationNeededException
+   */
+  public function canUpgradeLibrary(): bool {
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    /** @var UserEntity $user */
+    $user = $this->orm->users->getById($this->user->id);
+    if(is_null($user->monastery)) {
+      return false;
+    } elseif($user->monastery->leader->id != $this->user->id) {
+      return false;
+    }
+    return ($user->monastery->libraryLevel < MonasteryEntity::MAX_LEVEL - 1);
+  }
+
+  /**
+   * Upgrade monastery's library
+   *
+   * @throws AuthenticationNeededException
+   * @throws CannotUpgradeMonasteryException
+   * @throws InsufficientFundsException
+   */
+  public function upgradeLibrary(): void {
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    if(!$this->canUpgradeLibrary()) {
+      throw new CannotUpgradeMonasteryException();
+    }
+    /** @var UserEntity $user */
+    $user = $this->orm->users->getById($this->user->id);
+    $upgradePrice = $user->monastery->libraryUpgradePrice;
+    if($user->monastery->money < $upgradePrice) {
+      throw new InsufficientFundsException();
+    }
+    $user->monastery->money -= $upgradePrice;
+    $user->monastery->libraryLevel++;
+    $this->orm->monasteries->persistAndFlush($user->monastery);
+  }
+
   /**
    * Check whether the user can repair monastery
    *

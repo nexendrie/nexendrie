@@ -255,7 +255,8 @@ CREATE TABLE "monasteries" (
     "town" integer NOT NULL,
     "founded" integer NOT NULL,
     "money" integer NOT NULL,
-    "level" integer NOT NULL DEFAULT 1,
+    "altair_level" integer NOT NULL DEFAULT 1,
+    "library_level" integer NOT NULL DEFAULT 0,
     "hp" integer NOT NULL DEFAULT 100
 );
 

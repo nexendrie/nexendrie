@@ -158,6 +158,7 @@ final class MonasteryPresenter extends BasePresenter {
     $this->template->monastery = $monastery = $this->model->getByUser();
     $this->monasteryId = $monastery->id;
     $this->template->canUpgrade = $this->model->canUpgrade();
+    $this->template->canUpgradeLibrary = $this->model->canUpgradeLibrary();
   }
   
   protected function createComponentManageMonasteryForm(ManageMonasteryFormFactory $factory): Form {
@@ -176,6 +177,17 @@ final class MonasteryPresenter extends BasePresenter {
     } catch(CannotUpgradeMonasteryException $e) {
       $this->flashMessage("Nemůžeš vylepšit klášter.");
       $this->redirect("Homepage:");
+    } catch(InsufficientFundsException $e) {
+      $this->flashMessage("Nedostatek peněz.");
+      $this->redirect("manage");
+    }
+  }
+
+  public function handleUpgradeLibrary(): void {
+    try {
+      $this->model->upgradeLibrary();
+    } catch(CannotUpgradeMonasteryException $e) {
+      $this->flashMessage("Nemůžeš vylepšit klášterní knihovnu.");
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("manage");

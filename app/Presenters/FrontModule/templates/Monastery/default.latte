@@ -3,7 +3,7 @@
 {block content}
   <h1>{$monastery->name}</h1>
   <p>Vůdce: {control userProfileLink $monastery->leader}</p>
-  <p>Úroveň: {$monastery->level} Stav: {$monastery->hp}%</p>
+  <p>Úroveň oltáře: {$monastery->altairLevel} Úroveň knihovny: {$monastery->libraryLevel} Stav: {$monastery->hp}%</p>
   <h3>Členové</h3>
   <div n:foreach="$monastery->members as $member" class="members">
     {control userProfileLink $member,true}{if !$iterator->last}, {/if}

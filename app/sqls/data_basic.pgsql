@@ -148,8 +148,8 @@ INSERT INTO meals ("name", "message", "price", "life") VALUES
   ('Chléb','Tu máš bochník chleba.',5,2),
   ('Voda','Tady máš sklenici vody. Nic zvláštního? Ano, ale co bys čekal za 2 groše!',2,1);
 
-INSERT INTO monasteries ("name", "leader", "town", "founded", "money", "level", "hp") VALUES
-  ('Pokusný klášter',0,3,1446628777,1001,1,100);
+INSERT INTO monasteries ("name", "leader", "town", "founded", "money", "altair_level", "library_level", "hp") VALUES
+  ('Pokusný klášter',0,3,1446628777,1001,1,0,100);
 
 INSERT INTO mount_types ("name", "female_name", "young_name", "description", "level", "damage", "armor", "price") VALUES
   ('Osel','Oslice','Oslátko','.',50,0,0,50),

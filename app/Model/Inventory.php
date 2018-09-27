@@ -175,7 +175,7 @@ final class Inventory {
     $item->amount -= 1;
     $life = $item->item->strength;
     if($item->user->monastery) {
-      $life += $item->user->monastery->level;
+      $life += $item->user->monastery->altairLevel;
     }
     if($item->amount < 1) {
       /** @var \Nexendrie\Orm\User $user */

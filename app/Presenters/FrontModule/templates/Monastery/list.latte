@@ -5,12 +5,13 @@
   {if $monasteries->count() === 0}Nebyl nalezen žádný klášter.
   {else}
   <table id="monasteries">
-    <tr><th>Jméno</th><th>Vůdce</th><th>Město</th><th>Úroveň</th><th>Členů</th><th></th></tr>
+    <tr><th>Jméno</th><th>Vůdce</th><th>Město</th><th>Úroveň oltáře</th><th>Úroveň knihovny</th><th>Členů</th><th></th></tr>
     <tr n:foreach="$monasteries as $monastery">
       <td>{$monastery->name}</td>
       <td>{control userProfileLink $monastery->leader}</td>
       <td><a n:href="Town:detail $monastery->town->id">{$monastery->town->name}</a></td>
-      <td>{$monastery->level}</td>
+      <td>{$monastery->altairLevel}</td>
+      <td>{$monastery->libraryLevel}</td>
       <td>{$monastery->members->countStored()}</td>
       <td><a n:href="detail $monastery->id">Detaily</a>{if $canJoin} <a n:href="join $monastery->id">Připojit se</a>{/if}</td>
     </tr>

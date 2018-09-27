@@ -88,8 +88,8 @@ INSERT INTO messages ("subject", "text", "from", "to", "sent", "read") VALUES
   ('Povýšení','Byl jsi povýšen na měšťana.',1,3,1448473816,TRUE),
   ('Povýšení','Byl jsi povýšen na měšťana.',1,5,1468075669,FALSE);
 
-INSERT INTO monasteries ("name", "leader", "town", "founded", "money", "level", "hp") VALUES
-  ('Dům Jaly',2,1,1447251495,0,6,100);
+INSERT INTO monasteries ("name", "leader", "town", "founded", "money", "altair_level", "library_level", "hp") VALUES
+  ('Dům Jaly',2,1,1447251495,0,6,0,100);
 
 INSERT INTO mounts ("name", "gender", "type", "owner", "price", "on_market", "birth", "hp", "damage", "armor") VALUES
   ('Mel','male',1,0,50,TRUE,1444838883,100,0,0),

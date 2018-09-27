@@ -78,8 +78,8 @@ INSERT INTO `comments` (`id`, `title`, `text`, `article`, `author`, `added`) VAL
   (4,	'Hotovo',	'Přechod již byl úspěšně dokončen.',	3,	1,	1441372474),
   (5,	'Test',	'text',	6,	1,	1445197436);
 
-INSERT INTO `monasteries` (`id`, `name`, `leader`, `town`, `founded`, `money`, `level`, `hp`) VALUES
-  (2,	'Dům Jaly',	2,	1,	1447251495,	0,	6,	100);
+INSERT INTO `monasteries` (`id`, `name`, `leader`, `town`, `founded`, `money`, `altair_level`, `library_level`, `hp`) VALUES
+  (2,	'Dům Jaly',	2,	1,	1447251495,	0,	6, 0,	100);
 
 INSERT INTO `events` (`id`, `name`, `description`, `start`, `end`, `adventures_bonus`, `work_bonus`, `prayer_life_bonus`, `training_discount`, `repairing_discount`, `shopping_discount`) VALUES
   (1,	'Oslavy založení',	'd',	1467756000,	1468360740,	50,	50,	50,	50,	50,	50);
