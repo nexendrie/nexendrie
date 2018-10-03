@@ -26,7 +26,10 @@ final class NextrasOrmAdapter implements IDatabaseAdapter {
     $this->orm = $orm;
     $this->user = $user;
   }
-  
+
+  /**
+   * @param mixed $value
+   */
   public function getTexts(string $column, $value, int $limit): ChatMessagesCollection {
     $count = $this->orm->chatMessages->findBy([
       $column => $value,
@@ -45,7 +48,10 @@ final class NextrasOrmAdapter implements IDatabaseAdapter {
     }
     return $collection;
   }
-  
+
+  /**
+   * @param mixed $value
+   */
   public function getCharacters(string $column, $value): ChatCharactersCollection {
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);

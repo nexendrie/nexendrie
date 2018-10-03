@@ -8,6 +8,13 @@ parameters:
         - Nette\Security\IIdentity
         - Nextras\Orm\Entity\IEntity
     ignoreErrors:
-        - '#Call to function is_null\(\) will always evaluate to false#'
         - '#Method Nexendrie\\Orm\[a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+ should return Nexendrie\\Orm[a-zA-Z0-9\\_]+|null but returns Nextras\\Orm\\IEntity|null#'
         - '#Method Nette\\Localization\\ITranslator::translate\(\) invoked with 3 parameters, 1-2 required#'
+        - '#Parameter \#1 \$str of function strtolower expects string, string\|false given#'
+        - '#Parameter \#1 \$input of static method Nette\\Neon\\Neon::decode\(\) expects string, string\|false given#'
+        - '#Parameter \#1 \$control of method Nette\\Forms\\Controls\\BaseControl::addConditionOn\(\) expects Nette\\Forms\\IControl, Nette\\ComponentModel\\IComponent given#'
+        - '#Call to an undefined method Nette\\ComponentModel\\IComponent::setDefaultValue\(\)#'
+        - '#Construct empty\(\) is not allowed. Use more strict comparison#'
+        - '#Method Nexendrie\\Model\\Job::parseJobHelp\(\) should return string but returns array\|string#'
+        - '#Method Nexendrie\\Orm\\[a-zA-Z0-9\\_]::getter[a-zA-Z0-9\\_]() should return int but returns float|int#'
+        - '#Parameter \#1 \$function of function call_user_func expects callable, array\(\$this\(Nexendrie\\Model\\SettingsRepository\), mixed\) given#'

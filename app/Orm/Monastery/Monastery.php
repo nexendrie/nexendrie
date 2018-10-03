@@ -99,7 +99,7 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
     }
     $price = static::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->libraryLevel + 1; $i++) {
-      $price += (int) (static::BASE_UPGRADE_PRICE / (static::MAX_LEVEL - 1));
+      $price += (static::BASE_UPGRADE_PRICE / (static::MAX_LEVEL - 1));
     }
     return $price;
   }
