@@ -52,6 +52,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(\HeroesofAbenez\Combat\CombatBase::class);
     $builder->addDefinition($this->prefix("combat.logger"))
       ->setType(\HeroesofAbenez\Combat\CombatLogger::class);
+    $builder->addDefinition($this->prefix("combat.logRender"))
+      ->setType(\HeroesofAbenez\Combat\TextCombatLogRender::class);
     $builder->addDefinition($this->prefix("combat.successCalculator"))
       ->setType(\HeroesofAbenez\Combat\StaticSuccessCalculator::class);
     $builder->addDefinition($this->prefix("combat.actionSelector"))
