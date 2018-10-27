@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ca76a0d40ec945695f56f2aaf225f08",
+    "content-hash": "d89db9d5fb60128a9275dae181a352b6",
     "packages": [
         {
             "name": "heroesofabenez/chat",
@@ -200,19 +200,20 @@
         },
         {
             "name": "konecnyjakub/event-calendar",
-            "version": "0.3.0",
+            "version": "0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/konecnyjakub/EventCalendar.git",
-                "reference": "09f25f2ec91ea21bdacca0bb2e870ba7d39263bc"
+                "reference": "32d7f9ce79021e41911e7483843a0240d8421ab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/09f25f2ec91ea21bdacca0bb2e870ba7d39263bc",
-                "reference": "09f25f2ec91ea21bdacca0bb2e870ba7d39263bc",
+                "url": "https://api.github.com/repos/konecnyjakub/EventCalendar/zipball/32d7f9ce79021e41911e7483843a0240d8421ab1",
+                "reference": "32d7f9ce79021e41911e7483843a0240d8421ab1",
                 "shasum": ""
             },
             "require": {
+                "ext-calendar": "*",
                 "latte/latte": "^2.4",
                 "nette/application": "^2.4",
                 "nette/neon": "^2.4",
@@ -224,7 +225,7 @@
             },
             "require-dev": {
                 "nexendrie/code-quality": "@dev",
-                "phpstan/phpstan-nette": "^0.8",
+                "phpstan/phpstan-nette": "^0.10",
                 "tracy/tracy": "^2.4"
             },
             "suggest": {
@@ -253,7 +254,7 @@
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
             "homepage": "http://www.nimral.cz/calendar",
-            "time": "2017-09-30T09:28:18+00:00"
+            "time": "2018-10-27T10:57:02+00:00"
         },
         {
             "name": "latte/latte",
