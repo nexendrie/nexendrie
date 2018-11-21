@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Cron;
 
 use Nexendrie\Model\Elections;
-use Nexendrie\Utils\Arrays;
 use Nexendrie\Orm\ElectionResult;
 
 /**
@@ -38,7 +37,10 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask {
       }
       $results[$index]["amount"]++;
     }
-    return Arrays::orderby($results, "amount", SORT_DESC);
+    usort($results, function($a, $b) {
+      return $a->amount < $b->amount;
+    });
+    return $results;
   }
   
   /**
