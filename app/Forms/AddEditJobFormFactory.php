@@ -55,9 +55,9 @@ final class AddEditJobFormFactory {
       ->setValue(50)
       ->setOption("description", "Minimální úroveň pro výkon práce.");
     $form->addSelect("neededSkill", "Dovednost:", $this->getSkills())
-       ->setPrompt("Vyber dovednost")
-       ->setRequired("Vyber dovednost.")
-       ->setOption("description", "Dovednost nutná pro výkon práce, zvyšuje příjem.");
+      ->setPrompt("Vyber dovednost")
+      ->setRequired("Vyber dovednost.")
+      ->setOption("description", "Dovednost nutná pro výkon práce, zvyšuje příjem.");
     $form->addText("neededSkillLevel", "Úroveň dovednosti:")
       ->setRequired("Zadej úroveň dovednosti.")
       ->addRule(Form::INTEGER, "Úroveň dovednosti musí být celé číslo.")

@@ -175,7 +175,7 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
   }
   
   public function getCombatEffects(): array {
-    return [$this->toCombatDamageEffect(), $this->toCombatDefenseEffect(),];
+    return [$this->toCombatDamageEffect(), $this->toCombatDefenseEffect(), ];
   }
 }
 ?>

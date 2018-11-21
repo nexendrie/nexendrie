@@ -122,7 +122,7 @@ final class GuildPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš spravovat cech.");
       $this->redirect("Homepage:");
     }
-    $this->template->guild =  $this->model->getUserGuild();
+    $this->template->guild = $this->model->getUserGuild();
     $this->template->canUpgrade = $this->model->canUpgrade();
   }
   

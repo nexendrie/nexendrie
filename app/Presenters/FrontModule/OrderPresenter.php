@@ -129,7 +129,7 @@ final class OrderPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš spravovat řád.");
       $this->redirect("Homepage:");
     }
-    $this->template->order =  $this->model->getUserOrder();
+    $this->template->order = $this->model->getUserOrder();
     $this->template->canUpgrade = $this->model->canUpgrade();
   }
   
