@@ -92,7 +92,7 @@ final class Taxes {
     $date->modify("-1 day");
     $month = (int) $date->format("n");
     $year = (int) $date->format("Y");
-    /* @var $town \Nexendrie\Orm\Town */
+    /** @var \Nexendrie\Orm\Town $town */
     foreach($this->orm->towns->findAll() as $town) {
       $result = $this->calculateTownTaxes($town, $month, $year);
       $return[] = $result;
