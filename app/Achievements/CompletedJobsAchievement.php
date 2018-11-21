@@ -17,7 +17,7 @@ final class CompletedJobsAchievement extends BaseAchievement {
   protected $description = "nexendrie.achievements.completedJobs";
   
   public function getRequirements(): array {
-    return [1, 4, 10, 24,];
+    return [1, 4, 10, 24, ];
   }
 }
 ?>

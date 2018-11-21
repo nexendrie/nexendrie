@@ -17,7 +17,7 @@ final class MountsOwnedAchievement extends BaseAchievement {
   protected $description = "nexendrie.achievements.mountsOwned";
   
   public function getRequirements(): array {
-    return [1, 3, 8, 15,];
+    return [1, 3, 8, 15, ];
   }
 }
 ?>

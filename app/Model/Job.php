@@ -237,7 +237,7 @@ final class Job {
     $this->orm->userJobs->persistAndFlush($job);
     $message = $this->getResultMessage($job->job->id, $success);
     $result = (object) [
-      "success" => $success , "message" => $message
+      "success" => $success, "message" => $message
     ];
     return $result;
   }

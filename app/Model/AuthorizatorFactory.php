@@ -27,7 +27,7 @@ final class AuthorizatorFactory {
   /** @internal */
   public const ORDER_RESOURCE_NAME = "order";
   /** @internal */
-  public const ORGANIZATION_PRIVILEGES = ["manage", "upgrade", "promote", "demote", "kick",];
+  public const ORGANIZATION_PRIVILEGES = ["manage", "upgrade", "promote", "demote", "kick", ];
   
   /** @var Cache */
   protected $cache;
@@ -114,9 +114,9 @@ final class AuthorizatorFactory {
     foreach($ranks as $id => $rank) {
       $parent = null;
       if($id > 1) {
-        $parent = $type .  "^" . $ranks[$id - 1];
+        $parent = $type . "^" . $ranks[$id - 1];
       }
-      $permission->addRole($type .  "^" . $rank, $parent);
+      $permission->addRole($type . "^" . $rank, $parent);
     }
   }
   
@@ -129,10 +129,10 @@ final class AuthorizatorFactory {
       $permission->allow($roles[$highestRank], $name, $privilege);
     }
   }
-  
+
   /**
-  * Factory for Authorizator
-  */
+   * Factory for Authorizator
+   */
   public function create(): Permission {
     $permission = new Permission();
     

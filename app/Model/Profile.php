@@ -59,11 +59,10 @@ final class Profile {
     }
     return $user->group->path;
   }
-   
-   
-   /**
-    * Get specified user's partner
-    */
+
+  /**
+   * Get specified user's partner
+   */
   public function getPartner(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getActiveMarriage($id);
     if(is_null($marriage)) {
@@ -73,10 +72,10 @@ final class Profile {
     }
     return $marriage->user1;
   }
-   
-   /**
-    * Get specified user's fiance(e)
-    */
+
+  /**
+   * Get specified user's fiance(e)
+   */
   public function getFiance(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getAcceptedMarriage($id);
     if(is_null($marriage)) {

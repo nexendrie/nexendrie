@@ -52,7 +52,7 @@ final class CombatHelper {
       $hpIncrease += $marriage->hpIncrease;
     }
     $maxLife += $hpIncrease;
-    $life  += $hpIncrease;
+    $life += $hpIncrease;
     return ["maxLife" => $maxLife, "life" => $life];
   }
   

@@ -17,9 +17,9 @@ final class AddEditAdventureEnemyFormFactory {
       ->setRequired("Zadej jméno.")
       ->addRule(Form::MAX, "Jméno může mít maximálně 20 znaků.", 20);
     $form->addText("order", "Pořadí:")
-       ->setRequired("Zadej pořadí.")
-       ->addRule(Form::INTEGER, "Pořadí musí být celé číslo.")
-       ->addRule(Form::RANGE, "Pořadí musí být v rozmezí 1-9.", [1, 9]);
+      ->setRequired("Zadej pořadí.")
+      ->addRule(Form::INTEGER, "Pořadí musí být celé číslo.")
+      ->addRule(Form::RANGE, "Pořadí musí být v rozmezí 1-9.", [1, 9]);
     $form->addText("hitpoints", "Životy:")
       ->setRequired("Zadej počet životů.")
       ->addRule(Form::INTEGER, "Počet životů musí být celé číslo.")

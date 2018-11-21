@@ -37,7 +37,7 @@ abstract class BaseAchievement implements IAchievement {
     $message = $this->description;
     $newCount = Arrays::get($this->getRequirements(), $currentLevel, Arrays::get($this->getRequirements(), $this->getMaxLevel() - 1));
     $oldCount = $this->getProgress($user);
-    return $this->translator->translate($message, 0, ["oldCount" => $oldCount, "newCount" => $newCount,]);
+    return $this->translator->translate($message, 0, ["oldCount" => $oldCount, "newCount" => $newCount, ]);
   }
   
   public function getMaxLevel(): int {

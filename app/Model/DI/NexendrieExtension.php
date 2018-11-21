@@ -112,7 +112,7 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition($this->prefix("model.locale"))
       ->setType(Nexendrie\Model\Locale::class);
     $builder->addDefinition($this->prefix("model.bank"))
-       ->setType(Nexendrie\Model\Bank::class);
+      ->setType(Nexendrie\Model\Bank::class);
     $builder->addDefinition($this->prefix("model.taxes"))
         ->setType(Nexendrie\Model\Taxes::class);
     $builder->addDefinition($this->prefix("model.monastery"))

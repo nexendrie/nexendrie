@@ -38,7 +38,7 @@ final class AddEditSkillFormFactory {
       ->addConditionOn($form["type"], Form::EQUAL, "combat")
         ->setRequired()
         ->addRule(Form::INTEGER, "Vylepšení vlastnosti musí být celé číslo.")
-        ->addRule(Form::RANGE, "Vylepšení vlastnosti musí být v rozmezí 1-99.", [1,99]);
+        ->addRule(Form::RANGE, "Vylepšení vlastnosti musí být v rozmezí 1-99.", [1, 99]);
     $form->addSubmit("submit", "Odeslat");
     $form->onValidate[] = [$this, "validate"];
     return $form;

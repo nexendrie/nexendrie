@@ -17,7 +17,7 @@ final class TownsOwnedAchievements extends BaseAchievement {
   protected $description = "nexendrie.achievements.townsOwned";
   
   public function getRequirements(): array {
-    return [1, 3, 8,];
+    return [1, 3, 8, ];
   }
 }
 ?>

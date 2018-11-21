@@ -17,7 +17,7 @@ final class LessonsTakenAchievement extends BaseAchievement {
   protected $description = "nexendrie.achievements.lessonsTaken";
   
   public function getRequirements(): array {
-    return [1, 5, 10, 25,];
+    return [1, 5, 10, 25, ];
   }
 }
 ?>

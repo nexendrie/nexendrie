@@ -130,7 +130,7 @@ final class OrderPresenter extends BasePresenter {
       $this->redirect("Homepage:");
     }
     $this->template->order =  $this->model->getUserOrder();
-      $this->template->canUpgrade = $this->model->canUpgrade();
+    $this->template->canUpgrade = $this->model->canUpgrade();
   }
   
   protected function createComponentManageOrderForm(ManageOrderFormFactory $factory): Form {

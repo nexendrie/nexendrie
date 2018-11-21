@@ -123,7 +123,7 @@ final class GuildPresenter extends BasePresenter {
       $this->redirect("Homepage:");
     }
     $this->template->guild =  $this->model->getUserGuild();
-      $this->template->canUpgrade = $this->model->canUpgrade();
+    $this->template->canUpgrade = $this->model->canUpgrade();
   }
   
   protected function createComponentManageGuildForm(ManageGuildFormFactory $factory): Form {

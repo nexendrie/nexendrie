@@ -73,7 +73,7 @@ final class AdventureEnemiesPresenter extends BasePresenter {
     $this->requiresPermissions("content", "edit");
     try {
       $this->npc = $this->model->getNpc($id);
-    } catch (AdventureNpcNotFoundException $e) {
+    } catch(AdventureNpcNotFoundException $e) {
       throw new \Nette\Application\BadRequestException();
     }
   }

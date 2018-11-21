@@ -73,7 +73,7 @@ final class EditUserFormFactory {
     $form->addSelect("group", "Skupina:", $this->getListOfGroups())
       ->setRequired("Vyber skupinu.");
     $form->addSelect("town", "Město", $this->getListOfTowns())
-       ->setRequired("Vyber město.");
+      ->setRequired("Vyber město.");
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");
     $form->onValidate[] = [$this, "validate"];

@@ -13,7 +13,7 @@ use Nette\Localization\ITranslator;
  * @author Jakub Konečný
  */
 final class GuildChatControl extends ChatControl {
-  public function __construct(IDatabaseAdapter $databaseAdapter, \Nexendrie\Orm\Model $orm,  \Nette\Security\User $user, ITranslator $translator) {
+  public function __construct(IDatabaseAdapter $databaseAdapter, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, ITranslator $translator) {
     $userRecord = $orm->users->getById($user->id);
     $guildId = ($userRecord->guild) ? $userRecord->guild->id : 0;
     parent::__construct($databaseAdapter, "guild", $guildId, null, null, $translator);

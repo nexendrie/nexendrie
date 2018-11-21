@@ -99,7 +99,7 @@ final class Monastery {
         return false;
       } elseif(is_null($user->lastTransfer)) {
         return true;
-      } elseif($user->lastTransfer  + $month < time()) {
+      } elseif($user->lastTransfer + $month < time()) {
         return true;
       }
     }

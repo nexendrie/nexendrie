@@ -17,7 +17,7 @@ final class ProducedBeersAchievement extends BaseAchievement {
   protected $description = "nexendrie.achievements.producedBeers";
   
   public function getRequirements(): array {
-    return [1, 8, 17, 32,];
+    return [1, 8, 17, 32, ];
   }
 }
 ?>

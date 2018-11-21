@@ -31,7 +31,7 @@ final class DatabaseImporter {
   /** @var string[] */
   protected $files = [];
   /** @var string[] */
-  protected $allowedFiles = ["structure", "data_basic", "data_test",];
+  protected $allowedFiles = ["structure", "data_basic", "data_test", ];
   /** @var string */
   protected $finalMessage;
   
@@ -89,7 +89,7 @@ final class DatabaseImporter {
   }
   
   public function useBasicData(): void {
-    $files = ["structure", "data_basic",];
+    $files = ["structure", "data_basic", ];
     if($this->extension === "pgsql") {
       $files[] = "final";
     }
@@ -97,7 +97,7 @@ final class DatabaseImporter {
   }
   
   public function useBasicAndTestData(): void {
-    $files = ["structure", "data_basic", "data_test",];
+    $files = ["structure", "data_basic", "data_test", ];
     if($this->extension === "pgsql") {
       $files[] = "final";
     }
