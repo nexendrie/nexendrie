@@ -64,7 +64,7 @@ final class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEf
     ];
     $stats = [
       "id" => "skill{$this->skill->id}Effect", "type" => SkillSpecial::TYPE_BUFF,
-      "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
+      "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
       "stat" => $bonusStats[$this->skill->stat], "value" => $this->skill->statIncrease * $this->level,
     ];
     return [new CharacterEffect($stats)];

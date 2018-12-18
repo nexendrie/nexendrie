@@ -53,7 +53,7 @@ final class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffe
     ];
     $stats = [
       "id" => "itemSet{$this->id}BonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->bonus,
-      "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
+      "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
       "stat" => $bonusStats[$this->stat],
     ];
     return [new CharacterEffect($stats)];

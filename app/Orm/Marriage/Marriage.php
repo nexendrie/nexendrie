@@ -118,7 +118,7 @@ final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEff
     }
     $stats = [
       "id" => "marriageBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->hpIncrease,
-      "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
+      "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
       "stat" => Character::STAT_MAX_HITPOINTS,
     ];
     return [new CharacterEffect($stats)];

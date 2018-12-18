@@ -159,7 +159,7 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
   public function toCombatDamageEffect(): CharacterEffect {
     $stats = [
       "id" => "mount{$this->id}DamageBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->damage,
-      "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
+      "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
       "stat" => Character::STAT_DAMAGE,
     ];
     return new CharacterEffect($stats);
@@ -168,7 +168,7 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
   public function toCombatDefenseEffect(): CharacterEffect {
     $stats = [
       "id" => "mount{$this->id}DefenseBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->armor,
-      "duration" => CharacterEffect::DURATION_COMBAT, "source" => CharacterEffect::SOURCE_EQUIPMENT,
+      "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
       "stat" => Character::STAT_DEFENSE,
     ];
     return new CharacterEffect($stats);
