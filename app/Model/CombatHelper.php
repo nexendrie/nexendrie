@@ -78,21 +78,21 @@ final class CombatHelper {
     $character = new Character($stats, $equipment, [], [], new ConstantInitiativeFormulaParser(1));
     $character->harm($user->maxLife - $user->life);
     if(!is_null($mount)) {
-      $character->addEffectProvider($mount);
+      $character->effectProviders[] = $mount;
     }
     $set = $this->inventoryModel->getUserItemSet($user->id);
     if(!is_null($set)) {
-      $character->addEffectProvider($set);
+      $character->effectProviders[] = $set;
     }
     $marriage = $this->orm->marriages->getActiveMarriage($user->id);
     if(!is_null($marriage)) {
-      $character->addEffectProvider($marriage);
+      $character->effectProviders[] = $marriage;
     }
     $skills = $user->skills->get()->findBy([
       "this->skill->type" => SkillEntity::TYPE_COMBAT, "this->skill->stat!=" => SkillEntity::STAT_HITPOINTS,
     ]);
     foreach($skills as $skill) {
-      $character->addEffectProvider($skill);
+      $character->effectProviders[] = $skill;
     }
     return $character;
   }
