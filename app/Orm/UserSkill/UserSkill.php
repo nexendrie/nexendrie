@@ -60,7 +60,7 @@ final class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEf
     }
     $bonusStats = [
       Skill::STAT_HITPOINTS => Character::STAT_MAX_HITPOINTS, Skill::STAT_DAMAGE => Character::STAT_DAMAGE,
-      Skill::STAT_ARMOR => Character::STAT_DEFENSE,
+      Skill::STAT_ARMOR => Character::STAT_DEFENSE, Skill::STAT_INITIATIVE => Character::STAT_INITIATIVE,
     ];
     $stats = [
       "id" => "skill{$this->skill->id}Effect", "type" => SkillSpecial::TYPE_BUFF,

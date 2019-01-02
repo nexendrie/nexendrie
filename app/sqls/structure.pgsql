@@ -362,7 +362,7 @@ CREATE TABLE "shops" (
 );
 
 CREATE TYPE skills_type AS ENUM ('work','combat'); 
-CREATE TYPE skills_stat AS ENUM ('hitpoints','damage','armor'); 
+CREATE TYPE skills_stat AS ENUM ('hitpoints','damage','armor','initiative');
 CREATE TABLE "skills" (
     "id" SERIAL PRIMARY KEY,
     "name" varchar(50) NOT NULL,

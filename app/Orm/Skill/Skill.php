@@ -29,6 +29,7 @@ final class Skill extends \Nextras\Orm\Entity\Entity {
   public const STAT_HITPOINTS = "hitpoints";
   public const STAT_DAMAGE = "damage";
   public const STAT_ARMOR = "armor";
+  public const STAT_INITIATIVE = "initiative";
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
@@ -59,6 +60,7 @@ final class Skill extends \Nextras\Orm\Entity\Entity {
       static::STAT_HITPOINTS => "maximum životů",
       static::STAT_DAMAGE => "poškození",
       static::STAT_ARMOR => "brnění",
+      static::STAT_INITIATIVE => "iniciativa",
     ];
   }
   

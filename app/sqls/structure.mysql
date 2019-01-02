@@ -469,7 +469,7 @@ CREATE TABLE `skills` (
   `price` int(3) NOT NULL,
   `max_level` int(2) NOT NULL,
   `type` enum('work','combat') NOT NULL,
-  `stat` enum('hitpoints','damage','armor') DEFAULT NULL,
+  `stat` enum('hitpoints','damage','armor','initiative') DEFAULT NULL,
   `stat_increase` int(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
