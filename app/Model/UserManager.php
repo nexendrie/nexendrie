@@ -50,8 +50,11 @@ final class UserManager {
     if(!in_array($type, $types, true)) {
       throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
     }
-    $method = ($type === "username") ? "getByUsername" : "getByPublicname";
-    $row = $this->orm->users->$method($name);
+    if($type === "username") {
+      $row = $this->orm->users->getByUsername($name);
+    } else {
+      $row = $this->orm->users->getByPublicname($name);
+    }
     if(is_null($row)) {
       return true;
     } elseif(!is_int($uid)) {

@@ -106,7 +106,7 @@ final class SettingsRepository {
       $resolver->setAllowedTypes($key, gettype($value));
       if(isset($this->rules[$name][$key])) {
         $resolver->setAllowedValues($key, function($value) use($name, $key) {
-          return call_user_func([$this, $this->rules[$name][$key]], $value);
+          return $this->{$this->rules[$name][$key]}($value);
         });
       }
     }

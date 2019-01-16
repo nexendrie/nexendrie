@@ -136,7 +136,14 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
   }
   
   protected function getterTypeGenderName(): string {
-    return $this->type->{$this->gender . "Name"};
+    switch($this->gender) {
+      case static::GENDER_FEMALE:
+        return $this->type->femaleName;
+      case static::GENDER_YOUNG:
+        return $this->type->youngName;
+      default:
+        return $this->type->maleName;
+    }
   }
   
   public function onBeforeInsert(): void {

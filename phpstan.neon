@@ -17,4 +17,4 @@ parameters:
         - '#Construct empty\(\) is not allowed. Use more strict comparison#'
         - '#Method Nexendrie\\Model\\Job::parseJobHelp\(\) should return string but returns array\|string#'
         - '#Method Nexendrie\\Orm\\[a-zA-Z0-9\\_]::getter[a-zA-Z0-9\\_]() should return int but returns float|int#'
-        - '#Parameter \#1 \$function of function call_user_func expects callable, array\(\$this\(Nexendrie\\Model\\SettingsRepository\), mixed\) given#'
+        - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'
