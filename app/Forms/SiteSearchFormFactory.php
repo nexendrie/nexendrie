@@ -25,6 +25,7 @@ final class SiteSearchFormFactory {
   
   public function create(): Form {
     $form = new Form();
+    $form->setMethod(Form::GET);
     $form->addText("text", "Text:", 25, 25)
       ->addRule(Form::MIN_LENGTH, "Text musí mít alespoň 3 znaky.", 3)
       ->setRequired(true);
