@@ -176,7 +176,9 @@ final class Adventure {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    return $this->orm->adventures->findForLevel($this->user->identity->level);
+    return $this->orm->adventures->findForLevel($this->user->identity->level)->orderBy([
+      "level" => ICollection::ASC, "reward" => ICollection::ASC,
+    ]);
   }
   
   /**
