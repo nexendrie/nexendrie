@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Forms\SiteSearchFormFactory;
+use Nexendrie\Model\OpenSearchDescriptionResponse;
 
 /**
  * SearchPresenter
@@ -14,10 +15,13 @@ use Nexendrie\Forms\SiteSearchFormFactory;
 final class SearchPresenter extends BasePresenter {
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
+  /** @var \Nexendrie\Model\OpenSearch */
+  protected $openSearch;
   
-  public function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\OpenSearch $openSearch) {
     parent::__construct();
     $this->orm = $orm;
+    $this->openSearch = $openSearch;
   }
   
   protected function createComponentSiteSearchForm(SiteSearchFormFactory $factory): Form {
@@ -39,6 +43,21 @@ final class SearchPresenter extends BasePresenter {
       }
     };
     return $form;
+  }
+
+  public function actionUsers(): void {
+    $description = $this->openSearch->createDescription("Uživatelé", "Uživatelé", "Hledat v uživatelích", "uživatelé", "users");
+    $this->sendResponse(new OpenSearchDescriptionResponse($description));
+  }
+
+  public function actionArticlesTitle(): void {
+    $description = $this->openSearch->createDescription("Články 1", "Titulky článků", "Hledat v titulcích článků", "články titulek", "articlesTitles");
+    $this->sendResponse(new OpenSearchDescriptionResponse($description));
+  }
+
+  public function actionArticlesText(): void {
+    $description = $this->openSearch->createDescription("Články 2", "Texty článků", "Hledat v textech článků", "články text", "articlesTexts");
+    $this->sendResponse(new OpenSearchDescriptionResponse($description));
   }
 }
 ?>

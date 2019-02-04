@@ -1,5 +1,6 @@
 Version 1.0.0-beta6+dev
 - discount for learning skills in monastery now determined by library's level
+- added support for OpenSearch
 
 Version 1.0.0-beta6
 - guild/order actions now use acl

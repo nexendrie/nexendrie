@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Nexendrie Short</ShortName>
+  <LongName>Nexendrie Long</LongName>
+  <Description>Description</Description>
+  <Tags>Nexendrie tag1 tag2</Tags>
+  <Url template="http://test.bench/search?text={searchTerms}&amp;type=users&amp;do=siteSearchForm-submit" type="text/html"/>
+  <Language>cs-cz</Language>
+  <AdultContent>false</AdultContent>
+  <Developer>Jakub Konečný</Developer>
+  <SyndicationRight>open</SyndicationRight>
+  <OutputEncoding>UTF-8</OutputEncoding>
+  <InputEncoding>UTF-8</InputEncoding>
+</OpenSearchDescription>
