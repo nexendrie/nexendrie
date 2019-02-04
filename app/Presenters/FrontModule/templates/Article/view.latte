@@ -25,7 +25,11 @@
   {if $article->allowedComments and $user->isAllowed("comment", "add")}
   <p>Přidat komentář:</p>
   {control addCommentForm}
-  {else}
+  {elseif !$article->allowedComments}
   <p>Nelze přidávat komentáře k tomuto článku.</p>
+  {elseif !$user->loggedIn}
+  <p>Komentovat mohou pouze přihlášení uživatelé. <a n:href="User:login">Přihlásit se</a></p>
+  {else}
+  <p>Nemůžeš komentovat, dokud si neodpracuješ svůj trest!</p>
   {/if}
 {/block}
