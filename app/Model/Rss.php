@@ -19,17 +19,14 @@ final class Rss {
   protected $articleModel;
   /** @var LinkGenerator */
   protected $linkGenerator;
-  /** @var Locale */
-  protected $localeModel;
   /** @var Generator */
   protected $generator;
   
   use \Nette\SmartObject;
   
-  public function __construct(Article $articleModel, LinkGenerator $linkGenerator, Locale $localeModel, Generator $generator) {
+  public function __construct(Article $articleModel, LinkGenerator $linkGenerator, Generator $generator) {
     $this->articleModel = $articleModel;
     $this->linkGenerator = $linkGenerator;
-    $this->localeModel = $localeModel;
     $this->generator = $generator;
   }
   
@@ -40,7 +37,6 @@ final class Rss {
     $this->generator->title = "Nexendrie - Novinky";
     $this->generator->description = "Novinky v Nexendrii";
     $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
-    $this->generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
     $this->generator->dataSource = function() {
       $return = new Collection();
       $items = $this->articleModel->listOfNews();
@@ -68,7 +64,6 @@ final class Rss {
     $this->generator->title = "Nexendrie - Komentáře k " . $article->title;
     $this->generator->description = "Komentáře k článku";
     $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
-    $this->generator->dateTimeFormat = $this->localeModel->formats["dateTimeFormat"];
     $this->generator->dataSource = function() use($id) {
       $return = new Collection();
       $comments = $this->articleModel->viewComments($id);
