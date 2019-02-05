@@ -43,7 +43,7 @@ final class NextrasOrmAdapter implements IDatabaseAdapter {
     ])->limitBy($paginator->length, $paginator->offset);
     $collection = new ChatMessagesCollection();
     foreach($messages as $message) {
-      $character = new ChatCharacter($message->user->username, $message->user->publicname);
+      $character = new ChatCharacter($message->user->publicname, $message->user->publicname);
       $collection[] = new ChatMessage($message->id, $message->message, $message->whenS, $character);
     }
     return $collection;
@@ -62,7 +62,7 @@ final class NextrasOrmAdapter implements IDatabaseAdapter {
     ]);
     $collection = new ChatCharactersCollection();
     foreach($characters as $character) {
-      $collection[] = new ChatCharacter($character->username, $character->publicname);
+      $collection[] = new ChatCharacter($character->publicname, $character->publicname);
     }
     return $collection;
   }
