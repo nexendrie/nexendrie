@@ -8,6 +8,7 @@ use Nexendrie\Rss\Generator;
 use Nexendrie\Rss\RssChannelItem as Item;
 use Nexendrie\Rss\Collection;
 use Nette\Application\LinkGenerator;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Rss channel generator
@@ -69,7 +70,7 @@ final class Rss {
     $this->generator->language = "cs";
     $this->generator->dataSource = function() use($id) {
       $return = new Collection();
-      $comments = $this->articleModel->viewComments($id);
+      $comments = $this->articleModel->viewComments($id)->orderBy("added", ICollection::DESC);
       /** @var \Nexendrie\Orm\Comment $comment */
       foreach($comments as $comment) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
