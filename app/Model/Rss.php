@@ -47,7 +47,7 @@ final class Rss {
       /** @var \Nexendrie\Orm\Article $row */
       foreach($items as $row) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
-        $return[] = new Item($row->title, $row->text, $link, $row->addedAt);
+        $return[] = new Item($row->title, $row->text, $link, $row->added);
       }
       return $return;
     };
@@ -76,7 +76,7 @@ final class Rss {
       foreach($comments as $comment) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
         $link .= "#comment-$comment->id";
-        $return[] = new Item($comment->title, $comment->text, $link, $comment->addedAt);
+        $return[] = new Item($comment->title, $comment->text, $link, $comment->added);
       }
       return $return;
     };

@@ -31,7 +31,7 @@ trait TPresenter {
       Assert::same(200, $this->getReturnCode());
       Assert::type(RssResponse::class, $response);
       
-      $dom = \Tester\DomQuery::fromXml($response->getSource()->asXML());
+      $dom = \Tester\DomQuery::fromXml($response->source);
       Assert::true($dom->has('rss'), "missing 'rss' element");
       Assert::true($dom->has('channel'), "missing 'channel' element");
       Assert::true($dom->has('title'), "missing 'title' element");

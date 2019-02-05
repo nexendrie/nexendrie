@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee6d5f83b8a0113ab7f7df02900ee379",
+    "content-hash": "653458b81dbb8ec7702ae91cd8c7400e",
     "packages": [
         {
             "name": "heroesofabenez/chat",
@@ -72,12 +72,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "973c41438ddb18714ccea06a77331ba56abfc187"
+                "reference": "5d9660771cec1f03b551dcbc85ea93d7c42ab740"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=973c41438ddb18714ccea06a77331ba56abfc187",
-                "reference": "973c41438ddb18714ccea06a77331ba56abfc187",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=5d9660771cec1f03b551dcbc85ea93d7c42ab740",
+                "reference": "5d9660771cec1f03b551dcbc85ea93d7c42ab740",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +120,7 @@
             "keywords": [
                 "combat"
             ],
-            "time": "2019-01-16T14:48:49+00:00"
+            "time": "2019-01-18T15:25:46+00:00"
         },
         {
             "name": "kdyby/autowired",
@@ -681,23 +681,23 @@
         },
         {
             "name": "nette/di",
-            "version": "v2.4.14",
+            "version": "v2.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/di.git",
-                "reference": "923da3e2c0aa53162ef455472c0ac7787b096c5a"
+                "reference": "d0561b8f77e8ef2ed6d83328860e16c81a5a8649"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/di/zipball/923da3e2c0aa53162ef455472c0ac7787b096c5a",
-                "reference": "923da3e2c0aa53162ef455472c0ac7787b096c5a",
+                "url": "https://api.github.com/repos/nette/di/zipball/d0561b8f77e8ef2ed6d83328860e16c81a5a8649",
+                "reference": "d0561b8f77e8ef2ed6d83328860e16c81a5a8649",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
                 "nette/neon": "^2.3.3 || ~3.0.0",
-                "nette/php-generator": "^2.6.1 || ~3.0.0",
-                "nette/utils": "^2.4.3 || ~3.0.0",
+                "nette/php-generator": "^2.6.1 || ^3.0.0",
+                "nette/utils": "^2.5.0 || ~3.0.0",
                 "php": ">=5.6.0"
             },
             "conflict": {
@@ -746,7 +746,7 @@
                 "nette",
                 "static"
             ],
-            "time": "2018-09-17T15:47:40+00:00"
+            "time": "2019-01-30T13:26:05+00:00"
         },
         {
             "name": "nette/finder",
@@ -1013,21 +1013,21 @@
         },
         {
             "name": "nette/php-generator",
-            "version": "v3.0.5",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/php-generator.git",
-                "reference": "ea90209c2e8a7cd087b2742ca553c047a8df5eff"
+                "reference": "9de4e093a130f7a1bd175198799ebc0efbac6924"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/php-generator/zipball/ea90209c2e8a7cd087b2742ca553c047a8df5eff",
-                "reference": "ea90209c2e8a7cd087b2742ca553c047a8df5eff",
+                "url": "https://api.github.com/repos/nette/php-generator/zipball/9de4e093a130f7a1bd175198799ebc0efbac6924",
+                "reference": "9de4e093a130f7a1bd175198799ebc0efbac6924",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^2.4.2 || ~3.0.0",
-                "php": ">=7.0"
+                "php": ">=7.1"
             },
             "conflict": {
                 "nette/nette": "<2.2"
@@ -1039,7 +1039,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.2-dev"
                 }
             },
             "autoload": {
@@ -1063,7 +1063,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "🐘 Nette PHP Generator: generates neat PHP code for you. Supports new PHP 7.2 features.",
+            "description": "🐘 Nette PHP Generator: generates neat PHP code for you. Supports new PHP 7.3 features.",
             "homepage": "https://nette.org",
             "keywords": [
                 "code",
@@ -1071,7 +1071,7 @@
                 "php",
                 "scaffolding"
             ],
-            "time": "2018-08-09T14:32:27+00:00"
+            "time": "2018-11-27T19:00:14+00:00"
         },
         {
             "name": "nette/reflection",
@@ -1405,12 +1405,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/book-component.git",
-                "reference": "c1b61020c81b1a9fd19f0e05f410284d59d1811e"
+                "reference": "d3986356d17243caf3c5ce6ac9bd968d28d0256e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=c1b61020c81b1a9fd19f0e05f410284d59d1811e",
-                "reference": "c1b61020c81b1a9fd19f0e05f410284d59d1811e",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=d3986356d17243caf3c5ce6ac9bd968d28d0256e",
+                "reference": "d3986356d17243caf3c5ce6ac9bd968d28d0256e",
                 "shasum": ""
             },
             "require": {
@@ -1459,7 +1459,7 @@
                 "component",
                 "nette"
             ],
-            "time": "2019-01-16T14:10:11+00:00"
+            "time": "2019-02-04T12:09:02+00:00"
         },
         {
             "name": "nexendrie/menu",
@@ -1524,27 +1524,27 @@
         },
         {
             "name": "nexendrie/rss",
-            "version": "0.4.0",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/rss.git",
-                "reference": "c077d13166f823d522e9531ada0e35785aa8e84e"
+                "reference": "1a25228f4b0f7f392c4cbbfcecc5e44ec2e2c7f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v3/projects/nexendrie%2Frss/repository/archive.zip?sha=c077d13166f823d522e9531ada0e35785aa8e84e",
-                "reference": "c077d13166f823d522e9531ada0e35785aa8e84e",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=1a25228f4b0f7f392c4cbbfcecc5e44ec2e2c7f4",
+                "reference": "1a25228f4b0f7f392c4cbbfcecc5e44ec2e2c7f4",
                 "shasum": ""
             },
             "require": {
                 "ext-simplexml": "*",
                 "nette/utils": "^2.4",
                 "nexendrie/utils": "^1.0",
-                "php": ">=7.1.0"
+                "php": ">=7.2.0"
             },
             "require-dev": {
                 "nette/application": "^2.4",
-                "nette/di": "^2.4",
+                "nette/di": "^2.4.10",
                 "nexendrie/code-quality": "dev-master",
                 "nexendrie/site-generator": "^1.0",
                 "tracy/tracy": "^2.4"
@@ -1580,27 +1580,27 @@
                 "generator",
                 "rss"
             ],
-            "time": "2017-06-07T20:17:03+00:00"
+            "time": "2019-02-05T15:39:22+00:00"
         },
         {
             "name": "nexendrie/translation",
-            "version": "1.1.2",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/translation.git",
-                "reference": "8d0f243bbd7baffd34af8eb7f4d90ea034724b26"
+                "reference": "e423b0ddb14c011b459282258079c3e6cf0dcea2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=8d0f243bbd7baffd34af8eb7f4d90ea034724b26",
-                "reference": "8d0f243bbd7baffd34af8eb7f4d90ea034724b26",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=e423b0ddb14c011b459282258079c3e6cf0dcea2",
+                "reference": "e423b0ddb14c011b459282258079c3e6cf0dcea2",
                 "shasum": ""
             },
             "require": {
                 "nette/finder": "^2.4",
                 "nette/utils": "^2.4",
                 "nexendrie/utils": "^1.0",
-                "php": ">=7.1.0"
+                "php": ">=7.2.0"
             },
             "require-dev": {
                 "latte/latte": "^2.4",
@@ -1623,7 +1623,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -1654,7 +1654,7 @@
                 "translation",
                 "yaml"
             ],
-            "time": "2018-06-08T15:45:14+00:00"
+            "time": "2019-02-05T15:46:19+00:00"
         },
         {
             "name": "nexendrie/utils",
@@ -1772,16 +1772,16 @@
         },
         {
             "name": "nextras/orm",
-            "version": "v3.0.1",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/orm.git",
-                "reference": "a95640814d806ef8cfd16a21ea7c87b23c9556bb"
+                "reference": "d05c14730c0f48b7474ffe79925f7b40e6778cb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/orm/zipball/a95640814d806ef8cfd16a21ea7c87b23c9556bb",
-                "reference": "a95640814d806ef8cfd16a21ea7c87b23c9556bb",
+                "url": "https://api.github.com/repos/nextras/orm/zipball/d05c14730c0f48b7474ffe79925f7b40e6778cb4",
+                "reference": "d05c14730c0f48b7474ffe79925f7b40e6778cb4",
                 "shasum": ""
             },
             "require": {
@@ -1830,7 +1830,7 @@
                 "nextras",
                 "orm"
             ],
-            "time": "2018-03-05T20:06:45+00:00"
+            "time": "2019-02-02T16:29:06+00:00"
         },
         {
             "name": "stekycz/critical-section",
@@ -1945,16 +1945,16 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.2.2",
+            "version": "v4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "fbcb106aeee72f3450298bf73324d2cc00d083d1"
+                "reference": "831b272963a8aa5a0613a1a7f013322d8161bbbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/fbcb106aeee72f3450298bf73324d2cc00d083d1",
-                "reference": "fbcb106aeee72f3450298bf73324d2cc00d083d1",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/831b272963a8aa5a0613a1a7f013322d8161bbbb",
+                "reference": "831b272963a8aa5a0613a1a7f013322d8161bbbb",
                 "shasum": ""
             },
             "require": {
@@ -1995,7 +1995,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2019-01-03T09:07:35+00:00"
+            "time": "2019-01-16T21:31:25+00:00"
         },
         {
             "name": "tracy/tracy",
@@ -2067,16 +2067,16 @@
     "packages-dev": [
         {
             "name": "composer/xdebug-handler",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "dc523135366eb68f22268d069ea7749486458562"
+                "reference": "d17708133b6c276d6e42ef887a877866b909d892"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/dc523135366eb68f22268d069ea7749486458562",
-                "reference": "dc523135366eb68f22268d069ea7749486458562",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/d17708133b6c276d6e42ef887a877866b909d892",
+                "reference": "d17708133b6c276d6e42ef887a877866b909d892",
                 "shasum": ""
             },
             "require": {
@@ -2107,7 +2107,7 @@
                 "Xdebug",
                 "performance"
             ],
-            "time": "2018-11-29T10:59:02+00:00"
+            "time": "2019-01-28T20:25:53+00:00"
         },
         {
             "name": "dg/ftp-deployment",
@@ -2801,16 +2801,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.11",
+            "version": "0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "cfb0b43021fb75abe853ab8d88d22cdb37596697"
+                "reference": "a138b8a2731b2c19f1dffa2f1411984a638fe977"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/cfb0b43021fb75abe853ab8d88d22cdb37596697",
-                "reference": "cfb0b43021fb75abe853ab8d88d22cdb37596697",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a138b8a2731b2c19f1dffa2f1411984a638fe977",
+                "reference": "a138b8a2731b2c19f1dffa2f1411984a638fe977",
                 "shasum": ""
             },
             "require": {
@@ -2870,7 +2870,7 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2019-01-15T14:21:47+00:00"
+            "time": "2019-01-19T20:23:08+00:00"
         },
         {
             "name": "phpstan/phpstan-nette",
@@ -3081,16 +3081,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.2.2",
+            "version": "v4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "b0a03c1bb0fcbe288629956cf2f1dd3f1dc97522"
+                "reference": "1f0ad51dfde4da8a6070f06adc58b4e37cbb37a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/b0a03c1bb0fcbe288629956cf2f1dd3f1dc97522",
-                "reference": "b0a03c1bb0fcbe288629956cf2f1dd3f1dc97522",
+                "url": "https://api.github.com/repos/symfony/console/zipball/1f0ad51dfde4da8a6070f06adc58b4e37cbb37a4",
+                "reference": "1f0ad51dfde4da8a6070f06adc58b4e37cbb37a4",
                 "shasum": ""
             },
             "require": {
@@ -3102,6 +3102,9 @@
                 "symfony/dependency-injection": "<3.4",
                 "symfony/process": "<3.3"
             },
+            "provide": {
+                "psr/log-implementation": "1.0"
+            },
             "require-dev": {
                 "psr/log": "~1.0",
                 "symfony/config": "~3.4|~4.0",
@@ -3111,7 +3114,7 @@
                 "symfony/process": "~3.4|~4.0"
             },
             "suggest": {
-                "psr/log-implementation": "For using the console logger",
+                "psr/log": "For using the console logger",
                 "symfony/event-dispatcher": "",
                 "symfony/lock": "",
                 "symfony/process": ""
@@ -3146,7 +3149,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-01-04T15:13:53+00:00"
+            "time": "2019-01-25T14:35:16+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -3218,16 +3221,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.2.2",
+            "version": "v4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "9094d69e8c6ee3fe186a0ec5a4f1401e506071ce"
+                "reference": "ef71816cbb264988bb57fe6a73f610888b9aa70c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/9094d69e8c6ee3fe186a0ec5a4f1401e506071ce",
-                "reference": "9094d69e8c6ee3fe186a0ec5a4f1401e506071ce",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/ef71816cbb264988bb57fe6a73f610888b9aa70c",
+                "reference": "ef71816cbb264988bb57fe6a73f610888b9aa70c",
                 "shasum": ""
             },
             "require": {
@@ -3263,7 +3266,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-01-03T09:07:35+00:00"
+            "time": "2019-01-16T20:35:37+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -3333,7 +3336,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.2.0"
+        "php": ">=7.2.0",
+        "ext-simplexml": "*"
     },
     "platform-dev": []
 }
