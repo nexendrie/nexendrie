@@ -37,13 +37,15 @@ final class Rss {
     $this->generator->title = "Nexendrie - Novinky";
     $this->generator->description = "Novinky v Nexendrii";
     $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
+    $this->generator->language = "cs";
     $this->generator->dataSource = function() {
       $return = new Collection();
       $items = $this->articleModel->listOfNews();
       /** @var \Nexendrie\Orm\Article $row */
       foreach($items as $row) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
-        $return[] = new Item($row->title, $row->text, $link, $row->added);
+        $return[] = $item = new Item($row->title, $row->text, $link, $row->added);
+        $item->comments = $link . "#comments";
       }
       return $return;
     };
@@ -64,6 +66,7 @@ final class Rss {
     $this->generator->title = "Nexendrie - Komentáře k " . $article->title;
     $this->generator->description = "Komentáře k článku";
     $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
+    $this->generator->language = "cs";
     $this->generator->dataSource = function() use($id) {
       $return = new Collection();
       $comments = $this->articleModel->viewComments($id);
