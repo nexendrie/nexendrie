@@ -18,3 +18,5 @@ parameters:
         - '#Method Nexendrie\\Model\\Job::parseJobHelp\(\) should return string but returns array\|string#'
         - '#Method Nexendrie\\Orm\\[a-zA-Z0-9\\_]::getter[a-zA-Z0-9\\_]() should return int but returns float|int#'
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'
+        # until we use Nette 3
+        - '#Dynamic call to static method Nette\\Security\\Passwords::[a-z]+\(\)#'

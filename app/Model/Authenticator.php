@@ -22,13 +22,16 @@ final class Authenticator implements IAuthenticator {
   protected $orm;
   /** @var User */
   protected $user;
+  /** @var Passwords */
+  protected $passwords;
   /** @var array */
   protected $roles;
   
   use \Nette\SmartObject;
   
-  public function __construct(ORM $orm, SettingsRepository $sr) {
+  public function __construct(ORM $orm, SettingsRepository $sr, Passwords $passwords) {
     $this->orm = $orm;
+    $this->passwords = $passwords;
     $this->roles = $sr->settings["roles"];
   }
   
@@ -72,7 +75,7 @@ final class Authenticator implements IAuthenticator {
     if(is_null($user)) {
       throw new AuthenticationException("User not found.", static::IDENTITY_NOT_FOUND);
     }
-    if(!Passwords::verify($password, $user->password)) {
+    if(!$this->passwords->verify($password, $user->password)) {
       throw new AuthenticationException("Invalid password.", static::INVALID_CREDENTIAL);
     }
     $user->lastActive = time();

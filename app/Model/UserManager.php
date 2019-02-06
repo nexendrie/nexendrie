@@ -20,6 +20,8 @@ final class UserManager {
   protected $orm;
   /** @var User */
   protected $user;
+  /** @var Passwords */
+  protected $passwords;
   /** @var array */
   protected $roles = [];
   /** @var array */
@@ -31,9 +33,10 @@ final class UserManager {
   
   use \Nette\SmartObject;
   
-  public function __construct(ORM $orm, SettingsRepository $sr, User $user) {
+  public function __construct(ORM $orm, SettingsRepository $sr, User $user, Passwords $passwords) {
     $this->orm = $orm;
     $this->user = $user;
+    $this->passwords = $passwords;
     $this->roles = $sr->settings["roles"];
     $this->newUser = $sr->settings["newUser"];
   }
@@ -100,7 +103,7 @@ final class UserManager {
     $data += $this->newUser;
     foreach($data as $key => $value) {
       if($key === "password") {
-        $value = Passwords::hash($data["password"]);
+        $value = $this->passwords->hash($data["password"]);
       }
       $user->$key = $value;
     }
@@ -149,10 +152,10 @@ final class UserManager {
       switch($key) {
         case "password_new":
           if(!empty($value)) {
-            if(!Passwords::verify($settings["password_old"], $user->password)) {
+            if(!$this->passwords->verify($settings["password_old"], $user->password)) {
               throw new SettingsException("Invalid password.", static::SET_INVALID_PASSWORD);
             }
-            $user->password = Passwords::hash($value);
+            $user->password = $this->passwords->hash($value);
           }
           unset($settings[$key], $settings["password_old"], $settings["password_check"]);
   break;
