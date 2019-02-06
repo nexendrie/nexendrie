@@ -22,7 +22,7 @@ final class SkillsTest extends \Tester\TestCase {
   public function testListOfSkills() {
     $result1 = $this->model->listOfSkills();
     Assert::type(ICollection::class, $result1);
-    Assert::count(9, $result1);
+    Assert::count(10, $result1);
     $result2 = $this->model->listOfSkills(Skill::TYPE_COMBAT);
     Assert::type(ICollection::class, $result2);
     Assert::count(3, $result2);

@@ -129,7 +129,13 @@ INSERT INTO job_messages ("job", "success", "message") VALUES
   (4,TRUE,'Uklidnil(a) jsi rozzuřený dav.'),
   (6,TRUE,'Podařilo se ti prodat zboží.'),
   (6,FALSE,'Na cestě do sousedního města tě přepadli lupiči.'),
-  (6,FALSE,'Tvé zboží nechtěl nikdo koupit.');
+  (6,FALSE,'Tvé zboží nechtěl nikdo koupit.'),
+  (9,FALSE,	'Přinesl(a) jsi špatnou surovinu.'),
+  (9,FALSE,	'Poranil(a) jsi se při krájení.'),
+  (11,TRUE,	'Ochránil(a) jsi obchodníka před lupiči.'),
+  (11,TRUE,	'Prošli jste bez obtíží tímto úsekem.'),
+  (11,FALSE,	'Lupiči ukradli část zboží.'),
+  (11,FALSE,	'Při boji jsi poškodil(a) část zboží.');
 
 INSERT INTO jobs ("name", "description", "help", "count", "award", "shift", "level", "needed_skill", "needed_skill_level") VALUES
   ('Rybář','Rybář loví v řece ryby a následně je prodává.','Lovit můžeš každých 70 minut a za 1 ulovenou rybu dostaneš %reward%. Pamatuj ale, že lov se nemusí vždy podařit!',0,2,70,50,1,0),
@@ -139,7 +145,10 @@ INSERT INTO jobs ("name", "description", "help", "count", "award", "shift", "lev
   ('Písař','Písař píše zápisy a listiny. Také přepisuje knihy.','Tak už se dej do psaní. Musíš zvládnout alespoň %count% směn po hodině a půl, aby sis zasloužil %reward%. Jestli tam ale bude mnoho chyb, tak ti to strhnu!',15,180,90,100,3,1),
   ('Kupec','Kupec nakupuje zboží a následně jej jinde za vyšší cenu prodává.','Nakup nějaké zboží a pokus se jej prodat v sousedním městě.',0,8,120,100,6,1),
   ('Bankovní úředník','Banka Žajských potřebuje posily do místní pobočky. Nejvíce jsou potřeba úředníci na příjem a výdej hotovosti. Požadují se zkušenosti s obchodní činností.','Musíš obsluhovat klienty přicházející do banky. Aby sis zasloužil %reward%, musíš zvládnout alespoň %count% hodin.',20,220,60,100,6,2),
-  ('Žoldnéř','Pohraniční oblasti byly napadeny našimi sousedy a místní páni nemají dostatek mužů, aby odrazili nepřátele. Slibují odměnu za pomoc.','Braň vesnici proti útokům cizáků.',0,10,90,400,5,2);
+  ('Žoldnéř','Pohraniční oblasti byly napadeny našimi sousedy a místní páni nemají dostatek mužů, aby odrazili nepřátele. Slibují odměnu za pomoc.','Braň vesnici proti útokům cizáků.',0,10,90,400,5,2),
+  ('Pomocník v kuchyni',	'Místní pán má nedostatek lidí v kuchyni. Budeš jen nosit či upravovat jednotlivé suroviny.',	'Přines to a tamto. A pospěš si nebo nedostaneš %reward% za tuhle hodinu!',	0,	3,	60,	50,	10,	0),
+  ('Kuchař',	'Jeden z kuchařů místního pána je nemocný. Dokážeš jej zastoupit?',	'Pán chce k večeři pečené holuby. Nekoukej tak a dej se do práce!',	12,	110,	60,	90,	10,	1),
+  ('Tělesný strážce',	'Významný obchodník potřebuje ochranu během obchodní cesty.',	'Braň obchodníka!',	20,	250,	45,	400,	5,	3);
 
 INSERT INTO meals ("name", "message", "price", "life") VALUES
   ('Placka','Tady to je. Nesnáším výrobu ovesných placek, ale za těch 5 grošů to udělám.',5,2),
@@ -207,7 +216,8 @@ INSERT INTO skills ("name", "price", "max_level", "type", "stat", "stat_increase
   ('Obchodování',35,5,'work',NULL,0),
   ('Výdrž',50,10,'combat','hitpoints',5),
   ('Houževnatost',50,5,'combat','armor',1),
-  ('Síla',50,5,'combat','damage',1);
+  ('Síla',50,5,'combat','damage',1),
+  ('Vaření',	20,	5,	'work',	NULL,	0);
 
 INSERT INTO towns ("name", "description", "founded", "owner", "price", "on_market") VALUES
   ('Velehrad','Starobylé hlavní město',1429779664,0,5000,FALSE),

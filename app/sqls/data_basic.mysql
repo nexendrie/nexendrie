@@ -114,7 +114,10 @@ INSERT INTO `jobs` (`id`, `name`, `description`, `help`, `count`, `award`, `shif
   (5,	'Písař',	'Písař píše zápisy a listiny. Také přepisuje knihy.',	'Tak už se dej do psaní. Musíš zvládnout alespoň %count% směn po hodině a půl, aby sis zasloužil %reward%. Jestli tam ale bude mnoho chyb, tak ti to strhnu!',	15,	180,	90,	100,	3,	1),
   (6,	'Kupec',	'Kupec nakupuje zboží a následně jej jinde za vyšší cenu prodává.',	'Nakup nějaké zboží a pokus se jej prodat v sousedním městě.',	0,	8,	120,	100,	6,	1),
   (7,	'Bankovní úředník',	'Banka Žajských potřebuje posily do místní pobočky. Nejvíce jsou potřeba úředníci na příjem a výdej hotovosti. Požadují se zkušenosti s obchodní činností.',	'Musíš obsluhovat klienty přicházející do banky. Aby sis zasloužil %reward%, musíš zvládnout alespoň %count% hodin.',	20,	220,	60,	100,	6,	2),
-  (8,	'Žoldnéř',	'Pohraniční oblasti byly napadeny našimi sousedy a místní páni nemají dostatek mužů, aby odrazili nepřátele. Slibují odměnu za pomoc.',	'Braň vesnici proti útokům cizáků.',	0,	10,	90,	400,	5,	2);
+  (8,	'Žoldnéř',	'Pohraniční oblasti byly napadeny našimi sousedy a místní páni nemají dostatek mužů, aby odrazili nepřátele. Slibují odměnu za pomoc.',	'Braň vesnici proti útokům cizáků.',	0,	10,	90,	400,	5,	2),
+  (9,	'Pomocník v kuchyni',	'Místní pán má nedostatek lidí v kuchyni. Budeš jen nosit či upravovat jednotlivé suroviny.',	'Přines to a tamto. A pospěš si nebo nedostaneš %reward% za tuhle hodinu!',	0,	3,	60,	50,	10,	0),
+  (10,	'Kuchař',	'Jeden z kuchařů místního pána je nemocný. Dokážeš jej zastoupit?',	'Pán chce k večeři pečené holuby. Nekoukej tak a dej se do práce!',	12,	110,	60,	90,	10,	1),
+  (11,	'Tělesný strážce',	'Významný obchodník potřebuje ochranu během obchodní cesty.',	'Braň obchodníka!',	20,	250,	45,	400,	5,	3);
 
 INSERT INTO `job_messages` (`id`, `job`, `success`, `message`) VALUES
   (1,	1,	1,	'Ulovil(a) jsi a prodal(a) 1 rybu.'),
@@ -139,7 +142,13 @@ INSERT INTO `job_messages` (`id`, `job`, `success`, `message`) VALUES
   (20,	4,	1,	'Uklidnil(a) jsi rozzuřený dav.'),
   (21,	6,	1,	'Podařilo se ti prodat zboží.'),
   (22,	6,	0,	'Na cestě do sousedního města tě přepadli lupiči.'),
-  (23,	6,	0,	'Tvé zboží nechtěl nikdo koupit.');
+  (23,	6,	0,	'Tvé zboží nechtěl nikdo koupit.'),
+  (24,	9,	0,	'Přinesl(a) jsi špatnou surovinu.'),
+  (25,	9,	0,	'Poranil(a) jsi se při krájení.'),
+  (26,	11,	1,	'Ochránil(a) jsi obchodníka před lupiči.'),
+  (27,	11,	1,	'Prošli jste bez obtíží tímto úsekem.'),
+  (28,	11,	0,	'Lupiči ukradli část zboží.'),
+  (29,	11,	0,	'Při boji jsi poškodil(a) část zboží.');
 
 INSERT INTO `meals` (`id`, `name`, `message`, `price`, `life`) VALUES
   (1,	'Placka',	'Tady to je. Nesnáším výrobu ovesných placek, ale za těch 5 grošů to udělám.',	5,	2),
@@ -204,7 +213,8 @@ INSERT INTO `skills` (`id`, `name`, `price`, `max_level`, `type`, `stat`, `stat_
   (6,	'Obchodování',	35,	5,	'work',	NULL,	0),
   (7,	'Výdrž',	50,	10,	'combat',	'hitpoints',	5),
   (8,	'Houževnatost',	50,	5,	'combat',	'armor',	1),
-  (9,	'Síla',	50,	5,	'combat',	'damage',	1);
+  (9,	'Síla',	50,	5,	'combat',	'damage',	1),
+  (10,	'Vaření',	20,	5,	'work',	NULL,	0);
 
 INSERT INTO `towns` (`id`, `name`, `description`, `founded`, `owner`, `price`, `on_market`) VALUES
   (1,	'Velehrad',	'Starobylé hlavní město',	1429779664,	0,	5000,	0),
