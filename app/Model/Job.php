@@ -209,7 +209,7 @@ final class Job {
       }
       $i++;
     }
-    return $message;
+    return $this->localeModel->genderMessage($message);
   }
   
   /**
