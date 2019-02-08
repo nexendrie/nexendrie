@@ -21,11 +21,11 @@ final class OpenSearch {
   public function createDescription(string $shortName, string $longName, string $description, string $tags, string $searchType): string {
     /** @var \SimpleXMLElement $xml */
     $xml = simplexml_load_file(__DIR__ . "/openSearchDescription.xml");
-    $xml->ShortName[0][0] .= $shortName;
+    $xml->ShortName .= $shortName;
     $versionSuffix = $this->sr->settings["site"]["versionSuffix"];
-    $xml->LongName[0][0] .= ($versionSuffix !== "") ? $versionSuffix . " " : "" . $longName;
-    $xml->Tags[0][0] .= $tags;
-    $xml->Description[0][0] = $description;
+    $xml->LongName .= ($versionSuffix !== "") ? $versionSuffix . " " : "" . $longName;
+    $xml->Tags .= $tags;
+    $xml->Description = $description;
     $url = $this->lg->link("Front:Search:default", [
       "text" => "searchTerms", "type" => $searchType, "do" => "siteSearchForm-submit",
     ]);
