@@ -37,9 +37,9 @@
         "nella/forms-datetime": "^2.4",
         "nexendrie/book-component": "^2.0",
         "nexendrie/translation": "^1.2",
-        "nexendrie/rss": "^0.5",
+        "nexendrie/rss": "^0.6",
         "nexendrie/menu": "^2.1",
-        "nexendrie/utils": "^1.5.1",
+        "nexendrie/utils": "^1.6",
         "symfony/options-resolver": "^4.0",
         "heroesofabenez/chat": "^1.0",
         "heroesofabenez/combat": "^1.0"

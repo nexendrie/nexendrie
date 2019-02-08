@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "653458b81dbb8ec7702ae91cd8c7400e",
+    "content-hash": "478809c862cd7975c020383eb1831082",
     "packages": [
         {
             "name": "heroesofabenez/chat",
@@ -72,19 +72,19 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "5d9660771cec1f03b551dcbc85ea93d7c42ab740"
+                "reference": "7038ba73567cee7bc7a54cfbae56ad5853e2cedd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=5d9660771cec1f03b551dcbc85ea93d7c42ab740",
-                "reference": "5d9660771cec1f03b551dcbc85ea93d7c42ab740",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=7038ba73567cee7bc7a54cfbae56ad5853e2cedd",
+                "reference": "7038ba73567cee7bc7a54cfbae56ad5853e2cedd",
                 "shasum": ""
             },
             "require": {
                 "latte/latte": "^2.4",
                 "nette/utils": "^2.4",
                 "nexendrie/translation": "^1.1.1",
-                "nexendrie/utils": "^1.5.1",
+                "nexendrie/utils": "^1.6",
                 "php": ">=7.2.0",
                 "symfony/options-resolver": "^4.0"
             },
@@ -120,7 +120,7 @@
             "keywords": [
                 "combat"
             ],
-            "time": "2019-01-18T15:25:46+00:00"
+            "time": "2019-02-08T20:15:25+00:00"
         },
         {
             "name": "kdyby/autowired",
@@ -1139,32 +1139,29 @@
         },
         {
             "name": "nette/safe-stream",
-            "version": "v2.3.3",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/safe-stream.git",
-                "reference": "0fcd45ae82be5817f4b3ad25bc8955968f355412"
+                "reference": "5e46d5fe397956d697501785d50b16fecea8e935"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/safe-stream/zipball/0fcd45ae82be5817f4b3ad25bc8955968f355412",
-                "reference": "0fcd45ae82be5817f4b3ad25bc8955968f355412",
+                "url": "https://api.github.com/repos/nette/safe-stream/zipball/5e46d5fe397956d697501785d50b16fecea8e935",
+                "reference": "5e46d5fe397956d697501785d50b16fecea8e935",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.1"
-            },
-            "conflict": {
-                "nette/nette": "<2.2"
+                "php": ">=7.1"
             },
             "require-dev": {
-                "nette/tester": "~1.7",
+                "nette/tester": "^2.0",
                 "tracy/tracy": "^2.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -1196,7 +1193,7 @@
                 "nette",
                 "safe"
             ],
-            "time": "2017-07-13T18:20:37+00:00"
+            "time": "2019-02-06T00:22:25+00:00"
         },
         {
             "name": "nette/security",
@@ -1524,23 +1521,25 @@
         },
         {
             "name": "nexendrie/rss",
-            "version": "0.5.0",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/rss.git",
-                "reference": "1a25228f4b0f7f392c4cbbfcecc5e44ec2e2c7f4"
+                "reference": "e9f6a4c2d510e8d376789a2e9415521fae2ea607"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=1a25228f4b0f7f392c4cbbfcecc5e44ec2e2c7f4",
-                "reference": "1a25228f4b0f7f392c4cbbfcecc5e44ec2e2c7f4",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=e9f6a4c2d510e8d376789a2e9415521fae2ea607",
+                "reference": "e9f6a4c2d510e8d376789a2e9415521fae2ea607",
                 "shasum": ""
             },
             "require": {
+                "ext-dom": "*",
                 "ext-simplexml": "*",
                 "nette/utils": "^2.4",
-                "nexendrie/utils": "^1.0",
-                "php": ">=7.2.0"
+                "nexendrie/utils": "^1.3",
+                "php": ">=7.2.0",
+                "symfony/options-resolver": "^4.0"
             },
             "require-dev": {
                 "nette/application": "^2.4",
@@ -1580,7 +1579,7 @@
                 "generator",
                 "rss"
             ],
-            "time": "2019-02-05T15:39:22+00:00"
+            "time": "2019-02-08T20:21:58+00:00"
         },
         {
             "name": "nexendrie/translation",
@@ -1658,16 +1657,16 @@
         },
         {
             "name": "nexendrie/utils",
-            "version": "1.5.1",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/utils.git",
-                "reference": "86e3373ddc7ee7a47ec9e626ee2f7924f094e9db"
+                "reference": "40fdc0cd5591e63e2e20be50aea920be1c202514"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Futils/repository/archive.zip?sha=86e3373ddc7ee7a47ec9e626ee2f7924f094e9db",
-                "reference": "86e3373ddc7ee7a47ec9e626ee2f7924f094e9db",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Futils/repository/archive.zip?sha=40fdc0cd5591e63e2e20be50aea920be1c202514",
+                "reference": "40fdc0cd5591e63e2e20be50aea920be1c202514",
                 "shasum": ""
             },
             "require": {
@@ -1681,7 +1680,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -1710,7 +1709,7 @@
                 "range",
                 "utils"
             ],
-            "time": "2019-01-01T10:09:12+00:00"
+            "time": "2019-02-08T19:57:39+00:00"
         },
         {
             "name": "nextras/dbal",

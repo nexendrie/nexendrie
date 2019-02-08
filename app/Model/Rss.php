@@ -35,10 +35,10 @@ final class Rss {
    * Generate feed for news
    */
   public function newsFeed(): RssResponse {
-    $this->generator->title = "Nexendrie - Novinky";
-    $this->generator->description = "Novinky v Nexendrii";
-    $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
-    $this->generator->language = "cs";
+    $info = [
+      "title" => "Nexendrie - Novinky", "description" => "Novinky v Nexendrii",
+      "link" => $this->linkGenerator->link("Front:Homepage:default"), "language" => "cs",
+    ];
     $this->generator->dataSource = function() {
       $return = new Collection();
       $items = $this->articleModel->listOfNews();
@@ -50,7 +50,7 @@ final class Rss {
       }
       return $return;
     };
-    return $this->generator->response();
+    return $this->generator->response($info);
   }
   
   /**
@@ -64,10 +64,10 @@ final class Rss {
     } catch(ArticleNotFoundException $e) {
       throw $e;
     }
-    $this->generator->title = "Nexendrie - Komentáře k " . $article->title;
-    $this->generator->description = "Komentáře k článku";
-    $this->generator->link = $this->linkGenerator->link("Front:Homepage:default");
-    $this->generator->language = "cs";
+    $info = [
+      "title" => "Nexendrie - Komentáře k " . $article->title, "description" => "Komentáře k článku " . $article->title,
+      "link" => $this->linkGenerator->link("Front:Homepage:default"), "language" => "cs",
+    ];
     $this->generator->dataSource = function() use($id) {
       $return = new Collection();
       $comments = $this->articleModel->viewComments($id)->orderBy("added", ICollection::DESC);
@@ -79,7 +79,7 @@ final class Rss {
       }
       return $return;
     };
-    return $this->generator->response();
+    return $this->generator->response($info);
   }
 }
 ?>
