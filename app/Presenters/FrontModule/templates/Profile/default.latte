@@ -1,5 +1,5 @@
 {layout "../@layout.latte"}
-{block title}Profil{/block}
+{block title}{$profile->publicname}{/block}
 {block content}
   <h1>{$profile->title} {$profile->publicname}</h1>
   <p>

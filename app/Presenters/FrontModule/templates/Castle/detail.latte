@@ -1,5 +1,5 @@
 {layout "../@layout.latte"}
-{block title}Hrad{/block}
+{block title}{$castle->name}{/block}
 {block content}
   <h1>{$castle->name}</h1>
   <p>{$castle->name} postavil{if $castle->owner->gender === "female"}a{/if} {control userProfileLink $castle->owner} {$castle->foundedAt}. Hrad je na úrovni {$castle->level}. Stav: {$castle->hp}%.</p>

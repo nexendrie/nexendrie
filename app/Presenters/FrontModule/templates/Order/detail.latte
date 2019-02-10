@@ -1,5 +1,5 @@
 {layout "../@layout.latte"}
-{block title}Řád{/block}
+{block title}{$order->name}{/block}
 {block content}
   <h1>{$order->name}</h1>
   <p>{$order->name} byl založen {$order->foundedAt}. Řád je na úrovni {$order->level}.</p>

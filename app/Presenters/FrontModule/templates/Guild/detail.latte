@@ -1,5 +1,5 @@
 {layout "../@layout.latte"}
-{block title}Cech{/block}
+{block title}{$guild->name}{/block}
 {block content}
   <h1>{$guild->name}</h1>
   <p>{$guild->name} byl založen {$guild->foundedAt}. Cech je na úrovni {$guild->level} a působí ve městě <a n:href="Town:detail $guild->town->id">{$guild->town->name}</a>.</p>

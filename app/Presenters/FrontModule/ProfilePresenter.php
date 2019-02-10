@@ -48,6 +48,7 @@ final class ProfilePresenter extends BasePresenter {
   public function renderArticles(string $name): void {
     try {
       $this->template->articles = $this->model->getArticles($name);
+      $this->template->name = $name;
     } catch(UserNotFoundException $e) {
       throw new BadRequestException();
     }
@@ -56,6 +57,7 @@ final class ProfilePresenter extends BasePresenter {
   public function renderSkills(string $name): void {
     try {
       $this->template->skills = $this->model->getSkills($name);
+      $this->template->name = $name;
     } catch(UserNotFoundException $e) {
       throw new BadRequestException();
     }

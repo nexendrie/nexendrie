@@ -1,5 +1,5 @@
 {layout "../@layout.latte"}
-{block title}Článek{/block}
+{block title}{$article->title}{/block}
 {block head}<link rel="alternate" type="application/rss+xml" title="Nexendrie - Komentáře k {$article->title}" n:href="//Rss:comments $article->id">{/block}
 {block content}
   <h1>{$article->title}</h1>

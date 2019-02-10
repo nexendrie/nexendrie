@@ -1,5 +1,5 @@
 {layout "../@layout.latte"}
-{block title}Články uživatele{/block}
+{block title}Články uživatele {$name}{/block}
 {block content}
   <h1>Články uživatele</h1>
   {if $articles->count() === 0}
