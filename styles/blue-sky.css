@@ -20,3 +20,4 @@
   background-color: rgba(192,192,192,0.2); padding: 0 7px; }
 #main h1,h2,h3 { color: #000033; }
 #main a { color: #00CC00; }
+#topLinks { position: absolute; top: 20px; right: 15px; height: 0; }

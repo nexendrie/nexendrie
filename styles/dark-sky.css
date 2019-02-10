@@ -21,3 +21,4 @@
 #main h1,h2,h3 { color: #660066; }
 #main a { color: #330033; }
 #main a:hover { color: #666666; }
+#topLinks { position: absolute; top: 20px; right: 15px; height: 0; }

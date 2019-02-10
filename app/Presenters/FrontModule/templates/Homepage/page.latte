@@ -2,6 +2,7 @@
 {block title}Novinky{/block}
 {block content}
   <h1>Novinky strana {$paginator->page}</h1>
+  <div id="topLinks"><a n:href="Rss:news" class="top-link"><img src="{$basePath}/images/feed-icon.png" alt="RSS kanál" title="RSS kanál"></a></div>
   {if count($news) === 0}
   <p>Žádné novinky.</p>
   {else}
