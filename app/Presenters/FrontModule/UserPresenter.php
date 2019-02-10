@@ -7,6 +7,8 @@ use Nette\Application\UI\Form;
 use Nexendrie\Forms\LoginFormFactory;
 use Nexendrie\Forms\RegisterFormFactory;
 use Nexendrie\Forms\UserSettingsFormFactory;
+use Nexendrie\Orm\Model as ORM;
+use Nextras\Orm\Collection\ICollection;
 
 /**
  * Presenter User
@@ -18,11 +20,14 @@ final class UserPresenter extends BasePresenter {
   protected $model;
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
+  /** @var ORM */
+  protected $orm;
   
-  public function __construct(\Nexendrie\Model\Authenticator $model, \Nexendrie\Model\Locale $localeModel) {
+  public function __construct(\Nexendrie\Model\Authenticator $model, \Nexendrie\Model\Locale $localeModel, ORM $orm) {
     parent::__construct();
     $this->model = $model;
     $this->localeModel = $localeModel;
+    $this->orm = $orm;
   }
   
   /**
@@ -91,6 +96,12 @@ final class UserPresenter extends BasePresenter {
       $this->redirect("this");
     };
     return $form;
+  }
+
+  public function renderList(): void {
+    $this->template->users = $this->orm->users->findAll()
+      ->orderBy("this->group->level", ICollection::DESC)
+      ->orderBy("joined");
   }
 }
 ?>

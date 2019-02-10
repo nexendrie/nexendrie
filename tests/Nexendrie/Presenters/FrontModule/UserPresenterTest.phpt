@@ -38,6 +38,10 @@ final class UserPresenterTest extends \Tester\TestCase {
     $this->login();
     $this->checkAction(":Front:User:settings");
   }
+
+  public function testList() {
+    $this->checkAction(":Front:User:list");
+  }
 }
 
 $test = new UserPresenterTest();

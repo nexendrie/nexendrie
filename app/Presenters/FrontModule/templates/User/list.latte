@@ -1,0 +1,14 @@
+{layout "../@layout.latte"}
+{block title}Seznam obyvatel{/block}
+{block content}
+  <h1>Seznam obyvatel</h1>
+  <table id="users">
+    <tr><th>Jméno</th><th>Titul</th><th>Město</th></tr>
+    <tr n:foreach="$users as $row">
+      <td>{$row->publicname}</td>
+      <td>{$row->title}</td>
+      <td>{$row->town->name}</td>
+      <td>{control userProfileLink:name $row,"Profil"}</td>
+    </tr>
+  </table>
+{/block}
