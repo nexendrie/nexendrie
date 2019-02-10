@@ -81,7 +81,7 @@ final class GiftFormFactory {
   }
   
   protected function composeMessage(int $money, string $item): string {
-    $message = "Dostal jsi ";
+    $message = "Dostal(a) jsi ";
     if($money > 0) {
       $message .= $this->localeModel->money($money);
     }
