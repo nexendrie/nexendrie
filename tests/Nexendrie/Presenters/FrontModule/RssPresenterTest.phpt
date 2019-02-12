@@ -20,9 +20,9 @@ final class RssPresenterTest extends \Tester\TestCase {
       $this->check(":Front:Rss:comments");
     }, BadRequestException::class);
     Assert::exception(function() {
-      $this->check(":Front:Rss:comments", ["article" => 5000]);
+      $this->check(":Front:Rss:comments", ["id" => 5000]);
     }, BadRequestException::class);
-    $this->checkRss(":Front:Rss:comments", ["article" => 1]);
+    $this->checkRss(":Front:Rss:comments", ["id" => 1]);
   }
 }
 

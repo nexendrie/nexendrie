@@ -18,7 +18,7 @@ final class RouterFactory {
     $router = new RouteList();
     $frontRouter = new RouteList("Front");
     $frontRouter[] = new Route("/", "Homepage:page");
-    $frontRouter[] = new Route("profile[/<action>]/<name>", "Profile:default");
+    $frontRouter[] = new Route("profile/<name>[/<action>]", "Profile:default");
     $frontRouter[] = new Route("<presenter message|poll|article|event>/<id [0-9]+>", [
       "action" => "view",
       "presenter" => [
@@ -28,7 +28,7 @@ final class RouterFactory {
       ]
     ]);
     $frontRouter[] = new Route("page/<page [0-9]+>", "Homepage:page");
-    $frontRouter[] = new Route("rss[/<action>][/<news [0-9]+>]", "Rss:news");
+    $frontRouter[] = new Route("rss[/<action>][/<id [0-9]+>]", "Rss:news");
     $frontRouter[] = new Route("<presenter help|history>[/<page=index>]", [
       "action" => "default"
     ]);

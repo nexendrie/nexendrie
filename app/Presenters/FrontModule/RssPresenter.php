@@ -24,12 +24,12 @@ final class RssPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  public function renderComments(int $article = null): void {
-    if(is_null($article)) {
+  public function renderComments(int $id = null): void {
+    if(is_null($id)) {
       throw new \Nette\Application\BadRequestException();
     }
     try {
-      $this->sendResponse($this->model->commentsFeed($article));
+      $this->sendResponse($this->model->commentsFeed($id));
     } catch(\Nexendrie\Model\ArticleNotFoundException $e) {
       throw new \Nette\Application\BadRequestException();
     }
