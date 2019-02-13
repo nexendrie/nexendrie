@@ -57,7 +57,7 @@ final class MessagesPresenter extends BasePresenter {
   protected function createComponentNewMessageForm(NewMessageFormFactory $factory): Form {
     $form = $factory->create();
     try {
-      $uid = $this->getParameter("id", null);
+      $uid = (int) $this->getParameter("id", null);
       $form["to"]->setDefaultValue($uid);
     } catch(\Nette\InvalidArgumentException $e) {
       
