@@ -85,7 +85,7 @@ final class Messenger {
    */
   public function usersList(): array {
     return $this->orm->users->findBy(
-        ["id!=" => $this->user->id]
+        ["id!=" => [$this->user->id, 0]]
     )->orderBy("id")
      ->fetchPairs("id", "publicname");
   }
