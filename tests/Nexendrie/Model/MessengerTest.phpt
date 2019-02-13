@@ -62,9 +62,10 @@ final class MessengerTest extends \Tester\TestCase {
   }
   
   public function testUsersList() {
+    $this->login();
     $result = $this->model->usersList();
     Assert::type("array", $result);
-    Assert::count(8, $result);
+    Assert::count(6, $result);
     foreach($result as $key => $value) {
       Assert::type("int", $key);
       Assert::type("string", $value);
