@@ -1,6 +1,6 @@
-#header { background-color: #111111; width: 935px; height: 75px; position: absolute; top: 8px; }
-#header h2 { position: relative; top: 5px; left: 25px; width: 100px; }
-#header h2 a { text-decoration: none; color: white; font-size: larger; }
+header { background-color: #111111; width: 935px; height: 75px; position: absolute; top: 8px; }
+header h2 { position: relative; top: 5px; left: 25px; width: 100px; }
+header h2 a { text-decoration: none; color: white; font-size: larger; }
 #userPanel { position: absolute; top: 55px; right: -4px; }
 #userPanel a { text-decoration: none; background-color: #CC0000; color: teal;
   border: 5px #CC0000 solid; position: relative; bottom: 1px; }
@@ -14,10 +14,10 @@
 #mainMenu li { list-style-type: none; font-size: smaller; }
 #mainMenu li a { text-decoration: none; font-weight: lighter; color: #FF0000; }
 #mainMenu li a:hover { color: #3366CC; }
-#main { position: absolute; top: 95px; left: 175px; width: 741px;
+main { position: absolute; top: 95px; left: 175px; width: 741px;
   background-color: rgba(128,128,128,0.4); padding: 0 7px; }
-#main h1,h2,h3 { color: #660066; }
-#main a { color: #330033; }
-#main a:hover { color: #666666; }
+main h1,h2,h3 { color: #660066; }
+main a { color: #330033; }
+main a:hover { color: #666666; }
 #topLinks { position: absolute; top: 14px; right: 15px; height: 0; }
 #flashes { position: relative; top: 85px; }

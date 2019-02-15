@@ -11,18 +11,18 @@
   {ifset #head}{include #head}{/ifset}
 </head>
 <body>
-<div id="header">
+<header>
   <h2><a href="{$baseUrl}">Nexendrie</a></h2>
   {control menu userPanelFront}
-</div>
+</header>
 {control menu:list}
 <div id="flashes">
   {foreach $flashes as $flash}
     <div class="flash {$flash->type}">{$flash->message}</div>
   {/foreach}
 </div>
-<article id="main">
-{include #content}</article>
+<main>
+{include #content}</main>
 <footer>
 
 </footer>
