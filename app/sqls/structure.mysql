@@ -491,7 +491,6 @@ CREATE TABLE `towns` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(25) NOT NULL,
   `publicname` varchar(25) NOT NULL,
   `password` varchar(60) NOT NULL,
   `email` tinytext NOT NULL,
@@ -516,7 +515,6 @@ CREATE TABLE `users` (
   `order` int(11) DEFAULT NULL,
   `order_rank` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
   KEY `group` (`group`),
   KEY `town` (`town`),
   KEY `monastery` (`monastery`),

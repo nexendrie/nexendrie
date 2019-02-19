@@ -29,7 +29,7 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask {
       if(!in_array($vote->candidate->id, $this->electionsModel->getCandidates($town)->fetchPairs(null, "id"), true)) {
         continue;
       }
-      $index = $vote->candidate->username;
+      $index = $vote->candidate->publicname;
       if(!isset($results[$index])) {
         $results[$index] = [
           "candidate" => $vote->candidate, "amount" => 0

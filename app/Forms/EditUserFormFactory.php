@@ -56,7 +56,6 @@ final class EditUserFormFactory {
       throw new \Nette\ArgumentOutOfRangeException("User with specified id does not exist.");
     }
     return [
-      "username" => $user->username,
       "publicname" => $user->publicname,
       "group" => $user->group->id,
       "town" => $user->town->id
@@ -66,8 +65,6 @@ final class EditUserFormFactory {
   public function create(int $uid): Form {
     $form = new Form();
     $this->uid = $uid;
-    $form->addText("username", "Uživatelské jméno:")
-      ->setRequired("Uživatelské jméno nesmí být prázdné");
     $form->addText("publicname", "Zobrazované jméno:")
       ->setRequired("Zobrazované jméno nesmí být prázdné");
     $form->addSelect("group", "Skupina:", $this->getListOfGroups())

@@ -20,7 +20,7 @@ final class AuthenticatorTest extends \Tester\TestCase {
   }
   
   public function testAuthenticate() {
-    $user = "admin";
+    $user = "jakub.konecny2@centrum.cz";
     $password = "qwerty";
     $identity = $this->model->authenticate([$user, $password]);
     Assert::type(\Nette\Security\Identity::class, $identity);

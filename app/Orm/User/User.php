@@ -12,7 +12,6 @@ use Nexendrie\Forms\UserSettingsFormFactory;
  *
  * @author Jakub Konečný
  * @property int $id {primary}
- * @property string $username
  * @property string $publicname
  * @property string $password
  * @property string $email

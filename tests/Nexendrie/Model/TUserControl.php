@@ -19,10 +19,13 @@ trait TUserControl {
   /**
    * Login a user
    */
-  protected function login(string $username = "admin", string $password = "qwerty"): void {
+  protected function login(string $publicname = "Trimadyl z Myhru"): void {
     /** @var User $user */
     $user = $this->getService(User::class);
-    $user->login($username, $password);
+    /** @var ORM $orm */
+    $orm = $this->getService(ORM::class);
+    $userEntity = $orm->users->getByPublicname($publicname);
+    $user->login($userEntity->email, "qwerty");
   }
   
   /**

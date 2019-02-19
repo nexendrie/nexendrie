@@ -46,13 +46,13 @@ final class MonasteryTest extends \Tester\TestCase {
   
   public function testCanJoin() {
     Assert::false($this->model->canJoin());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canJoin());
     $this->login("kazimira");
     Assert::true($this->model->canJoin());
     $this->login();
     Assert::false($this->model->canJoin());
-    $this->login("svetlana");
+    $this->login("Světlana");
     Assert::true($this->model->canJoin());
     $this->login("Rahym");
     Assert::false($this->model->canJoin());
@@ -74,7 +74,7 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->join(1);
     }, CannotJoinOwnMonasteryException::class);
-    $this->login("svetlana");
+    $this->login("Světlana");
     $user = $this->getUser();
     $stats = [
       "monastery", "group", "order", "orderRank", "town"

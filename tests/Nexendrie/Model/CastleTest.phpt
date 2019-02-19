@@ -73,11 +73,11 @@ final class CastleTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->canUpgrade();
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canUpgrade());
     $this->login();
     Assert::false($this->model->canUpgrade());
-    $this->login("svetlana");
+    $this->login("Světlana");
     Assert::true($this->model->canUpgrade());
   }
   
@@ -85,11 +85,11 @@ final class CastleTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->upgrade();
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->upgrade();
     }, CannotUpgradeCastleException::class);
-    $this->login("svetlana");
+    $this->login("Světlana");
     Assert::exception(function() {
       $this->modifyUser(["money" => 1], function() {
         $this->model->upgrade();
@@ -101,7 +101,7 @@ final class CastleTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->canRepair();
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canRepair());
     $this->login();
     $this->modifyCastle(["hp" => 99], function() {
@@ -114,7 +114,7 @@ final class CastleTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->repair();
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->repair();
     }, CannotRepairCastleException::class);

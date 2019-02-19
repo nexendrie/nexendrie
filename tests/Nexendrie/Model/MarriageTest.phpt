@@ -117,9 +117,9 @@ final class MarriageTest extends \Tester\TestCase {
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::type(MarriageEntity::class, $this->model->getCurrentMarriage());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::type(MarriageEntity::class, $this->model->getCurrentMarriage());
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::null($this->model->getCurrentMarriage());
   }
   
@@ -127,7 +127,7 @@ final class MarriageTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->cancelWedding();
     }, AuthenticationNeededException::class);
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::exception(function() {
       $this->model->cancelWedding();
     }, NotEngagedException::class);

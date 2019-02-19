@@ -42,7 +42,7 @@ final class PollControlTest extends \Tester\TestCase {
   }
   
   public function testRenderUserLoggedIn() {
-    $this->login("jakub");
+    $this->login("Jakub");
     $this->control->id = 1;
     $this->checkRenderOutput($this->control, __DIR__ . "/pollUserExpected.latte");
   }

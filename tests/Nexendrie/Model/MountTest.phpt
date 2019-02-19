@@ -72,7 +72,7 @@ final class MountTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->buy(1);
     }, AuthenticationNeededException::class);
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::exception(function() {
       $this->model->buy(50);
     }, MountNotFoundException::class);
@@ -82,7 +82,7 @@ final class MountTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->buy(1);
     }, CannotBuyOwnMountException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->buy(9);
     }, InsufficientLevelForMountException::class);

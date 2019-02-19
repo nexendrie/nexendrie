@@ -21,10 +21,6 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
     return $this->getBy(["id" => $id]);
   }
   
-  public function getByUsername(string $username): ?User {
-    return $this->getBy(["username" => $username]);
-  }
-  
   public function getByPublicname(string $publicname): ?User {
     return $this->getBy(["publicname" => $publicname]);
   }

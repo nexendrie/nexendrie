@@ -69,7 +69,7 @@ final class InventoryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->equipItem(5000);
     }, ItemNotFoundException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->equipItem(3);
     }, ItemNotOwnedException::class);
@@ -90,7 +90,7 @@ final class InventoryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->unequipItem(5000);
     }, ItemNotFoundException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->unequipItem(3);
     }, ItemNotOwnedException::class);
@@ -111,7 +111,7 @@ final class InventoryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->drinkPotion(5000);
     }, ItemNotFoundException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->drinkPotion(3);
     }, ItemNotOwnedException::class);
@@ -128,7 +128,7 @@ final class InventoryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->boostIntimacy(5000);
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->boostIntimacy(5000);
     }, NotMarriedException::class);
@@ -136,7 +136,7 @@ final class InventoryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->boostIntimacy(5000);
     }, ItemNotFoundException::class);
-    $this->login("svetlana");
+    $this->login("Světlana");
     Assert::exception(function() {
       $this->model->boostIntimacy(19);
     }, ItemNotOwnedException::class);
@@ -154,7 +154,7 @@ final class InventoryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->sellItem(50);
     }, ItemNotFoundException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->sellItem(3);
     }, ItemNotOwnedException::class);
@@ -172,7 +172,7 @@ final class InventoryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->upgradeItem(50);
     }, ItemNotFoundException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->upgradeItem(3);
     }, ItemNotOwnedException::class);

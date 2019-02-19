@@ -64,7 +64,7 @@ final class GuildTest extends \Tester\TestCase {
     Assert::false($this->model->canFound());
     $this->login();
     Assert::false($this->model->canFound());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canFound());
     $this->login("kazimira");
     Assert::true($this->model->canFound());
@@ -80,7 +80,7 @@ final class GuildTest extends \Tester\TestCase {
     Assert::false($this->model->canJoin());
     $this->login();
     Assert::false($this->model->canJoin());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canJoin());
   }
   
@@ -104,7 +104,7 @@ final class GuildTest extends \Tester\TestCase {
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::false($this->model->canLeave());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canLeave());
   }
   
@@ -124,7 +124,7 @@ final class GuildTest extends \Tester\TestCase {
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::false($this->model->canManage());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::true($this->model->canManage());
   }
   
@@ -134,7 +134,7 @@ final class GuildTest extends \Tester\TestCase {
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::false($this->model->canUpgrade());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::type("bool", $this->model->canUpgrade());
   }
   
@@ -169,7 +169,7 @@ final class GuildTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->promote(1);
     }, MissingPermissionsException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->promote(50);
     }, UserNotFoundException::class);
@@ -189,7 +189,7 @@ final class GuildTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->demote(1);
     }, MissingPermissionsException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->demote(50);
     }, UserNotFoundException::class);
@@ -209,7 +209,7 @@ final class GuildTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->kick(1);
     }, MissingPermissionsException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->kick(50);
     }, UserNotFoundException::class);

@@ -22,19 +22,8 @@ final class UserManagerTest extends \Tester\TestCase {
   
   public function testNameAvailable() {
     Assert::true($this->model->nameAvailable("abc"));
-    Assert::true($this->model->nameAvailable("abc", "publicname"));
-    Assert::exception(function() {
-      $this->model->nameAvailable("abc", "abc");
-    }, InvalidArgumentException::class);
-    Assert::exception(function() {
-      $this->model->nameAvailable("abc", "abc", 50);
-    }, InvalidArgumentException::class);
-    Assert::false($this->model->nameAvailable("system"));
-    Assert::true($this->model->nameAvailable("system", "username", 0));
-    Assert::false($this->model->nameAvailable("system", "username", 1));
-    Assert::false($this->model->nameAvailable("Vladěna", "publicname"));
-    Assert::true($this->model->nameAvailable("system", "publicname", 0));
-    Assert::false($this->model->nameAvailable("Vladěna", "publicname", 1));
+    Assert::false($this->model->nameAvailable("Vladěna"));
+    Assert::false($this->model->nameAvailable("Vladěna", 1));
   }
   
   public function testEmailAvailable() {
@@ -49,18 +38,17 @@ final class UserManagerTest extends \Tester\TestCase {
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
     $user = $orm->users->getById(1);
     Assert::exception(function() use($user) {
-      $this->model->register(["username" => $user->username]);
-    }, RegistrationException::class, null, UserManager::REG_DUPLICATE_USERNAME);
+      $this->model->register(["publicname" => $user->publicname, "email" => "abc"]);
+    }, RegistrationException::class, null, UserManager::REG_DUPLICATE_NAME);
     Assert::exception(function() use($user) {
-      $this->model->register(["email" => $user->email, "username" => "abc"]);
+      $this->model->register(["email" => $user->email, "publicname" => "abc"]);
     }, RegistrationException::class, null, UserManager::REG_DUPLICATE_EMAIL);
     $data = [
-      "username" => "abc", "email" => "abc", "password" => "abcd",
+      "publicname" => "abc", "email" => "abc", "password" => "abcd",
     ];
     $this->model->register($data);
-    $user = $orm->users->getByUsername($data["username"]);
+    $user = $orm->users->getByPublicname($data["publicname"]);
     Assert::type(UserEntity::class, $user);
-    Assert::same($data["username"], $user->publicname);
     Assert::notSame($data["password"], $user->password);
     $orm->users->removeAndFlush($user);
   }
@@ -84,7 +72,7 @@ final class UserManagerTest extends \Tester\TestCase {
     $user2 = $orm->users->getById(0);
     Assert::exception(function() use($user2) {
       $this->model->changeSettings(["publicname" => $user2->publicname]);
-    }, SettingsException::class, null, UserManager::REG_DUPLICATE_USERNAME);
+    }, SettingsException::class, null, UserManager::REG_DUPLICATE_NAME);
     Assert::exception(function() use($user, $user2) {
       $this->model->changeSettings([
         "email" => $user2->email, "publicname" => $user->publicname

@@ -56,11 +56,11 @@ final class OrderTest extends \Tester\TestCase {
     Assert::false($this->model->canFound());
     $this->login();
     Assert::false($this->model->canFound());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canFound());
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::true($this->model->canFound());
-    $this->login("svetlana");
+    $this->login("Světlana");
     Assert::false($this->model->canFound());
   }
   
@@ -70,7 +70,7 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() use($data) {
       $this->model->found($data);
     }, CannotFoundOrderException::class);
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::exception(function() use($data) {
       $this->model->found($data);
     }, OrderNameInUseException::class);
@@ -97,11 +97,11 @@ final class OrderTest extends \Tester\TestCase {
     Assert::false($this->model->canJoin());
     $this->login();
     Assert::false($this->model->canJoin());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canJoin());
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::true($this->model->canJoin());
-    $this->login("svetlana");
+    $this->login("Světlana");
     Assert::false($this->model->canJoin());
   }
   
@@ -113,7 +113,7 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->join(1);
     }, CannotJoinOrderException::class);
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::exception(function() {
       $this->model->join(5000);
     }, OrderNotFoundException::class);
@@ -125,11 +125,11 @@ final class OrderTest extends \Tester\TestCase {
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::false($this->model->canLeave());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canLeave());
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::false($this->model->canLeave());
-    $this->login("svetlana");
+    $this->login("Světlana");
     Assert::true($this->model->canLeave());
   }
   
@@ -141,7 +141,7 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->leave();
     }, CannotLeaveOrderException::class);
-    $this->login("svetlana");
+    $this->login("Světlana");
     $user = $this->getUser();
     $this->preserveStats(["order", "orderRank"], function() use($user) {
       $this->model->leave();
@@ -156,11 +156,11 @@ final class OrderTest extends \Tester\TestCase {
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::true($this->model->canManage());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canManage());
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::false($this->model->canManage());
-    $this->login("svetlana");
+    $this->login("Světlana");
     Assert::false($this->model->canManage());
   }
   
@@ -173,11 +173,11 @@ final class OrderTest extends \Tester\TestCase {
     $this->modifyOrder(["level" => OrderEntity::MAX_LEVEL], function() {
       Assert::false($this->model->canUpgrade());
     });
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canUpgrade());
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::false($this->model->canUpgrade());
-    $this->login("svetlana");
+    $this->login("Světlana");
     Assert::false($this->model->canUpgrade());
   }
   
@@ -185,7 +185,7 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->upgrade();
     }, AuthenticationNeededException::class);
-    $this->login("svetlana");
+    $this->login("Světlana");
     Assert::exception(function() {
       $this->model->upgrade();
     }, CannotUpgradeOrderException::class);
@@ -217,7 +217,7 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->promote(1);
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->promote(1);
     }, MissingPermissionsException::class);
@@ -237,7 +237,7 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->demote(1);
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->demote(1);
     }, MissingPermissionsException::class);
@@ -254,7 +254,7 @@ final class OrderTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->kick(1);
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->kick(1);
     }, MissingPermissionsException::class);

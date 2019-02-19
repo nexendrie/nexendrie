@@ -85,7 +85,7 @@ final class UserSettingsFormFactory {
     try {
       $this->model->changeSettings($values);
     } catch(SettingsException $e) {
-      if($e->getCode() === UserManager::REG_DUPLICATE_USERNAME) {
+      if($e->getCode() === UserManager::REG_DUPLICATE_NAME) {
         $form->addError("Zvolené jméno je už zabráno.");
       }
       if($e->getCode() === UserManager::REG_DUPLICATE_EMAIL) {

@@ -24,7 +24,7 @@ final class ConditionPathTest extends \Tester\TestCase {
   
   public function testIsAllowed() {
     Assert::false($this->condition->isAllowed());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->condition->isAllowed("site:manage"));
     Assert::exception(function() {
       $this->condition->isAllowed();

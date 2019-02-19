@@ -54,7 +54,7 @@ final class TownTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->buy(1);
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->buy(50);
     }, TownNotFoundException::class);
@@ -64,7 +64,7 @@ final class TownTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->buy(5);
     }, InsufficientLevelForTownException::class);
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::exception(function() {
       $this->model->buy(5);
     }, CannotBuyOwnTownException::class);
@@ -120,7 +120,7 @@ final class TownTest extends \Tester\TestCase {
     Assert::false($this->model->canMove());
     $this->login();
     Assert::type("bool", $this->model->canMove());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::type("bool", $this->model->canMove());
   }
   
@@ -145,7 +145,7 @@ final class TownTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->found([]);
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->found([]);
     }, InsufficientLevelForFoundTownException::class);

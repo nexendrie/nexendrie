@@ -27,7 +27,7 @@ final class UserManager {
   /** @var array */
   protected $newUser;
   /** Exception error code */
-  public const REG_DUPLICATE_USERNAME = 1,
+  public const REG_DUPLICATE_NAME = 1,
     REG_DUPLICATE_EMAIL = 2,
     SET_INVALID_PASSWORD = 3;
   
@@ -44,20 +44,11 @@ final class UserManager {
   /**
    * Checks whether a name is available
    *
-   * @param string $type username/publicname
    * @param int|null $uid Id of user who can use the name
    * @throws InvalidArgumentException
    */
-  public function nameAvailable(string $name, string $type = "username", int $uid = null): bool {
-    $types = ["username", "publicname"];
-    if(!in_array($type, $types, true)) {
-      throw new InvalidArgumentException("Parameter type for " . __METHOD__ . " must be either \"username\" or \"publicname\".");
-    }
-    if($type === "username") {
-      $row = $this->orm->users->getByUsername($name);
-    } else {
-      $row = $this->orm->users->getByPublicname($name);
-    }
+  public function nameAvailable(string $name, int $uid = null): bool {
+    $row = $this->orm->users->getByPublicname($name);
     if(is_null($row)) {
       return true;
     } elseif(!is_int($uid)) {
@@ -92,11 +83,11 @@ final class UserManager {
    * @throws RegistrationException
    */
   public function register(array $data): void {
-    if(!$this->nameAvailable($data["username"])) {
-      throw new RegistrationException("Duplicate username.", static::REG_DUPLICATE_USERNAME);
-    }
     if(!$this->emailAvailable($data["email"])) {
       throw new RegistrationException("Duplicate email.", static::REG_DUPLICATE_EMAIL);
+    }
+    if(!$this->nameAvailable($data["publicname"])) {
+      throw new RegistrationException("Duplicate name.", static::REG_DUPLICATE_NAME);
     }
     $user = new UserEntity();
     $this->orm->users->attach($user);
@@ -107,7 +98,6 @@ final class UserManager {
       }
       $user->$key = $value;
     }
-    $user->publicname = $data["username"];
     $user->group = $this->roles["loggedInRole"];
     $this->orm->users->persistAndFlush($user);
   }
@@ -140,8 +130,8 @@ final class UserManager {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
-    if(!$this->nameAvailable($settings["publicname"], "publicname", $this->user->id)) {
-      throw new SettingsException("The public name is used by someone else.", static::REG_DUPLICATE_USERNAME);
+    if(!$this->nameAvailable($settings["publicname"], $this->user->id)) {
+      throw new SettingsException("The name is used by someone else.", static::REG_DUPLICATE_NAME);
     }
     if(!$this->emailAvailable($settings["email"], $this->user->id)) {
       throw new SettingsException("The e-mail is used by someone else.", static::REG_DUPLICATE_EMAIL);

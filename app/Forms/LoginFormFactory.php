@@ -23,8 +23,8 @@ final class LoginFormFactory {
   
   public function create(): Form {
     $form = new Form();
-    $form->addText("username", "Uživatelské jméno:")
-      ->setRequired("Zadej jméno.");
+    $form->addText("email", "E-mail:")
+      ->setRequired("Zadej e-mail.");
     $form->addPassword("password", "Heslo:")
       ->setRequired("Zadej heslo.");
     $form->addSubmit("login", "Přihlásit se");
@@ -34,10 +34,10 @@ final class LoginFormFactory {
   
   public function process(Form $form, array $values): void {
     try {
-      $this->user->login($values["username"], $values["password"]);
+      $this->user->login($values["email"], $values["password"]);
     } catch(AuthenticationException $e) {
       if($e->getCode() === IAuthenticator::IDENTITY_NOT_FOUND) {
-        $form->addError("Neplatné uživatelské jméno.");
+        $form->addError("Neplatný e-mail.");
       }
       if($e->getCode() === IAuthenticator::INVALID_CREDENTIAL) {
         $form->addError("Neplatné heslo.");

@@ -425,7 +425,6 @@ CREATE TABLE "user_skills" (
 CREATE TYPE users_gender AS ENUM ('male','female');
 CREATE TABLE "users" (
     "id" SERIAL PRIMARY KEY,
-    "username" varchar(50) NOT NULL UNIQUE,
     "publicname" varchar(50) NOT NULL,
     "password" varchar(120) NOT NULL,
     "email" text NOT NULL,

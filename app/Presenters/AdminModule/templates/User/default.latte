@@ -3,9 +3,9 @@
 {block content}
   <h1>Uživatelé</h1>
   <table>
-    <tr><th>Uživatelské jméno</th><th>Zobrazované jméno</th><th>Skupina</th><th>Akce</th></tr>
+    <tr><th>Jméno</th><th>Skupina</th><th>Akce</th></tr>
     {foreach $users as $u}
-      <tr><td>{control userProfileLink:name $u,$u->username}</td><td>{$u->publicname}</td><td>{$u->group->name}</td><td><a n:href="User:edit $u->id">Upravit</a> {if $u->group->id > 1 and !$u->banned}<a n:href="User:ban $u->id">Uvěznit</a>{/if} {if $u->id > 0}<a n:href="Content:gift $u->id">Poslat dar</a>{/if}</td></tr>
+      <tr><td>{control userProfileLink $u}</td><td>{$u->group->name}</td><td><a n:href="User:edit $u->id">Upravit</a> {if $u->group->id > 1 and !$u->banned}<a n:href="User:ban $u->id">Uvěznit</a>{/if} {if $u->id > 0}<a n:href="Content:gift $u->id">Poslat dar</a>{/if}</td></tr>
     {/foreach}
   </table>
 {/block}

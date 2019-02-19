@@ -26,15 +26,16 @@ final class RegisterFormFactory {
   
   public function create(): Form {
     $form = new Form();
-    $form->addText("username", "Uživatelské jméno:")
-      ->addRule(Form::MAX_LENGTH, "Uživatelské jméno může mít maximálně 25 znaků.", 25)
-      ->setRequired("Zadej jméno.")
-      ->setOption("description", "Toto jméno se používá pouze pro přihlášení. Jméno, které se zobrazuje ostatním, se mění v Nastavení.");
-    $form->addPassword("password", "Heslo:")
-      ->setRequired("Zadej heslo.");
     $form->addText("email", "E-mail:")
       ->addRule(Form::EMAIL, "Zadej platný e-mail.")
-      ->setRequired("Zadej e-mail.");
+      ->setRequired("Zadej e-mail.")
+      ->setOption("description", "Slouží jako uživateslké jméno");
+    $form->addText("publicname", "Jméno:")
+      ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25)
+      ->setRequired("Zadej jméno.")
+      ->setOption("description", "Toto jméno se zobrazuje ostatním.");
+    $form->addPassword("password", "Heslo:")
+      ->setRequired("Zadej heslo.");
     if($this->registrationToken !== "") {
       $form->addText("token", "Token:")
         ->setRequired()
@@ -51,11 +52,11 @@ final class RegisterFormFactory {
     try {
       $this->model->register($values);
     } catch(RegistrationException $e) {
-      if($e->getCode() === UserManager::REG_DUPLICATE_USERNAME) {
-        $form->addError("Zvolené uživatelské jméno je už zabráno.");
-      }
       if($e->getCode() === UserManager::REG_DUPLICATE_EMAIL) {
         $form->addError("Zadaný e-mail je už používán.");
+      }
+      if($e->getCode() === UserManager::REG_DUPLICATE_NAME) {
+        $form->addError("Zvolené jméno je už zabráno.");
       }
     }
   }

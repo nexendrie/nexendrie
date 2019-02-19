@@ -55,7 +55,7 @@ final class MessengerTest extends \Tester\TestCase {
     }, MessageNotFoundException::class);
     $message = $this->model->show(1);
     Assert::type(Message::class, $message);
-    $this->login("system");
+    $this->login("Vladěna");
     Assert::exception(function() {
       $this->model->show(1);
     }, AccessDeniedException::class);

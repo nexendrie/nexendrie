@@ -29,7 +29,7 @@ final class HouseTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->buyHouse();
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->buyHouse();
     }, CannotBuyMoreHousesException::class);
@@ -51,7 +51,7 @@ final class HouseTest extends \Tester\TestCase {
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::false($this->model->canUpgrade());
-    $this->login("jakub");
+    $this->login("Jakub");
     $this->modifyHouse(["luxuryLevel" => 1], function() {
       Assert::true($this->model->canUpgrade());
     });
@@ -62,7 +62,7 @@ final class HouseTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->upgrade();
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->upgrade();
     }, CannotUpgradeHouseException::class);
@@ -74,7 +74,7 @@ final class HouseTest extends \Tester\TestCase {
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::false($this->model->canRepair());
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::false($this->model->canRepair());
   }
   
@@ -82,7 +82,7 @@ final class HouseTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->repair();
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->repair();
     }, CannotRepairHouseException::class);
@@ -94,7 +94,7 @@ final class HouseTest extends \Tester\TestCase {
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::false($this->model->canUpgradeBrewery());
-    $this->login("jakub");
+    $this->login("Jakub");
     $this->modifyHouse(["breweryLevel" => 1], function() {
       Assert::true($this->model->canUpgradeBrewery());
     });
@@ -105,7 +105,7 @@ final class HouseTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->upgradeBrewery();
     }, AuthenticationNeededException::class);
-    $this->login("jakub");
+    $this->login("Jakub");
     Assert::exception(function() {
       $this->model->upgradeBrewery();
     }, CannotUpgradeBreweryException::class);
@@ -117,7 +117,7 @@ final class HouseTest extends \Tester\TestCase {
     }, AuthenticationNeededException::class);
     $this->login();
     Assert::false($this->model->canProduceBeer());
-    $this->login("jakub");
+    $this->login("Jakub");
     $this->modifyHouse(["breweryLevel" => 0], function() {
       Assert::false($this->model->canProduceBeer());
     });

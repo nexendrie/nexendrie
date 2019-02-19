@@ -70,10 +70,10 @@ final class Authenticator implements IAuthenticator {
    * @throws AuthenticationException
    */
   public function authenticate(array $credentials): Identity {
-    list($username, $password) = $credentials;
-    $user = $this->orm->users->getByUsername($username);
+    list($email, $password) = $credentials;
+    $user = $this->orm->users->getByEmail($email);
     if(is_null($user)) {
-      throw new AuthenticationException("User not found.", static::IDENTITY_NOT_FOUND);
+      throw new AuthenticationException("E-mail not found.", static::IDENTITY_NOT_FOUND);
     }
     if(!$this->passwords->verify($password, $user->password)) {
       throw new AuthenticationException("Invalid password.", static::INVALID_CREDENTIAL);

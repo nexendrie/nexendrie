@@ -36,10 +36,10 @@ final class BankTest extends \Tester\TestCase {
     Assert::same(0, $this->model->maxLoan());
     $this->checkMaxLoan("kazimira", 70);
     $this->checkMaxLoan("premysl", 300);
-    $this->checkMaxLoan("jakub", 500);
-    $this->checkMaxLoan("svetlana", 700);
+    $this->checkMaxLoan("Jakub", 500);
+    $this->checkMaxLoan("Světlana", 700);
     $this->checkMaxLoan("Rahym", 1500);
-    $this->checkMaxLoan("admin", 2000);
+    $this->checkMaxLoan("Trimadyl z Myhru", 2000);
   }
   
   public function testTakeLoan() {
