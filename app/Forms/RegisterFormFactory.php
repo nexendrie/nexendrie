@@ -29,7 +29,7 @@ final class RegisterFormFactory {
     $form->addText("email", "E-mail:")
       ->addRule(Form::EMAIL, "Zadej platný e-mail.")
       ->setRequired("Zadej e-mail.")
-      ->setOption("description", "Slouží jako uživateslké jméno");
+      ->setOption("description", "Slouží jako uživatelské jméno.");
     $form->addText("publicname", "Jméno:")
       ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25)
       ->setRequired("Zadej jméno.")
