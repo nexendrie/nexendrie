@@ -60,18 +60,18 @@ final class AddEditEventFormFactory {
   
   public function validate(Form $form, array $values): void {
     $format = $this->dateTimeFormat;
-    /** @var \Nette\Utils\DateTime $start */
     $start = DateTime::createFromFormat($format, $values["start"]);
-    if($start == false) {
+    if($start === false) {
       $form->addError("Neplatný čas začátku.");
     }
-    /** @var \Nette\Utils\DateTime $end */
     $end = DateTime::createFromFormat($format, $values["end"]);
-    if($end == false) {
+    if($end === false) {
       $form->addError("Neplatný čas konce.");
     }
-    if($end->getTimestamp() < $start->getTimestamp()) {
-      $form->addError("Akce nemůže skončit před svým začátkem.");
+    if($start instanceof DateTime AND $end instanceof  DateTime) {
+      if($end->getTimestamp() < $start->getTimestamp()) {
+        $form->addError("Akce nemůže skončit před svým začátkem.");
+      }
     }
   }
 }
