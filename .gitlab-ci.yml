@@ -72,7 +72,7 @@ deploy:alpha:
   <<: *deploy_job
   environment:
     name: alpha
-    url: http://alpha.nexendrie.cz
+    url: https://alpha.nexendrie.cz
   only:
     - master@nexendrie/nexendrie
   variables:
