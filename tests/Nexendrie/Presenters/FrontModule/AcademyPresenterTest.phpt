@@ -13,6 +13,12 @@ final class AcademyPresenterTest extends \Tester\TestCase {
     $this->login();
     $this->checkAction(":Front:Academy:default");
   }
+
+  public function testWork() {
+    $this->checkRedirect(":Front:Academy:combat", "/user/login");
+    $this->login();
+    $this->checkAction(":Front:Academy:combat");
+  }
 }
 
 $test = new AcademyPresenterTest();
