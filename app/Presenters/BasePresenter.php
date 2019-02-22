@@ -29,6 +29,37 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   public function injectUserProfileLinkFactory(IUserProfileLinkControlFactory $userProfileLinkFactory): void {
     $this->userProfileLinkFactory = $userProfileLinkFactory;
   }
+
+  public function storeRequest($expiration = "+ 10 minutes"): string {
+    $session = $this->getSession("Nette.Application/requests");
+    do {
+      $key = \Nette\Utils\Random::generate(5);
+    } while (isset($session[$key]));
+
+    $session[$key] = [$this->request];
+    $session->setExpiration($expiration, $key);
+    return $key;
+  }
+
+  protected function getFlashKey(): ?string {
+    $flashKey = $this->getParameter(self::FLASH_KEY);
+    return (is_string($flashKey) && $flashKey !== "") ? $flashKey : null;
+  }
+
+  public function restoreRequest($key): void {
+    $session = $this->getSession("Nette.Application/requests");
+    if(!isset($session[$key])) {
+      return;
+    }
+    /** @var \Nette\Application\Request $request */
+    $request = clone $session[$key][0];
+    unset($session[$key]);
+    $request->setFlag(\Nette\Application\Request::RESTORED, true);
+    $params = $request->getParameters();
+    $params[self::FLASH_KEY] = $this->getFlashKey();
+    $request->setParameters($params);
+    $this->sendResponse(new \Nette\Application\Responses\ForwardResponse($request));
+  }
   
   /**
    * Set website's style

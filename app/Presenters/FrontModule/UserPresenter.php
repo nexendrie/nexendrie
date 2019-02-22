@@ -22,6 +22,8 @@ final class UserPresenter extends BasePresenter {
   protected $localeModel;
   /** @var ORM */
   protected $orm;
+  /** @var string @persistent */
+  public $backlink = "";
   
   public function __construct(\Nexendrie\Model\Authenticator $model, \Nexendrie\Model\Locale $localeModel, ORM $orm) {
     parent::__construct();
@@ -49,14 +51,12 @@ final class UserPresenter extends BasePresenter {
       if($this->user->identity->travelling) {
         $this->flashMessage("Stále jsi na dobrodružství.");
       }
+      $this->restoreRequest($this->backlink);
       $this->redirect("Homepage:");
     };
     return $form;
   }
-  
-  /**
-   * @todo return to previous page if possible
-   */
+
   public function actionLogout(): void {
     $message = "Nejsi přihlášen.";
     if($this->user->isLoggedIn()) {

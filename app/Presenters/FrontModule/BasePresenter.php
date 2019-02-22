@@ -20,14 +20,14 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   public function injectProfileModel(\Nexendrie\Model\Profile $profileModel): void {
     $this->profileModel = $profileModel;
   }
-  
+
   /**
    * The user must be logged in to see a page
    */
   protected function requiresLogin(): void {
     if(!$this->user->isLoggedIn()) {
       $this->flashMessage("K zobrazení této stránky musíš být přihlášen.");
-      $this->redirect("User:login");
+      $this->redirect("User:login", ["backlink" => $this->storeRequest()]);
     }
   }
   
