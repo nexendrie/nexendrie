@@ -1,6 +1,11 @@
   <h1>Akademie</h1>
   <h3><a href="{plink Academy:default}">Práce</a> <a href="{plink Academy:combat}">Boj</a></h3>
-  <p>text</p>
+  {switch $type}
+    {case work}
+  <p>Chcete změnit svou profesi (a)nebo vydělávat více? Jste na správném místě. Za jistý poplatek Vás naučíme vše, co potřebujete znát pro výkon jákéhokoliv povolání. Také Vám dáme tipy a triky, díky kterým zvládnete práci lépe než ostatní.</p>
+    {case combat}
+  <p>Máte v souboji obě ruce levé a Vaši sokové se Vám posmívají? Nezoufejte. Naučíme Vás, jak a kam udeřit zbraní a jak ustát rány. Však oni ještě uvidí!</p>
+  {/switch}
   <table id="skills">
     <tr><th>Dovednost</th><th>Úroveň</th><th>Max. úroveň</th><th>Cena</th>{if $type === "combat"}<th>Efekt</th>{/if}<th></th></tr>
     {foreach $skills as $skill}
