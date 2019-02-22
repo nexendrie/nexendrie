@@ -108,7 +108,7 @@ INSERT INTO `item_sets` (`id`, `name`, `weapon`, `armor`, `helmet`, `stat`, `bon
 
 INSERT INTO `jobs` (`id`, `name`, `description`, `help`, `count`, `award`, `shift`, `level`, `needed_skill`, `needed_skill_level`) VALUES
   (1,	'Rybář',	'Rybář loví v řece ryby a následně je prodává.',	'Lovit můžeš každých 70 minut a za 1 ulovenou rybu dostaneš %reward%. Pamatuj ale, že lov se nemusí vždy podařit!',	0,	2,	70,	50,	1,	0),
-  (2,	'Horník',	'Horník v podzemí těží nerosty.',	'Běž hledat nerosty. Musíš jich najít aspoň %count%, abys dostal %reward%. Jestli to nezvládneš, tak si mě nepřej!',	20,	80,	50,	50,	4,	0),
+  (2,	'Horník',	'Horník v podzemí těží nerosty.',	'Běž hledat nerosty. Musíš jich najít aspoň %count%, abys dostal %reward%. Jestli to nezvládneš, tak si mě nepřej!',	20,	80,	50,	50,	4,	1),
   (3,	'Pastýř',	'Pastýř se stará o zvířata.',	'Postarej se o tohle zvíře na 2 hodiny. Pokud se alespoň %count% nic nestane, dostaneš %reward%.',	13,	70,	120,	50,	2,	0),
   (4,	'Strážník',	'Strážník dohlíží na klid a pořádek v ulicích města.',	'Vydej se hlídat ulice města. Za každou hodinu, kdy se nic nestane, dostaneš %reward%.',	0,	4,	60,	100,	5,	1),
   (5,	'Písař',	'Písař píše zápisy a listiny. Také přepisuje knihy.',	'Tak už se dej do psaní. Musíš zvládnout alespoň %count% směn po hodině a půl, aby sis zasloužil %reward%. Jestli tam ale bude mnoho chyb, tak ti to strhnu!',	15,	180,	90,	100,	3,	1),
