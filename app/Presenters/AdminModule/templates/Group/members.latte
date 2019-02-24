@@ -5,7 +5,7 @@
   <h3>Členové</h3>
   <p>
   {foreach $group->members as $member}
-    {control userProfileLink $member}<br>
+    {$member->publicname} {control userProfileLink:name $member, Profil} <a n:href="User:edit $member->id">Upravit</a><br>
   {/foreach}
   </p>
 {/block}
