@@ -37,7 +37,10 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 700;
   public const BASE_REPAIR_PRICE = 30;
-  
+  public const BASE_PRAYER_LIFE = 2;
+  public const PRAYER_LIFE_PER_LEVEL = 2;
+  public const SKILL_LEARNING_DISCOUNT_PER_LEVEL = 3;
+
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var \Nexendrie\Model\Events */
@@ -75,7 +78,7 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
     if($this->hp < 30) {
       return 0;
     }
-    return 2 + ($this->altairLevel * 2);
+    return static::BASE_PRAYER_LIFE + ($this->altairLevel * static::PRAYER_LIFE_PER_LEVEL);
   }
   
   protected function getterUpgradePrice(): int {
@@ -128,7 +131,7 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
     if($this->hp < 30) {
       return 0;
     }
-    return $this->libraryLevel * 3;
+    return $this->libraryLevel * static::SKILL_LEARNING_DISCOUNT_PER_LEVEL;
   }
   
   public function onBeforeInsert(): void {

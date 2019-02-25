@@ -83,6 +83,9 @@ final class HelpControl extends BookControl {
   public function renderMonastery(): void {
     $this->template->maxAltairLevel = MonasteryEntity::MAX_LEVEL;
     $this->template->maxLibraryLevel = MonasteryEntity::MAX_LEVEL - 1;
+    $this->template->basePrayerLife = MonasteryEntity::BASE_PRAYER_LIFE;
+    $this->template->prayerLifePerLevel = MonasteryEntity::PRAYER_LIFE_PER_LEVEL;
+    $this->template->skillLearningDiscountPerLevel = MonasteryEntity::SKILL_LEARNING_DISCOUNT_PER_LEVEL;
   }
   
   public function renderCastle(): void {
