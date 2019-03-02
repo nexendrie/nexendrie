@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72c098bd976e244b0d7190c8f596d517",
+    "content-hash": "de2769aaac820e867f5ee5732b73ec8e",
     "packages": [
         {
             "name": "heroesofabenez/chat",
@@ -750,33 +750,33 @@
         },
         {
             "name": "nette/finder",
-            "version": "v2.4.2",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/finder.git",
-                "reference": "ee951a656cb8ac622e5dd33474a01fd2470505a0"
+                "reference": "6be1b83ea68ac558aff189d640abe242e0306fe2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/finder/zipball/ee951a656cb8ac622e5dd33474a01fd2470505a0",
-                "reference": "ee951a656cb8ac622e5dd33474a01fd2470505a0",
+                "url": "https://api.github.com/repos/nette/finder/zipball/6be1b83ea68ac558aff189d640abe242e0306fe2",
+                "reference": "6be1b83ea68ac558aff189d640abe242e0306fe2",
                 "shasum": ""
             },
             "require": {
-                "nette/utils": "~2.4",
-                "php": ">=5.6.0"
+                "nette/utils": "^2.4 || ~3.0.0",
+                "php": ">=7.1"
             },
             "conflict": {
                 "nette/nette": "<2.2"
             },
             "require-dev": {
-                "nette/tester": "~2.0",
+                "nette/tester": "^2.0",
                 "tracy/tracy": "^2.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -808,7 +808,7 @@
                 "iterator",
                 "nette"
             ],
-            "time": "2018-06-28T11:49:23+00:00"
+            "time": "2019-02-28T18:13:25+00:00"
         },
         {
             "name": "nette/forms",
@@ -1521,16 +1521,16 @@
         },
         {
             "name": "nexendrie/rss",
-            "version": "0.7.0",
+            "version": "0.7.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/rss.git",
-                "reference": "5c2e0a943d5edb95fe0dbec897edbddb8bb257d1"
+                "reference": "0e8d6a6f225965e2d7d5591a9391e82d20aea8c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=5c2e0a943d5edb95fe0dbec897edbddb8bb257d1",
-                "reference": "5c2e0a943d5edb95fe0dbec897edbddb8bb257d1",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=0e8d6a6f225965e2d7d5591a9391e82d20aea8c7",
+                "reference": "0e8d6a6f225965e2d7d5591a9391e82d20aea8c7",
                 "shasum": ""
             },
             "require": {
@@ -1579,7 +1579,7 @@
                 "generator",
                 "rss"
             ],
-            "time": "2019-02-12T14:49:18+00:00"
+            "time": "2019-03-02T12:01:35+00:00"
         },
         {
             "name": "nexendrie/translation",
@@ -2001,16 +2001,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.6.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "28c54772200b5fefd8c9a421b36019cda2b2f9f4"
+                "reference": "e179856e5dcc3ced99df1596cd299246fb1c3ac2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/28c54772200b5fefd8c9a421b36019cda2b2f9f4",
-                "reference": "28c54772200b5fefd8c9a421b36019cda2b2f9f4",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/e179856e5dcc3ced99df1596cd299246fb1c3ac2",
+                "reference": "e179856e5dcc3ced99df1596cd299246fb1c3ac2",
                 "shasum": ""
             },
             "require": {
@@ -2064,7 +2064,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2019-02-20T06:26:57+00:00"
+            "time": "2019-03-01T02:12:13+00:00"
         }
     ],
     "packages-dev": [
@@ -2489,16 +2489,16 @@
         },
         {
             "name": "nette/robot-loader",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/robot-loader.git",
-                "reference": "fc76c70e740b10f091e502b2e393d0be912f38d4"
+                "reference": "3e8d75d6d976e191bdf46752ca40a286671219d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/robot-loader/zipball/fc76c70e740b10f091e502b2e393d0be912f38d4",
-                "reference": "fc76c70e740b10f091e502b2e393d0be912f38d4",
+                "url": "https://api.github.com/repos/nette/robot-loader/zipball/3e8d75d6d976e191bdf46752ca40a286671219d2",
+                "reference": "3e8d75d6d976e191bdf46752ca40a286671219d2",
                 "shasum": ""
             },
             "require": {
@@ -2550,7 +2550,7 @@
                 "nette",
                 "trait"
             ],
-            "time": "2018-08-13T14:19:06+00:00"
+            "time": "2019-03-01T20:23:02+00:00"
         },
         {
             "name": "nette/tester",
