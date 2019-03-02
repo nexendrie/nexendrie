@@ -25,7 +25,11 @@ trait TUserControl {
     /** @var ORM $orm */
     $orm = $this->getService(ORM::class);
     $userEntity = $orm->users->getByPublicname($publicname);
-    $user->login($userEntity->email, "qwerty");
+    if(!is_null($userEntity)) {
+      /** @var Authenticator $authenticator */
+      $authenticator = $this->getService(Authenticator::class);
+      $user->login($authenticator->getIdentity($userEntity));
+    }
   }
   
   /**

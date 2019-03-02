@@ -41,8 +41,10 @@ final class Authenticator implements IAuthenticator {
   
   /**
    * Get user's identity
+   *
+   * @internal
    */
-  protected function getIdentity(UserEntity $user): Identity {
+  public function getIdentity(UserEntity $user): Identity {
     $roles = [];
     if($user->banned) {
       /** @var \Nexendrie\Orm\Group $group */
