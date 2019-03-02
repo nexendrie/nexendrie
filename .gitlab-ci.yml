@@ -47,7 +47,6 @@ test:pgsql:
   script:
   - phing test-ci-pgsql
   allow_failure: true
-  retry: 2
 
 test:cc:
   <<: *test_job
