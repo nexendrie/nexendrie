@@ -14,6 +14,7 @@ use Nexendrie\Orm\House as HouseEntity;
 use Nexendrie\Orm\Guild as GuildEntity;
 use Nexendrie\Orm\Order as OrderEntity;
 use Nexendrie\Orm\Marriage as MarriageEntity;
+use Nexendrie\Orm\Group as GroupEntity;
 use Nette\Localization\ITranslator;
 
 /**
@@ -127,6 +128,13 @@ final class HelpControl extends BookControl {
   public function renderBank(): void {
     $this->template->loanInterest = $this->sr->settings["fees"]["loanInterest"];
     $this->template->depositInterest = $this->sr->settings["fees"]["depositInterest"];
+  }
+
+  public function renderTitles(): void {
+    $groups = $this->orm->groups->findBy(["level>" => 0])->orderBy("level");
+    $this->template->cityGroups = $groups->findBy(["path" => GroupEntity::PATH_CITY]);
+    $this->template->towerGroups = $groups->findBy(["path" => GroupEntity::PATH_TOWER]);
+    $this->template->churchGroups = $groups->findBy(["path" => GroupEntity::PATH_CHURCH]);
   }
 }
 ?>
