@@ -32,7 +32,7 @@ INSERT INTO `adventure_npcs` (`id`, `name`, `adventure`, `order`, `hitpoints`, `
 INSERT INTO `groups` (`id`, `name`, `single_name`, `female_name`, `level`, `path`) VALUES
   (0,	'Vládci',	'jeho Veličenstvo',	'její Veličenstvo',	10001,	'tower'),
   (1,	'Korunní rada',	'jeho Jasnost',	'její Jasnost',	10000,	'tower'),
-  (2,	'Vévodové',	'vévoda',	'vévodkyně',	1000,	'tower'),
+  (2,	'Markrabata',	'markrabě',	'markraběnka',	1000,	'tower'),
   (3,	'Panstvo',	'lord',	'lady',	600,	'tower'),
   (4,	'Vyšší klérus',	'vyšší kněz',	'vyšší kněžka',	550,	'church'),
   (5,	'Rytíři',	'rytíř',	'dáma',	400,	'tower'),

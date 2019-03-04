@@ -32,7 +32,7 @@ INSERT INTO castles ("name", "description", "founded", "owner", "level", "hp") V
 INSERT INTO groups ("name", "single_name", "female_name", "level", "path") VALUES
   ('Vládci','jeho Veličenstvo','její Veličenstvo',10001,'tower'),
   ('Korunní rada','jeho Jasnost','její Jasnost',10000,'tower'),
-  ('Vévodové','vévoda','vévodkyně',1000,'tower'),
+  ('Markrabata','markrabě','markraběnka',1000,'tower'),
   ('Panstvo','lord','lady',600,'tower'),
   ('Vyšší klérus','vyšší kněz','vyšší kněžka',550,'church'),
   ('Rytíři','rytíř','dáma',400,'tower'),
