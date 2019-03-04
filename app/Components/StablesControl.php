@@ -9,6 +9,7 @@ use Nexendrie\Model\InsufficientFundsException;
 use Nexendrie\Model\CareNotNeededException;
 use Nexendrie\Model\MountMaxTrainingLevelReachedException;
 use Nexendrie\Model\MountInBadConditionException;
+use Nexendrie\Orm\Mount as MountEntity;
 
 /**
  * StablesControl
@@ -134,7 +135,7 @@ final class StablesControl extends \Nette\Application\UI\Control {
     }
     $mount->owner->money -= $mount->{$stat . "TrainingCost"};
     $mount->$stat++;
-    $mount->hp -= 10;
+    $mount->hp -= MountEntity::HP_DECREASE_TRAINING;
     $this->orm->mounts->persistAndFlush($mount);
   }
   

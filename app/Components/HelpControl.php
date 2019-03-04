@@ -15,6 +15,7 @@ use Nexendrie\Orm\Guild as GuildEntity;
 use Nexendrie\Orm\Order as OrderEntity;
 use Nexendrie\Orm\Marriage as MarriageEntity;
 use Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\Mount as MountEntity;
 use Nette\Localization\ITranslator;
 
 /**
@@ -123,6 +124,7 @@ final class HelpControl extends BookControl {
   
   public function renderStables(): void {
     $this->template->autoFeedingCost = $this->sr->settings["fees"]["autoFeedMount"];
+    $this->template->trainingHpDecrease = MountEntity::HP_DECREASE_TRAINING;
   }
   
   public function renderBank(): void {
@@ -135,6 +137,10 @@ final class HelpControl extends BookControl {
     $this->template->cityGroups = $groups->findBy(["path" => GroupEntity::PATH_CITY]);
     $this->template->towerGroups = $groups->findBy(["path" => GroupEntity::PATH_TOWER]);
     $this->template->churchGroups = $groups->findBy(["path" => GroupEntity::PATH_CHURCH]);
+  }
+
+  public function renderAdventures(): void {
+    $this->template->hpDecrease = MountEntity::HP_DECREASE_ADVENTURE;
   }
 }
 ?>

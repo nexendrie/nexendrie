@@ -28,7 +28,7 @@ final class MountsStatusTask {
       echo "Mount $mount->name ($mount->id) is fed automatically.";
       $mount->owner->money -= $this->autoFeedingCost;
     } else {
-      $mount->hp -= 5;
+      $mount->hp -= MountEntity::HP_DECREASE_WEEKLY;
       echo "Decreasing (#$mount->id) $mount->name's life by 5.";
     }
   }

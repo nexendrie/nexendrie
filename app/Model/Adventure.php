@@ -339,7 +339,7 @@ final class Adventure {
     $reward += $this->orderModel->calculateOrderIncomeBonus($reward);
     $adventure->user->money += $reward;
     $adventure->reward += $reward;
-    $adventure->mount->hp -= 5;
+    $adventure->mount->hp -= MountEntity::HP_DECREASE_ADVENTURE;
     $this->orm->userAdventures->persistAndFlush($adventure);
     $this->user->identity->travelling = false;
   }
