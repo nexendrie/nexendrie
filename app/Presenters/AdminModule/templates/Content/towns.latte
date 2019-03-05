@@ -5,7 +5,7 @@
   <table id="towns">
     <tr><th>Jméno</th><th>Akce</th></tr>
     {foreach $towns as $town}
-    <tr><td>{$town->name}</td><td><a n:href="Town:edit $town->id">Upravit</a></td></tr>
+    <tr><td>{$town->name}</td><td><a n:href=":Front:Town:detail $town->id">Zobrazit</a> <a n:href="Town:edit $town->id">Upravit</a></td></tr>
     {/foreach}
   </table>
   <p id="new"><a n:href="Town:new">Přidat město</a></p>
