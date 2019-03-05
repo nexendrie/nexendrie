@@ -127,7 +127,8 @@ CREATE TABLE "groups" (
     "single_name" varchar(60) NOT NULL,
     "female_name" varchar(60) NOT NULL,
     "level" integer NOT NULL,
-    "path" groups_path NOT NULL
+    "path" groups_path NOT NULL,
+    "max_loan" integer NOT NULL DEFAULT 0
 );
 ALTER SEQUENCE groups_id_seq MINVALUE 0 RESTART WITH 0;
 

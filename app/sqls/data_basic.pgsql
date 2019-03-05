@@ -29,22 +29,22 @@ INSERT INTO adventures ("name", "description", "intro", "epilogue", "level", "re
 INSERT INTO castles ("name", "description", "founded", "owner", "level", "hp") VALUES
   ('Dračí hrad','Dračí hrad je již od nepaměti sídlem panovníků Nexendrie.',1429779664,0,5,'100');
 
-INSERT INTO groups ("name", "single_name", "female_name", "level", "path") VALUES
-  ('Vládci','jeho Veličenstvo','její Veličenstvo',10001,'tower'),
-  ('Korunní rada','jeho Jasnost','její Jasnost',10000,'tower'),
-  ('Markrabata','markrabě','markraběnka',1000,'tower'),
-  ('Panstvo','lord','lady',600,'tower'),
-  ('Vyšší klérus','vyšší kněz','vyšší kněžka',550,'church'),
-  ('Rytíři','rytíř','dáma',400,'tower'),
-  ('Duchovní','kněz','kněžka',350,'church'),
-  ('Rychtáři','rychtář','rychtářka',345,'city'),
-  ('Konšelé','konšel','konšelka',300,'city'),
-  ('Měšťané','měšťan','měšťanka',100,'city'),
-  ('Akolyté','akolyta','akolyta',90,'church'),
-  ('Mnišstvo','bratr','sestra',55,'church'),
-  ('Sedláci','sedlák','selka',50,'city'),
-  ('Cizinci','cizinec','cizinka',0,'city'),
-  ('Vězni','vězeň','vězeňkyně',0,'city');
+INSERT INTO groups ("name", "single_name", "female_name", "level", "path", "max_loan") VALUES
+  ('Vládci',	'jeho Veličenstvo',	'její Veličenstvo',	10001,	'tower',	2000),
+  ('Korunní rada',	'jeho Jasnost',	'její Jasnost',	10000,	'tower',	2000),
+  ('Markrabata',	'markrabě',	'markraběnka',	1000,	'tower',	1500),
+  ('Panstvo',	'lord',	'lady',	600,	'tower',	1500),
+  ('Vyšší klérus',	'vyšší kněz',	'vyšší kněžka',	550,	'church',	1500),
+  ('Rytíři',	'rytíř',	'dáma',	400,	'tower',	700),
+  ('Duchovní',	'kněz',	'kněžka',	350,	'church',	500),
+  ('Rychtáři',	'rychtář',	'rychtářka',	345,	'city',	500),
+  ('Konšelé',	'konšel',	'konšelka',	300,	'city',	500),
+  ('Měšťané',	'měšťan',	'měšťanka',	100,	'city',	300),
+  ('Akolyté',	'akolyta',	'akolyta',	90,	'church',	300),
+  ('Mnišstvo',	'bratr',	'sestra',	55,	'church',	70),
+  ('Sedláci',	'sedlák',	'selka',	50,	'city',	70),
+  ('Cizinci',	'cizinec',	'cizinka',	0,	'city',	0),
+  ('Vězni',	'vězeň',	'vězeňkyně',	0,	'city',	0);
 
 INSERT INTO guild_ranks ("name", "income_bonus", "guild_fee") VALUES
   ('učedník',5,50),

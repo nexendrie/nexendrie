@@ -29,22 +29,22 @@ INSERT INTO `adventure_npcs` (`id`, `name`, `adventure`, `order`, `hitpoints`, `
   (15,	'Zlodějka',	4,	5,	33,	3,	3,	7,	'Neztrácíš tedy čas a začneš s průzkumem domu. Zdá se, že slouží zlodějům jako skladiště, protože se zde válí spousta balíčků a dokonce i rozbitých věcí. Po chvílí slyšíš, jak na tebe letí nůž. Soustředíš se a chytíš jej. Zaraduješ se, ale o vteřinu později už u tebe stojí zlodějka a útočí na tebe.',	'Po několika minutách boje se ale zhroutí na zem a vzdává se ti. Ty skončíš s bojem a začneš jí pokládat otázky. Kde se nachází lup, který hledáš, kdo jej hlídá atd. Ona ti, s přerývaných dechem, odpoví, že to hledáš, chrání osobně jejich vůdce, kterého ale jistě neporazíš. A dodává, že i kdyby se ti to nějakým zázrakem podařilo, živý se odtud nedostaneš. Ty se nenecháš rozhodit a vydáš se za vůdcem zlodějů.'),
   (16,	'Vůdce zlodějů',	4,	6,	37,	4,	4,	12,	'Nemáš vůbec problém jej najít a nikdo ti ani nestojí v cestě. Začínáš tušit, že na slovech zlodějky asi něco bude. Nemáš čas ale příliš přemýšlet, protože vůdce zlodějů si tě všimne a míří k tobě. Během jeho chůze si jej prohlížíš. Je štíhlý a mrštný. Nebude lehkým soupeřem. Než si ale stihneš promyslet svou strategii, už na tebe útočí.',	'Po dlouhém boji nakonec pořádně udeříš a tvůj protivník se začne svíjet bolestí. Ptáš se jej, kde jsou věci, které ukradl místnímu pánovi. On ukáže na jednu hromádku poblíž. Prohlížíš si pozorně dané věci a shledáš, že mluví pravdu. Pobereš tedy dané věci a chystáš se k odchodu. V tu chvíli ale ze všech koutů vyleze asi deset zloděj s hrozivým pohledem v očích. Lekneš se a začneš rychle přemýšlet jak se dostat ven. Ke dveřím se nestihneš dostat včas a okna žádná nevidíš. Z přemýšlení tě vyruší hluk u dveří.');
 
-INSERT INTO `groups` (`id`, `name`, `single_name`, `female_name`, `level`, `path`) VALUES
-  (0,	'Vládci',	'jeho Veličenstvo',	'její Veličenstvo',	10001,	'tower'),
-  (1,	'Korunní rada',	'jeho Jasnost',	'její Jasnost',	10000,	'tower'),
-  (2,	'Markrabata',	'markrabě',	'markraběnka',	1000,	'tower'),
-  (3,	'Panstvo',	'lord',	'lady',	600,	'tower'),
-  (4,	'Vyšší klérus',	'vyšší kněz',	'vyšší kněžka',	550,	'church'),
-  (5,	'Rytíři',	'rytíř',	'dáma',	400,	'tower'),
-  (6,	'Duchovní',	'kněz',	'kněžka',	350,	'church'),
-  (7,	'Rychtáři',	'rychtář',	'rychtářka',	345,	'city'),
-  (8,	'Konšelé',	'konšel',	'konšelka',	300,	'city'),
-  (9,	'Měšťané',	'měšťan',	'měšťanka',	100,	'city'),
-  (10,	'Akolyté',	'akolyta',	'akolyta',	90,	'church'),
-  (11,	'Mnišstvo',	'bratr',	'sestra',	55,	'church'),
-  (12,	'Sedláci',	'sedlák',	'selka',	50,	'city'),
-  (13,	'Cizinci',	'cizinec',	'cizinka',	0,	'city'),
-  (14,	'Vězni',	'vězeň',	'vězeňkyně',	0,	'city');
+INSERT INTO `groups` (`id`, `name`, `single_name`, `female_name`, `level`, `path`, `max_loan`) VALUES
+  (0,	'Vládci',	'jeho Veličenstvo',	'její Veličenstvo',	10001,	'tower',	2000),
+  (1,	'Korunní rada',	'jeho Jasnost',	'její Jasnost',	10000,	'tower',	2000),
+  (2,	'Markrabata',	'markrabě',	'markraběnka',	1000,	'tower',	1500),
+  (3,	'Panstvo',	'lord',	'lady',	600,	'tower',	1500),
+  (4,	'Vyšší klérus',	'vyšší kněz',	'vyšší kněžka',	550,	'church',	1500),
+  (5,	'Rytíři',	'rytíř',	'dáma',	400,	'tower',	700),
+  (6,	'Duchovní',	'kněz',	'kněžka',	350,	'church',	500),
+  (7,	'Rychtáři',	'rychtář',	'rychtářka',	345,	'city',	500),
+  (8,	'Konšelé',	'konšel',	'konšelka',	300,	'city',	500),
+  (9,	'Měšťané',	'měšťan',	'měšťanka',	100,	'city',	300),
+  (10,	'Akolyté',	'akolyta',	'akolyta',	90,	'church',	300),
+  (11,	'Mnišstvo',	'bratr',	'sestra',	55,	'church',	70),
+  (12,	'Sedláci',	'sedlák',	'selka',	50,	'city',	70),
+  (13,	'Cizinci',	'cizinec',	'cizinka',	0,	'city',	0),
+  (14,	'Vězni',	'vězeň',	'vězeňkyně',	0,	'city',	0);
 
 INSERT INTO `guild_ranks` (`id`, `name`, `income_bonus`, `guild_fee`) VALUES
   (1,	'učedník',	5,	50),

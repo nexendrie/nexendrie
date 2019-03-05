@@ -130,6 +130,10 @@ final class HelpControl extends BookControl {
   public function renderBank(): void {
     $this->template->loanInterest = $this->sr->settings["fees"]["loanInterest"];
     $this->template->depositInterest = $this->sr->settings["fees"]["depositInterest"];
+    $this->template->groups = $this->orm->groups->findBy([
+      "level>" => 0,
+      "level<" => 10001,
+    ])->orderBy("level");
   }
 
   public function renderTitles(): void {

@@ -15,6 +15,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $femaleName
  * @property int $level
  * @property string $path {enum static::PATH_*}
+ * @property int $maxLoan {default 0}
  * @property OneHasMany|User[] $members {1:m User::$group}
  * @property OneHasMany|Permission[] $permissions {1:m Permission::$group}
  */

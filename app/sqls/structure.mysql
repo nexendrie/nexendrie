@@ -151,6 +151,7 @@ CREATE TABLE `groups` (
   `female_name` varchar(30) NOT NULL,
   `level` int(5) NOT NULL,
   `path` enum('city','church','tower') NOT NULL,
+  `max_loan` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

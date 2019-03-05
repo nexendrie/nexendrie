@@ -27,25 +27,16 @@ final class BankTest extends \Tester\TestCase {
     Assert::null($this->model->getActiveLoan());
   }
   
-  protected function checkMaxLoan(string $username, int $maxLoan): void {
-    $this->login($username);
-    Assert::same($maxLoan, $this->model->maxLoan());
-  }
-  
   public function testMaxLoan() {
     Assert::same(0, $this->model->maxLoan());
-    $this->checkMaxLoan("kazimira", 70);
-    $this->checkMaxLoan("premysl", 300);
-    $this->checkMaxLoan("Jakub", 500);
-    $this->checkMaxLoan("Světlana", 700);
-    $this->checkMaxLoan("Rahym", 1500);
-    $this->checkMaxLoan("Trimadyl z Myhru", 2000);
+    $this->login();
+    Assert::notSame(0, $this->model->maxLoan());
   }
   
   public function testTakeLoan() {
     $this->login();
     Assert::exception(function() {
-      $this->model->takeLoan($this->model->maxLoan() + 1);
+      $this->model->takeLoan(100000000);
     }, TooHighLoanException::class);
     $this->preserveStats(["money"], function() {
       $money = $this->getUserStat("money");
