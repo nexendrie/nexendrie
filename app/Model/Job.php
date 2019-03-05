@@ -76,7 +76,11 @@ final class Job {
       throw new AuthenticationNeededException();
     }
     $return = [];
-    $offers = $this->orm->jobs->findForLevel($this->user->identity->level);
+    $offers = $this->orm->jobs->findForLevel($this->user->identity->level)
+      ->orderBy("level")
+      ->orderBy("neededSkillLevel")
+      ->orderBy("count")
+      ->orderBy("award");
     foreach($offers as $offer) {
       if($offer->neededSkillLevel > 0) {
         $userSkillLevel = $this->skillsModel->getLevelOfSkill($offer->neededSkill->id);
