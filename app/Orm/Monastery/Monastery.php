@@ -37,7 +37,7 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 700;
   public const BASE_REPAIR_PRICE = 30;
-  public const BASE_PRAYER_LIFE = 2;
+  public const BASE_PRAYER_LIFE = 4;
   public const PRAYER_LIFE_PER_LEVEL = 2;
   public const SKILL_LEARNING_DISCOUNT_PER_LEVEL = 3;
 
@@ -78,7 +78,7 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
     if($this->hp < 30) {
       return 0;
     }
-    return static::BASE_PRAYER_LIFE + ($this->altairLevel * static::PRAYER_LIFE_PER_LEVEL);
+    return static::BASE_PRAYER_LIFE + ($this->altairLevel * (static::PRAYER_LIFE_PER_LEVEL - 1));
   }
   
   protected function getterUpgradePrice(): int {
