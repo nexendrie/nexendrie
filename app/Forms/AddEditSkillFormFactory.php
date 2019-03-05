@@ -31,11 +31,11 @@ final class AddEditSkillFormFactory {
       ->setRequired("Vyber typ.");
     $form->addSelect("stat", "Vlastnost:", SkillEntity::getStats())
       ->setPrompt("žádná")
-      ->addConditionOn($form["type"], Form::EQUAL, "combat")
+      ->addConditionOn($form["type"], Form::EQUAL, SkillEntity::TYPE_COMBAT)
         ->setRequired("Vyber vlasnost.");
     $form->addText("statIncrease", "Vylepšení vlastnosti:")
       ->setValue(0)
-      ->addConditionOn($form["type"], Form::EQUAL, "combat")
+      ->addConditionOn($form["type"], Form::EQUAL, SkillEntity::TYPE_COMBAT)
         ->setRequired()
         ->addRule(Form::INTEGER, "Vylepšení vlastnosti musí být celé číslo.")
         ->addRule(Form::RANGE, "Vylepšení vlastnosti musí být v rozmezí 1-99.", [1, 99]);
@@ -49,10 +49,10 @@ final class AddEditSkillFormFactory {
    * @param array $values
    */
   public function validate(Form $form, array $values): void {
-    if($values["type"] === "work" AND $values["stat"] != null) {
+    if($values["type"] === SkillEntity::TYPE_WORK AND $values["stat"] != null) {
       $form->addError("Neplatná kombinace: vybrána vlastnost u pracovní dovednosti.");
     }
-    if($values["type"] === "work" AND $values["statIncrease"] != 0) {
+    if($values["type"] === SkillEntity::TYPE_WORK AND $values["statIncrease"] != 0) {
       $form->addError("Neplatná kombinace: vylepšení dovednosti musí být 0 u pracovní dovednosti.");
     }
   }
