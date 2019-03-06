@@ -129,6 +129,11 @@ final class SystemSettingsFormFactory {
       ->setRequired("Zadej cenu založení řádu.")
       ->addRule(Form::INTEGER, "Cena založení řádu musí být celé číslo.")
       ->addRule(Form::RANGE, "Cena založení řádu musí být v rozmezí 0-5000.", [0, 5000]);
+    $fees->addText("foundTown", "Založení města:")
+      ->setOption("description", "Cena založení města v groších.")
+      ->setRequired("Zadej cenu založení města.")
+      ->addRule(Form::INTEGER, "Cena založení města musí být celé číslo.")
+      ->addRule(Form::RANGE, "Cena založení města musí být v rozmezí 0-5000.", [0, 5000]);
     $fees->addText("autoFeedMount", "Automatické krmení jezdeckého zvířete:")
       ->setOption("description", "Cena automatické krmení jezdeckého zvířete v groších (za týden).")
       ->setRequired("Zadej cenu automatické krmení jezdeckého zvířete.")

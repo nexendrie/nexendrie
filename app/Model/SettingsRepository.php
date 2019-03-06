@@ -41,6 +41,7 @@ final class SettingsRepository {
       "buildCastle" => 1500,
       "foundGuild" => 1000,
       "foundOrder" => 1200,
+      "foundTown" => 1000,
       "autoFeedMount" => 8,
       "depositInterest" => 3,
     ],

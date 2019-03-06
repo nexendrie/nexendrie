@@ -19,13 +19,14 @@ final class Town {
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
-  protected $foundingPrice = 1000;
+  protected $foundingPrice;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
+    $this->foundingPrice = $sr->settings["fees"]["foundTown"];
   }
   
   /**
