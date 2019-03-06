@@ -1,16 +1,16 @@
   <h1>{$shop->name}</h1>
   <p>{$shop->description}</p>
   {if !$user->isLoggedIn()}
-    <p>Cizincům neprodávám.<small>Tip: Aby jsi mohl nakupovat, musíš být zaregistrovaný a přihlášený.</small></p>
+  <p>Cizincům neprodávám.<small>Tip: Aby jsi mohl nakupovat, musíš být <a href="{plink :Front:User:register}">zaregistrovaný</a> a <a href="{plink :Front:User:login}">přihlášený</a>.</small></p>
   {elseif count($shop->items) === 0}
     <p>Bohužel ti nic nemohu nabídnout.</p>
   {else}
-    <article id="items">
-    Mohu ti nabídnout {if $discount > 0}(se slevou {$discount}%){/if}:
+  <article id="items">
+  Mohu ti nabídnout {if $discount > 0}(se slevou {$discount}%){/if}:
     <ul>
       {foreach $shop->items as $item}
-        <li><span title="{$item->description}">{$item->name}{if $item->strength} (Síla: {$item->strength}){/if} za {$item->priceT}.</span> <a n:href="buy! $item->id">Koupit</a></li>
+      <li><span title="{$item->description}">{$item->name}{if $item->strength} (Síla: {$item->strength}){/if} za {$item->priceT}.</span> <a n:href="buy! $item->id">Koupit</a></li>
       {/foreach}
     </ul>
-    </article>
+  </article>
   {/if}
