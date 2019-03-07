@@ -20,7 +20,7 @@ final class AuthorizatorFactoryTest extends \Tester\TestCase {
   public function testRoles() {
     $roles = [
       "vězeň", "cizinec", "sedlák", "bratr", "akolyta", "měšťan", "konšel", "rychtář", "kněz",
-      "rytíř", "vyšší kněz", "lord", "markrabě", "jeho Jasnost", "jeho Veličenstvo"
+      "rytíř", "velekněz", "lord", "markrabě", "jeho Jasnost", "jeho Veličenstvo"
     ];
     foreach($roles as $role) {
       Assert::true($this->model->hasRole($role));

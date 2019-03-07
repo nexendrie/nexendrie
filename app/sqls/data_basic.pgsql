@@ -34,7 +34,7 @@ INSERT INTO groups ("name", "single_name", "female_name", "level", "path", "max_
   ('Korunní rada',	'jeho Jasnost',	'její Jasnost',	10000,	'tower',	2000),
   ('Markrabata',	'markrabě',	'markraběnka',	1000,	'tower',	1500),
   ('Panstvo',	'lord',	'lady',	600,	'tower',	1500),
-  ('Vyšší klérus',	'vyšší kněz',	'vyšší kněžka',	550,	'church',	1500),
+  ('Vyšší klérus',	'velekněz',	'velekněžka',	550,	'church',	1500),
   ('Rytíři',	'rytíř',	'dáma',	400,	'tower',	700),
   ('Duchovní',	'kněz',	'kněžka',	350,	'church',	500),
   ('Rychtáři',	'rychtář',	'rychtářka',	345,	'city',	500),

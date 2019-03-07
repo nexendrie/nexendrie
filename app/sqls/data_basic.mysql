@@ -34,7 +34,7 @@ INSERT INTO `groups` (`id`, `name`, `single_name`, `female_name`, `level`, `path
   (1,	'Korunní rada',	'jeho Jasnost',	'její Jasnost',	10000,	'tower',	2000),
   (2,	'Markrabata',	'markrabě',	'markraběnka',	1000,	'tower',	1500),
   (3,	'Panstvo',	'lord',	'lady',	600,	'tower',	1500),
-  (4,	'Vyšší klérus',	'vyšší kněz',	'vyšší kněžka',	550,	'church',	1500),
+  (4,	'Vyšší klérus',	'velekněz',	'velekněžka',	550,	'church',	1500),
   (5,	'Rytíři',	'rytíř',	'dáma',	400,	'tower',	700),
   (6,	'Duchovní',	'kněz',	'kněžka',	350,	'church',	500),
   (7,	'Rychtáři',	'rychtář',	'rychtářka',	345,	'city',	500),
