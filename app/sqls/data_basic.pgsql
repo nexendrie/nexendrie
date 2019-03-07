@@ -30,8 +30,8 @@ INSERT INTO castles ("name", "description", "founded", "owner", "level", "hp") V
   ('Dračí hrad','Dračí hrad je již od nepaměti sídlem panovníků Nexendrie.',1429779664,0,5,'100');
 
 INSERT INTO groups ("name", "single_name", "female_name", "level", "path", "max_loan") VALUES
-  ('Vládci',	'jeho Veličenstvo',	'její Veličenstvo',	10001,	'tower',	2000),
-  ('Korunní rada',	'jeho Jasnost',	'její Jasnost',	10000,	'tower',	2000),
+  ('Vládci',	'Jeho Veličenstvo',	'Její Veličenstvo',	10001,	'tower',	2000),
+  ('Korunní rada',	'Jeho Jasnost',	'Její Jasnost',	10000,	'tower',	2000),
   ('Markrabata',	'markrabě',	'markraběnka',	1000,	'tower',	1500),
   ('Panstvo',	'lord',	'lady',	600,	'tower',	1500),
   ('Vyšší klérus',	'velekněz',	'velekněžka',	550,	'church',	1500),

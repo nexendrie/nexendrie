@@ -30,8 +30,8 @@ INSERT INTO `adventure_npcs` (`id`, `name`, `adventure`, `order`, `hitpoints`, `
   (16,	'Vůdce zlodějů',	4,	6,	37,	4,	4,	12,	'Nemáš vůbec problém jej najít a nikdo ti ani nestojí v cestě. Začínáš tušit, že na slovech zlodějky asi něco bude. Nemáš čas ale příliš přemýšlet, protože vůdce zlodějů si tě všimne a míří k tobě. Během jeho chůze si jej prohlížíš. Je štíhlý a mrštný. Nebude lehkým soupeřem. Než si ale stihneš promyslet svou strategii, už na tebe útočí.',	'Po dlouhém boji nakonec pořádně udeříš a tvůj protivník se začne svíjet bolestí. Ptáš se jej, kde jsou věci, které ukradl místnímu pánovi. On ukáže na jednu hromádku poblíž. Prohlížíš si pozorně dané věci a shledáš, že mluví pravdu. Pobereš tedy dané věci a chystáš se k odchodu. V tu chvíli ale ze všech koutů vyleze asi deset zloděj s hrozivým pohledem v očích. Lekneš se a začneš rychle přemýšlet jak se dostat ven. Ke dveřím se nestihneš dostat včas a okna žádná nevidíš. Z přemýšlení tě vyruší hluk u dveří.');
 
 INSERT INTO `groups` (`id`, `name`, `single_name`, `female_name`, `level`, `path`, `max_loan`) VALUES
-  (0,	'Vládci',	'jeho Veličenstvo',	'její Veličenstvo',	10001,	'tower',	2000),
-  (1,	'Korunní rada',	'jeho Jasnost',	'její Jasnost',	10000,	'tower',	2000),
+  (0,	'Vládci',	'Jeho Veličenstvo',	'Její Veličenstvo',	10001,	'tower',	2000),
+  (1,	'Korunní rada',	'Jeho Jasnost',	'Její Jasnost',	10000,	'tower',	2000),
   (2,	'Markrabata',	'markrabě',	'markraběnka',	1000,	'tower',	1500),
   (3,	'Panstvo',	'lord',	'lady',	600,	'tower',	1500),
   (4,	'Vyšší klérus',	'velekněz',	'velekněžka',	550,	'church',	1500),
