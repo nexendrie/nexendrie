@@ -182,6 +182,16 @@ final class TownTest extends \Tester\TestCase {
       $this->model->makeCitizen(3);
     }, TooHighLevelException::class);
   }
+
+  public function testCanManage() {
+    Assert::exception(function() {
+      $this->model->canManage($this->model->get(1));
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::true($this->model->canManage($this->model->get(1)));
+    Assert::true($this->model->canManage($this->model->get(2)));
+    Assert::false($this->model->canManage($this->model->get(6)));
+  }
 }
 
 $test = new TownTest();

@@ -194,7 +194,8 @@ INSERT INTO `permissions` (`id`, `resource`, `action`, `group`) VALUES
   (21,	'content',	'delete',	1),
   (22,	'poll',	'list',	1),
   (23,	'event',	'list',	1),
-  (24,	'town',	'elect',	9);
+  (24,	'town',	'elect',	9),
+  (25,	'town',	'manage',	1);
 
 INSERT INTO `shops` (`id`, `name`, `description`) VALUES
   (1,	'Hamalův všehoobchod',	'popisek'),

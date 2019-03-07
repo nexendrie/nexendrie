@@ -19,5 +19,13 @@
     {/foreach}
   </p>
   {/if}
+  {if $user->isAllowed("town", "manage")}
+  <p>
+    Královská města/vesnice:<br>
+    {foreach $royalTowns as $town}
+      <a n:href="town $town->id">{$town->name}</a>{if !$iterator->last},{else}.{/if}
+    {/foreach}
+  </p>
+  {/if}
   <p><a n:href="Stables:">Jezdecká zvířata</a> <a n:href="equipment">Vybavení</a> <a n:href="potions">Lektvary</a> <a n:href="budget">Rozpočet</a></p>
 {/block}

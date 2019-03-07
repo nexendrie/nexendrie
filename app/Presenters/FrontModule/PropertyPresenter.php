@@ -67,6 +67,9 @@ final class PropertyPresenter extends BasePresenter {
     $this->template->items = $data["items"];
     $this->template->towns = $data["towns"];
     $this->template->loan = $data["loan"];
+    if($this->user->isAllowed("town", "manage")) {
+      $this->template->royalTowns = $this->townModel->listOfTowns()->findBy(["owner" => 0]);
+    }
   }
   
   public function actionTown(int $id): void {
@@ -76,7 +79,7 @@ final class PropertyPresenter extends BasePresenter {
       $this->flashMessage("Město nenalezeno.");
       $this->redirect("Homepage:");
     }
-    if($this->town->owner->id != $this->user->id) {
+    if(!$this->townModel->canManage($this->town)) {
       $this->flashMessage("Zadané město ti nepatří.");
       $this->redirect("Homepage:");
     }

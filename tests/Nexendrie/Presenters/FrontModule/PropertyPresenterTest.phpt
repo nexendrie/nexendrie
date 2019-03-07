@@ -36,6 +36,7 @@ final class PropertyPresenterTest extends \Tester\TestCase {
     $this->checkRedirect(":Front:Property:town", "/", ["id" => 5000]);
     $this->checkRedirect(":Front:Property:town", "/", ["id" => 1]);
     $this->login();
+    $this->checkAction(":Front:Property:town", ["id" => 1]);
     $this->checkAction(":Front:Property:town", ["id" => 2]);
   }
 }
