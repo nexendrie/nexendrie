@@ -4,11 +4,10 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
-use Nexendrie\Model\Group;
 use Nexendrie\Model\SettingsRepository;
-use Nexendrie\Model\Town;
 use Nette\Neon\Neon;
 use Nette\Utils\FileSystem;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * Factory for form SystemSettings
@@ -18,36 +17,23 @@ use Nette\Utils\FileSystem;
 final class SystemSettingsFormFactory {
   /** @var SettingsRepository */
   protected $sr;
-  /** @var Group */
-  protected $groupModel;
-  /** @var Town */
-  protected $townModel;
+  /** @var ORM */
+  protected $orm;
   /** @var string */
   protected $appDir;
   
-  public function __construct(string $appDir, SettingsRepository $settingsRepository, Group $groupModel, Town $townModel) {
+  public function __construct(string $appDir, SettingsRepository $settingsRepository, ORM $orm) {
     $this->sr = $settingsRepository;
-    $this->groupModel = $groupModel;
-    $this->townModel = $townModel;
+    $this->orm = $orm;
     $this->appDir = $appDir;
   }
   
   protected function getListOfGroups(): array {
-    $return = [];
-    $groups = $this->groupModel->listOfGroups();
-    foreach($groups as $group) {
-      $return[$group->id] = $group->singleName;
-    }
-    return $return;
+    return $this->orm->groups->findAll()->fetchPairs("id", "singleName");
   }
   
   protected function getListOfTowns(): array {
-    $return = [];
-    $towns = $this->townModel->listOfTowns();
-    foreach($towns as $town) {
-      $return[$town->id] = $town->name;
-    }
-    return $return;
+    return $this->orm->towns->findAll()->fetchPairs("id", "name");
   }
   
   protected function getDefaultValues(): array {
