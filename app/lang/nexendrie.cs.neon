@@ -10,3 +10,4 @@ achievements:
     producedBeers: "Vyprodukuj %newCount% sudů piva (hotovo %oldCount%)."
     townsOwned: "Vládni %newCount% městům (hotovo %oldCount%)."
     mountsOwned: "Vlastni %newCount% jezdeckých zvířat (hotovo %oldCount%)."
+    writtenArticles: "Napiš %newCount% článků (hotovo %oldCount%)."

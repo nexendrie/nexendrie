@@ -75,6 +75,7 @@ use Nexendrie\Forms\UserSettingsFormFactory;
  * @property-read int $currentGuildContribution {virtual}
  * @property-read int $townsOwned {virtual}
  * @property-read int $mountsOwned {virtual}
+ * @property-read int $writtenArticles {virtual}
  */
 final class User extends \Nextras\Orm\Entity\Entity {
   public const GENDER_MALE = "male";
@@ -201,6 +202,10 @@ final class User extends \Nextras\Orm\Entity\Entity {
   
   protected function getterMountsOwned(): int {
     return $this->mounts->countStored();
+  }
+
+  protected function getterWrittenArticles(): int {
+    return $this->articles->countStored();
   }
   
   public function onBeforeInsert(): void {

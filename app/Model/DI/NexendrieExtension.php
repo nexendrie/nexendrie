@@ -313,6 +313,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Achievements\TownsOwnedAchievements::class);
     $builder->addDefinition($this->prefix("achievements.mountsOwned"))
       ->setType(Nexendrie\Achievements\MountsOwnedAchievement::class);
+    $builder->addDefinition($this->prefix("achievements.writtenArticles"))
+      ->setType(Nexendrie\Achievements\WrittenArticlesAchievement::class);
   }
   
   public function afterCompile(\Nette\PhpGenerator\ClassType $class): void {
