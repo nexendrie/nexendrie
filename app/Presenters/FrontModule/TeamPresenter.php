@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+
+namespace Nexendrie\Presenters\FrontModule;
+
+use Nextras\Orm\Collection\ICollection;
+
+/**
+ * Presenter Team
+ *
+ * @author Jakub Konečný
+ */
+class TeamPresenter extends BasePresenter {
+  /** @var \Nexendrie\Orm\Model */
+  protected $orm;
+
+  public function __construct(\Nexendrie\Orm\Model $orm) {
+    parent::__construct();
+    $this->orm = $orm;
+  }
+
+  public function renderDefault(): void {
+    $this->template->admins = $this->orm->users->findBy([
+      "this->group->level" => 10000
+    ])->orderBy("lastActive", ICollection::DESC);
+  }
+}
+?>

@@ -1,0 +1,9 @@
+{layout "../@layout.latte"}
+{block title}Tým{/block}
+{block content}
+  <h1>Tým</h1>
+  <p>Na této stránce najdeš seznam správců těchto stránek. Neváhej je kontaktovat, pokud narazíš na nějaký problém při používání stránek nebo pokud jsi svědkem nevhodného chování. Měj na paměti, že správci nemusí být programátoři, proto nemusí být schopni opravit chyb. V takovém případě je alespoň nahlásí. Také vem, prosím, v potaz dobu, kdy byli naposledy na stránkách aktivní.</p>
+  <article n:inner-foreach="$admins as $admin" id="admins">
+  {control userProfileLink $admin} (naposledy aktivní {$admin->lastActiveAt}) <a n:href="Messages:new $admin->id">Poslat zprávu</a><br>
+  </article>
+{/block}

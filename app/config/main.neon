@@ -89,6 +89,7 @@ menu:
             Seznamy: "Front:Lists:"
             Hledání: "Front:Search:"
             Nápověda: "Front:Help:"
+            Tým: "Front:Team:"
     userPanelFront:
         htmlId: userPanel
         items:
