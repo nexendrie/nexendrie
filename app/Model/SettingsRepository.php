@@ -27,7 +27,7 @@ final class SettingsRepository {
       "dateTimeFormat" => "j.n.Y G:i",
     ],
     "pagination" => [
-      "news" => 10
+      "articles" => 10
     ],
     "newUser" => [
       "style" => "dark-sky",

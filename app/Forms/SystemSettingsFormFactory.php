@@ -65,7 +65,7 @@ final class SystemSettingsFormFactory {
       ->setRequired("Vyber roli pro zablokovaného uživatele.");
     $form->addGroup("Stránkování");
     $pagination = $form->addContainer("pagination");
-    $pagination->addText("news", "Novinek na stránku:")
+    $pagination->addText("articles", "Článků na stránku:")
       ->setRequired("Zadej počet novinek na stránku.")
       ->addRule(Form::INTEGER, "Počet novinek na stránku musí být číslo.");
     $form->addGroup("Nový uživatel");

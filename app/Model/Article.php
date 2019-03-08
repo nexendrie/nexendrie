@@ -25,7 +25,7 @@ final class Article {
   public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->itemsPerPage = (int) $sr->settings["pagination"]["news"];
+    $this->itemsPerPage = (int) $sr->settings["pagination"]["articles"];
   }
   
   /**
