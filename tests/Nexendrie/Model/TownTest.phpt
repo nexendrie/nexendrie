@@ -184,9 +184,7 @@ final class TownTest extends \Tester\TestCase {
   }
 
   public function testCanManage() {
-    Assert::exception(function() {
-      $this->model->canManage($this->model->get(1));
-    }, AuthenticationNeededException::class);
+    Assert::false($this->model->canManage($this->model->get(1)));
     $this->login();
     Assert::true($this->model->canManage($this->model->get(1)));
     Assert::true($this->model->canManage($this->model->get(2)));

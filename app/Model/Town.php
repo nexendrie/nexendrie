@@ -323,14 +323,10 @@ final class Town {
     $this->orm->users->persistAndFlush($citizen);
   }
 
-  /**
-   * @throws AuthenticationNeededException
-   */
   public function canManage(TownEntity $town): bool {
     if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException();
-    }
-    if($town->owner->id === $this->user->id) {
+      return false;
+    } elseif($town->owner->id === $this->user->id) {
       return true;
     } elseif($town->owner->id !== 0) {
       return false;
