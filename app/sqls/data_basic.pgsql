@@ -135,7 +135,15 @@ INSERT INTO job_messages ("job", "success", "message") VALUES
   (11,TRUE,	'Ochránil(a) jsi obchodníka před lupiči.'),
   (11,TRUE,	'Prošli jste bez obtíží tímto úsekem.'),
   (11,FALSE,	'Lupiči ukradli část zboží.'),
-  (11,FALSE,	'Při boji jsi poškodil(a) část zboží.');
+  (11,FALSE,	'Při boji jsi poškodil(a) část zboží.'),
+  (12,TRUE,	'Upekl(a) a prodal(a) jsi 1 bochník chleba.'),
+  (12,TRUE,	'Upekl(a) a prodal(a) jsi 1 koblihu.'),
+  (12,TRUE,	'Upekl(a) a prodal(a) jsi 1 koláč.'),
+  (12,TRUE,	'Upekl(a) a prodal(a) jsi 1 makový závin.'),
+  (12,FALSE,	'Tvé pečivo nikdo nechtěl koupit.'),
+  (12,FALSE,	'Tvé pečivo nebylo poživatelné.'),
+  (13,FALSE,	'Přinesl(a) jsi špatnou knihu.'),
+  (13,FALSE,	'Hledal(a) jsi knihu příliš dlouho, student odešel.');
 
 INSERT INTO jobs ("name", "description", "help", "count", "award", "shift", "level", "needed_skill", "needed_skill_level") VALUES
   ('Rybář','Rybář loví v řece ryby a následně je prodává.','Lovit můžeš každých 70 minut a za 1 ulovenou rybu dostaneš %reward%. Pamatuj ale, že lov se nemusí vždy podařit!',0,2,70,50,1,0),
@@ -148,7 +156,9 @@ INSERT INTO jobs ("name", "description", "help", "count", "award", "shift", "lev
   ('Žoldnéř','Pohraniční oblasti byly napadeny našimi sousedy a místní páni nemají dostatek mužů, aby odrazili nepřátele. Slibují odměnu za pomoc.','Braň vesnici proti útokům cizáků.',0,10,90,400,5,2),
   ('Pomocník v kuchyni',	'Místní pán má nedostatek lidí v kuchyni. Budeš jen nosit či upravovat jednotlivé suroviny.',	'Přines to a tamto. A pospěš si nebo nedostaneš %reward% za tuhle hodinu!',	0,	3,	60,	50,	10,	0),
   ('Kuchař',	'Jeden z kuchařů místního pána je nemocný. Dokážeš jej zastoupit?',	'Pán chce k večeři pečené holuby. Nekoukej tak a dej se do práce!',	12,	110,	60,	90,	10,	1),
-  ('Tělesný strážce',	'Významný obchodník potřebuje ochranu během obchodní cesty.',	'Braň obchodníka!',	20,	250,	45,	400,	5,	3);
+  ('Tělesný strážce',	'Významný obchodník potřebuje ochranu během obchodní cesty.',	'Braň obchodníka!',	20,	250,	45,	400,	5,	3),
+  ('Pekař',	'Pekař peče a prodává pečivo.',	'Dej se do pečení. Za každý kus dostaneš %reward%.',	0,	6,	90,	100,	10,	2),
+  ('Knihovník',	'V místní akademie je neobvykle mnoho studentů, kteří dychtí po nových znalostech. Sežeň jim potřebné studijní materiály z archivu a postarej se o nezbytnou administrativu.',	'Přichází další student. Běž mu pomoct.',	20,	200,	45,	100,	3,	2);
 
 INSERT INTO meals ("name", "message", "price", "life") VALUES
   ('Placka','Tady to je. Nesnáším výrobu ovesných placek, ale za těch 5 grošů to udělám.',5,2),

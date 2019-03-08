@@ -117,7 +117,9 @@ INSERT INTO `jobs` (`id`, `name`, `description`, `help`, `count`, `award`, `shif
   (8,	'Žoldnéř',	'Pohraniční oblasti byly napadeny našimi sousedy a místní páni nemají dostatek mužů, aby odrazili nepřátele. Slibují odměnu za pomoc.',	'Braň vesnici proti útokům cizáků.',	0,	10,	90,	400,	5,	2),
   (9,	'Pomocník v kuchyni',	'Místní pán má nedostatek lidí v kuchyni. Budeš jen nosit či upravovat jednotlivé suroviny.',	'Přines to a tamto. A pospěš si nebo nedostaneš %reward% za tuhle hodinu!',	0,	3,	60,	50,	10,	0),
   (10,	'Kuchař',	'Jeden z kuchařů místního pána je nemocný. Dokážeš jej zastoupit?',	'Pán chce k večeři pečené holuby. Nekoukej tak a dej se do práce!',	12,	110,	60,	90,	10,	1),
-  (11,	'Tělesný strážce',	'Významný obchodník potřebuje ochranu během obchodní cesty.',	'Braň obchodníka!',	20,	250,	45,	400,	5,	3);
+  (11,	'Tělesný strážce',	'Významný obchodník potřebuje ochranu během obchodní cesty.',	'Braň obchodníka!',	20,	250,	45,	400,	5,	3),
+  (12,	'Pekař',	'Pekař peče a prodává pečivo.',	'Dej se do pečení. Za každý kus dostaneš %reward%.',	0,	6,	90,	100,	10,	2),
+  (13,	'Knihovník',	'V místní akademie je neobvykle mnoho studentů, kteří dychtí po nových znalostech. Sežeň jim potřebné studijní materiály z archivu a postarej se o nezbytnou administrativu.',	'Přichází další student. Běž mu pomoct.',	20,	200,	45,	100,	3,	2);
 
 INSERT INTO `job_messages` (`id`, `job`, `success`, `message`) VALUES
   (1,	1,	1,	'Ulovil(a) jsi a prodal(a) 1 rybu.'),
@@ -148,7 +150,15 @@ INSERT INTO `job_messages` (`id`, `job`, `success`, `message`) VALUES
   (26,	11,	1,	'Ochránil(a) jsi obchodníka před lupiči.'),
   (27,	11,	1,	'Prošli jste bez obtíží tímto úsekem.'),
   (28,	11,	0,	'Lupiči ukradli část zboží.'),
-  (29,	11,	0,	'Při boji jsi poškodil(a) část zboží.');
+  (29,	11,	0,	'Při boji jsi poškodil(a) část zboží.'),
+  (30,	12,	1,	'Upekl(a) a prodal(a) jsi 1 bochník chleba.'),
+  (31,	12,	1,	'Upekl(a) a prodal(a) jsi 1 koblihu.'),
+  (32,	12,	1,	'Upekl(a) a prodal(a) jsi 1 koláč.'),
+  (33,	12,	1,	'Upekl(a) a prodal(a) jsi 1 makový závin.'),
+  (34,	12,	0,	'Tvé pečivo nikdo nechtěl koupit.'),
+  (35,	12,	0,	'Tvé pečivo nebylo poživatelné.'),
+  (36,	13,	0,	'Přinesl(a) jsi špatnou knihu.'),
+  (37,	13,	0,	'Hledal(a) jsi knihu příliš dlouho, student odešel.');
 
 INSERT INTO `meals` (`id`, `name`, `message`, `price`, `life`) VALUES
   (1,	'Placka',	'Tady to je. Nesnáším výrobu ovesných placek, ale za těch 5 grošů to udělám.',	5,	2),
