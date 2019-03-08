@@ -2,7 +2,7 @@
 {block title}{$monastery->name}{/block}
 {block content}
   <h1>{$monastery->name}</h1>
-  <p>{$monastery->name} byl založen {$monastery->foundedAt}. V současnosti jej řídí {control userProfileLink $monastery->leader}. Oltář je na úrovni {$monastery->altairLevel}, knihovna na úrovni {$monastery->libraryLevel}. Stav: {$monastery->hp}%.</p>
+  <p>{$monastery->name} se nachází ve městě/vesnici {$monastery->town->name} a byl založen {$monastery->foundedAt}. V současnosti jej řídí {control userProfileLink $monastery->leader}. Oltář je na úrovni {$monastery->altairLevel}, knihovna na úrovni {$monastery->libraryLevel}. Stav: {$monastery->hp}%.</p>
   <h3>Obyvatelé</h3>
   <p>
     {foreach $monastery->members as $member}
