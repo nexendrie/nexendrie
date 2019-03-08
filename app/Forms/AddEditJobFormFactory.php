@@ -35,10 +35,10 @@ final class AddEditJobFormFactory {
       ->setOption("description", "Zobrazí se v seznamu prací.");
     $form->addTextArea("help", "Nápověda:")
       ->setRequired("Zadej nápověda.")
-      ->setOption("description", "Zobrazí se během práce.");
+      ->setOption("description", "Zobrazí se během práce. %count% se nahradí počtem požadovaných směn (nebo 1), %reward% odměnou za 1 směnu nebo celkovou odměnou.");
     $form->addText("count", "Počet:")
       ->setRequired("Zadej počet.")
-      ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
+      ->addRule(Form::INTEGER, "Počet musí být celé číslo.")
       ->setValue(0);
     $form->addText("award", "Odměna:")
       ->setRequired("Zadej odměnu.")
