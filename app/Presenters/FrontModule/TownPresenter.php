@@ -81,6 +81,7 @@ final class TownPresenter extends BasePresenter {
       } else {
         $this->template->canMove = $this->model->canMove();
       }
+      $this->template->canManage = $this->model->canManage($this->template->town);
     } catch(TownNotFoundException $e) {
       throw new \Nette\Application\BadRequestException();
     }

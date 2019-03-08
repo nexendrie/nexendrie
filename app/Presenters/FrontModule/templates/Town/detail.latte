@@ -18,5 +18,5 @@
   <p n:foreach="$town->guilds as $guild">
     <a n:href="Guild:detail $guild->id">{$guild->name}</a>{if !$iterator->last}, {/if}
   </p>
-  {if $canMove}<a n:href="move $town->id">Přestěhovat se</a>{/if}
+  {if $canMove}<a n:href="move $town->id">Přestěhovat se</a>{/if} {if $canManage}<a n:href="Property:town $town->id">Spravovat</a>{/if}
 {/block}
