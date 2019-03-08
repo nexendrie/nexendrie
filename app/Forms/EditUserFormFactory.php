@@ -5,7 +5,6 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Model\UserManager;
-use Nexendrie\Model\Group;
 use Nexendrie\Model\Town;
 
 /**
@@ -18,8 +17,6 @@ final class EditUserFormFactory {
   protected $orm;
   /** @var UserManager */
   protected $model;
-  /** @var Group */
-  protected $groupModel;
   /** @var Town */
   protected $townModel;
   /** @var int */
@@ -27,20 +24,19 @@ final class EditUserFormFactory {
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, UserManager $model, Group $groupModel, Town $townModel) {
+  public function __construct(\Nexendrie\Orm\Model $orm, UserManager $model, Town $townModel) {
     $this->orm = $orm;
     $this->model = $model;
-    $this->groupModel = $groupModel;
     $this->townModel = $townModel;
   }
   
-  protected function getListOfGroups(): array {
-    $return = [];
-    $groups = $this->groupModel->listOfGroups();
-    foreach($groups as $group) {
-      $return[$group->id] = $group->name;
+  protected function getListOfGroups(int $uid): array {
+    if($uid === 0) {
+      $groups = $this->orm->groups->findBy(["id" => 0]);
+    } else {
+      $groups = $this->orm->groups->findBy(["level>" => 0, "id!=" => 0]);
     }
-    return $return;
+    return $groups->fetchPairs("id", "name");
   }
   
   protected function getListOfTowns(): array {
@@ -65,23 +61,17 @@ final class EditUserFormFactory {
   public function create(int $uid): Form {
     $form = new Form();
     $this->uid = $uid;
+    $groups = $this->getListOfGroups($uid);
     $form->addText("publicname", "Zobrazované jméno:")
       ->setRequired("Zobrazované jméno nesmí být prázdné");
-    $form->addSelect("group", "Skupina:", $this->getListOfGroups())
+    $form->addSelect("group", "Skupina:", $groups)
       ->setRequired("Vyber skupinu.");
     $form->addSelect("town", "Město", $this->getListOfTowns())
       ->setRequired("Vyber město.");
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");
-    $form->onValidate[] = [$this, "validate"];
     $form->onSuccess[] = [$this, "process"];
     return $form;
-  }
-  
-  public function validate(Form $form, array $values): void {
-    if($values["group"] == 0 AND $this->uid != 0) {
-      $form->addError("Neplatná skupina.");
-    }
   }
   
   public function process(Form $form, array $values): void {
