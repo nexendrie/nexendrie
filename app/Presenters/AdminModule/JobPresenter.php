@@ -7,7 +7,6 @@ use Nexendrie\Forms\AddEditJobFormFactory;
 use Nette\Application\UI\Form;
 use Nexendrie\Orm\Job as JobEntity;
 use Nexendrie\Model\JobNotFoundException;
-use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Presenter Job
@@ -43,8 +42,7 @@ final class JobPresenter extends BasePresenter {
   
   protected function createComponentAddJobForm(AddEditJobFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->addJob($values);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Práce přidána.");
       $this->redirect("Content:jobs");
     };
@@ -52,10 +50,8 @@ final class JobPresenter extends BasePresenter {
   }
   
   protected function createComponentEditJobForm(AddEditJobFormFactory $factory): Form {
-    $form = $factory->create();
-    $form->setDefaults($this->job->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->editJob((int) $this->getParameter("id"), $values);
+    $form = $factory->create($this->job);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:jobs");
     };

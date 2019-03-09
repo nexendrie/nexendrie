@@ -39,14 +39,11 @@ final class GroupPresenter extends BasePresenter {
   protected function createComponentEditGroupForm(EditGroupFormFactory $factory): Form {
     /** @var \Nexendrie\Orm\Group $group */
     $group = $this->model->ormGet((int) $this->getParameter("id"));
-    $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->user = $this->user;
-      $this->model->edit((int) $this->getParameter("id"), $values);
+    $form = $factory->create($group);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Skupina upravena.");
       $this->redirect("default");
     };
-    $form->setDefaults($group->toArray());
     return $form;
   }
   

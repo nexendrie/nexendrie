@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Factory for form AddEditTown
@@ -11,14 +12,20 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditTownFormFactory {
+  /** @var \Nexendrie\Model\Town */
+  protected $model;
   /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
+  /** @var \Nexendrie\Orm\Town|null */
+  protected $town;
   
-  public function __construct(\Nexendrie\Model\Profile $profileModel) {
+  public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\Profile $profileModel) {
+    $this->model = $model;
     $this->profileModel = $profileModel;
   }
   
-  public function create(): Form {
+  public function create(?\Nexendrie\Orm\Town $town = null): Form {
+    $this->town = $town;
     $form = new Form();
     $form->addText("name", "Jméno")
       ->setRequired("Zadej jméno.")
@@ -35,7 +42,19 @@ final class AddEditTownFormFactory {
       ->addRule(Form::MIN, "Cena musí být větší než 0.", 1)
       ->setDefaultValue(5000);
     $form->addSubmit("submit", "Odeslat");
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($town)) {
+      $form->setDefaults($town->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
+    }
     return $form;
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->town)) {
+      $this->model->add($values);
+    } else {
+      $this->model->edit($this->town->id, $values);
+    }
   }
 }
 ?>

@@ -7,7 +7,6 @@ use Nette\Application\UI\Form;
 use Nexendrie\Forms\AddEditItemFormFactory;
 use Nexendrie\Orm\Item as ItemEntity;
 use Nexendrie\Model\ItemNotFoundException;
-use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Presenter Item
@@ -43,8 +42,7 @@ final class ItemPresenter extends BasePresenter {
   
   protected function createComponentAddItemForm(AddEditItemFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->addItem($values);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Věc přidána.");
       $this->redirect("Content:items");
     };
@@ -52,10 +50,8 @@ final class ItemPresenter extends BasePresenter {
   }
   
   protected function createComponentEditItemForm(AddEditItemFormFactory $factory): Form {
-    $form = $factory->create();
-    $form->setDefaults($this->item->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->editItem((int) $this->getParameter("id"), $values);
+    $form = $factory->create($this->item);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:items");
     };

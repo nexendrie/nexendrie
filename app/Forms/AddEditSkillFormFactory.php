@@ -12,7 +12,17 @@ use Nexendrie\Orm\Skill as SkillEntity;
  * @author Jakub Konečný
  */
 final class AddEditSkillFormFactory {
-  public function create(): Form {
+  /** @var \Nexendrie\Model\Skills */
+  protected $model;
+  /** @var SkillEntity|null */
+  protected $skill;
+
+  public function __construct(\Nexendrie\Model\Skills $model) {
+    $this->model = $model;
+  }
+
+  public function create(?SkillEntity $skill = null): Form {
+    $this->skill = $skill;
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
@@ -41,19 +51,27 @@ final class AddEditSkillFormFactory {
         ->addRule(Form::RANGE, "Vylepšení vlastnosti musí být v rozmezí 1-99.", [1, 99]);
     $form->addSubmit("submit", "Odeslat");
     $form->onValidate[] = [$this, "validate"];
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($skill)) {
+      $form->setDefaults($skill->toArray());
+    }
     return $form;
   }
-  
-  /**
-   * @param Form $form
-   * @param array $values
-   */
+
   public function validate(Form $form, array $values): void {
     if($values["type"] === SkillEntity::TYPE_WORK AND $values["stat"] != null) {
       $form->addError("Neplatná kombinace: vybrána vlastnost u pracovní dovednosti.");
     }
     if($values["type"] === SkillEntity::TYPE_WORK AND $values["statIncrease"] != 0) {
       $form->addError("Neplatná kombinace: vylepšení dovednosti musí být 0 u pracovní dovednosti.");
+    }
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->skill)) {
+      $this->model->add($values);
+    } else {
+      $this->model->edit($this->skill->id, $values);
     }
   }
 }

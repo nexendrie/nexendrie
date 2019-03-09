@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Factory for form AddEditJob
@@ -11,13 +12,18 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditJobFormFactory {
+  /** @var \Nexendrie\Model\Job */
+  protected $model;
   /** @var \Nexendrie\Model\Skills */
   protected $skillsModel;
-  
-  public function __construct(\Nexendrie\Model\Skills $skillsModel) {
+  /** @var \Nexendrie\Orm\Job */
+  protected $job;
+
+  public function __construct(\Nexendrie\Model\Job $model, \Nexendrie\Model\Skills $skillsModel) {
+    $this->model = $model;
     $this->skillsModel = $skillsModel;
   }
-  
+
   /**
    * @return string[]
    */
@@ -25,7 +31,8 @@ final class AddEditJobFormFactory {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   
-  public function create(): Form {
+  public function create(?\Nexendrie\Orm\Job $job = null): Form {
+    $this->job = $job;
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
@@ -64,7 +71,19 @@ final class AddEditJobFormFactory {
       ->addRule(Form::RANGE, "Úroveň dovednosti musí být v rozmezí 0-5.", [0, 5])
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($job)) {
+      $form->setDefaults($job->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
+    }
     return $form;
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->job)) {
+      $this->model->addJob($values);
+    } else {
+      $this->model->editJob($this->job->id, $values);
+    }
   }
 }
 ?>

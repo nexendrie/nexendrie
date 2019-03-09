@@ -7,7 +7,6 @@ use Nexendrie\Model\ItemSetNotFoundException;
 use Nexendrie\Forms\AddEditItemSetFormFactory;
 use Nette\Application\UI\Form;
 use Nexendrie\Orm\ItemSet as ItemSetEntity;
-use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Presenter ItemSet
@@ -31,8 +30,7 @@ final class ItemSetPresenter extends BasePresenter {
   
   protected function createComponentAddItemSetForm(AddEditItemSetFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->add($values);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Sada přidána.");
       $this->redirect("Content:itemSets");
     };
@@ -52,10 +50,8 @@ final class ItemSetPresenter extends BasePresenter {
   }
   
   protected function createComponentEditItemSetForm(AddEditItemSetFormFactory $factory): Form {
-    $form = $factory->create();
-    $form->setDefaults($this->set->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->edit((int) $this->getParameter("id"), $values);
+    $form = $factory->create($this->set);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Sada upravena.");
       $this->redirect("Content:itemSets");
     };

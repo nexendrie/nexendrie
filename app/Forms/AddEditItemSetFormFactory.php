@@ -5,6 +5,7 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Orm\ItemSet;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Factory for form AddEditItemSet
@@ -12,13 +13,18 @@ use Nexendrie\Orm\ItemSet;
  * @author Jakub Konečný
  */
 final class AddEditItemSetFormFactory {
+  /** @var \Nexendrie\Model\ItemSet */
+  protected $model;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
-  
-  public function __construct(\Nexendrie\Orm\Model $orm) {
+  /** @var ItemSet */
+  protected $set;
+
+  public function __construct(\Nexendrie\Model\ItemSet $model, \Nexendrie\Orm\Model $orm) {
+    $this->model = $model;
     $this->orm = $orm;
   }
-  
+
   protected function getWeapons(): array {
     return $this->orm->items->findWeapons()->fetchPairs("id", "name");
   }
@@ -31,7 +37,8 @@ final class AddEditItemSetFormFactory {
     return $this->orm->items->findHelmets()->fetchPairs("id", "name");
   }
   
-  public function create(): Form {
+  public function create(?ItemSet $set = null): Form {
+    $this->set = $set;
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
@@ -50,7 +57,19 @@ final class AddEditItemSetFormFactory {
       ->addRule(Form::RANGE, "Velikost bonusu musí být v rozmezí 0-99.", [0, 99])
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($set)) {
+      $form->setDefaults($set->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
+    }
     return $form;
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->set)) {
+      $this->model->add($values);
+    } else {
+      $this->model->edit($this->set->id, $values);
+    }
   }
 }
 ?>

@@ -12,14 +12,20 @@ use Nette\Utils\DateTime;
  * @author Jakub Konečný
  */
 final class AddEditEventFormFactory {
+  /** @var \Nexendrie\Model\Events */
+  protected $model;
   /** @var string */
   protected $dateTimeFormat;
+  /** @var \Nexendrie\Orm\Event */
+  protected $event;
   
-  public function __construct(\Nexendrie\Model\SettingsRepository $sr) {
+  public function __construct(\Nexendrie\Model\Events $model, \Nexendrie\Model\SettingsRepository $sr) {
+    $this->model = $model;
     $this->dateTimeFormat = $sr->settings["locale"]["dateTimeFormat"];
   }
   
-  public function create(): Form {
+  public function create(?\Nexendrie\Orm\Event $event = null): Form {
+    $this->event = $event;
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.");
@@ -55,6 +61,10 @@ final class AddEditEventFormFactory {
       ->addRule(Form::RANGE, null, [0, 100]);
     $form->addSubmit("submit", "Odeslat");
     $form->onValidate[] = [$this, "validate"];
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($event)) {
+      $form->setDefaults($event->dummyArray());
+    }
     return $form;
   }
   
@@ -72,6 +82,14 @@ final class AddEditEventFormFactory {
       if($end->getTimestamp() < $start->getTimestamp()) {
         $form->addError("Akce nemůže skončit před svým začátkem.");
       }
+    }
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->event)) {
+      $this->model->addEvent($values);
+    } else {
+      $this->model->editEvent($this->event->id, $values);
     }
   }
 }

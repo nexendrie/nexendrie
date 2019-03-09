@@ -7,7 +7,6 @@ use Nexendrie\Forms\AddEditTownFormFactory;
 use Nette\Application\UI\Form;
 use Nexendrie\Orm\Town as TownEntity;
 use Nexendrie\Model\TownNotFoundException;
-use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Presenter Town
@@ -31,8 +30,7 @@ final class TownPresenter extends BasePresenter {
   
   protected function createComponentAddTownForm(AddEditTownFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->add($values);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Město přidáno.");
       $this->redirect("Content:towns");
     };
@@ -52,10 +50,8 @@ final class TownPresenter extends BasePresenter {
   }
   
   protected function createComponentEditTownForm(AddEditTownFormFactory $factory): Form {
-    $form = $factory->create();
-    $form->setDefaults($this->town->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->edit((int) $this->getParameter("id"), $values);
+    $form = $factory->create($this->town);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Město upraveno.");
       $this->redirect("Content:towns");
     };

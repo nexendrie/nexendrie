@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Factory for form AddEditAdventure
@@ -11,13 +12,18 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditAdventureFormFactory {
+  /** @var \Nexendrie\Model\Adventure */
+  protected $model;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
-  
-  public function __construct(\Nexendrie\Orm\Model $orm) {
+  /** @var \Nexendrie\Orm\Adventure */
+  protected $adventure;
+
+  public function __construct(\Nexendrie\Model\Adventure $model, \Nexendrie\Orm\Model $orm) {
+    $this->model = $model;
     $this->orm = $orm;
   }
-  
+
   /**
    * Get list of events
    * 
@@ -27,11 +33,12 @@ final class AddEditAdventureFormFactory {
     return $this->orm->events->findAll()->fetchPairs("id", "name");
   }
   
-  public function create(): Form {
+  public function create(?\Nexendrie\Orm\Adventure $adventure = null): Form {
+    $this->adventure = $adventure;
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
-      ->addRule(Form::MAX, "Jméno může mít maximálně 20 znaků.", 20);
+      ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 20 znaků.", 20);
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
     $form->addTextArea("intro", "Úvodní text:")
@@ -50,7 +57,19 @@ final class AddEditAdventureFormFactory {
     $form->addSelect("event", "Akce:", $this->getEvents())
       ->setPrompt("žádná");
     $form->addSubmit("submit", "Odeslat");
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($adventure)) {
+      $form->setDefaults($adventure->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
+    }
     return $form;
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->adventure)) {
+      $this->model->addAdventure($values);
+    } else {
+      $this->model->editAdventure($this->adventure->id, $values);
+    }
   }
 }
 ?>

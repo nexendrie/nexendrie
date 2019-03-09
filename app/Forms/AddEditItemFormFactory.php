@@ -5,6 +5,7 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Orm\Item;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Factory for form AddEditItem
@@ -12,18 +13,21 @@ use Nexendrie\Orm\Item;
  * @author Jakub Konečný
  */
 final class AddEditItemFormFactory {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  
-  public function __construct(\Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
+  /** @var \Nexendrie\Model\Market */
+  protected $model;
+  /** @var \Nexendrie\Orm\Item */
+  protected $item;
+
+  public function __construct(\Nexendrie\Model\Market $model) {
+    $this->model = $model;
   }
-  
+
   protected function getShops(): array {
-    return $this->orm->shops->findAll()->fetchPairs("id", "name");
+    return $this->model->listOfItems()->fetchPairs("id", "name");
   }
   
-  public function create(): Form {
+  public function create(?\Nexendrie\Orm\Item $item = null): Form {
+    $this->item = $item;
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
@@ -44,7 +48,19 @@ final class AddEditItemFormFactory {
       ->addRule(Form::RANGE, "Síla musí být v rozmezí 0-999.", [0, 999])
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($item)) {
+      $form->setDefaults($item->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
+    }
     return $form;
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->item)) {
+      $this->model->addItem($values);
+    } else {
+      $this->model->editItem($this->item->id, $values);
+    }
   }
 }
 ?>

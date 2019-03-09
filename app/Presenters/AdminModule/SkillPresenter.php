@@ -30,8 +30,7 @@ final class SkillPresenter extends BasePresenter {
   
   protected function createComponentAddSkillForm(AddEditSkillFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->add($values);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Dovednost přidána.");
       $this->redirect("Content:skills");
     };
@@ -51,10 +50,8 @@ final class SkillPresenter extends BasePresenter {
   }
   
   protected function createComponentEditSkillForm(AddEditSkillFormFactory $factory): Form {
-    $form = $factory->create();
-    $form->setDefaults($this->skill->toArray());
-    $form->onSuccess[] = function(Form $form, array $values) {
-      $this->model->edit((int) $this->getParameter("id"), $values);
+    $form = $factory->create($this->skill);
+    $form->onSuccess[] = function() {
       $this->flashMessage("Dovednost upravena.");
       $this->redirect("Content:skills");
     };

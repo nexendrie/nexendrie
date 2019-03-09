@@ -11,11 +11,21 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditMealFormFactory {
-  public function create(): Form {
+  /** @var \Nexendrie\Model\Tavern */
+  protected $model;
+  /** @var \Nexendrie\Orm\Meal */
+  protected $meal;
+
+  public function __construct(\Nexendrie\Model\Tavern $model) {
+    $this->model = $model;
+  }
+
+  public function create(?\Nexendrie\Orm\Meal $meal = null): Form {
+    $this->meal = $meal;
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
-      ->addRule(Form::MAX, "Jméno může mít maximálně 15 znaků.", 15);
+      ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 15 znaků.", 15);
     $form->addTextArea("message", "Zpráva:")
       ->setRequired("Zadej zprávu.");
     $form->addText("price", "Cena:")
@@ -27,7 +37,19 @@ final class AddEditMealFormFactory {
       ->addRule(Form::INTEGER, "Efekt musí být celé číslo.")
       ->addRule(Form::RANGE, "Efekt musí být v rozmezí -60 - 60.", [-60, 60]);
     $form->addSubmit("submit", "Odeslat");
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($meal)) {
+      $form->setDefaults($meal->toArray());
+    }
     return $form;
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->meal)) {
+      $this->model->addMeal($values);
+    } else {
+      $this->model->editMeal($this->meal->id, $values);
+    }
   }
 }
 ?>

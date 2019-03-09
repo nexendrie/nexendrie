@@ -11,7 +11,17 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditShopFormFactory {
-  public function create(): Form {
+  /** @var \Nexendrie\Model\Market */
+  protected $model;
+  /** @var \Nexendrie\Orm\Shop */
+  protected $shop;
+
+  public function __construct(\Nexendrie\Model\Market $model) {
+    $this->model = $model;
+  }
+
+  public function create(?\Nexendrie\Orm\Shop $shop = null): Form {
+    $this->shop = $shop;
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
@@ -19,7 +29,19 @@ final class AddEditShopFormFactory {
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Odeslat");
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($shop)) {
+      $form->setDefaults($shop->toArray());
+    }
     return $form;
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->shop)) {
+      $this->model->addShop($values);
+    } else {
+      $this->model->editShop($this->shop->id, $values);
+    }
   }
 }
 ?>

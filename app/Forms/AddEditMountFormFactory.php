@@ -5,6 +5,7 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Orm\Mount;
+use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
  * Factory for form AddEditMount
@@ -14,6 +15,8 @@ use Nexendrie\Orm\Mount;
 final class AddEditMountFormFactory {
   /** @var \Nexendrie\Model\Mount */
   protected $model;
+  /** @var Mount */
+  protected $mount;
   
   public function __construct(\Nexendrie\Model\Mount $model) {
     $this->model = $model;
@@ -30,7 +33,8 @@ final class AddEditMountFormFactory {
     return $this->model->listOfMountTypes()->fetchPairs("id", "name");
   }
   
-  public function create(): Form {
+  public function create(?Mount $mount = null): Form {
+    $this->mount = $mount;
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
@@ -46,7 +50,19 @@ final class AddEditMountFormFactory {
       ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", [0, 999999])
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($mount)) {
+      $form->setDefaults($mount->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
+    }
     return $form;
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->mount)) {
+      $this->model->add($values);
+    } else {
+      $this->model->edit($this->mount->id, $values);
+    }
   }
 }
 ?>

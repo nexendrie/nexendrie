@@ -11,7 +11,18 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class EditGroupFormFactory {
-  public function create(): Form {
+  /** @var \Nexendrie\Model\Group */
+  protected $model;
+  /** @var \Nexendrie\Orm\Group */
+  protected $group;
+
+  public function __construct(\Nexendrie\Model\Group $model, \Nette\Security\User $user) {
+    $this->model = $model;
+    $this->model->user = $user;
+  }
+
+  public function create(\Nexendrie\Orm\Group $group): Form {
+    $this->group = $group;
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->addRule(Form::MAX_LENGTH, "Jméno skupiny může mít maximálně 30 znaků.", 30)
@@ -31,7 +42,13 @@ final class EditGroupFormFactory {
       ->addRule(Form::MAX_LENGTH, "Maximální půjčka může mít maximálně 5 znaků.", 5)
       ->setRequired("Zadej maximální půjčku.");
     $form->addSubmit("send", "Odeslat");
+    $form->onSuccess[] = [$this, "process"];
+    $form->setDefaults($group->toArray());
     return $form;
+  }
+
+  public function process(Form $form, array $values): void {
+    $this->model->edit($this->group->id, $values);
   }
 }
 ?>

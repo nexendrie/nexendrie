@@ -11,7 +11,18 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditPollFormFactory {
-  public function create(): Form {
+  /** @var \Nexendrie\Model\Polls */
+  protected $model;
+  /** @var \Nexendrie\Orm\Poll */
+  protected $poll;
+
+  public function __construct(\Nexendrie\Model\Polls $model, \Nette\Security\User $user) {
+    $this->model = $model;
+    $this->model->user = $user;
+  }
+
+  public function create(?\Nexendrie\Orm\Poll $poll = null): Form {
+    $this->poll = $poll;
     $form = new Form();
     $form->addText("question", "Otázka:")
       ->addRule(Form::MAX_LENGTH, "Otázka může mít maximálně 60 znaků.", 60)
@@ -21,7 +32,19 @@ final class AddEditPollFormFactory {
       ->setOption("description", "Každou odpověď napiš na nový řádek.");
     $form->addCheckbox("locked", "Uzamčená");
     $form->addSubmit("send", "Odeslat");
+    $form->onSuccess[] = [$this, "process"];
+    if(!is_null($poll)) {
+      $form->setDefaults($poll->toArray());
+    }
     return $form;
+  }
+
+  public function process(Form $form, array $values): void {
+    if(is_null($this->poll)) {
+      $this->model->add($values);
+    } else {
+      $this->model->edit($this->poll->id, $values);
+    }
   }
 }
 ?>
