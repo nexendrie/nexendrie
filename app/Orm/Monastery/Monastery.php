@@ -45,6 +45,8 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
   protected $localeModel;
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
+  /** @var int */
+  protected $criticalCondition;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
@@ -52,6 +54,10 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
   
   public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;
+  }
+
+  public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void {
+    $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
   }
   
   protected function getterFoundedAt(): string {
@@ -75,7 +81,7 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterPrayerLife(): int {
-    if($this->hp < 30) {
+    if($this->hp < $this->criticalCondition) {
       return 0;
     }
     return static::BASE_PRAYER_LIFE + ($this->altairLevel * (static::PRAYER_LIFE_PER_LEVEL - 1));
@@ -128,7 +134,7 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterSkillLearningDiscount(): int {
-    if($this->hp < 30) {
+    if($this->hp < $this->criticalCondition) {
       return 0;
     }
     return $this->libraryLevel * static::SKILL_LEARNING_DISCOUNT_PER_LEVEL;

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
+use Nexendrie\Model\SettingsRepository;
+
 /**
  * CastlesStatusTask
  *
@@ -13,9 +15,12 @@ final class CastlesStatusTask {
   
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
+  /** @var int */
+  protected $weeklyWearingOut;
   
-  public function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(\Nexendrie\Orm\Model $orm, SettingsRepository $sr) {
     $this->orm = $orm;
+    $this->weeklyWearingOut = $sr->settings["buildings"]["weeklyWearingOut"];
   }
   
   /**
@@ -27,9 +32,9 @@ final class CastlesStatusTask {
     echo "Starting castles status update ...\n";
     $castles = $this->orm->castles->findOwnedCastles();
     foreach($castles as $castle) {
-      $castle->hp -= 3;
+      $castle->hp -= $this->weeklyWearingOut;
       $this->orm->castles->persist($castle);
-      echo "Decreasing (#$castle->id) $castle->name's life by 3.\n";
+      echo "Decreasing (#$castle->id) $castle->name's life by $this->weeklyWearingOut.\n";
     }
     $this->orm->flush();
     echo "Finished castles status update ...\n";

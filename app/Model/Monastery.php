@@ -28,6 +28,8 @@ final class Monastery {
   protected $orderModel;
   /** @var int */
   protected $buildingPrice;
+  /** @var int */
+  protected $criticalCondition;
   
   use \Nette\SmartObject;
   
@@ -38,6 +40,7 @@ final class Monastery {
     $this->orm = $orm;
     $this->user = $user;
     $this->buildingPrice = $sr->settings["fees"]["buildMonastery"];
+    $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
   }
   
   /**
@@ -159,7 +162,7 @@ final class Monastery {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
-    } elseif($user->monastery->hp < 30) {
+    } elseif($user->monastery->hp < $this->criticalCondition) {
       return false;
     } elseif($user->life >= $user->maxLife) {
       return false;

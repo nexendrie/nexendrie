@@ -121,7 +121,7 @@ final class HouseTest extends \Tester\TestCase {
     $this->modifyHouse(["breweryLevel" => 0], function() {
       Assert::false($this->model->canProduceBeer());
     });
-    $this->modifyHouse(["hp" => 30], function() {
+    $this->modifyHouse(["hp" => 29], function() {
       Assert::false($this->model->canProduceBeer());
     });
     Assert::type("bool", $this->model->canProduceBeer());

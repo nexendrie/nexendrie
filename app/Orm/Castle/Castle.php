@@ -33,6 +33,8 @@ final class Castle extends \Nextras\Orm\Entity\Entity {
   protected $localeModel;
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
+  /** @var int */
+  protected $criticalCondition;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
@@ -40,6 +42,10 @@ final class Castle extends \Nextras\Orm\Entity\Entity {
   
   public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;
+  }
+
+  public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void {
+    $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
   }
   
   protected function setterLevel(int $value): int {
@@ -55,7 +61,7 @@ final class Castle extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterTaxesBonusIncome(): int {
-    if($this->hp < 30) {
+    if($this->hp < $this->criticalCondition) {
       return 0;
     } elseif($this->owner->group->path != Group::PATH_TOWER) {
       return 0;

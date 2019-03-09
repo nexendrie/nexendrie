@@ -19,12 +19,15 @@ final class House {
   protected $user;
   /** @var int */
   protected $price = 500;
+  /** @var int */
+  protected $criticalCondition;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
+    $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
   }
   
   /**
@@ -199,7 +202,7 @@ final class House {
       return false;
     } elseif($house->breweryLevel < 1) {
       return false;
-    } elseif($house->hp < 31) {
+    } elseif($house->hp < $this->criticalCondition) {
       return false;
     }
     $lastProduction = $this->orm->beerProduction->getLastProduction($house->id);

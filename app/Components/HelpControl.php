@@ -88,16 +88,22 @@ final class HelpControl extends BookControl {
     $this->template->basePrayerLife = MonasteryEntity::BASE_PRAYER_LIFE;
     $this->template->prayerLifePerLevel = MonasteryEntity::PRAYER_LIFE_PER_LEVEL;
     $this->template->skillLearningDiscountPerLevel = MonasteryEntity::SKILL_LEARNING_DISCOUNT_PER_LEVEL;
+    $this->template->weeklyWearingOut = $this->sr->settings["buildings"]["weeklyWearingOut"];
+    $this->template->criticalCondition = $this->sr->settings["buildings"]["criticalCondition"];
   }
   
   public function renderCastle(): void {
     $this->template->maxLevel = CastleEntity::MAX_LEVEL;
     $this->template->taxBonusPerLevel = $this->localeModel->money(CastleEntity::TAX_BONUS_PER_LEVEL);
+    $this->template->weeklyWearingOut = $this->sr->settings["buildings"]["weeklyWearingOut"];
+    $this->template->criticalCondition = $this->sr->settings["buildings"]["criticalCondition"];
   }
   
   public function renderHouse(): void {
     $this->template->maxLevel = HouseEntity::MAX_LEVEL;
     $this->template->incomeBonusPerLevel = HouseEntity::INCOME_BONUS_PER_LEVEL;
+    $this->template->weeklyWearingOut = $this->sr->settings["buildings"]["weeklyWearingOut"];
+    $this->template->criticalCondition = $this->sr->settings["buildings"]["criticalCondition"];
   }
   
   public function renderGuild(): void {

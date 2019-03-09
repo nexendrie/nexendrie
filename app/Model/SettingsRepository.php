@@ -20,19 +20,19 @@ final class SettingsRepository {
     "roles" => [
       "guestRole" => 13,
       "loggedInRole" => 12,
-      "bannedRole" => 14
+      "bannedRole" => 14,
     ],
     "locale" => [
       "dateFormat" => "j.n.Y",
       "dateTimeFormat" => "j.n.Y G:i",
     ],
     "pagination" => [
-      "articles" => 10
+      "articles" => 10,
     ],
     "newUser" => [
       "style" => "dark-sky",
       "money" => 30,
-      "town" => 3
+      "town" => 3,
     ],
     "fees" => [
       "incomeTax" => 10,
@@ -46,11 +46,15 @@ final class SettingsRepository {
       "depositInterest" => 3,
     ],
     "registration" => [
-      "token" => ""
+      "token" => "",
     ],
     "site" => [
-      "versionSuffix" => ""
-    ]
+      "versionSuffix" => "",
+    ],
+    "buildings" => [
+      "weeklyWearingOut" => 3,
+      "criticalCondition" => 30,
+    ],
   ];
   
   /** @var array */

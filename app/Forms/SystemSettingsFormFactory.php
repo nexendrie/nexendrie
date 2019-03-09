@@ -125,6 +125,18 @@ final class SystemSettingsFormFactory {
       ->setRequired("Zadej cenu automatické krmení jezdeckého zvířete.")
       ->addRule(Form::INTEGER, "Cena automatické krmení jezdeckého zvířete musí být celé číslo.")
       ->addRule(Form::RANGE, "Cena automatické krmení jezdeckého zvířete musí být v rozmezí 0-20.", [0, 20]);
+    $form->addGroup("Budovy");
+    $buildings = $form->addContainer("buildings");
+    $buildings->addText("weeklyWearingOut", "Týdenní opotřebení:")
+      ->setOption("description", "%")
+      ->setRequired("Zadej týdenní opotřebení budov.")
+      ->addRule(Form::INTEGER, "Týdenní opotřebení budov musí být celé číslo.")
+      ->addRule(Form::RANGE, "Týdenní opotřebení budov musí být v rozmezí 0-100.", [0, 100]);
+    $buildings->addText("criticalCondition", "Kritický stav:")
+      ->setOption("description", "%, při poklesu pod tuto hodnotu budova přestane poskytovat výhody")
+      ->setRequired("Zadej kritický stav budov.")
+      ->addRule(Form::INTEGER, "Kritický stav budov musí být celé číslo.")
+      ->addRule(Form::RANGE, "Kritický stav budov musí být v rozmezí 0-100.", [0, 100]);
     $form->addGroup("Registrace");
     $registration = $form->addContainer("registration");
     $registration->addText("token", "Heslo:")
