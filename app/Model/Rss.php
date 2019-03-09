@@ -22,21 +22,32 @@ final class Rss {
   protected $linkGenerator;
   /** @var Generator */
   protected $generator;
+  /** @var string */
+  protected $versionSuffix = "";
   
   use \Nette\SmartObject;
   
-  public function __construct(Article $articleModel, LinkGenerator $linkGenerator, Generator $generator) {
+  public function __construct(Article $articleModel, LinkGenerator $linkGenerator, Generator $generator, SettingsRepository $sr) {
     $this->articleModel = $articleModel;
     $this->linkGenerator = $linkGenerator;
     $this->generator = $generator;
+    $this->versionSuffix = $sr->settings["site"]["versionSuffix"];
   }
-  
+
+  protected function versionSuffix(): string {
+    if($this->versionSuffix === "") {
+      return "";
+    }
+    return $this->versionSuffix . " ";
+  }
+
   /**
    * Generate feed for news
    */
   public function newsFeed(): RssResponse {
+    $versionSuffix = $this->versionSuffix();
     $info = [
-      "title" => "Nexendrie - Novinky", "description" => "Novinky v Nexendrii",
+      "title" => "Nexendrie $versionSuffix- Novinky", "description" => "Novinky v Nexendrii",
       "link" => $this->linkGenerator->link("Front:Homepage:default"), "language" => "cs",
     ];
     $this->generator->dataSource = function() {
@@ -64,8 +75,9 @@ final class Rss {
     } catch(ArticleNotFoundException $e) {
       throw $e;
     }
+    $versionSuffix = $this->versionSuffix();
     $info = [
-      "title" => "Nexendrie - Komentáře k " . $article->title, "description" => "Komentáře k článku " . $article->title,
+      "title" => "Nexendrie $versionSuffix- Komentáře k " . $article->title, "description" => "Komentáře k článku " . $article->title,
       "link" => $this->linkGenerator->link("Front:Homepage:default"), "language" => "cs",
     ];
     $this->generator->dataSource = function() use($id) {
