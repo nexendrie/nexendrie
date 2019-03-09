@@ -18,7 +18,7 @@ final class House {
   /** @var \Nette\Security\User */
   protected $user;
   /** @var int */
-  protected $price = 500;
+  protected $price;
   /** @var int */
   protected $criticalCondition;
   
@@ -27,6 +27,7 @@ final class House {
   public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->orm = $orm;
     $this->user = $user;
+    $this->price = $sr->settings["fees"]["buyHouse"];
     $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
   }
   

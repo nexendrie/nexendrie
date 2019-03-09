@@ -44,6 +44,7 @@ final class SettingsRepository {
       "foundTown" => 1000,
       "autoFeedMount" => 8,
       "depositInterest" => 3,
+      "buyHouse" => 500,
     ],
     "registration" => [
       "token" => "",
