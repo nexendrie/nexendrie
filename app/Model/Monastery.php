@@ -136,7 +136,9 @@ final class Monastery {
     $user->lastTransfer = $user->lastActive = time();
     $user->monastery = $monastery;
     if($user->group->path != GroupEntity::PATH_CHURCH) {
-      $user->group = $this->orm->groups->getByLevel(55);
+      $ranks = $this->getChurchGroupIds();
+      end($ranks);
+      $user->group = current($ranks);
     }
     $user->town = $monastery->town;
     $user->guild = $user->guildRank = null;
@@ -248,7 +250,7 @@ final class Monastery {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    if($this->user->identity->level != 550) {
+    if($this->user->identity->group != $this->getChurchGroupIds()[0]) {
       return false;
     }
     /** @var UserEntity $user */
@@ -353,7 +355,7 @@ final class Monastery {
    */
   public function highClerics(int $id): array {
     return $this->orm->users->findByMonastery($id)
-      ->findBy(["this->group->level" => 550])
+      ->findBy(["this->group->id" => $this->getChurchGroupIds()[0]])
       ->fetchPairs("id", "publicname");
   }
   
