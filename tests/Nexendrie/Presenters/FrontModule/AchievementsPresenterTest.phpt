@@ -10,8 +10,8 @@ final class AchievementsPresenterTest extends \Tester\TestCase {
   
   public function testDefault() {
     $this->checkRedirect(":Front:Achievements:default", "/user/login");
-    $this->login();
-    $this->checkAction(":Front:Achievements:default");
+    $this->login("Rahym");
+    $this->checkRedirect(":Front:Achievements:default", "/profile/Rahym/achievements");
   }
 }
 

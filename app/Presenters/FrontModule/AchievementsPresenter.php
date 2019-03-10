@@ -26,8 +26,7 @@ final class AchievementsPresenter extends BasePresenter {
   }
   
   public function renderDefault(): void {
-    $this->template->achievements = $this->model->getAllAchievements();
-    $this->template->userEntity = $this->orm->users->getById($this->user->id);
+    $this->redirect("Profile:achievements", ["name" => $this->user->identity->name]);
   }
 }
 ?>
