@@ -3,7 +3,12 @@
 {block content}
   <h1>Spravovat klášter</h1>
   {control manageMonasteryForm}
-  {if $canUpgrade}<a n:href="upgrade!">Vylepšit oltář</a> za {$monastery->upgradePriceT}<br>{/if}
-  {if canUpgradeLibrary}<a n:href="upgradeLibrary!">Vylepšit knihovnu</a> za {$monastery->libraryUpgradePriceT}<br>{/if}
-  {if $monastery->hp < 100}<a n:href="repair!">Opravit</a> klášter za {$monastery->repairPriceT}{/if}
+  <p>
+    {if $canUpgrade}<a n:href="upgrade!">Vylepšit oltář</a> za {$monastery->upgradePriceT}<br>{/if}
+    {if canUpgradeLibrary}<a n:href="upgradeLibrary!">Vylepšit knihovnu</a> za {$monastery->libraryUpgradePriceT}<br>{/if}
+    {if $monastery->hp < 100}<a n:href="repair!">Opravit</a> klášter za {$monastery->repairPriceT}<br>{/if}
+  </p>
+  <div>
+    {foreach $monastery->members as $member}{control userProfileLink $member,true} {if $member->id !== $user->id and $member->group->id > $firstRank}<a n:href="promote! $member->id">Povýšit</a>{/if} {if $member->id !== $user->id and $member->group->id < $lastRank  and $member->group->id >= $firstRank}<a n:href="demote! $member->id">Degradovat</a>{/if}<br>{/foreach}
+  </div>
 {/block}

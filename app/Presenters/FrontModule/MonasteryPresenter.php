@@ -16,6 +16,12 @@ use Nexendrie\Model\CannotJoinOwnMonasteryException;
 use Nexendrie\Model\CannotUpgradeMonasteryException;
 use Nexendrie\Model\InsufficientFundsException;
 use Nexendrie\Model\CannotRepairMonasteryException;
+use Nexendrie\Model\AuthenticationNeededException;
+use Nexendrie\Model\MissingPermissionsException;
+use Nexendrie\Model\UserNotFoundException;
+use Nexendrie\Model\UserNotInYourMonasteryException;
+use Nexendrie\Model\CannotPromoteMemberException;
+use Nexendrie\Model\CannotDemoteMemberException;
 
 /**
  * Presenter Monastery
@@ -159,6 +165,10 @@ final class MonasteryPresenter extends BasePresenter {
     $this->monasteryId = $monastery->id;
     $this->template->canUpgrade = $this->model->canUpgrade();
     $this->template->canUpgradeLibrary = $this->model->canUpgradeLibrary();
+    $ranks = $this->model->getChurchGroupIds();
+    $this->template->firstRank = $ranks[1];
+    end($ranks);
+    $this->template->lastRank = current($ranks);
   }
   
   protected function createComponentManageMonasteryForm(ManageMonasteryFormFactory $factory): Form {
@@ -204,6 +214,52 @@ final class MonasteryPresenter extends BasePresenter {
       $this->redirect("Homepage:");
     } catch(InsufficientFundsException $e) {
       $this->flashMessage("Nedostatek peněz.");
+      $this->redirect("manage");
+    }
+  }
+
+  public function handlePromote(int $user): void {
+    try {
+      $this->model->promote($user);
+      $this->flashMessage("Povýšen(a).");
+      $this->redirect("manage");
+    } catch(AuthenticationNeededException $e) {
+      $this->flashMessage("K této akci musíš být přihlášený.");
+      $this->redirect("User:login");
+    } catch(MissingPermissionsException $e) {
+      $this->flashMessage("K této akci nemáš práva.");
+      $this->redirect("Homepage:");
+    } catch(UserNotFoundException $e) {
+      $this->flashMessage("Uživatel nenalezen.");
+      $this->redirect("Homepage:");
+    } catch(UserNotInYourMonasteryException $e) {
+      $this->flashMessage("Uživatel není ve tvém klášteru.");
+      $this->redirect("Homepage:");
+    } catch(CannotPromoteMemberException $e) {
+      $this->flashMessage("Uživatel nemůže být povýšen.");
+      $this->redirect("manage");
+    }
+  }
+
+  public function handleDemote(int $user): void {
+    try {
+      $this->model->demote($user);
+      $this->flashMessage("Degradován(a).");
+      $this->redirect("manage");
+    } catch(AuthenticationNeededException $e) {
+      $this->flashMessage("K této akci musíš být přihlášený.");
+      $this->redirect("User:login");
+    } catch(MissingPermissionsException $e) {
+      $this->flashMessage("K této akci nemáš práva.");
+      $this->redirect("Homepage:");
+    } catch(UserNotFoundException $e) {
+      $this->flashMessage("Uživatel nenalezen.");
+      $this->redirect("Homepage:");
+    } catch(UserNotInYourMonasteryException $e) {
+      $this->flashMessage("Uživatel není ve tvém klášteru.");
+      $this->redirect("Homepage:");
+    } catch(CannotDemoteMemberException $e) {
+      $this->flashMessage("Uživatel nemůže být degradován.");
       $this->redirect("manage");
     }
   }

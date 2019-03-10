@@ -72,7 +72,7 @@ final class MonasteryTest extends \Tester\TestCase {
     }, MonasteryNotFoundException::class);
     $this->login("bozena");
     Assert::exception(function() {
-      $this->model->join(1);
+      $this->model->join(2);
     }, CannotJoinOwnMonasteryException::class);
     $this->login("Světlana");
     $user = $this->getUser();
@@ -302,6 +302,65 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::exception(function() {
       $this->model->repair();
     }, CannotRepairMonasteryException::class);
+  }
+
+  public function testGetChurchGroupIds() {
+    $result = $this->model->getChurchGroupIds();
+    Assert::same([4, 6, 10, 11, ], $result);
+  }
+
+  public function testPromoteAndDemote() {
+    Assert::exception(function() {
+      $this->model->promote(1);
+    }, AuthenticationNeededException::class);
+    Assert::exception(function() {
+      $this->model->demote(1);
+    }, AuthenticationNeededException::class);
+    $this->login();
+    Assert::exception(function() {
+      $this->model->promote(1);
+    }, MissingPermissionsException::class);
+    Assert::exception(function() {
+      $this->model->demote(1);
+    }, MissingPermissionsException::class);
+    $this->login("Rahym");
+    Assert::exception(function() {
+      $this->model->promote(50);
+    }, UserNotFoundException::class);
+    Assert::exception(function() {
+      $this->model->demote(50);
+    }, UserNotFoundException::class);
+    Assert::exception(function() {
+      $this->model->promote(1);
+    }, UserNotInYourMonasteryException::class);
+    Assert::exception(function() {
+      $this->model->demote(1);
+    }, UserNotInYourMonasteryException::class);
+    Assert::exception(function() {
+      $this->model->promote(2);
+    }, CannotPromoteMemberException::class);
+    /** @var \Nexendrie\Orm\Model $orm */
+    $orm = $this->getService(\Nexendrie\Orm\Model::class);
+    /** @var \Nexendrie\Orm\User $user */
+    $user = $orm->users->getById(7);
+    $oldGroup = $user->group->id;
+    $ranks = $this->model->getChurchGroupIds();
+    $this->model->promote($user->id);
+    Assert::same($ranks[2], $user->group->id);
+    $this->model->promote($user->id);
+    Assert::same($ranks[1], $user->group->id);
+    Assert::exception(function() use($user) {
+      $this->model->promote($user->id);
+    }, CannotPromoteMemberException::class);
+    $this->model->demote($user->id);
+    Assert::same($ranks[2], $user->group->id);
+    $this->model->demote($user->id);
+    Assert::same($ranks[3], $user->group->id);
+    Assert::exception(function() use($user) {
+      $this->model->demote($user->id);
+    }, CannotDemoteMemberException::class);
+    $user->group = $oldGroup;
+    $orm->users->persistAndFlush($user);
   }
 }
 

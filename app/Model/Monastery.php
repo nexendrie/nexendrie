@@ -523,5 +523,94 @@ final class Monastery {
     $user->monastery->money -= $repairPrice;
     $this->orm->monasteries->persistAndFlush($user->monastery);
   }
+
+  /**
+   * @return int[]
+   */
+  public function getChurchGroupIds(): array {
+    return $this->orm->groups->findBy([
+      "path" => GroupEntity::PATH_CHURCH,
+    ])->orderBy("level", ICollection::DESC)->fetchPairs(null, "id");
+  }
+
+  /**
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws UserNotFoundException
+   * @throws UserNotInYourMonasteryException
+   * @throws CannotPromoteMemberException
+   */
+  public function promote(int $userId): void {
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    $ranks = $this->getChurchGroupIds();
+    /** @var UserEntity $admin */
+    $admin = $this->orm->users->getById($this->user->id);
+    if($admin->group->id !== $ranks[0]) {
+      throw new MissingPermissionsException();
+    }
+    $user = $this->orm->users->getById($userId);
+    if(is_null($user)) {
+      throw new UserNotFoundException();
+    }
+    if(is_null($user->monastery) OR $user->monastery->id !== $admin->monastery->id OR $user->monastery->leader->id !== $this->user->id) {
+      throw new UserNotInYourMonasteryException();
+    }
+    if($user->group->id <= $ranks[1]) {
+      throw new CannotPromoteMemberException();
+    }
+    $currentRank = $user->group->id;
+    $newRank = $ranks[0];
+    foreach($ranks as $i => $rank) {
+      if($rank === $currentRank) {
+        $newRank = $i - 1;
+        break;
+      }
+    }
+    $user->group = $ranks[$newRank];
+    $this->orm->users->persistAndFlush($user);
+  }
+
+  /**
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws UserNotFoundException
+   * @throws UserNotInYourMonasteryException
+   * @throws CannotPromoteMemberException
+   */
+  public function demote(int $userId): void {
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    $ranks = $this->getChurchGroupIds();
+    /** @var UserEntity $admin */
+    $admin = $this->orm->users->getById($this->user->id);
+    if($admin->group->id !== $ranks[0]) {
+      throw new MissingPermissionsException();
+    }
+    $user = $this->orm->users->getById($userId);
+    if(is_null($user)) {
+      throw new UserNotFoundException();
+    }
+    if(is_null($user->monastery) OR $user->monastery->id !== $admin->monastery->id OR $user->monastery->leader->id !== $this->user->id) {
+      throw new UserNotInYourMonasteryException();
+    }
+    end($ranks);
+    if($user->group->id === $ranks[0] OR $user->group->id === current($ranks)) {
+      throw new CannotDemoteMemberException();
+    }
+    $ranks = array_reverse($ranks);
+    $currentRank = $user->group->id;
+    $newRank = $ranks[0];
+    foreach($ranks as $i => $rank) {
+      if($rank === $currentRank) {
+        $newRank = $i - 1;
+        break;
+      }
+    }
+    $user->group = $ranks[$newRank];
+    $this->orm->users->persistAndFlush($user);
+  }
 }
 ?>

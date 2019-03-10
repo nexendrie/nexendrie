@@ -159,4 +159,4 @@ INSERT INTO users ("publicname", "password", "email", "joined", "last_active", "
   ('Světlana','$2y$10$0a7MCizD1w6BECZvV7p4XOyA2aGyepJQPlpzJrFwvvURcSRzGpEL.','svetlana@localhost.k',1455360151,1486402684,1455466667,1455466659,5,FALSE,'dark-sky','female',FALSE,60,14312,3,NULL,NULL,NULL,1,NULL,NULL,1,3),
   ('premysl','$2y$10$25fvAltDnlF.TOPTj8JlK.VC2BhFmijGJNjV5HxIz1LQ9Pj0L.LQK','premysl@localhost.k',1468050937,1468050937,NULL,NULL,9,FALSE,'blue-sky','male',FALSE,60,30,2,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),
   ('kazimira','$2y$10$Om40QnY7ELgtedNugwwziOwVjn6mPDhFBQlXr1PR/h.w4Df0xBDZi','kazimira@localhost.k',1468051028,1479045690,NULL,NULL,12,FALSE,'blue-sky','female',FALSE,60,30,2,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),
-  ('bozena','$2y$10$Z7McIrRNP6pOt9xDfgp7/uPTjXO933l9ky/Ns9XEUsiu6YN0v2G4S','bozena@localhost.k',1495104741,1495104741,NULL,NULL,11,FALSE,'blue-sky','female',FALSE,60,30,3,1,NULL,NULL,0,NULL,NULL,NULL,NULL);
+  ('bozena','$2y$10$Z7McIrRNP6pOt9xDfgp7/uPTjXO933l9ky/Ns9XEUsiu6YN0v2G4S','bozena@localhost.k',1495104741,1495104741,NULL,NULL,11,FALSE,'blue-sky','female',FALSE,60,30,1,2,NULL,NULL,0,NULL,NULL,NULL,NULL);

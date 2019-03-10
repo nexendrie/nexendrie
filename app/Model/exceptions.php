@@ -524,4 +524,8 @@ class NoDepositAccountException extends AccessDeniedException {
 class DepositAccountNotDueException extends AccessDeniedException {
 
 }
+
+class UserNotInYourMonasteryException extends AccessDeniedException {
+
+}
 ?>
