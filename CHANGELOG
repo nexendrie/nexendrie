@@ -7,6 +7,7 @@ Version 1.0.0-beta6+dev
 - administrators can now manage royal towns
 - fixed getting current events
 - added profile sub-page achievements
+- leaders of monasteries can change title of other members now
 
 Version 1.0.0-beta6
 - guild/order actions now use acl
