@@ -13,7 +13,7 @@
     {if $partner}Manžel{if $partner->gender === "female"}ka{/if}: {control userProfileLink $partner,true}<br>{/if}
     {if $fiance}Snouben{if $fiance->gender === "female"}ka{else}ec{/if}: {control userProfileLink $fiance,true}<br>{/if}
     {if $canProposeMarriage}<a n:href="Marriage:propose $profile->id">Navrhnout sňatek</a><br>{/if}
-    {if $profile->id !== $user->id and $profile->id !== 0}<br><a n:href="Messages:new $profile->id">Poslat zprávu</a>{/if}
+    {if $profile->id !== $user->id and $profile->id !== 0}<br><a n:href="Messages:new $profile->id">Poslat zprávu</a>{/if} <a n:href="achievements, name => $profile->publicname">Úspěchy</a>
     <h3>Statistiky</h3>
     <table>
       <tr><td>Napsaných článků</td><td>{control userProfileLink:page $profile,"articles",$profile->articles->countStored()}</td></tr>

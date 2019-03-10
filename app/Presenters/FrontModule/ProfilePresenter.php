@@ -18,14 +18,17 @@ final class ProfilePresenter extends BasePresenter {
   protected $castleModel;
   /** @var \Nexendrie\Model\Marriage */
   protected $marriageModel;
-  
-  public function __construct(\Nexendrie\Model\Profile $model, \Nexendrie\Model\Castle $castleModel, \Nexendrie\Model\Marriage $marriageModel) {
+  /** @var \Nexendrie\Model\Achievements */
+  protected $achievementsModel;
+
+  public function __construct(\Nexendrie\Model\Profile $model, \Nexendrie\Model\Castle $castleModel, \Nexendrie\Model\Marriage $marriageModel, \Nexendrie\Model\Achievements $achievementsModel) {
     parent::__construct();
     $this->model = $model;
     $this->castleModel = $castleModel;
     $this->marriageModel = $marriageModel;
+    $this->achievementsModel = $achievementsModel;
   }
-  
+
   /**
    * @throws BadRequestException
    */
@@ -44,7 +47,10 @@ final class ProfilePresenter extends BasePresenter {
       throw new BadRequestException();
     }
   }
-  
+
+  /**
+   * @throws BadRequestException
+   */
   public function renderArticles(string $name): void {
     try {
       $this->template->articles = $this->model->getArticles($name);
@@ -53,11 +59,27 @@ final class ProfilePresenter extends BasePresenter {
       throw new BadRequestException();
     }
   }
-  
+
+  /**
+   * @throws BadRequestException
+   */
   public function renderSkills(string $name): void {
     try {
       $this->template->skills = $this->model->getSkills($name);
       $this->template->name = $name;
+    } catch(UserNotFoundException $e) {
+      throw new BadRequestException();
+    }
+  }
+
+  /**
+   * @throws BadRequestException
+   */
+  public function renderAchievements(string $name): void {
+    try {
+      $this->template->userEntity = $this->model->view($name);
+      $this->template->name = $name;
+      $this->template->achievements = $this->achievementsModel->getAllAchievements();
     } catch(UserNotFoundException $e) {
       throw new BadRequestException();
     }
