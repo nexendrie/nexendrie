@@ -60,6 +60,7 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask {
     $month = (int) $date->format("n");
     /** @var \Nexendrie\Orm\Town[] $towns */
     $towns = $this->orm->towns->findAll();
+    $ranks = $this->orm->groups->getCityGroupIds();
     foreach($towns as $town) {
       echo "Town (#$town->id) $town->name ...\n";
       $councillors = $this->electionsModel->getNumberOfCouncillors($town->id);
@@ -85,16 +86,16 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask {
         echo "{$row["candidate"]->publicname} will become a councillor.\n";
         $newCouncillors[] = $row["candidate"]->id;
         $record->elected = true;
-        $record->candidate->group = $this->orm->groups->getByLevel(300);
+        $record->candidate->group = $ranks[1];
         $this->orm->electionResults->persist($record);
         $councillors--;
       }
       foreach($town->denizens as $denizen) {
-        if($denizen->group->level !== 300 OR in_array($denizen->id, $newCouncillors, true)) {
+        if($denizen->group->id !== $ranks[1] OR in_array($denizen->id, $newCouncillors, true)) {
           continue;
         }
         echo "$denizen->publicname loses his/her seat in town council.\n";
-        $denizen->group = $this->orm->groups->getByLevel(100);
+        $denizen->group = $this->orm->groups->getByLevel($ranks[2]);
         $this->orm->users->persist($denizen);
       }
     }

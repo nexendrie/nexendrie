@@ -45,7 +45,9 @@ final class Profile {
    * @return string[]
    */
   public function getListOfLords(): array {
-    return $this->orm->users->findBy(["this->group->level>=" => 350])
+    $ranks = $this->orm->groups->getTowerGroupIds();
+    end($ranks);
+    return $this->orm->users->findBy(["this->group->id<=" => current($ranks)])
       ->fetchPairs("id", "publicname");
   }
   

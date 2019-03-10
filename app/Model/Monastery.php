@@ -227,13 +227,14 @@ final class Monastery {
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $user->monastery = null;
-    $level = 50;
+
     if($user->ownedTowns->countStored() OR $this->orm->castles->getByOwner($this->user->id)) {
-      $level = 400;
+      $ranks = $this->orm->groups->getTowerGroupIds();
+    } else {
+      $ranks = $this->orm->groups->getCityGroupIds();
     }
-    /** @var GroupEntity $group */
-    $group = $this->orm->groups->getByLevel($level);
-    $user->group = $group;
+    end($ranks);
+    $user->group = current($ranks);
     $this->orm->users->persistAndFlush($user);
     $this->user->identity->group = $user->group->id;
     $this->user->identity->level = $user->group->level;
@@ -530,9 +531,7 @@ final class Monastery {
    * @return int[]
    */
   public function getChurchGroupIds(): array {
-    return $this->orm->groups->findBy([
-      "path" => GroupEntity::PATH_CHURCH,
-    ])->orderBy("level", ICollection::DESC)->fetchPairs(null, "id");
+    return $this->orm->groups->getChurchGroupIds();
   }
 
   /**

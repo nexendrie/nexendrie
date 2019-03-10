@@ -106,7 +106,10 @@ final class Order {
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path != GroupEntity::PATH_TOWER) {
       return false;
-    } elseif($user->group->level < 600) {
+    }
+    $ranks = $this->orm->groups->getTowerGroupIds();
+    end($ranks);
+    if($user->group->id > current($ranks)) {
       return false;
     } elseif($user->order) {
       return false;

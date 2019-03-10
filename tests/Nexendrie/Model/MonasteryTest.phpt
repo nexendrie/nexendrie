@@ -84,7 +84,9 @@ final class MonasteryTest extends \Tester\TestCase {
       Assert::type(\Nexendrie\Orm\Monastery::class, $user->monastery);
       Assert::null($user->order);
       Assert::null($user->orderRank);
-      Assert::same(55, $user->group->level);
+      $ranks = $this->model->getChurchGroupIds();
+      end($ranks);
+      Assert::same(current($ranks), $user->group->id);
     });
   }
   
@@ -133,7 +135,11 @@ final class MonasteryTest extends \Tester\TestCase {
     $this->preserveStats(["monastery", "group"], function() use($user) {
       $this->model->leave();
       Assert::null($user->monastery);
-      Assert::same(50, $user->group->level);
+      /** @var \Nexendrie\Orm\Model $orm */
+      $orm = $this->getService(\Nexendrie\Orm\Model::class);
+      $ranks = $orm->groups->getCityGroupIds();
+      end($ranks);
+      Assert::same(current($ranks), $user->group->id);
     });
   }
   
