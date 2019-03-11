@@ -35,12 +35,14 @@ final class AddEditTownFormFactory {
     $form->addSelect("owner", "Majitel:", $this->profileModel->getListOfLords())
       ->setRequired("Vyber majitele.")
       ->setValue(0);
-    $form->addCheckbox("onMarket", "Na prodej");
-    $form->addText("price", "Cena:")
-      ->setRequired("Zadej cenu.")
-      ->addRule(Form::INTEGER, "Cena musí být celé číslo")
-      ->addRule(Form::MIN, "Cena musí být větší než 0.", 1)
-      ->setDefaultValue(5000);
+    if(is_null($town)) {
+      $form->addCheckbox("onMarket", "Na prodej");
+      $form->addText("price", "Cena:")
+        ->setRequired("Zadej cenu.")
+        ->addRule(Form::INTEGER, "Cena musí být celé číslo")
+        ->addRule(Form::MIN, "Cena musí být větší než 0.", 1)
+        ->setDefaultValue(5000);
+    }
     $form->addSubmit("submit", "Odeslat");
     $form->onSuccess[] = [$this, "process"];
     if(!is_null($town)) {
