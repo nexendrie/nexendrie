@@ -105,11 +105,11 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
   }
   
   protected function getterMaxDamage(): int {
-    return ($this->type->damage * 2) + 1;
+    return max($this->type->damage * 2, 1);
   }
   
   protected function getterMaxArmor(): int {
-    return ($this->type->armor * 2) + 1;
+    return max($this->type->armor * 2, 1);
   }
   
   protected function getterDamageTrainingCost(): int {

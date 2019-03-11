@@ -95,7 +95,7 @@ INSERT INTO monasteries ("name", "leader", "town", "founded", "money", "altair_l
 
 INSERT INTO mounts ("name", "gender", "type", "owner", "price", "on_market", "birth", "hp", "damage", "armor") VALUES
   ('Mel','male',1,0,50,TRUE,1444838883,100,0,0),
-  ('Erald','male',5,1,5000,FALSE,1444840086,95,7,5),
+  ('Erald','male',5,1,5000,FALSE,1444840086,95,6,4),
   ('Larna','female',1,0,50,TRUE,1444859395,100,0,0),
   ('Mil','male',1,0,50,TRUE,1444859656,100,0,0),
   ('Zimma','female',1,3,50,TRUE,1444859791,100,0,0),
