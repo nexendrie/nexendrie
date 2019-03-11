@@ -232,7 +232,7 @@ final class Town {
     } elseif(!$this->canMove()) {
       throw new CannotMoveToTownException();
     }
-    $this->user->identity->town = $user->town = $id;
+    $user->town = $id;
     $user->lastTransfer = $user->lastActive = time();
     $user->guild = $user->guildRank = null;
     $this->orm->users->persistAndFlush($user);

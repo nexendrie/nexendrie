@@ -144,11 +144,6 @@ final class Monastery {
     $user->guild = $user->guildRank = null;
     $user->order = $user->orderRank = null;
     $this->orm->users->persistAndFlush($user);
-    $this->user->identity->group = $user->group->id;
-    $this->user->identity->level = $user->group->level;
-    $this->user->identity->town = $user->town->id;
-    $this->user->identity->roles = [$user->group->singleName];
-    $this->user->identity->path = $user->group->path;
   }
   
   /**
@@ -236,10 +231,6 @@ final class Monastery {
     end($ranks);
     $user->group = current($ranks);
     $this->orm->users->persistAndFlush($user);
-    $this->user->identity->group = $user->group->id;
-    $this->user->identity->level = $user->group->level;
-    $this->user->identity->roles = [$user->group->singleName];
-    $this->user->identity->path = $user->group->path;
   }
   
   /**

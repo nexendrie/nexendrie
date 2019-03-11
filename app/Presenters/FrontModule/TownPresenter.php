@@ -90,6 +90,10 @@ final class TownPresenter extends BasePresenter {
   public function actionMove(int $id): void {
     try {
       $this->model->moveToTown($id);
+      /** @var \Nexendrie\Model\Authenticator $authenticator */
+      $authenticator = $this->user->authenticator;
+      $authenticator->user = $this->user;
+      $authenticator->refreshIdentity();
       $message = $this->localeModel->genderMessage("Přestěhoval(a) jsi se do vybraného města.");
       $this->flashMessage($message);
       $this->redirect("Town:");

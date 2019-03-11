@@ -111,6 +111,10 @@ final class MonasteryPresenter extends BasePresenter {
   public function actionJoin(int $id): void {
     try {
       $this->model->join($id);
+      /** @var \Nexendrie\Model\Authenticator $authenticator */
+      $authenticator = $this->user->authenticator;
+      $authenticator->user = $this->user;
+      $authenticator->refreshIdentity();
       $message = $this->localeModel->genderMessage("Vstoupil(a) jsi do kláštera");
       $this->flashMessage($message);
       $this->redirect("default");
@@ -128,6 +132,10 @@ final class MonasteryPresenter extends BasePresenter {
   public function actionLeave(): void {
     try {
       $this->model->leave();
+      /** @var \Nexendrie\Model\Authenticator $authenticator */
+      $authenticator = $this->user->authenticator;
+      $authenticator->user = $this->user;
+      $authenticator->refreshIdentity();
       $message = $this->localeModel->genderMessage("Vystoupil(a) jsi z kláštera");
       $this->flashMessage($message);
       $this->redirect("Homepage:");

@@ -239,7 +239,6 @@ final class Adventure {
     $userAdventure->adventure = $adventure;
     $userAdventure->mount = $mount;
     $this->orm->userAdventures->persistAndFlush($userAdventure);
-    $this->user->identity->travelling = true;
   }
   
   /**
@@ -341,7 +340,6 @@ final class Adventure {
     $adventure->reward += $reward;
     $adventure->mount->hp -= MountEntity::HP_DECREASE_ADVENTURE;
     $this->orm->userAdventures->persistAndFlush($adventure);
-    $this->user->identity->travelling = false;
   }
   
   /**

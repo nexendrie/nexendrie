@@ -59,6 +59,10 @@ final class AdventureControl extends \Nette\Application\UI\Control {
   public function handleStart(int $adventure, int $mount): void {
     try {
       $this->model->startAdventure($adventure, $mount);
+      /** @var \Nexendrie\Model\Authenticator $authenticator */
+      $authenticator = $this->user->authenticator;
+      $authenticator->user = $this->user;
+      $authenticator->refreshIdentity();
       $message = $this->localeModel->genderMessage("Vydal(a) jsi se na dobrodružství.");
       $this->presenter->flashMessage($message);
       $this->presenter->redirect("Adventure:");
@@ -96,6 +100,10 @@ final class AdventureControl extends \Nette\Application\UI\Control {
   public function handleFinish(): void {
     try {
       $this->model->finishAdventure();
+      /** @var \Nexendrie\Model\Authenticator $authenticator */
+      $authenticator = $this->user->authenticator;
+      $authenticator->user = $this->user;
+      $authenticator->refreshIdentity();
       $this->presenter->redirect("Homepage:");
     } catch(NotOnAdventureException $e) {
       $this->presenter->flashMessage("Nejsi na dobrodružství.");
