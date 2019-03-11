@@ -64,7 +64,7 @@ final class House extends \Nextras\Orm\Entity\Entity {
   protected function getterWorkIncomeBonus(): int {
     if($this->hp < $this->criticalCondition) {
       return 0;
-    } elseif($this->owner->group->path != Group::PATH_CITY) {
+    } elseif($this->owner->group->path !== Group::PATH_CITY) {
       return 0;
     }
     return $this->luxuryLevel * static::INCOME_BONUS_PER_LEVEL;

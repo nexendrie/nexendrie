@@ -57,7 +57,7 @@ final class StablesControl extends \Nette\Application\UI\Control {
     if(is_null($mount)) {
       throw new MountNotFoundException();
     }
-    if($mount->owner->id != $this->user->id) {
+    if($mount->owner->id !== $this->user->id) {
       throw new MountNotOwnedException();
     }
     if($mount->owner->money < $price) {
@@ -122,7 +122,7 @@ final class StablesControl extends \Nette\Application\UI\Control {
     $mount = $this->orm->mounts->getById($id);
     if(is_null($mount)) {
       throw new MountNotFoundException();
-    } elseif($mount->owner->id != $this->user->id) {
+    } elseif($mount->owner->id !== $this->user->id) {
       throw new MountNotOwnedException();
     }
     $statCap = ucfirst($stat);

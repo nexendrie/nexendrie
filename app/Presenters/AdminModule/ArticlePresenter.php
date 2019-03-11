@@ -48,7 +48,7 @@ final class ArticlePresenter extends BasePresenter {
     } catch(ArticleNotFoundException $e) {
       throw new \Nette\Application\BadRequestException();
     }
-    if($article->author->id != $this->user->id) {
+    if($article->author->id !== $this->user->id) {
       $this->requiresPermissions("article", "edit");
     }
   }

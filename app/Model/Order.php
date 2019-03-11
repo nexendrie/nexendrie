@@ -104,7 +104,7 @@ final class Order {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != GroupEntity::PATH_TOWER) {
+    if($user->group->path !== GroupEntity::PATH_TOWER) {
       return false;
     }
     $ranks = $this->orm->groups->getTowerGroupIds();
@@ -334,7 +334,7 @@ final class Order {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order) OR $user->order->id != $admin->order->id) {
+    if(is_null($user->order) OR $user->order->id !== $admin->order->id) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id >= $this->maxRank - 1) {
       throw new CannotPromoteMemberException();
@@ -364,7 +364,7 @@ final class Order {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order) OR $user->order->id != $admin->order->id) {
+    if(is_null($user->order) OR $user->order->id !== $admin->order->id) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id < 2 OR $user->orderRank->id === $this->maxRank) {
       throw new CannotDemoteMemberException();
@@ -394,7 +394,7 @@ final class Order {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order) OR $user->order->id != $admin->order->id) {
+    if(is_null($user->order) OR $user->order->id !== $admin->order->id) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id === $this->maxRank) {
       throw new CannotKickMemberException();

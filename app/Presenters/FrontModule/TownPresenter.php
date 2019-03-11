@@ -50,7 +50,7 @@ final class TownPresenter extends BasePresenter {
   
   protected function startup(): void {
     parent::startup();
-    if($this->action != "detail" AND $this->action != "list") {
+    if($this->action !== "detail" AND $this->action !== "list") {
       $this->requiresLogin();
     }
   }
@@ -76,7 +76,7 @@ final class TownPresenter extends BasePresenter {
       $this->template->town = $this->model->get($id);
       if(!$this->user->isLoggedIn()) {
         $this->template->canMove = false;
-      } elseif($id == $this->user->identity->town) {
+      } elseif($id === $this->user->identity->town) {
         $this->template->canMove = false;
       } else {
         $this->template->canMove = $this->model->canMove();
@@ -107,7 +107,7 @@ final class TownPresenter extends BasePresenter {
   
   public function actionFound(): void {
     $path = $this->profileModel->getPath();
-    if($path != GroupEntity::PATH_TOWER) {
+    if($path !== GroupEntity::PATH_TOWER) {
       $this->flashMessage("Jen šlechtici mohou zakládat města.");
       $this->redirect("Homepage:");
     }

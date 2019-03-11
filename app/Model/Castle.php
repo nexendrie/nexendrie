@@ -97,7 +97,7 @@ final class Castle {
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != GroupEntity::PATH_TOWER) {
+    if($user->group->path !== GroupEntity::PATH_TOWER) {
       throw new CannotBuildCastleException();
     } elseif(!is_null($this->getUserCastle())) {
       throw new CannotBuildMoreCastlesException();

@@ -81,7 +81,7 @@ final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEff
   }
   
   protected function getterLevel(): int {
-    if($this->status != static::STATUS_ACTIVE) {
+    if($this->status !== static::STATUS_ACTIVE) {
       return 0;
     }
     return (int) ($this->intimacy / static::INTIMACY_FOR_LEVEL);

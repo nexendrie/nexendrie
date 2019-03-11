@@ -101,7 +101,7 @@ final class Inventory {
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
       throw new ItemNotFoundException();
-    } elseif($item->user->id != $this->user->id) {
+    } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
     } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes(), true)) {
       throw new ItemNotEquipableException();
@@ -137,7 +137,7 @@ final class Inventory {
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
       throw new ItemNotFoundException();
-    } elseif($item->user->id != $this->user->id) {
+    } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
     } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes(), true)) {
       throw new ItemNotEquipableException();
@@ -164,9 +164,9 @@ final class Inventory {
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
       throw new ItemNotFoundException();
-    } elseif($item->user->id != $this->user->id) {
+    } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
-    } elseif($item->item->type != ItemEntity::TYPE_POTION) {
+    } elseif($item->item->type !== ItemEntity::TYPE_POTION) {
       throw new ItemNotDrinkableException();
     }
     if($item->user->life >= $item->user->maxLife) {
@@ -210,9 +210,9 @@ final class Inventory {
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
       throw new ItemNotFoundException();
-    } elseif($item->user->id != $this->user->id) {
+    } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
-    } elseif($item->item->type != ItemEntity::TYPE_INTIMACY_BOOST) {
+    } elseif($item->item->type !== ItemEntity::TYPE_INTIMACY_BOOST) {
       throw new ItemNotUsableException();
     }
     if($marriage->intimacy + $item->item->strength > MarriageEntity::MAX_INTIMACY) {
@@ -270,7 +270,7 @@ final class Inventory {
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
       throw new ItemNotFoundException();
-    } elseif($item->user->id != $this->user->id) {
+    } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
     } elseif(in_array($item->item->type, ItemEntity::getNotForSale(), true)) {
       throw new ItemNotForSaleException();
@@ -305,7 +305,7 @@ final class Inventory {
     $item = $this->orm->userItems->getById($id);
     if(is_null($item)) {
       throw new ItemNotFoundException();
-    } elseif($item->user->id != $this->user->id) {
+    } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
     } elseif(!in_array($item->item->type, ItemEntity::getEquipmentTypes(), true)) {
       throw new ItemNotUpgradableException();

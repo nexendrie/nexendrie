@@ -107,7 +107,7 @@ final class Guild {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != GroupEntity::PATH_CITY) {
+    if($user->group->path !== GroupEntity::PATH_CITY) {
       return false;
     } elseif($user->guild) {
       return false;
@@ -311,7 +311,7 @@ final class Guild {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) {
+    if(is_null($user->guild) OR $user->guild->id !== $admin->guild->id) {
       throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id >= $this->maxRank - 1) {
       throw new CannotPromoteMemberException();
@@ -341,7 +341,7 @@ final class Guild {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) {
+    if(is_null($user->guild) OR $user->guild->id !== $admin->guild->id) {
       throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id < 2 OR $user->guildRank->id === $this->maxRank) {
       throw new CannotDemoteMemberException();
@@ -371,7 +371,7 @@ final class Guild {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->guild) OR $user->guild->id != $admin->guild->id) {
+    if(is_null($user->guild) OR $user->guild->id !== $admin->guild->id) {
       throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id === $this->maxRank) {
       throw new CannotKickMemberException();

@@ -127,7 +127,7 @@ final class MarriagePresenter extends BasePresenter {
     } catch(MarriageNotFoundException $e) {
       throw new \Nette\Application\BadRequestException();
     }
-    if($this->marriage->status != MarriageEntity::STATUS_ACCEPTED) {
+    if($this->marriage->status !== MarriageEntity::STATUS_ACCEPTED) {
       $this->flashMessage("Svatba se nekoná.");
       $this->redirect("Homepage:");
     } elseif($this->marriage->term > time()) {

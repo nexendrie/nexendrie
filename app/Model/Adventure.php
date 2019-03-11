@@ -226,7 +226,7 @@ final class Adventure {
     $mount = $this->orm->mounts->getById($mountId);
     if(is_null($mount)) {
       throw new MountNotFoundException();
-    } elseif($mount->owner->id != $this->user->id) {
+    } elseif($mount->owner->id !== $this->user->id) {
       throw new MountNotOwnedException();
     } elseif($mount->hp < 30) {
       throw new MountInBadConditionException();

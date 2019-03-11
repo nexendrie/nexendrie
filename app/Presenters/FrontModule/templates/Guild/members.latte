@@ -4,6 +4,6 @@
   <h1>Spravovat členy cechu</h1>
   <table>
     <tr><th>Jméno</th><th>Hodnost</th><th>Příspěvky</th><th>Akce</th></tr>
-    <tr n:foreach="$members as $member"><td>{$member->publicname}</td><td>{$member->guildRank->name}</td><td>{$member->currentGuildContribution}</td><td>{if $member->id != $user->id and $member->guildRank->id < $maxRank - 1}<a n:href="promote! $member->id">Povýšit</a>{/if} {if $member->id != $user->id and $member->guildRank->id > 1  and $member->guildRank->id < $maxRank}<a n:href="demote! $member->id">Degradovat</a>{/if} {if $member->id != $user->id}<a n:href="kick! $member->id">Vyloučit</a>{/if}</td></tr>
+    <tr n:foreach="$members as $member"><td>{$member->publicname}</td><td>{$member->guildRank->name}</td><td>{$member->currentGuildContribution}</td><td>{if $member->id !== $user->id and $member->guildRank->id < $maxRank - 1}<a n:href="promote! $member->id">Povýšit</a>{/if} {if $member->id !== $user->id and $member->guildRank->id > 1  and $member->guildRank->id < $maxRank}<a n:href="demote! $member->id">Degradovat</a>{/if} {if $member->id !== $user->id}<a n:href="kick! $member->id">Vyloučit</a>{/if}</td></tr>
   </table>
 {/block}

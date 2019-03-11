@@ -63,7 +63,7 @@ final class Castle extends \Nextras\Orm\Entity\Entity {
   protected function getterTaxesBonusIncome(): int {
     if($this->hp < $this->criticalCondition) {
       return 0;
-    } elseif($this->owner->group->path != Group::PATH_TOWER) {
+    } elseif($this->owner->group->path !== Group::PATH_TOWER) {
       return 0;
     }
     return $this->level * static::TAX_BONUS_PER_LEVEL;

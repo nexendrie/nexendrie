@@ -29,7 +29,10 @@ final class UserPresenter extends BasePresenter {
     $this->requiresPermissions("user", "list");
     $this->template->users = $this->model->listOfUsers();
   }
-  
+
+  /**
+   * @throws \Nette\Application\BadRequestException
+   */
   public function actionEdit(int $id): void {
     $this->requiresPermissions("user", "edit");
     try {
@@ -50,7 +53,7 @@ final class UserPresenter extends BasePresenter {
   
   public function actionBan(int $id): void {
     $this->requiresPermissions("user", "ban");
-    if($id == 0) {
+    if($id === 0) {
       $this->flashMessage("Neoprávněná operace.");
       $this->redirect("default");
     }

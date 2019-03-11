@@ -61,7 +61,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control {
       return false;
     } elseif($this->model->getNumberOfCouncillors($this->town->id) === 0) {
       return false;
-    } elseif($this->getState() != "voting") {
+    } elseif($this->getState() !== "voting") {
       return false;
     }
     $votes = $this->getVotes((int) date("Y"), (int) date("n"));

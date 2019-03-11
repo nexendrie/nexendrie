@@ -44,7 +44,7 @@ final class MonasteryPresenter extends BasePresenter {
   
   protected function startup(): void {
     parent::startup();
-    if($this->action != "detail" AND $this->action != "list") {
+    if($this->action !== "detail" AND $this->action !== "list") {
       $this->requiresLogin();
     }
   }

@@ -37,7 +37,7 @@ final class CastlePresenter extends BasePresenter {
   
   protected function startup(): void {
     parent::startup();
-    if($this->action != "detail" AND $this->action != "list") {
+    if($this->action !== "detail" AND $this->action !== "list") {
       $this->requiresLogin();
     }
   }
@@ -72,7 +72,7 @@ final class CastlePresenter extends BasePresenter {
   
   public function actionBuild(): void {
     $user = $this->userManager->get($this->user->id);
-    if($user->group->path != GroupEntity::PATH_TOWER) {
+    if($user->group->path !== GroupEntity::PATH_TOWER) {
       $this->flashMessage("Nejsi šlechtic.");
       $this->redirect("Homepage:");
     } elseif(!is_null($this->model->getUserCastle())) {

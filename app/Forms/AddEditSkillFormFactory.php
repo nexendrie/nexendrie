@@ -59,10 +59,10 @@ final class AddEditSkillFormFactory {
   }
 
   public function validate(Form $form, array $values): void {
-    if($values["type"] === SkillEntity::TYPE_WORK AND $values["stat"] != null) {
+    if($values["type"] === SkillEntity::TYPE_WORK AND $values["stat"] !== null) {
       $form->addError("Neplatná kombinace: vybrána vlastnost u pracovní dovednosti.");
     }
-    if($values["type"] === SkillEntity::TYPE_WORK AND $values["statIncrease"] != 0) {
+    if($values["type"] === SkillEntity::TYPE_WORK AND $values["statIncrease"] !== 0) {
       $form->addError("Neplatná kombinace: vylepšení dovednosti musí být 0 u pracovní dovednosti.");
     }
   }

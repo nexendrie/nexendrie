@@ -71,20 +71,20 @@ final class Marriage {
       return false;
     } elseif(!is_null($this->orm->marriages->getAcceptedMarriage($this->user->id))) {
       return false;
-    } elseif($user->group->path != $me->group->path) {
+    } elseif($user->group->path !== $me->group->path) {
       return false;
     }
     return true;
   }
   
   public function canFinish(MarriageEntity $marriage): bool {
-    if($marriage->status != MarriageEntity::STATUS_ACCEPTED) {
+    if($marriage->status !== MarriageEntity::STATUS_ACCEPTED) {
       return false;
     } elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user1->id))) {
       return false;
     } elseif(!is_null($this->orm->marriages->getActiveMarriage($marriage->user2->id))) {
       return false;
-    } elseif($marriage->user1->group->path != $marriage->user2->group->path) {
+    } elseif($marriage->user1->group->path !== $marriage->user2->group->path) {
       return false;
     }
     return true;
@@ -135,9 +135,9 @@ final class Marriage {
     $proposal = $this->orm->marriages->getById($id);
     if(is_null($proposal)) {
       throw new MarriageNotFoundException();
-    } elseif($proposal->user2->id != $this->user->id) {
+    } elseif($proposal->user2->id !== $this->user->id) {
       throw new AccessDeniedException();
-    } elseif($proposal->status != MarriageEntity::STATUS_PROPOSED) {
+    } elseif($proposal->status !== MarriageEntity::STATUS_PROPOSED) {
       throw new MarriageProposalAlreadyHandledException();
     } elseif(!$this->canPropose($proposal->user1->id)) {
       throw new CannotProposeMarriageException();
@@ -170,9 +170,9 @@ final class Marriage {
     $proposal = $this->orm->marriages->getById($id);
     if(is_null($proposal)) {
       throw new MarriageNotFoundException();
-    } elseif($proposal->user2->id != $this->user->id) {
+    } elseif($proposal->user2->id !== $this->user->id) {
       throw new AccessDeniedException();
-    } elseif($proposal->status != MarriageEntity::STATUS_PROPOSED) {
+    } elseif($proposal->status !== MarriageEntity::STATUS_PROPOSED) {
       throw new MarriageProposalAlreadyHandledException();
     } elseif(!$this->canPropose($proposal->user1->id)) {
       throw new CannotProposeMarriageException();
@@ -299,7 +299,7 @@ final class Marriage {
       throw new NotMarriedException();
     } elseif($marriage->divorce < 1 OR $marriage->divorce > 4) {
       throw new NotInDivorceException();
-    } elseif(($marriage->divorce === 3 AND $this->user->id != $marriage->user1->id) OR ($marriage->divorce === 4 AND $this->user->id != $marriage->user2->id)) {
+    } elseif(($marriage->divorce === 3 AND $this->user->id !== $marriage->user1->id) OR ($marriage->divorce === 4 AND $this->user->id !== $marriage->user2->id)) {
       throw new CannotTakeBackDivorceException();
     }
     $marriage->divorce = 0;

@@ -12,7 +12,7 @@ abstract class BaseMonthlyCronTask {
   use \Nette\SmartObject;
   
   public function isDue(\DateTime $date): bool {
-    return ($date->format("j") == 1);
+    return ((int) ($date->format("j")) === 1);
   }
 }
 ?>

@@ -6,5 +6,5 @@
   Pro: {control userProfileLink $message->to}<br>
   Odesláno: {$message->sentAt}<br>
   <p>{$message->text}</p>
-  {if $user->id == $message->to->id}<a n:href="Messages:new $message->from->id">Odpovědět</a>{/if}
+  {if $user->id === $message->to->id and $user->id !== $message->from->id}<a n:href="Messages:new $message->from->id">Odpovědět</a>{/if}
 {/block}

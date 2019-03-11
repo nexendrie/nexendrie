@@ -54,7 +54,7 @@ final class House {
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != GroupEntity::PATH_CITY) {
+    if($user->group->path !== GroupEntity::PATH_CITY) {
       throw new CannotBuyHouseException();
     } elseif($user->money < $this->price) {
       throw new InsufficientFundsException();
@@ -199,7 +199,7 @@ final class House {
     $house = $this->getUserHouse();
     if(is_null($house)) {
       return false;
-    } elseif($house->owner->group->path != GroupEntity::PATH_CITY) {
+    } elseif($house->owner->group->path !== GroupEntity::PATH_CITY) {
       return false;
     } elseif($house->breweryLevel < 1) {
       return false;

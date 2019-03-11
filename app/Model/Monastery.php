@@ -135,7 +135,7 @@ final class Monastery {
     }
     $user->lastTransfer = $user->lastActive = time();
     $user->monastery = $monastery;
-    if($user->group->path != GroupEntity::PATH_CHURCH) {
+    if($user->group->path !== GroupEntity::PATH_CHURCH) {
       $ranks = $this->getChurchGroupIds();
       end($ranks);
       $user->group = current($ranks);
@@ -251,7 +251,7 @@ final class Monastery {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    if($this->user->identity->group != $this->getChurchGroupIds()[0]) {
+    if($this->user->identity->group !== $this->getChurchGroupIds()[0]) {
       return false;
     }
     /** @var UserEntity $user */
@@ -340,7 +340,7 @@ final class Monastery {
       }
       if($key === "name") {
         $m = $this->orm->monasteries->getByName($value);
-        if($m AND $m->id != $id) {
+        if($m AND $m->id !== $id) {
           throw new MonasteryNameInUseException();
         }
       }
@@ -406,7 +406,7 @@ final class Monastery {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
-    } elseif($user->monastery->leader->id != $this->user->id) {
+    } elseif($user->monastery->leader->id !== $this->user->id) {
       return false;
     }
     return ($user->monastery->altairLevel < MonasteryEntity::MAX_LEVEL);
@@ -450,7 +450,7 @@ final class Monastery {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
-    } elseif($user->monastery->leader->id != $this->user->id) {
+    } elseif($user->monastery->leader->id !== $this->user->id) {
       return false;
     }
     return ($user->monastery->libraryLevel < MonasteryEntity::MAX_LEVEL - 1);
@@ -494,7 +494,7 @@ final class Monastery {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($user->monastery)) {
       return false;
-    } elseif($user->monastery->leader->id != $this->user->id) {
+    } elseif($user->monastery->leader->id !== $this->user->id) {
       return false;
     } elseif($user->monastery->hp >= 100) {
       return false;

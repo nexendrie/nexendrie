@@ -161,13 +161,13 @@ final class Town {
     $town = $this->orm->towns->getById($townId);
     if(is_null($town)) {
       throw new TownNotFoundException();
-    } elseif($town->owner->id != $this->user->id) {
+    } elseif($town->owner->id !== $this->user->id) {
       throw new TownNotOwnedException();
     }
     $newMayor = $this->orm->users->getById($newMayorId);
     if(is_null($newMayor)) {
       throw new UserNotFoundException();
-    } elseif($newMayor->town->id != $townId) {
+    } elseif($newMayor->town->id !== $townId) {
       throw new UserDoesNotLiveInTheTownException();
     }
     $newMayorRank = $newMayor->group->level;
@@ -197,7 +197,7 @@ final class Town {
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path === GroupEntity::PATH_CHURCH) {
       return false;
-    } elseif($user->group->path === GroupEntity::PATH_CITY AND $user->group->level != 100) {
+    } elseif($user->group->path === GroupEntity::PATH_CITY AND $user->group->level !== 100) {
       return false;
     } elseif(is_null($user->lastTransfer)) {
       return true;
@@ -253,7 +253,7 @@ final class Town {
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path != GroupEntity::PATH_TOWER) {
+    if($user->group->path !== GroupEntity::PATH_TOWER) {
       throw new InsufficientLevelForFoundTownException();
     }
     if($user->money < $this->foundingPrice) {
@@ -308,7 +308,7 @@ final class Town {
     }
     /** @var \Nexendrie\Orm\User $owner */
     $owner = $this->orm->users->getById($this->user->id);
-    if($citizen->town->owner->id != $owner->id) {
+    if($citizen->town->owner->id !== $owner->id) {
       throw new UserDoesNotLiveInTheTownException();
     } elseif($citizen->group->level > 50) {
       throw new TooHighLevelException();
