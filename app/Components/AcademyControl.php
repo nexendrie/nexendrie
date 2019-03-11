@@ -47,15 +47,7 @@ final class AcademyControl extends \Nette\Application\UI\Control {
     $skillsRows = $this->model->listOfSkills($type);
     $skills = [];
     foreach($skillsRows as $skill) {
-      $s = (object) [
-        "id" => $skill->id, "name" => $skill->name, "maxLevel" => $skill->maxLevel,
-        "effect" => $skill->effect
-      ];
-      $userSkill = $this->model->getUserSkill($skill->id);
-      $s->level = $userSkill->level;
-      $price = $userSkill->learningPrice;
-      $s->price = $this->localeModel->money($price);
-      $skills[] = $s;
+      $skills[] = $this->model->getUserSkill($skill->id);
     }
     $this->template->skills = $skills;
     $this->template->render();

@@ -17,6 +17,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property Skill $skill {m:1 Skill::$userSkills}
  * @property int $level
  * @property-read int $learningPrice {virtual}
+ * @property-read string $learningPriceT {virtual}
  * @property-read int $jobRewardBonus {virtual}
  * @property-read int $jobSuccessRateBonus {virtual}
  */
@@ -28,9 +29,15 @@ final class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEf
   
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
+  /** @var \Nexendrie\Model\Locale */
+  protected $localeModel;
   
   public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;
+  }
+
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
+    $this->localeModel = $localeModel;
   }
   
   protected function getterLearningPrice(): int {
@@ -44,6 +51,10 @@ final class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEf
       $price -= (int) ($price / 100 * $monasteryDiscount);
     }
     return $price;
+  }
+
+  protected function getterLearningPriceT(): string {
+    return $this->localeModel->money($this->learningPrice);
   }
   
   protected function getterJobRewardBonus(): int {
