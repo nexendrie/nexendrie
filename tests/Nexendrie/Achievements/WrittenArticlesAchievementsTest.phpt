@@ -26,8 +26,8 @@ final class WrittenArticlesAchievementsTest extends \Tester\TestCase {
   
   public function testIsAchievedAndGetProgress() {
     $user = $this->orm->users->getById(1);
-    Assert::same(14, $this->model->getProgress($user));
-    Assert::same(2, $this->model->isAchieved($user));
+    Assert::same(15, $this->model->getProgress($user));
+    Assert::same(3, $this->model->isAchieved($user));
     $user = $this->orm->users->getById(3);
     Assert::same(0, $this->model->getProgress($user));
     Assert::same(0, $this->model->isAchieved($user));

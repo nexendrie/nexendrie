@@ -24,7 +24,7 @@ final class ProfileTest extends \Tester\TestCase {
     $user = $this->model->view("Vladěna");
     Assert::type(UserEntity::class, $user);
     Assert::exception(function() {
-      $this->model->view("abc");
+      $this->model->view("a");
     }, UserNotFoundException::class);
   }
   
