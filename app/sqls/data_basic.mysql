@@ -170,9 +170,9 @@ INSERT INTO `meals` (`id`, `name`, `message`, `price`, `life`) VALUES
 INSERT INTO `mount_types` (`id`, `name`, `female_name`, `young_name`, `description`, `level`, `damage`, `armor`, `price`) VALUES
   (1,	'Osel',	'Oslice',	'Oslátko',	'.',	50,	0,	0,	50),
   (2,	'Kůň',	'Klisna',	'Hříbě',	'.',	100,	0,	1,	100),
-  (3,	'Velbloud',	'Velbloudice',	'Velbloudě',	'.',	300,	1,	0,	300),
+  (3,	'Velbloud',	'Velbloudice',	'Velbloudě',	'.',	100,	1,	0,	300),
   (4,	'Jednorožec',	'Jednorožčice',	'Jednorožče',	'.',	400,	1,	2,	1200),
-  (5,	'Drak',	'Dračice',	'Dráče',	'.',	1000,	3,	2,	5000);
+  (5,	'Drak',	'Dračice',	'Dráče',	'.',	600,	3,	2,	5000);
 
 INSERT INTO `order_ranks` (`id`, `name`, `adventure_bonus`, `order_fee`) VALUES
   (1,	'zbrojnoš',	5,	65),

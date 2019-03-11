@@ -173,9 +173,9 @@ INSERT INTO monasteries ("name", "leader", "town", "founded", "money", "altair_l
 INSERT INTO mount_types ("name", "female_name", "young_name", "description", "level", "damage", "armor", "price") VALUES
   ('Osel','Oslice','Oslátko','.',50,0,0,50),
   ('Kůň','Klisna','Hříbě','.',100,0,1,100),
-  ('Velbloud','Velbloudice','Velbloudě','.',300,1,0,300),
+  ('Velbloud','Velbloudice','Velbloudě','.',100,1,0,300),
   ('Jednorožec','Jednorožčice','Jednorožče','.',400,1,2,1200),
-  ('Drak','Dračice','Dráče','.',1000,3,2,5000);
+  ('Drak','Dračice','Dráče','.',600,3,2,5000);
 
 INSERT INTO order_ranks ("name", "adventure_bonus", "order_fee") VALUES
   ('zbrojnoš',5,65),
