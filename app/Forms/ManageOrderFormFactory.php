@@ -24,9 +24,9 @@ final class ManageOrderFormFactory {
     $this->user = $user;
   }
   
-  public function create(int $guildId): Form {
+  public function create(int $orderId): Form {
     $form = new Form();
-    $this->id = $guildId;
+    $this->id = $orderId;
     $guild = $this->model->getOrder($this->id);
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
