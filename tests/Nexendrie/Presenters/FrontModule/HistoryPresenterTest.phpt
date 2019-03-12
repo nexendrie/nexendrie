@@ -12,6 +12,15 @@ final class HistoryPresenterTest extends \Tester\TestCase {
     $this->checkAction(":Front:History:default");
     $this->login();
     $this->checkAction(":Front:History:default");
+    /** @var \Nexendrie\Components\HistoryControl $component */
+    $component = $this->getService(\Nexendrie\Components\IHistoryControlFactory::class)->create();
+    $pages = $component->getPages();
+    /** @var \Nexendrie\BookComponent\BookPage $page */
+    foreach($pages as $page) {
+      $this->checkAction(":Front:Help:default", ["page" => $page->slug]);
+      $this->login();
+      $this->checkAction(":Front:Help:default", ["page" => $page->slug]);
+    }
   }
 }
 
