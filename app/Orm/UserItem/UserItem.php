@@ -48,7 +48,7 @@ final class UserItem extends \Nextras\Orm\Entity\Entity {
     if(!in_array($this->item->type, Item::getEquipmentTypes(), true)) {
       return 0;
     }
-    return (int) round($this->item->strength / 2) + 1;
+    return (int) max(round($this->item->strength / 2), 1);
   }
   
   protected function getterUpgradePrice(): int {
