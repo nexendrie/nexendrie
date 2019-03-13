@@ -109,11 +109,13 @@ final class HelpControl extends BookControl {
   public function renderGuild(): void {
     $this->template->ranks = $this->orm->guildRanks->findAll();
     $this->template->maxLevel = GuildEntity::MAX_LEVEL;
+    $this->template->incomeBonusPerLevel = GuildEntity::JOB_INCOME_BONUS_PER_LEVEL;
   }
   
   public function renderOrder(): void {
     $this->template->ranks = $this->orm->orderRanks->findAll();
     $this->template->maxLevel = OrderEntity::MAX_LEVEL;
+    $this->template->incomeBonusPerLevel = OrderEntity::ADVENTURE_INCOME_BONUS_PER_LEVEL;
   }
   
   public function renderTowns(): void {

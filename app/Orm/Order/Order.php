@@ -27,6 +27,7 @@ use Nexendrie\Utils\Numbers;
 final class Order extends \Nextras\Orm\Entity\Entity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 800;
+  public const ADVENTURE_INCOME_BONUS_PER_LEVEL = 2.5;
   
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;

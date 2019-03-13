@@ -3,4 +3,4 @@
     <tr><th>Hodnost</th><th>Bonus k příjmům z dobrodružství</th><th>Členský poplatek</th></tr>
     <tr n:foreach="$ranks as $rank"><td>{$rank->name}</td><td>{$rank->adventureBonus}</td><td>{$rank->orderFee}</td></tr>
   </table>
-  <p>V čele řádu stojí velmistr. Ten může povyšovat (maximálně na mistra), degradovat a vylučovat členy, také má možnost přejmenovat řád a z vybraných příspěvků vylepšit řád. Každá úroveň řádu zvyšuje příjmy z dobrodružství všech členů o 2,5%, maximální úroveň je {$maxLevel}.</p>
+  <p>V čele řádu stojí velmistr. Ten může povyšovat (maximálně na mistra), degradovat a vylučovat členy, také má možnost přejmenovat řád a z vybraných příspěvků vylepšit řád. Každá úroveň řádu zvyšuje příjmy z dobrodružství všech členů o {$incomeBonusPerLevel|replace:".",","}%, maximální úroveň je {$maxLevel}.</p>
