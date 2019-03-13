@@ -46,6 +46,8 @@ final class HelpControl extends BookControl {
     $this->pages[] = new BookPage("money", "Peníze");
     $this->pages[] = new BookPage("work", "Práce");
     $this->pages[] = new BookPage("adventures", "Dobrodružství");
+    $this->pages[] = new BookPage("combat", "Souboje");
+    $this->pages[] = new BookPage("tavern", "Hostinec");
     $this->pages[] = new BookPage("bank", "Banka");
     $this->pages[] = new BookPage("academy", "Akademie");
     $this->pages[] = new BookPage("market", "Tržiště");
@@ -153,6 +155,10 @@ final class HelpControl extends BookControl {
 
   public function renderAdventures(): void {
     $this->template->hpDecrease = MountEntity::HP_DECREASE_ADVENTURE;
+  }
+
+  public function renderCombat(): void {
+    $this->template->itemSets = $this->orm->itemSets->findAll()->orderBy("bonus");
   }
 }
 ?>
