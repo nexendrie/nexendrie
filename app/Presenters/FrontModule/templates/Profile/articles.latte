@@ -2,6 +2,7 @@
 {block title}Články uživatele {$name}{/block}
 {block content}
   <h1>Články uživatele</h1>
+  <p><a n:href="default name => $name">Zpět na profil</a></p>
   {if $articles->count() === 0}
   <p>Uživatel zatím nenapsal žádné články.</p>
   {else}

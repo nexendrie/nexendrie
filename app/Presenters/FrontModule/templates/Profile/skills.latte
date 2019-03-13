@@ -2,6 +2,7 @@
 {block title}Dovednosti uživatele {$name}{/block}
 {block content}
   <h1>Dovednosti uživatele</h1>
+  <p><a n:href="default name => $name">Zpět na profil</a></p>
   {if $skills->count() === 0}
   <p>Uživatel nemá žádné dovednosti.</p>
   {else}
