@@ -39,7 +39,6 @@ final class ProfilePresenter extends BasePresenter {
     try {
       $user = $this->model->view($name);
       $this->template->profile = $user;
-      $this->template->castle = $this->castleModel->getUserCastle($user->id);
       $this->template->partner = $this->model->getPartner($user->id);
       $this->template->fiance = $this->model->getFiance($user->id);
       $this->template->canProposeMarriage = $this->marriageModel->canPropose($user->id);
