@@ -9,7 +9,7 @@ The user interface is in Czech language and there are no plans to support multip
 
 [Installation instructions](INSTALL.md)
 
-Copyright (c) 2015 - 2018, Jakub Konečný
+Copyright (c) 2015 - 2019, Jakub Konečný
 
 Servers
 -------
