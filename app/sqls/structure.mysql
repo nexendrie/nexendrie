@@ -508,8 +508,6 @@ CREATE TABLE `users` (
   `money` int(11) NOT NULL DEFAULT '2',
   `town` int(11) NOT NULL DEFAULT '3',
   `monastery` int(11) DEFAULT NULL,
-  `castle` int(11) DEFAULT NULL,
-  `house` int(11) DEFAULT NULL,
   `prayers` int(11) NOT NULL DEFAULT '0',
   `guild` int(11) DEFAULT NULL,
   `guild_rank` int(11) DEFAULT NULL,
@@ -519,8 +517,6 @@ CREATE TABLE `users` (
   KEY `group` (`group`),
   KEY `town` (`town`),
   KEY `monastery` (`monastery`),
-  KEY `castle` (`castle`),
-  KEY `house` (`house`),
   KEY `guild` (`guild`),
   KEY `guild_rank` (`guild_rank`),
   KEY `order` (`order`),
@@ -528,12 +524,10 @@ CREATE TABLE `users` (
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`group`) REFERENCES `groups` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `users_ibfk_2` FOREIGN KEY (`town`) REFERENCES `towns` (`id`),
   CONSTRAINT `users_ibfk_3` FOREIGN KEY (`monastery`) REFERENCES `monasteries` (`id`),
-  CONSTRAINT `users_ibfk_4` FOREIGN KEY (`castle`) REFERENCES `castles` (`id`),
-  CONSTRAINT `users_ibfk_5` FOREIGN KEY (`house`) REFERENCES `houses` (`id`),
-  CONSTRAINT `users_ibfk_6` FOREIGN KEY (`guild`) REFERENCES `guilds` (`id`),
-  CONSTRAINT `users_ibfk_7` FOREIGN KEY (`guild_rank`) REFERENCES `guild_ranks` (`id`),
-  CONSTRAINT `users_ibfk_8` FOREIGN KEY (`order`) REFERENCES `orders` (`id`),
-  CONSTRAINT `users_ibfk_9` FOREIGN KEY (`order_rank`) REFERENCES `order_ranks` (`id`)
+  CONSTRAINT `users_ibfk_4` FOREIGN KEY (`guild`) REFERENCES `guilds` (`id`),
+  CONSTRAINT `users_ibfk_5` FOREIGN KEY (`guild_rank`) REFERENCES `guild_ranks` (`id`),
+  CONSTRAINT `users_ibfk_6` FOREIGN KEY (`order`) REFERENCES `orders` (`id`),
+  CONSTRAINT `users_ibfk_7` FOREIGN KEY (`order_rank`) REFERENCES `order_ranks` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

@@ -63,8 +63,6 @@ final class House {
     $house = new HouseEntity();
     $house->owner = $user;
     $this->orm->houses->persistAndFlush($house);
-    $user->house = $this->orm->houses->getByOwner($user->id);
-    $this->orm->users->persistAndFlush($user);
   }
   
   /**

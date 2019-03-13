@@ -113,8 +113,6 @@ final class Castle {
     $castle->owner->lastActive = time();
     $castle->owner->money -= $this->buildingPrice;
     $this->orm->castles->persistAndFlush($castle);
-    $user->castle = $this->orm->castles->getByName($data["name"]);
-    $this->orm->users->persistAndFlush($user);
   }
   
   /**

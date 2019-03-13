@@ -240,9 +240,9 @@ INSERT INTO `towns` (`id`, `name`, `description`, `founded`, `owner`, `price`, `
   (10,	'Velké Běliny',	'Větší vesnice na jihu země',	1455361687,	4,	5000,	0),
   (11,	'Roden',	'Vesnice na západě země',	1463914056,	0,	5000,	1);
 
-INSERT INTO `users` (`id`, `publicname`, `password`, `email`, `joined`, `last_active`, `last_prayer`, `last_transfer`, `group`, `infomails`, `style`, `gender`, `banned`, `life`, `money`, `town`, `monastery`, `castle`, `house`, `prayers`, `guild`, `guild_rank`, `order`, `order_rank`) VALUES
-  (0,	'Vladěna',	'$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2',	'admin@localhost',	1429779664,	1475089811,	NULL,	NULL,	0,	0,	'blue-sky',	'female',	0,	60,	560132,	1,	NULL,	1,	NULL,	0,	NULL,	NULL,	NULL,	NULL),
-  (1,	'Trimadyl z Myhru',	'$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2',	'jakub.konecny2@centrum.cz',	1429779664,	1475089811,	NULL,	1455366455,	1,	1,	'dark-sky',	'male',	0,	110,	18229,	2,	NULL,	2,	NULL,	0,	NULL,	NULL,	1,	4);
+INSERT INTO `users` (`id`, `publicname`, `password`, `email`, `joined`, `last_active`, `last_prayer`, `last_transfer`, `group`, `infomails`, `style`, `gender`, `banned`, `life`, `money`, `town`, `monastery`, `prayers`, `guild`, `guild_rank`, `order`, `order_rank`) VALUES
+  (0,	'Vladěna',	'$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2',	'admin@localhost',	1429779664,	1475089811,	NULL,	NULL,	0,	0,	'blue-sky',	'female',	0,	60,	560132,	1,	NULL,	0,	NULL,	NULL,	NULL,	NULL),
+  (1,	'Trimadyl z Myhru',	'$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2',	'jakub.konecny2@centrum.cz',	1429779664,	1475089811,	NULL,	1455366455,	1,	1,	'dark-sky',	'male',	0,	110,	18229,	2,	NULL,	0,	NULL,	NULL,	1,	4);
 
 INSERT INTO `castles` (`id`, `name`, `description`, `founded`, `owner`, `level`, `hp`) VALUES
   (1,	'Dračí hrad',	'Dračí hrad je již od nepaměti sídlem panovníků Nexendrie.',	1429779664,	0,	5,	'100');

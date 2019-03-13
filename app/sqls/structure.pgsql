@@ -442,7 +442,6 @@ CREATE TABLE "users" (
     "money" integer NOT NULL DEFAULT 2,
     "town" integer NOT NULL DEFAULT 3,
     "monastery" integer DEFAULT NULL,
-    "castle" integer DEFAULT NULL,
     "house" integer DEFAULT NULL,
     "prayers" integer NOT NULL DEFAULT 0,
     "guild" integer DEFAULT NULL,
