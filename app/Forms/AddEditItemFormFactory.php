@@ -23,7 +23,7 @@ final class AddEditItemFormFactory {
   }
 
   protected function getShops(): array {
-    return $this->model->listOfItems()->fetchPairs("id", "name");
+    return $this->model->listOfShops()->fetchPairs("id", "name");
   }
   
   public function create(?\Nexendrie\Orm\Item $item = null): Form {
@@ -34,11 +34,11 @@ final class AddEditItemFormFactory {
       ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 30 znaků.", 30);
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
-    $form->addText("price", "Cena")
+    $form->addText("price", "Cena:")
       ->setRequired("Zadej cenu.")
       ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
       ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999.", [0, 999]);
-    $form->addSelect("shop", "Obchod", $this->getShops())
+    $form->addSelect("shop", "Obchod:", $this->getShops())
       ->setPrompt("žádný");
     $form->addSelect("type", "Typ:", Item::getTypes())
       ->setRequired("Vyber typ.");
