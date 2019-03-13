@@ -3,7 +3,7 @@
 {block content}
   <h1>{$profile->title} {$profile->publicname}</h1>
   <p>
-    V Nexendrii od {$profile->joinedAt}, naposledy spatřen{if $profile->gender === "female"}a{/if} {$profile->lastActiveAt}. V současnosti žije ve městě/vesnici <a n:href="Town:detail $profile->town->id">{$profile->town->name}</a>{if $profile->monastery}, klášteře <a n:href="Monastery:detail $profile->monastery->id">{$profile->monastery->name}</a>{/if}{if $profile->castle}, na hradě <a n:href="Castle:detail $profile->castle->id">{$profile->castle->name}</a>{/if}.<br>
+    V Nexendrii od {$profile->joinedAt}, naposledy spatřen{if $profile->gender === "female"}a{/if} {$profile->lastActiveAt}. V současnosti žije ve městě/vesnici <a n:href="Town:detail $profile->town->id">{$profile->town->name}</a>{if $profile->monastery}, klášteře <a n:href="Monastery:detail $profile->monastery->id">{$profile->monastery->name}</a>{/if}{if $profile->castle}, na hradě <a n:href="Castle:detail $profile->castle->id">{$profile->castle->name}</a>{/if}.{if $profile->house} Vlastní dům na úrovni {$profile->house->luxuryLevel}{if $profile->house->breweryLevel > 0} s pivovarem na úrovni {$profile->house->breweryLevel}{/if}.{/if}<br>
     {if $profile->ownedTowns->count()}
     Vládne {if $profile->ownedTowns->count() === 1}městu{else}městům:{/if} {foreach $profile->ownedTowns as $town}<a n:href="Town:detail $town->id">{$town->name}</a>{if !$iterator->last}, {else}.{/if}{/foreach}<br>
     {/if}
