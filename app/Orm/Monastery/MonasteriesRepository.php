@@ -15,8 +15,9 @@ final class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
+   * @return Monastery|null
    */
-  public function getById($id): ?Monastery {
+  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
     return $this->getBy(["id" => $id]);
   }
   

@@ -13,8 +13,9 @@ final class ShopsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
+   * @return Shop|null
    */
-  public function getById($id): ?Shop {
+  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
     return $this->getBy(["id" => $id]);
   }
 }

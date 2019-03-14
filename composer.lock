@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de2769aaac820e867f5ee5732b73ec8e",
+    "content-hash": "4c8fdf3f3822756a656942c7db3048f0",
     "packages": [
         {
             "name": "heroesofabenez/chat",
@@ -880,16 +880,16 @@
         },
         {
             "name": "nette/http",
-            "version": "v2.4.10",
+            "version": "v2.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/http.git",
-                "reference": "a36e6bad0aae8bacf849c150b5e0ecacef0d9eca"
+                "reference": "3d75d11a880fe223bfa6bc7ca9822bdfe789e5a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/http/zipball/a36e6bad0aae8bacf849c150b5e0ecacef0d9eca",
-                "reference": "a36e6bad0aae8bacf849c150b5e0ecacef0d9eca",
+                "url": "https://api.github.com/repos/nette/http/zipball/3d75d11a880fe223bfa6bc7ca9822bdfe789e5a6",
+                "reference": "3d75d11a880fe223bfa6bc7ca9822bdfe789e5a6",
                 "shasum": ""
             },
             "require": {
@@ -948,7 +948,7 @@
                 "session",
                 "url"
             ],
-            "time": "2018-09-03T19:16:55+00:00"
+            "time": "2019-03-13T19:04:45+00:00"
         },
         {
             "name": "nette/neon",
@@ -1261,32 +1261,32 @@
         },
         {
             "name": "nette/tokenizer",
-            "version": "v2.3.0",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tokenizer.git",
-                "reference": "88373e9f79007245af0ccd8132fde117421723b2"
+                "reference": "6d0965ac60333dab53f2588977c2067b4d5ad245"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tokenizer/zipball/88373e9f79007245af0ccd8132fde117421723b2",
-                "reference": "88373e9f79007245af0ccd8132fde117421723b2",
+                "url": "https://api.github.com/repos/nette/tokenizer/zipball/6d0965ac60333dab53f2588977c2067b4d5ad245",
+                "reference": "6d0965ac60333dab53f2588977c2067b4d5ad245",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4"
+                "php": ">=7.1"
             },
             "conflict": {
                 "nette/nette": "<2.2"
             },
             "require-dev": {
-                "nette/tester": "~1.7",
+                "nette/tester": "~2.0",
                 "tracy/tracy": "^2.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -1312,7 +1312,7 @@
             ],
             "description": "Nette Tokenizer",
             "homepage": "https://nette.org",
-            "time": "2017-09-08T14:16:06+00:00"
+            "time": "2019-02-06T00:22:59+00:00"
         },
         {
             "name": "nette/utils",
@@ -1774,37 +1774,41 @@
         },
         {
             "name": "nextras/orm",
-            "version": "v3.0.3",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/orm.git",
-                "reference": "d05c14730c0f48b7474ffe79925f7b40e6778cb4"
+                "reference": "f1aae3318765ded805bbc1b859cf4d8e0b5ea676"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/orm/zipball/d05c14730c0f48b7474ffe79925f7b40e6778cb4",
-                "reference": "d05c14730c0f48b7474ffe79925f7b40e6778cb4",
+                "url": "https://api.github.com/repos/nextras/orm/zipball/f1aae3318765ded805bbc1b859cf4d8e0b5ea676",
+                "reference": "f1aae3318765ded805bbc1b859cf4d8e0b5ea676",
                 "shasum": ""
             },
             "require": {
-                "nette/caching": "~2.2",
-                "nette/tokenizer": "~2.2",
-                "nette/utils": "~2.4 >=2.4.3",
-                "nextras/dbal": "~3.0",
-                "php": ">=7.0"
+                "nette/caching": "~2.5 || ~3.0@rc",
+                "nette/tokenizer": "~2.3 || ~3.0@rc",
+                "nette/utils": "~2.5 || ~3.0@rc",
+                "nextras/dbal": "~3.0 || ~3.1@dev",
+                "php": ">=7.1"
             },
             "require-dev": {
-                "mockery/mockery": "~1.0@dev",
-                "nette/bootstrap": "~2.3",
-                "nette/tester": "~2.0.0",
-                "phpstan/phpstan-nette": "~0.9",
-                "phpstan/phpstan-shim": "~0.9.1",
+                "marc-mabe/php-enum": "~3.0",
+                "mockery/mockery": "~1.2",
+                "nette/bootstrap": "~2.4 || ~3.0@rc",
+                "nette/di": "~2.4 >=2.4.10 || ~3.0@beta",
+                "nette/finder": "~2.4 || ~3.0@rc",
+                "nette/neon": "~2.4 || ~3.0@rc",
+                "nette/tester": "~2.1",
+                "phpstan/phpstan-nette": "0.11",
+                "phpstan/phpstan-shim": "0.11.1",
                 "tracy/tracy": "~2.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -1832,7 +1836,7 @@
                 "nextras",
                 "orm"
             ],
-            "time": "2019-02-02T16:29:06+00:00"
+            "time": "2019-02-04T12:15:10+00:00"
         },
         {
             "name": "stekycz/critical-section",
@@ -2554,16 +2558,16 @@
         },
         {
             "name": "nette/tester",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "6b3e881e7c5ffb596a5dc25ab6e4efbbe27eb926"
+                "reference": "899c70c53b40dfe4a214e568babb617a9c454071"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/6b3e881e7c5ffb596a5dc25ab6e4efbbe27eb926",
-                "reference": "6b3e881e7c5ffb596a5dc25ab6e4efbbe27eb926",
+                "url": "https://api.github.com/repos/nette/tester/zipball/899c70c53b40dfe4a214e568babb617a9c454071",
+                "reference": "899c70c53b40dfe4a214e568babb617a9c454071",
                 "shasum": ""
             },
             "require": {
@@ -2575,7 +2579,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -2607,12 +2611,13 @@
                 "clover",
                 "code coverage",
                 "nette",
+                "pcov",
                 "phpdbg",
                 "phpunit",
                 "testing",
                 "unit"
             ],
-            "time": "2018-10-10T12:35:10+00:00"
+            "time": "2019-03-11T08:54:30+00:00"
         },
         {
             "name": "nexendrie/code-quality",
@@ -2805,16 +2810,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.11.2",
+            "version": "0.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "8e185a74004920419ee97bf9dc62e6a175e8dca5"
+                "reference": "e4644b4a8fd393c346f1137305fb2f76a7dc20a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8e185a74004920419ee97bf9dc62e6a175e8dca5",
-                "reference": "8e185a74004920419ee97bf9dc62e6a175e8dca5",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e4644b4a8fd393c346f1137305fb2f76a7dc20a7",
+                "reference": "e4644b4a8fd393c346f1137305fb2f76a7dc20a7",
                 "shasum": ""
             },
             "require": {
@@ -2874,7 +2879,7 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2019-02-12T14:54:38+00:00"
+            "time": "2019-03-10T16:25:30+00:00"
         },
         {
             "name": "phpstan/phpstan-nette",

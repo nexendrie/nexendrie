@@ -15,8 +15,9 @@ final class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
+   * @return AdventureNpc|null
    */
-  public function getById($id): ?AdventureNpc {
+  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
     return $this->getBy(["id" => $id]);
   }
   

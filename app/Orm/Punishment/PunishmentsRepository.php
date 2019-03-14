@@ -15,8 +15,9 @@ final class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
+   * @return Punishment|null
    */
-  public function getById($id): ?Punishment {
+  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
     return $this->getBy(["id" => $id]);
   }
   

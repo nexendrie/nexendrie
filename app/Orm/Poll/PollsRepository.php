@@ -13,8 +13,9 @@ final class PollsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
+   * @return Poll|null
    */
-  public function getById($id): ?Poll {
+  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
     return $this->getBy(["id" => $id]);
   }
 }
