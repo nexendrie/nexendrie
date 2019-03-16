@@ -208,7 +208,8 @@ INSERT INTO permissions ("resource", "action", "group") VALUES
   ('poll','list',1),
   ('event','list',1),
   ('town','elect',9),
-  ('town','manage',1);
+  ('town','manage',1),
+  ('town','buy',5);
 
 INSERT INTO shops ("name", "description") VALUES
   ('Hamalův všehoobchod','popisek'),

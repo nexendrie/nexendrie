@@ -111,11 +111,11 @@ final class Town {
     if($town->owner->id === $this->user->id) {
       throw new CannotBuyOwnTownException();
     }
-    /** @var \Nexendrie\Orm\User $user */
-    $user = $this->orm->users->getById($this->user->id);
-    if($user->group->level < 350) {
+    if(!$this->user->isAllowed("town", "buy")) {
       throw new InsufficientLevelForTownException();
     }
+    /** @var \Nexendrie\Orm\User $user */
+    $user = $this->orm->users->getById($this->user->id);
     if($user->money < $town->price) {
       throw new InsufficientFundsException();
     }
