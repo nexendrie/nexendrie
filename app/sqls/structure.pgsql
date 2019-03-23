@@ -166,7 +166,7 @@ CREATE TABLE "houses" (
     "hp" integer NOT NULL DEFAULT 100
 );
 
-CREATE TYPE item_sets_stat AS ENUM ('damage','armor','hitpoints'); 
+CREATE TYPE item_sets_stat AS ENUM ('damage','armor','hitpoints','initiative');
 CREATE TABLE "item_sets" (
     "id" SERIAL PRIMARY KEY,
     "name" text NOT NULL,
@@ -177,7 +177,7 @@ CREATE TABLE "item_sets" (
     "bonus" integer NOT NULL
 );
 
-CREATE TYPE items_type AS ENUM ('item','weapon','armor','helmet','potion','material','charter','intimacy_boost');
+CREATE TYPE items_type AS ENUM ('item','weapon','armor','helmet','amulet','potion','material','charter','intimacy_boost');
 CREATE TABLE "items" (
     "id" SERIAL PRIMARY KEY,
     "name" varchar(60) NOT NULL UNIQUE,

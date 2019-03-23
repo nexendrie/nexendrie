@@ -26,6 +26,7 @@ final class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffe
   public const STAT_DAMAGE = "damage";
   public const STAT_ARMOR = "armor";
   public const STAT_HITPOINTS = "hitpoints";
+  public const STAT_INITIATIVE = "initiative";
   
   /**
    * @return string[]
@@ -35,6 +36,7 @@ final class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffe
       static::STAT_HITPOINTS => "maximum životů",
       static::STAT_DAMAGE => "poškození",
       static::STAT_ARMOR => "brnění",
+      static::STAT_INITIATIVE => "iniciativa",
     ];
   }
   
@@ -49,7 +51,7 @@ final class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffe
   public function getCombatEffects(): array {
     $bonusStats = [
       static::STAT_HITPOINTS => Character::STAT_MAX_HITPOINTS, static::STAT_DAMAGE => Character::STAT_DAMAGE,
-      static::STAT_ARMOR => Character::STAT_DEFENSE,
+      static::STAT_ARMOR => Character::STAT_DEFENSE, static::STAT_INITIATIVE => Character::STAT_INITIATIVE,
     ];
     $stats = [
       "id" => "itemSet{$this->id}BonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->bonus,

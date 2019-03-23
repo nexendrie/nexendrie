@@ -28,6 +28,7 @@ final class Item extends \Nextras\Orm\Entity\Entity {
   public const TYPE_WEAPON = "weapon";
   public const TYPE_ARMOR = "armor";
   public const TYPE_HELMET = "helmet";
+  public const TYPE_AMULET = "amulet";
   public const TYPE_POTION = "potion";
   public const TYPE_MATERIAL = "material";
   public const TYPE_CHARTER = "charter";
@@ -49,6 +50,7 @@ final class Item extends \Nextras\Orm\Entity\Entity {
       static::TYPE_WEAPON => "Zbraň",
       static::TYPE_ARMOR => "Brnění",
       static::TYPE_HELMET => "Helma",
+      static::TYPE_AMULET => "Amulet",
       static::TYPE_POTION => "Lektvar",
       static::TYPE_MATERIAL => "Surovina",
       static::TYPE_CHARTER => "Listina",
@@ -70,7 +72,7 @@ final class Item extends \Nextras\Orm\Entity\Entity {
    */
   public static function getEquipmentTypes(): array {
     return [
-      static::TYPE_WEAPON, static::TYPE_ARMOR, static::TYPE_HELMET
+      static::TYPE_WEAPON, static::TYPE_ARMOR, static::TYPE_HELMET, static::TYPE_AMULET,
     ];
   }
   
