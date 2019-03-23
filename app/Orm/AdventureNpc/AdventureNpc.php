@@ -14,6 +14,7 @@ namespace Nexendrie\Orm;
  * @property int $hitpoints 
  * @property int $strength
  * @property int $armor
+ * @property int $initiative {default 0}
  * @property int $reward
  * @property string $encounterText
  * @property string $victoryText

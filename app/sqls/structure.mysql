@@ -28,6 +28,7 @@ CREATE TABLE `adventure_npcs` (
   `hitpoints` int(3) NOT NULL,
   `strength` int(2) NOT NULL,
   `armor` int(2) NOT NULL,
+  `initiative` int(2) NOT NULL DEFAULT '0',
   `reward` int(3) NOT NULL,
   `encounter_text` text NOT NULL,
   `victory_text` text NOT NULL,

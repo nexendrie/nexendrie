@@ -15,7 +15,7 @@ final class AddEditAdventureEnemyFormFactory {
     $form = new Form();
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno.")
-      ->addRule(Form::MAX, "Jméno může mít maximálně 20 znaků.", 20);
+      ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 20 znaků.", 20);
     $form->addText("order", "Pořadí:")
       ->setRequired("Zadej pořadí.")
       ->addRule(Form::INTEGER, "Pořadí musí být celé číslo.")
@@ -32,6 +32,10 @@ final class AddEditAdventureEnemyFormFactory {
       ->setRequired("Zadej brnění.")
       ->addRule(Form::INTEGER, "Brnění musí být celé číslo.")
       ->addRule(Form::RANGE, "Brnění musí být v rozmezí 0-99.", [0, 99]);
+    $form->addText("initiative", "Iniciativa:")
+      ->setRequired("Zadej iniciativu.")
+      ->addRule(Form::INTEGER, "Iniciativa musí být celé číslo.")
+      ->addRule(Form::RANGE, "Iniciativa musí být v rozmezí 0-99.", [0, 99]);
     $form->addText("reward", "Odměna:")
       ->setRequired("Zadej odměnu.")
       ->addRule(Form::INTEGER, "Odměna musí být celé číslo.")

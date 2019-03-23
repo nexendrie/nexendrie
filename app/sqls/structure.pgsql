@@ -10,6 +10,7 @@ CREATE TABLE "adventure_npcs" (
     "hitpoints" integer NOT NULL,
     "strength" integer NOT NULL,
     "armor" integer NOT NULL,
+    "initiative" integer NOT NULL DEFAULT 0,
     "reward" integer NOT NULL,
     "encounter_text" text NOT NULL,
     "victory_text" text NOT NULL
