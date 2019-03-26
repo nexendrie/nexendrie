@@ -38,14 +38,18 @@ final class ChroniclePresenter extends BasePresenter {
   }
   
   protected function createComponentEventsCalendar(): Calendar {
-    $calendar = new Calendar();
+    $calendar = new class extends Calendar {
+      public function render(): void {
+        $this->onDateChange($this->year, $this->month);
+        parent::render();
+      }
+    };
     $calendar->language = Calendar::LANG_CZ;
     $calendar->firstDay = Calendar::FIRST_MONDAY;
     $calendar->options = [
       Calendar::OPT_BOTTOM_NAV_PREV => "Předchozí měsíc",
       Calendar::OPT_BOTTOM_NAV_NEXT => "Následující měsíc"
     ];
-    $this->eventsModel->loadEvents();
     $calendar->events = $this->eventsModel;
     $calendar->onDateChange[] = [$this->eventsModel, "loadEvents"];
     return $calendar;
