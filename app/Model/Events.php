@@ -118,7 +118,7 @@ final class Events implements \EventCalendar\IEventModel {
   /**
    * Load events from a month
    */
-  public function loadEvents(int $year = 0, int $month = 0): void {
+  public function loadEvents(int $year = null, int $month = null): void {
     $this->events = $this->orm->events->findFromMonth($year, $month);
   }
   
