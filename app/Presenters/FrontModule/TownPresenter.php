@@ -24,27 +24,16 @@ final class TownPresenter extends BasePresenter {
   protected $userManager;
   /** @var \Nexendrie\Model\Profile */
   protected $profileModel;
-  /** @var \Nexendrie\Model\House */
-  protected $houseModel;
-  /** @var \Nexendrie\Model\Guild */
-  protected $guildModel;
-  /** @var \Nexendrie\Model\Order */
-  protected $orderModel;
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var \Nexendrie\Orm\Town */
   private $town;
-  
-  /**
-   */
-  public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\House $houseModel, \Nexendrie\Model\Guild $guildModel, \Nexendrie\Model\Order $orderModel, \Nexendrie\Model\Locale $localeModel) {
+
+  public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();
     $this->model = $model;
     $this->userManager = $userManager;
     $this->profileModel = $profileModel;
-    $this->houseModel = $houseModel;
-    $this->guildModel = $guildModel;
-    $this->orderModel = $orderModel;
     $this->localeModel = $localeModel;
   }
   
@@ -56,12 +45,12 @@ final class TownPresenter extends BasePresenter {
   }
   
   public function renderDefault(): void {
-    $this->template->town = $this->model->get($this->user->identity->town);
     $user = $this->userManager->get($this->user->id);
+    $this->template->town = $user->town;
     $this->template->path = $user->group->path;
-    $this->template->house = $this->houseModel->getUserHouse();
-    $this->template->guild = $this->guildModel->getUserGuild();
-    $this->template->order = $this->orderModel->getUserOrder();
+    $this->template->house = $user->house;
+    $this->template->guild = $user->guild;
+    $this->template->order = $user->order;
   }
   
   public function renderList(): void {
