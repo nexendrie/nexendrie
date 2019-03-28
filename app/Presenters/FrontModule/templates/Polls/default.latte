@@ -1,0 +1,9 @@
+{layout "../@layout.latte"}
+{block title}Ankety{/block}
+{block content}
+  <h1>Ankety</h1>
+  <p>
+    {foreach $polls as $poll}<a n:href="Poll:view $poll->id">{$poll->question}</a> od {control userProfileLink $poll->author} přidáno {$poll->addedAt}{if $user->isAllowed("poll", "add")} <a n:href=":Admin:Polls:edit $poll->id">Upravit</a>{/if}<br>{/foreach}
+  </p>
+  <p n:if="$user->isAllowed('poll', 'add')"><a n:href=":Admin:Polls:add">Vytvořit anketu</p>
+{/block}

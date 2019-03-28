@@ -90,6 +90,7 @@ menu:
             Hledání: "Front:Search:"
             Nápověda: "Front:Help:"
             Tým: "Front:Team:"
+            Ankety: "Front:Polls:"
     userPanelFront:
         htmlId: userPanel
         items:
