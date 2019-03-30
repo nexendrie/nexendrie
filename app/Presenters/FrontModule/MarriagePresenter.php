@@ -229,7 +229,7 @@ final class MarriagePresenter extends BasePresenter {
       $this->inventoryModel->boostIntimacy($item);
       $this->flashMessage("Věc použita.");
     } catch(NotMarriedException $e) {
-      $message = $this->localeModel->genderMessage("Nejsi vdan(ý|á).");
+      $message = $this->localeModel->genderMessage("Nejsi (ženatý|vdaná).");
       $this->flashMessage($message);
     } catch(ItemNotFoundException $e) {
       $this->flashMessage("Věc nenalezena.");
