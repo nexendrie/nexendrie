@@ -59,7 +59,7 @@ final class PrisonControl extends \Nette\Application\UI\Control {
   public function handleWork(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     if(is_null($punishment)) {
-      $message = $this->localeModel->genderMessage("Nejsi (uvězněný|uvězněná).");
+      $message = $this->localeModel->genderMessage("Nejsi uvězněn(ý|á).");
       $this->presenter->flashMessage($message);
     } elseif(!$this->canWork($punishment)) {
       $this->presenter->flashMessage("Ještě nemůžeš pracovat.");
