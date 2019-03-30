@@ -5,6 +5,7 @@ namespace Nexendrie\Model\DI;
 
 use Nexendrie;
 use Nexendrie\Model\SettingsRepository;
+use Nette\Bridges\ApplicationLatte\ILatteFactory;
 
 /**
  * Nexendrie Extension for DIC
@@ -316,7 +317,13 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition($this->prefix("achievements.writtenArticles"))
       ->setType(Nexendrie\Achievements\WrittenArticlesAchievement::class);
   }
-  
+
+  public function beforeCompile() {
+    $builder = $this->getContainerBuilder();
+    $latteFactory = $builder->getDefinitionByType(ILatteFactory::class);
+    $latteFactory->addSetup("addFilter", ["genderify", ["@" . $this->prefix("model.locale"), "genderMessage"]]);
+  }
+
   public function afterCompile(\Nette\PhpGenerator\ClassType $class): void {
     $initialize = $class->methods["initialize"];
     $initialize->addBody('$roles = $this->getByType(?)->settings["roles"];
