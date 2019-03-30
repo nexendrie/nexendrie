@@ -7,5 +7,5 @@
     {/foreach}
     </ul>
     <p>Celkem hlasů: {$votes["total"]}</p>
-    {if $canEdit}<p><a href="{plink :Admin:Polls:edit $poll->id}">Upravit</a> </p>{/if}
+    {if $user->isAllowed("poll", "add")}<p><a href="{plink :Admin:Polls:edit $poll->id}">Upravit</a> </p>{/if}
   </article>

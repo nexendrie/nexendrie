@@ -90,7 +90,6 @@ final class PollControl extends \Nette\Application\UI\Control {
     }
     $this->template->votes = $votes;
     $this->template->canVote = $this->canVote();
-    $this->template->canEdit = $this->user->isAllowed("poll", "add");
     $this->template->render();
   }
   
