@@ -160,8 +160,7 @@ final class Order {
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
-      $bonusPerLevel = OrderEntity::ADVENTURE_INCOME_BONUS_PER_LEVEL;
-      $increase += $user->orderRank->adventureBonus + ($user->order->level * $bonusPerLevel) - $bonusPerLevel;
+      $increase += $user->orderRank->adventureBonus + $user->order->adventuresBonusIncome;
     }
     $bonus += (int) ($baseIncome / 100 * $increase);
     return $bonus;

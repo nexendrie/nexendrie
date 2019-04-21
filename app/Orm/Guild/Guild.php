@@ -25,6 +25,7 @@ use Nexendrie\Utils\Numbers;
  * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$guild}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}
+ * @property-read int $jobBonusIncome {virtual}
  */
 final class Guild extends \Nextras\Orm\Entity\Entity {
   public const MAX_LEVEL = 6;
@@ -63,6 +64,10 @@ final class Guild extends \Nextras\Orm\Entity\Entity {
   
   protected function getterUpgradePriceT(): string {
     return $this->localeModel->money($this->upgradePrice);
+  }
+
+  protected function getterJobBonusIncome() {
+    return ($this->level - 1) * static::JOB_INCOME_BONUS_PER_LEVEL;
   }
   
   public function onBeforeInsert(): void {

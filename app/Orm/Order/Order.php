@@ -23,6 +23,7 @@ use Nexendrie\Utils\Numbers;
  * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$order}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}
+ * @property-read float $adventuresBonusIncome {virtual}
  */
 final class Order extends \Nextras\Orm\Entity\Entity {
   public const MAX_LEVEL = 6;
@@ -61,6 +62,10 @@ final class Order extends \Nextras\Orm\Entity\Entity {
   
   protected function getterUpgradePriceT(): string {
     return $this->localeModel->money($this->upgradePrice);
+  }
+
+  protected function getterAdventuresBonusIncome(): float {
+    return ($this->level - 1) * static::ADVENTURE_INCOME_BONUS_PER_LEVEL;
   }
   
   public function onBeforeInsert(): void {

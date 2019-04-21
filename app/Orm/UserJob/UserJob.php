@@ -45,8 +45,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
   protected function getGuildRewardBonus(int $baseReward): int {
     if($this->user->guild AND $this->user->group->path === Group::PATH_CITY) {
       if($this->job->neededSkill->id === $this->user->guild->skill->id) {
-        $bonusPerLevel = Guild::JOB_INCOME_BONUS_PER_LEVEL;
-        $increase = $this->user->guildRank->incomeBonus + ($this->user->guild->level * $bonusPerLevel) - $bonusPerLevel;
+        $increase = $this->user->guildRank->incomeBonus + $this->user->guild->jobBonusIncome;
         return (int) ($baseReward / 100 * $increase);
       }
     }
