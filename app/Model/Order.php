@@ -156,14 +156,9 @@ final class Order {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    $bonus = $increase = 0;
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
-      $increase += $user->orderRank->adventureBonus + $user->order->adventuresBonusIncome;
-    }
-    $bonus += (int) ($baseIncome / 100 * $increase);
-    return $bonus;
+    return (int) ($baseIncome / 100 * $user->adventureBonusIncome);
   }
   
   /**

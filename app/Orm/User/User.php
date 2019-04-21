@@ -38,6 +38,7 @@ use Nexendrie\Forms\UserSettingsFormFactory;
  * @property GuildRank|null $guildRank {m:1 GuildRank::$people} {default null}
  * @property Order|null $order {m:1 Order::$members} {default null}
  * @property OrderRank|null $orderRank {m:1 OrderRank::$people} {default null}
+ * @property-read float $adventureBonusIncome {virtual}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|Article[] $articles {1:m Article::$author}
@@ -206,6 +207,13 @@ final class User extends \Nextras\Orm\Entity\Entity {
 
   protected function getterWrittenArticles(): int {
     return $this->articles->countStored();
+  }
+
+  protected function getterAdventureBonusIncome(): float {
+    if(is_null($this->order) OR $this->group->path !== Group::PATH_TOWER) {
+      return 0;
+    }
+    return $this->orderRank->adventureBonus + $this->order->adventuresBonusIncome;
   }
   
   public function onBeforeInsert(): void {
