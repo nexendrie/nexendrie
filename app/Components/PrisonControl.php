@@ -83,13 +83,11 @@ final class PrisonControl extends \Nette\Application\UI\Control {
     $user = $this->orm->users->getById($this->user->id);
     if(is_null($punishment)) {
       $release = true;
-      $user->banned = false;
       $user->lastActive = time();
       $this->orm->users->persistAndFlush($user);
     } elseif($punishment->count >= $punishment->numberOfShifts) {
       $release = true;
       $punishment->user->lastActive = $punishment->released = time();
-      $punishment->user->banned = false;
       $this->orm->punishments->persistAndFlush($punishment);
     }
     if($release) {

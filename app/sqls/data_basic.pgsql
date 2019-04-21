@@ -244,6 +244,6 @@ INSERT INTO towns ("name", "description", "founded", "owner", "price", "on_marke
   ('Velké Běliny','Větší vesnice na jihu země',1455361687,4,5000,FALSE),
   ('Roden','Vesnice na západě země',1463914056,0,5000,TRUE);
 
-INSERT INTO users ("publicname", "password", "email", "joined", "last_active", "last_prayer", "last_transfer", "group", "infomails", "style", "gender", "banned", "life", "money", "town", "monastery", "prayers", "guild", "guild_rank", "order", "order_rank") VALUES
-  ('Vladěna','$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2','admin@localhost',1429779664,1479045692,NULL,NULL,0,FALSE,'blue-sky','female',FALSE,60,560132,1,NULL,0,NULL,NULL,NULL,NULL),
-  ('Trimadyl z Myhru','$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2','jakub.konecny2@centrum.cz',1429779664,1494598141,NULL,1455366455,1,TRUE,'dark-sky','male',FALSE,110,23354,2,NULL,0,NULL,NULL,1,4);
+INSERT INTO users ("publicname", "password", "email", "joined", "last_active", "last_prayer", "last_transfer", "group", "infomails", "style", "gender", "life", "money", "town", "monastery", "prayers", "guild", "guild_rank", "order", "order_rank") VALUES
+  ('Vladěna','$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2','admin@localhost',1429779664,1479045692,NULL,NULL,0,FALSE,'blue-sky','female',60,560132,1,NULL,0,NULL,NULL,NULL,NULL),
+  ('Trimadyl z Myhru','$2y$10$SKkWGjWJBlDDZcviLt0SXu5fNEaxsRAXlP82.nLZfq9gWN7n.qKe2','jakub.konecny2@centrum.cz',1429779664,1494598141,NULL,1455366455,1,TRUE,'dark-sky','male',110,23354,2,NULL,0,NULL,NULL,1,4);

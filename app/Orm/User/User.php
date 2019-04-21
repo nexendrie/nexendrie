@@ -25,7 +25,7 @@ use Nexendrie\Forms\UserSettingsFormFactory;
  * @property bool $infomails {default false}
  * @property string $style
  * @property string $gender {enum static::GENDER_*} {default static::GENDER_MALE}
- * @property bool $banned {default false}
+ * @property-read bool $banned {virtual}
  * @property int $life
  * @property-read int $maxLife {virtual}
  * @property int $money {default 2}
@@ -108,6 +108,10 @@ final class User extends \Nextras\Orm\Entity\Entity {
   
   protected function getterLastActiveAt(): string {
     return $this->localeModel->formatDateTime($this->lastActive);
+  }
+
+  protected function getterBanned(): bool {
+    return (!is_null($this->punishments->get()->getBy(["released" => null])));
   }
   
   /**

@@ -438,7 +438,6 @@ CREATE TABLE "users" (
     "infomails" boolean NOT NULL DEFAULT FALSE,
     "style" varchar(30) NOT NULL,
     "gender" users_gender NOT NULL DEFAULT 'male',
-    "banned" boolean NOT NULL DEFAULT FALSE,
     "life" integer NOT NULL DEFAULT 60,
     "money" integer NOT NULL DEFAULT 2,
     "town" integer NOT NULL DEFAULT 3,

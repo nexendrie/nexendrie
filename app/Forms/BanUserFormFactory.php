@@ -39,7 +39,6 @@ final class BanUserFormFactory {
   public function process(Form $form, array $values): void {
     /** @var User $user */
     $user = $this->orm->users->getById($this->userId);
-    $user->banned = true;
     $punishment = new Punishment();
     $punishment->user = $user;
     $punishment->numberOfShifts = $values["numberOfShifts"];
