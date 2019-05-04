@@ -1655,20 +1655,20 @@
         },
         {
             "name": "nexendrie/utils",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/utils.git",
-                "reference": "40fdc0cd5591e63e2e20be50aea920be1c202514"
+                "reference": "67c6efd5f29061d4a5bd5a975d1cd66e48209b43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Futils/repository/archive.zip?sha=40fdc0cd5591e63e2e20be50aea920be1c202514",
-                "reference": "40fdc0cd5591e63e2e20be50aea920be1c202514",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Futils/repository/archive.zip?sha=67c6efd5f29061d4a5bd5a975d1cd66e48209b43",
+                "reference": "67c6efd5f29061d4a5bd5a975d1cd66e48209b43",
                 "shasum": ""
             },
             "require": {
-                "nette/utils": "^2.4",
+                "nette/utils": "^2.4 || ^3.0",
                 "php": ">=7.2.0"
             },
             "require-dev": {
@@ -1707,7 +1707,7 @@
                 "range",
                 "utils"
             ],
-            "time": "2019-02-08T19:57:39+00:00"
+            "time": "2019-05-01T12:42:27+00:00"
         },
         {
             "name": "nextras/dbal",
@@ -1949,16 +1949,16 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.2.4",
+            "version": "v4.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "3896e5a7d06fd15fa4947694c8dcdd371ff147d1"
+                "reference": "fd4a5f27b7cd085b489247b9890ebca9f3e10044"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/3896e5a7d06fd15fa4947694c8dcdd371ff147d1",
-                "reference": "3896e5a7d06fd15fa4947694c8dcdd371ff147d1",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/fd4a5f27b7cd085b489247b9890ebca9f3e10044",
+                "reference": "fd4a5f27b7cd085b489247b9890ebca9f3e10044",
                 "shasum": ""
             },
             "require": {
@@ -1999,20 +1999,20 @@
                 "configuration",
                 "options"
             ],
-            "time": "2019-02-23T15:17:42+00:00"
+            "time": "2019-04-10T16:20:36+00:00"
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.6.1",
+            "version": "v2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "e179856e5dcc3ced99df1596cd299246fb1c3ac2"
+                "reference": "9a6513089a836744e70af0910ad45f50e603dcf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/e179856e5dcc3ced99df1596cd299246fb1c3ac2",
-                "reference": "e179856e5dcc3ced99df1596cd299246fb1c3ac2",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/9a6513089a836744e70af0910ad45f50e603dcf5",
+                "reference": "9a6513089a836744e70af0910ad45f50e603dcf5",
                 "shasum": ""
             },
             "require": {
@@ -2022,7 +2022,7 @@
             },
             "require-dev": {
                 "nette/di": "^2.4 || ~3.0.0",
-                "nette/tester": "^2.1",
+                "nette/tester": "^2.2",
                 "nette/utils": "^2.4 || ^3.0",
                 "psr/log": "^1.0"
             },
@@ -2066,7 +2066,7 @@
                 "nette",
                 "profiler"
             ],
-            "time": "2019-03-01T02:12:13+00:00"
+            "time": "2019-04-03T20:29:00+00:00"
         }
     ],
     "packages-dev": [
@@ -2416,80 +2416,6 @@
             "time": "2018-12-07T18:30:27+00:00"
         },
         {
-            "name": "mrtnzlml/testbench",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mrtnzlml/testbench.git",
-                "reference": "cfe8471070e11b9cd5e842b61c5ae01444f2cb53"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mrtnzlml/testbench/zipball/cfe8471070e11b9cd5e842b61c5ae01444f2cb53",
-                "reference": "cfe8471070e11b9cd5e842b61c5ae01444f2cb53",
-                "shasum": ""
-            },
-            "require": {
-                "kdyby/fake-session": "^2.0",
-                "nette/application": "^2.4 || ^v3.0",
-                "nette/bootstrap": "^2.4 || ^v3.0",
-                "nette/di": "^2.4 || ^v3.0",
-                "nette/safe-stream": "^2.3",
-                "nette/security": "^2.4 || ^v3.0",
-                "nette/tester": "^2.0",
-                "nette/utils": "^2.4 || ^v3.0",
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "kdyby/doctrine": "^3.1",
-                "kdyby/doctrine-cache": "^2.5",
-                "kdyby/doctrine-dbal-batchimport": "dev-master",
-                "kdyby/events": "^3.0",
-                "latte/latte": "^2.4",
-                "nette/database": "^2.4 || ^v3.0",
-                "nette/forms": "^2.4 || ^v3.0",
-                "nette/robot-loader": "^2.4 || ^v3.0",
-                "tracy/tracy": "^2.4",
-                "zenify/doctrine-migrations": "^2.3"
-            },
-            "suggest": {
-                "kdyby/doctrine": "Allows enhanced database tests using Doctrine",
-                "kdyby/doctrine-dbal-batchimport": "Allows SQL scripts import for Doctrine (required with kdyby/doctrine)",
-                "nette/database": "Allows enhanced database tests using Nette\\Database",
-                "zenify/doctrine-migrations": "Migrate database to the fresh state"
-            },
-            "bin": [
-                "src/run-tests"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Testbench\\": [
-                        "src/",
-                        "src/Traits/"
-                    ]
-                },
-                "files": [
-                    "src/Testbench.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Martin Zlámal",
-                    "homepage": "http://zlml.cz/"
-                }
-            ],
-            "description": "Simple integration testing tool for Nette Framework applications",
-            "abandoned": "mangoweb/presenter-tester",
-            "time": "2017-10-14T13:41:39+00:00"
-        },
-        {
             "name": "nette/robot-loader",
             "version": "v3.1.1",
             "source": {
@@ -2623,18 +2549,18 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "7c343c40b8543614ecd4546e5e639c3bef13e873"
+                "reference": "a13f97d0905dac469fdee273c43f3f68b0486195"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=7c343c40b8543614ecd4546e5e639c3bef13e873",
-                "reference": "7c343c40b8543614ecd4546e5e639c3bef13e873",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=a13f97d0905dac469fdee273c43f3f68b0486195",
+                "reference": "a13f97d0905dac469fdee273c43f3f68b0486195",
                 "shasum": ""
             },
             "require": {
                 "jakub-onderka/php-console-highlighter": "^0.3.2",
                 "jakub-onderka/php-parallel-lint": "^1.0",
-                "mrtnzlml/testbench": "dev-master",
+                "nexendrie/testbench": "dev-master",
                 "phpstan/phpstan": "^0.11",
                 "phpstan/phpstan-strict-rules": "^0.11",
                 "squizlabs/php_codesniffer": "^3.4"
@@ -2657,7 +2583,83 @@
                 "quality",
                 "testing"
             ],
-            "time": "2019-01-16T12:45:43+00:00"
+            "time": "2019-05-01T11:11:03+00:00"
+        },
+        {
+            "name": "nexendrie/testbench",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nexendrie/testbench.git",
+                "reference": "3023e0861c5838edcef471be00fc9ceb0355007f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nexendrie/testbench/zipball/3023e0861c5838edcef471be00fc9ceb0355007f",
+                "reference": "3023e0861c5838edcef471be00fc9ceb0355007f",
+                "shasum": ""
+            },
+            "require": {
+                "kdyby/fake-session": "^2.0 || ^3.0",
+                "nette/application": "^2.4 || ^3.0",
+                "nette/bootstrap": "^2.4 || ^3.0",
+                "nette/di": "^2.4 || ^3.0",
+                "nette/safe-stream": "^2.3",
+                "nette/security": "^2.4 || ^3.0",
+                "nette/tester": "^2.0",
+                "nette/utils": "^2.4 || ^3.0",
+                "php": ">=7.2.0"
+            },
+            "replace": {
+                "mrtnzlml/testbench": ">=2.4"
+            },
+            "require-dev": {
+                "kdyby/doctrine": "^3.1",
+                "kdyby/doctrine-cache": "^2.5",
+                "kdyby/doctrine-dbal-batchimport": "dev-master",
+                "kdyby/events": "^3.0",
+                "latte/latte": "^2.4",
+                "nette/database": "^2.4 || ^3.0",
+                "nette/forms": "^2.4 || ^3.0",
+                "nette/robot-loader": "^2.4 || ^3.0",
+                "tracy/tracy": "^2.4",
+                "zenify/doctrine-migrations": "^2.3"
+            },
+            "suggest": {
+                "kdyby/doctrine": "Allows enhanced database tests using Doctrine",
+                "kdyby/doctrine-dbal-batchimport": "Allows SQL scripts import for Doctrine (required with kdyby/doctrine)",
+                "nette/database": "Allows enhanced database tests using Nette\\Database",
+                "zenify/doctrine-migrations": "Migrate database to the fresh state"
+            },
+            "bin": [
+                "src/run-tests"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Testbench\\": [
+                        "src/",
+                        "src/Traits/"
+                    ]
+                },
+                "files": [
+                    "src/Testbench.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Zlámal",
+                    "homepage": "http://zlml.cz/"
+                }
+            ],
+            "description": "Simple integration testing tool for Nette Framework applications",
+            "time": "2019-05-01T11:29:23+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2762,28 +2764,29 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "0.3.1",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "2cc49f47c69b023eaf05b48e6529389893b13d74"
+                "reference": "472d3161d289f652713a5e353532fa4592663a57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/2cc49f47c69b023eaf05b48e6529389893b13d74",
-                "reference": "2cc49f47c69b023eaf05b48e6529389893b13d74",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/472d3161d289f652713a5e353532fa4592663a57",
+                "reference": "472d3161d289f652713a5e353532fa4592663a57",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.1"
             },
             "require-dev": {
-                "consistence/coding-standard": "^2.0.0",
+                "consistence/coding-standard": "^3.5",
                 "jakub-onderka/php-parallel-lint": "^0.9.2",
                 "phing/phing": "^2.16.0",
                 "phpstan/phpstan": "^0.10",
                 "phpunit/phpunit": "^6.3",
-                "slevomat/coding-standard": "^3.3.0",
+                "slevomat/coding-standard": "^4.7.2",
+                "squizlabs/php_codesniffer": "^3.3.2",
                 "symfony/process": "^3.4 || ^4.0"
             },
             "type": "library",
@@ -2804,7 +2807,7 @@
                 "MIT"
             ],
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
-            "time": "2019-01-14T12:26:23+00:00"
+            "time": "2019-04-23T20:26:19+00:00"
         },
         {
             "name": "phpstan/phpstan",
@@ -3037,16 +3040,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.4.1",
+            "version": "3.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "5b4333b4010625d29580eb4a41f1e53251be6baa"
+                "reference": "b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/5b4333b4010625d29580eb4a41f1e53251be6baa",
-                "reference": "5b4333b4010625d29580eb4a41f1e53251be6baa",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8",
+                "reference": "b8a7362af1cc1aadb5bd36c3defc4dda2cf5f0a8",
                 "shasum": ""
             },
             "require": {
@@ -3084,20 +3087,20 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-03-19T03:22:27+00:00"
+            "time": "2019-04-10T23:49:02+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v4.2.4",
+            "version": "v4.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "9dc2299a016497f9ee620be94524e6c0af0280a9"
+                "reference": "e2840bb38bddad7a0feaf85931e38fdcffdb2f81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/9dc2299a016497f9ee620be94524e6c0af0280a9",
-                "reference": "9dc2299a016497f9ee620be94524e6c0af0280a9",
+                "url": "https://api.github.com/repos/symfony/console/zipball/e2840bb38bddad7a0feaf85931e38fdcffdb2f81",
+                "reference": "e2840bb38bddad7a0feaf85931e38fdcffdb2f81",
                 "shasum": ""
             },
             "require": {
@@ -3156,7 +3159,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:17:42+00:00"
+            "time": "2019-04-08T14:23:48+00:00"
         },
         {
             "name": "symfony/contracts",
@@ -3228,16 +3231,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.2.4",
+            "version": "v4.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "267b7002c1b70ea80db0833c3afe05f0fbde580a"
+                "reference": "e45135658bd6c14b61850bf131c4f09a55133f69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/267b7002c1b70ea80db0833c3afe05f0fbde580a",
-                "reference": "267b7002c1b70ea80db0833c3afe05f0fbde580a",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/e45135658bd6c14b61850bf131c4f09a55133f69",
+                "reference": "e45135658bd6c14b61850bf131c4f09a55133f69",
                 "shasum": ""
             },
             "require": {
@@ -3273,7 +3276,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:42:05+00:00"
+            "time": "2019-04-06T13:51:08+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
