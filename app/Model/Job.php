@@ -17,7 +17,7 @@ use Nextras\Orm\Relationships\OneHasMany;
 final class Job {
   /** @var Skills */
   protected $skillsModel;
-  /** @var Locale @autowire */
+  /** @var Locale */
   protected $localeModel;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
