@@ -22,6 +22,14 @@ final class JobsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
+   * @param Skill|int $skill
+   * @return ICollection|Job[]
+   */
+  public function findBySkill($skill): ICollection {
+    return $this->findBy(["neededSkill" => $skill]);
+  }
+  
+  /**
    * Find jobs for specified level
    *
    * @return ICollection|Job[]
