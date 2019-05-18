@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c8fdf3f3822756a656942c7db3048f0",
+    "content-hash": "735ae49a53662192f88fc9a022a30f55",
     "packages": [
         {
             "name": "heroesofabenez/chat",
@@ -330,63 +330,6 @@
                 "twig"
             ],
             "time": "2019-02-20T10:51:49+00:00"
-        },
-        {
-            "name": "nella/forms-datetime",
-            "version": "v2.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nella/forms-datetime.git",
-                "reference": "d0b421f33fd953f7399dee65ad68633b7cde14e1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nella/forms-datetime/zipball/d0b421f33fd953f7399dee65ad68633b7cde14e1",
-                "reference": "d0b421f33fd953f7399dee65ad68633b7cde14e1",
-                "shasum": ""
-            },
-            "require": {
-                "nette/forms": "~2.3,<2.5.0",
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "jakub-onderka/php-console-highlighter": "0.3.2",
-                "jakub-onderka/php-parallel-lint": "0.9.2",
-                "nella/coding-standard": "4.2.1",
-                "nette/tester": "1.7.1"
-            },
-            "suggest": {
-                "latte/latte": "For manual rendering support"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Nella\\Forms\\DateTime\\": "src/Nella/Forms/DateTime"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Patrik Votoček",
-                    "email": "patrik@votocek.cz",
-                    "homepage": "http://patrik.votocek.cz",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Date/DateTime control for Nette Forms.",
-            "homepage": "http://doc.nellafw.org/forms/datetime",
-            "keywords": [
-                "Forms",
-                "control",
-                "date",
-                "datetime",
-                "input",
-                "nette"
-            ],
-            "time": "2016-07-15T22:44:30+00:00"
         },
         {
             "name": "nette/application",
@@ -1776,6 +1719,59 @@
             "time": "2019-02-11T08:58:28+00:00"
         },
         {
+            "name": "nextras/forms",
+            "version": "v2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nextras/forms.git",
+                "reference": "895eee801b060af80bdea68b30bcc9fce391701b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nextras/forms/zipball/895eee801b060af80bdea68b30bcc9fce391701b",
+                "reference": "895eee801b060af80bdea68b30bcc9fce391701b",
+                "shasum": ""
+            },
+            "require": {
+                "latte/latte": "~2.4",
+                "nette/application": "~2.4",
+                "nette/component-model": "~2.3",
+                "nette/forms": "~2.4",
+                "nette/utils": "~2.4",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "nette/tester": "~1.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nextras\\Forms\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nextras Community",
+                    "homepage": "https://github.com/nextras/forms/graphs/contributors"
+                }
+            ],
+            "description": "Form components for Nette Framework.",
+            "keywords": [
+                "form",
+                "nette"
+            ],
+            "time": "2017-10-31T10:00:30+00:00"
+        },
+        {
             "name": "nextras/orm",
             "version": "v3.1.0",
             "source": {
@@ -2554,18 +2550,18 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "a13f97d0905dac469fdee273c43f3f68b0486195"
+                "reference": "bb216856a2d73e0004daf9b8bdd92ca751985ac4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=a13f97d0905dac469fdee273c43f3f68b0486195",
-                "reference": "a13f97d0905dac469fdee273c43f3f68b0486195",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=bb216856a2d73e0004daf9b8bdd92ca751985ac4",
+                "reference": "bb216856a2d73e0004daf9b8bdd92ca751985ac4",
                 "shasum": ""
             },
             "require": {
                 "jakub-onderka/php-console-highlighter": "^0.3.2",
                 "jakub-onderka/php-parallel-lint": "^1.0",
-                "nexendrie/testbench": "dev-master",
+                "nexendrie/testbench": "^2.6",
                 "phpstan/phpstan": "^0.11",
                 "phpstan/phpstan-strict-rules": "^0.11",
                 "squizlabs/php_codesniffer": "^3.4"
@@ -2588,20 +2584,20 @@
                 "quality",
                 "testing"
             ],
-            "time": "2019-05-01T11:11:03+00:00"
+            "time": "2019-05-12T12:51:14+00:00"
         },
         {
             "name": "nexendrie/testbench",
-            "version": "dev-master",
+            "version": "v2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/testbench.git",
-                "reference": "ee7b78c71e81b4200c63128ef5993184fc9419fa"
+                "reference": "880abce4aab49dfbda714f54e5eafd720c6205f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/testbench/zipball/ee7b78c71e81b4200c63128ef5993184fc9419fa",
-                "reference": "ee7b78c71e81b4200c63128ef5993184fc9419fa",
+                "url": "https://api.github.com/repos/nexendrie/testbench/zipball/880abce4aab49dfbda714f54e5eafd720c6205f7",
+                "reference": "880abce4aab49dfbda714f54e5eafd720c6205f7",
                 "shasum": ""
             },
             "require": {
@@ -2611,7 +2607,7 @@
                 "nette/di": "^2.4 || ^3.0",
                 "nette/safe-stream": "^2.3",
                 "nette/security": "^2.4 || ^3.0",
-                "nette/tester": "^2.0",
+                "nette/tester": "^2.2",
                 "nette/utils": "^2.4 || ^3.0",
                 "php": ">=7.2.0"
             },
@@ -2664,7 +2660,7 @@
                 }
             ],
             "description": "Simple integration testing tool for Nette Framework applications",
-            "time": "2019-05-05T11:44:48+00:00"
+            "time": "2019-05-12T12:32:58+00:00"
         },
         {
             "name": "nikic/php-parser",

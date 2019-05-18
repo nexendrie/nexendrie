@@ -34,7 +34,7 @@
         "nextras/orm": "^3.1",
         "stekycz/cronner": "^2.2",
         "konecnyjakub/event-calendar": "^0.3.1",
-        "nella/forms-datetime": "^2.4",
+        "nextras/forms": "^2.0.5",
         "nexendrie/book-component": "^2.0",
         "nexendrie/translation": "^1.2",
         "nexendrie/rss": "^0.7.1",

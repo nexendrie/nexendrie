@@ -5,7 +5,7 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Orm\Marriage;
-use Nella\Forms\DateTime\DateTimeInput;
+use Nextras\Forms\Controls\DateTimePicker;
 
 /**
  * Factory for form ChangeWeddingTerm
@@ -13,28 +13,21 @@ use Nella\Forms\DateTime\DateTimeInput;
  * @author Jakub Konečný
  */
 final class ChangeWeddingTermFormFactory {
-  /** @var string */
-  protected $dateTimeFormat;
   /** @var \Nexendrie\Orm\Model */
   protected $orm;
   /** @var Marriage */
   private $marriage;
   
-  public function __construct(\Nexendrie\Model\SettingsRepository $sr, \Nexendrie\Orm\Model $orm) {
-    $this->dateTimeFormat = $sr->settings["locale"]["dateTimeFormat"];
+  public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;
   }
   
   public function create(Marriage $marriage): Form {
-    $format = explode(" ", $this->dateTimeFormat);
     $this->marriage = $marriage;
-    $default = new \DateTime();
-    $default->setTimestamp($marriage->term);
     $form = new Form();
-    $term = new DateTimeInput($format[0], $format[1], "Nový termín:");
+    $term = new DateTimePicker("Nový termín:");
     $term->setRequired("Zadej datum a čas.");
-    $term->addRule([$term, "validateDateTime"], "Neplatné datum.");
-    $term->setValue($default);
+    $term->setValue($marriage->term);
     $form->addComponent($term, "term");
     $form->addSubmit("submit", "Změnit");
     $form->onValidate[] = [$this, "validate"];
@@ -43,6 +36,9 @@ final class ChangeWeddingTermFormFactory {
   }
   
   public function validate(Form $form, array $values): void {
+    if(is_null($values["term"])) {
+      return;
+    }
     $term = $values["term"]->getTimestamp();
     if($term < time()) {
       $form->addError("Datum nemůže být v minulosti.");
