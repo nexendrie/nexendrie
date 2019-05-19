@@ -3,6 +3,6 @@
   Žádná města nejsou na prodej.
   {else}
     {foreach $towns as $town}
-  {control userProfileLink $town->owner,true} nabízí <a href="{plink Town:detail $town->id}">{$town->name}</a> za {$town->priceT}.{if $user->isAllowed("town", "buy")} <a n:href="buy! $town->id">Koupit</a>{/if}<br>
+  {control userProfileLink $town->owner,true} nabízí <a href="{plink Town:detail $town->id}">{$town->name}</a> za {$town->priceT}.{if $user->identity->path === \Nexendrie\Orm\Group::PATH_TOWER} <a n:href="buy! $town->id">Koupit</a>{/if}<br>
     {/foreach}
   {/if}
