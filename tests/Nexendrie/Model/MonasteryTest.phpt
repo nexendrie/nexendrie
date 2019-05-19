@@ -81,7 +81,7 @@ final class MonasteryTest extends \Tester\TestCase {
     ];
     $this->preserveStats($stats, function() use($user) {
       $this->model->join(1);
-      Assert::type(\Nexendrie\Orm\Monastery::class, $user->monastery);
+      Assert::type(MonasteryEntity::class, $user->monastery);
       Assert::null($user->order);
       Assert::null($user->orderRank);
       $ranks = $this->model->getChurchGroupIds();
@@ -355,9 +355,13 @@ final class MonasteryTest extends \Tester\TestCase {
     Assert::same($ranks[2], $user->group->id);
     $this->model->promote($user->id);
     Assert::same($ranks[1], $user->group->id);
+    $this->model->promote($user->id);
+    Assert::same($ranks[0], $user->group->id);
     Assert::exception(function() use($user) {
       $this->model->promote($user->id);
     }, CannotPromoteMemberException::class);
+    $this->model->demote($user->id);
+    Assert::same($ranks[1], $user->group->id);
     $this->model->demote($user->id);
     Assert::same($ranks[2], $user->group->id);
     $this->model->demote($user->id);

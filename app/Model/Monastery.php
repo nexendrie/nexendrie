@@ -549,7 +549,7 @@ final class Monastery {
     if(is_null($user->monastery) OR $user->monastery->id !== $admin->monastery->id OR $user->monastery->leader->id !== $this->user->id) {
       throw new UserNotInYourMonasteryException();
     }
-    if($user->group->id <= $ranks[1]) {
+    if($user->group->id <= $ranks[0]) {
       throw new CannotPromoteMemberException();
     }
     $currentRank = $user->group->id;
@@ -589,7 +589,7 @@ final class Monastery {
       throw new UserNotInYourMonasteryException();
     }
     end($ranks);
-    if($user->group->id === $ranks[0] OR $user->group->id === current($ranks)) {
+    if($user->group->id === current($ranks)) {
       throw new CannotDemoteMemberException();
     }
     $ranks = array_reverse($ranks);

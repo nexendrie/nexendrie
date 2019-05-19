@@ -174,7 +174,7 @@ final class MonasteryPresenter extends BasePresenter {
     $this->template->canUpgrade = $this->model->canUpgrade();
     $this->template->canUpgradeLibrary = $this->model->canUpgradeLibrary();
     $ranks = $this->model->getChurchGroupIds();
-    $this->template->firstRank = $ranks[1];
+    $this->template->firstRank = $ranks[0];
     end($ranks);
     $this->template->lastRank = current($ranks);
   }
