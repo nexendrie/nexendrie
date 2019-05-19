@@ -63,7 +63,7 @@ final class TownTest extends \Tester\TestCase {
     }, TownNotOnSaleException::class);
     Assert::exception(function() {
       $this->model->buy(5);
-    }, InsufficientLevelForTownException::class);
+    }, CannotBuyTownException::class);
     $this->login("Vladěna");
     Assert::exception(function() {
       $this->model->buy(5);

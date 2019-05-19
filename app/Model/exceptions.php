@@ -453,7 +453,7 @@ class TownNotOnSaleException extends AccessDeniedException {
   
 }
 
-class InsufficientLevelForTownException extends AccessDeniedException {
+class CannotBuyTownException extends AccessDeniedException {
   
 }
 

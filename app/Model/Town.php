@@ -94,7 +94,7 @@ final class Town {
    * @throws TownNotFoundException
    * @throws TownNotOnSaleException
    * @throws CannotBuyOwnTownException
-   * @throws InsufficientLevelForTownException
+   * @throws CannotBuyTownException
    * @throws InsufficientFundsException
    */
   public function buy(int $id): void {
@@ -111,8 +111,8 @@ final class Town {
     if($town->owner->id === $this->user->id) {
       throw new CannotBuyOwnTownException();
     }
-    if(!$this->user->isAllowed("town", "buy")) {
-      throw new InsufficientLevelForTownException();
+    if($this->user->identity->path !== GroupEntity::PATH_TOWER) {
+      throw new CannotBuyTownException();
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);

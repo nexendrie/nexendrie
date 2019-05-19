@@ -45,9 +45,7 @@ final class Profile {
    * @return string[]
    */
   public function getListOfLords(): array {
-    $ranks = $this->orm->groups->getTowerGroupIds();
-    end($ranks);
-    return $this->orm->users->findBy(["this->group->id<=" => current($ranks)])
+    return $this->orm->users->findBy(["this->group->path" => \Nexendrie\Orm\Group::PATH_TOWER])
       ->fetchPairs("id", "publicname");
   }
   

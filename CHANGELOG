@@ -8,6 +8,7 @@ Version 1.0.0-beta6+dev
 - fixed getting current events
 - added profile sub-page achievements
 - leaders of monasteries can change title of other members now
+- high clerics can no longer own town
 
 Version 1.0.0-beta6
 - guild/order actions now use acl

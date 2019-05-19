@@ -6,7 +6,7 @@ namespace Nexendrie\Components;
 use Nexendrie\Model\TownNotFoundException;
 use Nexendrie\Model\TownNotOnSaleException;
 use Nexendrie\Model\CannotBuyOwnTownException;
-use Nexendrie\Model\InsufficientLevelForTownException;
+use Nexendrie\Model\CannotBuyTownException;
 use Nexendrie\Model\InsufficientFundsException;
 
 /**
@@ -44,7 +44,7 @@ final class TownsMarketControl extends \Nette\Application\UI\Control {
       $this->presenter->flashMessage("Město není na prodej.");
     } catch(CannotBuyOwnTownException $e) {
       $this->presenter->flashMessage("Toto město je již tvé.");
-    } catch(InsufficientLevelForTownException $e) {
+    } catch(CannotBuyTownException $e) {
       $this->presenter->flashMessage("Nemůžeš kupovat města.");
     } catch(InsufficientFundsException $e) {
       $this->presenter->flashMessage("Nemáš dostatek peněz.");

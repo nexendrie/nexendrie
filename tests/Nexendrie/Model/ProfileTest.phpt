@@ -31,7 +31,7 @@ final class ProfileTest extends \Tester\TestCase {
   public function testGetListOfLords() {
     $result = $this->model->getListOfLords();
     Assert::type("array", $result);
-    Assert::count(4, $result);
+    Assert::count(3, $result);
     foreach($result as $key => $value) {
       Assert::type("int", $key);
       Assert::type("string", $value);
