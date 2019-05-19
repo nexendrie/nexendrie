@@ -70,7 +70,7 @@ final class ProfileTest extends \Tester\TestCase {
   public function testGetArticles() {
     $articles = $this->model->getArticles("Trimadyl z Myhru");
     Assert::type(OneHasMany::class, $articles);
-    Assert::count(15, $articles);
+    Assert::count(16, $articles);
     Assert::exception(function() {
       $this->model->getArticles("abc");
     }, UserNotFoundException::class);
