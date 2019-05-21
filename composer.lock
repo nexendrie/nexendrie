@@ -2550,18 +2550,18 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "bb216856a2d73e0004daf9b8bdd92ca751985ac4"
+                "reference": "dbe1eda527b9550887e8731b9206cf869cadae79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=bb216856a2d73e0004daf9b8bdd92ca751985ac4",
-                "reference": "bb216856a2d73e0004daf9b8bdd92ca751985ac4",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=dbe1eda527b9550887e8731b9206cf869cadae79",
+                "reference": "dbe1eda527b9550887e8731b9206cf869cadae79",
                 "shasum": ""
             },
             "require": {
                 "jakub-onderka/php-console-highlighter": "^0.3.2",
                 "jakub-onderka/php-parallel-lint": "^1.0",
-                "nexendrie/testbench": "^2.6",
+                "nexendrie/testbench": "^2.6.1",
                 "phpstan/phpstan": "^0.11",
                 "phpstan/phpstan-strict-rules": "^0.11",
                 "squizlabs/php_codesniffer": "^3.4"
@@ -2584,20 +2584,20 @@
                 "quality",
                 "testing"
             ],
-            "time": "2019-05-12T12:51:14+00:00"
+            "time": "2019-05-19T10:13:17+00:00"
         },
         {
             "name": "nexendrie/testbench",
-            "version": "v2.6.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/testbench.git",
-                "reference": "880abce4aab49dfbda714f54e5eafd720c6205f7"
+                "reference": "72a7e5f70705c35c562a129f6af9ac9ca8bd5964"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/testbench/zipball/880abce4aab49dfbda714f54e5eafd720c6205f7",
-                "reference": "880abce4aab49dfbda714f54e5eafd720c6205f7",
+                "url": "https://api.github.com/repos/nexendrie/testbench/zipball/72a7e5f70705c35c562a129f6af9ac9ca8bd5964",
+                "reference": "72a7e5f70705c35c562a129f6af9ac9ca8bd5964",
                 "shasum": ""
             },
             "require": {
@@ -2660,7 +2660,7 @@
                 }
             ],
             "description": "Simple integration testing tool for Nette Framework applications",
-            "time": "2019-05-12T12:32:58+00:00"
+            "time": "2019-05-19T10:06:45+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2948,22 +2948,22 @@
         },
         {
             "name": "phpstan/phpstan-strict-rules",
-            "version": "0.11",
+            "version": "0.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-strict-rules.git",
-                "reference": "747a742b26a35ef4e4ebef5ec4490ad74eebcbc0"
+                "reference": "a203a7afdda073d4ea405a6d9007a5b32de3be61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/747a742b26a35ef4e4ebef5ec4490ad74eebcbc0",
-                "reference": "747a742b26a35ef4e4ebef5ec4490ad74eebcbc0",
+                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/a203a7afdda073d4ea405a6d9007a5b32de3be61",
+                "reference": "a203a7afdda073d4ea405a6d9007a5b32de3be61",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^4.0",
                 "php": "~7.1",
-                "phpstan/phpstan": "^0.11"
+                "phpstan/phpstan": "^0.11.4"
             },
             "require-dev": {
                 "consistence/coding-standard": "^3.0.1",
@@ -2974,10 +2974,15 @@
                 "phpunit/phpunit": "^7.0",
                 "slevomat/coding-standard": "^4.5.2"
             },
-            "type": "library",
+            "type": "phpstan-extension",
             "extra": {
                 "branch-alias": {
                     "dev-master": "0.11-dev"
+                },
+                "phpstan": {
+                    "includes": [
+                        "rules.neon"
+                    ]
                 }
             },
             "autoload": {
@@ -2990,7 +2995,7 @@
                 "MIT"
             ],
             "description": "Extra strict and opinionated rules for PHPStan",
-            "time": "2019-01-14T09:56:55+00:00"
+            "time": "2019-05-12T16:59:47+00:00"
         },
         {
             "name": "psr/log",
