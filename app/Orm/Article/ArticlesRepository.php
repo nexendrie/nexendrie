@@ -31,6 +31,14 @@ final class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
+   * @param User|int $author
+   * @return ICollection|Article[]
+   */
+  public function findByAuthor($author): ICollection {
+    return $this->findBy(["author" => $author]);
+  }
+  
+  /**
    * @return ICollection|Article[]
    */
   public function findNews(): ICollection {

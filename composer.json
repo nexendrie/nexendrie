@@ -42,7 +42,8 @@
         "nexendrie/utils": "^1.6",
         "symfony/options-resolver": "^4.0",
         "heroesofabenez/chat": "^1.0",
-        "heroesofabenez/combat": "^1.0"
+        "heroesofabenez/combat": "^1.0",
+        "adamstipak/nette-rest-route": "^4.0.1"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",

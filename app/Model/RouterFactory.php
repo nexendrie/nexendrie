@@ -5,6 +5,7 @@ namespace Nexendrie\Model;
 
 use Nette\Application\Routers\RouteList;
 use Nette\Application\Routers\Route;
+use AdamStipak\RestRoute;
 
 /**
  * Router Factory
@@ -16,6 +17,12 @@ final class RouterFactory {
   
   public function create(): RouteList {
     $router = new RouteList();
+    $restRoute = new RestRoute("Api");
+    $restRoute->useURLModuleVersioning(RestRoute::MODULE_VERSION_PATH_PREFIX_PATTERN, [
+      null => "V1",
+      "v1" => "V1",
+    ]);
+    $router[] = $restRoute;
     $frontRouter = new RouteList("Front");
     $frontRouter[] = new Route("/", "Homepage:page");
     $frontRouter[] = new Route("profile/<name>[/<action>]", "Profile:default");

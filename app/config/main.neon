@@ -1,6 +1,7 @@
 application:
     mapping:
         *: Nexendrie\Presenters\*Module\*Presenter
+        Api: Nexendrie\Presenters\ApiModule\*\*Presenter
     scanDirs: false
 tracy:
     strictMode: TRUE
@@ -17,6 +18,7 @@ extensions:
     translation: Nexendrie\Translation\Bridges\NetteDI\TranslationExtension
     menu: Nexendrie\Menu\DI\MenuExtension
     chat: HeroesofAbenez\Chat\DI\ChatExtension
+    nexendrie.api: Nexendrie\Api\DI\ApiExtension
 orm:
     model: Nexendrie\Orm\Model
 php:
@@ -37,6 +39,34 @@ chat:
         guild: Nexendrie\Chat\IGuildChatControlFactory
         order: Nexendrie\Chat\IOrderChatControlFactory
     characterProfileLink: ":Front:Profile:"
+nexendrie.api:
+    transformers:
+        - Nexendrie\Api\Transformers\AdventureNpcTransformer
+        - Nexendrie\Api\Transformers\AdventureTransformer
+        - Nexendrie\Api\Transformers\ArticleTransformer
+        - Nexendrie\Api\Transformers\CastleTransformer
+        - Nexendrie\Api\Transformers\CommentTransformer
+        - Nexendrie\Api\Transformers\EventTransformer
+        - Nexendrie\Api\Transformers\GroupTransformer
+        - Nexendrie\Api\Transformers\GuildRankTransformer
+        - Nexendrie\Api\Transformers\GuildTransformer
+        - Nexendrie\Api\Transformers\HouseTransformer
+        - Nexendrie\Api\Transformers\ItemSetTransformer
+        - Nexendrie\Api\Transformers\ItemTransformer
+        - Nexendrie\Api\Transformers\JobTransformer
+        - Nexendrie\Api\Transformers\MealTransformer
+        - Nexendrie\Api\Transformers\MonasteryTransformer
+        - Nexendrie\Api\Transformers\MountTransformer
+        - Nexendrie\Api\Transformers\MountTypeTransformer
+        - Nexendrie\Api\Transformers\OrderRankTransformer
+        - Nexendrie\Api\Transformers\OrderTransformer
+        - Nexendrie\Api\Transformers\PollTransformer
+        - Nexendrie\Api\Transformers\PunishmentTransformer
+        - Nexendrie\Api\Transformers\ShopTransformer
+        - Nexendrie\Api\Transformers\SkillTransformer
+        - Nexendrie\Api\Transformers\TownTransformer
+        - Nexendrie\Api\Transformers\UserSkillTransformer
+        - Nexendrie\Api\Transformers\UserTransformer
 menu:
     default:
         title: Menu

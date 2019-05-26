@@ -47,6 +47,14 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
+   * @param Town|Int $town
+   * @return ICollection|User[]
+   */
+  public function findByTown($town): ICollection {
+    return $this->findBy(["town" => $town]);
+  }
+  
+  /**
    * Get mayor of a town
    */
   public function getTownMayor(int $town): ?User {

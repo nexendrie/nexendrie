@@ -32,5 +32,13 @@ final class GuildsRepository extends \Nextras\Orm\Repository\Repository {
   public function findByTown($town): ICollection {
     return $this->findBy(["town" => $town]);
   }
+  
+  /**
+   * @param Skill|int $skill
+   * @return ICollection|Guild[]
+   */
+  public function findBySkill($skill): ICollection {
+    return $this->findBy(["skill" => $skill]);
+  }
 }
 ?>
