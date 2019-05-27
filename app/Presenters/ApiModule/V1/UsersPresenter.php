@@ -50,13 +50,13 @@ final class UsersPresenter extends BasePresenter {
     } else {
       $records = $this->orm->users->findAll();
     }
-    $this->sendCollection($records, "users");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $user = $this->orm->users->getById($id);
-    $this->sendEntity($user, "user");
+    $record = $this->orm->users->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

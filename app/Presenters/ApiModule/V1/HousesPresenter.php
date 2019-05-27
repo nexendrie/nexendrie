@@ -21,13 +21,13 @@ final class HousesPresenter extends BasePresenter {
     } else {
       $records = $this->orm->houses->findAll();
     }
-    $this->sendCollection($records, "houses");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $house = $this->orm->houses->getById($id);
-    $this->sendEntity($house, "house");
+    $record = $this->orm->houses->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

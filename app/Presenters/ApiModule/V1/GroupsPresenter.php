@@ -14,13 +14,13 @@ final class GroupsPresenter extends BasePresenter {
       return;
     }
     $records = $this->orm->groups->findAll();
-    $this->sendCollection($records, "groups");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $group = $this->orm->groups->getById($id);
-    $this->sendEntity($group, "group");
+    $record = $this->orm->groups->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

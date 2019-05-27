@@ -14,13 +14,13 @@ final class ShopsPresenter extends BasePresenter {
       return;
     }
     $records = $this->orm->shops->findAll();
-    $this->sendCollection($records, "shops");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $shop = $this->orm->shops->getById($id);
-    $this->sendEntity($shop, "shop");
+    $record = $this->orm->shops->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

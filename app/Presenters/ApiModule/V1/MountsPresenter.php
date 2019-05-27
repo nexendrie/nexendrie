@@ -29,13 +29,13 @@ final class MountsPresenter extends BasePresenter {
     } else {
       $records = $this->orm->mounts->findAll();
     }
-    $this->sendCollection($records, "mounts");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $mount = $this->orm->mounts->getById($id);
-    $this->sendEntity($mount, "mount");
+    $record = $this->orm->mounts->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

@@ -14,13 +14,13 @@ final class OrdersPresenter extends BasePresenter {
       return;
     }
     $records = $this->orm->orders->findAll();
-    $this->sendCollection($records, "orders");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $castle = $this->orm->orders->getById($id);
-    $this->sendEntity($castle, "order");
+    $record = $this->orm->orders->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

@@ -29,13 +29,13 @@ final class GuildsPresenter extends BasePresenter {
     } else {
       $records = $this->orm->guilds->findAll();
     }
-    $this->sendCollection($records, "guilds");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $guild = $this->orm->guilds->getById($id);
-    $this->sendEntity($guild, "guild");
+    $record = $this->orm->guilds->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

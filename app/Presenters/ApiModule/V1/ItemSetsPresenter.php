@@ -14,13 +14,13 @@ final class ItemSetsPresenter extends BasePresenter {
       return;
     }
     $records = $this->orm->itemSets->findAll();
-    $this->sendCollection($records, "itemSets");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $itemSet = $this->orm->itemSets->getById($id);
-    $this->sendEntity($itemSet, "itemSet", "item set");
+    $record = $this->orm->itemSets->getById($id);
+    $this->sendEntity($record, null, "Item set");
   }
 }
 ?>

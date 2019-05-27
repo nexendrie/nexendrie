@@ -14,13 +14,13 @@ final class MealsPresenter extends BasePresenter {
       return;
     }
     $records = $this->orm->meals->findAll();
-    $this->sendCollection($records, "meals");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $meal = $this->orm->meals->getById($id);
-    $this->sendEntity($meal, "meal");
+    $record = $this->orm->meals->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

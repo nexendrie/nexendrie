@@ -14,13 +14,13 @@ final class MountTypesPresenter extends BasePresenter {
       return;
     }
     $records = $this->orm->mountTypes->findAll();
-    $this->sendCollection($records, "mountTypes");
+    $this->sendCollection($records);
   }
 
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $mountType = $this->orm->mountTypes->getById($id);
-    $this->sendEntity($mountType, "mountType", "mount type");
+    $record = $this->orm->mountTypes->getById($id);
+    $this->sendEntity($record, null, "Mount type");
   }
 }
 ?>

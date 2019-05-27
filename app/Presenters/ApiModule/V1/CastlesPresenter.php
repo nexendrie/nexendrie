@@ -14,13 +14,13 @@ final class CastlesPresenter extends BasePresenter {
       return;
     }
     $records = $this->orm->castles->findAll();
-    $this->sendCollection($records, "castles");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $castle = $this->orm->castles->getById($id);
-    $this->sendEntity($castle, "castle");
+    $record = $this->orm->castles->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

@@ -14,13 +14,13 @@ final class EventsPresenter extends BasePresenter {
       return;
     }
     $records = $this->orm->events->findAll();
-    $this->sendCollection($records, "events");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $event = $this->orm->events->getById($id);
-    $this->sendEntity($event, "event");
+    $record = $this->orm->events->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

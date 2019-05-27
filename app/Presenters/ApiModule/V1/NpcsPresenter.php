@@ -21,18 +21,18 @@ final class NpcsPresenter extends BasePresenter {
     } else {
       return;
     }
-    $this->sendCollection($records, "npcs");
+    $this->sendCollection($records);
   }
 
   public function actionRead(): void {
     $id = (int) $this->params["id"];
     if(isset($this->params["associations"]["adventures"])) {
       $adventure = (int) $this->params["associations"]["adventures"];
-      $npc = $this->orm->adventureNpcs->getBy(["id" => $id, "adventure" => $adventure,]);
+      $record = $this->orm->adventureNpcs->getBy(["id" => $id, "adventure" => $adventure,]);
     } else {
       return;
     }
-    $this->sendEntity($npc, "npc");
+    $this->sendEntity($record);
   }
 }
 ?>

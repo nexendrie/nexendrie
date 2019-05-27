@@ -61,12 +61,24 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->methodNotAllowed();
   }
 
-  protected function sendCollection(iterable $collection, string $name): void {
-    $data = $this->entityConverter->convertCollection($collection);
-    $this->sendJson([$name => $data]);
+  protected function getCollectionName(): string {
+    $presenterName = (string) Strings::before(static::class, "Presenter", -1);
+    $presenterName = (string) Strings::after($presenterName, "\\", -1);
+    return Strings::firstLower($presenterName);
   }
 
-  protected function sendEntity(?Entity $entity, string $name, string $name2 = null): void {
+  protected function sendCollection(iterable $collection, ?string $name = null): void {
+    $data = $this->entityConverter->convertCollection($collection);
+    $this->sendJson([$name ?? $this->getCollectionName() => $data]);
+  }
+
+  protected function getEntityName(): string {
+    $name = $this->getCollectionName();
+    return substr($name, 0, -1);
+  }
+
+  protected function sendEntity(?Entity $entity, ?string $name = null, ?string $name2 = null): void {
+    $name = $name ?? $this->getEntityName();
     if(is_null($entity)) {
       $this->resourceNotFound($name2 ?? $name, (int) $this->params["id"]);
     }

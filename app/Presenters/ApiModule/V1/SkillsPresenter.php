@@ -22,13 +22,13 @@ final class SkillsPresenter extends BasePresenter {
     } else {
       $records = $this->orm->skills->findAll();
     }
-    $this->sendCollection($records, "skills");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $skill = $this->orm->skills->getById($id);
-    $this->sendEntity($skill, "skill");
+    $record = $this->orm->skills->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

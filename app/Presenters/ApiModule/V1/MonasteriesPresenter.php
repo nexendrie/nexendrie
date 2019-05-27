@@ -22,13 +22,17 @@ final class MonasteriesPresenter extends BasePresenter {
     } else {
       $records = $this->orm->monasteries->findAll();
     }
-    $this->sendCollection($records, "monasteries");
+    $this->sendCollection($records);
   }
-  
+
+  protected function getEntityName(): string {
+    return "monastery";
+  }
+
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $monastery = $this->orm->monasteries->getById($id);
-    $this->sendEntity($monastery, "monastery");
+    $record = $this->orm->monasteries->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

@@ -22,13 +22,13 @@ final class ArticlesPresenter extends BasePresenter {
     } else {
       $records = $this->orm->articles->findAll();
     }
-    $this->sendCollection($records, "articles");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $article = $this->orm->articles->getById($id);
-    $this->sendEntity($article, "article");
+    $record = $this->orm->articles->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

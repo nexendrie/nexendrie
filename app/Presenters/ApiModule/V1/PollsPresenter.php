@@ -22,13 +22,13 @@ final class PollsPresenter extends BasePresenter {
     } else {
       $records = $this->orm->polls->findAll();
     }
-    $this->sendCollection($records, "polls");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $poll = $this->orm->polls->getById($id);
-    $this->sendEntity($poll, "poll");
+    $record = $this->orm->polls->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

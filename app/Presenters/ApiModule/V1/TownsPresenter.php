@@ -22,13 +22,13 @@ final class TownsPresenter extends BasePresenter {
     } else {
       $records = $this->orm->towns->findAll();
     }
-    $this->sendCollection($records, "towns");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $town = $this->orm->towns->getById($id);
-    $this->sendEntity($town, "town");
+    $record = $this->orm->towns->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

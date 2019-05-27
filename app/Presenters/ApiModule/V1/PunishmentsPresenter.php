@@ -22,13 +22,13 @@ final class PunishmentsPresenter extends BasePresenter {
     } else {
       $records = $this->orm->punishments->findAll();
     }
-    $this->sendCollection($records, "punishments");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $punishment = $this->orm->punishments->getById($id);
-    $this->sendEntity($punishment, "punishment");
+    $record = $this->orm->punishments->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

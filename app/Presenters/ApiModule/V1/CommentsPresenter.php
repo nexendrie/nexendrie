@@ -29,13 +29,13 @@ final class CommentsPresenter extends BasePresenter {
     } else {
       $records = $this->orm->comments->findAll();
     }
-    $this->sendCollection($records, "comments");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $comment = $this->orm->comments->getById($id);
-    $this->sendEntity($comment, "comment");
+    $record = $this->orm->comments->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

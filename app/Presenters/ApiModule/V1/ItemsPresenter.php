@@ -31,13 +31,13 @@ final class ItemsPresenter extends BasePresenter {
     } else {
       $records = $this->orm->items->findAll();
     }
-    $this->sendCollection($records, "items");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $item = $this->orm->items->getById($id);
-    $this->sendEntity($item, "item");
+    $record = $this->orm->items->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

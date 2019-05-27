@@ -22,13 +22,13 @@ final class JobsPresenter extends BasePresenter {
     } else {
       $records = $this->orm->jobs->findAll();
     }
-    $this->sendCollection($records, "jobs");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $job = $this->orm->jobs->getById($id);
-    $this->sendEntity($job, "job");
+    $record = $this->orm->jobs->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>

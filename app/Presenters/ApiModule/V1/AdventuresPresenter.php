@@ -22,13 +22,13 @@ final class AdventuresPresenter extends BasePresenter {
     } else {
       $records = $this->orm->adventures->findAll();
     }
-    $this->sendCollection($records, "adventures");
+    $this->sendCollection($records);
   }
   
   public function actionRead(): void {
     $id = (int) $this->params["id"];
-    $adventure = $this->orm->adventures->getById($id);
-    $this->sendEntity($adventure, "adventure");
+    $record = $this->orm->adventures->getById($id);
+    $this->sendEntity($record);
   }
 }
 ?>
