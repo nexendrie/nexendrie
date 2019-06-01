@@ -90,7 +90,9 @@ final class ContentPresenter extends BasePresenter {
     $form = $factory->create();
     $user = (int) $this->getParameter("id");
     if($user > 0) {
-      $form["user"]->setDefaultValue($user);
+      /** @var \Nette\Forms\Controls\SelectBox $userField */
+      $userField = $form["user"];
+      $userField->setDefaultValue($user);
     }
     $form->onSuccess[] = function() {
       $this->flashMessage("Odesláno.");

@@ -62,7 +62,7 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   }
   
   protected function createComponentNewChatMessageForm(NewChatMessageFormFactory $factory): Form {
-    $chat = strtolower(\Nette\Utils\Strings::after($this->name, ":"));
+    $chat = strtolower((string) \Nette\Utils\Strings::after($this->name, ":"));
     switch($chat) {
       case "town":
         /** @var Chat\ITownChatControlFactory $chatFactory */

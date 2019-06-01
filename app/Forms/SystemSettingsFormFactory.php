@@ -160,7 +160,12 @@ final class SystemSettingsFormFactory {
   
   public function process(Form $form, array $values): void {
     $filename = $this->appDir . "/config/local.neon";
-    $config = Neon::decode(file_get_contents($filename));
+    $content = file_get_contents($filename);
+    if($content === false) {
+      $form->addError("Došlo k chybě při čtení nastavení. Ujisti se, že máš právo čtení souboru.");
+      return;
+    }
+    $config = Neon::decode($content);
     $config += ["nexendrie" => $values];
     try {
       $content = Neon::encode($config, Neon::BLOCK);

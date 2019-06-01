@@ -58,7 +58,9 @@ final class MessagesPresenter extends BasePresenter {
     $form = $factory->create();
     try {
       $uid = (int) $this->getParameter("id", null);
-      $form["to"]->setDefaultValue($uid);
+      /** @var \Nette\Forms\Controls\SelectBox $receiver */
+      $receiver = $form["to"];
+      $receiver->setDefaultValue($uid);
     } catch(\Nette\InvalidArgumentException $e) {
       
     }

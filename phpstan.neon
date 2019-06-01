@@ -9,14 +9,10 @@ parameters:
         - Nextras\Orm\Entity\IEntity
     ignoreErrors:
         - '#Method Nexendrie\\Orm\[a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+ should return Nexendrie\\Orm[a-zA-Z0-9\\_]+|null but returns Nextras\\Orm\\IEntity|null#'
-        - '#Method Nette\\Localization\\ITranslator::translate\(\) invoked with 3 parameters, 1-2 required#'
-        - '#Parameter \#1 \$str of function strtolower expects string, string\|false given#'
-        - '#Parameter \#1 \$input of static method Nette\\Neon\\Neon::decode\(\) expects string, string\|false given#'
-        - '#Parameter \#1 \$control of method Nette\\Forms\\Controls\\BaseControl::addConditionOn\(\) expects Nette\\Forms\\IControl, Nette\\ComponentModel\\IComponent given#'
-        - '#Call to an undefined method Nette\\ComponentModel\\IComponent::setDefaultValue\(\)#'
         - '#Construct empty\(\) is not allowed. Use more strict comparison#'
         - '#Method Nexendrie\\Model\\Job::parseJobHelp\(\) should return string but returns array\|string#'
         - '#Method Nexendrie\\Orm\\[a-zA-Z0-9\\_]::getter[a-zA-Z0-9\\_]() should return int but returns float|int#'
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'
         # until we use Nette 3
+        - '#Method Nette\\Localization\\ITranslator::translate\(\) invoked with 3 parameters, 1-2 required#'
         - '#Dynamic call to static method Nette\\Security\\Passwords::[a-z]+\(\)#'

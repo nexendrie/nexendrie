@@ -15,7 +15,11 @@ $db = [
   "password" => Arrays::get($argv, 5, "nexendrie"),
 ];
 
-$config = Neon::decode(file_get_contents($filename));
+$content = file_get_contents($filename);
+if($content === false) {
+  throw new RuntimeException("File $filename does not exist or cannot be read.");
+}
+$config = Neon::decode($content);
 $config["dbal"] = $db;
 file_put_contents($filename, Neon::encode($config, Neon::BLOCK));
 echo "Settings written to " . realpath($filename) . ".\n";

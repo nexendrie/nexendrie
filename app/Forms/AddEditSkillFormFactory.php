@@ -37,15 +37,15 @@ final class AddEditSkillFormFactory {
       ->addRule(Form::INTEGER, "Počet úrovní musí být celé číslo.")
       ->addRule(Form::RANGE, "Počet úrovní musí být v rozmezí 1-99.", [1, 99])
       ->setValue(5);
-    $form->addSelect("type", "Typ:", SkillEntity::getTypes())
+    $type = $form->addSelect("type", "Typ:", SkillEntity::getTypes())
       ->setRequired("Vyber typ.");
     $form->addSelect("stat", "Vlastnost:", SkillEntity::getStats())
       ->setPrompt("žádná")
-      ->addConditionOn($form["type"], Form::EQUAL, SkillEntity::TYPE_COMBAT)
+      ->addConditionOn($type, Form::EQUAL, SkillEntity::TYPE_COMBAT)
         ->setRequired("Vyber vlasnost.");
     $form->addText("statIncrease", "Vylepšení vlastnosti:")
       ->setValue(0)
-      ->addConditionOn($form["type"], Form::EQUAL, SkillEntity::TYPE_COMBAT)
+      ->addConditionOn($type, Form::EQUAL, SkillEntity::TYPE_COMBAT)
         ->setRequired()
         ->addRule(Form::INTEGER, "Vylepšení vlastnosti musí být celé číslo.")
         ->addRule(Form::RANGE, "Vylepšení vlastnosti musí být v rozmezí 1-99.", [1, 99]);
