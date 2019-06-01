@@ -1,4 +1,4 @@
-Version 1.0.0-beta6+dev
+Version 1.0.0-beta7
 - discount for learning skills in monastery now determined by library's level
 - added support for OpenSearch
 - changed url of profile sub-pages and rss channels for comments
