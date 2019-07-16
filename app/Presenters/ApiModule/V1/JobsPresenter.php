@@ -17,7 +17,7 @@ final class JobsPresenter extends BasePresenter {
         $this->resourceNotFound("skill", $skill);
       }
       $records = $record->jobs;
-    } elseif(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
       $records = $this->orm->jobs->findAll();

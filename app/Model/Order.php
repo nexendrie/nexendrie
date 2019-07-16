@@ -76,7 +76,7 @@ final class Order {
       throw $e;
     }
     foreach($data as $key => $value) {
-      if($key === "name" AND !$this->checkNameAvailability($value, $id)) {
+      if($key === "name" && !$this->checkNameAvailability($value, $id)) {
         throw new OrderNameInUseException();
       }
       $order->$key = $value;
@@ -170,7 +170,7 @@ final class Order {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    return ($user->group->path === GroupEntity::PATH_TOWER AND !$user->order);
+    return ($user->group->path === GroupEntity::PATH_TOWER && !$user->order);
   }
   
   /**
@@ -329,7 +329,7 @@ final class Order {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order) OR $user->order->id !== $admin->order->id) {
+    if(is_null($user->order) || $user->order->id !== $admin->order->id) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id >= $this->maxRank - 1) {
       throw new CannotPromoteMemberException();
@@ -359,9 +359,9 @@ final class Order {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order) OR $user->order->id !== $admin->order->id) {
+    if(is_null($user->order) || $user->order->id !== $admin->order->id) {
       throw new UserNotInYourOrderException();
-    } elseif($user->orderRank->id < 2 OR $user->orderRank->id === $this->maxRank) {
+    } elseif($user->orderRank->id < 2 || $user->orderRank->id === $this->maxRank) {
       throw new CannotDemoteMemberException();
     }
     $user->orderRank = $this->orm->orderRanks->getById($user->orderRank->id - 1);
@@ -389,7 +389,7 @@ final class Order {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order) OR $user->order->id !== $admin->order->id) {
+    if(is_null($user->order) || $user->order->id !== $admin->order->id) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id === $this->maxRank) {
       throw new CannotKickMemberException();

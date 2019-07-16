@@ -16,7 +16,7 @@ final class HousesPresenter extends BasePresenter {
         $this->resourceNotFound("user", $user);
       }
       $records = $this->orm->houses->findBy(["owner" => $user])->limitBy(1);
-    } elseif(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
       $records = $this->orm->houses->findAll();

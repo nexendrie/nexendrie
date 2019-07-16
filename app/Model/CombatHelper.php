@@ -44,7 +44,7 @@ final class CombatHelper {
     if(!is_null($helmet)) {
       $hpIncrease = ($helmet->item->strength + $helmet->level) * 5;
     }
-    if($set AND $set->stat === ItemSetEntity::STAT_HITPOINTS) {
+    if($set && $set->stat === ItemSetEntity::STAT_HITPOINTS) {
       $hpIncrease += $set->bonus;
     }
     $marriage = $this->orm->marriages->getActiveMarriage($user->id);
@@ -71,7 +71,7 @@ final class CombatHelper {
     $stats["constitution"] = (int) round($user->maxLife / 5);
     $equipment = [];
     foreach($user->items as $item) {
-      if(in_array($item->item->type, ItemEntity::getEquipmentTypes(), true) AND $item->worn) {
+      if(in_array($item->item->type, ItemEntity::getEquipmentTypes(), true) && $item->worn) {
         $equipment[] = $item->toCombatEquipment();
       }
     }

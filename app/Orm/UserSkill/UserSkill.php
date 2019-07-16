@@ -46,7 +46,7 @@ final class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEf
       $price += (int) ($basePrice / $this->skill->maxLevel);
     }
     $price -= $this->eventsModel->calculateTrainingDiscount($price);
-    if($this->user->monastery AND $this->user->group->path === Group::PATH_CHURCH) {
+    if($this->user->monastery && $this->user->group->path === Group::PATH_CHURCH) {
       $monasteryDiscount = $this->user->monastery->skillLearningDiscount;
       $price -= (int) ($price / 100 * $monasteryDiscount);
     }

@@ -17,7 +17,7 @@ final class ArticlesPresenter extends BasePresenter {
         $this->resourceNotFound("user", $user);
       }
       $records = $record->articles;
-    } elseif(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
       $records = $this->orm->articles->findAll();

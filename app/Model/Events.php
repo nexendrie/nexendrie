@@ -72,7 +72,7 @@ final class Events implements \EventCalendar\IEventModel {
   public function addEvent(array $data): void {
     $event = new Event();
     foreach($data as $key => $value) {
-      if($key === "start" OR $key === "end") {
+      if($key === "start" || $key === "end") {
         $value = $this->getTimestamp($value);
       }
       $event->$key = $value;
@@ -91,7 +91,7 @@ final class Events implements \EventCalendar\IEventModel {
       throw new EventNotFoundException();
     }
     foreach($data as $key => $value) {
-      if($key === "start" OR $key === "end") {
+      if($key === "start" || $key === "end") {
         $value = $this->getTimestamp($value);
       }
       $event->$key = $value;
@@ -136,7 +136,7 @@ final class Events implements \EventCalendar\IEventModel {
       $date->setTimestamp($startTS);
       $date->modify("+1 day");
       $date->modify("-1 second");
-      if($event->start <= $date->getTimestamp() AND $event->end >= $startTS) {
+      if($event->start <= $date->getTimestamp() && $event->end >= $startTS) {
         $link = $this->lg->link("Front:Event:view", ["id" => $event->id]);
         $events[] = "<a href=\"$link\" title=\"$event->description\">$event->name</a>";
       }

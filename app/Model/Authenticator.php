@@ -53,9 +53,9 @@ final class Authenticator implements IAuthenticator {
     } else {
       $roles[0] = $user->group->singleName;
     }
-    if(!is_null($user->guildRank) AND $user->group->path === \Nexendrie\Orm\Group::PATH_CITY) {
+    if(!is_null($user->guildRank) && $user->group->path === \Nexendrie\Orm\Group::PATH_CITY) {
       $roles[1] = AuthorizatorFactory::GUILD_RANK_ROLE_PREFIX . "^" . $user->guildRank->name;
-    } elseif(!is_null($user->orderRank) AND $user->group->path === \Nexendrie\Orm\Group::PATH_TOWER) {
+    } elseif(!is_null($user->orderRank) && $user->group->path === \Nexendrie\Orm\Group::PATH_TOWER) {
       $roles[1] = AuthorizatorFactory::ORDER_RANK_ROLE_PREFIX . "^" . $user->orderRank->name;
     }
     $adventure = $this->orm->userAdventures->getUserActiveAdventure($user->id);

@@ -24,7 +24,7 @@ final class GuildsPresenter extends BasePresenter {
         $this->resourceNotFound("skill", $skill);
       }
       $records = $record->guilds;
-    } elseif(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
       $records = $this->orm->guilds->findAll();

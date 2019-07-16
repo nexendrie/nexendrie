@@ -66,7 +66,7 @@ final class GiftFormFactory {
   }
   
   public function validate(Form $form, array $values): void {
-    if($values["money"] === 0 AND is_null($values["item"])) {
+    if($values["money"] === 0 && is_null($values["item"])) {
       $form->addError("Musíš zadat částku (a)nebo vybrat věc.");
     }
     $money = $values["money"];
@@ -85,7 +85,7 @@ final class GiftFormFactory {
     if($money > 0) {
       $message .= $this->localeModel->money($money);
     }
-    if($money > 0 AND strlen($item) > 0) {
+    if($money > 0 && strlen($item) > 0) {
       $message .= " a ";
     }
     if(strlen($item) > 0) {

@@ -198,9 +198,9 @@ final class Job {
    */
   public function getResultMessage(int $job, bool $success): string {
     $messages = $this->orm->jobMessages->findByJobAndSuccess($job, $success);
-    if($messages->count() === 0 AND $success) {
+    if($messages->count() === 0 && $success) {
       return $this->localeModel->genderMessage("Úspěšně jsi zvládl(a) směnu.");
-    } elseif($messages->count() === 0 AND !$success) {
+    } elseif($messages->count() === 0 && !$success) {
       return $this->localeModel->genderMessage("Nezvládl(a) jsi tuto směnu.");
     }
     $message = "";

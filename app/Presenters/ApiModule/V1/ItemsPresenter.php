@@ -26,7 +26,7 @@ final class ItemsPresenter extends BasePresenter {
         $this->resourceNotFound("item set", $itemSet);
       }
       $records = [$record->weapon, $record->armor, $record->helmet,];
-    } elseif(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
       $records = $this->orm->items->findAll();

@@ -44,7 +44,7 @@ abstract class BaseTransformer implements ITransformer {
       return in_array($key, $this->fields, true);
     }, ARRAY_FILTER_USE_KEY);
     foreach($record as &$value) {
-      if(!$value instanceof Entity AND !$value instanceof HasMany) {
+      if(!$value instanceof Entity && !$value instanceof HasMany) {
         continue;
       }
       if($value instanceof HasMany) {
@@ -53,7 +53,7 @@ abstract class BaseTransformer implements ITransformer {
         foreach($value as $item) {
           /** @var ITransformer|null $transformer */
           $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($item)]);
-          if($maxDepth > 0 AND !is_null($transformer)) {
+          if($maxDepth > 0 && !is_null($transformer)) {
             $array[] = $transformer->transform($item, $maxDepth);
           } else {
             $array[] = $item->id;
@@ -63,7 +63,7 @@ abstract class BaseTransformer implements ITransformer {
       } else {
         /** @var ITransformer|null $transformer */
         $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($value)]);
-        if($maxDepth > 0 AND !is_null($transformer)) {
+        if($maxDepth > 0 && !is_null($transformer)) {
           $value = $transformer->transform($value, $maxDepth);
         } else {
           $value = $value->id;

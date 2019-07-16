@@ -24,7 +24,7 @@ final class CommentsPresenter extends BasePresenter {
         $this->resourceNotFound("article", $article);
       }
       $records = $record->comments;
-    } elseif(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
       $records = $this->orm->comments->findAll();

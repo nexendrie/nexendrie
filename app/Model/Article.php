@@ -155,7 +155,7 @@ final class Article {
     if(is_null($article)) {
       throw new ArticleNotFoundException();
     }
-    if(!$this->user->isAllowed("article", "edit") AND $article->author->id !== $this->user->id) {
+    if(!$this->user->isAllowed("article", "edit") && $article->author->id !== $this->user->id) {
       throw new MissingPermissionsException("You don't have permissions for editting articles.");
     }
     foreach($data as $key => $value) {

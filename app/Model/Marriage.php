@@ -254,7 +254,7 @@ final class Marriage {
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
       throw new NotMarriedException();
-    } elseif($marriage->divorce < 1 OR $marriage->divorce > 2) {
+    } elseif($marriage->divorce < 1 || $marriage->divorce > 2) {
       throw new NotInDivorceException();
     }
     $marriage->status = MarriageEntity::STATUS_CANCELLED;
@@ -275,7 +275,7 @@ final class Marriage {
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
       throw new NotMarriedException();
-    } elseif($marriage->divorce < 1 OR $marriage->divorce > 2) {
+    } elseif($marriage->divorce < 1 || $marriage->divorce > 2) {
       throw new NotInDivorceException();
     }
     $marriage->divorce += 2;
@@ -297,9 +297,9 @@ final class Marriage {
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if(is_null($marriage)) {
       throw new NotMarriedException();
-    } elseif($marriage->divorce < 1 OR $marriage->divorce > 4) {
+    } elseif($marriage->divorce < 1 || $marriage->divorce > 4) {
       throw new NotInDivorceException();
-    } elseif(($marriage->divorce === 3 AND $this->user->id !== $marriage->user1->id) OR ($marriage->divorce === 4 AND $this->user->id !== $marriage->user2->id)) {
+    } elseif(($marriage->divorce === 3 && $this->user->id !== $marriage->user1->id) || ($marriage->divorce === 4 && $this->user->id !== $marriage->user2->id)) {
       throw new CannotTakeBackDivorceException();
     }
     $marriage->divorce = 0;

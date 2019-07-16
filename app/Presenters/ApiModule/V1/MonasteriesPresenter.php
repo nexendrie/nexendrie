@@ -17,7 +17,7 @@ final class MonasteriesPresenter extends BasePresenter {
         $this->resourceNotFound("town", $town);
       }
       $records = $record->monasteries;
-    } elseif(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
       $records = $this->orm->monasteries->findAll();

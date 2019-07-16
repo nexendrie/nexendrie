@@ -55,7 +55,7 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
    * The user must not be on adventure to see a page
    */
   protected function mustNotBeTavelling(): void {
-    if($this->user->isLoggedIn() AND $this->user->identity->travelling) {
+    if($this->user->isLoggedIn() && $this->user->identity->travelling) {
       $this->flashMessage("Toto nemůžeš dělat, když jsi na cestách.");
       $this->redirect("Homepage:");
     }

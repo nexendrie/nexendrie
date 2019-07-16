@@ -76,7 +76,7 @@ final class UserSettingsFormFactory {
   }
   
   public function validate(Form $form, array $values): void {
-    if(empty($values["password_old"]) AND !empty($values["password_new"])) {
+    if(empty($values["password_old"]) && !empty($values["password_new"])) {
       $form->addError("Musíš zadat současné heslo.");
     }
     if($values["password_new"] !== $values["password_check"]) {

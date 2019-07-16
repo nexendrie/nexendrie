@@ -161,7 +161,7 @@ final class Market {
     }
     /** @var UserItemEntity $row */
     $row = $this->orm->userItems->getByUserAndItem($user->id, $item);
-    if(is_null($row) OR in_array($itemRow->type, ItemEntity::getEquipmentTypes(), true)) {
+    if(is_null($row) || in_array($itemRow->type, ItemEntity::getEquipmentTypes(), true)) {
       $row = new UserItemEntity();
       $row->user = $user;
       $row->item = $item;

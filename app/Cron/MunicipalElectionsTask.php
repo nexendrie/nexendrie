@@ -91,7 +91,7 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask {
         $councillors--;
       }
       foreach($town->denizens as $denizen) {
-        if($denizen->group->id !== $ranks[1] OR in_array($denizen->id, $newCouncillors, true)) {
+        if($denizen->group->id !== $ranks[1] || in_array($denizen->id, $newCouncillors, true)) {
           continue;
         }
         echo "$denizen->publicname loses his/her seat in town council.\n";

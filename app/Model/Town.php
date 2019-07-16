@@ -197,13 +197,13 @@ final class Town {
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path === GroupEntity::PATH_CHURCH) {
       return false;
-    } elseif($user->group->path === GroupEntity::PATH_CITY AND $user->group->level !== 100) {
+    } elseif($user->group->path === GroupEntity::PATH_CITY && $user->group->level !== 100) {
       return false;
     } elseif(is_null($user->lastTransfer)) {
       return true;
     } elseif($user->lastTransfer + $month > time()) {
       return false;
-    } elseif($user->guild AND $user->guildRank->id === 4) {
+    } elseif($user->guild && $user->guildRank->id === 4) {
       return false;
     }
     return true;

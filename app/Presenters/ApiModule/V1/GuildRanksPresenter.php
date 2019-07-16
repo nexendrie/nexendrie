@@ -10,7 +10,7 @@ namespace Nexendrie\Presenters\ApiModule\V1;
  */
 final class GuildRanksPresenter extends BasePresenter {
   public function actionReadAll(): void {
-    if(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    if(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     }
     $records = $this->orm->guildRanks->findAll();

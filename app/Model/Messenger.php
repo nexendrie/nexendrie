@@ -68,10 +68,10 @@ final class Messenger {
     if(is_null($message)) {
       throw new MessageNotFoundException("Message not found.");
     }
-    if($message->from->id !== $this->user->id AND $message->to->id !== $this->user->id) {
+    if($message->from->id !== $this->user->id && $message->to->id !== $this->user->id) {
       throw new AccessDeniedException("You can't see this message.");
     }
-    if(!$message->read AND $message->to->id === $this->user->id) {
+    if(!$message->read && $message->to->id === $this->user->id) {
       $message->read = true;
       $this->orm->messages->persistAndFlush($message);
     }

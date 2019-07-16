@@ -230,7 +230,7 @@ final class Adventure {
       throw new MountNotOwnedException();
     } elseif($mount->hp < 30) {
       throw new MountInBadConditionException();
-    } elseif($adventure->event AND !$adventure->event->active) {
+    } elseif($adventure->event && !$adventure->event->active) {
       throw new AdventureNotAccessibleException();
     }
     $userAdventure = new UserAdventureEntity();

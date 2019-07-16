@@ -78,7 +78,7 @@ final class AddEditEventFormFactory {
     if($end === false) {
       $form->addError("Neplatný čas konce.");
     }
-    if($start instanceof DateTime AND $end instanceof  DateTime) {
+    if($start instanceof DateTime && $end instanceof  DateTime) {
       if($end->getTimestamp() < $start->getTimestamp()) {
         $form->addError("Akce nemůže skončit před svým začátkem.");
       }

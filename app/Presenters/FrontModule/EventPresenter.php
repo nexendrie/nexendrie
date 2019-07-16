@@ -27,7 +27,7 @@ final class EventPresenter extends BasePresenter {
       $this->template->event = $event = $this->model->getEvent($id);
       $time = time();
       $status = "past";
-      if($event->start <= $time AND $event->end >= $time) {
+      if($event->start <= $time && $event->end >= $time) {
         $status = "active";
       } elseif($event->start > $time) {
         $status = "future";

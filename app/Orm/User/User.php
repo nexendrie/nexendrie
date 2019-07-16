@@ -214,7 +214,7 @@ final class User extends \Nextras\Orm\Entity\Entity {
   }
 
   protected function getterAdventureBonusIncome(): float {
-    if(is_null($this->order) OR $this->group->path !== Group::PATH_TOWER) {
+    if(is_null($this->order) || $this->group->path !== Group::PATH_TOWER) {
       return 0;
     }
     return $this->orderRank->adventureBonus + $this->order->adventuresBonusIncome;

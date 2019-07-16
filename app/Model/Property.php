@@ -58,10 +58,10 @@ final class Property {
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->guild AND $user->group->path === GroupEntity::PATH_CITY) {
+    if($user->guild && $user->group->path === GroupEntity::PATH_CITY) {
       $result += $user->guildRank->guildFee;
     }
-    if($user->order AND $user->group->path === GroupEntity::PATH_TOWER) {
+    if($user->order && $user->group->path === GroupEntity::PATH_TOWER) {
       $result += $user->orderRank->orderFee;
     }
     return $result;
@@ -102,7 +102,7 @@ final class Property {
     $towns = $this->orm->towns->findByOwner($this->user->id);
     foreach($towns as $town) {
       $budget["incomes"]["taxes"] += $this->taxesModel->calculateTownTaxes($town)->taxes;
-      if(($town->id === $this->user->identity->town) AND ($town->owner->id === $this->user->id)) {
+      if(($town->id === $this->user->identity->town) && ($town->owner->id === $this->user->id)) {
         $budget["expenses"]["incomeTax"] = 0;
       }
     }

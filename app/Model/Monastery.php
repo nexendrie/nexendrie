@@ -93,10 +93,10 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery AND $user->group->path === GroupEntity::PATH_CITY) {
-      return !($user->guild AND $user->guildRank->id === $this->guildModel->maxRank);
-    } elseif(!$user->monastery AND $user->group->path === GroupEntity::PATH_TOWER) {
-      return !($user->order AND $user->orderRank->id === $this->orderModel->maxRank);
+    if(!$user->monastery && $user->group->path === GroupEntity::PATH_CITY) {
+      return !($user->guild && $user->guildRank->id === $this->guildModel->maxRank);
+    } elseif(!$user->monastery && $user->group->path === GroupEntity::PATH_TOWER) {
+      return !($user->order && $user->orderRank->id === $this->orderModel->maxRank);
     } elseif($user->group->path === GroupEntity::PATH_CHURCH) {
       if($user->monasteriesLed->countStored()) {
         return false;
@@ -130,7 +130,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monastery AND $user->monastery->id === $monastery->id) {
+    if($user->monastery && $user->monastery->id === $monastery->id) {
       throw new CannotJoinOwnMonasteryException();
     }
     $user->lastTransfer = $user->lastActive = time();
@@ -223,7 +223,7 @@ final class Monastery {
     $user = $this->orm->users->getById($this->user->id);
     $user->monastery = null;
 
-    if($user->ownedTowns->countStored() OR $this->orm->castles->getByOwner($this->user->id)) {
+    if($user->ownedTowns->countStored() || $this->orm->castles->getByOwner($this->user->id)) {
       $ranks = $this->orm->groups->getTowerGroupIds();
     } else {
       $ranks = $this->orm->groups->getCityGroupIds();
@@ -331,7 +331,7 @@ final class Monastery {
       }
       if($key === "name") {
         $m = $this->orm->monasteries->getByName($value);
-        if($m AND $m->id !== $id) {
+        if($m && $m->id !== $id) {
           throw new MonasteryNameInUseException();
         }
       }
@@ -546,7 +546,7 @@ final class Monastery {
     if(is_null($user)) {
       throw new UserNotFoundException();
     }
-    if(is_null($user->monastery) OR $user->monastery->id !== $admin->monastery->id OR $user->monastery->leader->id !== $this->user->id) {
+    if(is_null($user->monastery) || $user->monastery->id !== $admin->monastery->id || $user->monastery->leader->id !== $this->user->id) {
       throw new UserNotInYourMonasteryException();
     }
     if($user->group->id <= $ranks[0]) {
@@ -585,7 +585,7 @@ final class Monastery {
     if(is_null($user)) {
       throw new UserNotFoundException();
     }
-    if(is_null($user->monastery) OR $user->monastery->id !== $admin->monastery->id OR $user->monastery->leader->id !== $this->user->id) {
+    if(is_null($user->monastery) || $user->monastery->id !== $admin->monastery->id || $user->monastery->leader->id !== $this->user->id) {
       throw new UserNotInYourMonasteryException();
     }
     end($ranks);

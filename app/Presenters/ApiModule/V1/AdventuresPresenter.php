@@ -17,7 +17,7 @@ final class AdventuresPresenter extends BasePresenter {
         $this->resourceNotFound("event", $event);
       }
       $records = $record->adventures;
-    } elseif(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
       $records = $this->orm->adventures->findAll();

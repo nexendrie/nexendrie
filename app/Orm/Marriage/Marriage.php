@@ -98,16 +98,16 @@ final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEff
   
   public function onBeforeUpdate(): void {
     parent::onBeforeUpdate();
-    if($this->status === static::STATUS_ACCEPTED AND is_null($this->accepted)) {
+    if($this->status === static::STATUS_ACCEPTED && is_null($this->accepted)) {
       $this->accepted = time();
     }
-    if($this->status === static::STATUS_ACCEPTED AND is_null($this->term)) {
+    if($this->status === static::STATUS_ACCEPTED && is_null($this->term)) {
       $this->term = time() + (60 * 60 * 24 * 14);
     }
-    if($this->status === static::STATUS_DECLINED AND is_null($this->accepted)) {
+    if($this->status === static::STATUS_DECLINED && is_null($this->accepted)) {
       $this->accepted = time();
     }
-    if($this->status === static::STATUS_CANCELLED AND is_null($this->cancelled)) {
+    if($this->status === static::STATUS_CANCELLED && is_null($this->cancelled)) {
       $this->cancelled = time();
     }
   }

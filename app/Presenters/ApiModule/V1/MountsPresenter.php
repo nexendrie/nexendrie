@@ -24,7 +24,7 @@ final class MountsPresenter extends BasePresenter {
         $this->resourceNotFound("mount type", $mountType);
       }
       $records = $record->mounts;
-    } elseif(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
       $records = $this->orm->mounts->findAll();

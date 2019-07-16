@@ -17,7 +17,7 @@ final class PunishmentsPresenter extends BasePresenter {
         $this->resourceNotFound("user", $user);
       }
       $records = $record->punishments;
-    } elseif(isset($this->params["associations"]) AND count($this->params["associations"]) > 0) {
+    } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
       $records = $this->orm->punishments->findAll();

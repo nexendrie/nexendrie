@@ -74,7 +74,7 @@ final class Castle {
       throw $e;
     }
     foreach($data as $key => $value) {
-      if($key === "name" AND !$this->checkNameAvailability($value, $id)) {
+      if($key === "name" && !$this->checkNameAvailability($value, $id)) {
         throw new CastleNameInUseException();
       }
       $castle->$key = $value;
