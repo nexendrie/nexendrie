@@ -9,7 +9,7 @@ final class UserTransformer extends BaseTransformer {
     "guild", "guildRank", "order", "orderRank", "prayers", "title", "completedAdventures", "completedJobs",
     "producedBeers", "punishmentsCount", "lessonsTaken", "ownedTowns",
   ];
-  protected $fieldsRename = ["joinedAt" => "joined", "lastActiveAt" => "lastActive", "publicname" => "name",];
+  protected $fieldsRename = ["joinedAt" => "joined", "lastActiveAt" => "lastActive", "publicname" => "name", ];
 
   public function getEntityClassName(): string {
     return \Nexendrie\Orm\User::class;

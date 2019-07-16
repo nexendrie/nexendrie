@@ -8,7 +8,7 @@ final class EventTransformer extends BaseTransformer {
     "id", "name", "description", "startAt", "endAt", "adventuresBonus", "workBonus", "prayerLifeBonus",
     "trainingDiscount", "repairingDiscount", "shoppingDiscount", "adventures",
   ];
-  protected $fieldsRename = ["startAt" => "start", "endAt" => "end",];
+  protected $fieldsRename = ["startAt" => "start", "endAt" => "end", ];
 
   public function getEntityClassName(): string {
     return \Nexendrie\Orm\Event::class;

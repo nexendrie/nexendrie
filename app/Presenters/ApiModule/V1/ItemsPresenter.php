@@ -9,7 +9,7 @@ namespace Nexendrie\Presenters\ApiModule\V1;
  * @author Jakub Konečný
  */
 final class ItemsPresenter extends BasePresenter {
-  protected $fields = ["id", "name", "description", "price", "shop", "type", "strength",];
+  protected $fields = ["id", "name", "description", "price", "shop", "type", "strength", ];
   
   public function actionReadAll(): void {
     if(isset($this->params["associations"]["shops"])) {
@@ -25,7 +25,7 @@ final class ItemsPresenter extends BasePresenter {
       if(is_null($record)) {
         $this->resourceNotFound("item set", $itemSet);
       }
-      $records = [$record->weapon, $record->armor, $record->helmet,];
+      $records = [$record->weapon, $record->armor, $record->helmet, ];
     } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {

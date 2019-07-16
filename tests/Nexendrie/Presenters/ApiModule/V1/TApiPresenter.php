@@ -35,7 +35,7 @@ trait TApiPresenter {
     foreach($this->forbiddenMethods as $method => $action) {
       /** @var Application $application */
       $application = $this->getService(Application::class);
-      $request = new Request($presenter, $method, ["action" => $action,]);
+      $request = new Request($presenter, $method, ["action" => $action, ]);
       $application->onResponse[0] = function(Application $application, IResponse $response) use($method) {
         /** @var JsonResponse $response */
         Assert::type(JsonResponse::class, $response);

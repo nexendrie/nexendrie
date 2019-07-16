@@ -28,7 +28,7 @@ final class NpcsPresenter extends BasePresenter {
     $id = (int) $this->params["id"];
     if(isset($this->params["associations"]["adventures"])) {
       $adventure = (int) $this->params["associations"]["adventures"];
-      $record = $this->orm->adventureNpcs->getBy(["id" => $id, "adventure" => $adventure,]);
+      $record = $this->orm->adventureNpcs->getBy(["id" => $id, "adventure" => $adventure, ]);
     } else {
       return;
     }
