@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc23318cf85f25a82ca04b8af5864854",
+    "content-hash": "39cf7ef5039ddf5bbbc859df9008eede",
     "packages": [
         {
             "name": "adamstipak/nette-rest-route",
@@ -3502,7 +3502,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.2.0",
+        "php": ">=7.3.0",
         "ext-simplexml": "*"
     },
     "platform-dev": []

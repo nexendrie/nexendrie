@@ -1,3 +1,6 @@
+Version 1.0.0-beta7+dev
+- raised minimal version of PHP to 7.3
+
 Version 1.0.0-beta7
 - discount for learning skills in monastery now determined by library's level
 - added support for OpenSearch
