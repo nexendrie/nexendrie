@@ -50,6 +50,10 @@
         "dg/ftp-deployment": "^3.0",
         "phpstan/phpstan-nette": "^0.11"
     },
+    "replace": {
+        "symfony/polyfill-php73": "*",
+        "symfony/polyfill-mbstring": "*"
+    },
     "autoload": {
         "psr-4": {
             "Nexendrie\\": [
