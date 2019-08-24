@@ -21,7 +21,7 @@
     </exec>
     <phingcall target="test"/>
   </target>
-  <target name="test-ci-coverage" depends="install-ci,test-phpdbg"/>
+  <target name="test-ci-coverage" depends="install-ci,test-coverage"/>
   <target name="install">
     <property name="environment" value="production"/>
     <if>
