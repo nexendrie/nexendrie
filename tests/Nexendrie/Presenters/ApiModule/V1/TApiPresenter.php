@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\ApiModule\V1;
 
+use Nette\Application\Responses\TextResponse;
 use Tester\Assert;
 use Nette\Utils\Strings;
 use Nette\Application\Application;
@@ -53,6 +54,14 @@ trait TApiPresenter {
     $presenter = $this->getPresenterName();
     $expected = ["message" => "This action is not allowed."];
     $this->checkJsonScheme("$presenter:readAll", $expected, ["associations" => ["abc" => 1]]);
+  }
+
+  public function testOptions() {
+    $action = $this->getPresenterName() . ":options";
+    /** @var TextResponse $response */
+    $response = $this->check($action);
+    Assert::type(TextResponse::class, $response);
+    Assert::same("", $response->getSource());
   }
 }
 ?>

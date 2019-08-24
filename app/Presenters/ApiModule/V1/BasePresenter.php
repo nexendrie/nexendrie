@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\ApiModule\V1;
 
+use Nette\Application\Responses\TextResponse;
+use Nette\Http\IResponse;
 use Nette\Utils\Json;
 use Nextras\Orm\Entity\Entity;
 use Nette\Utils\Strings;
@@ -62,6 +64,12 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->methodNotAllowed();
   }
 
+  public function actionOptions(): void {
+    $this->getHttpResponse()->setCode(IResponse::S204_NO_CONTENT);
+    $this->getHttpResponse()->addHeader("Allow", implode(", ", $this->getAllowedMethods()));
+    $this->sendResponse(new TextResponse(""));
+  }
+
   protected function getCollectionName(): string {
     $presenterName = (string) Strings::before(static::class, "Presenter", -1);
     $presenterName = (string) Strings::after($presenterName, "\\", -1);
@@ -105,7 +113,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
       "GET" => "actionReadAll", "POST" => "actionCreate", "PUT" => "actionUpdate",
       "PATCH" => "actionPartialUpdate", "DELETE" => "actionDelete",
     ];
-    $return = [];
+    $return = ["OPTIONS",];
     if(isset($this->params["id"])) {
       $methods["GET"] = "actionRead";
     }
