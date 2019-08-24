@@ -34,6 +34,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected function methodNotAllowed(): void {
     $method = $this->request->method;
     $this->getHttpResponse()->setCode(405);
+    $this->getHttpResponse()->addHeader("Allow", implode(", ", $this->getAllowedMethods()));
     $this->sendJson(["message" => "Method $method is not allowed."]);
   }
 
@@ -94,6 +95,28 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
       $this->getHttpResponse()->setCode(400);
       $this->sendJson(["message" => "Error while parsing request body: " . $e->getMessage() . "."]);
     }
+  }
+
+  /**
+   * @return string[]
+   */
+  protected function getAllowedMethods(): array {
+    $methods = [
+      "GET" => "actionReadAll", "POST" => "actionCreate", "PUT" => "actionUpdate",
+      "PATCH" => "actionPartialUpdate", "DELETE" => "actionDelete",
+    ];
+    $return = [];
+    if(isset($this->params["id"])) {
+      $methods["GET"] = "actionRead";
+    }
+    foreach($methods as $httpMethod => $classMethod) {
+      $rm = new \ReflectionMethod(static::class, $classMethod);
+      $declaringClass = $rm->getDeclaringClass()->getName();
+      if($declaringClass === static::class) {
+        $return[] = $httpMethod;
+      }
+    }
+    return $return;
   }
   
   protected function beforeRender(): void {
