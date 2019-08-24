@@ -121,12 +121,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "2201363f205938558e600fe423e77ff53fd33a75"
+                "reference": "171c3690e23a85719cd2feb31b6c85447d834c8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=2201363f205938558e600fe423e77ff53fd33a75",
-                "reference": "2201363f205938558e600fe423e77ff53fd33a75",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=171c3690e23a85719cd2feb31b6c85447d834c8c",
+                "reference": "171c3690e23a85719cd2feb31b6c85447d834c8c",
                 "shasum": ""
             },
             "require": {
@@ -171,7 +171,7 @@
             "keywords": [
                 "combat"
             ],
-            "time": "2019-07-21T12:27:34+00:00"
+            "time": "2019-08-10T16:06:15+00:00"
         },
         {
             "name": "kdyby/autowired",
@@ -2532,16 +2532,16 @@
         },
         {
             "name": "nette/tester",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tester.git",
-                "reference": "899c70c53b40dfe4a214e568babb617a9c454071"
+                "reference": "60c71a62c2bd18903729251c0a8483c6c3397891"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/899c70c53b40dfe4a214e568babb617a9c454071",
-                "reference": "899c70c53b40dfe4a214e568babb617a9c454071",
+                "url": "https://api.github.com/repos/nette/tester/zipball/60c71a62c2bd18903729251c0a8483c6c3397891",
+                "reference": "60c71a62c2bd18903729251c0a8483c6c3397891",
                 "shasum": ""
             },
             "require": {
@@ -2553,7 +2553,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -2591,7 +2591,7 @@
                 "testing",
                 "unit"
             ],
-            "time": "2019-03-11T08:54:30+00:00"
+            "time": "2019-08-11T17:02:47+00:00"
         },
         {
             "name": "nexendrie/code-quality",
@@ -2599,12 +2599,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "dbe1eda527b9550887e8731b9206cf869cadae79"
+                "reference": "64ca706070df64f7a3d6f68ebe37375d9c11c636"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=dbe1eda527b9550887e8731b9206cf869cadae79",
-                "reference": "dbe1eda527b9550887e8731b9206cf869cadae79",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=64ca706070df64f7a3d6f68ebe37375d9c11c636",
+                "reference": "64ca706070df64f7a3d6f68ebe37375d9c11c636",
                 "shasum": ""
             },
             "require": {
@@ -2633,7 +2633,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2019-05-19T10:13:17+00:00"
+            "time": "2019-08-17T11:25:37+00:00"
         },
         {
             "name": "nexendrie/testbench",
@@ -2713,16 +2713,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.2.2",
+            "version": "v4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "1bd73cc04c3843ad8d6b0bfc0956026a151fc420"
+                "reference": "e612609022e935f3d0337c1295176505b41188c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1bd73cc04c3843ad8d6b0bfc0956026a151fc420",
-                "reference": "1bd73cc04c3843ad8d6b0bfc0956026a151fc420",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e612609022e935f3d0337c1295176505b41188c8",
+                "reference": "e612609022e935f3d0337c1295176505b41188c8",
                 "shasum": ""
             },
             "require": {
@@ -2730,7 +2730,7 @@
                 "php": ">=7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.5 || ^7.0"
+                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
             },
             "bin": [
                 "bin/php-parse"
@@ -2760,7 +2760,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-05-25T20:07:01+00:00"
+            "time": "2019-08-12T20:17:41+00:00"
         },
         {
             "name": "ocramius/package-versions",

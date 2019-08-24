@@ -16,3 +16,4 @@ parameters:
         # until we use Nette 3
         - '#Method Nette\\Localization\\ITranslator::translate\(\) invoked with 3 parameters, 1-2 required#'
         - '#Dynamic call to static method Nette\\Security\\Passwords::[a-z]+\(\)#'
+        - '#Method Nette\\DI\\CompilerExtension::getConfig\(\) invoked with 1 parameter, 0 required#'
