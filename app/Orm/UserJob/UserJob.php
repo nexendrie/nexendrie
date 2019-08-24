@@ -55,7 +55,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
   protected function getSkillRewardBonus(int $baseReward): int {
     /** @var UserSkill|null $userSkill */
     $userSkill = $this->user->skills->get()->getBy([
-      "id" => $this->job->neededSkill->id
+      "skill" => $this->job->neededSkill->id
     ]);
     if(is_null($userSkill)) {
       return 0;
@@ -92,7 +92,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
   protected function getSkillSuccessRateBonus(): int {
     /** @var UserSkill|null $userSkill */
     $userSkill = $this->user->skills->get()->getBy([
-      "id" => $this->job->neededSkill->id
+      "skill" => $this->job->neededSkill->id
     ]);
     if(is_null($userSkill)) {
       return 0;
