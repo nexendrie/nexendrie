@@ -6,26 +6,26 @@ stages:
 
 cache:
   paths:
-  - vendor/
+    - vendor/
 
-.job_template: &test_job
+.test_job: &test_job
   stage: test
 
   services:
-  - mariadb
+    - mariadb
 
   variables:
     MYSQL_DATABASE: nexendrie
     MYSQL_ROOT_PASSWORD: root
 
   script:
-  - phing test-ci
+    - phing test-ci
 
-.job_template: &deploy_job
+.deploy_job: &deploy_job
   stage: deploy
 
   script:
-  - phing deploy
+    - phing deploy
 
 test:default:
   <<: *test_job
@@ -34,33 +34,33 @@ test:default:
 test:pgsql:
   <<: *test_job
   services:
-  - postgres
+    - postgres
   variables:
     POSTGRES_DB: nexendrie
     POSTGRES_USER: root
     POSTGRES_PASSWORD: root
   script:
-  - phing test-ci-pgsql
+    - phing test-ci-pgsql
   allow_failure: true
 
 test:cc:
   <<: *test_job
   script:
-  - phing test-ci-coverage
+    - phing test-ci-coverage
   coverage: '/(\d+\%) covered/'
   artifacts:
     name: "Code coverage"
     paths:
-    - coverage.html
+      - coverage.html
   retry: 2
 
 test:css:
   stage: test
   image: node:lts-buster
   before_script:
-  - npm install -g csslint
+    - npm install -g csslint
   script:
-  - csslint styles
+    - csslint styles
 
 deploy:alpha:
   <<: *deploy_job
