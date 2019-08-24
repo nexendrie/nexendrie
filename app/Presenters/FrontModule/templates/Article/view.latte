@@ -17,7 +17,7 @@
     {foreach $article->comments as $comment}
     {var $i = $iterator->counter}
     <span id="comment-{$i}">
-      <a name="comment-{$comment->id}" href="#comment-{$comment->id}">#{$i}</a> {control userProfileLink $comment->author} - {$comment->title} ({$comment->addedAt}):<br>
+      <a name="comment-{$comment->id}" href="#comment-{$comment->id}">#{$i}</a> {control userProfileLink $comment->author}{if $comment->author->id === $user->id} (Ty){elseif $comment->author->id === $article->author->id} (Autor článku){elseif $comment->author->group->level === 10000} (Administrátor){/if} - {$comment->title} ({$comment->addedAt}):<br>
       {$comment->text}
     </span>{if !$iterator->last}<br>{/if}
     {/foreach}
