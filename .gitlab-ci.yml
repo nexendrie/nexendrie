@@ -56,7 +56,7 @@ test:cc:
 
 test:css:
   stage: test
-  image: node:9
+  image: node:lts-buster
   before_script:
   - npm install -g csslint
   script:
