@@ -7,6 +7,7 @@ parameters:
     universalObjectCratesClasses:
         - Nette\Security\IIdentity
         - Nextras\Orm\Entity\IEntity
+    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         - '#Method Nexendrie\\Orm\[a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+ should return Nexendrie\\Orm[a-zA-Z0-9\\_]+|null but returns Nextras\\Orm\\IEntity|null#'
         - '#Construct empty\(\) is not allowed. Use more strict comparison#'
