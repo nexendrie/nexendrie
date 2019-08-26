@@ -29,13 +29,13 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   }
   
   protected function resourceNotFound(string $resource, int $id): void {
-    $this->getHttpResponse()->setCode(404);
+    $this->getHttpResponse()->setCode(IResponse::S404_NOT_FOUND);
     $this->sendJson(["message" => Strings::firstUpper($resource) . " with id $id was not found."]);
   }
   
   protected function methodNotAllowed(): void {
     $method = $this->request->method;
-    $this->getHttpResponse()->setCode(405);
+    $this->getHttpResponse()->setCode(IResponse::S405_METHOD_NOT_ALLOWED);
     $this->getHttpResponse()->addHeader("Allow", implode(", ", $this->getAllowedMethods()));
     $this->sendJson(["message" => "Method $method is not allowed."]);
   }
@@ -100,7 +100,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     try {
       return Json::decode($data);
     } catch(\Nette\Utils\JsonException $e) {
-      $this->getHttpResponse()->setCode(400);
+      $this->getHttpResponse()->setCode(IResponse::S400_BAD_REQUEST);
       $this->sendJson(["message" => "Error while parsing request body: " . $e->getMessage() . "."]);
     }
   }
@@ -128,7 +128,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   }
   
   protected function beforeRender(): void {
-    $this->getHttpResponse()->setCode(400);
+    $this->getHttpResponse()->setCode(IResponse::S400_BAD_REQUEST);
     $this->sendJson(["message" => "This action is not allowed."]);
   }
 }
