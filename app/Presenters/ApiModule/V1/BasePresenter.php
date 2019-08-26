@@ -27,7 +27,12 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->orm = $orm;
     $this->entityConverter = $entityConverter;
   }
-  
+
+  protected function shutdown($response) {
+    parent::shutdown($response);
+    $this->getHttpResponse()->setHeader("Set-Cookie", null);
+  }
+
   protected function resourceNotFound(string $resource, int $id): void {
     $this->getHttpResponse()->setCode(IResponse::S404_NOT_FOUND);
     $this->sendJson(["message" => Strings::firstUpper($resource) . " with id $id was not found."]);
