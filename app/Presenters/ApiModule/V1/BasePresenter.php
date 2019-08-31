@@ -55,6 +55,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     if(isset($this->params["id"])) {
       $methods["GET"] = "actionRead";
     }
+    $methods["HEAD"] = $methods["GET"];
     foreach($methods as $httpMethod => $classMethod) {
       $rm = new \ReflectionMethod(static::class, $classMethod);
       $declaringClass = $rm->getDeclaringClass()->getName();

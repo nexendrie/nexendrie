@@ -5,7 +5,7 @@ namespace Nexendrie\Model;
 
 use Nette\Application\Routers\RouteList;
 use Nette\Application\Routers\Route;
-use AdamStipak\RestRoute;
+use Nexendrie\Api\RestRoute;
 
 /**
  * Router Factory

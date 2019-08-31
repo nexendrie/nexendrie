@@ -1,6 +1,7 @@
 Version 1.0.0-beta7+dev
 - raised minimal version of PHP to 7.3
-- api sends list of allowed methods with 405 status code and supports OPTIONS method
+- api sends list of allowed methods with 405 status code
+- added support for OPTIONS and HEAD methods in api
 - comments from current user/article's author/admin are marked now
 - fixed skill's bonus to work success rate and reward
 - single entities in api now send Link headers
