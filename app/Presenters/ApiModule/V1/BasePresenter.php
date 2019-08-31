@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\ApiModule\V1;
 
 use Nette\Application\Responses\TextResponse;
+use Nette\Http\IRequest;
 use Nette\Http\IResponse;
 use Nette\Utils\Json;
 use Nextras\Orm\Entity\Entity;
@@ -130,7 +131,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected function sendCollection(iterable $collection, ?string $name = null): void {
     $data = $this->entityConverter->convertCollection($collection);
     $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader("self", $this->getSelfLink()));
-    $this->sendJson([$name ?? $this->getCollectionName() => $data]);
+    $payload = [$name ?? $this->getCollectionName() => $data];
+    $this->addContentLengthHeader($payload);
+    $this->sendJson($payload);
   }
 
   protected function getEntityName(): string {
@@ -152,7 +155,18 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     foreach($links as $rel => $link) {
       $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader($rel, $link));
     }
-    $this->sendJson([$name => $data]);
+    $payload = [$name => $data];
+    $this->addContentLengthHeader($payload);
+    $this->sendJson($payload);
+  }
+
+  /**
+   * Adds Content-Length header for HEAD requests.
+   */
+  protected function addContentLengthHeader(array $payload): void {
+    if($this->getHttpRequest()->getMethod() === IRequest::HEAD) {
+      $this->getHttpResponse()->addHeader("Content-Length", strlen(Json::encode($payload)));
+    }
   }
 
   protected function getPostData(): object {
