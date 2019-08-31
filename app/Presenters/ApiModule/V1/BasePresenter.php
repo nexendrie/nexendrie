@@ -52,7 +52,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
       IRequest::GET => "actionReadAll", IRequest::POST => "actionCreate", IRequest::PUT => "actionUpdate",
       IRequest::PATCH => "actionPartialUpdate", IRequest::DELETE => "actionDelete",
     ];
-    $return = [IRequest::OPTIONS,];
+    $return = [IRequest::OPTIONS, ];
     if(isset($this->params["id"])) {
       $methods[IRequest::GET] = "actionRead";
     }
