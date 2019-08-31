@@ -19,8 +19,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected $orm;
   /** @var \Nexendrie\Api\EntityConverter */
   protected $entityConverter;
-  protected $fields = [];
-  protected $fieldsRename = [];
   
   public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Api\EntityConverter $entityConverter) {
     parent::__construct();
