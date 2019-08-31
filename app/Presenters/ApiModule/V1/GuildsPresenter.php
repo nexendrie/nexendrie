@@ -36,5 +36,11 @@ final class GuildsPresenter extends BasePresenter {
     $record = $this->orm->guilds->getById($this->getId());
     $this->sendEntity($record);
   }
+
+  protected function getEntityLinks(): array {
+    $links = parent::getEntityLinks();
+    $links["users"] = $this->createEntityLink("users");
+    return $links;
+  }
 }
 ?>

@@ -146,6 +146,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
       $this->resourceNotFound($name2 ?? $name, $this->getId());
     }
     $data = $this->entityConverter->convertEntity($entity);
+    $links = $this->getEntityLinks();
+    foreach($links as $rel => $link) {
+      $this->getHttpResponse()->addHeader("Link", "<$link>; rel=\"$rel\"");
+    }
     $this->sendJson([$name => $data]);
   }
 
@@ -161,6 +165,26 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
 
   protected function getId(): int {
     return (int) $this->params["id"];
+  }
+
+  protected function createEntityLink(string $targetCollectionName): string {
+    $targetCollectionName = Strings::firstUpper($targetCollectionName);
+    $params = ["associations" => [$this->getCollectionName() => $this->getId()]];
+    return $this->link("$targetCollectionName:readAll", $params);
+  }
+
+  /**
+   * Defines links of current entity to (collections of) other entities. Used by @see sendEntity.
+   * When overriding, store result of parent method and add new elements of array.
+   * Key is type of relationship, value is the link. The link should start with /.
+   * Use @see createEntityLink to get urls.
+   *
+   * @return string[]
+   */
+  protected function getEntityLinks(): array {
+    return [
+      "self" => $this->getHttpRequest()->getUrl()->path,
+    ];
   }
 }
 ?>

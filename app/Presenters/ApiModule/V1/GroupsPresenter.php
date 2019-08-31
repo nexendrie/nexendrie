@@ -21,5 +21,11 @@ final class GroupsPresenter extends BasePresenter {
     $record = $this->orm->groups->getById($this->getId());
     $this->sendEntity($record);
   }
+
+  protected function getEntityLinks(): array {
+    $links = parent::getEntityLinks();
+    $links["users"] = $this->createEntityLink("users");
+    return $links;
+  }
 }
 ?>

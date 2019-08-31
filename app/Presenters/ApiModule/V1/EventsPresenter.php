@@ -21,5 +21,11 @@ final class EventsPresenter extends BasePresenter {
     $record = $this->orm->events->getById($this->getId());
     $this->sendEntity($record);
   }
+
+  protected function getEntityLinks(): array {
+    $links = parent::getEntityLinks();
+    $links["adventures"] = $this->createEntityLink("adventures");
+    return $links;
+  }
 }
 ?>

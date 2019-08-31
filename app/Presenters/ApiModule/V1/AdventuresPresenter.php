@@ -29,5 +29,11 @@ final class AdventuresPresenter extends BasePresenter {
     $record = $this->orm->adventures->getById($this->getId());
     $this->sendEntity($record);
   }
+
+  protected function getEntityLinks(): array {
+    $links = parent::getEntityLinks();
+    $links["npcs"] = $this->createEntityLink("npcs");
+    return $links;
+  }
 }
 ?>

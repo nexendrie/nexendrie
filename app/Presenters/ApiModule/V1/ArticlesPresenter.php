@@ -29,5 +29,11 @@ final class ArticlesPresenter extends BasePresenter {
     $record = $this->orm->articles->getById($this->getId());
     $this->sendEntity($record);
   }
+
+  protected function getEntityLinks(): array {
+    $links = parent::getEntityLinks();
+    $links["comments"] = $this->createEntityLink("comments");
+    return $links;
+  }
 }
 ?>

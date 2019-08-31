@@ -29,5 +29,12 @@ final class SkillsPresenter extends BasePresenter {
     $record = $this->orm->skills->getById($this->getId());
     $this->sendEntity($record);
   }
+
+  protected function getEntityLinks(): array {
+    $links = parent::getEntityLinks();
+    $links["jobs"] = $this->createEntityLink("jobs");
+    $links["guilds"] = $this->createEntityLink("guilds");
+    return $links;
+  }
 }
 ?>

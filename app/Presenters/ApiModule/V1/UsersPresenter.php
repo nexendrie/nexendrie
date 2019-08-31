@@ -57,5 +57,17 @@ final class UsersPresenter extends BasePresenter {
     $record = $this->orm->users->getById($this->getId());
     $this->sendEntity($record);
   }
+
+  protected function getEntityLinks(): array {
+    $links = parent::getEntityLinks();
+    $links["articles"] = $this->createEntityLink("articles");
+    $links["comments"] = $this->createEntityLink("comments");
+    $links["mounts"] = $this->createEntityLink("mounts");
+    $links["polls"] = $this->createEntityLink("polls");
+    $links["punishments"] = $this->createEntityLink("punishments");
+    $links["skills"] = $this->createEntityLink("skills");
+    $links["towns"] = $this->createEntityLink("towns");
+    return $links;
+  }
 }
 ?>

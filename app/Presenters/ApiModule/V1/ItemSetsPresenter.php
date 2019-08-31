@@ -21,5 +21,11 @@ final class ItemSetsPresenter extends BasePresenter {
     $record = $this->orm->itemSets->getById($this->getId());
     $this->sendEntity($record, null, "Item set");
   }
+
+  protected function getEntityLinks(): array {
+    $links = parent::getEntityLinks();
+    $links["items"] = $this->createEntityLink("items");
+    return $links;
+  }
 }
 ?>

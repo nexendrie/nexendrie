@@ -21,5 +21,11 @@ final class ShopsPresenter extends BasePresenter {
     $record = $this->orm->shops->getById($this->getId());
     $this->sendEntity($record);
   }
+
+  protected function getEntityLinks(): array {
+    $links = parent::getEntityLinks();
+    $links["items"] = $this->createEntityLink("items");
+    return $links;
+  }
 }
 ?>
