@@ -26,16 +26,59 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->entityConverter = $entityConverter;
   }
 
+  /**
+   * If no response was sent, we received a request that we are not able to handle.
+   * That means e. g. invalid associations.
+   */
+  protected function beforeRender(): void {
+    $this->getHttpResponse()->setCode(IResponse::S400_BAD_REQUEST);
+    $this->sendJson(["message" => "This action is not allowed."]);
+  }
+
   protected function shutdown($response) {
     parent::shutdown($response);
+    // do not send cookies with response, they are not (meant to be) used for authentication
     $this->getHttpResponse()->setHeader("Set-Cookie", null);
   }
 
+  /**
+   * @return string[]
+   */
+  protected function getAllowedMethods(): array {
+    // we check in which class a method was defined to decide if the corresponding HTTP method is allowed
+    // this base presenter forbids all methods, so if a subclass overrides it, we assume that it is allowed
+    $methods = [
+      "GET" => "actionReadAll", "POST" => "actionCreate", "PUT" => "actionUpdate",
+      "PATCH" => "actionPartialUpdate", "DELETE" => "actionDelete",
+    ];
+    $return = ["OPTIONS",];
+    if(isset($this->params["id"])) {
+      $methods["GET"] = "actionRead";
+    }
+    foreach($methods as $httpMethod => $classMethod) {
+      $rm = new \ReflectionMethod(static::class, $classMethod);
+      $declaringClass = $rm->getDeclaringClass()->getName();
+      if($declaringClass === static::class) {
+        $return[] = $httpMethod;
+      }
+    }
+    return $return;
+  }
+
+  /**
+   * A quick way to send 404 status with an appropriate message to the client.
+   * It is meant to be used only in @see sendEntity method
+   * or @see actionReadAll method when the associated resource was not found.
+   */
   protected function resourceNotFound(string $resource, int $id): void {
     $this->getHttpResponse()->setCode(IResponse::S404_NOT_FOUND);
     $this->sendJson(["message" => Strings::firstUpper($resource) . " with id $id was not found."]);
   }
-  
+
+  /**
+   * A quick way to send 405 status with an appropriate message and list of allowed methods to the client.
+   * It is send by default to all HTTP methods but OPTIONS.
+   */
   protected function methodNotAllowed(): void {
     $method = $this->request->method;
     $this->getHttpResponse()->setCode(IResponse::S405_METHOD_NOT_ALLOWED);
@@ -79,6 +122,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     return Strings::firstLower($presenterName);
   }
 
+  /**
+   * A quick way to send a collection of entities as response.
+   * It is meant to be used in @see actionReadAll method.
+   */
   protected function sendCollection(iterable $collection, ?string $name = null): void {
     $data = $this->entityConverter->convertCollection($collection);
     $this->sendJson([$name ?? $this->getCollectionName() => $data]);
@@ -89,6 +136,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     return substr($name, 0, -1);
   }
 
+  /**
+   * A quick way to send single entity as response.
+   * It is meant to be used in @see actionRead method.
+   */
   protected function sendEntity(?Entity $entity, ?string $name = null, ?string $name2 = null): void {
     $name = $name ?? $this->getEntityName();
     if(is_null($entity)) {
@@ -106,33 +157,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
       $this->getHttpResponse()->setCode(IResponse::S400_BAD_REQUEST);
       $this->sendJson(["message" => "Error while parsing request body: " . $e->getMessage() . "."]);
     }
-  }
-
-  /**
-   * @return string[]
-   */
-  protected function getAllowedMethods(): array {
-    $methods = [
-      "GET" => "actionReadAll", "POST" => "actionCreate", "PUT" => "actionUpdate",
-      "PATCH" => "actionPartialUpdate", "DELETE" => "actionDelete",
-    ];
-    $return = ["OPTIONS",];
-    if(isset($this->params["id"])) {
-      $methods["GET"] = "actionRead";
-    }
-    foreach($methods as $httpMethod => $classMethod) {
-      $rm = new \ReflectionMethod(static::class, $classMethod);
-      $declaringClass = $rm->getDeclaringClass()->getName();
-      if($declaringClass === static::class) {
-        $return[] = $httpMethod;
-      }
-    }
-    return $return;
-  }
-  
-  protected function beforeRender(): void {
-    $this->getHttpResponse()->setCode(IResponse::S400_BAD_REQUEST);
-    $this->sendJson(["message" => "This action is not allowed."]);
   }
 }
 ?>
