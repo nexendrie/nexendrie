@@ -129,6 +129,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    */
   protected function sendCollection(iterable $collection, ?string $name = null): void {
     $data = $this->entityConverter->convertCollection($collection);
+    $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader("self", $this->getSelfLink()));
     $this->sendJson([$name ?? $this->getCollectionName() => $data]);
   }
 
@@ -149,7 +150,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $data = $this->entityConverter->convertEntity($entity);
     $links = $this->getEntityLinks();
     foreach($links as $rel => $link) {
-      $this->getHttpResponse()->addHeader("Link", "<$link>; rel=\"$rel\"");
+      $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader($rel, $link));
     }
     $this->sendJson([$name => $data]);
   }
@@ -168,10 +169,18 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     return (int) $this->params["id"];
   }
 
+  protected function createLinkHeader(string $rel, string $link): string {
+    return "<$link>; rel=\"$rel\"";
+  }
+
   protected function createEntityLink(string $targetCollectionName): string {
     $targetCollectionName = Strings::firstUpper($targetCollectionName);
     $params = ["associations" => [$this->getCollectionName() => $this->getId()]];
     return $this->link("$targetCollectionName:readAll", $params);
+  }
+
+  protected function getSelfLink(): string {
+    return $this->getHttpRequest()->getUrl()->path;
   }
 
   /**
@@ -184,7 +193,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    */
   protected function getEntityLinks(): array {
     return [
-      "self" => $this->getHttpRequest()->getUrl()->path,
+      "self" => $this->getSelfLink(),
     ];
   }
 }
