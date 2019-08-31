@@ -26,8 +26,7 @@ final class JobsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->jobs->getById($id);
+    $record = $this->orm->jobs->getById($this->getId());
     $this->sendEntity($record);
   }
 }

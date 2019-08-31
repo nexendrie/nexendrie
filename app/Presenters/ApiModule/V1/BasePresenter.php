@@ -143,7 +143,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected function sendEntity(?Entity $entity, ?string $name = null, ?string $name2 = null): void {
     $name = $name ?? $this->getEntityName();
     if(is_null($entity)) {
-      $this->resourceNotFound($name2 ?? $name, (int) $this->params["id"]);
+      $this->resourceNotFound($name2 ?? $name, $this->getId());
     }
     $data = $this->entityConverter->convertEntity($entity);
     $this->sendJson([$name => $data]);
@@ -157,6 +157,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
       $this->getHttpResponse()->setCode(IResponse::S400_BAD_REQUEST);
       $this->sendJson(["message" => "Error while parsing request body: " . $e->getMessage() . "."]);
     }
+  }
+
+  protected function getId(): int {
+    return (int) $this->params["id"];
   }
 }
 ?>

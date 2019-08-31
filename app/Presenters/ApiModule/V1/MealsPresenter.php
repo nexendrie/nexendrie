@@ -18,8 +18,7 @@ final class MealsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->meals->getById($id);
+    $record = $this->orm->meals->getById($this->getId());
     $this->sendEntity($record);
   }
 }

@@ -33,8 +33,7 @@ final class GuildsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->guilds->getById($id);
+    $record = $this->orm->guilds->getById($this->getId());
     $this->sendEntity($record);
   }
 }

@@ -18,8 +18,7 @@ final class MountTypesPresenter extends BasePresenter {
   }
 
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->mountTypes->getById($id);
+    $record = $this->orm->mountTypes->getById($this->getId());
     $this->sendEntity($record, null, "Mount type");
   }
 }

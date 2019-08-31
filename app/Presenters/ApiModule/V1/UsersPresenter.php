@@ -54,8 +54,7 @@ final class UsersPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->users->getById($id);
+    $record = $this->orm->users->getById($this->getId());
     $this->sendEntity($record);
   }
 }

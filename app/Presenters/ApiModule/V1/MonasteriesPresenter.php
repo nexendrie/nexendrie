@@ -30,8 +30,7 @@ final class MonasteriesPresenter extends BasePresenter {
   }
 
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->monasteries->getById($id);
+    $record = $this->orm->monasteries->getById($this->getId());
     $this->sendEntity($record);
   }
 }

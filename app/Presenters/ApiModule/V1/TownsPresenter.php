@@ -26,8 +26,7 @@ final class TownsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->towns->getById($id);
+    $record = $this->orm->towns->getById($this->getId());
     $this->sendEntity($record);
   }
 }

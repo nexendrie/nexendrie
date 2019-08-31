@@ -33,8 +33,7 @@ final class CommentsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->comments->getById($id);
+    $record = $this->orm->comments->getById($this->getId());
     $this->sendEntity($record);
   }
 }

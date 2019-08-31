@@ -26,8 +26,7 @@ final class PollsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->polls->getById($id);
+    $record = $this->orm->polls->getById($this->getId());
     $this->sendEntity($record);
   }
 }

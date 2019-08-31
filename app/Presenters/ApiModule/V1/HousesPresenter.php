@@ -25,8 +25,7 @@ final class HousesPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->houses->getById($id);
+    $record = $this->orm->houses->getById($this->getId());
     $this->sendEntity($record);
   }
 }

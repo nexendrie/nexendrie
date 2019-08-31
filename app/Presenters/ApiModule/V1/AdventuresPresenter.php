@@ -26,8 +26,7 @@ final class AdventuresPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->adventures->getById($id);
+    $record = $this->orm->adventures->getById($this->getId());
     $this->sendEntity($record);
   }
 }

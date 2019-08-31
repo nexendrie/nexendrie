@@ -18,8 +18,7 @@ final class EventsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->events->getById($id);
+    $record = $this->orm->events->getById($this->getId());
     $this->sendEntity($record);
   }
 }

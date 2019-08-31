@@ -26,8 +26,7 @@ final class PunishmentsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->punishments->getById($id);
+    $record = $this->orm->punishments->getById($this->getId());
     $this->sendEntity($record);
   }
 }

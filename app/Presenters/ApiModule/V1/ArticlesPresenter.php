@@ -26,8 +26,7 @@ final class ArticlesPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->articles->getById($id);
+    $record = $this->orm->articles->getById($this->getId());
     $this->sendEntity($record);
   }
 }

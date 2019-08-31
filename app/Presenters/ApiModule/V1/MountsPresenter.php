@@ -33,8 +33,7 @@ final class MountsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->mounts->getById($id);
+    $record = $this->orm->mounts->getById($this->getId());
     $this->sendEntity($record);
   }
 }

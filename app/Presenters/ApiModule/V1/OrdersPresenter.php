@@ -18,8 +18,7 @@ final class OrdersPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->orders->getById($id);
+    $record = $this->orm->orders->getById($this->getId());
     $this->sendEntity($record);
   }
 }

@@ -18,8 +18,7 @@ final class GuildRanksPresenter extends BasePresenter {
   }
 
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->guildRanks->getById($id);
+    $record = $this->orm->guildRanks->getById($this->getId());
     $this->sendEntity($record, null, "Guild rank");
   }
 }

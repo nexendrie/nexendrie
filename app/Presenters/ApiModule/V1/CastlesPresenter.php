@@ -18,8 +18,7 @@ final class CastlesPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->castles->getById($id);
+    $record = $this->orm->castles->getById($this->getId());
     $this->sendEntity($record);
   }
 }

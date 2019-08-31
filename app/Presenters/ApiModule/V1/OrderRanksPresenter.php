@@ -18,8 +18,7 @@ final class OrderRanksPresenter extends BasePresenter {
   }
 
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->orderRanks->getById($id);
+    $record = $this->orm->orderRanks->getById($this->getId());
     $this->sendEntity($record, null, "Order rank");
   }
 }

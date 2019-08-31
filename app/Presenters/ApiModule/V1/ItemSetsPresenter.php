@@ -18,8 +18,7 @@ final class ItemSetsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->itemSets->getById($id);
+    $record = $this->orm->itemSets->getById($this->getId());
     $this->sendEntity($record, null, "Item set");
   }
 }

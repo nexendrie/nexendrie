@@ -26,8 +26,7 @@ final class SkillsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->skills->getById($id);
+    $record = $this->orm->skills->getById($this->getId());
     $this->sendEntity($record);
   }
 }

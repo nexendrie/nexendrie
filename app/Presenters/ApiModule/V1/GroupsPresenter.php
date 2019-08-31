@@ -18,8 +18,7 @@ final class GroupsPresenter extends BasePresenter {
   }
   
   public function actionRead(): void {
-    $id = (int) $this->params["id"];
-    $record = $this->orm->groups->getById($id);
+    $record = $this->orm->groups->getById($this->getId());
     $this->sendEntity($record);
   }
 }
