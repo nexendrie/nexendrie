@@ -49,14 +49,14 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     // we check in which class a method was defined to decide if the corresponding HTTP method is allowed
     // this base presenter forbids all methods, so if a subclass overrides it, we assume that it is allowed
     $methods = [
-      "GET" => "actionReadAll", "POST" => "actionCreate", "PUT" => "actionUpdate",
-      "PATCH" => "actionPartialUpdate", "DELETE" => "actionDelete",
+      IRequest::GET => "actionReadAll", IRequest::POST => "actionCreate", IRequest::PUT => "actionUpdate",
+      IRequest::PATCH => "actionPartialUpdate", IRequest::DELETE => "actionDelete",
     ];
-    $return = ["OPTIONS",];
+    $return = [IRequest::OPTIONS,];
     if(isset($this->params["id"])) {
-      $methods["GET"] = "actionRead";
+      $methods[IRequest::GET] = "actionRead";
     }
-    $methods["HEAD"] = $methods["GET"];
+    $methods[IRequest::HEAD] = $methods[IRequest::GET];
     foreach($methods as $httpMethod => $classMethod) {
       $rm = new \ReflectionMethod(static::class, $classMethod);
       $declaringClass = $rm->getDeclaringClass()->getName();
