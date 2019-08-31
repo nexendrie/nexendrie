@@ -173,10 +173,21 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     return "<$link>; rel=\"$rel\"";
   }
 
-  protected function createEntityLink(string $targetCollectionName): string {
+  /**
+   * Creates link to another (collection of) entities.
+   *
+   * If you do not provide id, it returns link to the collection, otherwise link to that entity.
+   */
+  protected function createEntityLink(string $targetCollectionName, ?int $id = null): string {
     $targetCollectionName = Strings::firstUpper($targetCollectionName);
-    $params = ["associations" => [$this->getCollectionName() => $this->getId()]];
-    return $this->link("$targetCollectionName:readAll", $params);
+    if($id === null) {
+      $params = ["associations" => [$this->getCollectionName() => $this->getId()]];
+      $action = "readAll";
+    } else {
+      $params = ["id" => $id];
+      $action = "read";
+    }
+    return $this->link("$targetCollectionName:$action", $params);
   }
 
   protected function getSelfLink(): string {
