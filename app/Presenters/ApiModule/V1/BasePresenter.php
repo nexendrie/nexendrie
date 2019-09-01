@@ -168,9 +168,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * Adds Content-Length header for HEAD requests.
    */
   protected function addContentLengthHeader(array $payload): void {
-    if($this->getHttpRequest()->getMethod() === IRequest::HEAD) {
-      $this->getHttpResponse()->addHeader("Content-Length", strlen(Json::encode($payload)));
-    }
+    $this->getHttpResponse()->addHeader("Content-Length", strlen(Json::encode($payload)));
   }
 
   protected function getPostData(): object {
