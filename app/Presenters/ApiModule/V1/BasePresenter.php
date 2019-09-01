@@ -118,6 +118,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->sendResponse(new TextResponse(""));
   }
 
+  final protected function getApiVersion(): string {
+    return "v1";
+  }
+
   protected function getCollectionName(): string {
     $presenterName = (string) Strings::before(static::class, "Presenter", -1);
     $presenterName = (string) Strings::after($presenterName, "\\", -1);
@@ -129,7 +133,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * It is meant to be used in @see actionReadAll method.
    */
   protected function sendCollection(iterable $collection, ?string $name = null): void {
-    $data = $this->entityConverter->convertCollection($collection);
+    $data = $this->entityConverter->convertCollection($collection, $this->getApiVersion());
     $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader("self", $this->getSelfLink()));
     $payload = [$name ?? $this->getCollectionName() => $data];
     $this->addContentLengthHeader($payload);
@@ -150,8 +154,8 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     if(is_null($entity)) {
       $this->resourceNotFound($name2 ?? $name, $this->getId());
     }
-    $data = $this->entityConverter->convertEntity($entity);
-    $links = $this->getEntityLinks();
+    $data = $this->entityConverter->convertEntity($entity, $this->getApiVersion());
+    $links = $this->getEntityLinks($data);
     foreach($links as $rel => $link) {
       $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader($rel, $link));
     }
@@ -187,39 +191,23 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     return "<$link>; rel=\"$rel\"";
   }
 
-  /**
-   * Creates link to another (collection of) entities.
-   *
-   * If you do not provide id, it returns link to the collection, otherwise link to that entity.
-   */
-  protected function createEntityLink(string $targetCollectionName, ?int $id = null): string {
-    $targetCollectionName = Strings::firstUpper($targetCollectionName);
-    if($id === null) {
-      $params = ["associations" => [$this->getCollectionName() => $this->getId()]];
-      $action = "readAll";
-    } else {
-      $params = ["id" => $id];
-      $action = "read";
-    }
-    return $this->link("$targetCollectionName:$action", $params);
-  }
-
   protected function getSelfLink(): string {
-    return $this->getHttpRequest()->getUrl()->path;
+    $url = $this->getHttpRequest()->getUrl();
+    return $url->hostUrl . $url->path;
   }
 
   /**
-   * Defines links of current entity to (collections of) other entities. Used by @see sendEntity.
-   * When overriding, store result of parent method and add new elements of array.
-   * Key is type of relationship, value is the link. The link should start with /.
-   * Use @see createEntityLink to get urls.
-   *
    * @return string[]
    */
-  protected function getEntityLinks(): array {
-    return [
-      "self" => $this->getSelfLink(),
-    ];
+  protected function getEntityLinks(\stdClass $entity): array {
+    $links = [];
+    if(!isset($entity->_links)) {
+      return $links;
+    }
+    foreach($entity->_links as $rel => $link) {
+      $links[$rel] = $link->href;
+    }
+    return $links;
   }
 }
 ?>

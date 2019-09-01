@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Api\Transformers;
 
+use Nette\Application\LinkGenerator;
+use Nette\Utils\Strings;
 use Nexendrie\Utils\Collection;
 use Nextras\Orm\Entity\Entity;
 use Nextras\Orm\Entity\ToArrayConverter;
@@ -19,9 +21,14 @@ abstract class BaseTransformer implements ITransformer {
   protected $container;
   /** @var ITransformer[]|Collection */
   protected $transformers;
+  /** @var LinkGenerator */
+  protected $linkGenerator;
+  /** @var bool */
+  protected $createSelfLink = true;
 
-  public function __construct(\Nette\DI\Container $container) {
+  public function __construct(\Nette\DI\Container $container, LinkGenerator $linkGenerator) {
     $this->container = $container;
+    $this->linkGenerator = $linkGenerator;
     $this->transformers = new class extends Collection {
       protected $class = ITransformer::class;
     };
@@ -36,9 +43,18 @@ abstract class BaseTransformer implements ITransformer {
     }
   }
 
-  public function transform(Entity $entity, int $maxDepth): \stdClass {
+  public function getCollectionName(): string {
+    $entityName = (string) Strings::after($this->getEntityClassName(), "\\", -1) . "s";
+    return Strings::firstLower($entityName);
+  }
+
+  public function transform(Entity $entity, int $maxDepth, string $apiVersion): \stdClass {
     $this->getTransformers();
     $maxDepth--;
+    $links = [];
+    if($this->createSelfLink) {
+      $links["self"] = $this->createEntityLink($this->getCollectionName(), $apiVersion, $entity->id, $entity->id);
+    }
     $record = $entity->toArray(ToArrayConverter::RELATIONSHIP_AS_IS);
     $record = array_filter($record, function($key) {
       return in_array($key, $this->fields, true);
@@ -53,8 +69,9 @@ abstract class BaseTransformer implements ITransformer {
         foreach($value as $item) {
           /** @var ITransformer|null $transformer */
           $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($item)]);
+          $links[$transformer->getCollectionName()] = $this->createEntityLink($transformer->getCollectionName(), $apiVersion, $entity->id);
           if($maxDepth > 0 && !is_null($transformer)) {
-            $array[] = $transformer->transform($item, $maxDepth);
+            $array[] = $transformer->transform($item, $maxDepth, $apiVersion);
           } else {
             $array[] = $item->id;
           }
@@ -64,7 +81,7 @@ abstract class BaseTransformer implements ITransformer {
         /** @var ITransformer|null $transformer */
         $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($value)]);
         if($maxDepth > 0 && !is_null($transformer)) {
-          $value = $transformer->transform($value, $maxDepth);
+          $value = $transformer->transform($value, $maxDepth, $apiVersion);
         } else {
           $value = $value->id;
         }
@@ -76,7 +93,25 @@ abstract class BaseTransformer implements ITransformer {
       unset($record[$old]);
       $record[$new] = $value;
     }
+    if(count($links) > 0) {
+      $record["_links"] = $links;
+    }
     return (object) $record;
+  }
+
+  protected function createEntityLink(string $targetCollectionName, string $apiVersion, int $currentId, ?int $id = null): \stdClass {
+    $targetCollectionName = Strings::firstUpper($targetCollectionName);
+    $apiVersion = Strings::firstUpper($apiVersion);
+    if($id === null) {
+      $params = ["associations" => [$this->getCollectionName() => $currentId]];
+      $action = "readAll";
+    } else {
+      $params = ["id" => $id];
+      $action = "read";
+    }
+    return (object) [
+      "href" => $this->linkGenerator->link("Api:$apiVersion:$targetCollectionName:$action", $params)
+      ];
   }
 }
 ?>

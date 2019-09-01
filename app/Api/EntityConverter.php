@@ -25,22 +25,22 @@ final class EntityConverter {
     }
   }
 
-  public function convertEntity(Entity $entity): \stdClass {
+  public function convertEntity(Entity $entity, string $apiVersion): \stdClass {
     /** @var ITransformer|null $transformer */
     $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($entity)]);
     if(is_null($transformer)) {
       return new \stdClass();
     }
-    return $transformer->transform($entity, $this->maxDepth);
+    return $transformer->transform($entity, $this->maxDepth, $apiVersion);
   }
 
   /**
    * @return \stdClass[]
    */
-  public function convertCollection(iterable $collection): array {
+  public function convertCollection(iterable $collection, string $apiVersion): array {
     $result = [];
     foreach($collection as $item) {
-      $result[] = $this->convertEntity($item);
+      $result[] = $this->convertEntity($item, $apiVersion);
     }
     return $result;
   }

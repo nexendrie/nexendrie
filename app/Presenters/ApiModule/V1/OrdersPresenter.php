@@ -21,11 +21,5 @@ final class OrdersPresenter extends BasePresenter {
     $record = $this->orm->orders->getById($this->getId());
     $this->sendEntity($record);
   }
-
-  protected function getEntityLinks(): array {
-    $links = parent::getEntityLinks();
-    $links["users"] = $this->createEntityLink("users");
-    return $links;
-  }
 }
 ?>

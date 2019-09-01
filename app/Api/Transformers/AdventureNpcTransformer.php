@@ -9,5 +9,9 @@ final class AdventureNpcTransformer extends BaseTransformer {
   public function getEntityClassName(): string {
     return \Nexendrie\Orm\AdventureNpc::class;
   }
+
+  public function getCollectionName(): string {
+    return "npcs";
+  }
 }
 ?>

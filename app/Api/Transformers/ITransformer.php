@@ -6,7 +6,8 @@ namespace Nexendrie\Api\Transformers;
 use Nextras\Orm\Entity\Entity;
 
 interface ITransformer {
-  public function transform(Entity $entity, int $maxDepth): \stdClass;
+  public function transform(Entity $entity, int $maxDepth, string $apiVersion): \stdClass;
   public function getEntityClassName(): string;
+  public function getCollectionName(): string;
 }
 ?>

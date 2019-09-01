@@ -4,7 +4,7 @@ Version 1.0.0-beta7+dev
 - added support for OPTIONS and HEAD methods in api
 - comments from current user/article's author/admin are marked now
 - fixed skill's bonus to work success rate and reward
-- single entities and collections in api now send Link headers
+- single entities and collections in api now have links in json and send Link headers
 
 Version 1.0.0-beta7
 - discount for learning skills in monastery now determined by library's level

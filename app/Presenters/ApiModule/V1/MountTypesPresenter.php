@@ -21,11 +21,5 @@ final class MountTypesPresenter extends BasePresenter {
     $record = $this->orm->mountTypes->getById($this->getId());
     $this->sendEntity($record, null, "Mount type");
   }
-
-  protected function getEntityLinks(): array {
-    $links = parent::getEntityLinks();
-    $links["mounts"] = $this->createEntityLink("mounts");
-    return $links;
-  }
 }
 ?>

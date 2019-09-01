@@ -10,5 +10,9 @@ final class MonasteryTransformer extends BaseTransformer {
   public function getEntityClassName(): string {
     return \Nexendrie\Orm\Monastery::class;
   }
+
+  public function getCollectionName(): string {
+    return "monasteries";
+  }
 }
 ?>

@@ -29,13 +29,5 @@ final class TownsPresenter extends BasePresenter {
     $record = $this->orm->towns->getById($this->getId());
     $this->sendEntity($record);
   }
-
-  protected function getEntityLinks(): array {
-    $links = parent::getEntityLinks();
-    $links["monasteries"] = $this->createEntityLink("monasteries");
-    $links["users"] = $this->createEntityLink("users");
-    $links["guilds"] = $this->createEntityLink("guilds");
-    return $links;
-  }
 }
 ?>

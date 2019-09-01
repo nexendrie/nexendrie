@@ -21,10 +21,11 @@ final class EntityConverterTest extends \Tester\TestCase {
   }
 
   public function testConvertEntity() {
+    $apiVersion = "v1";
     $entity  = new \Nexendrie\Orm\PollVote();
-    Assert::type(\stdClass::class, $this->model->convertEntity($entity));
+    Assert::type(\stdClass::class, $this->model->convertEntity($entity, $apiVersion));
     $entity = $this->orm->castles->getById(1);
-    $result = $this->model->convertEntity($entity);
+    $result = $this->model->convertEntity($entity, $apiVersion);
     Assert::type(\stdClass::class, $result);
     Assert::same($entity->id, $result->id);
     Assert::same($entity->name, $result->name);
