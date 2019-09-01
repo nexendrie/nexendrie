@@ -7,7 +7,7 @@ final class UserTransformer extends BaseTransformer {
   protected $fields = [
     "id", "publicname", "joinedAt", "lastActiveAt", "group", "gender", "banned", "town", "monastery", "castle",
     "guild", "guildRank", "order", "orderRank", "prayers", "title", "completedAdventures", "completedJobs",
-    "producedBeers", "punishmentsCount", "lessonsTaken", "ownedTowns",
+    "producedBeers", "punishmentsCount", "lessonsTaken", "ownedTowns", "skills", "articles",
   ];
   protected $fieldsRename = ["joinedAt" => "joined", "lastActiveAt" => "lastActive", "publicname" => "name", ];
 
