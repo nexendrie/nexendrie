@@ -200,8 +200,8 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     if(!isset($entity->_links)) {
       return $links;
     }
-    foreach($entity->_links as $rel => $link) {
-      $links[$rel] = $link->href;
+    foreach($entity->_links as $link) {
+      $links[$link->rel] = $link->href;
     }
     return $links;
   }

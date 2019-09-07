@@ -53,7 +53,7 @@ abstract class BaseTransformer implements ITransformer {
     $maxDepth--;
     $links = [];
     if($this->createSelfLink) {
-      $links["self"] = $this->createEntityLink($this->getCollectionName(), $apiVersion, $entity->id, $entity->id);
+      $links["self"] = $this->createEntityLink("self", $this->getCollectionName(), $apiVersion, $entity->id, $entity->id);
     }
     $record = $entity->toArray(ToArrayConverter::RELATIONSHIP_AS_IS);
     $record = array_filter($record, function($key) {
@@ -69,7 +69,7 @@ abstract class BaseTransformer implements ITransformer {
         foreach($value as $item) {
           /** @var ITransformer|null $transformer */
           $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($item)]);
-          $links[$transformer->getCollectionName()] = $this->createEntityLink($transformer->getCollectionName(), $apiVersion, $entity->id);
+          $links[$transformer->getCollectionName()] = $this->createEntityLink($transformer->getCollectionName(), $transformer->getCollectionName(), $apiVersion, $entity->id);
           if($maxDepth > 0 && !is_null($transformer)) {
             $array[] = $transformer->transform($item, $maxDepth, $apiVersion);
           } else {
@@ -94,12 +94,12 @@ abstract class BaseTransformer implements ITransformer {
       $record[$new] = $value;
     }
     if(count($links) > 0) {
-      $record["_links"] = $links;
+      $record["_links"] = array_values($links);
     }
     return (object) $record;
   }
 
-  protected function createEntityLink(string $targetCollectionName, string $apiVersion, int $currentId, ?int $id = null): \stdClass {
+  protected function createEntityLink(string $rel, string $targetCollectionName, string $apiVersion, int $currentId, ?int $id = null): \stdClass {
     $targetCollectionName = Strings::firstUpper($targetCollectionName);
     $apiVersion = Strings::firstUpper($apiVersion);
     if($id === null) {
@@ -110,7 +110,8 @@ abstract class BaseTransformer implements ITransformer {
       $action = "read";
     }
     return (object) [
-      "href" => $this->linkGenerator->link("Api:$apiVersion:$targetCollectionName:$action", $params)
+      "rel" => $rel,
+      "href" => $this->linkGenerator->link("Api:$apiVersion:$targetCollectionName:$action", $params),
       ];
   }
 }
