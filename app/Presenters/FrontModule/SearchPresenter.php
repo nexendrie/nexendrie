@@ -45,19 +45,23 @@ final class SearchPresenter extends BasePresenter {
     return $form;
   }
 
+  protected function sendOpenSearchDescriptionResponse(string $description): void {
+    $this->sendResponse(new OpenSearchDescriptionResponse($description));
+  }
+
   public function actionUsers(): void {
     $description = $this->openSearch->createDescription("Uživatelé", "Uživatelé", "Hledat v uživatelích", "uživatelé", "users");
-    $this->sendResponse(new OpenSearchDescriptionResponse($description));
+    $this->sendOpenSearchDescriptionResponse($description);
   }
 
   public function actionArticlesTitle(): void {
     $description = $this->openSearch->createDescription("Články 1", "Titulky článků", "Hledat v titulcích článků", "články titulek", "articlesTitles");
-    $this->sendResponse(new OpenSearchDescriptionResponse($description));
+    $this->sendOpenSearchDescriptionResponse($description);
   }
 
   public function actionArticlesText(): void {
     $description = $this->openSearch->createDescription("Články 2", "Texty článků", "Hledat v textech článků", "články text", "articlesTexts");
-    $this->sendResponse(new OpenSearchDescriptionResponse($description));
+    $this->sendOpenSearchDescriptionResponse($description);
   }
 }
 ?>
