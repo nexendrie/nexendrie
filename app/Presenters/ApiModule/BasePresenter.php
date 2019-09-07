@@ -130,10 +130,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * A quick way to send a collection of entities as response.
    * It is meant to be used in @see actionReadAll method.
    */
-  protected function sendCollection(iterable $collection, ?string $name = null): void {
+  protected function sendCollection(iterable $collection): void {
     $data = $this->entityConverter->convertCollection($collection, $this->getApiVersion());
     $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader("self", $this->getSelfLink()));
-    $payload = [$name ?? $this->getCollectionName() => $data];
+    $payload = [$this->getCollectionName() => $data];
     $this->addContentLengthHeader($payload);
     $this->sendJson($payload);
   }
@@ -152,9 +152,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * A quick way to send single entity as response.
    * It is meant to be used in @see actionRead method.
    */
-  protected function sendEntity(?Entity $entity, ?string $name = null, ?string $name2 = null): void {
-    $name = $name ?? $this->getEntityName();
-    $name2 = $name2 ?? $this->getInvalidEntityName();
+  protected function sendEntity(?Entity $entity): void {
+    $name = $this->getEntityName();
+    $name2 = $this->getInvalidEntityName();
     if(is_null($entity)) {
       $this->resourceNotFound($name2, $this->getId());
     }
