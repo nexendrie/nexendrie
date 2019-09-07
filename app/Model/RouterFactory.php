@@ -34,6 +34,9 @@ final class RouterFactory {
         ]
       ]
     ]);
+    $frontRouter[] = new Route("<presenter order|town|guild|monastery|castle>/<id [0-9]+>", [
+      "action" => "detail",
+    ]);
     $frontRouter[] = new Route("page/<page [0-9]+>", "Homepage:page");
     $frontRouter[] = new Route("rss[/<action>][/<id [0-9]+>]", "Rss:news");
     $frontRouter[] = new Route("<presenter help|history>[/<page=index>]", [
