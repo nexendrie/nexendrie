@@ -19,6 +19,6 @@
     <a n:href="Guild:detail $tguild->id">{$tguild->name}</a>{if !$iterator->last}, {/if}
   </p>
   <p>
-    {if $path === \Nexendrie\Orm\Group::PATH_TOWER}<a n:href="found">Založit město</a>{/if} {if $house}<a n:href="House:">Dům</a>{/if} {if !$house and $path === \Nexendrie\Orm\Group::PATH_CITY}<a n:href="House:buy">Koupit dům</a>{/if} {if !$guild and $path === \Nexendrie\Orm\Group::PATH_CITY}<a n:href="Guild:found">Založit cech</a>{/if} {if $guild}<a n:href="Guild:">Tvůj cech</a>{/if} {if !$order and $path === \Nexendrie\Orm\Group::PATH_TOWER}<a n:href="Order:found">Založit řád</a>{/if} {if $order}<a n:href="Order:">Tvůj řád</a>{/if} {if $user->isAllowed("town", "elect")}<a n:href="elections">Volby</a>{/if} <a n:href="chat">Chat</a>
+    {if $path === \Nexendrie\Orm\Group::PATH_TOWER}<a n:href="found">Založit město</a>{/if} {if $house}<a n:href="House:">Dům</a>{/if} {if !$house and $path === \Nexendrie\Orm\Group::PATH_CITY}<a n:href="House:buy">Koupit dům</a>{/if} {if !$guild and $path === \Nexendrie\Orm\Group::PATH_CITY}<a n:href="Guild:found">Založit cech</a>{/if} {if $guild}<a n:href="Guild:">Tvůj cech</a>{/if} {if !$order and $path === \Nexendrie\Orm\Group::PATH_TOWER}<a n:href="Order:found">Založit řád</a>{/if} {if $user->isAllowed("town", "elect")}<a n:href="elections">Volby</a>{/if} <a n:href="chat">Chat</a>
   </p>
 {/block}
