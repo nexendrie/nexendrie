@@ -153,9 +153,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
       $this->resourceNotFound($name2 ?? $name, $this->getId());
     }
     $data = $this->entityConverter->convertEntity($entity, $this->getApiVersion());
-    $links = $this->getEntityLinks($data);
+    $links = $data->_links ?? [];
     foreach($links as $rel => $link) {
-      $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader($rel, $link));
+      $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader($link->rel, $link->href));
     }
     $payload = [$name => $data];
     $this->addContentLengthHeader($payload);
@@ -190,20 +190,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected function getSelfLink(): string {
     $url = $this->getHttpRequest()->getUrl();
     return $url->hostUrl . $url->path;
-  }
-
-  /**
-   * @return string[]
-   */
-  protected function getEntityLinks(\stdClass $entity): array {
-    $links = [];
-    if(!isset($entity->_links)) {
-      return $links;
-    }
-    foreach($entity->_links as $link) {
-      $links[$link->rel] = $link->href;
-    }
-    return $links;
   }
 }
 ?>
