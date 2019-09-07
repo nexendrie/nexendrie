@@ -27,5 +27,10 @@
     {/foreach}
   </p>
   {/if}
+  {if $path === \Nexendrie\Orm\Group::PATH_TOWER}
+  <p>
+    <a n:href="Town:found">Založit město</a>
+  </p>
+  {/if}
   <p><a n:href="Stables:">Jezdecká zvířata</a> <a n:href="equipment">Vybavení</a> <a n:href="potions">Lektvary</a> <a n:href="budget">Rozpočet</a></p>
 {/block}

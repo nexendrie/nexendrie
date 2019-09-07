@@ -70,6 +70,7 @@ final class PropertyPresenter extends BasePresenter {
     if($this->user->isAllowed("town", "manage")) {
       $this->template->royalTowns = $this->townModel->listOfTowns()->findBy(["owner" => 0]);
     }
+    $this->template->path = $this->user->identity->path;
   }
   
   public function actionTown(int $id): void {
