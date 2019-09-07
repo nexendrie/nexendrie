@@ -11,7 +11,7 @@ final class EntityConverter {
   use \Nette\SmartObject;
 
   /** @var int */
-  protected $maxDepth = 2;
+  protected $maxDepth;
   /** @var ITransformer[]|Collection */
   protected $transformers;
 
