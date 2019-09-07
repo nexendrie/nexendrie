@@ -16,6 +16,6 @@ Servers
 
 [Main](https://www.nexendrie.cz) (not yet online)
 
-[Beta](https://beta.nexendrie.cz) (closed beta, contains latest beta version)
+[Beta](https://beta.nexendrie.cz) (open beta, contains latest beta version)
 
 [Alpha](https://alpha.nexendrie.cz) (alpha server, primarily for developers, contains latest development version)
