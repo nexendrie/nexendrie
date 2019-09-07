@@ -155,17 +155,15 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * It is meant to be used in @see actionRead method.
    */
   protected function sendEntity(?Entity $entity): void {
-    $name = $this->getEntityName();
-    $name2 = $this->getInvalidEntityName();
     if(is_null($entity)) {
-      $this->resourceNotFound($name2, $this->getId());
+      $this->resourceNotFound($this->getInvalidEntityName(), $this->getId());
     }
     $data = $this->entityConverter->convertEntity($entity, $this->getApiVersion());
     $links = $data->_links ?? [];
     foreach($links as $rel => $link) {
       $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader($link->rel, $link->href));
     }
-    $payload = [$name => $data];
+    $payload = [$this->getEntityName() => $data];
     $this->addContentLengthHeader($payload);
     $this->sendJson($payload);
   }
