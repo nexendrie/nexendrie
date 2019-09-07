@@ -17,9 +17,13 @@ final class GuildRanksPresenter extends BasePresenter {
     $this->sendCollection($records);
   }
 
+  protected function getInvalidEntityName(): string {
+    return "Guild rank";
+  }
+
   public function actionRead(): void {
     $record = $this->orm->guildRanks->getById($this->getId());
-    $this->sendEntity($record, null, "Guild rank");
+    $this->sendEntity($record);
   }
 }
 ?>
