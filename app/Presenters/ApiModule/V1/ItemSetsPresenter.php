@@ -16,10 +16,6 @@ final class ItemSetsPresenter extends BasePresenter {
     $records = $this->orm->itemSets->findAll();
     $this->sendCollection($records);
   }
-
-  protected function getInvalidEntityName(): string {
-    return "Item set";
-  }
   
   public function actionRead(): void {
     $record = $this->orm->itemSets->getById($this->getId());

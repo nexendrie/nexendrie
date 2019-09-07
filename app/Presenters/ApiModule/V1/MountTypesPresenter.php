@@ -17,10 +17,6 @@ final class MountTypesPresenter extends BasePresenter {
     $this->sendCollection($records);
   }
 
-  protected function getInvalidEntityName(): string {
-    return "Mount type";
-  }
-
   public function actionRead(): void {
     $record = $this->orm->mountTypes->getById($this->getId());
     $this->sendEntity($record);

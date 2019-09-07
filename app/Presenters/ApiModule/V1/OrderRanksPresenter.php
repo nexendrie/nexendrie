@@ -17,10 +17,6 @@ final class OrderRanksPresenter extends BasePresenter {
     $this->sendCollection($records);
   }
 
-  protected function getInvalidEntityName(): string {
-    return "Order rank";
-  }
-
   public function actionRead(): void {
     $record = $this->orm->orderRanks->getById($this->getId());
     $this->sendEntity($record);

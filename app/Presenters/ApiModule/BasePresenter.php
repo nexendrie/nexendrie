@@ -145,7 +145,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
 
   protected function getInvalidEntityName(): string {
     $name = $this->getEntityName();
-    return $name;
+    return preg_replace_callback("#[A-Z]#", function(array $letter) {
+      return " " . Strings::lower($letter[0]);
+    }, $name);
   }
 
   /**
