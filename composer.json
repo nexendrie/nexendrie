@@ -40,14 +40,14 @@
         "nexendrie/rss": "^0.7.1",
         "nexendrie/menu": "^2.1",
         "nexendrie/utils": "^1.6.1",
-        "symfony/options-resolver": "^4.0",
+        "symfony/options-resolver": "^4.3",
         "heroesofabenez/chat": "^1.0",
         "heroesofabenez/combat": "^1.0",
         "adamstipak/nette-rest-route": "^4.0.1"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
-        "dg/ftp-deployment": "^3.0",
+        "dg/ftp-deployment": "^3.2",
         "phpstan/phpstan-nette": "^0.11"
     },
     "replace": {

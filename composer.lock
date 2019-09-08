@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a849aac1e1201c464342e6749085cbbe",
+    "content-hash": "999f26806b5c705b23f691258f46e008",
     "packages": [
         {
             "name": "adamstipak/nette-rest-route",
