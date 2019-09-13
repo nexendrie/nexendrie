@@ -26,14 +26,14 @@ final class RegisterFormFactory {
   
   public function create(): Form {
     $form = new Form();
-    $form->addText("email", "E-mail:")
-      ->addRule(Form::EMAIL, "Zadej platný e-mail.")
-      ->setRequired("Zadej e-mail.")
-      ->setOption("description", "Slouží jako uživatelské jméno.");
     $form->addText("publicname", "Jméno:")
       ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25)
       ->setRequired("Zadej jméno.")
       ->setOption("description", "Toto jméno se zobrazuje ostatním.");
+    $form->addText("email", "E-mail:")
+      ->addRule(Form::EMAIL, "Zadej platný e-mail.")
+      ->setRequired("Zadej e-mail.")
+      ->setOption("description", "Slouží jako uživatelské jméno.");
     $form->addPassword("password", "Heslo:")
       ->setRequired("Zadej heslo.");
     if($this->registrationToken !== "") {
