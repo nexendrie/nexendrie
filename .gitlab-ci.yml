@@ -4,15 +4,15 @@ stages:
   - test
   - deploy
 
-cache:
-  paths:
-    - vendor/
-
 .test_job: &test_job
   stage: test
 
   services:
     - mariadb
+
+  cache:
+    paths:
+      - vendor/
 
   variables:
     MYSQL_DATABASE: nexendrie
@@ -23,6 +23,11 @@ cache:
 
 .deploy_job: &deploy_job
   stage: deploy
+
+  cache:
+    policy: pull
+    paths:
+      - vendor/
 
   dependencies: []
 
