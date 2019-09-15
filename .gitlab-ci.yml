@@ -24,6 +24,8 @@ cache:
 .deploy_job: &deploy_job
   stage: deploy
 
+  dependencies: []
+
   script:
     - phing deploy
 
