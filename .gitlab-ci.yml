@@ -40,6 +40,7 @@ stages:
 
 test:default:
   <<: *test_job
+  <<: *default_cache
   cache:
     policy: pull-push
   retry: 2
