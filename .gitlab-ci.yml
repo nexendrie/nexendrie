@@ -14,6 +14,7 @@ stages:
     - mariadb
 
   cache:
+    policy: pull
     paths:
       - vendor/
 
@@ -39,6 +40,8 @@ stages:
 
 test:default:
   <<: *test_job
+  cache:
+    policy: pull-push
   retry: 2
 
 test:pgsql:
