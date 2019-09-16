@@ -7,11 +7,10 @@ stages:
   - test
   - deploy
 
-.default_cache: &default_cache
-  cache:
-    policy: pull
-    paths:
-      - vendor/
+cache: &default_cache
+  policy: pull
+  paths:
+    - vendor/
 
 .test_job: &test_job
   stage: test
@@ -19,7 +18,8 @@ stages:
   services:
     - mariadb
 
-  <<: *default_cache
+  cache:
+    <<: *default_cache
 
   variables:
     MYSQL_DATABASE: nexendrie
@@ -31,7 +31,8 @@ stages:
 .deploy_job: &deploy_job
   stage: deploy
 
-  <<: *default_cache
+  cache:
+    <<: *default_cache
 
   dependencies: []
 
@@ -40,8 +41,8 @@ stages:
 
 test:default:
   <<: *test_job
-  <<: *default_cache
   cache:
+    <<: *default_cache
     policy: pull-push
   retry: 2
 
