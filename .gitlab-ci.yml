@@ -7,7 +7,7 @@ stages:
   - test
   - deploy
 
-cache: &default_cache
+.default_cache: &default_cache
   policy: pull
   paths:
     - vendor/
