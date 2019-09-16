@@ -15,28 +15,22 @@ stages:
 
 .test_job: &test_job
   stage: test
-
   services:
     - mariadb
-
   cache:
     <<: *default_cache
-
   variables:
     MYSQL_DATABASE: nexendrie
     MYSQL_ROOT_PASSWORD: root
-
   script:
     - phing test-ci
+  retry: 2
 
 .deploy_job: &deploy_job
   stage: deploy
-
   cache:
     <<: *default_cache
-
   dependencies: []
-
   script:
     - phing deploy
 
@@ -50,7 +44,6 @@ install:composer:
 
 test:default:
   <<: *test_job
-  retry: 2
 
 test:pgsql:
   <<: *test_job
@@ -63,6 +56,7 @@ test:pgsql:
   script:
     - phing test-ci-pgsql
   allow_failure: true
+  retry: 0
 
 test:cc:
   <<: *test_job
@@ -73,7 +67,6 @@ test:cc:
     name: "Code coverage"
     paths:
       - coverage.html
-  retry: 2
 
 test:css:
   stage: test
