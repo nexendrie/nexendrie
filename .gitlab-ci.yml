@@ -4,6 +4,7 @@ include:
 image: nexendrie/php:7.3
 
 stages:
+  - install
   - test
   - deploy
 
@@ -39,11 +40,16 @@ stages:
   script:
     - phing deploy
 
-test:default:
-  <<: *test_job
+install:composer:
+  stage: install
+  script:
+    - composer install --prefer-dist --no-progress --no-suggest --no-interaction
   cache:
     <<: *default_cache
     policy: pull-push
+
+test:default:
+  <<: *test_job
   retry: 2
 
 test:pgsql:
