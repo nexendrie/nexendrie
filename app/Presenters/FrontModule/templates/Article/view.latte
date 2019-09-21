@@ -11,6 +11,9 @@
   <p>od {control userProfileLink $article->author} {$article->addedAt}</p>
   <p>{$article->text}</p>
   {if $user->isAllowed("article", "edit")}<a n:href=":Admin:Article:edit $article->id">Upravit</a>{/if}
+  <div id="share">
+    <p>Sdílet článek na: <a href="https://www.facebook.com/sharer/sharer.php?u={link //this}">Facebooku</a></p>
+  </div>
   <a name="comments"></a>
   <div id="comments">
     <h3>Komentáře:</h3>
