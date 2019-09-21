@@ -34,7 +34,7 @@ stages:
   script:
     - phing deploy
 
-install:composer:
+install:
   stage: install
   script:
     - composer install --prefer-dist --no-progress --no-suggest --no-interaction
