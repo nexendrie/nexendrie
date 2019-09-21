@@ -3,6 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>Nexendrie {$versionSuffix} - {include #title}</title>
+  <meta property="og:site_name" content="Nexendrie {$versionSuffix}">
+  <meta property="og:url" content="{link //this}">
+  {default $ogType = "website"}
+  <meta property="og:type" content="{$ogType}">
+  <meta property="og:title" content="{include #title}">
+  <meta property="og:locale" content="cs_CZ">
   <link rel="stylesheet" href="{$basePath}/styles/{$style}.css">
   <link rel="alternate" type="application/rss+xml" title="Nexendrie - Novinky" n:href="Rss:news">
   <link rel="search" type="application/opensearchdescription+xml" n:href="Search:users" title="Nexendrie {$versionSuffix} - Uživatelé">

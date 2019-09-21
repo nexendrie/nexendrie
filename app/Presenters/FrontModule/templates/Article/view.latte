@@ -1,6 +1,9 @@
 {layout "../@layout.latte"}
 {block title}{$article->title}{/block}
-{block head}<link rel="alternate" type="application/rss+xml" title="Nexendrie - Komentáře k {$article->title}" n:href="//Rss:comments $article->id">{/block}
+{block head}<link rel="alternate" type="application/rss+xml" title="Nexendrie - Komentáře k {$article->title}" n:href="//Rss:comments $article->id">
+  <meta property="article:published_time" content="{$article->addedAt|date:'c'}">
+  <meta property="article:author" content="{link //Profile: $article->author->publicname}">
+  <meta property="article:section" content="{$article->categoryCZ}">{/block}
 {block content}
   <h1>{$article->title}</h1>
   <div id="topLinks"><a n:href="Rss:comments $article->id" class="top-link"><img src="{$basePath}/images/feed-icon.png" alt="RSS komentářů" title="RSS komentářů"></a></div>
