@@ -7,8 +7,7 @@ header h2 a { text-decoration: none; color: white; font-size: larger; }
 #userPanel a:hover { color: #000000; }
 #mainMenu { position: relative; top: 85px; width: 22%; max-width: 160px; background-color: #111111; }
 #mainMenu h3 { position: relative; left: 18px; bottom: 14px; width: 65%; max-width: 104px;
-  background-color: #444444; color: #000033; padding: 3px 10px 3px 15px;
-  text-align: center;}
+  background-color: #444444; color: #000033; padding: 3px 10px 3px 15px; text-align: center; }
 #mainMenu ul { position: relative; left: 17px; bottom: 22px; width: 73%; max-width: 117px;
   background-color: #BBBBBB; padding: 10px 5px 10px 8px; }
 #mainMenu li { list-style-type: none; }
