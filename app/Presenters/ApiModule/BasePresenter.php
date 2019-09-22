@@ -85,7 +85,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $method = $this->request->method;
     $this->getHttpResponse()->setCode(IResponse::S405_METHOD_NOT_ALLOWED);
     $this->getHttpResponse()->addHeader("Allow", implode(", ", $this->getAllowedMethods()));
-    $this->sendJson(["message" => "Method $method is not allowed."]);
+    $payload = ["message" => "Method $method is not allowed."];
+    $this->addContentLengthHeader($payload);
+    $this->sendJson($payload);
   }
 
   public function actionReadAll(): void {
@@ -168,9 +170,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->sendJson($payload);
   }
 
-  /**
-   * Adds Content-Length header for HEAD requests.
-   */
   protected function addContentLengthHeader(array $payload): void {
     $this->getHttpResponse()->addHeader("Content-Length", strlen(Json::encode($payload)));
   }
