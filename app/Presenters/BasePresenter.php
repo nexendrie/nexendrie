@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters;
 
+use Nexendrie\Components\FaviconControl;
+use Nexendrie\Components\IFaviconControlFactory;
 use Nexendrie\Menu\IMenuControlFactory;
 use Nexendrie\Menu\MenuControl;
 use Nexendrie\Components\IUserProfileLinkControlFactory;
@@ -93,6 +95,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   
   protected function createComponentUserProfileLink(): UserProfileLinkControl {
     return $this->userProfileLinkFactory->create();
+  }
+
+  protected function createComponentFavicon(IFaviconControlFactory $factory): FaviconControl {
+    return $factory->create();
   }
 }
 ?>
