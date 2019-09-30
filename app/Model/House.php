@@ -49,7 +49,7 @@ final class House {
   public function buyHouse(): void {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
-    } elseif(!is_null($this->getUserHouse())) {
+    } elseif($this->getUserHouse() !== null) {
       throw new CannotBuyMoreHousesException();
     }
     /** @var \Nexendrie\Orm\User $user */
@@ -75,7 +75,7 @@ final class House {
       throw new AuthenticationNeededException();
     }
     $house = $this->getUserHouse();
-    if(is_null($house)) {
+    if($house === null) {
       return false;
     }
     return ($house->luxuryLevel < HouseEntity::MAX_LEVEL);
@@ -114,7 +114,7 @@ final class House {
       throw new AuthenticationNeededException();
     }
     $house = $this->getUserHouse();
-    if(is_null($house)) {
+    if($house === null) {
       return false;
     }
     return ($house->hp < 100);
@@ -153,7 +153,7 @@ final class House {
       throw new AuthenticationNeededException();
     }
     $house = $this->getUserHouse();
-    if(is_null($house)) {
+    if($house === null) {
       return false;
     }
     return ($house->breweryLevel < HouseEntity::MAX_LEVEL);
@@ -195,7 +195,7 @@ final class House {
       throw new AuthenticationNeededException();
     }
     $house = $this->getUserHouse();
-    if(is_null($house)) {
+    if($house === null) {
       return false;
     } elseif($house->owner->group->path !== GroupEntity::PATH_CITY) {
       return false;
@@ -205,7 +205,7 @@ final class House {
       return false;
     }
     $lastProduction = $this->orm->beerProduction->getLastProduction($house->id);
-    if(is_null($lastProduction)) {
+    if($lastProduction === null) {
       return true;
     }
     return ($lastProduction->when + $sevenDays < time());

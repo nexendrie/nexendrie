@@ -61,7 +61,7 @@ final class Monastery {
    */
   public function get(int $id): MonasteryEntity {
     $monastery = $this->orm->monasteries->getById($id);
-    if(is_null($monastery)) {
+    if($monastery === null) {
       throw new MonasteryNotFoundException();
     }
     return $monastery;
@@ -75,7 +75,7 @@ final class Monastery {
    */
   public function getByUser(int $id = null): MonasteryEntity {
     $user = $this->orm->users->getById($id ?? $this->user->id);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     } elseif(!$user->monastery) {
       throw new NotInMonasteryException();
@@ -100,7 +100,7 @@ final class Monastery {
     } elseif($user->group->path === GroupEntity::PATH_CHURCH) {
       if($user->monasteriesLed->countStored()) {
         return false;
-      } elseif(is_null($user->lastTransfer)) {
+      } elseif($user->lastTransfer === null) {
         return true;
       } elseif($user->lastTransfer + $month < time()) {
         return true;
@@ -157,13 +157,13 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->monastery)) {
+    if($user->monastery === null) {
       return false;
     } elseif($user->monastery->hp < $this->criticalCondition) {
       return false;
     } elseif($user->life >= $user->maxLife) {
       return false;
-    } elseif(is_null($user->lastPrayer)) {
+    } elseif($user->lastPrayer === null) {
       return true;
     }
     $oneDay = 60 * 60 * 24;
@@ -200,7 +200,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->monastery)) {
+    if($user->monastery === null) {
       return false;
     }
     return !($user->id === $user->monastery->leader->id);
@@ -265,7 +265,7 @@ final class Monastery {
     if(!$this->canBuild()) {
       throw new CannotBuildMonasteryException();
     }
-    if(!is_null($this->orm->monasteries->getByName($name))) {
+    if($this->orm->monasteries->getByName($name) !== null) {
       throw new MonasteryNameInUseException();
     }
     /** @var UserEntity $user */
@@ -298,7 +298,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->monastery)) {
+    if($user->monastery === null) {
       throw new NotInMonasteryException();
     } elseif($user->money < $amount) {
       throw new InsufficientFundsException();
@@ -362,7 +362,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->monastery)) {
+    if($user->monastery === null) {
       return false;
     }
     return ($user->monastery->leader->id === $this->user->id);
@@ -377,7 +377,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->monastery)) {
+    if($user->monastery === null) {
       return 0;
     }
     $baseValue = $user->monastery->prayerLife;
@@ -395,7 +395,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->monastery)) {
+    if($user->monastery === null) {
       return false;
     } elseif($user->monastery->leader->id !== $this->user->id) {
       return false;
@@ -439,7 +439,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->monastery)) {
+    if($user->monastery === null) {
       return false;
     } elseif($user->monastery->leader->id !== $this->user->id) {
       return false;
@@ -483,7 +483,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->monastery)) {
+    if($user->monastery === null) {
       return false;
     } elseif($user->monastery->leader->id !== $this->user->id) {
       return false;
@@ -543,10 +543,10 @@ final class Monastery {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
-    if(is_null($user->monastery) || $user->monastery->id !== $admin->monastery->id || $user->monastery->leader->id !== $this->user->id) {
+    if($user->monastery === null || $user->monastery->id !== $admin->monastery->id || $user->monastery->leader->id !== $this->user->id) {
       throw new UserNotInYourMonasteryException();
     }
     if($user->group->id <= $ranks[0]) {
@@ -582,10 +582,10 @@ final class Monastery {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
-    if(is_null($user->monastery) || $user->monastery->id !== $admin->monastery->id || $user->monastery->leader->id !== $this->user->id) {
+    if($user->monastery === null || $user->monastery->id !== $admin->monastery->id || $user->monastery->leader->id !== $this->user->id) {
       throw new UserNotInYourMonasteryException();
     }
     end($ranks);

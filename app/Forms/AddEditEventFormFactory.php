@@ -62,7 +62,7 @@ final class AddEditEventFormFactory {
     $form->addSubmit("submit", "Odeslat");
     $form->onValidate[] = [$this, "validate"];
     $form->onSuccess[] = [$this, "process"];
-    if(!is_null($event)) {
+    if($event !== null) {
       $form->setDefaults($event->dummyArray());
     }
     return $form;
@@ -86,7 +86,7 @@ final class AddEditEventFormFactory {
   }
 
   public function process(Form $form, array $values): void {
-    if(is_null($this->event)) {
+    if($this->event === null) {
       $this->model->addEvent($values);
     } else {
       $this->model->editEvent($this->event->id, $values);

@@ -86,7 +86,7 @@ final class Group {
       throw new MissingPermissionsException();
     }
     $group = $this->orm->groups->getById($id);
-    if(is_null($group)) {
+    if($group === null) {
       throw new GroupNotFoundException();
     }
     foreach($data as $key => $value) {

@@ -111,7 +111,7 @@ final class User extends \Nextras\Orm\Entity\Entity {
   }
 
   protected function getterBanned(): bool {
-    return (!is_null($this->punishments->get()->getBy(["released" => null])));
+    return ($this->punishments->get()->getBy(["released" => null]) !== null);
   }
   
   /**
@@ -178,24 +178,24 @@ final class User extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterCurrentOrderContribution(): int {
-    if(is_null($this->order)) {
+    if($this->order === null) {
       return 0;
     }
     /** @var OrderFee|null $record */
     $record = $this->orderFees->get()->getBy(["order" => $this->order]);
-    if(is_null($record)) {
+    if($record === null) {
       return 0;
     }
     return $record->amount;
   }
   
   protected function getterCurrentGuildContribution(): int {
-    if(is_null($this->guild)) {
+    if($this->guild === null) {
       return 0;
     }
     /** @var GuildFee|null $record */
     $record = $this->guildFees->get()->getBy(["guild" => $this->guild]);
-    if(is_null($record)) {
+    if($record === null) {
       return 0;
     }
     return $record->amount;
@@ -214,7 +214,7 @@ final class User extends \Nextras\Orm\Entity\Entity {
   }
 
   protected function getterAdventureBonusIncome(): float {
-    if(is_null($this->order) || $this->group->path !== Group::PATH_TOWER) {
+    if($this->order === null || $this->group->path !== Group::PATH_TOWER) {
       return 0;
     }
     return $this->orderRank->adventureBonus + $this->order->adventuresBonusIncome;

@@ -58,14 +58,14 @@ final class AddEditAdventureFormFactory {
       ->setPrompt("žádná");
     $form->addSubmit("submit", "Odeslat");
     $form->onSuccess[] = [$this, "process"];
-    if(!is_null($adventure)) {
+    if($adventure !== null) {
       $form->setDefaults($adventure->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }
     return $form;
   }
 
   public function process(Form $form, array $values): void {
-    if(is_null($this->adventure)) {
+    if($this->adventure === null) {
       $this->model->addAdventure($values);
     } else {
       $this->model->editAdventure($this->adventure->id, $values);

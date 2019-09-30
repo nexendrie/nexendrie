@@ -54,7 +54,7 @@ final class Events implements \EventCalendar\IEventModel {
    */
   public function getEvent(int $id): Event {
     $event = $this->orm->events->getById($id);
-    if(is_null($event)) {
+    if($event === null) {
       throw new EventNotFoundException();
     }
     return $event;
@@ -87,7 +87,7 @@ final class Events implements \EventCalendar\IEventModel {
    */
   public function editEvent(int $id, array $data): void {
     $event = $this->orm->events->getById($id);
-    if(is_null($event)) {
+    if($event === null) {
       throw new EventNotFoundException();
     }
     foreach($data as $key => $value) {
@@ -107,7 +107,7 @@ final class Events implements \EventCalendar\IEventModel {
    */
   public function deleteEvent(int $id): void {
     $event = $this->orm->events->getById($id);
-    if(is_null($event)) {
+    if($event === null) {
       throw new EventNotFoundException();
     } elseif($event->start < time()) {
       throw new CannotDeleteStartedEventException();
@@ -126,7 +126,7 @@ final class Events implements \EventCalendar\IEventModel {
    * @return string[]
    */
   public function getForDate(int $year, int $month, int $day): array {
-    if(is_null($this->events)) {
+    if($this->events === null) {
       $this->loadEvents($year, $month);
     }
     $events = [];

@@ -54,7 +54,7 @@ final class StablesControl extends \Nette\Application\UI\Control {
    */
   protected function increaseLife(int $id, int $hp, int $price): void {
     $mount = $this->orm->mounts->getById($id);
-    if(is_null($mount)) {
+    if($mount === null) {
       throw new MountNotFoundException();
     }
     if($mount->owner->id !== $this->user->id) {
@@ -120,7 +120,7 @@ final class StablesControl extends \Nette\Application\UI\Control {
       return;
     }
     $mount = $this->orm->mounts->getById($id);
-    if(is_null($mount)) {
+    if($mount === null) {
       throw new MountNotFoundException();
     } elseif($mount->owner->id !== $this->user->id) {
       throw new MountNotOwnedException();

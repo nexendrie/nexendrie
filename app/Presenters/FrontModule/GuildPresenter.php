@@ -45,7 +45,7 @@ final class GuildPresenter extends BasePresenter {
   
   public function renderDefault(): void {
     $guild = $this->model->getUserGuild();
-    if(is_null($guild)) {
+    if($guild === null) {
       $this->flashMessage("Nejsi v cechu.");
       $this->redirect("Homepage:");
     }
@@ -232,7 +232,7 @@ final class GuildPresenter extends BasePresenter {
   
   public function actionChat(): void {
     $guild = $this->model->getUserGuild();
-    if(is_null($guild)) {
+    if($guild === null) {
       $this->flashMessage("Nejsi v cechu.");
       $this->redirect("Homepage:");
     }

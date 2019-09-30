@@ -13,7 +13,7 @@ final class MonasteriesPresenter extends BasePresenter {
     if(isset($this->params["associations"]["towns"])) {
       $town = (int) $this->params["associations"]["towns"];
       $record = $this->orm->towns->getById($town);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("town", $town);
       }
       $records = $record->monasteries;

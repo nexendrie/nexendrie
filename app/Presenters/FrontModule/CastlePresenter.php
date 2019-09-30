@@ -44,7 +44,7 @@ final class CastlePresenter extends BasePresenter {
   
   public function actionDefault(): void {
     $castle = $this->model->getUserCastle();
-    if(is_null($castle)) {
+    if($castle === null) {
       $this->flashMessage("Nemáš hrad.");
       if($this->profileModel->getPath() === GroupEntity::PATH_TOWER) {
         $this->redirect("build");
@@ -75,7 +75,7 @@ final class CastlePresenter extends BasePresenter {
     if($user->group->path !== GroupEntity::PATH_TOWER) {
       $this->flashMessage("Nejsi šlechtic.");
       $this->redirect("Homepage:");
-    } elseif(!is_null($this->model->getUserCastle())) {
+    } elseif($this->model->getUserCastle() !== null) {
       $this->flashMessage("Můžeš postavit jen 1 hrad.");
       $this->redirect("default");
     }

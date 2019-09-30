@@ -61,7 +61,7 @@ final class Market {
    */
   public function getShop(int $id): ShopEntity {
     $shop = $this->orm->shops->getById($id);
-    if(is_null($shop)) {
+    if($shop === null) {
       throw new ShopNotFoundException("Specified shop was not found.");
     }
     return $shop;
@@ -102,7 +102,7 @@ final class Market {
    */
   public function getItem(int $id): ItemEntity {
     $item = $this->orm->items->getById($id);
-    if(is_null($item)) {
+    if($item === null) {
       throw new ItemNotFoundException("Specified item was not found.");
     }
     return $item;
@@ -148,7 +148,7 @@ final class Market {
       throw new AuthenticationNeededException();
     }
     $itemRow = $this->orm->items->getById($item);
-    if(is_null($itemRow)) {
+    if($itemRow === null) {
       throw new ItemNotFoundException("Specified item does not exist.");
     }
     if($itemRow->shop->id !== $shop) {
@@ -161,7 +161,7 @@ final class Market {
     }
     /** @var UserItemEntity $row */
     $row = $this->orm->userItems->getByUserAndItem($user->id, $item);
-    if(is_null($row) || in_array($itemRow->type, ItemEntity::getEquipmentTypes(), true)) {
+    if($row === null || in_array($itemRow->type, ItemEntity::getEquipmentTypes(), true)) {
       $row = new UserItemEntity();
       $row->user = $user;
       $row->item = $item;

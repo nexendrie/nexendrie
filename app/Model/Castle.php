@@ -44,7 +44,7 @@ final class Castle {
    */
   public function getCastle(int $id): CastleEntity {
     $castle = $this->orm->castles->getById($id);
-    if(is_null($castle)) {
+    if($castle === null) {
       throw new CastleNotFoundException();
     }
     return $castle;
@@ -55,7 +55,7 @@ final class Castle {
    */
   private function checkNameAvailability(string $name, int $id = null): bool {
     $castle = $this->orm->castles->getByName($name);
-    if(is_null($castle)) {
+    if($castle === null) {
       return true;
     }
     return ($castle->id === $id);
@@ -99,7 +99,7 @@ final class Castle {
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path !== GroupEntity::PATH_TOWER) {
       throw new CannotBuildCastleException();
-    } elseif(!is_null($this->getUserCastle())) {
+    } elseif($this->getUserCastle() !== null) {
       throw new CannotBuildMoreCastlesException();
     } elseif(!$this->checkNameAvailability($data["name"])) {
       throw new CastleNameInUseException();
@@ -132,7 +132,7 @@ final class Castle {
       throw new AuthenticationNeededException();
     }
     $castle = $this->getUserCastle();
-    if(is_null($castle)) {
+    if($castle === null) {
       return false;
     }
     return ($castle->level < CastleEntity::MAX_LEVEL);
@@ -171,7 +171,7 @@ final class Castle {
       throw new AuthenticationNeededException();
     }
     $castle = $this->getUserCastle();
-    if(is_null($castle)) {
+    if($castle === null) {
       return false;
     }
     return ($castle->hp < 100);

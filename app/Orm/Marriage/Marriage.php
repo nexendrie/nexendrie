@@ -56,21 +56,21 @@ final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEff
   }
   
   protected function getterAcceptedT(): string {
-    if(is_null($this->accepted)) {
+    if($this->accepted === null) {
       return "";
     }
     return $this->localeModel->formatDateTime($this->accepted);
   }
   
   protected function getterTermT(): string {
-    if(is_null($this->term)) {
+    if($this->term === null) {
       return "";
     }
     return $this->localeModel->formatDateTime($this->term);
   }
   
   protected function getterCancelledT(): string {
-    if(is_null($this->cancelled)) {
+    if($this->cancelled === null) {
       return "";
     }
     return $this->localeModel->formatDateTime($this->cancelled);
@@ -98,16 +98,16 @@ final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEff
   
   public function onBeforeUpdate(): void {
     parent::onBeforeUpdate();
-    if($this->status === static::STATUS_ACCEPTED && is_null($this->accepted)) {
+    if($this->status === static::STATUS_ACCEPTED && $this->accepted === null) {
       $this->accepted = time();
     }
-    if($this->status === static::STATUS_ACCEPTED && is_null($this->term)) {
+    if($this->status === static::STATUS_ACCEPTED && $this->term === null) {
       $this->term = time() + (60 * 60 * 24 * 14);
     }
-    if($this->status === static::STATUS_DECLINED && is_null($this->accepted)) {
+    if($this->status === static::STATUS_DECLINED && $this->accepted === null) {
       $this->accepted = time();
     }
-    if($this->status === static::STATUS_CANCELLED && is_null($this->cancelled)) {
+    if($this->status === static::STATUS_CANCELLED && $this->cancelled === null) {
       $this->cancelled = time();
     }
   }

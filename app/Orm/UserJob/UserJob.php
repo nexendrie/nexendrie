@@ -36,7 +36,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getHouseRewardBonus(int $baseReward): int {
-    if(!is_null($this->user->house)) {
+    if($this->user->house !== null) {
       return (int) ($baseReward / 100 * $this->user->house->workIncomeBonus);
     }
     return 0;
@@ -57,7 +57,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
     $userSkill = $this->user->skills->get()->getBy([
       "skill" => $this->job->neededSkill->id
     ]);
-    if(is_null($userSkill)) {
+    if($userSkill === null) {
       return 0;
     }
     return (int) ($baseReward / 100 * $userSkill->jobRewardBonus);
@@ -94,7 +94,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
     $userSkill = $this->user->skills->get()->getBy([
       "skill" => $this->job->neededSkill->id
     ]);
-    if(is_null($userSkill)) {
+    if($userSkill === null) {
       return 0;
     }
     return $userSkill->jobSuccessRateBonus;

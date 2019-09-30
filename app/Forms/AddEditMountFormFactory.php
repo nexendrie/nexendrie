@@ -51,14 +51,14 @@ final class AddEditMountFormFactory {
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
     $form->onSuccess[] = [$this, "process"];
-    if(!is_null($mount)) {
+    if($mount !== null) {
       $form->setDefaults($mount->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }
     return $form;
   }
 
   public function process(Form $form, array $values): void {
-    if(is_null($this->mount)) {
+    if($this->mount === null) {
       $this->model->add($values);
     } else {
       $this->model->edit($this->mount->id, $values);

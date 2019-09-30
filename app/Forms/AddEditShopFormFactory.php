@@ -30,14 +30,14 @@ final class AddEditShopFormFactory {
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Odeslat");
     $form->onSuccess[] = [$this, "process"];
-    if(!is_null($shop)) {
+    if($shop !== null) {
       $form->setDefaults($shop->toArray());
     }
     return $form;
   }
 
   public function process(Form $form, array $values): void {
-    if(is_null($this->shop)) {
+    if($this->shop === null) {
       $this->model->addShop($values);
     } else {
       $this->model->editShop($this->shop->id, $values);

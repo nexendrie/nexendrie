@@ -13,14 +13,14 @@ final class CommentsPresenter extends BasePresenter {
     if(isset($this->params["associations"]["users"])) {
       $user = (int) $this->params["associations"]["users"];
       $record = $this->orm->users->getById($user);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("user", $user);
       }
       $records = $record->comments;
     } elseif(isset($this->params["associations"]["articles"])) {
       $article = (int) $this->params["associations"]["articles"];
       $record = $this->orm->articles->getById($article);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("article", $article);
       }
       $records = $record->comments;

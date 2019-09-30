@@ -35,7 +35,7 @@ final class AddEditTownFormFactory {
     $form->addSelect("owner", "Majitel:", $this->profileModel->getListOfLords())
       ->setRequired("Vyber majitele.")
       ->setValue(0);
-    if(is_null($town)) {
+    if($town === null) {
       $form->addCheckbox("onMarket", "Na prodej");
       $form->addText("price", "Cena:")
         ->setRequired("Zadej cenu.")
@@ -45,14 +45,14 @@ final class AddEditTownFormFactory {
     }
     $form->addSubmit("submit", "Odeslat");
     $form->onSuccess[] = [$this, "process"];
-    if(!is_null($town)) {
+    if($town !== null) {
       $form->setDefaults($town->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }
     return $form;
   }
 
   public function process(Form $form, array $values): void {
-    if(is_null($this->town)) {
+    if($this->town === null) {
       $this->model->add($values);
     } else {
       $this->model->edit($this->town->id, $values);

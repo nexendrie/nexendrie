@@ -45,7 +45,7 @@ final class OrderPresenter extends BasePresenter {
   
   public function renderDefault(): void {
     $order = $this->model->getUserOrder();
-    if(is_null($order)) {
+    if($order === null) {
       $this->flashMessage("Nejsi v řádu.");
       $this->redirect("Homepage:");
     }
@@ -89,7 +89,7 @@ final class OrderPresenter extends BasePresenter {
   
   public function actionChat(): void {
     $order = $this->model->getUserOrder();
-    if(is_null($order)) {
+    if($order === null) {
       $this->flashMessage("Nejsi v řádu.");
       $this->redirect("Homepage:");
     }

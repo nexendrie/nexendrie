@@ -72,14 +72,14 @@ final class AddEditJobFormFactory {
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
     $form->onSuccess[] = [$this, "process"];
-    if(!is_null($job)) {
+    if($job !== null) {
       $form->setDefaults($job->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }
     return $form;
   }
 
   public function process(Form $form, array $values): void {
-    if(is_null($this->job)) {
+    if($this->job === null) {
       $this->model->addJob($values);
     } else {
       $this->model->editJob($this->job->id, $values);

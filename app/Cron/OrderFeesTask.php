@@ -20,7 +20,7 @@ final class OrderFeesTask extends BaseMonthlyCronTask {
   
   protected function getFeeRecord(\Nexendrie\Orm\User $user): OrderFee {
     $fee = $this->orm->orderFees->getByUserAndOrder($user, $user->order);
-    if(!is_null($fee)) {
+    if($fee !== null) {
       return $fee;
     }
     $fee = new OrderFee();

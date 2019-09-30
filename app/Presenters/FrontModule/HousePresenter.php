@@ -42,7 +42,7 @@ final class HousePresenter extends BasePresenter {
   
   public function renderDefault(): void {
     $house = $this->model->getUserHouse();
-    if(is_null($house)) {
+    if($house === null) {
       $this->flashMessage("Nevlastníš dům.");
       $this->redirect("Homepage:");
     }

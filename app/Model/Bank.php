@@ -61,7 +61,7 @@ final class Bank {
   public function takeLoan(int $amount): void {
     if($amount > $this->maxLoan()) {
       throw new TooHighLoanException("Amount cannot be higher than $amount.", $amount);
-    } elseif(!is_null($this->getActiveLoan())) {
+    } elseif($this->getActiveLoan() !== null) {
       throw new CannotTakeMoreLoansException();
     }
     $loan = new LoanEntity();
@@ -86,7 +86,7 @@ final class Bank {
       throw new AuthenticationNeededException();
     }
     $loan = $this->getActiveLoan();
-    if(is_null($loan)) {
+    if($loan === null) {
       throw new NoLoanException();
     }
     $returnMoney = $loan->amount + $loan->interest;
@@ -128,7 +128,7 @@ final class Bank {
       throw new TooHighDepositException();
     } elseif($term < time()) {
       throw new InvalidDateException();
-    } elseif(!is_null($this->getActiveDeposit())) {
+    } elseif($this->getActiveDeposit() !== null) {
       throw new CannotOpenMoreDepositAccountsException();
     }
     $deposit = new DepositEntity();
@@ -152,7 +152,7 @@ final class Bank {
       throw new AuthenticationNeededException();
     }
     $deposit = $this->getActiveDeposit();
-    if(is_null($deposit)) {
+    if($deposit === null) {
       throw new NoDepositAccountException();
     } elseif(!$deposit->due) {
       throw new DepositAccountNotDueException();

@@ -28,7 +28,7 @@ final class PrisonControl extends \Nette\Application\UI\Control {
   }
   
   protected function canWork(Punishment $punishment): bool {
-    if(is_null($punishment->lastAction)) {
+    if($punishment->lastAction === null) {
       return true;
     } elseif(time() > $punishment->nextShift) {
       return true;
@@ -40,7 +40,7 @@ final class PrisonControl extends \Nette\Application\UI\Control {
     $this->template->setFile(__DIR__ . "/prison.latte");
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
     $this->template->noCrime = $this->template->release = false;
-    if(is_null($punishment)) {
+    if($punishment === null) {
       $this->template->noCrime = true;
     } else {
       if($punishment->count >= $punishment->numberOfShifts) {
@@ -58,7 +58,7 @@ final class PrisonControl extends \Nette\Application\UI\Control {
   
   public function handleWork(): void {
     $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
-    if(is_null($punishment)) {
+    if($punishment === null) {
       $message = $this->localeModel->genderMessage("Nejsi uvězněn(ý|á).");
       $this->presenter->flashMessage($message);
     } elseif(!$this->canWork($punishment)) {
@@ -81,7 +81,7 @@ final class PrisonControl extends \Nette\Application\UI\Control {
     $release = false;
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($punishment)) {
+    if($punishment === null) {
       $release = true;
       $user->lastActive = time();
       $this->orm->users->persistAndFlush($user);

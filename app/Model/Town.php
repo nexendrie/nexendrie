@@ -36,7 +36,7 @@ final class Town {
    */
   public function get(int $id): TownEntity {
     $town = $this->orm->towns->getById($id);
-    if(is_null($town)) {
+    if($town === null) {
       throw new TownNotFoundException();
     }
     return $town;
@@ -102,7 +102,7 @@ final class Town {
       throw new AuthenticationNeededException();
     }
     $town = $this->orm->towns->getById($id);
-    if(is_null($town)) {
+    if($town === null) {
       throw new TownNotFoundException();
     }
     if(!$town->onMarket) {
@@ -159,13 +159,13 @@ final class Town {
       throw new AuthenticationNeededException();
     }
     $town = $this->orm->towns->getById($townId);
-    if(is_null($town)) {
+    if($town === null) {
       throw new TownNotFoundException();
     } elseif($town->owner->id !== $this->user->id) {
       throw new TownNotOwnedException();
     }
     $newMayor = $this->orm->users->getById($newMayorId);
-    if(is_null($newMayor)) {
+    if($newMayor === null) {
       throw new UserNotFoundException();
     } elseif($newMayor->town->id !== $townId) {
       throw new UserDoesNotLiveInTheTownException();
@@ -175,7 +175,7 @@ final class Town {
       throw new InsufficientLevelForMayorException();
     }
     $oldMayor = $this->orm->users->getTownMayor($townId);
-    if(!is_null($oldMayor)) {
+    if($oldMayor !== null) {
       $oldMayor->group = $this->orm->groups->getByLevel(100);
       $this->orm->users->persist($oldMayor);
     }
@@ -199,7 +199,7 @@ final class Town {
       return false;
     } elseif($user->group->path === GroupEntity::PATH_CITY && $user->group->level !== 100) {
       return false;
-    } elseif(is_null($user->lastTransfer)) {
+    } elseif($user->lastTransfer === null) {
       return true;
     } elseif($user->lastTransfer + $month > time()) {
       return false;
@@ -222,7 +222,7 @@ final class Town {
       throw new AuthenticationNeededException();
     }
     $town = $this->orm->towns->getById($id);
-    if(is_null($town)) {
+    if($town === null) {
       throw new TownNotFoundException();
     }
     /** @var \Nexendrie\Orm\User $user */
@@ -260,10 +260,10 @@ final class Town {
       throw new InsufficientFundsException();
     }
     $item = $this->orm->userItems->getByUserAndItem($user->id, 15);
-    if(is_null($item)) {
+    if($item === null) {
       throw new CannotFoundTownException();
     }
-    if(!is_null($this->orm->towns->getByName($data["name"]))) {
+    if($this->orm->towns->getByName($data["name"]) !== null) {
       throw new TownNameInUseException();
     }
     $item->amount--;
@@ -303,7 +303,7 @@ final class Town {
       throw new AuthenticationNeededException();
     }
     $citizen = $this->orm->users->getById($id);
-    if(is_null($citizen)) {
+    if($citizen === null) {
       throw new UserNotFoundException();
     }
     /** @var \Nexendrie\Orm\User $owner */

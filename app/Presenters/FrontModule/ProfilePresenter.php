@@ -33,7 +33,7 @@ final class ProfilePresenter extends BasePresenter {
    * @throws BadRequestException
    */
   public function renderDefault(?string $name = null): void {
-    if(is_null($name)) {
+    if($name === null) {
       throw new BadRequestException();
     }
     try {

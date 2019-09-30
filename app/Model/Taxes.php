@@ -40,10 +40,10 @@ final class Taxes {
    * @return int[]
    */
   public function calculateIncome(int $user, int $month = null, int $year = null): array {
-    if(is_null($month)) {
+    if($month === null) {
       $month = (int) date("n");
     }
-    if(is_null($year)) {
+    if($year === null) {
       $year = (int) date("Y");
     }
     $workIncome = $this->jobModel->calculateMonthJobIncome($user, $month, $year);
@@ -79,7 +79,7 @@ final class Taxes {
       $return->taxes += $d->tax;
     }
     $castle = $this->orm->castles->getByOwner($town->owner->id);
-    if(!is_null($castle)) {
+    if($castle !== null) {
       $return->taxes += $castle->taxesBonusIncome;
     }
     return $return;

@@ -13,7 +13,7 @@ final class AdventuresPresenter extends BasePresenter {
     if(isset($this->params["associations"]["events"])) {
       $event = (int) $this->params["associations"]["events"];
       $record = $this->orm->events->getById($event);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("event", $event);
       }
       $records = $record->adventures;

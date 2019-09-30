@@ -20,7 +20,7 @@ final class GuildFeesTask extends BaseMonthlyCronTask {
   
   protected function getFeeRecord(\Nexendrie\Orm\User $user): GuildFee {
     $fee = $this->orm->guildFees->getByUserAndGuild($user, $user->guild);
-    if(!is_null($fee)) {
+    if($fee !== null) {
       return $fee;
     }
     $fee = new GuildFee();

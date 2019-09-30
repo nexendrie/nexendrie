@@ -63,7 +63,7 @@ final class ChatPresenter extends BasePresenter {
   
   public function actionOrder(): void {
     $order = $this->orderModel->getUserOrder();
-    if(is_null($order)) {
+    if($order === null) {
       $this->flashMessage("Nejsi v řádu.");
       $this->redirect("Homepage:");
     }
@@ -75,7 +75,7 @@ final class ChatPresenter extends BasePresenter {
   
   public function actionGuild(): void {
     $guild = $this->guildModel->getUserGuild();
-    if(is_null($guild)) {
+    if($guild === null) {
       $this->flashMessage("Nejsi v cechu.");
       $this->redirect("Homepage:");
     }

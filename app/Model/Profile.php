@@ -33,7 +33,7 @@ final class Profile {
    */
   public function view(string $publicname): UserEntity {
     $user = $this->orm->users->getByPublicname($publicname);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException("Specified user does not exist.");
     }
     return $user;
@@ -54,7 +54,7 @@ final class Profile {
    */
   public function getPath(int $id = null): string {
     $user = $this->orm->users->getById($id ?? $this->user->id);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
     return $user->group->path;
@@ -65,7 +65,7 @@ final class Profile {
    */
   public function getPartner(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getActiveMarriage($id);
-    if(is_null($marriage)) {
+    if($marriage === null) {
       return null;
     } elseif($marriage->user1->id === $id) {
       return $marriage->user2;
@@ -78,7 +78,7 @@ final class Profile {
    */
   public function getFiance(int $id): ?UserEntity {
     $marriage = $this->orm->marriages->getAcceptedMarriage($id);
-    if(is_null($marriage)) {
+    if($marriage === null) {
       return null;
     } elseif($marriage->user1->id === $id) {
       return $marriage->user2;
@@ -92,7 +92,7 @@ final class Profile {
    */
   public function getArticles(string $publicname): OneHasMany {
     $user = $this->orm->users->getByPublicname($publicname);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException("Specified user does not exist.");
     }
     return $user->articles;
@@ -104,7 +104,7 @@ final class Profile {
    */
   public function getSkills(string $publicname): OneHasMany {
     $user = $this->orm->users->getByPublicname($publicname);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException("Specified user does not exist.");
     }
     return $user->skills;

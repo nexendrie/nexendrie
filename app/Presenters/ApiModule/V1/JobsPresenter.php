@@ -13,7 +13,7 @@ final class JobsPresenter extends BasePresenter {
     if(isset($this->params["associations"]["skills"])) {
       $skill = (int) $this->params["associations"]["skills"];
       $record = $this->orm->skills->getById($skill);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("skill", $skill);
       }
       $records = $record->jobs;

@@ -49,7 +49,7 @@ final class UserManager {
    */
   public function nameAvailable(string $name, int $uid = null): bool {
     $row = $this->orm->users->getByPublicname($name);
-    if(is_null($row)) {
+    if($row === null) {
       return true;
     } elseif(!is_int($uid)) {
       return false;
@@ -67,7 +67,7 @@ final class UserManager {
    */
   public function emailAvailable(string $email, int $uid = null): bool {
     $row = $this->orm->users->getByEmail($email);
-    if(is_null($row)) {
+    if($row === null) {
       return true;
     } elseif(!is_int($uid)) {
       return false;
@@ -184,7 +184,7 @@ final class UserManager {
   
   public function get(int $id): UserEntity {
     $user = $this->orm->users->getById($id);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
     return $user;

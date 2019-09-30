@@ -13,14 +13,14 @@ final class GuildsPresenter extends BasePresenter {
     if(isset($this->params["associations"]["towns"])) {
       $town = (int) $this->params["associations"]["towns"];
       $record = $this->orm->towns->getById($town);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("town", $town);
       }
       $records = $record->guilds;
     } elseif(isset($this->params["associations"]["skills"])) {
       $skill = (int) $this->params["associations"]["skills"];
       $record = $this->orm->skills->getById($skill);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("skill", $skill);
       }
       $records = $record->guilds;

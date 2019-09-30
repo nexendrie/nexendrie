@@ -33,14 +33,14 @@ final class AddEditPollFormFactory {
     $form->addCheckbox("locked", "Uzamčená");
     $form->addSubmit("send", "Odeslat");
     $form->onSuccess[] = [$this, "process"];
-    if(!is_null($poll)) {
+    if($poll !== null) {
       $form->setDefaults($poll->toArray());
     }
     return $form;
   }
 
   public function process(Form $form, array $values): void {
-    if(is_null($this->poll)) {
+    if($this->poll === null) {
       $this->model->add($values);
     } else {
       $this->model->edit($this->poll->id, $values);

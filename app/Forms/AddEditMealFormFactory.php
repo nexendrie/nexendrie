@@ -38,14 +38,14 @@ final class AddEditMealFormFactory {
       ->addRule(Form::RANGE, "Efekt musí být v rozmezí -60 - 60.", [-60, 60]);
     $form->addSubmit("submit", "Odeslat");
     $form->onSuccess[] = [$this, "process"];
-    if(!is_null($meal)) {
+    if($meal !== null) {
       $form->setDefaults($meal->toArray());
     }
     return $form;
   }
 
   public function process(Form $form, array $values): void {
-    if(is_null($this->meal)) {
+    if($this->meal === null) {
       $this->model->addMeal($values);
     } else {
       $this->model->editMeal($this->meal->id, $values);

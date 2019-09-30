@@ -32,7 +32,7 @@ final class Mount {
    */
   public function get(int $id): MountEntity {
     $mount = $this->orm->mounts->getById($id);
-    if(is_null($mount)) {
+    if($mount === null) {
       throw new MountNotFoundException();
     }
     return $mount;

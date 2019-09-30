@@ -36,7 +36,7 @@ final class ChangeWeddingTermFormFactory {
   }
   
   public function validate(Form $form, array $values): void {
-    if(is_null($values["term"])) {
+    if($values["term"] === null) {
       return;
     }
     $term = $values["term"]->getTimestamp();

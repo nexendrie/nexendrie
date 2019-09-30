@@ -44,7 +44,7 @@ final class Article {
    */
   public function listOfNews(\Nette\Utils\Paginator $paginator = null): ICollection {
     $news = $this->orm->articles->findNews();
-    if(!is_null($paginator)) {
+    if($paginator !== null) {
       $paginator->itemsPerPage = $this->itemsPerPage;
       $news = $news->limitBy($paginator->getLength(), $paginator->getOffset());
     }
@@ -58,7 +58,7 @@ final class Article {
    */
   public function category(string $name, \Nette\Utils\Paginator $paginator = null): ICollection {
     $articles = $this->orm->articles->findByCategory($name);
-    if(!is_null($paginator)) {
+    if($paginator !== null) {
       $paginator->itemsPerPage = $this->itemsPerPage;
       $articles = $articles->limitBy($paginator->getLength(), $paginator->getOffset());
     }
@@ -72,7 +72,7 @@ final class Article {
    */
   public function view(int $id): ArticleEntity {
     $article = $this->orm->articles->getById($id);
-    if(is_null($article)) {
+    if($article === null) {
       throw new ArticleNotFoundException();
     }
     return $article;
@@ -152,7 +152,7 @@ final class Article {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
     $article = $this->orm->articles->getById($id);
-    if(is_null($article)) {
+    if($article === null) {
       throw new ArticleNotFoundException();
     }
     if(!$this->user->isAllowed("article", "edit") && $article->author->id !== $this->user->id) {

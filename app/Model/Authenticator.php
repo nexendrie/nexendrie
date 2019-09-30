@@ -53,15 +53,15 @@ final class Authenticator implements IAuthenticator {
     } else {
       $roles[0] = $user->group->singleName;
     }
-    if(!is_null($user->guildRank) && $user->group->path === \Nexendrie\Orm\Group::PATH_CITY) {
+    if($user->guildRank !== null && $user->group->path === \Nexendrie\Orm\Group::PATH_CITY) {
       $roles[1] = AuthorizatorFactory::GUILD_RANK_ROLE_PREFIX . "^" . $user->guildRank->name;
-    } elseif(!is_null($user->orderRank) && $user->group->path === \Nexendrie\Orm\Group::PATH_TOWER) {
+    } elseif($user->orderRank !== null && $user->group->path === \Nexendrie\Orm\Group::PATH_TOWER) {
       $roles[1] = AuthorizatorFactory::ORDER_RANK_ROLE_PREFIX . "^" . $user->orderRank->name;
     }
     $adventure = $this->orm->userAdventures->getUserActiveAdventure($user->id);
     $data = [
       "name" => $user->publicname, "group" => $user->group->id,
-      "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "path" => $user->group->path, "town" => $user->town->id, "banned" => $user->banned, "travelling" => !(is_null($adventure))
+      "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "path" => $user->group->path, "town" => $user->town->id, "banned" => $user->banned, "travelling" => !($adventure === null)
     ];
     return new Identity($user->id, $roles, $data);
   }
@@ -74,7 +74,7 @@ final class Authenticator implements IAuthenticator {
   public function authenticate(array $credentials): Identity {
     list($email, $password) = $credentials;
     $user = $this->orm->users->getByEmail($email);
-    if(is_null($user)) {
+    if($user === null) {
       throw new AuthenticationException("E-mail not found.", static::IDENTITY_NOT_FOUND);
     }
     if(!$this->passwords->verify($password, $user->password)) {

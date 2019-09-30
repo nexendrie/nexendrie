@@ -66,7 +66,7 @@ final class GiftFormFactory {
   }
   
   public function validate(Form $form, array $values): void {
-    if($values["money"] === 0 && is_null($values["item"])) {
+    if($values["money"] === 0 && $values["item"] === null) {
       $form->addError("Musíš zadat částku (a)nebo vybrat věc.");
     }
     $money = $values["money"];
@@ -112,7 +112,7 @@ final class GiftFormFactory {
       /** @var ItemEntity $item */
       $item = $this->orm->items->getById($values["item"]);
       $row = $this->orm->userItems->getByUserAndItem($user->id, $item->id);
-      if(is_null($row)) {
+      if($row === null) {
         $row = new UserItemEntity();
         $row->user = $user;
         $row->item = $item;

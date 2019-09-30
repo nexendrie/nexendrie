@@ -25,7 +25,7 @@ final class RssPresenter extends BasePresenter {
    * @throws \Nette\Application\BadRequestException
    */
   public function renderComments(int $id = null): void {
-    if(is_null($id)) {
+    if($id === null) {
       throw new \Nette\Application\BadRequestException();
     }
     try {

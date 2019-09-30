@@ -52,7 +52,7 @@ final class AddEditSkillFormFactory {
     $form->addSubmit("submit", "Odeslat");
     $form->onValidate[] = [$this, "validate"];
     $form->onSuccess[] = [$this, "process"];
-    if(!is_null($skill)) {
+    if($skill !== null) {
       $form->setDefaults($skill->toArray());
     }
     return $form;
@@ -68,7 +68,7 @@ final class AddEditSkillFormFactory {
   }
 
   public function process(Form $form, array $values): void {
-    if(is_null($this->skill)) {
+    if($this->skill === null) {
       $this->model->add($values);
     } else {
       $this->model->edit($this->skill->id, $values);

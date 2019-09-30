@@ -70,7 +70,7 @@ abstract class BaseTransformer implements ITransformer {
           /** @var ITransformer|null $transformer */
           $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($item)]);
           $links[$transformer->getCollectionName()] = $this->createEntityLink($transformer->getCollectionName(), $transformer->getCollectionName(), $apiVersion, $entity->id);
-          if($maxDepth > 0 && !is_null($transformer)) {
+          if($maxDepth > 0 && $transformer !== null) {
             $array[] = $transformer->transform($item, $maxDepth, $apiVersion);
           } else {
             $array[] = $item->id;
@@ -80,7 +80,7 @@ abstract class BaseTransformer implements ITransformer {
       } else {
         /** @var ITransformer|null $transformer */
         $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($value)]);
-        if($maxDepth > 0 && !is_null($transformer)) {
+        if($maxDepth > 0 && $transformer !== null) {
           $value = $transformer->transform($value, $maxDepth, $apiVersion);
         } else {
           $value = $value->id;

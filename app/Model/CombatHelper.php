@@ -41,14 +41,14 @@ final class CombatHelper {
     $hpIncrease = 0;
     $helmet = $this->inventoryModel->getHelmet($user->id);
     $set = $this->inventoryModel->getUserItemSet($user->id);
-    if(!is_null($helmet)) {
+    if($helmet !== null) {
       $hpIncrease = ($helmet->item->strength + $helmet->level) * 5;
     }
     if($set && $set->stat === ItemSetEntity::STAT_HITPOINTS) {
       $hpIncrease += $set->bonus;
     }
     $marriage = $this->orm->marriages->getActiveMarriage($user->id);
-    if(!is_null($marriage)) {
+    if($marriage !== null) {
       $hpIncrease += $marriage->hpIncrease;
     }
     $maxLife += $hpIncrease;
@@ -61,7 +61,7 @@ final class CombatHelper {
    */
   public function getCharacter(int $id, ?MountEntity $mount = null): Character {
     $user = $this->orm->users->getById($id);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
     $stats = [
@@ -77,15 +77,15 @@ final class CombatHelper {
     }
     $character = new Character($stats, $equipment, [], [], new ConstantInitiativeFormulaParser(1));
     $character->harm($user->maxLife - $user->life);
-    if(!is_null($mount)) {
+    if($mount !== null) {
       $character->effectProviders[] = $mount;
     }
     $set = $this->inventoryModel->getUserItemSet($user->id);
-    if(!is_null($set)) {
+    if($set !== null) {
       $character->effectProviders[] = $set;
     }
     $marriage = $this->orm->marriages->getActiveMarriage($user->id);
-    if(!is_null($marriage)) {
+    if($marriage !== null) {
       $character->effectProviders[] = $marriage;
     }
     $skills = $user->skills->get()->findBy([

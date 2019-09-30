@@ -15,14 +15,14 @@ final class ItemsPresenter extends BasePresenter {
     if(isset($this->params["associations"]["shops"])) {
       $shop = (int) $this->params["associations"]["shops"];
       $record = $this->orm->shops->getById($shop);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("shop", $shop);
       }
       $records = $record->items;
     } elseif(isset($this->params["associations"]["item-sets"])) {
       $itemSet = (int) $this->params["associations"]["item-sets"];
       $record = $this->orm->itemSets->getById($itemSet);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("item set", $itemSet);
       }
       $records = [$record->weapon, $record->armor, $record->helmet, ];

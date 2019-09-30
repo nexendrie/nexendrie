@@ -28,7 +28,7 @@ final class EntityConverter {
   public function convertEntity(Entity $entity, string $apiVersion): \stdClass {
     /** @var ITransformer|null $transformer */
     $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($entity)]);
-    if(is_null($transformer)) {
+    if($transformer === null) {
       return new \stdClass();
     }
     return $transformer->transform($entity, $this->maxDepth, $apiVersion);

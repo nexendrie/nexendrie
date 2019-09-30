@@ -44,7 +44,7 @@ final class Polls {
    */
   public function view(int $id): PollEntity {
     $poll = $this->orm->polls->getById($id);
-    if(is_null($poll)) {
+    if($poll === null) {
       throw new PollNotFoundException("Specified poll does not exist.");
     }
     return $poll;
@@ -94,7 +94,7 @@ final class Polls {
       throw new MissingPermissionsException("You don't have permissions for editing polls.");
     }
     $poll = $this->orm->polls->getById($id);
-    if(is_null($poll)) {
+    if($poll === null) {
       throw new PollNotFoundException("Specified poll does not exist.");
     }
     foreach($data as $key => $value) {

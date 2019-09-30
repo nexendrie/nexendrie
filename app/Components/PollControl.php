@@ -42,7 +42,7 @@ final class PollControl extends \Nette\Application\UI\Control {
       return $this->poll;
     }
     $poll = $this->orm->polls->getById($this->id);
-    if(is_null($poll)) {
+    if($poll === null) {
       throw new PollNotFoundException("Specified poll does not exist.");
     }
     $this->poll = $poll;

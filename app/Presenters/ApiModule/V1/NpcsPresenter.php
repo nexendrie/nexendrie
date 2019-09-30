@@ -13,7 +13,7 @@ final class NpcsPresenter extends BasePresenter {
     if(isset($this->params["associations"]["adventures"])) {
       $adventure = (int) $this->params["associations"]["adventures"];
       $record = $this->orm->adventures->getById($adventure);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("adventure", $adventure);
       }
       $records = $record->npcs;

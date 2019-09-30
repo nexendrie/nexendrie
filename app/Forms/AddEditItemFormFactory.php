@@ -49,14 +49,14 @@ final class AddEditItemFormFactory {
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
     $form->onSuccess[] = [$this, "process"];
-    if(!is_null($item)) {
+    if($item !== null) {
       $form->setDefaults($item->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }
     return $form;
   }
 
   public function process(Form $form, array $values): void {
-    if(is_null($this->item)) {
+    if($this->item === null) {
       $this->model->addItem($values);
     } else {
       $this->model->editItem($this->item->id, $values);

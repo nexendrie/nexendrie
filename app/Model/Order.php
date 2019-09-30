@@ -46,7 +46,7 @@ final class Order {
    */
   public function getOrder(int $id): OrderEntity {
     $order = $this->orm->orders->getById($id);
-    if(is_null($order)) {
+    if($order === null) {
       throw new OrderNotFoundException();
     }
     return $order;
@@ -57,7 +57,7 @@ final class Order {
    */
   private function checkNameAvailability(string $name, int $id = null): bool {
     $order = $this->orm->orders->getByName($name);
-    if(is_null($order)) {
+    if($order === null) {
       return true;
     }
     return ($order->id === $id);
@@ -89,7 +89,7 @@ final class Order {
    */
   public function getUserOrder(int $uid = null): ?OrderEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
-    if(is_null($user)) {
+    if($user === null) {
       return null;
     }
     return $user->order;
@@ -209,7 +209,7 @@ final class Order {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order)) {
+    if($user->order === null) {
       return false;
     }
     return !($user->orderRank->id === $this->maxRank);
@@ -257,7 +257,7 @@ final class Order {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order)) {
+    if($user->order === null) {
       return false;
     } elseif(!$this->user->isAllowed(AuthorizatorFactory::ORDER_RESOURCE_NAME, "upgrade")) {
       return false;
@@ -302,7 +302,7 @@ final class Order {
   
   public function getMaxRank(): int {
     static $rank = null;
-    if(is_null($rank)) {
+    if($rank === null) {
       $rank = $this->orm->orderRanks->findAll()->countStored();
     }
     return $rank;
@@ -324,12 +324,12 @@ final class Order {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order) || $user->order->id !== $admin->order->id) {
+    if($user->order === null || $user->order->id !== $admin->order->id) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id >= $this->maxRank - 1) {
       throw new CannotPromoteMemberException();
@@ -354,12 +354,12 @@ final class Order {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order) || $user->order->id !== $admin->order->id) {
+    if($user->order === null || $user->order->id !== $admin->order->id) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id < 2 || $user->orderRank->id === $this->maxRank) {
       throw new CannotDemoteMemberException();
@@ -384,12 +384,12 @@ final class Order {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->order) || $user->order->id !== $admin->order->id) {
+    if($user->order === null || $user->order->id !== $admin->order->id) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id === $this->maxRank) {
       throw new CannotKickMemberException();

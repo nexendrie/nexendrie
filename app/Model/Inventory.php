@@ -99,7 +99,7 @@ final class Inventory {
       throw new AuthenticationNeededException();
     }
     $item = $this->orm->userItems->getById($id);
-    if(is_null($item)) {
+    if($item === null) {
       throw new ItemNotFoundException();
     } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
@@ -135,7 +135,7 @@ final class Inventory {
       throw new AuthenticationNeededException();
     }
     $item = $this->orm->userItems->getById($id);
-    if(is_null($item)) {
+    if($item === null) {
       throw new ItemNotFoundException();
     } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
@@ -162,7 +162,7 @@ final class Inventory {
       throw new AuthenticationNeededException();
     }
     $item = $this->orm->userItems->getById($id);
-    if(is_null($item)) {
+    if($item === null) {
       throw new ItemNotFoundException();
     } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
@@ -204,11 +204,11 @@ final class Inventory {
       throw new AuthenticationNeededException();
     }
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
-    if(is_null($marriage)) {
+    if($marriage === null) {
       throw new NotMarriedException();
     }
     $item = $this->orm->userItems->getById($id);
-    if(is_null($item)) {
+    if($item === null) {
       throw new ItemNotFoundException();
     } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
@@ -249,9 +249,9 @@ final class Inventory {
     $weapon = $this->getWeapon($user);
     $armor = $this->getArmor($user);
     $helmet = $this->getHelmet($user);
-    $w = (!is_null($weapon)) ? $weapon->item : null;
-    $a = (!is_null($armor)) ? $armor->item : null;
-    $h = (!is_null($helmet)) ? $helmet->item : null;
+    $w = ($weapon !== null) ? $weapon->item : null;
+    $a = ($armor !== null) ? $armor->item : null;
+    $h = ($helmet !== null) ? $helmet->item : null;
     return $this->orm->itemSets->getByWeaponAndArmorAndHelmet($w, $a, $h);
   }
   
@@ -268,7 +268,7 @@ final class Inventory {
       throw new AuthenticationNeededException();
     }
     $item = $this->orm->userItems->getById($id);
-    if(is_null($item)) {
+    if($item === null) {
       throw new ItemNotFoundException();
     } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();
@@ -303,7 +303,7 @@ final class Inventory {
       throw new AuthenticationNeededException();
     }
     $item = $this->orm->userItems->getById($id);
-    if(is_null($item)) {
+    if($item === null) {
       throw new ItemNotFoundException();
     } elseif($item->user->id !== $this->user->id) {
       throw new ItemNotOwnedException();

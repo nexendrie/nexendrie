@@ -40,7 +40,7 @@ final class Tavern {
    */
   public function getMeal(int $id): MealEntity {
     $meal = $this->orm->meals->getById($id);
-    if(is_null($meal)) {
+    if($meal === null) {
       throw new MealNotFoundException();
     }
     return $meal;
@@ -86,7 +86,7 @@ final class Tavern {
       throw new AuthenticationNeededException();
     }
     $meal = $this->orm->meals->getById($id);
-    if(is_null($meal)) {
+    if($meal === null) {
       throw new MealNotFoundException();
     }
     /** @var \Nexendrie\Orm\User $user */

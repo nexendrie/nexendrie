@@ -34,7 +34,7 @@ final class Skills {
    * @return SkillEntity[]|ICollection
    */
   public function listOfSkills(string $type = null): ICollection {
-    if(is_null($type)) {
+    if($type === null) {
       return $this->orm->skills->findAll();
     }
     return $this->orm->skills->findByType($type);
@@ -75,7 +75,7 @@ final class Skills {
    */
   public function get(int $id): SkillEntity {
     $skill = $this->orm->skills->getById($id);
-    if(is_null($skill)) {
+    if($skill === null) {
       throw new SkillNotFoundException();
     }
     return $skill;
@@ -89,7 +89,7 @@ final class Skills {
       throw new AuthenticationNeededException();
     }
     $userSkill = $this->orm->userSkills->getByUserAndSkill($this->user->id, $skill);
-    if(is_null($userSkill)) {
+    if($userSkill === null) {
       $userSkill = new UserSkillEntity();
       $this->orm->userSkills->attach($userSkill);
       $userSkill->skill = $skill;

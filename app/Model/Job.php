@@ -100,7 +100,7 @@ final class Job {
    */
   public function getJob(int $id): JobEntity {
     $job = $this->orm->jobs->getById($id);
-    if(is_null($job)) {
+    if($job === null) {
       throw new JobNotFoundException("Specified job was not found.");
     }
     return $job;
@@ -148,7 +148,7 @@ final class Job {
       throw new AlreadyWorkingException();
     }
     $row = $this->orm->jobs->getById($id);
-    if(is_null($row)) {
+    if($row === null) {
       throw new JobNotFoundException();
     }
     if($row->level > $this->user->identity->level) {
@@ -256,7 +256,7 @@ final class Job {
       throw new AuthenticationNeededException();
     }
     $activeJob = $this->orm->userJobs->getUserActiveJob($this->user->id);
-    return !(is_null($activeJob));
+    return !($activeJob === null);
   }
   
   /**
@@ -270,7 +270,7 @@ final class Job {
       throw new AuthenticationNeededException();
     }
     $job = $this->orm->userJobs->getUserActiveJob($this->user->id);
-    if(is_null($job)) {
+    if($job === null) {
       throw new NotWorkingException();
     }
     return $job;
@@ -301,7 +301,7 @@ final class Job {
     } catch(AccessDeniedException $e) {
       throw $e;
     }
-    if(is_null($job->lastAction)) {
+    if($job->lastAction === null) {
       return true;
     } elseif($job->lastAction + ($job->job->shift * 60) > time()) {
       return false;
@@ -317,7 +317,7 @@ final class Job {
    */
   public function listOfMessages(int $jobId): OneHasMany {
     $job = $this->orm->jobs->getById($jobId);
-    if(is_null($job)) {
+    if($job === null) {
       throw new JobNotFoundException();
     }
     return $job->messages;
@@ -330,7 +330,7 @@ final class Job {
    */
   public function getMessage(int $id): JobMessageEntity {
     $message = $this->orm->jobMessages->getById($id);
-    if(is_null($message)) {
+    if($message === null) {
       throw new JobMessageNotFoundException();
     }
     return $message;
@@ -378,7 +378,7 @@ final class Job {
    */
   public function deleteMessage(int $id): int {
     $message = $this->orm->jobMessages->getById($id);
-    if(is_null($message)) {
+    if($message === null) {
       throw new JobMessageNotFoundException();
     }
     $return = $message->job->id;

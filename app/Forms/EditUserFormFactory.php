@@ -48,7 +48,7 @@ final class EditUserFormFactory {
    */
   protected function getDefaultValues(): array {
     $user = $this->orm->users->getById($this->uid);
-    if(is_null($user)) {
+    if($user === null) {
       throw new \Nette\ArgumentOutOfRangeException("User with specified id does not exist.");
     }
     return [

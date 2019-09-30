@@ -12,7 +12,7 @@ final class HousesPresenter extends BasePresenter {
   public function actionReadAll(): void {
     if(isset($this->params["associations"]["users"])) {
       $user = (int) $this->params["associations"]["users"];
-      if(is_null($this->orm->users->getById($user))) {
+      if($this->orm->users->getById($user) === null) {
         $this->resourceNotFound("user", $user);
       }
       $records = $this->orm->houses->findBy(["owner" => $user])->limitBy(1);

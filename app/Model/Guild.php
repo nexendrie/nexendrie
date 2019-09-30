@@ -49,7 +49,7 @@ final class Guild {
    */
   public function getGuild(int $id): GuildEntity {
     $guild = $this->orm->guilds->getById($id);
-    if(is_null($guild)) {
+    if($guild === null) {
       throw new GuildNotFoundException();
     }
     return $guild;
@@ -60,7 +60,7 @@ final class Guild {
    */
   private function checkNameAvailability(string $name, int $id = null): bool {
     $guild = $this->orm->guilds->getByName($name);
-    if(is_null($guild)) {
+    if($guild === null) {
       return true;
     }
     return ($guild->id === $id);
@@ -92,7 +92,7 @@ final class Guild {
    */
   public function getUserGuild(int $uid = null): ?GuildEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
-    if(is_null($user)) {
+    if($user === null) {
       return null;
     }
     return $user->guild;
@@ -193,7 +193,7 @@ final class Guild {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(is_null($user->guild)) {
+    if($user->guild === null) {
       return false;
     }
     return !($user->guildRank->id === $this->getMaxRank());
@@ -284,7 +284,7 @@ final class Guild {
   
   public function getMaxRank(): int {
     static $rank = null;
-    if(is_null($rank)) {
+    if($rank === null) {
       $rank = $this->orm->guildRanks->findAll()->countStored();
     }
     return $rank;
@@ -306,12 +306,12 @@ final class Guild {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->guild) || $user->guild->id !== $admin->guild->id) {
+    if($user->guild === null || $user->guild->id !== $admin->guild->id) {
       throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id >= $this->maxRank - 1) {
       throw new CannotPromoteMemberException();
@@ -336,12 +336,12 @@ final class Guild {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->guild) || $user->guild->id !== $admin->guild->id) {
+    if($user->guild === null || $user->guild->id !== $admin->guild->id) {
       throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id < 2 || $user->guildRank->id === $this->maxRank) {
       throw new CannotDemoteMemberException();
@@ -366,12 +366,12 @@ final class Guild {
       throw new MissingPermissionsException();
     }
     $user = $this->orm->users->getById($userId);
-    if(is_null($user)) {
+    if($user === null) {
       throw new UserNotFoundException();
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if(is_null($user->guild) || $user->guild->id !== $admin->guild->id) {
+    if($user->guild === null || $user->guild->id !== $admin->guild->id) {
       throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id === $this->maxRank) {
       throw new CannotKickMemberException();

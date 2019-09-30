@@ -26,7 +26,7 @@ final class Elections {
    */
   public function getNumberOfCouncillors(int $townId): int {
     $town = $this->orm->towns->getById($townId);
-    if(is_null($town)) {
+    if($town === null) {
       return 0;
     }
     $denizens = $town->denizens->countStored();

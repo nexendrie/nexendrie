@@ -65,7 +65,7 @@ final class Messenger {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
     $message = $this->orm->messages->getById($id);
-    if(is_null($message)) {
+    if($message === null) {
       throw new MessageNotFoundException("Message not found.");
     }
     if($message->from->id !== $this->user->id && $message->to->id !== $this->user->id) {

@@ -55,7 +55,7 @@ final class MarriagePresenter extends BasePresenter {
   
   public function actionDefault(): void {
     $marriage = $this->model->getCurrentMarriage();
-    if(is_null($marriage)) {
+    if($marriage === null) {
       $this->redirect("proposals");
     }
     $this->template->marriage = $this->marriage = $marriage;

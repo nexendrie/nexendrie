@@ -13,7 +13,7 @@ final class PollsPresenter extends BasePresenter {
     if(isset($this->params["associations"]["users"])) {
       $user = (int) $this->params["associations"]["users"];
       $record = $this->orm->users->getById($user);
-      if(is_null($record)) {
+      if($record === null) {
         $this->resourceNotFound("user", $user);
       }
       $records = $record->polls;

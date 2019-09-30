@@ -29,7 +29,7 @@ final class Chronicle {
    */
   public function articles(\Nette\Utils\Paginator $paginator = null): ICollection {
     $articles = $this->orm->articles->findChronicle();
-    if(!is_null($paginator)) {
+    if($paginator !== null) {
       //$paginator->itemsPerPage = $this->itemsPerPage;
       $articles = $articles->limitBy($paginator->getLength(), $paginator->getOffset());
     }
