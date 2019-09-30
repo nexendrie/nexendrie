@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
-use Nette\Utils\DateTime;
+use Nextras\Forms\Controls\DateTimePicker;
 
 /**
  * Factory for form AddEditEvent
@@ -31,10 +31,13 @@ final class AddEditEventFormFactory {
       ->setRequired("Zadej jméno.");
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
-    $form->addText("start", "Začátek:")
-      ->setRequired("Zadej začátek.");
-    $form->addText("end", "Konec:")
-      ->setRequired("Zadej konec.");
+    $start = new DateTimePicker("Začátek:");
+    $start->setRequired("Zadej začátek.");
+    $form->addComponent($start, "start");
+    $end = new DateTimePicker("Konec:");
+    $end->setRequired("Zadej konec.");
+    $end->addRule(Form::MIN, "Akce nemůže skončit před svým začátkem.", $form["start"]);
+    $form->addComponent($end, "end");
     $form->addText("adventuresBonus", "Bonus k dobrodružstvím:")
       ->setRequired()
       ->addRule(Form::INTEGER)
@@ -60,29 +63,11 @@ final class AddEditEventFormFactory {
       ->addRule(Form::INTEGER)
       ->addRule(Form::RANGE, null, [0, 100]);
     $form->addSubmit("submit", "Odeslat");
-    $form->onValidate[] = [$this, "validate"];
     $form->onSuccess[] = [$this, "process"];
     if($event !== null) {
       $form->setDefaults($event->dummyArray());
     }
     return $form;
-  }
-  
-  public function validate(Form $form, array $values): void {
-    $format = $this->dateTimeFormat;
-    $start = DateTime::createFromFormat($format, $values["start"]);
-    if($start === false) {
-      $form->addError("Neplatný čas začátku.");
-    }
-    $end = DateTime::createFromFormat($format, $values["end"]);
-    if($end === false) {
-      $form->addError("Neplatný čas konce.");
-    }
-    if($start instanceof DateTime && $end instanceof  DateTime) {
-      if($end->getTimestamp() < $start->getTimestamp()) {
-        $form->addError("Akce nemůže skončit před svým začátkem.");
-      }
-    }
   }
 
   public function process(Form $form, array $values): void {

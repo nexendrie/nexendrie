@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Event;
-use Nette\Utils\DateTime;
 use Nette\Caching\Cache;
 use Nexendrie\Orm\EventDummy;
 use Nextras\Orm\Collection\ICollection;
@@ -59,13 +58,7 @@ final class Events implements \EventCalendar\IEventModel {
     }
     return $event;
   }
-  
-  protected function getTimestamp(string $date): int {
-    /** @var \Nette\Utils\DateTime $time */
-    $time = DateTime::createFromFormat($this->sr->settings["locale"]["dateTimeFormat"], $date);
-    return (int) $time->getTimestamp();
-  }
-  
+
   /**
    * Add new event
    */
@@ -73,7 +66,7 @@ final class Events implements \EventCalendar\IEventModel {
     $event = new Event();
     foreach($data as $key => $value) {
       if($key === "start" || $key === "end") {
-        $value = $this->getTimestamp($value);
+        $value = (int) $value->getTimestamp();
       }
       $event->$key = $value;
     }
@@ -92,7 +85,7 @@ final class Events implements \EventCalendar\IEventModel {
     }
     foreach($data as $key => $value) {
       if($key === "start" || $key === "end") {
-        $value = $this->getTimestamp($value);
+        $value = (int) $value->getTimestamp();
       }
       $event->$key = $value;
     }

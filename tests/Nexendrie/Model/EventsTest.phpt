@@ -37,7 +37,7 @@ final class EventsTest extends \Tester\TestCase {
       $this->model->editEvent(50, []);
     }, EventNotFoundException::class);
     $event = $this->model->getEvent(1);
-    $this->model->editEvent(1, ["start" => $event->startAt, "name" => "abc"]);
+    $this->model->editEvent(1, ["name" => "abc"]);
     Assert::same("abc", $event->name);
     $this->model->editEvent(1, ["name" => $event->name]);
   }
