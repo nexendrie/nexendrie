@@ -26,7 +26,7 @@ final class AddEditItemFormFactory {
     return $this->model->listOfShops()->fetchPairs("id", "name");
   }
   
-  public function create(?\Nexendrie\Orm\Item $item = null): Form {
+  public function create(?Item $item = null): Form {
     $this->item = $item;
     $form = new Form();
     $form->addText("name", "Jméno:")
