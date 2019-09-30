@@ -64,24 +64,19 @@ final class UserSettingsFormFactory {
     $form->addCheckbox("infomails", "Posílat informační e-maily");
     $form->addGroup("Heslo")
       ->setOption("description", "Současné a nové heslo vyplňujte jen pokud ho chcete změnit.");
-    $form->addPassword("password_old", "Současné heslo:");
-    $form->addPassword("password_new", "Nové heslo:");
-    $form->addPassword("password_check", "Nové heslo (kontrola):");
+    $passwordOld = $form->addPassword("password_old", "Současné heslo:");
+    $passwordNew = $form->addPassword("password_new", "Nové heslo:");
+    $passwordOld->addConditionOn($passwordNew, Form::FILLED)
+      ->setRequired("Musíš zadat současné heslo.");
+    $form->addPassword("password_check", "Nové heslo (kontrola):")
+      ->addConditionOn($passwordNew, Form::FILLED)
+      ->setRequired("Musíš znovu zadat nové heslo.")
+      ->addRule(Form::EQUAL, "Hesla se neshodují.", $form["password_new"]);
     $form->setCurrentGroup(null);
     $form->addSubmit("save", "Uložit změny");
     $form->setDefaults($this->model->getSettings());
-    $form->onValidate[] = [$this, "validate"];
     $form->onSuccess[] = [$this, "process"];
     return $form;
-  }
-  
-  public function validate(Form $form, array $values): void {
-    if(empty($values["password_old"]) && !empty($values["password_new"])) {
-      $form->addError("Musíš zadat současné heslo.");
-    }
-    if($values["password_new"] !== $values["password_check"]) {
-      $form->addError("Hesla se neshodují.");
-    }
   }
   
   public function process(Form $form, array $values): void {

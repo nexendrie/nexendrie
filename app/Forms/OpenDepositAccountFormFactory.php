@@ -28,21 +28,13 @@ final class OpenDepositAccountFormFactory {
       ->addRule(Form::RANGE, "Částka musí být v rozmezí 1-$maxDeposit.", [1, $maxDeposit]);
     $term = new DatePicker("Termín:");
     $term->setRequired("Zadej datum.");
+    $term->addRule(function(DatePicker $datePicker) {
+      return $datePicker->value->getTimestamp() > time();
+    }, "Datum nemůže být v minulosti.");
     $form->addComponent($term, "term");
     $form->addSubmit("submit", "Otevřít účet");
-    $form->onValidate[] = [$this, "validate"];
     $form->onSuccess[] = [$this, "process"];
     return $form;
-  }
-  
-  public function validate(Form $form, array $values): void {
-    if($values["term"] === null) {
-      return;
-    }
-    $term = $values["term"]->getTimestamp();
-    if($term < time()) {
-      $form->addError("Datum nemůže být v minulosti.");
-    }
   }
   
   public function process(Form $form, array $values): void {

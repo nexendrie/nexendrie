@@ -28,21 +28,13 @@ final class ChangeWeddingTermFormFactory {
     $term = new DateTimePicker("Nový termín:");
     $term->setRequired("Zadej datum a čas.");
     $term->setValue($marriage->term);
+    $term->addRule(function(DateTimePicker $dateTimePicker) {
+      return $dateTimePicker->value->getTimestamp() > time();
+    }, "Datum nemůže být v minulosti.");
     $form->addComponent($term, "term");
     $form->addSubmit("submit", "Změnit");
-    $form->onValidate[] = [$this, "validate"];
     $form->onSuccess[] = [$this, "process"];
     return $form;
-  }
-  
-  public function validate(Form $form, array $values): void {
-    if($values["term"] === null) {
-      return;
-    }
-    $term = $values["term"]->getTimestamp();
-    if($term < time()) {
-      $form->addError("Datum nemůže být v minulosti.");
-    }
   }
   
   public function process(Form $form, array $values): void {
