@@ -14,13 +14,6 @@
     <exec command="git tag ${version} --message='Version ${version}' --sign" logoutput="true" passthru="true" checkreturn="true"/>
     <echo message="Created tag."/>
   </target>
-  <target name="test-ci-pgsql">
-    <phingcall target="install-ci"/>
-    <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
-      <arg path="tools/pgsql_setup.php"/>
-    </exec>
-    <phingcall target="test"/>
-  </target>
   <target name="test-ci-coverage" depends="install-ci,test-coverage"/>
   <target name="install">
     <property name="environment" value="production"/>
@@ -100,7 +93,7 @@
   </target>
   <target name="config-db">
     <echo message="Enter database configuration"/>
-    <input propertyName="driver" validArgs="mysqli,pgsql" defaultValue="mysqli" message="Database driver " promptChar=":"/>
+    <input propertyName="driver" validArgs="mysqli" defaultValue="mysqli" message="Database driver " promptChar=":"/>
     <input propertyName="host" defaultValue="localhost" message="Database host" promptChar=":"/>
     <input propertyName="dbname" defaultValue="nexendrie" message="Database name" promptChar=":"/>
     <input propertyName="user" defaultValue="nexendrie" message="Database user" promptChar=":"/>

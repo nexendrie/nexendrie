@@ -52,19 +52,6 @@ sast:
 test:default:
   <<: *test_job
 
-test:pgsql:
-  <<: *test_job
-  services:
-    - postgres
-  variables:
-    POSTGRES_DB: nexendrie
-    POSTGRES_USER: root
-    POSTGRES_PASSWORD: root
-  script:
-    - phing test-ci-pgsql
-  allow_failure: true
-  retry: 0
-
 test:cc:
   <<: *test_job
   script:

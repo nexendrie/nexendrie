@@ -25,8 +25,7 @@ final class DatabaseImporter {
   protected $extension;
   /** @var string[] File extensions for drivers */
   protected $driversExtensions = [
-    "mysqli" => "mysql",
-    "pgsql" => "pgsql",
+    "mysqli" => "sql",
   ];
   /** @var string[] */
   protected $files = [];
@@ -38,9 +37,6 @@ final class DatabaseImporter {
   public function __construct(Connection $connection, string $driver) {
     $this->connection = $connection;
     $this->setExtension($driver);
-    if($this->extension === "pgsql") {
-      $this->allowedFiles[] = "final";
-    }
   }
   
   /**
@@ -90,17 +86,11 @@ final class DatabaseImporter {
   
   public function useBasicData(): void {
     $files = ["structure", "data_basic", ];
-    if($this->extension === "pgsql") {
-      $files[] = "final";
-    }
     $this->setFiles($files);
   }
   
   public function useBasicAndTestData(): void {
     $files = ["structure", "data_basic", "data_test", ];
-    if($this->extension === "pgsql") {
-      $files[] = "final";
-    }
     $this->setFiles($files);
   }
   
