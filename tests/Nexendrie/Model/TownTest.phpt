@@ -188,7 +188,7 @@ final class TownTest extends \Tester\TestCase {
     $this->login();
     Assert::true($this->model->canManage($this->model->get(1)));
     Assert::true($this->model->canManage($this->model->get(2)));
-    Assert::false($this->model->canManage($this->model->get(6)));
+    Assert::false($this->model->canManage($this->model->get(10)));
   }
 }
 

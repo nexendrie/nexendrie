@@ -35,6 +35,7 @@
       <equals arg1="${environment}" arg2="ci"/>
       <then>
         <copy file="tests/ci.neon" tofile="tests/local.neon"/>
+        <copy file="tests/ci.neon" tofile="app/config/local.neon"/>
       </then>
       <else>
         <copy file="app/config/local.sample.neon" tofile="app/config/local.neon"/>
