@@ -17,4 +17,4 @@ What actually happens
 
 What did you expect to happen
 
-/label ~bug
+/label ~"type::bug"

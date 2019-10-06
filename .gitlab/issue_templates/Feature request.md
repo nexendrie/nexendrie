@@ -14,4 +14,4 @@ Describe details of your proposed feature/change
 
 Are there any issues to consider?
 
-/label ~enhancement
+/label ~"type::enhancement"
