@@ -1,21 +1,16 @@
 <?php
 declare(strict_types=1);
 
-use Nette\Neon\Neon;
+use Phinx\Config\Config;
+use Phinx\Migration\Manager;
+use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 require __DIR__ . "/../vendor/autoload.php";
 
-$filename = __DIR__ . "/../tests/local.neon";
-$content = file_get_contents($filename);
-if($content === false) {
-  throw new RuntimeException("File $filename does not exist or cannot be read.");
-}
-$config = Neon::decode($content);
-
-$connection = new Nextras\Dbal\Connection($config["dbal"]);
-
-$dbImporter = new Nexendrie\Database\DatabaseImporter($connection, $config["dbal"]["driver"]);
-$dbImporter->folder = __DIR__ . "/../app/sqls";
-$dbImporter->useBasicAndTestData();
-$dbImporter->run();
+$environment = "testing";
+$config = new Config(require __DIR__ . "/../phinx.php");
+$manager = new Manager($config, new StringInput(" "), new ConsoleOutput());
+$manager->migrate($environment);
+$manager->seed($environment);
 ?>

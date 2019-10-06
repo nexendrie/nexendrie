@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 use Nette\Neon\Neon;
 use Nette\Utils\Arrays;
+use Phinx\Config\Config;
+use Phinx\Migration\Manager;
+use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 require __DIR__ . "/../vendor/autoload.php";
 
@@ -24,11 +28,10 @@ $config["dbal"] = $db;
 file_put_contents($filename, Neon::encode($config, Neon::BLOCK));
 echo "Settings written to " . realpath($filename) . ".\n";
 
-$connection = new Nextras\Dbal\Connection($config["dbal"]);
+echo "Running database migrations ...\n";
 
-$dbImporter = new Nexendrie\Database\DatabaseImporter($connection, $config["dbal"]["driver"]);
-$dbImporter->folder = __DIR__ . "/../app/sqls";
-$dbImporter->finalMessage = "Tables were created and filled with basic data.";
-$dbImporter->useBasicData();
-$dbImporter->run();
+$environment = "production";
+$config = new Config(require __DIR__ . "/../phinx.php");
+$manager = new Manager($config, new StringInput(" "), new ConsoleOutput());
+$manager->migrate($environment);
 ?>

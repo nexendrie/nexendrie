@@ -43,7 +43,8 @@
         "symfony/options-resolver": "^4.3",
         "heroesofabenez/chat": "^1.0",
         "heroesofabenez/combat": "^1.0",
-        "adamstipak/nette-rest-route": "^4.0.1"
+        "adamstipak/nette-rest-route": "^4.0.1",
+        "robmorgan/phinx": "^0.11.1"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
@@ -52,7 +53,10 @@
     },
     "replace": {
         "symfony/polyfill-php73": "*",
-        "symfony/polyfill-mbstring": "*"
+        "symfony/polyfill-mbstring": "*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/yaml": "*",
+        "cakephp/database": "*"
     },
     "autoload": {
         "psr-4": {
