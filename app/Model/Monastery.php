@@ -51,7 +51,7 @@ final class Monastery {
   public function listOfMonasteries(): ICollection {
     return $this->orm->monasteries->findAll()
       ->orderBy("altairLevel", ICollection::DESC)
-      ->orderBy("founded");
+      ->orderBy("created");
   }
   
   /**
@@ -324,7 +324,7 @@ final class Monastery {
     } catch(MonasteryNotFoundException $e) {
       throw $e;
     }
-    $skip = ["town", "founded", "money"];
+    $skip = ["town", "created", "money"];
     foreach($data as $key => $value) {
       if(in_array($key, $skip, true)) {
         continue;

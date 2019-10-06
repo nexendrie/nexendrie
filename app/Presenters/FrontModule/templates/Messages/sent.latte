@@ -9,7 +9,7 @@
     <table>
       <tr><th>Předmět</th><th>Pro</th><th>Odesláno</th></tr>
     {foreach $messages as $message}
-      <tr><td><a n:href="Messages:view $message->id">{$message->subject}</a></td><td>{control userProfileLink $message->to}</td><td>{$message->sentAt}</td></tr>
+      <tr><td><a n:href="Messages:view $message->id">{$message->subject}</a></td><td>{control userProfileLink $message->to}</td><td>{$message->createdAt}</td></tr>
     {/foreach}
     </table>
   {/if}

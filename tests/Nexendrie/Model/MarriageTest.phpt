@@ -63,7 +63,7 @@ final class MarriageTest extends \Tester\TestCase {
     $orm = $this->getService(\Nexendrie\Orm\Model::class);
     $marriage = new MarriageEntity();
     $marriage->status = MarriageEntity::STATUS_ACCEPTED;
-    $marriage->proposed = time();
+    $marriage->created = time();
     $marriage->user1 = $orm->users->getById(1);
     $marriage->user2 = $orm->users->getById(0);
     Assert::false($this->model->canFinish($marriage));

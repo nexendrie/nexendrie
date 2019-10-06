@@ -30,7 +30,7 @@ final class EntityConverterTest extends \Tester\TestCase {
     Assert::same($entity->id, $result->id);
     Assert::same($entity->name, $result->name);
     Assert::same($entity->description, $result->description);
-    Assert::same($entity->foundedAt, $result->founded);
+    Assert::same($entity->createdAt, $result->created);
     Assert::type(\stdClass::class, $result->owner);
     Assert::same($entity->owner->id, $result->owner->id);
     Assert::same($entity->owner->group->id, $result->owner->group);

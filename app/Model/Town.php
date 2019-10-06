@@ -274,7 +274,7 @@ final class Town {
     $town->name = $data["name"];
     $town->description = $data["description"];
     $town->owner = $user;
-    $town->founded = time();
+    $town->created = time();
     $town->owner->money -= $this->foundingPrice;
     $town->price = $this->foundingPrice;
     $this->orm->towns->persistAndFlush($town);
@@ -317,7 +317,7 @@ final class Town {
     $message = new MessageEntity();
     $message->from = $owner;
     $message->to = $citizen;
-    $message->sent = time();
+    $message->created = time();
     $message->subject = "Povýšení";
     $message->text = "Byl(a) jsi povýšen(a) na měšťana.";
     $this->orm->users->persistAndFlush($citizen);

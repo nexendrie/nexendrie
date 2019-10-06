@@ -3,7 +3,7 @@
 {block content}
   <h1>{$town->name}</h1>
   <p>{$town->description}</p>
-  <p>Město bylo založeno {$town->foundedAt}, v současnosti mu vládne {control userProfileLink $town->owner,true}.</p>
+  <p>Město bylo založeno {$town->createdAt}, v současnosti mu vládne {control userProfileLink $town->owner,true}.</p>
   <h3>Obyvatelé města</h3>
   <p>
   {foreach $town->denizens as $denizen}

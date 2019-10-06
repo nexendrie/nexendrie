@@ -42,7 +42,7 @@ final class Chronicle {
    * @return PunishmentEntity[]|ICollection
    */
   public function crimes(): ICollection {
-    return $this->orm->punishments->findAll()->orderBy("imprisoned", ICollection::DESC);
+    return $this->orm->punishments->findAll()->orderBy("created", ICollection::DESC);
   }
 }
 ?>

@@ -12,8 +12,8 @@ use Nexendrie\Utils\Numbers;
  * @property int $id {primary}
  * @property string $name
  * @property string $description
- * @property int $founded
- * @property-read string $foundedAt {virtual}
+ * @property int $created
+ * @property-read string $createdAt {virtual}
  * @property User $owner {1:1 User::$castle, isMain=true}
  * @property int $level {default 1}
  * @property int $hp {default 100}
@@ -56,8 +56,8 @@ final class Castle extends \Nextras\Orm\Entity\Entity {
     return Numbers::range($value, 1, 100);
   }
   
-  protected function getterFoundedAt(): string {
-    return $this->localeModel->formatDate($this->founded);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDate($this->created);
   }
   
   protected function getterTaxesBonusIncome(): int {
@@ -102,7 +102,7 @@ final class Castle extends \Nextras\Orm\Entity\Entity {
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->founded = time();
+    $this->created = time();
   }
 }
 ?>

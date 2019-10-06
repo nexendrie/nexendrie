@@ -11,12 +11,12 @@ namespace Nexendrie\Orm;
  * @property Monastery $monastery {m:1 Monastery::$donations}
  * @property User $user {m:1 User::$monasteryDonations}
  * @property int $amount
- * @property int $when
+ * @property int $created
  */
 final class MonasteryDonation extends \Nextras\Orm\Entity\Entity {
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->when = time();
+    $this->created = time();
   }
 }
 ?>

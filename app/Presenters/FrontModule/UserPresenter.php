@@ -101,7 +101,7 @@ final class UserPresenter extends BasePresenter {
   public function renderList(): void {
     $this->template->users = $this->orm->users->findAll()
       ->orderBy("this->group->level", ICollection::DESC)
-      ->orderBy("joined");
+      ->orderBy("created");
   }
 }
 ?>

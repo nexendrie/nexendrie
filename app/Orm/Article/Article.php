@@ -14,8 +14,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $text
  * @property User $author {m:1 User::$articles}
  * @property string $category {enum static::CATEGORY_*}
- * @property int $added
- * @property-read string $addedAt {virtual}
+ * @property int $created
+ * @property-read string $createdAt {virtual}
  * @property bool $allowedComments {default true}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
  * @property-read string $categoryCZ {virtual}
@@ -53,8 +53,8 @@ final class Article extends \Nextras\Orm\Entity\Entity {
     ];
   }
   
-  protected function getterAddedAt(): string {
-    return $this->localeModel->formatDateTime($this->added);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterCategoryCZ(): string {
@@ -63,7 +63,7 @@ final class Article extends \Nextras\Orm\Entity\Entity {
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->added = time();
+    $this->created = time();
   }
 }
 ?>

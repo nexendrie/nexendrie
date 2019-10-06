@@ -28,7 +28,7 @@ final class CompletedAdventuresAchievementTest extends \Tester\TestCase {
     $adventure->user = $user;
     $adventure->adventure = 1;
     $adventure->mount = 1;
-    $adventure->started = time();
+    $adventure->created = time();
     $adventure->progress = UserAdventure::PROGRESS_COMPLETED;
     return $adventure;
   }

@@ -27,7 +27,7 @@ final class CompletedJobsAchievementTest extends \Tester\TestCase {
     $this->orm->userJobs->attach($job);
     $job->user = $user;
     $job->job = 1;
-    $job->started = time();
+    $job->created = time();
     $job->finished = true;
     $job->earned = 1;
     return $job;

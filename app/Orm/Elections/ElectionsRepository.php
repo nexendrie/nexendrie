@@ -41,7 +41,7 @@ final class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp();
-    return $this->findBy(["town" => $town, "when>" => $start, "when<" => $end]);
+    return $this->findBy(["town" => $town, "created>" => $start, "created<" => $end]);
   }
 }
 ?>

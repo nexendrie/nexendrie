@@ -10,7 +10,7 @@ namespace Nexendrie\Orm;
  * @property int $id {primary}
  * @property User $user {m:1 User::$jobs}
  * @property Job $job {m:1 Job::$userJobs}
- * @property int $started
+ * @property int $created
  * @property bool $finished {default false}
  * @property int|null $lastAction {default null}
  * @property int $count {default 0}
@@ -32,7 +32,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterFinishTime(): int {
-    return $this->started + (60 * 60 * 24 * 7);
+    return $this->created + (60 * 60 * 24 * 7);
   }
   
   protected function getHouseRewardBonus(int $baseReward): int {
@@ -108,7 +108,7 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->started = time();
+    $this->created = time();
   }
 }
 ?>

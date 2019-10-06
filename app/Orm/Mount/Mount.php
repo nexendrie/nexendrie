@@ -21,7 +21,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property User $owner {m:1 User::$mounts}
  * @property int $price
  * @property bool $onMarket {default false}
- * @property int $birth
+ * @property int $created
  * @property int $hp {default 100}
  * @property int $damage {default 0}
  * @property int $armor {default 0}
@@ -29,7 +29,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property OneHasMany|UserAdventure[] $adventures {1:m UserAdventure::$mount}
  * @property-read string $genderCZ {virtual}
  * @property-read string $priceT {virtual}
- * @property-read string $birthAt {virtual}
+ * @property-read string $createdAt {virtual}
  * @property-read int $baseDamage {virtual}
  * @property-read int $baseArmor {virtual}
  * @property-read int $maxDamage {virtual}
@@ -92,8 +92,8 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
     return $this->localeModel->money($this->price);
   }
   
-  protected function getterBirthAt(): string {
-    return $this->localeModel->formatDateTime($this->birth);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterBaseDamage(): int {
@@ -160,7 +160,7 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
     if(!$this->armor) {
       $this->armor = $this->type->armor;
     }
-    $this->birth = time();
+    $this->created = time();
     if($this->owner->id === 0) {
       $this->onMarket = true;
     }

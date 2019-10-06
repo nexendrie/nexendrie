@@ -12,12 +12,12 @@ namespace Nexendrie\Orm;
  * @property House $house {m:1 House::$beerProduction}
  * @property int $amount
  * @property int $price
- * @property int $when
+ * @property int $created
  */
 final class BeerProduction extends \Nextras\Orm\Entity\Entity {
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->when = time();
+    $this->created = time();
   }
 }
 ?>

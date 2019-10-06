@@ -10,7 +10,7 @@ namespace Nexendrie\Orm;
  * @property int $id {primary}
  * @property User $user {m:1 User::$loans}
  * @property int $amount
- * @property int $taken
+ * @property int $created
  * @property int|null $returned {default null}
  * @property int $interestRate
  * @property string $amountT {virtual}
@@ -31,7 +31,7 @@ final class Loan extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterTakenT(): string {
-    return $this->localeModel->formatDateTime($this->taken);
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterReturnedT(): string {
@@ -42,7 +42,7 @@ final class Loan extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterInterest(): int {
-    $start = $this->taken;
+    $start = $this->created;
     $end = ($this->returned) ? $this->returned : time();
     $duration = ($end - $start) / (60 * 60 * 24);
     $interest = (int) ($this->amount * $this->interestRate * $duration / 36500);
@@ -51,7 +51,7 @@ final class Loan extends \Nextras\Orm\Entity\Entity {
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->taken = time();
+    $this->created = time();
   }
 }
 ?>

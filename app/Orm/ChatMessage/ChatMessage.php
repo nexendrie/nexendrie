@@ -9,8 +9,8 @@ namespace Nexendrie\Orm;
  * @author Jakub Konečný
  * @property int $id {primary}
  * @property string $message
- * @property int $when
- * @property string $whenS {virtual}
+ * @property int $created
+ * @property string $createdAt {virtual}
  * @property User $user {m:1 User::$chatMessages}
  * @property Town|null $town {m:1 Town::$chatMessages}
  * @property Monastery|null $monastery {m:1 Monastery::$chatMessages}
@@ -25,13 +25,13 @@ final class ChatMessage extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterWhenS(): string {
-    return $this->localeModel->formatDateTime($this->when);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->when = time();
+    $this->created = time();
   }
 }
 ?>

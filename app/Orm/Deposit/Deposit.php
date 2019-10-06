@@ -10,7 +10,7 @@ namespace Nexendrie\Orm;
  * @property int $id {primary}
  * @property User $user {m:1 User::$deposits}
  * @property int $amount
- * @property int $opened
+ * @property int $created
  * @property int $term
  * @property bool $closed {default false}
  * @property int $interestRate
@@ -31,7 +31,7 @@ final class Deposit extends \Nextras\Orm\Entity\Entity {
   }
   
   protected function getterInterest(): int {
-    $start = $this->opened;
+    $start = $this->created;
     $end = $this->term;
     $duration = ($end - $start) / (60 * 60 * 24);
     $interest = (int) ($this->amount * $this->interestRate * $duration / 36500);
@@ -44,7 +44,7 @@ final class Deposit extends \Nextras\Orm\Entity\Entity {
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->opened = time();
+    $this->created = time();
   }
   
 }

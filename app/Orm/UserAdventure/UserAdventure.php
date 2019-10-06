@@ -11,7 +11,7 @@ namespace Nexendrie\Orm;
  * @property User $user {m:1 User::$adventures}
  * @property Adventure $adventure {m:1 Adventure::$userAdventures}
  * @property Mount $mount {m:1 Mount::$adventures}
- * @property int $started
+ * @property int $created
  * @property int $progress {default 0}
  * @property int $reward {default 0}
  * @property int $loot {default 0}
@@ -32,7 +32,7 @@ final class UserAdventure extends \Nextras\Orm\Entity\Entity {
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->started = time();
+    $this->created = time();
   }
 }
 ?>

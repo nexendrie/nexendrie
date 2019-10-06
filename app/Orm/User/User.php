@@ -15,8 +15,8 @@ use Nexendrie\Forms\UserSettingsFormFactory;
  * @property string $publicname
  * @property string $password
  * @property string $email
- * @property int $joined
- * @property-read string $joinedAt {virtual}
+ * @property int $created
+ * @property-read string $createdAt {virtual}
  * @property int $lastActive
  * @property-read string $lastActiveAt {virtual}
  * @property int|null $lastPrayer {default null}
@@ -102,8 +102,8 @@ final class User extends \Nextras\Orm\Entity\Entity {
     return $this->sr->settings["newUser"]["style"];
   }
   
-  protected function getterJoinedAt(): string {
-    return $this->localeModel->formatDateTime($this->joined);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterLastActiveAt(): string {
@@ -222,7 +222,7 @@ final class User extends \Nextras\Orm\Entity\Entity {
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->joined = $this->lastActive = time();
+    $this->created = $this->lastActive = time();
     $this->life = $this->maxLife;
   }
 }

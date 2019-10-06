@@ -37,7 +37,7 @@ final class Messenger {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
-    return $this->orm->messages->findByTo($this->user->id)->orderBy("sent", ICollection::DESC);
+    return $this->orm->messages->findByTo($this->user->id)->orderBy("created", ICollection::DESC);
   }
   
   /**
@@ -50,7 +50,7 @@ final class Messenger {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
-    return $this->orm->messages->findByFrom($this->user->id)->orderBy("sent", ICollection::DESC);
+    return $this->orm->messages->findByFrom($this->user->id)->orderBy("created", ICollection::DESC);
   }
   
   /**

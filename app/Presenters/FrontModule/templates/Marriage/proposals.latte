@@ -6,7 +6,7 @@
   <p>Žádné nabídky nenalezeny.</p>
   {else}
     {foreach $proposals as $proposal}
-  <p>{control userProfileLink $proposal->user1} tě požádal{if $proposal->user1->gender === "female"}a{/if} {$proposal->proposedT} o ruku. <a n:href="accept $proposal->id">Přijmout</a> <a n:href="decline $proposal->id">Odmítnout</a></p>
+  <p>{control userProfileLink $proposal->user1} tě požádal{if $proposal->user1->gender === "female"}a{/if} {$proposal->createdAt} o ruku. <a n:href="accept $proposal->id">Přijmout</a> <a n:href="decline $proposal->id">Odmítnout</a></p>
     {/foreach}
   {/if}
 {/block}

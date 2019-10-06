@@ -14,8 +14,8 @@ use Nexendrie\Utils\Numbers;
  * @property string $name
  * @property string $description
  * @property int $level {default 1}
- * @property int $founded
- * @property-read string $foundedAt {virtual}
+ * @property int $created
+ * @property-read string $createdAt {virtual}
  * @property int $money {default 0}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|User[] $members {1:m User::$order, orderBy=[orderRank,DESC]}
@@ -41,8 +41,8 @@ final class Order extends \Nextras\Orm\Entity\Entity {
     return Numbers::range($value, 1, static::MAX_LEVEL);
   }
   
-  protected function getterFoundedAt(): string {
-    return $this->localeModel->formatDateTime($this->founded);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterMoneyT(): string {
@@ -70,7 +70,7 @@ final class Order extends \Nextras\Orm\Entity\Entity {
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->founded = time();
+    $this->created = time();
   }
 }
 ?>

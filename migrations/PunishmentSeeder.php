@@ -15,7 +15,7 @@ final class PunishmentSeeder extends AbstractSeed {
           'id' => 1,
           'user' => 2,
           'crime' => 'zlobil',
-          'imprisoned' => 1445172553,
+          'created' => 1445172553,
           'released' => 1445179141,
           'number_of_shifts' => 5,
           'count' => 5,
