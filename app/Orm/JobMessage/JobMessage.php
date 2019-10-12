@@ -12,7 +12,7 @@ namespace Nexendrie\Orm;
  * @property bool $success
  * @property string $message
  */
-final class JobMessage extends \Nextras\Orm\Entity\Entity {
+final class JobMessage extends BaseEntity {
   
 }
 ?>

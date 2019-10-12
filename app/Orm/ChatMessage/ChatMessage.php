@@ -17,7 +17,7 @@ namespace Nexendrie\Orm;
  * @property Guild|null $guild {m:1 Guild::$chatMessages}
  * @property Order|null $order {m:1 Order::$chatMessages}
  */
-final class ChatMessage extends \Nextras\Orm\Entity\Entity {
+final class ChatMessage extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -27,11 +27,6 @@ final class ChatMessage extends \Nextras\Orm\Entity\Entity {
   
   protected function getterCreatedAt(): string {
     return $this->localeModel->formatDateTime($this->created);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

@@ -20,7 +20,7 @@ namespace Nexendrie\Orm;
  * @property-read int[] $reward {virtual}
  * @property-read int $successRate {virtual}
  */
-final class UserJob extends \Nextras\Orm\Entity\Entity {
+final class UserJob extends BaseEntity {
   /** Base success rate for job (in %) */
   public const BASE_SUCCESS_RATE = 55;
   
@@ -104,11 +104,6 @@ final class UserJob extends \Nextras\Orm\Entity\Entity {
     $successRate = static::BASE_SUCCESS_RATE;
     $successRate += $this->getSkillSuccessRateBonus();
     return $successRate;
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

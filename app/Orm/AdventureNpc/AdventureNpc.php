@@ -19,7 +19,7 @@ namespace Nexendrie\Orm;
  * @property string $encounterText
  * @property string $victoryText
  */
-final class AdventureNpc extends \Nextras\Orm\Entity\Entity {
+final class AdventureNpc extends BaseEntity {
   
 }
 ?>

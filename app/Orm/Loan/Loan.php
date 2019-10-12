@@ -18,7 +18,7 @@ namespace Nexendrie\Orm;
  * @property-read string $returnedT {virtual}
  * @property-read int $interest {virtual}
  */
-final class Loan extends \Nextras\Orm\Entity\Entity {
+final class Loan extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -47,11 +47,6 @@ final class Loan extends \Nextras\Orm\Entity\Entity {
     $duration = ($end - $start) / (60 * 60 * 24);
     $interest = (int) ($this->amount * $this->interestRate * $duration / 36500);
     return max([1, $interest]);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

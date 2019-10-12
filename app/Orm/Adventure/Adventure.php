@@ -21,7 +21,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure, orderBy=order}
  * @property OneHasMany|UserAdventure[] $userAdventures {1:m UserAdventure::$adventure}
  */
-final class Adventure extends \Nextras\Orm\Entity\Entity {
+final class Adventure extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

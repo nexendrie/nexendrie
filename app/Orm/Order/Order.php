@@ -25,7 +25,7 @@ use Nexendrie\Utils\Numbers;
  * @property-read string $upgradePriceT {virtual}
  * @property-read float $adventuresBonusIncome {virtual}
  */
-final class Order extends \Nextras\Orm\Entity\Entity {
+final class Order extends BaseEntity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 800;
   public const ADVENTURE_INCOME_BONUS_PER_LEVEL = 2.5;
@@ -66,11 +66,6 @@ final class Order extends \Nextras\Orm\Entity\Entity {
 
   protected function getterAdventuresBonusIncome(): float {
     return ($this->level - 1) * static::ADVENTURE_INCOME_BONUS_PER_LEVEL;
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

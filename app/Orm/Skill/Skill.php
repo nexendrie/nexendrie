@@ -23,7 +23,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Guild[] $guilds {1:m Guild::$skill}
  * @property-read string $effect {virtual}
  */
-final class Skill extends \Nextras\Orm\Entity\Entity {
+final class Skill extends BaseEntity {
   public const TYPE_WORK = "work";
   public const TYPE_COMBAT = "combat";
   public const STAT_HITPOINTS = "hitpoints";

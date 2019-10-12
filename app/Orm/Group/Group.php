@@ -19,7 +19,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|User[] $members {1:m User::$group}
  * @property OneHasMany|Permission[] $permissions {1:m Permission::$group}
  */
-final class Group extends \Nextras\Orm\Entity\Entity {
+final class Group extends BaseEntity {
   public const PATH_CITY = "city";
   public const PATH_CHURCH = "church";
   public const PATH_TOWER = "tower";

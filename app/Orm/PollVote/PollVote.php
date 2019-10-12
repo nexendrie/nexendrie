@@ -14,7 +14,7 @@ namespace Nexendrie\Orm;
  * @property int $created
  * @property-read string $createdAt {virtual}
  */
-final class PollVote extends \Nextras\Orm\Entity\Entity {
+final class PollVote extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -24,11 +24,6 @@ final class PollVote extends \Nextras\Orm\Entity\Entity {
   
   protected function getterCreatedAt(): string {
     return $this->localeModel->formatDateTime($this->created);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

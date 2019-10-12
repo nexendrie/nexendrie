@@ -16,7 +16,7 @@ namespace Nexendrie\Orm;
  * @property bool $read {default false}
  * @property-read string $createdAt {virtual}
  */
-final class Message extends \Nextras\Orm\Entity\Entity {
+final class Message extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -26,11 +26,6 @@ final class Message extends \Nextras\Orm\Entity\Entity {
   
   protected function getterCreatedAt(): string {
     return $this->localeModel->formatDateTime($this->created);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

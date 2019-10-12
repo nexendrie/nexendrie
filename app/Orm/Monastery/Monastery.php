@@ -33,7 +33,7 @@ use Nexendrie\Utils\Numbers;
  * @property-read string $repairPriceT {virtual}
  * @property-read int $skillLearningDiscount {virtual}
  */
-final class Monastery extends \Nextras\Orm\Entity\Entity {
+final class Monastery extends BaseEntity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 700;
   public const BASE_REPAIR_PRICE = 30;
@@ -138,11 +138,6 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
       return 0;
     }
     return $this->libraryLevel * static::SKILL_LEARNING_DISCOUNT_PER_LEVEL;
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

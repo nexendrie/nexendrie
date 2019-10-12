@@ -12,7 +12,7 @@ namespace Nexendrie\Orm;
  * @property Guild $guild {m:1 Guild::$fees}
  * @property int $amount {default 0}
  */
-final class GuildFee extends \Nextras\Orm\Entity\Entity {
+final class GuildFee extends BaseEntity {
   
 }
 ?>

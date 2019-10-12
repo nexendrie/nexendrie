@@ -20,7 +20,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
  * @property-read string $categoryCZ {virtual}
  */
-final class Article extends \Nextras\Orm\Entity\Entity {
+final class Article extends BaseEntity {
   public const CATEGORY_NEWS = "news";
   public const CATEGORY_CHRONICLE = "chronicle";
   public const CATEGORY_POETRY = "poetry";
@@ -59,11 +59,6 @@ final class Article extends \Nextras\Orm\Entity\Entity {
   
   protected function getterCategoryCZ(): string {
     return static::getCategories()[$this->category];
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

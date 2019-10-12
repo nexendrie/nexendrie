@@ -21,7 +21,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read int $jobRewardBonus {virtual}
  * @property-read int $jobSuccessRateBonus {virtual}
  */
-final class UserSkill extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+final class UserSkill extends BaseEntity implements ICharacterEffectsProvider {
   /** Increase of success rate per skill level (in %) */
   public const LEVEL_SUCCESS_RATE = 5;
   /** Increase of income per skill level (in %) */

@@ -27,7 +27,7 @@ use Nexendrie\Utils\Numbers;
  * @property-read string $upgradePriceT {virtual}
  * @property-read int $jobBonusIncome {virtual}
  */
-final class Guild extends \Nextras\Orm\Entity\Entity {
+final class Guild extends BaseEntity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 700;
   public const JOB_INCOME_BONUS_PER_LEVEL = 1;
@@ -68,11 +68,6 @@ final class Guild extends \Nextras\Orm\Entity\Entity {
 
   protected function getterJobBonusIncome() {
     return ($this->level - 1) * static::JOB_INCOME_BONUS_PER_LEVEL;
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

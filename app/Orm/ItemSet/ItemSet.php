@@ -22,7 +22,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property int $bonus
  * @property-read string $effect {virtual}
  */
-final class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+final class ItemSet extends BaseEntity implements ICharacterEffectsProvider {
   public const STAT_DAMAGE = "damage";
   public const STAT_ARMOR = "armor";
   public const STAT_HITPOINTS = "hitpoints";

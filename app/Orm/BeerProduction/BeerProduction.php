@@ -14,10 +14,7 @@ namespace Nexendrie\Orm;
  * @property int $price
  * @property int $created
  */
-final class BeerProduction extends \Nextras\Orm\Entity\Entity {
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
-  }
+final class BeerProduction extends BaseEntity {
+
 }
 ?>

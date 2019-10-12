@@ -25,7 +25,7 @@ use HeroesofAbenez\Combat\Weapon;
  * @property-read int $sellPrice {virtual}
  * @property-read string $sellPriceT {virtual}
  */
-final class UserItem extends \Nextras\Orm\Entity\Entity {
+final class UserItem extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

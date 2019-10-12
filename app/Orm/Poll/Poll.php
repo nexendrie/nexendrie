@@ -20,7 +20,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|PollVote[] $votes {1:m PollVote::$poll}
  * 
  */
-final class Poll extends \Nextras\Orm\Entity\Entity {
+final class Poll extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -34,11 +34,6 @@ final class Poll extends \Nextras\Orm\Entity\Entity {
   
   protected function getterParsedAnswers(): array {
     return explode("\n", $this->answers);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

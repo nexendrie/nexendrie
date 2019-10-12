@@ -19,7 +19,7 @@ namespace Nexendrie\Orm;
  * @property-read string $releasedAt {virtual}
  * @property-read int $nextShift {virtual}
  */
-final class Punishment extends \Nextras\Orm\Entity\Entity {
+final class Punishment extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -43,11 +43,6 @@ final class Punishment extends \Nextras\Orm\Entity\Entity {
       return time();
     }
     return $this->lastAction + (60 * 60);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

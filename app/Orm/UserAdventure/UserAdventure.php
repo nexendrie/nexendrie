@@ -17,7 +17,7 @@ namespace Nexendrie\Orm;
  * @property int $loot {default 0}
  * @property-read AdventureNpc|null $nextEnemy {virtual}
  */
-final class UserAdventure extends \Nextras\Orm\Entity\Entity {
+final class UserAdventure extends BaseEntity {
   public const PROGRESS_COMPLETED = 10;
   public const PROGRESS_CLOSED = 11;
   
@@ -28,11 +28,6 @@ final class UserAdventure extends \Nextras\Orm\Entity\Entity {
     return $this->adventure->npcs->get()->getBy([
       "order" => $this->progress + 1
     ]);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

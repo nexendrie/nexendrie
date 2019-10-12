@@ -25,7 +25,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $createdAt {virtual}
  * @property-read string $priceT {virtual}
  */
-final class Town extends \Nextras\Orm\Entity\Entity {
+final class Town extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -39,11 +39,6 @@ final class Town extends \Nextras\Orm\Entity\Entity {
   
   protected function getterPriceT(): string {
     return $this->localeModel->money($this->price);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

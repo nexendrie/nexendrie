@@ -40,7 +40,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read string $armorTrainingCostT {virtual}
  * @property-read string $typeGenderName {virtual}
  */
-final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+final class Mount extends BaseEntity implements ICharacterEffectsProvider {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var \Nexendrie\Model\Events */
@@ -160,7 +160,6 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
     if(!$this->armor) {
       $this->armor = $this->type->armor;
     }
-    $this->created = time();
     if($this->owner->id === 0) {
       $this->onMarket = true;
     }

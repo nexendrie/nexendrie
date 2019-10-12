@@ -23,7 +23,7 @@ use Nexendrie\Utils\Numbers;
  * @property-read int $repairPrice {virtual}
  * @property-read string $repairPriceT {virtual}
  */
-final class Castle extends \Nextras\Orm\Entity\Entity {
+final class Castle extends BaseEntity {
   public const MAX_LEVEL = 5;
   public const BASE_UPGRADE_PRICE = 500;
   public const BASE_REPAIR_PRICE = 35;
@@ -98,11 +98,6 @@ final class Castle extends \Nextras\Orm\Entity\Entity {
   
   protected function getterRepairPriceT(): string {
     return $this->localeModel->money($this->repairPrice);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->created = time();
   }
 }
 ?>

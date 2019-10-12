@@ -26,7 +26,7 @@ use Nexendrie\Utils\Numbers;
  * @property OneHasMany|Adventure[] $adventures {1:m Adventure::$event}
  * @property-read bool $active {virtual}
  */
-final class Event extends \Nextras\Orm\Entity\Entity {
+final class Event extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

@@ -23,7 +23,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|ItemSet[] $armorSets {1:m ItemSet::$armor}
  * @property OneHasMany|ItemSet[] $helmetSets {1:m ItemSet::$helmet}
  */
-final class Item extends \Nextras\Orm\Entity\Entity {
+final class Item extends BaseEntity {
   public const TYPE_ITEM = "item";
   public const TYPE_WEAPON = "weapon";
   public const TYPE_ARMOR = "armor";

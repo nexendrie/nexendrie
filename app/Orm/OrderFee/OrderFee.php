@@ -12,7 +12,7 @@ namespace Nexendrie\Orm;
  * @property Order $order {m:1 Order::$fees}
  * @property int $amount {default 0}
  */
-final class OrderFee extends \Nextras\Orm\Entity\Entity {
+final class OrderFee extends BaseEntity {
   
 }
 ?>
