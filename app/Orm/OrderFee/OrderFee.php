@@ -11,6 +11,7 @@ namespace Nexendrie\Orm;
  * @property User $user {m:1 User::$orderFees}
  * @property Order $order {m:1 Order::$fees}
  * @property int $amount {default 0}
+ * @property int $created
  */
 final class OrderFee extends BaseEntity {
   

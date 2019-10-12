@@ -20,6 +20,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property Item|null $helmet {m:1 Item::$helmetSets}
  * @property string $stat {enum static::STAT_*}
  * @property int $bonus
+ * @property int $created
  * @property-read string $effect {virtual}
  */
 final class ItemSet extends BaseEntity implements ICharacterEffectsProvider {

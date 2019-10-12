@@ -17,6 +17,7 @@ use HeroesofAbenez\Combat\Weapon;
  * @property int $amount {default 1}
  * @property bool $worn {default false}
  * @property int $level {default 0}
+ * @property int $created
  * @property-read int $maxLevel {virtual}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}

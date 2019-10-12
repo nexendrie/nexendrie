@@ -10,5 +10,9 @@ abstract class BaseEntity extends \Nextras\Orm\Entity\Entity {
       $this->created = time();
     }
   }
+
+  protected function getterCreated(?int $value): int {
+    return $value ?? time();
+  }
 }
 ?>

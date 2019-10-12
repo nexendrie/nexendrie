@@ -71,6 +71,66 @@ class CreatedUpdatedTime extends AbstractMigration {
     $this->table("user_jobs")
       ->renameColumn("started", "created")
       ->update();
+    $this->table("adventures")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("adventure_npcs")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("events")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("groups")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("guild_fees")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("guild_ranks")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("houses")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("items")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("item_sets")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("jobs")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("job_messages")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("meals")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("mount_types")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("order_fees")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("order_ranks")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("permissions")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("shops")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("skills")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("user_items")
+      ->addColumn("created", "integer")
+      ->update();
+    $this->table("user_skills")
+      ->addColumn("created", "integer")
+      ->update();
   }
 }
 ?>

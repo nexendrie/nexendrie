@@ -15,6 +15,7 @@ use Nexendrie\Utils\Numbers;
  * @property int $luxuryLevel {default 1}
  * @property int $breweryLevel {default 0}
  * @property int $hp {default 100}
+ * @property int $created
  * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$house}
  * @property-read int $workIncomeBonus {virtual}
  * @property-read int $upgradePrice {virtual}

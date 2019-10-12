@@ -11,6 +11,7 @@ namespace Nexendrie\Orm;
  * @property string $resource
  * @property string $action
  * @property Group $group {m:1 Group::$permissions}
+ * @property int $created
  */
 final class Permission extends BaseEntity {
   public function dummy(): PermissionDummy {

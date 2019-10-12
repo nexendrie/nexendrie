@@ -17,6 +17,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $reward
  * @property int $level {default 55}
  * @property Event|null $event {m:1 Event::$adventures}
+ * @property int $created
  * @property-read string $rewardT {virtual}
  * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure, orderBy=order}
  * @property OneHasMany|UserAdventure[] $userAdventures {1:m UserAdventure::$adventure}

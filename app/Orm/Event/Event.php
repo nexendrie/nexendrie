@@ -23,6 +23,7 @@ use Nexendrie\Utils\Numbers;
  * @property int $trainingDiscount {default 0}
  * @property int $repairingDiscount {default 0}
  * @property int $shoppingDiscount {default 0}
+ * @property int $created
  * @property OneHasMany|Adventure[] $adventures {1:m Adventure::$event}
  * @property-read bool $active {virtual}
  */

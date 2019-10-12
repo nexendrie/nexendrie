@@ -12,6 +12,7 @@ namespace Nexendrie\Orm;
  * @property string $message
  * @property int $price
  * @property int $life {default 0}
+ * @property int $created
  * @property-read string $priceT {virtual}
  * @property-read string $effect {virtual}
  */

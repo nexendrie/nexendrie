@@ -16,6 +16,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property User $user {m:1 User::$skills}
  * @property Skill $skill {m:1 Skill::$userSkills}
  * @property int $level
+ * @property int $created
  * @property-read int $learningPrice {virtual}
  * @property-read string $learningPriceT {virtual}
  * @property-read int $jobRewardBonus {virtual}

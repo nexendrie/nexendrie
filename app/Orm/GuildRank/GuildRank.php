@@ -14,6 +14,7 @@ use Nexendrie\Utils\Numbers;
  * @property string $name
  * @property int $incomeBonus
  * @property int $guildFee
+ * @property int $created
  * @property OneHasMany|User[] $people {1:m User::$guildRank}
  */
 final class GuildRank extends BaseEntity {
