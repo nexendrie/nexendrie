@@ -65,7 +65,7 @@
           <arg value="+x"/>
           <arg path="composer"/>
         </exec>
-        <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
+        <exec executable="./composer" logoutput="true" passthru="true" checkreturn="true">
           <arg value="install"/>
           <arg value="--no-dev"/>
         </exec>
@@ -92,7 +92,7 @@
     </phingcall>
   </target>
   <target name="update">
-    <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
+    <exec executable="./composer" logoutput="true" passthru="true" checkreturn="true">
       <arg value="install"/>
       <arg value="--no-dev"/>
     </exec>
