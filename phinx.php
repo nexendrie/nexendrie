@@ -34,14 +34,20 @@ function getEnvironmentConfig(string $filename): array {
   ];
 }
 
-return [
+$config = [
   "paths" => [
     "migrations" => __DIR__ . "/migrations",
     "seeds" => __DIR__ . "/migrations",
   ],
-  "environments" => [
-    "production" => getEnvironmentConfig(__DIR__ . "/app/config/local.neon"),
-    "testing" => getEnvironmentConfig(__DIR__ . "/tests/local.neon"),
-  ],
+  "environments" => [],
 ];
+$productionConfigFile = __DIR__ . "/app/config/local.neon";
+if(is_file($productionConfigFile) && is_readable($productionConfigFile)) {
+  $config["environments"]["production"] = getEnvironmentConfig($productionConfigFile);
+}
+$testingConfigFile = __DIR__ . "/tests/local.neon";
+if(is_file($testingConfigFile) && is_readable($testingConfigFile)) {
+  $config["environments"]["testing"] = getEnvironmentConfig($testingConfigFile);
+}
+return $config;
 ?>
