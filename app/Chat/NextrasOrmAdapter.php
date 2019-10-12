@@ -44,7 +44,7 @@ final class NextrasOrmAdapter implements IDatabaseAdapter {
     $collection = new ChatMessagesCollection();
     foreach($messages as $message) {
       $character = new ChatCharacter($message->user->publicname, $message->user->publicname);
-      $collection[] = new ChatMessage($message->id, $message->message, $message->whenS, $character);
+      $collection[] = new ChatMessage($message->id, $message->message, $message->createdAt, $character);
     }
     return $collection;
   }

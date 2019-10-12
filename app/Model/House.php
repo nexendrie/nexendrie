@@ -208,7 +208,7 @@ final class House {
     if($lastProduction === null) {
       return true;
     }
-    return ($lastProduction->when + $sevenDays < time());
+    return ($lastProduction->created + $sevenDays < time());
   }
   
   /**

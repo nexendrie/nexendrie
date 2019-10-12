@@ -42,7 +42,7 @@ final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository 
    */
   public function getLastProduction($house): ?BeerProduction {
     return $this->findBy(["house" => $house])
-      ->orderBy("when", ICollection::DESC)
+      ->orderBy("created", ICollection::DESC)
       ->limitBy(1)
       ->fetch();
   }
@@ -62,7 +62,7 @@ final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository 
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp();
-    return $this->findBy(["user" => $user, "when>" => $start, "when<" => $end]);
+    return $this->findBy(["user" => $user, "created>" => $start, "created<" => $end]);
   }
 }
 ?>

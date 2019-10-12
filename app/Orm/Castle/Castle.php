@@ -12,8 +12,9 @@ use Nexendrie\Utils\Numbers;
  * @property int $id {primary}
  * @property string $name
  * @property string $description
- * @property int $founded
- * @property-read string $foundedAt {virtual}
+ * @property int $created
+ * @property-read string $createdAt {virtual}
+ * @property int $updated
  * @property User $owner {1:1 User::$castle, isMain=true}
  * @property int $level {default 1}
  * @property int $hp {default 100}
@@ -23,7 +24,7 @@ use Nexendrie\Utils\Numbers;
  * @property-read int $repairPrice {virtual}
  * @property-read string $repairPriceT {virtual}
  */
-final class Castle extends \Nextras\Orm\Entity\Entity {
+final class Castle extends BaseEntity {
   public const MAX_LEVEL = 5;
   public const BASE_UPGRADE_PRICE = 500;
   public const BASE_REPAIR_PRICE = 35;
@@ -56,8 +57,8 @@ final class Castle extends \Nextras\Orm\Entity\Entity {
     return Numbers::range($value, 1, 100);
   }
   
-  protected function getterFoundedAt(): string {
-    return $this->localeModel->formatDate($this->founded);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDate($this->created);
   }
   
   protected function getterTaxesBonusIncome(): int {
@@ -98,11 +99,6 @@ final class Castle extends \Nextras\Orm\Entity\Entity {
   
   protected function getterRepairPriceT(): string {
     return $this->localeModel->money($this->repairPrice);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->founded = time();
   }
 }
 ?>

@@ -21,7 +21,8 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property User $owner {m:1 User::$mounts}
  * @property int $price
  * @property bool $onMarket {default false}
- * @property int $birth
+ * @property int $created
+ * @property int $updated
  * @property int $hp {default 100}
  * @property int $damage {default 0}
  * @property int $armor {default 0}
@@ -29,7 +30,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property OneHasMany|UserAdventure[] $adventures {1:m UserAdventure::$mount}
  * @property-read string $genderCZ {virtual}
  * @property-read string $priceT {virtual}
- * @property-read string $birthAt {virtual}
+ * @property-read string $createdAt {virtual}
  * @property-read int $baseDamage {virtual}
  * @property-read int $baseArmor {virtual}
  * @property-read int $maxDamage {virtual}
@@ -40,7 +41,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read string $armorTrainingCostT {virtual}
  * @property-read string $typeGenderName {virtual}
  */
-final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+final class Mount extends BaseEntity implements ICharacterEffectsProvider {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var \Nexendrie\Model\Events */
@@ -92,8 +93,8 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
     return $this->localeModel->money($this->price);
   }
   
-  protected function getterBirthAt(): string {
-    return $this->localeModel->formatDateTime($this->birth);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterBaseDamage(): int {
@@ -160,7 +161,6 @@ final class Mount extends \Nextras\Orm\Entity\Entity implements ICharacterEffect
     if(!$this->armor) {
       $this->armor = $this->type->armor;
     }
-    $this->birth = time();
     if($this->owner->id === 0) {
       $this->onMarket = true;
     }

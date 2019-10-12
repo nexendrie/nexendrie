@@ -12,7 +12,7 @@ final class OrderSeeder extends AbstractSeed {
           'name' => 'Řád dračích jezdců',
           'description' => '.',
           'level' => 2,
-          'founded' => 1465120352,
+          'created' => 1465120352,
           'money' => 400,
         ],
       ])

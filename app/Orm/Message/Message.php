@@ -12,11 +12,11 @@ namespace Nexendrie\Orm;
  * @property string $text
  * @property User $from {m:1 User::$sentMessages}
  * @property User $to {m:1 User::$receivedMessages}
- * @property int $sent
+ * @property int $created
  * @property bool $read {default false}
- * @property-read string $sentAt {virtual}
+ * @property-read string $createdAt {virtual}
  */
-final class Message extends \Nextras\Orm\Entity\Entity {
+final class Message extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -24,13 +24,8 @@ final class Message extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterSentAt(): string {
-    return $this->localeModel->formatDateTime($this->sent);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->sent = time();
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
 }
 ?>

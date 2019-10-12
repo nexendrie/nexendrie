@@ -1,14 +1,14 @@
 {layout "../@layout.latte"}
 {block title}{$article->title}{/block}
 {block head}<link rel="alternate" type="application/rss+xml" title="Nexendrie - Komentáře k {$article->title}" n:href="//Rss:comments $article->id">
-  <meta property="article:published_time" content="{$article->addedAt|date:'c'}">
+  <meta property="article:published_time" content="{$article->createdAt|date:'c'}">
   <meta property="article:author" content="{link //Profile: $article->author->publicname}">
   <meta property="article:section" content="{$article->categoryCZ}">{/block}
 {block content}
   <h1>{$article->title}</h1>
   <div id="topLinks"><a n:href="Rss:comments $article->id" class="top-link"><img src="{$basePath}/images/feed-icon.png" alt="RSS komentářů" title="RSS komentářů"></a></div>
   <p>V kategorii: {$article->categoryCZ}</p>
-  <p>od {control userProfileLink $article->author} {$article->addedAt}</p>
+  <p>od {control userProfileLink $article->author} {$article->createdAt}</p>
   <p>{$article->text}</p>
   {if $user->isAllowed("article", "edit")}<a n:href=":Admin:Article:edit $article->id">Upravit</a>{/if}
   <div id="share">
@@ -23,7 +23,7 @@
     {foreach $article->comments as $comment}
     {var $i = $iterator->counter}
     <span id="comment-{$i}">
-      <a name="comment-{$comment->id}" href="#comment-{$comment->id}">#{$i}</a> {control userProfileLink $comment->author}{if $comment->author->id === $user->id} (Ty){elseif $comment->author->id === $article->author->id} (Autor článku){elseif $comment->author->group->level === 10000} (Administrátor){/if} - {$comment->title} ({$comment->addedAt}):<br>
+      <a name="comment-{$comment->id}" href="#comment-{$comment->id}">#{$i}</a> {control userProfileLink $comment->author}{if $comment->author->id === $user->id} (Ty){elseif $comment->author->id === $article->author->id} (Autor článku){elseif $comment->author->group->level === 10000} (Administrátor){/if} - {$comment->title} ({$comment->createdAt}):<br>
       {$comment->text}
     </span>{if !$iterator->last}<br>{/if}
     {/foreach}

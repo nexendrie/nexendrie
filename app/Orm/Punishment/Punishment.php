@@ -10,16 +10,17 @@ namespace Nexendrie\Orm;
  * @property int $id {primary}
  * @property User $user {m:1 User::$punishments}
  * @property string $crime
- * @property int $imprisoned
+ * @property int $created
+ * @property int $updated
  * @property int|null $released
  * @property int $numberOfShifts
  * @property int $count {default 0}
  * @property int|null $lastAction
- * @property-read string $imprisonedAt {virtual}
+ * @property-read string $createdAt {virtual}
  * @property-read string $releasedAt {virtual}
  * @property-read int $nextShift {virtual}
  */
-final class Punishment extends \Nextras\Orm\Entity\Entity {
+final class Punishment extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -27,8 +28,8 @@ final class Punishment extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterImprisonedAt(): string {
-    return $this->localeModel->formatDateTime($this->imprisoned);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterReleasedAt(): string {
@@ -43,11 +44,6 @@ final class Punishment extends \Nextras\Orm\Entity\Entity {
       return time();
     }
     return $this->lastAction + (60 * 60);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->imprisoned = time();
   }
 }
 ?>

@@ -17,13 +17,15 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property Shop|null $shop {m:1 Shop::$items}
  * @property string $type {enum static::TYPE_*} {default static::TYPE_ITEM}
  * @property int $strength {default 0}
+ * @property int $created
+ * @property int $updated
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}
  * @property-read string $typeCZ {virtual}
  * @property OneHasMany|ItemSet[] $weaponSets {1:m ItemSet::$weapon}
  * @property OneHasMany|ItemSet[] $armorSets {1:m ItemSet::$armor}
  * @property OneHasMany|ItemSet[] $helmetSets {1:m ItemSet::$helmet}
  */
-final class Item extends \Nextras\Orm\Entity\Entity {
+final class Item extends BaseEntity {
   public const TYPE_ITEM = "item";
   public const TYPE_WEAPON = "weapon";
   public const TYPE_ARMOR = "armor";

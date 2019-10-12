@@ -8,7 +8,7 @@
   {else}
     {foreach $crimes as $crime}
   <p>
-    {control userProfileLink $crime->user,true} {$crime->imprisonedAt} - {if $crime->releasedAt !== ""}{$crime->releasedAt}{else}současnost{/if}<br>
+    {control userProfileLink $crime->user,true} {$crime->createdAt} - {if $crime->releasedAt !== ""}{$crime->releasedAt}{else}současnost{/if}<br>
     byl odsouzen k {$crime->numberOfShifts} hodinám nucené práce za {$crime->crime}.
   </p>
     {/foreach}

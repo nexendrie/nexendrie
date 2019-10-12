@@ -20,9 +20,11 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property Item|null $helmet {m:1 Item::$helmetSets}
  * @property string $stat {enum static::STAT_*}
  * @property int $bonus
+ * @property int $created
+ * @property int $updated
  * @property-read string $effect {virtual}
  */
-final class ItemSet extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+final class ItemSet extends BaseEntity implements ICharacterEffectsProvider {
   public const STAT_DAMAGE = "damage";
   public const STAT_ARMOR = "armor";
   public const STAT_HITPOINTS = "hitpoints";

@@ -14,7 +14,7 @@ final class ChatMessageSeeder extends AbstractSeed {
         [
           'id' => 1,
           'message' => 'Vítejte v cechu',
-          'when' => 1521573723,
+          'created' => 1521573723,
           'user' => 3,
           'town' => null,
           'monastery' => null,

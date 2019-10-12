@@ -15,8 +15,9 @@ use Nexendrie\Forms\UserSettingsFormFactory;
  * @property string $publicname
  * @property string $password
  * @property string $email
- * @property int $joined
- * @property-read string $joinedAt {virtual}
+ * @property int $created
+ * @property int $updated
+ * @property-read string $createdAt {virtual}
  * @property int $lastActive
  * @property-read string $lastActiveAt {virtual}
  * @property int|null $lastPrayer {default null}
@@ -78,7 +79,7 @@ use Nexendrie\Forms\UserSettingsFormFactory;
  * @property-read int $mountsOwned {virtual}
  * @property-read int $writtenArticles {virtual}
  */
-final class User extends \Nextras\Orm\Entity\Entity {
+final class User extends BaseEntity {
   public const GENDER_MALE = "male";
   public const GENDER_FEMALE = "female";
   
@@ -102,8 +103,8 @@ final class User extends \Nextras\Orm\Entity\Entity {
     return $this->sr->settings["newUser"]["style"];
   }
   
-  protected function getterJoinedAt(): string {
-    return $this->localeModel->formatDateTime($this->joined);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterLastActiveAt(): string {
@@ -222,7 +223,7 @@ final class User extends \Nextras\Orm\Entity\Entity {
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    $this->joined = $this->lastActive = time();
+    $this->lastActive = $this->created;
     $this->life = $this->maxLife;
   }
 }

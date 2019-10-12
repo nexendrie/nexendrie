@@ -11,8 +11,10 @@ namespace Nexendrie\Orm;
  * @property User $user {m:1 User::$orderFees}
  * @property Order $order {m:1 Order::$fees}
  * @property int $amount {default 0}
+ * @property int $created
+ * @property int $updated
  */
-final class OrderFee extends \Nextras\Orm\Entity\Entity {
+final class OrderFee extends BaseEntity {
   
 }
 ?>

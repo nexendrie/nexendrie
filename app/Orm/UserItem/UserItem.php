@@ -17,6 +17,8 @@ use HeroesofAbenez\Combat\Weapon;
  * @property int $amount {default 1}
  * @property bool $worn {default false}
  * @property int $level {default 0}
+ * @property int $created
+ * @property int $updated
  * @property-read int $maxLevel {virtual}
  * @property-read int $upgradePrice {virtual}
  * @property-read string $upgradePriceT {virtual}
@@ -25,7 +27,7 @@ use HeroesofAbenez\Combat\Weapon;
  * @property-read int $sellPrice {virtual}
  * @property-read string $sellPriceT {virtual}
  */
-final class UserItem extends \Nextras\Orm\Entity\Entity {
+final class UserItem extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

@@ -11,8 +11,10 @@ namespace Nexendrie\Orm;
  * @property User $user {m:1 User::$guildFees}
  * @property Guild $guild {m:1 Guild::$fees}
  * @property int $amount {default 0}
+ * @property int $created
+ * @property int $updated
  */
-final class GuildFee extends \Nextras\Orm\Entity\Entity {
+final class GuildFee extends BaseEntity {
   
 }
 ?>

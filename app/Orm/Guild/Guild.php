@@ -14,8 +14,9 @@ use Nexendrie\Utils\Numbers;
  * @property string $name
  * @property string $description
  * @property int $level {default 1}
- * @property int $founded
- * @property-read string $foundedAt {virtual}
+ * @property int $created
+ * @property-read string $createdAt {virtual}
+ * @property int $updated
  * @property Town $town {m:1 Town::$guilds}
  * @property int $money {default 0}
  * @property Skill $skill {m:1 Skill::$guilds}
@@ -27,7 +28,7 @@ use Nexendrie\Utils\Numbers;
  * @property-read string $upgradePriceT {virtual}
  * @property-read int $jobBonusIncome {virtual}
  */
-final class Guild extends \Nextras\Orm\Entity\Entity {
+final class Guild extends BaseEntity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 700;
   public const JOB_INCOME_BONUS_PER_LEVEL = 1;
@@ -43,8 +44,8 @@ final class Guild extends \Nextras\Orm\Entity\Entity {
     return Numbers::range($value, 1, static::MAX_LEVEL);
   }
   
-  protected function getterFoundedAt(): string {
-    return $this->localeModel->formatDateTime($this->founded);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterMoneyT(): string {
@@ -68,11 +69,6 @@ final class Guild extends \Nextras\Orm\Entity\Entity {
 
   protected function getterJobBonusIncome() {
     return ($this->level - 1) * static::JOB_INCOME_BONUS_PER_LEVEL;
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->founded = time();
   }
 }
 ?>

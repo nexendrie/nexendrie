@@ -7,7 +7,7 @@
   <table>
     <tr><th>Titulek</th><th>Kategorie</th><th>Přidáno</th><th>Autor</th><th>Akce</th></tr>
     {foreach $articles as $item}
-    <tr><td>{$item->title}</td><td>{$item->categoryCZ}</td><td>{$item->addedAt}</td><td>{control userProfileLink $item->author}</td><td><a n:href=":Front:Article:view $item->id">Zobrazit</a> <a n:href="edit $item->id">Upravit</a></td></tr>
+    <tr><td>{$item->title}</td><td>{$item->categoryCZ}</td><td>{$item->createdAt}</td><td>{control userProfileLink $item->author}</td><td><a n:href=":Front:Article:view $item->id">Zobrazit</a> <a n:href="edit $item->id">Upravit</a></td></tr>
     {/foreach}
   </table>
 {/block}

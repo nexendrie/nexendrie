@@ -131,7 +131,7 @@ final class GiftFormFactory {
     $message->to = $user;
     $message->subject = "Dárek";
     $message->text = $messageText;
-    $message->sent = time();
+    $message->created = time();
     $this->orm->messages->persist($message, false);
     $this->orm->flush();
   }

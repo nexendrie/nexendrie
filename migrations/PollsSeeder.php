@@ -16,7 +16,7 @@ final class PollsSeeder extends AbstractSeed {
           'question' => 'Otázka',
           'answers' => "Možnost 1\nMožnost 2\nMožnost 3\nMožnost 4",
           'author' => 1,
-          'added' => 1435673273,
+          'created' => 1435673273,
           'locked' => false,
         ],
         [
@@ -24,7 +24,7 @@ final class PollsSeeder extends AbstractSeed {
           'question' => 'Tvé oblíbené ORM',
           'answers' => "Doctrine\nLeanMapper\nNextras\\Orm",
           'author' => 1,
-          'added' => 1441236118,
+          'created' => 1441236118,
           'locked' => false,
         ],
         [
@@ -32,7 +32,7 @@ final class PollsSeeder extends AbstractSeed {
           'question' => 'Tvůj oblíbený framework',
           'answers' => "Nette\nSymfony\nLaravel\nZend\nCodeIgniter",
           'author' => 1,
-          'added' => 1444060844,
+          'created' => 1444060844,
           'locked' => false,
         ],
       ])

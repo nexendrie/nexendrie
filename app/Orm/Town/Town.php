@@ -12,7 +12,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $id {primary}
  * @property string $name
  * @property string $description
- * @property int $founded
+ * @property int $created
+ * @property int $updated
  * @property User $owner {m:1 User::$ownedTowns}
  * @property int $price {default 5000}
  * @property bool $onMarket {default false}
@@ -22,10 +23,10 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Election[] $elections {1:m Election::$town}
  * @property OneHasMany|ElectionResult[] $electionResults {1:m ElectionResult::$town}
  * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$town}
- * @property-read string $foundedAt {virtual}
+ * @property-read string $createdAt {virtual}
  * @property-read string $priceT {virtual}
  */
-final class Town extends \Nextras\Orm\Entity\Entity {
+final class Town extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -33,17 +34,12 @@ final class Town extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterFoundedAt(): string {
-    return $this->localeModel->formatDate($this->founded);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDate($this->created);
   }
   
   protected function getterPriceT(): string {
     return $this->localeModel->money($this->price);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->founded = time();
   }
 }
 ?>

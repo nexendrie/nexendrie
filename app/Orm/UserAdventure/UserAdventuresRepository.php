@@ -43,7 +43,7 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository 
    */
   public function getLastAdventure($user): ?UserAdventure {
     return $this->findBy(["user" => $user])
-      ->orderBy("started", ICollection::DESC)
+      ->orderBy("created", ICollection::DESC)
       ->limitBy(1)
       ->fetch();
   }
@@ -61,7 +61,7 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository 
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp();
-    return $this->findBy(["user" => $user, "started>" => $start, "started<" => $end]);
+    return $this->findBy(["user" => $user, "created>" => $start, "created<" => $end]);
   }
   
   /**
@@ -73,7 +73,7 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository 
     $day = date("j");
     $month = date("n");
     $ts = mktime(0, 0, 0, (int) $month, (int) $day);
-    return $this->findBy(["started<" => $ts, "progress<" => UserAdventure::PROGRESS_COMPLETED]);
+    return $this->findBy(["created<" => $ts, "progress<" => UserAdventure::PROGRESS_COMPLETED]);
   }
 }
 ?>

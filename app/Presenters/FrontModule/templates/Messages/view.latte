@@ -4,7 +4,7 @@
   <h1>{$message->subject}</h1>
   Od: {control userProfileLink $message->from}<br>
   Pro: {control userProfileLink $message->to}<br>
-  Odesláno: {$message->sentAt}<br>
+  Odesláno: {$message->createdAt}<br>
   <p>{$message->text}</p>
   {if $user->id === $message->to->id and $user->id !== $message->from->id}<a n:href="Messages:new $message->from->id">Odpovědět</a>{/if}
 {/block}

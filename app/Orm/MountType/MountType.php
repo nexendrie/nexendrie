@@ -19,9 +19,11 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $damage {default 0}
  * @property int $armor {default 0}
  * @property int $price
+ * @property int $created
+ * @property int $updated
  * @property OneHasMany|Mount[] $mounts {1:m Mount::$type}
  */
-final class MountType extends \Nextras\Orm\Entity\Entity {
+final class MountType extends BaseEntity {
   protected function getterMaleName(): string {
     return $this->name;
   }

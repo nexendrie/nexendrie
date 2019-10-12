@@ -34,7 +34,7 @@ final class Article {
    * @return ArticleEntity[]|ICollection
    */
   public function listOfArticles(): ICollection {
-    return $this->orm->articles->findAll()->orderBy("added", ICollection::DESC);
+    return $this->orm->articles->findAll()->orderBy("created", ICollection::DESC);
   }
   
   /**

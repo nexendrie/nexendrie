@@ -18,12 +18,14 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string|null $stat {enum static::STAT_*} {default null}
  * @property-read string|null $statCZ {virtual}
  * @property int $statIncrease {default 0}
+ * @property int $created
+ * @property int $updated
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
  * @property OneHasMany|UserSkill[] $userSkills {1:m UserSkill::$skill}
  * @property OneHasMany|Guild[] $guilds {1:m Guild::$skill}
  * @property-read string $effect {virtual}
  */
-final class Skill extends \Nextras\Orm\Entity\Entity {
+final class Skill extends BaseEntity {
   public const TYPE_WORK = "work";
   public const TYPE_COMBAT = "combat";
   public const STAT_HITPOINTS = "hitpoints";

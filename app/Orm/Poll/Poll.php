@@ -14,13 +14,14 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $answers
  * @property-read array $parsedAnswers {virtual}
  * @property User $author {m:1 User::$polls}
- * @property int $added
- * @property-read string $addedAt {virtual}
+ * @property int $created
+ * @property int $updated
+ * @property-read string $createdAt {virtual}
  * @property bool $locked {default false}
  * @property OneHasMany|PollVote[] $votes {1:m PollVote::$poll}
  * 
  */
-final class Poll extends \Nextras\Orm\Entity\Entity {
+final class Poll extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -28,17 +29,12 @@ final class Poll extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterAddedAt(): string {
-    return $this->localeModel->formatDateTime($this->added);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterParsedAnswers(): array {
     return explode("\n", $this->answers);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->added = time();
   }
 }
 ?>

@@ -35,7 +35,7 @@ final class MountsStatusTask {
   
   protected function makeAdult(MountEntity $mount): void {
     $twoMonths = 60 * 60 * 24 * 30 * 2;
-    if($mount->gender === MountEntity::GENDER_YOUNG && $mount->birth + $twoMonths < time()) {
+    if($mount->gender === MountEntity::GENDER_YOUNG && $mount->created + $twoMonths < time()) {
       echo "The mount is too old. It becomes adult.";
       $roll = mt_rand(0, 1);
       $mount->gender = ($roll === 0) ? MountEntity::GENDER_MALE : MountEntity::GENDER_FEMALE;

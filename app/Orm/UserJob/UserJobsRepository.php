@@ -50,7 +50,7 @@ final class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
     $date->modify("+ 1 month");
     $date->modify("- 1 second");
     $end = $date->getTimestamp() - $sixDays;
-    return $this->findBy(["user" => $user, "started>" => $start, "started<" => $end]);
+    return $this->findBy(["user" => $user, "created>" => $start, "created<" => $end]);
   }
 }
 ?>

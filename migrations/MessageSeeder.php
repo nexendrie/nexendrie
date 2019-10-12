@@ -17,7 +17,7 @@ final class MessageSeeder extends AbstractSeed {
           'text' => 'Test message.',
           'from' => 2,
           'to' => 1,
-          'sent' => 1434731668,
+          'created' => 1434731668,
           'read' => true,
         ],
         [
@@ -26,7 +26,7 @@ final class MessageSeeder extends AbstractSeed {
           'text' => 'Test message.',
           'from' => 1,
           'to' => 2,
-          'sent' => 1434731668,
+          'created' => 1434731668,
           'read' => true,
         ],
         [
@@ -35,7 +35,7 @@ final class MessageSeeder extends AbstractSeed {
           'text' => 'text text text',
           'from' => 1,
           'to' => 2,
-          'sent' => 1434904922,
+          'created' => 1434904922,
           'read' => true,
         ],
         [
@@ -44,7 +44,7 @@ final class MessageSeeder extends AbstractSeed {
           'text' => 'Lorem ipsum dota',
           'from' => 1,
           'to' => 3,
-          'sent' => 1441278929,
+          'created' => 1441278929,
           'read' => false,
         ],
         [
@@ -53,7 +53,7 @@ final class MessageSeeder extends AbstractSeed {
           'text' => 'Just a test.',
           'from' => 1,
           'to' => 3,
-          'sent' => 1441307001,
+          'created' => 1441307001,
           'read' => false,
         ],
         [
@@ -62,7 +62,7 @@ final class MessageSeeder extends AbstractSeed {
           'text' => 'tttttest',
           'from' => 1,
           'to' => 3,
-          'sent' => 1444060591,
+          'created' => 1444060591,
           'read' => false,
         ],
         [
@@ -71,7 +71,7 @@ final class MessageSeeder extends AbstractSeed {
           'text' => 'Již nějakou dobu jsi řádným občanem Nexendrie a proto jsi byl povýšen na Měšťana.',
           'from' => 1,
           'to' => 3,
-          'sent' => 1447529598,
+          'created' => 1447529598,
           'read' => false,
         ],
         [
@@ -80,7 +80,7 @@ final class MessageSeeder extends AbstractSeed {
           'text' => 'Dostal jsi 1000 grošů a  Právo na založení města.',
           'from' => 1,
           'to' => 1,
-          'sent' => 1447595907,
+          'created' => 1447595907,
           'read' => true,
         ],
         [
@@ -89,7 +89,7 @@ final class MessageSeeder extends AbstractSeed {
           'text' => 'Byl jsi povýšen na měšťana.',
           'from' => 1,
           'to' => 3,
-          'sent' => 1448473816,
+          'created' => 1448473816,
           'read' => true,
         ],
         [
@@ -98,7 +98,7 @@ final class MessageSeeder extends AbstractSeed {
           'text' => 'Byl jsi povýšen na měšťana.',
           'from' => 1,
           'to' => 5,
-          'sent' => 1468075669,
+          'created' => 1468075669,
           'read' => false,
         ],
       ])

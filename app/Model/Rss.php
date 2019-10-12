@@ -56,7 +56,7 @@ final class Rss {
       /** @var \Nexendrie\Orm\Article $row */
       foreach($items as $row) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
-        $return[] = $item = new Item($row->title, $row->text, $link, $row->added);
+        $return[] = $item = new Item($row->title, $row->text, $link, $row->created);
         $item->comments = $link . "#comments";
       }
       return $return;
@@ -82,12 +82,12 @@ final class Rss {
     ];
     $this->generator->dataSource = function() use($id) {
       $return = new Collection();
-      $comments = $this->articleModel->viewComments($id)->orderBy("added", ICollection::DESC);
+      $comments = $this->articleModel->viewComments($id)->orderBy("created", ICollection::DESC);
       /** @var \Nexendrie\Orm\Comment $comment */
       foreach($comments as $comment) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
         $link .= "#comment-$comment->id";
-        $return[] = new Item($comment->title, $comment->text, $link, $comment->added);
+        $return[] = new Item($comment->title, $comment->text, $link, $comment->created);
       }
       return $return;
     };

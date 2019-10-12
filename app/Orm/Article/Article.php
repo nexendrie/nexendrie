@@ -14,13 +14,14 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $text
  * @property User $author {m:1 User::$articles}
  * @property string $category {enum static::CATEGORY_*}
- * @property int $added
- * @property-read string $addedAt {virtual}
+ * @property int $created
+ * @property int $updated
+ * @property-read string $createdAt {virtual}
  * @property bool $allowedComments {default true}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
  * @property-read string $categoryCZ {virtual}
  */
-final class Article extends \Nextras\Orm\Entity\Entity {
+final class Article extends BaseEntity {
   public const CATEGORY_NEWS = "news";
   public const CATEGORY_CHRONICLE = "chronicle";
   public const CATEGORY_POETRY = "poetry";
@@ -53,17 +54,12 @@ final class Article extends \Nextras\Orm\Entity\Entity {
     ];
   }
   
-  protected function getterAddedAt(): string {
-    return $this->localeModel->formatDateTime($this->added);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterCategoryCZ(): string {
     return static::getCategories()[$this->category];
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->added = time();
   }
 }
 ?>

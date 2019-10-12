@@ -14,8 +14,9 @@ use Nexendrie\Utils\Numbers;
  * @property string $name
  * @property string $description
  * @property int $level {default 1}
- * @property int $founded
- * @property-read string $foundedAt {virtual}
+ * @property int $created
+ * @property-read string $createdAt {virtual}
+ * @property int $updated
  * @property int $money {default 0}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|User[] $members {1:m User::$order, orderBy=[orderRank,DESC]}
@@ -25,7 +26,7 @@ use Nexendrie\Utils\Numbers;
  * @property-read string $upgradePriceT {virtual}
  * @property-read float $adventuresBonusIncome {virtual}
  */
-final class Order extends \Nextras\Orm\Entity\Entity {
+final class Order extends BaseEntity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 800;
   public const ADVENTURE_INCOME_BONUS_PER_LEVEL = 2.5;
@@ -41,8 +42,8 @@ final class Order extends \Nextras\Orm\Entity\Entity {
     return Numbers::range($value, 1, static::MAX_LEVEL);
   }
   
-  protected function getterFoundedAt(): string {
-    return $this->localeModel->formatDateTime($this->founded);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterMoneyT(): string {
@@ -66,11 +67,6 @@ final class Order extends \Nextras\Orm\Entity\Entity {
 
   protected function getterAdventuresBonusIncome(): float {
     return ($this->level - 1) * static::ADVENTURE_INCOME_BONUS_PER_LEVEL;
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->founded = time();
   }
 }
 ?>

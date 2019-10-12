@@ -17,7 +17,7 @@ final class CommentSeeder extends AbstractSeed {
           'text' => 'komentář',
           'article' => 1,
           'author' => 1,
-          'added' => 1435085477,
+          'created' => 1435085477,
         ],
         [
           'id' => 2,
@@ -25,7 +25,7 @@ final class CommentSeeder extends AbstractSeed {
           'text' => 'test test test test test',
           'article' => 2,
           'author' => 1,
-          'added' => 1435250522,
+          'created' => 1435250522,
         ],
         [
           'id' => 3,
@@ -33,7 +33,7 @@ final class CommentSeeder extends AbstractSeed {
           'text' => 'text',
           'article' => 2,
           'author' => 1,
-          'added' => 1441223636,
+          'created' => 1441223636,
         ],
         [
           'id' => 4,
@@ -41,7 +41,7 @@ final class CommentSeeder extends AbstractSeed {
           'text' => 'Přechod již byl úspěšně dokončen.',
           'article' => 3,
           'author' => 1,
-          'added' => 1441372474,
+          'created' => 1441372474,
         ],
         [
           'id' => 5,
@@ -49,7 +49,7 @@ final class CommentSeeder extends AbstractSeed {
           'text' => 'text',
           'article' => 6,
           'author' => 1,
-          'added' => 1445197436,
+          'created' => 1445197436,
         ],
       ])
       ->update();

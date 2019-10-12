@@ -20,7 +20,7 @@ final class PollsPresenter extends BasePresenter {
   }
 
   public function renderDefault(): void {
-    $this->template->polls = $this->model->all()->orderBy("added", ICollection::DESC);
+    $this->template->polls = $this->model->all()->orderBy("created", ICollection::DESC);
   }
 }
 ?>

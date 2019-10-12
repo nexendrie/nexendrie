@@ -12,7 +12,7 @@ final class GuildSeeder extends AbstractSeed {
           'name' => 'Cech kupců z Myhru',
           'description' => '.',
           'level' => 2,
-          'founded' => 1453484840,
+          'created' => 1453484840,
           'town' => 2,
           'money' => 300,
           'skill' => 6,

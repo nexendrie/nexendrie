@@ -2,6 +2,6 @@
   {if $noCrime}
     <a n:href="release!">Odejít</a>
   {else}
-    <p>Jsi vězněn od {$punishment->imprisonedAt} za {$punishment->crime}. Musíš jěště odpracovat {$punishment->numberOfShifts-$punishment->count} směn z {$punishment->numberOfShifts}.</p>
+    <p>Jsi vězněn od {$punishment->createdAt} za {$punishment->crime}. Musíš jěště odpracovat {$punishment->numberOfShifts-$punishment->count} směn z {$punishment->numberOfShifts}.</p>
     {if $release}Dokončil jsi svůj trest. Můžeš <a n:href="release!">odejít</a>.{elseif $canWork}<a n:href="work!">Pracovat</a>{else}Ještě jsi nedokončil směnu. Musíš počkat do {$nextShift}{/if}
   {/if}

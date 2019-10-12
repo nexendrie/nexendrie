@@ -18,8 +18,9 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property User $user2 {m:1 User::$receivedMarriages}
  * @property string $status {enum static::STATUS_*} {default static::STATUS_PROPOSED}
  * @property int $divorce {default 0}
- * @property int $proposed
- * @property-read string $proposedT {virtual}
+ * @property int $created
+ * @property int $updated
+ * @property-read string $createdAt {virtual}
  * @property int|null $accepted {default null}
  * @property-read string|null $acceptedT {virtual}
  * @property int|null $term
@@ -30,7 +31,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read int $level {virtual}
  * @property-read int $hpIncrease {virtual}
  */
-final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEffectsProvider {
+final class Marriage extends BaseEntity implements ICharacterEffectsProvider {
   public const STATUS_PROPOSED = "proposed";
   public const STATUS_ACCEPTED = "accepted";
   public const STATUS_DECLINED = "declined";
@@ -51,8 +52,8 @@ final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEff
     return Numbers::range($value, 0, 4);
   }
   
-  protected function getterProposedT(): string {
-    return $this->localeModel->formatDateTime($this->proposed);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function getterAcceptedT(): string {
@@ -89,11 +90,6 @@ final class Marriage extends \Nextras\Orm\Entity\Entity implements ICharacterEff
   
   protected function getterHpIncrease(): int {
     return $this->level * static::HP_INCREASE_PER_LEVEL;
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->proposed = time();
   }
   
   public function onBeforeUpdate(): void {

@@ -14,9 +14,11 @@ use Nexendrie\Utils\Numbers;
  * @property string $name
  * @property int $incomeBonus
  * @property int $guildFee
+ * @property int $created
+ * @property int $updated
  * @property OneHasMany|User[] $people {1:m User::$guildRank}
  */
-final class GuildRank extends \Nextras\Orm\Entity\Entity {
+final class GuildRank extends BaseEntity {
   protected function setterIncomeBonus(int $value): int {
     return Numbers::range($value, 0, 99);
   }

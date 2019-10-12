@@ -12,10 +12,10 @@ namespace Nexendrie\Orm;
  * @property string $text
  * @property Article $article {m:1 Article::$comments}
  * @property User $author {m:1 User::$comments}
- * @property int $added
- * @property-read string $addedAt {virtual}
+ * @property int $created
+ * @property-read string $createdAt {virtual}
  */
-final class Comment extends \Nextras\Orm\Entity\Entity {
+final class Comment extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   
@@ -23,13 +23,8 @@ final class Comment extends \Nextras\Orm\Entity\Entity {
     $this->localeModel = $localeModel;
   }
   
-  protected function getterAddedAt(): string {
-    return $this->localeModel->formatDateTime($this->added);
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->added = time();
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
 }
 ?>

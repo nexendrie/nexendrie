@@ -23,10 +23,12 @@ use Nexendrie\Utils\Numbers;
  * @property int $trainingDiscount {default 0}
  * @property int $repairingDiscount {default 0}
  * @property int $shoppingDiscount {default 0}
+ * @property int $created
+ * @property int $updated
  * @property OneHasMany|Adventure[] $adventures {1:m Adventure::$event}
  * @property-read bool $active {virtual}
  */
-final class Event extends \Nextras\Orm\Entity\Entity {
+final class Event extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   

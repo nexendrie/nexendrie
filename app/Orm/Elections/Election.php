@@ -11,13 +11,10 @@ namespace Nexendrie\Orm;
  * @property User $candidate {m:1 User::$receivedVotes}
  * @property User $voter {m:1 User::$castedVotes}
  * @property Town $town {m:1 Town::$elections}
- * @property int $when
+ * @property int $created
  * @property bool $elected {default false}
  */
-final class Election extends \Nextras\Orm\Entity\Entity {
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->when = time();
-  }
+final class Election extends BaseEntity {
+
 }
 ?>

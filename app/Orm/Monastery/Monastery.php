@@ -14,7 +14,8 @@ use Nexendrie\Utils\Numbers;
  * @property string $name
  * @property User $leader {m:1 User::$monasteriesLed}
  * @property Town $town {m:1 Town::$monasteries}
- * @property int $founded
+ * @property int $created
+ * @property int $updated
  * @property int $money {default 0}
  * @property int $altairLevel {default 1}
  * @property int $libraryLevel {default 0}
@@ -22,7 +23,7 @@ use Nexendrie\Utils\Numbers;
  * @property OneHasMany|User[] $members {1:m User::$monastery, orderBy=group}
  * @property OneHasMany|MonasteryDonation[] $donations {1:m MonasteryDonation::$monastery}
  * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$monastery}
- * @property-read string $foundedAt {virtual}
+ * @property-read string $createdAt {virtual}
  * @property-read string $moneyT {virtual}
  * @property-read int $prayerLife {virtual}
  * @property-read int $upgradePrice {virtual}
@@ -33,7 +34,7 @@ use Nexendrie\Utils\Numbers;
  * @property-read string $repairPriceT {virtual}
  * @property-read int $skillLearningDiscount {virtual}
  */
-final class Monastery extends \Nextras\Orm\Entity\Entity {
+final class Monastery extends BaseEntity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 700;
   public const BASE_REPAIR_PRICE = 30;
@@ -60,8 +61,8 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
     $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
   }
   
-  protected function getterFoundedAt(): string {
-    return $this->localeModel->formatDateTime($this->founded);
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
   }
   
   protected function setterAltairLevel(int $value): int {
@@ -138,11 +139,6 @@ final class Monastery extends \Nextras\Orm\Entity\Entity {
       return 0;
     }
     return $this->libraryLevel * static::SKILL_LEARNING_DISCOUNT_PER_LEVEL;
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->founded = time();
   }
 }
 ?>
