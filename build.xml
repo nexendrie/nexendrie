@@ -92,6 +92,17 @@
       <property name="environment" value="ci"/>
     </phingcall>
   </target>
+  <target name="update">
+    <exec executable="composer" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="install"/>
+      <arg value="--no-dev"/>
+    </exec>
+    <exec executable="vendor/bin/phinx" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="migrate"/>
+      <arg value="-e"/>
+      <arg value="production"/>
+    </exec>
+  </target>
   <target name="config-db">
     <echo message="Enter database configuration"/>
     <input propertyName="driver" validArgs="mysqli" defaultValue="mysqli" message="Database driver " promptChar=":"/>
@@ -205,7 +216,8 @@
       <arg path="tools/scrutinizer_setup.php"/>
     </exec>
     <exec command="mysql -uroot -e 'CREATE DATABASE nexendrie'" logoutput="true" passthru="true" checkreturn="true"/>
-    <exec command="mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql" logoutput="true" passthru="true" checkreturn="true"/>
+    <exec command="mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root mysql" logoutput="true" passthru="true"
+          checkreturn="true"/>
     <phingcall target="setup-db"/>
     <exec executable="vendor/bin/run-tests" logoutput="true" passthru="true" checkreturn="true">
       <arg value="-p"/>
