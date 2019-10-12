@@ -15,6 +15,7 @@ use Nexendrie\Utils\Numbers;
  * @property User $leader {m:1 User::$monasteriesLed}
  * @property Town $town {m:1 Town::$monasteries}
  * @property int $created
+ * @property int $updated
  * @property int $money {default 0}
  * @property int $altairLevel {default 1}
  * @property int $libraryLevel {default 0}

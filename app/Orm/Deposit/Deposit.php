@@ -11,6 +11,7 @@ namespace Nexendrie\Orm;
  * @property User $user {m:1 User::$deposits}
  * @property int $amount
  * @property int $created
+ * @property int $updated
  * @property int $term
  * @property bool $closed {default false}
  * @property int $interestRate

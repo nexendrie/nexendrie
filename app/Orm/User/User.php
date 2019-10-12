@@ -16,6 +16,7 @@ use Nexendrie\Forms\UserSettingsFormFactory;
  * @property string $password
  * @property string $email
  * @property int $created
+ * @property int $updated
  * @property-read string $createdAt {virtual}
  * @property int $lastActive
  * @property-read string $lastActiveAt {virtual}

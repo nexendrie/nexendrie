@@ -20,6 +20,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $armor {default 0}
  * @property int $price
  * @property int $created
+ * @property int $updated
  * @property OneHasMany|Mount[] $mounts {1:m Mount::$type}
  */
 final class MountType extends BaseEntity {

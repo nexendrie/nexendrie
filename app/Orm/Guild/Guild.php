@@ -16,6 +16,7 @@ use Nexendrie\Utils\Numbers;
  * @property int $level {default 1}
  * @property int $created
  * @property-read string $createdAt {virtual}
+ * @property int $updated
  * @property Town $town {m:1 Town::$guilds}
  * @property int $money {default 0}
  * @property Skill $skill {m:1 Skill::$guilds}

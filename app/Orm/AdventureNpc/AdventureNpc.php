@@ -19,6 +19,7 @@ namespace Nexendrie\Orm;
  * @property string $encounterText
  * @property string $victoryText
  * @property int $created
+ * @property int $updated
  */
 final class AdventureNpc extends BaseEntity {
   

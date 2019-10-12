@@ -14,6 +14,7 @@ use Nexendrie\Utils\Numbers;
  * @property string $description
  * @property int $created
  * @property-read string $createdAt {virtual}
+ * @property int $updated
  * @property User $owner {1:1 User::$castle, isMain=true}
  * @property int $level {default 1}
  * @property int $hp {default 100}

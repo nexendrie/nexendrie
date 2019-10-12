@@ -12,6 +12,7 @@ namespace Nexendrie\Orm;
  * @property bool $success
  * @property string $message
  * @property int $created
+ * @property int $updated
  */
 final class JobMessage extends BaseEntity {
   

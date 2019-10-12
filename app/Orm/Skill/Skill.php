@@ -19,6 +19,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string|null $statCZ {virtual}
  * @property int $statIncrease {default 0}
  * @property int $created
+ * @property int $updated
  * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
  * @property OneHasMany|UserSkill[] $userSkills {1:m UserSkill::$skill}
  * @property OneHasMany|Guild[] $guilds {1:m Guild::$skill}

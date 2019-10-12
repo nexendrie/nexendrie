@@ -19,6 +19,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property string $status {enum static::STATUS_*} {default static::STATUS_PROPOSED}
  * @property int $divorce {default 0}
  * @property int $created
+ * @property int $updated
  * @property-read string $createdAt {virtual}
  * @property int|null $accepted {default null}
  * @property-read string|null $acceptedT {virtual}

@@ -21,6 +21,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property Skill $neededSkill {m:1 Skill::$jobs}
  * @property int $neededSkillLevel {default 0}
  * @property int $created
+ * @property int $updated
  * @property OneHasMany|UserJob[] $userJobs {1:m UserJob::$job}
  * @property OneHasMany|JobMessage[] $messages {1:m JobMessage::$job}
  */

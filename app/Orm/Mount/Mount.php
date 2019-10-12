@@ -22,6 +22,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property int $price
  * @property bool $onMarket {default false}
  * @property int $created
+ * @property int $updated
  * @property int $hp {default 100}
  * @property int $damage {default 0}
  * @property int $armor {default 0}

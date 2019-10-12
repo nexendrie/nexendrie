@@ -16,6 +16,7 @@ use Nexendrie\Utils\Numbers;
  * @property int $level {default 1}
  * @property int $created
  * @property-read string $createdAt {virtual}
+ * @property int $updated
  * @property int $money {default 0}
  * @property-read string $moneyT {virtual}
  * @property OneHasMany|User[] $members {1:m User::$order, orderBy=[orderRank,DESC]}

@@ -13,6 +13,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $name
  * @property string $description
  * @property int $created
+ * @property int $updated
  * @property User $owner {m:1 User::$ownedTowns}
  * @property int $price {default 5000}
  * @property bool $onMarket {default false}

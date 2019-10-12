@@ -11,6 +11,7 @@ namespace Nexendrie\Orm;
  * @property User $user {m:1 User::$punishments}
  * @property string $crime
  * @property int $created
+ * @property int $updated
  * @property int|null $released
  * @property int $numberOfShifts
  * @property int $count {default 0}

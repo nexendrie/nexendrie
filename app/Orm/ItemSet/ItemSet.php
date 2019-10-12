@@ -21,6 +21,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property string $stat {enum static::STAT_*}
  * @property int $bonus
  * @property int $created
+ * @property int $updated
  * @property-read string $effect {virtual}
  */
 final class ItemSet extends BaseEntity implements ICharacterEffectsProvider {

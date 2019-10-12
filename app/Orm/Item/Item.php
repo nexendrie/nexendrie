@@ -18,6 +18,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $type {enum static::TYPE_*} {default static::TYPE_ITEM}
  * @property int $strength {default 0}
  * @property int $created
+ * @property int $updated
  * @property OneHasMany|UserItem[] $userItems {1:m UserItem::$item}
  * @property-read string $typeCZ {virtual}
  * @property OneHasMany|ItemSet[] $weaponSets {1:m ItemSet::$weapon}

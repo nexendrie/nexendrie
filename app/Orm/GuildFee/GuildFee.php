@@ -12,6 +12,7 @@ namespace Nexendrie\Orm;
  * @property Guild $guild {m:1 Guild::$fees}
  * @property int $amount {default 0}
  * @property int $created
+ * @property int $updated
  */
 final class GuildFee extends BaseEntity {
   

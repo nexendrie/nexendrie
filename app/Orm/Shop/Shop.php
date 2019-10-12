@@ -13,6 +13,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $name
  * @property string $description
  * @property int $created
+ * @property int $updated
  * @property OneHasMany|Item[] $items {1:m Item::$shop, orderBy=strength}
  */
 final class Shop extends BaseEntity {

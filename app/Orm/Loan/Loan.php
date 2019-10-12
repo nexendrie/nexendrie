@@ -11,6 +11,7 @@ namespace Nexendrie\Orm;
  * @property User $user {m:1 User::$loans}
  * @property int $amount
  * @property int $created
+ * @property int $updated
  * @property int|null $returned {default null}
  * @property int $interestRate
  * @property string $amountT {virtual}
