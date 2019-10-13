@@ -22,6 +22,8 @@ final class ProfilePresenter extends BasePresenter {
   protected $achievementsModel;
   /** @var bool */
   protected $cachingEnabled = false;
+  /** @var string[] */
+  private $cacheableActions = ["articles", "skills", ];
 
   public function __construct(\Nexendrie\Model\Profile $model, \Nexendrie\Model\Castle $castleModel, \Nexendrie\Model\Marriage $marriageModel, \Nexendrie\Model\Achievements $achievementsModel) {
     parent::__construct();
@@ -29,6 +31,11 @@ final class ProfilePresenter extends BasePresenter {
     $this->castleModel = $castleModel;
     $this->marriageModel = $marriageModel;
     $this->achievementsModel = $achievementsModel;
+  }
+
+  protected function startup(): void {
+    parent::startup();
+    $this->cachingEnabled = in_array($this->action, $this->cacheableActions, true);
   }
 
   /**
@@ -85,6 +92,25 @@ final class ProfilePresenter extends BasePresenter {
     } catch(UserNotFoundException $e) {
       throw new BadRequestException();
     }
+  }
+
+  protected function getDataModifiedTime(): int {
+    $time = 0;
+    if(isset($this->template->articles)) {
+      /** @var \Nexendrie\Orm\Article $article */
+      foreach($this->template->articles as $article) {
+        $time = max($time, $article->updated);
+      }
+      return $time;
+    }
+    if(isset($this->template->skills)) {
+      /** @var \Nexendrie\Orm\UserSkill $skill */
+      foreach($this->template->skills as $skill) {
+        $time = max($time, $skill->updated);
+      }
+      return $time;
+    }
+    return time();
   }
 }
 ?>

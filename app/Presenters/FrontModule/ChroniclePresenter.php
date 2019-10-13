@@ -58,9 +58,9 @@ final class ChroniclePresenter extends BasePresenter {
   protected function getDataModifiedTime(): int {
     $time = 0;
     if(isset($this->template->articles)) {
-      /** @var \Nexendrie\Orm\Article $marriage */
-      foreach($this->template->articles as $marriage) {
-        $time = max($time, $marriage->updated);
+      /** @var \Nexendrie\Orm\Article $article */
+      foreach($this->template->articles as $article) {
+        $time = max($time, $article->updated);
       }
       return $time;
     }
