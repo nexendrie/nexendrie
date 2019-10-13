@@ -19,11 +19,20 @@ abstract class BaseEntity extends \Nextras\Orm\Entity\Entity {
   }
 
   protected function getterCreated(?int $value): int {
-    return $value ?? time();
+    if($value === 0 || $value === null) {
+      return time();
+    }
+    return $value;
   }
 
   protected function getterUpdated(?int $value): int {
-    return $value ?? time();
+    if($value === 0 || $value === null) {
+      if($this->metadata->hasProperty("created")) {
+        return $this->created;
+      }
+      return time();
+    }
+    return $value;
   }
 }
 ?>
