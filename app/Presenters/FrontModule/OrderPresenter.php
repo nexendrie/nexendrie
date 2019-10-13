@@ -236,5 +236,20 @@ final class OrderPresenter extends BasePresenter {
       $this->redirect("members");
     }
   }
+
+  protected function getDataModifiedTime(): int {
+    if(isset($this->template->order)) {
+      return($this->template->order->updated);
+    }
+    if(isset($this->template->orders)) {
+      $time = 0;
+      /** @var \Nexendrie\Orm\Order $order */
+      foreach($this->template->orders as $order) {
+        $time = max($time, $order->updated);
+      }
+      return $time;
+    }
+    return 0;
+  }
 }
 ?>

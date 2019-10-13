@@ -77,5 +77,20 @@ final class StablesPresenter extends BasePresenter {
     }
     $this->template->mountId = $id;
   }
+
+  protected function getDataModifiedTime(): int {
+    if(isset($this->template->mounts)) {
+      $time = 0;
+      /** @var \Nexendrie\Orm\Mount $mount */
+      foreach($this->template->mounts as $mount) {
+        $time = max($time, $mount->updated);
+      }
+      return $time;
+    }
+    if(isset($this->mount)) {
+      return time();
+    }
+    return 0;
+  }
 }
 ?>

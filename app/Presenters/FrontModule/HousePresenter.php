@@ -23,6 +23,8 @@ final class HousePresenter extends BasePresenter {
   protected $profileModel;
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
+  /** @var bool */
+  protected $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\House $model, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();

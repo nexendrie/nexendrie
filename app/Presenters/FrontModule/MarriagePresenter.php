@@ -250,5 +250,12 @@ final class MarriagePresenter extends BasePresenter {
     };
     return $form;
   }
+
+  protected function getDataModifiedTime(): int {
+    if(isset($this->marriage)) {
+      return $this->marriage->updated;
+    }
+    return 0;
+  }
 }
 ?>

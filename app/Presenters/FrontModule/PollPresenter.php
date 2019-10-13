@@ -13,6 +13,8 @@ use Nexendrie\Components\IPollControlFactory;
 final class PollPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Polls */
   protected $model;
+  /** @var bool */
+  protected $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Polls $model) {
     parent::__construct();

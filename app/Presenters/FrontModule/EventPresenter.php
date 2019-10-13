@@ -37,5 +37,12 @@ final class EventPresenter extends BasePresenter {
       throw new \Nette\Application\BadRequestException();
     }
   }
+
+  protected function getDataModifiedTime(): int {
+    if(isset($this->template->event)) {
+      return $this->template->event->updated;
+    }
+    return 0;
+  }
 }
 ?>

@@ -63,5 +63,12 @@ final class SearchPresenter extends BasePresenter {
     $description = $this->openSearch->createDescription("Články 2", "Texty článků", "Hledat v textech článků", "články text", "articlesTexts");
     $this->sendOpenSearchDescriptionResponse($description);
   }
+
+  protected function getDataModifiedTime(): int {
+    if(isset($this->template->results)) {
+      return time();
+    }
+    return 0;
+  }
 }
 ?>

@@ -237,5 +237,20 @@ final class GuildPresenter extends BasePresenter {
       $this->redirect("Homepage:");
     }
   }
+
+  protected function getDataModifiedTime(): int {
+    if(isset($this->template->guild)) {
+      return($this->template->guild->updated);
+    }
+    if(isset($this->template->guilds)) {
+      $time = 0;
+      /** @var \Nexendrie\Orm\Guild $guild */
+      foreach($this->template->guilds as $guild) {
+        $time = max($time, $guild->updated);
+      }
+      return $time;
+    }
+    return 0;
+  }
 }
 ?>

@@ -12,6 +12,9 @@ use Nexendrie\Components\IAcademyControlFactory;
  * @author Jakub Konečný
  */
 final class AcademyPresenter extends BasePresenter {
+  /** @var bool */
+  protected $cachingEnabled = false;
+
   protected function startup(): void {
     parent::startup();
     $this->requiresLogin();

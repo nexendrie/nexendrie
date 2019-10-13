@@ -21,8 +21,17 @@ class TeamPresenter extends BasePresenter {
 
   public function renderDefault(): void {
     $this->template->admins = $this->orm->users->findBy([
-      "this->group->level" => 10000
+      "this->group->level" => 10000,
     ])->orderBy("lastActive", ICollection::DESC);
+  }
+
+  protected function getDataModifiedTime(): int {
+    $time = 0;
+    /** @var \Nexendrie\Orm\User $admin */
+    foreach($this->template->admins as $admin) {
+      $time = max($time, $admin->lastActive);
+    }
+    return $time;
   }
 }
 ?>

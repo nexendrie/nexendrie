@@ -40,5 +40,17 @@ final class ArticlesPresenter extends BasePresenter {
     $this->template->articles = $this->model->category($category, $paginator);
     $this->template->paginator = $paginator;
   }
+
+  protected function getDataModifiedTime(): int {
+    if(!isset($this->template->articles)) {
+      return 0;
+    }
+    $time = 0;
+    /** @var \Nexendrie\Orm\Article $article */
+    foreach($this->template->articles as $article) {
+      $time = max($time, $article->updated);
+    }
+    return $time;
+  }
 }
 ?>

@@ -12,6 +12,9 @@ use Nexendrie\Components\TavernControl;
  * @author Jakub Konečný
  */
 final class TavernPresenter extends BasePresenter {
+  /** @var bool */
+  protected $cachingEnabled = false;
+
   protected function startup(): void {
     parent::startup();
     $this->mustNotBeTavelling();

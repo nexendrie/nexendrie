@@ -23,6 +23,8 @@ final class BankPresenter extends BasePresenter {
   protected $localeModel;
   /** @var \Nexendrie\Model\SettingsRepository */
   protected $sr;
+  /** @var bool */
+  protected $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Bank $model, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\SettingsRepository $sr) {
     parent::__construct();

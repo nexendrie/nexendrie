@@ -126,5 +126,20 @@ final class CastlePresenter extends BasePresenter {
     };
     return $form;
   }
+
+  protected function getDataModifiedTime(): int {
+    if(isset($this->template->castle)) {
+      return($this->template->castle->updated);
+    }
+    if(isset($this->template->castles)) {
+      $time = 0;
+      /** @var \Nexendrie\Orm\Castle $castle */
+      foreach($this->template->castles as $castle) {
+        $time = max($time, $castle->updated);
+      }
+      return $time;
+    }
+    return 0;
+  }
 }
 ?>

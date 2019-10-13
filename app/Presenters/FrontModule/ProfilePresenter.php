@@ -20,6 +20,8 @@ final class ProfilePresenter extends BasePresenter {
   protected $marriageModel;
   /** @var \Nexendrie\Model\Achievements */
   protected $achievementsModel;
+  /** @var bool */
+  protected $cachingEnabled = false;
 
   public function __construct(\Nexendrie\Model\Profile $model, \Nexendrie\Model\Castle $castleModel, \Nexendrie\Model\Marriage $marriageModel, \Nexendrie\Model\Achievements $achievementsModel) {
     parent::__construct();

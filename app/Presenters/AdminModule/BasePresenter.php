@@ -9,6 +9,9 @@ namespace Nexendrie\Presenters\AdminModule;
  * @author Jakub Konečný
  */
 abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
+  /** @var bool */
+  protected $cachingEnabled = false;
+
   /**
    * Check if the user is logged in and if he/she can enter administration
    */

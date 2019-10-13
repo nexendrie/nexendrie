@@ -21,6 +21,8 @@ final class WorkPresenter extends BasePresenter {
   protected $model;
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
+  /** @var bool */
+  protected $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Job $model, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();

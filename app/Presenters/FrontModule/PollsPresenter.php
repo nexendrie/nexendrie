@@ -22,5 +22,14 @@ final class PollsPresenter extends BasePresenter {
   public function renderDefault(): void {
     $this->template->polls = $this->model->all()->orderBy("created", ICollection::DESC);
   }
+
+  protected function getDataModifiedTime(): int {
+    $time = 0;
+    /** @var \Nexendrie\Orm\Poll $poll */
+    foreach($this->template->polls as $poll) {
+      $time = max($time, $poll->updated);
+    }
+    return $time;
+  }
 }
 ?>

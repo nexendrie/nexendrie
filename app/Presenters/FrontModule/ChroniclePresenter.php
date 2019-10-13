@@ -48,11 +48,37 @@ final class ChroniclePresenter extends BasePresenter {
     $calendar->firstDay = Calendar::FIRST_MONDAY;
     $calendar->options = [
       Calendar::OPT_BOTTOM_NAV_PREV => "Předchozí měsíc",
-      Calendar::OPT_BOTTOM_NAV_NEXT => "Následující měsíc"
+      Calendar::OPT_BOTTOM_NAV_NEXT => "Následující měsíc",
     ];
     $calendar->events = $this->eventsModel;
     $calendar->onDateChange[] = [$this->eventsModel, "loadEvents"];
     return $calendar;
+  }
+
+  protected function getDataModifiedTime(): int {
+    $time = 0;
+    if(isset($this->template->articles)) {
+      /** @var \Nexendrie\Orm\Article $marriage */
+      foreach($this->template->articles as $marriage) {
+        $time = max($time, $marriage->updated);
+      }
+      return $time;
+    }
+    if(isset($this->template->crimes)) {
+      /** @var \Nexendrie\Orm\Punishment $crime */
+      foreach($this->template->crimes as $marriage) {
+        $time = max($time, $marriage->updated);
+      }
+      return $time;
+    }
+    if(isset($this->template->marriages)) {
+      /** @var \Nexendrie\Orm\Marriage $marriage */
+      foreach($this->template->marriages as $marriage) {
+        $time = max($time, $marriage->updated);
+      }
+      return $time;
+    }
+    return time();
   }
 }
 ?>

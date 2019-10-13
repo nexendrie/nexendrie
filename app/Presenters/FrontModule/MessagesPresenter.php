@@ -70,5 +70,12 @@ final class MessagesPresenter extends BasePresenter {
     };
     return $form;
   }
+
+  protected function getDataModifiedTime(): int {
+    if(isset($this->template->message)) {
+      return $this->template->message->created;
+    }
+    return 0;
+  }
 }
 ?>

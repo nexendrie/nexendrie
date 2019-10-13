@@ -24,6 +24,8 @@ final class UserPresenter extends BasePresenter {
   protected $orm;
   /** @var string @persistent */
   public $backlink = "";
+  /** @var bool */
+  protected $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Authenticator $model, \Nexendrie\Model\Locale $localeModel, ORM $orm) {
     parent::__construct();

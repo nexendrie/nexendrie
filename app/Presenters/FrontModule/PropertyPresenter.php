@@ -43,6 +43,8 @@ final class PropertyPresenter extends BasePresenter {
   protected $userManager;
   /** @var TownEntity */
   private $town;
+  /** @var bool */
+  protected $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Property $model, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\Inventory $inventoryModel, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\CombatHelper $combatModel, \Nexendrie\Model\UserManager $userManager) {
     parent::__construct();

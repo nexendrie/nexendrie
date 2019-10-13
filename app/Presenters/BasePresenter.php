@@ -23,6 +23,8 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected $sr;
   /** @var IUserProfileLinkControlFactory */
   protected $userProfileLinkFactory;
+  /** @var bool */
+  protected $cachingEnabled = true;
   
   public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void {
     $this->sr = $sr;
@@ -80,7 +82,49 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->template->siteName = "Nexendrie " . $versionSuffix;
     $this->template->versionSuffix = $versionSuffix;
   }
-  
+
+  public function sendResponse(\Nette\Application\IResponse $response): void {
+    if($this->getHttpResponse()->getCode() === \Nette\Http\IResponse::S200_OK) {
+      $this->lastModified();
+    }
+    parent::sendResponse($response);
+  }
+
+  /**
+   * @param string|int|\DateTimeInterface $lastModified
+   * @param string|null $etag
+   * @param mixed $expire
+   */
+  public function lastModified($lastModified = 0, $etag = null, $expire = null): void {
+    if($lastModified === 0) {
+      $lastModified = $this->getModifiedTime();
+    }
+    parent::lastModified($lastModified, $etag, $expire);
+  }
+
+  protected function getModifiedTime(): int {
+    $times = [
+      $this->getTemplateModifiedTime(), $this->getDataModifiedTime(),
+    ];
+    return max($times);
+  }
+
+  protected function getTemplateModifiedTime(): int {
+    if(!$this->cachingEnabled) {
+      return 0;
+    }
+    $time = 0;
+    $filename = $this->template->getFile();
+    if($filename !== null) {
+      $time = filemtime($filename);
+    }
+    return (int) $time;
+  }
+
+  protected function getDataModifiedTime(): int {
+    return 0;
+  }
+
   /**
    * The user must have specified rights to see a page
    */

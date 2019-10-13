@@ -23,5 +23,14 @@ final class HomepagePresenter extends BasePresenter {
     $this->template->articles = $this->model->listOfNews($paginator);
     $this->template->paginator = $paginator;
   }
+
+  protected function getDataModifiedTime(): int {
+    $time = 0;
+    /** @var \Nexendrie\Orm\Article $article */
+    foreach($this->template->articles as $article) {
+      $time = max($time, $article->updated);
+    }
+    return $time;
+  }
 }
 ?>

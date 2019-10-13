@@ -28,6 +28,8 @@ final class TownPresenter extends BasePresenter {
   protected $localeModel;
   /** @var \Nexendrie\Orm\Town */
   private $town;
+  /** @var bool */
+  protected $cachingEnabled = false;
 
   public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();

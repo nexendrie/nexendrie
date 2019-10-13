@@ -51,5 +51,14 @@ final class ArticlePresenter extends BasePresenter {
     };
     return $form;
   }
+
+  protected function getDataModifiedTime(): int {
+    $time = $this->template->article->updated;
+    /** @var \Nexendrie\Orm\Comment $comment */
+    foreach($this->template->article->comments as $comment) {
+      $time = max($time, $comment->created);
+    }
+    return $time;
+  }
 }
 ?>

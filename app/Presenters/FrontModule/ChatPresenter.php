@@ -25,6 +25,8 @@ final class ChatPresenter extends BasePresenter {
   protected $orderModel;
   /** @var \Nexendrie\Model\Guild */
   protected $guildModel;
+  /** @var bool */
+  protected $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Monastery $monasteryModel, \Nexendrie\Model\Order $orderModel, \Nexendrie\Model\Guild $guildModel) {
     parent::__construct();

@@ -12,6 +12,9 @@ use Nexendrie\Components\HistoryControl;
  * @author Jakub Konečný
  */
 final class HistoryPresenter extends BasePresenter {
+  /** @var bool */
+  protected $cachingEnabled = false;
+
   public function renderDefault(string $page = "index"): void {
     $this->template->page = $page;
   }

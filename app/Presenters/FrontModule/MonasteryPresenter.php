@@ -271,5 +271,20 @@ final class MonasteryPresenter extends BasePresenter {
       $this->redirect("manage");
     }
   }
+
+  protected function getDataModifiedTime(): int {
+    if(isset($this->template->monastery)) {
+      return($this->template->monastery->updated);
+    }
+    if(isset($this->template->monasteries)) {
+      $time = 0;
+      /** @var \Nexendrie\Orm\Monastery $monastery */
+      foreach($this->template->monasteries as $monastery) {
+        $time = max($time, $monastery->updated);
+      }
+      return $time;
+    }
+    return 0;
+  }
 }
 ?>
