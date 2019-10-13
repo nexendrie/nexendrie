@@ -3,14 +3,14 @@
 {block content}
   <h1>Novinky strana {$paginator->page}</h1>
   <div id="topLinks"><a href="https://www.facebook.com/nexendrie/"><img src="{$basePath}/images/facebook-logo.png" alt="Facebook" title="Facebook stránka"></a><a href="https://gitlab.com/nexendrie/nexendrie"><img src="{$basePath}/images/gitlab-icon.png" alt="Gitlab" title="Zdrojové kódy a issue tracker"></a> <a n:href="Rss:news"><img src="{$basePath}/images/feed-icon.png" alt="RSS kanál" title="RSS kanál"></a></div>
-  {if count($news) === 0}
+  {if count($articles) === 0}
   <p>Žádné novinky.</p>
   {else}
-    {foreach $news as $new}
-  <article id="news-{$new->id}">
-    <h3><a n:href="Article:view $new->id">{$new->title}</a></h3>
-    Autor: {control userProfileLink $new->author} Přidáno: {$new->createdAt} Komentářů: <a href="{link Article:view $new->id}#comments">{$new->comments->countStored()}</a><br>
-    {$new->text|truncate:150}
+    {foreach $articles as $article}
+  <article id="news-{$article->id}">
+    <h3><a n:href="Article:view $article->id">{$article->title}</a></h3>
+    Autor: {control userProfileLink $article->author} Přidáno: {$article->createdAt} Komentářů: <a href="{link Article:view $article->id}#comments">{$article->comments->countStored()}</a><br>
+    {$article->text|truncate:150}
   </article>
     {/foreach}
   {/if}
