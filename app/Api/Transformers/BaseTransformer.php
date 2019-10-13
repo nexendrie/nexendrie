@@ -59,7 +59,7 @@ abstract class BaseTransformer implements ITransformer {
     $record = array_filter($record, function($key) {
       return in_array($key, $this->fields, true);
     }, ARRAY_FILTER_USE_KEY);
-    foreach($record as &$value) {
+    foreach($record as $rel => &$value) {
       if(!$value instanceof Entity && !$value instanceof HasMany) {
         continue;
       }
@@ -80,6 +80,7 @@ abstract class BaseTransformer implements ITransformer {
       } else {
         /** @var ITransformer|null $transformer */
         $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($value)]);
+        $links[$rel] = $this->createEntityLink($rel, $transformer->getCollectionName(), $apiVersion, $entity->id, $value->id);
         if($maxDepth > 0 && $transformer !== null) {
           $value = $transformer->transform($value, $maxDepth, $apiVersion);
         } else {
