@@ -19,8 +19,8 @@
     {if $profile->id !== $user->id and $profile->id !== 0}<br><a n:href="Messages:new $profile->id">Poslat zprávu</a>{/if} <a n:href="achievements, name => $profile->publicname">Úspěchy</a>
     <h3>Statistiky</h3>
     <table>
-      <tr><td>Napsaných článků</td><td>{control userProfileLink:page $profile,"articles",$profile->articles->countStored()}</td></tr>
-      <tr><td>Napsaných komentářů</td><td>{$profile->comments->countStored()}</td></tr>
+      <tr><td>Napsaných článků</td><td>{control userProfileLink:page $profile,"articles",$profile->writtenArticles}</td></tr>
+      <tr><td>Napsaných komentářů</td><td>{$profile->writtenComments}</td></tr>
       <tr><td>Dokončených dobrodružství</td><td>{$profile->completedAdventures}</td></tr>
       <tr><td>Odpracováno týdnů</td><td>{$profile->completedJobs}</td></tr>
       <tr><td>Vyprodukovaných sudů piv</td><td>{$profile->producedBeers}</td></tr>

@@ -14,6 +14,7 @@ namespace Nexendrie\Orm;
  * @property User $author {m:1 User::$comments}
  * @property int $created
  * @property-read string $createdAt {virtual}
+ * @property bool $deleted
  */
 final class Comment extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
