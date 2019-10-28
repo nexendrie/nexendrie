@@ -11,8 +11,18 @@ namespace Nexendrie\Orm;
  * @property User $user {m:1 User, oneSided=true}
  * @property bool $handled {default false}
  * @property int $created
+ * @property-read string $createdAt {virtual}
  */
 final class ContentReport extends BaseEntity {
+  /** @var \Nexendrie\Model\Locale */
+  protected $localeModel;
 
+  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
+    $this->localeModel = $localeModel;
+  }
+
+  protected function getterCreatedAt(): string {
+    return $this->localeModel->formatDateTime($this->created);
+  }
 }
 ?>

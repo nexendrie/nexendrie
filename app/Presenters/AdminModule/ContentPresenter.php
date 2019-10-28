@@ -5,6 +5,8 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Forms\GiftFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\ContentReportNotFoundException;
+use Nexendrie\Model\MissingPermissionsException;
 
 /**
  * Presenter Content
@@ -28,8 +30,10 @@ final class ContentPresenter extends BasePresenter {
   protected $adventureModel;
   /** @var \Nexendrie\Model\ItemSet */
   protected $itemSetModel;
+  /** @var \Nexendrie\Model\Moderation */
+  protected $moderationModel;
   
-  public function __construct(\Nexendrie\Model\Market $marketModel, \Nexendrie\Model\Job $jobModel, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Mount $mountModel, \Nexendrie\Model\Skills $skillsModel, \Nexendrie\Model\Tavern $tavernModel, \Nexendrie\Model\Adventure $adventureModel, \Nexendrie\Model\ItemSet $itemSetModel) {
+  public function __construct(\Nexendrie\Model\Market $marketModel, \Nexendrie\Model\Job $jobModel, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Mount $mountModel, \Nexendrie\Model\Skills $skillsModel, \Nexendrie\Model\Tavern $tavernModel, \Nexendrie\Model\Adventure $adventureModel, \Nexendrie\Model\ItemSet $itemSetModel, \Nexendrie\Model\Moderation $moderationModel) {
     parent::__construct();
     $this->marketModel = $marketModel;
     $this->jobModel = $jobModel;
@@ -39,6 +43,7 @@ final class ContentPresenter extends BasePresenter {
     $this->tavernModel = $tavernModel;
     $this->adventureModel = $adventureModel;
     $this->itemSetModel = $itemSetModel;
+    $this->moderationModel = $moderationModel;
   }
   
   protected function startup(): void {
@@ -98,6 +103,39 @@ final class ContentPresenter extends BasePresenter {
       $this->flashMessage("Odesláno.");
     };
     return $form;
+  }
+
+  public function renderReported(): void {
+    $this->requiresPermissions("content", "delete");
+    $this->template->reports = $this->moderationModel->getReportedContent();
+  }
+
+  public function handleDelete(int $report): void {
+    try {
+      $this->moderationModel->deleteContent($report);
+      $this->flashMessage("Obsah smazán.");
+    } catch(MissingPermissionsException $e) {
+      $this->flashMessage("K tomuto nemáš práva.");
+      $this->redirect(":Front:Homepage:");
+    } catch(ContentReportNotFoundException $e) {
+      $this->flashMessage("Tento obsah (už) není nahlášený.");
+      $this->redirect("Homepage:");
+    }
+    $this->redirect("this");
+  }
+
+  public function handleIgnore(int $report): void {
+    try {
+      $this->moderationModel->ignoreReport($report);
+      $this->flashMessage("Nahlášení ignorováno.");
+    } catch(MissingPermissionsException $e) {
+      $this->flashMessage("K tomuto nemáš práva.");
+      $this->redirect(":Front:Homepage:");
+    } catch(ContentReportNotFoundException $e) {
+      $this->flashMessage("Tento obsah (už) není nahlášený.");
+      $this->redirect("Homepage:");
+    }
+    $this->redirect("this");
   }
 }
 ?>

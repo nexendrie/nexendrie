@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters;
 
+use Nette\Application\Responses\RedirectResponse;
 use Testbench\TPresenter as BaseTrait;
 use Nexendrie\Model\TUserControl;
 use Tester\Assert;
@@ -62,6 +63,7 @@ trait TPresenter {
   
   /**
    * @param bool|string $redirect
+   * @return RedirectResponse
    * @throws \Exception
    */
   protected function checkSignal(string $destination, string $signal, array $params = [], array $post = [], $redirect = false): IResponse {

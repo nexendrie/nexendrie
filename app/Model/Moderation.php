@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\ContentReport;
+use Nextras\Orm\Collection\ICollection;
 
 final class Moderation {
   /** @var \Nexendrie\Orm\Model */
@@ -37,6 +38,54 @@ final class Moderation {
     $this->orm->contentReports->attach($report);
     $report->comment = $comment;
     $report->user = $this->user->id;
+    $this->orm->contentReports->persistAndFlush($report);
+  }
+
+  /**
+   * @return ICollection|ContentReport[]
+   */
+  public function getReportedContent(): ICollection {
+    return $this->orm->contentReports->findBy(["handled" => false]);
+  }
+
+  /**
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws ContentReportNotFoundException
+   */
+  public function deleteContent(int $id): void {
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    if(!$this->user->isAllowed("content", "delete")) {
+      throw new MissingPermissionsException();
+    }
+    $report = $this->orm->contentReports->getBy(["id" => $id, "handled" => false]);
+    if($report === null) {
+      throw new ContentReportNotFoundException();
+    }
+    $report->handled = true;
+    $report->comment->deleted = true;
+    $this->orm->contentReports->persistAndFlush($report);
+  }
+
+  /**
+   * @throws AuthenticationNeededException
+   * @throws MissingPermissionsException
+   * @throws ContentReportNotFoundException
+   */
+  public function ignoreReport(int $id): void {
+    if(!$this->user->isLoggedIn()) {
+      throw new AuthenticationNeededException();
+    }
+    if(!$this->user->isAllowed("content", "delete")) {
+      throw new MissingPermissionsException();
+    }
+    $report = $this->orm->contentReports->getBy(["id" => $id, "handled" => false]);
+    if($report === null) {
+      throw new ContentReportNotFoundException();
+    }
+    $report->handled = true;
     $this->orm->contentReports->persistAndFlush($report);
   }
 }

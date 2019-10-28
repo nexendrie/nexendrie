@@ -536,4 +536,8 @@ class CommentNotFoundException extends RecordNotFoundException {
 class ContentAlreadyReportedException extends AccessDeniedException {
 
 }
+
+class ContentReportNotFoundException extends RecordNotFoundException {
+
+}
 ?>

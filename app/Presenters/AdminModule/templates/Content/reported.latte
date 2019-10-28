@@ -1,0 +1,9 @@
+{layout "../@layout.latte"}
+{block title}Nahlášený obsah{/block}
+{block content}
+  <h1>Nahlášený obsah</h1>
+  {foreach $reports as $report}
+    <p>{control userProfileLink $report->user} nahlásil(a) {$report->createdAt} komentář "{$report->comment->text}" od {control userProfileLink $report->comment->author} k článku <a n:href=":Front:Article:view#comment-{$report->comment->id} $report->comment->article->id">{$report->comment->article->title}</a>.<br>
+    <a n:href="delete! $report->id">Smazat komentář</a> <a n:href="ignore! $report->id">Ignorovat</a></p>
+  {/foreach}
+{/block}
