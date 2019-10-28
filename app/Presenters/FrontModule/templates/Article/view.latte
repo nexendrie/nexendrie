@@ -24,7 +24,7 @@
     {var $i = $iterator->counter}
     <span id="comment-{$i}">
       <a name="comment-{$comment->id}" href="#comment-{$comment->id}">#{$i}</a> {control userProfileLink $comment->author}{if $comment->author->id === $user->id} (Ty){elseif $comment->author->id === $article->author->id} (Autor článku){elseif $comment->author->group->level === 10000} (Administrátor){/if} - {$comment->title} ({$comment->createdAt}):<br>
-      {$comment->text}
+      {$comment->text}{if $user->loggedIn} <a n:href="report! $comment->id">Nahlásit</a>{/if}
     </span>{if !$iterator->last}<br>{/if}
     {/foreach}
   {/if}

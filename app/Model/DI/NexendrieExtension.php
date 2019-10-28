@@ -143,6 +143,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setFactory("@" . Nexendrie\Model\RouterFactory::class . "::create");
     $builder->addDefinition($this->prefix("model.openSearch"))
       ->setType(Nexendrie\Model\OpenSearch::class);
+    $builder->addDefinition($this->prefix("model.moderation"))
+      ->setType(Nexendrie\Model\Moderation::class);
   }
   
   protected function addCronTasks(): void {

@@ -528,4 +528,12 @@ class DepositAccountNotDueException extends AccessDeniedException {
 class UserNotInYourMonasteryException extends AccessDeniedException {
 
 }
+
+class CommentNotFoundException extends RecordNotFoundException {
+
+}
+
+class ContentAlreadyReportedException extends AccessDeniedException {
+
+}
 ?>
