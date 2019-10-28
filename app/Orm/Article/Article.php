@@ -20,6 +20,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property bool $allowedComments {default true}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
  * @property-read string $categoryCZ {virtual}
+ * @property-read int $commentsCount {virtual}
  */
 final class Article extends BaseEntity {
   public const CATEGORY_NEWS = "news";
@@ -60,6 +61,10 @@ final class Article extends BaseEntity {
   
   protected function getterCategoryCZ(): string {
     return static::getCategories()[$this->category];
+  }
+
+  protected function getterCommentsCount(): int {
+    return $this->comments->get()->findBy(["deleted" => false,])->countStored();
   }
 }
 ?>

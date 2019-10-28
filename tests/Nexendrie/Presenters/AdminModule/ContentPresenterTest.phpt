@@ -51,6 +51,26 @@ final class ContentPresenterTest extends \Tester\TestCase {
   public function testGift() {
     $this->defaultChecks(":Admin:Content:gift", ["id" => 1]);
   }
+
+  public function testReported() {
+    $this->defaultChecks(":Admin:Content:reported");
+  }
+
+  public function testSignalDelete() {
+    $this->checkSignal(":Admin:Content:delete", "delete", ["report" => 50], [], "/user/login");
+    $this->login("kazimira");
+    $this->checkSignal(":Admin:Content:delete", "delete", ["report" => 50], [], "/");
+    $this->login();
+    $this->checkSignal(":Admin:Content:delete", "delete", ["report" => 50], [], "/admin/");
+  }
+
+  public function testSignalIgnore() {
+    $this->checkSignal(":Admin:Content:delete", "ignore", ["report" => 50], [], "/user/login");
+    $this->login("kazimira");
+    $this->checkSignal(":Admin:Content:delete", "ignore", ["report" => 50], [], "/");
+    $this->login();
+    $this->checkSignal(":Admin:Content:delete", "ignore", ["report" => 50], [], "/admin/");
+  }
 }
 
 $test = new ContentPresenterTest();

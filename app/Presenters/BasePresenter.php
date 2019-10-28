@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters;
 
+use Nette\Application\Responses\RedirectResponse;
 use Nexendrie\Components\FaviconControl;
 use Nexendrie\Components\IFaviconControlFactory;
 use Nexendrie\Menu\IMenuControlFactory;
@@ -84,7 +85,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   }
 
   public function sendResponse(\Nette\Application\IResponse $response): void {
-    if($this->getHttpResponse()->getCode() === \Nette\Http\IResponse::S200_OK) {
+    if(!$response instanceof RedirectResponse && $this->getHttpResponse()->getCode() === \Nette\Http\IResponse::S200_OK) {
       $this->lastModified();
     }
     parent::sendResponse($response);

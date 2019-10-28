@@ -13,5 +13,6 @@
     <li><a n:href="adventures">Dobrodružství</a></li>
     <li><a n:href="itemSets">Sady věcí</a></li>
     {if $user->isAllowed("content","gift")}<li><a n:href="gift">Darovat věc/peníze</a></li>{/if}
+    {if $user->isAllowed("content", "delete")}<li><a n:href="reported">Nahlášený obsah</a></li>{/if}
   </ul>
 {/block}

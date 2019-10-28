@@ -7,6 +7,8 @@ use Nexendrie\Model\ArticleNotFoundException;
 use Nette\Application\UI\Form;
 use Nexendrie\Forms\AddCommentFormFactory;
 use Nexendrie\Model\AuthenticationNeededException;
+use Nexendrie\Model\CommentNotFoundException;
+use Nexendrie\Model\ContentAlreadyReportedException;
 use Nexendrie\Model\MissingPermissionsException;
 
 /**
@@ -17,10 +19,13 @@ use Nexendrie\Model\MissingPermissionsException;
 final class ArticlePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Article */
   protected $model;
+  /** @var \Nexendrie\Model\Moderation */
+  protected $moderationModel;
   
-  public function __construct(\Nexendrie\Model\Article $model) {
+  public function __construct(\Nexendrie\Model\Article $model, \Nexendrie\Model\Moderation $moderationModel) {
     parent::__construct();
     $this->model = $model;
+    $this->moderationModel = $moderationModel;
   }
   
   /**
@@ -28,7 +33,8 @@ final class ArticlePresenter extends BasePresenter {
    */
   public function renderView(int $id): void {
     try {
-      $this->template->article = $this->model->view($id);
+      $this->template->article = $article = $this->model->view($id);
+      $this->template->comments = $article->comments->get()->findBy(["deleted" => false]);
       $this->template->ogType = "article";
     } catch(ArticleNotFoundException $e) {
       throw new \Nette\Application\BadRequestException();
@@ -50,6 +56,22 @@ final class ArticlePresenter extends BasePresenter {
       }
     };
     return $form;
+  }
+
+  public function handleReport(int $comment): void {
+    try {
+      $this->moderationModel->reportComment($comment);
+      $this->flashMessage("Komentář nahlášen.");
+    } catch(AuthenticationNeededException $e) {
+      $this->flashMessage("Pro nahlášení komentáře musíš být přihlášený.");
+      $this->redirect("User:login");
+    } catch(CommentNotFoundException $e) {
+      $this->flashMessage("Komentář nenalezen.");
+      $this->redirect("Homepage:");
+    } catch(ContentAlreadyReportedException $e) {
+      $this->flashMessage("Tento komentář je již nahlášený.");
+    }
+    $this->redirect("this");
   }
 
   protected function getDataModifiedTime(): int {

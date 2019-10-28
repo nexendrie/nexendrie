@@ -4,26 +4,23 @@ declare(strict_types=1);
 namespace Nexendrie\Orm;
 
 /**
- * Comment
+ * ContentReport
  *
- * @author Jakub Konečný
  * @property int $id {primary}
- * @property string $title
- * @property string $text
- * @property Article $article {m:1 Article::$comments}
- * @property User $author {m:1 User::$comments}
+ * @property Comment $comment {m:1 Comment, oneSided=true}
+ * @property User $user {m:1 User, oneSided=true}
+ * @property bool $handled {default false}
  * @property int $created
  * @property-read string $createdAt {virtual}
- * @property bool $deleted
  */
-final class Comment extends BaseEntity {
+final class ContentReport extends BaseEntity {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
-  
+
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
   }
-  
+
   protected function getterCreatedAt(): string {
     return $this->localeModel->formatDateTime($this->created);
   }

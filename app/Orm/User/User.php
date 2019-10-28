@@ -78,6 +78,7 @@ use Nexendrie\Forms\UserSettingsFormFactory;
  * @property-read int $townsOwned {virtual}
  * @property-read int $mountsOwned {virtual}
  * @property-read int $writtenArticles {virtual}
+ * @property-read int $writtenComments {virtual}
  */
 final class User extends BaseEntity {
   public const GENDER_MALE = "male";
@@ -212,6 +213,10 @@ final class User extends BaseEntity {
 
   protected function getterWrittenArticles(): int {
     return $this->articles->countStored();
+  }
+
+  protected function getterWrittenComments(): int {
+    return $this->comments->get()->findBy(["deleted" => false])->countStored();
   }
 
   protected function getterAdventureBonusIncome(): float {
