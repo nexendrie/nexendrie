@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Components\IPollControlFactory;
+use Nexendrie\Model\PollNotFoundException;
 
 /**
  * Presenter Poll
@@ -13,8 +14,8 @@ use Nexendrie\Components\IPollControlFactory;
 final class PollPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Polls */
   protected $model;
-  /** @var bool */
-  protected $cachingEnabled = false;
+  /** @var \Nexendrie\Orm\Poll */
+  protected $poll;
   
   public function __construct(\Nexendrie\Model\Polls $model) {
     parent::__construct();
@@ -25,7 +26,9 @@ final class PollPresenter extends BasePresenter {
    * @throws \Nette\Application\BadRequestException
    */
   public function renderView(int $id): void {
-    if(!$this->model->exists($id)) {
+    try {
+      $this->poll = $this->model->view($id);
+    } catch(PollNotFoundException $e) {
       throw new \Nette\Application\BadRequestException();
     }
     $this->template->pollId = $id;
@@ -37,6 +40,13 @@ final class PollPresenter extends BasePresenter {
       $poll->id = $id;
       return $poll;
     });
+  }
+
+  protected function getDataModifiedTime(): int {
+    if(!isset($this->poll)) {
+      return 0;
+    }
+    return $this->poll->updated;
   }
 }
 ?>
