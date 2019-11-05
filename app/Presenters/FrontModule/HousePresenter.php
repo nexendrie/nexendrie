@@ -24,7 +24,7 @@ final class HousePresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Locale */
   protected $localeModel;
   /** @var bool */
-  protected $cachingEnabled = false;
+  protected $publicCache = false;
   
   public function __construct(\Nexendrie\Model\House $model, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();
@@ -124,6 +124,13 @@ final class HousePresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš vařit pivo.");
       $this->redirect("Homepage:");
     }
+  }
+
+  protected function getDataModifiedTime(): int {
+    if(isset($this->template->house)) {
+      return($this->template->house->updated);
+    }
+    return 0;
   }
 }
 ?>
