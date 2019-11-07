@@ -25,12 +25,13 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   /** @var IUserProfileLinkControlFactory */
   protected $userProfileLinkFactory;
   /** @var bool */
-  protected $cachingEnabled = true;
+  protected $cachingEnabled;
   /** @var bool */
   protected $publicCache = true;
   
   public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void {
     $this->sr = $sr;
+    $this->cachingEnabled = (bool) $this->sr->settings["site"]["httpCaching"];
   }
   
   public function injectUserProfileLinkFactory(IUserProfileLinkControlFactory $userProfileLinkFactory): void {
@@ -99,9 +100,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * @param mixed $expire
    */
   public function lastModified($lastModified = 0, $etag = null, $expire = null): void {
-    if($this->cachingEnabled) {
-      $this->getHttpResponse()->setHeader("Cache-Control", ($this->publicCache) ? "public" : "private");
+    if(!$this->cachingEnabled) {
+      return;
     }
+    $this->getHttpResponse()->setHeader("Cache-Control", ($this->publicCache) ? "public" : "private");
     if($lastModified === 0) {
       $lastModified = $this->getModifiedTime();
     }

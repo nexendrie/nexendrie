@@ -51,6 +51,7 @@ final class SettingsRepository {
     ],
     "site" => [
       "versionSuffix" => "",
+      "httpCaching" => false,
     ],
     "buildings" => [
       "weeklyWearingOut" => 3,
