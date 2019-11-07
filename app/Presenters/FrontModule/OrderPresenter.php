@@ -49,6 +49,7 @@ final class OrderPresenter extends BasePresenter {
       $this->flashMessage("Nejsi v řádu.");
       $this->redirect("Homepage:");
     }
+    $this->publicCache = false;
     $this->template->order = $order;
     $this->template->canLeave = $this->model->canLeave();
     $this->template->canManage = $this->model->canManage();

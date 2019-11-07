@@ -52,6 +52,7 @@ final class MonasteryPresenter extends BasePresenter {
   public function renderDefault(): void {
     try {
       $this->template->monastery = $this->model->getByUser();
+      $this->publicCache = false;
       $this->template->canPray = $this->model->canPray();
       $this->template->canLeave = $this->model->canLeave();
       $this->template->canBuild = $this->model->canBuild();

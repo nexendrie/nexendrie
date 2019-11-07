@@ -49,6 +49,7 @@ final class GuildPresenter extends BasePresenter {
       $this->flashMessage("Nejsi v cechu.");
       $this->redirect("Homepage:");
     }
+    $this->publicCache = false;
     $this->template->guild = $guild;
     $this->template->canLeave = $this->model->canLeave();
     $this->template->canManage = $this->model->canManage();

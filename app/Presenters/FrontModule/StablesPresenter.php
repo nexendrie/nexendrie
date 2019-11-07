@@ -20,6 +20,8 @@ final class StablesPresenter extends BasePresenter {
   protected $model;
   /** @var MountEntity */
   private $mount;
+  /** @var bool */
+  protected $publicCache = false;
   
   public function __construct(\Nexendrie\Model\Mount $model) {
     parent::__construct();

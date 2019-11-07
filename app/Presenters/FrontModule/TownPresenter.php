@@ -53,6 +53,7 @@ final class TownPresenter extends BasePresenter {
     $this->template->house = $user->house;
     $this->template->guild = $user->guild;
     $this->template->order = $user->order;
+    $this->publicCache = false;
   }
   
   public function renderList(): void {

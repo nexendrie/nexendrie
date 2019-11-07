@@ -16,6 +16,8 @@ use Nexendrie\Model\AccessDeniedException;
 final class MessagesPresenter extends BasePresenter {
   /** @var \Nexendrie\Model\Messenger */
   protected $model;
+  /** @var bool */
+  protected $publicCache = false;
   
   public function __construct(\Nexendrie\Model\Messenger $model) {
     parent::__construct();

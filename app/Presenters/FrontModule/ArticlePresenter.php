@@ -21,6 +21,8 @@ final class ArticlePresenter extends BasePresenter {
   protected $model;
   /** @var \Nexendrie\Model\Moderation */
   protected $moderationModel;
+  /** @var bool */
+  protected $publicCache = false;
   
   public function __construct(\Nexendrie\Model\Article $model, \Nexendrie\Model\Moderation $moderationModel) {
     parent::__construct();

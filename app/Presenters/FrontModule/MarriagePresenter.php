@@ -39,6 +39,8 @@ final class MarriagePresenter extends BasePresenter {
   protected $localeModel;
   /** @var MarriageEntity */
   private $marriage;
+  /** @var bool */
+  protected $publicCache = false;
   
   public function __construct(\Nexendrie\Model\Marriage $model, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Inventory $inventoryModel, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();
