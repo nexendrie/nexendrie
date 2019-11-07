@@ -31,7 +31,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   
   public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void {
     $this->sr = $sr;
-    $this->cachingEnabled = (bool) $this->sr->settings["site"]["httpCaching"];
+    $this->cachingEnabled = (bool) $this->sr->settings["features"]["httpCaching"];
   }
   
   public function injectUserProfileLinkFactory(IUserProfileLinkControlFactory $userProfileLinkFactory): void {

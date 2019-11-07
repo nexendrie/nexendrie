@@ -51,6 +51,8 @@ final class SettingsRepository {
     ],
     "site" => [
       "versionSuffix" => "",
+    ],
+    "features" => [
       "httpCaching" => false,
     ],
     "buildings" => [

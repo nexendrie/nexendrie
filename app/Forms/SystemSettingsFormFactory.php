@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
-use Nette\Utils\Html;
 use Nexendrie\Model\SettingsRepository;
 use Nette\Neon\Neon;
 use Nette\Utils\FileSystem;
@@ -152,8 +151,10 @@ final class SystemSettingsFormFactory {
     $site->addText("versionSuffix", "Přípona verze:")
       ->addRule(Form::MAX_LENGTH, null, 5)
       ->setRequired(false);
-    $site->addCheckbox("httpCaching", "Povolit HTTP cacheování")
-      ->setOption("description", Html::el("b")->setText("Experimentální"));
+    $form->addGroup("Experimentální funkce");
+    $features = $form->addContainer("features");
+    $features->addCheckbox("httpCaching", "HTTP cacheování")
+      ->setOption("description", "If-Modified-Since");
     $form->setCurrentGroup(null);
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());
