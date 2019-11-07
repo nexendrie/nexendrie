@@ -103,6 +103,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     if(!$this->cachingEnabled) {
       return;
     }
+    $this->getHttpResponse()->setHeader("Vary", $this->getHttpResponse()->getHeader("Vary") . ", Cookie");
     $this->getHttpResponse()->setHeader("Cache-Control", ($this->publicCache) ? "public" : "private");
     if($lastModified === 0) {
       $lastModified = $this->getModifiedTime();
