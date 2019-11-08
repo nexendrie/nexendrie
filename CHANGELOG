@@ -7,7 +7,7 @@ Version 1.0.0-beta7+dev
 - single entities and collections in api now have links in json and send Link headers
 - added Open Graph metadata for frontend pages
 - phinx is used for database migrations
-- added support for If-Modified-Since in frontend pages (not enabled by default)
+- added support for If-Modified-Since in frontend pages (not enabled by default) and api
 - added comments moderation
 
 Version 1.0.0-beta7

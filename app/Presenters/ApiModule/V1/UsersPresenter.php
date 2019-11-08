@@ -9,6 +9,9 @@ namespace Nexendrie\Presenters\ApiModule\V1;
  * @author Jakub Konečný
  */
 final class UsersPresenter extends BasePresenter {
+  /** @var bool */
+  protected $cachingEnabled = false;
+
   public function actionReadAll(): void {
     if(isset($this->params["associations"]["towns"])) {
       $town = (int) $this->params["associations"]["towns"];

@@ -20,6 +20,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected $orm;
   /** @var \Nexendrie\Api\EntityConverter */
   protected $entityConverter;
+  /** @var bool */
+  protected $cachingEnabled = true;
+  /** @var bool */
+  protected $publicCache = true;
 
   public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Api\EntityConverter $entityConverter) {
     parent::__construct();
@@ -122,10 +126,35 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
 
   abstract protected function getApiVersion(): string;
 
+  /**
+   * @param string|int|\DateTimeInterface $lastModified
+   * @param string|null $etag
+   * @param mixed $expire
+   */
+  public function lastModified($lastModified, $etag = null, $expire = null): void {
+    $this->getHttpResponse()->setHeader("Pragma", null);
+    $this->getHttpResponse()->setHeader("Vary", null);
+    if(!$this->cachingEnabled) {
+      return;
+    }
+    $this->getHttpResponse()->setHeader("Cache-Control", ($this->publicCache) ? "public" : "private");
+    parent::lastModified($lastModified, $etag, $expire);
+  }
+
   protected function getCollectionName(): string {
     $presenterName = (string) Strings::before(static::class, "Presenter", -1);
     $presenterName = (string) Strings::after($presenterName, "\\", -1);
     return Strings::firstLower($presenterName);
+  }
+
+  protected function getCollectionModifiedTime(iterable $collection): int {
+    $time = 0;
+    foreach($collection as $entity) {
+      if(isset($entity->updated)) {
+        $time = max($time, $entity->updated);
+      }
+    }
+    return $time;
   }
 
   /**
@@ -136,6 +165,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $data = $this->entityConverter->convertCollection($collection, $this->getApiVersion());
     $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader("self", $this->getSelfLink()));
     $payload = [$this->getCollectionName() => $data];
+    $this->lastModified($this->getCollectionModifiedTime($collection));
     $this->addContentLengthHeader($payload);
     $this->sendJson($payload);
   }
@@ -152,6 +182,14 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     }, $name);
   }
 
+  protected function getEntityModifiedTime(Entity $entity): int {
+    $time = 0;
+    if(isset($entity->updated)) {
+      $time = max($time, $entity->updated);
+    }
+    return $time;
+  }
+
   /**
    * A quick way to send single entity as response.
    * It is meant to be used in @see actionRead method.
@@ -166,6 +204,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
       $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader($link->rel, $link->href));
     }
     $payload = [$this->getEntityName() => $data];
+    $this->lastModified($this->getEntityModifiedTime($entity));
     $this->addContentLengthHeader($payload);
     $this->sendJson($payload);
   }
