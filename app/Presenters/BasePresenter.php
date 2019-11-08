@@ -102,6 +102,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * @param mixed $expire
    */
   public function lastModified($lastModified = 0, $etag = null, $expire = null): void {
+    $this->getHttpResponse()->setHeader("Pragma", null);
     if(!$this->cachingEnabled) {
       return;
     }
