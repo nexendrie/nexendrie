@@ -1,4 +1,4 @@
-Version 1.0.0-beta7+dev
+Version 1.0.0-beta8
 - raised minimal version of PHP to 7.3
 - api sends list of allowed methods with 405 status code
 - added support for OPTIONS and HEAD methods in api
