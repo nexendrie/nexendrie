@@ -6,5 +6,5 @@
   <table id="titles">
     <tr>{foreach $cityGroups as $group}<td>{if !$iterator->first}- {/if}{$group->singleName}</td>{/foreach}</tr>
     <tr><td></td>{foreach $churchGroups as $group}<td>- {$group->singleName}</td>{/foreach}</tr>
-    <tr><td></td>{foreach $towerGroups as $group}<td>- {if $group->level === 10001}{$group->femaleName}{elseif $group->level === 10000}{$group->name}{else}{$group->singleName}{/if}</td>{/foreach}</tr>
+    <tr><td></td>{foreach $towerGroups as $group}<td>- {if $group->level === 10001}{$group->femaleName}{else}{$group->singleName}{/if}</td>{/foreach}</tr>
   </table>
