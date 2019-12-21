@@ -52,6 +52,10 @@ sast:
 test:default:
   <<: *test_job
 
+test:php7.4:
+  <<: *test_job
+  image: nexendrie/php:7.4
+
 test:cc:
   <<: *test_job
   script:
