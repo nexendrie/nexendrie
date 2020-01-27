@@ -1,4 +1,4 @@
-  <p>Šlechtici se mohou organizovat v řádech. Řády jsou prestižní organizace, jejich věhlas umožňuje členům získat větší příjmy z dobrodružství. Ti však za to musí každý měsíc odvádět svému řádu příspěvek. Výše příspěvku i bonusu závisí na postavení člena.</p>
+  <p>Šlechtici se mohou organizovat v řádech. Řády jsou prestižní organizace, jejich věhlas umožňuje členům získat větší příjmy z <a href="{plink "{$presenterName}:" page => adventures}">dobrodružství</a>. Ti však za to musí každý měsíc odvádět svému řádu příspěvek. Výše příspěvku i bonusu závisí na postavení člena.</p>
   <table>
     <tr><th>Hodnost</th><th>Bonus k příjmům z dobrodružství</th><th>Členský poplatek</th></tr>
     <tr n:foreach="$ranks as $rank"><td>{$rank->name}</td><td>{$rank->adventureBonus}</td><td>{$rank->orderFee}</td></tr>

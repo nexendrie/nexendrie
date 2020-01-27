@@ -1,4 +1,4 @@
-  <p>Měšťané a sedláci se mohou organizovat do cechů. Cechy mají ve městech jistý vliv a používají jej ke zlepšování pověsti svých členů, což se projeví menším zvýšením příjmu z práce. Avšak cech vyžaduje každý měsíc placení členských poplatků. Výše bonusu i poplatku závisí na hodnosti člena.</p>
+  <p>Měšťané a sedláci se mohou organizovat do cechů. Cechy mají ve <a href="{plink "{$presenterName}:" page => towns}">městech</a> jistý vliv a používají jej ke zlepšování pověsti svých členů, což se projeví menším zvýšením příjmu z <a href="{plink "{$presenterName}:" page => work}">práce</a>. Avšak cech vyžaduje každý měsíc placení členských poplatků. Výše bonusu i poplatku závisí na hodnosti člena.</p>
   <table>
     <tr><th>Hodnost</th><th>Bonus k příjmům z práce</th><th>Členský poplatek</th></tr>
     <tr n:foreach="$ranks as $rank"><td>{$rank->name}</td><td>{$rank->incomeBonus}</td><td>{$rank->guildFee}</td></tr>
