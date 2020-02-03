@@ -1,4 +1,4 @@
-  <p>V téměř každém městě a vesnici v Nexendrii dnes stojí pobočka Banky Žajských, která mimo jiné poskytuje drobné půjčky všem obyvatelům království. Maximální suma, kterou jsou ochotni půjčit, závisí na postavení žadatele. Zapůjčenou sumu je nutné vrátit s úrokem (v současnosti {$loanInterest}% ročně), až poté stejnému člověku znovu půjčí.</p>
+  <p>V téměř každém <a href="{plink "{$presenterName}:" page => towns}">městě a vesnici</a> v Nexendrii dnes stojí pobočka Banky Žajských, která mimo jiné poskytuje drobné půjčky všem obyvatelům království. Maximální suma, kterou jsou ochotni půjčit, závisí na <a href="{plink "{$presenterName}:" page => titles}">postavení</a> žadatele. Zapůjčenou sumu je nutné vrátit s úrokem (v současnosti {$loanInterest}% ročně), až poté stejnému člověku znovu půjčí.</p>
   <table id="maxLoans">
     <tr><th>Titul</th><th>Maximální půjčka</th></tr>
     <tr n:foreach="$groups as $group"><td>{$group->singleName}</td><td>{$group->maxLoan}</td></tr>
