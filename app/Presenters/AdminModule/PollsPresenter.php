@@ -35,7 +35,7 @@ final class PollsPresenter extends BasePresenter {
   
   protected function createComponentAddPollForm(AddEditPollFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Anketa přidána.");
       $this->redirect("Polls:");
     };
@@ -55,7 +55,7 @@ final class PollsPresenter extends BasePresenter {
   protected function createComponentEditPollForm(AddEditPollFormFactory $factory): Form {
     $poll = $this->model->view((int) $this->getParameter("id"));
     $form = $factory->create($poll);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Anketa upravena.");
       $this->redirect("Polls:");
     };

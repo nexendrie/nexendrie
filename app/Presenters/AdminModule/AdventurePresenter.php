@@ -29,7 +29,7 @@ final class AdventurePresenter extends BasePresenter {
   
   protected function createComponentAddAdventureForm(AddEditAdventureFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Dobrodružství přidáno.");
       $this->redirect("Content:adventures");
     };
@@ -50,7 +50,7 @@ final class AdventurePresenter extends BasePresenter {
   
   protected function createComponentEditAdventureForm(AddEditAdventureFormFactory $factory): Form {
     $form = $factory->create($this->adventure);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Dobrodružství upraveno.");
       $this->redirect("Content:adventures");
     };

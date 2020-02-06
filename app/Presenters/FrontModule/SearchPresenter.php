@@ -26,7 +26,7 @@ final class SearchPresenter extends BasePresenter {
   
   protected function createComponentSiteSearchForm(SiteSearchFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
+    $form->onSuccess[] = function(Form $form, array $values): void {
       $text = $values["text"];
       switch($values["type"]) {
         case SiteSearchFormFactory::TYPE_USERS:

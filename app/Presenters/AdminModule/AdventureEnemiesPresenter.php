@@ -57,7 +57,7 @@ final class AdventureEnemiesPresenter extends BasePresenter {
   
   protected function createComponentAddAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $data) {
+    $form->onSuccess[] = function(Form $form, array $data): void {
       $data["adventure"] = $this->adventure->id;
       $this->model->addNpc($data);
       $this->flashMessage("Nepřítel přidán.");
@@ -81,7 +81,7 @@ final class AdventureEnemiesPresenter extends BasePresenter {
   protected function createComponentEditAdventureEnemyForm(AddEditAdventureEnemyFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->npc->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form, array $values) {
+    $form->onSuccess[] = function(Form $form, array $values): void {
       $this->model->editNpc((int) $this->getParameter("id"), $values);
       $this->flashMessage("Nepřítel upraven.");
       $this->redirect("list", ["id" => $this->npc->adventure->id]);

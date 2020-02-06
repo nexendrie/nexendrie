@@ -82,7 +82,7 @@ final class GuildPresenter extends BasePresenter {
   
   protected function createComponentFoundGuildForm(FoundGuildFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Cech založen.");
       $this->redirect("default");
     };
@@ -131,7 +131,7 @@ final class GuildPresenter extends BasePresenter {
     /** @var \Nexendrie\Orm\Guild $guild */
     $guild = $this->model->getUserGuild();
     $form = $factory->create($guild->id);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;

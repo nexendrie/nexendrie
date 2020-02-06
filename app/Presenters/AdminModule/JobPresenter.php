@@ -42,7 +42,7 @@ final class JobPresenter extends BasePresenter {
   
   protected function createComponentAddJobForm(AddEditJobFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Práce přidána.");
       $this->redirect("Content:jobs");
     };
@@ -51,7 +51,7 @@ final class JobPresenter extends BasePresenter {
   
   protected function createComponentEditJobForm(AddEditJobFormFactory $factory): Form {
     $form = $factory->create($this->job);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:jobs");
     };

@@ -247,7 +247,7 @@ final class MarriagePresenter extends BasePresenter {
   
   protected function createComponentChangeWeddingTermForm(ChangeWeddingTermFormFactory $factory): Form {
     $form = $factory->create($this->marriage);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Termín svatby změněn.");
     };
     return $form;

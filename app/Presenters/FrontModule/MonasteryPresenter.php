@@ -90,7 +90,7 @@ final class MonasteryPresenter extends BasePresenter {
   
   protected function createComponentBuildMonasteryForm(BuildMonasteryFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Klášter založen.");
       $this->redirect("default");
     };
@@ -159,7 +159,7 @@ final class MonasteryPresenter extends BasePresenter {
   
   protected function createComponentMonasteryDonateForm(MonasteryDonateFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Příspěvek proveden.");
     };
     return $form;
@@ -182,7 +182,7 @@ final class MonasteryPresenter extends BasePresenter {
   
   protected function createComponentManageMonasteryForm(ManageMonasteryFormFactory $factory): Form {
     $form = $factory->create($this->monasteryId);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;

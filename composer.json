@@ -48,8 +48,8 @@
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
-        "dg/ftp-deployment": "^3.2",
-        "phpstan/phpstan-nette": "^0.11"
+        "dg/ftp-deployment": "^3.3",
+        "phpstan/phpstan-nette": "^0.12"
     },
     "replace": {
         "symfony/polyfill-php73": "*",

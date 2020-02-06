@@ -42,7 +42,7 @@ final class ItemPresenter extends BasePresenter {
   
   protected function createComponentAddItemForm(AddEditItemFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Věc přidána.");
       $this->redirect("Content:items");
     };
@@ -51,7 +51,7 @@ final class ItemPresenter extends BasePresenter {
   
   protected function createComponentEditItemForm(AddEditItemFormFactory $factory): Form {
     $form = $factory->create($this->item);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:items");
     };

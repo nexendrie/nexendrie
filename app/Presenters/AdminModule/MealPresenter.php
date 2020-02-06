@@ -30,7 +30,7 @@ final class MealPresenter extends BasePresenter {
   
   protected function createComponentAddMealForm(AddEditMealFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Jídlo přidáno.");
       $this->redirect("Content:meals");
     };
@@ -51,7 +51,7 @@ final class MealPresenter extends BasePresenter {
   
   protected function createComponentEditMealForm(AddEditMealFormFactory $factory): Form {
     $form = $factory->create($this->meal);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Změny uloženy.");
       $this->redirect("Content:meals");
     };

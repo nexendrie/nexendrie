@@ -30,7 +30,7 @@ final class MountPresenter extends BasePresenter {
   
   protected function createComponentAddMountForm(AddEditMountFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Jezdecké zvíře přidáno.");
       $this->redirect("Content:mounts");
     };
@@ -51,7 +51,7 @@ final class MountPresenter extends BasePresenter {
   
   protected function createComponentEditMountForm(AddEditMountFormFactory $factory): Form {
     $form = $factory->create($this->mount);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Jezdecké zvíře upraveno.");
       $this->redirect("Content:mounts");
     };

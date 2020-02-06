@@ -50,7 +50,7 @@ final class BankPresenter extends BasePresenter {
   
   protected function createComponentTakeLoanForm(TakeLoanFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
+    $form->onSuccess[] = function(Form $form, array $values): void {
       $text = $this->localeModel->genderMessage("Přijal(a) jsi půjčku %s.");
       $message = sprintf($text, $this->localeModel->money($values["amount"]));
       $this->flashMessage($message);
@@ -60,7 +60,7 @@ final class BankPresenter extends BasePresenter {
   
   protected function createComponentOpenDepositAccountForm(OpenDepositAccountFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Termínovaný účet otevřen.");
     };
     return $form;

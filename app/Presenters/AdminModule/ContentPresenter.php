@@ -99,7 +99,7 @@ final class ContentPresenter extends BasePresenter {
       $userField = $form["user"];
       $userField->setDefaultValue($user);
     }
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Odesláno.");
     };
     return $form;

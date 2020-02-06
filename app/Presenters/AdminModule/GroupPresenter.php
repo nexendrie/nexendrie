@@ -40,7 +40,7 @@ final class GroupPresenter extends BasePresenter {
     /** @var \Nexendrie\Orm\Group $group */
     $group = $this->model->ormGet((int) $this->getParameter("id"));
     $form = $factory->create($group);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Skupina upravena.");
       $this->redirect("default");
     };

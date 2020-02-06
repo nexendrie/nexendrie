@@ -31,7 +31,7 @@ final class ArticlePresenter extends BasePresenter {
   
   protected function createComponentAddArticleForm(AddEditArticleFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
+    $form->onSuccess[] = function(Form $form, array $values): void {
       $id = $this->model->addArticle($values);
       $this->flashMessage("Článek byla přidán.");
       $this->redirect(":Front:Article:", ["id" => $id]);
@@ -56,7 +56,7 @@ final class ArticlePresenter extends BasePresenter {
   protected function createComponentEditArticleForm(AddEditArticleFormFactory $factory): Form {
     $news = $this->model->view((int) $this->getParameter("id"));
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
+    $form->onSuccess[] = function(Form $form, array $values): void {
       $this->model->editArticle((int) $this->getParameter("id"), $values);
       $this->flashMessage("Článek upraven.");
     };

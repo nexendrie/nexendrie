@@ -84,7 +84,7 @@ final class CastlePresenter extends BasePresenter {
   
   protected function createComponentBuildCastleForm(BuildCastleFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Hrad postaven.");
       $this->redirect("default");
     };
@@ -121,7 +121,7 @@ final class CastlePresenter extends BasePresenter {
   
   protected function createComponentManageCastleForm(ManageCastleFormFactory $factory): Form {
     $form = $factory->create($this->template->castle->id);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;

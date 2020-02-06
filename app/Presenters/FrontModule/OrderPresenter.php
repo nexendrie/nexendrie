@@ -81,7 +81,7 @@ final class OrderPresenter extends BasePresenter {
   
   protected function createComponentFoundOrderForm(FoundOrderFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Řád založen.");
       $this->redirect("default");
     };
@@ -138,7 +138,7 @@ final class OrderPresenter extends BasePresenter {
     /** @var \Nexendrie\Orm\Order $order */
     $order = $this->model->getUserOrder();
     $form = $factory->create($order->id);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Změny uloženy.");
     };
     return $form;

@@ -43,7 +43,7 @@ final class UserPresenter extends BasePresenter {
   
   protected function createComponentLoginForm(LoginFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $message = $this->localeModel->genderMessage("Byl(a) jsi úspěšně přihlášen(a).");
       $this->flashMessage($message);
       if($this->user->identity->banned) {
@@ -78,7 +78,7 @@ final class UserPresenter extends BasePresenter {
   
   protected function createComponentRegisterForm(RegisterFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Registrace úspěšně proběhla. Můžeš se přihlásit.");
       $this->redirect("Homepage:");
     };
@@ -91,7 +91,7 @@ final class UserPresenter extends BasePresenter {
   
   protected function createComponentUserSettingsForm(UserSettingsFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->model->user = $this->user;
       $this->model->refreshIdentity();
       $this->flashMessage("Změny uloženy.");

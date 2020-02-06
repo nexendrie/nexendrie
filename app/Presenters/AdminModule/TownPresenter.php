@@ -30,7 +30,7 @@ final class TownPresenter extends BasePresenter {
   
   protected function createComponentAddTownForm(AddEditTownFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Město přidáno.");
       $this->redirect("Content:towns");
     };
@@ -51,7 +51,7 @@ final class TownPresenter extends BasePresenter {
   
   protected function createComponentEditTownForm(AddEditTownFormFactory $factory): Form {
     $form = $factory->create($this->town);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Město upraveno.");
       $this->redirect("Content:towns");
     };

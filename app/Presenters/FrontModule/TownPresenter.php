@@ -111,7 +111,7 @@ final class TownPresenter extends BasePresenter {
   
   protected function createComponentFoundTownForm(FoundTownFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Město založeno.");
       $this->redirect("Homepage:");
     };

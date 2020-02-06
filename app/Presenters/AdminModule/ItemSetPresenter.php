@@ -30,7 +30,7 @@ final class ItemSetPresenter extends BasePresenter {
   
   protected function createComponentAddItemSetForm(AddEditItemSetFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Sada přidána.");
       $this->redirect("Content:itemSets");
     };
@@ -51,7 +51,7 @@ final class ItemSetPresenter extends BasePresenter {
   
   protected function createComponentEditItemSetForm(AddEditItemSetFormFactory $factory): Form {
     $form = $factory->create($this->set);
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Sada upravena.");
       $this->redirect("Content:itemSets");
     };

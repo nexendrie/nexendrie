@@ -44,7 +44,7 @@ final class UserPresenter extends BasePresenter {
   
   protected function createComponentEditUser(EditUserFormFactory $factory): Form {
     $form = $factory->create((int) $this->getParameter("id"));
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Změny uloženy.");
       $this->redirect("default");
     };
@@ -75,7 +75,7 @@ final class UserPresenter extends BasePresenter {
   
   protected function createComponentBanUserForm(BanUserFormFactory $factory): Form {
     $form = $factory->create((int) $this->getParameter("id"));
-    $form->onSuccess[] = function() {
+    $form->onSuccess[] = function(): void {
       $this->flashMessage("Uživatel uvězněn.");
     };
     return $form;

@@ -51,7 +51,7 @@ final class JobMessagesPresenter extends BasePresenter {
   
   protected function createComponentAddJobMessageForm(AddEditJobMessageFormFactory $factory): Form {
     $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values) {
+    $form->onSuccess[] = function(Form $form, array $values): void {
       $values["job"] = $this->job->id;
       $this->model->addMessage($values);
       $this->flashMessage("Hláška přidána.");
@@ -75,7 +75,7 @@ final class JobMessagesPresenter extends BasePresenter {
   protected function createComponentEditJobMessageForm(AddEditJobMessageFormFactory $factory): Form {
     $form = $factory->create();
     $form->setDefaults($this->message->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form, array $values) {
+    $form->onSuccess[] = function(Form $form, array $values): void {
       $this->model->editMessage($this->message->id, $values);
       $this->flashMessage("Hláška upravena.");
     };

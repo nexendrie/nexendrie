@@ -66,8 +66,8 @@ final class ChroniclePresenter extends BasePresenter {
     }
     if(isset($this->template->crimes)) {
       /** @var \Nexendrie\Orm\Punishment $crime */
-      foreach($this->template->crimes as $marriage) {
-        $time = max($time, $marriage->updated);
+      foreach($this->template->crimes as $crime) {
+        $time = max($time, $crime->updated);
       }
       return $time;
     }
