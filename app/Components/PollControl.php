@@ -15,7 +15,7 @@ use Nexendrie\Orm\PollVote as PollVoteEntity;
  *
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
- * @property int $id
+ * @property-write int $id
  */
 final class PollControl extends \Nette\Application\UI\Control {
   /** @var \Nette\Security\User */
@@ -52,7 +52,7 @@ final class PollControl extends \Nette\Application\UI\Control {
   /**
    * @throws PollNotFoundException
    */
-  public function setId(int $id): void {
+  protected function setId(int $id): void {
     try {
       $this->id = $id;
       $this->getPoll();

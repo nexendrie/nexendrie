@@ -282,7 +282,7 @@ final class Guild {
     return $this->orm->users->findByGuild($guild);
   }
   
-  public function getMaxRank(): int {
+  protected function getMaxRank(): int {
     static $rank = null;
     if($rank === null) {
       $rank = $this->orm->guildRanks->findAll()->countStored();

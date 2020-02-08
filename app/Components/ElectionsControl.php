@@ -32,7 +32,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control {
     $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
   }
   
-  public function setTown(\Nexendrie\Orm\Town $town): void {
+  protected function setTown(\Nexendrie\Orm\Town $town): void {
     $this->town = $town;
   }
   

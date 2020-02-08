@@ -16,7 +16,6 @@ use Nexendrie\Orm\User as UserEntity;
  * Factory for form UserSettings
  *
  * @author Jakub Konečný
- * @property-write User $user
  */
 final class UserSettingsFormFactory {
   /** @var UserManager */

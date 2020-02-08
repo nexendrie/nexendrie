@@ -300,7 +300,7 @@ final class Order {
     return $this->orm->users->findByOrder($order);
   }
   
-  public function getMaxRank(): int {
+  protected function getMaxRank(): int {
     static $rank = null;
     if($rank === null) {
       $rank = $this->orm->orderRanks->findAll()->countStored();

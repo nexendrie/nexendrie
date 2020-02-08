@@ -11,7 +11,7 @@ use Nexendrie\Orm\GroupDummy;
  * Group Model
  *
  * @author Jakub Konečný
- * @property \Nette\Security\User $user
+ * @property-write \Nette\Security\User $user
  */
 final class Group {
   /** @var \Nexendrie\Orm\Model */
@@ -28,7 +28,7 @@ final class Group {
     $this->cache = $cache;
   }
   
-  public function setUser(\Nette\Security\User $user): void {
+  protected function setUser(\Nette\Security\User $user): void {
     $this->user = $user;
   }
   

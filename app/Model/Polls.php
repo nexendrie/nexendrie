@@ -10,7 +10,7 @@ use Nextras\Orm\Collection\ICollection;
  * Polls Model
  *
  * @author Jakub Konečný
- * @property \Nette\Security\User $user
+ * @property-write  \Nette\Security\User $user
  */
 final class Polls {
   /** @var \Nexendrie\Orm\Model $orm */
@@ -24,7 +24,7 @@ final class Polls {
     $this->orm = $orm;
   }
   
-  public function setUser(\Nette\Security\User $user): void {
+  protected function setUser(\Nette\Security\User $user): void {
     $this->user = $user;
   }
   

@@ -30,7 +30,7 @@ final class WeddingControl extends \Nette\Application\UI\Control {
     $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
   }
   
-  public function setMarriage(MarriageEntity $marriage): void {
+  protected function setMarriage(MarriageEntity $marriage): void {
     $this->marriage = $marriage;
   }
   

@@ -35,7 +35,7 @@ final class Authenticator implements IAuthenticator {
     $this->roles = $sr->settings["roles"];
   }
   
-  public function setUser(User $user): void {
+  protected function setUser(User $user): void {
     $this->user = $user;
   }
   

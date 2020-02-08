@@ -23,7 +23,7 @@ final class OpenSearchDescriptionResponse implements \Nette\Application\IRespons
     $this->source = $source;
   }
 
-  public function getSource(): string {
+  protected function getSource(): string {
     return $this->source;
   }
 

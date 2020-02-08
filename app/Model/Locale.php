@@ -86,7 +86,7 @@ final class Locale {
     return preg_replace($pattern, $replace, $message);
   }
   
-  public function getFormats(): array {
+  protected function getFormats(): array {
     return $this->formats;
   }
 }

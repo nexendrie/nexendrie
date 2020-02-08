@@ -131,7 +131,7 @@ final class SettingsRepository {
     return $return;
   }
   
-  public function getSettings(): array {
+  protected function getSettings(): array {
     return $this->settings;
   }
 }
