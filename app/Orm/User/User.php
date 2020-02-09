@@ -23,7 +23,6 @@ use Nexendrie\Forms\UserSettingsFormFactory;
  * @property int|null $lastPrayer {default null}
  * @property int|null $lastTransfer {default null}
  * @property Group $group {m:1 Group::$members}
- * @property bool $infomails {default false}
  * @property string $style
  * @property string $gender {enum static::GENDER_*} {default static::GENDER_MALE}
  * @property-read bool $banned {virtual}

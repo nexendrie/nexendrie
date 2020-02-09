@@ -114,8 +114,7 @@ final class UserManager {
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     $settings = [
-      "publicname" => $user->publicname, "email" => $user->email, "infomails" =>  $user->infomails,
-      "style" => $user->style, "gender" => $user->gender
+      "publicname" => $user->publicname, "email" => $user->email, "style" => $user->style, "gender" => $user->gender,
     ];
     return $settings;
   }

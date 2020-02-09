@@ -60,7 +60,6 @@ final class UserSettingsFormFactory {
     $form->addRadioList("gender", "Pohlaví:", UserEntity::getGenders())
       ->setRequired("Vyber pohlaví.");
     $form->addSelect("style", "Vzhled stránek:", static::getStylesList());
-    $form->addCheckbox("infomails", "Posílat informační e-maily");
     $form->addGroup("Heslo")
       ->setOption("description", "Současné a nové heslo vyplňujte jen pokud ho chcete změnit.");
     $passwordOld = $form->addPassword("password_old", "Současné heslo:");
