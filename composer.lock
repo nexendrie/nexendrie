@@ -167,17 +167,17 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "5ca4e4636e1804b02a5a752a499d10902d7b5e6d"
+                "reference": "39c2a1224a7cd3b237cc6dc1d7df54852a722157"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=5ca4e4636e1804b02a5a752a499d10902d7b5e6d",
-                "reference": "5ca4e4636e1804b02a5a752a499d10902d7b5e6d",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=39c2a1224a7cd3b237cc6dc1d7df54852a722157",
+                "reference": "39c2a1224a7cd3b237cc6dc1d7df54852a722157",
                 "shasum": ""
             },
             "require": {
                 "latte/latte": "^2.5 || ^3.0",
-                "nette/utils": "^2.5 || ^3.0",
+                "nette/utils": "^2.5 || ^3.0.2",
                 "nexendrie/translation": "^1.1.1 || ^2.0.1",
                 "nexendrie/utils": "^1.6.1",
                 "php": ">=7.2.0",
@@ -217,7 +217,7 @@
             "keywords": [
                 "combat"
             ],
-            "time": "2020-02-06T21:08:32+00:00"
+            "time": "2020-02-08T14:29:00+00:00"
         },
         {
             "name": "kdyby/autowired",
@@ -2860,12 +2860,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "ff8409412a148a09b460da3dd84dd0dfd97cfa04"
+                "reference": "14cb48fe0113d49ac682833d2b1e67598580f547"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=ff8409412a148a09b460da3dd84dd0dfd97cfa04",
-                "reference": "ff8409412a148a09b460da3dd84dd0dfd97cfa04",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=14cb48fe0113d49ac682833d2b1e67598580f547",
+                "reference": "14cb48fe0113d49ac682833d2b1e67598580f547",
                 "shasum": ""
             },
             "require": {
@@ -2894,7 +2894,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2020-02-06T21:26:44+00:00"
+            "time": "2020-02-07T12:06:45+00:00"
         },
         {
             "name": "nexendrie/testbench",
