@@ -40,9 +40,9 @@ The game uses Composer to manage its dependencies. If you do not have them insta
 Database
 --------
 
-The game needs a database to store its data. We use nextras/orm with nextras/dbal to access it which currently supports only MySQL/MariaDB, PostgreSQL and MS SQL. Before you can run the game for first time, you have to create tables and fill them with at least basic data (test data are not strictly necessary if you do not run tests on that database). Folder app/sqls contains all needed queries for both MySQL/MariaDB and PostreSQL. If you use MS SQL, tweak them accordingly before running.
+The game needs a database to store its data. We use nextras/orm with nextras/dbal to access it which currently supports only MySQL/MariaDB, PostgreSQL and MS SQL. We use Phinx for database migrations which in theory supports all these servers but some features work only on MySQL/MariaDB. Our config defines *production* and *testing* environments if their config (.neon) file exist.
 
-After that, do not forget to write access data (name of database, username and password) to file app/config/local.neon so the game will know where to look for data.
+Phinx is installed alongside other dependencies via Composer. Once you have it installed, do not forget to write access data (name of database, username and password) to file app/config/local.neon. Then you can run the migrations.
 
 Web server
 ----------
