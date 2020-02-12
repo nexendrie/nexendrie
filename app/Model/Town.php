@@ -20,6 +20,8 @@ final class Town {
   protected $user;
   /** @var int */
   protected $foundingPrice;
+  /** @var int */
+  protected $foundingCharter;
   
   use \Nette\SmartObject;
   
@@ -27,6 +29,7 @@ final class Town {
     $this->orm = $orm;
     $this->user = $user;
     $this->foundingPrice = $sr->settings["fees"]["foundTown"];
+    $this->foundingCharter = $sr->settings["specialItems"]["foundTown"];
   }
   
   /**
@@ -259,7 +262,7 @@ final class Town {
     if($user->money < $this->foundingPrice) {
       throw new InsufficientFundsException();
     }
-    $item = $this->orm->userItems->getByUserAndItem($user->id, 15);
+    $item = $this->orm->userItems->getByUserAndItem($user->id, $this->foundingCharter);
     if($item === null) {
       throw new CannotFoundTownException();
     }

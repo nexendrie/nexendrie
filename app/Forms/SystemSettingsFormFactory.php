@@ -35,6 +35,10 @@ final class SystemSettingsFormFactory {
   protected function getListOfTowns(): array {
     return $this->orm->towns->findAll()->fetchPairs("id", "name");
   }
+
+  protected function getListOfCharters(): array {
+    return $this->orm->items->findBy(["type" => \Nexendrie\Orm\Item::TYPE_CHARTER])->fetchPairs("id", "name");
+  }
   
   protected function getDefaultValues(): array {
     $settings = $this->sr->settings;
@@ -46,6 +50,7 @@ final class SystemSettingsFormFactory {
    */
   public function create(): Form {
     $groups = $this->getListOfGroups();
+    $charters = $this->getListOfCharters();
     $form = new Form();
     $form->addGroup("Lokální nastavení");
     $locale = $form->addContainer("locale");
@@ -130,6 +135,10 @@ final class SystemSettingsFormFactory {
       ->setRequired("Zadej cenu automatické krmení jezdeckého zvířete.")
       ->addRule(Form::INTEGER, "Cena automatické krmení jezdeckého zvířete musí být celé číslo.")
       ->addRule(Form::RANGE, "Cena automatické krmení jezdeckého zvířete musí být v rozmezí 0-20.", [0, 20]);
+    $form->addGroup("Speciální věci");
+    $specialItems = $form->addContainer("specialItems");
+    $specialItems->addSelect("foundTown", "Pro založení města:", $charters)
+      ->setRequired("Vyber listinu potřebnou pro založení města.");
     $form->addGroup("Budovy");
     $buildings = $form->addContainer("buildings");
     $buildings->addText("weeklyWearingOut", "Týdenní opotřebení:")

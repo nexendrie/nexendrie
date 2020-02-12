@@ -46,6 +46,9 @@ final class SettingsRepository {
       "depositInterest" => 3,
       "buyHouse" => 500,
     ],
+    "specialItems" => [
+      "foundTown" => 15,
+    ],
     "registration" => [
       "token" => "",
     ],

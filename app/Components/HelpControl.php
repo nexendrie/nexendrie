@@ -123,6 +123,7 @@ final class HelpControl extends BookControl {
     /** @var \Nexendrie\Orm\Town $startingTown */
     $startingTown = $this->orm->towns->getById($this->sr->settings["newUser"]["town"]);
     $this->template->startingTown = $startingTown;
+    $this->template->foundingCharter = $this->orm->items->getById($this->sr->settings["specialItems"]["foundTown"]);
   }
   
   public function renderMarriage(): void {
