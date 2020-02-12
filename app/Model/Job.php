@@ -23,8 +23,6 @@ final class Job {
   protected $orm;
   /** @var \Nette\Security\User */
   protected $user;
-  /** Base success rate for job (in %) */
-  public const BASE_SUCCESS_RATE = 55;
   
   use \Nette\SmartObject;
   
