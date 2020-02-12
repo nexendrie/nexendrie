@@ -5,6 +5,7 @@ namespace Nexendrie\Components;
 
 use Nexendrie\BookComponent\BookControl;
 use Nexendrie\BookComponent\BookPage;
+use Nexendrie\Model\Adventure;
 use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Model\Locale;
 use Nexendrie\Model\SettingsRepository;
@@ -157,6 +158,7 @@ final class HelpControl extends BookControl {
 
   public function renderAdventures(): void {
     $this->template->hpDecrease = MountEntity::HP_DECREASE_ADVENTURE;
+    $this->template->adventureBreakDaysLength = Adventure::ADVENTURE_BREAK_DAYS_LENGTH;
   }
 
   public function renderCombat(): void {

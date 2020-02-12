@@ -18,6 +18,8 @@ use HeroesofAbenez\Combat\VictoryConditions;
  * @author Jakub Konečný
  */
 final class Adventure {
+  public const ADVENTURE_BREAK_DAYS_LENGTH = 2;
+
   /** @var CombatBase */
   protected $combat;
   /** @var CombatHelper */
@@ -358,7 +360,7 @@ final class Adventure {
    * @throws AuthenticationNeededException
    */
   public function canDoAdventure(): bool {
-    $twoDays = 60 * 60 * 24 * 2;
+    $twoDays = 60 * 60 * 24 * static::ADVENTURE_BREAK_DAYS_LENGTH;
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
