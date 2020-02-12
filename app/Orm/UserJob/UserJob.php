@@ -23,6 +23,7 @@ namespace Nexendrie\Orm;
 final class UserJob extends BaseEntity {
   /** Base success rate for job (in %) */
   public const BASE_SUCCESS_RATE = 55;
+  public const JOB_DAYS_LENGTH = 7;
   
   /** @var \Nexendrie\Model\Events */
   protected $eventsModel;
@@ -32,7 +33,7 @@ final class UserJob extends BaseEntity {
   }
   
   protected function getterFinishTime(): int {
-    return $this->created + (60 * 60 * 24 * 7);
+    return $this->created + (60 * 60 * 24 * static::JOB_DAYS_LENGTH);
   }
   
   protected function getHouseRewardBonus(int $baseReward): int {

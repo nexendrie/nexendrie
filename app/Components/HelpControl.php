@@ -16,6 +16,7 @@ use Nexendrie\Orm\Order as OrderEntity;
 use Nexendrie\Orm\Marriage as MarriageEntity;
 use Nexendrie\Orm\Group as GroupEntity;
 use Nexendrie\Orm\Mount as MountEntity;
+use Nexendrie\Orm\UserJob as UserJobEntity;
 
 /**
  * HelpControl
@@ -57,6 +58,7 @@ final class HelpControl extends BookControl {
   }
   
   public function renderWork(): void {
+    $this->template->jobDaysLength = UserJobEntity::JOB_DAYS_LENGTH;
     $this->template->jobs = [];
     $jobs = $this->orm->jobs->findAll()
       ->orderBy("level")
