@@ -76,17 +76,17 @@ final class Rss {
       throw $e;
     }
     $versionSuffix = $this->versionSuffix();
+    $articleLink = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
     $info = [
       "title" => "Nexendrie $versionSuffix- Komentáře k " . $article->title, "description" => "Komentáře k článku " . $article->title,
-      "link" => $this->linkGenerator->link("Front:Homepage:default"), "language" => "cs",
+      "link" => $articleLink, "language" => "cs",
     ];
-    $this->generator->dataSource = function() use($id) {
+    $this->generator->dataSource = function() use($id, $articleLink) {
       $return = new Collection();
       $comments = $this->articleModel->viewComments($id)->orderBy("created", ICollection::DESC);
       /** @var \Nexendrie\Orm\Comment $comment */
       foreach($comments as $comment) {
-        $link = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
-        $link .= "#comment-$comment->id";
+        $link = $articleLink . "#comment-$comment->id";
         $return[] = new Item($comment->title, $comment->text, $link, $comment->created);
       }
       return $return;
