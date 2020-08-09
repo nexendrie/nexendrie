@@ -15,9 +15,8 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository 
   
   /**
    * @param int $id
-   * @return UserAdventure|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?UserAdventure {
     return $this->getBy(["id" => $id]);
   }
   

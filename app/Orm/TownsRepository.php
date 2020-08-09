@@ -15,9 +15,8 @@ final class TownsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Town|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?Town {
     return $this->getBy(["id" => $id]);
   }
   

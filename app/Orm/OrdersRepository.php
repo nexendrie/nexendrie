@@ -13,9 +13,8 @@ final class OrdersRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Order|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?Order {
     return $this->getBy(["id" => $id]);
   }
   

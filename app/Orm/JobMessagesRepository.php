@@ -15,9 +15,8 @@ final class JobMessagesRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return JobMessage|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?JobMessage {
     return $this->getBy(["id" => $id]);
   }
   

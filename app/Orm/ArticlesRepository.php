@@ -17,9 +17,8 @@ final class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Article|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?Article {
     return $this->getBy(["id" => $id]);
   }
   

@@ -15,9 +15,8 @@ final class ElectionResultsRepository extends \Nextras\Orm\Repository\Repository
   
   /**
    * @param int $id
-   * @return ElectionResult|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?ElectionResult {
     return $this->getBy(["id" => $id]);
   }
   

@@ -15,9 +15,8 @@ final class LoansRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Loan|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?Loan {
     return $this->getBy(["id" => $id]);
   }
   

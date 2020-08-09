@@ -15,9 +15,8 @@ final class PermissionsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Permission|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?Permission {
     return $this->getBy(["id" => $id]);
   }
   

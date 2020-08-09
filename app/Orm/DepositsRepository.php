@@ -17,9 +17,8 @@ final class DepositsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return Deposit|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?Deposit {
     return $this->getBy(["id" => $id]);
   }
   

@@ -15,9 +15,8 @@ final class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return UserItem|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?UserItem {
     return $this->getBy(["id" => $id]);
   }
   

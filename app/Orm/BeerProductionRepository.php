@@ -15,9 +15,8 @@ final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository 
   
   /**
    * @param int $id
-   * @return BeerProduction|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?BeerProduction {
     return $this->getBy(["id" => $id]);
   }
   

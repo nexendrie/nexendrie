@@ -15,9 +15,8 @@ final class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return UserJob|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?UserJob {
     return $this->getBy(["id" => $id]);
   }
   

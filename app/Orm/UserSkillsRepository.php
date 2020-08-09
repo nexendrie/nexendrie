@@ -15,9 +15,8 @@ final class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * @param int $id
-   * @return UserSkill|null
    */
-  public function getById($id): ?\Nextras\Orm\Entity\IEntity {
+  public function getById($id): ?UserSkill {
     return $this->getBy(["id" => $id]);
   }
   
