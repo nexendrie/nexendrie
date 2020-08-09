@@ -23,7 +23,6 @@ final class StablesControl extends \Nette\Application\UI\Control {
   protected \Nette\Security\User $user;
   
   public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
-    parent::__construct();
     $this->orm = $orm;
     $this->localeModel = $localeModel;
     $this->user = $user;

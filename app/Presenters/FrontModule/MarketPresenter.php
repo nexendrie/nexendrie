@@ -45,7 +45,7 @@ final class MarketPresenter extends BasePresenter {
   protected function createComponentShop(IShopControlFactory $factory): \Nette\Application\UI\Multiplier {
     return new \Nette\Application\UI\Multiplier(function($id) use ($factory) {
       $shop = $factory->create();
-      $shop->id = $id;
+      $shop->id = (int) $id;
       return $shop;
     });
   }

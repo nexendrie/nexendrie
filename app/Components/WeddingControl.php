@@ -19,7 +19,6 @@ final class WeddingControl extends \Nette\Application\UI\Control {
   protected MarriageEntity $marriage;
   
   public function __construct(\Nexendrie\Model\Marriage $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
-    parent::__construct();
     $this->model = $model;
     $this->orm = $orm;
     $this->user = $user;

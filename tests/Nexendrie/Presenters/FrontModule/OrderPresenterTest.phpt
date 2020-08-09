@@ -63,24 +63,24 @@ final class OrderPresenterTest extends \Tester\TestCase {
   public function testSignalPromote() {
     $this->checkSignal(":Front:Order:members", "promote", ["user" => 5000], [], "/user/login");
     $this->login();
-    $this->checkSignal(":Front:Order:members", "promote", ["user" => 5000], [], "/");
-    $this->checkSignal(":Front:Order:members", "promote", ["user" => 3], [], "/");
+    $this->checkSignal(":Front:Order:members", "promote", ["user" => 5000], [], "/order/members");
+    $this->checkSignal(":Front:Order:members", "promote", ["user" => 3], [], "/order/members");
     $this->checkSignal(":Front:Order:members", "promote", ["user" => 1], [], "/order/members");
   }
   
   public function testSignalDemote() {
     $this->checkSignal(":Front:Order:members", "demote", ["user" => 5000], [], "/user/login");
     $this->login();
-    $this->checkSignal(":Front:Order:members", "demote", ["user" => 5000], [], "/");
-    $this->checkSignal(":Front:Order:members", "demote", ["user" => 3], [], "/");
+    $this->checkSignal(":Front:Order:members", "demote", ["user" => 5000], [], "/order/members");
+    $this->checkSignal(":Front:Order:members", "demote", ["user" => 3], [], "/order/members");
     $this->checkSignal(":Front:Order:members", "demote", ["user" => 1], [], "/order/members");
   }
   
   public function testSignalKick() {
     $this->checkSignal(":Front:Order:members", "kick", ["user" => 5000], [], "/user/login");
     $this->login();
-    $this->checkSignal(":Front:Order:members", "kick", ["user" => 5000], [], "/");
-    $this->checkSignal(":Front:Order:members", "kick", ["user" => 3], [], "/");
+    $this->checkSignal(":Front:Order:members", "kick", ["user" => 5000], [], "/order/members");
+    $this->checkSignal(":Front:Order:members", "kick", ["user" => 3], [], "/order/members");
     $this->checkSignal(":Front:Order:members", "kick", ["user" => 1], [], "/order/members");
   }
   

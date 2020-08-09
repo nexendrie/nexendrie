@@ -73,24 +73,24 @@ final class GuildPresenterTest extends \Tester\TestCase {
   public function testSignalPromote() {
     $this->checkSignal(":Front:Guild:members", "promote", ["user" => 5000], [], "/user/login");
     $this->login("jakub");
-    $this->checkSignal(":Front:Guild:members", "promote", ["user" => 5000], [], "/");
-    $this->checkSignal(":Front:Guild:members", "promote", ["user" => 1], [], "/");
+    $this->checkSignal(":Front:Guild:members", "promote", ["user" => 5000], [], "/guild/members");
+    $this->checkSignal(":Front:Guild:members", "promote", ["user" => 1], [], "/guild/members");
     $this->checkSignal(":Front:Guild:members", "promote", ["user" => 3], [], "/guild/members");
   }
   
   public function testSignalDemote() {
     $this->checkSignal(":Front:Guild:members", "demote", ["user" => 5000], [], "/user/login");
     $this->login("jakub");
-    $this->checkSignal(":Front:Guild:members", "demote", ["user" => 5000], [], "/");
-    $this->checkSignal(":Front:Guild:members", "demote", ["user" => 1], [], "/");
+    $this->checkSignal(":Front:Guild:members", "demote", ["user" => 5000], [], "/guild/members");
+    $this->checkSignal(":Front:Guild:members", "demote", ["user" => 1], [], "/guild/members");
     $this->checkSignal(":Front:Guild:members", "demote", ["user" => 3], [], "/guild/members");
   }
   
   public function testSignalKick() {
     $this->checkSignal(":Front:Guild:members", "kick", ["user" => 5000], [], "/user/login");
     $this->login("jakub");
-    $this->checkSignal(":Front:Guild:members", "kick", ["user" => 5000], [], "/");
-    $this->checkSignal(":Front:Guild:members", "kick", ["user" => 1], [], "/");
+    $this->checkSignal(":Front:Guild:members", "kick", ["user" => 5000], [], "/guild/members");
+    $this->checkSignal(":Front:Guild:members", "kick", ["user" => 1], [], "/guild/members");
     $this->checkSignal(":Front:Guild:members", "kick", ["user" => 3], [], "/guild/members");
   }
   

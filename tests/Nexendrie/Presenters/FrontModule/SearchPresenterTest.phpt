@@ -11,7 +11,7 @@ final class SearchPresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   
   protected function trySearchForm(array $data): void {
-    $this->checkForm(":Front:Search:default", "siteSearchForm", $data, false);
+    $this->checkForm(":Front:Search:default", "siteSearchForm", $data, "/search");
   }
   
   public function testDefault() {

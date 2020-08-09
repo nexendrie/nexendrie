@@ -20,9 +20,9 @@ final class CloseAdventuresTask {
   }
   
   /**
-   * @cronner-task Close adventures
-   * @cronner-period 1 day
-   * @cronner-time 00:00 - 01:00
+   * @cronner-task(Close adventures)
+   * @cronner-period(1 day)
+   * @cronner-time(00:00 - 01:00)
    */
   public function run(): void {
     echo "Starting closing adventures ...\n";

@@ -35,9 +35,9 @@ final class HousePresenterTest extends \Tester\TestCase {
     $this->login();
     $this->checkSignal(":Front:House:default", "upgrade", [], [], "/");
     $this->login("premysl");
-    $this->checkSignal(":Front:House:default", "upgrade", [], [], "/");
+    $this->checkSignal(":Front:House:default", "upgrade", [], [], "/house");
     $this->login("jakub");
-    $this->checkSignal(":Front:House:default", "upgrade", [], [], "/");
+    $this->checkSignal(":Front:House:default", "upgrade", [], [], "/house");
   }
   
   public function testSignalRepair() {
@@ -45,9 +45,9 @@ final class HousePresenterTest extends \Tester\TestCase {
     $this->login();
     $this->checkSignal(":Front:House:default", "repair", [], [], "/");
     $this->login("premysl");
-    $this->checkSignal(":Front:House:default", "repair", [], [], "/");
+    $this->checkSignal(":Front:House:default", "repair", [], [], "/house");
     $this->login("jakub");
-    $this->checkSignal(":Front:House:default", "repair", [], [], "/");
+    $this->checkSignal(":Front:House:default", "repair", [], [], "/house");
   }
   
   public function testSignalUpgradeBrewery() {
@@ -55,9 +55,9 @@ final class HousePresenterTest extends \Tester\TestCase {
     $this->login();
     $this->checkSignal(":Front:House:default", "upgradeBrewery", [], [], "/");
     $this->login("premysl");
-    $this->checkSignal(":Front:House:default", "upgradeBrewery", [], [], "/");
+    $this->checkSignal(":Front:House:default", "upgradeBrewery", [], [], "/house");
     $this->login("jakub");
-    $this->checkSignal(":Front:House:default", "upgradeBrewery", [], [], "/");
+    $this->checkSignal(":Front:House:default", "upgradeBrewery", [], [], "/house");
   }
   
   public function testSignalProduceBeer() {
@@ -65,7 +65,7 @@ final class HousePresenterTest extends \Tester\TestCase {
     $this->login();
     $this->checkSignal(":Front:House:default", "produceBeer", [], [], "/");
     $this->login("premysl");
-    $this->checkSignal(":Front:House:default", "produceBeer", [], [], "/");
+    $this->checkSignal(":Front:House:default", "produceBeer", [], [], "/house");
   }
 }
 

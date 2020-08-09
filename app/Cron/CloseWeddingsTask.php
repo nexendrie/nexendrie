@@ -23,8 +23,8 @@ final class CloseWeddingsTask {
   }
   
   /**
-   * @cronner-task Close weddings
-   * @cronner-period 1 hour
+   * @cronner-task(Close weddings)
+   * @cronner-period(1 hour)
    */
   public function run(): void {
     echo "Starting closing weddings ...\n";

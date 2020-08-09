@@ -21,9 +21,9 @@ final class ArticlePresenterTest extends \Tester\TestCase {
   }
 
   public function testSignalReport() {
-    $this->checkSignal(":Front:Article:view", "report", ["id" => 1, "comment" => 50], [], "/user/login");
+    $this->checkSignal(":Front:Article:view", "report", ["id" => 1, "comment" => 50], [], "/article/1");
     $this->login();
-    $this->checkSignal(":Front:Article:view", "report", ["id" => 1, "comment" => 50], [], "/");
+    $this->checkSignal(":Front:Article:view", "report", ["id" => 1, "comment" => 50], [], "/article/1");
   }
 }
 

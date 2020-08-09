@@ -20,7 +20,6 @@ final class TownsMarketControl extends \Nette\Application\UI\Control {
   protected \Nette\Security\User $user;
   
   public function __construct(\Nexendrie\Model\Town $model, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
-    parent::__construct();
     $this->model = $model;
     $this->user = $user;
     $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
