@@ -28,8 +28,7 @@ use HeroesofAbenez\Combat\Weapon;
  * @property-read string $sellPriceT {virtual}
  */
 final class UserItem extends BaseEntity {
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

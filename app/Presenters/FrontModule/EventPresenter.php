@@ -11,8 +11,7 @@ use Nexendrie\Model\EventNotFoundException;
  * @author Jakub Konečný
  */
 final class EventPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Events */
-  protected $model;
+  protected \Nexendrie\Model\Events $model;
   
   public function __construct(\Nexendrie\Model\Events $model) {
     parent::__construct();

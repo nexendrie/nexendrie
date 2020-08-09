@@ -27,24 +27,15 @@ use Nexendrie\Forms\MakeCitizenFormFactory;
  * @author Jakub Konečný
  */
 final class PropertyPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Property */
-  protected $model;
-  /** @var \Nexendrie\Model\Town */
-  protected $townModel;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Model\Inventory */
-  protected $inventoryModel;
-  /** @var \Nexendrie\Model\Profile */
-  protected $profileModel;
-  /** @var \Nexendrie\Model\CombatHelper */
-  protected $combatModel;
-  /** @var \Nexendrie\Model\UserManager */
-  protected $userManager;
-  /** @var TownEntity */
-  private $town;
-  /** @var bool */
-  protected $cachingEnabled = false;
+  protected \Nexendrie\Model\Property $model;
+  protected \Nexendrie\Model\Town $townModel;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected \Nexendrie\Model\Inventory $inventoryModel;
+  protected \Nexendrie\Model\Profile $profileModel;
+  protected \Nexendrie\Model\CombatHelper $combatModel;
+  protected \Nexendrie\Model\UserManager $userManager;
+  private TownEntity $town;
+  protected bool $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Property $model, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\Inventory $inventoryModel, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\CombatHelper $combatModel, \Nexendrie\Model\UserManager $userManager) {
     parent::__construct();

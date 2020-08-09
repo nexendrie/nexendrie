@@ -15,14 +15,10 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @author Jakub Konečný
  */
 final class Job {
-  /** @var Skills */
-  protected $skillsModel;
-  /** @var Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected Skills $skillsModel;
+  protected Locale $localeModel;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
   
   use \Nette\SmartObject;
   

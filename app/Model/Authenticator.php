@@ -18,14 +18,10 @@ use Nette\Security\AuthenticationException;
  * @property-write User $user
  */
 final class Authenticator implements IAuthenticator {
-  /** @var ORM */
-  protected $orm;
-  /** @var User */
-  protected $user;
-  /** @var Passwords */
-  protected $passwords;
-  /** @var array */
-  protected $roles;
+  protected ORM $orm;
+  protected User $user;
+  protected Passwords $passwords;
+  protected array $roles;
   
   use \Nette\SmartObject;
   

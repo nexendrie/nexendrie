@@ -15,10 +15,8 @@ use Nexendrie\Model\InsufficientLevelForMayorException;
  * @author Jakub Konečný
  */
 final class AppointMayorFormFactory {
-  /** @var \Nexendrie\Model\Town */
-  protected $model;
-  /** @var \Nexendrie\Orm\Town */
-  private $town;
+  protected \Nexendrie\Model\Town $model;
+  private \Nexendrie\Orm\Town $town;
   
   public function __construct(\Nexendrie\Model\Town $model) {
     $this->model = $model;

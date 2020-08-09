@@ -9,7 +9,7 @@ namespace Nexendrie\Api\DI;
  * @author Jakub Konečný
  */
 final class ApiExtension extends \Nette\DI\CompilerExtension {
-  protected $defaults = [
+  protected array $defaults = [
     "transformers" => [],
     "maxDepth" => 2,
   ];

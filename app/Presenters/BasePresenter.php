@@ -19,15 +19,11 @@ use Nexendrie\Components\UserProfileLinkControl;
  */
 abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   use \Kdyby\Autowired\AutowireComponentFactories;
-  
-  /** @var \Nexendrie\Model\SettingsRepository */
-  protected $sr;
-  /** @var IUserProfileLinkControlFactory */
-  protected $userProfileLinkFactory;
-  /** @var bool */
-  protected $cachingEnabled;
-  /** @var bool */
-  protected $publicCache = true;
+
+  protected \Nexendrie\Model\SettingsRepository $sr;
+  protected IUserProfileLinkControlFactory $userProfileLinkFactory;
+  protected bool $cachingEnabled;
+  protected bool $publicCache = true;
   
   public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void {
     $this->sr = $sr;

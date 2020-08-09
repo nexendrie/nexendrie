@@ -15,8 +15,7 @@ use Nexendrie\Model\TownNameInUseException;
  * @author Jakub Konečný
  */
 final class FoundTownFormFactory {
-  /** @var \Nexendrie\Model\Town */
-  protected $model;
+  protected \Nexendrie\Model\Town $model;
   
   public function __construct(\Nexendrie\Model\Town $model) {
     $this->model = $model;

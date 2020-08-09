@@ -16,12 +16,9 @@ use Nexendrie\Components\StablesControl;
  * @author Jakub Konečný
  */
 final class StablesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Mount */
-  protected $model;
-  /** @var MountEntity */
-  private $mount;
-  /** @var bool */
-  protected $publicCache = false;
+  protected \Nexendrie\Model\Mount $model;
+  private MountEntity $mount;
+  protected bool $publicCache = false;
   
   public function __construct(\Nexendrie\Model\Mount $model) {
     parent::__construct();

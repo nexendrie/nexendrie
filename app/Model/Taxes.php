@@ -9,14 +9,10 @@ namespace Nexendrie\Model;
  * @author Jakub Konečný
  */
 final class Taxes {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var Job */
-  protected $jobModel;
-  /** @var Adventure */
-  protected $adventureModel;
-  /** @var int */
-  protected $taxRate;
+  protected \Nexendrie\Orm\Model $orm;
+  protected Job $jobModel;
+  protected Adventure $adventureModel;
+  protected int $taxRate;
   
   use \Nette\SmartObject;
   

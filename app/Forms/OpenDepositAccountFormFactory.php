@@ -12,8 +12,7 @@ use Nextras\Forms\Controls\DatePicker;
  * @author Jakub Konečný
  */
 final class OpenDepositAccountFormFactory {
-  /** @var \Nexendrie\Model\Bank */
-  protected $model;
+  protected \Nexendrie\Model\Bank $model;
   
   public function __construct(\Nexendrie\Model\Bank $model) {
     $this->model = $model;

@@ -14,8 +14,7 @@ use Nexendrie\Model\MonasteryNameInUseException;
  * @author Jakub Konečný
  */
 final class BuildMonasteryFormFactory {
-  /** @var \Nexendrie\Model\Monastery */
-  protected $model;
+  protected \Nexendrie\Model\Monastery $model;
   
   public function __construct(\Nexendrie\Model\Monastery $model) {
     $this->model = $model;

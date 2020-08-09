@@ -14,10 +14,8 @@ use Nexendrie\Model\ItemNotFoundException;
  * @author Jakub Konečný
  */
 final class ItemPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Market */
-  protected $model;
-  /** @var ItemEntity */
-  private $item;
+  protected \Nexendrie\Model\Market $model;
+  private ItemEntity $item;
   
   public function __construct(\Nexendrie\Model\Market $model) {
     parent::__construct();

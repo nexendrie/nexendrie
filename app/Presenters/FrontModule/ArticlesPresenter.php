@@ -11,8 +11,7 @@ use Nexendrie\Orm\Article as ArticleEntity;
  * @author Jakub Konečný
  */
 final class ArticlesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Article */
-  protected $model;
+  protected \Nexendrie\Model\Article $model;
   
   public function __construct(\Nexendrie\Model\Article $model) {
     parent::__construct();
@@ -46,7 +45,7 @@ final class ArticlesPresenter extends BasePresenter {
       return 0;
     }
     $time = 0;
-    /** @var \Nexendrie\Orm\Article $article */
+    /** @var ArticleEntity $article */
     foreach($this->template->articles as $article) {
       $time = max($time, $article->updated);
     }

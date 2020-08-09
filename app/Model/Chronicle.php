@@ -13,8 +13,7 @@ use Nexendrie\Orm\Punishment as PunishmentEntity;
  * @author Jakub Konečný
  */
 final class Chronicle {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
+  protected \Nexendrie\Orm\Model $orm;
   
   use \Nette\SmartObject;
   

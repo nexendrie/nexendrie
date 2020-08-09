@@ -14,10 +14,8 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class ManageMonasteryFormFactory {
-  /** @var \Nexendrie\Model\Monastery */
-  protected $model;
-  /** @var int */
-  protected $id;
+  protected \Nexendrie\Model\Monastery $model;
+  protected int $id;
   
   public function __construct(\Nexendrie\Model\Monastery $model) {
     $this->model = $model;

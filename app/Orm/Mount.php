@@ -42,10 +42,8 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read string $typeGenderName {virtual}
  */
 final class Mount extends BaseEntity implements ICharacterEffectsProvider {
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Model\Events */
-  protected $eventsModel;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected \Nexendrie\Model\Events $eventsModel;
   
   public const GENDER_MALE = "male";
   public const GENDER_FEMALE = "female";

@@ -14,24 +14,15 @@ use Nexendrie\Model\MissingPermissionsException;
  * @author Jakub Konečný
  */
 final class ContentPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Market */
-  protected $marketModel;
-  /** @var \Nexendrie\Model\Job */
-  protected $jobModel;
-  /** @var \Nexendrie\Model\Town */
-  protected $townModel;
-  /** @var \Nexendrie\Model\Mount */
-  protected $mountModel;
-  /** @var \Nexendrie\Model\Skills */
-  protected $skillsModel;
-  /** @var \Nexendrie\Model\Tavern */
-  protected $tavernModel;
-  /** @var \Nexendrie\Model\Adventure */
-  protected $adventureModel;
-  /** @var \Nexendrie\Model\ItemSet */
-  protected $itemSetModel;
-  /** @var \Nexendrie\Model\Moderation */
-  protected $moderationModel;
+  protected \Nexendrie\Model\Market $marketModel;
+  protected \Nexendrie\Model\Job $jobModel;
+  protected \Nexendrie\Model\Town $townModel;
+  protected \Nexendrie\Model\Mount $mountModel;
+  protected \Nexendrie\Model\Skills $skillsModel;
+  protected \Nexendrie\Model\Tavern $tavernModel;
+  protected \Nexendrie\Model\Adventure $adventureModel;
+  protected \Nexendrie\Model\ItemSet $itemSetModel;
+  protected \Nexendrie\Model\Moderation $moderationModel;
   
   public function __construct(\Nexendrie\Model\Market $marketModel, \Nexendrie\Model\Job $jobModel, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Mount $mountModel, \Nexendrie\Model\Skills $skillsModel, \Nexendrie\Model\Tavern $tavernModel, \Nexendrie\Model\Adventure $adventureModel, \Nexendrie\Model\ItemSet $itemSetModel, \Nexendrie\Model\Moderation $moderationModel) {
     parent::__construct();

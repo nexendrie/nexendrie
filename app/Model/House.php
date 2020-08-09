@@ -13,14 +13,10 @@ use Nexendrie\Orm\Group as GroupEntity;
  * @author Jakub Konečný
  */
 final class House {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var int */
-  protected $price;
-  /** @var int */
-  protected $criticalCondition;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  protected int $price;
+  protected int $criticalCondition;
   
   use \Nette\SmartObject;
   

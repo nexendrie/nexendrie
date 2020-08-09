@@ -13,10 +13,8 @@ use Nextras\Forms\Controls\DateTimePicker;
  * @author Jakub Konečný
  */
 final class ChangeWeddingTermFormFactory {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var Marriage */
-  private $marriage;
+  protected \Nexendrie\Orm\Model $orm;
+  private Marriage $marriage;
   
   public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;

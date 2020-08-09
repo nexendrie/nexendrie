@@ -29,18 +29,12 @@ use Nexendrie\Orm\Marriage as MarriageEntity;
  * @author Jakub Konečný
  */
 final class MarriagePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Marriage */
-  protected $model;
-  /** @var \Nexendrie\Model\Profile */
-  protected $profileModel;
-  /** @var \Nexendrie\Model\Inventory */
-  protected $inventoryModel;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var MarriageEntity */
-  private $marriage;
-  /** @var bool */
-  protected $publicCache = false;
+  protected \Nexendrie\Model\Marriage $model;
+  protected \Nexendrie\Model\Profile $profileModel;
+  protected \Nexendrie\Model\Inventory $inventoryModel;
+  protected \Nexendrie\Model\Locale $localeModel;
+  private MarriageEntity $marriage;
+  protected bool $publicCache = false;
   
   public function __construct(\Nexendrie\Model\Marriage $model, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Inventory $inventoryModel, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();

@@ -12,9 +12,8 @@ use Nexendrie\Orm\UserAdventure;
  */
 final class CloseAdventuresTask {
   use \Nette\SmartObject;
-  
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
+
+  protected \Nexendrie\Orm\Model $orm;
   
   public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;

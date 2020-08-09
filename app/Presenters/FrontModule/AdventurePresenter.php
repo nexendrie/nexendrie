@@ -12,10 +12,8 @@ use Nexendrie\Components\AdventureControl;
  * @author Jakub Konečný
  */
 final class AdventurePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Adventure */
-  protected $model;
-  /** @var bool */
-  protected $cachingEnabled = false;
+  protected \Nexendrie\Model\Adventure $model;
+  protected bool $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Adventure $model) {
     parent::__construct();

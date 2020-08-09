@@ -25,10 +25,8 @@ use Nexendrie\Model\CannotKickMemberException;
  * @author Jakub Konečný
  */
 final class GuildPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Guild */
-  protected $model;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+  protected \Nexendrie\Model\Guild $model;
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();

@@ -16,8 +16,7 @@ use Nette\Http\IResponse;
 final class OpenSearchDescriptionResponse implements \Nette\Application\IResponse {
   use \Nette\SmartObject;
 
-  /** @var string */
-  private $source;
+  private string $source;
 
   public function __construct(string $source) {
     $this->source = $source;

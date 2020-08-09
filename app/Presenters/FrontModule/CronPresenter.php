@@ -9,8 +9,7 @@ namespace Nexendrie\Presenters\FrontModule;
  * @author Jakub Konečný
  */
 final class CronPresenter extends \Nette\Application\UI\Presenter {
-  /** @var \stekycz\Cronner\Cronner */
-  protected $cronner;
+  protected \stekycz\Cronner\Cronner $cronner;
   
   public function __construct(\stekycz\Cronner\Cronner $cronner) {
     parent::__construct();

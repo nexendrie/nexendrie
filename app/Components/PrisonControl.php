@@ -13,12 +13,9 @@ use Nexendrie\Orm\User as UserEntity;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class PrisonControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected \Nette\Security\User $user;
   
   public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
     parent::__construct();

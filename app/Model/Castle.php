@@ -13,12 +13,9 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Castle {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var int */
-  protected $buildingPrice;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  protected int $buildingPrice;
   
   use \Nette\SmartObject;
   

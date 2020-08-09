@@ -9,12 +9,9 @@ namespace Nexendrie\Achievements;
  * @author Jakub Konečný
  */
 final class ProducedBeersAchievement extends BaseAchievement {
-  /** @var string */
-  protected $field = "producedBeers";
-  /** @var string */
-  protected $name = "Pivař";
-  /** @var string */
-  protected $description = "nexendrie.achievements.producedBeers";
+  protected string $field = "producedBeers";
+  protected string $name = "Pivař";
+  protected string $description = "nexendrie.achievements.producedBeers";
   
   public function getRequirements(): array {
     return [1, 8, 17, 32, ];

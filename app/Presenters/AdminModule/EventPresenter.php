@@ -14,10 +14,8 @@ use Nexendrie\Model\CannotDeleteStartedEventException;
  * @author Jakub Konečný
  */
 final class EventPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Events */
-  protected $model;
-  /** @var \Nexendrie\Orm\Event */
-  private $event;
+  protected \Nexendrie\Model\Events $model;
+  private \Nexendrie\Orm\Event $event;
   
   public function __construct(\Nexendrie\Model\Events $model) {
     parent::__construct();

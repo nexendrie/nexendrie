@@ -26,12 +26,9 @@ use Nexendrie\Orm\UserJob as UserJobEntity;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class HelpControl extends BookControl {
-  /** @var ORM */
-  protected $orm;
-  /** @var Locale */
-  protected $localeModel;
-  /** @var SettingsRepository */
-  protected $sr;
+  protected ORM $orm;
+  protected Locale $localeModel;
+  protected SettingsRepository $sr;
   
   public function __construct(ORM $orm, Locale $localeModel, SettingsRepository $sr) {
     parent::__construct(":Front:Help", __DIR__ . "/help");

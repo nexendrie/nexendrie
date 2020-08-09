@@ -15,8 +15,7 @@ use Nexendrie\Utils\Intervals;
  * @property-read array $settings
  */
 final class SettingsRepository {
-  /** @var array */
-  protected $defaults = [
+  protected array $defaults = [
     "roles" => [
       "guestRole" => 13,
       "loggedInRole" => 12,
@@ -63,9 +62,8 @@ final class SettingsRepository {
       "criticalCondition" => 30,
     ],
   ];
-  
-  /** @var array */
-  protected $rules = [
+
+  protected array $rules = [
     "newUser" => [
       "style" => "validateStyle",
       "money" => "validateMoney",
@@ -80,9 +78,8 @@ final class SettingsRepository {
       "depositInterest" => "validatePercent"
     ]
   ];
-  
-  /** @var array */
-  protected $settings = [];
+
+  protected array $settings = [];
   
   use \Nette\SmartObject;
   

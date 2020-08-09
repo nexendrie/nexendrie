@@ -17,12 +17,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class JobMessagesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Job */
-  protected $model;
-  /** @var JobMessageEntity */
-  private $message;
-  /** @var JobEntity */
-  private $job;
+  protected \Nexendrie\Model\Job $model;
+  private JobMessageEntity $message;
+  private JobEntity $job;
   
   public function __construct(\Nexendrie\Model\Job $model) {
     parent::__construct();

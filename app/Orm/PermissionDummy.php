@@ -13,14 +13,10 @@ namespace Nexendrie\Orm;
  * @property-read int $group
  */
 final class PermissionDummy {
-  /** @var int */
-  protected $id;
-  /** @var string */
-  protected $resource;
-  /** @var string */
-  protected $action;
-  /** @var int */
-  protected $group;
+  protected int $id;
+  protected string $resource;
+  protected string $action;
+  protected int $group;
   
   use \Nette\SmartObject;
   

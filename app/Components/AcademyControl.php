@@ -16,12 +16,9 @@ use Nexendrie\Orm\Skill;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class AcademyControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Model\Skills */
-  protected $model;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected \Nexendrie\Model\Skills $model;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected \Nette\Security\User $user;
   
   public function __construct(\Nexendrie\Model\Skills $model, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
     parent::__construct();

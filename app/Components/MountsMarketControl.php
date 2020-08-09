@@ -16,10 +16,8 @@ use Nexendrie\Model\InsufficientFundsException;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class MountsMarketControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Model\Mount */
-  protected $model;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected \Nexendrie\Model\Mount $model;
+  protected \Nette\Security\User $user;
   
   public function __construct(\Nexendrie\Model\Mount $model, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     parent::__construct();

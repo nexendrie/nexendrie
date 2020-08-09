@@ -14,17 +14,14 @@ abstract class BaseTransformer implements ITransformer {
   use \Nette\SmartObject;
 
   /** @var string[] */
-  protected $fields = [];
+  protected array $fields = [];
   /** @var string[] */
-  protected $fieldsRename = [];
-  /** @var \Nette\DI\Container */
-  protected $container;
+  protected array $fieldsRename = [];
+  protected \Nette\DI\Container $container;
   /** @var ITransformer[]|Collection */
-  protected $transformers;
-  /** @var LinkGenerator */
-  protected $linkGenerator;
-  /** @var bool */
-  protected $createSelfLink = true;
+  protected Collection $transformers;
+  protected LinkGenerator $linkGenerator;
+  protected bool $createSelfLink = true;
 
   public function __construct(\Nette\DI\Container $container, LinkGenerator $linkGenerator) {
     $this->container = $container;

@@ -29,13 +29,10 @@ final class Castle extends BaseEntity {
   public const BASE_UPGRADE_PRICE = 500;
   public const BASE_REPAIR_PRICE = 35;
   public const TAX_BONUS_PER_LEVEL = 30;
-  
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Model\Events */
-  protected $eventsModel;
-  /** @var int */
-  protected $criticalCondition;
+
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected \Nexendrie\Model\Events $eventsModel;
+  protected int $criticalCondition;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

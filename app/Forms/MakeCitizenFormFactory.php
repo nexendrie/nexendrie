@@ -14,8 +14,7 @@ use Nexendrie\Model\TooHighLevelException;
  * @author Jakub Konečný
  */
 final class MakeCitizenFormFactory {
-  /** @var \Nexendrie\Model\Town */
-  protected $model;
+  protected \Nexendrie\Model\Town $model;
   
   public function __construct(\Nexendrie\Model\Town $model) {
     $this->model = $model;

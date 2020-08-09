@@ -13,10 +13,8 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Mount {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
   
   use \Nette\SmartObject;
   

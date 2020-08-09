@@ -16,20 +16,13 @@ namespace Nexendrie\Orm;
  * @property int $members
  */
 final class GroupDummy {
-  /** @var int */
-  protected $id;
-  /** @var string */
-  protected $name;
-  /** @var string */
-  protected $singleName;
-  /** @var string */
-  protected $femaleName;
-  /** @var int */
-  protected $level;
-  /** @var string */
-  protected $path;
-  /** @var int */
-  protected $members;
+  protected int $id;
+  protected string $name;
+  protected string $singleName;
+  protected string $femaleName;
+  protected int $level;
+  protected string $path;
+  protected int $members;
   
   use \Nette\SmartObject;
   

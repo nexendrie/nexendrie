@@ -14,10 +14,8 @@ use Nexendrie\Model\MountNotFoundException;
  * @author Jakub Konečný
  */
 final class MountPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Mount */
-  protected $model;
-  /** @var MountEntity */
-  private $mount;
+  protected \Nexendrie\Model\Mount $model;
+  private MountEntity $mount;
   
   public function __construct(\Nexendrie\Model\Mount $model) {
     parent::__construct();

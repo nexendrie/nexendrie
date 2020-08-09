@@ -9,10 +9,8 @@ namespace Nexendrie\Presenters\FrontModule;
  * @author Jakub Konečný
  */
 final class AchievementsPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Achievements */
-  protected $model;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
+  protected \Nexendrie\Model\Achievements $model;
+  protected \Nexendrie\Orm\Model $orm;
   
   public function __construct(\Nexendrie\Model\Achievements $model, \Nexendrie\Orm\Model $orm) {
     parent::__construct();

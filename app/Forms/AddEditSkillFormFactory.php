@@ -12,10 +12,8 @@ use Nexendrie\Orm\Skill as SkillEntity;
  * @author Jakub Konečný
  */
 final class AddEditSkillFormFactory {
-  /** @var \Nexendrie\Model\Skills */
-  protected $model;
-  /** @var SkillEntity|null */
-  protected $skill;
+  protected \Nexendrie\Model\Skills $model;
+  protected ?SkillEntity $skill;
 
   public function __construct(\Nexendrie\Model\Skills $model) {
     $this->model = $model;

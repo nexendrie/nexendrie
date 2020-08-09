@@ -17,12 +17,9 @@ use Nexendrie\Model\InsufficientSkillLevelForJobException;
  * @author Jakub Konečný
  */
 final class WorkPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Job */
-  protected $model;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var bool */
-  protected $cachingEnabled = false;
+  protected \Nexendrie\Model\Job $model;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected bool $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Job $model, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();

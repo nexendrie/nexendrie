@@ -16,16 +16,11 @@ use Nette\InvalidArgumentException;
  * @author Jakub Konečný
  */
 final class UserManager {
-  /** @var ORM */
-  protected $orm;
-  /** @var User */
-  protected $user;
-  /** @var Passwords */
-  protected $passwords;
-  /** @var array */
-  protected $roles = [];
-  /** @var array */
-  protected $newUser;
+  protected ORM $orm;
+  protected User $user;
+  protected Passwords $passwords;
+  protected array $roles = [];
+  protected array $newUser;
   /** Exception error code */
   public const REG_DUPLICATE_NAME = 1,
     REG_DUPLICATE_EMAIL = 2,

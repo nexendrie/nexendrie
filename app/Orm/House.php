@@ -31,13 +31,10 @@ final class House extends BaseEntity {
   public const BASE_UPGRADE_PRICE = 250;
   public const BASE_REPAIR_PRICE = 15;
   public const INCOME_BONUS_PER_LEVEL = 3;
-  
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Model\Events */
-  protected $eventsModel;
-  /** @var int */
-  protected $criticalCondition;
+
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected \Nexendrie\Model\Events $eventsModel;
+  protected int $criticalCondition;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

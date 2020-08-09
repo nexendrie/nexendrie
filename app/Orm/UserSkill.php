@@ -28,11 +28,9 @@ final class UserSkill extends BaseEntity implements ICharacterEffectsProvider {
   public const LEVEL_SUCCESS_RATE = 5;
   /** Increase of income per skill level (in %) */
   public const LEVEL_BONUS_INCOME = 15;
-  
-  /** @var \Nexendrie\Model\Events */
-  protected $eventsModel;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+
+  protected \Nexendrie\Model\Events $eventsModel;
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;

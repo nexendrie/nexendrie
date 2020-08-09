@@ -29,12 +29,9 @@ use Nexendrie\Model\CannotDemoteMemberException;
  * @author Jakub Konečný
  */
 final class MonasteryPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Monastery */
-  protected $model;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var int*/
-  private $monasteryId;
+  protected \Nexendrie\Model\Monastery $model;
+  protected \Nexendrie\Model\Locale $localeModel;
+  private int $monasteryId;
   
   public function __construct(\Nexendrie\Model\Monastery $model, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();

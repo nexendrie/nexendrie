@@ -11,10 +11,8 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditShopFormFactory {
-  /** @var \Nexendrie\Model\Market */
-  protected $model;
-  /** @var \Nexendrie\Orm\Shop */
-  protected $shop;
+  protected \Nexendrie\Model\Market $model;
+  protected ?\Nexendrie\Orm\Shop $shop;
 
   public function __construct(\Nexendrie\Model\Market $model) {
     $this->model = $model;

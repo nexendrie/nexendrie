@@ -11,8 +11,7 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class PollsPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Polls */
-  protected $model;
+  protected \Nexendrie\Model\Polls $model;
 
   public function __construct(\Nexendrie\Model\Polls $model) {
     parent::__construct();

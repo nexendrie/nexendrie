@@ -18,18 +18,12 @@ use Nexendrie\Model\InsufficientFundsException;
  * @property-write int $id
  */
 final class ShopControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Model\Market */
-  protected $model;
-  /** @var \Nexendrie\Model\Events */
-  protected $eventsModel;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var ShopEntity */
-  protected $shop;
-  /** @var int */
-  protected $id;
+  protected \Nexendrie\Model\Market $model;
+  protected \Nexendrie\Model\Events $eventsModel;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  protected ShopEntity $shop;
+  protected int $id;
   
   public function __construct(\Nexendrie\Model\Market $model, \Nexendrie\Model\Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     parent::__construct();

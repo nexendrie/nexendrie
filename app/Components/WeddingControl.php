@@ -13,14 +13,10 @@ use Nexendrie\Orm\Marriage as MarriageEntity;
  * @property-write MarriageEntity $marriage
  */
 final class WeddingControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Model\Marriage */
-  protected $model;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var MarriageEntity */
-  protected $marriage;
+  protected \Nexendrie\Model\Marriage $model;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  protected MarriageEntity $marriage;
   
   public function __construct(\Nexendrie\Model\Marriage $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     parent::__construct();

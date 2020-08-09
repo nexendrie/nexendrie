@@ -14,12 +14,9 @@ use Nexendrie\Orm\Item as ItemEntity;
  * @author Jakub Konečný
  */
 final class GiftFormFactory {
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
   
   public function __construct(\Nexendrie\Model\Locale $localeModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->localeModel = $localeModel;

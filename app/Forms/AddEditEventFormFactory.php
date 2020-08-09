@@ -12,12 +12,9 @@ use Nextras\Forms\Controls\DateTimePicker;
  * @author Jakub Konečný
  */
 final class AddEditEventFormFactory {
-  /** @var \Nexendrie\Model\Events */
-  protected $model;
-  /** @var string */
-  protected $dateTimeFormat;
-  /** @var \Nexendrie\Orm\Event */
-  protected $event;
+  protected \Nexendrie\Model\Events $model;
+  protected string $dateTimeFormat;
+  protected ?\Nexendrie\Orm\Event $event;
   
   public function __construct(\Nexendrie\Model\Events $model, \Nexendrie\Model\SettingsRepository $sr) {
     $this->model = $model;

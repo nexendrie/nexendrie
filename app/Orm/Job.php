@@ -26,8 +26,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|JobMessage[] $messages {1:m JobMessage::$job}
  */
 final class Job extends BaseEntity {
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

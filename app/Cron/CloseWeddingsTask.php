@@ -13,11 +13,9 @@ use Nexendrie\Orm\Marriage as MarriageEntity;
  */
 final class CloseWeddingsTask {
   use \Nette\SmartObject;
-  
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var Marriage */
-  protected $marriageModel;
+
+  protected \Nexendrie\Orm\Model $orm;
+  protected Marriage $marriageModel;
   
   public function __construct(\Nexendrie\Orm\Model $orm, Marriage $marriageModel) {
     $this->orm = $orm;

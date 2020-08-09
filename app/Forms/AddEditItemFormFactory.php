@@ -13,10 +13,8 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditItemFormFactory {
-  /** @var \Nexendrie\Model\Market */
-  protected $model;
-  /** @var \Nexendrie\Orm\Item */
-  protected $item;
+  protected \Nexendrie\Model\Market $model;
+  protected ?Item $item;
 
   public function __construct(\Nexendrie\Model\Market $model) {
     $this->model = $model;

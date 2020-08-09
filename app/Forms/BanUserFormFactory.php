@@ -13,10 +13,8 @@ use Nexendrie\Orm\User;
  * @author Jakub Konečný
  */
 final class BanUserFormFactory {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var int */
-  protected $userId;
+  protected \Nexendrie\Orm\Model $orm;
+  protected int $userId;
   
   public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;

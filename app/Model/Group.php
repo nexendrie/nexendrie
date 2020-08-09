@@ -14,12 +14,9 @@ use Nexendrie\Orm\GroupDummy;
  * @property-write \Nette\Security\User $user
  */
 final class Group {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Caching\Cache */
-  protected $cache;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Caching\Cache $cache;
+  protected \Nette\Security\User $user;
   
   use \Nette\SmartObject;
   
@@ -41,7 +38,7 @@ final class Group {
     $groups = $this->cache->load("groups", function() {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll();
-      /** @var \Nexendrie\Orm\Group $row */
+      /** @var GroupEntity $row */
       foreach($groupsRows as $row) {
         $groups[$row->id] = $row->dummy();
       }

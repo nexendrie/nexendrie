@@ -29,8 +29,7 @@ use Nexendrie\Utils\Numbers;
  * @property-read bool $active {virtual}
  */
 final class Event extends BaseEntity {
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

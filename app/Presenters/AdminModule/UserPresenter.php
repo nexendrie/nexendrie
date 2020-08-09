@@ -14,10 +14,8 @@ use Nexendrie\Model\UserNotFoundException;
  * @author Jakub Konečný
  */
 final class UserPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\UserManager */
-  protected $model;
-  /** @var \Nexendrie\Model\Group */
-  protected $groupModel;
+  protected \Nexendrie\Model\UserManager $model;
+  protected \Nexendrie\Model\Group $groupModel;
   
   public function __construct(\Nexendrie\Model\UserManager $model, \Nexendrie\Model\Group $groupModel) {
     parent::__construct();

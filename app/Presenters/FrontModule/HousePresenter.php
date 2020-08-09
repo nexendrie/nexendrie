@@ -17,14 +17,10 @@ use Nexendrie\Orm\Group as GroupEntity;
  * @author Jakub Konečný
  */
 final class HousePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\House */
-  protected $model;
-  /** @var \Nexendrie\Model\Profile */
-  protected $profileModel;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var bool */
-  protected $publicCache = false;
+  protected \Nexendrie\Model\House $model;
+  protected \Nexendrie\Model\Profile $profileModel;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected bool $publicCache = false;
   
   public function __construct(\Nexendrie\Model\House $model, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();

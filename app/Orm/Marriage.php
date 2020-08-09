@@ -40,9 +40,8 @@ final class Marriage extends BaseEntity implements ICharacterEffectsProvider {
   public const MAX_INTIMACY = 1000;
   public const INTIMACY_FOR_LEVEL = 100;
   public const HP_INCREASE_PER_LEVEL = 2;
-  
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

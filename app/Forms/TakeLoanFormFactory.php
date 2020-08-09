@@ -12,8 +12,7 @@ use Nexendrie\Model\TooHighLoanException;
  * @author Jakub Konečný
  */
 final class TakeLoanFormFactory {
-  /** @var \Nexendrie\Model\Bank */
-  protected $model;
+  protected \Nexendrie\Model\Bank $model;
   
   public function __construct(\Nexendrie\Model\Bank $model) {
     $this->model = $model;

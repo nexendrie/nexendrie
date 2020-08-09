@@ -9,8 +9,7 @@ namespace Nexendrie\Presenters\FrontModule;
  * @author Jakub Konečný
  */
 final class RssPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Rss */
-  protected $model;
+  protected \Nexendrie\Model\Rss $model;
   
   public function __construct(\Nexendrie\Model\Rss $model) {
     parent::__construct();

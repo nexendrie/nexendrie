@@ -14,8 +14,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * @author Jakub Konečný
  */
 final class FoundOrderFormFactory {
-  /** @var \Nexendrie\Model\Order */
-  protected $model;
+  protected \Nexendrie\Model\Order $model;
   
   public function __construct(\Nexendrie\Model\Order $model) {
     $this->model = $model;

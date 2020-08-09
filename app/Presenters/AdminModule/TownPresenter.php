@@ -14,10 +14,8 @@ use Nexendrie\Model\TownNotFoundException;
  * @author Jakub Konečný
  */
 final class TownPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Town */
-  protected $model;
-  /** @var TownEntity */
-  private $town;
+  protected \Nexendrie\Model\Town $model;
+  private TownEntity $town;
   
   public function __construct(\Nexendrie\Model\Town $model) {
     parent::__construct();

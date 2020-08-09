@@ -14,10 +14,8 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class ShopPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Market */
-  protected $model;
-  /** @var ShopEntity */
-  private $shop;
+  protected \Nexendrie\Model\Market $model;
+  private ShopEntity $shop;
   
   public function __construct(\Nexendrie\Model\Market $model) {
     parent::__construct();

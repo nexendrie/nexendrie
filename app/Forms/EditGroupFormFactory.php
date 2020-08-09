@@ -11,10 +11,8 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class EditGroupFormFactory {
-  /** @var \Nexendrie\Model\Group */
-  protected $model;
-  /** @var \Nexendrie\Orm\Group */
-  protected $group;
+  protected \Nexendrie\Model\Group $model;
+  protected \Nexendrie\Orm\Group $group;
 
   public function __construct(\Nexendrie\Model\Group $model, \Nette\Security\User $user) {
     $this->model = $model;

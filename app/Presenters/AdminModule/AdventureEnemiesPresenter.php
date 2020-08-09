@@ -17,12 +17,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AdventureEnemiesPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Adventure */
-  protected $model;
-  /** @var AdventureEntity */
-  private $adventure;
-  /** @var AdventureNpcEntity */
-  private $npc;
+  protected \Nexendrie\Model\Adventure $model;
+  private AdventureEntity $adventure;
+  private AdventureNpcEntity $npc;
   
   public function __construct(\Nexendrie\Model\Adventure $model) {
     parent::__construct();

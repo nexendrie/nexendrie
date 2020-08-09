@@ -12,11 +12,9 @@ use Nexendrie\Orm\Mount as MountEntity;
  */
 final class MountsStatusTask {
   use \Nette\SmartObject;
-  
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var int */
-  protected $autoFeedingCost;
+
+  protected \Nexendrie\Orm\Model $orm;
+  protected int $autoFeedingCost;
   
   public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\SettingsRepository $sr) {
     $this->orm = $orm;

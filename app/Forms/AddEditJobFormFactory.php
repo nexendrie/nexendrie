@@ -12,12 +12,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditJobFormFactory {
-  /** @var \Nexendrie\Model\Job */
-  protected $model;
-  /** @var \Nexendrie\Model\Skills */
-  protected $skillsModel;
-  /** @var \Nexendrie\Orm\Job */
-  protected $job;
+  protected \Nexendrie\Model\Job $model;
+  protected \Nexendrie\Model\Skills $skillsModel;
+  protected ?\Nexendrie\Orm\Job $job;
 
   public function __construct(\Nexendrie\Model\Job $model, \Nexendrie\Model\Skills $skillsModel) {
     $this->model = $model;

@@ -16,10 +16,8 @@ use Nexendrie\Model\InsufficientFundsException;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class TownsMarketControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Model\Town */
-  protected $model;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected \Nexendrie\Model\Town $model;
+  protected \Nette\Security\User $user;
   
   public function __construct(\Nexendrie\Model\Town $model, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     parent::__construct();

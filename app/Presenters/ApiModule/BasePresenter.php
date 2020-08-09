@@ -16,14 +16,10 @@ use Nextras\Orm\Entity\Entity;
  * @author Jakub Konečný
  */
 abstract class BasePresenter extends \Nette\Application\UI\Presenter {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nexendrie\Api\EntityConverter */
-  protected $entityConverter;
-  /** @var bool */
-  protected $cachingEnabled = true;
-  /** @var bool */
-  protected $publicCache = true;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nexendrie\Api\EntityConverter $entityConverter;
+  protected bool $cachingEnabled = true;
+  protected bool $publicCache = true;
 
   public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Api\EntityConverter $entityConverter) {
     parent::__construct();

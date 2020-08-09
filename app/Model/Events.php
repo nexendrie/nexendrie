@@ -14,18 +14,13 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Events implements \EventCalendar\IEventModel {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Caching\Cache */
-  protected $cache;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var SettingsRepository */
-  protected $sr;
-  /** @var \Nette\Application\LinkGenerator */
-  protected $lg;
-  /** @var Event[]|\Nextras\Orm\Collection\ICollection */
-  private $events;
+  protected \Nexendrie\Orm\Model $orm;
+  protected Cache $cache;
+  protected \Nette\Security\User $user;
+  protected SettingsRepository $sr;
+  protected \Nette\Application\LinkGenerator $lg;
+  /** @var Event[]|ICollection */
+  private ICollection $events;
   
   use \Nette\SmartObject;
   

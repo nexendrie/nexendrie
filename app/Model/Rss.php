@@ -16,14 +16,10 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Rss {
-  /** @var Article */
-  protected $articleModel;
-  /** @var LinkGenerator */
-  protected $linkGenerator;
-  /** @var Generator */
-  protected $generator;
-  /** @var string */
-  protected $versionSuffix = "";
+  protected Article $articleModel;
+  protected LinkGenerator $linkGenerator;
+  protected Generator $generator;
+  protected string $versionSuffix = "";
   
   use \Nette\SmartObject;
   

@@ -14,10 +14,8 @@ use Nexendrie\Model\InsufficientFundsException;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class TavernControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Model\Tavern */
-  protected $model;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected \Nexendrie\Model\Tavern $model;
+  protected \Nette\Security\User $user;
   
   public function __construct(\Nexendrie\Model\Tavern $model, \Nette\Security\User $user) {
     parent::__construct();

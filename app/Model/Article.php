@@ -13,12 +13,9 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Article {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var int */
-  protected $itemsPerPage;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  protected int $itemsPerPage;
   
   use \Nette\SmartObject;
   

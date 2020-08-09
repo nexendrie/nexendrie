@@ -35,9 +35,8 @@ final class Item extends BaseEntity {
   public const TYPE_MATERIAL = "material";
   public const TYPE_CHARTER = "charter";
   public const TYPE_INTIMACY_BOOST = "intimacy_boost";
-  
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

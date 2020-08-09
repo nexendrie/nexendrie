@@ -11,8 +11,7 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class NewMessageFormFactory {
-  /** @var \Nexendrie\Model\Messenger */
-  protected $model;
+  protected \Nexendrie\Model\Messenger $model;
   
   public function __construct(\Nexendrie\Model\Messenger $model) {
     $this->model = $model;

@@ -13,10 +13,8 @@ use Nextras\Orm\Collection\ICollection;
  * @property-write  \Nette\Security\User $user
  */
 final class Polls {
-  /** @var \Nexendrie\Orm\Model $orm */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
   
   use \Nette\SmartObject;
   

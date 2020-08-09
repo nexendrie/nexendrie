@@ -14,7 +14,7 @@ final class Achievements {
   use \Nette\SmartObject;
   
   /** @var IAchievement[] */
-  protected $achievements;
+  protected array $achievements = [];
   
   public function __construct(\Nette\DI\Container $container) {
     $services = $container->findByType(IAchievement::class);

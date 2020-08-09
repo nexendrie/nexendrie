@@ -19,10 +19,8 @@ use HeroesofAbenez\Combat\ConstantInitiativeFormulaParser;
  * @author Jakub Konečný
  */
 final class CombatHelper {
-  /** @var Inventory */
-  protected $inventoryModel;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
+  protected Inventory $inventoryModel;
+  protected \Nexendrie\Orm\Model $orm;
   
   use \Nette\SmartObject;
   

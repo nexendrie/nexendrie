@@ -11,10 +11,8 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditPollFormFactory {
-  /** @var \Nexendrie\Model\Polls */
-  protected $model;
-  /** @var \Nexendrie\Orm\Poll */
-  protected $poll;
+  protected \Nexendrie\Model\Polls $model;
+  protected ?\Nexendrie\Orm\Poll $poll;
 
   public function __construct(\Nexendrie\Model\Polls $model, \Nette\Security\User $user) {
     $this->model = $model;

@@ -20,20 +20,13 @@ use HeroesofAbenez\Combat\VictoryConditions;
 final class Adventure {
   public const ADVENTURE_BREAK_DAYS_LENGTH = 2;
 
-  /** @var CombatBase */
-  protected $combat;
-  /** @var CombatHelper */
-  protected $combatHelper;
-  /** @var Events */
-  protected $eventsModel;
-  /** @var Order */
-  protected $orderModel;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var UserAdventureEntity|null */
-  private $adventure = null;
+  protected CombatBase $combat;
+  protected CombatHelper $combatHelper;
+  protected Events $eventsModel;
+  protected Order $orderModel;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  private ?UserAdventureEntity $adventure = null;
   
   use \Nette\SmartObject;
   

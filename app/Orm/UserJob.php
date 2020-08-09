@@ -24,9 +24,8 @@ final class UserJob extends BaseEntity {
   /** Base success rate for job (in %) */
   public const BASE_SUCCESS_RATE = 55;
   public const JOB_DAYS_LENGTH = 7;
-  
-  /** @var \Nexendrie\Model\Events */
-  protected $eventsModel;
+
+  protected \Nexendrie\Model\Events $eventsModel;
   
   public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;

@@ -13,14 +13,10 @@ use Nexendrie\Model\Town;
  * @author Jakub Konečný
  */
 final class EditUserFormFactory {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var UserManager */
-  protected $model;
-  /** @var Town */
-  protected $townModel;
-  /** @var int */
-  protected $uid;
+  protected \Nexendrie\Orm\Model $orm;
+  protected UserManager $model;
+  protected Town $townModel;
+  protected int $uid;
   
   use \Nette\SmartObject;
   

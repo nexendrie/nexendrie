@@ -13,10 +13,8 @@ use Nexendrie\Model\OpenSearchDescriptionResponse;
  * @author Jakub Konečný
  */
 final class SearchPresenter extends BasePresenter {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nexendrie\Model\OpenSearch */
-  protected $openSearch;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nexendrie\Model\OpenSearch $openSearch;
   
   public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\OpenSearch $openSearch) {
     parent::__construct();

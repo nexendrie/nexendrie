@@ -18,8 +18,7 @@ namespace Nexendrie\Orm;
  * @property Order|null $order {m:1 Order::$chatMessages}
  */
 final class ChatMessage extends BaseEntity {
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

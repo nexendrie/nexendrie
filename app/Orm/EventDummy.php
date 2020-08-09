@@ -20,28 +20,17 @@ namespace Nexendrie\Orm;
  * @property-read int $shoppingDiscount
  */
 final class EventDummy extends DummyEntity {
-  /** @var int */
-  protected $id;
-  /** @var string */
-  protected $name;
-  /** @var string */
-  protected $description;
-  /** @var string */
-  protected $start;
-  /** @var string */
-  protected $end;
-  /** @var int */
-  protected $adventuresBonus;
-  /** @var int */
-  protected $workBonus;
-  /** @var int */
-  protected $prayerLifeBonus;
-  /** @var int */
-  protected $trainingDiscount;
-  /** @var int */
-  protected $repairingDiscount;
-  /** @var int */
-  protected $shoppingDiscount;
+  protected int $id;
+  protected string $name;
+  protected string $description;
+  protected string $start;
+  protected string $end;
+  protected int $adventuresBonus;
+  protected int $workBonus;
+  protected int $prayerLifeBonus;
+  protected int $trainingDiscount;
+  protected int $repairingDiscount;
+  protected int $shoppingDiscount;
   
   public function __construct(Event $event) {
     $this->id = $event->id;

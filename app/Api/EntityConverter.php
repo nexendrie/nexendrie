@@ -10,10 +10,9 @@ use Nextras\Orm\Entity\Entity;
 final class EntityConverter {
   use \Nette\SmartObject;
 
-  /** @var int */
-  protected $maxDepth;
+  protected int $maxDepth;
   /** @var ITransformer[]|Collection */
-  protected $transformers;
+  protected Collection $transformers;
 
   public function __construct(int $maxDepth, \Nette\DI\Container $container) {
     $this->maxDepth = $maxDepth;

@@ -12,10 +12,8 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class ManageTownFormFactory {
-  /** @var \Nexendrie\Model\Town */
-  protected $model;
-  /** @var int */
-  private $id;
+  protected \Nexendrie\Model\Town $model;
+  private int $id;
   
   public function __construct(\Nexendrie\Model\Town $model) {
     $this->model = $model;

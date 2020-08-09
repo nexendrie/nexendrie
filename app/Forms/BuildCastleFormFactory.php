@@ -15,8 +15,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * @author Jakub Konečný
  */
 final class BuildCastleFormFactory {
-  /** @var \Nexendrie\Model\Castle */
-  protected $model;
+  protected \Nexendrie\Model\Castle $model;
   
   public function __construct(\Nexendrie\Model\Castle $model) {
     $this->model = $model;

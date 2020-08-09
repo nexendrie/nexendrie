@@ -13,8 +13,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * @author Jakub Konečný
  */
 final class MonasteryDonateFormFactory {
-  /** @var \Nexendrie\Model\Monastery */
-  protected $model;
+  protected \Nexendrie\Model\Monastery $model;
   
   public function __construct(\Nexendrie\Model\Monastery $model) {
     $this->model = $model;

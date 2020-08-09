@@ -12,8 +12,7 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class ItemSet {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
+  protected \Nexendrie\Orm\Model $orm;
   
   use \Nette\SmartObject;
   

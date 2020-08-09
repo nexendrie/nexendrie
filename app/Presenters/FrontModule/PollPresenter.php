@@ -12,10 +12,8 @@ use Nexendrie\Model\PollNotFoundException;
  * @author Jakub Konečný
  */
 final class PollPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Polls */
-  protected $model;
-  /** @var \Nexendrie\Orm\Poll */
-  protected $poll;
+  protected \Nexendrie\Model\Polls $model;
+  protected \Nexendrie\Orm\Poll $poll;
   
   public function __construct(\Nexendrie\Model\Polls $model) {
     parent::__construct();

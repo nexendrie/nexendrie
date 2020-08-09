@@ -18,14 +18,10 @@ use Nexendrie\Orm\Group as GroupEntity;
  * @author Jakub Konečný
  */
 final class CastlePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Castle */
-  protected $model;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Model\UserManager */
-  protected $userManager;
-  /** @var \Nexendrie\Model\Profile */
-  protected $profileModel;
+  protected \Nexendrie\Model\Castle $model;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected \Nexendrie\Model\UserManager $userManager;
+  protected \Nexendrie\Model\Profile $profileModel;
   
   public function __construct(\Nexendrie\Model\Castle $model, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel) {
     parent::__construct();
@@ -34,7 +30,7 @@ final class CastlePresenter extends BasePresenter {
     $this->userManager = $userManager;
     $this->profileModel = $profileModel;
   }
-  
+
   protected function startup(): void {
     parent::startup();
     if($this->action !== "detail" && $this->action !== "list") {

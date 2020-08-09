@@ -16,16 +16,12 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class UserPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Authenticator */
-  protected $model;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var ORM */
-  protected $orm;
-  /** @var string @persistent */
-  public $backlink = "";
-  /** @var bool */
-  protected $cachingEnabled = false;
+  protected \Nexendrie\Model\Authenticator $model;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected ORM $orm;
+  /** @persistent */
+  public string $backlink = "";
+  protected bool $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Authenticator $model, \Nexendrie\Model\Locale $localeModel, ORM $orm) {
     parent::__construct();

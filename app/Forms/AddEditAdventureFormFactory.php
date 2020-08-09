@@ -12,12 +12,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditAdventureFormFactory {
-  /** @var \Nexendrie\Model\Adventure */
-  protected $model;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nexendrie\Orm\Adventure */
-  protected $adventure;
+  protected \Nexendrie\Model\Adventure $model;
+  protected \Nexendrie\Orm\Model $orm;
+  protected ?\Nexendrie\Orm\Adventure $adventure;
 
   public function __construct(\Nexendrie\Model\Adventure $model, \Nexendrie\Orm\Model $orm) {
     $this->model = $model;

@@ -15,14 +15,10 @@ use Nextras\Orm\Collection\ICollection;
  * @property-write \Nexendrie\Orm\Town $town
  */
 final class ElectionsControl extends \Nette\Application\UI\Control {
-  /** @var \Nexendrie\Model\Elections */
-  protected $model;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var \Nexendrie\Orm\Town */
-  private $town;
+  protected \Nexendrie\Model\Elections $model;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  private \Nexendrie\Orm\Town $town;
   
   public function __construct(\Nexendrie\Model\Elections $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     parent::__construct();

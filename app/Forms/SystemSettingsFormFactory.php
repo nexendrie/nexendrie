@@ -15,12 +15,9 @@ use Nexendrie\Orm\Model as ORM;
  * @author Jakub Konečný
  */
 final class SystemSettingsFormFactory {
-  /** @var SettingsRepository */
-  protected $sr;
-  /** @var ORM */
-  protected $orm;
-  /** @var string */
-  protected $appDir;
+  protected SettingsRepository $sr;
+  protected ORM $orm;
+  protected string $appDir;
   
   public function __construct(string $appDir, SettingsRepository $settingsRepository, ORM $orm) {
     $this->sr = $settingsRepository;

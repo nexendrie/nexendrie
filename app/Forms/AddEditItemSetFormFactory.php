@@ -13,12 +13,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditItemSetFormFactory {
-  /** @var \Nexendrie\Model\ItemSet */
-  protected $model;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var ItemSet */
-  protected $set;
+  protected \Nexendrie\Model\ItemSet $model;
+  protected \Nexendrie\Orm\Model $orm;
+  protected ?ItemSet $set;
 
   public function __construct(\Nexendrie\Model\ItemSet $model, \Nexendrie\Orm\Model $orm) {
     $this->model = $model;

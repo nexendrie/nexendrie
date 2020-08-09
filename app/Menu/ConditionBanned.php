@@ -11,8 +11,7 @@ use Nette\Security\User;
  * @author Jakub Konečný
  */
 final class ConditionBanned extends BaseCondition {
-  /** @var User */
-  protected $user;
+  protected User $user;
   
   public function __construct(User $user) {
     $this->user = $user;

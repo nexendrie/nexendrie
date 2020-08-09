@@ -11,8 +11,7 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 class TeamPresenter extends BasePresenter {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
+  protected \Nexendrie\Orm\Model $orm;
 
   public function __construct(\Nexendrie\Orm\Model $orm) {
     parent::__construct();

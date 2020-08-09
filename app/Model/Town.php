@@ -14,14 +14,10 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Town {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var int */
-  protected $foundingPrice;
-  /** @var int */
-  protected $foundingCharter;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  protected int $foundingPrice;
+  protected int $foundingCharter;
   
   use \Nette\SmartObject;
   

@@ -12,11 +12,9 @@ use Nexendrie\Model\SettingsRepository;
  */
 final class MonasteriesStatusTask {
   use \Nette\SmartObject;
-  
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var int */
-  protected $weeklyWearingOut;
+
+  protected \Nexendrie\Orm\Model $orm;
+  protected int $weeklyWearingOut;
   
   public function __construct(\Nexendrie\Orm\Model $orm, SettingsRepository $sr) {
     $this->orm = $orm;

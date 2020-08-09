@@ -18,18 +18,12 @@ use Nexendrie\Orm\Group as GroupEntity;
  * @author Jakub Konečný
  */
 final class TownPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Town */
-  protected $model;
-  /** @var \Nexendrie\Model\UserManager */
-  protected $userManager;
-  /** @var \Nexendrie\Model\Profile */
-  protected $profileModel;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Orm\Town */
-  private $town;
-  /** @var bool */
-  protected $cachingEnabled = false;
+  protected \Nexendrie\Model\Town $model;
+  protected \Nexendrie\Model\UserManager $userManager;
+  protected \Nexendrie\Model\Profile $profileModel;
+  protected \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Orm\Town $town;
+  protected bool $cachingEnabled = false;
 
   public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();

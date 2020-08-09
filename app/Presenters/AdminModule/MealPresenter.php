@@ -14,10 +14,8 @@ use Nexendrie\Model\MealNotFoundException;
  * @author Jakub Konečný
  */
 final class MealPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Tavern */
-  protected $model;
-  /** @var MealEntity */
-  private $meal;
+  protected \Nexendrie\Model\Tavern $model;
+  private MealEntity $meal;
   
   public function __construct(\Nexendrie\Model\Tavern $model) {
     parent::__construct();

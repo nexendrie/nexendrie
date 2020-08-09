@@ -18,14 +18,10 @@ use Nexendrie\Orm\PollVote as PollVoteEntity;
  * @property-write int $id
  */
 final class PollControl extends \Nette\Application\UI\Control {
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var \Nexendrie\Orm\Model $orm */
-  protected $orm;
-  /** @var PollEntity */
-  protected $poll;
-  /** @var int */
-  protected $id;
+  protected \Nette\Security\User $user;
+  protected \Nexendrie\Orm\Model $orm;
+  protected PollEntity $poll;
+  protected int $id;
   
   public function __construct(\Nette\Security\User $user, \Nexendrie\Orm\Model $orm, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     parent::__construct();

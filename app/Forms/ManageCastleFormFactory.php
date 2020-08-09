@@ -12,10 +12,8 @@ use Nexendrie\Model\CastleNameInUseException;
  * @author Jakub Konečný
  */
 final class ManageCastleFormFactory {
-  /** @var \Nexendrie\Model\Castle */
-  protected $model;
-  /** @var int */
-  private $id;
+  protected \Nexendrie\Model\Castle $model;
+  private int $id;
   
   public function __construct(\Nexendrie\Model\Castle $model) {
     $this->model = $model;

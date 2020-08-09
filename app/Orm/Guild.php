@@ -32,9 +32,8 @@ final class Guild extends BaseEntity {
   public const MAX_LEVEL = 6;
   public const BASE_UPGRADE_PRICE = 700;
   public const JOB_INCOME_BONUS_PER_LEVEL = 1;
-  
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

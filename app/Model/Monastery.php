@@ -16,20 +16,13 @@ use Nextras\Orm\Collection\ICollection;
  * 
  */
 final class Monastery {
-  /** @var Events */
-  protected $eventsModel;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var Guild */
-  protected $guildModel;
-  /** @var Order */
-  protected $orderModel;
-  /** @var int */
-  protected $buildingPrice;
-  /** @var int */
-  protected $criticalCondition;
+  protected Events $eventsModel;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  protected Guild $guildModel;
+  protected Order $orderModel;
+  protected int $buildingPrice;
+  protected int $criticalCondition;
   
   use \Nette\SmartObject;
   

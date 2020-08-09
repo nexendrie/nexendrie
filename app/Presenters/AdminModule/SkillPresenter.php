@@ -14,10 +14,8 @@ use Nexendrie\Model\SkillNotFoundException;
  * @author Jakub Konečný
  */
 final class SkillPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Skills */
-  protected $model;
-  /** @var SkillEntity */
-  private $skill;
+  protected \Nexendrie\Model\Skills $model;
+  private SkillEntity $skill;
   
   public function __construct(\Nexendrie\Model\Skills $model) {
     parent::__construct();

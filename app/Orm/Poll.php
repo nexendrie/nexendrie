@@ -22,8 +22,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * 
  */
 final class Poll extends BaseEntity {
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

@@ -19,14 +19,10 @@ use Nexendrie\Chat\GuildChatControl;
  * @author Jakub Konečný
  */
 final class ChatPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Monastery */
-  protected $monasteryModel;
-  /** @var \Nexendrie\Model\Order */
-  protected $orderModel;
-  /** @var \Nexendrie\Model\Guild */
-  protected $guildModel;
-  /** @var bool */
-  protected $cachingEnabled = false;
+  protected \Nexendrie\Model\Monastery $monasteryModel;
+  protected \Nexendrie\Model\Order $orderModel;
+  protected \Nexendrie\Model\Guild $guildModel;
+  protected bool $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Monastery $monasteryModel, \Nexendrie\Model\Order $orderModel, \Nexendrie\Model\Guild $guildModel) {
     parent::__construct();

@@ -9,8 +9,6 @@ namespace Nexendrie\Presenters\ApiModule\V1;
  * @author Jakub Konečný
  */
 final class ItemsPresenter extends BasePresenter {
-  protected $fields = ["id", "name", "description", "price", "shop", "type", "strength", ];
-  
   public function actionReadAll(): void {
     if(isset($this->params["associations"]["shops"])) {
       $shop = (int) $this->params["associations"]["shops"];

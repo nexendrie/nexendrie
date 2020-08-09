@@ -9,8 +9,7 @@ namespace Nexendrie\Cron;
  * @author Jakub Konečný
  */
 final class TaxesTask extends BaseMonthlyCronTask {
-  /** @var \Nexendrie\Model\Taxes */
-  protected $taxesModel;
+  protected \Nexendrie\Model\Taxes $taxesModel;
   
   public function __construct(\Nexendrie\Model\Taxes $taxesModel) {
     $this->taxesModel = $taxesModel;

@@ -11,10 +11,8 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditMealFormFactory {
-  /** @var \Nexendrie\Model\Tavern */
-  protected $model;
-  /** @var \Nexendrie\Orm\Meal */
-  protected $meal;
+  protected \Nexendrie\Model\Tavern $model;
+  protected ?\Nexendrie\Orm\Meal $meal;
 
   public function __construct(\Nexendrie\Model\Tavern $model) {
     $this->model = $model;

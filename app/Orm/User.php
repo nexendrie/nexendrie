@@ -82,11 +82,9 @@ use Nexendrie\Forms\UserSettingsFormFactory;
 final class User extends BaseEntity {
   public const GENDER_MALE = "male";
   public const GENDER_FEMALE = "female";
-  
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Model\SettingsRepository */
-  protected $sr;
+
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected \Nexendrie\Model\SettingsRepository $sr;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

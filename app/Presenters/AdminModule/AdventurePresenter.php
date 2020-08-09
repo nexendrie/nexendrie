@@ -13,10 +13,8 @@ use Nexendrie\Model\AdventureNotFoundException;
  * @author Jakub Konečný
  */
 final class AdventurePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Adventure */
-  protected $model;
-  /** @var \Nexendrie\Orm\Adventure */
-  private $adventure;
+  protected \Nexendrie\Model\Adventure $model;
+  private \Nexendrie\Orm\Adventure $adventure;
   
   public function __construct(\Nexendrie\Model\Adventure $model) {
     parent::__construct();

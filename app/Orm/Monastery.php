@@ -42,12 +42,9 @@ final class Monastery extends BaseEntity {
   public const PRAYER_LIFE_PER_LEVEL = 2;
   public const SKILL_LEARNING_DISCOUNT_PER_LEVEL = 3;
 
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Model\Events */
-  protected $eventsModel;
-  /** @var int */
-  protected $criticalCondition;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected \Nexendrie\Model\Events $eventsModel;
+  protected int $criticalCondition;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

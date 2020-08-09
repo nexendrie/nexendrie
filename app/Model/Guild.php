@@ -15,12 +15,9 @@ use Nextras\Orm\Collection\ICollection;
  * @property-read int $maxRank
  */
 final class Guild {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var int */
-  protected $foundingPrice;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  protected int $foundingPrice;
   
   use \Nette\SmartObject;
   

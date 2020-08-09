@@ -17,20 +17,14 @@ use Nexendrie\Model\DepositAccountNotDueException;
  * @author Jakub Konečný
  */
 final class BankPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Bank */
-  protected $model;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
-  /** @var \Nexendrie\Model\SettingsRepository */
-  protected $sr;
-  /** @var bool */
-  protected $cachingEnabled = false;
+  protected \Nexendrie\Model\Bank $model;
+  protected \Nexendrie\Model\Locale $localeModel;
+  protected bool $cachingEnabled = false;
   
-  public function __construct(\Nexendrie\Model\Bank $model, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\SettingsRepository $sr) {
+  public function __construct(\Nexendrie\Model\Bank $model, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();
     $this->model = $model;
     $this->localeModel = $localeModel;
-    $this->sr = $sr;
   }
   
   public function renderDefault(): void {

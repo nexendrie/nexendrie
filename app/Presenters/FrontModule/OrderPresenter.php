@@ -25,10 +25,8 @@ use Nexendrie\Model\CannotKickMemberException;
  * @author Jakub Konečný
  */
 final class OrderPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Order  */
-  protected $model;
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+  protected \Nexendrie\Model\Order $model;
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function __construct(\Nexendrie\Model\Order $model, \Nexendrie\Model\Locale $localeModel) {
     parent::__construct();

@@ -14,10 +14,8 @@ use Nexendrie\Model\InsufficientFundsException;
  * @author Jakub Konečný
  */
 final class FoundGuildFormFactory {
-  /** @var \Nexendrie\Model\Guild */
-  protected $model;
-  /** @var \Nexendrie\Model\Skills */
-  protected $skillsModel;
+  protected \Nexendrie\Model\Guild $model;
+  protected \Nexendrie\Model\Skills $skillsModel;
   
   public function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Skills $skillsModel) {
     $this->model = $model;

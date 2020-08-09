@@ -31,9 +31,8 @@ final class Article extends BaseEntity {
   public const CATEGORY_NOVELLA = "novella";
   public const CATEGORY_FAIRY_TALE = "fairy_tale";
   public const CATEGORY_UNCATEGORIZED = "uncategorized";
-  
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

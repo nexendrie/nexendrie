@@ -32,9 +32,8 @@ final class Skill extends BaseEntity {
   public const STAT_DAMAGE = "damage";
   public const STAT_ARMOR = "armor";
   public const STAT_INITIATIVE = "initiative";
-  
-  /** @var \Nexendrie\Model\Locale */
-  protected $localeModel;
+
+  protected \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

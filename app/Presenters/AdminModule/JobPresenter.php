@@ -14,10 +14,8 @@ use Nexendrie\Model\JobNotFoundException;
  * @author Jakub Konečný
  */
 final class JobPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Job */
-  protected $model;
-  /** @var JobEntity */
-  private $job;
+  protected \Nexendrie\Model\Job $model;
+  private JobEntity $job;
   
   public function __construct(\Nexendrie\Model\Job $model) {
     parent::__construct();

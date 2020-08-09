@@ -11,8 +11,7 @@ use Nexendrie\Orm\GuildFee;
  * @author Jakub Konečný
  */
 final class GuildFeesTask extends BaseMonthlyCronTask {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
+  protected \Nexendrie\Orm\Model $orm;
   
   public function __construct(\Nexendrie\Orm\Model $orm) {
     $this->orm = $orm;

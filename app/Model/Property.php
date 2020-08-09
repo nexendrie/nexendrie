@@ -11,16 +11,11 @@ use Nexendrie\Orm\Group as GroupEntity;
  * @author Jakub Konečný
  */
 final class Property {
-  /** @var Job*/
-  protected $jobModel;
-  /** @var Bank */
-  protected $bankModel;
-  /** @var Taxes */
-  protected $taxesModel;
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected Job $jobModel;
+  protected Bank $bankModel;
+  protected Taxes $taxesModel;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
   
   use \Nette\SmartObject;
   

@@ -12,18 +12,13 @@ use Nette\Application\BadRequestException;
  * @author Jakub Konečný
  */
 final class ProfilePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Profile */
-  protected $model;
-  /** @var \Nexendrie\Model\Castle */
-  protected $castleModel;
-  /** @var \Nexendrie\Model\Marriage */
-  protected $marriageModel;
-  /** @var \Nexendrie\Model\Achievements */
-  protected $achievementsModel;
-  /** @var bool */
-  protected $cachingEnabled = false;
+  protected \Nexendrie\Model\Profile $model;
+  protected \Nexendrie\Model\Castle $castleModel;
+  protected \Nexendrie\Model\Marriage $marriageModel;
+  protected \Nexendrie\Model\Achievements $achievementsModel;
+  protected bool $cachingEnabled = false;
   /** @var string[] */
-  private $cacheableActions = ["articles", "skills", ];
+  private array $cacheableActions = ["articles", "skills", ];
 
   public function __construct(\Nexendrie\Model\Profile $model, \Nexendrie\Model\Castle $castleModel, \Nexendrie\Model\Marriage $marriageModel, \Nexendrie\Model\Achievements $achievementsModel) {
     parent::__construct();

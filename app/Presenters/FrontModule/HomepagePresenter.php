@@ -9,8 +9,7 @@ namespace Nexendrie\Presenters\FrontModule;
  * @author Jakub Konečný
  */
 final class HomepagePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Article */
-  protected $model;
+  protected \Nexendrie\Model\Article $model;
   
   public function __construct(\Nexendrie\Model\Article $model) {
     parent::__construct();

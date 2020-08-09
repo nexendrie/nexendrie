@@ -7,10 +7,8 @@ use Nexendrie\Orm\ContentReport;
 use Nextras\Orm\Collection\ICollection;
 
 final class Moderation {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
 
   public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     $this->orm = $orm;

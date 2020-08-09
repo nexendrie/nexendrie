@@ -12,8 +12,7 @@ use Nexendrie\Forms\EditGroupFormFactory;
  * @author Jakub Konečný
  */
 final class GroupPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Group */
-  protected $model;
+  protected \Nexendrie\Model\Group $model;
   
   public function __construct(\Nexendrie\Model\Group $model) {
     parent::__construct();

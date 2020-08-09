@@ -15,10 +15,8 @@ use Nexendrie\Components\TownsMarketControl;
  * @author Jakub Konečný
  */
 final class MarketPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Market */
-  protected $model;
-  /** @var bool */
-  protected $cachingEnabled = false;
+  protected \Nexendrie\Model\Market $model;
+  protected bool $cachingEnabled = false;
   
   public function __construct(\Nexendrie\Model\Market $model) {
     parent::__construct();

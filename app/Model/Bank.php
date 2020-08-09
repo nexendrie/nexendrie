@@ -12,14 +12,10 @@ use Nexendrie\Orm\Deposit as DepositEntity;
  * @author Jakub Konečný
  */
 final class Bank {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var int */
-  protected $loanInterest;
-  /** @var int */
-  protected $depositInterest;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  protected int $loanInterest;
+  protected int $depositInterest;
   
   use \Nette\SmartObject;
   

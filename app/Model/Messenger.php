@@ -12,12 +12,9 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Messenger {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var Profile */
-  protected $profileModel;
+  protected \Nexendrie\Orm\Model $orm;
+  protected \Nette\Security\User $user;
+  protected Profile $profileModel;
   
   use \Nette\SmartObject;
   

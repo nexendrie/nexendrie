@@ -12,10 +12,8 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class ManageMountFormFactory {
-  /** @var \Nexendrie\Model\Mount */
-  protected $model;
-  /** @var int */
-  private $id;
+  protected \Nexendrie\Model\Mount $model;
+  private int $id;
   
   public function __construct(\Nexendrie\Model\Mount $model) {
     $this->model = $model;

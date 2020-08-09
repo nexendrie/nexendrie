@@ -14,10 +14,8 @@ use Nexendrie\Orm\ItemSet as ItemSetEntity;
  * @author Jakub Konečný
  */
 final class ItemSetPresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\ItemSet */
-  protected $model;
-  /** @var ItemSetEntity */
-  private $set;
+  protected \Nexendrie\Model\ItemSet $model;
+  private ItemSetEntity $set;
   
   public function __construct(\Nexendrie\Model\ItemSet $model) {
     parent::__construct();

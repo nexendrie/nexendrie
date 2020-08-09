@@ -13,8 +13,7 @@ use Nette\Bridges\ApplicationLatte\ILatteFactory;
  * @author Jakub Konečný
  */
 final class NexendrieExtension extends \Nette\DI\CompilerExtension {
-  /** @var string */
-  protected $appDir;
+  protected string $appDir;
   
   public function __construct(string $appDir) {
     $this->appDir = $appDir;

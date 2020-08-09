@@ -14,12 +14,9 @@ use Nexendrie\Orm\User as UserEntity;
  * @property array $formats
  */
 final class Locale {
-  /** @var ITranslator */
-  protected $translator;
-  /** @var User */
-  protected $user;
-  /** @var array */
-  protected $formats = [];
+  protected ITranslator $translator;
+  protected User $user;
+  protected array $formats = [];
   
   use \Nette\SmartObject;
   

@@ -12,10 +12,8 @@ use Nexendrie\Orm\ElectionResult;
  * @author Jakub Konečný
  */
 final class MunicipalElectionsTask extends BaseMonthlyCronTask {
-  /** @var \Nexendrie\Orm\Model */
-  protected $orm;
-  /** @var Elections */
-  protected $electionsModel;
+  protected \Nexendrie\Orm\Model $orm;
+  protected Elections $electionsModel;
   
   public function __construct(\Nexendrie\Orm\Model $orm, Elections $electionsModel) {
     $this->orm = $orm;

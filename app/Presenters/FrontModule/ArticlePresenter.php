@@ -17,12 +17,9 @@ use Nexendrie\Model\MissingPermissionsException;
  * @author Jakub Konečný
  */
 final class ArticlePresenter extends BasePresenter {
-  /** @var \Nexendrie\Model\Article */
-  protected $model;
-  /** @var \Nexendrie\Model\Moderation */
-  protected $moderationModel;
-  /** @var bool */
-  protected $publicCache = false;
+  protected \Nexendrie\Model\Article $model;
+  protected \Nexendrie\Model\Moderation $moderationModel;
+  protected bool $publicCache = false;
   
   public function __construct(\Nexendrie\Model\Article $model, \Nexendrie\Model\Moderation $moderationModel) {
     parent::__construct();

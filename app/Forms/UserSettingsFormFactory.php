@@ -18,10 +18,8 @@ use Nexendrie\Orm\User as UserEntity;
  * @author Jakub Konečný
  */
 final class UserSettingsFormFactory {
-  /** @var UserManager */
-  protected $model;
-  /** @var User */
-  protected $user;
+  protected UserManager $model;
+  protected User $user;
   
   public function __construct(UserManager $model, User $user) {
     $this->model = $model;

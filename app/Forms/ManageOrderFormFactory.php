@@ -12,12 +12,9 @@ use Nexendrie\Model\OrderNameInUseException;
  * @author Jakub Konečný
  */
 final class ManageOrderFormFactory {
-  /** @var \Nexendrie\Model\Order */
-  protected $model;
-  /** @var \Nette\Security\User */
-  protected $user;
-  /** @var int */
-  private $id;
+  protected \Nexendrie\Model\Order $model;
+  protected \Nette\Security\User $user;
+  private int $id;
   
   public function __construct(\Nexendrie\Model\Order $model, \Nette\Security\User $user) {
     $this->model = $model;
