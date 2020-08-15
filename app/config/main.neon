@@ -27,9 +27,9 @@ translation:
     localeResolver: fallback
     loader:
         folders:
-            - %wwwDir%/vendor/nexendrie/book-component/src/lang
-            - %wwwDir%/vendor/heroesofabenez/chat/src/lang
-            - %wwwDir%/vendor/heroesofabenez/combat/src/lang
+            - %appDir%/../vendor/nexendrie/book-component/src/lang
+            - %appDir%/../vendor/heroesofabenez/chat/src/lang
+            - %appDir%/../vendor/heroesofabenez/combat/src/lang
     default: cs
 chat:
     databaseAdapter: Nexendrie\Chat\NextrasOrmAdapter
