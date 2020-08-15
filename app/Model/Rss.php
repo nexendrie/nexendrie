@@ -52,8 +52,10 @@ final class Rss {
       /** @var \Nexendrie\Orm\Article $row */
       foreach($items as $row) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
-        $return[] = $item = new Item($row->title, $row->text, $link, $row->created);
-        $item->comments = $link . "#comments";
+        $return[] = $item = new Item([
+          "title" => $row->title, "description" => $row->text, "link" => $link, "pubDate" => $row->created,
+          "comments" => $link . "#comments",
+        ]);
       }
       return $return;
     };
@@ -74,8 +76,8 @@ final class Rss {
     $versionSuffix = $this->versionSuffix();
     $articleLink = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
     $info = [
-      "title" => "Nexendrie $versionSuffix- Komentáře k " . $article->title, "description" => "Komentáře k článku " . $article->title,
-      "link" => $articleLink, "language" => "cs",
+      "title" => "Nexendrie $versionSuffix- Komentáře k " . $article->title,
+      "description" => "Komentáře k článku " . $article->title, "link" => $articleLink, "language" => "cs",
     ];
     $this->generator->dataSource = function() use($id, $articleLink) {
       $return = new Collection();
@@ -83,7 +85,9 @@ final class Rss {
       /** @var \Nexendrie\Orm\Comment $comment */
       foreach($comments as $comment) {
         $link = $articleLink . "#comment-$comment->id";
-        $return[] = new Item($comment->title, $comment->text, $link, $comment->created);
+        $return[] = new Item([
+          "title" => $comment->title, "description" => $comment->text, "link" => $link, "pubDate" => $comment->created,
+        ]);
       }
       return $return;
     };
