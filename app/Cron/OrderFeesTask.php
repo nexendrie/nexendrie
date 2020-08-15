@@ -29,9 +29,9 @@ final class OrderFeesTask extends BaseMonthlyCronTask {
   }
   
   /**
-   * @cronner-task Order fees
-   * @cronner-period 1 day
-   * @cronner-time 00:00 - 01:00
+   * @cronner-task(Order fees)
+   * @cronner-period(1 day)
+   * @cronner-time(00:00 - 01:00)
    */
   public function run(): void {
     $date = new \DateTime();

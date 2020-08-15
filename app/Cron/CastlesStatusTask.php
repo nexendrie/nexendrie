@@ -22,9 +22,9 @@ final class CastlesStatusTask {
   }
   
   /**
-   * @cronner-task Castles status update
-   * @cronner-period 1 week
-   * @cronner-time 00:00 - 01:00
+   * @cronner-task(Castles status update)
+   * @cronner-period(1 week)
+   * @cronner-time(00:00 - 01:00)
    */
   public function run(): void {
     echo "Starting castles status update ...\n";

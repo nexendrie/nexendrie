@@ -39,7 +39,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected function shutdown($response) {
     parent::shutdown($response);
     // do not send cookies with response, they are not (meant to be) used for authentication
-    $this->getHttpResponse()->setHeader("Set-Cookie", null);
+    $this->getHttpResponse()->deleteHeader("Set-Cookie");
   }
 
   /**
@@ -124,12 +124,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
 
   /**
    * @param string|int|\DateTimeInterface $lastModified
-   * @param string|null $etag
-   * @param mixed $expire
    */
-  public function lastModified($lastModified, $etag = null, $expire = null): void {
-    $this->getHttpResponse()->setHeader("Pragma", null);
-    $this->getHttpResponse()->setHeader("Vary", null);
+  public function lastModified($lastModified, string $etag = null, string $expire = null): void {
+    $this->getHttpResponse()->deleteHeader("Pragma");
+    $this->getHttpResponse()->deleteHeader("Vary");
     if(!$this->cachingEnabled) {
       return;
     }
@@ -206,7 +204,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   }
 
   protected function addContentLengthHeader(array $payload): void {
-    $this->getHttpResponse()->addHeader("Content-Length", strlen(Json::encode($payload)));
+    $this->getHttpResponse()->addHeader("Content-Length", (string) strlen(Json::encode($payload)));
   }
 
   protected function getPostData(): object {

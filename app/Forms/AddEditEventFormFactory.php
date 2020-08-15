@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
-use Nextras\Forms\Controls\DateTimePicker;
+use Nextras\FormComponents\Controls\DateTimeControl;
 
 /**
  * Factory for form AddEditEvent
@@ -28,10 +28,10 @@ final class AddEditEventFormFactory {
       ->setRequired("Zadej jméno.");
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
-    $start = new DateTimePicker("Začátek:");
+    $start = new DateTimeControl("Začátek:");
     $start->setRequired("Zadej začátek.");
     $form->addComponent($start, "start");
-    $end = new DateTimePicker("Konec:");
+    $end = new DateTimeControl("Konec:");
     $end->setRequired("Zadej konec.");
     $end->addRule(Form::MIN, "Akce nemůže skončit před svým začátkem.", $form["start"]);
     $form->addComponent($end, "end");

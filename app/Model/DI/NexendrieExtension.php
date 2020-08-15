@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model\DI;
 
+use Nette\DI\Definitions\FactoryDefinition;
 use Nexendrie;
 use Nexendrie\Model\SettingsRepository;
 use Nette\Bridges\ApplicationLatte\ILatteFactory;
@@ -183,35 +184,35 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
   
   protected function addComponents(): void {
     $builder = $this->getContainerBuilder();
-    $builder->addDefinition($this->prefix("component.poll"))
+    $builder->addFactoryDefinition($this->prefix("component.poll"))
       ->setImplement(Nexendrie\Components\IPollControlFactory::class);
-    $builder->addDefinition($this->prefix("component.shop"))
+    $builder->addFactoryDefinition($this->prefix("component.shop"))
       ->setImplement(Nexendrie\Components\IShopControlFactory::class);
-    $builder->addDefinition($this->prefix("component.mountsMarket"))
+    $builder->addFactoryDefinition($this->prefix("component.mountsMarket"))
       ->setImplement(Nexendrie\Components\IMountsMarketControlFactory::class);
-    $builder->addDefinition($this->prefix("component.academy"))
+    $builder->addFactoryDefinition($this->prefix("component.academy"))
       ->setImplement(Nexendrie\Components\IAcademyControlFactory::class);
-    $builder->addDefinition($this->prefix("component.townsMarket"))
+    $builder->addFactoryDefinition($this->prefix("component.townsMarket"))
       ->setImplement(Nexendrie\Components\ITownsMarketControlFactory::class);
-    $builder->addDefinition($this->prefix("component.help"))
+    $builder->addFactoryDefinition($this->prefix("component.help"))
       ->setImplement(Nexendrie\Components\IHelpControlFactory::class);
-    $builder->addDefinition($this->prefix("component.stables"))
+    $builder->addFactoryDefinition($this->prefix("component.stables"))
       ->setImplement(Nexendrie\Components\IStablesControlFactory::class);
-    $builder->addDefinition($this->prefix("component.prison"))
+    $builder->addFactoryDefinition($this->prefix("component.prison"))
       ->setImplement(Nexendrie\Components\IPrisonControlFactory::class);
-    $builder->addDefinition($this->prefix("component.tavern"))
+    $builder->addFactoryDefinition($this->prefix("component.tavern"))
       ->setImplement(Nexendrie\Components\ITavernControlFactory::class);
-    $builder->addDefinition($this->prefix("component.adventure"))
+    $builder->addFactoryDefinition($this->prefix("component.adventure"))
       ->setImplement(Nexendrie\Components\IAdventureControlFactory::class);
-    $builder->addDefinition($this->prefix("component.history"))
+    $builder->addFactoryDefinition($this->prefix("component.history"))
       ->setImplement(Nexendrie\Components\IHistoryControlFactory::class);
-    $builder->addDefinition($this->prefix("component.wedding"))
+    $builder->addFactoryDefinition($this->prefix("component.wedding"))
       ->setImplement(Nexendrie\Components\IWeddingControlFactory::class);
-    $builder->addDefinition($this->prefix("component.elections"))
+    $builder->addFactoryDefinition($this->prefix("component.elections"))
       ->setImplement(Nexendrie\Components\IElectionsControlFactory::class);
-    $builder->addDefinition($this->prefix("component.userProfileLink"))
+    $builder->addFactoryDefinition($this->prefix("component.userProfileLink"))
       ->setImplement(Nexendrie\Components\IUserProfileLinkControlFactory::class);
-    $builder->addDefinition($this->prefix($this->prefix("component.favicon")))
+    $builder->addFactoryDefinition($this->prefix($this->prefix("component.favicon")))
       ->setImplement(Nexendrie\Components\IFaviconControlFactory::class);
   }
   
@@ -323,8 +324,9 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
 
   public function beforeCompile() {
     $builder = $this->getContainerBuilder();
+    /** @var FactoryDefinition $latteFactory */
     $latteFactory = $builder->getDefinitionByType(ILatteFactory::class);
-    $latteFactory->addSetup("addFilter", ["genderify", ["@" . $this->prefix("model.locale"), "genderMessage"]]);
+    $latteFactory->getResultDefinition()->addSetup("addFilter", ["genderify", ["@" . $this->prefix("model.locale"), "genderMessage"]]);
   }
 
   public function afterCompile(\Nette\PhpGenerator\ClassType $class): void {

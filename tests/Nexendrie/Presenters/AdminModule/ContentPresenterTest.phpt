@@ -61,7 +61,7 @@ final class ContentPresenterTest extends \Tester\TestCase {
     $this->login("kazimira");
     $this->checkSignal(":Admin:Content:delete", "delete", ["report" => 50], [], "/");
     $this->login();
-    $this->checkSignal(":Admin:Content:delete", "delete", ["report" => 50], [], "/admin/");
+    $this->checkSignal(":Admin:Content:delete", "delete", ["report" => 50], [], "/admin/content/delete");
   }
 
   public function testSignalIgnore() {
@@ -69,7 +69,7 @@ final class ContentPresenterTest extends \Tester\TestCase {
     $this->login("kazimira");
     $this->checkSignal(":Admin:Content:delete", "ignore", ["report" => 50], [], "/");
     $this->login();
-    $this->checkSignal(":Admin:Content:delete", "ignore", ["report" => 50], [], "/admin/");
+    $this->checkSignal(":Admin:Content:delete", "ignore", ["report" => 50], [], "/admin/content/delete");
   }
 }
 

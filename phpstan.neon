@@ -12,7 +12,3 @@ parameters:
         - '#Construct empty\(\) is not allowed. Use more strict comparison#'
         - '#Method Nexendrie\\Orm\\[a-zA-Z0-9\\_]::getter[a-zA-Z0-9\\_]() should return int but returns float|int#'
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'
-        - '#Nette\\Application\\Routers\\RouteList does not accept [a-zA-Z0-9\\_]+Route#'
-        # until we use Nette 3
-        - '#Method Nette\\Localization\\ITranslator::translate\(\) invoked with 3 parameters, 1-2 required#'
-        - '#Dynamic call to static method Nette\\Security\\Passwords::[a-z]+\(\)#'
