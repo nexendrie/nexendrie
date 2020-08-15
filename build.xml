@@ -51,6 +51,7 @@
           <arg value="--no-progress"/>
           <arg value="--no-suggest"/>
           <arg value="--no-interaction"/>
+          <arg value="--ignore-platform-reqs"/>
         </exec>
       </then>
       <else>
@@ -95,6 +96,7 @@
     <exec executable="./composer" logoutput="true" passthru="true" checkreturn="true">
       <arg value="install"/>
       <arg value="--no-dev"/>
+      <arg value="--ignore-platform-reqs"/>
     </exec>
     <exec executable="vendor/bin/phinx" logoutput="true" passthru="true" checkreturn="true">
       <arg value="migrate"/>
