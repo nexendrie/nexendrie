@@ -37,7 +37,7 @@ final class ChroniclePresenter extends BasePresenter {
   protected function createComponentEventsCalendar(): Calendar {
     $calendar = new class extends Calendar {
       public function render(): void {
-        $this->onDateChange($this->year, $this->month);
+        $this->onDateChange((int) $this->year, (int) $this->month);
         parent::render();
       }
     };
