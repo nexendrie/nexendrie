@@ -1,10 +1,9 @@
 Thumbs.db
+!.gitkeep
 temp/
-!/temp/.gitkeep
 /nbproject/
 /.idea/
 /log/
-!/log/.gitkeep
 local.neon
 /doc/
 /vendor/

@@ -29,8 +29,6 @@
         <fail message="Environment has to be either production, development or ci."/>
       </then>
     </if>
-    <mkdir dir="temp/cache"/>
-    <mkdir dir="temp/sessions"/>
     <if>
       <equals arg1="${environment}" arg2="ci"/>
       <then>
