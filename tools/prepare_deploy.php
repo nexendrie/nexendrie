@@ -7,18 +7,19 @@ $filename = __DIR__ . "/../deployment.ini";
 $config = file_get_contents($filename);
 switch(getenv("DEPLOY_ENVIRONMENT")) {
   case "alpha":
-    $user = getenv("FTP_ALPHA_USER");
-    $password = getenv("FTP_ALPHA_PASSWORD");
+    $remote = "sftp://nexendrie.cz:2222/www/nexendrie.cz/wwwroot/alpha";
     break;
   case "beta":
-    $user = getenv("FTP_BETA_USER");
-    $password = getenv("FTP_BETA_PASSWORD");
+    $remote = "sftp://nexendrie.cz:2222/www/nexendrie.cz/wwwroot/beta";
     break;
   default:
     echo "Error: invalid environment";
     exit(1);
 }
-$config .= "user=$user
+$user = getenv("SSH_USER");
+$password = getenv("SSH_PASSWORD");
+$config .= "remote=$remote
+user=$user
 password=$password
 ";
 file_put_contents($filename, $config);
