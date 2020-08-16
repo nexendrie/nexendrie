@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use Nexendrie\Model\Locale;
+use Nexendrie\Model\SettingsRepository;
+use Nexendrie\Model\ThemesManager;
 use Nextras\Orm\Relationships\OneHasMany;
 use Nexendrie\Utils\Numbers;
-use Nexendrie\Forms\UserSettingsFormFactory;
 
 /**
  * User
@@ -83,19 +85,24 @@ final class User extends BaseEntity {
   public const GENDER_MALE = "male";
   public const GENDER_FEMALE = "female";
 
-  protected \Nexendrie\Model\Locale $localeModel;
-  protected \Nexendrie\Model\SettingsRepository $sr;
+  protected Locale $localeModel;
+  protected SettingsRepository $sr;
+  protected ThemesManager $themesManager;
   
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
+  public function injectLocaleModel(Locale $localeModel): void {
     $this->localeModel = $localeModel;
   }
   
-  public function injectSr(\Nexendrie\Model\SettingsRepository $sr): void {
+  public function injectSr(SettingsRepository $sr): void {
     $this->sr = $sr;
+  }
+
+  public function injectThemesManager(ThemesManager $themesManager): void {
+    $this->themesManager = $themesManager;
   }
   
   protected function setterStyle(string $value): string {
-    if(array_key_exists($value, UserSettingsFormFactory::getStylesList())) {
+    if(array_key_exists($value, $this->themesManager->getList())) {
       return $value;
     }
     return $this->sr->settings["newUser"]["style"];

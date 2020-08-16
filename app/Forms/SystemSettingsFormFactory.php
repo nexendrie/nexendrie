@@ -7,6 +7,7 @@ use Nette\Application\UI\Form;
 use Nexendrie\Model\SettingsRepository;
 use Nette\Neon\Neon;
 use Nette\Utils\FileSystem;
+use Nexendrie\Model\ThemesManager;
 use Nexendrie\Orm\Model as ORM;
 
 /**
@@ -17,11 +18,13 @@ use Nexendrie\Orm\Model as ORM;
 final class SystemSettingsFormFactory {
   protected SettingsRepository $sr;
   protected ORM $orm;
+  protected ThemesManager $themesManager;
   protected string $appDir;
   
-  public function __construct(string $appDir, SettingsRepository $settingsRepository, ORM $orm) {
+  public function __construct(string $appDir, SettingsRepository $settingsRepository, ORM $orm, ThemesManager $themesManager) {
     $this->sr = $settingsRepository;
     $this->orm = $orm;
+    $this->themesManager = $themesManager;
     $this->appDir = $appDir;
   }
   
@@ -72,7 +75,7 @@ final class SystemSettingsFormFactory {
       ->addRule(Form::INTEGER, "Počet novinek na stránku musí být číslo.");
     $form->addGroup("Nový uživatel");
     $newUser = $form->addContainer("newUser");
-    $newUser->addSelect("style", "Výchozí vzhled:", UserSettingsFormFactory::getStylesList())
+    $newUser->addSelect("style", "Výchozí vzhled:", $this->themesManager->getList())
       ->setRequired("Zadej vzhled.");
     $newUser->addText("money", "Peníze:")
       ->setRequired("Zadej peníze.")

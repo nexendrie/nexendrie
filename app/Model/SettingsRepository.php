@@ -5,7 +5,6 @@ namespace Nexendrie\Model;
 
 use Nette\Utils\Arrays;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Nexendrie\Forms\UserSettingsFormFactory;
 use Nexendrie\Utils\Intervals;
 
 /**
@@ -15,6 +14,8 @@ use Nexendrie\Utils\Intervals;
  * @property-read array $settings
  */
 final class SettingsRepository {
+  protected ThemesManager $themesManager;
+
   protected array $defaults = [
     "roles" => [
       "guestRole" => 13,
@@ -83,12 +84,13 @@ final class SettingsRepository {
   
   use \Nette\SmartObject;
   
-  public function __construct(array $settings) {
+  public function __construct(array $settings, ThemesManager $themesManager) {
+    $this->themesManager = $themesManager;
     $this->settings = $this->validateSettings($settings);
   }
   
   protected function validateStyle(string $value): bool {
-    return array_key_exists($value, UserSettingsFormFactory::getStylesList());
+    return array_key_exists($value, $this->themesManager->getList());
   }
   
   protected function validatePercent(int $value): bool {

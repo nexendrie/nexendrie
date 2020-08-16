@@ -4,9 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
-use Nette\Utils\Finder;
-use Nette\Neon\Neon;
-use Nette\Utils\Arrays;
+use Nexendrie\Model\ThemesManager;
 use Nexendrie\Model\UserManager;
 use Nette\Security\User;
 use Nexendrie\Model\SettingsException;
@@ -20,30 +18,12 @@ use Nexendrie\Orm\User as UserEntity;
 final class UserSettingsFormFactory {
   protected UserManager $model;
   protected User $user;
-  
-  public function __construct(UserManager $model, User $user) {
+  protected ThemesManager $themesManager;
+
+  public function __construct(UserManager $model, User $user, ThemesManager $themesManager) {
     $this->model = $model;
     $this->user = $user;
-  }
-  
-  /**
-   * Gets list of styles
-   */
-  public static function getStylesList(): array {
-    $styles = [];
-    $dir = __DIR__ . "/../../www/styles";
-    $file = file_get_contents("$dir/list.neon");
-    if($file === false) {
-      return [];
-    }
-    $list = Neon::decode($file);
-    /** @var \SplFileInfo $style */
-    foreach(Finder::findFiles("*.css")->in($dir) as $style) {
-      $key = $style->getBasename(".css");
-      $value = Arrays::get($list, $key, $key);
-      $styles[$key] = $value;
-    }
-    return $styles;
+    $this->themesManager = $themesManager;
   }
   
   public function create(): Form {
@@ -57,7 +37,7 @@ final class UserSettingsFormFactory {
       ->setRequired("Zadej e-mail.");
     $form->addRadioList("gender", "Pohlaví:", UserEntity::getGenders())
       ->setRequired("Vyber pohlaví.");
-    $form->addSelect("style", "Vzhled stránek:", static::getStylesList());
+    $form->addSelect("style", "Vzhled stránek:", $this->themesManager->getList());
     $form->addGroup("Heslo")
       ->setOption("description", "Současné a nové heslo vyplňujte jen pokud ho chcete změnit.");
     $passwordOld = $form->addPassword("password_old", "Současné heslo:");

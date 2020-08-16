@@ -14,12 +14,14 @@ use Nette\Bridges\ApplicationLatte\ILatteFactory;
  * @author Jakub Konečný
  */
 final class NexendrieExtension extends \Nette\DI\CompilerExtension {
+  protected string $wwwDir;
   protected string $appDir;
-  
-  public function __construct(string $appDir) {
+
+  public function __construct(string $wwwDir, string $appDir) {
+    $this->wwwDir = $wwwDir;
     $this->appDir = $appDir;
   }
-  
+
   public function loadConfiguration(): void {
     $this->registerMenuConditions();
     $this->addChatCommands();
@@ -145,6 +147,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Model\OpenSearch::class);
     $builder->addDefinition($this->prefix("model.moderation"))
       ->setType(Nexendrie\Model\Moderation::class);
+    $builder->addDefinition($this->prefix("model.themesManager"))
+      ->setFactory(Nexendrie\Model\ThemesManager::class, [$this->wwwDir]);
   }
   
   protected function addCronTasks(): void {
