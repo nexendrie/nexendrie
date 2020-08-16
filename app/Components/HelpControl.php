@@ -5,6 +5,7 @@ namespace Nexendrie\Components;
 
 use Nexendrie\BookComponent\BookControl;
 use Nexendrie\BookComponent\BookPage;
+use Nexendrie\BookComponent\BookPagesStorage;
 use Nexendrie\Model\Adventure;
 use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Model\Locale;
@@ -24,6 +25,7 @@ use Nexendrie\Orm\UserJob as UserJobEntity;
  *
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property BookPagesStorage|BookPage[] $pages
  */
 final class HelpControl extends BookControl {
   protected ORM $orm;

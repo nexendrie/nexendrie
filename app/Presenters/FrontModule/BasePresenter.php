@@ -78,6 +78,7 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
     }
     /** @var ChatControl $chat */
     $chat = $chatFactory->create();
+    /** @var NewChatMessageFormFactory $factory */
     return $factory->create($chat);
   }
 }
