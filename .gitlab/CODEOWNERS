@@ -1,36 +1,37 @@
-*                   @konecnyjakub
+*                           @konecnyjakub
 
 [Project Management]
-/.gitlab/           @nexendrie/project-management
-/README.md          @nexendrie/project-management
-/LICENSE.md         @nexendrie/project-management
-/CONTRIBUTING.md    @nexendrie/project-management
-/CHANGELOG.md       @nexendrie/project-management
+/.gitlab/                   @nexendrie/project-management
+/README.md                  @nexendrie/project-management
+/LICENSE.md                 @nexendrie/project-management
+/CONTRIBUTING.md            @nexendrie/project-management
+/CHANGELOG.md               @nexendrie/project-management
 
 [Quality Assurance]
-/phpstan.neon       @nexendrie/quality-assurance
-/.csslintrc         @nexendrie/quality-assurance
+/phpstan.neon               @nexendrie/quality-assurance
+/.csslintrc                 @nexendrie/quality-assurance
 
 [Devops]
-/migrations/        @nexendrie/devops
-/tools/             @nexendrie/devops
-/.gitlab-ci.yml     @nexendrie/devops
-/.scrutinizer.yml   @nexendrie/devops
-/install.sh         @nexendrie/devops
-/build.xml          @nexendrie/devops
-/phinx.php          @nexendrie/devops
-/deployment.ini     @nexendrie/devops
-/INSTALL.md         @nexendrie/devops
-.gitattributes      @nexendrie/devops
-.htaccess           @nexendrie/devops
-robots.txt          @nexendrie/devops
+/migrations/                @nexendrie/devops
+/tools/                     @nexendrie/devops
+/.gitlab-ci.yml             @nexendrie/devops
+/.scrutinizer.yml           @nexendrie/devops
+/install.sh                 @nexendrie/devops
+/dast_environment_url.sh    @nexendrie/devops
+/build.xml                  @nexendrie/devops
+/phinx.php                  @nexendrie/devops
+/deployment.ini             @nexendrie/devops
+/INSTALL.md                 @nexendrie/devops
+.gitattributes              @nexendrie/devops
+.htaccess                   @nexendrie/devops
+robots.txt                  @nexendrie/devops
 
 [PHP Code]
-/app/               @konecnyjakub
-/composer.json      @konecnyjakub
+/app/                       @konecnyjakub
+/composer.json              @konecnyjakub
 
 [CSS]
-/www/styles/        @konecnyjakub
+/www/styles/                @konecnyjakub
 
 [Tests]
-/tests/             @konecnyjakub
+/tests/                     @konecnyjakub

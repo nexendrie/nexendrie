@@ -2,6 +2,7 @@ include:
   - template: Dependency-Scanning.gitlab-ci.yml
   - template: License-Scanning.gitlab-ci.yml
   - template: SAST.gitlab-ci.yml
+  - template: DAST.gitlab-ci.yml
   - template: Secret-Detection.gitlab-ci.yml
 
 image: nexendrie/php:7.4
@@ -14,6 +15,7 @@ stages:
   - install
   - test
   - deploy
+  - dast
 
 .default_cache: &default_cache
   policy: pull
@@ -58,6 +60,16 @@ sast:
     SAST_DEFAULT_ANALYZERS: "eslint,phpcs-security-audit"
   cache:
     <<: *default_cache
+
+dast:
+  before_script:
+    - ./dast_environment_url.sh
+  variables:
+    DAST_REQUEST_HEADERS: "Cache-control: no-cache"
+    DAST_EXCLUDE_RULES: "10015,10021,10031,10202,10037"
+    GIT_STRATEGY: fetch
+  rules:
+    - when: on_success
 
 test:default:
   <<: *test_job
