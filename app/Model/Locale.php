@@ -80,7 +80,7 @@ final class Locale {
         "a", "\$4"
       ];
     }
-    return preg_replace($pattern, $replace, $message);
+    return (string) preg_replace($pattern, $replace, $message);
   }
   
   protected function getFormats(): array {

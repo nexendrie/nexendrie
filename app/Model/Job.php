@@ -276,7 +276,7 @@ final class Job {
   public function parseJobHelp(UserJobEntity $job): string {
     $oldCount = $job->count;
     $job->count = ($job->job->count > 0) ? $job->job->count : 1;
-    $reward = $this->localeModel->money(array_sum($job->reward));
+    $reward = $this->localeModel->money((int) array_sum($job->reward));
     $job->count = $oldCount;
     $help = str_replace("%reward%", $reward, $job->job->help);
     /** @var string $help */
@@ -390,7 +390,7 @@ final class Job {
     foreach($jobs as $job) {
       $income += array_sum($job->reward);
     }
-    return $income;
+    return (int) $income;
   }
 }
 ?>

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\ApiModule\V1;
 
+use Nexendrie\Orm\AdventureNpc;
+
 /**
  * NpcsPresenter
  *
@@ -27,6 +29,7 @@ final class NpcsPresenter extends BasePresenter {
   public function actionRead(): void {
     if(isset($this->params["associations"]["adventures"])) {
       $adventure = (int) $this->params["associations"]["adventures"];
+      /** @var AdventureNpc|null $record */
       $record = $this->orm->adventureNpcs->getBy(["id" => $this->getId(), "adventure" => $adventure, ]);
     } else {
       return;

@@ -5,6 +5,7 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Loan as LoanEntity;
 use Nexendrie\Orm\Deposit as DepositEntity;
+use Nexendrie\Orm\User;
 
 /**
  * Bank Model
@@ -110,6 +111,7 @@ final class Bank {
     if(!$this->user->isLoggedIn()) {
       return 0;
     }
+    /** @var User $user */
     $user = $this->orm->users->getById($this->user->id);
     return $user->money;
   }

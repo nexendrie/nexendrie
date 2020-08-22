@@ -53,7 +53,7 @@ abstract class BaseTransformer implements ITransformer {
       $links["self"] = $this->createEntityLink("self", $this->getCollectionName(), $apiVersion, $entity->id, $entity->id);
     }
     $record = $entity->toArray(ToArrayConverter::RELATIONSHIP_AS_IS);
-    $record = array_filter($record, function($key) {
+    $record = array_filter($record, function($key): bool {
       return in_array($key, $this->fields, true);
     }, ARRAY_FILTER_USE_KEY);
     foreach($record as $rel => &$value) {

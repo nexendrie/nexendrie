@@ -27,7 +27,7 @@ final class OpenDepositAccountFormFactory {
       ->addRule(Form::RANGE, "Částka musí být v rozmezí 1-$maxDeposit.", [1, $maxDeposit]);
     $term = new DateControl("Termín:");
     $term->setRequired("Zadej datum.");
-    $term->addRule(function(DateControl $datePicker) {
+    $term->addRule(function(DateControl $datePicker): bool {
       return $datePicker->value->getTimestamp() > time();
     }, "Datum nemůže být v minulosti.");
     $form->addComponent($term, "term");

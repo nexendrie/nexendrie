@@ -46,7 +46,7 @@ final class Rss {
       "title" => "Nexendrie $versionSuffix- Novinky", "description" => "Novinky v Nexendrii",
       "link" => $this->linkGenerator->link("Front:Homepage:default"), "language" => "cs",
     ];
-    $this->generator->dataSource = function() {
+    $this->generator->dataSource = function(): Collection {
       $return = new Collection();
       $items = $this->articleModel->listOfNews();
       /** @var \Nexendrie\Orm\Article $row */
@@ -79,7 +79,7 @@ final class Rss {
       "title" => "Nexendrie $versionSuffix- Komentáře k " . $article->title,
       "description" => "Komentáře k článku " . $article->title, "link" => $articleLink, "language" => "cs",
     ];
-    $this->generator->dataSource = function() use($id, $articleLink) {
+    $this->generator->dataSource = function() use($id, $articleLink): Collection {
       $return = new Collection();
       $comments = $this->articleModel->viewComments($id)->orderBy("created", ICollection::DESC);
       /** @var \Nexendrie\Orm\Comment $comment */

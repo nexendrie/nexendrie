@@ -36,7 +36,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->userProfileLinkFactory = $userProfileLinkFactory;
   }
 
-  public function storeRequest($expiration = "+ 10 minutes"): string {
+  public function storeRequest(string $expiration = "+ 10 minutes"): string {
     $session = $this->getSession("Nette.Application/requests");
     do {
       $key = \Nette\Utils\Random::generate(5);
@@ -52,7 +52,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     return (is_string($flashKey) && $flashKey !== "") ? $flashKey : null;
   }
 
-  public function restoreRequest($key): void {
+  public function restoreRequest(string $key): void {
     $session = $this->getSession("Nette.Application/requests");
     if(!isset($session[$key])) {
       return;
@@ -94,11 +94,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
 
   /**
    * @param string|int|\DateTimeInterface $lastModified
-   * @param string|null $etag
-   * @param mixed $expire
    */
-  public function lastModified($lastModified = 0, $etag = null, $expire = null): void {
-    $this->getHttpResponse()->setHeader("Pragma", null);
+  public function lastModified($lastModified = 0, string $etag = null, string $expire = null): void {
+    $this->getHttpResponse()->deleteHeader("Pragma");
     if(!$this->cachingEnabled) {
       return;
     }

@@ -156,7 +156,6 @@ final class Market {
     if($user->money < $itemRow->price) {
       throw new InsufficientFundsException();
     }
-    /** @var UserItemEntity $row */
     $row = $this->orm->userItems->getByUserAndItem($user->id, $item);
     if($row === null || in_array($itemRow->type, ItemEntity::getEquipmentTypes(), true)) {
       $row = new UserItemEntity();

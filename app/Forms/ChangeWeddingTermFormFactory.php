@@ -26,7 +26,7 @@ final class ChangeWeddingTermFormFactory {
     $term = new DateTimeControl("Nový termín:");
     $term->setRequired("Zadej datum a čas.");
     $term->setValue($marriage->term);
-    $term->addRule(function(DateTimeControl $dateTimePicker) {
+    $term->addRule(function(DateTimeControl $dateTimePicker): bool {
       return $dateTimePicker->value->getTimestamp() > time();
     }, "Datum nemůže být v minulosti.");
     $form->addComponent($term, "term");

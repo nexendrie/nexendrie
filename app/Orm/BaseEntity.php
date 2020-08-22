@@ -11,7 +11,7 @@ abstract class BaseEntity extends \Nextras\Orm\Entity\Entity {
     }
   }
 
-  public function onBeforeUpdate() {
+  public function onBeforeUpdate(): void {
     parent::onBeforeUpdate();
     if($this->metadata->hasProperty("updated")) {
       $this->updated = time();

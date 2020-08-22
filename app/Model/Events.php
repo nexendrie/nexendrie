@@ -114,7 +114,7 @@ final class Events implements \EventCalendar\IEventModel {
    * @return string[]
    */
   public function getForDate(int $year, int $month, int $day): array {
-    if($this->events === null) {
+    if(!isset($this->events)) {
       $this->loadEvents($year, $month);
     }
     $events = [];
@@ -142,7 +142,7 @@ final class Events implements \EventCalendar\IEventModel {
    * @return EventDummy[]
    */
   public function getCurrentEvents(): array {
-    $return = $this->cache->load("events", function(&$dependencies) {
+    return $this->cache->load("events", function(&$dependencies): array {
       $dependencies[Cache::EXPIRE] = "15 minutes";
       $return = [];
       $events = $this->orm->events->findForTime();
@@ -151,7 +151,6 @@ final class Events implements \EventCalendar\IEventModel {
       }
       return $return;
     });
-    return $return;
   }
   
   /**

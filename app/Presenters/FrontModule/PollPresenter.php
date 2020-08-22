@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Components\IPollControlFactory;
+use Nexendrie\Components\PollControl;
 use Nexendrie\Model\PollNotFoundException;
 
 /**
@@ -33,7 +34,7 @@ final class PollPresenter extends BasePresenter {
   }
   
   protected function createComponentPoll(IPollControlFactory $factory): \Nette\Application\UI\Multiplier {
-    return new \Nette\Application\UI\Multiplier(function($id) use ($factory) {
+    return new \Nette\Application\UI\Multiplier(function($id) use ($factory): PollControl {
       $poll = $factory->create();
       $poll->id = (int) $id;
       return $poll;

@@ -5,6 +5,7 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Adventure as AdventureEntity;
 use Nexendrie\Orm\AdventureNpc as AdventureNpcEntity;
+use Nexendrie\Orm\User;
 use Nexendrie\Orm\UserAdventure as UserAdventureEntity;
 use Nexendrie\Orm\Mount as MountEntity;
 use Nextras\Orm\Collection\ICollection;
@@ -263,6 +264,7 @@ final class Adventure {
     $enemy = $this->combatHelper->getAdventureNpc($npc);
     $combat->setDuelParticipants($player, $enemy);
     $combat->execute();
+    /** @var User $user */
     $user = $this->orm->users->getById($this->user->id);
     $user->life = $player->hitpoints;
     return ($combat->winner === 1);

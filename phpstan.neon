@@ -4,11 +4,13 @@ includes:
     - vendor/phpstan/phpstan-nette/rules.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 parameters:
+    earlyTerminatingMethodCalls:
+        Nexendrie\Presenters\ApiModule\BasePresenter:
+            - resourceNotFound
     universalObjectCratesClasses:
         - Nette\Security\IIdentity
         - Nextras\Orm\Entity\IEntity
     ignoreErrors:
         - '#Method Nexendrie\\Orm\[a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+ should return Nexendrie\\Orm[a-zA-Z0-9\\_]+|null but returns Nextras\\Orm\\IEntity|null#'
-        - '#Construct empty\(\) is not allowed. Use more strict comparison#'
         - '#Method Nexendrie\\Orm\\[a-zA-Z0-9\\_]::getter[a-zA-Z0-9\\_]() should return int but returns float|int#'
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'

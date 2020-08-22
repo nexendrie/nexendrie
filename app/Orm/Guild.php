@@ -66,7 +66,7 @@ final class Guild extends BaseEntity {
     return $this->localeModel->money($this->upgradePrice);
   }
 
-  protected function getterJobBonusIncome() {
+  protected function getterJobBonusIncome(): int {
     return ($this->level - 1) * static::JOB_INCOME_BONUS_PER_LEVEL;
   }
 }

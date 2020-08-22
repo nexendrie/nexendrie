@@ -36,7 +36,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->sendJson(["message" => "This action is not allowed."]);
   }
 
-  protected function shutdown($response) {
+  protected function shutdown(\Nette\Application\IResponse $response): void {
     parent::shutdown($response);
     // do not send cookies with response, they are not (meant to be) used for authentication
     $this->getHttpResponse()->deleteHeader("Set-Cookie");
@@ -171,7 +171,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
 
   protected function getInvalidEntityName(): string {
     $name = $this->getEntityName();
-    return preg_replace_callback("#[A-Z]#", function(array $letter) {
+    return (string) preg_replace_callback("#[A-Z]#", function(array $letter): string {
       return " " . Strings::lower($letter[0]);
     }, $name);
   }

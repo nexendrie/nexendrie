@@ -14,6 +14,7 @@ use Nexendrie\Model\NoEnemyRemainException;
 use Nexendrie\Model\NotAllEnemiesDefeatedException;
 use Nexendrie\Model\CannotDoAdventureException;
 use Nexendrie\Model\AdventureNotAccessibleException;
+use Nexendrie\Orm\UserAdventure;
 
 /**
  * AdventureControl
@@ -47,6 +48,7 @@ final class AdventureControl extends \Nette\Application\UI\Control {
   
   public function render(): void {
     $this->template->setFile(__DIR__ . "/adventure.latte");
+    /** @var UserAdventure $adventure */
     $this->template->adventure = $adventure = $this->model->getCurrentAdventure();
     $this->template->nextEnemy = $adventure->nextEnemy;
     $this->template->render();

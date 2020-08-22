@@ -42,7 +42,7 @@ final class CombatHelper {
     if($helmet !== null) {
       $hpIncrease = ($helmet->item->strength + $helmet->level) * 5;
     }
-    if($set && $set->stat === ItemSetEntity::STAT_HITPOINTS) {
+    if($set !== null && $set->stat === ItemSetEntity::STAT_HITPOINTS) {
       $hpIncrease += $set->bonus;
     }
     $marriage = $this->orm->marriages->getActiveMarriage($user->id);

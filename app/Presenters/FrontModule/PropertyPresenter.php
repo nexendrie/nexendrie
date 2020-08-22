@@ -102,9 +102,9 @@ final class PropertyPresenter extends BasePresenter {
   
   public function renderBudget(): void {
     $budget = $this->model->budget();
-    $this->template->incomes = $this->localeModel->money(array_sum($budget["incomes"]));
-    $this->template->expenses = $this->localeModel->money(array_sum($budget["expenses"]));
-    $this->template->budget = $this->localeModel->money(array_sum($budget["incomes"]) - array_sum($budget["expenses"]));
+    $this->template->incomes = $this->localeModel->money((int) array_sum($budget["incomes"]));
+    $this->template->expenses = $this->localeModel->money((int) array_sum($budget["expenses"]));
+    $this->template->budget = $this->localeModel->money((int) array_sum($budget["incomes"]) - (int) array_sum($budget["expenses"]));
     $this->template->work = $this->localeModel->money($budget["incomes"]["work"]);
     $this->template->adventures = $this->localeModel->money($budget["incomes"]["adventures"]);
     $this->template->beerProduction = $this->localeModel->money($budget["incomes"]["beerProduction"]);

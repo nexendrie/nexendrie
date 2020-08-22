@@ -93,7 +93,7 @@ final class Property {
         "membershipFee" => $this->calculateMembershipFee(),
       ]
     ];
-    $budget["expenses"]["incomeTax"] = $this->taxesModel->calculateTax(array_sum($budget["incomes"]));
+    $budget["expenses"]["incomeTax"] = $this->taxesModel->calculateTax((int) array_sum($budget["incomes"]));
     $towns = $this->orm->towns->findByOwner($this->user->id);
     foreach($towns as $town) {
       $budget["incomes"]["taxes"] += $this->taxesModel->calculateTownTaxes($town)->taxes;

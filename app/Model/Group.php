@@ -35,7 +35,7 @@ final class Group {
    * @return GroupDummy[]
    */
   public function listOfGroups(): array {
-    $groups = $this->cache->load("groups", function() {
+    return $this->cache->load("groups", function(): array {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll();
       /** @var GroupEntity $row */
@@ -44,7 +44,6 @@ final class Group {
       }
       return $groups;
     });
-    return $groups;
   }
   
   /**

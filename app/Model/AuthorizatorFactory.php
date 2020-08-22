@@ -45,7 +45,7 @@ final class AuthorizatorFactory {
    * @return GroupDummy[]
    */
   public function getGroups(): array {
-    $groups = $this->cache->load("groups_by_level", function() {
+    return $this->cache->load("groups_by_level", function(): array {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll()->orderBy("level");
       /** @var \Nexendrie\Orm\Group $row */
@@ -54,14 +54,13 @@ final class AuthorizatorFactory {
       }
       return $groups;
     });
-    return $groups;
   }
   
   /**
    * @return string[]
    */
   public function getGuildRanks(): array {
-    $ranks = $this->cache->load("guild_ranks", function() {
+    return $this->cache->load("guild_ranks", function(): array {
       $ranks = [];
       $rows = $this->orm->guildRanks->findAll();
       /** @var \Nexendrie\Orm\GuildRank $row */
@@ -70,14 +69,13 @@ final class AuthorizatorFactory {
       }
       return $ranks;
     });
-    return $ranks;
   }
   
   /**
    * @return string[]
    */
   public function getOrderRanks(): array {
-    $ranks = $this->cache->load("order_ranks", function() {
+    return $this->cache->load("order_ranks", function(): array {
       $ranks = [];
       $rows = $this->orm->orderRanks->findAll();
       /** @var \Nexendrie\Orm\OrderRank $row */
@@ -86,7 +84,6 @@ final class AuthorizatorFactory {
       }
       return $ranks;
     });
-    return $ranks;
   }
   
   /**
@@ -95,7 +92,7 @@ final class AuthorizatorFactory {
    * @return PermissionDummy[]
    */
   public function getPermissions(): array {
-    $return = $this->cache->load("permissions", function() {
+    return $this->cache->load("permissions", function(): array {
       $return = [];
       $rows = $this->orm->permissions->findAll();
       /** @var \Nexendrie\Orm\Permission $row */
@@ -104,10 +101,13 @@ final class AuthorizatorFactory {
       }
       return $return;
     });
-    return $return;
   }
   
   protected function addRanks(array $ranks, Permission &$permission, string $type): void {
+    /**
+     * @var int $id
+     * @var string $rank
+     */
     foreach($ranks as $id => $rank) {
       $parent = null;
       if($id > 1) {
@@ -146,7 +146,7 @@ final class AuthorizatorFactory {
       $permission->addRole($row->singleName, $parent);
     }
     $this->addRanks($guildRanks, $permission, static::GUILD_RANK_ROLE_PREFIX);
-    $addPrefix = function(&$value, $key, $prefix) {
+    $addPrefix = function(&$value, $key, $prefix): void {
       $value = $prefix . "^" . $value;
     };
     array_walk($guildRanks, $addPrefix, static::GUILD_RANK_ROLE_PREFIX);

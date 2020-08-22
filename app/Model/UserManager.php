@@ -25,9 +25,9 @@ final class UserManager {
   public const REG_DUPLICATE_NAME = 1,
     REG_DUPLICATE_EMAIL = 2,
     SET_INVALID_PASSWORD = 3;
-  
+
   use \Nette\SmartObject;
-  
+
   public function __construct(ORM $orm, SettingsRepository $sr, User $user, Passwords $passwords) {
     $this->orm = $orm;
     $this->user = $user;
@@ -35,7 +35,7 @@ final class UserManager {
     $this->roles = $sr->settings["roles"];
     $this->newUser = $sr->settings["newUser"];
   }
-  
+
   /**
    * Checks whether a name is available
    *
@@ -53,7 +53,7 @@ final class UserManager {
     }
     return false;
   }
-  
+
   /**
    * Checks whether an e-mail is available
    *
@@ -71,7 +71,7 @@ final class UserManager {
     }
     return false;
   }
-  
+
   /**
    * Register new user
    *
@@ -96,7 +96,7 @@ final class UserManager {
     $user->group = $this->roles["loggedInRole"];
     $this->orm->users->persistAndFlush($user);
   }
-  
+
   /**
    * Get user's settings
    *
@@ -113,7 +113,7 @@ final class UserManager {
     ];
     return $settings;
   }
-  
+
   /**
    * Change user's settings
    *
@@ -130,19 +130,18 @@ final class UserManager {
     if(!$this->emailAvailable($settings["email"], $this->user->id)) {
       throw new SettingsException("The e-mail is used by someone else.", static::REG_DUPLICATE_EMAIL);
     }
+    $settings = array_filter($settings);
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     foreach($settings as $key => $value) {
       switch($key) {
         case "password_new":
-          if(!empty($value)) {
-            if(!$this->passwords->verify($settings["password_old"], $user->password)) {
-              throw new SettingsException("Invalid password.", static::SET_INVALID_PASSWORD);
-            }
-            $user->password = $this->passwords->hash($value);
+          if(!$this->passwords->verify($settings["password_old"], $user->password)) {
+            throw new SettingsException("Invalid password.", static::SET_INVALID_PASSWORD);
           }
+          $user->password = $this->passwords->hash($value);
           unset($settings[$key], $settings["password_old"], $settings["password_check"]);
-  break;
+          break;
       }
       $skip = ["password_old", "password_new", "password_check"];
       if(!in_array($key, $skip, true)) {
@@ -151,16 +150,16 @@ final class UserManager {
     }
     $this->orm->users->persistAndFlush($user);
   }
-  
+
   /**
    * Get list of all users
-   * 
+   *
    * @return UserEntity[]|ICollection
    */
   public function listOfUsers(): ICollection {
     return $this->orm->users->findAll()->orderBy("group")->orderBy("id");
   }
-  
+
   /**
    * @throws UserNotFoundException
    */
@@ -175,7 +174,7 @@ final class UserManager {
     }
     $this->orm->users->persistAndFlush($user);
   }
-  
+
   public function get(int $id): UserEntity {
     $user = $this->orm->users->getById($id);
     if($user === null) {
@@ -184,4 +183,5 @@ final class UserManager {
     return $user;
   }
 }
+
 ?>
