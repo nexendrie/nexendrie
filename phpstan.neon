@@ -4,6 +4,11 @@ includes:
     - vendor/phpstan/phpstan-nette/rules.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 parameters:
+    level: 8
+    paths:
+        - app
+        - tests
+        - tools
     earlyTerminatingMethodCalls:
         Nexendrie\Presenters\ApiModule\BasePresenter:
             - resourceNotFound

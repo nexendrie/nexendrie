@@ -152,13 +152,6 @@
   <target name="phpstan" description="PHPStan analyzes">
     <exec executable="vendor/bin/phpstan" logoutput="true" passthru="true" checkreturn="true">
       <arg value="analyze"/>
-      <arg value="-l"/>
-      <arg value="8"/>
-      <arg value="-c"/>
-      <arg path="phpstan.neon"/>
-      <arg path="app"/>
-      <arg path="tests"/>
-      <arg path="tools"/>
     </exec>
   </target>
   <target name="setup-db">
