@@ -9,6 +9,7 @@ parameters:
         - app
         - tests
         - tools
+        - migrations
     earlyTerminatingMethodCalls:
         Nexendrie\Presenters\ApiModule\BasePresenter:
             - resourceNotFound
