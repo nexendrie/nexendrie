@@ -14,13 +14,16 @@ final class EntityConverter {
   /** @var ITransformer[]|Collection */
   protected Collection $transformers;
 
-  public function __construct(int $maxDepth, \Nette\DI\Container $container) {
+  /**
+   * @param ITransformer[] $transformers
+   */
+  public function __construct(int $maxDepth, array $transformers) {
     $this->maxDepth = $maxDepth;
     $this->transformers = new class extends Collection {
       protected $class = ITransformer::class;
     };
-    foreach($container->findByType(ITransformer::class) as $serviceName) {
-      $this->transformers[] = $container->getService($serviceName);
+    foreach($transformers as $transformer) {
+      $this->transformers[] = $transformer;
     }
   }
 

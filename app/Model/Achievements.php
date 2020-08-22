@@ -15,12 +15,12 @@ final class Achievements {
   
   /** @var IAchievement[] */
   protected array $achievements = [];
-  
-  public function __construct(\Nette\DI\Container $container) {
-    $services = $container->findByType(IAchievement::class);
-    foreach($services as $service) {
-      $this->achievements[] = $container->getService($service);
-    }
+
+  /**
+   * @param IAchievement[] $achievements
+   */
+  public function __construct(array $achievements) {
+    $this->achievements = $achievements;
   }
   
   /**
