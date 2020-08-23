@@ -63,7 +63,6 @@ final class AuthorizatorFactory {
     return $this->cache->load("guild_ranks", function(): array {
       $ranks = [];
       $rows = $this->orm->guildRanks->findAll();
-      /** @var \Nexendrie\Orm\GuildRank $row */
       foreach($rows as $row) {
         $ranks[$row->id] = $row->name;
       }
@@ -78,7 +77,6 @@ final class AuthorizatorFactory {
     return $this->cache->load("order_ranks", function(): array {
       $ranks = [];
       $rows = $this->orm->orderRanks->findAll();
-      /** @var \Nexendrie\Orm\OrderRank $row */
       foreach($rows as $row) {
         $ranks[$row->id] = $row->name;
       }
@@ -95,7 +93,6 @@ final class AuthorizatorFactory {
     return $this->cache->load("permissions", function(): array {
       $return = [];
       $rows = $this->orm->permissions->findAll();
-      /** @var \Nexendrie\Orm\Permission $row */
       foreach($rows as $row) {
         $return[] = $row->dummy();
       }

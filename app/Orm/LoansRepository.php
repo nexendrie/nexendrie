@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method Loan|null getById(int $id)
+ * @method Loan|null getBy(array $conds)
+ * @method ICollection|Loan[] findBy(array $conds)
+ * @method ICollection|Loan[] findAll()
  */
 final class LoansRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Loan::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?Loan {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

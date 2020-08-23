@@ -7,18 +7,15 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method User|null getById(int $id)
+ * @method User|null getBy(array $conds)
+ * @method ICollection|User[] findBy(array $conds)
+ * @method ICollection|User[] findAll()
  * @method ICollection|User[] findByLikeName(string $publicname)
  */
 final class UsersRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [User::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?User {
-    return $this->getBy(["id" => $id]);
   }
   
   public function getByPublicname(string $publicname): ?User {

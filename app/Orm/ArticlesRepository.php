@@ -7,19 +7,16 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method Article|null getById(int $id)
+ * @method Article|null getBy(array $conds)
+ * @method ICollection|Article[] findBy(array $conds)
+ * @method ICollection|Article[] findAll()
  * @method ICollection|Article[] findByLikeTitle(string $title)
  * @method ICollection|Article[] findByText(string $text)
  */
 final class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Article::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?Article {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

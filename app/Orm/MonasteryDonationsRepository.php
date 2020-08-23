@@ -7,6 +7,10 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method MonasteryDonation|null getById(int $id)
+ * @method MonasteryDonation|null getBy(array $conds)
+ * @method ICollection|MonasteryDonation[] findBy(array $conds)
+ * @method ICollection|MonasteryDonation[] findAll()
  */
 final class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {

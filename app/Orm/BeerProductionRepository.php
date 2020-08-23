@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method BeerProduction|null getById(int $id)
+ * @method BeerProduction|null getBy(array $conds)
+ * @method ICollection|BeerProduction[] findBy(array $conds)
+ * @method ICollection|BeerProduction[] findAll()
  */
 final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [BeerProduction::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?BeerProduction {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

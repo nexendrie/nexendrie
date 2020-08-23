@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method AdventureNpc|null getById(int $id)
+ * @method Punishment|null getBy(array $conds)
+ * @method ICollection|Punishment[] findBy(array $conds)
+ * @method ICollection|Punishment[] findAll()
  */
 final class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Punishment::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?Punishment {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

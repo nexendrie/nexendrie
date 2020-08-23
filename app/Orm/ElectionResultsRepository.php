@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method ElectionResult|null getById(int $id)
+ * @method ElectionResult|null getBy(array $conds)
+ * @method ICollection|ElectionResult[] findBy(array $conds)
+ * @method ICollection|ElectionResult[] findAll()
  */
 final class ElectionResultsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [ElectionResult::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?ElectionResult {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method Comment|null getById(int $id)
+ * @method Comment|null getBy(array $conds)
+ * @method ICollection|Comment[] findBy(array $conds)
+ * @method ICollection|Comment[] findAll()
  */
 final class CommentsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Comment::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?Comment {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

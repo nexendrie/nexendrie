@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method Permission|null getById(int $id)
+ * @method Permission|null getBy(array $conds)
+ * @method ICollection|Permission[] findBy(array $conds)
+ * @method ICollection|Permission[] findAll()
  */
 final class PermissionsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Permission::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?Permission {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method Mount|null getById(int $id)
+ * @method Mount|null getBy(array $conds)
+ * @method ICollection|Mount[] findBy(array $conds)
+ * @method ICollection|Mount[] findAll()
  */
 final class MountsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Mount::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?Mount {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

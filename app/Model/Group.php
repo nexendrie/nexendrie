@@ -38,7 +38,6 @@ final class Group {
     return $this->cache->load("groups", function(): array {
       $groups = [];
       $groupsRows = $this->orm->groups->findAll();
-      /** @var GroupEntity $row */
       foreach($groupsRows as $row) {
         $groups[$row->id] = $row->dummy();
       }

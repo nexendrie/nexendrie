@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method Event|null getById(int $id)
+ * @method Event|null getBy(array $conds)
+ * @method ICollection|Event[] findBy(array $conds)
+ * @method ICollection|Event[] findAll()
  */
 final class EventsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Event::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?Event {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

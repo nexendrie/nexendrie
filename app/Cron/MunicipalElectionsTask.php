@@ -56,7 +56,6 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask {
     $date->modify("-1 day");
     $year = (int) $date->format("Y");
     $month = (int) $date->format("n");
-    /** @var \Nexendrie\Orm\Town[] $towns */
     $towns = $this->orm->towns->findAll();
     $ranks = $this->orm->groups->getCityGroupIds();
     foreach($towns as $town) {

@@ -9,6 +9,7 @@ use Nette\Schema\Expect;
  * Api Extension for DIC
  *
  * @author Jakub Konečný
+ * @method \stdClass getConfig()
  */
 final class ApiExtension extends \Nette\DI\CompilerExtension {
   public function getConfigSchema(): \Nette\Schema\Schema {
@@ -20,7 +21,6 @@ final class ApiExtension extends \Nette\DI\CompilerExtension {
 
   public function loadConfiguration(): void {
     $builder = $this->getContainerBuilder();
-    /** @var \stdClass $config */
     $config = $this->getConfig();
     $builder->addDefinition($this->prefix("entityConverter"))
       ->setFactory(\Nexendrie\Api\EntityConverter::class, [$config->maxDepth]);

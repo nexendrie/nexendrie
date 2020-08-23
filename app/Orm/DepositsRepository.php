@@ -9,17 +9,14 @@ use Nextras\Orm\Collection\ICollection;
  * DepositsRepository
  *
  * @author Jakub Konečný
+ * @method Deposit|null getById(int $id)
+ * @method Deposit|null getBy(array $conds)
+ * @method ICollection|Deposit[] findBy(array $conds)
+ * @method ICollection|Deposit[] findAll()
  */
 final class DepositsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Deposit::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?Deposit {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

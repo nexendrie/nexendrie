@@ -49,7 +49,6 @@ final class Rss {
     $this->generator->dataSource = function(): Collection {
       $return = new Collection();
       $items = $this->articleModel->listOfNews();
-      /** @var \Nexendrie\Orm\Article $row */
       foreach($items as $row) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
         $return[] = $item = new Item([

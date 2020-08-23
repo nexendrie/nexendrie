@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method Town|null getById(int $id)
+ * @method Town|null getBy(array $conds)
+ * @method ICollection|Town[] findBy(array $conds)
+ * @method ICollection|Town[] findAll()
  */
 final class TownsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Town::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?Town {
-    return $this->getBy(["id" => $id]);
   }
   
   public function getByName(string $name): ?Town {

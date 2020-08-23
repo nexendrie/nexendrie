@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method Marriage|null getById(int $id)
+ * @method Marriage|null getBy(array $conds)
+ * @method ICollection|Marriage[] findBy(array $conds)
+ * @method ICollection|Marriage[] findAll()
  */
 final class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Marriage::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?Marriage {
-    return $this->getBy(["id" => $id]);
   }
   
   /**

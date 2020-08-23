@@ -7,17 +7,14 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
+ * @method UserItem|null getById(int $id)
+ * @method UserItem|null getBy(array $conds)
+ * @method ICollection|UserItem[] findBy(array $conds)
+ * @method ICollection|UserItem[] findAll()
  */
 final class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [UserItem::class];
-  }
-  
-  /**
-   * @param int $id
-   */
-  public function getById($id): ?UserItem {
-    return $this->getBy(["id" => $id]);
   }
   
   /**
