@@ -39,12 +39,12 @@
         "nexendrie/translation": "^2.1",
         "nexendrie/rss": "^0.9",
         "nexendrie/menu": "^2.2.1",
-        "nexendrie/utils": "^1.6.1",
+        "nexendrie/utils": "^1.7",
         "symfony/options-resolver": "^5.1",
         "heroesofabenez/chat": "^2.0.1",
         "heroesofabenez/combat": "^1.0",
         "adamstipak/nette-rest-route": "dev-master",
-        "robmorgan/phinx": "^0.12.3"
+        "robmorgan/phinx": "^0.12.4"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
