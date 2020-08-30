@@ -3156,12 +3156,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "df1d3e74d14fe5cb980d2514ebd5890371880143"
+                "reference": "c653ca562f4e263096f8181c6be4078042338669"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=df1d3e74d14fe5cb980d2514ebd5890371880143",
-                "reference": "df1d3e74d14fe5cb980d2514ebd5890371880143",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=c653ca562f4e263096f8181c6be4078042338669",
+                "reference": "c653ca562f4e263096f8181c6be4078042338669",
                 "shasum": ""
             },
             "require": {
@@ -3190,7 +3190,7 @@
                 "quality",
                 "testing"
             ],
-            "time": "2020-08-29T21:15:14+00:00"
+            "time": "2020-08-30T16:01:38+00:00"
         },
         {
             "name": "nexendrie/testbench",

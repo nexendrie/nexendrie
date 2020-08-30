@@ -4,7 +4,7 @@ declare(strict_types=1);
 use Phinx\Migration\AbstractMigration;
 
 class CommentsModeration extends AbstractMigration {
-  public function change() {
+  public function change(): void {
     $this->table("comments")
       ->addColumn("deleted", "boolean", ["default" => false,])
       ->update();

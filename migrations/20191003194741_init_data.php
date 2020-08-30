@@ -1091,7 +1091,7 @@ final class InitData extends AbstractMigration {
       ->update();
   }
 
-  public function down() {
+  public function down(): void {
     $this->execute("DELETE FROM castles");
     $this->execute("DELETE FROM users");
     $this->execute("DELETE FROM monasteries");

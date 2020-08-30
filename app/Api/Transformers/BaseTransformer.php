@@ -66,23 +66,23 @@ abstract class BaseTransformer implements ITransformer {
         foreach($value as $item) {
           /** @var ITransformer|null $transformer */
           $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($item)]);
-          $links[$transformer->getCollectionName()] = $this->createEntityLink($transformer->getCollectionName(), $transformer->getCollectionName(), $apiVersion, $entity->id);
-          if($maxDepth > 0 && $transformer !== null) {
-            $array[] = $transformer->transform($item, $maxDepth, $apiVersion);
-          } else {
+          if($transformer === null || $maxDepth < 1) {
             $array[] = $item->id;
+            continue;
           }
+          $links[$transformer->getCollectionName()] = $this->createEntityLink($transformer->getCollectionName(), $transformer->getCollectionName(), $apiVersion, $entity->id);
+          $array[] = $transformer->transform($item, $maxDepth, $apiVersion);
         }
         $value = $array;
       } else {
         /** @var ITransformer|null $transformer */
         $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($value)]);
-        $links[$rel] = $this->createEntityLink($rel, $transformer->getCollectionName(), $apiVersion, $entity->id, $value->id);
-        if($maxDepth > 0 && $transformer !== null) {
-          $value = $transformer->transform($value, $maxDepth, $apiVersion);
-        } else {
+        if($transformer === null || $maxDepth < 1) {
           $value = $value->id;
+          continue;
         }
+        $links[$rel] = $this->createEntityLink($rel, $transformer->getCollectionName(), $apiVersion, $entity->id, $value->id);
+        $value = $transformer->transform($value, $maxDepth, $apiVersion);
       }
     }
     unset($value);

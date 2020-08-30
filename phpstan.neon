@@ -1,8 +1,8 @@
 includes:
-    - vendor/nexendrie/code-quality/phpstan.neon
     - vendor/phpstan/phpstan-nette/extension.neon
     - vendor/phpstan/phpstan-nette/rules.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/nexendrie/code-quality/phpstan.neon
 parameters:
     level: 8
     paths:
@@ -18,5 +18,4 @@ parameters:
         - Nextras\Orm\Entity\IEntity
     ignoreErrors:
         - '#Method Nexendrie\\Orm\[a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+ should return Nexendrie\\Orm[a-zA-Z0-9\\_]+|null but returns Nextras\\Orm\\IEntity|null#'
-        - '#Method Nexendrie\\Orm\\[a-zA-Z0-9\\_]::getter[a-zA-Z0-9\\_]() should return int but returns float|int#'
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'

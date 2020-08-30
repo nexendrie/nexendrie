@@ -4,7 +4,7 @@ declare(strict_types=1);
 use Phinx\Migration\AbstractMigration;
 
 class CreatedUpdatedTime extends AbstractMigration {
-  public function change() {
+  public function change(): void {
     $this->table("articles")
       ->renameColumn("added", "created")
       ->addColumn("updated", "integer")
