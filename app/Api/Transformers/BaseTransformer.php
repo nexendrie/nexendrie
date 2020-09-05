@@ -27,7 +27,7 @@ abstract class BaseTransformer implements ITransformer {
     $this->container = $container;
     $this->linkGenerator = $linkGenerator;
     $this->transformers = new class extends Collection {
-      protected $class = ITransformer::class;
+      protected string $class = ITransformer::class;
     };
   }
 

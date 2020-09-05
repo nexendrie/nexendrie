@@ -20,7 +20,7 @@ final class EntityConverter {
   public function __construct(int $maxDepth, array $transformers) {
     $this->maxDepth = $maxDepth;
     $this->transformers = new class extends Collection {
-      protected $class = ITransformer::class;
+      protected string $class = ITransformer::class;
     };
     foreach($transformers as $transformer) {
       $this->transformers[] = $transformer;
