@@ -51,7 +51,7 @@ final class Rss {
       $items = $this->articleModel->listOfNews();
       foreach($items as $row) {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
-        $return[] = $item = new Item([
+        $return[] = new Item([
           "title" => $row->title, "description" => $row->text, "link" => $link, "pubDate" => $row->created,
           "comments" => $link . "#comments",
         ]);
