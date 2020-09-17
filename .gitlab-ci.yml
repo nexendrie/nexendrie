@@ -6,6 +6,10 @@ include:
 
 image: nexendrie/php:7.4
 
+variables:
+  URL_ALPHA: "https://alpha.nexendrie.cz"
+  URL_BETA: "https://beta.nexendrie.cz"
+
 stages:
   - install
   - test
@@ -80,7 +84,7 @@ deploy:alpha:
   <<: *deploy_job
   environment:
     name: alpha
-    url: https://alpha.nexendrie.cz
+    url: $URL_ALPHA
   only:
     - master@nexendrie/nexendrie
   variables:
@@ -90,7 +94,7 @@ deploy:beta:
   <<: *deploy_job
   environment:
     name: beta
-    url: https://beta.nexendrie.cz
+    url: $URL_BETA
   only:
     - tags@nexendrie/nexendrie
   variables:
