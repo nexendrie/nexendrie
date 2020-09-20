@@ -30,6 +30,7 @@ translation:
             - %appDir%/../vendor/nexendrie/book-component/src/lang
             - %appDir%/../vendor/heroesofabenez/chat/src/lang
             - %appDir%/../vendor/heroesofabenez/combat/src/lang
+            - %appDir%/../vendor/konecnyjakub/event-calendar/src/lang
     default: cs
 chat:
     databaseAdapter: Nexendrie\Chat\NextrasOrmAdapter

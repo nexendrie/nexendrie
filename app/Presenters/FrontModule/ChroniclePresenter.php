@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use EventCalendar\Simple\SimpleCalendar as Calendar;
+use EventCalendar\Simple\EventCalendar as Calendar;
 
 /**
  * Presenter Chronicle
@@ -35,20 +35,11 @@ final class ChroniclePresenter extends BasePresenter {
   }
   
   protected function createComponentEventsCalendar(): Calendar {
-    $calendar = new class extends Calendar {
-      public function render(): void {
-        $this->onDateChange((int) $this->year, (int) $this->month);
-        parent::render();
-      }
-    };
-    $calendar->language = Calendar::LANG_CZ;
+    $calendar = new Calendar();
     $calendar->firstDay = Calendar::FIRST_MONDAY;
-    $calendar->options = [
-      Calendar::OPT_BOTTOM_NAV_PREV => "Předchozí měsíc",
-      Calendar::OPT_BOTTOM_NAV_NEXT => "Následující měsíc",
-    ];
     $calendar->events = $this->eventsModel;
     $calendar->onDateChange[] = [$this->eventsModel, "loadEvents"];
+    $calendar->options[Calendar::OPT_WDAY_MAX_LEN] = PHP_INT_MAX;
     return $calendar;
   }
 
