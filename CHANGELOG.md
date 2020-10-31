@@ -1,4 +1,4 @@
-Version 1.0.0-beta8+dev
+Version 1.0.0-beta9
 - removed user setting infomails
 - made charter for founding town configurable
 - changed rss channel's link for comments feeds
