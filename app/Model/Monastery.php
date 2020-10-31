@@ -216,7 +216,7 @@ final class Monastery {
     $user = $this->orm->users->getById($this->user->id);
     $user->monastery = null;
 
-    if($user->ownedTowns->countStored() > 0 || $this->orm->castles->getByOwner($this->user->id)  !== null) {
+    if($user->ownedTowns->countStored() > 0 || $this->orm->castles->getByOwner($this->user->id) !== null) {
       $ranks = $this->orm->groups->getTowerGroupIds();
     } else {
       $ranks = $this->orm->groups->getCityGroupIds();
