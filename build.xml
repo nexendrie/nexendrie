@@ -92,6 +92,9 @@
   </target>
   <target name="update">
     <exec executable="./composer" logoutput="true" passthru="true" checkreturn="true">
+      <arg value="self-update"/>
+    </exec>
+    <exec executable="./composer" logoutput="true" passthru="true" checkreturn="true">
       <arg value="install"/>
       <arg value="--no-dev"/>
       <arg value="--ignore-platform-reqs"/>
