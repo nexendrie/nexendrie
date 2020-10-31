@@ -63,7 +63,7 @@ final class Article extends BaseEntity {
   }
 
   protected function getterCommentsCount(): int {
-    return $this->comments->get()->findBy(["deleted" => false,])->countStored();
+    return $this->comments->get()->findBy(["deleted" => false, ])->countStored();
   }
 }
 ?>

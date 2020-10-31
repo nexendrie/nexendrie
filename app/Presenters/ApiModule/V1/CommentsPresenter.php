@@ -27,7 +27,7 @@ final class CommentsPresenter extends BasePresenter {
     } elseif(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
       return;
     } else {
-      $records = $this->orm->comments->findBy(["deleted" => false,]);
+      $records = $this->orm->comments->findBy(["deleted" => false, ]);
     }
     $this->sendCollection($records);
   }

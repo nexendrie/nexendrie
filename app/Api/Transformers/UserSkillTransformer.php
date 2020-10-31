@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Api\Transformers;
 
 final class UserSkillTransformer extends BaseTransformer {
-  protected array $fields = ["level", "skill",];
+  protected array $fields = ["level", "skill", ];
   protected bool $createSelfLink = false;
 
   public function getEntityClassName(): string {

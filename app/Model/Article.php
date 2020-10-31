@@ -82,7 +82,7 @@ final class Article {
    */
   public function viewComments(int $article = 0): ICollection {
     if($article === 0) {
-      return $this->orm->comments->findBy(["deleted" => false,]);
+      return $this->orm->comments->findBy(["deleted" => false, ]);
     }
     return $this->orm->comments->findByArticle($article);
   }

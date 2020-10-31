@@ -22,7 +22,7 @@ final class CommentsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Comment[]
    */
   public function findByArticle($article): ICollection {
-    return $this->findBy(["article" => $article, "deleted" => false,]);
+    return $this->findBy(["article" => $article, "deleted" => false, ]);
   }
   
   /**
@@ -30,7 +30,7 @@ final class CommentsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Comment[]
    */
   public function findByAuthor($author): ICollection {
-    return $this->findBy(["author" => $author, "deleted" => false,]);
+    return $this->findBy(["author" => $author, "deleted" => false, ]);
   }
 }
 ?>

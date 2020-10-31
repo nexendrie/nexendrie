@@ -12,7 +12,7 @@ class RemoveInfomailsFromUser extends AbstractMigration {
 
   public function down(): void {
     $this->table("users")
-      ->addColumn("infomails", "boolean", ["default" => false,])
+      ->addColumn("infomails", "boolean", ["default" => false, ])
       ->update();
   }
 }
