@@ -1,5 +1,9 @@
 Version 1.0.0-beta8+dev
+- removed user setting infomails
+- made charter for founding town configurable
+- changed rss channel's link for comments feeds
 - raised minimal version of PHP to 7.4
+- moved publicly available files to subfolder www
 
 Version 1.0.0-beta8
 - raised minimal version of PHP to 7.3
