@@ -262,31 +262,31 @@
         },
         {
             "name": "kdyby/autowired",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kdyby/Autowired.git",
-                "reference": "c3183c5feeb3566c4a54db7f033ce24a00c27e7d"
+                "reference": "7d10de88dd126f518cd5763fcd8cfb26fc44ea8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/Autowired/zipball/c3183c5feeb3566c4a54db7f033ce24a00c27e7d",
-                "reference": "c3183c5feeb3566c4a54db7f033ce24a00c27e7d",
+                "url": "https://api.github.com/repos/Kdyby/Autowired/zipball/7d10de88dd126f518cd5763fcd8cfb26fc44ea8d",
+                "reference": "7d10de88dd126f518cd5763fcd8cfb26fc44ea8d",
                 "shasum": ""
             },
             "require": {
                 "nette/application": "^3.0",
                 "nette/caching": "^3.0",
                 "nette/di": "^3.0.2",
-                "php": "^7.1",
+                "php": ">=7.1",
                 "tracy/tracy": "^2.6"
             },
             "require-dev": {
                 "nette/bootstrap": "^3.0",
                 "nette/robot-loader": "^3.2",
                 "nette/tester": "^2.3.2",
-                "phpstan/phpstan": "^0.12.29",
-                "phpstan/phpstan-nette": "^0.12.6"
+                "phpstan/phpstan": "^0.12.52",
+                "phpstan/phpstan-nette": "^0.12.9"
             },
             "type": "library",
             "extra": {
@@ -326,9 +326,9 @@
             "support": {
                 "email": "filip@prochazka.su",
                 "issues": "https://github.com/kdyby/autowired/issues",
-                "source": "https://github.com/Kdyby/Autowired/tree/v2.1.0"
+                "source": "https://github.com/Kdyby/Autowired/tree/v2.1.1"
             },
-            "time": "2020-06-18T10:28:14+00:00"
+            "time": "2020-10-31T10:49:27+00:00"
         },
         {
             "name": "latte/latte",
@@ -2421,16 +2421,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v5.1.7",
+            "version": "v5.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "6ad8be6e1280f6734150d8a04a9160dd34ceb191"
+                "reference": "11baeefa4c179d6908655a7b6be728f62367c193"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/6ad8be6e1280f6734150d8a04a9160dd34ceb191",
-                "reference": "6ad8be6e1280f6734150d8a04a9160dd34ceb191",
+                "url": "https://api.github.com/repos/symfony/config/zipball/11baeefa4c179d6908655a7b6be728f62367c193",
+                "reference": "11baeefa4c179d6908655a7b6be728f62367c193",
                 "shasum": ""
             },
             "require": {
@@ -2454,11 +2454,6 @@
                 "symfony/yaml": "To use the yaml reference dumper"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Config\\": ""
@@ -2484,7 +2479,7 @@
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/config/tree/v5.1.7"
+                "source": "https://github.com/symfony/config/tree/v5.1.8"
             },
             "funding": [
                 {
@@ -2500,20 +2495,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-02T16:23:27+00:00"
+            "time": "2020-10-24T12:01:57+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v5.1.7",
+            "version": "v5.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "ae789a8a2ad189ce7e8216942cdb9b77319f5eb8"
+                "reference": "e0b2c29c0fa6a69089209bbe8fcff4df2a313d0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/ae789a8a2ad189ce7e8216942cdb9b77319f5eb8",
-                "reference": "ae789a8a2ad189ce7e8216942cdb9b77319f5eb8",
+                "url": "https://api.github.com/repos/symfony/console/zipball/e0b2c29c0fa6a69089209bbe8fcff4df2a313d0e",
+                "reference": "e0b2c29c0fa6a69089209bbe8fcff4df2a313d0e",
                 "shasum": ""
             },
             "require": {
@@ -2550,11 +2545,6 @@
                 "symfony/process": ""
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Console\\": ""
@@ -2580,7 +2570,7 @@
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/console/tree/v5.1.7"
+                "source": "https://github.com/symfony/console/tree/v5.1.8"
             },
             "funding": [
                 {
@@ -2596,7 +2586,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-07T15:23:00+00:00"
+            "time": "2020-10-24T12:01:57+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -2667,16 +2657,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v5.1.7",
+            "version": "v5.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "1a8697545a8d87b9f2f6b1d32414199cc5e20aae"
+                "reference": "df08650ea7aee2d925380069c131a66124d79177"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/1a8697545a8d87b9f2f6b1d32414199cc5e20aae",
-                "reference": "1a8697545a8d87b9f2f6b1d32414199cc5e20aae",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/df08650ea7aee2d925380069c131a66124d79177",
+                "reference": "df08650ea7aee2d925380069c131a66124d79177",
                 "shasum": ""
             },
             "require": {
@@ -2684,11 +2674,6 @@
                 "symfony/polyfill-ctype": "~1.8"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Filesystem\\": ""
@@ -2714,7 +2699,7 @@
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v5.1.7"
+                "source": "https://github.com/symfony/filesystem/tree/v5.1.8"
             },
             "funding": [
                 {
@@ -2730,20 +2715,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-27T14:02:37+00:00"
+            "time": "2020-10-24T12:01:57+00:00"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v5.1.7",
+            "version": "v5.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "4c7e155bf7d93ea4ba3824d5a14476694a5278dd"
+                "reference": "c6a02905e4ffc7a1498e8ee019db2b477cd1cc02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/4c7e155bf7d93ea4ba3824d5a14476694a5278dd",
-                "reference": "4c7e155bf7d93ea4ba3824d5a14476694a5278dd",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/c6a02905e4ffc7a1498e8ee019db2b477cd1cc02",
+                "reference": "c6a02905e4ffc7a1498e8ee019db2b477cd1cc02",
                 "shasum": ""
             },
             "require": {
@@ -2752,11 +2737,6 @@
                 "symfony/polyfill-php80": "^1.15"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\OptionsResolver\\": ""
@@ -2787,7 +2767,7 @@
                 "options"
             ],
             "support": {
-                "source": "https://github.com/symfony/options-resolver/tree/v5.1.7"
+                "source": "https://github.com/symfony/options-resolver/tree/v5.1.8"
             },
             "funding": [
                 {
@@ -2803,7 +2783,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-27T03:44:28+00:00"
+            "time": "2020-10-24T12:01:57+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
@@ -3134,16 +3114,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.1.7",
+            "version": "v5.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "4a9afe9d07bac506f75bcee8ed3ce76da5a9343e"
+                "reference": "a97573e960303db71be0dd8fda9be3bca5e0feea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/4a9afe9d07bac506f75bcee8ed3ce76da5a9343e",
-                "reference": "4a9afe9d07bac506f75bcee8ed3ce76da5a9343e",
+                "url": "https://api.github.com/repos/symfony/string/zipball/a97573e960303db71be0dd8fda9be3bca5e0feea",
+                "reference": "a97573e960303db71be0dd8fda9be3bca5e0feea",
                 "shasum": ""
             },
             "require": {
@@ -3161,11 +3141,6 @@
                 "symfony/var-exporter": "^4.4|^5.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\String\\": ""
@@ -3202,7 +3177,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.1.7"
+                "source": "https://github.com/symfony/string/tree/v5.1.8"
             },
             "funding": [
                 {
@@ -3218,7 +3193,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-15T12:23:47+00:00"
+            "time": "2020-10-24T12:01:57+00:00"
         },
         {
             "name": "tracy/tracy",
@@ -3502,21 +3477,21 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "3d732c77d12812094030e37d05ed59af4536dfe9"
+                "reference": "559e973aab8a2457f208f3cc12c0fe9a3d955b08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=3d732c77d12812094030e37d05ed59af4536dfe9",
-                "reference": "3d732c77d12812094030e37d05ed59af4536dfe9",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=559e973aab8a2457f208f3cc12c0fe9a3d955b08",
+                "reference": "559e973aab8a2457f208f3cc12c0fe9a3d955b08",
                 "shasum": ""
             },
             "require": {
-                "nexendrie/testbench": "^2.6.1",
+                "nexendrie/testbench": "^2.7",
                 "php-parallel-lint/php-console-highlighter": "^0.5",
                 "php-parallel-lint/php-parallel-lint": "^1.2",
-                "phpstan/phpstan": "^0.12.40",
+                "phpstan/phpstan": "^0.12.52",
                 "phpstan/phpstan-strict-rules": "^0.12.5",
-                "squizlabs/php_codesniffer": "^3.5.6"
+                "squizlabs/php_codesniffer": "^3.5.8"
             },
             "default-branch": true,
             "type": "library",
@@ -3542,32 +3517,35 @@
                 "issues": "https://gitlab.com/nexendrie/code-quality/issues",
                 "source": "https://gitlab.com/nexendrie/code-quality/"
             },
-            "time": "2020-09-20T07:59:12+00:00"
+            "time": "2020-10-28T15:29:27+00:00"
         },
         {
             "name": "nexendrie/testbench",
-            "version": "v2.6.1",
+            "version": "v2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nexendrie/testbench.git",
-                "reference": "72a7e5f70705c35c562a129f6af9ac9ca8bd5964"
+                "reference": "9b2553ba5aae3504df53c6ce7fa0ae6e7024e5f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nexendrie/testbench/zipball/72a7e5f70705c35c562a129f6af9ac9ca8bd5964",
-                "reference": "72a7e5f70705c35c562a129f6af9ac9ca8bd5964",
+                "url": "https://api.github.com/repos/nexendrie/testbench/zipball/9b2553ba5aae3504df53c6ce7fa0ae6e7024e5f9",
+                "reference": "9b2553ba5aae3504df53c6ce7fa0ae6e7024e5f9",
                 "shasum": ""
             },
             "require": {
                 "kdyby/fake-session": "^2.0 || ^3.0",
-                "nette/application": "^2.4 || ^3.0",
+                "nette/application": "^2.4.16 || ^3.0.6",
                 "nette/bootstrap": "^2.4 || ^3.0",
                 "nette/di": "^2.4 || ^3.0",
                 "nette/safe-stream": "^2.3",
                 "nette/security": "^2.4 || ^3.0",
-                "nette/tester": "^2.2",
+                "nette/tester": "^2.3.1",
                 "nette/utils": "^2.4 || ^3.0",
-                "php": ">=7.2.0"
+                "php": ">=7.4.0"
+            },
+            "conflict": {
+                "doctrine/orm": ">=2.7.3"
             },
             "replace": {
                 "mrtnzlml/testbench": ">=2.4"
@@ -3576,19 +3554,20 @@
                 "kdyby/doctrine": "^3.1",
                 "kdyby/doctrine-cache": "^2.5",
                 "kdyby/doctrine-dbal-batchimport": "dev-master",
-                "kdyby/events": "^3.0",
-                "latte/latte": "^2.4",
+                "kdyby/events": "^3.1",
+                "latte/latte": "^2.4 || ^3.0",
                 "nette/database": "^2.4 || ^3.0",
                 "nette/forms": "^2.4 || ^3.0",
                 "nette/robot-loader": "^2.4 || ^3.0",
-                "tracy/tracy": "^2.4",
-                "zenify/doctrine-migrations": "^2.3"
+                "nette/security": "^2.4",
+                "nettrine/migrations": "^0.4",
+                "tracy/tracy": "^2.4 || ^3.0"
             },
             "suggest": {
                 "kdyby/doctrine": "Allows enhanced database tests using Doctrine",
                 "kdyby/doctrine-dbal-batchimport": "Allows SQL scripts import for Doctrine (required with kdyby/doctrine)",
                 "nette/database": "Allows enhanced database tests using Nette\\Database",
-                "zenify/doctrine-migrations": "Migrate database to the fresh state"
+                "nettrine/migrations": "Migrate database to the fresh state"
             },
             "bin": [
                 "src/run-tests"
@@ -3597,8 +3576,7 @@
             "autoload": {
                 "psr-4": {
                     "Testbench\\": [
-                        "src/",
-                        "src/Traits/"
+                        "src/"
                     ]
                 },
                 "files": [
@@ -3619,9 +3597,9 @@
             ],
             "description": "Simple integration testing tool for Nette Framework applications",
             "support": {
-                "source": "https://github.com/nexendrie/testbench/tree/v2.6.1"
+                "source": "https://github.com/nexendrie/testbench/tree/v2.7.0"
             },
-            "time": "2019-05-19T10:06:45+00:00"
+            "time": "2020-10-28T14:42:07+00:00"
         },
         {
             "name": "php-parallel-lint/php-console-color",
