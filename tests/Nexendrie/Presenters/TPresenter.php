@@ -28,7 +28,7 @@ trait TPresenter {
   protected function checkRss(string $destination, array $params = [], array $post = []): RssResponse {
     /** @var RssResponse $response */
     $response = $this->check($destination, $params, $post);
-    if(!$this->__testbench_exception) {
+    if(!$this->testbench_exception) {
       Assert::same(200, $this->getReturnCode());
       Assert::type(RssResponse::class, $response);
       
@@ -48,7 +48,7 @@ trait TPresenter {
   protected function checkForward(string $destination, string $to = "", array $params = [], array $post = []): ForwardResponse {
     /** @var ForwardResponse $response */
     $response = $this->check($destination, $params, $post);
-    if(!$this->__testbench_exception) {
+    if(!$this->testbench_exception) {
       Assert::same(200, $this->getReturnCode());
       Assert::type(ForwardResponse::class, $response);
       if($to) {
