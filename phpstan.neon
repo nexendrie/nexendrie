@@ -16,6 +16,8 @@ parameters:
     universalObjectCratesClasses:
         - Nette\Security\IIdentity
         - Nextras\Orm\Entity\IEntity
+    reportUnmatchedIgnoredErrors: false
     ignoreErrors:
         - '#Method Nexendrie\\Orm\[a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+ should return Nexendrie\\Orm[a-zA-Z0-9\\_]+|null but returns Nextras\\Orm\\IEntity|null#'
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'
+        - '#Parameter \#1 \$timestamp of method DateTime::setTimestamp\(\) expects int, int\|false given#'
