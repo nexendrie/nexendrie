@@ -9,6 +9,10 @@ session:
     savePath: "%tempDir%/sessions"
     name: NEXSESSID
     expiration: 4 hours
+    cookieSamesite: Strict
+http:
+    csp:
+        - "default-src 'self'"
 extensions:
     nexendrie: Nexendrie\Model\DI\NexendrieExtension(%wwwDir%, %appDir%)
     dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
