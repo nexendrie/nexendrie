@@ -66,7 +66,7 @@ dast:
     - ./dast_environment_url.sh
   variables:
     DAST_REQUEST_HEADERS: "Cache-control: no-cache"
-    DAST_EXCLUDE_RULES: "10015,10021,10031,10202,10037"
+    DAST_EXCLUDE_RULES: "10015,10021,10031,10109,10202,10037"
     GIT_STRATEGY: fetch
   rules:
     - when: on_success
