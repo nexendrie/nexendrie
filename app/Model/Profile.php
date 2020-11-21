@@ -119,7 +119,7 @@ final class Profile {
     if($user === null) {
       throw new UserNotFoundException("Specified user does not exist.");
     }
-    return $user->comments->get()->findBy(['deleted' => false,]);
+    return $user->comments->get()->findBy(['deleted' => false, ]);
   }
 }
 ?>
