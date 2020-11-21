@@ -6,6 +6,7 @@
 /LICENSE.md                 @nexendrie/project-management
 /CONTRIBUTING.md            @nexendrie/project-management
 /CHANGELOG.md               @nexendrie/project-management
+/composer.json              @nexendrie/project-management
 
 [Quality Assurance]
 /phpstan.neon               @nexendrie/quality-assurance
@@ -28,10 +29,20 @@ robots.txt                  @nexendrie/devops
 
 [PHP Code]
 /app/                       @konecnyjakub
-/composer.json              @konecnyjakub
+/www/index.php              @konecnyjakub
 
 [CSS]
 /www/styles/                @konecnyjakub
 
 [Tests]
 /tests/                     @konecnyjakub
+
+[Graphics]
+/www/images/                @konecnyjakub
+*.png                       @konecnyjakub
+*.jpg                       @konecnyjakub
+*.svg                       @konecnyjakub
+*.ico                       @konecnyjakub
+
+[Templates]
+templates/                  @konecnyjakub
