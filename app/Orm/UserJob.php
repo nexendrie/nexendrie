@@ -54,7 +54,7 @@ final class UserJob extends BaseEntity {
   
   protected function getSkillRewardBonus(int $baseReward): int {
     /** @var UserSkill|null $userSkill */
-    $userSkill = $this->user->skills->get()->getBy([
+    $userSkill = $this->user->skills->toCollection()->getBy([
       "skill" => $this->job->neededSkill->id
     ]);
     if($userSkill === null) {
@@ -91,7 +91,7 @@ final class UserJob extends BaseEntity {
   
   protected function getSkillSuccessRateBonus(): int {
     /** @var UserSkill|null $userSkill */
-    $userSkill = $this->user->skills->get()->getBy([
+    $userSkill = $this->user->skills->toCollection()->getBy([
       "skill" => $this->job->neededSkill->id
     ]);
     if($userSkill === null) {

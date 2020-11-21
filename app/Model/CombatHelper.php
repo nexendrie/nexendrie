@@ -86,7 +86,7 @@ final class CombatHelper {
     if($marriage !== null) {
       $character->effectProviders[] = $marriage;
     }
-    $skills = $user->skills->get()->findBy([
+    $skills = $user->skills->toCollection()->findBy([
       "skill->type" => SkillEntity::TYPE_COMBAT, "skill->stat!=" => SkillEntity::STAT_HITPOINTS,
     ]);
     foreach($skills as $skill) {

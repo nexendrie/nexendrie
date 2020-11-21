@@ -33,7 +33,7 @@ final class ArticlePresenter extends BasePresenter {
   public function renderView(int $id): void {
     try {
       $this->template->article = $article = $this->model->view($id);
-      $this->template->comments = $article->comments->get()->findBy(["deleted" => false]);
+      $this->template->comments = $article->comments->toCollection()->findBy(["deleted" => false]);
       $this->template->ogType = "article";
     } catch(ArticleNotFoundException $e) {
       throw new \Nette\Application\BadRequestException();

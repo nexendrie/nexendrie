@@ -117,7 +117,7 @@ final class User extends BaseEntity {
   }
 
   protected function getterBanned(): bool {
-    return ($this->punishments->get()->getBy(["released" => null]) !== null);
+    return ($this->punishments->toCollection()->getBy(["released" => null]) !== null);
   }
   
   /**
@@ -137,7 +137,7 @@ final class User extends BaseEntity {
   protected function getterMaxLife(): int {
     $maxLife = 60;
     /** @var UserSkill[] $lifeSkills */
-    $lifeSkills = $this->skills->get()->findBy(["skill->stat" => Skill::STAT_HITPOINTS]);
+    $lifeSkills = $this->skills->toCollection()->findBy(["skill->stat" => Skill::STAT_HITPOINTS]);
     foreach($lifeSkills as $skill) {
       $maxLife += $skill->skill->statIncrease * $skill->level;
     }
