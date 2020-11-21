@@ -7,7 +7,7 @@
   <p>Uživatel zatím nenapsal žádné články.</p>
   {else}
   {foreach $articles as $article}
-  <a n:href="Article:view $article->id">{$article->title}</a><br>
+  <a n:href="Article:view $article->id">{$article->title}</a> ({$article->createdAt}, v kategorii <a n:href="Articles:category $article->category">{$article->categoryCZ}</a>)<br>
   {/foreach}
   {/if}
 {/block}
