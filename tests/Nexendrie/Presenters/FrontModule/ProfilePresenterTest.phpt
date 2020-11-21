@@ -41,6 +41,13 @@ final class ProfilePresenterTest extends \Tester\TestCase {
     }, BadRequestException::class);
     $this->checkAction(":Front:Profile:achievements", ["name" => "Vladěna"]);
   }
+
+  public function testComments() {
+    Assert::exception(function() {
+      $this->checkAction(":Front:Profile:comments", ["name" => "abc"]);
+    }, BadRequestException::class);
+    $this->checkAction(":Front:Profile:comments", ["name" => "Vladěna"]);
+  }
 }
 
 $test = new ProfilePresenterTest();

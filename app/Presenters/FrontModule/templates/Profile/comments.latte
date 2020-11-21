@@ -1,0 +1,13 @@
+{layout "../@layout.latte"}
+{block title}Komentáře uživatele {$name}{/block}
+{block content}
+  <h1>Komentáře uživatele</h1>
+  <p><a n:href="default name => $name">Zpět na profil</a></p>
+  {if $comments->count() === 0}
+  <p>Uživatel zatím nenapsal žádné komentáře.</p>
+  {else}
+  {foreach $comments as $comment}
+  {$comment->createdAt} {$comment->title} k článku <a n:href="Article:view#comments $comment->article->id">{$comment->article->title}</a><br>
+  {/foreach}
+  {/if}
+{/block}

@@ -20,7 +20,7 @@
     <h3>Statistiky</h3>
     <table>
       <tr><td>Napsaných článků</td><td>{control userProfileLink:page $profile,"articles",$profile->writtenArticles}</td></tr>
-      <tr><td>Napsaných komentářů</td><td>{$profile->writtenComments}</td></tr>
+      <tr><td>Napsaných komentářů</td><td>{control userProfileLink:page $profile,"comments",$profile->writtenComments}</td></tr>
       <tr><td>Dokončených dobrodružství</td><td>{$profile->completedAdventures}</td></tr>
       <tr><td>Odpracováno týdnů</td><td>{$profile->completedJobs}</td></tr>
       <tr><td>Vyprodukovaných sudů piv</td><td>{$profile->producedBeers}</td></tr>

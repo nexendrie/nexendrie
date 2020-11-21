@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Comment;
 use Nexendrie\Orm\User as UserEntity;
+use Nextras\Orm\Collection\ICollection;
 use Nextras\Orm\Relationships\OneHasMany;
 use Nexendrie\Orm\Article as ArticleEntity;
 use Nexendrie\Orm\UserSkill;
@@ -106,6 +108,18 @@ final class Profile {
       throw new UserNotFoundException("Specified user does not exist.");
     }
     return $user->skills;
+  }
+
+  /**
+   * @return ICollection|Comment[]
+   * @throws UserNotFoundException
+   */
+  public function getComments(string $publicname): ICollection {
+    $user = $this->orm->users->getByPublicname($publicname);
+    if($user === null) {
+      throw new UserNotFoundException("Specified user does not exist.");
+    }
+    return $user->comments->get()->findBy(['deleted' => false,]);
   }
 }
 ?>
