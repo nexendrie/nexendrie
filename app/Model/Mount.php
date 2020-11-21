@@ -56,7 +56,7 @@ final class Mount {
    */
   public function mountsOnSale(): ICollection {
     return $this->orm->mounts->findOnMarket()
-      ->orderBy("this->type->id", ICollection::DESC)
+      ->orderBy("type->id", ICollection::DESC)
       ->orderBy("price", ICollection::DESC);
   }
   

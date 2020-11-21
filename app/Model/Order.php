@@ -108,7 +108,7 @@ final class Order {
     end($ranks);
     if($user->group->id > current($ranks)) {
       return false;
-    } elseif($user->order) {
+    } elseif($user->order !== null) {
       return false;
     }
     return true;
@@ -167,7 +167,7 @@ final class Order {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    return ($user->group->path === GroupEntity::PATH_TOWER && !$user->order);
+    return ($user->group->path === GroupEntity::PATH_TOWER && $user->order === null);
   }
   
   /**

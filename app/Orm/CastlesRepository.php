@@ -34,7 +34,7 @@ final class CastlesRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Castle[]
    */
   public function findOwnedCastles(): ICollection {
-    return $this->findBy(["this->owner->id>" => 0]);
+    return $this->findBy(["owner->id>" => 0]);
   }
 }
 ?>

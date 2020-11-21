@@ -53,10 +53,10 @@ final class Property {
     }
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->guild && $user->group->path === GroupEntity::PATH_CITY) {
+    if($user->guild !== null && $user->group->path === GroupEntity::PATH_CITY) {
       $result += $user->guildRank->guildFee;
     }
-    if($user->order && $user->group->path === GroupEntity::PATH_TOWER) {
+    if($user->order !== null && $user->group->path === GroupEntity::PATH_TOWER) {
       $result += $user->orderRank->orderFee;
     }
     return $result;

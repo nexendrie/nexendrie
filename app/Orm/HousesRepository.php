@@ -30,7 +30,7 @@ final class HousesRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|House[]
    */
   public function findOwnedHouses(): ICollection {
-    return $this->findBy(["this->owner->id>" => 0]);
+    return $this->findBy(["owner->id>" => 0]);
   }
 }
 ?>

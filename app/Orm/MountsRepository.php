@@ -48,7 +48,7 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Mount[]
    */
   public function findOwnedMounts(): ICollection {
-    return $this->findBy(["this->owner->id>" => 0]);
+    return $this->findBy(["owner->id>" => 0]);
   }
   
   /**
@@ -58,7 +58,7 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Mount[]
    */
   public function findGoodMounts($user): ICollection {
-    return $this->findBy(["this->owner->id" => $user, "hp>" => 30]);
+    return $this->findBy(["owner->id" => $user, "hp>" => 30]);
   }
 }
 ?>

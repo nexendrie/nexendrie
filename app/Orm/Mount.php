@@ -150,13 +150,13 @@ final class Mount extends BaseEntity implements ICharacterEffectsProvider {
   
   public function onBeforeInsert(): void {
     parent::onBeforeInsert();
-    if(!$this->price) {
+    if($this->price === 0) {
       $this->price = $this->type->price;
     }
-    if(!$this->damage) {
+    if($this->damage === 0) {
       $this->damage = $this->type->damage;
     }
-    if(!$this->armor) {
+    if($this->armor === 0) {
       $this->armor = $this->type->armor;
     }
     if($this->owner->id === 0) {

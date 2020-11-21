@@ -1,6 +1,7 @@
 includes:
     - vendor/phpstan/phpstan-nette/extension.neon
     - vendor/phpstan/phpstan-nette/rules.neon
+    - vendor/nextras/orm-phpstan/extension.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/nexendrie/code-quality/phpstan.neon
 parameters:
@@ -18,6 +19,6 @@ parameters:
         - Nextras\Orm\Entity\IEntity
     reportUnmatchedIgnoredErrors: false
     ignoreErrors:
-        - '#Method Nexendrie\\Orm\[a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+ should return Nexendrie\\Orm[a-zA-Z0-9\\_]+|null but returns Nextras\\Orm\\IEntity|null#'
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'
+        - '#Only booleans are allowed in (an if condition|an elseif condition|a negated boolean), mixed given#'
         - '#Parameter \#1 \$timestamp of method DateTime::setTimestamp\(\) expects int, int\|false given#'

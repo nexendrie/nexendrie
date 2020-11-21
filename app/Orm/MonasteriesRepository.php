@@ -42,7 +42,7 @@ final class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|Monastery[]
    */
   public function findLedMonasteries(): ICollection {
-    return $this->findBy(["this->leader->id>" => 0]);
+    return $this->findBy(["leader->id>" => 0]);
   }
 }
 ?>

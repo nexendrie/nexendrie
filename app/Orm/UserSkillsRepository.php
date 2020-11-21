@@ -38,7 +38,7 @@ final class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
    */
   public function findByUserAndStat(int $user, string $stat): ICollection {
     return $this->findBy([
-      "user" => $user, "this->skill->stat" => $stat
+      "user" => $user, "skill->stat" => $stat
     ]);
   }
 }

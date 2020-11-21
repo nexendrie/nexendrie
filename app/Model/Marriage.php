@@ -231,7 +231,7 @@ final class Marriage {
     $marriage = $this->orm->marriages->getActiveMarriage($this->user->id);
     if($marriage === null) {
       throw new NotMarriedException();
-    } elseif($marriage->divorce) {
+    } elseif($marriage->divorce > 0) {
       throw new AlreadyInDivorceException();
     }
     $marriage->divorce = ($marriage->user1->id === $this->user->id) ? 1 : 2;

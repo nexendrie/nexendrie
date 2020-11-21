@@ -202,7 +202,7 @@ final class Town {
       return true;
     } elseif($user->lastTransfer + $month > time()) {
       return false;
-    } elseif($user->guild && $user->guildRank->id === 4) {
+    } elseif($user->guild !== null && $user->guildRank->id === 4) {
       return false;
     }
     return true;

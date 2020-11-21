@@ -70,7 +70,7 @@ final class Monastery {
     $user = $this->orm->users->getById($id ?? $this->user->id);
     if($user === null) {
       throw new UserNotFoundException();
-    } elseif(!$user->monastery) {
+    } elseif($user->monastery === null) {
       throw new NotInMonasteryException();
     }
     return $user->monastery;
@@ -86,10 +86,10 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(!$user->monastery && $user->group->path === GroupEntity::PATH_CITY) {
-      return !($user->guild && $user->guildRank->id === $this->guildModel->maxRank);
-    } elseif(!$user->monastery && $user->group->path === GroupEntity::PATH_TOWER) {
-      return !($user->order && $user->orderRank->id === $this->orderModel->maxRank);
+    if($user->monastery === null && $user->group->path === GroupEntity::PATH_CITY) {
+      return !($user->guild !== null && $user->guildRank->id === $this->guildModel->maxRank);
+    } elseif($user->monastery === null && $user->group->path === GroupEntity::PATH_TOWER) {
+      return !($user->order !== null && $user->orderRank->id === $this->orderModel->maxRank);
     } elseif($user->group->path === GroupEntity::PATH_CHURCH) {
       if($user->monasteriesLed->countStored()) {
         return false;
@@ -123,7 +123,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monastery && $user->monastery->id === $monastery->id) {
+    if($user->monastery !== null && $user->monastery->id === $monastery->id) {
       throw new CannotJoinOwnMonasteryException();
     }
     $user->lastTransfer = $user->lastActive = time();
@@ -340,7 +340,7 @@ final class Monastery {
    */
   public function highClerics(int $id): array {
     return $this->orm->users->findByMonastery($id)
-      ->findBy(["this->group->id" => $this->getChurchGroupIds()[0]])
+      ->findBy(["group->id" => $this->getChurchGroupIds()[0]])
       ->fetchPairs("id", "publicname");
   }
   

@@ -20,7 +20,7 @@ class TeamPresenter extends BasePresenter {
 
   public function renderDefault(): void {
     $this->template->admins = $this->orm->users->findBy([
-      "this->group->level" => 10000,
+      "group->level" => 10000,
     ])->orderBy("lastActive", ICollection::DESC);
   }
 

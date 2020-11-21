@@ -47,7 +47,7 @@ final class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|UserItem[]
    */
   public function findEquipment(int $user): ICollection {
-    return $this->findBy(["user" => $user, "this->item->type=" => Item::getEquipmentTypes()]);
+    return $this->findBy(["user" => $user, "item->type=" => Item::getEquipmentTypes()]);
   }
   
   /**
@@ -56,7 +56,7 @@ final class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|UserItem[]
    */
   public function findCommonItems(int $user): ICollection {
-    return $this->findBy(["user" => $user, "this->item->type=" => Item::getCommonTypes()]);
+    return $this->findBy(["user" => $user, "item->type=" => Item::getCommonTypes()]);
   }
   
   /**
@@ -65,28 +65,28 @@ final class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
    * @return ICollection|UserItem[]
    */
   public function findByType(int $user, string $type): ICollection {
-    return $this->findBy(["user" => $user, "this->item->type" => $type]);
+    return $this->findBy(["user" => $user, "item->type" => $type]);
   }
   
   /**
    * Get user's active weapon
    */
   public function getWornWeapon(int $user): ?UserItem {
-    return $this->getBy(["user" => $user, "this->item->type" => "weapon", "worn" => true]);
+    return $this->getBy(["user" => $user, "item->type" => "weapon", "worn" => true]);
   }
   
   /**
    * Get user's active armor
    */
   public function getWornArmor(int $user): ?UserItem {
-    return $this->getBy(["user" => $user, "this->item->type" => "armor", "worn" => true]);
+    return $this->getBy(["user" => $user, "item->type" => "armor", "worn" => true]);
   }
   
   /**
    * Get user's active helmet
    */
   public function getWornHelmet(int $user): ?UserItem {
-    return $this->getBy(["user" => $user, "this->item->type" => "helmet", "worn" => true]);
+    return $this->getBy(["user" => $user, "item->type" => "helmet", "worn" => true]);
   }
 }
 ?>

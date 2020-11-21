@@ -43,7 +43,7 @@ final class Loan extends BaseEntity {
   
   protected function getterInterest(): int {
     $start = $this->created;
-    $end = ($this->returned) ? $this->returned : time();
+    $end = $this->returned ?? time();
     $duration = ($end - $start) / (60 * 60 * 24);
     $interest = (int) ($this->amount * $this->interestRate * $duration / 36500);
     return max([1, $interest]);

@@ -38,7 +38,7 @@ final class Inventory {
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     $return["money"] = $user->moneyT;
-    $return["items"] = $user->items->get()->findBy(["this->item->type" => ItemEntity::getCommonTypes()]);
+    $return["items"] = $user->items->get()->findBy(["item->type" => ItemEntity::getCommonTypes()]);
     $return["towns"] = $user->ownedTowns;
     $return["loan"] = $this->orm->loans->getActiveLoan($this->user->id);
     return $return;
@@ -54,7 +54,7 @@ final class Inventory {
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    return $this->orm->userItems->findEquipment($this->user->id)->orderBy("this->item->strength");
+    return $this->orm->userItems->findEquipment($this->user->id)->orderBy("item->strength");
   }
   
   /**

@@ -9,6 +9,9 @@ abstract class BaseEntity extends \Nextras\Orm\Entity\Entity {
     if($this->metadata->hasProperty("created")) {
       $this->created = time();
     }
+    if($this->metadata->hasProperty("updated")) {
+      $this->updated = time();
+    }
   }
 
   public function onBeforeUpdate(): void {

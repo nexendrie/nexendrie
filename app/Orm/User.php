@@ -137,7 +137,7 @@ final class User extends BaseEntity {
   protected function getterMaxLife(): int {
     $maxLife = 60;
     /** @var UserSkill[] $lifeSkills */
-    $lifeSkills = $this->skills->get()->findBy(["this->skill->stat" => Skill::STAT_HITPOINTS]);
+    $lifeSkills = $this->skills->get()->findBy(["skill->stat" => Skill::STAT_HITPOINTS]);
     foreach($lifeSkills as $skill) {
       $maxLife += $skill->skill->statIncrease * $skill->level;
     }

@@ -106,7 +106,7 @@ final class Guild {
     $user = $this->orm->users->getById($this->user->id);
     if($user->group->path !== GroupEntity::PATH_CITY) {
       return false;
-    } elseif($user->guild) {
+    } elseif($user->guild !== null) {
       return false;
     }
     return true;
@@ -152,7 +152,7 @@ final class Guild {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    return ($user->group->path === GroupEntity::PATH_CITY && !$user->guild);
+    return ($user->group->path === GroupEntity::PATH_CITY && $user->guild === null);
   }
   
   /**

@@ -34,12 +34,12 @@ final class UserProfileLinkControl extends Control {
   }
   
   public function renderGuild(User $user): void {
-    $title = (($user->guildRank) ? $user->guildRank->name : false);
+    $title = (($user->guildRank !== null) ? $user->guildRank->name : false);
     $this->baseRender($user->publicname, $user->publicname, $title);
   }
   
   public function renderOrder(User $user): void {
-    $title = (($user->orderRank) ? $user->orderRank->name : false);
+    $title = (($user->orderRank !== null) ? $user->orderRank->name : false);
     $this->baseRender($user->publicname, $user->publicname, $title);
   }
   

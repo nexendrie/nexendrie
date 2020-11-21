@@ -54,7 +54,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
    * Get mayor of a town
    */
   public function getTownMayor(int $town): ?User {
-    return $this->getBy(["town" => $town, "this->group->level" => 345]);
+    return $this->getBy(["town" => $town, "group->level" => 345]);
   }
   
   /**
@@ -65,7 +65,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
   public function findTownCitizens(int $town): ICollection {
     return $this->findBy([
       "town" => $town,
-      "this->group->level" => [100, 300]
+      "group->level" => [100, 300]
     ]);
   }
   
@@ -77,7 +77,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
   public function findTownPeasants(int $town): ICollection {
     return $this->findBy([
       "town" => $town,
-      "this->group->level" => [50]
+      "group->level" => [50]
     ]);
   }
   
@@ -89,7 +89,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
   public function findInGuild(): ICollection {
     return $this->findBy([
       "guild!=" => null,
-      "this->group->path" => Group::PATH_CITY
+      "group->path" => Group::PATH_CITY
     ]);
   }
   
@@ -101,7 +101,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
   public function findInOrder(): ICollection {
     return $this->findBy([
       "order!=" => null,
-      "this->group->path" => Group::PATH_TOWER
+      "group->path" => Group::PATH_TOWER
     ]);
   }
   
