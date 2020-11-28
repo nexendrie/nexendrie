@@ -156,11 +156,11 @@ final class User extends BaseEntity {
   }
   
   protected function getterCompletedAdventures(): int {
-    return $this->adventures->get()->findBy(["progress" => UserAdventure::PROGRESS_COMPLETED])->countStored();
+    return $this->adventures->toCollection()->findBy(["progress" => UserAdventure::PROGRESS_COMPLETED])->countStored();
   }
   
   protected function getterCompletedJobs(): int {
-    return $this->jobs->get()->findBy(["finished" => true, "earned>" => 0])->countStored();
+    return $this->jobs->toCollection()->findBy(["finished" => true, "earned>" => 0])->countStored();
   }
   
   protected function getterProducedBeers(): int {
@@ -188,7 +188,7 @@ final class User extends BaseEntity {
       return 0;
     }
     /** @var OrderFee|null $record */
-    $record = $this->orderFees->get()->getBy(["order" => $this->order]);
+    $record = $this->orderFees->toCollection()->getBy(["order" => $this->order]);
     if($record === null) {
       return 0;
     }
@@ -200,7 +200,7 @@ final class User extends BaseEntity {
       return 0;
     }
     /** @var GuildFee|null $record */
-    $record = $this->guildFees->get()->getBy(["guild" => $this->guild]);
+    $record = $this->guildFees->toCollection()->getBy(["guild" => $this->guild]);
     if($record === null) {
       return 0;
     }
@@ -220,7 +220,7 @@ final class User extends BaseEntity {
   }
 
   protected function getterWrittenComments(): int {
-    return $this->comments->get()->findBy(["deleted" => false])->countStored();
+    return $this->comments->toCollection()->findBy(["deleted" => false])->countStored();
   }
 
   protected function getterAdventureBonusIncome(): float {
