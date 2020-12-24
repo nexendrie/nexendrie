@@ -21,4 +21,4 @@ parameters:
     ignoreErrors:
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'
         - '#Only booleans are allowed in (an if condition|an elseif condition|a negated boolean), mixed given#'
-        - '#Parameter \#1 \$timestamp of method DateTime::setTimestamp\(\) expects int, int\|false given#'
+        - '#Parameter \#1 \$unixtimestamp of method DateTime::setTimestamp\(\) expects int, int\|false given#'
