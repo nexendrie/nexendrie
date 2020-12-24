@@ -1,3 +1,6 @@
+Version 1.0.0-beta9+dev
+- added profile sub-page comments
+
 Version 1.0.0-beta9
 - removed user setting infomails
 - made charter for founding town configurable
