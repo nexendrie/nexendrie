@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nette\Application\UI\Form;
-use Nexendrie\Chat;
 use HeroesofAbenez\Chat\ChatControl;
 use HeroesofAbenez\Chat\NewChatMessageFormFactory;
 
@@ -53,32 +52,16 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
       $this->redirect("Homepage:");
     }
   }
+
+  protected function getChat(): ?ChatControl {
+    return null;
+  }
   
   protected function createComponentNewChatMessageForm(NewChatMessageFormFactory $factory): Form {
-    $chat = strtolower((string) \Nette\Utils\Strings::after($this->name, ":"));
-    switch($chat) {
-      case "town":
-        /** @var Chat\ITownChatControlFactory $chatFactory */
-        $chatFactory = $this->context->getByType(Chat\ITownChatControlFactory::class);
-        break;
-      case "monastery":
-        /** @var Chat\IMonasteryChatControlFactory $factory */
-        $chatFactory = $this->context->getByType(Chat\IMonasteryChatControlFactory::class);
-        break;
-      case "guild":
-        /** @var Chat\IGuildChatControlFactory $factory */
-        $chatFactory = $this->context->getByType(Chat\IGuildChatControlFactory::class);
-        break;
-      case "order":
-        /** @var Chat\IOrderChatControlFactory $factory */
-        $chatFactory = $this->context->getByType(Chat\IOrderChatControlFactory::class);
-        break;
-      default:
-        throw new \RuntimeException("Invalid chat $chat.");
+    $chat = $this->getChat();
+    if($chat === null) {
+      throw new \RuntimeException("Invalid chat.");
     }
-    /** @var ChatControl $chat */
-    $chat = $chatFactory->create();
-    /** @var NewChatMessageFormFactory $factory */
     return $factory->create($chat);
   }
 }

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Chat\IOrderChatControlFactory;
+use Nexendrie\Chat\OrderChatControl;
 use Nexendrie\Forms\FoundOrderFormFactory;
 use Nexendrie\Forms\ManageOrderFormFactory;
 use Nette\Application\UI\Form;
@@ -27,11 +29,13 @@ use Nexendrie\Model\CannotKickMemberException;
 final class OrderPresenter extends BasePresenter {
   protected \Nexendrie\Model\Order $model;
   protected \Nexendrie\Model\Locale $localeModel;
+  private IOrderChatControlFactory $chatFactory;
   
-  public function __construct(\Nexendrie\Model\Order $model, \Nexendrie\Model\Locale $localeModel) {
+  public function __construct(\Nexendrie\Model\Order $model, \Nexendrie\Model\Locale $localeModel, IOrderChatControlFactory $chatFactory) {
     parent::__construct();
     $this->model = $model;
     $this->localeModel = $localeModel;
+    $this->chatFactory = $chatFactory;
   }
   
   protected function startup(): void {
@@ -39,6 +43,10 @@ final class OrderPresenter extends BasePresenter {
     if($this->action !== "detail" && $this->action !== "list") {
       $this->requiresLogin();
     }
+  }
+
+  protected function getChat(): ?OrderChatControl {
+    return $this->chatFactory->create();
   }
   
   public function renderDefault(): void {

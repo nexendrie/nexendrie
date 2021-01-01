@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Chat\IMonasteryChatControlFactory;
+use Nexendrie\Chat\MonasteryChatControl;
 use Nexendrie\Model\MonasteryNotFoundException;
 use Nexendrie\Model\NotInMonasteryException;
 use Nexendrie\Model\CannotJoinMonasteryException;
@@ -31,12 +33,14 @@ use Nexendrie\Model\CannotDemoteMemberException;
 final class MonasteryPresenter extends BasePresenter {
   protected \Nexendrie\Model\Monastery $model;
   protected \Nexendrie\Model\Locale $localeModel;
+  private IMonasteryChatControlFactory $chatFactory;
   private int $monasteryId;
   
-  public function __construct(\Nexendrie\Model\Monastery $model, \Nexendrie\Model\Locale $localeModel) {
+  public function __construct(\Nexendrie\Model\Monastery $model, \Nexendrie\Model\Locale $localeModel, IMonasteryChatControlFactory $chatFactory) {
     parent::__construct();
     $this->model = $model;
     $this->localeModel = $localeModel;
+    $this->chatFactory = $chatFactory;
   }
   
   protected function startup(): void {
@@ -44,6 +48,10 @@ final class MonasteryPresenter extends BasePresenter {
     if($this->action !== "detail" && $this->action !== "list") {
       $this->requiresLogin();
     }
+  }
+
+  protected function getChat(): ?MonasteryChatControl {
+    return $this->chatFactory->create();
   }
   
   public function renderDefault(): void {

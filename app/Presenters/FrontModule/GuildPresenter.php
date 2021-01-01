@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Chat\GuildChatControl;
+use Nexendrie\Chat\IGuildChatControlFactory;
 use Nexendrie\Forms\FoundGuildFormFactory;
 use Nette\Application\UI\Form;
 use Nexendrie\Model\GuildNotFoundException;
@@ -27,11 +29,13 @@ use Nexendrie\Model\CannotKickMemberException;
 final class GuildPresenter extends BasePresenter {
   protected \Nexendrie\Model\Guild $model;
   protected \Nexendrie\Model\Locale $localeModel;
+  private IGuildChatControlFactory $chatFactory;
   
-  public function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Locale $localeModel) {
+  public function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Locale $localeModel, IGuildChatControlFactory $chatFactory) {
     parent::__construct();
     $this->model = $model;
     $this->localeModel = $localeModel;
+    $this->chatFactory = $chatFactory;
   }
   
   protected function startup(): void {
@@ -39,6 +43,10 @@ final class GuildPresenter extends BasePresenter {
     if($this->action !== "detail" && $this->action !== "list") {
       $this->requiresLogin();
     }
+  }
+
+  protected function getChat(): ?GuildChatControl {
+    return $this->chatFactory->create();
   }
   
   public function renderDefault(): void {

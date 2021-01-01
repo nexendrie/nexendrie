@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Chat\ITownChatControlFactory;
+use Nexendrie\Chat\TownChatControl;
 use Nexendrie\Model\TownNotFoundException;
 use Nexendrie\Model\CannotMoveToSameTownException;
 use Nexendrie\Model\CannotMoveToTownException;
@@ -23,14 +25,16 @@ final class TownPresenter extends BasePresenter {
   protected \Nexendrie\Model\Profile $profileModel;
   protected \Nexendrie\Model\Locale $localeModel;
   private \Nexendrie\Orm\Town $town;
+  private ITownChatControlFactory $chatFactory;
   protected bool $cachingEnabled = false;
 
-  public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
+  public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel, ITownChatControlFactory $chatFactory) {
     parent::__construct();
     $this->model = $model;
     $this->userManager = $userManager;
     $this->profileModel = $profileModel;
     $this->localeModel = $localeModel;
+    $this->chatFactory = $chatFactory;
   }
   
   protected function startup(): void {
@@ -39,7 +43,11 @@ final class TownPresenter extends BasePresenter {
       $this->requiresLogin();
     }
   }
-  
+
+  protected function getChat(): ?TownChatControl {
+    return $this->chatFactory->create();
+  }
+
   public function renderDefault(): void {
     $user = $this->userManager->get($this->user->id);
     $this->template->town = $user->town;
