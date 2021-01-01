@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nette\Utils\Html;
 use Nexendrie\Model\SettingsRepository;
 use Nette\Neon\Neon;
 use Nette\Utils\FileSystem;
@@ -46,7 +47,7 @@ final class SystemSettingsFormFactory {
   }
   
   /**
-   * @todo use SettingsRepository to validate settings
+   * @todo use {@see SettingsRepository} to validate settings
    */
   public function create(): Form {
     $groups = $this->getListOfGroups();
@@ -58,7 +59,7 @@ final class SystemSettingsFormFactory {
       ->setOption("description", "Pro funkci date()")
       ->setRequired("Zadej formát data.");
     $locale->addText("dateTimeFormat", "Formát času:")
-      ->setOption("description", "Dokumentace na http://docs.php.net/manual/en/function.date.php")
+      ->setOption("description", Html::fromHtml("<a href=\"http://docs.php.net/manual/en/function.date.php\">Dokumentace</a>"))
       ->setRequired("Zadej formát času.");
     $form->addGroup("Role");
     $roles = $form->addContainer("roles");
@@ -76,13 +77,16 @@ final class SystemSettingsFormFactory {
     $form->addGroup("Nový uživatel");
     $newUser = $form->addContainer("newUser");
     $newUser->addSelect("style", "Výchozí vzhled:", $this->themesManager->getList())
-      ->setRequired("Zadej vzhled.");
+      ->setRequired("Zadej vzhled.")
+      ->setOption("description", "Vzhled pro nepřihlášené a nově registrované uživatele.");
     $newUser->addText("money", "Peníze:")
       ->setRequired("Zadej peníze.")
+      ->setOption("description", "Počet grošů, které dostanou uživatelé po dokončení registrace.")
       ->addRule(Form::INTEGER, "Peníze musí být celé číslo.")
       ->addRule(Form::RANGE, "Peníze musí být v rozmezí 1-100.", [1, 100]);
     $newUser->addSelect("town", "Město:", $this->getListOfTowns())
-      ->setRequired("Vyber město.");
+      ->setRequired("Vyber město.")
+      ->setOption("description", "Město/vesnice, kam jsou umístěny uživatelé po dokončení registrace.");
     $form->addGroup("Daně a poplatky");
     $fees = $form->addContainer("fees");
     $fees->addText("incomeTax", "Daň z příjmů:")
@@ -159,11 +163,12 @@ final class SystemSettingsFormFactory {
     $site = $form->addContainer("site");
     $site->addText("versionSuffix", "Přípona verze:")
       ->addRule(Form::MAX_LENGTH, null, 5)
-      ->setRequired(false);
+      ->setRequired(false)
+      ->setOption("description", "Přidává se do titulku všech stránek a RSS kanálů.");
     $form->addGroup("Experimentální funkce");
     $features = $form->addContainer("features");
     $features->addCheckbox("httpCaching", "HTTP cacheování")
-      ->setOption("description", "If-Modified-Since");
+      ->setOption("description", "Zapne cachování pomocí HTTP hlavičky If-Modified-Since u vhodných stránek a API požadavků.");
     $form->setCurrentGroup(null);
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());
