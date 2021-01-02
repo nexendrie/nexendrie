@@ -40,8 +40,13 @@ final class Chronicle {
    * 
    * @return PunishmentEntity[]|ICollection
    */
-  public function crimes(): ICollection {
-    return $this->orm->punishments->findAll()->orderBy("created", ICollection::DESC);
+  public function crimes(string $user = ""): ICollection {
+    if($user === "") {
+      $collection = $this->orm->punishments->findAll();
+    } else {
+      $collection = $this->orm->punishments->findByUserPublicname($user);
+    }
+    return $collection->orderBy("created", ICollection::DESC);
   }
 }
 ?>

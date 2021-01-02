@@ -26,8 +26,8 @@ final class ChroniclePresenter extends BasePresenter {
     $this->template->articles = $this->model->articles();
   }
   
-  public function renderCrimes(): void {
-    $this->template->crimes = $this->model->crimes();
+  public function renderCrimes(string $user = ""): void {
+    $this->template->crimes = $this->model->crimes($user);
   }
   
   public function renderMarriages(): void {

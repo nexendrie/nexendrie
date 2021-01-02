@@ -24,6 +24,13 @@ final class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
   public function findByUser($user): ICollection {
     return $this->findBy(["user" => $user]);
   }
+
+  /**
+   * @return ICollection|Punishment[]
+   */
+  public function findByUserPublicname(string $username): ICollection {
+    return $this->findBy(["user->publicname" => $username]);
+  }
   
   /**
    * Find specified user's active punishment
