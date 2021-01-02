@@ -216,7 +216,7 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setImplement(Nexendrie\Components\IElectionsControlFactory::class);
     $builder->addFactoryDefinition($this->prefix("component.userProfileLink"))
       ->setImplement(Nexendrie\Components\IUserProfileLinkControlFactory::class);
-    $builder->addFactoryDefinition($this->prefix($this->prefix("component.favicon")))
+    $builder->addFactoryDefinition($this->prefix("component.favicon"))
       ->setImplement(Nexendrie\Components\IFaviconControlFactory::class);
   }
   
