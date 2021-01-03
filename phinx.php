@@ -41,13 +41,16 @@ $config = [
   ],
   "environments" => [],
 ];
-$productionConfigFile = __DIR__ . "/app/config/local.neon";
-if(is_file($productionConfigFile) && is_readable($productionConfigFile)) {
-  $config["environments"]["production"] = getEnvironmentConfig($productionConfigFile);
+
+$configFiles = [
+  "production" => __DIR__ . "/app/config/local.neon",
+  "testing" => __DIR__ . "/tests/local.neon",
+];
+foreach($configFiles as $environment => $filename) {
+  if(is_file($filename) && is_readable($filename)) {
+    $config["environments"][$environment] = getEnvironmentConfig($filename);
+  }
 }
-$testingConfigFile = __DIR__ . "/tests/local.neon";
-if(is_file($testingConfigFile) && is_readable($testingConfigFile)) {
-  $config["environments"]["testing"] = getEnvironmentConfig($testingConfigFile);
-}
+
 return $config;
 ?>
