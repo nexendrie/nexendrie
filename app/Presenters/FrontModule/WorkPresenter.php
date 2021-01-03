@@ -50,7 +50,7 @@ final class WorkPresenter extends BasePresenter {
     $this->template->finished = $finished;
     $this->template->finishTime = $this->localeModel->formatDateTime($finishTime);
     $earned = $job->reward;
-    $this->template->earned = $this->localeModel->money((int) array_sum($earned));
+    $this->template->earned = (int) array_sum($earned);
     if(!$finished) {
       $this->template->help = $this->model->parseJobHelp($job);
       $this->template->canWork = $this->model->canWork();
@@ -92,9 +92,9 @@ final class WorkPresenter extends BasePresenter {
   public function actionFinish(): void {
     try {
       $rewards = $this->model->finishJob();
-      $this->template->reward = $this->localeModel->money($rewards["reward"]);
+      $this->template->reward = $rewards["reward"];
       if($rewards["extra"] > 0) {
-        $this->template->extra = $this->localeModel->money($rewards["extra"]);
+        $this->template->extra = $rewards["extra"];
       } else {
         $this->template->extra = false;
       }

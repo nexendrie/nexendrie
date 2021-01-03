@@ -5,7 +5,7 @@
     <h3>{$adventure->name}</h3>
     <p>
       {$adventure->description|genderify}<br>
-      Odměna: {$adventure->rewardT} + kořist <a href="{plink Adventure:mounts $adventure->id}">Vybrat jezdecké zvíře</a>
+      Odměna: {$adventure->reward|money} + kořist <a href="{plink Adventure:mounts $adventure->id}">Vybrat jezdecké zvíře</a>
     </p>
   </div>
   {/foreach}

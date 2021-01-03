@@ -102,17 +102,17 @@ final class PropertyPresenter extends BasePresenter {
   
   public function renderBudget(): void {
     $budget = $this->model->budget();
-    $this->template->incomes = $this->localeModel->money((int) array_sum($budget["incomes"]));
-    $this->template->expenses = $this->localeModel->money((int) array_sum($budget["expenses"]));
-    $this->template->budget = $this->localeModel->money((int) array_sum($budget["incomes"]) - (int) array_sum($budget["expenses"]));
-    $this->template->work = $this->localeModel->money($budget["incomes"]["work"]);
-    $this->template->adventures = $this->localeModel->money($budget["incomes"]["adventures"]);
-    $this->template->beerProduction = $this->localeModel->money($budget["incomes"]["beerProduction"]);
-    $this->template->taxes = $this->localeModel->money($budget["incomes"]["taxes"]);
-    $this->template->depositInterest = $this->localeModel->money($budget["incomes"]["depositInterest"]);
-    $this->template->incomeTax = $this->localeModel->money($budget["expenses"]["incomeTax"]);
-    $this->template->loansInterest = $this->localeModel->money($budget["expenses"]["loansInterest"]);
-    $this->template->membershipFee = $this->localeModel->money($budget["expenses"]["membershipFee"]);
+    $this->template->incomes = (int) array_sum($budget["incomes"]);
+    $this->template->expenses = (int) array_sum($budget["expenses"]);
+    $this->template->budget = (int) array_sum($budget["incomes"]) - (int) array_sum($budget["expenses"]);
+    $this->template->work = $budget["incomes"]["work"];
+    $this->template->adventures = $budget["incomes"]["adventures"];
+    $this->template->beerProduction = $budget["incomes"]["beerProduction"];
+    $this->template->taxes = $budget["incomes"]["taxes"];
+    $this->template->depositInterest = $budget["incomes"]["depositInterest"];
+    $this->template->incomeTax = $budget["expenses"]["incomeTax"];
+    $this->template->loansInterest = $budget["expenses"]["loansInterest"];
+    $this->template->membershipFee = $budget["expenses"]["membershipFee"];
   }
   
   public function renderEquipment(): void {

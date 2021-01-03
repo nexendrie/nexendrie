@@ -24,7 +24,6 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|ElectionResult[] $electionResults {1:m ElectionResult::$town}
  * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$town}
  * @property-read string $createdAt {virtual}
- * @property-read string $priceT {virtual}
  */
 final class Town extends BaseEntity {
   protected \Nexendrie\Model\Locale $localeModel;
@@ -35,10 +34,6 @@ final class Town extends BaseEntity {
   
   protected function getterCreatedAt(): string {
     return $this->localeModel->formatDate($this->created);
-  }
-  
-  protected function getterPriceT(): string {
-    return $this->localeModel->money($this->price);
   }
 }
 ?>

@@ -27,8 +27,7 @@ final class InventoryTest extends \Tester\TestCase {
     $this->login();
     $result = $this->model->possessions();
     Assert::type("array", $result);
-    Assert::type("string", $result["money"]);
-    Assert::contains("groš", $result["money"]);
+    Assert::type("int", $result["money"]);
     Assert::type(ICollection::class, $result["items"]);
     Assert::type(OneHasMany::class, $result["towns"]);
     Assert::type(TownEntity::class, $result["towns"]->get()->fetch());

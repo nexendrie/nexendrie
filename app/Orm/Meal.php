@@ -14,7 +14,6 @@ namespace Nexendrie\Orm;
  * @property int $life {default 0}
  * @property int $created
  * @property int $updated
- * @property-read string $priceT {virtual}
  * @property-read string $effect {virtual}
  */
 final class Meal extends BaseEntity {
@@ -22,10 +21,6 @@ final class Meal extends BaseEntity {
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
-  }
-  
-  protected function getterPriceT(): string {
-    return $this->localeModel->money($this->price);
   }
   
   protected function getterEffect(): string {

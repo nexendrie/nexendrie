@@ -90,7 +90,7 @@ final class MonasteryPresenter extends BasePresenter {
       $this->flashMessage("Nemůžeš postavit klášter.");
       $this->redirect("Homepage:");
     }
-    $this->template->buildingPrice = $this->localeModel->money($this->sr->settings["fees"]["buildMonastery"]);
+    $this->template->buildingPrice = $this->sr->settings["fees"]["buildMonastery"];
   }
   
   protected function createComponentBuildMonasteryForm(BuildMonasteryFormFactory $factory): Form {

@@ -3,5 +3,5 @@
 {block content}
   <h1>Spravovat řád</h1>
   {control manageOrderForm}
-  {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> řád za {$order->upgradePriceT}<br>{/if}
+  {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> řád za {$order->upgradePrice|money}<br>{/if}
 {/block}

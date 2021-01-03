@@ -24,14 +24,10 @@ use Nexendrie\Utils\Numbers;
  * @property OneHasMany|MonasteryDonation[] $donations {1:m MonasteryDonation::$monastery}
  * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$monastery}
  * @property-read string $createdAt {virtual}
- * @property-read string $moneyT {virtual}
  * @property-read int $prayerLife {virtual}
  * @property-read int $upgradePrice {virtual}
- * @property-read string $upgradePriceT {virtual}
  * @property-read int $libraryUpgradePrice {virtual}
- * @property-read string $libraryUpgradePriceT {virtual}
  * @property-read int $repairPrice {virtual}
- * @property-read string $repairPriceT {virtual}
  * @property-read int $skillLearningDiscount {virtual}
  */
 final class Monastery extends BaseEntity {
@@ -74,10 +70,6 @@ final class Monastery extends BaseEntity {
     return Numbers::range($value, 1, 100);
   }
   
-  protected function getterMoneyT(): string {
-    return $this->localeModel->money($this->money);
-  }
-  
   protected function getterPrayerLife(): int {
     if($this->hp < $this->criticalCondition) {
       return 0;
@@ -95,10 +87,6 @@ final class Monastery extends BaseEntity {
     }
     return $price;
   }
-  
-  protected function getterUpgradePriceT(): string {
-    return $this->localeModel->money($this->upgradePrice);
-  }
 
   protected function getterLibraryUpgradePrice(): int {
     if($this->libraryLevel === static::MAX_LEVEL - 1) {
@@ -109,10 +97,6 @@ final class Monastery extends BaseEntity {
       $price += (static::BASE_UPGRADE_PRICE / (static::MAX_LEVEL - 1));
     }
     return $price;
-  }
-
-  protected function getterLibraryUpgradePriceT(): string {
-    return $this->localeModel->money($this->libraryUpgradePrice);
   }
   
   protected function getterRepairPrice(): int {
@@ -125,10 +109,6 @@ final class Monastery extends BaseEntity {
     }
     $basePrice = (int) (static::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
     return $basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice);
-  }
-  
-  protected function getterRepairPriceT(): string {
-    return $this->localeModel->money($this->repairPrice);
   }
   
   protected function getterSkillLearningDiscount(): int {

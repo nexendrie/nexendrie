@@ -54,7 +54,7 @@ final class Job {
     $job->count = ($job->job->count > 0) ? $job->job->count : 1;
     $offer->award = array_sum($job->reward);
     $o = (object) $offer->toArray();
-    $o->award = $offer->awardT;
+    $o->award = $offer->award;
     $offer->award = $oldAward;
     return $o;
   }

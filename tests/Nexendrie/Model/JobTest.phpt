@@ -39,8 +39,7 @@ final class JobTest extends \Tester\TestCase {
     $this->login();
     $result = $this->model->calculateAward($job);
     Assert::type(\stdClass::class, $result);
-    Assert::type("string", $result->award);
-    Assert::contains("groš", $result->award);
+    Assert::type("int", $result->award);
   }
   
   public function testFindAvailableJobs() {

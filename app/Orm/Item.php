@@ -13,7 +13,6 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string $name
  * @property string $description
  * @property int $price
- * @property-read string $priceT {virtual}
  * @property Shop|null $shop {m:1 Shop::$items}
  * @property string $type {enum static::TYPE_*} {default static::TYPE_ITEM}
  * @property int $strength {default 0}
@@ -35,12 +34,6 @@ final class Item extends BaseEntity {
   public const TYPE_MATERIAL = "material";
   public const TYPE_CHARTER = "charter";
   public const TYPE_INTIMACY_BOOST = "intimacy_boost";
-
-  protected \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
   
   /**
    * @return string[]
@@ -84,10 +77,6 @@ final class Item extends BaseEntity {
     return [
       static::TYPE_CHARTER, static::TYPE_INTIMACY_BOOST
     ];
-  }
-  
-  protected function getterPriceT(): string {
-    return $this->localeModel->money($this->price);
   }
   
   protected function getterTypeCZ(): string {

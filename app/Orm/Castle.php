@@ -20,9 +20,7 @@ use Nexendrie\Utils\Numbers;
  * @property int $hp {default 100}
  * @property-read int $taxesBonusIncome {virtual}
  * @property-read int $upgradePrice {virtual}
- * @property-read string $upgradePriceT {virtual}
  * @property-read int $repairPrice {virtual}
- * @property-read string $repairPriceT {virtual}
  */
 final class Castle extends BaseEntity {
   public const MAX_LEVEL = 5;
@@ -78,10 +76,6 @@ final class Castle extends BaseEntity {
     return $price;
   }
   
-  protected function getterUpgradePriceT(): string {
-    return $this->localeModel->money($this->upgradePrice);
-  }
-  
   protected function getterRepairPrice(): int {
     if($this->hp >= 100) {
       return 0;
@@ -92,10 +86,6 @@ final class Castle extends BaseEntity {
     }
     $basePrice = (int) (static::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
     return $basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice);
-  }
-  
-  protected function getterRepairPriceT(): string {
-    return $this->localeModel->money($this->repairPrice);
   }
 }
 ?>

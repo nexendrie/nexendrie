@@ -331,6 +331,7 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
     /** @var FactoryDefinition $latteFactory */
     $latteFactory = $builder->getDefinitionByType(ILatteFactory::class);
     $latteFactory->getResultDefinition()->addSetup("addFilter", ["genderify", ["@" . $this->prefix("model.locale"), "genderMessage"]]);
+    $latteFactory->getResultDefinition()->addSetup("addFilter", ["money", ["@" . $this->prefix("model.locale"), "money"]]);
   }
 
   public function afterCompile(\Nette\PhpGenerator\ClassType $class): void {

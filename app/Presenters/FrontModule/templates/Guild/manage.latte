@@ -3,5 +3,5 @@
 {block content}
   <h1>Spravovat cech</h1>
   {control manageGuildForm}
-  {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> cech za {$guild->upgradePriceT}<br>{/if}
+  {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> cech za {$guild->upgradePrice|money}<br>{/if}
 {/block}

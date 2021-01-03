@@ -4,6 +4,6 @@
   {foreach $jobs as $job}
   <p>{$job->name}<br>
     Předpoklady: {$job->rank|firstUpper}, dovednost {$job->skillName} úroveň {$job->skillLevel}<br>
-    Odměňování: {if $job->count === 0}{$job->award} za směnu (směna trvá {$job->shift} minut){else}{$job->award} za {$job->count} směn (směna trvá {$job->shift} minut){/if}
+    Odměňování: {if $job->count === 0}{$job->award|money} za směnu (směna trvá {$job->shift} minut){else}{$job->award|money} za {$job->count} směn (směna trvá {$job->shift} minut){/if}
   </p>
   {/foreach}

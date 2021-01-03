@@ -29,7 +29,6 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property bool $autoFeed {default false}
  * @property OneHasMany|UserAdventure[] $adventures {1:m UserAdventure::$mount}
  * @property-read string $genderCZ {virtual}
- * @property-read string $priceT {virtual}
  * @property-read string $createdAt {virtual}
  * @property-read int $baseDamage {virtual}
  * @property-read int $baseArmor {virtual}
@@ -37,8 +36,6 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read int $maxArmor {virtual}
  * @property-read int $damageTrainingCost {virtual}
  * @property-read int $armorTrainingCost {virtual}
- * @property-read string $damageTrainingCostT {virtual}
- * @property-read string $armorTrainingCostT {virtual}
  * @property-read string $typeGenderName {virtual}
  */
 final class Mount extends BaseEntity implements ICharacterEffectsProvider {
@@ -87,10 +84,6 @@ final class Mount extends BaseEntity implements ICharacterEffectsProvider {
     return static::getGenders()[$this->gender];
   }
   
-  protected function getterPriceT(): string {
-    return $this->localeModel->money($this->price);
-  }
-  
   protected function getterCreatedAt(): string {
     return $this->localeModel->formatDateTime($this->created);
   }
@@ -127,14 +120,6 @@ final class Mount extends BaseEntity implements ICharacterEffectsProvider {
     $basePrice = ($this->armor - $this->baseArmor + 1) * 30;
     $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
     return $basePrice;
-  }
-  
-  protected function getterDamageTrainingCostT(): string {
-    return $this->localeModel->money($this->damageTrainingCost);
-  }
-  
-  protected function getterArmorTrainingCostT(): string {
-    return $this->localeModel->money($this->armorTrainingCost);
   }
   
   protected function getterTypeGenderName(): string {

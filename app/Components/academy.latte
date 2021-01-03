@@ -9,6 +9,6 @@
   <table id="skills">
     <tr><th>Dovednost</th><th>Úroveň</th><th>Max. úroveň</th><th>Cena</th>{if $type === "combat"}<th>Efekt</th>{/if}<th></th></tr>
     {foreach $skills as $skill}
-    <tr><td>{$skill->skill->name}</td><td>{$skill->level}</td><td>{$skill->skill->maxLevel}</td><td>{if $skill->level < $skill->skill->maxLevel}{$skill->learningPriceT}{/if}</td>{if $type === "combat"}<td>{$skill->skill->effect}</td>{/if}<td>{if $skill->level < $skill->skill->maxLevel}<a n:href="learn! $skill->skill->id">Učit se</a>{/if}</td></tr>
+    <tr><td>{$skill->skill->name}</td><td>{$skill->level}</td><td>{$skill->skill->maxLevel}</td><td>{if $skill->level < $skill->skill->maxLevel}{$skill->learningPrice|money}{/if}</td>{if $type === "combat"}<td>{$skill->skill->effect}</td>{/if}<td>{if $skill->level < $skill->skill->maxLevel}<a n:href="learn! $skill->skill->id">Učit se</a>{/if}</td></tr>
     {/foreach}
   </table>

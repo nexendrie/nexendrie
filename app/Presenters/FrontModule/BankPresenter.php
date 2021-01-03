@@ -28,7 +28,7 @@ final class BankPresenter extends BasePresenter {
   }
   
   public function renderDefault(): void {
-    $this->template->maxLoan = $this->localeModel->money($this->model->maxLoan());
+    $this->template->maxLoan = $this->model->maxLoan();
     $this->template->loanInterest = $this->sr->settings["fees"]["loanInterest"];
     $this->template->depositInterest = $this->sr->settings["fees"]["depositInterest"];
     if(!$this->user->isLoggedIn()) {
@@ -36,8 +36,7 @@ final class BankPresenter extends BasePresenter {
     }
     $this->template->loan = $this->model->getActiveLoan();
     if($this->template->loan !== null) {
-      $returnMoney = $this->template->loan->amount + $this->template->loan->interest;
-      $this->template->returnMoney = $this->localeModel->money($returnMoney);
+      $this->template->returnMoney = $this->template->loan->amount + $this->template->loan->interest;
     }
     $this->template->deposit = $this->model->getActiveDeposit();
   }

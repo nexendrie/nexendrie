@@ -12,7 +12,6 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $id {primary}
  * @property string $name
  * @property int $price
- * @property-read string $priceT {virtual}
  * @property int $maxLevel
  * @property string $type {enum static::TYPE_*}
  * @property string|null $stat {enum static::STAT_*} {default null}
@@ -32,16 +31,6 @@ final class Skill extends BaseEntity {
   public const STAT_DAMAGE = "damage";
   public const STAT_ARMOR = "armor";
   public const STAT_INITIATIVE = "initiative";
-
-  protected \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function getterPriceT(): string {
-    return $this->localeModel->money($this->price);
-  }
   
   /**
    * @return string[]

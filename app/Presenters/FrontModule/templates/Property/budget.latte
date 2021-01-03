@@ -3,17 +3,17 @@
 {block content}
   <h1>Rozpočet</h1>
   <h2>Příjmy</h2>
-  Práce + {$work}<br>
-  Dobrodružství + {$adventures}<br>
-  Výroba piva + {$beerProduction}<br>
-  Daně + {$taxes}<br>
-  Úroky z termínovaných vkladů + {$depositInterest}<br>
-  Celkem příjmy = {$incomes}
+  Práce + {$work|money}<br>
+  Dobrodružství + {$adventures|money}<br>
+  Výroba piva + {$beerProduction|money}<br>
+  Daně + {$taxes|money}<br>
+  Úroky z termínovaných vkladů + {$depositInterest|money}<br>
+  Celkem příjmy = {$incomes|money}
   <h2>Výdaje</h2>
-  Daň z příjmů - {$incomeTax}<br>
-  Úroky z půjček - {$loansInterest}<br>
-  Příspěvky cechu/řádu/klášteru - {$membershipFee}<br>
-  Celkem výdaje = {$expenses}
+  Daň z příjmů - {$incomeTax|money}<br>
+  Úroky z půjček - {$loansInterest|money}<br>
+  Příspěvky cechu/řádu/klášteru - {$membershipFee|money}<br>
+  Celkem výdaje = {$expenses|money}
   <h2>Rozdíl</h2>
-  {if $budget > 0}+{/if}{$budget}
+  {if $budget > 0}+{/if}{$budget|money}
 {/block}

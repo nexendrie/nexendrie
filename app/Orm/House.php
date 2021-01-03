@@ -20,11 +20,8 @@ use Nexendrie\Utils\Numbers;
  * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$house}
  * @property-read int $workIncomeBonus {virtual}
  * @property-read int $upgradePrice {virtual}
- * @property-read string $upgradePriceT {virtual}
  * @property-read int $breweryUpgradePrice {virtual}
- * @property-read string $breweryUpgradePriceT {virtual}
  * @property-read int $repairPrice {virtual}
- * @property-read string $repairPriceT {virtual}
  */
 final class House extends BaseEntity {
   public const MAX_LEVEL = 5;
@@ -32,13 +29,8 @@ final class House extends BaseEntity {
   public const BASE_REPAIR_PRICE = 15;
   public const INCOME_BONUS_PER_LEVEL = 3;
 
-  protected \Nexendrie\Model\Locale $localeModel;
   protected \Nexendrie\Model\Events $eventsModel;
   protected int $criticalCondition;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
   
   public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;
@@ -80,10 +72,6 @@ final class House extends BaseEntity {
     return $price;
   }
   
-  protected function getterUpgradePriceT(): string {
-    return $this->localeModel->money($this->upgradePrice);
-  }
-  
   protected function getterBreweryUpgradePrice(): int {
     if($this->breweryLevel === static::MAX_LEVEL) {
       return 0;
@@ -93,10 +81,6 @@ final class House extends BaseEntity {
       $price += (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
     }
     return $price;
-  }
-  
-  protected function getterBreweryUpgradePriceT(): string {
-    return $this->localeModel->money($this->breweryUpgradePrice);
   }
   
   protected function getterRepairPrice(): int {
@@ -109,10 +93,6 @@ final class House extends BaseEntity {
     }
     $basePrice = (int) (static::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
     return $basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice);
-  }
-  
-  protected function getterRepairPriceT(): string {
-    return $this->localeModel->money($this->repairPrice);
   }
 }
 ?>

@@ -37,7 +37,7 @@ final class Inventory {
     $return = [];
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
-    $return["money"] = $user->moneyT;
+    $return["money"] = $user->money;
     $return["items"] = $user->items->toCollection()->findBy(["item->type" => ItemEntity::getCommonTypes()]);
     $return["towns"] = $user->ownedTowns;
     $return["loan"] = $this->orm->loans->getActiveLoan($this->user->id);

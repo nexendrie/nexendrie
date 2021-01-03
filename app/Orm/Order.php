@@ -18,12 +18,10 @@ use Nexendrie\Utils\Numbers;
  * @property-read string $createdAt {virtual}
  * @property int $updated
  * @property int $money {default 0}
- * @property-read string $moneyT {virtual}
  * @property OneHasMany|User[] $members {1:m User::$order, orderBy=[orderRank,DESC]}
  * @property OneHasMany|OrderFee[] $fees {1:m OrderFee::$order}
  * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$order}
  * @property-read int $upgradePrice {virtual}
- * @property-read string $upgradePriceT {virtual}
  * @property-read float $adventuresBonusIncome {virtual}
  */
 final class Order extends BaseEntity {
@@ -45,10 +43,6 @@ final class Order extends BaseEntity {
     return $this->localeModel->formatDateTime($this->created);
   }
   
-  protected function getterMoneyT(): string {
-    return $this->localeModel->money($this->money);
-  }
-  
   protected function getterUpgradePrice(): int {
     if($this->level === static::MAX_LEVEL) {
       return 0;
@@ -58,10 +52,6 @@ final class Order extends BaseEntity {
       $price += (int) (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
     }
     return $price;
-  }
-  
-  protected function getterUpgradePriceT(): string {
-    return $this->localeModel->money($this->upgradePrice);
   }
 
   protected function getterAdventuresBonusIncome(): float {

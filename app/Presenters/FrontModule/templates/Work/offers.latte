@@ -7,7 +7,7 @@
   <table id="offers">
     <tr><th>Název</th><th>Popis</th><th>Směna</th><th>Odměňování</th><th>Dovednost</th><th></th></tr>
     {foreach $offers as $offer}
-    <tr><td>{$offer->name}</td><td>{$offer->description}</td><td>{$offer->shift}</td><td>{if $offer->count>0}{$offer->award} za {$offer->count} směn{else}{$offer->award} za směnu{/if}</td><td>{$offer->neededSkill->name}</td><td><a n:href="start $offer->id">Přijmout</a></td></tr>
+    <tr><td>{$offer->name}</td><td>{$offer->description}</td><td>{$offer->shift}</td><td>{if $offer->count>0}{$offer->award|money} za {$offer->count} směn{else}{$offer->award|money} za směnu{/if}</td><td>{$offer->neededSkill->name}</td><td><a n:href="start $offer->id">Přijmout</a></td></tr>
     {/foreach}
   </table>
 {/block}

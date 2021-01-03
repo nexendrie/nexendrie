@@ -69,7 +69,7 @@ final class HelpControl extends BookControl {
       $j = (object) [
         "name" => $job->name, "skillName" => $job->neededSkill->name,
         "skillLevel" => $job->neededSkillLevel, "count" => $job->count,
-        "award" => $job->awardT, "shift" => $job->shift
+        "award" => $job->award, "shift" => $job->shift,
       ];
       /** @var \Nexendrie\Orm\Group $group */
       $group = $this->orm->groups->getByLevel($job->level);
@@ -97,7 +97,7 @@ final class HelpControl extends BookControl {
   
   public function renderCastle(): void {
     $this->template->maxLevel = CastleEntity::MAX_LEVEL;
-    $this->template->taxBonusPerLevel = $this->localeModel->money(CastleEntity::TAX_BONUS_PER_LEVEL);
+    $this->template->taxBonusPerLevel = CastleEntity::TAX_BONUS_PER_LEVEL;
     $this->template->weeklyWearingOut = $this->sr->settings["buildings"]["weeklyWearingOut"];
     $this->template->criticalCondition = $this->sr->settings["buildings"]["criticalCondition"];
   }

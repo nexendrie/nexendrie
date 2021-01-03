@@ -10,7 +10,7 @@
     <span class="member" n:foreach="$monastery->members as $member">{control userProfileLink $member,true}{if !$iterator->last},{/if}</span>
   </div>
   <h3>Majetek kláštera</h3>
-  <p>{$monastery->moneyT}</p>
+  <p>{$monastery->money|money}</p>
   <h3>Akce</h3>
   Darovat peníze klášteru<br>
   {control monasteryDonateForm}

@@ -21,19 +21,10 @@ use HeroesofAbenez\Combat\Weapon;
  * @property int $updated
  * @property-read int $maxLevel {virtual}
  * @property-read int $upgradePrice {virtual}
- * @property-read string $upgradePriceT {virtual}
  * @property-read int $price {virtual}
- * @property-read string $priceT {virtual}
  * @property-read int $sellPrice {virtual}
- * @property-read string $sellPriceT {virtual}
  */
 final class UserItem extends BaseEntity {
-  protected \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
   protected function setterAmount(int $value): int {
     if($value < 0) {
       return 0;
@@ -61,10 +52,6 @@ final class UserItem extends BaseEntity {
     return ($this->level + 1) * (int) ($this->item->price / 3);
   }
   
-  protected function getterUpgradePriceT(): string {
-    return $this->localeModel->money($this->upgradePrice);
-  }
-  
   protected function getterPrice(): int {
     $price = $this->item->price;
     $i = 1;
@@ -75,16 +62,8 @@ final class UserItem extends BaseEntity {
     return $price;
   }
   
-  protected function getterPriceT(): string {
-    return $this->localeModel->money($this->price);
-  }
-  
   protected function getterSellPrice(): int {
     return (int) ($this->price / 2);
-  }
-  
-  protected function getterSellPriceT(): string {
-    return $this->localeModel->money($this->sellPrice);
   }
   
   public function toCombatEquipment(): ?Equipment {

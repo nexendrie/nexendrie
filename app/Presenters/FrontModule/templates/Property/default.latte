@@ -2,12 +2,12 @@
 {block title}Majetek{/block}
 {block content}
   <h1>Majetek</h1>
-  <p>V měšci máš {$money}. {if $loan}Máš půjčeno {$loan->amountT} od Banky Žajských.{/if}</p>
+  <p>V měšci máš {$money|money}. {if $loan}Máš půjčeno {$loan->amount|money} od Banky Žajských.{/if}</p>
   {if count($items) > 0}
   <p>
     Dále máš:<br>
     {foreach $items as $row}
-    <span title="{$row->item->description}">{$row->amount}x {$row->item->name}</span>{if !in_array($row->item->type, \Nexendrie\Orm\Item::getNotForSale())} <a n:href="sell! $row->id">Prodat 1 kus</a> za {$row->sellPriceT}{/if}<br>
+    <span title="{$row->item->description}">{$row->amount}x {$row->item->name}</span>{if !in_array($row->item->type, \Nexendrie\Orm\Item::getNotForSale())} <a n:href="sell! $row->id">Prodat 1 kus</a> za {$row->sellPrice|money}{/if}<br>
     {/foreach}
   </p>
   {/if}

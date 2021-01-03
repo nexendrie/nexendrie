@@ -41,7 +41,6 @@ use Nexendrie\Utils\Numbers;
  * @property Order|null $order {m:1 Order::$members} {default null}
  * @property OrderRank|null $orderRank {m:1 OrderRank::$people} {default null}
  * @property-read float $adventureBonusIncome {virtual}
- * @property-read string $moneyT {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|Article[] $articles {1:m Article::$author}
  * @property OneHasMany|Poll[] $polls {1:m Poll::$author}
@@ -128,10 +127,6 @@ final class User extends BaseEntity {
       static::GENDER_MALE => "muž",
       static::GENDER_FEMALE => "žena"
     ];
-  }
-  
-  protected function getterMoneyT(): string {
-    return $this->localeModel->money($this->money);
   }
   
   protected function getterMaxLife(): int {

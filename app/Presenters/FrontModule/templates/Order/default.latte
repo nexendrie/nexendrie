@@ -8,7 +8,7 @@
     <span n:foreach="$order->members as $member" class="member">{control userProfileLink:order $member}{if !$iterator->last}, {/if}</span>
   </div>
   <h3>Majetek řádu</h3>
-  <p>{$order->moneyT}</p>
+  <p>{$order->money|money}</p>
   <h3>Akce</h3>
   {if $canLeave}<p><a n:href="leave">Opustit řád</a></p>{/if}
   {if $canManage}<p><a n:href="manage">Spravovat řád</a></p>
