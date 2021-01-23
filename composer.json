@@ -24,11 +24,11 @@
         "nette/application": "^3.1",
         "nette/bootstrap": "^3.1",
         "nette/caching": "^3.1",
-        "nette/di": "^3.0.6",
-        "nette/forms": "^3.0.7",
+        "nette/di": "^3.0.7",
+        "nette/forms": "^3.1",
         "nette/security": "^3.1",
         "nette/utils": "^3.2",
-        "tracy/tracy": "^2.8",
+        "tracy/tracy": "^2.8.2",
         "latte/latte": "^2.9",
         "kdyby/autowired": "^2.1.1",
         "nextras/orm": "^4.0.1",
@@ -44,7 +44,7 @@
         "heroesofabenez/chat": "^2.1",
         "heroesofabenez/combat": "^1.0",
         "adamstipak/nette-rest-route": "dev-master",
-        "robmorgan/phinx": "^0.12.4"
+        "robmorgan/phinx": "^0.12.5"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
