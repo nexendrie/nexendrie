@@ -63,6 +63,7 @@ final class SettingsRepository {
       "criticalCondition" => 30,
     ],
     "socialAccounts" => [
+      "facebook" => "nexendrie",
       "twitter" => "nexendrieCZ",
     ],
   ];

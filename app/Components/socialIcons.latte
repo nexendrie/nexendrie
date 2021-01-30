@@ -1,0 +1,1 @@
+{foreach $icons as $icon}<a href="{$icon->getLink()}"><img src="{$basePath}/images/{$icon->getImage()}" alt="{$icon->getImageAlt()}" title="{$icon->getImageTitle()}"></a>{if !$iterator->last} {/if}{/foreach}

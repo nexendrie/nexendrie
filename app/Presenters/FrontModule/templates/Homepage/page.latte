@@ -2,7 +2,7 @@
 {block title}Novinky{/block}
 {block content}
   <h1>Novinky strana {$paginator->page}</h1>
-  <div id="topLinks"><a href="https://www.facebook.com/nexendrie/"><img src="{$basePath}/images/facebook-logo.png" alt="Facebook" title="Facebook stránka"></a><a href="https://gitlab.com/nexendrie/nexendrie"><img src="{$basePath}/images/gitlab-icon.png" alt="Gitlab" title="Zdrojové kódy a issue tracker"></a> <a n:href="Rss:news"><img src="{$basePath}/images/feed-icon.png" alt="RSS kanál" title="RSS kanál"></a></div>
+  <div id="topLinks">{control socialIcons} <a n:href="Rss:news"><img src="{$basePath}/images/feed-icon.png" alt="RSS kanál" title="RSS kanál"></a></div>
   {if count($articles) === 0}
   <p>Žádné novinky.</p>
   {else}

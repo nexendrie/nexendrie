@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Components\ISocialIconsControlFactory;
+use Nexendrie\Components\SocialIconsControl;
+
 /**
  * Presenter Homepage
  *
@@ -21,6 +24,10 @@ final class HomepagePresenter extends BasePresenter {
     $paginator->page = $page;
     $this->template->articles = $this->model->listOfNews($paginator);
     $this->template->paginator = $paginator;
+  }
+
+  public function createComponentSocialIcons(ISocialIconsControlFactory $factory): SocialIconsControl {
+    return $factory->create();
   }
 
   protected function getDataModifiedTime(): int {

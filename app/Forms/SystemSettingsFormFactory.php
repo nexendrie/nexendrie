@@ -167,6 +167,8 @@ final class SystemSettingsFormFactory {
       ->setOption("description", "Přidává se do titulku všech stránek a RSS kanálů.");
     $form->addGroup("Účty na sociálních sítích");
     $socialAccounts = $form->addContainer("socialAccounts");
+    $socialAccounts->addText("facebook", "Facebook:")
+      ->setRequired("Zadej název účtu na Facebooku");
     $socialAccounts->addText("twitter", "Twitter:")
       ->setRequired("Zadej název účtu na Twitteru");
     $form->addGroup("Experimentální funkce");
