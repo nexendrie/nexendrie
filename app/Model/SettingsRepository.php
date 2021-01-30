@@ -62,6 +62,9 @@ final class SettingsRepository {
       "weeklyWearingOut" => 3,
       "criticalCondition" => 30,
     ],
+    "socialAccounts" => [
+      "twitter" => "nexendrieCZ",
+    ],
   ];
 
   protected array $rules = [

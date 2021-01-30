@@ -218,6 +218,12 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setImplement(Nexendrie\Components\IUserProfileLinkControlFactory::class);
     $builder->addFactoryDefinition($this->prefix("component.favicon"))
       ->setImplement(Nexendrie\Components\IFaviconControlFactory::class);
+    $builder->addFactoryDefinition($this->prefix("component.sharer"))
+      ->setImplement(Nexendrie\Components\ISharerControlFactory::class);
+    $builder->addDefinition($this->prefix("component.sharer.link.facebook"))
+      ->setType(Nexendrie\Components\SharerLinks\Facebook::class);
+    $builder->addDefinition($this->prefix("component.sharer.link.twitter"))
+      ->setType(Nexendrie\Components\SharerLinks\Twitter::class);
   }
   
   protected function addForms(): void {

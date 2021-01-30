@@ -1,0 +1,3 @@
+  <div id="share">
+    <p>Sdílet {$contentType} na: {foreach $links as $link}<a href="{$link->getShareLink($url)}">{$link->getSiteName()}</a>{if !$iterator->last} {/if}{/foreach}</p>
+  </div>

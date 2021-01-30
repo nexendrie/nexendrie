@@ -165,6 +165,10 @@ final class SystemSettingsFormFactory {
       ->addRule(Form::MAX_LENGTH, null, 5)
       ->setRequired(false)
       ->setOption("description", "Přidává se do titulku všech stránek a RSS kanálů.");
+    $form->addGroup("Účty na sociálních sítích");
+    $socialAccounts = $form->addContainer("socialAccounts");
+    $socialAccounts->addText("twitter", "Twitter:")
+      ->setRequired("Zadej název účtu na Twitteru");
     $form->addGroup("Experimentální funkce");
     $features = $form->addContainer("features");
     $features->addCheckbox("httpCaching", "HTTP cacheování")

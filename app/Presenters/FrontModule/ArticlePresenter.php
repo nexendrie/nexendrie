@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Components\ISharerControlFactory;
+use Nexendrie\Components\SharerControl;
 use Nexendrie\Model\ArticleNotFoundException;
 use Nette\Application\UI\Form;
 use Nexendrie\Forms\AddCommentFormFactory;
@@ -35,6 +37,7 @@ final class ArticlePresenter extends BasePresenter {
       $this->template->article = $article = $this->model->view($id);
       $this->template->comments = $article->comments->toCollection()->findBy(["deleted" => false]);
       $this->template->ogType = "article";
+      $this->template->link = $this->link("//this");
     } catch(ArticleNotFoundException $e) {
       throw new \Nette\Application\BadRequestException();
     }
@@ -55,6 +58,10 @@ final class ArticlePresenter extends BasePresenter {
       }
     };
     return $form;
+  }
+
+  public function createComponentSharer(ISharerControlFactory $factory): SharerControl {
+    return $factory->create();
   }
 
   public function handleReport(int $comment): void {

@@ -1,5 +1,6 @@
 Version 1.0.0-beta9+dev
-- added profile sub-page comments
+- added profile sub-page comments and crimes
+- allowed sharing articles on Twitter
 
 Version 1.0.0-beta9
 - removed user setting infomails
@@ -16,6 +17,7 @@ Version 1.0.0-beta8
 - fixed skill's bonus to work success rate and reward
 - single entities and collections in api now have links in json and send Link headers
 - added Open Graph metadata for frontend pages
+- allowed sharing articles on Facebook
 - phinx is used for database migrations
 - added support for If-Modified-Since in frontend pages (not enabled by default) and api
 - added comments moderation
