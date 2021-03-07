@@ -280,7 +280,7 @@ final class Job {
     $job->count = $oldCount;
     $help = str_replace("%reward%", $reward, $job->job->help);
     /** @var string $help */
-    $help = str_replace("%count%", $job->job->count, $help);
+    $help = str_replace("%count%", (string) $job->job->count, $help);
     return $help;
   }
   
