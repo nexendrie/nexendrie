@@ -48,7 +48,7 @@
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
-        "dg/ftp-deployment": "dev-master",
+        "dg/ftp-deployment": "3.3.1",
         "phpstan/phpstan-nette": "^0.12.16",
         "nextras/orm-phpstan": "^0.6.2"
     },
