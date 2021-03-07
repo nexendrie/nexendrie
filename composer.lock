@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9685e299cdcbc2e0eb782caea6923a9",
+    "content-hash": "5504e3eb276da2c87d1d2ffb41a231cc",
     "packages": [
         {
             "name": "adamstipak/nette-rest-route",
@@ -3305,21 +3305,22 @@
     "packages-dev": [
         {
             "name": "dg/ftp-deployment",
-            "version": "v3.3.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/ftp-deployment.git",
-                "reference": "a98748d4706afb145264eea6cd7ee2e48d364a14"
+                "reference": "a5bed5858cbb83b0fac4494619f0717908464455"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/a98748d4706afb145264eea6cd7ee2e48d364a14",
-                "reference": "a98748d4706afb145264eea6cd7ee2e48d364a14",
+                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/a5bed5858cbb83b0fac4494619f0717908464455",
+                "reference": "a5bed5858cbb83b0fac4494619f0717908464455",
                 "shasum": ""
             },
             "require": {
                 "ext-zlib": "*",
-                "php": ">=7.1"
+                "php": ">=7.1",
+                "phpseclib/phpseclib": "^2.0"
             },
             "require-dev": {
                 "nette/tester": "^2.0",
@@ -3331,6 +3332,7 @@
                 "ext-openssl": "to connect to ftps:// server and preprocess CSS files",
                 "ext-ssh2": "to connect to sftp:// server"
             },
+            "default-branch": true,
             "bin": [
                 "deployment"
             ],
@@ -3366,9 +3368,9 @@
             ],
             "support": {
                 "issues": "https://github.com/dg/ftp-deployment/issues",
-                "source": "https://github.com/dg/ftp-deployment/tree/v3.3.2"
+                "source": "https://github.com/dg/ftp-deployment/tree/master"
             },
-            "time": "2021-02-17T10:09:53+00:00"
+            "time": "2021-02-22T13:08:12+00:00"
         },
         {
             "name": "kdyby/fake-session",
@@ -3841,6 +3843,115 @@
             "time": "2020-04-04T12:18:32+00:00"
         },
         {
+            "name": "phpseclib/phpseclib",
+            "version": "2.0.30",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpseclib/phpseclib.git",
+                "reference": "136b9ca7eebef78be14abf90d65c5e57b6bc5d36"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/136b9ca7eebef78be14abf90d65c5e57b6bc5d36",
+                "reference": "136b9ca7eebef78be14abf90d65c5e57b6bc5d36",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phing/phing": "~2.7",
+                "phpunit/phpunit": "^4.8.35|^5.7|^6.0|^9.4",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "suggest": {
+                "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
+                "ext-libsodium": "SSH2/SFTP can make use of some algorithms provided by the libsodium-php extension.",
+                "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
+                "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "phpseclib/bootstrap.php"
+                ],
+                "psr-4": {
+                    "phpseclib\\": "phpseclib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Wigginton",
+                    "email": "terrafrost@php.net",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Patrick Monnerat",
+                    "email": "pm@datasphere.ch",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Andreas Fischer",
+                    "email": "bantu@phpbb.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Hans-Jürgen Petrich",
+                    "email": "petrich@tronic-media.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
+            "homepage": "http://phpseclib.sourceforge.net",
+            "keywords": [
+                "BigInteger",
+                "aes",
+                "asn.1",
+                "asn1",
+                "blowfish",
+                "crypto",
+                "cryptography",
+                "encryption",
+                "rsa",
+                "security",
+                "sftp",
+                "signature",
+                "signing",
+                "ssh",
+                "twofish",
+                "x.509",
+                "x509"
+            ],
+            "support": {
+                "issues": "https://github.com/phpseclib/phpseclib/issues",
+                "source": "https://github.com/phpseclib/phpseclib/tree/2.0.30"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/terrafrost",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/phpseclib",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/phpseclib/phpseclib",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-12-17T05:42:04+00:00"
+        },
+        {
             "name": "phpstan/phpstan",
             "version": "0.12.80",
             "source": {
@@ -4076,7 +4187,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "adamstipak/nette-rest-route": 20,
-        "nexendrie/code-quality": 20
+        "nexendrie/code-quality": 20,
+        "dg/ftp-deployment": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
