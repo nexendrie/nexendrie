@@ -78,7 +78,6 @@ test:php8.0:
   <<: *test_job
   image: nexendrie/php:8.0
   allow_failure: true
-  retry: 0
 
 test:cc:
   <<: *test_job
