@@ -49,7 +49,8 @@ final class AdventureControl extends \Nette\Application\UI\Control {
   public function render(): void {
     $this->template->setFile(__DIR__ . "/adventure.latte");
     /** @var UserAdventure $adventure */
-    $this->template->adventure = $adventure = $this->model->getCurrentAdventure();
+    $adventure = $this->model->getCurrentAdventure();
+    $this->template->adventure = $adventure;
     $this->template->nextEnemy = $adventure->nextEnemy;
     $this->template->render();
   }
