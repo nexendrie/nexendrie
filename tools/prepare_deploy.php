@@ -7,10 +7,10 @@ $filename = __DIR__ . "/../deployment.ini";
 $config = file_get_contents($filename);
 switch(getenv("DEPLOY_ENVIRONMENT")) {
   case "alpha":
-    $remote = "sftp://nexendrie.cz:2222/www/nexendrie.cz/wwwroot/alpha";
+    $remote = "sftp://nexendrie.cz/nexendrie.cz/sub/alpha";
     break;
   case "beta":
-    $remote = "sftp://nexendrie.cz:2222/www/nexendrie.cz/wwwroot/beta";
+    $remote = "sftp://nexendrie.cz/nexendrie.cz/sub/beta";
     break;
   default:
     echo "Error: invalid environment";
