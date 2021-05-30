@@ -13,7 +13,7 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-final class Events implements \EventCalendar\IEventModel {
+final class Events implements \Nexendrie\EventCalendar\IEventModel {
   protected \Nexendrie\Orm\Model $orm;
   protected Cache $cache;
   protected \Nette\Security\User $user;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14d9d7ab4a8e122f37ee751c0343c4f4",
+    "content-hash": "fba34885009e3ab3a911e777c323416f",
     "packages": [
         {
             "name": "adamstipak/nette-rest-route",
@@ -1679,53 +1679,59 @@
         },
         {
             "name": "nexendrie/event-calendar",
-            "version": "0.6.1",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/EventCalendar.git",
-                "reference": "a49545331c5f22e1f1f861f9beab2fef8d03d7d0"
+                "reference": "f1124c5d51793df6ccc255a0600f38950d454dea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2FEventCalendar/repository/archive.zip?sha=a49545331c5f22e1f1f861f9beab2fef8d03d7d0",
-                "reference": "a49545331c5f22e1f1f861f9beab2fef8d03d7d0",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2FEventCalendar/repository/archive.zip?sha=f1124c5d51793df6ccc255a0600f38950d454dea",
+                "reference": "f1124c5d51793df6ccc255a0600f38950d454dea",
                 "shasum": ""
             },
             "require": {
                 "ext-calendar": "*",
-                "latte/latte": "^2.5 || ^3.0",
-                "nette/application": "^3.0",
-                "nette/neon": "^3.0",
-                "nette/utils": "^3.0",
+                "latte/latte": "^2.8.3 || ^3.0",
+                "nette/application": "^3.1.2",
+                "nette/neon": "^3.2.2",
+                "nette/utils": "^3.2.2",
                 "php": ">=7.4.0"
             },
             "conflict": {
-                "nette/caching": "<3.0",
-                "texy/texy": "<3.0.1"
+                "nette/caching": "<3.1.1",
+                "texy/texy": "<3.1.4"
             },
             "replace": {
-                "jaroslav-kubicek/event-calendar": ">=0.2"
+                "jaroslav-kubicek/event-calendar": ">=0.2",
+                "konecnyjakub/event-calendar": ">=0.6.1"
             },
             "require-dev": {
-                "nette/caching": "^3.0",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "nette/caching": "^3.1.1",
                 "nexendrie/code-quality": "@dev",
-                "nexendrie/translation": "^2.3",
+                "nexendrie/site-generator": "^0.7",
+                "nexendrie/translation": "^2.3.1",
                 "phpstan/phpstan-nette": "^0.12",
-                "texy/texy": "^3.0.1"
+                "texy/texy": "^3.1.4"
             },
             "suggest": {
+                "ext-curl": "Needed for Google Calendar",
+                "ext-json": "Needed for Google Calendar",
                 "nexendrie/translation": "Translator",
                 "texy/texy": "To use Texy! syntax in events"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.6.x-dev"
+                    "dev-master": "0.7.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "EventCalendar\\": "src/"
+                    "Nexendrie\\EventCalendar\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1747,7 +1753,7 @@
             "support": {
                 "issues": "https://gitlab.com/api/v4/projects/21367710/issues"
             },
-            "time": "2020-09-20T13:50:59+00:00"
+            "time": "2021-05-08T17:15:36+00:00"
         },
         {
             "name": "nexendrie/menu",
@@ -2824,16 +2830,16 @@
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.22.1",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-                "reference": "5601e09b69f26c1828b13b6bb87cb07cddba3170"
+                "reference": "24b72c6baa32c746a4d0840147c9715e42bb68ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/5601e09b69f26c1828b13b6bb87cb07cddba3170",
-                "reference": "5601e09b69f26c1828b13b6bb87cb07cddba3170",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/24b72c6baa32c746a4d0840147c9715e42bb68ab",
+                "reference": "24b72c6baa32c746a4d0840147c9715e42bb68ab",
                 "shasum": ""
             },
             "require": {
@@ -2845,7 +2851,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -2885,7 +2891,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.22.1"
+                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.23.0"
             },
             "funding": [
                 {
@@ -2901,20 +2907,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-22T09:19:47+00:00"
+            "time": "2021-05-27T09:17:38+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.22.1",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-                "reference": "43a0283138253ed1d48d352ab6d0bdb3f809f248"
+                "reference": "8590a5f561694770bdcd3f9b5c69dde6945028e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/43a0283138253ed1d48d352ab6d0bdb3f809f248",
-                "reference": "43a0283138253ed1d48d352ab6d0bdb3f809f248",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/8590a5f561694770bdcd3f9b5c69dde6945028e8",
+                "reference": "8590a5f561694770bdcd3f9b5c69dde6945028e8",
                 "shasum": ""
             },
             "require": {
@@ -2926,7 +2932,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -2969,7 +2975,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.22.1"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.23.0"
             },
             "funding": [
                 {
@@ -2985,20 +2991,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-22T09:19:47+00:00"
+            "time": "2021-02-19T12:13:01+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.22.1",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "dc3063ba22c2a1fd2f45ed856374d79114998f91"
+                "reference": "eca0bf41ed421bed1b57c4958bab16aa86b757d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/dc3063ba22c2a1fd2f45ed856374d79114998f91",
-                "reference": "dc3063ba22c2a1fd2f45ed856374d79114998f91",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/eca0bf41ed421bed1b57c4958bab16aa86b757d0",
+                "reference": "eca0bf41ed421bed1b57c4958bab16aa86b757d0",
                 "shasum": ""
             },
             "require": {
@@ -3007,7 +3013,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -3052,7 +3058,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.22.1"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.23.0"
             },
             "funding": [
                 {
@@ -3068,7 +3074,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-02-19T12:13:01+00:00"
         },
         {
             "name": "symfony/service-contracts",

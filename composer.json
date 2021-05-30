@@ -33,7 +33,7 @@
         "kdyby/autowired": "^2.1.1",
         "nextras/orm": "^4.0.2",
         "ijvo/cronner": "^3.0.3",
-        "nexendrie/event-calendar": "^0.6.1",
+        "nexendrie/event-calendar": "^0.7",
         "nextras/form-components": "^1.0",
         "nexendrie/book-component": "^2.3",
         "nexendrie/translation": "^2.3.1",

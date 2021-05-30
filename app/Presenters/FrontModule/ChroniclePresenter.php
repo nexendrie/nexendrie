@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use EventCalendar\Simple\EventCalendar as Calendar;
+use Nexendrie\EventCalendar\Simple\EventCalendar as Calendar;
 
 /**
  * Presenter Chronicle
