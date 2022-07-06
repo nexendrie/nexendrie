@@ -30,7 +30,7 @@ final class SettingsRepository {
       "articles" => 10,
     ],
     "newUser" => [
-      "style" => "dark-sky",
+      "style" => "nexendrie",
       "money" => 30,
       "town" => 3,
     ],
