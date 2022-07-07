@@ -65,6 +65,7 @@ final class SettingsRepository {
     "socialAccounts" => [
       "facebook" => "nexendrie",
       "twitter" => "nexendrieCZ",
+      "friendica" => "@nexendrie@social.konecnyjakub.top",
     ],
   ];
 
@@ -80,8 +81,11 @@ final class SettingsRepository {
       "buildCastle" => "validateFee",
       "foundGuild" => "validateFee",
       "foundOrder" => "validateFee",
-      "depositInterest" => "validatePercent"
-    ]
+      "depositInterest" => "validatePercent",
+    ],
+    "socialAccounts" => [
+      "friendica" => "validateFriendicaAccount",
+    ],
   ];
 
   protected array $settings = [];
@@ -107,6 +111,10 @@ final class SettingsRepository {
   
   protected function validateFee(int $value): bool {
     return Intervals::isInInterval($value, "[0,5000]");
+  }
+
+  protected function validateFriendicaAccount(string $value): bool {
+    return (preg_match('/^@.+@.+/', $value) === 1);
   }
   
   /**

@@ -171,6 +171,8 @@ final class SystemSettingsFormFactory {
       ->setRequired("Zadej název účtu na Facebooku");
     $socialAccounts->addText("twitter", "Twitter:")
       ->setRequired("Zadej název účtu na Twitteru");
+    $socialAccounts->addText("friendica", "Friendica:")
+      ->setRequired("Zadej název účtu Friendica");
     $form->addGroup("Experimentální funkce");
     $features = $form->addContainer("features");
     $features->addCheckbox("httpCaching", "HTTP cacheování")
