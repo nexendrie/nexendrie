@@ -2,6 +2,7 @@ Version 1.0.0-beta9+dev
 - added profile sub-page comments and crimes
 - allowed sharing articles on Twitter
 - added new default style (autodetects dark mode)
+- actions from current user are now marked in chronicle
 
 Version 1.0.0-beta9
 - removed user setting infomails
