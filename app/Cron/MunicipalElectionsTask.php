@@ -30,13 +30,13 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask {
       $index = $vote->candidate->publicname;
       if(!isset($results[$index])) {
         $results[$index] = [
-          "candidate" => $vote->candidate, "amount" => 0
+          "candidate" => $vote->candidate, "amount" => 0,
         ];
       }
       $results[$index]["amount"]++;
     }
     usort($results, function($a, $b): int {
-      return strcmp($a->amount, $b->amount);
+      return $a["amount"] <=> $b["amount"];
     });
     return $results;
   }

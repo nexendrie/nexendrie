@@ -65,7 +65,7 @@ final class PollControl extends \Nette\Application\UI\Control {
     if($votes->count() > 0) {
       $return["total"] = $votes->count();
       foreach($votes as $vote) {
-        $count = Arrays::get($return["answers"], $vote->answer, 0);
+        $count = (int) Arrays::get($return["answers"], $vote->answer, 0);
         $return["answers"][$vote->answer] = $count + 1;
       }
     }

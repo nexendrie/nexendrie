@@ -158,6 +158,7 @@ final class AuthorizatorFactory {
       if(!$permission->hasResource($row->resource)) {
         $permission->addResource($row->resource);
       }
+      /** @var GroupDummy $group */
       $group = Arrays::get($groups, $row->group);
       $permission->allow($group->singleName, $row->resource, $row->action);
     }

@@ -4,7 +4,7 @@
   <h1>{$monastery->name}</h1>
   <p>Vůdce: {control userProfileLink $monastery->leader}</p>
   <p>Úroveň oltáře: {$monastery->altairLevel} Úroveň knihovny: {$monastery->libraryLevel} Stav: {$monastery->hp}%<br>
-  Bonus k obnově životů z lektvarů: {$monastery->altairLevel}, Sleva na učení dovedností: {$monastery->skillLearningDiscount|replace:".":","}%</p>
+  Bonus k obnově životů z lektvarů: {$monastery->altairLevel}, Sleva na učení dovedností: {$monastery->skillLearningDiscount|replace:".",","}%</p>
   <h3>Členové</h3>
   <div>
     <span class="member" n:foreach="$monastery->members as $member">{control userProfileLink $member,true}{if !$iterator->last},{/if}</span>

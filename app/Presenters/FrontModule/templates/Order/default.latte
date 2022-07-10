@@ -2,7 +2,7 @@
 {block title}Řád{/block}
 {block content}
   <h1>{$order->name}</h1>
-  <p>Úroveň: {$order->level} Bonus k příjmu z dobrodružství: {$order->adventuresBonusIncome|replace:".":","}%</p>
+  <p>Úroveň: {$order->level} Bonus k příjmu z dobrodružství: {$order->adventuresBonusIncome|replace:".",","}%</p>
   <h3>Členové</h3>
   <div>
     <span n:foreach="$order->members as $member" class="member">{control userProfileLink:order $member}{if !$iterator->last}, {/if}</span>

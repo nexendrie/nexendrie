@@ -22,3 +22,4 @@ parameters:
         - '#Only booleans are allowed in (an if condition|an elseif condition|a negated boolean), mixed given#'
         - '#Parameter \#1 \$timestamp of method DateTime::setTimestamp\(\) expects int, int\|false given#'
         - '#Comparison operation ">" between \(array\|float\|int\) and 1000 results in an error#'
+        - '#Property SimpleXMLElement::\$Url \(bool\|float\|int\|SimpleXMLElement\|string\|null\) does not accept array\<string, string\>#'

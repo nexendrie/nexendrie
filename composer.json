@@ -44,13 +44,14 @@
         "heroesofabenez/chat": "^2.1",
         "heroesofabenez/combat": "^1.0",
         "adamstipak/nette-rest-route": "dev-master",
-        "robmorgan/phinx": "^0.12.5"
+        "robmorgan/phinx": "^0.12.5",
+        "nette/http": "3.1.2"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
         "dg/ftp-deployment": "3.3.1",
-        "phpstan/phpstan-nette": "^0.12.19",
-        "nextras/orm-phpstan": "^0.6.3"
+        "phpstan/phpstan-nette": "^1.0",
+        "nextras/orm-phpstan": "^1.0.1"
     },
     "replace": {
         "symfony/polyfill-php73": "*",

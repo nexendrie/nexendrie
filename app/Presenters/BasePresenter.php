@@ -85,7 +85,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->template->versionSuffix = $versionSuffix;
   }
 
-  public function sendResponse(\Nette\Application\IResponse $response): void {
+  public function sendResponse(\Nette\Application\Response $response): void {
     if(!$response instanceof RedirectResponse && $this->getHttpResponse()->getCode() === \Nette\Http\IResponse::S200_OK) {
       $this->lastModified();
     }
