@@ -1,5 +1,5 @@
 tracy:
-    email: jakub.konecny2@centrum.cz
+    email: admin@nexendrie.cz
 dbal:
     driver: mysqli
     host: localhost
