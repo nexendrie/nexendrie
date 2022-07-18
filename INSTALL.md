@@ -38,20 +38,32 @@ Web server
 ----------
 
 ### Apache
-If you're using Apache, you have little work to do as the repository contains all needed .htaccess files. Just set up a virtual host. No special configuration is needed.
+If you're using Apache, you have little work to do as the repository contains all needed .htaccess files. Just set up a simple virtual host, no special configuration is needed.
 
 Example of virtual host configuration:
 
 ```apacheconfig
-<VirtualHost nexendrie.local:80>
-    ServerName nexendrie.local
+<VirtualHost nexendrie.localhost:80>
+    ServerName nexendrie.localhost
     DocumentRoot "/var/www/html/nexendrie/www"
 </VirtualHost>
 ```
 
+(We strongly advise that the server name ends with .localhost, so it is considered a secure context by web browsers.)
+
+The document root for that virtual host (or its parent directory if it is withing /var/www/html) needs to have these settings:
+```apacheconf
+<Directory /var/www/html/nexendrie/www>
+    AllowOverride All
+    Require all granted
+</Directory>
+```
+
+Make sure that mod_headers and mod_rewrite are enabled (they may not be enabled by default depending on os).
+
 ### PHP built-in server
 
-If you do not want to bother with setting up and configuring a web server for development/testing, you can just use PHP built-in server. Just run this command:
+If you do not want to bother with setting up and configuring a web server for development/testing, you can just use PHP built-in server. Just run this command (from the project's root directory):
 
 ```bash
 php -S localhost:8080 -t www
