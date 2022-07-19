@@ -3,7 +3,7 @@
 {block content}
   <h1>{$castle->name}</h1>
   <p>Úroveň: {$castle->level} Stav: {$castle->hp}%<br>
-  Zvýšení příjmu z daní: {$castle->taxesBonusIncome|money} za měsíc za každé město/vesnici</p>
+  Zvýšení příjmu z daní: {$castle->taxesBonusIncome|money} * {$castle->owner->townsOwned} měst/vesnic = {$castle->owner->townsOwned * $castle->taxesBonusIncome|money} za měsíc</p>
   {if $canUpgrade}<a n:href="upgrade!">Vylepšit</a> za {$castle->upgradePrice|money}<br>{/if}
   {if $castle->hp < 100}<a n:href="repair!">Opravit</a> za {$castle->repairPrice|money}{/if}
   <h3>Upravit hrad</h3>
