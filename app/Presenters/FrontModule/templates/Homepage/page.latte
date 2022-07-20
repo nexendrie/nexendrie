@@ -13,5 +13,21 @@
     {$article->text|truncate:150}
   </article>
     {/foreach}
+    <br>
+    <div class="pagination">
+      {if !$paginator->isFirst()}
+        <a n:href="page 1">První</a>
+        &nbsp;|&nbsp;
+        <a n:href="page $paginator->page - 1">Předchozí</a>
+        &nbsp;|&nbsp;
+      {/if}
+      Stránka {$paginator->page} z {$paginator->getPageCount()}
+      {if !$paginator->isLast()}
+        &nbsp;|&nbsp;
+        <a n:href="page $paginator->page + 1">Další</a>
+        &nbsp;|&nbsp;
+        <a n:href="page $paginator->getPageCount()">Poslední</a>
+      {/if}
+    </div>
   {/if}
 {/block}

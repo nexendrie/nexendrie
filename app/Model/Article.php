@@ -43,6 +43,7 @@ final class Article {
     $news = $this->orm->articles->findNews();
     if($paginator !== null) {
       $paginator->itemsPerPage = $this->itemsPerPage;
+      $paginator->itemCount = $news->count();
       $news = $news->limitBy($paginator->getLength(), $paginator->getOffset());
     }
     return $news;
@@ -57,6 +58,7 @@ final class Article {
     $articles = $this->orm->articles->findByCategory($name);
     if($paginator !== null) {
       $paginator->itemsPerPage = $this->itemsPerPage;
+      $paginator->itemCount = $articles->count();
       $articles = $articles->limitBy($paginator->getLength(), $paginator->getOffset());
     }
     return $articles;
