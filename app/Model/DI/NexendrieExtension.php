@@ -149,6 +149,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Model\Moderation::class);
     $builder->addDefinition($this->prefix("model.themesManager"))
       ->setFactory(Nexendrie\Model\ThemesManager::class, [$this->wwwDir]);
+    $builder->addDefinition($this->prefix("model.genericNotificator"))
+      ->setType(Nexendrie\Model\GenericNotificator::class);
   }
   
   protected function addCronTasks(): void {

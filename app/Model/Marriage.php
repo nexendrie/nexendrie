@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nette\Application\LinkGenerator;
 use Nexendrie\Orm\Marriage as MarriageEntity;
+use Nexendrie\Structs\Notification;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -14,12 +16,16 @@ use Nextras\Orm\Collection\ICollection;
 final class Marriage {
   protected \Nexendrie\Orm\Model $orm;
   protected \Nette\Security\User $user;
+  private GenericNotificator $notificator;
+  private LinkGenerator $linkGenerator;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, GenericNotificator $notificator, LinkGenerator $linkGenerator) {
     $this->orm = $orm;
     $this->user = $user;
+    $this->notificator = $notificator;
+    $this->linkGenerator = $linkGenerator;
   }
   
   /**
@@ -102,6 +108,12 @@ final class Marriage {
     $marriage->user1 = $this->user->id;
     $marriage->user2 = $id;
     $this->orm->marriages->persistAndFlush($marriage);
+    $notification = new Notification();
+    $notification->title = "Žádost o ruku na " . $this->notificator->getSiteName();
+    $notification->body = $this->user->identity->name . " tě požádal(a) o ruku.";
+    $notification->tag = "marriageProposal";
+    $notification->targetUrl = $this->linkGenerator->link("Front:Marriage:default");
+    $this->notificator->createNotification($notification, $id);
   }
   
   /**
@@ -150,6 +162,12 @@ final class Marriage {
       $this->orm->marriages->persist($row);
     }
     $this->orm->marriages->flush();
+    $notification = new Notification();
+    $notification->title = "Žádost o ruku na " . $this->notificator->getSiteName();
+    $notification->body = $this->user->identity->name . " přijal(a) tvou žádost o ruku.";
+    $notification->tag = "marriageProposalAccept";
+    $notification->targetUrl = $this->linkGenerator->link("Front:Marriage:default");
+    $this->notificator->createNotification($notification, $id);
   }
   
   /**
@@ -177,6 +195,12 @@ final class Marriage {
     }
     $proposal->status = MarriageEntity::STATUS_DECLINED;
     $this->orm->marriages->persistAndFlush($proposal);
+    $notification = new Notification();
+    $notification->title = "Žádost o ruku na " . $this->notificator->getSiteName();
+    $notification->body = $this->user->identity->name . " odmítl(a) tvou žádost o ruku.";
+    $notification->tag = "marriageProposalDecline";
+    $notification->targetUrl = $this->linkGenerator->link("Front:Marriage:default");
+    $this->notificator->createNotification($notification, $id);
   }
   
   /**

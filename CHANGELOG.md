@@ -4,6 +4,7 @@ Version 1.0.0-beta9+dev
 - added new default style (autodetects dark mode)
 - actions from current user are now marked in chronicle
 - added pagination to homepage and articles' categories
+- added notifications
 
 Version 1.0.0-beta9
 - removed user setting infomails

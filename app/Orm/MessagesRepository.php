@@ -32,5 +32,16 @@ final class MessagesRepository extends \Nextras\Orm\Repository\Repository {
   public function findByTo($to): ICollection {
     return $this->findBy(["to" => $to]);
   }
+
+  /**
+   * @param User|int $to
+   * @return ICollection|Message[]
+   */
+  public function findUnnotified($to): ICollection {
+    return $this->findBy([
+      "to" => $to,
+      "notified" => false,
+    ]);
+  }
 }
 ?>

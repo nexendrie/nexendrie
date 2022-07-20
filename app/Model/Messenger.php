@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nette\Application\LinkGenerator;
 use Nexendrie\Orm\Message as MessageEntity;
+use Nexendrie\Structs\Notification;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -14,15 +16,17 @@ use Nextras\Orm\Collection\ICollection;
 final class Messenger {
   protected \Nexendrie\Orm\Model $orm;
   protected \Nette\Security\User $user;
-  protected Profile $profileModel;
-  
-  use \Nette\SmartObject;
-  
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, Profile $profileModel) {
+  private LinkGenerator $linkGenerator;
+  private GenericNotificator $notificator;
+
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, LinkGenerator $linkGenerator, GenericNotificator $notificator) {
     $this->orm = $orm;
     $this->user = $user;
-    $this->profileModel = $profileModel;
+    $this->linkGenerator = $linkGenerator;
+    $this->notificator = $notificator;
   }
+
+  use \Nette\SmartObject;
   
   /**
    * Get list of received messages
@@ -90,7 +94,7 @@ final class Messenger {
   /**
    * Sends new message
    */
-  public function send(array $data): void {
+  public function send(array $data): int {
     $message = new MessageEntity();
     $this->orm->messages->attach($message);
     $message->subject = $data["subject"];
@@ -101,6 +105,13 @@ final class Messenger {
     $message->from->lastActive = time();
     $message->to = $data["to"];
     $this->orm->messages->persistAndFlush($message);
+    $notification = new Notification();
+    $notification->title = "Nová zpráva na " . $this->notificator->getSiteName();
+    $notification->body = "Přišla ti zpráva od {$message->from->publicname} s předmětem {$message->subject}.";
+    $notification->tag = "messagePrivate";
+    $notification->targetUrl = $this->linkGenerator->link("Front:Messages:view", ["id" => $message->id]);
+    $this->notificator->createNotification($notification, $this->user->id);
+    return $message->id;
   }
 }
 ?>

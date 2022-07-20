@@ -165,6 +165,11 @@ final class SystemSettingsFormFactory {
       ->addRule(Form::MAX_LENGTH, null, 5)
       ->setRequired(false)
       ->setOption("description", "Přidává se do titulku všech stránek a RSS kanálů.");
+    $site->addInteger("serverSideEventsCooldown", "Pausa pro server-side events:")
+      ->setOption("description", "Pausa mezi jednotlivými průchody server-side events (používá se např. pro upozornění)")
+      ->setRequired("Zadej pausu pro server-side events.")
+      ->addRule(Form::INTEGER, "Pausa pro server-side events musí být celé číslo.")
+      ->addRule(Form::RANGE, "Pausa pro server-side events musí být v rozmezí 1-100.", [1, 100]);
     $form->addGroup("Účty na sociálních sítích");
     $socialAccounts = $form->addContainer("socialAccounts");
     $socialAccounts->addText("facebook", "Facebook:")

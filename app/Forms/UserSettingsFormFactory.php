@@ -27,6 +27,7 @@ final class UserSettingsFormFactory {
   }
   
   public function create(): Form {
+    $defaultValues = $this->model->getSettings();
     $form = new Form();
     $form->addGroup("Účet");
     $form->addText("publicname", "Zobrazované jméno:")
@@ -48,9 +49,17 @@ final class UserSettingsFormFactory {
       ->addConditionOn($passwordNew, Form::FILLED)
       ->setRequired("Musíš znovu zadat nové heslo.")
       ->addRule(Form::EQUAL, "Hesla se neshodují.", $form["password_new"]);
+    $form->addGroup("Upozorňování")
+      ->setOption("description", "Zapne upozorňování např. na nepřečtené zprávy. Nejdříve je třeba je povolit na účtu a po uložení změn zapnout v prohlížeči. Upozornění se zobrazí jen pokud máte otevřené tyto stránky.");
+    $form->addCheckbox("notifications", "Povolit upozorňování na tomto účtu");
+    if($defaultValues['notifications']) {
+      $form->addButton('notifications_browser', "Zapnout v prohlížeči")
+        ->setHtmlId("notifications_browser")
+        ->setHtmlAttribute("onclick", "notificationsSetup()");
+    }
     $form->setCurrentGroup(null);
     $form->addSubmit("save", "Uložit změny");
-    $form->setDefaults($this->model->getSettings());
+    $form->setDefaults($defaultValues);
     $form->onSuccess[] = [$this, "process"];
     return $form;
   }

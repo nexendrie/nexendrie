@@ -34,5 +34,6 @@
 <footer>
 
 </footer>
+{if $user->isLoggedIn() and $user->identity->notifications}<script src="{$basePath}/js/sse.js"></script>{/if}
 </body>
 </html>
