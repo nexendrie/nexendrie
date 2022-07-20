@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   {control favicon}
-  <title>{$siteName|trim} - {include #title}</title>
-  <meta property="og:site_name" content="{$siteName|trim}">
+  <title>{$siteName} - {include #title}</title>
+  <meta property="og:site_name" content="{$siteName}">
   <meta property="og:url" content="{link //this}">
   {default $ogType = "website"}
   <meta property="og:type" content="{$ogType}">
   <meta property="og:title" content="{include #title}">
   <meta property="og:locale" content="cs_CZ">
   <link rel="stylesheet" href="{$basePath}/styles/{$style}.css">
-  <link rel="alternate" type="application/rss+xml" title="Nexendrie - Novinky" n:href="Rss:news">
-  <link rel="search" type="application/opensearchdescription+xml" n:href="Search:users" title="Nexendrie {$versionSuffix} - Uživatelé">
-  <link rel="search" type="application/opensearchdescription+xml" n:href="Search:articlesTitle" title="Nexendrie {$versionSuffix} - Titulky článků">
-  <link rel="search" type="application/opensearchdescription+xml" n:href="Search:articlesText" title="Nexendrie {$versionSuffix} - Texty článků">
+  <link rel="alternate" type="application/rss+xml" title="{$siteName} - Novinky" n:href="Rss:news">
+  <link rel="search" type="application/opensearchdescription+xml" n:href="Search:users" title="{$siteName} - Uživatelé">
+  <link rel="search" type="application/opensearchdescription+xml" n:href="Search:articlesTitle" title="{$siteName} - Titulky článků">
+  <link rel="search" type="application/opensearchdescription+xml" n:href="Search:articlesText" title="{$siteName} - Texty článků">
   {ifset #head}{include #head}{/ifset}
 </head>
 <body>

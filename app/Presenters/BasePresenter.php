@@ -81,8 +81,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected function beforeRender(): void {
     $this->getHttpResponse()->setHeader("Content-Language", "cs,sk");
     $versionSuffix = $this->sr->settings["site"]["versionSuffix"];
-    $this->template->siteName = "Nexendrie " . $versionSuffix;
-    $this->template->versionSuffix = $versionSuffix;
+    $this->template->siteName = trim("Nexendrie " . $versionSuffix);
   }
 
   public function sendResponse(\Nette\Application\Response $response): void {
