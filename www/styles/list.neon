@@ -1,4 +1,11 @@
-blue-sky: "Modrá obloha (zavržený)"
-dark-sky: "Temná obloha (zavržený)"
-matrix: "Matrix (experimentální)"
-nexendrie: "Nexendrie (výchozí)"
+blue-sky:
+    name: "Modrá obloha"
+    deprecated: true
+dark-sky:
+    name: "Temná obloha"
+    deprecated: true
+matrix:
+    name: "Matrix"
+    experimental: true
+nexendrie:
+    name: "Nexendrie"

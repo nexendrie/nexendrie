@@ -8,7 +8,13 @@ use Nette\Utils\Arrays;
 use Nette\Utils\Finder;
 
 final class ThemesManager {
-  protected string $wwwDir;
+  public const SUFFIX_DEPRECATED = " (zavržený)";
+  public const SUFFIX_EXPERIMENTAL = " (experimentální)";
+  private const KEY_DEPRECATED = "deprecated";
+  private const KEY_EXPERIMENTAL = "experimental";
+  private const KEY_NAME = "name";
+
+  private string $wwwDir;
 
   public function __construct(string $wwwDir) {
     $this->wwwDir = $wwwDir;
@@ -25,8 +31,17 @@ final class ThemesManager {
     /** @var \SplFileInfo $style */
     foreach(Finder::findFiles("*.css")->in($dir) as $style) {
       $key = $style->getBasename(".css");
+      /** @var array $value */
       $value = Arrays::get($list, $key, $key);
-      $styles[$key] = $value;
+      $name = (string) Arrays::get($value, self::KEY_NAME, "");
+      $deprecated = (bool) Arrays::get($value, self::KEY_DEPRECATED, false);
+      $experimental = (bool) Arrays::get($value, self::KEY_EXPERIMENTAL, false);
+      if($deprecated) {
+        $name .= self::SUFFIX_DEPRECATED;
+      } elseif($experimental) {
+        $name .= self::SUFFIX_EXPERIMENTAL;
+      }
+      $styles[$key] = $name;
     }
     return $styles;
   }
