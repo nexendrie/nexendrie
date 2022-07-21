@@ -22,11 +22,7 @@ final class SearchPresenterTest extends \Tester\TestCase {
     $this->trySearchForm($formData);
     $formData["text"] = "admin";
     $this->trySearchForm($formData);
-    $formData["type"] = SiteSearchFormFactory::TYPE_ARTICLES_TITLES;
-    $this->trySearchForm($formData);
-    $formData["text"] = "nov";
-    $this->trySearchForm($formData);
-    $formData["type"] = SiteSearchFormFactory::TYPE_ARTICLES_TEXTS;
+    $formData["type"] = SiteSearchFormFactory::TYPE_ARTICLES;
     $this->trySearchForm($formData);
     $formData["text"] = "abc";
     $this->trySearchForm($formData);

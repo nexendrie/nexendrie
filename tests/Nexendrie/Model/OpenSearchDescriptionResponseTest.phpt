@@ -45,8 +45,7 @@ final class OpenSearchDescriptionResponseTest extends \Tester\TestCase {
 
   public function testSend() {
     $this->checkOpenSearchDescription("Front:Search:users");
-    $this->checkOpenSearchDescription("Front:Search:articlesTitle");
-    $this->checkOpenSearchDescription("Front:Search:articlesText");
+    $this->checkOpenSearchDescription("Front:Search:articles");
   }
 }
 

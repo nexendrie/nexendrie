@@ -5,6 +5,7 @@ Version 1.0.0-beta9+dev
 - actions from current user are now marked in chronicle
 - added pagination to homepage and articles' categories
 - added notifications
+- merged search types articles title and articles text
 
 Version 1.0.0-beta9
 - removed user setting infomails

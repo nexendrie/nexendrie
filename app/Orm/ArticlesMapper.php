@@ -9,12 +9,8 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class ArticlesMapper extends \Nextras\Orm\Mapper\Mapper {
-  public function findByLikeTitle(string $title): ICollection {
-    return $this->toCollection($this->builder()->where("title LIKE '%%$title%%'"));
-  }
-  
   public function findByText(string $text): ICollection {
-    return $this->toCollection($this->builder()->where("text LIKE '%%$text%%'"));
+    return $this->toCollection($this->builder()->where("text LIKE '%%$text%%'")->orWhere("title LIKE '%%$text%%'"));
   }
 }
 ?>

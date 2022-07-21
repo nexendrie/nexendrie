@@ -11,7 +11,6 @@ use Nextras\Orm\Collection\ICollection;
  * @method Article|null getBy(array $conds)
  * @method ICollection|Article[] findBy(array $conds)
  * @method ICollection|Article[] findAll()
- * @method ICollection|Article[] findByLikeTitle(string $title)
  * @method ICollection|Article[] findByText(string $text)
  */
 final class ArticlesRepository extends \Nextras\Orm\Repository\Repository {

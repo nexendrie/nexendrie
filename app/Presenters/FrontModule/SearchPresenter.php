@@ -30,10 +30,7 @@ final class SearchPresenter extends BasePresenter {
         case SiteSearchFormFactory::TYPE_USERS:
           $this->template->results = $this->orm->users->findByLikeName($text);
           break;
-        case SiteSearchFormFactory::TYPE_ARTICLES_TITLES:
-          $this->template->results = $this->orm->articles->findByLikeTitle($text);
-          break;
-        case SiteSearchFormFactory::TYPE_ARTICLES_TEXTS:
+        case SiteSearchFormFactory::TYPE_ARTICLES:
           $this->template->results = $this->orm->articles->findByText($text);
           break;
         default:
@@ -52,13 +49,8 @@ final class SearchPresenter extends BasePresenter {
     $this->sendOpenSearchDescriptionResponse($description);
   }
 
-  public function actionArticlesTitle(): void {
-    $description = $this->openSearch->createDescription("Články 1", "Titulky článků", "Hledat v titulcích článků", "články titulek", "articlesTitles");
-    $this->sendOpenSearchDescriptionResponse($description);
-  }
-
-  public function actionArticlesText(): void {
-    $description = $this->openSearch->createDescription("Články 2", "Texty článků", "Hledat v textech článků", "články text", "articlesTexts");
+  public function actionArticles(): void {
+    $description = $this->openSearch->createDescription("Články", "Články", "Hledat v článcích", "články", "articles");
     $this->sendOpenSearchDescriptionResponse($description);
   }
 

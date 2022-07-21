@@ -12,14 +12,12 @@ use Nette\Application\UI\Form;
  */
 final class SiteSearchFormFactory {
   public const TYPE_USERS = "users";
-  public const TYPE_ARTICLES_TITLES = "articlesTitles";
-  public const TYPE_ARTICLES_TEXTS = "articlesTexts";
+  public const TYPE_ARTICLES = "articles";
   
   protected function getTypes(): array {
     return [
       static::TYPE_USERS => "uživatelé",
-      static::TYPE_ARTICLES_TITLES => "titulky článků",
-      static::TYPE_ARTICLES_TEXTS => "texty článků",
+      static::TYPE_ARTICLES => "články",
     ];
   }
   
