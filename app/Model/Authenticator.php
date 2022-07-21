@@ -56,7 +56,7 @@ final class Authenticator implements IAuthenticator {
     }
     $adventure = $this->orm->userAdventures->getUserActiveAdventure($user->id);
     $data = [
-      "name" => $user->publicname, "group" => $user->group->id,
+      "name" => $user->publicname, "group" => $user->group->id, "notifications" => $user->notifications,
       "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "path" => $user->group->path, "town" => $user->town->id, "banned" => $user->banned, "travelling" => !($adventure === null)
     ];
     return new Identity($user->id, $roles, $data);

@@ -54,6 +54,7 @@ final class SettingsRepository {
     ],
     "site" => [
       "versionSuffix" => "",
+      "serverSideEventsCooldown" => 3,
     ],
     "features" => [
       "httpCaching" => false,
@@ -86,6 +87,9 @@ final class SettingsRepository {
     "socialAccounts" => [
       "friendica" => "validateFriendicaAccount",
     ],
+    "site" => [
+      "serverSideEventsCooldown" => "validateServerSideEventsCooldown",
+    ],
   ];
 
   protected array $settings = [];
@@ -115,6 +119,10 @@ final class SettingsRepository {
 
   protected function validateFriendicaAccount(string $value): bool {
     return (preg_match('/^@.+@.+/', $value) === 1);
+  }
+
+  protected function validateServerSideEventsCooldown(int $value): bool {
+    return Intervals::isInInterval($value, "[1,100]");
   }
   
   /**

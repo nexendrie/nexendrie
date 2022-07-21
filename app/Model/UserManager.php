@@ -110,6 +110,7 @@ final class UserManager {
     $user = $this->orm->users->getById($this->user->id);
     $settings = [
       "publicname" => $user->publicname, "email" => $user->email, "style" => $user->style, "gender" => $user->gender,
+      "notifications" => $user->notifications,
     ];
     return $settings;
   }
@@ -130,7 +131,9 @@ final class UserManager {
     if(!$this->emailAvailable($settings["email"], $this->user->id)) {
       throw new SettingsException("The e-mail is used by someone else.", static::REG_DUPLICATE_EMAIL);
     }
-    $settings = array_filter($settings);
+    $settings = array_filter($settings, function($value) {
+      return $value !== null && $value !== "";
+    });
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     foreach($settings as $key => $value) {
