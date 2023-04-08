@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
+use Nexendrie\Orm\Guild;
 use Nexendrie\Orm\GuildFee;
+use Nexendrie\Orm\GuildRank;
 
 /**
  * GuildFeesTask
@@ -18,13 +20,15 @@ final class GuildFeesTask extends BaseMonthlyCronTask {
   }
   
   protected function getFeeRecord(\Nexendrie\Orm\User $user): GuildFee {
-    $fee = $this->orm->guildFees->getByUserAndGuild($user, $user->guild);
+    /** @var Guild $guild */
+    $guild = $user->guild;
+    $fee = $this->orm->guildFees->getByUserAndGuild($user, $guild);
     if($fee !== null) {
       return $fee;
     }
     $fee = new GuildFee();
     $fee->user = $user;
-    $fee->guild = $user->guild;
+    $fee->guild = $guild;
     return $fee;
   }
   
@@ -42,10 +46,14 @@ final class GuildFeesTask extends BaseMonthlyCronTask {
     echo "Starting paying guild fees ...\n";
     $users = $this->orm->users->findInGuild();
     foreach($users as $user) {
-      $guildFee = $user->guildRank->guildFee;
+      /** @var Guild $guild */
+      $guild = $user->guild;
+      /** @var GuildRank $guildRank */
+      $guildRank = $user->guildRank;
+      $guildFee = $guildRank->guildFee;
       echo "$user->publicname (#$user->id} will pay {$guildFee} to his/her guild.\n";
       $user->money -= $guildFee;
-      $user->guild->money += $guildFee;
+      $guild->money += $guildFee;
       $this->orm->users->persist($user);
       $fee = $this->getFeeRecord($user);
       $fee->amount += $guildFee;

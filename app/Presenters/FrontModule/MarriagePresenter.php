@@ -129,7 +129,7 @@ final class MarriagePresenter extends BasePresenter {
     } elseif($this->marriage->term > time()) {
       $this->flashMessage("Svatba ještě nezačala.");
       $this->redirect("Homepage:");
-    } elseif($this->marriage->term + 60 * 60 < time()) {
+    } elseif(((int) $this->marriage->term) + 60 * 60 < time()) {
       $this->flashMessage("Svatba už skončila.");
       $this->redirect("Homepage:");
     }

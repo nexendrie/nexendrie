@@ -190,7 +190,7 @@ final class Guild {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->guild === null) {
+    if($user->guild === null || $user->guildRank === null) {
       return false;
     }
     return !($user->guildRank->id === $this->getMaxRank());
@@ -238,7 +238,7 @@ final class Guild {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if(!$this->user->isAllowed(AuthorizatorFactory::GUILD_RESOURCE_NAME, "upgrade")) {
+    if($user->guild === null || !$this->user->isAllowed(AuthorizatorFactory::GUILD_RESOURCE_NAME, "upgrade")) {
       return false;
     } elseif($user->guild->level >= GuildEntity::MAX_LEVEL) {
       return false;
@@ -308,7 +308,7 @@ final class Guild {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->guild === null || $user->guild->id !== $admin->guild->id) {
+    if($admin->guild === null || $user->guild === null || $user->guild->id !== $admin->guild->id || $user->guildRank === null) {
       throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id >= $this->maxRank - 1) {
       throw new CannotPromoteMemberException();
@@ -338,7 +338,7 @@ final class Guild {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->guild === null || $user->guild->id !== $admin->guild->id) {
+    if($admin->guild === null || $user->guild === null || $user->guild->id !== $admin->guild->id || $user->guildRank === null) {
       throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id < 2 || $user->guildRank->id === $this->maxRank) {
       throw new CannotDemoteMemberException();
@@ -368,7 +368,7 @@ final class Guild {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->guild === null || $user->guild->id !== $admin->guild->id) {
+    if($admin->guild === null || $user->guild === null || $user->guild->id !== $admin->guild->id || $user->guildRank === null) {
       throw new UserNotInYourGuildException();
     } elseif($user->guildRank->id === $this->maxRank) {
       throw new CannotKickMemberException();

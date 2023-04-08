@@ -124,7 +124,9 @@ final class GiftFormFactory {
       $messageText = $this->composeMessage($money, $itemName);
     }
     $message = new MessageEntity();
-    $message->from = $this->orm->users->getById($this->user->id);
+    /** @var \Nexendrie\Orm\User $fromUser */
+    $fromUser = $this->orm->users->getById($this->user->id);
+    $message->from = $fromUser;
     $message->to = $user;
     $message->subject = "Dárek";
     $message->text = $messageText;

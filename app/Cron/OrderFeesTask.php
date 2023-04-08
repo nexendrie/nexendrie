@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
+use Nexendrie\Orm\Order;
 use Nexendrie\Orm\OrderFee;
+use Nexendrie\Orm\OrderRank;
 
 /**
  * OrderFeesTask
@@ -18,13 +20,15 @@ final class OrderFeesTask extends BaseMonthlyCronTask {
   }
   
   protected function getFeeRecord(\Nexendrie\Orm\User $user): OrderFee {
-    $fee = $this->orm->orderFees->getByUserAndOrder($user, $user->order);
+    /** @var Order $order */
+    $order = $user->order;
+    $fee = $this->orm->orderFees->getByUserAndOrder($user, $order);
     if($fee !== null) {
       return $fee;
     }
     $fee = new OrderFee();
     $fee->user = $user;
-    $fee->order = $user->order;
+    $fee->order = $order;
     return $fee;
   }
   
@@ -42,10 +46,14 @@ final class OrderFeesTask extends BaseMonthlyCronTask {
     echo "Starting paying order fees ...\n";
     $users = $this->orm->users->findInOrder();
     foreach($users as $user) {
-      $orderFee = $user->orderRank->orderFee;
+      /** @var Order $order */
+      $order = $user->order;
+      /** @var OrderRank $orderRank */
+      $orderRank = $user->orderRank;
+      $orderFee = $orderRank->orderFee;
       echo "$user->publicname (#$user->id} will pay {$orderFee} to his/her order.\n";
       $user->money -= $orderFee;
-      $user->order->money += $orderFee;
+      $order->money += $orderFee;
       $this->orm->users->persist($user);
       $fee = $this->getFeeRecord($user);
       $fee->amount += $orderFee;

@@ -175,10 +175,14 @@ final class Town {
     }
     $oldMayor = $this->orm->users->getTownMayor($townId);
     if($oldMayor !== null) {
-      $oldMayor->group = $this->orm->groups->getByLevel(100);
+      /** @var GroupEntity $groupOld */
+      $groupOld = $this->orm->groups->getByLevel(100);
+      $oldMayor->group = $groupOld;
       $this->orm->users->persist($oldMayor);
     }
-    $newMayor->group = $this->orm->groups->getByLevel(345);
+    /** @var GroupEntity $groupNew */
+    $groupNew = $this->orm->groups->getByLevel(345);
+    $newMayor->group = $groupNew;
     $this->orm->users->persistAndFlush($newMayor);
   }
   
@@ -202,7 +206,7 @@ final class Town {
       return true;
     } elseif($user->lastTransfer + $month > time()) {
       return false;
-    } elseif($user->guild !== null && $user->guildRank->id === 4) {
+    } elseif($user->guild !== null && $user->guildRank !== null && $user->guildRank->id === 4) {
       return false;
     }
     return true;
@@ -312,7 +316,9 @@ final class Town {
     } elseif($citizen->group->level > 50) {
       throw new TooHighLevelException();
     }
-    $citizen->group = $this->orm->groups->getByLevel(100);
+    /** @var GroupEntity $group */
+    $group = $this->orm->groups->getByLevel(100);
+    $citizen->group = $group;
     $message = new MessageEntity();
     $message->from = $owner;
     $message->to = $citizen;

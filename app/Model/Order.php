@@ -206,7 +206,7 @@ final class Order {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->order === null) {
+    if($user->order === null || $user->orderRank === null) {
       return false;
     }
     return !($user->orderRank->id === $this->maxRank);
@@ -326,7 +326,7 @@ final class Order {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->order === null || $user->order->id !== $admin->order->id) {
+    if($admin->order === null || $user->order === null || $user->order->id !== $admin->order->id || $user->orderRank === null) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id >= $this->maxRank - 1) {
       throw new CannotPromoteMemberException();
@@ -356,7 +356,7 @@ final class Order {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->order === null || $user->order->id !== $admin->order->id) {
+    if($admin->order === null || $user->order === null || $user->order->id !== $admin->order->id || $user->orderRank === null) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id < 2 || $user->orderRank->id === $this->maxRank) {
       throw new CannotDemoteMemberException();
@@ -386,7 +386,7 @@ final class Order {
     }
     /** @var UserEntity $admin */
     $admin = $this->orm->users->getById($this->user->id);
-    if($user->order === null || $user->order->id !== $admin->order->id) {
+    if($admin->order === null || $user->order === null || $user->order->id !== $admin->order->id || $user->orderRank === null) {
       throw new UserNotInYourOrderException();
     } elseif($user->orderRank->id === $this->maxRank) {
       throw new CannotKickMemberException();

@@ -18,9 +18,9 @@ final class ItemSetsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param Item|int $weapon
-   * @param Item|int $armor
-   * @param Item|int $helmet
+   * @param Item|int|null $weapon
+   * @param Item|int|null $armor
+   * @param Item|int|null $helmet
    */
   public function getByWeaponAndArmorAndHelmet($weapon, $armor, $helmet): ?ItemSet {
     return $this->getBy(["weapon" => $weapon, "armor" => $armor, "helmet" => $helmet]);

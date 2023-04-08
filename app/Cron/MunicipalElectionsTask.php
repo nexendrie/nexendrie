@@ -5,6 +5,7 @@ namespace Nexendrie\Cron;
 
 use Nexendrie\Model\Elections;
 use Nexendrie\Orm\ElectionResult;
+use Nexendrie\Orm\Group;
 
 /**
  * MunicipalElectionsTask
@@ -92,7 +93,9 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask {
           continue;
         }
         echo "$denizen->publicname loses his/her seat in town council.\n";
-        $denizen->group = $this->orm->groups->getByLevel($ranks[2]);
+        /** @var Group $group */
+        $group = $this->orm->groups->getByLevel($ranks[2]);
+        $denizen->group = $group;
         $this->orm->users->persist($denizen);
       }
     }

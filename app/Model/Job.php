@@ -50,7 +50,9 @@ final class Job {
     $oldAward = $offer->award;
     $job = new UserJobEntity();
     $job->job = $offer;
-    $job->user = $this->orm->users->getById($this->user->id);
+    /** @var \Nexendrie\Orm\User $user */
+    $user = $this->orm->users->getById($this->user->id);
+    $job->user = $user;
     $job->count = ($job->job->count > 0) ? $job->job->count : 1;
     $offer->award = array_sum($job->reward);
     $o = (object) $offer->toArray();

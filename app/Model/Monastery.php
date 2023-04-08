@@ -87,11 +87,11 @@ final class Monastery {
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
     if($user->monastery === null && $user->group->path === GroupEntity::PATH_CITY) {
-      return !($user->guild !== null && $user->guildRank->id === $this->guildModel->maxRank);
+      return !($user->guild !== null && $user->guildRank !== null && $user->guildRank->id === $this->guildModel->maxRank);
     } elseif($user->monastery === null && $user->group->path === GroupEntity::PATH_TOWER) {
-      return !($user->order !== null && $user->orderRank->id === $this->orderModel->maxRank);
+      return !($user->order !== null && $user->orderRank !== null && $user->orderRank->id === $this->orderModel->maxRank);
     } elseif($user->group->path === GroupEntity::PATH_CHURCH) {
-      if($user->monasteriesLed->countStored()) {
+      if($user->monasteriesLed->countStored() > 0) {
         return false;
       } elseif($user->lastTransfer === null) {
         return true;
@@ -412,13 +412,15 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    $upgradePrice = $user->monastery->upgradePrice;
-    if($user->monastery->money < $upgradePrice) {
+    /** @var MonasteryEntity $monastery */
+    $monastery = $user->monastery;
+    $upgradePrice = $monastery->upgradePrice;
+    if($monastery->money < $upgradePrice) {
       throw new InsufficientFundsException();
     }
-    $user->monastery->money -= $upgradePrice;
-    $user->monastery->altairLevel++;
-    $this->orm->monasteries->persistAndFlush($user->monastery);
+    $monastery->money -= $upgradePrice;
+    $monastery->altairLevel++;
+    $this->orm->monasteries->persistAndFlush($monastery);
   }
 
   /**
@@ -456,13 +458,15 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    $upgradePrice = $user->monastery->libraryUpgradePrice;
-    if($user->monastery->money < $upgradePrice) {
+    /** @var MonasteryEntity $monastery */
+    $monastery = $user->monastery;
+    $upgradePrice = $monastery->libraryUpgradePrice;
+    if($monastery->money < $upgradePrice) {
       throw new InsufficientFundsException();
     }
-    $user->monastery->money -= $upgradePrice;
-    $user->monastery->libraryLevel++;
-    $this->orm->monasteries->persistAndFlush($user->monastery);
+    $monastery->money -= $upgradePrice;
+    $monastery->libraryLevel++;
+    $this->orm->monasteries->persistAndFlush($monastery);
   }
 
   /**
@@ -502,13 +506,15 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    $repairPrice = $user->monastery->repairPrice;
-    if($user->monastery->money < $repairPrice) {
+    /** @var MonasteryEntity $monastery */
+    $monastery = $user->monastery;
+    $repairPrice = $monastery->repairPrice;
+    if($monastery->money < $repairPrice) {
       throw new InsufficientFundsException();
     }
-    $user->monastery->hp = 100;
-    $user->monastery->money -= $repairPrice;
-    $this->orm->monasteries->persistAndFlush($user->monastery);
+    $monastery->hp = 100;
+    $monastery->money -= $repairPrice;
+    $this->orm->monasteries->persistAndFlush($monastery);
   }
 
   /**
@@ -539,7 +545,7 @@ final class Monastery {
     if($user === null) {
       throw new UserNotFoundException();
     }
-    if($user->monastery === null || $user->monastery->id !== $admin->monastery->id || $user->monastery->leader->id !== $this->user->id) {
+    if($admin->monastery === null || $user->monastery === null || $user->monastery->id !== $admin->monastery->id || $user->monastery->leader->id !== $this->user->id) {
       throw new UserNotInYourMonasteryException();
     }
     if($user->group->id <= $ranks[0]) {
@@ -578,7 +584,7 @@ final class Monastery {
     if($user === null) {
       throw new UserNotFoundException();
     }
-    if($user->monastery === null || $user->monastery->id !== $admin->monastery->id || $user->monastery->leader->id !== $this->user->id) {
+    if($admin->monastery === null || $user->monastery === null || $user->monastery->id !== $admin->monastery->id || $user->monastery->leader->id !== $this->user->id) {
       throw new UserNotInYourMonasteryException();
     }
     end($ranks);

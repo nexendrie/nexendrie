@@ -69,9 +69,10 @@ final class CombatHelper {
     $stats["constitution"] = (int) round($user->maxLife / 5);
     $equipment = [];
     foreach($user->items as $item) {
-      if(in_array($item->item->type, ItemEntity::getEquipmentTypes(), true) && $item->worn) {
-        $equipment[] = $item->toCombatEquipment();
+      if(!$item->worn || ($combatEquipment = $item->toCombatEquipment()) === null) {
+        continue;
       }
+      $equipment[] = $combatEquipment;
     }
     $character = new Character($stats, $equipment, [], [], new ConstantInitiativeFormulaParser(1));
     $character->harm($user->maxLife - $user->life);

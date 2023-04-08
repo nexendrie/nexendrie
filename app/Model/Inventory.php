@@ -172,7 +172,7 @@ final class Inventory {
     }
     $item->amount -= 1;
     $life = $item->item->strength;
-    if($item->user->monastery) {
+    if($item->user->monastery !== null) {
       $life += $item->user->monastery->altairLevel;
     }
     if($item->amount < 1) {

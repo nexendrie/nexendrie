@@ -40,7 +40,7 @@ final class UserSkill extends BaseEntity implements ICharacterEffectsProvider {
       $price += (int) ($basePrice / $this->skill->maxLevel);
     }
     $price -= $this->eventsModel->calculateTrainingDiscount($price);
-    if($this->user->monastery && $this->user->group->path === Group::PATH_CHURCH) {
+    if($this->user->monastery !== null && $this->user->group->path === Group::PATH_CHURCH) {
       $monasteryDiscount = $this->user->monastery->skillLearningDiscount;
       $price -= (int) ($price / 100 * $monasteryDiscount);
     }

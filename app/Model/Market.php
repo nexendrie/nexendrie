@@ -148,7 +148,7 @@ final class Market {
     if($itemRow === null) {
       throw new ItemNotFoundException("Specified item does not exist.");
     }
-    if($itemRow->shop->id !== $shop) {
+    if($itemRow->shop === null || $itemRow->shop->id !== $shop) {
       throw new WrongShopException();
     }
     /** @var \Nexendrie\Orm\User $user */

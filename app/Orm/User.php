@@ -221,7 +221,7 @@ final class User extends BaseEntity {
   }
 
   protected function getterAdventureBonusIncome(): float {
-    if($this->order === null || $this->group->path !== Group::PATH_TOWER) {
+    if($this->order === null || $this->orderRank === null || $this->group->path !== Group::PATH_TOWER) {
       return 0;
     }
     return $this->orderRank->adventureBonus + $this->order->adventuresBonusIncome;
