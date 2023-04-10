@@ -22,9 +22,10 @@ trait TApiPresenter {
   /**
    * @var string[] METHOD => action
    */
-  protected $forbiddenMethods = [
+  protected array $forbiddenMethods = [
     "POST" => "create", "PUT" => "update", "PATCH" => "partialUpdate", "DELETE" => "delete",
   ];
+  protected bool $readAllRequiresLogin = false;
   
   protected function getPresenterName(): string {
     $presenter = Strings::before(static::class, "PresenterTest");
@@ -52,8 +53,13 @@ trait TApiPresenter {
   
   public function testInvalidAssociations() {
     $presenter = $this->getPresenterName();
-    $expected = ["message" => "This action is not allowed."];
-    $this->checkJsonScheme("$presenter:readAll", $expected, ["associations" => ["abc" => 1]]);
+    $expectedNotAllowed = ["message" => "This action is not allowed."];
+    if($this->readAllRequiresLogin) {
+      $expectedNotLoggedIn = ["message" => "This action requires authentication."];
+      $this->checkJsonScheme("$presenter:readAll", $expectedNotLoggedIn, ["associations" => ["abc" => 1]]);
+      $this->login();
+    }
+    $this->checkJsonScheme("$presenter:readAll", $expectedNotAllowed, ["associations" => ["abc" => 1]]);
   }
 
   public function testOptions() {

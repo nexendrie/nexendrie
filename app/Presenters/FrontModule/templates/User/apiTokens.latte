@@ -1,0 +1,22 @@
+{layout "../@layout.latte"}
+{block title}API tokeny{/block}
+{block content}
+  <h1>API tokeny</h1>
+  <p>
+    <a n:href="createApiToken!">Vytvořit nový token</a>
+  </p>
+  <table id="apiTokens">
+    <tr>
+      <th>Token</th>
+      <th>Vytvořen</th>
+      <th>Vyprší</th>
+      <th>Akce</th>
+    </tr>
+    <tr n:foreach="$tokens as $token">
+      <td>{$token->token}</td>
+      <td>{$token->createdAt}</td>
+      <td>{$token->expireAt}</td>
+      <td><a n:href="invalidateApiToken! $token->token">Zneplatnit</a></td>
+    </tr>
+  </table>
+{/block}

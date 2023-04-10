@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Forms;
 
+use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Form;
+use Nette\Utils\Html;
 use Nexendrie\Model\ThemesManager;
 use Nexendrie\Model\UserManager;
 use Nette\Security\User;
@@ -19,13 +21,15 @@ final class UserSettingsFormFactory {
   protected UserManager $model;
   protected User $user;
   protected ThemesManager $themesManager;
+  protected LinkGenerator $linkGenerator;
 
-  public function __construct(UserManager $model, User $user, ThemesManager $themesManager) {
+  public function __construct(UserManager $model, User $user, ThemesManager $themesManager, LinkGenerator $linkGenerator) {
     $this->model = $model;
     $this->user = $user;
     $this->themesManager = $themesManager;
+    $this->linkGenerator = $linkGenerator;
   }
-  
+
   public function create(): Form {
     $defaultValues = $this->model->getSettings();
     $form = new Form();
@@ -57,6 +61,10 @@ final class UserSettingsFormFactory {
         ->setHtmlId("notifications_browser")
         ->setHtmlAttribute("onclick", "notificationsSetup()");
     }
+    $apiTokensLink = $this->linkGenerator->link("Front:User:apiTokens");
+    $form->addGroup("API")
+      ->setOption("description", Html::el("p")->setHtml("Povolí používání API pro tento účet. Svoje platné tokeny můžeš spravovat <a href=\"$apiTokensLink\">zde</a>."));
+    $form->addCheckbox("api", "Zapnout API pro tento účet");
     $form->setCurrentGroup(null);
     $form->addSubmit("save", "Uložit změny");
     $form->setDefaults($defaultValues);

@@ -6,6 +6,7 @@ Version 1.0.0-beta9+dev
 - added pagination to homepage and articles' categories
 - added notifications
 - merged search types articles title and articles text
+- added authentication for api
 
 Version 1.0.0-beta9
 - removed user setting infomails

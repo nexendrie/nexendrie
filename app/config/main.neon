@@ -45,6 +45,7 @@ nexendrie.api:
     transformers:
         - Nexendrie\Api\Transformers\AdventureNpcTransformer
         - Nexendrie\Api\Transformers\AdventureTransformer
+        - Nexendrie\Api\Transformers\ApiTokenTransformer
         - Nexendrie\Api\Transformers\ArticleTransformer
         - Nexendrie\Api\Transformers\CastleTransformer
         - Nexendrie\Api\Transformers\CommentTransformer

@@ -41,6 +41,7 @@ use Nexendrie\Utils\Numbers;
  * @property Order|null $order {m:1 Order::$members} {default null}
  * @property OrderRank|null $orderRank {m:1 OrderRank::$people} {default null}
  * @property bool $notifications {default false}
+ * @property bool $api {default false}
  * @property-read float $adventureBonusIncome {virtual}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
  * @property OneHasMany|Article[] $articles {1:m Article::$author}
@@ -68,7 +69,8 @@ use Nexendrie\Utils\Numbers;
  * @property OneHasMany|GuildFee[] $guildFees {1:m GuildFee::$user}
  * @property OneHasMany|OrderFee[] $orderFees {1:m OrderFee::$user}
  * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$user}
- * @property OneHasMany|Notification $notificationQueue {1:m Notification::$user}
+ * @property OneHasMany|Notification[] $notificationQueue {1:m Notification::$user}
+ * @property OneHasMany|ApiToken[] $apiTokens {1:m ApiToken::$user}
  * @property-read string $title {virtual}
  * @property-read int $completedAdventures {virtual}
  * @property-read int $completedJobs {virtual}

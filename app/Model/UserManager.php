@@ -110,7 +110,7 @@ final class UserManager {
     $user = $this->orm->users->getById($this->user->id);
     $settings = [
       "publicname" => $user->publicname, "email" => $user->email, "style" => $user->style, "gender" => $user->gender,
-      "notifications" => $user->notifications,
+      "notifications" => $user->notifications, "api" => $user->api,
     ];
     return $settings;
   }

@@ -8,6 +8,8 @@ use Nette\Http\IRequest;
 use Nette\Http\IResponse;
 use Nette\Utils\Json;
 use Nette\Utils\Strings;
+use Nexendrie\Api\Tokens;
+use Nexendrie\Model\Authenticator;
 use Nextras\Orm\Entity\Entity;
 
 /**
@@ -18,18 +20,22 @@ use Nextras\Orm\Entity\Entity;
 abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected \Nexendrie\Orm\Model $orm;
   protected \Nexendrie\Api\EntityConverter $entityConverter;
+  protected Tokens $tokens;
+  protected Authenticator $authenticator;
   protected bool $cachingEnabled = true;
   protected bool $publicCache = true;
 
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Api\EntityConverter $entityConverter) {
+  public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Api\EntityConverter $entityConverter, Tokens $tokens, Authenticator $authenticator) {
     parent::__construct();
     $this->orm = $orm;
     $this->entityConverter = $entityConverter;
+    $this->tokens = $tokens;
+    $this->authenticator = $authenticator;
   }
 
   /**
    * If no response was sent, we received a request that we are not able to handle.
-   * That means e. g. invalid associations.
+   * That means e.g. invalid associations.
    */
   protected function beforeRender(): void {
     $this->getHttpResponse()->setCode(IResponse::S400_BAD_REQUEST);
@@ -40,6 +46,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     parent::shutdown($response);
     // do not send cookies with response, they are not (meant to be) used for authentication
     $this->getHttpResponse()->deleteHeader("Set-Cookie");
+    $this->user->logout(true);
   }
 
   /**
@@ -69,12 +76,14 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
 
   /**
    * A quick way to send 404 status with an appropriate message to the client.
-   * It is meant to be used only in @see sendEntity method
-   * or @see actionReadAll method when the associated resource was not found.
+   * It is meant to be used only in {@see sendEntity}, {@see actionReadAll} or {@see actionDelete}
+   * method when the associated resource was not found.
    */
   protected function resourceNotFound(string $resource, int $id): void {
     $this->getHttpResponse()->setCode(IResponse::S404_NOT_FOUND);
-    $this->sendJson(["message" => Strings::firstUpper($resource) . " with id $id was not found."]);
+    $payload = ["message" => Strings::firstUpper($resource) . " with id $id was not found."];
+    $this->addContentLengthHeader($payload);
+    $this->sendJson($payload);
   }
 
   /**
@@ -153,7 +162,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
 
   /**
    * A quick way to send a collection of entities as response.
-   * It is meant to be used in @see actionReadAll method.
+   * It is meant to be used in {@see actionReadAll} method.
    */
   protected function sendCollection(iterable $collection): void {
     $data = $this->entityConverter->convertCollection($collection, $this->getApiVersion());
@@ -186,7 +195,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
 
   /**
    * A quick way to send single entity as response.
-   * It is meant to be used in @see actionRead method.
+   * It is meant to be used in {@see actionRead} method.
    */
   protected function sendEntity(?Entity $entity): void {
     if($entity === null) {
@@ -194,13 +203,44 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     }
     $data = $this->entityConverter->convertEntity($entity, $this->getApiVersion());
     $links = $data->_links ?? [];
-    foreach($links as $rel => $link) {
+    foreach($links as $link) {
       $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader($link->rel, $link->href));
     }
     $payload = [$this->getEntityName() => $data];
     $this->lastModified($this->getEntityModifiedTime($entity));
     $this->addContentLengthHeader($payload);
     $this->sendJson($payload);
+  }
+
+  /**
+   * Send the entity that was created in {@see actionCreate} method.
+   * Sets appropriate status code and Location header.
+   */
+  protected function sendCreatedEntity(Entity $entity): void {
+    $this->getHttpResponse()->setCode(IResponse::S201_CREATED);
+    $data = $this->entityConverter->convertEntity($entity, $this->getApiVersion());
+    $links = $data->_links ?? [];
+    foreach($links as $link) {
+      $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader($link->rel, $link->href));
+      if($link->rel === "self") {
+        $this->getHttpResponse()->setHeader("Location", $link->href);
+      }
+    }
+    $payload = [$this->getEntityName() => $data];
+    $this->addContentLengthHeader($payload);
+    $this->sendJson($payload);
+  }
+
+  /**
+   * A quick way to send info about a deleted entity as response. Handles non-existing entity.
+   * It is meant to be used in {@see actionDelete} method.
+   */
+  protected function sendDeletedEntity(?Entity $entity) : void {
+    if($entity === null) {
+      $this->resourceNotFound($this->getInvalidEntityName(), $this->getId());
+    }
+    $this->getHttpResponse()->setCode(IResponse::S204_NO_CONTENT);
+    $this->sendJson(["message" => Strings::firstUpper($this->getEntityName()) . " with id {$this->getId()} was deleted."]);
   }
 
   protected function addContentLengthHeader(array $payload): void {
@@ -228,6 +268,37 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected function getSelfLink(): string {
     $url = $this->getHttpRequest()->getUrl();
     return $url->hostUrl . $url->path;
+  }
+
+  protected function tryLogin(): void {
+    preg_match('#^Bearer (.+)$#', $this->getHttpRequest()->getHeader('authorization') ?? '', $matches);
+    if(!is_array($matches) || !isset($matches[1])) {
+      return;
+    }
+    $token = $this->orm->apiTokens->getByToken($matches[1]);
+    if($token === null || $token->expire <= time()) {
+      $this->getHttpResponse()->setCode(IResponse::S401_UNAUTHORIZED);
+      $this->sendJson(["message" => "Provided token is not valid."]);
+    }
+    $this->user->login($this->authenticator->getIdentity($token->user));
+  }
+
+  protected function requiresLogin(): void {
+    $this->tryLogin();
+    if(!$this->user->isLoggedIn()) {
+      $this->getHttpResponse()->setCode(IResponse::S401_UNAUTHORIZED);
+      $this->sendJson(["message" => "This action requires authentication."]);
+    }
+  }
+
+  protected function getBasicCredentials(): array {
+    return [$_SERVER["PHP_AUTH_USER"] ?? "", $_SERVER["PHP_AUTH_PW"] ?? "",];
+  }
+
+  protected function sendBasicAuthRequest(string $message = "This action requires authentication."): void {
+    $this->getHttpResponse()->setHeader("WWW-Authenticate", "Basic realm=\"Nexendrie API\"");
+    $this->getHttpResponse()->setCode(IResponse::S401_UNAUTHORIZED);
+    $this->sendJson(["message" => $message]);
   }
 }
 ?>

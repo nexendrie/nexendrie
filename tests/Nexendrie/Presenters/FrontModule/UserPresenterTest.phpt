@@ -39,6 +39,12 @@ final class UserPresenterTest extends \Tester\TestCase {
     $this->checkAction(":Front:User:settings");
   }
 
+  public function testApiTokens() {
+    $this->checkRedirect(":Front:User:apiTokens", "/user/login");
+    $this->login();
+    $this->checkAction(":Front:User:apiTokens");
+  }
+
   public function testList() {
     $this->checkAction(":Front:User:list");
   }

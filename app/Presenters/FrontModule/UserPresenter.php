@@ -4,6 +4,10 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Api\ApiNotEnabledException;
+use Nexendrie\Api\TokenExpiredException;
+use Nexendrie\Api\TokenNotFoundException;
+use Nexendrie\Api\Tokens;
 use Nexendrie\Forms\LoginFormFactory;
 use Nexendrie\Forms\RegisterFormFactory;
 use Nexendrie\Forms\UserSettingsFormFactory;
@@ -19,15 +23,17 @@ final class UserPresenter extends BasePresenter {
   protected \Nexendrie\Model\Authenticator $model;
   protected \Nexendrie\Model\Locale $localeModel;
   protected ORM $orm;
+  private Tokens $apiTokens;
   /** @persistent */
   public string $backlink = "";
   protected bool $cachingEnabled = false;
   
-  public function __construct(\Nexendrie\Model\Authenticator $model, \Nexendrie\Model\Locale $localeModel, ORM $orm) {
+  public function __construct(\Nexendrie\Model\Authenticator $model, \Nexendrie\Model\Locale $localeModel, ORM $orm, Tokens $apiTokens) {
     parent::__construct();
     $this->model = $model;
     $this->localeModel = $localeModel;
     $this->orm = $orm;
+    $this->apiTokens = $apiTokens;
   }
   
   /**
@@ -100,6 +106,35 @@ final class UserPresenter extends BasePresenter {
     $this->template->users = $this->orm->users->findAll()
       ->orderBy("group->level", ICollection::DESC)
       ->orderBy("created");
+  }
+
+  public function renderApiTokens(): void {
+    $this->requiresLogin();
+    $this->template->tokens = $this->orm->apiTokens->findActiveForUser($this->user->id);
+  }
+
+  public function handleCreateApiToken(): void {
+    $this->requiresLogin();
+    try {
+      $this->apiTokens->create();
+      $this->flashMessage("API token úspěšně vytvořen", "success");
+    } catch(ApiNotEnabledException $e) {
+      $this->flashMessage("Nemáš povolené API.", "error");
+    }
+    $this->redirect("apiTokens");
+  }
+
+  public function handleInvalidateApiToken(string $token): void {
+    $this->requiresLogin();
+    try {
+      $this->apiTokens->invalidate($token);
+      $this->flashMessage("Token zneplatněn.", "success");
+    } catch(TokenNotFoundException $e) {
+      $this->flashMessage("Token nenalezen.", "error");
+    } catch(TokenExpiredException $e) {
+      $this->flashMessage("Token už vypršel.", "warning");
+    }
+    $this->redirect("apiTokens");
   }
 }
 ?>
