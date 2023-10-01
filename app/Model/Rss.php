@@ -53,7 +53,7 @@ final class Rss {
         $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
         $return[] = new Item([
           "title" => $row->title, "description" => $row->text, "link" => $link, "pubDate" => $row->created,
-          "comments" => $link . "#comments",
+          "comments" => $link . "#comments", "author" => $row->author->publicname,
         ]);
       }
       return $return;
@@ -86,6 +86,7 @@ final class Rss {
         $link = $articleLink . "#comment-$comment->id";
         $return[] = new Item([
           "title" => $comment->title, "description" => $comment->text, "link" => $link, "pubDate" => $comment->created,
+          "author" => $comment->author->publicname,
         ]);
       }
       return $return;
