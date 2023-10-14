@@ -25,15 +25,17 @@ final class TownPresenter extends BasePresenter {
   protected \Nexendrie\Model\Profile $profileModel;
   protected \Nexendrie\Model\Locale $localeModel;
   private \Nexendrie\Orm\Town $town;
+  private \Nexendrie\Orm\Model $orm;
   private ITownChatControlFactory $chatFactory;
   protected bool $cachingEnabled = false;
 
-  public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel, ITownChatControlFactory $chatFactory) {
+  public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Orm\Model $orm, ITownChatControlFactory $chatFactory) {
     parent::__construct();
     $this->model = $model;
     $this->userManager = $userManager;
     $this->profileModel = $profileModel;
     $this->localeModel = $localeModel;
+    $this->orm = $orm;
     $this->chatFactory = $chatFactory;
   }
   
@@ -109,6 +111,11 @@ final class TownPresenter extends BasePresenter {
       $this->flashMessage("Jen šlechtici mohou zakládat města.");
       $this->redirect("Homepage:");
     }
+  }
+
+  public function renderFound(): void {
+    $this->template->foundTownFee = $this->sr->settings['fees']['foundTown'];
+    $this->template->foundingCharter = $this->orm->items->getById($this->sr->settings["specialItems"]["foundTown"]);
   }
   
   protected function createComponentFoundTownForm(FoundTownFormFactory $factory): Form {
