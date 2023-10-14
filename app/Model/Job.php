@@ -261,11 +261,14 @@ final class Job {
    * @throws AuthenticationNeededException
    * @throws NotWorkingException
    */
-  public function getCurrentJob(): UserJobEntity {
-    if(!$this->user->isLoggedIn()) {
+  public function getCurrentJob(int $userId = null): UserJobEntity {
+    if($userId === null && !$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }
-    $job = $this->orm->userJobs->getUserActiveJob($this->user->id);
+    if ($userId === null) {
+      $userId = $this->user->id;
+    }
+    $job = $this->orm->userJobs->getUserActiveJob($userId);
     if($job === null) {
       throw new NotWorkingException();
     }

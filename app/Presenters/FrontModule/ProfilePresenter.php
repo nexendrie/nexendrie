@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Model\Job;
+use Nexendrie\Model\NotWorkingException;
 use Nexendrie\Model\UserNotFoundException;
 use Nette\Application\BadRequestException;
 
@@ -16,16 +18,18 @@ final class ProfilePresenter extends BasePresenter {
   protected \Nexendrie\Model\Castle $castleModel;
   protected \Nexendrie\Model\Marriage $marriageModel;
   protected \Nexendrie\Model\Achievements $achievementsModel;
+  private Job $jobModel;
   protected bool $cachingEnabled = false;
   /** @var string[] */
   private array $cacheableActions = ["articles", "skills", "comments", ];
 
-  public function __construct(\Nexendrie\Model\Profile $model, \Nexendrie\Model\Castle $castleModel, \Nexendrie\Model\Marriage $marriageModel, \Nexendrie\Model\Achievements $achievementsModel) {
+  public function __construct(\Nexendrie\Model\Profile $model, \Nexendrie\Model\Castle $castleModel, \Nexendrie\Model\Marriage $marriageModel, \Nexendrie\Model\Achievements $achievementsModel, Job $jobModel) {
     parent::__construct();
     $this->model = $model;
     $this->castleModel = $castleModel;
     $this->marriageModel = $marriageModel;
     $this->achievementsModel = $achievementsModel;
+    $this->jobModel = $jobModel;
   }
 
   protected function startup(): void {
@@ -45,6 +49,12 @@ final class ProfilePresenter extends BasePresenter {
       $this->template->profile = $user;
       $this->template->partner = $this->model->getPartner($user->id);
       $this->template->fiance = $this->model->getFiance($user->id);
+      try {
+        $job = $this->jobModel->getCurrentJob($user->id);
+      } catch (NotWorkingException $e) {
+        $job = null;
+      }
+      $this->template->job = $job;
       $this->template->canProposeMarriage = $this->marriageModel->canPropose($user->id);
       $this->template->ogType = "profile";
     } catch(UserNotFoundException $e) {

@@ -12,6 +12,7 @@
     {/if}
     {if $profile->guild}{$profile->guildRank->name} <a n:href="Guild:detail $profile->guild->id">{$profile->guild->name}</a><br>{/if}
     {if $profile->order}{$profile->orderRank->name} <a n:href="Order:detail $profile->order->id">{$profile->order->name}</a><br>{/if}
+    {if $profile->id !== 0}Současné zaměstnání: {if $job}{$job->job->name}{else}žádné{/if}<br>{/if}
     {if $profile->banned}V současnosti si odpykává zasloužený trest v místní šatlavě.<br>{/if}
     {if $partner}Manžel{if $partner->gender === "female"}ka{/if}: {control userProfileLink $partner,true}<br>{/if}
     {if $fiance}Snouben{if $fiance->gender === "female"}ka{else}ec{/if}: {control userProfileLink $fiance,true}<br>{/if}
