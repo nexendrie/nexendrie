@@ -15,7 +15,7 @@ use Nexendrie\Components\UserProfileLinkControl;
  * Ultimate ancestor of all presenters
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property-read \Nette\Application\UI\Template $template
  */
 abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   use \Kdyby\Autowired\AutowireComponentFactories;
