@@ -8,7 +8,7 @@
   Bonusy: maximum životů +{$marriage->hpIncrease}<br>
   {if $marriage->intimacy < $maxIntimacy}{foreach $boosters as $booster}<a n:href="boostIntimacy! $booster->id">Použít</a> {$booster->item->name} (+{$booster->item->strength} důvěrnost) {/foreach}{/if}</p>
   {else}
-  <p>Aktuálně jsi zasnouben{if $user->identity->gender === "female"}á{else}ý{/if} s {control userProfileLink $otherParty}. Vaše svatba se bude konat {$marriage->termT}. {if $marriage->term < time()} <a n:href="Marriage:ceremony $marriage->id">Obřad</a>{else}<a n:href="cancelWedding!">Zrušit zasnoubení</a>{/if}</p>
+  <p>Aktuálně jsi {="zasnouben(ý|á)"|genderify} s {control userProfileLink $otherParty}. Vaše svatba se bude konat {$marriage->termT}. {if $marriage->term < time()} <a n:href="Marriage:ceremony $marriage->id">Obřad</a>{else}<a n:href="cancelWedding!">Zrušit zasnoubení</a>{/if}</p>
   Změnit termín svatby
   {control changeWeddingTermForm}
   {/if}

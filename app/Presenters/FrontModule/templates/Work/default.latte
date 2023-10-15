@@ -2,7 +2,7 @@
 {block title}Práce{/block}
 {block content}
   <h1>{$jobName}</h1>
-  <p>Pracuješ jako {$jobName} do {$finishTime}. Zvládl{if $user->identity->gender === "female"}a{/if} jsi už {$jobCount} směn/výkonů {if $jobNeededCount>0} z {$jobNeededCount}{/if} a vydělal{if $user->identity->gender === "female"}a{/if} {$earned|money}.</p>
+  <p>Pracuješ jako {$jobName} do {$finishTime}. {="Zvládl(a)"|genderify} jsi už {$jobCount} směn/výkonů {if $jobNeededCount>0} z {$jobNeededCount}{/if} a {="vydělal(a)"|genderify} {$earned|money}.</p>
   <p>{if $finished}<a n:href="finish">Dokončit práci</a>{else}{$help}{/if}</p>
-  <p>{if $canWork and !$finished}<a n:href="work">Do toho!</a> (Šance na úspěch: {$successChance}%){elseif !$canWork and !$finished}Ještě jsi nedokončil{if $user->identity->gender === "female"}a{/if} směnu. Musíš počkat do {$nextShift}.{/if}</p>
+  <p>{if $canWork and !$finished}<a n:href="work">Do toho!</a> (Šance na úspěch: {$successChance}%){elseif !$canWork and !$finished}{="Ještě jsi nedokončil(a)"|genderify} směnu. Musíš počkat do {$nextShift}.{/if}</p>
 {/block}
