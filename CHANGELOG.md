@@ -7,6 +7,7 @@ Version 1.0.0-beta9+dev
 - added notifications
 - merged search types articles title and articles text
 - added authentication for api
+- added countdown to next shift for work
 
 Version 1.0.0-beta9
 - removed user setting infomails
