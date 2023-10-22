@@ -22,7 +22,7 @@ final class Twitter implements \Nexendrie\Components\ISharerLink {
   }
 
   public function getSiteName(): string {
-    return "Twitteru";
+    return "X (Twitteru)";
   }
 }
 ?>

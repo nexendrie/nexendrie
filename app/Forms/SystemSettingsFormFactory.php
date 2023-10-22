@@ -174,7 +174,7 @@ final class SystemSettingsFormFactory {
     $socialAccounts = $form->addContainer("socialAccounts");
     $socialAccounts->addText("facebook", "Facebook:")
       ->setRequired("Zadej název účtu na Facebooku");
-    $socialAccounts->addText("twitter", "Twitter:")
+    $socialAccounts->addText("twitter", "X (Twitter):")
       ->setRequired("Zadej název účtu na Twitteru");
     $socialAccounts->addText("friendica", "Friendica:")
       ->setRequired("Zadej název účtu Friendica");

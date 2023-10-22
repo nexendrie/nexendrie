@@ -26,11 +26,11 @@ final class Twitter implements \Nexendrie\Components\ISocialIcon {
   }
 
   public function getImageAlt(): string {
-    return "Twitter";
+    return "X (Twitter)";
   }
 
   public function getImageTitle(): string {
-    return "Twitter";
+    return "X (Twitter)";
   }
 }
 ?>

@@ -6,7 +6,7 @@ namespace Nexendrie\Components\SocialIcons;
 use Nexendrie\Model\SettingsRepository;
 
 /**
- * Twitter Social Icon
+ * Friendica Social Icon
  *
  * @author Jakub Konečný
  */
