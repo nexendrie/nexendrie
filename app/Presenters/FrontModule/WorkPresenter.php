@@ -60,6 +60,7 @@ final class WorkPresenter extends BasePresenter {
       $this->template->successChance = $job->successRate;
     } else {
       $this->template->canWork = false;
+      $this->template->nextShiftJs = null;
     }
   }
   
