@@ -13,7 +13,7 @@ function sse() {
         });
         if (data.targetUrl) {
             notification.onclick = function () {
-                window.location.replace(data.targetUrl);
+                window.location.assign(data.targetUrl);
             };
         }
     });
