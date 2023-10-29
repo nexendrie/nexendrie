@@ -303,7 +303,7 @@ final class Job {
     }
     if($job->lastAction === null) {
       return true;
-    } elseif($job->lastAction + ($job->job->shift * 60) > time()) {
+    } elseif($job->nextShiftTime > time()) {
       return false;
     }
     return true;

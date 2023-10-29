@@ -17,6 +17,7 @@ namespace Nexendrie\Orm;
  * @property int $earned {default 0}
  * @property int $extra {default 0}
  * @property-read int $finishTime {virtual}
+ * @property-read int $nextShiftTime {virtual}
  * @property-read int[] $reward {virtual}
  * @property-read int $successRate {virtual}
  */
@@ -33,6 +34,10 @@ final class UserJob extends BaseEntity {
   
   protected function getterFinishTime(): int {
     return $this->created + (60 * 60 * 24 * static::JOB_DAYS_LENGTH);
+  }
+
+  protected function getterNextShiftTime(): int {
+    return ((int) $this->lastAction) + ($this->job->shift * 60);
   }
   
   protected function getHouseRewardBonus(int $baseReward): int {

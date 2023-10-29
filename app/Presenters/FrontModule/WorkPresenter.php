@@ -54,7 +54,7 @@ final class WorkPresenter extends BasePresenter {
     if(!$finished) {
       $this->template->help = $this->model->parseJobHelp($job);
       $this->template->canWork = $this->model->canWork();
-      $nextShift = ((int) $job->lastAction) + ($job->job->shift * 60);
+      $nextShift = $job->nextShiftTime;
       $this->template->nextShift = $this->localeModel->formatDateTime($nextShift);
       $this->template->nextShiftJs = date("Y-m-d", $nextShift) . "T" . date("H:i:s", $nextShift);
       $this->template->successChance = $job->successRate;
