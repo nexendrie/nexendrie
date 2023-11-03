@@ -1,4 +1,4 @@
-header { width: 100%; max-width: 935px; height: 10.5%; max-height: 75px; position: absolute; top: 5px; }
+header { width: 100%; max-width: 935px; max-height: 75px; position: absolute; top: 5px; }
 header h2 { position: relative; top: 5px; left: 25px; width: 10.6%; max-width: 100px; }
 header h2 a { text-decoration: none; font-size: larger; }
 #userPanel { position: absolute; top: 55px; right: -4px; }
