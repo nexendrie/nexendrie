@@ -3,5 +3,6 @@
 {block content}
   <h1>Akce</h1>
   {control eventsCalendar}
+  <p><a n:href="calendar">Stáhnout jako iCalendar</p>
   {if $user->isAllowed("event", "add")}<p><a n:href=":Admin:Event:add">Přidat událost</a></p>{/if}
 {/block}

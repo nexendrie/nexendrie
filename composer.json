@@ -46,7 +46,8 @@
         "heroesofabenez/combat": "^1.0",
         "adamstipak/nette-rest-route": "dev-master",
         "robmorgan/phinx": "^0.12.12",
-        "nette/http": "3.1.2"
+        "nette/http": "3.1.2",
+        "eluceo/ical": "^2.12.1"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",

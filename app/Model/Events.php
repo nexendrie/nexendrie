@@ -3,6 +3,13 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Eluceo\iCal\Domain\Entity\Calendar;
+use Eluceo\iCal\Domain\Entity\Event as CalendarEvent;
+use Eluceo\iCal\Domain\ValueObject\DateTime;
+use Eluceo\iCal\Domain\ValueObject\TimeSpan;
+use Eluceo\iCal\Domain\ValueObject\Timestamp;
+use Eluceo\iCal\Domain\ValueObject\UniqueIdentifier;
+use Eluceo\iCal\Domain\ValueObject\Uri;
 use Nexendrie\Orm\Event;
 use Nette\Caching\Cache;
 use Nexendrie\Orm\EventDummy;
@@ -21,9 +28,9 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
   protected \Nette\Application\LinkGenerator $lg;
   /** @var Event[]|ICollection */
   private ICollection $events;
-  
+
   use \Nette\SmartObject;
-  
+
   public function __construct(\Nexendrie\Orm\Model $orm, Cache $cache, \Nette\Security\User $user, SettingsRepository $sr, \Nette\Application\LinkGenerator $lg) {
     $this->orm = $orm;
     $this->cache = $cache;
@@ -31,16 +38,16 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     $this->sr = $sr;
     $this->lg = $lg;
   }
-  
+
   /**
    * Get list of all events
-   * 
+   *
    * @return Event[]|ICollection
    */
   public function listOfEvents(): ICollection {
     return $this->orm->events->findAll();
   }
-  
+
   /**
    * Get details of specified event
    *
@@ -67,7 +74,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     $this->orm->events->persistAndFlush($event);
   }
-  
+
   /**
    * Edit specified event
    *
@@ -86,7 +93,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     $this->orm->events->persistAndFlush($event);
   }
-  
+
   /**
    * Delete specified events
    *
@@ -102,14 +109,14 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     $this->orm->events->removeAndFlush($event);
   }
-  
+
   /**
    * Load events from a month
    */
   public function loadEvents(int $year = null, int $month = null): void {
     $this->events = $this->orm->events->findFromMonth($year, $month);
   }
-  
+
   /**
    * @return string[]
    */
@@ -131,14 +138,14 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     return $events;
   }
-  
+
   public function isForDate(int $year, int $month, int $day): bool {
     return (bool) count($this->getForDate($year, $month, $day));
   }
-  
+
   /**
    * Get ongoing events
-   * 
+   *
    * @return EventDummy[]
    */
   public function getCurrentEvents(): array {
@@ -152,7 +159,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
       return $return;
     });
   }
-  
+
   /**
    * Calculate current bonus for adventures
    */
@@ -166,7 +173,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     return (int) ($baseIncome / 100 * $bonus);
   }
-  
+
   /**
    * Calculate current bonus for work
    */
@@ -180,7 +187,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     return (int) ($baseIncome / 100 * $bonus);
   }
-  
+
   /**
    * Calculate current bonus for praying
    */
@@ -194,7 +201,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     return (int) ($baseValue / 100 * $bonus);
   }
-  
+
   /**
    * Calculate current discount for training
    */
@@ -208,7 +215,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     return (int) ($basePrice / 100 * $discount);
   }
-  
+
   /**
    * Calculate current discount for shopping
    */
@@ -222,7 +229,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     return (int) ($basePrice / 100 * $discount);
   }
-  
+
   /**
    * Get current shopping discount
    */
@@ -236,7 +243,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     return $discount;
   }
-  
+
   /**
    * Calculate current discount for repairing castles and monasteries
    */
@@ -249,6 +256,30 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
       }
     }
     return (int) ($basePrice / 100) * $discount;
+  }
+
+  public function getCalendar(): Calendar {
+    $calendar = new Calendar();
+
+    $events = $this->orm->events->findAll();
+    foreach ($events as $event) {
+      // phpcs:disable PSR2.Methods.FunctionCallSignature
+      $calendarEvent = new CalendarEvent(
+        new UniqueIdentifier("nexendrie" . $this->sr->settings["site"]["versionSuffix"] . "/event/" . $event->id)
+      );
+      $calendarEvent->setSummary($event->name);
+      $calendarEvent->setDescription($event->description);
+      $calendarEvent->touch(new Timestamp((new \DateTime())->setTimestamp($event->updated)));
+      $calendarEvent->setOccurrence(new TimeSpan(
+        new DateTime((new \DateTime())->setTimestamp($event->start), false),
+        new DateTime((new \DateTime())->setTimestamp($event->end), false)
+      ));
+      // phpcs:enable
+      $calendarEvent->setUrl(new Uri($this->lg->link("Front:Event:view", ["id" => $event->id])));
+      $calendar->addEvent($calendarEvent);
+    }
+
+    return $calendar;
   }
 }
 ?>
