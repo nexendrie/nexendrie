@@ -8,6 +8,7 @@ Version 1.0.0-beta9+dev
 - merged search types articles title and articles text
 - added authentication for api
 - added countdown to next shift for work
+- added iCalendar for events
 
 Version 1.0.0-beta9
 - removed user setting infomails
