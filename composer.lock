@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a93af87dfe2ea52d8b239e87a41ce245",
+    "content-hash": "e473a53e66470ff6365183be3c4aeb8c",
     "packages": [
         {
             "name": "adamstipak/nette-rest-route",
@@ -63,21 +63,21 @@
         },
         {
             "name": "eluceo/ical",
-            "version": "2.12.1",
+            "version": "2.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/markuspoerschke/iCal.git",
-                "reference": "1eca4d510bc3904d388d53c0e36b0f78f788a5ea"
+                "reference": "43fd5991032d46db06ae0b3f67416adfdad38336"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markuspoerschke/iCal/zipball/1eca4d510bc3904d388d53c0e36b0f78f788a5ea",
-                "reference": "1eca4d510bc3904d388d53c0e36b0f78f788a5ea",
+                "url": "https://api.github.com/repos/markuspoerschke/iCal/zipball/43fd5991032d46db06ae0b3f67416adfdad38336",
+                "reference": "43fd5991032d46db06ae0b3f67416adfdad38336",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-                "php": ">=7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0",
+                "php": ">=7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0",
                 "symfony/deprecation-contracts": "^2.1 || ^3.0"
             },
             "conflict": {
@@ -86,7 +86,7 @@
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.23.1",
                 "friendsofphp/php-cs-fixer": "^3.4",
-                "infection/infection": "^0.23 || ^0.26",
+                "infection/infection": "^0.23 || ^0.26 || ^0.27",
                 "phpmd/phpmd": "^2.13",
                 "phpunit/phpunit": "^9.5",
                 "vimeo/psalm": "^4.8 || ^5.0"
@@ -123,7 +123,7 @@
                 "issues": "https://github.com/markuspoerschke/iCal/issues",
                 "source": "https://github.com/markuspoerschke/iCal"
             },
-            "time": "2023-06-26T08:36:32+00:00"
+            "time": "2023-12-19T19:24:37+00:00"
         },
         {
             "name": "heroesofabenez/chat",
@@ -402,22 +402,22 @@
         },
         {
             "name": "latte/latte",
-            "version": "v2.11.6",
+            "version": "v2.11.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "af4dbb23a6044b1cf4904830a9b00246318c93d4"
+                "reference": "0ac0843a459790d471821f6a82f5d13db831a0d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/af4dbb23a6044b1cf4904830a9b00246318c93d4",
-                "reference": "af4dbb23a6044b1cf4904830a9b00246318c93d4",
+                "url": "https://api.github.com/repos/nette/latte/zipball/0ac0843a459790d471821f6a82f5d13db831a0d3",
+                "reference": "0ac0843a459790d471821f6a82f5d13db831a0d3",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-tokenizer": "*",
-                "php": ">=7.1 <8.3"
+                "php": "7.1 - 8.3"
             },
             "conflict": {
                 "nette/application": "<2.4.1"
@@ -480,9 +480,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/latte/issues",
-                "source": "https://github.com/nette/latte/tree/v2.11.6"
+                "source": "https://github.com/nette/latte/tree/v2.11.7"
             },
-            "time": "2022-11-04T14:53:52+00:00"
+            "time": "2023-10-18T17:16:11+00:00"
         },
         {
             "name": "nette/application",
@@ -1601,20 +1601,20 @@
         },
         {
             "name": "nette/utils",
-            "version": "v3.2.9",
+            "version": "v3.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "c91bac3470c34b2ecd5400f6e6fdf0b64a836a5c"
+                "reference": "a4175c62652f2300c8017fb7e640f9ccb11648d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/c91bac3470c34b2ecd5400f6e6fdf0b64a836a5c",
-                "reference": "c91bac3470c34b2ecd5400f6e6fdf0b64a836a5c",
+                "url": "https://api.github.com/repos/nette/utils/zipball/a4175c62652f2300c8017fb7e640f9ccb11648d2",
+                "reference": "a4175c62652f2300c8017fb7e640f9ccb11648d2",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2 <8.3"
+                "php": ">=7.2 <8.4"
             },
             "conflict": {
                 "nette/di": "<3.0.6"
@@ -1681,9 +1681,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v3.2.9"
+                "source": "https://github.com/nette/utils/tree/v3.2.10"
             },
-            "time": "2023-01-18T03:26:20+00:00"
+            "time": "2023-07-30T15:38:18+00:00"
         },
         {
             "name": "nexendrie/book-component",
@@ -2188,23 +2188,23 @@
         },
         {
             "name": "nextras/form-components",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/form-components.git",
-                "reference": "fa99238150047c9d0dc62bab617ce79229466603"
+                "reference": "67253c9354762682d7d0804974b2350f1c9a53af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/form-components/zipball/fa99238150047c9d0dc62bab617ce79229466603",
-                "reference": "fa99238150047c9d0dc62bab617ce79229466603",
+                "url": "https://api.github.com/repos/nextras/form-components/zipball/67253c9354762682d7d0804974b2350f1c9a53af",
+                "reference": "67253c9354762682d7d0804974b2350f1c9a53af",
                 "shasum": ""
             },
             "require": {
                 "nette/application": "~3.0",
                 "nette/component-model": "~3.0",
                 "nette/forms": "~3.0",
-                "nette/utils": "~3.0",
+                "nette/utils": "^3.0 || ^4.0",
                 "php": ">=7.1"
             },
             "require-dev": {
@@ -2249,9 +2249,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nextras/form-components/issues",
-                "source": "https://github.com/nextras/form-components/tree/v1.1.1"
+                "source": "https://github.com/nextras/form-components/tree/v1.1.2"
             },
-            "time": "2022-01-18T23:20:08+00:00"
+            "time": "2023-04-19T13:38:40+00:00"
         },
         {
             "name": "nextras/orm",
@@ -3386,16 +3386,16 @@
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.9.7",
+            "version": "v2.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "1c6e9b5bad030fdf49194154c9674201fa6372bb"
+                "reference": "d84fb3ca4e9fa5a9352e6d18f0b8cd767f25901e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/1c6e9b5bad030fdf49194154c9674201fa6372bb",
-                "reference": "1c6e9b5bad030fdf49194154c9674201fa6372bb",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/d84fb3ca4e9fa5a9352e6d18f0b8cd767f25901e",
+                "reference": "d84fb3ca4e9fa5a9352e6d18f0b8cd767f25901e",
                 "shasum": ""
             },
             "require": {
@@ -3454,9 +3454,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/tracy/issues",
-                "source": "https://github.com/nette/tracy/tree/v2.9.7"
+                "source": "https://github.com/nette/tracy/tree/v2.9.8"
             },
-            "time": "2023-02-28T13:01:54+00:00"
+            "time": "2023-09-25T10:36:51+00:00"
         }
     ],
     "packages-dev": [
@@ -4067,16 +4067,16 @@
         },
         {
             "name": "phpstan/phpstan-nette",
-            "version": "1.2.4",
+            "version": "1.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-nette.git",
-                "reference": "9e083bb5befde7b73f9a12fc5bd223a7dcd63920"
+                "reference": "0e3a6805917811d685e59bb83c2286315f2f6d78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-nette/zipball/9e083bb5befde7b73f9a12fc5bd223a7dcd63920",
-                "reference": "9e083bb5befde7b73f9a12fc5bd223a7dcd63920",
+                "url": "https://api.github.com/repos/phpstan/phpstan-nette/zipball/0e3a6805917811d685e59bb83c2286315f2f6d78",
+                "reference": "0e3a6805917811d685e59bb83c2286315f2f6d78",
                 "shasum": ""
             },
             "require": {
@@ -4092,6 +4092,7 @@
                 "nette/utils": "<2.3.0"
             },
             "require-dev": {
+                "nette/application": "^3.0",
                 "nette/forms": "^3.0",
                 "nette/utils": "^2.3.0 || ^3.0.0",
                 "nikic/php-parser": "^4.13.2",
@@ -4122,9 +4123,9 @@
             "description": "Nette Framework class reflection extension for PHPStan",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-nette/issues",
-                "source": "https://github.com/phpstan/phpstan-nette/tree/1.2.4"
+                "source": "https://github.com/phpstan/phpstan-nette/tree/1.2.9"
             },
-            "time": "2023-02-18T13:39:23+00:00"
+            "time": "2023-04-12T14:11:53+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",

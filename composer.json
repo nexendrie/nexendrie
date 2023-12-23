@@ -28,14 +28,14 @@
         "nette/di": "^3.1.2",
         "nette/forms": "^3.1.11",
         "nette/security": "^3.1",
-        "nette/utils": "^3.2.9",
-        "tracy/tracy": "^2.9.7",
-        "latte/latte": "^2.11.6",
+        "nette/utils": "^3.2.10",
+        "tracy/tracy": "^2.9.8",
+        "latte/latte": "^2.11.7",
         "kdyby/autowired": "^2.1.1",
         "nextras/orm": "^4.0.2",
         "ijvo/cronner": "^3.0.3",
         "nexendrie/event-calendar": "^0.7",
-        "nextras/form-components": "^1.0",
+        "nextras/form-components": "^1.1.2",
         "nexendrie/book-component": "^2.3",
         "nexendrie/translation": "^2.3.1",
         "nexendrie/rss": "^0.10",
@@ -47,12 +47,12 @@
         "adamstipak/nette-rest-route": "dev-master",
         "robmorgan/phinx": "^0.12.12",
         "nette/http": "3.1.2",
-        "eluceo/ical": "^2.12.1"
+        "eluceo/ical": "^2.13"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
         "dg/ftp-deployment": "3.3.1",
-        "phpstan/phpstan-nette": "^1.0",
+        "phpstan/phpstan-nette": "^1.2",
         "nextras/orm-phpstan": "^1.0.1"
     },
     "replace": {
