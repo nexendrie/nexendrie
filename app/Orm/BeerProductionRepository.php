@@ -51,7 +51,7 @@ final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository 
   public function findProducedThisMonth(int $user): ICollection {
     $month = (int) date("n");
     $year = (int) date("Y");
-    $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
+    $startOfMonthTS = (int) mktime(0, 0, 0, $month, 1, $year);
     $date = new \DateTime();
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp();

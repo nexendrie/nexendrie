@@ -39,7 +39,7 @@ final class UserJobsRepository extends \Nextras\Orm\Repository\Repository {
    */
   public function findFromMonth(int $user, int $month, int $year): ICollection {
     $sixDays = 60 * 60 * 24 * 6;
-    $startOfMonthTS = mktime(0, 0, 0, $month, 1, $year);
+    $startOfMonthTS = (int) mktime(0, 0, 0, $month, 1, $year);
     $date = new \DateTime();
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp() - $sixDays;

@@ -42,7 +42,7 @@ final class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Reposit
   public function findDonatedThisMonth($user): ICollection {
     $month = date("n");
     $year = date("Y");
-    $startOfMonthTS = mktime(0, 0, 0, (int) $month, 1, (int) $year);
+    $startOfMonthTS = (int) mktime(0, 0, 0, (int) $month, 1, (int) $year);
     $date = new \DateTime();
     $date->setTimestamp($startOfMonthTS);
     $start = $date->getTimestamp();

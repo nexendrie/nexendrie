@@ -126,7 +126,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
     }
     $events = [];
     foreach($this->events as $event) {
-      $startTS = mktime(0, 0, 0, $month, $day, $year);
+      $startTS = (int) mktime(0, 0, 0, $month, $day, $year);
       $date = new \DateTime();
       $date->setTimestamp($startTS);
       $date->modify("+1 day");
