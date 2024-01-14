@@ -228,6 +228,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Components\SharerLinks\Facebook::class);
     $builder->addDefinition($this->prefix("component.sharer.link.twitter"))
       ->setType(Nexendrie\Components\SharerLinks\Twitter::class);
+    $builder->addDefinition($this->prefix("component.sharer.link.fediverse"))
+      ->setType(Nexendrie\Components\SharerLinks\Fediverse::class);
     $builder->addFactoryDefinition("component.socialIcons")
       ->setImplement(Nexendrie\Components\ISocialIconsControlFactory::class);
     $builder->addDefinition($this->prefix("component.socialIcons.icon.facebook"))

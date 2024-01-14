@@ -16,5 +16,9 @@ final class Facebook implements \Nexendrie\Components\ISharerLink {
   public function getSiteName(): string {
     return "Facebooku";
   }
+
+  public function getPlatformName(): string {
+    return "facebook";
+  }
 }
 ?>

@@ -1,6 +1,6 @@
 Version 1.0.0-beta9+dev
 - added profile sub-page comments and crimes
-- allowed sharing articles on X (Twitter)
+- allowed sharing articles on X (Twitter) and fediverse
 - added new default style (autodetects dark mode)
 - actions from current user are now marked in chronicle
 - added pagination to homepage and articles' categories

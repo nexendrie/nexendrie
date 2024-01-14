@@ -24,5 +24,9 @@ final class Twitter implements \Nexendrie\Components\ISharerLink {
   public function getSiteName(): string {
     return "X (Twitteru)";
   }
+
+  public function getPlatformName(): string {
+    return "twitter";
+  }
 }
 ?>

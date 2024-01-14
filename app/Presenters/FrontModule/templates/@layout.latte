@@ -34,5 +34,24 @@
 
 </footer>
 {if $user->isLoggedIn() and $user->identity->notifications}<script src="{$basePath}/js/sse.js"></script>{/if}
+<script src="{$basePath}/js/fediverse-share.js"></script>
+<dialog id="fediverse-share">
+  <form onsubmit="fediverseShareSubmit(event)">
+    <label for="fediverse-share-instance">Adresa mé instance:</label>
+    <input id="fediverse-share-instance" required="required" placeholder="https://mastodon.online">
+    <br>
+    <label for="fediverse-share-platform">Typ instance:</label>
+    <select name="fediverse-share-platform" id="fediverse-share-platform">
+      <option value="mastodon" selected="selected">Mastodon</option>
+      <option value="friendica">Friendica</option>
+      <option value="pleroma">Pleroma</option>
+      <option value="diaspora">Diaspora</option>
+      <option value="gnusocial">GNU social</option>
+    </select>
+    <br>
+    <button type="reset" onclick="fediverseShareClose()">Zavřít</button>
+    <button type="submit">Sdílet</button>
+  </form>
+</dialog>
 </body>
 </html>
