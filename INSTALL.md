@@ -38,6 +38,7 @@ Web server
 ----------
 
 ### Apache
+
 If you're using Apache, you have little work to do as the repository contains all needed .htaccess files. Just set up a simple virtual host, no special configuration is needed.
 
 Example of virtual host configuration:
@@ -52,6 +53,7 @@ Example of virtual host configuration:
 (We strongly advise that the server name ends with .localhost, so it is considered a secure context by web browsers.)
 
 The document root for that virtual host (or its parent directory if it is withing /var/www/html) needs to have these settings:
+
 ```apacheconf
 <Directory /var/www/html/nexendrie/www>
     AllowOverride All
@@ -60,6 +62,51 @@ The document root for that virtual host (or its parent directory if it is within
 ```
 
 Make sure that mod_headers and mod_rewrite are enabled (they may not be enabled by default depending on os).
+
+### Nginx
+
+With nginx, you just need to add a new server configuration:
+
+```nginx
+server {
+    listen 80;
+    index index.php;
+    server_name nexendrie.localhost;
+    root /var/www/html/nexendrie/www;
+
+    location / {
+        try_files $uri /index.php?$args;
+    }
+
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass localhost:9000;
+        fastcgi_index index.php;
+        rewrite_log on;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME /var/www/html/nexendrie/www/$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_param REMOTE_ADDR 127.0.0.1;
+        fastcgi_pass_header Authorization;
+    }
+}
+```
+
+. Then you only need a running instance of php-fpm.
+
+### Caddy
+
+With Caddy, the setup is like with nginx (simple server configuration + php-fpm) but the server configuration is even simpler:
+
+```
+nexendrie.localhost {
+    root * /var/www/html/nexendrie/www
+    php_fastcgi php-fpm:9000
+    file_server
+}
+```
+
+.
 
 ### PHP built-in server
 
@@ -70,4 +117,5 @@ php -S localhost:8080 -t www
 ```
 
 ### Other servers
+
 If you have any other server, you (currently) have to do all server configuration by yourself as there are no experts on them in the development team. An important thing to have (configured) is something like mod_rewrite on Apache as we use "cool urls". If you have figured things out, please, tell us so we can update this section for other developers/testers who (consider to) use that server.
