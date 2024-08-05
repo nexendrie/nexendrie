@@ -18,7 +18,6 @@
 /.gitlab-ci.yml             @nexendrie/devops
 /.scrutinizer.yml           @nexendrie/devops
 /install.sh                 @nexendrie/devops
-/dast_environment_url.sh    @nexendrie/devops
 /build.xml                  @nexendrie/devops
 /phinx.php                  @nexendrie/devops
 /deployment.ini             @nexendrie/devops
