@@ -90,6 +90,7 @@ deploy:alpha:
   environment:
     name: alpha
     url: $URL_ALPHA
+    deployment_tier: testing
   only:
     - master@nexendrie/nexendrie
   variables:
@@ -100,6 +101,7 @@ deploy:beta:
   environment:
     name: beta
     url: $URL_BETA
+    deployment_tier: staging
   only:
     - tags@nexendrie/nexendrie
   variables:
