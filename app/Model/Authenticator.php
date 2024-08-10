@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nette\Security\IAuthenticator;
+use Nette\Security\SimpleIdentity;
 use Nette\Security\User;
-use Nette\Security\Identity;
 use Nette\Security\Passwords;
 use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\User as UserEntity;
@@ -40,7 +40,7 @@ final class Authenticator implements IAuthenticator {
    *
    * @internal
    */
-  public function getIdentity(UserEntity $user): Identity {
+  public function getIdentity(UserEntity $user): SimpleIdentity {
     $roles = [];
     if($user->banned) {
       /** @var \Nexendrie\Orm\Group $group */
@@ -59,7 +59,7 @@ final class Authenticator implements IAuthenticator {
       "name" => $user->publicname, "group" => $user->group->id, "notifications" => $user->notifications,
       "level" => $user->group->level, "style" => $user->style, "gender" => $user->gender, "path" => $user->group->path, "town" => $user->town->id, "banned" => $user->banned, "travelling" => !($adventure === null)
     ];
-    return new Identity($user->id, $roles, $data);
+    return new SimpleIdentity($user->id, $roles, $data);
   }
   
   /**
@@ -67,7 +67,7 @@ final class Authenticator implements IAuthenticator {
    *
    * @throws AuthenticationException
    */
-  public function authenticate(array $credentials): Identity {
+  public function authenticate(array $credentials): SimpleIdentity {
     list($email, $password) = $credentials;
     $user = $this->orm->users->getByEmail($email);
     if($user === null) {

@@ -13,7 +13,7 @@ use Nette\Http\IResponse;
  *
  * @property-read string $source
  */
-final class OpenSearchDescriptionResponse implements \Nette\Application\IResponse {
+final class OpenSearchDescriptionResponse implements \Nette\Application\Response {
   use \Nette\SmartObject;
 
   private string $source;

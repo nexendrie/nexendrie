@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nette;
-use Nette\Application\IResponse;
+use Nette\Application\Response;
 
-final class ICalendarResponse implements IResponse {
+final class ICalendarResponse implements Response {
   use \Nette\SmartObject;
 
   private string $source;
