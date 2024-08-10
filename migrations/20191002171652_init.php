@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
+// phpcs:disable Generic.Files.LineLength
 final class Init extends AbstractMigration {
   public function change(): void {
     $this->table("events")

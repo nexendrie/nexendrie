@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
+// phpcs:disable Generic.Files.LineLength
 final class InitData extends AbstractMigration {
   public function up(): void {
     $this->query("SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO'");
