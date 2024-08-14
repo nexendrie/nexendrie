@@ -201,7 +201,7 @@
       <arg value="."/>
       <arg value="--standard=vendor/nexendrie/code-quality/ruleset.xml"/>
       <arg value="--report=checkstyle"/>
-      <arg value="--report-file=codesniffer.cs"/>
+      <arg value="--report-file=codesniffer.xml"/>
     </exec>
     <exec executable="php" logoutput="true" passthru="true" checkreturn="true">
       <arg path="tools/scrutinizer_setup.php"/>
