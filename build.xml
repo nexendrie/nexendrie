@@ -2,24 +2,7 @@
 <project name="Nexendrie" basedir="." default="test">
   <target name="test" depends="lint,cs,phpstan,tests,clean-db"/>
   <target name="test-coverage" depends="lint,cs,phpstan,tests-coverage,clean-db"/>
-  <target name="test-phpdbg" depends="lint,cs,phpstan,tests-phpdbg,clean-db"/>
   <target name="test-ci" depends="install-ci,test"/>
-  <target name="release">
-    <input propertyName="version" message="Enter new version number" promptChar=":"/>
-    <replaceregexp file="CHANGELOG.md" pattern='Version ([0-9]+\.)+[0-9]+(\+|-)dev' replace='Version ${version}'/>
-    <echo message="Written new version number to CHANGELOG."/>
-    <exec executable="git" logoutput="true" passthru="true" checkreturn="true">
-      <arg line="add CHANGELOG.md"/>
-    </exec>
-    <exec executable="git" logoutput="true" passthru="true" checkreturn="true">
-      <arg line="commit --message='Version ${version}'"/>
-    </exec>
-    <echo message="Created release commit."/>
-    <exec executable="git" logoutput="true" passthru="true" checkreturn="true">
-      <arg line="tag ${version} --message='Version ${version}' --sign"/>
-    </exec>
-    <echo message="Created tag."/>
-  </target>
   <target name="test-ci-coverage" depends="install-ci,test-coverage"/>
   <target name="install">
     <property name="environment" value="production"/>
@@ -165,21 +148,10 @@
       <arg path="tests"/>
     </exec>
   </target>
-  <target name="tests-coverage" description="Unit tests with code coverage (XDebug)" depends="setup-db">
+  <target name="tests-coverage" description="Unit tests with code coverage" depends="setup-db">
     <exec executable="vendor/bin/run-tests" logoutput="true" passthru="true" checkreturn="true">
       <arg value="-p"/>
       <arg value="php"/>
-      <arg path="tests"/>
-      <arg value="--coverage"/>
-      <arg path="./coverage.html"/>
-      <arg value="--coverage-src"/>
-      <arg path="./app"/>
-    </exec>
-  </target>
-  <target name="tests-phpdbg" description="Unit tests with code coverage (phpdbg)" depends="setup-db">
-    <exec executable="vendor/bin/run-tests" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="-p"/>
-      <arg value="phpdbg"/>
       <arg path="tests"/>
       <arg value="--coverage"/>
       <arg path="./coverage.html"/>
