@@ -54,7 +54,7 @@ sast:
   cache:
     <<: *default_cache
 
-test:default:
+test:php7.4:
   <<: *test_job
 
 test:php8.0:
