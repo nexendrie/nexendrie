@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="Nexendrie" basedir="." default="test">
   <target name="test" depends="lint,cs,phpstan,tests,clean-db"/>
-  <target name="test-coverage" depends="lint,cs,phpstan,tests-coverage,clean-db"/>
   <target name="test-ci" depends="install-ci,test"/>
-  <target name="test-ci-coverage" depends="install-ci,test-coverage"/>
   <target name="install">
     <property name="environment" value="production"/>
     <if>
@@ -142,13 +140,6 @@
     </exec>
   </target>
   <target name="tests" description="Unit tests" depends="setup-db">
-    <exec executable="vendor/bin/run-tests" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="-p"/>
-      <arg value="php"/>
-      <arg path="tests"/>
-    </exec>
-  </target>
-  <target name="tests-coverage" description="Unit tests with code coverage" depends="setup-db">
     <exec executable="vendor/bin/run-tests" logoutput="true" passthru="true" checkreturn="true">
       <arg value="-p"/>
       <arg value="php"/>
