@@ -11,3 +11,4 @@ local.neon
 output/
 *.actual
 coverage.*
+/junit.xml

@@ -65,13 +65,16 @@ test:php8.1:
   allow_failure: true
   retry: 0
 
-test:cc:
+test:reports:
   <<: *test_job
+  variables:
+    REPORTS: 1
   coverage: '/(\d+\%) covered/'
   artifacts:
-    name: "Code coverage"
     paths:
       - coverage.html
+    reports:
+      junit: junit.xml
 
 test:css:
   stage: test
