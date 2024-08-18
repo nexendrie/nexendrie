@@ -22,14 +22,14 @@ final class AuthenticatorTest extends \Tester\TestCase {
   public function testAuthenticate() {
     $user = "jakub.konecny2@centrum.cz";
     $password = "qwerty";
-    $identity = $this->model->authenticate([$user, $password]);
+    $identity = $this->model->authenticate($user, $password);
     Assert::type(\Nette\Security\Identity::class, $identity);
     Assert::same(1, $identity->id);
     Assert::exception(function() use($user) {
-      $this->model->authenticate([$user, "abc"]);
+      $this->model->authenticate($user, "abc");
     }, AuthenticationException::class);
     Assert::exception(function() {
-      $this->model->authenticate(["abc", "abc"]);
+      $this->model->authenticate("abc", "abc");
     }, AuthenticationException::class);
   }
   

@@ -35,7 +35,8 @@ final class TokensPresenter extends BasePresenter {
 
   public function actionCreate(): void {
     try {
-      $identity = $this->authenticator->authenticate($this->getBasicCredentials());
+      $credentials = $this->getBasicCredentials();
+      $identity = $this->authenticator->authenticate($credentials[0], $credentials[1]);
       $this->user->login($identity);
     } catch(AuthenticationException $e) {
       $this->sendBasicAuthRequest($e->getMessage());

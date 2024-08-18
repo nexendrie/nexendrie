@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Security\IAuthenticator;
 use Nette\Security\SimpleIdentity;
 use Nette\Security\User;
 use Nette\Security\Passwords;
@@ -17,7 +16,7 @@ use Nette\Security\AuthenticationException;
  * @author Jakub Konečný
  * @property-write User $user
  */
-final class Authenticator implements IAuthenticator {
+final class Authenticator implements \Nette\Security\Authenticator {
   protected ORM $orm;
   protected User $user;
   protected Passwords $passwords;
@@ -67,8 +66,7 @@ final class Authenticator implements IAuthenticator {
    *
    * @throws AuthenticationException
    */
-  public function authenticate(array $credentials): SimpleIdentity {
-    list($email, $password) = $credentials;
+  public function authenticate(string $email, string $password): SimpleIdentity {
     $user = $this->orm->users->getByEmail($email);
     if($user === null) {
       throw new AuthenticationException("E-mail not found.", static::IDENTITY_NOT_FOUND);
