@@ -1,4 +1,4 @@
-Version 1.0.0-beta9+dev
+Version 1.0.0-beta10
 - added profile sub-page comments and crimes
 - allowed sharing articles on X (Twitter) and fediverse
 - added new default style (autodetects dark mode)
