@@ -12,3 +12,4 @@ output/
 *.actual
 coverage.*
 /junit.xml
+/phpstan.json

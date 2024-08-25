@@ -74,8 +74,11 @@ test:reports:
   artifacts:
     paths:
       - coverage.html
+      - junit.xml
+      - phpstan.json
     reports:
       junit: junit.xml
+      codequality: phpstan.json
 
 test:css:
   stage: test

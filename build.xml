@@ -121,18 +121,35 @@
     </exec>
   </target>
   <target name="cs" description="Coding standards compliance">
-    <exec executable="vendor/bin/phpcs" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="--extensions=php,phpt"/>
-      <arg value="."/>
-      <arg value="--standard=vendor/nexendrie/code-quality/ruleset.xml"/>
-      <arg value="--colors"/>
-      <arg value="-p"/>
-    </exec>
+    <if>
+      <not>
+        <isset property="env.REPORTS"/>
+      </not>
+      <then>
+        <exec executable="vendor/bin/phpcs" logoutput="true" passthru="true" checkreturn="true">
+          <arg value="--extensions=php,phpt"/>
+          <arg value="."/>
+          <arg value="--standard=vendor/nexendrie/code-quality/ruleset.xml"/>
+          <arg value="--colors"/>
+          <arg value="-p"/>
+        </exec>
+      </then>
+    </if>
   </target>
   <target name="phpstan" description="PHPStan analyzes">
-    <exec executable="vendor/bin/phpstan" logoutput="true" passthru="true" checkreturn="true">
-      <arg value="analyze"/>
-    </exec>
+    <if>
+      <isset property="env.REPORTS"/>
+      <then>
+        <exec executable="vendor/bin/phpstan" logoutput="true" passthru="true" checkreturn="true">
+          <arg line="analyze --error-format=gitlab | tee phpstan.json"/>
+        </exec>
+      </then>
+      <else>
+        <exec executable="vendor/bin/phpstan" logoutput="true" passthru="true" checkreturn="true">
+          <arg value="analyze"/>
+        </exec>
+      </else>
+    </if>
   </target>
   <target name="setup-db">
     <exec executable="php" logoutput="true" passthru="true" checkreturn="true">

@@ -179,5 +179,10 @@ build:
                         coverage:
                             file: coverage.xml
                             format: php-clover
+                    -
+                        command: ./vendor/bin/phpstan analyze --error-format=checkstyle | tee phpstan.xml
+                        analysis:
+                            file: phpstan.xml
+                            format: 'general-checkstyle'
                     - php-scrutinizer-run
                     - csslint-run www/styles
