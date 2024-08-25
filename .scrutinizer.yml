@@ -180,7 +180,7 @@ build:
                             file: coverage.xml
                             format: php-clover
                     -
-                        command: ./vendor/bin/phpstan analyze --error-format=checkstyle | tee phpstan.xml
+                        command: ./vendor/bin/phpstan analyze --error-format=checkstyle --memory-limit 1G | tee phpstan.xml
                         analysis:
                             file: phpstan.xml
                             format: 'general-checkstyle'
