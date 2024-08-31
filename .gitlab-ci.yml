@@ -73,7 +73,7 @@ test:reports:
   coverage: '/(\d+\%) covered/'
   artifacts:
     paths:
-      - coverage.html
+      - coverage.xml
       - junit.xml
       - phpstan.json
     reports:

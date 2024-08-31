@@ -165,7 +165,7 @@
           <arg value="php"/>
           <arg path="tests"/>
           <arg value="--coverage"/>
-          <arg path="./coverage.html"/>
+          <arg path="./coverage.xml"/>
           <arg value="--coverage-src"/>
           <arg path="./app"/>
           <arg value="-o"/>
