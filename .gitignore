@@ -5,7 +5,6 @@ temp/
 /.idea/
 /log/
 local.neon
-/doc/
 /vendor/
 /tests/_temp/
 output/
