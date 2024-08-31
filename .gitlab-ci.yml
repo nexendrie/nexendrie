@@ -80,12 +80,6 @@ test:reports:
       junit: junit.xml
       codequality: phpstan.json
 
-test:css:
-  stage: test
-  image: nexendrie/nodejs
-  script:
-    - csslint www/styles
-
 deploy:alpha:
   <<: *deploy_job
   environment:
