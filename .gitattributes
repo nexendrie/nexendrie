@@ -4,4 +4,3 @@
 ci.neon             export-ignore
 deployment.ini	    export-ignore
 .scrutinizer.yml    export-ignore
-.csslintrc          export-ignore
