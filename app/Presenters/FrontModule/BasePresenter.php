@@ -56,7 +56,18 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
   protected function getChat(): ?ChatControl {
     return null;
   }
-  
+
+  protected function getEarlyScripts(): array {
+    $baseUrl = dirname($_SERVER["PHP_SELF"]) . "js";
+    $result = [
+      $baseUrl . "/fediverse-share.js",
+    ];
+    if ($this->user->isLoggedIn() && $this->user->identity->notifications) {
+      $result[] = "/sse.js";
+    }
+    return $result;
+  }
+
   protected function createComponentNewChatMessageForm(NewChatMessageFormFactory $factory): Form {
     $chat = $this->getChat();
     if($chat === null) {

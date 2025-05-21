@@ -21,6 +21,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   use \Kdyby\Autowired\AutowireComponentFactories;
 
   protected \Nexendrie\Model\SettingsRepository $sr;
+  protected \Nexendrie\Model\ThemesManager $themesManager;
   protected IUserProfileLinkControlFactory $userProfileLinkFactory;
   protected bool $cachingEnabled;
   protected bool $publicCache = true;
@@ -34,6 +35,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   
   public function injectUserProfileLinkFactory(IUserProfileLinkControlFactory $userProfileLinkFactory): void {
     $this->userProfileLinkFactory = $userProfileLinkFactory;
+  }
+
+  public function injectThemesManager(\Nexendrie\Model\ThemesManager $themesManager): void {
+    $this->themesManager = $themesManager;
   }
 
   public function storeRequest(string $expiration = "+ 10 minutes"): string {
@@ -66,15 +71,38 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $request->setParameters($params);
     $this->sendResponse(new \Nette\Application\Responses\ForwardResponse($request));
   }
+
+  protected function getCurrentTheme(): string {
+    if (!$this->user->isLoggedIn()) {
+      return $this->sr->settings["newUser"]["style"];
+    }
+    return $this->user->identity->style;
+  }
+
+  /**
+   * @return string[]
+   */
+  protected function getEarlyScripts(): array {
+    return [];
+  }
   
   /**
    * Set website's style
    */
   protected function startup(): void {
     parent::startup();
-    $this->template->style = $this->sr->settings["newUser"]["style"];
-    if($this->user->isLoggedIn()) {
-      $this->template->style = $this->user->identity->style;
+    $style = $this->themesManager->getThemeFileUrl($this->getCurrentTheme());
+    $this->template->style = $style;
+    if ($this->sr->settings["features"]["earlyHints"]) {
+      $linkHeader = "<$style>; rel=preload; as=style";
+      $earlyScripts = $this->getEarlyScripts();
+      foreach ($earlyScripts as $earlyScript) {
+        $linkHeader .= ", <$earlyScript>; rel=preload; as=script";
+      }
+      $this->getHttpResponse()->setHeader("Link", $linkHeader);
+      if (extension_loaded("frankenphp") && function_exists("headers_send")) {
+        headers_send(103);
+      }
     }
   }
   

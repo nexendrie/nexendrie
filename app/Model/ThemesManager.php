@@ -13,6 +13,7 @@ final class ThemesManager {
   private const KEY_DEPRECATED = "deprecated";
   private const KEY_EXPERIMENTAL = "experimental";
   private const KEY_NAME = "name";
+  private const THEMES_DIR = "styles";
 
   private string $wwwDir;
 
@@ -22,7 +23,7 @@ final class ThemesManager {
 
   public function getList(): array {
     $styles = [];
-    $dir = $this->wwwDir . "/styles";
+    $dir = $this->wwwDir . "/" . self::THEMES_DIR;
     $file = file_get_contents("$dir/list.neon");
     if($file === false) {
       return [];
@@ -44,6 +45,11 @@ final class ThemesManager {
       $styles[$key] = $name;
     }
     return $styles;
+  }
+
+  public function getThemeFileUrl(string $themeName): string {
+    $baseUrl = dirname($_SERVER["PHP_SELF"]);
+    return $baseUrl . self::THEMES_DIR . "/" . $themeName . ".css";
   }
 }
 ?>

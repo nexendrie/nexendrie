@@ -182,6 +182,8 @@ final class SystemSettingsFormFactory {
     $features = $form->addContainer("features");
     $features->addCheckbox("httpCaching", "HTTP cacheování")
       ->setOption("description", "Zapne cachování pomocí HTTP hlavičky If-Modified-Since u vhodných stránek a API požadavků.");
+    $features->addCheckbox("earlyHints", "Předběžné náznaky")
+        ->setOption("description", "Může zrychlit načítání stránek dřívějším odesláním stylů a skriptů. Vyžaduje podporu na serveru.");
     $form->setCurrentGroup(null);
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());

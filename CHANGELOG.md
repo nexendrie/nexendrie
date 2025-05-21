@@ -1,3 +1,6 @@
+Version 1.0.0-beta10+dev
+- added support for early hints for style and scripts (not enabled by default, currently only works on FrankenPHP)
+
 Version 1.0.0-beta10
 - added profile sub-page comments and crimes
 - allowed sharing articles on X (Twitter) and fediverse
