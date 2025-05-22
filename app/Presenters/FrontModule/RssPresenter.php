@@ -10,6 +10,7 @@ namespace Nexendrie\Presenters\FrontModule;
  */
 final class RssPresenter extends BasePresenter {
   protected \Nexendrie\Model\Rss $model;
+  protected bool $earlyHints = false;
   
   public function __construct(\Nexendrie\Model\Rss $model) {
     parent::__construct();

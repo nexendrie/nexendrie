@@ -15,6 +15,7 @@ use Nexendrie\Model\OpenSearchDescriptionResponse;
 final class SearchPresenter extends BasePresenter {
   protected \Nexendrie\Orm\Model $orm;
   protected \Nexendrie\Model\OpenSearch $openSearch;
+  protected bool $earlyHints = false;
   
   public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\OpenSearch $openSearch) {
     parent::__construct();

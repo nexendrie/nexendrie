@@ -8,6 +8,7 @@ use Nexendrie\Model\INotificator;
 class SsePresenter extends BasePresenter {
   /** @var INotificator[] */
   private array $notificators;
+  protected bool $earlyHints = false;
 
   /**
    * @param INotificator[] $notificators

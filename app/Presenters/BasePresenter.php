@@ -25,11 +25,15 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   protected IUserProfileLinkControlFactory $userProfileLinkFactory;
   protected bool $cachingEnabled;
   protected bool $publicCache = true;
+  protected bool $earlyHints;
   
   public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void {
     $this->sr = $sr;
     if(!isset($this->cachingEnabled)) {
       $this->cachingEnabled = (bool) $this->sr->settings["features"]["httpCaching"];
+    }
+    if (!isset($this->earlyHints)) {
+      $this->earlyHints = (bool) $this->sr->settings["features"]["earlyHints"];
     }
   }
   
@@ -93,7 +97,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     parent::startup();
     $style = $this->themesManager->getThemeFileUrl($this->getCurrentTheme());
     $this->template->style = $style;
-    if ($this->sr->settings["features"]["earlyHints"]) {
+    if ($this->earlyHints) {
       $linkHeader = "<$style>; rel=preload; as=style";
       $earlyScripts = $this->getEarlyScripts();
       foreach ($earlyScripts as $earlyScript) {
