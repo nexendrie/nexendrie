@@ -49,6 +49,7 @@ final class ThemesManager {
 
   public function getThemeFileUrl(string $themeName): string {
     $baseUrl = dirname($_SERVER["PHP_SELF"]);
+    $baseUrl = preg_replace("$^/www$", "/", $baseUrl);
     return $baseUrl . self::THEMES_DIR . "/" . $themeName . ".css";
   }
 }
