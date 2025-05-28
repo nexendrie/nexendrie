@@ -16,15 +16,17 @@ final class Property {
   protected Taxes $taxesModel;
   protected \Nexendrie\Orm\Model $orm;
   protected \Nette\Security\User $user;
+  protected SettingsRepository $sr;
   
   use \Nette\SmartObject;
   
-  public function __construct(Job $jobModel, Bank $bankModel, Taxes $taxesModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(Job $jobModel, Bank $bankModel, Taxes $taxesModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
     $this->jobModel = $jobModel;
     $this->bankModel = $bankModel;
     $this->taxesModel = $taxesModel;
     $this->orm = $orm;
     $this->user = $user;
+    $this->sr = $sr;
   }
   
   protected function calculateBeerProduction(): int {
@@ -70,6 +72,12 @@ final class Property {
     }
     return $result;
   }
+
+  protected function calculateMountsMaintenance(): int {
+    $mounts = $this->orm->mounts->findAutoFed($this->user->id);
+    $result = $mounts->countStored() * $this->sr->settings["fees"]["autoFeedMount"] * 4;
+    return $result;
+  }
   
   /**
    * Show user's budget
@@ -91,6 +99,7 @@ final class Property {
         "incomeTax" => 0,
         "loansInterest" => $this->calculateLoansInterest(),
         "membershipFee" => $this->calculateMembershipFee(),
+        "mountsMaintenance" => $this->calculateMountsMaintenance(),
       ]
     ];
     $budget["expenses"]["incomeTax"] = $this->taxesModel->calculateTax(array_sum($budget["incomes"]));
