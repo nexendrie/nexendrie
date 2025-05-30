@@ -13,6 +13,8 @@ use Nexendrie\Api\ApiNotEnabledException;
  * @author Jakub Konečný
  */
 final class TokensPresenter extends BasePresenter {
+  protected bool $publicCache = false;
+
   public function actionReadAll(): void {
     $this->requiresLogin();
     if(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
