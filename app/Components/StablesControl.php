@@ -10,6 +10,7 @@ use Nexendrie\Model\CareNotNeededException;
 use Nexendrie\Model\MountMaxTrainingLevelReachedException;
 use Nexendrie\Model\MountInBadConditionException;
 use Nexendrie\Orm\Mount as MountEntity;
+use Nexendrie\Orm\UserExpense;
 
 /**
  * StablesControl
@@ -64,6 +65,11 @@ final class StablesControl extends \Nette\Application\UI\Control {
     }
     $mount->hp += $hp;
     $mount->owner->money -= $price;
+    $expense = new UserExpense();
+    $expense->amount = $price;
+    $expense->category = UserExpense::CATEGORY_MOUNT_MAINTENANCE;
+    $expense->user = $mount->owner;
+    $mount->owner->expenses->add($expense);
     $this->orm->mounts->persistAndFlush($mount);
   }
   

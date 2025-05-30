@@ -5,6 +5,7 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Castle as CastleEntity;
 use Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\UserExpense;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -189,11 +190,17 @@ final class Castle {
     }
     /** @var CastleEntity $castle */
     $castle = $this->getUserCastle();
-    if($castle->owner->money < $castle->repairPrice) {
+    $price = $castle->repairPrice;
+    if($castle->owner->money < $price) {
       throw new InsufficientFundsException();
     }
-    $castle->owner->money -= $castle->repairPrice;
+    $castle->owner->money -= $price;
     $castle->hp = 100;
+    $expense = new UserExpense();
+    $expense->amount = $price;
+    $expense->category = UserExpense::CATEGORY_CASTLE_MAINTENANCE;
+    $expense->user = $castle->owner;
+    $castle->owner->expenses->add($expense);
     $this->orm->castles->persistAndFlush($castle);
   }
 }

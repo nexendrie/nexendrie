@@ -71,6 +71,7 @@ use Nexendrie\Utils\Numbers;
  * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$user}
  * @property OneHasMany|Notification[] $notificationQueue {1:m Notification::$user}
  * @property OneHasMany|ApiToken[] $apiTokens {1:m ApiToken::$user}
+ * @property OneHasMany|UserExpense[] $expenses {1:m UserExpense::$user}
  * @property-read string $title {virtual}
  * @property-read int $completedAdventures {virtual}
  * @property-read int $completedJobs {virtual}

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\UserExpense;
 
 /**
  * Property Model
@@ -76,6 +77,23 @@ final class Property {
   protected function calculateMountsMaintenance(): int {
     $mounts = $this->orm->mounts->findAutoFed($this->user->id);
     $result = $mounts->countStored() * $this->sr->settings["fees"]["autoFeedMount"] * 4;
+    $expenses = $this->orm->userExpenses->findPaidThisMonth($this->user->id, UserExpense::CATEGORY_MOUNT_MAINTENANCE);
+    foreach($expenses as $expense) {
+      $result += $expense->amount;
+    }
+    return $result;
+  }
+
+  protected function calculateBuildingMaintenance(): int {
+    $result = 0;
+    $expenses = $this->orm->userExpenses->findPaidThisMonth($this->user->id, UserExpense::CATEGORY_CASTLE_MAINTENANCE);
+    foreach($expenses as $expense) {
+      $result += $expense->amount;
+    }
+    $expenses = $this->orm->userExpenses->findPaidThisMonth($this->user->id, UserExpense::CATEGORY_HOUSE_MAINTENANCE);
+    foreach($expenses as $expense) {
+      $result += $expense->amount;
+    }
     return $result;
   }
   
@@ -100,6 +118,7 @@ final class Property {
         "loansInterest" => $this->calculateLoansInterest(),
         "membershipFee" => $this->calculateMembershipFee(),
         "mountsMaintenance" => $this->calculateMountsMaintenance(),
+        "buildingMaintenance" => $this->calculateBuildingMaintenance(),
       ]
     ];
     $budget["expenses"]["incomeTax"] = $this->taxesModel->calculateTax(array_sum($budget["incomes"]));

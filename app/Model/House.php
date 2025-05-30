@@ -6,6 +6,7 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\House as HouseEntity;
 use Nexendrie\Orm\BeerProduction;
 use Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\UserExpense;
 
 /**
  * House Model
@@ -131,11 +132,17 @@ final class House {
     }
     /** @var HouseEntity $house */
     $house = $this->getUserHouse();
-    if($house->owner->money < $house->repairPrice) {
+    $price = $house->repairPrice;
+    if($house->owner->money < $price) {
       throw new InsufficientFundsException();
     }
-    $house->owner->money -= $house->repairPrice;
+    $house->owner->money -= $price;
     $house->hp = 100;
+    $expense = new UserExpense();
+    $expense->amount = $price;
+    $expense->category = UserExpense::CATEGORY_HOUSE_MAINTENANCE;
+    $expense->user = $house->owner;
+    $house->owner->expenses->add($expense);
     $this->orm->houses->persistAndFlush($house);
   }
   

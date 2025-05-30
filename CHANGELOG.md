@@ -1,6 +1,6 @@
 Version 1.0.0-beta10+dev
 - added support for early hints for style and scripts (not enabled by default, currently only works on FrankenPHP)
-- added auto fed mounts' maintenance into budget
+- added mounts and buildings' maintenance into budget
 
 Version 1.0.0-beta10
 - added profile sub-page comments and crimes

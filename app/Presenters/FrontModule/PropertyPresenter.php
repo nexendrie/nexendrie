@@ -114,6 +114,7 @@ final class PropertyPresenter extends BasePresenter {
     $this->template->loansInterest = $budget["expenses"]["loansInterest"];
     $this->template->membershipFee = $budget["expenses"]["membershipFee"];
     $this->template->mountsMaintenance = $budget["expenses"]["mountsMaintenance"];
+    $this->template->buildingMaintenance = $budget["expenses"]["buildingMaintenance"];
   }
   
   public function renderEquipment(): void {
