@@ -1,40 +1,22 @@
-header { width: 100%; max-width: 935px; max-height: 75px; position: absolute; top: 5px; }
+:root { color-scheme: light dark; }
+a { text-decoration: none; color: LinkText; }
+a:hover { color: ButtonText; }
+header { width: 100%; max-width: 935px; max-height: 75px; position: absolute; top: 5px;
+    background-color: light-dark(#0066CC, #111111); }
 header h2 { position: relative; top: 5px; left: 25px; width: 10.6%; max-width: 100px; }
-header h2 a { text-decoration: none; font-size: larger; }
+header h2 a { font-size: larger; color: CanvasText; }
 #userPanel { position: absolute; top: 55px; right: -4px; }
-#userPanel a { text-decoration: none; border: 5px solid; position: relative; bottom: 1px; }
-#mainMenu { position: relative; top: 85px; width: 22%; max-width: 160px; }
+#userPanel a { border: 5px solid light-dark(green, #CC0000); position: relative; bottom: 1px;
+    background-color: light-dark(green, #CC0000); color: SelectedItemText; }
+#userPanel a:hover { color: /*MarkText*/black; }
+#mainMenu { position: relative; top: 85px; width: 22%; max-width: 160px;
+    background-color: light-dark(#99CCCC, #111111); }
 #mainMenu h3 { position: relative; left: 18px; bottom: 14px; width: 65%; max-width: 104px; padding: 3px 10px 3px 15px;
-    text-align: center; }
-#mainMenu ul { position: relative; left: 17px; bottom: 22px; width: 73%; max-width: 117px; padding: 10px 5px 10px 8px; }
+    text-align: center; background-color: light-dark(#000099, #444444); color: light-dark(white, #000033); }
+#mainMenu ul { position: relative; left: 17px; bottom: 22px; width: 73%; max-width: 117px; padding: 10px 5px 10px 8px;
+    background-color: Canvas; }
 #mainMenu li { list-style-type: none; }
-#mainMenu li a { text-decoration: none; font-weight: lighter; }
 main { position: absolute; top: 89px; left: 175px; width: 70%; max-width: 741px; padding: 0 7px; }
+main a { text-decoration: underline; }
 #topLinks { position: absolute; top: 20px; right: 15px; height: 0; }
 #flashes { position: relative; top: 85px; }
-
-:root {
-    color-scheme: light dark;
-    background-color: white;
-    color: black;
-}
-header { background-color: light-dark(#0066CC, #111111); }
-header h2 a { color: light-dark(gray, white); }
-#userPanel a {
-    background-color: light-dark(green, #CC0000);
-    color: light-dark(white, teal);
-    border-color: light-dark(green, #CC0000);
-}
-#userPanel a:hover { color: light-dark(yellow, #000000); }
-#mainMenu { background-color: light-dark(#99CCCC, #111111); }
-#mainMenu h3 {
-    background-color: light-dark(#000099, #444444);
-    color: light-dark(white, #000033);
-}
-#mainMenu ul { background-color: light-dark(rgba(51,204,153,0.3), #BBBBBB); }
-#mainMenu li a { color: light-dark(#CCFF00, #FF0000); }
-#mainMenu li a:hover { color: light-dark(#660000, #3366CC); }
-main { background-color: light-dark(rgba(192,192,192,0.2), rgba(128,128,128,0.4)); }
-main h1,h2,h3 { color: light-dark(#000033, #330033); }
-main a { color: light-dark(#00CC00, #330033); }
-main a:hover { color: light-dark(#00CC00, #666666); }
