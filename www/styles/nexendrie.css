@@ -13,35 +13,28 @@ main { position: absolute; top: 89px; left: 175px; width: 70%; max-width: 741px;
 #topLinks { position: absolute; top: 20px; right: 15px; height: 0; }
 #flashes { position: relative; top: 85px; }
 
-@media (prefers-color-scheme: dark) {
-    * { scrollbar-color: dark; scrollbar-base-color: #696969; }
-    header { background-color: #111111; }
-    header h2 a { color: white; }
-    #userPanel a { background-color: #CC0000; color: teal; border-color: #CC0000; }
-    #userPanel a:hover { color: #000000; }
-    #mainMenu { background-color: #111111; }
-    #mainMenu h3 { background-color: #444444; color: #000033 }
-    #mainMenu ul { background-color: #BBBBBB }
-    #mainMenu li a { color: #FF0000; }
-    #mainMenu li a:hover { color: #3366CC; }
-    main { background-color: rgba(128,128,128,0.4); }
-    main h1,h2,h3 { color: #660066; }
-    main a { color: #330033; }
-    main a:hover { color: #666666; }
+:root {
+    color-scheme: light dark;
+    background-color: white;
+    color: black;
 }
-
-@media (prefers-color-scheme: light) {
-    * { scrollbar-color: light; scrollbar-base-color: #DCDCDC; }
-    header { background-color: #0066CC; }
-    header h2 a { color: gray; }
-    #userPanel a { background-color: green; color: white; border-color: green; }
-    #userPanel a:hover { color: yellow; }
-    #mainMenu { background-color: #99CCCC; }
-    #mainMenu h3 { background-color: #000099; color: white }
-    #mainMenu ul { background-color: rgba(51,204,153,0.3); }
-    #mainMenu li a { color: #CCFF00; }
-    #mainMenu li a:hover { color: #660000; }
-    main { background-color: rgba(192,192,192,0.2); }
-    main h1,h2,h3 { color: #000033; }
-    main a { color: #00CC00; }
+header { background-color: light-dark(#0066CC, #111111); }
+header h2 a { color: light-dark(gray, white); }
+#userPanel a {
+    background-color: light-dark(green, #CC0000);
+    color: light-dark(white, teal);
+    border-color: light-dark(green, #CC0000);
 }
+#userPanel a:hover { color: light-dark(yellow, #000000); }
+#mainMenu { background-color: light-dark(#99CCCC, #111111); }
+#mainMenu h3 {
+    background-color: light-dark(#000099, #444444);
+    color: light-dark(white, #000033);
+}
+#mainMenu ul { background-color: light-dark(rgba(51,204,153,0.3), #BBBBBB); }
+#mainMenu li a { color: light-dark(#CCFF00, #FF0000); }
+#mainMenu li a:hover { color: light-dark(#660000, #3366CC); }
+main { background-color: light-dark(rgba(192,192,192,0.2), rgba(128,128,128,0.4)); }
+main h1,h2,h3 { color: light-dark(#000033, #330033); }
+main a { color: light-dark(#00CC00, #330033); }
+main a:hover { color: light-dark(#00CC00, #666666); }
