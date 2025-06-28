@@ -1,21 +1,22 @@
-header { background-color: #0066CC; width: 100%; max-width: 935px; max-height: 75px; position: absolute; top: 5px; }
+:root { color-scheme: only light; }
+a { text-decoration: none; color: LinkText; }
+a:hover { color: ButtonText; }
+header { width: 100%; max-width: 935px; max-height: 75px; position: absolute; top: 5px;
+    background-color: #0066CC; }
 header h2 { position: relative; top: 5px; left: 25px; width: 10.6%; max-width: 100px; }
-header h2 a { text-decoration: none; color: gray; font-size: larger; }
+header h2 a { font-size: larger; color: CanvasText; }
 #userPanel { position: absolute; top: 55px; right: -4px; }
-#userPanel a { text-decoration: none; background-color: green; color: white;
-  border: 5px green solid; position: relative; bottom: 1px; }
-#userPanel a:hover { color: yellow; }
-#mainMenu { position: relative; top: 85px; width: 22%; max-width: 160px; background-color: #99CCCC; }
-#mainMenu h3 { position: relative; left: 18px; bottom: 14px; width: 65%; max-width: 104px;
-  background-color: #000099; color: white; padding: 3px 10px 3px 15px; text-align: center; }
-#mainMenu ul { position: relative; left: 17px; bottom: 22px; width: 73%; max-width: 117px;
-  background-color: rgba(51,204,153,0.3); padding: 10px 5px 10px 8px; }
+#userPanel a { border: 5px solid green; position: relative; bottom: 1px;
+    background-color: green; color: SelectedItemText; }
+#userPanel a:hover { color: /*MarkText*/black; }
+#mainMenu { position: relative; top: 85px; width: 22%; max-width: 160px;
+    background-color: #99CCCC; }
+#mainMenu h3 { position: relative; left: 18px; bottom: 14px; width: 65%; max-width: 104px; padding: 3px 10px 3px 15px;
+    text-align: center; background-color: #000099; color: white; }
+#mainMenu ul { position: relative; left: 17px; bottom: 22px; width: 73%; max-width: 117px; padding: 10px 5px 10px 8px;
+    background-color: Canvas; }
 #mainMenu li { list-style-type: none; }
-#mainMenu li a { text-decoration: none; font-weight: lighter; color: #CCFF00; }
-#mainMenu li a:hover { color: #660000; }
-main { position: absolute; top: 89px; left: 175px; width: 70%; max-width: 741px;
-  background-color: rgba(192,192,192,0.2); padding: 0 7px; }
-main h1,h2,h3 { color: #000033; }
-main a { color: #00CC00; }
+main { position: absolute; top: 89px; left: 175px; width: 70%; max-width: 741px; padding: 0 7px; }
+main a { text-decoration: underline; }
 #topLinks { position: absolute; top: 20px; right: 15px; height: 0; }
 #flashes { position: relative; top: 85px; }
