@@ -15,7 +15,7 @@ header h2 a { font-size: larger; color: CanvasText; }
     text-align: center; background-color: #444444; color: #000033; }
 #mainMenu ul { position: relative; left: 17px; bottom: 22px; width: 73%; max-width: 117px; padding: 10px 5px 10px 8px;
     background-color: Canvas; }
-#mainMenu li { list-style-type: none; }
+#mainMenu li { list-style-type: none; text-align: center; }
 main { position: absolute; top: 89px; left: 175px; width: 70%; max-width: 741px; padding: 0 7px; }
 main a { text-decoration: underline; }
 #topLinks { position: absolute; top: 20px; right: 15px; height: 0; }
