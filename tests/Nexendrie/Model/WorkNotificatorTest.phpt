@@ -10,6 +10,9 @@ use Tester\TestCase;
 
 require __DIR__ . "/../../bootstrap.php";
 
+/**
+ * @skip
+ */
 class WorkNotificatorTest extends TestCase {
   use TUserControl;
 

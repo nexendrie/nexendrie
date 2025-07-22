@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-final class EventsMapper extends \Nextras\Orm\Mapper\Mapper {
+final class EventsMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
   
 }
 ?>

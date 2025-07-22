@@ -6,6 +6,6 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-final class UserExpensesMapper extends \Nextras\Orm\Mapper\Mapper {
+final class UserExpensesMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
 }
 ?>

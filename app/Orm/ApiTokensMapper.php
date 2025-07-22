@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-final class ApiTokensMapper extends \Nextras\Orm\Mapper\Mapper {
+final class ApiTokensMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
   
 }
 ?>

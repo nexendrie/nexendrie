@@ -8,7 +8,7 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-final class OrderFeesMapper extends \Nextras\Orm\Mapper\Mapper {
+final class OrderFeesMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
   
 }
 ?>

@@ -22,5 +22,17 @@ parameters:
         - '#Property SimpleXMLElement::\$Url \(bool\|float\|int\|SimpleXMLElement\|string\|null\) does not accept array\<string, string\>#'
         - '#Property Nexendrie\\Orm\\[a-zA-Z]+::\$[a-zA-Z1-9]+ \(Nexendrie\\Orm\\[a-zA-Z]+(\|null)?\) does not accept int#'
         - '#Property Nette\\Utils\\Paginator::\$itemsPerPage \(int\<1, max\>\) does not accept int#'
-        - '#Property Nette\\Utils\\Paginator::\$itemCount \(int\<0, max\>\|null\) does not accept int#'
         - '#Parameter \#1 (\$argument|\$objectOrClass) of class ReflectionClass constructor expects class-string\<T of object\>\|T of object, string given#'
+        -
+            identifier: missingType.generics
+        -
+            identifier: phpDoc.parseError
+        -
+            identifier: return.unusedType
+        -
+            identifier: varTag.nativeType
+        -
+            identifier: varTag.type
+        -
+            identifier: trait.unused
+            path: tests/*

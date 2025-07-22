@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-final class PollVotesMapper extends \Nextras\Orm\Mapper\Mapper {
+final class PollVotesMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
   
 }
 ?>

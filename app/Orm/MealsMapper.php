@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-final class MealsMapper extends \Nextras\Orm\Mapper\Mapper {
+final class MealsMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
   
 }
 ?>

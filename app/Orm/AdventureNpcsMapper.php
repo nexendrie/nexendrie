@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-final class AdventureNpcsMapper extends \Nextras\Orm\Mapper\Mapper {
+final class AdventureNpcsMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
   
 }
 ?>

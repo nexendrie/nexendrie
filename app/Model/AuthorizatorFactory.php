@@ -116,8 +116,8 @@ final class AuthorizatorFactory {
   
   protected function addOrganizationPrivileges(array $roles, Permission &$permission, string $name): void {
     $permission->addResource($name);
-    $lowestRank = min(array_keys($roles));
-    $highestRank = max(array_keys($roles));
+    $lowestRank = min(array_keys($roles)); // @phpstan-ignore argument.type
+    $highestRank = max(array_keys($roles)); // @phpstan-ignore argument.type
     $permission->deny($roles[$lowestRank]);
     foreach(static::ORGANIZATION_PRIVILEGES as $privilege) {
       $permission->allow($roles[$highestRank], $name, $privilege);

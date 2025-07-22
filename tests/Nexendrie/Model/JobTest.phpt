@@ -147,7 +147,7 @@ final class JobTest extends \Tester\TestCase {
   public function testListOfMessages() {
     $result = $this->model->listOfMessages(1);
     Assert::type(OneHasMany::class, $result);
-    Assert::type(JobMessage::class, $result->get()->fetch());
+    Assert::type(JobMessage::class, $result->getIterator()->fetch());
     Assert::exception(function() {
       $this->model->listOfMessages(5000);
     }, JobNotFoundException::class);

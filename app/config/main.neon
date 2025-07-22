@@ -20,6 +20,7 @@ extensions:
     menu: Nexendrie\Menu\DI\MenuExtension
     chat: HeroesofAbenez\Chat\DI\ChatExtension
     nexendrie.api: Nexendrie\Api\DI\ApiExtension
+    autowired: Kdyby\Autowired\DI\AutowiredExtension
 orm:
     model: Nexendrie\Orm\Model
 php:

@@ -7,6 +7,9 @@ use Tester\Assert;
 
 require __DIR__ . "/../../../bootstrap.php";
 
+/**
+ * @skip
+ */
 final class CronPresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   

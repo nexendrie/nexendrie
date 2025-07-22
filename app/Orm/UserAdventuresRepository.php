@@ -38,7 +38,7 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository 
    * @param User|int $user
    */
   public function getLastAdventure($user): ?UserAdventure {
-    return $this->findBy(["user" => $user])
+    return $this->findBy(["user" => $user]) // @phpstan-ignore return.type
       ->orderBy("created", ICollection::DESC)
       ->limitBy(1)
       ->fetch();

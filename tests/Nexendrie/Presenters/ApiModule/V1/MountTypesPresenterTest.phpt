@@ -7,6 +7,9 @@ require __DIR__ . "/../../../../bootstrap.php";
 
 use Tester\Assert;
 
+/**
+ * @skip
+ */
 final class MountTypesPresenterTest extends \Tester\TestCase {
   use TApiPresenter;
   

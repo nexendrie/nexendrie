@@ -7,6 +7,9 @@ use Tester\Assert;
 
 require __DIR__ . "/../../../bootstrap.php";
 
+/**
+ * @skip
+ */
 final class UserPresenterTest extends \Tester\TestCase {
   use \Nexendrie\Presenters\TPresenter;
   

@@ -272,7 +272,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
 
   protected function tryLogin(): void {
     preg_match('#^Bearer (.+)$#', $this->getHttpRequest()->getHeader('authorization') ?? '', $matches);
-    if(!is_array($matches) || !isset($matches[1])) {
+    if(!isset($matches[1])) {
       return;
     }
     $token = $this->orm->apiTokens->getByToken($matches[1]);

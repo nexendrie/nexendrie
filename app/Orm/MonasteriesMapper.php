@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-final class MonasteriesMapper extends \Nextras\Orm\Mapper\Mapper {
+final class MonasteriesMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
   
 }
 ?>

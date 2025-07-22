@@ -30,7 +30,7 @@ final class InventoryTest extends \Tester\TestCase {
     Assert::type("int", $result["money"]);
     Assert::type(ICollection::class, $result["items"]);
     Assert::type(OneHasMany::class, $result["towns"]);
-    Assert::type(TownEntity::class, $result["towns"]->get()->fetch());
+    Assert::type(TownEntity::class, $result["towns"]->getIterator()->fetch());
   }
   
   public function testEquipment() {

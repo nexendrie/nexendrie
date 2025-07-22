@@ -8,7 +8,7 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-final class ContentReportsMapper extends \Nextras\Orm\Mapper\Mapper {
+final class ContentReportsMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
 
 }
 ?>

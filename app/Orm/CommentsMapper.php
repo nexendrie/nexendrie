@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-final class CommentsMapper extends \Nextras\Orm\Mapper\Mapper {
+final class CommentsMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
 
 }
 ?>

@@ -160,7 +160,7 @@ final class User extends BaseEntity {
   }
   
   protected function getterCompletedJobs(): int {
-    return $this->jobs->toCollection()->findBy(["finished" => true, "earned>" => 0])->countStored();
+    return $this->jobs->toCollection()->findBy(["finished" => true, "earned>" => 0])->count();
   }
   
   protected function getterProducedBeers(): int {
@@ -172,7 +172,7 @@ final class User extends BaseEntity {
   }
   
   protected function getterPunishmentsCount(): int {
-    return $this->punishments->countStored();
+    return $this->punishments->count();
   }
   
   protected function getterLessonsTaken(): int {

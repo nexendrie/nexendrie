@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-final class ShopsMapper extends \Nextras\Orm\Mapper\Mapper {
+final class ShopsMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
 
 }
 ?>

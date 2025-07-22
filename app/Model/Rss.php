@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Rss\RssResponse;
+use Nexendrie\Rss\Bridges\NetteApplication\RssResponse;
 use Nexendrie\Rss\Generator;
 use Nexendrie\Rss\RssChannelItem as Item;
 use Nexendrie\Rss\Collection;

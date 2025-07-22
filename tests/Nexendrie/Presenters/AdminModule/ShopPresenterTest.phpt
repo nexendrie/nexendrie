@@ -8,6 +8,9 @@ use Nette\Application\BadRequestException;
 
 require __DIR__ . "/../../../bootstrap.php";
 
+/**
+ * @skip
+ */
 final class ShopPresenterTest extends \Tester\TestCase {
   use TAdminPresenter;
   

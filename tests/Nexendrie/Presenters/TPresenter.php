@@ -7,9 +7,9 @@ use Nette\Application\Responses\RedirectResponse;
 use Testbench\TPresenter as BaseTrait;
 use Nexendrie\Model\TUserControl;
 use Tester\Assert;
-use Nexendrie\Rss\RssResponse;
+use Nexendrie\Rss\Bridges\NetteApplication\RssResponse;
 use Nette\Application\Responses\ForwardResponse;
-use Nette\Application\IResponse;
+use Nette\Application\Response;
 
 /**
  * TPresenter
@@ -66,7 +66,7 @@ trait TPresenter {
    * @return RedirectResponse
    * @throws \Exception
    */
-  protected function checkSignal(string $destination, string $signal, array $params = [], array $post = [], $redirect = false): IResponse {
+  protected function checkSignal(string $destination, string $signal, array $params = [], array $post = [], bool $redirect = false): Response {
     return $this->checkRedirect($destination, $redirect, [
         "do" => $signal,
       ] + $params, $post);

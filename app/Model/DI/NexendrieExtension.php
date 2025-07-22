@@ -357,8 +357,7 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
   }
 
   public function afterCompile(\Nette\PhpGenerator\ClassType $class): void {
-    $initialize = $class->methods["initialize"];
-    $initialize->addBody('$roles = $this->getByType(?)->settings["roles"];
+    $this->initialization->addBody('$roles = $this->getByType(?)->settings["roles"];
 $groupModel = $this->getByType(?);
 $user = $this->getByType(?);
 $user->guestRole = $groupModel->get($roles["guestRole"])->singleName;

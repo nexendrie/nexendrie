@@ -3,11 +3,13 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Loan;
 use Nexendrie\Orm\UserItem as UserItemEntity;
 use Nexendrie\Orm\Item as ItemEntity;
 use Nexendrie\Orm\ItemSet as ItemSetEntity;
 use Nexendrie\Orm\Marriage as MarriageEntity;
 use Nextras\Orm\Collection\ICollection;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Equipment Model
@@ -29,6 +31,7 @@ final class Inventory {
    * Show user's possessions
    *
    * @throws AuthenticationNeededException
+   * @return array{money: int, items: ICollection|UserItemEntity[], towns: OneHasMany|\Nexendrie\Orm\Town[], loan: Loan|null}
    */
   public function possessions(): array {
     if(!$this->user->isLoggedIn()) {
@@ -41,7 +44,7 @@ final class Inventory {
     $return["items"] = $user->items->toCollection()->findBy(["item->type" => ItemEntity::getCommonTypes()]);
     $return["towns"] = $user->ownedTowns;
     $return["loan"] = $this->orm->loans->getActiveLoan($this->user->id);
-    return $return;
+    return $return; // @phpstan-ignore return.type
   }
   
   /**

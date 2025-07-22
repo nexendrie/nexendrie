@@ -31,7 +31,9 @@ final class AdventureTest extends \Tester\TestCase {
   public function testListOfNpcs() {
     $result = $this->model->listOfNpcs(1);
     Assert::type(OneHasMany::class, $result);
-    Assert::type(AdventureNpc::class, $result->get()->fetch());
+    $npcs = $result->getIterator();
+    Assert::count(1, $npcs);
+    Assert::type(AdventureNpc::class, $result->getIterator()->fetch());
     Assert::count(1, $result);
     Assert::exception(function() {
       $this->model->listOfNpcs(50);

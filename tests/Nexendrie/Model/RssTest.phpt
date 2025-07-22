@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Tester\Assert;
-use Nexendrie\Rss\RssResponse;
+use Nexendrie\Rss\Bridges\NetteApplication\RssResponse;
 
 require __DIR__ . "/../../bootstrap.php";
 

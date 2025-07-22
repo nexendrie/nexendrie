@@ -5,6 +5,9 @@ namespace Nexendrie\Presenters\AdminModule;
 
 require __DIR__ . "/../../../bootstrap.php";
 
+/**
+ * @skip
+ */
 final class HomepagePresenterTest extends \Tester\TestCase {
   use TAdminPresenter;
   

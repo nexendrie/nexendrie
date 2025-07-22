@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 /**
  * @author Jakub Konečný
  */
-final class PermissionsMapper extends \Nextras\Orm\Mapper\Mapper {
+final class PermissionsMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
   
 }
 ?>
