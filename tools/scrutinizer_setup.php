@@ -13,5 +13,5 @@ if($content === false) {
 $config = Neon::decode($content);
 $config["dbal"]["host"] = "localhost";
 unset($config["dbal"]["password"]);
-file_put_contents($filename, Neon::encode($config, Neon::BLOCK));
+file_put_contents($filename, Neon::encode($config, true));
 ?>

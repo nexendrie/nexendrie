@@ -6,7 +6,7 @@ namespace Nexendrie\Model;
 use Tester\Assert;
 use Nette\Application\Application;
 use Nette\Application\Request;
-use Nette\Application\IResponse;
+use Nette\Application\Response;
 
 require __DIR__ . "/../../bootstrap.php";
 
@@ -29,7 +29,7 @@ final class OpenSearchDescriptionResponseTest extends \Tester\TestCase {
     /** @var Application $application */
     $application = $this->getService(Application::class);
     $request = new Request($presenter, "GET", $params, $post);
-    $application->onResponse[] = function(Application $application, IResponse $response) {
+    $application->onResponse[] = function(Application $application, Response $response) {
       /** @var OpenSearchDescriptionResponse $response */
       Assert::type(OpenSearchDescriptionResponse::class, $response);
       Assert::type("string", $response->source);

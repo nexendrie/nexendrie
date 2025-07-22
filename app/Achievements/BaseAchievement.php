@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Achievements;
 
 use Nexendrie\Orm\User;
-use Nette\Localization\ITranslator;
+use Nette\Localization\Translator;
 use Nette\Utils\Arrays;
 
 /**
@@ -15,12 +15,12 @@ use Nette\Utils\Arrays;
 abstract class BaseAchievement implements IAchievement {
   use \Nette\SmartObject;
 
-  protected ITranslator $translator;
+  protected Translator $translator;
   protected string $field;
   protected string $name;
   protected string $description;
   
-  public function __construct(ITranslator $translator) {
+  public function __construct(Translator $translator) {
     $this->translator = $translator;
   }
   

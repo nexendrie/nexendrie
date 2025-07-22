@@ -25,7 +25,7 @@ if($content === false) {
 }
 $config = Neon::decode($content);
 $config["dbal"] = $db;
-file_put_contents($filename, Neon::encode($config, Neon::BLOCK));
+file_put_contents($filename, Neon::encode($config, true));
 echo "Settings written to " . realpath($filename) . ".\n";
 
 echo "Running database migrations ...\n";

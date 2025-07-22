@@ -150,7 +150,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
    */
   public function getCurrentEvents(): array {
     return $this->cache->load("events", function(&$dependencies): array {
-      $dependencies[Cache::EXPIRE] = "15 minutes";
+      $dependencies[Cache::Expire] = "15 minutes";
       $return = [];
       $events = $this->orm->events->findForTime();
       foreach($events as $event) {

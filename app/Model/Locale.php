@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Localization\ITranslator;
+use Nette\Localization\Translator;
 use Nette\Security\User;
 use Nexendrie\Orm\User as UserEntity;
 
@@ -14,13 +14,13 @@ use Nexendrie\Orm\User as UserEntity;
  * @property array $formats
  */
 final class Locale {
-  protected ITranslator $translator;
+  protected Translator $translator;
   protected User $user;
   protected array $formats = [];
   
   use \Nette\SmartObject;
   
-  public function __construct(SettingsRepository $sr, ITranslator $translator, User $user) {
+  public function __construct(SettingsRepository $sr, Translator $translator, User $user) {
     $this->translator = $translator;
     $this->user = $user;
     $this->formats = $sr->settings["locale"];
