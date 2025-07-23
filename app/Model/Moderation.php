@@ -8,7 +8,7 @@ use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Collection\ICollection;
 
 final class Moderation {
-  public function __construct( private readonly ORM $orm, private readonly \Nette\Security\User $user) {
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
 
   /**

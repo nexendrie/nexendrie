@@ -25,8 +25,8 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository {
   }
 
   /**
-    * @return ICollection|Mount[]
-    */
+   * @return ICollection|Mount[]
+   */
   public function findAutoFed(User|int $owner): ICollection {
     return $this->findBy(["owner" => $owner, "autoFeed" => true, ]);
   }
