@@ -25,21 +25,25 @@ final class ThemesManager {
     if($file === false) {
       return [];
     }
+    /** @var array<string, array{name: string, deprecated?: bool, experimental?: bool}> $list */
     $list = Neon::decode($file);
     /** @var \SplFileInfo $style */
     foreach(Finder::findFiles("*.css")->in($dir) as $style) {
       $key = $style->getBasename(".css");
-      /** @var array $value */
       $value = Arrays::get($list, $key, $key);
-      $name = (string) Arrays::get($value, self::KEY_NAME, "");
-      $deprecated = (bool) Arrays::get($value, self::KEY_DEPRECATED, false);
-      $experimental = (bool) Arrays::get($value, self::KEY_EXPERIMENTAL, false);
-      if($deprecated) {
-        $name .= self::SUFFIX_DEPRECATED;
-      } elseif($experimental) {
-        $name .= self::SUFFIX_EXPERIMENTAL;
+      if (!is_array($value)) {
+        $styles[$key] = $key;
+      } else {
+        $name = (string) Arrays::get($value, self::KEY_NAME, "");
+        $deprecated = (bool) Arrays::get($value, self::KEY_DEPRECATED, false);
+        $experimental = (bool) Arrays::get($value, self::KEY_EXPERIMENTAL, false);
+        if($deprecated) {
+          $name .= self::SUFFIX_DEPRECATED;
+        } elseif($experimental) {
+          $name .= self::SUFFIX_EXPERIMENTAL;
+        }
+        $styles[$key] = $name;
       }
-      $styles[$key] = $name;
     }
     return $styles;
   }

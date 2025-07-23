@@ -40,7 +40,7 @@ final class GuildPresenter extends BasePresenter {
     }
   }
 
-  protected function getChat(): ?GuildChatControl {
+  protected function getChat(): GuildChatControl {
     return $this->chatFactory->create();
   }
   

@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use Nextras\Orm\Mapper\Dbal\DbalMapper;
+
 /**
  * @author Jakub Konečný
+ * @extends DbalMapper<UserAdventure>
  */
-final class UserAdventuresMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
-
+final class UserAdventuresMapper extends DbalMapper {
 }
 ?>

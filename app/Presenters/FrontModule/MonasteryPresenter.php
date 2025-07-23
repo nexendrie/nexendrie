@@ -46,7 +46,7 @@ final class MonasteryPresenter extends BasePresenter {
     }
   }
 
-  protected function getChat(): ?MonasteryChatControl {
+  protected function getChat(): MonasteryChatControl {
     return $this->chatFactory->create();
   }
   

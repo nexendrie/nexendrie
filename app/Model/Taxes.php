@@ -56,7 +56,6 @@ final class Taxes {
       if($denizen->id === 0) {
         continue;
       }
-      /** @var \stdClass $d */
       $d = (object) [
         "id" => $denizen->id, "publicname" => $denizen->publicname,
         "income" => 0, "tax" => 0

@@ -39,7 +39,7 @@ final class TownPresenter extends BasePresenter {
     }
   }
 
-  protected function getChat(): ?TownChatControl {
+  protected function getChat(): TownChatControl {
     return $this->chatFactory->create();
   }
 

@@ -29,7 +29,7 @@ final class ApiExtension extends \Nette\DI\CompilerExtension {
       ->setFactory(\Nexendrie\Api\EntityConverter::class, [$config->maxDepth]);
     $builder->addDefinition($this->prefix("tokens"))
       ->setFactory(\Nexendrie\Api\Tokens::class, [$config->tokenTtl, $config->tokenLength,]);
-    /** @var string[] $transformers */
+    /** @var class-string[] $transformers */
     $transformers = array_keys(require __DIR__ . "/../../../vendor/composer/autoload_classmap.php");
     $transformers = array_values(array_filter($transformers, function (string $transformer) use ($config) {
       if (!str_starts_with($transformer, $config->transformersNamespace . "\\")) {

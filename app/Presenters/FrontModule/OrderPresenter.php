@@ -40,7 +40,7 @@ final class OrderPresenter extends BasePresenter {
     }
   }
 
-  protected function getChat(): ?OrderChatControl {
+  protected function getChat(): OrderChatControl {
     return $this->chatFactory->create();
   }
   
