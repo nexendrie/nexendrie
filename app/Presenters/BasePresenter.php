@@ -140,10 +140,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
   }
 
   protected function getModifiedTime(): int {
-    $times = [
-      $this->getTemplateModifiedTime(), $this->getDataModifiedTime(),
-    ];
-    return max($times);
+    return max($this->getTemplateModifiedTime(), $this->getDataModifiedTime());
   }
 
   protected function getTemplateModifiedTime(): int {

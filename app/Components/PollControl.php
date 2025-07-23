@@ -98,7 +98,7 @@ final class PollControl extends \Nette\Application\UI\Control {
       return false;
     }
     $row = $this->orm->pollVotes->getByPollAndUser($this->id, $this->user->id);
-    return !(bool) $row;
+    return $row === null;
   }
   
   /**

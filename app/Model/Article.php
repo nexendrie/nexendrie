@@ -168,7 +168,7 @@ final class Article {
    */
   public function exists(int $id): bool {
     $row = $this->orm->articles->getById($id);
-    return (bool) $row;
+    return $row !== null;
   }
 }
 ?>

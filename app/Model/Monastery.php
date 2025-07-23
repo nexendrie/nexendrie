@@ -193,10 +193,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monastery === null) {
-      return false;
-    }
-    return !($user->id === $user->monastery->leader->id);
+    return $user->monastery !== null && $user->id !== $user->monastery->leader->id;
   }
   
   /**
@@ -388,12 +385,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monastery === null) {
-      return false;
-    } elseif($user->monastery->leader->id !== $this->user->id) {
-      return false;
-    }
-    return ($user->monastery->altairLevel < MonasteryEntity::MAX_LEVEL);
+    return $user->monastery !== null && $user->monastery->leader->id === $this->user->id && $user->monastery->altairLevel < MonasteryEntity::MAX_LEVEL;
   }
   
   /**
@@ -434,12 +426,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monastery === null) {
-      return false;
-    } elseif($user->monastery->leader->id !== $this->user->id) {
-      return false;
-    }
-    return ($user->monastery->libraryLevel < MonasteryEntity::MAX_LEVEL - 1);
+    return $user->monastery !== null && $user->monastery->leader->id === $this->user->id && $user->monastery->libraryLevel < MonasteryEntity::MAX_LEVEL - 1;
   }
 
   /**
@@ -480,14 +467,7 @@ final class Monastery {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->monastery === null) {
-      return false;
-    } elseif($user->monastery->leader->id !== $this->user->id) {
-      return false;
-    } elseif($user->monastery->hp >= 100) {
-      return false;
-    }
-    return true;
+    return $user->monastery !== null && $user->monastery->leader->id === $this->user->id && $user->monastery->hp < 100;
   }
   
   /**

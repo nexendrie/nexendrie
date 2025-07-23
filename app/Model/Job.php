@@ -252,7 +252,7 @@ final class Job {
       throw new AuthenticationNeededException();
     }
     $activeJob = $this->orm->userJobs->getUserActiveJob($this->user->id);
-    return !($activeJob === null);
+    return $activeJob !== null;
   }
   
   /**
@@ -301,12 +301,7 @@ final class Job {
     } catch(AccessDeniedException $e) {
       throw $e;
     }
-    if($job->lastAction === null) {
-      return true;
-    } elseif($job->nextShiftTime > time()) {
-      return false;
-    }
-    return true;
+    return $job->lastAction === null || $job->nextShiftTime <= time();
   }
   
   /**

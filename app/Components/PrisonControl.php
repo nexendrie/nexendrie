@@ -24,12 +24,7 @@ final class PrisonControl extends \Nette\Application\UI\Control {
   }
   
   protected function canWork(Punishment $punishment): bool {
-    if($punishment->lastAction === null) {
-      return true;
-    } elseif(time() > $punishment->nextShift) {
-      return true;
-    }
-    return false;
+    return $punishment->lastAction === null || time() > $punishment->nextShift;
   }
   
   public function render(): void {

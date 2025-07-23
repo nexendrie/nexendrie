@@ -53,10 +53,7 @@ final class Castle {
    */
   private function checkNameAvailability(string $name, int $id = null): bool {
     $castle = $this->orm->castles->getByName($name);
-    if($castle === null) {
-      return true;
-    }
-    return ($castle->id === $id);
+    return $castle === null || $castle->id === $id;
   }
   
   /**
@@ -169,10 +166,7 @@ final class Castle {
       throw new AuthenticationNeededException();
     }
     $castle = $this->getUserCastle();
-    if($castle === null) {
-      return false;
-    }
-    return ($castle->hp < 100);
+    return $castle !== null && $castle->hp < 100;
   }
   
   /**

@@ -106,9 +106,7 @@ final class UserJob extends BaseEntity {
   }
   
   protected function getterSuccessRate(): int {
-    $successRate = static::BASE_SUCCESS_RATE;
-    $successRate += $this->getSkillSuccessRateBonus();
-    return $successRate;
+    return self::BASE_SUCCESS_RATE + $this->getSkillSuccessRateBonus();
   }
 }
 ?>

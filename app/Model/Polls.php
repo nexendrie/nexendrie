@@ -74,7 +74,7 @@ final class Polls {
    * Check whether specified poll exists
    */
   public function exists(int $id): bool {
-    return (bool) $this->orm->polls->getById($id);
+    return $this->orm->polls->getById($id) !== null;
   }
   
   /**

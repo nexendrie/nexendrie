@@ -72,10 +72,7 @@ final class House {
       throw new AuthenticationNeededException();
     }
     $house = $this->getUserHouse();
-    if($house === null) {
-      return false;
-    }
-    return ($house->luxuryLevel < HouseEntity::MAX_LEVEL);
+    return $house !== null && $house->luxuryLevel < HouseEntity::MAX_LEVEL;
   }
   
   /**
@@ -111,10 +108,7 @@ final class House {
       throw new AuthenticationNeededException();
     }
     $house = $this->getUserHouse();
-    if($house === null) {
-      return false;
-    }
-    return ($house->hp < 100);
+    return $house !== null && $house->hp < 100;
   }
   
   /**
@@ -156,10 +150,7 @@ final class House {
       throw new AuthenticationNeededException();
     }
     $house = $this->getUserHouse();
-    if($house === null) {
-      return false;
-    }
-    return ($house->breweryLevel < HouseEntity::MAX_LEVEL);
+    return $house !== null && $house->breweryLevel < HouseEntity::MAX_LEVEL;
   }
   
   /**

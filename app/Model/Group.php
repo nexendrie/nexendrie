@@ -63,7 +63,7 @@ final class Group {
    */
   public function exists(int $id): bool {
     $group = $this->orm->groups->getById($id);
-    return (bool) $group;
+    return $group !== null;
   }
   
   /**

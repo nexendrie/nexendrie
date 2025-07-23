@@ -57,10 +57,7 @@ final class Guild {
    */
   private function checkNameAvailability(string $name, int $id = null): bool {
     $guild = $this->orm->guilds->getByName($name);
-    if($guild === null) {
-      return true;
-    }
-    return ($guild->id === $id);
+    return $guild === null || $guild->id === $id;
   }
   
   /**
@@ -104,12 +101,7 @@ final class Guild {
     }
     /** @var UserEntity $user */
     $user = $this->orm->users->getById($this->user->id);
-    if($user->group->path !== GroupEntity::PATH_CITY) {
-      return false;
-    } elseif($user->guild !== null) {
-      return false;
-    }
-    return true;
+    return $user->group->path === GroupEntity::PATH_CITY && $user->guild === null;
   }
   
   /**

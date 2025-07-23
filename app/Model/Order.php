@@ -54,10 +54,7 @@ final class Order {
    */
   private function checkNameAvailability(string $name, int $id = null): bool {
     $order = $this->orm->orders->getByName($name);
-    if($order === null) {
-      return true;
-    }
-    return ($order->id === $id);
+    return $order === null || $order->id === $id;
   }
   
   /**

@@ -26,10 +26,7 @@ use HeroesofAbenez\Combat\Weapon;
  */
 final class UserItem extends BaseEntity {
   protected function setterAmount(int $value): int {
-    if($value < 0) {
-      return 0;
-    }
-    return $value;
+    return max(0, $value);
   }
   
   protected function setterLevel(int $value): int {
