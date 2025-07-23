@@ -52,14 +52,13 @@ trait TUserControl {
     }
     /** @var ORM $orm */
     $orm = $this->getService(ORM::class);
-    return $orm->users->getById($user->id);
+    return $orm->users->getById($user->id); // @phpstan-ignore return.type
   }
   
   /**
-   * @return mixed
    * @throws AuthenticationNeededException
    */
-  protected function getUserStat(string $stat) {
+  protected function getUserStat(string $stat): mixed {
     /** @var User $user */
     $user = $this->getService(User::class);
     if(!$user->isLoggedIn()) {
@@ -67,6 +66,7 @@ trait TUserControl {
     }
     /** @var ORM $orm */
     $orm = $this->getService(ORM::class);
+    /** @var UserEntity $data */
     $data = $orm->users->getById($user->id);
     return $data->$stat;
   }
@@ -85,6 +85,7 @@ trait TUserControl {
     }
     /** @var ORM $orm */
     $orm = $this->getService(ORM::class);
+    /** @var UserEntity $data */
     $data = $orm->users->getById($user->id);
     $oldStats = [];
     foreach($stats as $stat) {
@@ -119,6 +120,7 @@ trait TUserControl {
     }
     /** @var ORM $orm */
     $orm = $this->getService(ORM::class);
+    /** @var UserEntity $data */
     $data = $orm->users->getById($user->id);
     $oldStats = [];
     foreach($stats as $stat => $newValue) {
@@ -223,6 +225,7 @@ trait TUserControl {
     }
     /** @var ORM $orm */
     $orm = $this->getService(ORM::class);
+    /** @var UserEntity $userEntity */
     $userEntity = $orm->users->getById($user->id);
     $data = $userEntity->order;
     if(is_null($data)) {

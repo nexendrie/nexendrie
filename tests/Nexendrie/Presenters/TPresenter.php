@@ -26,9 +26,9 @@ trait TPresenter {
    * @throws \Exception
    */
   protected function checkRss(string $destination, array $params = [], array $post = []): RssResponse {
-    /** @var RssResponse $response */
+    /** @var RssResponse $response */ // @phpstan-ignore varTag.nativeType
     $response = $this->check($destination, $params, $post);
-    if(!$this->testbench_exception) {
+    if($this->testbench_exception === null) {
       Assert::same(200, $this->getReturnCode());
       Assert::type(RssResponse::class, $response);
       
@@ -46,12 +46,12 @@ trait TPresenter {
    * @throws \Exception
    */
   protected function checkForward(string $destination, string $to = "", array $params = [], array $post = []): ForwardResponse {
-    /** @var ForwardResponse $response */
+    /** @var ForwardResponse $response */ // @phpstan-ignore varTag.nativeType
     $response = $this->check($destination, $params, $post);
-    if(!$this->testbench_exception) {
+    if($this->testbench_exception === null) {
       Assert::same(200, $this->getReturnCode());
       Assert::type(ForwardResponse::class, $response);
-      if($to) {
+      if($to !== "") {
         $target = $response->getRequest()->presenterName . ":" . $response->getRequest()->parameters["action"];
         if($to !== $target) {
           Assert::fail("does not forward to $to, but {$target}");
@@ -62,11 +62,10 @@ trait TPresenter {
   }
   
   /**
-   * @param bool|string $redirect
    * @return RedirectResponse
    * @throws \Exception
    */
-  protected function checkSignal(string $destination, string $signal, array $params = [], array $post = [], bool $redirect = false): Response {
+  protected function checkSignal(string $destination, string $signal, array $params = [], array $post = [], bool|string $redirect = false): Response {
     return $this->checkRedirect($destination, $redirect, [
         "do" => $signal,
       ] + $params, $post);

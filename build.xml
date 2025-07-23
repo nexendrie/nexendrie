@@ -127,7 +127,7 @@
       </not>
       <then>
         <exec executable="vendor/bin/phpcs" logoutput="true" passthru="true" checkreturn="true">
-          <arg value="--extensions=php,phpt"/>
+          <arg value="--extensions=php"/>
           <arg value="."/>
           <arg value="--standard=vendor/nexendrie/code-quality/ruleset.xml"/>
           <arg value="--colors"/>

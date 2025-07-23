@@ -8,7 +8,7 @@ use Tester\Assert;
 use Nette\Utils\Strings;
 use Nette\Application\Application;
 use Nette\Application\Request;
-use Nette\Application\IResponse;
+use Nette\Application\Response;
 use Nette\Application\Responses\JsonResponse;
 
 /**
@@ -28,17 +28,18 @@ trait TApiPresenter {
   protected bool $readAllRequiresLogin = false;
   
   protected function getPresenterName(): string {
+    /** @var string $presenter */
     $presenter = Strings::before(static::class, "PresenterTest");
     return "Api:V1:" . Strings::after($presenter, "\\", -1);
   }
   
-  public function testForbiddenActions() {
+  public function testForbiddenActions(): void {
     $presenter = $this->getPresenterName();
     foreach($this->forbiddenMethods as $method => $action) {
       /** @var Application $application */
       $application = $this->getService(Application::class);
       $request = new Request($presenter, $method, ["action" => $action, ]);
-      $application->onResponse[0] = function(Application $application, IResponse $response) use($method) {
+      $application->onResponse[0] = function(Application $application, Response $response) use($method) {
         /** @var JsonResponse $response */
         Assert::type(JsonResponse::class, $response);
         Assert::type("array", $response->getPayload());
@@ -51,7 +52,7 @@ trait TApiPresenter {
     }
   }
   
-  public function testInvalidAssociations() {
+  public function testInvalidAssociations(): void {
     $presenter = $this->getPresenterName();
     $expectedNotAllowed = ["message" => "This action is not allowed."];
     if($this->readAllRequiresLogin) {
@@ -62,9 +63,9 @@ trait TApiPresenter {
     $this->checkJsonScheme("$presenter:readAll", $expectedNotAllowed, ["associations" => ["abc" => 1]]);
   }
 
-  public function testOptions() {
+  public function testOptions(): void {
     $action = $this->getPresenterName() . ":options";
-    /** @var TextResponse $response */
+    /** @var TextResponse $response */ // @phpstan-ignore varTag.nativeType
     $response = $this->check($action);
     Assert::type(TextResponse::class, $response);
     Assert::same("", $response->getSource());

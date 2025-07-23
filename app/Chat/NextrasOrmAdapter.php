@@ -20,6 +20,9 @@ final class NextrasOrmAdapter implements IDatabaseAdapter {
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
 
+  /**
+   * @return ChatMessagesCollection|ChatMessage[]
+   */
   public function getTexts(string $column, mixed $value, int $limit): ChatMessagesCollection {
     $count = $this->orm->chatMessages->findBy([
       $column => $value,
@@ -39,6 +42,9 @@ final class NextrasOrmAdapter implements IDatabaseAdapter {
     return $collection;
   }
 
+  /**
+   * @return ChatCharactersCollection|ChatCharacter[]
+   */
   public function getCharacters(string $column, mixed $value): ChatCharactersCollection {
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);

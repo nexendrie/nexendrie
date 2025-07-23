@@ -29,5 +29,4 @@ parameters:
         -
             identifier: varTag.type
         -
-            identifier: trait.unused
-            path: tests/*
+            identifier: ternary.shortNotAllowed
