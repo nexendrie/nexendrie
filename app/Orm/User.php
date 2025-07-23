@@ -125,7 +125,7 @@ final class User extends BaseEntity {
   }
   
   /**
-   * @return string[]
+   * @return array<string, string>
    */
   public static function getGenders(): array {
     return [

@@ -36,7 +36,7 @@ final class Item extends BaseEntity {
   public const TYPE_INTIMACY_BOOST = "intimacy_boost";
   
   /**
-   * @return string[]
+   * @return array<string, string>
    */
   public static function getTypes(): array {
     return [

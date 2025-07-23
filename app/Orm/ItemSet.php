@@ -31,7 +31,7 @@ final class ItemSet extends BaseEntity implements ICharacterEffectsProvider {
   public const STAT_INITIATIVE = "initiative";
   
   /**
-   * @return string[]
+   * @return array<string, string>
    */
   public static function getStats(): array {
     return [

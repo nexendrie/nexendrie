@@ -33,7 +33,7 @@ final class Skill extends BaseEntity {
   public const STAT_INITIATIVE = "initiative";
   
   /**
-   * @return string[]
+   * @return array<string, string>
    */
   public static function getTypes(): array {
     return [
@@ -43,7 +43,7 @@ final class Skill extends BaseEntity {
   }
   
   /**
-   * @return string[]
+   * @return array<string, string>
    */
   public static function getStats(): array {
     return [

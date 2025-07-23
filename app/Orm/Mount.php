@@ -58,7 +58,7 @@ final class Mount extends BaseEntity implements ICharacterEffectsProvider {
   }
   
   /**
-   * @return string[]
+   * @return array<string, string>
    */
   public static function getGenders(): array {
     return [
