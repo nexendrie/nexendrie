@@ -3,7 +3,7 @@ Nexendrie
 
 [![build status](https://gitlab.com/nexendrie/nexendrie/badges/master/pipeline.svg)](https://gitlab.com/nexendrie/nexendrie/-/commits/master) [![coverage report](https://gitlab.com/nexendrie/nexendrie/badges/master/coverage.svg)](https://gitlab.com/nexendrie/nexendrie/-/commits/master)
 
-Nexendrie website written in Nette Framework. Requires PHP 7.4 or later.
+Nexendrie website written in Nette Framework. Requires PHP 8.1 or later.
 
 The user interface is in Czech language and there are no plans to support multiple languages.
 
