@@ -117,7 +117,7 @@
   </target>
   <target name="lint" description="Syntax checks">
     <exec executable="vendor/bin/parallel-lint" logoutput="true" passthru="true" checkreturn="true">
-      <arg line=". -e php,phpt --exclude vendor --exclude temp --exclude tests/_temp --colors"/>
+      <arg line=". -e php --exclude vendor --exclude temp --exclude tests/_temp --colors"/>
     </exec>
   </target>
   <target name="cs" description="Coding standards compliance">
