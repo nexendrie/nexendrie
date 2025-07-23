@@ -154,7 +154,7 @@ final class MonasteryPresenter extends BasePresenter {
   public function actionPray(): void {
     try {
       $this->model->pray();
-      $this->flashMessage("Modlidba ti přidala 5 životů.");
+      $this->flashMessage("Modlitba ti přidala 5 životů.");
       $this->redirect("default");
     } catch(CannotPrayException $e) {
       $this->flashMessage("Nemůžeš se modlit (právě teď).");
