@@ -5,8 +5,17 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Forms\GiftFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Adventure;
 use Nexendrie\Model\ContentReportNotFoundException;
+use Nexendrie\Model\ItemSet;
+use Nexendrie\Model\Job;
+use Nexendrie\Model\Market;
 use Nexendrie\Model\MissingPermissionsException;
+use Nexendrie\Model\Moderation;
+use Nexendrie\Model\Mount;
+use Nexendrie\Model\Skills;
+use Nexendrie\Model\Tavern;
+use Nexendrie\Model\Town;
 
 /**
  * Presenter Content
@@ -14,27 +23,8 @@ use Nexendrie\Model\MissingPermissionsException;
  * @author Jakub Konečný
  */
 final class ContentPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Market $marketModel;
-  protected \Nexendrie\Model\Job $jobModel;
-  protected \Nexendrie\Model\Town $townModel;
-  protected \Nexendrie\Model\Mount $mountModel;
-  protected \Nexendrie\Model\Skills $skillsModel;
-  protected \Nexendrie\Model\Tavern $tavernModel;
-  protected \Nexendrie\Model\Adventure $adventureModel;
-  protected \Nexendrie\Model\ItemSet $itemSetModel;
-  protected \Nexendrie\Model\Moderation $moderationModel;
-  
-  public function __construct(\Nexendrie\Model\Market $marketModel, \Nexendrie\Model\Job $jobModel, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Mount $mountModel, \Nexendrie\Model\Skills $skillsModel, \Nexendrie\Model\Tavern $tavernModel, \Nexendrie\Model\Adventure $adventureModel, \Nexendrie\Model\ItemSet $itemSetModel, \Nexendrie\Model\Moderation $moderationModel) {
+  public function __construct(private readonly Market $marketModel, private readonly Job $jobModel, private readonly Town $townModel, private readonly Mount $mountModel, private readonly Skills $skillsModel, private readonly Tavern $tavernModel, private readonly Adventure $adventureModel, private readonly ItemSet $itemSetModel, private readonly Moderation $moderationModel) {
     parent::__construct();
-    $this->marketModel = $marketModel;
-    $this->jobModel = $jobModel;
-    $this->townModel = $townModel;
-    $this->mountModel = $mountModel;
-    $this->skillsModel = $skillsModel;
-    $this->tavernModel = $tavernModel;
-    $this->adventureModel = $adventureModel;
-    $this->itemSetModel = $itemSetModel;
-    $this->moderationModel = $moderationModel;
   }
   
   protected function startup(): void {
@@ -105,10 +95,10 @@ final class ContentPresenter extends BasePresenter {
     try {
       $this->moderationModel->deleteContent($report);
       $this->flashMessage("Obsah smazán.");
-    } catch(MissingPermissionsException $e) {
+    } catch(MissingPermissionsException) {
       $this->flashMessage("K tomuto nemáš práva.");
       $this->redirect(":Front:Homepage:");
-    } catch(ContentReportNotFoundException $e) {
+    } catch(ContentReportNotFoundException) {
       $this->flashMessage("Tento obsah (už) není nahlášený.");
       $this->redirect("Homepage:");
     }
@@ -119,10 +109,10 @@ final class ContentPresenter extends BasePresenter {
     try {
       $this->moderationModel->ignoreReport($report);
       $this->flashMessage("Nahlášení ignorováno.");
-    } catch(MissingPermissionsException $e) {
+    } catch(MissingPermissionsException) {
       $this->flashMessage("K tomuto nemáš práva.");
       $this->redirect(":Front:Homepage:");
-    } catch(ContentReportNotFoundException $e) {
+    } catch(ContentReportNotFoundException) {
       $this->flashMessage("Tento obsah (už) není nahlášený.");
       $this->redirect("Homepage:");
     }

@@ -8,12 +8,7 @@ use Nette\Application\LinkGenerator;
 final class OpenSearch {
   use \Nette\SmartObject;
 
-  protected SettingsRepository $sr;
-  protected LinkGenerator $lg;
-
-  public function __construct(SettingsRepository $sr, LinkGenerator $lg) {
-    $this->sr = $sr;
-    $this->lg = $lg;
+  public function __construct(private readonly SettingsRepository $sr, private readonly LinkGenerator $lg) {
   }
 
   public function createDescription(string $shortName, string $longName, string $description, string $tags, string $searchType): string {

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Model\Mount;
 use Nexendrie\Orm\Mount as MountEntity;
 use Nexendrie\Model\MountNotFoundException;
 use Nexendrie\Forms\ManageMountFormFactory;
@@ -16,13 +17,11 @@ use Nexendrie\Components\StablesControl;
  * @author Jakub Konečný
  */
 final class StablesPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Mount $model;
   private MountEntity $mount;
   protected bool $publicCache = false;
   
-  public function __construct(\Nexendrie\Model\Mount $model) {
+  public function __construct(private readonly Mount $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   protected function startup(): void {
@@ -68,7 +67,7 @@ final class StablesPresenter extends BasePresenter {
   public function actionTrain(int $id): void {
     try {
       $mount = $this->model->get($id);
-    } catch(MountNotFoundException $e) {
+    } catch(MountNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
     if($mount->owner->id !== $this->user->id) {

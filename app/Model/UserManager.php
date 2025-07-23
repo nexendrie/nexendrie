@@ -16,9 +16,6 @@ use Nette\InvalidArgumentException;
  * @author Jakub Konečný
  */
 final class UserManager {
-  protected ORM $orm;
-  protected User $user;
-  protected Passwords $passwords;
   protected array $roles = [];
   protected array $newUser;
   /** Exception error code */
@@ -28,10 +25,7 @@ final class UserManager {
 
   use \Nette\SmartObject;
 
-  public function __construct(ORM $orm, SettingsRepository $sr, User $user, Passwords $passwords) {
-    $this->orm = $orm;
-    $this->user = $user;
-    $this->passwords = $passwords;
+  public function __construct(private readonly ORM $orm, SettingsRepository $sr, private readonly User $user, private readonly Passwords $passwords) {
     $this->roles = $sr->settings["roles"];
     $this->newUser = $sr->settings["newUser"];
   }
@@ -42,7 +36,7 @@ final class UserManager {
    * @param int|null $uid Id of user who can use the name
    * @throws InvalidArgumentException
    */
-  public function nameAvailable(string $name, int $uid = null): bool {
+  public function nameAvailable(string $name, ?int $uid = null): bool {
     $row = $this->orm->users->getByPublicname($name);
     if($row === null) {
       return true;
@@ -180,11 +174,7 @@ final class UserManager {
 
   public function get(int $id): UserEntity {
     $user = $this->orm->users->getById($id);
-    if($user === null) {
-      throw new UserNotFoundException();
-    }
-    return $user;
+    return $user ?? throw new UserNotFoundException();
   }
 }
-
 ?>

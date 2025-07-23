@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Forms\AddEditPollFormFactory;
+use Nexendrie\Model\Polls;
 
 /**
  * Presenter Polls
@@ -12,11 +13,8 @@ use Nexendrie\Forms\AddEditPollFormFactory;
  * @author Jakub Konečný
  */
 final class PollsPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Polls $model;
-  
-  public function __construct(\Nexendrie\Model\Polls $model) {
+  public function __construct(private readonly Polls $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   protected function startup(): void {

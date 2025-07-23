@@ -18,28 +18,25 @@ final class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param User|int $user1
    * @return ICollection|Marriage[]
    */
-  public function findByUser1($user1): ICollection {
+  public function findByUser1(User|int $user1): ICollection {
     return $this->findBy(["user1" => $user1]);
   }
   
   /**
-   * @param User|int $user2
    * @return ICollection|Marriage[]
    */
-  public function findByUser2($user2): ICollection {
+  public function findByUser2(User|int $user2): ICollection {
     return $this->findBy(["user2" => $user2]);
   }
   
   /**
    * Get proposals for a user
-   * 
-   * @param int|User $user
+   *
    * @return ICollection|Marriage[]
    */
-  public function findProposals($user): ICollection {
+  public function findProposals(User|int $user): ICollection {
     return $this->findBy([
       "user2" => $user, "status" => Marriage::STATUS_PROPOSED
     ]);
@@ -55,11 +52,8 @@ final class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
       "status" => Marriage::STATUS_ACCEPTED, "term<=" => time() + 60 * 60
     ]);
   }
-  
-  /**
-   * @param User|int $user
-   */
-  public function getActiveMarriage($user): ?Marriage {
+
+  public function getActiveMarriage(User|int $user): ?Marriage {
     return $this->getBy([
       ICollection::OR,
       [
@@ -72,11 +66,8 @@ final class MarriagesRepository extends \Nextras\Orm\Repository\Repository {
       ]
     ]);
   }
-  
-  /**
-   * @param User|int $user
-   */
-  public function getAcceptedMarriage($user): ?Marriage {
+
+  public function getAcceptedMarriage(User|int $user): ?Marriage {
     return $this->getBy([
       ICollection::OR,
       [

@@ -11,17 +11,11 @@ function getEnvironmentConfig(string $filename): array {
   $neon = \Nette\Neon\Neon::decode($neon);
 
   $driver = $neon["dbal"]["driver"];
-  switch($driver) {
-    case "mysqli":
-      $adapter = "mysql";
-      break;
-    case "pgsql":
-    case "sqlsrv":
-      $adapter = $driver;
-      break;
-    default:
-      throw new RuntimeException("Unsupported database driver $driver.");
-  }
+  $adapter = match($driver) {
+    "mysqli" => "mysql",
+    "pgsql", "sqlsrv" => $driver,
+    default => throw new RuntimeException("Unsupported database driver $driver."),
+  };
 
   return [
     "adapter" => $adapter,

@@ -18,18 +18,16 @@ final class UserExpensesRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param User|int $user
    * @return ICollection|UserExpense[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user,]);
   }
   
   /**
-   * @param User|int $user
    * @return ICollection|UserExpense[]
    */
-  public function findPaidThisMonth($user, string $category): ICollection {
+  public function findPaidThisMonth(User|int $user, string $category): ICollection {
     $month = date("n");
     $year = date("Y");
     $startOfMonthTS = (int) mktime(0, 0, 0, (int) $month, 1, (int) $year);

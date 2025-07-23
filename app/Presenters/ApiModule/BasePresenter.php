@@ -8,8 +8,10 @@ use Nette\Http\IRequest;
 use Nette\Http\IResponse;
 use Nette\Utils\Json;
 use Nette\Utils\Strings;
+use Nexendrie\Api\EntityConverter;
 use Nexendrie\Api\Tokens;
 use Nexendrie\Model\Authenticator;
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Entity\Entity;
 
 /**
@@ -18,19 +20,11 @@ use Nextras\Orm\Entity\Entity;
  * @author Jakub Konečný
  */
 abstract class BasePresenter extends \Nette\Application\UI\Presenter {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nexendrie\Api\EntityConverter $entityConverter;
-  protected Tokens $tokens;
-  protected Authenticator $authenticator;
   protected bool $cachingEnabled = true;
   protected bool $publicCache = true;
 
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Api\EntityConverter $entityConverter, Tokens $tokens, Authenticator $authenticator) {
+  public function __construct(protected readonly ORM $orm, protected readonly EntityConverter $entityConverter, protected readonly Tokens $tokens, protected readonly Authenticator $authenticator) {
     parent::__construct();
-    $this->orm = $orm;
-    $this->entityConverter = $entityConverter;
-    $this->tokens = $tokens;
-    $this->authenticator = $authenticator;
   }
 
   /**
@@ -123,7 +117,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->methodNotAllowed();
   }
 
-  public function actionOptions(): void {
+  public function actionOptions(): never {
     $this->getHttpResponse()->setCode(IResponse::S204_NO_CONTENT);
     $this->getHttpResponse()->addHeader("Allow", implode(", ", $this->getAllowedMethods()));
     $this->sendResponse(new TextResponse(""));

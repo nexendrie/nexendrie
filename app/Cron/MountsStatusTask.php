@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Mount as MountEntity;
 
 /**
@@ -13,11 +14,9 @@ use Nexendrie\Orm\Mount as MountEntity;
 final class MountsStatusTask {
   use \Nette\SmartObject;
 
-  protected \Nexendrie\Orm\Model $orm;
   protected int $autoFeedingCost;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\SettingsRepository $sr) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm, \Nexendrie\Model\SettingsRepository $sr) {
     $this->autoFeedingCost = $sr->settings["fees"]["autoFeedMount"];
   }
   

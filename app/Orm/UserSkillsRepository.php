@@ -16,20 +16,15 @@ final class UserSkillsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [UserSkill::class];
   }
-  
-  /**
-   * @param User|int $user
-   * @param Skill|int $skill
-   */
-  public function getByUserAndSkill($user, $skill): ?UserSkill {
+
+  public function getByUserAndSkill(User|int $user, Skill|int $skill): ?UserSkill {
     return $this->getBy(["user" => $user, "skill" => $skill]);
   }
   
   /**
-   * @param User|int $user
    * @return ICollection|UserSkill[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   

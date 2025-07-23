@@ -14,11 +14,9 @@ use Nexendrie\Model\SettingsRepository;
  * @author Jakub Konečný
  */
 final class RegisterFormFactory {
-  protected UserManager $model;
   protected string $registrationToken;
   
-  public function __construct(UserManager $model, SettingsRepository $sr) {
-    $this->model = $model;
+  public function __construct(private readonly UserManager $model, SettingsRepository $sr) {
     $this->registrationToken = $sr->settings["registration"]["token"];
   }
   

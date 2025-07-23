@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Castle;
 use Nexendrie\Model\CastleNameInUseException;
 
 /**
@@ -12,11 +13,9 @@ use Nexendrie\Model\CastleNameInUseException;
  * @author Jakub Konečný
  */
 final class ManageCastleFormFactory {
-  protected \Nexendrie\Model\Castle $model;
   private int $id;
   
-  public function __construct(\Nexendrie\Model\Castle $model) {
-    $this->model = $model;
+  public function __construct(private readonly Castle $model) {
   }
   
   public function create(int $castleId): Form {

@@ -19,11 +19,7 @@ final class OrderFeesRepository extends \Nextras\Orm\Repository\Repository {
     return [OrderFee::class];
   }
 
-  /**
-   * @param User|int $user
-   * @param Order|int $order
-   */
-  public function getByUserAndOrder($user, $order): ?OrderFee {
+  public function getByUserAndOrder(User|int $user, Order|int $order): ?OrderFee {
     return $this->getBy([
       "user" => $user, "order" => $order,
     ]);

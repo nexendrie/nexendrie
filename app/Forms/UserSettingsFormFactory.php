@@ -18,16 +18,7 @@ use Nexendrie\Orm\User as UserEntity;
  * @author Jakub Konečný
  */
 final class UserSettingsFormFactory {
-  protected UserManager $model;
-  protected User $user;
-  protected ThemesManager $themesManager;
-  protected LinkGenerator $linkGenerator;
-
-  public function __construct(UserManager $model, User $user, ThemesManager $themesManager, LinkGenerator $linkGenerator) {
-    $this->model = $model;
-    $this->user = $user;
-    $this->themesManager = $themesManager;
-    $this->linkGenerator = $linkGenerator;
+  public function __construct(private readonly UserManager $model, private readonly ThemesManager $themesManager, private readonly LinkGenerator $linkGenerator) {
   }
 
   public function create(): Form {

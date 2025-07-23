@@ -17,15 +17,11 @@ abstract class BaseTransformer implements ITransformer {
   protected array $fields = [];
   /** @var string[] */
   protected array $fieldsRename = [];
-  protected \Nette\DI\Container $container;
   /** @var ITransformer[]|Collection */
   protected Collection $transformers;
-  protected LinkGenerator $linkGenerator;
   protected bool $createSelfLink = true;
 
-  public function __construct(\Nette\DI\Container $container, LinkGenerator $linkGenerator) {
-    $this->container = $container;
-    $this->linkGenerator = $linkGenerator;
+  public function __construct(protected \Nette\DI\Container $container, protected LinkGenerator $linkGenerator) {
     $this->transformers = new class extends Collection {
       protected string $class = ITransformer::class;
     };
@@ -110,7 +106,7 @@ abstract class BaseTransformer implements ITransformer {
     return (object) [
       "rel" => $rel,
       "href" => $this->linkGenerator->link("Api:$apiVersion:$targetCollectionName:$action", $params),
-      ];
+    ];
   }
 }
 ?>

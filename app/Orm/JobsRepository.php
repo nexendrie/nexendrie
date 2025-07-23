@@ -18,10 +18,9 @@ final class JobsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param Skill|int $skill
    * @return ICollection|Job[]
    */
-  public function findBySkill($skill): ICollection {
+  public function findBySkill(Skill|int $skill): ICollection {
     return $this->findBy(["neededSkill" => $skill]);
   }
   

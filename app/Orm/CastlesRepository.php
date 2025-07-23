@@ -16,11 +16,8 @@ final class CastlesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Castle::class];
   }
-  
-  /**
-   * @param User|int $owner
-   */
-  public function getByOwner($owner): ?Castle {
+
+  public function getByOwner(User|int $owner): ?Castle {
     return $this->getBy(["owner" => $owner]);
   }
   

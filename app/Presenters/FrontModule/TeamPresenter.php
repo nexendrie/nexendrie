@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -11,11 +12,8 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 class TeamPresenter extends BasePresenter {
-  protected \Nexendrie\Orm\Model $orm;
-
-  public function __construct(\Nexendrie\Orm\Model $orm) {
+  public function __construct(private readonly ORM $orm) {
     parent::__construct();
-    $this->orm = $orm;
   }
 
   public function renderDefault(): void {

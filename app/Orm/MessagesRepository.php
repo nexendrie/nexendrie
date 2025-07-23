@@ -18,26 +18,23 @@ final class MessagesRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param User|int $from
    * @return ICollection|Message[]
    */
-  public function findByFrom($from): ICollection {
+  public function findByFrom(User|int $from): ICollection {
     return $this->findBy(["from" => $from]);
   }
   
   /**
-   * @param User|int $to
    * @return ICollection|Message[]
    */
-  public function findByTo($to): ICollection {
+  public function findByTo(User|int $to): ICollection {
     return $this->findBy(["to" => $to]);
   }
 
   /**
-   * @param User|int $to
    * @return ICollection|Message[]
    */
-  public function findUnnotified($to): ICollection {
+  public function findUnnotified(User|int $to): ICollection {
     return $this->findBy([
       "to" => $to,
       "notified" => false,

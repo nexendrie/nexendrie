@@ -18,10 +18,9 @@ final class PollsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param User|int $author
    * @return ICollection|Poll[]
    */
-  public function findByAuthor($author): ICollection {
+  public function findByAuthor(User|int $author): ICollection {
     return $this->findBy(["author" => $author]);
   }
 }

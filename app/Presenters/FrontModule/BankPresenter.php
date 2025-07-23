@@ -6,6 +6,8 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nexendrie\Forms\TakeLoanFormFactory;
 use Nexendrie\Forms\OpenDepositAccountFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Bank;
+use Nexendrie\Model\Locale;
 use Nexendrie\Model\NoLoanException;
 use Nexendrie\Model\InsufficientFundsException;
 use Nexendrie\Model\NoDepositAccountException;
@@ -17,14 +19,10 @@ use Nexendrie\Model\DepositAccountNotDueException;
  * @author Jakub Konečný
  */
 final class BankPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Bank $model;
-  protected \Nexendrie\Model\Locale $localeModel;
   protected bool $cachingEnabled = false;
   
-  public function __construct(\Nexendrie\Model\Bank $model, \Nexendrie\Model\Locale $localeModel) {
+  public function __construct(private readonly Bank $model, private readonly Locale $localeModel) {
     parent::__construct();
-    $this->model = $model;
-    $this->localeModel = $localeModel;
   }
   
   public function renderDefault(): void {
@@ -65,9 +63,9 @@ final class BankPresenter extends BasePresenter {
       $this->model->returnLoan();
       $message = $this->localeModel->genderMessage("Vrátil(a) jsi půjčku.");
       $this->flashMessage($message);
-    } catch(NoLoanException $e) {
+    } catch(NoLoanException) {
       $this->flashMessage("Nemáš žádnou půjčku.");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nemáš dostatek peněz.");
     }
     $this->redirect("default");
@@ -78,9 +76,9 @@ final class BankPresenter extends BasePresenter {
     try {
       $this->model->closeDeposit();
       $this->flashMessage("Termínovaný účet uzavřen.");
-    } catch(NoDepositAccountException $e) {
+    } catch(NoDepositAccountException) {
       $this->flashMessage("Nemáš otevřený termínovaný účet.");
-    } catch(DepositAccountNotDueException $e) {
+    } catch(DepositAccountNotDueException) {
       $this->flashMessage("Termínovaný účet není splatný.");
     }
     $this->redirect("default");

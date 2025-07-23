@@ -7,6 +7,7 @@ use Nette\Application\UI\Form;
 use Nexendrie\Model\InsufficientLevelForFoundTownException;
 use Nexendrie\Model\InsufficientFundsException;
 use Nexendrie\Model\CannotFoundTownException;
+use Nexendrie\Model\Town;
 use Nexendrie\Model\TownNameInUseException;
 
 /**
@@ -15,10 +16,7 @@ use Nexendrie\Model\TownNameInUseException;
  * @author Jakub Konečný
  */
 final class FoundTownFormFactory {
-  protected \Nexendrie\Model\Town $model;
-  
-  public function __construct(\Nexendrie\Model\Town $model) {
-    $this->model = $model;
+  public function __construct(private readonly Town $model) {
   }
   
   public function create(): Form {

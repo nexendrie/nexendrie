@@ -15,13 +15,11 @@ use Nette\Utils\Arrays;
 abstract class BaseAchievement implements IAchievement {
   use \Nette\SmartObject;
 
-  protected Translator $translator;
   protected string $field;
   protected string $name;
   protected string $description;
   
-  public function __construct(Translator $translator) {
-    $this->translator = $translator;
+  public function __construct(protected Translator $translator) {
   }
   
   public function getName(): string {

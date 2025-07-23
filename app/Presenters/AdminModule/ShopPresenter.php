@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
+use Nexendrie\Model\Market;
 use Nexendrie\Orm\Shop as ShopEntity;
 use Nexendrie\Model\ShopNotFoundException;
 use Nexendrie\Forms\AddEditShopFormFactory;
@@ -14,12 +15,10 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class ShopPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Market $model;
   private ShopEntity $shop;
   
-  public function __construct(\Nexendrie\Model\Market $model) {
+  public function __construct(private readonly Market $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   /**
@@ -29,7 +28,7 @@ final class ShopPresenter extends BasePresenter {
     $this->requiresPermissions("content", "edit");
     try {
       $this->shop = $this->model->getShop($id);
-    } catch(ShopNotFoundException $e) {
+    } catch(ShopNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

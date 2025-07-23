@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\UserAdventure;
 
 /**
@@ -12,11 +13,8 @@ use Nexendrie\Orm\UserAdventure;
  */
 final class CloseAdventuresTask {
   use \Nette\SmartObject;
-
-  protected \Nexendrie\Orm\Model $orm;
   
-  public function __construct(\Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm) {
   }
   
   /**

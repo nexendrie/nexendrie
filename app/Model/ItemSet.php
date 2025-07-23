@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\ItemSet as ItemSetEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -12,12 +13,9 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class ItemSet {
-  protected \Nexendrie\Orm\Model $orm;
-  
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm) {
   }
   
   /**
@@ -36,10 +34,7 @@ final class ItemSet {
    */
   public function get(int $id): ItemSetEntity {
     $set = $this->orm->itemSets->getById($id);
-    if($set === null) {
-      throw new ItemSetNotFoundException();
-    }
-    return $set;
+    return $set ?? throw new ItemSetNotFoundException();
   }
   
   /**

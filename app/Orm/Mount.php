@@ -123,14 +123,11 @@ final class Mount extends BaseEntity implements ICharacterEffectsProvider {
   }
   
   protected function getterTypeGenderName(): string {
-    switch($this->gender) {
-      case static::GENDER_FEMALE:
-        return $this->type->femaleName;
-      case static::GENDER_YOUNG:
-        return $this->type->youngName;
-      default:
-        return $this->type->maleName;
-    }
+    return match($this->gender) {
+      self::GENDER_FEMALE => $this->type->femaleName,
+      self::GENDER_YOUNG => $this->type->youngName,
+      default => $this->type->maleName,
+    };
   }
   
   public function onBeforeInsert(): void {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Market;
 use Nexendrie\Orm\Item;
 use Nextras\Orm\Entity\ToArrayConverter;
 
@@ -13,11 +14,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditItemFormFactory {
-  protected \Nexendrie\Model\Market $model;
   protected ?Item $item;
 
-  public function __construct(\Nexendrie\Model\Market $model) {
-    $this->model = $model;
+  public function __construct(private readonly Market $model) {
   }
 
   protected function getShops(): array {

@@ -6,16 +6,13 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nexendrie\Model\INotificator;
 
 class SsePresenter extends BasePresenter {
-  /** @var INotificator[] */
-  private array $notificators;
   protected bool $earlyHints = false;
 
   /**
    * @param INotificator[] $notificators
    */
-  public function __construct(array $notificators) {
+  public function __construct(private readonly array $notificators) {
     parent::__construct();
-    $this->notificators = $notificators;
   }
 
   public function actionDefault(): void {

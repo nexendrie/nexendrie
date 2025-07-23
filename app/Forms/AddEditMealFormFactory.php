@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Tavern;
 
 /**
  * Factory for form AddEditMeal
@@ -11,11 +12,9 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditMealFormFactory {
-  protected \Nexendrie\Model\Tavern $model;
   protected ?\Nexendrie\Orm\Meal $meal;
 
-  public function __construct(\Nexendrie\Model\Tavern $model) {
-    $this->model = $model;
+  public function __construct(private readonly Tavern $model) {
   }
 
   public function create(?\Nexendrie\Orm\Meal $meal = null): Form {

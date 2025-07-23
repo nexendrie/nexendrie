@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Job;
+use Nexendrie\Model\Skills;
 use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
@@ -12,13 +14,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditJobFormFactory {
-  protected \Nexendrie\Model\Job $model;
-  protected \Nexendrie\Model\Skills $skillsModel;
   protected ?\Nexendrie\Orm\Job $job;
 
-  public function __construct(\Nexendrie\Model\Job $model, \Nexendrie\Model\Skills $skillsModel) {
-    $this->model = $model;
-    $this->skillsModel = $skillsModel;
+  public function __construct(private readonly Job $model, private readonly Skills $skillsModel) {
   }
 
   /**

@@ -6,6 +6,7 @@ namespace Nexendrie\Forms;
 use Nette\Application\UI\Form;
 use Nexendrie\Model\UserManager;
 use Nexendrie\Model\Town;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * Factory for form EditUser
@@ -13,17 +14,11 @@ use Nexendrie\Model\Town;
  * @author Jakub Konečný
  */
 final class EditUserFormFactory {
-  protected \Nexendrie\Orm\Model $orm;
-  protected UserManager $model;
-  protected Town $townModel;
   protected int $uid;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, UserManager $model, Town $townModel) {
-    $this->orm = $orm;
-    $this->model = $model;
-    $this->townModel = $townModel;
+  public function __construct(private readonly ORM $orm, private readonly UserManager $model, private readonly Town $townModel) {
   }
   
   protected function getListOfGroups(int $uid): array {

@@ -5,6 +5,7 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Loan as LoanEntity;
 use Nexendrie\Orm\Deposit as DepositEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\User;
 
 /**
@@ -13,16 +14,12 @@ use Nexendrie\Orm\User;
  * @author Jakub Konečný
  */
 final class Bank {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
   protected int $loanInterest;
   protected int $depositInterest;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->loanInterest = $sr->settings["fees"]["loanInterest"];
     $this->depositInterest = $sr->settings["fees"]["depositInterest"];
   }
@@ -43,7 +40,7 @@ final class Bank {
     if(!$this->user->isLoggedIn()) {
       return 0;
     }
-    /** @var \Nexendrie\Orm\User $user */
+    /** @var User $user */
     $user = $this->orm->users->getById($this->user->id);
     return $user->group->maxLoan;
   }
@@ -62,7 +59,7 @@ final class Bank {
       throw new CannotTakeMoreLoansException();
     }
     $loan = new LoanEntity();
-    /** @var \Nexendrie\Orm\User $user */
+    /** @var User $user */
     $user = $this->orm->users->getById($this->user->id);
     $loan->user = $user;
     $loan->user->money += $amount;
@@ -130,7 +127,7 @@ final class Bank {
       throw new CannotOpenMoreDepositAccountsException();
     }
     $deposit = new DepositEntity();
-    /** @var \Nexendrie\Orm\User $user */
+    /** @var User $user */
     $user = $this->orm->users->getById($this->user->id);
     $deposit->user = $user;
     $deposit->amount = $amount;

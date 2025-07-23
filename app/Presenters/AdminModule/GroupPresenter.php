@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Forms\EditGroupFormFactory;
+use Nexendrie\Model\Group;
 
 /**
  * Presenter Group
@@ -12,11 +13,8 @@ use Nexendrie\Forms\EditGroupFormFactory;
  * @author Jakub Konečný
  */
 final class GroupPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Group $model;
-  
-  public function __construct(\Nexendrie\Model\Group $model) {
+  public function __construct(private readonly Group $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function renderDefault(): void {

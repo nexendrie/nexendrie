@@ -5,6 +5,7 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Model\CannotFoundOrderException;
+use Nexendrie\Model\Order;
 use Nexendrie\Model\OrderNameInUseException;
 use Nexendrie\Model\InsufficientFundsException;
 
@@ -14,10 +15,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * @author Jakub Konečný
  */
 final class FoundOrderFormFactory {
-  protected \Nexendrie\Model\Order $model;
-  
-  public function __construct(\Nexendrie\Model\Order $model) {
-    $this->model = $model;
+  public function __construct(private readonly Order $model) {
   }
   
   public function create(): Form {

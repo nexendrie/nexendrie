@@ -15,10 +15,7 @@ final class ThemesManager {
   private const KEY_NAME = "name";
   private const THEMES_DIR = "styles";
 
-  private string $wwwDir;
-
-  public function __construct(string $wwwDir) {
-    $this->wwwDir = $wwwDir;
+  public function __construct(private readonly string $wwwDir) {
   }
 
   public function getList(): array {

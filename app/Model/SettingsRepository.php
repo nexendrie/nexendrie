@@ -14,8 +14,6 @@ use Nexendrie\Utils\Intervals;
  * @property-read array $settings
  */
 final class SettingsRepository {
-  protected ThemesManager $themesManager;
-
   protected array $defaults = [
     "roles" => [
       "guestRole" => 13,
@@ -93,12 +91,11 @@ final class SettingsRepository {
     ],
   ];
 
-  protected array $settings = [];
+  public readonly array $settings;
   
   use \Nette\SmartObject;
   
-  public function __construct(array $settings, ThemesManager $themesManager) {
-    $this->themesManager = $themesManager;
+  public function __construct(array $settings, private readonly ThemesManager $themesManager) {
     $this->settings = $this->validateSettings($settings);
   }
   
@@ -152,10 +149,6 @@ final class SettingsRepository {
       $return[$section] = $this->validateSection($section, $settings);
     }
     return $return;
-  }
-  
-  protected function getSettings(): array {
-    return $this->settings;
   }
 }
 ?>

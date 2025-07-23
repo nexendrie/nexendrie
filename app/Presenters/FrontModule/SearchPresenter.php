@@ -5,7 +5,9 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Forms\SiteSearchFormFactory;
+use Nexendrie\Model\OpenSearch;
 use Nexendrie\Model\OpenSearchDescriptionResponse;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * SearchPresenter
@@ -13,14 +15,10 @@ use Nexendrie\Model\OpenSearchDescriptionResponse;
  * @author Jakub Konečný
  */
 final class SearchPresenter extends BasePresenter {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nexendrie\Model\OpenSearch $openSearch;
   protected bool $earlyHints = false;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\OpenSearch $openSearch) {
+  public function __construct(private readonly ORM $orm, private readonly OpenSearch $openSearch) {
     parent::__construct();
-    $this->orm = $orm;
-    $this->openSearch = $openSearch;
   }
   
   protected function createComponentSiteSearchForm(SiteSearchFormFactory $factory): Form {
@@ -41,7 +39,7 @@ final class SearchPresenter extends BasePresenter {
     return $form;
   }
 
-  protected function sendOpenSearchDescriptionResponse(string $description): void {
+  protected function sendOpenSearchDescriptionResponse(string $description): never {
     $this->sendResponse(new OpenSearchDescriptionResponse($description));
   }
 

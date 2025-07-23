@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Forms\AddEditAdventureFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Adventure;
 use Nexendrie\Model\AdventureNotFoundException;
 
 /**
@@ -13,12 +14,10 @@ use Nexendrie\Model\AdventureNotFoundException;
  * @author Jakub Konečný
  */
 final class AdventurePresenter extends BasePresenter {
-  protected \Nexendrie\Model\Adventure $model;
   private \Nexendrie\Orm\Adventure $adventure;
   
-  public function __construct(\Nexendrie\Model\Adventure $model) {
+  public function __construct(private readonly Adventure $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function actionNew(): void {

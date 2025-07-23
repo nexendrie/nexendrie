@@ -23,14 +23,7 @@ use Nexendrie\Orm\UserAdventure;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class AdventureControl extends \Nette\Application\UI\Control {
-  protected \Nexendrie\Model\Adventure $model;
-  protected \Nexendrie\Model\Locale $localeModel;
-  protected \Nette\Security\User $user;
-  
-  public function __construct(\Nexendrie\Model\Adventure $model, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
-    $this->model = $model;
-    $this->localeModel = $localeModel;
-    $this->user = $user;
+  public function __construct(private readonly \Nexendrie\Model\Adventure $model, private readonly \Nexendrie\Model\Locale $localeModel, private readonly \Nette\Security\User $user) {
   }
   
   public function renderList(): void {

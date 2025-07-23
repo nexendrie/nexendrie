@@ -11,6 +11,8 @@ use Nexendrie\Api\Tokens;
 use Nexendrie\Forms\LoginFormFactory;
 use Nexendrie\Forms\RegisterFormFactory;
 use Nexendrie\Forms\UserSettingsFormFactory;
+use Nexendrie\Model\Authenticator;
+use Nexendrie\Model\Locale;
 use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Collection\ICollection;
 
@@ -20,20 +22,12 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class UserPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Authenticator $model;
-  protected \Nexendrie\Model\Locale $localeModel;
-  protected ORM $orm;
-  private Tokens $apiTokens;
   /** @persistent */
   public string $backlink = "";
   protected bool $cachingEnabled = false;
   
-  public function __construct(\Nexendrie\Model\Authenticator $model, \Nexendrie\Model\Locale $localeModel, ORM $orm, Tokens $apiTokens) {
+  public function __construct(private readonly Authenticator $model, private readonly Locale $localeModel, private readonly ORM $orm, private readonly Tokens $apiTokens) {
     parent::__construct();
-    $this->model = $model;
-    $this->localeModel = $localeModel;
-    $this->orm = $orm;
-    $this->apiTokens = $apiTokens;
   }
   
   /**
@@ -118,7 +112,7 @@ final class UserPresenter extends BasePresenter {
     try {
       $this->apiTokens->create();
       $this->flashMessage("API token úspěšně vytvořen", "success");
-    } catch(ApiNotEnabledException $e) {
+    } catch(ApiNotEnabledException) {
       $this->flashMessage("Nemáš povolené API.", "error");
     }
     $this->redirect("apiTokens");
@@ -129,9 +123,9 @@ final class UserPresenter extends BasePresenter {
     try {
       $this->apiTokens->invalidate($token);
       $this->flashMessage("Token zneplatněn.", "success");
-    } catch(TokenNotFoundException $e) {
+    } catch(TokenNotFoundException) {
       $this->flashMessage("Token nenalezen.", "error");
-    } catch(TokenExpiredException $e) {
+    } catch(TokenExpiredException) {
       $this->flashMessage("Token už vypršel.", "warning");
     }
     $this->redirect("apiTokens");

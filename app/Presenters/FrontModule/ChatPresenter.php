@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Model\Guild;
+use Nexendrie\Model\Monastery;
 use Nexendrie\Model\NotInMonasteryException;
 use Nexendrie\Chat\ITownChatControlFactory;
 use Nexendrie\Chat\TownChatControl;
@@ -12,6 +14,7 @@ use Nexendrie\Chat\IOrderChatControlFactory;
 use Nexendrie\Chat\OrderChatControl;
 use Nexendrie\Chat\IGuildChatControlFactory;
 use Nexendrie\Chat\GuildChatControl;
+use Nexendrie\Model\Order;
 
 /**
  * ChatPresenter
@@ -19,16 +22,10 @@ use Nexendrie\Chat\GuildChatControl;
  * @author Jakub Konečný
  */
 final class ChatPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Monastery $monasteryModel;
-  protected \Nexendrie\Model\Order $orderModel;
-  protected \Nexendrie\Model\Guild $guildModel;
   protected bool $cachingEnabled = false;
   
-  public function __construct(\Nexendrie\Model\Monastery $monasteryModel, \Nexendrie\Model\Order $orderModel, \Nexendrie\Model\Guild $guildModel) {
+  public function __construct(private readonly Monastery $monasteryModel, private readonly Order $orderModel, private readonly Guild $guildModel) {
     parent::__construct();
-    $this->monasteryModel = $monasteryModel;
-    $this->orderModel = $orderModel;
-    $this->guildModel = $guildModel;
   }
   
   protected function startup(): void {
@@ -49,7 +46,7 @@ final class ChatPresenter extends BasePresenter {
   public function actionMonastery(): void {
     try {
       $this->monasteryModel->getByUser();
-    } catch(NotInMonasteryException $e) {
+    } catch(NotInMonasteryException) {
       $this->flashMessage("Nejsi v klášteře.");
       $this->redirect("Homepage:");
     }

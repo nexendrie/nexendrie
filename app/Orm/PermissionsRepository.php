@@ -18,10 +18,9 @@ final class PermissionsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param Group|int $group
    * @return ICollection|Permission[]
    */
-  public function findByGroup($group): ICollection {
+  public function findByGroup(Group|int $group): ICollection {
     return $this->findBy(["group" => $group]);
   }
 }

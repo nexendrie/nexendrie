@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Adventure;
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
@@ -12,13 +14,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditAdventureFormFactory {
-  protected \Nexendrie\Model\Adventure $model;
-  protected \Nexendrie\Orm\Model $orm;
   protected ?\Nexendrie\Orm\Adventure $adventure;
 
-  public function __construct(\Nexendrie\Model\Adventure $model, \Nexendrie\Orm\Model $orm) {
-    $this->model = $model;
-    $this->orm = $orm;
+  public function __construct(private readonly Adventure $model, private readonly ORM $orm) {
   }
 
   /**

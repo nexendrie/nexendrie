@@ -11,10 +11,7 @@ use Nette\Security\User;
  * @author Jakub Konečný
  */
 final class ConditionPath extends BaseCondition {
-  protected User $user;
-  
-  public function __construct(User $user) {
-    $this->user = $user;
+  public function __construct(private readonly User $user) {
   }
   
   /**

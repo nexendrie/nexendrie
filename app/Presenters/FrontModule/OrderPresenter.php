@@ -8,6 +8,8 @@ use Nexendrie\Chat\OrderChatControl;
 use Nexendrie\Forms\FoundOrderFormFactory;
 use Nexendrie\Forms\ManageOrderFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Locale;
+use Nexendrie\Model\Order;
 use Nexendrie\Model\OrderNotFoundException;
 use Nexendrie\Model\CannotJoinOrderException;
 use Nexendrie\Model\CannotLeaveOrderException;
@@ -27,15 +29,8 @@ use Nexendrie\Model\CannotKickMemberException;
  * @author Jakub Konečný
  */
 final class OrderPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Order $model;
-  protected \Nexendrie\Model\Locale $localeModel;
-  private IOrderChatControlFactory $chatFactory;
-  
-  public function __construct(\Nexendrie\Model\Order $model, \Nexendrie\Model\Locale $localeModel, IOrderChatControlFactory $chatFactory) {
+  public function __construct(private readonly Order $model, private readonly Locale $localeModel, private readonly IOrderChatControlFactory $chatFactory) {
     parent::__construct();
-    $this->model = $model;
-    $this->localeModel = $localeModel;
-    $this->chatFactory = $chatFactory;
   }
   
   protected function startup(): void {
@@ -72,7 +67,7 @@ final class OrderPresenter extends BasePresenter {
   public function renderDetail(int $id): void {
     try {
       $this->template->order = $this->model->getOrder($id);
-    } catch(OrderNotFoundException $e) {
+    } catch(OrderNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -111,10 +106,10 @@ final class OrderPresenter extends BasePresenter {
       $message = $this->localeModel->genderMessage("Vstoupil(a) jsi do řádu.");
       $this->flashMessage($message);
       $this->redirect("default");
-    } catch(CannotJoinOrderException $e) {
+    } catch(CannotJoinOrderException) {
       $this->flashMessage("Nemůžeš vstoupit do řádu.");
       $this->redirect("Homepage:");
-    } catch(OrderNotFoundException $e) {
+    } catch(OrderNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -125,7 +120,7 @@ final class OrderPresenter extends BasePresenter {
       $message = $this->localeModel->genderMessage("Opustil(a) jsi řádu.");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
-    } catch(CannotLeaveOrderException $e) {
+    } catch(CannotLeaveOrderException) {
       $this->flashMessage("Nemůžeš opustit cech.");
       $this->redirect("Homepage:");
     }
@@ -155,10 +150,10 @@ final class OrderPresenter extends BasePresenter {
       $this->model->upgrade();
       $this->flashMessage("Řád vylepšen.");
       $this->redirect("manage");
-    } catch(CannotUpgradeOrderException $e) {
+    } catch(CannotUpgradeOrderException) {
       $this->flashMessage("Nemůžeš vylepšit řád.");
       $this->redirect("Homepage:");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("manage");
     }
@@ -180,19 +175,19 @@ final class OrderPresenter extends BasePresenter {
       $this->model->promote($user);
       $this->flashMessage("Povýšen(a)");
       $this->redirect("members");
-    } catch(AuthenticationNeededException $e) {
+    } catch(AuthenticationNeededException) {
       $this->flashMessage("K této akci musíš být přihlášený.");
       $this->redirect("User:login");
-    } catch(MissingPermissionsException $e) {
+    } catch(MissingPermissionsException) {
       $this->flashMessage("K této akci nemáš práva.");
       $this->redirect("Homepage:");
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       $this->flashMessage("Uživatel nenalezen.");
       $this->redirect("Homepage:");
-    } catch(UserNotInYourOrderException $e) {
+    } catch(UserNotInYourOrderException) {
       $this->flashMessage("Uživatel není ve tvém řádu.");
       $this->redirect("Homepage:");
-    } catch(CannotPromoteMemberException $e) {
+    } catch(CannotPromoteMemberException) {
       $this->flashMessage("Uživatel nemůže být povýšen.");
       $this->redirect("members");
     }
@@ -203,19 +198,19 @@ final class OrderPresenter extends BasePresenter {
       $this->model->demote($user);
       $this->flashMessage("Degradován(a)");
       $this->redirect("members");
-    } catch(AuthenticationNeededException $e) {
+    } catch(AuthenticationNeededException) {
       $this->flashMessage("K této akci musíš být přihlášený.");
       $this->redirect("User:login");
-    } catch(MissingPermissionsException $e) {
+    } catch(MissingPermissionsException) {
       $this->flashMessage("K této akci nemáš práva.");
       $this->redirect("Homepage:");
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       $this->flashMessage("Uživatel nenalezen.");
       $this->redirect("Homepage:");
-    } catch(UserNotInYourOrderException $e) {
+    } catch(UserNotInYourOrderException) {
       $this->flashMessage("Uživatel není ve tvém řádu.");
       $this->redirect("Homepage:");
-    } catch(CannotDemoteMemberException $e) {
+    } catch(CannotDemoteMemberException) {
       $this->flashMessage("Uživatel nemůže být degradován.");
       $this->redirect("members");
     }
@@ -226,19 +221,19 @@ final class OrderPresenter extends BasePresenter {
       $this->model->kick($user);
       $this->flashMessage("Vyloučen(a)");
       $this->redirect("members");
-    } catch(AuthenticationNeededException $e) {
+    } catch(AuthenticationNeededException) {
       $this->flashMessage("K této akci musíš být přihlášený.");
       $this->redirect("User:login");
-    } catch(MissingPermissionsException $e) {
+    } catch(MissingPermissionsException) {
       $this->flashMessage("K této akci nemáš práva.");
       $this->redirect("Homepage:");
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       $this->flashMessage("Uživatel nenalezen.");
       $this->redirect("Homepage:");
-    } catch(UserNotInYourOrderException $e) {
+    } catch(UserNotInYourOrderException) {
       $this->flashMessage("Uživatel není ve tvém řádu.");
       $this->redirect("Homepage:");
-    } catch(CannotKickMemberException $e) {
+    } catch(CannotKickMemberException) {
       $this->flashMessage("Uživatel nemůže být vyloučen.");
       $this->redirect("members");
     }

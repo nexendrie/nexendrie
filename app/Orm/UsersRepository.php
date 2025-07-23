@@ -27,26 +27,23 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param Group|Int $group
    * @return ICollection|User[]
    */
-  public function findByGroup($group): ICollection {
+  public function findByGroup(Group|int $group): ICollection {
     return $this->findBy(["group" => $group]);
   }
   
   /**
-   * @param Monastery|Int $monastery
    * @return ICollection|User[]
    */
-  public function findByMonastery($monastery): ICollection {
+  public function findByMonastery(Monastery|int $monastery): ICollection {
     return $this->findBy(["monastery" => $monastery]);
   }
   
   /**
-   * @param Town|Int $town
    * @return ICollection|User[]
    */
-  public function findByTown($town): ICollection {
+  public function findByTown(Town|int $town): ICollection {
     return $this->findBy(["town" => $town]);
   }
   

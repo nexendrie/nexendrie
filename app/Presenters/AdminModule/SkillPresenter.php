@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
+use Nexendrie\Model\Skills;
 use Nexendrie\Orm\Skill as SkillEntity;
 use Nexendrie\Forms\AddEditSkillFormFactory;
 use Nette\Application\UI\Form;
@@ -14,12 +15,10 @@ use Nexendrie\Model\SkillNotFoundException;
  * @author Jakub Konečný
  */
 final class SkillPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Skills $model;
   private SkillEntity $skill;
   
-  public function __construct(\Nexendrie\Model\Skills $model) {
+  public function __construct(private readonly Skills $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function actionNew(): void {
@@ -42,7 +41,7 @@ final class SkillPresenter extends BasePresenter {
     $this->requiresPermissions("content", "edit");
     try {
       $this->skill = $this->model->get($id);
-    } catch(SkillNotFoundException $e) {
+    } catch(SkillNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

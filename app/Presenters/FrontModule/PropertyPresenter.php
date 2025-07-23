@@ -3,6 +3,13 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Model\CombatHelper;
+use Nexendrie\Model\Inventory;
+use Nexendrie\Model\Locale;
+use Nexendrie\Model\Profile;
+use Nexendrie\Model\Property;
+use Nexendrie\Model\Town;
+use Nexendrie\Model\UserManager;
 use Nexendrie\Orm\Town as TownEntity;
 use Nexendrie\Model\TownNotFoundException;
 use Nexendrie\Forms\ManageTownFormFactory;
@@ -27,25 +34,11 @@ use Nexendrie\Forms\MakeCitizenFormFactory;
  * @author Jakub Konečný
  */
 final class PropertyPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Property $model;
-  protected \Nexendrie\Model\Town $townModel;
-  protected \Nexendrie\Model\Locale $localeModel;
-  protected \Nexendrie\Model\Inventory $inventoryModel;
-  protected \Nexendrie\Model\Profile $profileModel;
-  protected \Nexendrie\Model\CombatHelper $combatModel;
-  protected \Nexendrie\Model\UserManager $userManager;
   private TownEntity $town;
   protected bool $cachingEnabled = false;
   
-  public function __construct(\Nexendrie\Model\Property $model, \Nexendrie\Model\Town $townModel, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\Inventory $inventoryModel, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\CombatHelper $combatModel, \Nexendrie\Model\UserManager $userManager) {
+  public function __construct(private readonly Property $model, private readonly Town $townModel, private readonly Locale $localeModel, private readonly Inventory $inventoryModel, private readonly CombatHelper $combatModel, private readonly UserManager $userManager) {
     parent::__construct();
-    $this->model = $model;
-    $this->townModel = $townModel;
-    $this->localeModel = $localeModel;
-    $this->inventoryModel = $inventoryModel;
-    $this->profileModel = $profileModel;
-    $this->combatModel = $combatModel;
-    $this->userManager = $userManager;
   }
   
   protected function startup(): void {
@@ -136,13 +129,13 @@ final class PropertyPresenter extends BasePresenter {
     try {
       $this->inventoryModel->equipItem($item);
       $this->flashMessage("Věc nasazena.");
-    } catch(ItemNotFoundException $e) {
+    } catch(ItemNotFoundException) {
       $this->flashMessage("Věc nenalezena.");
-    } catch(ItemNotOwnedException $e) {
+    } catch(ItemNotOwnedException) {
       $this->flashMessage("Zadaná věc ti nepatří.");
-    } catch(ItemNotEquipableException $e) {
+    } catch(ItemNotEquipableException) {
       $this->flashMessage("Zadanou věc nelze nasadit.");
-    } catch(ItemAlreadyWornException $e) {
+    } catch(ItemAlreadyWornException) {
       $this->flashMessage("Už nosíš danou věc.");
     }
     $this->redirect("equipment");
@@ -152,11 +145,11 @@ final class PropertyPresenter extends BasePresenter {
     try {
       $this->inventoryModel->unequipItem($item);
       $this->flashMessage("Věc sundána.");
-    } catch(ItemNotFoundException $e) {
+    } catch(ItemNotFoundException) {
       $this->flashMessage("Věc nenalezena.");
-    } catch(ItemNotOwnedException $e) {
+    } catch(ItemNotOwnedException) {
       $this->flashMessage("Zadaná věc ti nepatří.");
-    } catch(ItemNotWornException $e) {
+    } catch(ItemNotWornException) {
       $this->flashMessage("Nenosíš danou věc.");
     }
     $this->redirect("equipment");
@@ -166,13 +159,13 @@ final class PropertyPresenter extends BasePresenter {
     try {
       $life = $this->inventoryModel->drinkPotion($potion);
       $this->flashMessage("Doplnil sis $life životů.");
-    } catch(ItemNotFoundException $e) {
+    } catch(ItemNotFoundException) {
       $this->flashMessage("Věc nenalezena.");
-    } catch(ItemNotOwnedException $e) {
+    } catch(ItemNotOwnedException) {
       $this->flashMessage("Zadaná věc ti nepatří.");
-    } catch(ItemNotDrinkableException $e) {
+    } catch(ItemNotDrinkableException) {
       $this->flashMessage("Zadanou věc nelze vypít.");
-    } catch(HealingNotNeededException $e) {
+    } catch(HealingNotNeededException) {
       $this->flashMessage("Nepotřebuješ léčení.");
     }
     $this->redirect("equipment");
@@ -182,11 +175,11 @@ final class PropertyPresenter extends BasePresenter {
     try {
       $price = $this->inventoryModel->sellItem($item);
       $this->flashMessage("Věc prodána za " . $this->localeModel->money($price) . ".");
-    } catch(ItemNotFoundException $e) {
+    } catch(ItemNotFoundException) {
       $this->flashMessage("Věc nenalezena.");
-    } catch(ItemNotOwnedException $e) {
+    } catch(ItemNotOwnedException) {
       $this->flashMessage("Zadaná věc ti nepatří.");
-    } catch(ItemNotForSaleException $e) {
+    } catch(ItemNotForSaleException) {
       $this->flashMessage("Zadanou věc nelze prodat.");
     }
     $this->redirect("equipment");
@@ -196,15 +189,15 @@ final class PropertyPresenter extends BasePresenter {
     try {
       $this->inventoryModel->upgradeItem($item);
       $this->flashMessage("Věc vylepšena.");
-    } catch(ItemNotFoundException $e) {
+    } catch(ItemNotFoundException) {
       $this->flashMessage("Věc nenalezena.");
-    } catch(ItemNotOwnedException $e) {
+    } catch(ItemNotOwnedException) {
       $this->flashMessage("Zadaná věc ti nepatří.");
-    } catch(ItemNotUpgradableException $e) {
+    } catch(ItemNotUpgradableException) {
       $this->flashMessage("Zadanou věc nelze vylepšit.");
-    } catch(ItemMaxLevelReachedException $e) {
+    } catch(ItemMaxLevelReachedException) {
       $this->flashMessage("Zadanou věc už nelze vylepšit.");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nemáš dostatek peněz.");
     }
     $this->redirect("equipment");

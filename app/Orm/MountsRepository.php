@@ -18,26 +18,23 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param User|int $owner
    * @return ICollection|Mount[]
    */
-  public function findByOwner($owner): ICollection {
+  public function findByOwner(User|int $owner): ICollection {
     return $this->findBy(["owner" => $owner]);
   }
 
   /**
-    * @param User|int $owner
     * @return ICollection|Mount[]
     */
-  public function findAutoFed($owner): ICollection {
+  public function findAutoFed(User|int $owner): ICollection {
     return $this->findBy(["owner" => $owner, "autoFeed" => true, ]);
   }
   
   /**
-   * @param MountType|int $type
    * @return ICollection|Mount[]
    */
-  public function findByType($type): ICollection {
+  public function findByType(MountType|int $type): ICollection {
     return $this->findBy(["type" => $type]);
   }
   /**
@@ -60,11 +57,10 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Get mounts of specified user for adventure
-   * 
-   * @param int $user
+   *
    * @return ICollection|Mount[]
    */
-  public function findGoodMounts($user): ICollection {
+  public function findGoodMounts(int $user): ICollection {
     return $this->findBy(["owner->id" => $user, "hp>" => 30]);
   }
 }

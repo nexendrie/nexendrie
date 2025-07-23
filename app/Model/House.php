@@ -6,6 +6,7 @@ namespace Nexendrie\Model;
 use Nexendrie\Orm\House as HouseEntity;
 use Nexendrie\Orm\BeerProduction;
 use Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\UserExpense;
 
 /**
@@ -14,16 +15,12 @@ use Nexendrie\Orm\UserExpense;
  * @author Jakub Konečný
  */
 final class House {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
   protected int $price;
   protected int $criticalCondition;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->price = $sr->settings["fees"]["buyHouse"];
     $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
   }

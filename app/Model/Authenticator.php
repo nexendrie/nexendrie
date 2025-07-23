@@ -17,16 +17,12 @@ use Nette\Security\AuthenticationException;
  * @property-write User $user
  */
 final class Authenticator implements \Nette\Security\Authenticator {
-  protected ORM $orm;
   protected User $user;
-  protected Passwords $passwords;
   protected array $roles;
   
   use \Nette\SmartObject;
   
-  public function __construct(ORM $orm, SettingsRepository $sr, Passwords $passwords) {
-    $this->orm = $orm;
-    $this->passwords = $passwords;
+  public function __construct(private readonly ORM $orm, SettingsRepository $sr, private readonly Passwords $passwords) {
     $this->roles = $sr->settings["roles"];
   }
   

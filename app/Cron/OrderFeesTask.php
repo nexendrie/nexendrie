@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Order;
 use Nexendrie\Orm\OrderFee;
 use Nexendrie\Orm\OrderRank;
@@ -13,10 +14,7 @@ use Nexendrie\Orm\OrderRank;
  * @author Jakub Konečný
  */
 final class OrderFeesTask extends BaseMonthlyCronTask {
-  protected \Nexendrie\Orm\Model $orm;
-  
-  public function __construct(\Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm) {
   }
   
   protected function getFeeRecord(\Nexendrie\Orm\User $user): OrderFee {

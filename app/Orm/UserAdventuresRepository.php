@@ -19,25 +19,19 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository 
   
   
   /**
-   * @param User|int $user
    * @return ICollection|UserAdventure[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   /**
    * Find specified user's active adventure
-   * 
-   * @param int $user User's id
    */
   public function getUserActiveAdventure(int $user): ?UserAdventure {
     return $this->getBy(["user" => $user, "progress<" => UserAdventure::PROGRESS_COMPLETED]);
   }
-  
-  /**
-   * @param User|int $user
-   */
-  public function getLastAdventure($user): ?UserAdventure {
+
+  public function getLastAdventure(User|int $user): ?UserAdventure {
     return $this->findBy(["user" => $user]) // @phpstan-ignore return.type
       ->orderBy("created", ICollection::DESC)
       ->limitBy(1)

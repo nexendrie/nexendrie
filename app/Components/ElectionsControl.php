@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
+use Nexendrie\Model\Elections;
 use Nexendrie\Orm\Election as ElectionEntity;
 use Nexendrie\Orm\ElectionResult as ElectionResultEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -15,15 +17,9 @@ use Nextras\Orm\Collection\ICollection;
  * @property-write \Nexendrie\Orm\Town $town
  */
 final class ElectionsControl extends \Nette\Application\UI\Control {
-  protected \Nexendrie\Model\Elections $model;
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
   private \Nexendrie\Orm\Town $town;
   
-  public function __construct(\Nexendrie\Model\Elections $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
-    $this->model = $model;
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly Elections $model, private readonly ORM $orm, private readonly \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
   }
   

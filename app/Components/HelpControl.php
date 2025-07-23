@@ -28,15 +28,8 @@ use Nexendrie\Orm\UserJob as UserJobEntity;
  * @property BookPagesStorage|BookPage[] $pages
  */
 final class HelpControl extends BookControl {
-  protected ORM $orm;
-  protected Locale $localeModel;
-  protected SettingsRepository $sr;
-  
-  public function __construct(ORM $orm, Locale $localeModel, SettingsRepository $sr) {
+  public function __construct(private readonly ORM $orm, private readonly Locale $localeModel, private readonly SettingsRepository $sr) {
     parent::__construct(":Front:Help", __DIR__ . "/help");
-    $this->orm = $orm;
-    $this->localeModel = $localeModel;
-    $this->sr = $sr;
     $this->pages[] = new BookPage("introduction", "Úvod");
     $this->pages[] = new BookPage("titles", "Tituly");
     $this->pages[] = new BookPage("towns", "Města");

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Bank;
 use Nexendrie\Model\TooHighLoanException;
 
 /**
@@ -12,10 +13,7 @@ use Nexendrie\Model\TooHighLoanException;
  * @author Jakub Konečný
  */
 final class TakeLoanFormFactory {
-  protected \Nexendrie\Model\Bank $model;
-  
-  public function __construct(\Nexendrie\Model\Bank $model) {
-    $this->model = $model;
+  public function __construct(private readonly Bank $model) {
   }
   
   public function create(): Form {

@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Guild;
 use Nexendrie\Model\GuildNameInUseException;
+use Nexendrie\Model\Skills;
 use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
@@ -13,15 +15,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class ManageGuildFormFactory {
-  protected \Nexendrie\Model\Guild $model;
-  protected \Nexendrie\Model\Skills $skillsModel;
-  protected \Nette\Security\User $user;
   private int $id;
   
-  public function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Skills $skillsModel, \Nette\Security\User $user) {
-    $this->model = $model;
-    $this->skillsModel = $skillsModel;
-    $this->user = $user;
+  public function __construct(private readonly Guild $model, private readonly Skills $skillsModel) {
   }
   
   protected function getListOfSkills(): array {

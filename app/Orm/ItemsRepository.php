@@ -39,10 +39,9 @@ final class ItemsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param Shop|int $shop
    * @return Item[]|ICollection
    */
-  public function findByShop($shop): ICollection {
+  public function findByShop(Shop|int $shop): ICollection {
     return $this->findBy(["shop" => $shop]);
   }
 }

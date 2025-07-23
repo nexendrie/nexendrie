@@ -4,11 +4,14 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Model\CannotBuyMoreHousesException;
+use Nexendrie\Model\House;
 use Nexendrie\Model\InsufficientFundsException;
 use Nexendrie\Model\CannotUpgradeHouseException;
 use Nexendrie\Model\CannotRepairHouseException;
 use Nexendrie\Model\CannotUpgradeBreweryException;
 use Nexendrie\Model\CannotProduceBeerException;
+use Nexendrie\Model\Locale;
+use Nexendrie\Model\Profile;
 use Nexendrie\Orm\Group as GroupEntity;
 
 /**
@@ -17,16 +20,10 @@ use Nexendrie\Orm\Group as GroupEntity;
  * @author Jakub Konečný
  */
 final class HousePresenter extends BasePresenter {
-  protected \Nexendrie\Model\House $model;
-  protected \Nexendrie\Model\Profile $profileModel;
-  protected \Nexendrie\Model\Locale $localeModel;
   protected bool $publicCache = false;
   
-  public function __construct(\Nexendrie\Model\House $model, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel) {
+  public function __construct(private readonly House $model, private readonly Profile $profileModel, private readonly Locale $localeModel) {
     parent::__construct();
-    $this->model = $model;
-    $this->profileModel = $profileModel;
-    $this->localeModel = $localeModel;
   }
   
   protected function startup(): void {
@@ -55,10 +52,10 @@ final class HousePresenter extends BasePresenter {
       $this->model->buyHouse();
       $this->flashMessage("Dům zakoupen.");
       $this->redirect("default");
-    } catch(CannotBuyMoreHousesException $e) {
+    } catch(CannotBuyMoreHousesException) {
       $this->flashMessage("Už vlastníš dům.");
       $this->redirect("default");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nemáš dostatek peněz.");
       $this->redirect("Homepage:");
     }
@@ -69,10 +66,10 @@ final class HousePresenter extends BasePresenter {
       $this->model->upgrade();
       $this->flashMessage("Dům vylepšen.");
       $this->redirect("default");
-    } catch(CannotUpgradeHouseException $e) {
+    } catch(CannotUpgradeHouseException) {
       $this->flashMessage("Nemůžeš vylepšit dům.");
       $this->redirect("Homepage:");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("default");
     }
@@ -83,10 +80,10 @@ final class HousePresenter extends BasePresenter {
       $this->model->repair();
       $this->flashMessage("Dům opraven.");
       $this->redirect("default");
-    } catch(CannotRepairHouseException $e) {
+    } catch(CannotRepairHouseException) {
       $this->flashMessage("Nemůžeš opravit dům.");
       $this->redirect("Homepage:");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("default");
     }
@@ -98,10 +95,10 @@ final class HousePresenter extends BasePresenter {
       $message = ($newLevel === 1) ? "Pivovar pořízen." : "Pivovar vylepšen.";
       $this->flashMessage($message);
       $this->redirect("default");
-    } catch(CannotUpgradeBreweryException $e) {
+    } catch(CannotUpgradeBreweryException) {
       $this->flashMessage("Nemůžeš vylepšit pivovar.");
       $this->redirect("Homepage:");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("default");
     }

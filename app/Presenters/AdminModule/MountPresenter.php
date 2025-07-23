@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Forms\AddEditMountFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Mount;
 use Nexendrie\Orm\Mount as MountEntity;
 use Nexendrie\Model\MountNotFoundException;
 
@@ -14,12 +15,10 @@ use Nexendrie\Model\MountNotFoundException;
  * @author Jakub Konečný
  */
 final class MountPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Mount $model;
   private MountEntity $mount;
   
-  public function __construct(\Nexendrie\Model\Mount $model) {
+  public function __construct(private readonly Mount $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function actionNew(): void {
@@ -42,7 +41,7 @@ final class MountPresenter extends BasePresenter {
     $this->requiresPermissions("content", "edit");
     try {
       $this->mount = $this->model->get($id);
-    } catch(MountNotFoundException $e) {
+    } catch(MountNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

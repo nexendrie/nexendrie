@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\User as UserEntity;
 use Nexendrie\Orm\AdventureNpc;
 use Nexendrie\Orm\Mount as MountEntity;
 use Nexendrie\Orm\ItemSet as ItemSetEntity;
-use Nexendrie\Orm\Item as ItemEntity;
 use Nexendrie\Orm\Skill as SkillEntity;
 use HeroesofAbenez\Combat\Character;
 use HeroesofAbenez\Combat\Equipment;
@@ -19,14 +19,9 @@ use HeroesofAbenez\Combat\ConstantInitiativeFormulaParser;
  * @author Jakub Konečný
  */
 final class CombatHelper {
-  protected Inventory $inventoryModel;
-  protected \Nexendrie\Orm\Model $orm;
-  
   use \Nette\SmartObject;
   
-  public function __construct(Inventory $inventoryModel, \Nexendrie\Orm\Model $orm) {
-    $this->inventoryModel = $inventoryModel;
-    $this->orm = $orm;
+  public function __construct(private readonly Inventory $inventoryModel, private readonly ORM $orm) {
   }
   
   /**

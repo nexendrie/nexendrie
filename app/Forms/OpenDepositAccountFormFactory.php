@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Bank;
 use Nextras\FormComponents\Controls\DateControl;
 
 /**
@@ -12,10 +13,7 @@ use Nextras\FormComponents\Controls\DateControl;
  * @author Jakub Konečný
  */
 final class OpenDepositAccountFormFactory {
-  protected \Nexendrie\Model\Bank $model;
-  
-  public function __construct(\Nexendrie\Model\Bank $model) {
-    $this->model = $model;
+  public function __construct(private readonly Bank $model) {
   }
   
   public function create(): Form {

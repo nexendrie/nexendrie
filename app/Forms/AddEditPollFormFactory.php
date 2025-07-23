@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Polls;
 
 /**
  * Factory for form AddEditPoll
@@ -11,11 +12,9 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditPollFormFactory {
-  protected \Nexendrie\Model\Polls $model;
   protected ?\Nexendrie\Orm\Poll $poll;
 
-  public function __construct(\Nexendrie\Model\Polls $model, \Nette\Security\User $user) {
-    $this->model = $model;
+  public function __construct(private readonly Polls $model, \Nette\Security\User $user) {
     $this->model->user = $user;
   }
 

@@ -16,17 +16,11 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Rss {
-  protected Article $articleModel;
-  protected LinkGenerator $linkGenerator;
-  protected Generator $generator;
   protected string $versionSuffix = "";
   
   use \Nette\SmartObject;
   
-  public function __construct(Article $articleModel, LinkGenerator $linkGenerator, Generator $generator, SettingsRepository $sr) {
-    $this->articleModel = $articleModel;
-    $this->linkGenerator = $linkGenerator;
-    $this->generator = $generator;
+  public function __construct(private readonly Article $articleModel, private readonly LinkGenerator $linkGenerator, private readonly Generator $generator, SettingsRepository $sr) {
     $this->versionSuffix = $sr->settings["site"]["versionSuffix"];
   }
 

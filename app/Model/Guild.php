@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Guild as GuildEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\User as UserEntity;
 use Nexendrie\Orm\Group as GroupEntity;
 use Nextras\Orm\Collection\ICollection;
@@ -15,15 +16,11 @@ use Nextras\Orm\Collection\ICollection;
  * @property-read int $maxRank
  */
 final class Guild {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
   protected int $foundingPrice;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->foundingPrice = $sr->settings["fees"]["foundGuild"];
   }
   
@@ -46,10 +43,7 @@ final class Guild {
    */
   public function getGuild(int $id): GuildEntity {
     $guild = $this->orm->guilds->getById($id);
-    if($guild === null) {
-      throw new GuildNotFoundException();
-    }
-    return $guild;
+    return $guild ?? throw new GuildNotFoundException();
   }
   
   /**
@@ -86,10 +80,7 @@ final class Guild {
    */
   public function getUserGuild(int $uid = null): ?GuildEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
-    if($user === null) {
-      return null;
-    }
-    return $user->guild;
+    return $user?->guild;
   }
   
   /**

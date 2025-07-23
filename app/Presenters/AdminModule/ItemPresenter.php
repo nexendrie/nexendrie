@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Forms\AddEditItemFormFactory;
+use Nexendrie\Model\Market;
 use Nexendrie\Orm\Item as ItemEntity;
 use Nexendrie\Model\ItemNotFoundException;
 
@@ -14,12 +15,10 @@ use Nexendrie\Model\ItemNotFoundException;
  * @author Jakub Konečný
  */
 final class ItemPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Market $model;
   private ItemEntity $item;
   
-  public function __construct(\Nexendrie\Model\Market $model) {
+  public function __construct(private readonly Market $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   /**
@@ -29,7 +28,7 @@ final class ItemPresenter extends BasePresenter {
     $this->requiresPermissions("content", "edit");
     try {
       $this->item = $this->model->getItem($id);
-    } catch(ItemNotFoundException $e) {
+    } catch(ItemNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

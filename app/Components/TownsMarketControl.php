@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
+use Nexendrie\Model\Town;
 use Nexendrie\Model\TownNotFoundException;
 use Nexendrie\Model\TownNotOnSaleException;
 use Nexendrie\Model\CannotBuyOwnTownException;
@@ -16,12 +17,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class TownsMarketControl extends \Nette\Application\UI\Control {
-  protected \Nexendrie\Model\Town $model;
-  protected \Nette\Security\User $user;
-  
-  public function __construct(\Nexendrie\Model\Town $model, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
-    $this->model = $model;
-    $this->user = $user;
+  public function __construct(private readonly Town $model, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
   }
   

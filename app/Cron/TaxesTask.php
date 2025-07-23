@@ -3,16 +3,15 @@ declare(strict_types=1);
 
 namespace Nexendrie\Cron;
 
+use Nexendrie\Model\Taxes;
+
 /**
  * TaxesTask
  *
  * @author Jakub Konečný
  */
 final class TaxesTask extends BaseMonthlyCronTask {
-  protected \Nexendrie\Model\Taxes $taxesModel;
-  
-  public function __construct(\Nexendrie\Model\Taxes $taxesModel) {
-    $this->taxesModel = $taxesModel;
+  public function __construct(private readonly Taxes $taxesModel) {
   }
   
   /**

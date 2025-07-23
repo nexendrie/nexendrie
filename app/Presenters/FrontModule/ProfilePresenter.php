@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Model\Achievements;
+use Nexendrie\Model\Castle;
 use Nexendrie\Model\Job;
+use Nexendrie\Model\Marriage;
 use Nexendrie\Model\NotWorkingException;
+use Nexendrie\Model\Profile;
 use Nexendrie\Model\UserNotFoundException;
 use Nette\Application\BadRequestException;
 
@@ -14,22 +18,12 @@ use Nette\Application\BadRequestException;
  * @author Jakub Konečný
  */
 final class ProfilePresenter extends BasePresenter {
-  protected \Nexendrie\Model\Profile $model;
-  protected \Nexendrie\Model\Castle $castleModel;
-  protected \Nexendrie\Model\Marriage $marriageModel;
-  protected \Nexendrie\Model\Achievements $achievementsModel;
-  private Job $jobModel;
   protected bool $cachingEnabled = false;
   /** @var string[] */
   private array $cacheableActions = ["articles", "skills", "comments", ];
 
-  public function __construct(\Nexendrie\Model\Profile $model, \Nexendrie\Model\Castle $castleModel, \Nexendrie\Model\Marriage $marriageModel, \Nexendrie\Model\Achievements $achievementsModel, Job $jobModel) {
+  public function __construct(private readonly Profile $model, private readonly Marriage $marriageModel, private readonly Achievements $achievementsModel, private readonly Job $jobModel) {
     parent::__construct();
-    $this->model = $model;
-    $this->castleModel = $castleModel;
-    $this->marriageModel = $marriageModel;
-    $this->achievementsModel = $achievementsModel;
-    $this->jobModel = $jobModel;
   }
 
   protected function startup(): void {
@@ -51,7 +45,7 @@ final class ProfilePresenter extends BasePresenter {
       $this->template->fiance = $this->model->getFiance($user->id);
       try {
         $job = $this->jobModel->getCurrentJob($user->id);
-      } catch (NotWorkingException $e) {
+      } catch (NotWorkingException) {
         $job = null;
       }
       $this->template->job = $job;
@@ -69,7 +63,7 @@ final class ProfilePresenter extends BasePresenter {
     try {
       $this->template->articles = $this->model->getArticles($name);
       $this->template->name = $name;
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       throw new BadRequestException();
     }
   }
@@ -81,7 +75,7 @@ final class ProfilePresenter extends BasePresenter {
     try {
       $this->template->skills = $this->model->getSkills($name);
       $this->template->name = $name;
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       throw new BadRequestException();
     }
   }
@@ -93,8 +87,8 @@ final class ProfilePresenter extends BasePresenter {
     try {
       $this->template->userEntity = $this->model->view($name);
       $this->template->name = $name;
-      $this->template->achievements = $this->achievementsModel->getAllAchievements();
-    } catch(UserNotFoundException $e) {
+      $this->template->achievements = $this->achievementsModel->achievements;
+    } catch(UserNotFoundException) {
       throw new BadRequestException();
     }
   }
@@ -106,7 +100,7 @@ final class ProfilePresenter extends BasePresenter {
     try {
       $this->template->comments = $this->model->getComments($name);
       $this->template->name = $name;
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       throw new BadRequestException();
     }
   }

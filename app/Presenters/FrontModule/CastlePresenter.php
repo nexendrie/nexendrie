@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Model\Castle;
 use Nexendrie\Model\CastleNotFoundException;
 use Nexendrie\Forms\BuildCastleFormFactory;
 use Nexendrie\Forms\ManageCastleFormFactory;
@@ -10,6 +11,8 @@ use Nette\Application\UI\Form;
 use Nexendrie\Model\CannotUpgradeCastleException;
 use Nexendrie\Model\CannotRepairCastleException;
 use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\Profile;
+use Nexendrie\Model\UserManager;
 use Nexendrie\Orm\Group as GroupEntity;
 
 /**
@@ -18,17 +21,8 @@ use Nexendrie\Orm\Group as GroupEntity;
  * @author Jakub Konečný
  */
 final class CastlePresenter extends BasePresenter {
-  protected \Nexendrie\Model\Castle $model;
-  protected \Nexendrie\Model\Locale $localeModel;
-  protected \Nexendrie\Model\UserManager $userManager;
-  protected \Nexendrie\Model\Profile $profileModel;
-  
-  public function __construct(\Nexendrie\Model\Castle $model, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel) {
+  public function __construct(private readonly Castle $model, private readonly UserManager $userManager, private readonly Profile $profileModel) {
     parent::__construct();
-    $this->model = $model;
-    $this->localeModel = $localeModel;
-    $this->userManager = $userManager;
-    $this->profileModel = $profileModel;
   }
 
   protected function startup(): void {
@@ -61,7 +55,7 @@ final class CastlePresenter extends BasePresenter {
   public function renderDetail(int $id): void {
     try {
       $this->template->castle = $this->model->getCastle($id);
-    } catch(CastleNotFoundException $e) {
+    } catch(CastleNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -92,10 +86,10 @@ final class CastlePresenter extends BasePresenter {
       $this->model->upgrade();
       $this->flashMessage("Hrad vylepšen.");
       $this->redirect("default");
-    } catch(CannotUpgradeCastleException $e) {
+    } catch(CannotUpgradeCastleException) {
       $this->flashMessage("Nemůžeš vylepšit hrad.");
       $this->redirect("Homepage:");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("manage");
     }
@@ -106,10 +100,10 @@ final class CastlePresenter extends BasePresenter {
       $this->model->repair();
       $this->flashMessage("Hrad opraven.");
       $this->redirect("default");
-    } catch(CannotRepairCastleException $e) {
+    } catch(CannotRepairCastleException) {
       $this->flashMessage("Nemůžeš opravit hrad.");
       $this->redirect("Homepage:");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("manage");
     }

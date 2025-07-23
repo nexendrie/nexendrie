@@ -5,8 +5,10 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Model\CannotFoundGuildException;
+use Nexendrie\Model\Guild;
 use Nexendrie\Model\GuildNameInUseException;
 use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\Skills;
 
 /**
  * Factory for form FoundGuild
@@ -14,12 +16,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * @author Jakub Konečný
  */
 final class FoundGuildFormFactory {
-  protected \Nexendrie\Model\Guild $model;
-  protected \Nexendrie\Model\Skills $skillsModel;
-  
-  public function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Skills $skillsModel) {
-    $this->model = $model;
-    $this->skillsModel = $skillsModel;
+  public function __construct(private readonly Guild $model, private readonly Skills $skillsModel) {
   }
   
   protected function getListOfSkills(): array {

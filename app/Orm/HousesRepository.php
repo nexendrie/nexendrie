@@ -16,11 +16,8 @@ final class HousesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [House::class];
   }
-  
-  /**
-   * @param User|int $owner
-   */
-  public function getByOwner($owner): ?House {
+
+  public function getByOwner(User|int $owner): ?House {
     return $this->getBy(["owner" => $owner]);
   }
   

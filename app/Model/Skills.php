@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Skill as SkillEntity;
 use Nexendrie\Orm\UserSkill as UserSkillEntity;
 use Nextras\Orm\Collection\ICollection;
@@ -13,16 +14,9 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Skills {
-  protected Events $eventsModel;
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  
   use \Nette\SmartObject;
   
-  public function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->eventsModel = $eventsModel;
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly Events $eventsModel, private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   
   /**
@@ -72,10 +66,7 @@ final class Skills {
    */
   public function get(int $id): SkillEntity {
     $skill = $this->orm->skills->getById($id);
-    if($skill === null) {
-      throw new SkillNotFoundException();
-    }
-    return $skill;
+    return $skill ?? throw new SkillNotFoundException();
   }
   
   /**

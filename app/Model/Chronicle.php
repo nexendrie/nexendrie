@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Collection\ICollection;
 use Nexendrie\Orm\Article as ArticleEntity;
 use Nexendrie\Orm\Punishment as PunishmentEntity;
@@ -13,12 +14,9 @@ use Nexendrie\Orm\Punishment as PunishmentEntity;
  * @author Jakub Konečný
  */
 final class Chronicle {
-  protected \Nexendrie\Orm\Model $orm;
-  
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm) {
   }
   
   /**

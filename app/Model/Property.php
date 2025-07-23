@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\UserExpense;
 
 /**
@@ -12,22 +13,9 @@ use Nexendrie\Orm\UserExpense;
  * @author Jakub Konečný
  */
 final class Property {
-  protected Job $jobModel;
-  protected Bank $bankModel;
-  protected Taxes $taxesModel;
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  protected SettingsRepository $sr;
-  
   use \Nette\SmartObject;
   
-  public function __construct(Job $jobModel, Bank $bankModel, Taxes $taxesModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
-    $this->jobModel = $jobModel;
-    $this->bankModel = $bankModel;
-    $this->taxesModel = $taxesModel;
-    $this->orm = $orm;
-    $this->user = $user;
-    $this->sr = $sr;
+  public function __construct(private readonly Taxes $taxesModel, private readonly ORM $orm, private readonly \Nette\Security\User $user, private readonly SettingsRepository $sr) {
   }
   
   protected function calculateBeerProduction(): int {

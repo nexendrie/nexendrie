@@ -116,7 +116,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     $this->template->siteName = trim("Nexendrie " . $versionSuffix);
   }
 
-  public function sendResponse(\Nette\Application\Response $response): void {
+  public function sendResponse(\Nette\Application\Response $response): never {
     if(!$response instanceof RedirectResponse && $this->getHttpResponse()->getCode() === \Nette\Http\IResponse::S200_OK) {
       $this->lastModified();
     }

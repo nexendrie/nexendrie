@@ -12,22 +12,11 @@ use Nexendrie\Achievements\IAchievement;
  */
 final class Achievements {
   use \Nette\SmartObject;
-  
-  /** @var IAchievement[] */
-  protected array $achievements = [];
 
   /**
    * @param IAchievement[] $achievements
    */
-  public function __construct(array $achievements) {
-    $this->achievements = $achievements;
-  }
-  
-  /**
-   * @return IAchievement[]
-   */
-  public function getAllAchievements(): array {
-    return $this->achievements;
+  public function __construct(public readonly array $achievements) {
   }
 }
 ?>

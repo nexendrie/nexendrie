@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Punishment;
 use Nexendrie\Orm\User;
 
@@ -13,11 +14,9 @@ use Nexendrie\Orm\User;
  * @author Jakub Konečný
  */
 final class BanUserFormFactory {
-  protected \Nexendrie\Orm\Model $orm;
   protected int $userId;
   
-  public function __construct(\Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm) {
   }
   
   public function create(int $userId): Form {

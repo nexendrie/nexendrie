@@ -18,10 +18,9 @@ final class ApiTokensRepository extends \Nextras\Orm\Repository\Repository {
   }
 
   /**
-   * @param User|int $user
    * @return ICollection|ApiToken[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user]);
   }
 
@@ -30,10 +29,9 @@ final class ApiTokensRepository extends \Nextras\Orm\Repository\Repository {
   }
 
   /**
-   * @param User|int $user
    * @return ICollection|ApiToken[]
    */
-  public function findActiveForUser($user): ICollection {
+  public function findActiveForUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user, "expire>=" => time(),]);
   }
 }

@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Model\AlreadyWorkingException;
+use Nexendrie\Model\Job;
 use Nexendrie\Model\JobNotFoundException;
 use Nexendrie\Model\InsufficientLevelForJobException;
+use Nexendrie\Model\Locale;
 use Nexendrie\Model\NotWorkingException;
 use Nexendrie\Model\CannotWorkException;
 use Nexendrie\Model\JobNotFinishedException;
@@ -17,14 +19,10 @@ use Nexendrie\Model\InsufficientSkillLevelForJobException;
  * @author Jakub Konečný
  */
 final class WorkPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Job $model;
-  protected \Nexendrie\Model\Locale $localeModel;
   protected bool $cachingEnabled = false;
   
-  public function __construct(\Nexendrie\Model\Job $model, \Nexendrie\Model\Locale $localeModel) {
+  public function __construct(private readonly Job $model, private readonly Locale $localeModel) {
     parent::__construct();
-    $this->model = $model;
-    $this->localeModel = $localeModel;
   }
   
   protected function startup(): void {
@@ -79,13 +77,13 @@ final class WorkPresenter extends BasePresenter {
     try {
       $this->model->startJob($id);
       $this->flashMessage("Práce zahájena.");
-    } catch(AlreadyWorkingException $e) {
+    } catch(AlreadyWorkingException) {
       $this->flashMessage("Už pracuješ.");
-    } catch(JobNotFoundException $e) {
+    } catch(JobNotFoundException) {
       $this->flashMessage("Práce nenalezena.");
-    } catch(InsufficientLevelForJobException $e) {
+    } catch(InsufficientLevelForJobException) {
       $this->flashMessage("Nemáš dostatečnou úroveň pro tuto práci.");
-    } catch(InsufficientSkillLevelForJobException $e) {
+    } catch(InsufficientSkillLevelForJobException) {
       $this->flashMessage("Neovládáš potřebnou dovednost pro tuto práci.");
     }
     $this->redirect("default");
@@ -100,10 +98,10 @@ final class WorkPresenter extends BasePresenter {
       } else {
         $this->template->extra = false;
       }
-    } catch(NotWorkingException $e) {
+    } catch(NotWorkingException) {
       $this->flashMessage("Právě nevykonáváš žádnou práci.");
       $this->redirect("default");
-    } catch(JobNotFinishedException $e) {
+    } catch(JobNotFinishedException) {
       $this->flashMessage("Práce ještě není hotova.");
       $this->redirect("default");
     }
@@ -113,9 +111,9 @@ final class WorkPresenter extends BasePresenter {
     try {
       $result = $this->model->work();
       $this->flashMessage($result->message);
-    } catch(NotWorkingException $e) {
+    } catch(NotWorkingException) {
       $this->flashMessage("Právě nevykonáváš žádnou práci.");
-    } catch(CannotWorkException $e) {
+    } catch(CannotWorkException) {
       $this->flashMessage("Ještě si nedokončil směnu.");
     }
     $this->redirect("default");

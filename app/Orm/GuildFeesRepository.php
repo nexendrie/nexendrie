@@ -18,12 +18,8 @@ final class GuildFeesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [GuildFee::class];
   }
-  
-  /**
-   * @param User|int $user
-   * @param Guild|int $guild
-   */
-  public function getByUserAndGuild($user, $guild): ?GuildFee {
+
+  public function getByUserAndGuild(User|int $user, Guild|int $guild): ?GuildFee {
     return $this->getBy([
       "user" => $user, "guild" => $guild,
     ]);

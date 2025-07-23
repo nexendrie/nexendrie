@@ -13,6 +13,7 @@ use Eluceo\iCal\Domain\ValueObject\Uri;
 use Nexendrie\Orm\Event;
 use Nette\Caching\Cache;
 use Nexendrie\Orm\EventDummy;
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -21,22 +22,12 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Events implements \Nexendrie\EventCalendar\IEventModel {
-  protected \Nexendrie\Orm\Model $orm;
-  protected Cache $cache;
-  protected \Nette\Security\User $user;
-  protected SettingsRepository $sr;
-  protected \Nette\Application\LinkGenerator $lg;
   /** @var Event[]|ICollection */
   private ICollection $events;
 
   use \Nette\SmartObject;
 
-  public function __construct(\Nexendrie\Orm\Model $orm, Cache $cache, \Nette\Security\User $user, SettingsRepository $sr, \Nette\Application\LinkGenerator $lg) {
-    $this->orm = $orm;
-    $this->cache = $cache;
-    $this->user = $user;
-    $this->sr = $sr;
-    $this->lg = $lg;
+  public function __construct(private readonly ORM $orm, private readonly Cache $cache, private readonly \Nette\Security\User $user, private readonly SettingsRepository $sr, private readonly \Nette\Application\LinkGenerator $lg) {
   }
 
   /**
@@ -55,10 +46,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
    */
   public function getEvent(int $id): Event {
     $event = $this->orm->events->getById($id);
-    if($event === null) {
-      throw new EventNotFoundException();
-    }
-    return $event;
+    return $event ?? throw new EventNotFoundException();
   }
 
   /**

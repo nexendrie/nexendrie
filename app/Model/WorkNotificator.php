@@ -11,20 +11,13 @@ final class WorkNotificator implements INotificator {
   public const TAG_WORK_FINISHED = "workFinished";
   public const TAG_WORK_NEXT_SHIFT = "workNextShift";
 
-  private Job $job;
-  private LinkGenerator $linkGenerator;
-  private SettingsRepository $sr;
-
-  public function __construct(Job $job, LinkGenerator $linkGenerator, SettingsRepository $sr) {
-    $this->job = $job;
-    $this->linkGenerator = $linkGenerator;
-    $this->sr = $sr;
+  public function __construct(private readonly Job $job, private readonly LinkGenerator $linkGenerator, private readonly SettingsRepository $sr) {
   }
 
   public function getNotifications(): array {
     try {
       $currentJob = $this->job->getCurrentJob();
-    } catch (NotWorkingException $e) {
+    } catch (NotWorkingException) {
       return [];
     }
     $notifications = [];

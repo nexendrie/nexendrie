@@ -7,6 +7,7 @@ use Nette\Utils\Arrays;
 use Nexendrie\Model\PollVotingException;
 use Nexendrie\Model\PollNotFoundException;
 use Nexendrie\Model\AccessDeniedException;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Poll as PollEntity;
 use Nexendrie\Orm\PollVote as PollVoteEntity;
 
@@ -18,14 +19,10 @@ use Nexendrie\Orm\PollVote as PollVoteEntity;
  * @property-write int $id
  */
 final class PollControl extends \Nette\Application\UI\Control {
-  protected \Nette\Security\User $user;
-  protected \Nexendrie\Orm\Model $orm;
   protected PollEntity $poll;
   protected int $id;
   
-  public function __construct(\Nette\Security\User $user, \Nexendrie\Orm\Model $orm, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
-    $this->user = $user;
-    $this->orm = $orm;
+  public function __construct(private readonly \Nette\Security\User $user, private readonly ORM $orm, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
   }
   

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
+use Nexendrie\Model\ItemSet;
 use Nexendrie\Model\ItemSetNotFoundException;
 use Nexendrie\Forms\AddEditItemSetFormFactory;
 use Nette\Application\UI\Form;
@@ -14,12 +15,10 @@ use Nexendrie\Orm\ItemSet as ItemSetEntity;
  * @author Jakub Konečný
  */
 final class ItemSetPresenter extends BasePresenter {
-  protected \Nexendrie\Model\ItemSet $model;
   private ItemSetEntity $set;
   
-  public function __construct(\Nexendrie\Model\ItemSet $model) {
+  public function __construct(private readonly ItemSet $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function actionNew(): void {
@@ -42,7 +41,7 @@ final class ItemSetPresenter extends BasePresenter {
     $this->requiresPermissions("content", "edit");
     try {
       $this->set = $this->model->get($id);
-    } catch(ItemSetNotFoundException $e) {
+    } catch(ItemSetNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -65,7 +64,7 @@ final class ItemSetPresenter extends BasePresenter {
       $this->model->delete($id);
       $this->flashMessage("Sada smazána.");
       $this->redirect("Content:ItemSets");
-    } catch(ItemSetNotFoundException $e) {
+    } catch(ItemSetNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

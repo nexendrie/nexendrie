@@ -9,6 +9,7 @@ use Nexendrie\Components\MountsMarketControl;
 use Nexendrie\Components\ITownsMarketControlFactory;
 use Nexendrie\Components\ShopControl;
 use Nexendrie\Components\TownsMarketControl;
+use Nexendrie\Model\Market;
 
 /**
  * Presenter Market
@@ -16,12 +17,10 @@ use Nexendrie\Components\TownsMarketControl;
  * @author Jakub Konečný
  */
 final class MarketPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Market $model;
   protected bool $cachingEnabled = false;
   
-  public function __construct(\Nexendrie\Model\Market $model) {
+  public function __construct(private readonly Market $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   protected function startup(): void {

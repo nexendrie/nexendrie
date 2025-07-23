@@ -13,11 +13,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditMountFormFactory {
-  protected \Nexendrie\Model\Mount $model;
   protected ?Mount $mount;
   
-  public function __construct(\Nexendrie\Model\Mount $model) {
-    $this->model = $model;
+  public function __construct(private readonly \Nexendrie\Model\Mount $model) {
   }
   
   /**

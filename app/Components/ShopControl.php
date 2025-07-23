@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
+use Nexendrie\Model\Events;
+use Nexendrie\Model\Market;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Shop as ShopEntity;
 use Nexendrie\Model\ShopNotFoundException;
 use Nexendrie\Model\ItemNotFoundException;
@@ -18,18 +21,10 @@ use Nexendrie\Model\InsufficientFundsException;
  * @property-write int $id
  */
 final class ShopControl extends \Nette\Application\UI\Control {
-  protected \Nexendrie\Model\Market $model;
-  protected \Nexendrie\Model\Events $eventsModel;
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
   protected ShopEntity $shop;
   protected int $id;
   
-  public function __construct(\Nexendrie\Model\Market $model, \Nexendrie\Model\Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->model = $model;
-    $this->eventsModel = $eventsModel;
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly Market $model, private readonly Events $eventsModel, private readonly ORM $orm) {
   }
   
   /**

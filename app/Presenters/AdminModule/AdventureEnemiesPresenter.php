@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
+use Nexendrie\Model\Adventure;
 use Nexendrie\Model\AdventureNotFoundException;
 use Nexendrie\Orm\Adventure as AdventureEntity;
 use Nexendrie\Forms\AddEditAdventureEnemyFormFactory;
@@ -17,13 +18,11 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AdventureEnemiesPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Adventure $model;
   private AdventureEntity $adventure;
   private AdventureNpcEntity $npc;
   
-  public function __construct(\Nexendrie\Model\Adventure $model) {
+  public function __construct(private readonly Adventure $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   /**

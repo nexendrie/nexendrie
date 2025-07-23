@@ -3,23 +3,19 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Model as ORM;
+
 /**
  * Taxes Model
  *
  * @author Jakub Konečný
  */
 final class Taxes {
-  protected \Nexendrie\Orm\Model $orm;
-  protected Job $jobModel;
-  protected Adventure $adventureModel;
   protected int $taxRate;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, Job $jobModel, Adventure $adventureModel, SettingsRepository $sr) {
-    $this->orm = $orm;
-    $this->jobModel = $jobModel;
-    $this->adventureModel = $adventureModel;
+  public function __construct(private readonly ORM $orm, private readonly Job $jobModel, private readonly Adventure $adventureModel, SettingsRepository $sr) {
     $this->taxRate = $sr->settings["fees"]["incomeTax"];
   }
   

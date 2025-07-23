@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Monastery as MonasteryEntity;
 use Nexendrie\Orm\MonasteryDonation;
 use Nexendrie\Orm\Group as GroupEntity;
@@ -16,22 +17,12 @@ use Nextras\Orm\Collection\ICollection;
  * 
  */
 final class Monastery {
-  protected Events $eventsModel;
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  protected Guild $guildModel;
-  protected Order $orderModel;
   protected int $buildingPrice;
   protected int $criticalCondition;
   
   use \Nette\SmartObject;
   
-  public function __construct(Events $eventsModel, Guild $guildModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
-    $this->eventsModel = $eventsModel;
-    $this->guildModel = $guildModel;
-    $this->orderModel = $orderModel;
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly Events $eventsModel, private readonly Guild $guildModel, private readonly Order $orderModel, private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->buildingPrice = $sr->settings["fees"]["buildMonastery"];
     $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
   }
@@ -54,10 +45,7 @@ final class Monastery {
    */
   public function get(int $id): MonasteryEntity {
     $monastery = $this->orm->monasteries->getById($id);
-    if($monastery === null) {
-      throw new MonasteryNotFoundException();
-    }
-    return $monastery;
+    return $monastery ?? throw new MonasteryNotFoundException();
   }
   
   /**

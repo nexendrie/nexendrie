@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\User as UserEntity;
 use Nextras\Orm\Collection\ICollection;
 
@@ -12,12 +13,9 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Elections {
-  protected \Nexendrie\Orm\Model $orm;
-  
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm) {
   }
   
   /**

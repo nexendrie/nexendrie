@@ -18,10 +18,9 @@ final class LoansRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param User|int $user
    * @return ICollection|Loan[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   

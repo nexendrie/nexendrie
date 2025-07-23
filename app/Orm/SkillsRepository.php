@@ -18,10 +18,9 @@ final class SkillsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param string $type
    * @return ICollection|Skill[]
    */
-  public function findByType($type): ICollection {
+  public function findByType(string $type): ICollection {
     return $this->findBy(["type" => $type]);
   }
 }

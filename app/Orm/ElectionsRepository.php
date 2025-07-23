@@ -18,18 +18,16 @@ final class ElectionsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param Town|int $town
    * @return ICollection|Election[]
    */
-  public function findByTown($town): ICollection {
+  public function findByTown(Town|int $town): ICollection {
     return $this->findBy(["town" => $town]);
   }
   
   /**
-   * @param Town|int $town
    * @return ICollection|Election[]
    */
-  public function findVotedInMonth($town, int $year, int $month): ICollection {
+  public function findVotedInMonth(Town|int $town, int $year, int $month): ICollection {
     $startOfMonthTS = (int) mktime(0, 0, 0, $month, 1, $year);
     $date = new \DateTime();
     $date->setTimestamp($startOfMonthTS);

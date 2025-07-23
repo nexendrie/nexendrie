@@ -6,6 +6,7 @@ namespace Nexendrie\Presenters\AdminModule;
 use Nexendrie\Forms\EditUserFormFactory;
 use Nexendrie\Forms\BanUserFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\UserManager;
 use Nexendrie\Model\UserNotFoundException;
 
 /**
@@ -14,13 +15,8 @@ use Nexendrie\Model\UserNotFoundException;
  * @author Jakub Konečný
  */
 final class UserPresenter extends BasePresenter {
-  protected \Nexendrie\Model\UserManager $model;
-  protected \Nexendrie\Model\Group $groupModel;
-  
-  public function __construct(\Nexendrie\Model\UserManager $model, \Nexendrie\Model\Group $groupModel) {
+  public function __construct(private readonly UserManager $model) {
     parent::__construct();
-    $this->model = $model;
-    $this->groupModel = $groupModel;
   }
   
   public function renderDefault(): void {
@@ -35,7 +31,7 @@ final class UserPresenter extends BasePresenter {
     $this->requiresPermissions("user", "edit");
     try {
       $this->model->get($id);
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

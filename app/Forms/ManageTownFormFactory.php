@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Town;
 use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
@@ -12,11 +13,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class ManageTownFormFactory {
-  protected \Nexendrie\Model\Town $model;
   private int $id;
   
-  public function __construct(\Nexendrie\Model\Town $model) {
-    $this->model = $model;
+  public function __construct(private readonly Town $model) {
   }
   
   public function create(int $townId): Form {

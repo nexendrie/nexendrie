@@ -28,15 +28,8 @@ final class AuthorizatorFactory {
   public const ORDER_RESOURCE_NAME = "order";
   /** @internal */
   public const ORGANIZATION_PRIVILEGES = ["manage", "upgrade", "promote", "demote", "kick", ];
-
-  protected Cache $cache;
-  protected ORM $orm;
-  protected SettingsRepository $sr;
   
-  public function __construct(Cache $cache, ORM $orm, SettingsRepository $sr) {
-    $this->cache = $cache;
-    $this->orm = $orm;
-    $this->sr = $sr;
+  public function __construct(private readonly Cache $cache, private readonly ORM $orm, private readonly SettingsRepository $sr) {
   }
   
   /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Mount;
 use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
@@ -12,11 +13,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class ManageMountFormFactory {
-  protected \Nexendrie\Model\Mount $model;
   private int $id;
   
-  public function __construct(\Nexendrie\Model\Mount $model) {
-    $this->model = $model;
+  public function __construct(private readonly Mount $model) {
   }
   
   public function create(int $mountId): Form {

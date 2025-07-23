@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Model\EventNotFoundException;
+use Nexendrie\Model\Events;
 
 /**
  * Presenter Event
@@ -11,11 +12,8 @@ use Nexendrie\Model\EventNotFoundException;
  * @author Jakub Konečný
  */
 final class EventPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Events $model;
-  
-  public function __construct(\Nexendrie\Model\Events $model) {
+  public function __construct(private readonly Events $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   /**
@@ -32,7 +30,7 @@ final class EventPresenter extends BasePresenter {
         $status = "future";
       }
       $this->template->status = $status;
-    } catch(EventNotFoundException $e) {
+    } catch(EventNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

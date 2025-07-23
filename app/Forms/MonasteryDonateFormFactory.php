@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Monastery;
 use Nexendrie\Model\NotInMonasteryException;
 use Nexendrie\Model\InsufficientFundsException;
 
@@ -13,10 +14,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * @author Jakub Konečný
  */
 final class MonasteryDonateFormFactory {
-  protected \Nexendrie\Model\Monastery $model;
-  
-  public function __construct(\Nexendrie\Model\Monastery $model) {
-    $this->model = $model;
+  public function __construct(private readonly Monastery $model) {
   }
   
   public function create(): Form {
@@ -33,9 +31,9 @@ final class MonasteryDonateFormFactory {
   public function process(Form $form, array $values): void {
     try {
       $this->model->donate($values["amount"]);
-    } catch(NotInMonasteryException $e) {
+    } catch(NotInMonasteryException) {
       $form->addError("Nejsi v klášteře.");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $form->addError("Nemáš dostatek peněz.");
     }
   }

@@ -9,15 +9,11 @@ namespace Nexendrie\Components;
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
-class SharerControl extends \Nette\Application\UI\Control {
-  /** @var ISharerLink[] */
-  private array $links;
-
+final class SharerControl extends \Nette\Application\UI\Control {
   /**
    * @param ISharerLink[] $links
    */
-  public function __construct(array $links) {
-    $this->links = $links;
+  public function __construct(private readonly array $links) {
   }
 
   public function render(string $url, string $contentType = ""): void {

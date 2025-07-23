@@ -5,6 +5,7 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Article as ArticleEntity;
 use Nexendrie\Orm\Comment as CommentEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -13,15 +14,11 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Article {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
   protected int $itemsPerPage;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->itemsPerPage = (int) $sr->settings["pagination"]["articles"];
   }
   
@@ -54,7 +51,7 @@ final class Article {
    *
    * @return ArticleEntity[]|ICollection
    */
-  public function category(string $name, \Nette\Utils\Paginator $paginator = null): ICollection {
+  public function category(string $name, ?\Nette\Utils\Paginator $paginator = null): ICollection {
     $articles = $this->orm->articles->findByCategory($name);
     if($paginator !== null) {
       $paginator->itemsPerPage = $this->itemsPerPage;
@@ -71,10 +68,7 @@ final class Article {
    */
   public function view(int $id): ArticleEntity {
     $article = $this->orm->articles->getById($id);
-    if($article === null) {
-      throw new ArticleNotFoundException();
-    }
-    return $article;
+    return $article ?? throw new ArticleNotFoundException();
   }
   
   /**

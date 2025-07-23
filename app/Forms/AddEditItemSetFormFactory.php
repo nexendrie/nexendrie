@@ -5,6 +5,7 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Orm\ItemSet;
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Entity\ToArrayConverter;
 
 /**
@@ -13,13 +14,9 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditItemSetFormFactory {
-  protected \Nexendrie\Model\ItemSet $model;
-  protected \Nexendrie\Orm\Model $orm;
   protected ?ItemSet $set;
 
-  public function __construct(\Nexendrie\Model\ItemSet $model, \Nexendrie\Orm\Model $orm) {
-    $this->model = $model;
-    $this->orm = $orm;
+  public function __construct(private readonly \Nexendrie\Model\ItemSet $model, private readonly ORM $orm) {
   }
 
   protected function getWeapons(): array {

@@ -7,6 +7,7 @@ use Nette\Application\UI\Form;
 use Nexendrie\Forms\NewMessageFormFactory;
 use Nexendrie\Model\MessageNotFoundException;
 use Nexendrie\Model\AccessDeniedException;
+use Nexendrie\Model\Messenger;
 
 /**
  * Presenter Messages
@@ -14,12 +15,10 @@ use Nexendrie\Model\AccessDeniedException;
  * @author Jakub Konečný
  */
 final class MessagesPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Messenger $model;
   protected bool $publicCache = false;
   
-  public function __construct(\Nexendrie\Model\Messenger $model) {
+  public function __construct(private readonly Messenger $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   protected function startup(): void {
@@ -41,9 +40,9 @@ final class MessagesPresenter extends BasePresenter {
   public function renderView(int $id): void {
     try {
       $this->template->message = $this->model->show($id);
-    } catch(AccessDeniedException $e) {
+    } catch(AccessDeniedException) {
       $this->forward("cannotshow");
-    } catch(MessageNotFoundException $e) {
+    } catch(MessageNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

@@ -7,6 +7,7 @@ use Nexendrie\Chat\GuildChatControl;
 use Nexendrie\Chat\IGuildChatControlFactory;
 use Nexendrie\Forms\FoundGuildFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Guild;
 use Nexendrie\Model\GuildNotFoundException;
 use Nexendrie\Model\CannotLeaveGuildException;
 use Nexendrie\Model\CannotJoinGuildException;
@@ -14,6 +15,7 @@ use Nexendrie\Forms\ManageGuildFormFactory;
 use Nexendrie\Model\CannotUpgradeGuildException;
 use Nexendrie\Model\InsufficientFundsException;
 use Nexendrie\Model\AuthenticationNeededException;
+use Nexendrie\Model\Locale;
 use Nexendrie\Model\MissingPermissionsException;
 use Nexendrie\Model\UserNotFoundException;
 use Nexendrie\Model\UserNotInYourGuildException;
@@ -27,15 +29,8 @@ use Nexendrie\Model\CannotKickMemberException;
  * @author Jakub Konečný
  */
 final class GuildPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Guild $model;
-  protected \Nexendrie\Model\Locale $localeModel;
-  private IGuildChatControlFactory $chatFactory;
-  
-  public function __construct(\Nexendrie\Model\Guild $model, \Nexendrie\Model\Locale $localeModel, IGuildChatControlFactory $chatFactory) {
+  public function __construct(private readonly Guild $model, private readonly Locale $localeModel, private readonly IGuildChatControlFactory $chatFactory) {
     parent::__construct();
-    $this->model = $model;
-    $this->localeModel = $localeModel;
-    $this->chatFactory = $chatFactory;
   }
   
   protected function startup(): void {
@@ -72,7 +67,7 @@ final class GuildPresenter extends BasePresenter {
   public function renderDetail(int $id): void {
     try {
       $this->template->guild = $this->model->getGuild($id);
-    } catch(GuildNotFoundException $e) {
+    } catch(GuildNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -103,10 +98,10 @@ final class GuildPresenter extends BasePresenter {
       $message = $this->localeModel->genderMessage("Vstoupil(a) jsi do cechu.");
       $this->flashMessage($message);
       $this->redirect("default");
-    } catch(CannotJoinGuildException $e) {
+    } catch(CannotJoinGuildException) {
       $this->flashMessage("Nemůžeš vstoupit do cechu.");
       $this->redirect("Homepage:");
-    } catch(GuildNotFoundException $e) {
+    } catch(GuildNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -117,7 +112,7 @@ final class GuildPresenter extends BasePresenter {
       $message = $this->localeModel->genderMessage("Opustil(a) jsi cechu.");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
-    } catch(CannotLeaveGuildException $e) {
+    } catch(CannotLeaveGuildException) {
       $this->flashMessage("Nemůžeš opustit cech.");
       $this->redirect("Homepage:");
     }
@@ -147,10 +142,10 @@ final class GuildPresenter extends BasePresenter {
       $this->model->upgrade();
       $this->flashMessage("Cech vylepšen.");
       $this->redirect("manage");
-    } catch(CannotUpgradeGuildException $e) {
+    } catch(CannotUpgradeGuildException) {
       $this->flashMessage("Nemůžeš vylepšit cech.");
       $this->redirect("Homepage:");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("manage");
     }
@@ -172,19 +167,19 @@ final class GuildPresenter extends BasePresenter {
       $this->model->promote($user);
       $this->flashMessage("Povýšen(a)");
       $this->redirect("members");
-    } catch(AuthenticationNeededException $e) {
+    } catch(AuthenticationNeededException) {
       $this->flashMessage("K této akci musíš být přihlášený.");
       $this->redirect("User:login");
-    } catch(MissingPermissionsException $e) {
+    } catch(MissingPermissionsException) {
       $this->flashMessage("K této akci nemáš práva.");
       $this->redirect("Homepage:");
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       $this->flashMessage("Uživatel nenalezen.");
       $this->redirect("Homepage:");
-    } catch(UserNotInYourGuildException $e) {
+    } catch(UserNotInYourGuildException) {
       $this->flashMessage("Uživatel není ve tvém cechu.");
       $this->redirect("Homepage:");
-    } catch(CannotPromoteMemberException $e) {
+    } catch(CannotPromoteMemberException) {
       $this->flashMessage("Uživatel nemůže být povýšen.");
       $this->redirect("members");
     }
@@ -195,19 +190,19 @@ final class GuildPresenter extends BasePresenter {
       $this->model->demote($user);
       $this->flashMessage("Degradován(a)");
       $this->redirect("members");
-    } catch(AuthenticationNeededException $e) {
+    } catch(AuthenticationNeededException) {
       $this->flashMessage("K této akci musíš být přihlášený.");
       $this->redirect("User:login");
-    } catch(MissingPermissionsException $e) {
+    } catch(MissingPermissionsException) {
       $this->flashMessage("K této akci nemáš práva.");
       $this->redirect("Homepage:");
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       $this->flashMessage("Uživatel nenalezen.");
       $this->redirect("Homepage:");
-    } catch(UserNotInYourGuildException $e) {
+    } catch(UserNotInYourGuildException) {
       $this->flashMessage("Uživatel není ve tvém cechu.");
       $this->redirect("Homepage:");
-    } catch(CannotDemoteMemberException $e) {
+    } catch(CannotDemoteMemberException) {
       $this->flashMessage("Uživatel nemůže být degradován.");
       $this->redirect("members");
     }
@@ -218,19 +213,19 @@ final class GuildPresenter extends BasePresenter {
       $this->model->kick($user);
       $this->flashMessage("Vyloučen(a)");
       $this->redirect("members");
-    } catch(AuthenticationNeededException $e) {
+    } catch(AuthenticationNeededException) {
       $this->flashMessage("K této akci musíš být přihlášený.");
       $this->redirect("User:login");
-    } catch(MissingPermissionsException $e) {
+    } catch(MissingPermissionsException) {
       $this->flashMessage("K této akci nemáš práva.");
       $this->redirect("Homepage:");
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       $this->flashMessage("Uživatel nenalezen.");
       $this->redirect("Homepage:");
-    } catch(UserNotInYourGuildException $e) {
+    } catch(UserNotInYourGuildException) {
       $this->flashMessage("Uživatel není ve tvém cechu.");
       $this->redirect("Homepage:");
-    } catch(CannotKickMemberException $e) {
+    } catch(CannotKickMemberException) {
       $this->flashMessage("Uživatel nemůže být vyloučen.");
       $this->redirect("members");
     }

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Shop as ShopEntity;
 use Nexendrie\Orm\Item as ItemEntity;
 use Nexendrie\Orm\UserItem as UserItemEntity;
@@ -14,16 +15,9 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Market {
-  protected Events $eventsModel;
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  
   use \Nette\SmartObject;
   
-  public function __construct(Events $eventsModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->eventsModel = $eventsModel;
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly Events $eventsModel, private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   
   /**
@@ -58,10 +52,7 @@ final class Market {
    */
   public function getShop(int $id): ShopEntity {
     $shop = $this->orm->shops->getById($id);
-    if($shop === null) {
-      throw new ShopNotFoundException("Specified shop was not found.");
-    }
-    return $shop;
+    return $shop ?? throw new ShopNotFoundException("Specified shop was not found.");
   }
   
   /**
@@ -99,10 +90,7 @@ final class Market {
    */
   public function getItem(int $id): ItemEntity {
     $item = $this->orm->items->getById($id);
-    if($item === null) {
-      throw new ItemNotFoundException("Specified item was not found.");
-    }
-    return $item;
+    return $item ?? throw new ItemNotFoundException("Specified item was not found.");
   }
   
   /**

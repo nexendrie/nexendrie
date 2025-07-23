@@ -6,6 +6,7 @@ namespace Nexendrie\Cron;
 use Nexendrie\Model\Elections;
 use Nexendrie\Orm\ElectionResult;
 use Nexendrie\Orm\Group;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * MunicipalElectionsTask
@@ -13,12 +14,7 @@ use Nexendrie\Orm\Group;
  * @author Jakub Konečný
  */
 final class MunicipalElectionsTask extends BaseMonthlyCronTask {
-  protected \Nexendrie\Orm\Model $orm;
-  protected Elections $electionsModel;
-  
-  public function __construct(\Nexendrie\Orm\Model $orm, Elections $electionsModel) {
-    $this->orm = $orm;
-    $this->electionsModel = $electionsModel;
+  public function __construct(private readonly ORM $orm, private readonly Elections $electionsModel) {
   }
   
   protected function getElectionResults(int $town, int $year, int $month): array {

@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Forms\AddEditTownFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Town;
 use Nexendrie\Orm\Town as TownEntity;
 use Nexendrie\Model\TownNotFoundException;
 
@@ -14,12 +15,10 @@ use Nexendrie\Model\TownNotFoundException;
  * @author Jakub Konečný
  */
 final class TownPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Town $model;
   private TownEntity $town;
   
-  public function __construct(\Nexendrie\Model\Town $model) {
+  public function __construct(private readonly Town $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function actionNew(): void {
@@ -42,7 +41,7 @@ final class TownPresenter extends BasePresenter {
     $this->requiresPermissions("content", "edit");
     try {
       $this->town = $this->model->get($id);
-    } catch(TownNotFoundException $e) {
+    } catch(TownNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

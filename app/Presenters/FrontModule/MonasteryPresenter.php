@@ -5,6 +5,8 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Chat\IMonasteryChatControlFactory;
 use Nexendrie\Chat\MonasteryChatControl;
+use Nexendrie\Model\Locale;
+use Nexendrie\Model\Monastery;
 use Nexendrie\Model\MonasteryNotFoundException;
 use Nexendrie\Model\NotInMonasteryException;
 use Nexendrie\Model\CannotJoinMonasteryException;
@@ -31,16 +33,10 @@ use Nexendrie\Model\CannotDemoteMemberException;
  * @author Jakub Konečný
  */
 final class MonasteryPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Monastery $model;
-  protected \Nexendrie\Model\Locale $localeModel;
-  private IMonasteryChatControlFactory $chatFactory;
   private int $monasteryId;
   
-  public function __construct(\Nexendrie\Model\Monastery $model, \Nexendrie\Model\Locale $localeModel, IMonasteryChatControlFactory $chatFactory) {
+  public function __construct(private readonly Monastery $model, private readonly Locale $localeModel, private readonly IMonasteryChatControlFactory $chatFactory) {
     parent::__construct();
-    $this->model = $model;
-    $this->localeModel = $localeModel;
-    $this->chatFactory = $chatFactory;
   }
   
   protected function startup(): void {
@@ -63,7 +59,7 @@ final class MonasteryPresenter extends BasePresenter {
       $this->template->canBuild = $this->model->canBuild();
       $this->template->canManage = $this->model->canManage();
       $this->template->prayerLife = $this->model->prayerLife();
-    } catch(NotInMonasteryException $e) {
+    } catch(NotInMonasteryException) {
       $this->flashMessage("Nejsi v klášteře.");
       $this->redirect("Homepage:");
     }
@@ -80,7 +76,7 @@ final class MonasteryPresenter extends BasePresenter {
   public function renderDetail(int $id): void {
     try {
       $this->template->monastery = $this->model->get($id);
-    } catch(MonasteryNotFoundException $e) {
+    } catch(MonasteryNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -124,12 +120,12 @@ final class MonasteryPresenter extends BasePresenter {
       $message = $this->localeModel->genderMessage("Vstoupil(a) jsi do kláštera");
       $this->flashMessage($message);
       $this->redirect("default");
-    } catch(CannotJoinMonasteryException $e) {
+    } catch(CannotJoinMonasteryException) {
       $this->flashMessage("Nemůžeš vstoupit do kláštera.");
       $this->redirect("Homepage:");
-    } catch(MonasteryNotFoundException $e) {
+    } catch(MonasteryNotFoundException) {
       throw new \Nette\Application\BadRequestException();
-    } catch(CannotJoinOwnMonasteryException $e) {
+    } catch(CannotJoinOwnMonasteryException) {
       $this->flashMessage("Už jsi v tomto klášteře.");
       $this->redirect("Homepage:");
     }
@@ -145,7 +141,7 @@ final class MonasteryPresenter extends BasePresenter {
       $message = $this->localeModel->genderMessage("Vystoupil(a) jsi z kláštera");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
-    } catch(CannotLeaveMonasteryException $e) {
+    } catch(CannotLeaveMonasteryException) {
       $this->flashMessage("Nemůžeš vystoupit z kláštera.");
       $this->redirect("default");
     }
@@ -156,7 +152,7 @@ final class MonasteryPresenter extends BasePresenter {
       $this->model->pray();
       $this->flashMessage("Modlitba ti přidala 5 životů.");
       $this->redirect("default");
-    } catch(CannotPrayException $e) {
+    } catch(CannotPrayException) {
       $this->flashMessage("Nemůžeš se modlit (právě teď).");
       $this->redirect("Homepage:");
     }
@@ -198,10 +194,10 @@ final class MonasteryPresenter extends BasePresenter {
       $this->model->upgrade();
       $this->flashMessage("Klášter vylepšen.");
       $this->redirect("manage");
-    } catch(CannotUpgradeMonasteryException $e) {
+    } catch(CannotUpgradeMonasteryException) {
       $this->flashMessage("Nemůžeš vylepšit klášter.");
       $this->redirect("Homepage:");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("manage");
     }
@@ -210,9 +206,9 @@ final class MonasteryPresenter extends BasePresenter {
   public function handleUpgradeLibrary(): void {
     try {
       $this->model->upgradeLibrary();
-    } catch(CannotUpgradeMonasteryException $e) {
+    } catch(CannotUpgradeMonasteryException) {
       $this->flashMessage("Nemůžeš vylepšit klášterní knihovnu.");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("manage");
     }
@@ -223,10 +219,10 @@ final class MonasteryPresenter extends BasePresenter {
       $this->model->repair();
       $this->flashMessage("Klášter opraven.");
       $this->redirect("manage");
-    } catch(CannotRepairMonasteryException $e) {
+    } catch(CannotRepairMonasteryException) {
       $this->flashMessage("Nemůžeš opravit klášter.");
       $this->redirect("Homepage:");
-    } catch(InsufficientFundsException $e) {
+    } catch(InsufficientFundsException) {
       $this->flashMessage("Nedostatek peněz.");
       $this->redirect("manage");
     }
@@ -237,19 +233,19 @@ final class MonasteryPresenter extends BasePresenter {
       $this->model->promote($user);
       $this->flashMessage("Povýšen(a).");
       $this->redirect("manage");
-    } catch(AuthenticationNeededException $e) {
+    } catch(AuthenticationNeededException) {
       $this->flashMessage("K této akci musíš být přihlášený.");
       $this->redirect("User:login");
-    } catch(MissingPermissionsException $e) {
+    } catch(MissingPermissionsException) {
       $this->flashMessage("K této akci nemáš práva.");
       $this->redirect("Homepage:");
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       $this->flashMessage("Uživatel nenalezen.");
       $this->redirect("Homepage:");
-    } catch(UserNotInYourMonasteryException $e) {
+    } catch(UserNotInYourMonasteryException) {
       $this->flashMessage("Uživatel není ve tvém klášteru.");
       $this->redirect("Homepage:");
-    } catch(CannotPromoteMemberException $e) {
+    } catch(CannotPromoteMemberException) {
       $this->flashMessage("Uživatel nemůže být povýšen.");
       $this->redirect("manage");
     }
@@ -260,19 +256,19 @@ final class MonasteryPresenter extends BasePresenter {
       $this->model->demote($user);
       $this->flashMessage("Degradován(a).");
       $this->redirect("manage");
-    } catch(AuthenticationNeededException $e) {
+    } catch(AuthenticationNeededException) {
       $this->flashMessage("K této akci musíš být přihlášený.");
       $this->redirect("User:login");
-    } catch(MissingPermissionsException $e) {
+    } catch(MissingPermissionsException) {
       $this->flashMessage("K této akci nemáš práva.");
       $this->redirect("Homepage:");
-    } catch(UserNotFoundException $e) {
+    } catch(UserNotFoundException) {
       $this->flashMessage("Uživatel nenalezen.");
       $this->redirect("Homepage:");
-    } catch(UserNotInYourMonasteryException $e) {
+    } catch(UserNotInYourMonasteryException) {
       $this->flashMessage("Uživatel není ve tvém klášteru.");
       $this->redirect("Homepage:");
-    } catch(CannotDemoteMemberException $e) {
+    } catch(CannotDemoteMemberException) {
       $this->flashMessage("Uživatel nemůže být degradován.");
       $this->redirect("manage");
     }

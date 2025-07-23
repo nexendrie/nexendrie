@@ -16,28 +16,22 @@ final class PollVotesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [PollVote::class];
   }
-  
-  /**
-   * @param Poll|int $poll
-   * @param User|int $user
-   */
-  public function getByPollAndUser($poll, $user): ?PollVote {
+
+  public function getByPollAndUser(Poll|int $poll, User|int $user): ?PollVote {
     return $this->getBy(["poll" => $poll, "user" => $user]);
   }
   
   /**
-   * @param Poll|int $poll
    * @return ICollection|PollVote[]
    */
-  public function findByPoll($poll): ICollection {
+  public function findByPoll(Poll|int $poll): ICollection {
     return $this->findBy(["poll" => $poll]);
   }
   
   /**
-   * @param User|int $user
    * @return ICollection|PollVote[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user]);
   }
 }

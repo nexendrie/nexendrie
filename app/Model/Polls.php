@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Poll as PollEntity;
 use Nextras\Orm\Collection\ICollection;
 
@@ -13,13 +14,11 @@ use Nextras\Orm\Collection\ICollection;
  * @property-write  \Nette\Security\User $user
  */
 final class Polls {
-  protected \Nexendrie\Orm\Model $orm;
   protected \Nette\Security\User $user;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm) {
   }
   
   protected function setUser(\Nette\Security\User $user): void {
@@ -42,10 +41,7 @@ final class Polls {
    */
   public function view(int $id): PollEntity {
     $poll = $this->orm->polls->getById($id);
-    if($poll === null) {
-      throw new PollNotFoundException("Specified poll does not exist.");
-    }
-    return $poll;
+    return $poll ?? throw new PollNotFoundException("Specified poll does not exist.");
   }
   
   /**

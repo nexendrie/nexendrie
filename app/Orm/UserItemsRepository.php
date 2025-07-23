@@ -16,28 +16,22 @@ final class UserItemsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [UserItem::class];
   }
-  
-  /**
-   * @param User|int $user
-   * @param Item|int $item
-   */
-  public function getByUserAndItem($user, $item): ?UserItem {
+
+  public function getByUserAndItem(User|int $user, Item|int $item): ?UserItem {
     return $this->getBy(["user" => $user, "item" => $item]);
   }
   
   /**
-   * @param User|int $user
    * @return ICollection|UserItem[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   
   /**
-   * @param Item|int $item
    * @return ICollection|UserItem[]
    */
-  public function findByItem($item): ICollection {
+  public function findByItem(Item|int $item): ICollection {
     return $this->findBy(["item" => $item]);
   }
   

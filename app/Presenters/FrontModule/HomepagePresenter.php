@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Components\ISocialIconsControlFactory;
 use Nexendrie\Components\SocialIconsControl;
+use Nexendrie\Model\Article;
 
 /**
  * Presenter Homepage
@@ -12,11 +13,8 @@ use Nexendrie\Components\SocialIconsControl;
  * @author Jakub Konečný
  */
 final class HomepagePresenter extends BasePresenter {
-  protected \Nexendrie\Model\Article $model;
-  
-  public function __construct(\Nexendrie\Model\Article $model) {
+  public function __construct(private readonly Article $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function renderPage(int $page = 1): void {

@@ -17,18 +17,10 @@ use HeroesofAbenez\Chat\ChatCharacter;
  * @author Jakub Konečný
  */
 final class NextrasOrmAdapter implements IDatabaseAdapter {
-  protected ORM $orm;
-  protected \Nette\Security\User $user;
-  
-  public function __construct(ORM $orm, \Nette\Security\User $user) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
 
-  /**
-   * @param mixed $value
-   */
-  public function getTexts(string $column, $value, int $limit): ChatMessagesCollection {
+  public function getTexts(string $column, mixed $value, int $limit): ChatMessagesCollection {
     $count = $this->orm->chatMessages->findBy([
       $column => $value,
     ])->countStored();
@@ -47,10 +39,7 @@ final class NextrasOrmAdapter implements IDatabaseAdapter {
     return $collection;
   }
 
-  /**
-   * @param mixed $value
-   */
-  public function getCharacters(string $column, $value): ChatCharactersCollection {
+  public function getCharacters(string $column, mixed $value): ChatCharactersCollection {
     /** @var \Nexendrie\Orm\User $user */
     $user = $this->orm->users->getById($this->user->id);
     $user->lastActive = time();

@@ -5,6 +5,7 @@ namespace Nexendrie\Model;
 
 use Nette\Application\LinkGenerator;
 use Nexendrie\Orm\Message as MessageEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Structs\Notification;
 use Nextras\Orm\Collection\ICollection;
 
@@ -14,16 +15,7 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Messenger {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  private LinkGenerator $linkGenerator;
-  private GenericNotificator $notificator;
-
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, LinkGenerator $linkGenerator, GenericNotificator $notificator) {
-    $this->orm = $orm;
-    $this->user = $user;
-    $this->linkGenerator = $linkGenerator;
-    $this->notificator = $notificator;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, private readonly LinkGenerator $linkGenerator, private readonly GenericNotificator $notificator) {
   }
 
   use \Nette\SmartObject;

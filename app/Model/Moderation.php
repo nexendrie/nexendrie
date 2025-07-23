@@ -4,15 +4,11 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\ContentReport;
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Collection\ICollection;
 
 final class Moderation {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct( private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
 
   /**

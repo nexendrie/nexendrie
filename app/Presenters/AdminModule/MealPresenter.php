@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Forms\AddEditMealFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Tavern;
 use Nexendrie\Orm\Meal as MealEntity;
 use Nexendrie\Model\MealNotFoundException;
 
@@ -14,12 +15,10 @@ use Nexendrie\Model\MealNotFoundException;
  * @author Jakub Konečný
  */
 final class MealPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Tavern $model;
   private MealEntity $meal;
   
-  public function __construct(\Nexendrie\Model\Tavern $model) {
+  public function __construct(private readonly Tavern $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function actionNew(): void {
@@ -42,7 +41,7 @@ final class MealPresenter extends BasePresenter {
     $this->requiresPermissions("content", "edit");
     try {
       $this->meal = $this->model->getMeal($id);
-    } catch(MealNotFoundException $e) {
+    } catch(MealNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

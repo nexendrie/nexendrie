@@ -6,6 +6,7 @@ namespace Nexendrie\Forms;
 use Nette\Application\UI\Form;
 use Nexendrie\Model\CannotBuildMonasteryException;
 use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\Monastery;
 use Nexendrie\Model\MonasteryNameInUseException;
 
 /**
@@ -14,10 +15,7 @@ use Nexendrie\Model\MonasteryNameInUseException;
  * @author Jakub Konečný
  */
 final class BuildMonasteryFormFactory {
-  protected \Nexendrie\Model\Monastery $model;
-  
-  public function __construct(\Nexendrie\Model\Monastery $model) {
-    $this->model = $model;
+  public function __construct(private readonly Monastery $model) {
   }
   
   public function create(): Form {

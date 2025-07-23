@@ -5,7 +5,10 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Eluceo\iCal\Presentation\Factory\CalendarFactory;
 use Nexendrie\EventCalendar\Simple\EventCalendar as Calendar;
+use Nexendrie\Model\Chronicle;
+use Nexendrie\Model\Events;
 use Nexendrie\Model\ICalendarResponse;
+use Nexendrie\Model\Marriage;
 
 /**
  * Presenter Chronicle
@@ -13,15 +16,8 @@ use Nexendrie\Model\ICalendarResponse;
  * @author Jakub Konečný
  */
 final class ChroniclePresenter extends BasePresenter {
-  protected \Nexendrie\Model\Chronicle $model;
-  protected \Nexendrie\Model\Events $eventsModel;
-  protected \Nexendrie\Model\Marriage $marriagesModel;
-  
-  public function __construct(\Nexendrie\Model\Chronicle $model, \Nexendrie\Model\Events $eventsModel, \Nexendrie\Model\Marriage $marriagesModel) {
+  public function __construct(private readonly Chronicle $model, private readonly Events $eventsModel, private readonly Marriage $marriagesModel) {
     parent::__construct();
-    $this->model = $model;
-    $this->eventsModel = $eventsModel;
-    $this->marriagesModel = $marriagesModel;
   }
   
   public function renderDefault(): void {
@@ -36,7 +32,7 @@ final class ChroniclePresenter extends BasePresenter {
     $this->template->marriages = $this->marriagesModel->listOfMarriages();
   }
 
-  public function renderCalendar(): void {
+  public function renderCalendar(): never {
     $componentFactory = new CalendarFactory();
     $calendarComponent = $componentFactory->createCalendar($this->eventsModel->getCalendar());
     $this->sendResponse(new ICalendarResponse((string) $calendarComponent));

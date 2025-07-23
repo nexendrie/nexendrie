@@ -18,10 +18,9 @@ final class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param User|int $user
    * @return ICollection|Punishment[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user]);
   }
 
@@ -34,8 +33,6 @@ final class PunishmentsRepository extends \Nextras\Orm\Repository\Repository {
   
   /**
    * Find specified user's active punishment
-   * 
-   * @param int $user User's id
    */
   public function getActivePunishment(int $user): ?Punishment {
     return $this->getBy(["user" => $user, "released" => null]);

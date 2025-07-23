@@ -16,19 +16,15 @@ final class MonasteriesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [Monastery::class];
   }
-  
-  /**
-   * @param User|int $leader
-   */
-  public function getByLeader($leader): ?Monastery {
+
+  public function getByLeader(User|int $leader): ?Monastery {
     return $this->getBy(["leader" => $leader]);
   }
   
   /**
-   * @param Town|int $town
    * @return ICollection|Monastery[]
    */
-  public function findByTown($town): ICollection {
+  public function findByTown(Town|int $town): ICollection {
     return $this->findBy(["town" => $town]);
   }
   

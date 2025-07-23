@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Job as JobEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\UserJob as UserJobEntity;
 use Nexendrie\Orm\JobMessage as JobMessageEntity;
 use Nextras\Orm\Collection\ICollection;
@@ -15,18 +16,9 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @author Jakub Konečný
  */
 final class Job {
-  protected Skills $skillsModel;
-  protected Locale $localeModel;
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  
   use \Nette\SmartObject;
   
-  public function __construct(Skills $skillsModel, Locale $localeModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->skillsModel = $skillsModel;
-    $this->localeModel = $localeModel;
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly Skills $skillsModel, private readonly Locale $localeModel, private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   
   /**
@@ -96,10 +88,7 @@ final class Job {
    */
   public function getJob(int $id): JobEntity {
     $job = $this->orm->jobs->getById($id);
-    if($job === null) {
-      throw new JobNotFoundException("Specified job was not found.");
-    }
-    return $job;
+    return $job ?? throw new JobNotFoundException("Specified job was not found.");
   }
   
   /**
@@ -325,10 +314,7 @@ final class Job {
    */
   public function getMessage(int $id): JobMessageEntity {
     $message = $this->orm->jobMessages->getById($id);
-    if($message === null) {
-      throw new JobMessageNotFoundException();
-    }
-    return $message;
+    return $message ?? throw new JobMessageNotFoundException();
   }
   
   /**

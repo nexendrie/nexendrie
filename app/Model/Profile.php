@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Comment;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\User as UserEntity;
 use Nextras\Orm\Collection\ICollection;
 use Nextras\Orm\Relationships\OneHasMany;
@@ -16,14 +17,9 @@ use Nexendrie\Orm\UserSkill;
  * @author Jakub Konečný
  */
 final class Profile {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   
   /**
@@ -33,10 +29,7 @@ final class Profile {
    */
   public function view(string $publicname): UserEntity {
     $user = $this->orm->users->getByPublicname($publicname);
-    if($user === null) {
-      throw new UserNotFoundException("Specified user does not exist.");
-    }
-    return $user;
+    return $user ?? throw new UserNotFoundException("Specified user does not exist.");
   }
   
   /**

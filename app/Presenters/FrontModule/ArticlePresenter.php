@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Components\ISharerControlFactory;
 use Nexendrie\Components\SharerControl;
+use Nexendrie\Model\Article;
 use Nexendrie\Model\ArticleNotFoundException;
 use Nette\Application\UI\Form;
 use Nexendrie\Forms\AddCommentFormFactory;
@@ -12,6 +13,7 @@ use Nexendrie\Model\AuthenticationNeededException;
 use Nexendrie\Model\CommentNotFoundException;
 use Nexendrie\Model\ContentAlreadyReportedException;
 use Nexendrie\Model\MissingPermissionsException;
+use Nexendrie\Model\Moderation;
 
 /**
  * Presenter Article
@@ -19,14 +21,10 @@ use Nexendrie\Model\MissingPermissionsException;
  * @author Jakub Konečný
  */
 final class ArticlePresenter extends BasePresenter {
-  protected \Nexendrie\Model\Article $model;
-  protected \Nexendrie\Model\Moderation $moderationModel;
   protected bool $publicCache = false;
   
-  public function __construct(\Nexendrie\Model\Article $model, \Nexendrie\Model\Moderation $moderationModel) {
+  public function __construct(private readonly Article $model, private readonly Moderation $moderationModel) {
     parent::__construct();
-    $this->model = $model;
-    $this->moderationModel = $moderationModel;
   }
   
   /**
@@ -38,7 +36,7 @@ final class ArticlePresenter extends BasePresenter {
       $this->template->comments = $article->comments->toCollection()->findBy(["deleted" => false]);
       $this->template->ogType = "article";
       $this->template->link = $this->link("//this");
-    } catch(ArticleNotFoundException $e) {
+    } catch(ArticleNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -68,13 +66,13 @@ final class ArticlePresenter extends BasePresenter {
     try {
       $this->moderationModel->reportComment($comment);
       $this->flashMessage("Komentář nahlášen.");
-    } catch(AuthenticationNeededException $e) {
+    } catch(AuthenticationNeededException) {
       $this->flashMessage("Pro nahlášení komentáře musíš být přihlášený.");
       $this->redirect("User:login");
-    } catch(CommentNotFoundException $e) {
+    } catch(CommentNotFoundException) {
       $this->flashMessage("Komentář nenalezen.");
       $this->redirect("Homepage:");
-    } catch(ContentAlreadyReportedException $e) {
+    } catch(ContentAlreadyReportedException) {
       $this->flashMessage("Tento komentář je již nahlášený.");
     }
     $this->redirect("this");

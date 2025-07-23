@@ -18,10 +18,9 @@ final class NotificationsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param User|int $user
    * @return ICollection|Notification[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user]);
   }
 }

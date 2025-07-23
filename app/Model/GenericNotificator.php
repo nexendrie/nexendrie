@@ -8,14 +8,7 @@ use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Structs\Notification;
 
 final class GenericNotificator implements INotificator {
-  private ORM $orm;
-  private User $user;
-  private SettingsRepository $sr;
-
-  public function __construct(ORM $orm, User $user, SettingsRepository $sr) {
-    $this->orm = $orm;
-    $this->user = $user;
-    $this->sr = $sr;
+  public function __construct(private readonly ORM $orm, private readonly User $user, private readonly SettingsRepository $sr) {
   }
 
   public function createNotification(Notification $data, int $userId): void {

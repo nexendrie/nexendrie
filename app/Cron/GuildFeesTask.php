@@ -6,6 +6,7 @@ namespace Nexendrie\Cron;
 use Nexendrie\Orm\Guild;
 use Nexendrie\Orm\GuildFee;
 use Nexendrie\Orm\GuildRank;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * GuildFeesTask
@@ -13,10 +14,7 @@ use Nexendrie\Orm\GuildRank;
  * @author Jakub Konečný
  */
 final class GuildFeesTask extends BaseMonthlyCronTask {
-  protected \Nexendrie\Orm\Model $orm;
-  
-  public function __construct(\Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm) {
   }
   
   protected function getFeeRecord(\Nexendrie\Orm\User $user): GuildFee {

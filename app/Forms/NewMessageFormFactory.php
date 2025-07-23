@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Messenger;
 
 /**
  * Factory for form NewMessageForm
@@ -11,10 +12,7 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class NewMessageFormFactory {
-  protected \Nexendrie\Model\Messenger $model;
-  
-  public function __construct(\Nexendrie\Model\Messenger $model) {
-    $this->model = $model;
+  public function __construct(private readonly Messenger $model) {
   }
   
   public function create(): Form {

@@ -5,6 +5,7 @@ namespace Nexendrie\Cron;
 
 use Nexendrie\Model\Marriage;
 use Nexendrie\Orm\Marriage as MarriageEntity;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * CloseWeddingsTask
@@ -13,13 +14,8 @@ use Nexendrie\Orm\Marriage as MarriageEntity;
  */
 final class CloseWeddingsTask {
   use \Nette\SmartObject;
-
-  protected \Nexendrie\Orm\Model $orm;
-  protected Marriage $marriageModel;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, Marriage $marriageModel) {
-    $this->orm = $orm;
-    $this->marriageModel = $marriageModel;
+  public function __construct(private readonly ORM $orm, private readonly Marriage $marriageModel) {
   }
   
   /**

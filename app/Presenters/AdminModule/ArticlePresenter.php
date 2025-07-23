@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Forms\AddEditArticleFormFactory;
+use Nexendrie\Model\Article;
 use Nexendrie\Model\ArticleNotFoundException;
 
 /**
@@ -13,11 +14,8 @@ use Nexendrie\Model\ArticleNotFoundException;
  * @author Jakub Konečný
  */
 final class ArticlePresenter extends BasePresenter {
-  protected \Nexendrie\Model\Article $model;
-  
-  public function __construct(\Nexendrie\Model\Article $model) {
+  public function __construct(private readonly Article $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function renderDefault(): void {
@@ -44,7 +42,7 @@ final class ArticlePresenter extends BasePresenter {
   public function actionEdit(int $id): void {
     try {
       $article = $this->model->view($id);
-    } catch(ArticleNotFoundException $e) {
+    } catch(ArticleNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
     if($article->author->id !== $this->user->id) {

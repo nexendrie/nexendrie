@@ -7,6 +7,7 @@ use Nexendrie\Forms\AddEditEventFormFactory;
 use Nette\Application\UI\Form;
 use Nexendrie\Model\EventNotFoundException;
 use Nexendrie\Model\CannotDeleteStartedEventException;
+use Nexendrie\Model\Events;
 
 /**
  * Presenter Event
@@ -14,12 +15,10 @@ use Nexendrie\Model\CannotDeleteStartedEventException;
  * @author Jakub Konečný
  */
 final class EventPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Events $model;
   private \Nexendrie\Orm\Event $event;
   
-  public function __construct(\Nexendrie\Model\Events $model) {
+  public function __construct(private readonly Events $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   protected function startup(): void {
@@ -51,7 +50,7 @@ final class EventPresenter extends BasePresenter {
     $this->requiresPermissions("event", "edit");
     try {
       $this->event = $this->model->getEvent($id);
-    } catch(EventNotFoundException $e) {
+    } catch(EventNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -74,9 +73,9 @@ final class EventPresenter extends BasePresenter {
       $this->model->deleteEvent($id);
       $this->flashMessage("Akce smazána.");
       $this->redirect("default");
-    } catch(EventNotFoundException $e) {
+    } catch(EventNotFoundException) {
       throw new \Nette\Application\BadRequestException();
-    } catch(CannotDeleteStartedEventException $e) {
+    } catch(CannotDeleteStartedEventException) {
       $this->flashMessage("Nelze smazat již započatnou akci.");
       $this->redirect("Homepage:");
     }

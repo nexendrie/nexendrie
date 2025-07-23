@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Meal as MealEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -12,14 +13,9 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Tavern {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   
   /**
@@ -38,10 +34,7 @@ final class Tavern {
    */
   public function getMeal(int $id): MealEntity {
     $meal = $this->orm->meals->getById($id);
-    if($meal === null) {
-      throw new MealNotFoundException();
-    }
-    return $meal;
+    return $meal ?? throw new MealNotFoundException();
   }
   
   /**

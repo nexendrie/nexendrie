@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
+use Nexendrie\Model\Locale;
 use Nexendrie\Model\SkillNotFoundException;
 use Nexendrie\Model\SkillMaxLevelReachedException;
 use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\Skills;
 use Nexendrie\Utils\Constants;
 use Nexendrie\Orm\Skill;
 
@@ -16,14 +18,7 @@ use Nexendrie\Orm\Skill;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class AcademyControl extends \Nette\Application\UI\Control {
-  protected \Nexendrie\Model\Skills $model;
-  protected \Nexendrie\Model\Locale $localeModel;
-  protected \Nette\Security\User $user;
-  
-  public function __construct(\Nexendrie\Model\Skills $model, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
-    $this->model = $model;
-    $this->localeModel = $localeModel;
-    $this->user = $user;
+  public function __construct(private readonly Skills $model, private readonly Locale $localeModel) {
   }
   
   /**

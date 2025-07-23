@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
+use Nexendrie\Model\Locale;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Punishment;
 use Nexendrie\Orm\User as UserEntity;
 
@@ -13,14 +15,7 @@ use Nexendrie\Orm\User as UserEntity;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class PrisonControl extends \Nette\Application\UI\Control {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nexendrie\Model\Locale $localeModel;
-  protected \Nette\Security\User $user;
-  
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nexendrie\Model\Locale $localeModel, \Nette\Security\User $user) {
-    $this->orm = $orm;
-    $this->localeModel = $localeModel;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly Locale $localeModel, private readonly \Nette\Security\User $user) {
   }
   
   protected function canWork(Punishment $punishment): bool {

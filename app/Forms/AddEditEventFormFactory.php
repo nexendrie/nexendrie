@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Events;
 use Nextras\FormComponents\Controls\DateTimeControl;
 
 /**
@@ -12,12 +13,10 @@ use Nextras\FormComponents\Controls\DateTimeControl;
  * @author Jakub Konečný
  */
 final class AddEditEventFormFactory {
-  protected \Nexendrie\Model\Events $model;
   protected string $dateTimeFormat;
   protected ?\Nexendrie\Orm\Event $event;
   
-  public function __construct(\Nexendrie\Model\Events $model, \Nexendrie\Model\SettingsRepository $sr) {
-    $this->model = $model;
+  public function __construct(private readonly Events $model, \Nexendrie\Model\SettingsRepository $sr) {
     $this->dateTimeFormat = $sr->settings["locale"]["dateTimeFormat"];
   }
   

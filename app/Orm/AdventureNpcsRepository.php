@@ -16,13 +16,8 @@ final class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
     return [AdventureNpc::class];
   }
-  
-  /**
-   * 
-   * @param Adventure|int $adventure
-   * @param Order|int $order
-   */
-  public function getByAdventureAndOrder($adventure, $order): ?AdventureNpc {
+
+  public function getByAdventureAndOrder(Adventure|int $adventure, Order|int $order): ?AdventureNpc {
     return $this->getBy(["adventure" => $adventure, "order" => $order]);
   }
   

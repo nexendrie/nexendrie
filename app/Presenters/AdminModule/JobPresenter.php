@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\AdminModule;
 
 use Nexendrie\Forms\AddEditJobFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Job;
 use Nexendrie\Orm\Job as JobEntity;
 use Nexendrie\Model\JobNotFoundException;
 
@@ -14,12 +15,10 @@ use Nexendrie\Model\JobNotFoundException;
  * @author Jakub Konečný
  */
 final class JobPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Job $model;
   private JobEntity $job;
   
-  public function __construct(\Nexendrie\Model\Job $model) {
+  public function __construct(private readonly Job $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   /**
@@ -29,7 +28,7 @@ final class JobPresenter extends BasePresenter {
     $this->requiresPermissions("content", "edit");
     try {
       $this->job = $this->model->getJob($id);
-    } catch(JobNotFoundException $e) {
+    } catch(JobNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

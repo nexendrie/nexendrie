@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Cron;
 
 use Nexendrie\Model\SettingsRepository;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * HousesStatusTask
@@ -13,11 +14,9 @@ use Nexendrie\Model\SettingsRepository;
 final class HousesStatusTask {
   use \Nette\SmartObject;
 
-  protected \Nexendrie\Orm\Model $orm;
   protected int $weeklyWearingOut;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, SettingsRepository $sr) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm, SettingsRepository $sr) {
     $this->weeklyWearingOut = $sr->settings["buildings"]["weeklyWearingOut"];
   }
   

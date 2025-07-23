@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\AdminModule;
 
+use Nexendrie\Model\Job;
 use Nexendrie\Model\JobNotFoundException;
 use Nexendrie\Model\JobMessageNotFoundException;
 use Nexendrie\Orm\JobMessage as JobMessageEntity;
@@ -17,13 +18,11 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class JobMessagesPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Job $model;
   private JobMessageEntity $message;
   private JobEntity $job;
   
-  public function __construct(\Nexendrie\Model\Job $model) {
+  public function __construct(private readonly Job $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function actionList(int $id): void {
@@ -31,7 +30,7 @@ final class JobMessagesPresenter extends BasePresenter {
     try {
       $this->template->messages = $this->model->listOfMessages($id);
       $this->template->jobId = $id;
-    } catch(JobNotFoundException $e) {
+    } catch(JobNotFoundException) {
       $this->forward("Job:notfound");
     }
   }
@@ -41,7 +40,7 @@ final class JobMessagesPresenter extends BasePresenter {
     try {
       $this->job = $this->model->getJob($id);
       $this->template->jobName = $this->job->name;
-    } catch(JobNotFoundException $e) {
+    } catch(JobNotFoundException) {
       $this->forward("Job:notfound");
     }
   }
@@ -64,7 +63,7 @@ final class JobMessagesPresenter extends BasePresenter {
     $this->requiresPermissions("content", "edit");
     try {
       $this->message = $this->model->getMessage($id);
-    } catch(JobMessageNotFoundException $e) {
+    } catch(JobMessageNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -87,7 +86,7 @@ final class JobMessagesPresenter extends BasePresenter {
       $job = $this->model->deleteMessage($id);
       $this->flashMessage("Hláška smazána.");
       $this->redirect("list", ["id" => $job]);
-    } catch(JobMessageNotFoundException $e) {
+    } catch(JobMessageNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }

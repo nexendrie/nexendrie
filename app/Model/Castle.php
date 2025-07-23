@@ -5,6 +5,7 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Castle as CastleEntity;
 use Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\UserExpense;
 use Nextras\Orm\Collection\ICollection;
 
@@ -14,15 +15,11 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Castle {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
   protected int $buildingPrice;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->buildingPrice = $sr->settings["fees"]["buildCastle"];
   }
   
@@ -42,10 +39,7 @@ final class Castle {
    */
   public function getCastle(int $id): CastleEntity {
     $castle = $this->orm->castles->getById($id);
-    if($castle === null) {
-      throw new CastleNotFoundException();
-    }
-    return $castle;
+    return $castle ?? throw new CastleNotFoundException();
   }
   
   /**

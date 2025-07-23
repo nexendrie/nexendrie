@@ -5,6 +5,7 @@ namespace Nexendrie\Model;
 
 use Nette\Application\LinkGenerator;
 use Nexendrie\Orm\Marriage as MarriageEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Structs\Notification;
 use Nextras\Orm\Collection\ICollection;
 
@@ -14,18 +15,9 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Marriage {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  private GenericNotificator $notificator;
-  private LinkGenerator $linkGenerator;
-  
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, GenericNotificator $notificator, LinkGenerator $linkGenerator) {
-    $this->orm = $orm;
-    $this->user = $user;
-    $this->notificator = $notificator;
-    $this->linkGenerator = $linkGenerator;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, private readonly GenericNotificator $notificator, private readonly LinkGenerator $linkGenerator) {
   }
   
   /**
@@ -44,10 +36,7 @@ final class Marriage {
    */
   public function getMarriage(int $id): MarriageEntity {
     $marriage = $this->orm->marriages->getById($id);
-    if($marriage === null) {
-      throw new MarriageNotFoundException();
-    }
-    return $marriage;
+    return $marriage ?? throw new MarriageNotFoundException();
   }
   
   /**

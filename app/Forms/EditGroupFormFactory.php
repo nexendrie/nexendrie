@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Group;
 
 /**
  * Factory for form EditGroup
@@ -11,11 +12,9 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class EditGroupFormFactory {
-  protected \Nexendrie\Model\Group $model;
   protected \Nexendrie\Orm\Group $group;
 
-  public function __construct(\Nexendrie\Model\Group $model, \Nette\Security\User $user) {
-    $this->model = $model;
+  public function __construct(private readonly Group $model, \Nette\Security\User $user) {
     $this->model->user = $user;
   }
 

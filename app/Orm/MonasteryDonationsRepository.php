@@ -18,28 +18,25 @@ final class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Reposit
   }
   
   /**
-   * @param User|int $user
    * @return ICollection|MonasteryDonation[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   
   /**
-   * @param Monastery|int $monastery
    * @return ICollection|MonasteryDonation[]
    */
-  public function findByMonastery($monastery): ICollection {
+  public function findByMonastery(Monastery|int $monastery): ICollection {
     return $this->findBy(["monastery" => $monastery]);
   }
   
   /**
    * Get donations made this month by specified user
-   * 
-   * @param int $user
+   *
    * @return ICollection|MonasteryDonation[]
    */
-  public function findDonatedThisMonth($user): ICollection {
+  public function findDonatedThisMonth(int $user): ICollection {
     $month = date("n");
     $year = date("Y");
     $startOfMonthTS = (int) mktime(0, 0, 0, (int) $month, 1, (int) $year);

@@ -6,10 +6,14 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nette\Application\UI\Form;
 use Nexendrie\Forms\ChangeWeddingTermFormFactory;
 use Nexendrie\Model\CannotProposeMarriageException;
+use Nexendrie\Model\Inventory;
+use Nexendrie\Model\Locale;
+use Nexendrie\Model\Marriage;
 use Nexendrie\Model\MarriageNotFoundException;
 use Nexendrie\Model\AccessDeniedException;
 use Nexendrie\Model\MarriageProposalAlreadyHandledException;
 use Nexendrie\Model\NotEngagedException;
+use Nexendrie\Model\Profile;
 use Nexendrie\Model\WeddingAlreadyHappenedException;
 use Nexendrie\Model\NotMarriedException;
 use Nexendrie\Model\AlreadyInDivorceException;
@@ -29,19 +33,11 @@ use Nexendrie\Orm\Marriage as MarriageEntity;
  * @author Jakub Konečný
  */
 final class MarriagePresenter extends BasePresenter {
-  protected \Nexendrie\Model\Marriage $model;
-  protected \Nexendrie\Model\Profile $profileModel;
-  protected \Nexendrie\Model\Inventory $inventoryModel;
-  protected \Nexendrie\Model\Locale $localeModel;
   private MarriageEntity $marriage;
   protected bool $publicCache = false;
   
-  public function __construct(\Nexendrie\Model\Marriage $model, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Inventory $inventoryModel, \Nexendrie\Model\Locale $localeModel) {
+  public function __construct(private readonly Marriage $model, private readonly Inventory $inventoryModel, private readonly Locale $localeModel) {
     parent::__construct();
-    $this->model = $model;
-    $this->profileModel = $profileModel;
-    $this->inventoryModel = $inventoryModel;
-    $this->localeModel = $localeModel;
   }
   
   protected function startup(): void {
@@ -83,13 +79,13 @@ final class MarriagePresenter extends BasePresenter {
     try {
       $this->model->acceptProposal($id);
       $this->flashMessage("Návrh přijat. Nyní jste zasnoubení.");
-    } catch(MarriageNotFoundException $e) {
+    } catch(MarriageNotFoundException) {
       throw new \Nette\Application\BadRequestException();
-    } catch(CannotProposeMarriageException $e) {
+    } catch(CannotProposeMarriageException) {
       $this->flashMessage("Nemůžete se zasnoubit.");
-    } catch(MarriageProposalAlreadyHandledException $e) {
+    } catch(MarriageProposalAlreadyHandledException) {
       $this->flashMessage("Tento návrh byl již vyřízen.");
-    } catch(AccessDeniedException $e) {
+    } catch(AccessDeniedException) {
       $this->flashMessage("Nemůžeš přijmout tento návrh.");
     }
     $this->redirect("Homepage:");
@@ -102,13 +98,13 @@ final class MarriagePresenter extends BasePresenter {
     try {
       $this->model->declineProposal($id);
       $this->flashMessage("Návrh zamítnut.");
-    } catch(MarriageNotFoundException $e) {
+    } catch(MarriageNotFoundException) {
       throw new \Nette\Application\BadRequestException();
-    } catch(CannotProposeMarriageException $e) {
+    } catch(CannotProposeMarriageException) {
       $this->flashMessage("Nemůžete se zasnoubit.");
-    } catch(MarriageProposalAlreadyHandledException $e) {
+    } catch(MarriageProposalAlreadyHandledException) {
       $this->flashMessage("Tento návrh byl již vyřízen.");
-    } catch(AccessDeniedException $e) {
+    } catch(AccessDeniedException) {
       $this->flashMessage("Nemůžeš přijmout tento návrh.");
     }
     $this->redirect("Homepage:");
@@ -120,7 +116,7 @@ final class MarriagePresenter extends BasePresenter {
   public function actionCeremony(int $id): void {
     try {
       $this->marriage = $this->model->getMarriage($id);
-    } catch(MarriageNotFoundException $e) {
+    } catch(MarriageNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
     if($this->marriage->status !== MarriageEntity::STATUS_ACCEPTED) {
@@ -146,11 +142,11 @@ final class MarriagePresenter extends BasePresenter {
       $this->model->cancelWedding();
       $this->flashMessage("Zasnoubení zrušeno.");
       $this->redirect("default");
-    } catch(NotEngagedException $e) {
+    } catch(NotEngagedException) {
       $message = $this->localeModel->genderMessage("Nejsi zasnouben(ý|á).");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
-    } catch(WeddingAlreadyHappenedException $e) {
+    } catch(WeddingAlreadyHappenedException) {
       $this->flashMessage("Svatba se už uskutečnila.");
       $this->redirect("Homepage:");
     }
@@ -161,11 +157,11 @@ final class MarriagePresenter extends BasePresenter {
       $this->model->fileForDivorce();
       $this->flashMessage("Žádost podána.");
       $this->redirect("default");
-    } catch(NotMarriedException $e) {
+    } catch(NotMarriedException) {
       $message = $this->localeModel->genderMessage("Nejsi (ženatý|vdaná).");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
-    } catch(AlreadyInDivorceException $e) {
+    } catch(AlreadyInDivorceException) {
       $this->flashMessage("Už se rozvádíte.");
       $this->redirect("default");
     }
@@ -176,11 +172,11 @@ final class MarriagePresenter extends BasePresenter {
       $this->model->acceptDivorce();
       $this->flashMessage("Vaše manželství skončilo.");
       $this->redirect("Homepage:");
-    } catch(NotMarriedException $e) {
+    } catch(NotMarriedException) {
       $message = $this->localeModel->genderMessage("Nejsi (ženatý|vdaná).");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
-    } catch(NotInDivorceException $e) {
+    } catch(NotInDivorceException) {
       $this->flashMessage("Nerozvádíte se.");
       $this->redirect("default");
     }
@@ -191,11 +187,11 @@ final class MarriagePresenter extends BasePresenter {
       $this->model->declineDivorce();
       $this->flashMessage("Žádost zamítnuta.");
       $this->redirect("default");
-    } catch(NotMarriedException $e) {
+    } catch(NotMarriedException) {
       $message = $this->localeModel->genderMessage("Nejsi (ženatý|vdaná).");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
-    } catch(NotInDivorceException $e) {
+    } catch(NotInDivorceException) {
       $this->flashMessage("Nerozvádíte se.");
       $this->redirect("default");
     }
@@ -206,14 +202,14 @@ final class MarriagePresenter extends BasePresenter {
       $this->model->takeBackDivorce();
       $this->flashMessage("Žádost stáhnuta.");
       $this->redirect("default");
-    } catch(NotMarriedException $e) {
+    } catch(NotMarriedException) {
       $message = $this->localeModel->genderMessage("Nejsi (ženatý|vdaná).");
       $this->flashMessage($message);
       $this->redirect("Homepage:");
-    } catch(NotInDivorceException $e) {
+    } catch(NotInDivorceException) {
       $this->flashMessage("Nerozvádíte se.");
       $this->redirect("default");
-    } catch(CannotTakeBackDivorceException $e) {
+    } catch(CannotTakeBackDivorceException) {
       $message = $this->localeModel->genderMessage("Nepodal(a) jsi žádost o rozvod.");
       $this->flashMessage($message);
       $this->redirect("default");
@@ -224,16 +220,16 @@ final class MarriagePresenter extends BasePresenter {
     try {
       $this->inventoryModel->boostIntimacy($item);
       $this->flashMessage("Věc použita.");
-    } catch(NotMarriedException $e) {
+    } catch(NotMarriedException) {
       $message = $this->localeModel->genderMessage("Nejsi (ženatý|vdaná).");
       $this->flashMessage($message);
-    } catch(ItemNotFoundException $e) {
+    } catch(ItemNotFoundException) {
       $this->flashMessage("Věc nenalezena.");
-    } catch(ItemNotOwnedException $e) {
+    } catch(ItemNotOwnedException) {
       $this->flashMessage("Zadaná věc ti nepatří.");
-    } catch(ItemNotUsableException $e) {
+    } catch(ItemNotUsableException) {
       $this->flashMessage("Nemůžeš použít tuto věc.");
-    } catch(MaxIntimacyReachedException $e) {
+    } catch(MaxIntimacyReachedException) {
       $this->flashMessage("Nemůžeš už zvýšit důvěrnost.");
     }
     $this->redirect("default");

@@ -18,25 +18,20 @@ final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository 
   }
   
   /**
-   * @param User|int $user
    * @return ICollection|BeerProduction[]
    */
-  public function findByUser($user): ICollection {
+  public function findByUser(User|int $user): ICollection {
     return $this->findBy(["user" => $user]);
   }
   
   /**
-   * @param House|int $house
    * @return ICollection|BeerProduction[]
    */
-  public function findByHouse($house): ICollection {
+  public function findByHouse(House|int $house): ICollection {
     return $this->findBy(["house" => $house]);
   }
-  
-  /**
-   * @param House|int $house
-   */
-  public function getLastProduction($house): ?BeerProduction {
+
+  public function getLastProduction(House|int $house): ?BeerProduction {
     return $this->findBy(["house" => $house]) // @phpstan-ignore return.type
       ->orderBy("created", ICollection::DESC)
       ->limitBy(1)

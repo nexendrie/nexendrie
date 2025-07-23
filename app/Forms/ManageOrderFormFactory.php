@@ -12,13 +12,9 @@ use Nexendrie\Model\OrderNameInUseException;
  * @author Jakub Konečný
  */
 final class ManageOrderFormFactory {
-  protected \Nexendrie\Model\Order $model;
-  protected \Nette\Security\User $user;
   private int $id;
   
-  public function __construct(\Nexendrie\Model\Order $model, \Nette\Security\User $user) {
-    $this->model = $model;
-    $this->user = $user;
+  public function __construct(private readonly \Nexendrie\Model\Order $model) {
   }
   
   public function create(int $orderId): Form {
@@ -39,7 +35,7 @@ final class ManageOrderFormFactory {
   public function process(Form $form, array $values): void {
     try {
       $this->model->editOrder($this->id, $values);
-    } catch(OrderNameInUseException $e) {
+    } catch(OrderNameInUseException) {
       $form->addError("Zadané jméno je již zabráno.");
     }
   }

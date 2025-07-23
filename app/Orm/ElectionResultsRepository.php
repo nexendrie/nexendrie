@@ -18,10 +18,9 @@ final class ElectionResultsRepository extends \Nextras\Orm\Repository\Repository
   }
   
   /**
-   * @param Town|int $town
    * @return ICollection|ElectionResult[]
    */
-  public function findByTownAndYearAndMonth($town, int $year, int $month): ICollection {
+  public function findByTownAndYearAndMonth(Town|int $town, int $year, int $month): ICollection {
     return $this->findBy(["town" => $town, "year" => $year, "month" => $month]);
   }
 }

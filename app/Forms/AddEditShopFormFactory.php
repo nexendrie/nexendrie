@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Market;
 
 /**
  * Factory for form AddEditShop
@@ -11,11 +12,9 @@ use Nette\Application\UI\Form;
  * @author Jakub Konečný
  */
 final class AddEditShopFormFactory {
-  protected \Nexendrie\Model\Market $model;
   protected ?\Nexendrie\Orm\Shop $shop;
 
-  public function __construct(\Nexendrie\Model\Market $model) {
-    $this->model = $model;
+  public function __construct(private readonly Market $model) {
   }
 
   public function create(?\Nexendrie\Orm\Shop $shop = null): Form {

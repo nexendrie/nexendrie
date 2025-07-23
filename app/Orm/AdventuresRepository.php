@@ -18,10 +18,9 @@ final class AdventuresRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param Event|int $event
    * @return ICollection|Adventure[]
    */
-  public function findByEvent($event): ICollection {
+  public function findByEvent(Event|int $event): ICollection {
     return $this->findBy(["event" => $event]);
   }
   

@@ -6,6 +6,7 @@ namespace Nexendrie\Forms;
 use Nette\Application\UI\Form;
 use Nexendrie\Model\CannotBuildCastleException;
 use Nexendrie\Model\CannotBuildMoreCastlesException;
+use Nexendrie\Model\Castle;
 use Nexendrie\Model\CastleNameInUseException;
 use Nexendrie\Model\InsufficientFundsException;
 
@@ -15,10 +16,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * @author Jakub Konečný
  */
 final class BuildCastleFormFactory {
-  protected \Nexendrie\Model\Castle $model;
-  
-  public function __construct(\Nexendrie\Model\Castle $model) {
-    $this->model = $model;
+  public function __construct(private readonly Castle $model) {
   }
   
   public function create(): Form {

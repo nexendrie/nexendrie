@@ -5,6 +5,7 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Adventure as AdventureEntity;
 use Nexendrie\Orm\AdventureNpc as AdventureNpcEntity;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\User;
 use Nexendrie\Orm\UserAdventure as UserAdventureEntity;
 use Nexendrie\Orm\Mount as MountEntity;
@@ -21,23 +22,11 @@ use HeroesofAbenez\Combat\VictoryConditions;
 final class Adventure {
   public const ADVENTURE_BREAK_DAYS_LENGTH = 2;
 
-  protected CombatBase $combat;
-  protected CombatHelper $combatHelper;
-  protected Events $eventsModel;
-  protected Order $orderModel;
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
   private ?UserAdventureEntity $adventure = null;
   
   use \Nette\SmartObject;
   
-  public function __construct(CombatBase $combat, CombatHelper $combatHelper, Events $eventsModel, Order $orderModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->combat = $combat;
-    $this->combatHelper = $combatHelper;
-    $this->eventsModel = $eventsModel;
-    $this->orderModel = $orderModel;
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly CombatBase $combat, private readonly CombatHelper $combatHelper, private readonly Events $eventsModel, private readonly Order $orderModel, private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   
   /**
@@ -70,10 +59,7 @@ final class Adventure {
    */
   public function get(int $id): AdventureEntity {
     $adventure = $this->orm->adventures->getById($id);
-    if($adventure === null) {
-      throw new AdventureNotFoundException();
-    }
-    return $adventure;
+    return $adventure ?? throw new AdventureNotFoundException();
   }
   
   /**
@@ -111,10 +97,7 @@ final class Adventure {
    */
   public function getNpc(int $id): AdventureNpcEntity {
     $npc = $this->orm->adventureNpcs->getById($id);
-    if($npc === null) {
-      throw new AdventureNpcNotFoundException();
-    }
-    return $npc;
+    return $npc ?? throw new AdventureNpcNotFoundException();
   }
   
   /**

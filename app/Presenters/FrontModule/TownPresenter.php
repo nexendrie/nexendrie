@@ -5,6 +5,9 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Chat\ITownChatControlFactory;
 use Nexendrie\Chat\TownChatControl;
+use Nexendrie\Model\Locale;
+use Nexendrie\Model\Profile;
+use Nexendrie\Model\Town;
 use Nexendrie\Model\TownNotFoundException;
 use Nexendrie\Model\CannotMoveToSameTownException;
 use Nexendrie\Model\CannotMoveToTownException;
@@ -12,7 +15,9 @@ use Nexendrie\Forms\FoundTownFormFactory;
 use Nette\Application\UI\Form;
 use Nexendrie\Components\IElectionsControlFactory;
 use Nexendrie\Components\ElectionsControl;
+use Nexendrie\Model\UserManager;
 use Nexendrie\Orm\Group as GroupEntity;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * Presenter Town
@@ -20,23 +25,11 @@ use Nexendrie\Orm\Group as GroupEntity;
  * @author Jakub Konečný
  */
 final class TownPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Town $model;
-  protected \Nexendrie\Model\UserManager $userManager;
-  protected \Nexendrie\Model\Profile $profileModel;
-  protected \Nexendrie\Model\Locale $localeModel;
   private \Nexendrie\Orm\Town $town;
-  private \Nexendrie\Orm\Model $orm;
-  private ITownChatControlFactory $chatFactory;
   protected bool $cachingEnabled = false;
 
-  public function __construct(\Nexendrie\Model\Town $model, \Nexendrie\Model\UserManager $userManager, \Nexendrie\Model\Profile $profileModel, \Nexendrie\Model\Locale $localeModel, \Nexendrie\Orm\Model $orm, ITownChatControlFactory $chatFactory) {
+  public function __construct(private readonly Town $model, private readonly UserManager $userManager, private readonly Profile $profileModel, private readonly Locale $localeModel, private readonly ORM $orm, private readonly ITownChatControlFactory $chatFactory) {
     parent::__construct();
-    $this->model = $model;
-    $this->userManager = $userManager;
-    $this->profileModel = $profileModel;
-    $this->localeModel = $localeModel;
-    $this->orm = $orm;
-    $this->chatFactory = $chatFactory;
   }
   
   protected function startup(): void {
@@ -78,7 +71,7 @@ final class TownPresenter extends BasePresenter {
         $this->template->canMove = $this->model->canMove();
       }
       $this->template->canManage = $this->model->canManage($this->template->town);
-    } catch(TownNotFoundException $e) {
+    } catch(TownNotFoundException) {
       throw new \Nette\Application\BadRequestException();
     }
   }
@@ -93,13 +86,13 @@ final class TownPresenter extends BasePresenter {
       $message = $this->localeModel->genderMessage("Přestěhoval(a) jsi se do vybraného města.");
       $this->flashMessage($message);
       $this->redirect("Town:");
-    } catch(TownNotFoundException $e) {
+    } catch(TownNotFoundException) {
       $this->flashMessage("Město nebylo nalezeno.");
       $this->redirect("Homepage:");
-    } catch(CannotMoveToSameTownException $e) {
+    } catch(CannotMoveToSameTownException) {
       $this->flashMessage("V tomto městě již žiješ.");
       $this->redirect("Homepage:");
-    } catch(CannotMoveToTownException $e) {
+    } catch(CannotMoveToTownException) {
       $this->flashMessage("Nemůžeš se přesunout do jiného města.");
       $this->redirect("Homepage:");
     }

@@ -11,18 +11,13 @@ use Nexendrie\Orm\User as UserEntity;
  * Locale Model
  * 
  * @author Jakub Konečný
- * @property array $formats
  */
 final class Locale {
-  protected Translator $translator;
-  protected User $user;
-  protected array $formats = [];
+  public readonly array $formats;
   
   use \Nette\SmartObject;
   
-  public function __construct(SettingsRepository $sr, Translator $translator, User $user) {
-    $this->translator = $translator;
-    $this->user = $user;
+  public function __construct(SettingsRepository $sr, private readonly Translator $translator, private readonly User $user) {
     $this->formats = $sr->settings["locale"];
   }
   
@@ -81,10 +76,6 @@ final class Locale {
       ];
     }
     return (string) preg_replace($pattern, $replace, $message);
-  }
-  
-  protected function getFormats(): array {
-    return $this->formats;
   }
 }
 ?>

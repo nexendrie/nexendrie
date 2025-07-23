@@ -18,10 +18,9 @@ final class JobMessagesRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param Job|int $job
    * @return ICollection|JobMessage[]
    */
-  public function findByJobAndSuccess($job, bool $success): ICollection {
+  public function findByJobAndSuccess(Job|int $job, bool $success): ICollection {
     return $this->findBy(["job" => $job, "success" => $success]);
   }
 }

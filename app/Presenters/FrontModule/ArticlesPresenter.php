@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
+use Nexendrie\Model\Article;
 use Nexendrie\Orm\Article as ArticleEntity;
 
 /**
@@ -11,11 +12,8 @@ use Nexendrie\Orm\Article as ArticleEntity;
  * @author Jakub Konečný
  */
 final class ArticlesPresenter extends BasePresenter {
-  protected \Nexendrie\Model\Article $model;
-  
-  public function __construct(\Nexendrie\Model\Article $model) {
+  public function __construct(private readonly Article $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   public function renderDefault(): void {

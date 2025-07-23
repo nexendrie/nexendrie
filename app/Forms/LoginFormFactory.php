@@ -14,10 +14,7 @@ use Nette\Security\IAuthenticator;
  * @author Jakub Konečný
  */
 final class LoginFormFactory {
-  protected User $user;
-  
-  public function __construct(User $user) {
-    $this->user = $user;
+  public function __construct(private readonly User $user) {
   }
   
   public function create(): Form {

@@ -15,16 +15,7 @@ use Nexendrie\Orm\Model as ORM;
 final class Tokens {
   use \Nette\SmartObject;
 
-  private int $ttl;
-  private int $length;
-  private ORM $orm;
-  private User $user;
-
-  public function __construct(int $ttl, int $length, ORM $orm, User $user) {
-    $this->ttl = $ttl;
-    $this->length = $length;
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly int $ttl, private readonly int $length, private readonly ORM $orm, private readonly User $user) {
   }
 
   public function create(): ApiToken {

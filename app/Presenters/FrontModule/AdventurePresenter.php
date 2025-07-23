@@ -5,6 +5,7 @@ namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Components\IAdventureControlFactory;
 use Nexendrie\Components\AdventureControl;
+use Nexendrie\Model\Adventure;
 
 /**
  * Presenter Adventure
@@ -12,12 +13,10 @@ use Nexendrie\Components\AdventureControl;
  * @author Jakub Konečný
  */
 final class AdventurePresenter extends BasePresenter {
-  protected \Nexendrie\Model\Adventure $model;
   protected bool $cachingEnabled = false;
   
-  public function __construct(\Nexendrie\Model\Adventure $model) {
+  public function __construct(private readonly Adventure $model) {
     parent::__construct();
-    $this->model = $model;
   }
   
   protected function startup(): void {

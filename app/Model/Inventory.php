@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nexendrie\Orm\Loan;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\UserItem as UserItemEntity;
 use Nexendrie\Orm\Item as ItemEntity;
 use Nexendrie\Orm\ItemSet as ItemSetEntity;
@@ -17,14 +18,9 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @author Jakub Konečný
  */
 final class Inventory {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   
   /**

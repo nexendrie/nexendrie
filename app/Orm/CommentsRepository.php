@@ -18,18 +18,16 @@ final class CommentsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param Article|int $article
    * @return ICollection|Comment[]
    */
-  public function findByArticle($article): ICollection {
+  public function findByArticle(Article|int $article): ICollection {
     return $this->findBy(["article" => $article, "deleted" => false, ]);
   }
   
   /**
-   * @param User|int $author
    * @return ICollection|Comment[]
    */
-  public function findByAuthor($author): ICollection {
+  public function findByAuthor(User|int $author): ICollection {
     return $this->findBy(["author" => $author, "deleted" => false, ]);
   }
 }

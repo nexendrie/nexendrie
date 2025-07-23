@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Skills;
 use Nexendrie\Orm\Skill as SkillEntity;
 
 /**
@@ -12,11 +13,9 @@ use Nexendrie\Orm\Skill as SkillEntity;
  * @author Jakub Konečný
  */
 final class AddEditSkillFormFactory {
-  protected \Nexendrie\Model\Skills $model;
   protected ?SkillEntity $skill;
 
-  public function __construct(\Nexendrie\Model\Skills $model) {
-    $this->model = $model;
+  public function __construct(private readonly Skills $model) {
   }
 
   public function create(?SkillEntity $skill = null): Form {

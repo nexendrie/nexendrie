@@ -5,6 +5,7 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Orm\Marriage;
+use Nexendrie\Orm\Model as ORM;
 use Nextras\FormComponents\Controls\DateTimeControl;
 
 /**
@@ -13,11 +14,9 @@ use Nextras\FormComponents\Controls\DateTimeControl;
  * @author Jakub Konečný
  */
 final class ChangeWeddingTermFormFactory {
-  protected \Nexendrie\Orm\Model $orm;
   private Marriage $marriage;
   
-  public function __construct(\Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
+  public function __construct(private readonly ORM $orm) {
   }
   
   public function create(Marriage $marriage): Form {

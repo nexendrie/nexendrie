@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nette\Caching\Cache;
 use Nette\Utils\Arrays;
 use Nexendrie\Orm\Group as GroupEntity;
 use Nexendrie\Orm\GroupDummy;
+use Nexendrie\Orm\Model as ORM;
 
 /**
  * Group Model
@@ -14,15 +16,11 @@ use Nexendrie\Orm\GroupDummy;
  * @property-write \Nette\Security\User $user
  */
 final class Group {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Caching\Cache $cache;
   protected \Nette\Security\User $user;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nette\Caching\Cache $cache, \Nexendrie\Orm\Model $orm) {
-    $this->orm = $orm;
-    $this->cache = $cache;
+  public function __construct(private readonly Cache $cache, private readonly ORM $orm) {
   }
   
   protected function setUser(\Nette\Security\User $user): void {

@@ -22,10 +22,9 @@ final class TownsRepository extends \Nextras\Orm\Repository\Repository {
   }
   
   /**
-   * @param User|int $owner
    * @return ICollection|Town[]
    */
-  public function findByOwner($owner): ICollection {
+  public function findByOwner(User|int $owner): ICollection {
     return $this->findBy(["owner" => $owner]);
   }
   

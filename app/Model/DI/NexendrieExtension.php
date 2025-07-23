@@ -14,12 +14,7 @@ use Nette\Bridges\ApplicationLatte\ILatteFactory;
  * @author Jakub Konečný
  */
 final class NexendrieExtension extends \Nette\DI\CompilerExtension {
-  protected string $wwwDir;
-  protected string $appDir;
-
-  public function __construct(string $wwwDir, string $appDir) {
-    $this->wwwDir = $wwwDir;
-    $this->appDir = $appDir;
+  public function __construct(private readonly string $wwwDir, private readonly string $appDir) {
   }
 
   public function loadConfiguration(): void {
@@ -348,7 +343,7 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Achievements\WrittenArticlesAchievement::class);
   }
 
-  public function beforeCompile() {
+  public function beforeCompile(): void {
     $builder = $this->getContainerBuilder();
     /** @var FactoryDefinition $latteFactory */
     $latteFactory = $builder->getDefinitionByType(ILatteFactory::class);

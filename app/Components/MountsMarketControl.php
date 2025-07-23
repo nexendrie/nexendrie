@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
+use Nexendrie\Model\Mount;
 use Nexendrie\Model\MountNotFoundException;
 use Nexendrie\Model\MountNotOnSaleException;
 use Nexendrie\Model\CannotBuyOwnMountException;
@@ -16,12 +17,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class MountsMarketControl extends \Nette\Application\UI\Control {
-  protected \Nexendrie\Model\Mount $model;
-  protected \Nette\Security\User $user;
-  
-  public function __construct(\Nexendrie\Model\Mount $model, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
-    $this->model = $model;
-    $this->user = $user;
+  public function __construct(private readonly Mount $model, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
   }
   

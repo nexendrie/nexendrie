@@ -6,6 +6,7 @@ namespace Nexendrie\Components;
 use Nexendrie\Model\AuthenticationNeededException;
 use Nexendrie\Model\MealNotFoundException;
 use Nexendrie\Model\InsufficientFundsException;
+use Nexendrie\Model\Tavern;
 
 /**
  * TavernControl
@@ -14,12 +15,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class TavernControl extends \Nette\Application\UI\Control {
-  protected \Nexendrie\Model\Tavern $model;
-  protected \Nette\Security\User $user;
-  
-  public function __construct(\Nexendrie\Model\Tavern $model, \Nette\Security\User $user) {
-    $this->model = $model;
-    $this->user = $user;
+  public function __construct(private readonly Tavern $model, private readonly \Nette\Security\User $user) {
   }
   
   public function render(): void {

@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nexendrie\Model\Locale;
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\UserItem as UserItemEntity;
 use Nexendrie\Orm\Message as MessageEntity;
 use Nexendrie\Orm\Item as ItemEntity;
@@ -14,14 +16,7 @@ use Nexendrie\Orm\Item as ItemEntity;
  * @author Jakub Konečný
  */
 final class GiftFormFactory {
-  protected \Nexendrie\Model\Locale $localeModel;
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
-  
-  public function __construct(\Nexendrie\Model\Locale $localeModel, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    $this->localeModel = $localeModel;
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly Locale $localeModel, private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   
   /**

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\Order as OrderEntity;
 use Nexendrie\Orm\User as UserEntity;
 use Nexendrie\Orm\Group as GroupEntity;
@@ -15,15 +16,11 @@ use Nextras\Orm\Collection\ICollection;
  * @property-read int $maxRank
  */
 final class Order {
-  protected \Nexendrie\Orm\Model $orm;
-  protected \Nette\Security\User $user;
   protected int $foundingPrice;
   
   use \Nette\SmartObject;
   
-  public function __construct(\Nexendrie\Orm\Model $orm, \Nette\Security\User $user, SettingsRepository $sr) {
-    $this->orm = $orm;
-    $this->user = $user;
+  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->foundingPrice = $sr->settings["fees"]["foundOrder"];
   }
   
@@ -43,10 +40,7 @@ final class Order {
    */
   public function getOrder(int $id): OrderEntity {
     $order = $this->orm->orders->getById($id);
-    if($order === null) {
-      throw new OrderNotFoundException();
-    }
-    return $order;
+    return $order ?? throw new OrderNotFoundException();
   }
   
   /**
@@ -83,10 +77,7 @@ final class Order {
    */
   public function getUserOrder(int $uid = null): ?OrderEntity {
     $user = $this->orm->users->getById($uid ?? $this->user->id);
-    if($user === null) {
-      return null;
-    }
-    return $user->order;
+    return $user?->order;
   }
   
   /**
