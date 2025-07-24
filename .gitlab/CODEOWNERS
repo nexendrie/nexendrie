@@ -1,47 +1,47 @@
-*                           @konecnyjakub
+* @konecnyjakub
 
-[Project Management]
-/.gitlab/                   @nexendrie/project-management
-/README.md                  @nexendrie/project-management
-/LICENSE.md                 @nexendrie/project-management
-/CONTRIBUTING.md            @nexendrie/project-management
-/CHANGELOG.md               @nexendrie/project-management
-/composer.json              @nexendrie/project-management
+[Project Management] @nexendrie/project-management
+/.gitlab/
+/README.md
+/LICENSE.md
+/CONTRIBUTING.md
+/CHANGELOG.md
+/composer.json
 
-[Quality Assurance]
-/phpstan.neon               @nexendrie/quality-assurance
-/.csslintrc                 @nexendrie/quality-assurance
+[Quality Assurance] @nexendrie/quality-assurance
+/phpstan.neon
 
-[Devops]
-/migrations/                @nexendrie/devops
-/tools/                     @nexendrie/devops
-/.gitlab-ci.yml             @nexendrie/devops
-/.scrutinizer.yml           @nexendrie/devops
-/install.sh                 @nexendrie/devops
-/build.xml                  @nexendrie/devops
-/phinx.php                  @nexendrie/devops
-/deployment.ini             @nexendrie/devops
-/INSTALL.md                 @nexendrie/devops
-.gitattributes              @nexendrie/devops
-.htaccess                   @nexendrie/devops
-robots.txt                  @nexendrie/devops
+[Devops] @nexendrie/devops
+/migrations/
+/tools/
+/.gitlab-ci.yml
+/.scrutinizer.yml
+/install.sh
+/build.xml
+/phinx.php
+/deployment.ini
+/INSTALL.md
+.gitattributes
+.htaccess
+robots.txt
 
-[PHP Code]
-/app/                       @konecnyjakub
-/www/index.php              @konecnyjakub
+[PHP Code] @konecnyjakub
+/app/**/*.php
+/www/index.php
 
-[CSS]
-/www/styles/                @konecnyjakub
+[CSS] @konecnyjakub
+/www/styles/
+*.css
 
-[Tests]
-/tests/                     @konecnyjakub
+[Tests] @konecnyjakub
+/tests/
 
-[Graphics]
-/www/images/                @konecnyjakub
-*.png                       @konecnyjakub
-*.jpg                       @konecnyjakub
-*.svg                       @konecnyjakub
-*.ico                       @konecnyjakub
+[Graphics] @konecnyjakub
+/www/images/
+*.png
+*.jpg
+*.svg
+*.ico
 
-[Templates]
-templates/                  @konecnyjakub
+[Templates] @konecnyjakub
+*.latte
