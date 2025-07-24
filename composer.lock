@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c9dac5d42f5b14c1dfe1454fa94211c",
+    "content-hash": "2dd61cc4abb8a06f20c403b96a453e61",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -271,16 +271,16 @@
         },
         {
             "name": "kdyby/autowired",
-            "version": "v2.3.0",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kdyby/Autowired.git",
-                "reference": "95f1264f450ca95a17c4219a7e0f59ac8618e5e1"
+                "reference": "ff1f72e1825acfdcd29b2e94c63787bffef91e7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kdyby/Autowired/zipball/95f1264f450ca95a17c4219a7e0f59ac8618e5e1",
-                "reference": "95f1264f450ca95a17c4219a7e0f59ac8618e5e1",
+                "url": "https://api.github.com/repos/Kdyby/Autowired/zipball/ff1f72e1825acfdcd29b2e94c63787bffef91e7e",
+                "reference": "ff1f72e1825acfdcd29b2e94c63787bffef91e7e",
                 "shasum": ""
             },
             "require": {
@@ -288,24 +288,26 @@
                 "nette/caching": "^3.1",
                 "nette/component-model": "^3.0.2",
                 "nette/di": "^3.0.10",
-                "nette/utils": "^3.2.5",
-                "php": ">=8.0",
-                "tracy/tracy": "^2.6"
+                "nette/utils": "^3.2.5 || ^4.0",
+                "php": ">=8.0 <8.5",
+                "tracy/tracy": "^2.8"
             },
             "require-dev": {
                 "nette/bootstrap": "^3.1",
-                "nette/robot-loader": "^3.2",
-                "nette/tester": "^2.4.3",
+                "nette/http": "*@dev",
+                "nette/neon": ">=3.3.4@dev",
+                "nette/robot-loader": "^3.2 || ^4.0@dev",
+                "nette/tester": "^2.5.1",
                 "php-parallel-lint/php-parallel-lint": "^1.3.2",
-                "phpstan/phpstan": "^1.9.2",
-                "phpstan/phpstan-nette": "^1.1.0",
-                "slevomat/coding-standard": "^7.2.1",
-                "squizlabs/php_codesniffer": "^3.7.1"
+                "phpstan/phpstan": "^1.12.7",
+                "phpstan/phpstan-nette": "^1.3.8",
+                "slevomat/coding-standard": "^8.15.0",
+                "squizlabs/php_codesniffer": "^3.10.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -340,9 +342,9 @@
             "support": {
                 "email": "filip@prochazka.su",
                 "issues": "https://github.com/kdyby/autowired/issues",
-                "source": "https://github.com/Kdyby/Autowired/tree/v2.3.0"
+                "source": "https://github.com/Kdyby/Autowired/tree/v3.1.0"
             },
-            "time": "2022-11-28T19:47:07+00:00"
+            "time": "2024-10-29T09:19:54+00:00"
         },
         {
             "name": "latte/latte",
@@ -1791,33 +1793,33 @@
         },
         {
             "name": "nexendrie/rest-route",
-            "version": "5.0.0",
+            "version": "5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/rest-route.git",
-                "reference": "5725fa8803e74b40b2cba0c5e93eb837be96eecb"
+                "reference": "e09e607c3efdfb5d46b09a9342708de9ae38db71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frest-route/repository/archive.zip?sha=5725fa8803e74b40b2cba0c5e93eb837be96eecb",
-                "reference": "5725fa8803e74b40b2cba0c5e93eb837be96eecb",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frest-route/repository/archive.zip?sha=e09e607c3efdfb5d46b09a9342708de9ae38db71",
+                "reference": "e09e607c3efdfb5d46b09a9342708de9ae38db71",
                 "shasum": ""
             },
             "require": {
                 "nette/application": "^3.0",
                 "nette/http": "^3.0",
                 "nette/utils": "^3.0 || ^4.0",
-                "php": ">=7.4.0"
+                "php": ">=8.1.0"
             },
             "require-dev": {
                 "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^9.0",
+                "phpunit/phpunit": "^10.0",
                 "squizlabs/php_codesniffer": "^3.13"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.0.x-dev"
+                    "dev-master": "5.1.x-dev"
                 }
             },
             "autoload": {
@@ -1842,9 +1844,9 @@
             ],
             "support": {
                 "issues": "https://gitlab.com/nexendrie/rest-route/-/issues",
-                "source": "https://gitlab.com/nexendrie/rest-route/-/tree/5.0.0"
+                "source": "https://gitlab.com/nexendrie/rest-route/-/tree/5.1.0"
             },
-            "time": "2025-07-22T17:04:06+00:00"
+            "time": "2025-07-24T13:47:12+00:00"
         },
         {
             "name": "nexendrie/rss",
@@ -2139,24 +2141,24 @@
         },
         {
             "name": "nextras/form-components",
-            "version": "v1.1.2",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/form-components.git",
-                "reference": "67253c9354762682d7d0804974b2350f1c9a53af"
+                "reference": "b50849578f2a51e2a3c67983a24c90910f5cd79d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/form-components/zipball/67253c9354762682d7d0804974b2350f1c9a53af",
-                "reference": "67253c9354762682d7d0804974b2350f1c9a53af",
+                "url": "https://api.github.com/repos/nextras/form-components/zipball/b50849578f2a51e2a3c67983a24c90910f5cd79d",
+                "reference": "b50849578f2a51e2a3c67983a24c90910f5cd79d",
                 "shasum": ""
             },
             "require": {
                 "nette/application": "~3.0",
                 "nette/component-model": "~3.0",
-                "nette/forms": "~3.0",
+                "nette/forms": "~3.1",
                 "nette/utils": "^3.0 || ^4.0",
-                "php": ">=7.1"
+                "php": ">=8.0"
             },
             "require-dev": {
                 "latte/latte": "~3.0",
@@ -2164,8 +2166,8 @@
                 "nette/di": "~3.0",
                 "nette/robot-loader": "~3.0",
                 "nette/tester": "~2.1",
-                "phpstan/phpstan-nette": "0.11",
-                "phpstan/phpstan-shim": "0.11.1",
+                "phpstan/phpstan": "^1.12",
+                "phpstan/phpstan-nette": "^1.3",
                 "tracy/tracy": "~2.5"
             },
             "type": "library",
@@ -2200,9 +2202,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nextras/form-components/issues",
-                "source": "https://github.com/nextras/form-components/tree/v1.1.2"
+                "source": "https://github.com/nextras/form-components/tree/v2.0.0"
             },
-            "time": "2023-04-19T13:38:40+00:00"
+            "time": "2024-11-04T22:52:44+00:00"
         },
         {
             "name": "nextras/orm",
@@ -3302,21 +3304,22 @@
     "packages-dev": [
         {
             "name": "dg/ftp-deployment",
-            "version": "v3.3.1",
+            "version": "v3.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/ftp-deployment.git",
-                "reference": "267cb5f3467d962b0ea86c15a45c7d855af8bcdd"
+                "reference": "249f49b40898b762ffe332402eee84e13e8dda24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/267cb5f3467d962b0ea86c15a45c7d855af8bcdd",
-                "reference": "267cb5f3467d962b0ea86c15a45c7d855af8bcdd",
+                "url": "https://api.github.com/repos/dg/ftp-deployment/zipball/249f49b40898b762ffe332402eee84e13e8dda24",
+                "reference": "249f49b40898b762ffe332402eee84e13e8dda24",
                 "shasum": ""
             },
             "require": {
                 "ext-zlib": "*",
-                "php": ">=7.1"
+                "php": ">=8.0",
+                "phpseclib/phpseclib": "^3.0"
             },
             "require-dev": {
                 "nette/tester": "^2.0",
@@ -3334,7 +3337,7 @@
             "type": "project",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.6-dev"
                 }
             },
             "autoload": {
@@ -3345,8 +3348,8 @@
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
+                "GPL-2.0-only",
+                "GPL-3.0-only"
             ],
             "authors": [
                 {
@@ -3363,9 +3366,9 @@
             ],
             "support": {
                 "issues": "https://github.com/dg/ftp-deployment/issues",
-                "source": "https://github.com/dg/ftp-deployment/tree/v3.3.1"
+                "source": "https://github.com/dg/ftp-deployment/tree/v3.6.2"
             },
-            "time": "2020-11-09T12:40:03+00:00"
+            "time": "2025-03-31T00:39:04+00:00"
         },
         {
             "name": "kdyby/fake-session",
@@ -3695,6 +3698,123 @@
             "time": "2024-12-14T21:07:31+00:00"
         },
         {
+            "name": "paragonie/constant_time_encoding",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/constant_time_encoding.git",
+                "reference": "df1e7fde177501eee2037dd159cf04f5f301a512"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/constant_time_encoding/zipball/df1e7fde177501eee2037dd159cf04f5f301a512",
+                "reference": "df1e7fde177501eee2037dd159cf04f5f301a512",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9",
+                "vimeo/psalm": "^4|^5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ParagonIE\\ConstantTime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com",
+                    "homepage": "https://paragonie.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Steve 'Sc00bz' Thomas",
+                    "email": "steve@tobtu.com",
+                    "homepage": "https://www.tobtu.com",
+                    "role": "Original Developer"
+                }
+            ],
+            "description": "Constant-time Implementations of RFC 4648 Encoding (Base-64, Base-32, Base-16)",
+            "keywords": [
+                "base16",
+                "base32",
+                "base32_decode",
+                "base32_encode",
+                "base64",
+                "base64_decode",
+                "base64_encode",
+                "bin2hex",
+                "encoding",
+                "hex",
+                "hex2bin",
+                "rfc4648"
+            ],
+            "support": {
+                "email": "info@paragonie.com",
+                "issues": "https://github.com/paragonie/constant_time_encoding/issues",
+                "source": "https://github.com/paragonie/constant_time_encoding"
+            },
+            "time": "2024-05-08T12:36:18+00:00"
+        },
+        {
+            "name": "paragonie/random_compat",
+            "version": "v9.99.100",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/random_compat.git",
+                "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/996434e5492cb4c3edcb9168db6fbb1359ef965a",
+                "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 7"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*|5.*",
+                "vimeo/psalm": "^1"
+            },
+            "suggest": {
+                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com",
+                    "homepage": "https://paragonie.com"
+                }
+            ],
+            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
+            "keywords": [
+                "csprng",
+                "polyfill",
+                "pseudorandom",
+                "random"
+            ],
+            "support": {
+                "email": "info@paragonie.com",
+                "issues": "https://github.com/paragonie/random_compat/issues",
+                "source": "https://github.com/paragonie/random_compat"
+            },
+            "time": "2020-10-15T08:29:30+00:00"
+        },
+        {
             "name": "php-parallel-lint/php-console-color",
             "version": "v0.3",
             "source": {
@@ -3856,6 +3976,116 @@
                 "source": "https://github.com/php-parallel-lint/PHP-Parallel-Lint/tree/v1.4.0"
             },
             "time": "2024-03-27T12:14:49+00:00"
+        },
+        {
+            "name": "phpseclib/phpseclib",
+            "version": "3.0.46",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpseclib/phpseclib.git",
+                "reference": "56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6",
+                "reference": "56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6",
+                "shasum": ""
+            },
+            "require": {
+                "paragonie/constant_time_encoding": "^1|^2|^3",
+                "paragonie/random_compat": "^1.4|^2.0|^9.99.99",
+                "php": ">=5.6.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "suggest": {
+                "ext-dom": "Install the DOM extension to load XML formatted public keys.",
+                "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
+                "ext-libsodium": "SSH2/SFTP can make use of some algorithms provided by the libsodium-php extension.",
+                "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
+                "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "phpseclib/bootstrap.php"
+                ],
+                "psr-4": {
+                    "phpseclib3\\": "phpseclib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Wigginton",
+                    "email": "terrafrost@php.net",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Patrick Monnerat",
+                    "email": "pm@datasphere.ch",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Andreas Fischer",
+                    "email": "bantu@phpbb.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Hans-Jürgen Petrich",
+                    "email": "petrich@tronic-media.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
+            "homepage": "http://phpseclib.sourceforge.net",
+            "keywords": [
+                "BigInteger",
+                "aes",
+                "asn.1",
+                "asn1",
+                "blowfish",
+                "crypto",
+                "cryptography",
+                "encryption",
+                "rsa",
+                "security",
+                "sftp",
+                "signature",
+                "signing",
+                "ssh",
+                "twofish",
+                "x.509",
+                "x509"
+            ],
+            "support": {
+                "issues": "https://github.com/phpseclib/phpseclib/issues",
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.46"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/terrafrost",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/phpseclib",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/phpseclib/phpseclib",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2025-06-26T16:29:55+00:00"
         },
         {
             "name": "phpstan/phpstan",
