@@ -43,13 +43,9 @@ Whatever server you use, we strongly advise that the server name ends with .loca
 
 ### FrankenPHP
 
-FrankenPHP is the recommended server as it was specifically created as a PHP app server and requires the least amount of configuration. In its configuration you only need to enable FrankenPHP, then use it for your server and define the root directory.
+FrankenPHP is the recommended server as it was specifically created as a PHP app server and requires the least amount of configuration. You only need to add a new server, define the root directory and enable php_server for it.
 
 ```
-{
-    frankenphp
-}
-
 nexendrie.localhost {
     root /var/www/html/nexendrie/www
     php_server
