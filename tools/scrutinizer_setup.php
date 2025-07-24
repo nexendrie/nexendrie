@@ -11,7 +11,7 @@ if($content === false) {
   throw new RuntimeException("File $filename does not exist or cannot be read.");
 }
 $config = Neon::decode($content);
-$config["dbal"]["host"] = "localhost";
+$config["dbal"]["host"] = "127.0.0.1";
 unset($config["dbal"]["password"]);
 file_put_contents($filename, Neon::encode($config, true));
 ?>
