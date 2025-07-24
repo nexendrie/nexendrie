@@ -11,7 +11,6 @@ use Nexendrie\Utils\Intervals;
  * Settings Repository
  *
  * @author Jakub Konečný
- * @property-read array $settings
  */
 final class SettingsRepository {
   protected array $defaults = [
@@ -92,8 +91,6 @@ final class SettingsRepository {
   ];
 
   public readonly array $settings;
-  
-  use \Nette\SmartObject;
   
   public function __construct(array $settings, private readonly ThemesManager $themesManager) {
     $this->settings = $this->validateSettings($settings);

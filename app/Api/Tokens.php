@@ -9,13 +9,8 @@ use Nexendrie\Model\AuthenticationNeededException;
 use Nexendrie\Orm\ApiToken;
 use Nexendrie\Orm\Model as ORM;
 
-/**
- * @property-read int $length
- */
 final class Tokens {
-  use \Nette\SmartObject;
-
-  public function __construct(private readonly int $ttl, private readonly int $length, private readonly ORM $orm, private readonly User $user) {
+  public function __construct(private readonly int $ttl, public readonly int $length, private readonly ORM $orm, private readonly User $user) {
   }
 
   public function create(): ApiToken {
@@ -55,10 +50,6 @@ final class Tokens {
 
     $tokenEntity->expire = $dt->getTimestamp();
     $this->orm->apiTokens->persistAndFlush($tokenEntity);
-  }
-
-  public function getLength(): int {
-    return $this->length;
   }
 }
 ?>

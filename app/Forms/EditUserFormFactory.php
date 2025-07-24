@@ -16,8 +16,6 @@ use Nexendrie\Orm\Model as ORM;
 final class EditUserFormFactory {
   protected int $uid;
   
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly UserManager $model, private readonly Town $townModel) {
   }
   

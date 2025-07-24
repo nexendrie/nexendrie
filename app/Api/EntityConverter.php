@@ -8,8 +8,6 @@ use Nexendrie\Utils\Collection;
 use Nextras\Orm\Entity\Entity;
 
 final class EntityConverter {
-  use \Nette\SmartObject;
-
   protected int $maxDepth;
   /** @var ITransformer[]|Collection */
   protected Collection $transformers;

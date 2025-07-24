@@ -14,8 +14,6 @@ final class PermissionDummy {
   public readonly string $action;
   public readonly int $group;
   
-  use \Nette\SmartObject;
-  
   public function __construct(Permission $p) {
     $this->id = $p->id;
     $this->resource = $p->resource;

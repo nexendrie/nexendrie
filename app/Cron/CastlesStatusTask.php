@@ -12,8 +12,6 @@ use Nexendrie\Orm\Model as ORM;
  * @author Jakub Konečný
  */
 final class CastlesStatusTask {
-  use \Nette\SmartObject;
-
   protected int $weeklyWearingOut;
 
   public function __construct(private readonly ORM $orm, SettingsRepository $sr) {

@@ -13,8 +13,6 @@ use Nexendrie\Orm\Model as ORM;
 final class Taxes {
   protected int $taxRate;
   
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly Job $jobModel, private readonly Adventure $adventureModel, SettingsRepository $sr) {
     $this->taxRate = $sr->settings["fees"]["incomeTax"];
   }

@@ -14,8 +14,6 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Mount {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   

@@ -9,8 +9,6 @@ namespace Nexendrie\Orm;
  * @author Jakub Konečný
  */
 abstract class DummyEntity {
-  use \Nette\SmartObject;
-  
   public function toArray(): array {
     $return = [];
     foreach(get_object_vars($this) as $key => $value) {

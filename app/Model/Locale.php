@@ -15,8 +15,6 @@ use Nexendrie\Orm\User as UserEntity;
 final class Locale {
   public readonly array $formats;
   
-  use \Nette\SmartObject;
-  
   public function __construct(SettingsRepository $sr, private readonly Translator $translator, private readonly User $user) {
     $this->formats = $sr->settings["locale"];
   }

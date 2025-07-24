@@ -13,8 +13,6 @@ use Nexendrie\RestRoute\RestRoute;
  * @author Jakub Konečný
  */
 final class RouterFactory {
-  use \Nette\SmartObject;
-  
   public function create(): RouteList {
     $router = new RouteList();
     $restRoute = new RestRoute("Api");

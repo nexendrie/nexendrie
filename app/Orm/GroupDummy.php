@@ -17,8 +17,6 @@ final class GroupDummy {
   public readonly string $path;
   public readonly int $members;
   
-  use \Nette\SmartObject;
-  
   public function __construct(Group $g) {
     $this->id = $g->id;
     $this->name = $g->name;

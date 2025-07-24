@@ -13,8 +13,6 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class ItemSet {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm) {
   }
   

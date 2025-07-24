@@ -12,8 +12,6 @@ use Nexendrie\Orm\Mount as MountEntity;
  * @author Jakub Konečný
  */
 final class MountsStatusTask {
-  use \Nette\SmartObject;
-
   protected int $autoFeedingCost;
   
   public function __construct(private readonly ORM $orm, \Nexendrie\Model\SettingsRepository $sr) {

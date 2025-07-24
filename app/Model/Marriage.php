@@ -15,8 +15,6 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Marriage {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, private readonly GenericNotificator $notificator, private readonly LinkGenerator $linkGenerator) {
   }
   

@@ -14,8 +14,6 @@ use Nexendrie\Orm\Punishment as PunishmentEntity;
  * @author Jakub Konečný
  */
 final class Chronicle {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm) {
   }
   

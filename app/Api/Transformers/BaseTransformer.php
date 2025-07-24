@@ -11,8 +11,6 @@ use Nextras\Orm\Entity\ToArrayConverter;
 use Nextras\Orm\Relationships\HasMany;
 
 abstract class BaseTransformer implements ITransformer {
-  use \Nette\SmartObject;
-
   /** @var string[] */
   protected array $fields = [];
   /** @var string[] */

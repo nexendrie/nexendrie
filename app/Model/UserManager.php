@@ -23,8 +23,6 @@ final class UserManager {
     REG_DUPLICATE_EMAIL = 2,
     SET_INVALID_PASSWORD = 3;
 
-  use \Nette\SmartObject;
-
   public function __construct(private readonly ORM $orm, SettingsRepository $sr, private readonly User $user, private readonly Passwords $passwords) {
     $this->roles = $sr->settings["roles"];
     $this->newUser = $sr->settings["newUser"];

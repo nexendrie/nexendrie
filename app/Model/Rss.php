@@ -18,8 +18,6 @@ use Nextras\Orm\Collection\ICollection;
 final class Rss {
   protected string $versionSuffix = "";
   
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly Article $articleModel, private readonly LinkGenerator $linkGenerator, private readonly Generator $generator, SettingsRepository $sr) {
     $this->versionSuffix = $sr->settings["site"]["versionSuffix"];
   }

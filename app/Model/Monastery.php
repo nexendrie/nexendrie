@@ -20,8 +20,6 @@ final class Monastery {
   protected int $buildingPrice;
   protected int $criticalCondition;
   
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly Events $eventsModel, private readonly Guild $guildModel, private readonly Order $orderModel, private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->buildingPrice = $sr->settings["fees"]["buildMonastery"];
     $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];

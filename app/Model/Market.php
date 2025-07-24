@@ -15,8 +15,6 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Market {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly Events $eventsModel, private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   

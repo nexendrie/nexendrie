@@ -11,8 +11,6 @@ use Nexendrie\Achievements\IAchievement;
  * @author Jakub Konečný
  */
 final class Achievements {
-  use \Nette\SmartObject;
-
   /**
    * @param IAchievement[] $achievements
    */

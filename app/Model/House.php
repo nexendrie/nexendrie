@@ -18,8 +18,6 @@ final class House {
   protected int $price;
   protected int $criticalCondition;
   
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->price = $sr->settings["fees"]["buyHouse"];
     $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];

@@ -19,8 +19,6 @@ use HeroesofAbenez\Combat\ConstantInitiativeFormulaParser;
  * @author Jakub Konečný
  */
 final class CombatHelper {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly Inventory $inventoryModel, private readonly ORM $orm) {
   }
   

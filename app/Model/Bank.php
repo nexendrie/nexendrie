@@ -17,8 +17,6 @@ final class Bank {
   protected int $loanInterest;
   protected int $depositInterest;
   
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->loanInterest = $sr->settings["fees"]["loanInterest"];
     $this->depositInterest = $sr->settings["fees"]["depositInterest"];

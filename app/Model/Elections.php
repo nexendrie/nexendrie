@@ -13,8 +13,6 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Elections {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm) {
   }
   

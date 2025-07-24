@@ -25,9 +25,7 @@ final class Events implements \Nexendrie\EventCalendar\IEventModel {
   /** @var Event[]|ICollection */
   private ICollection $events;
 
-  use \Nette\SmartObject;
-
-  public function __construct(private readonly ORM $orm, private readonly Cache $cache, private readonly \Nette\Security\User $user, private readonly SettingsRepository $sr, private readonly \Nette\Application\LinkGenerator $lg) {
+  public function __construct(private readonly ORM $orm, private readonly Cache $cache, private readonly SettingsRepository $sr, private readonly \Nette\Application\LinkGenerator $lg) {
   }
 
   /**

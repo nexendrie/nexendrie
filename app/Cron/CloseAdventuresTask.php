@@ -12,8 +12,6 @@ use Nexendrie\Orm\UserAdventure;
  * @author Jakub Konečný
  */
 final class CloseAdventuresTask {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm) {
   }
   

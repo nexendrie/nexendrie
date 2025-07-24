@@ -13,8 +13,6 @@ use Nexendrie\Orm\UserExpense;
  * @author Jakub Konečný
  */
 final class Property {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly Taxes $taxesModel, private readonly ORM $orm, private readonly \Nette\Security\User $user, private readonly SettingsRepository $sr) {
   }
   

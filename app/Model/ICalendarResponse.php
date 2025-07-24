@@ -7,8 +7,6 @@ use Nette;
 use Nette\Application\Response;
 
 final class ICalendarResponse implements Response {
-  use \Nette\SmartObject;
-
   public function __construct(public readonly string $source) {
   }
 

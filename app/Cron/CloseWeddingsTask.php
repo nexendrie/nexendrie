@@ -13,8 +13,6 @@ use Nexendrie\Orm\Model as ORM;
  * @author Jakub Konečný
  */
 final class CloseWeddingsTask {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly Marriage $marriageModel) {
   }
   

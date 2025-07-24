@@ -18,8 +18,6 @@ final class Town {
   protected int $foundingPrice;
   protected int $foundingCharter;
   
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->foundingPrice = $sr->settings["fees"]["foundTown"];
     $this->foundingCharter = $sr->settings["specialItems"]["foundTown"];

@@ -18,8 +18,6 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @author Jakub Konečný
  */
 final class Inventory {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   

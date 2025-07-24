@@ -13,8 +13,6 @@ use Nette\Utils\Arrays;
  * @author Jakub Konečný
  */
 abstract class BaseAchievement implements IAchievement {
-  use \Nette\SmartObject;
-
   protected string $field;
   protected string $name;
   protected string $description;

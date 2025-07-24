@@ -16,8 +16,6 @@ use Nexendrie\Orm\Model as ORM;
  * @author Jakub Konečný
  */
 final class AuthorizatorFactory {
-  use \Nette\SmartObject;
-  
   /** @internal */
   public const GUILD_RANK_ROLE_PREFIX = "cech";
   /** @internal */

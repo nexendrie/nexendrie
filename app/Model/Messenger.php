@@ -17,8 +17,6 @@ use Nextras\Orm\Collection\ICollection;
 final class Messenger {
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, private readonly LinkGenerator $linkGenerator, private readonly GenericNotificator $notificator) {
   }
-
-  use \Nette\SmartObject;
   
   /**
    * Get list of received messages

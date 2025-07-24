@@ -17,8 +17,6 @@ use Nexendrie\Orm\UserSkill;
  * @author Jakub Konečný
  */
 final class Profile {
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
   

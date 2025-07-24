@@ -16,8 +16,6 @@ use Nextras\Orm\Collection\ICollection;
 final class Article {
   protected int $itemsPerPage;
   
-  use \Nette\SmartObject;
-  
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->itemsPerPage = (int) $sr->settings["pagination"]["articles"];
   }

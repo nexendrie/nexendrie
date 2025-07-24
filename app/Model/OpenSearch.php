@@ -6,8 +6,6 @@ namespace Nexendrie\Model;
 use Nette\Application\LinkGenerator;
 
 final class OpenSearch {
-  use \Nette\SmartObject;
-
   public function __construct(private readonly SettingsRepository $sr, private readonly LinkGenerator $lg) {
   }
 
