@@ -162,7 +162,7 @@ build:
         postgresql: false
         redis: false
         rabbitmq: false
-        mariadb: 10
+        mysql: 5.5
     nodes:
         tests:
             cache:
