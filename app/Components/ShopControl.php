@@ -21,8 +21,8 @@ use Nexendrie\Model\InsufficientFundsException;
  * @property-write int $id
  */
 final class ShopControl extends \Nette\Application\UI\Control {
-  protected ShopEntity $shop;
-  protected int $id;
+  private ShopEntity $shop;
+  private int $id;
   
   public function __construct(private readonly Market $model, private readonly Events $eventsModel, private readonly ORM $orm) {
   }

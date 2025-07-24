@@ -238,7 +238,7 @@ final class Adventure {
    *
    * @return bool Whether the user won
    */
-  protected function fightNpc(AdventureNpcEntity $npc, MountEntity $mount): bool {
+  private function fightNpc(AdventureNpcEntity $npc, MountEntity $mount): bool {
     $combat = $this->combat;
     $combat->victoryCondition = [VictoryConditions::class, "eliminateSecondTeam"];
     $player = $this->combatHelper->getCharacter($this->user->id, $mount);
@@ -250,8 +250,8 @@ final class Adventure {
     $user->life = $player->hitpoints;
     return ($combat->winner === 1);
   }
-  
-  protected function saveVictory(UserAdventureEntity $adventure, AdventureNpcEntity $enemy): void {
+
+  private function saveVictory(UserAdventureEntity $adventure, AdventureNpcEntity $enemy): void {
     $reward = $enemy->reward;
     $reward += $this->eventsModel->calculateAdventuresBonus($reward);
     $reward += $this->orderModel->calculateOrderIncomeBonus($reward);
@@ -336,7 +336,7 @@ final class Adventure {
    * @throws AuthenticationNeededException
    */
   public function canDoAdventure(): bool {
-    $twoDays = 60 * 60 * 24 * static::ADVENTURE_BREAK_DAYS_LENGTH;
+    $twoDays = 60 * 60 * 24 * self::ADVENTURE_BREAK_DAYS_LENGTH;
     if(!$this->user->isLoggedIn()) {
       throw new AuthenticationNeededException();
     }

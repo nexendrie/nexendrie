@@ -27,22 +27,22 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $this->addForms();
     $this->addAchievements();
   }
-  
-  protected function registerMenuConditions(): void {
+
+  private function registerMenuConditions(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition("menu.condition.banned")
       ->setType(Nexendrie\Menu\ConditionBanned::class);
     $builder->addDefinition("menu.condition.path")
       ->setType(Nexendrie\Menu\ConditionPath::class);
   }
-  
-  protected function addChatCommands(): void {
+
+  private function addChatCommands(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition("chat.command.time")
       ->setType(Nexendrie\Chat\Commands\TimeCommand::class);
   }
-  
-  protected function addCombat(): void {
+
+  private function addCombat(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition($this->prefix("combat.combatHelper"))
       ->setType(Nexendrie\Model\CombatHelper::class);
@@ -57,8 +57,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition($this->prefix("combat.actionSelector"))
       ->setType(\HeroesofAbenez\Combat\CombatActionSelector::class);
   }
-  
-  protected function addModels(): void {
+
+  private function addModels(): void {
     $builder = $this->getContainerBuilder();
     $config = $this->getConfig();
     $builder->addDefinition($this->prefix("model.group"))
@@ -149,8 +149,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition($this->prefix("model.workNotificator"))
       ->setType(Nexendrie\Model\WorkNotificator::class);
   }
-  
-  protected function addCronTasks(): void {
+
+  private function addCronTasks(): void {
     $builder = $this->getContainerBuilder();
     $tag = \stekycz\Cronner\DI\CronnerExtension::TASKS_TAG;
     $builder->addDefinition($this->prefix("cron.mountsStatus"))
@@ -184,8 +184,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Cron\MunicipalElectionsTask::class)
       ->addTag($tag);
   }
-  
-  protected function addComponents(): void {
+
+  private function addComponents(): void {
     $builder = $this->getContainerBuilder();
     $builder->addFactoryDefinition($this->prefix("component.poll"))
       ->setImplement(Nexendrie\Components\IPollControlFactory::class);
@@ -236,8 +236,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition($this->prefix("component.socialIcons.icon.gitlab"))
       ->setType(Nexendrie\Components\SocialIcons\GitLab::class);
   }
-  
-  protected function addForms(): void {
+
+  private function addForms(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition($this->prefix("form.addEditArticle"))
       ->setType(Nexendrie\Forms\AddEditArticleFormFactory::class);
@@ -324,8 +324,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
     $builder->addDefinition($this->prefix("form.siteSearch"))
       ->setType(Nexendrie\Forms\SiteSearchFormFactory::class);
   }
-  
-  protected function addAchievements(): void {
+
+  private function addAchievements(): void {
     $builder = $this->getContainerBuilder();
     $builder->addDefinition($this->prefix("achievements.completedAdventures"))
       ->setType(Nexendrie\Achievements\CompletedAdventuresAchievement::class);

@@ -35,10 +35,10 @@ final class ItemSet extends BaseEntity implements ICharacterEffectsProvider {
    */
   public static function getStats(): array {
     return [
-      static::STAT_HITPOINTS => "maximum životů",
-      static::STAT_DAMAGE => "poškození",
-      static::STAT_ARMOR => "brnění",
-      static::STAT_INITIATIVE => "iniciativa",
+      self::STAT_HITPOINTS => "maximum životů",
+      self::STAT_DAMAGE => "poškození",
+      self::STAT_ARMOR => "brnění",
+      self::STAT_INITIATIVE => "iniciativa",
     ];
   }
   
@@ -47,13 +47,13 @@ final class ItemSet extends BaseEntity implements ICharacterEffectsProvider {
   }
   
   protected function getterEffect(): string {
-    return static::getStats()[$this->stat] . " +" . $this->bonus;
+    return self::getStats()[$this->stat] . " +" . $this->bonus;
   }
   
   public function getCombatEffects(): array {
     $bonusStats = [
-      static::STAT_HITPOINTS => Character::STAT_MAX_HITPOINTS, static::STAT_DAMAGE => Character::STAT_DAMAGE,
-      static::STAT_ARMOR => Character::STAT_DEFENSE, static::STAT_INITIATIVE => Character::STAT_INITIATIVE,
+      self::STAT_HITPOINTS => Character::STAT_MAX_HITPOINTS, self::STAT_DAMAGE => Character::STAT_DAMAGE,
+      self::STAT_ARMOR => Character::STAT_DEFENSE, self::STAT_INITIATIVE => Character::STAT_INITIATIVE,
     ];
     $stats = [
       "id" => "itemSet{$this->id}BonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->bonus,

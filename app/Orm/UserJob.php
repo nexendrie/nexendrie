@@ -26,14 +26,14 @@ final class UserJob extends BaseEntity {
   public const BASE_SUCCESS_RATE = 55;
   public const JOB_DAYS_LENGTH = 7;
 
-  protected \Nexendrie\Model\Events $eventsModel;
+  private \Nexendrie\Model\Events $eventsModel;
   
   public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;
   }
   
   protected function getterFinishTime(): int {
-    return $this->created + (60 * 60 * 24 * static::JOB_DAYS_LENGTH);
+    return $this->created + (60 * 60 * 24 * self::JOB_DAYS_LENGTH);
   }
 
   protected function getterNextShiftTime(): int {

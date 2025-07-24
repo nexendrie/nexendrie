@@ -8,9 +8,9 @@ use Nexendrie\Utils\Collection;
 use Nextras\Orm\Entity\Entity;
 
 final class EntityConverter {
-  protected int $maxDepth;
+  private int $maxDepth;
   /** @var ITransformer[]|Collection */
-  protected Collection $transformers;
+  private Collection $transformers;
 
   /**
    * @param ITransformer[] $transformers

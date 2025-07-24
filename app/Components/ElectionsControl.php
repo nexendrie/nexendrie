@@ -30,7 +30,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control {
   /**
    * Get current state of elections
    */
-  protected function getState(): string {
+  private function getState(): string {
     if((int) date("j") <= 7) {
       return "results";
     }
@@ -47,7 +47,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control {
   /**
    * Check if the user can vote
    */
-  protected function canVote(): bool {
+  private function canVote(): bool {
     if(!$this->user->isAllowed("town", "elect")) {
       return false;
     } elseif($this->model->getNumberOfCouncillors($this->town->id) === 0) {
@@ -69,7 +69,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control {
    *
    * @return ElectionEntity[]|ICollection
    */
-  protected function getVotes(int $year, int $month): ICollection {
+  private function getVotes(int $year, int $month): ICollection {
     return $this->orm->elections->findVotedInMonth($this->town->id, $year, $month);
   }
   
@@ -78,7 +78,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control {
    *
    * @return ElectionResultEntity[]|ICollection
    */
-  protected function getResults(): ICollection {
+  private function getResults(): ICollection {
     $date = new \DateTime();
     $date->setTimestamp((int) mktime(0, 0, 0, (int) date("n"), 1, (int) date("Y")));
     $date->modify("-1 month");

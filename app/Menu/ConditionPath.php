@@ -22,7 +22,7 @@ final class ConditionPath extends BaseCondition {
     if(!$this->user->isLoggedIn()) {
       return false;
     } elseif(!is_string($parameter)) {
-      throw new \InvalidArgumentException("Method " . static::class . "::isAllowed expects string as parameter.");
+      throw new \InvalidArgumentException("Method " . self::class . "::isAllowed expects string as parameter.");
     }
     return ($parameter === $this->user->identity->path);
   }

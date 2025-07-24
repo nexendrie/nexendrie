@@ -31,14 +31,14 @@ final class Guild extends BaseEntity {
   public const BASE_UPGRADE_PRICE = 700;
   public const JOB_INCOME_BONUS_PER_LEVEL = 1;
 
-  protected \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
   }
   
   protected function setterLevel(int $value): int {
-    return Numbers::range($value, 1, static::MAX_LEVEL);
+    return Numbers::range($value, 1, self::MAX_LEVEL);
   }
   
   protected function getterCreatedAt(): string {
@@ -46,18 +46,18 @@ final class Guild extends BaseEntity {
   }
   
   protected function getterUpgradePrice(): int {
-    if($this->level === static::MAX_LEVEL) {
+    if($this->level === self::MAX_LEVEL) {
       return 0;
     }
-    $price = static::BASE_UPGRADE_PRICE;
+    $price = self::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->level + 1; $i++) {
-      $price += (int) (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
+      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
     }
     return $price;
   }
 
   protected function getterJobBonusIncome(): int {
-    return ($this->level - 1) * static::JOB_INCOME_BONUS_PER_LEVEL;
+    return ($this->level - 1) * self::JOB_INCOME_BONUS_PER_LEVEL;
   }
 }
 ?>

@@ -41,7 +41,7 @@ final class Marriage extends BaseEntity implements ICharacterEffectsProvider {
   public const INTIMACY_FOR_LEVEL = 100;
   public const HP_INCREASE_PER_LEVEL = 2;
 
-  protected \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
@@ -77,32 +77,32 @@ final class Marriage extends BaseEntity implements ICharacterEffectsProvider {
   }
   
   protected function setterIntimacy(int $value): int {
-    return Numbers::range($value, 0, static::MAX_INTIMACY);
+    return Numbers::range($value, 0, self::MAX_INTIMACY);
   }
   
   protected function getterLevel(): int {
-    if($this->status !== static::STATUS_ACTIVE) {
+    if($this->status !== self::STATUS_ACTIVE) {
       return 0;
     }
-    return (int) ($this->intimacy / static::INTIMACY_FOR_LEVEL);
+    return (int) ($this->intimacy / self::INTIMACY_FOR_LEVEL);
   }
   
   protected function getterHpIncrease(): int {
-    return $this->level * static::HP_INCREASE_PER_LEVEL;
+    return $this->level * self::HP_INCREASE_PER_LEVEL;
   }
   
   public function onBeforeUpdate(): void {
     parent::onBeforeUpdate();
-    if($this->status === static::STATUS_ACCEPTED && $this->accepted === null) {
+    if($this->status === self::STATUS_ACCEPTED && $this->accepted === null) {
       $this->accepted = time();
     }
-    if($this->status === static::STATUS_ACCEPTED && $this->term === null) {
+    if($this->status === self::STATUS_ACCEPTED && $this->term === null) {
       $this->term = time() + (60 * 60 * 24 * 14);
     }
-    if($this->status === static::STATUS_DECLINED && $this->accepted === null) {
+    if($this->status === self::STATUS_DECLINED && $this->accepted === null) {
       $this->accepted = time();
     }
-    if($this->status === static::STATUS_CANCELLED && $this->cancelled === null) {
+    if($this->status === self::STATUS_CANCELLED && $this->cancelled === null) {
       $this->cancelled = time();
     }
   }

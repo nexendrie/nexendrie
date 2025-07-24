@@ -13,11 +13,9 @@ use Nextras\FormComponents\Controls\DateTimeControl;
  * @author Jakub Konečný
  */
 final class AddEditEventFormFactory {
-  protected string $dateTimeFormat;
-  protected ?\Nexendrie\Orm\Event $event;
+  private ?\Nexendrie\Orm\Event $event;
   
-  public function __construct(private readonly Events $model, \Nexendrie\Model\SettingsRepository $sr) {
-    $this->dateTimeFormat = $sr->settings["locale"]["dateTimeFormat"];
+  public function __construct(private readonly Events $model) {
   }
   
   public function create(?\Nexendrie\Orm\Event $event = null): Form {

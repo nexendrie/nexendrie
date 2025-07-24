@@ -14,7 +14,7 @@ use Nextras\Orm\Collection\ICollection;
  * @property-write  \Nette\Security\User $user
  */
 final class Polls {
-  protected \Nette\Security\User $user;
+  private \Nette\Security\User $user;
   
   use \Nette\SmartObject;
   

@@ -12,7 +12,7 @@ use Nexendrie\Model\Market;
  * @author Jakub Konečný
  */
 final class AddEditShopFormFactory {
-  protected ?\Nexendrie\Orm\Shop $shop;
+  private ?\Nexendrie\Orm\Shop $shop;
 
   public function __construct(private readonly Market $model) {
   }

@@ -89,9 +89,9 @@ final class User extends BaseEntity {
   public const GENDER_MALE = "male";
   public const GENDER_FEMALE = "female";
 
-  protected Locale $localeModel;
-  protected SettingsRepository $sr;
-  protected ThemesManager $themesManager;
+  private Locale $localeModel;
+  private SettingsRepository $sr;
+  private ThemesManager $themesManager;
   
   public function injectLocaleModel(Locale $localeModel): void {
     $this->localeModel = $localeModel;
@@ -129,8 +129,8 @@ final class User extends BaseEntity {
    */
   public static function getGenders(): array {
     return [
-      static::GENDER_MALE => "muž",
-      static::GENDER_FEMALE => "žena"
+      self::GENDER_MALE => "muž",
+      self::GENDER_FEMALE => "žena"
     ];
   }
   
@@ -149,7 +149,7 @@ final class User extends BaseEntity {
   }
   
   protected function getterTitle(): string {
-    if($this->gender === static::GENDER_FEMALE) {
+    if($this->gender === self::GENDER_FEMALE) {
       return $this->group->femaleName;
     }
     return $this->group->singleName;

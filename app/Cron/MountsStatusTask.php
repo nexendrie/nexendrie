@@ -12,13 +12,13 @@ use Nexendrie\Orm\Mount as MountEntity;
  * @author Jakub Konečný
  */
 final class MountsStatusTask {
-  protected int $autoFeedingCost;
+  private int $autoFeedingCost;
   
   public function __construct(private readonly ORM $orm, \Nexendrie\Model\SettingsRepository $sr) {
     $this->autoFeedingCost = $sr->settings["fees"]["autoFeedMount"];
   }
-  
-  protected function decreaseHitpoints(MountEntity $mount): void {
+
+  private function decreaseHitpoints(MountEntity $mount): void {
     if($mount->autoFeed) {
       echo "Mount $mount->name ($mount->id) is fed automatically.";
       $mount->owner->money -= $this->autoFeedingCost;
@@ -27,8 +27,8 @@ final class MountsStatusTask {
       echo "Decreasing (#$mount->id) $mount->name's life by 5.";
     }
   }
-  
-  protected function makeAdult(MountEntity $mount): void {
+
+  private function makeAdult(MountEntity $mount): void {
     $twoMonths = 60 * 60 * 24 * 30 * 2;
     if($mount->gender === MountEntity::GENDER_YOUNG && $mount->created + $twoMonths < time()) {
       echo "The mount is too old. It becomes adult.";

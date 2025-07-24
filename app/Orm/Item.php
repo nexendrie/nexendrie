@@ -40,15 +40,15 @@ final class Item extends BaseEntity {
    */
   public static function getTypes(): array {
     return [
-      static::TYPE_ITEM => "Věc",
-      static::TYPE_WEAPON => "Zbraň",
-      static::TYPE_ARMOR => "Brnění",
-      static::TYPE_HELMET => "Helma",
-      static::TYPE_AMULET => "Amulet",
-      static::TYPE_POTION => "Lektvar",
-      static::TYPE_MATERIAL => "Surovina",
-      static::TYPE_CHARTER => "Listina",
-      static::TYPE_INTIMACY_BOOST => "Zvýšení důvěrnosti",
+      self::TYPE_ITEM => "Věc",
+      self::TYPE_WEAPON => "Zbraň",
+      self::TYPE_ARMOR => "Brnění",
+      self::TYPE_HELMET => "Helma",
+      self::TYPE_AMULET => "Amulet",
+      self::TYPE_POTION => "Lektvar",
+      self::TYPE_MATERIAL => "Surovina",
+      self::TYPE_CHARTER => "Listina",
+      self::TYPE_INTIMACY_BOOST => "Zvýšení důvěrnosti",
     ];
   }
   
@@ -57,7 +57,7 @@ final class Item extends BaseEntity {
    */
   public static function getCommonTypes(): array {
     return [
-      static::TYPE_ITEM, static::TYPE_MATERIAL, static::TYPE_CHARTER, static::TYPE_INTIMACY_BOOST
+      self::TYPE_ITEM, self::TYPE_MATERIAL, self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
     ];
   }
   
@@ -66,7 +66,7 @@ final class Item extends BaseEntity {
    */
   public static function getEquipmentTypes(): array {
     return [
-      static::TYPE_WEAPON, static::TYPE_ARMOR, static::TYPE_HELMET, static::TYPE_AMULET,
+      self::TYPE_WEAPON, self::TYPE_ARMOR, self::TYPE_HELMET, self::TYPE_AMULET,
     ];
   }
   
@@ -75,12 +75,12 @@ final class Item extends BaseEntity {
    */
   public static function getNotForSale(): array {
     return [
-      static::TYPE_CHARTER, static::TYPE_INTIMACY_BOOST
+      self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
     ];
   }
   
   protected function getterTypeCZ(): string {
-    return static::getTypes()[$this->type];
+    return self::getTypes()[$this->type];
   }
 }
 ?>

@@ -12,7 +12,7 @@ use Nexendrie\Model\Tavern;
  * @author Jakub Konečný
  */
 final class AddEditMealFormFactory {
-  protected ?\Nexendrie\Orm\Meal $meal;
+  private ?\Nexendrie\Orm\Meal $meal;
 
   public function __construct(private readonly Tavern $model) {
   }

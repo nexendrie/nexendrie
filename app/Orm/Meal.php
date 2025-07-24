@@ -17,7 +17,7 @@ namespace Nexendrie\Orm;
  * @property-read string $effect {virtual}
  */
 final class Meal extends BaseEntity {
-  protected \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

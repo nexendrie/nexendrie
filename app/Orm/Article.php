@@ -32,7 +32,7 @@ final class Article extends BaseEntity {
   public const CATEGORY_FAIRY_TALE = "fairy_tale";
   public const CATEGORY_UNCATEGORIZED = "uncategorized";
 
-  protected \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
@@ -43,14 +43,14 @@ final class Article extends BaseEntity {
    */
   public static function getCategories(): array {
     return [
-      static::CATEGORY_NEWS => "Novinky",
-      static::CATEGORY_CHRONICLE => "Kronika",
-      static::CATEGORY_POETRY => "Poezie",
-      static::CATEGORY_SHORT_STORY => "Povídky",
-      static::CATEGORY_ESSAY => "Eseje",
-      static::CATEGORY_NOVELLA => "Novely",
-      static::CATEGORY_FAIRY_TALE => "Pohádky",
-      static::CATEGORY_UNCATEGORIZED => "Nezařazené",
+      self::CATEGORY_NEWS => "Novinky",
+      self::CATEGORY_CHRONICLE => "Kronika",
+      self::CATEGORY_POETRY => "Poezie",
+      self::CATEGORY_SHORT_STORY => "Povídky",
+      self::CATEGORY_ESSAY => "Eseje",
+      self::CATEGORY_NOVELLA => "Novely",
+      self::CATEGORY_FAIRY_TALE => "Pohádky",
+      self::CATEGORY_UNCATEGORIZED => "Nezařazené",
     ];
   }
   
@@ -59,7 +59,7 @@ final class Article extends BaseEntity {
   }
   
   protected function getterCategoryCZ(): string {
-    return static::getCategories()[$this->category];
+    return self::getCategories()[$this->category];
   }
 
   protected function getterCommentsCount(): int {

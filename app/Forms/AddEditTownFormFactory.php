@@ -14,7 +14,7 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditTownFormFactory {
-  protected ?\Nexendrie\Orm\Town $town;
+  private ?\Nexendrie\Orm\Town $town;
   
   public function __construct(private readonly Town $model, private readonly Profile $profileModel) {
   }

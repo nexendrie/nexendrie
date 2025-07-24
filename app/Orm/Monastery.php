@@ -38,9 +38,9 @@ final class Monastery extends BaseEntity {
   public const PRAYER_LIFE_PER_LEVEL = 2;
   public const SKILL_LEARNING_DISCOUNT_PER_LEVEL = 3;
 
-  protected \Nexendrie\Model\Locale $localeModel;
-  protected \Nexendrie\Model\Events $eventsModel;
-  protected int $criticalCondition;
+  private \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Events $eventsModel;
+  private int $criticalCondition;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;
@@ -59,11 +59,11 @@ final class Monastery extends BaseEntity {
   }
   
   protected function setterAltairLevel(int $value): int {
-    return Numbers::range($value, 1, static::MAX_LEVEL);
+    return Numbers::range($value, 1, self::MAX_LEVEL);
   }
 
   protected function setterLibraryLevel(int $value): int {
-    return Numbers::range($value, 0, static::MAX_LEVEL - 1);
+    return Numbers::range($value, 0, self::MAX_LEVEL - 1);
   }
   
   protected function setterHp(int $value): int {
@@ -74,27 +74,27 @@ final class Monastery extends BaseEntity {
     if($this->hp < $this->criticalCondition) {
       return 0;
     }
-    return static::BASE_PRAYER_LIFE + ($this->altairLevel * (static::PRAYER_LIFE_PER_LEVEL - 1));
+    return self::BASE_PRAYER_LIFE + ($this->altairLevel * (self::PRAYER_LIFE_PER_LEVEL - 1));
   }
   
   protected function getterUpgradePrice(): int {
-    if($this->altairLevel === static::MAX_LEVEL) {
+    if($this->altairLevel === self::MAX_LEVEL) {
       return 0;
     }
-    $price = static::BASE_UPGRADE_PRICE;
+    $price = self::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->altairLevel + 1; $i++) {
-      $price += (int) (static::BASE_UPGRADE_PRICE / static::MAX_LEVEL);
+      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
     }
     return $price;
   }
 
   protected function getterLibraryUpgradePrice(): int {
-    if($this->libraryLevel === static::MAX_LEVEL - 1) {
+    if($this->libraryLevel === self::MAX_LEVEL - 1) {
       return 0;
     }
-    $price = static::BASE_UPGRADE_PRICE;
+    $price = self::BASE_UPGRADE_PRICE;
     for($i = 2; $i < $this->libraryLevel + 1; $i++) {
-      $price += (static::BASE_UPGRADE_PRICE / (static::MAX_LEVEL - 1));
+      $price += (self::BASE_UPGRADE_PRICE / (self::MAX_LEVEL - 1));
     }
     return $price;
   }
@@ -107,7 +107,7 @@ final class Monastery extends BaseEntity {
     if($this->altairLevel !== 1) {
       $multiplier = ($this->altairLevel - 1) * 10 / 100 + 1;
     }
-    $basePrice = (int) (static::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
+    $basePrice = (int) (self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
     return $basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice);
   }
   
@@ -115,7 +115,7 @@ final class Monastery extends BaseEntity {
     if($this->hp < $this->criticalCondition) {
       return 0;
     }
-    return $this->libraryLevel * static::SKILL_LEARNING_DISCOUNT_PER_LEVEL;
+    return $this->libraryLevel * self::SKILL_LEARNING_DISCOUNT_PER_LEVEL;
   }
 }
 ?>

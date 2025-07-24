@@ -13,7 +13,7 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditMountFormFactory {
-  protected ?Mount $mount;
+  private ?Mount $mount;
   
   public function __construct(private readonly \Nexendrie\Model\Mount $model) {
   }
@@ -21,11 +21,11 @@ final class AddEditMountFormFactory {
   /**
    * @return string[]
    */
-  protected function getGenders(): array {
+  private function getGenders(): array {
     return Mount::getGenders();
   }
-  
-  protected function getMountTypes(): array {
+
+  private function getMountTypes(): array {
     return $this->model->listOfMountTypes()->fetchPairs("id", "name");
   }
   

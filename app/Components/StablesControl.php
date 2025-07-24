@@ -44,7 +44,7 @@ final class StablesControl extends \Nette\Application\UI\Control {
    * @throws InsufficientFundsException
    * @throws CareNotNeededException
    */
-  protected function increaseLife(int $id, int $hp, int $price): void {
+  private function increaseLife(int $id, int $hp, int $price): void {
     $mount = $this->orm->mounts->getById($id);
     if($mount === null) {
       throw new MountNotFoundException();
@@ -111,7 +111,7 @@ final class StablesControl extends \Nette\Application\UI\Control {
    * @throws MountInBadConditionException
    * @throws InsufficientFundsException
    */
-  protected function train(int $id, string $stat): void {
+  private function train(int $id, string $stat): void {
     $stats = ["damage", "armor"];
     if(!in_array($stat, $stats, true)) {
       return;

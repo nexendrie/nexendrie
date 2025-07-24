@@ -16,7 +16,7 @@ use Nexendrie\Orm\Model as ORM;
  * @property-write \Nette\Security\User $user
  */
 final class Group {
-  protected \Nette\Security\User $user;
+  private \Nette\Security\User $user;
   
   use \Nette\SmartObject;
   

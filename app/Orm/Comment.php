@@ -17,7 +17,7 @@ namespace Nexendrie\Orm;
  * @property bool $deleted
  */
 final class Comment extends BaseEntity {
-  protected \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

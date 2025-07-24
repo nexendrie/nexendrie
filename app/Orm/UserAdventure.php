@@ -22,7 +22,7 @@ final class UserAdventure extends BaseEntity {
   public const PROGRESS_CLOSED = 11;
   
   protected function getterNextEnemy(): ?AdventureNpc {
-    if($this->progress >= static::PROGRESS_COMPLETED) {
+    if($this->progress >= self::PROGRESS_COMPLETED) {
       return null;
     }
     return $this->adventure->npcs->toCollection()->getBy([ // @phpstan-ignore return.type

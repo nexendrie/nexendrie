@@ -28,7 +28,7 @@ final class UserSkill extends BaseEntity implements ICharacterEffectsProvider {
   /** Increase of income per skill level (in %) */
   public const LEVEL_BONUS_INCOME = 15;
 
-  protected \Nexendrie\Model\Events $eventsModel;
+  private \Nexendrie\Model\Events $eventsModel;
   
   public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
     $this->eventsModel = $eventsModel;
@@ -48,11 +48,11 @@ final class UserSkill extends BaseEntity implements ICharacterEffectsProvider {
   }
   
   protected function getterJobRewardBonus(): int {
-    return $this->level * static::LEVEL_BONUS_INCOME;
+    return $this->level * self::LEVEL_BONUS_INCOME;
   }
   
   protected function getterJobSuccessRateBonus(): int {
-    return $this->level * static::LEVEL_SUCCESS_RATE;
+    return $this->level * self::LEVEL_SUCCESS_RATE;
   }
   
   public function getCombatEffects(): array {

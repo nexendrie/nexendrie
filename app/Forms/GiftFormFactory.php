@@ -24,7 +24,7 @@ final class GiftFormFactory {
    * 
    * @return array id => publicname
    */
-  protected function getUsersList(): array {
+  private function getUsersList(): array {
     return $this->orm->users->findBy(
         ["id>" => 0]
     )->fetchPairs("id", "publicname");
@@ -35,7 +35,7 @@ final class GiftFormFactory {
    * 
    * @return array id => name
    */
-  protected function getItemsList(): array {
+  private function getItemsList(): array {
     return $this->orm->items->findAll()->fetchPairs("id", "name");
   }
   
@@ -71,8 +71,8 @@ final class GiftFormFactory {
       }
     }
   }
-  
-  protected function composeMessage(int $money, string $item): string {
+
+  private function composeMessage(int $money, string $item): string {
     $message = "Dostal(a) jsi ";
     if($money > 0) {
       $message .= $this->localeModel->money($money);

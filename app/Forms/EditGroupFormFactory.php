@@ -12,7 +12,7 @@ use Nexendrie\Model\Group;
  * @author Jakub Konečný
  */
 final class EditGroupFormFactory {
-  protected \Nexendrie\Orm\Group $group;
+  private \Nexendrie\Orm\Group $group;
 
   public function __construct(private readonly Group $model, \Nette\Security\User $user) {
     $this->model->user = $user;

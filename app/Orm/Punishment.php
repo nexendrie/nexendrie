@@ -21,7 +21,7 @@ namespace Nexendrie\Orm;
  * @property-read int $nextShift {virtual}
  */
 final class Punishment extends BaseEntity {
-  protected \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

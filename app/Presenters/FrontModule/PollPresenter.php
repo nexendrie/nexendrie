@@ -14,7 +14,7 @@ use Nexendrie\Model\Polls;
  * @author Jakub Konečný
  */
 final class PollPresenter extends BasePresenter {
-  protected \Nexendrie\Orm\Poll $poll;
+  private \Nexendrie\Orm\Poll $poll;
   
   public function __construct(private readonly Polls $model) {
     parent::__construct();

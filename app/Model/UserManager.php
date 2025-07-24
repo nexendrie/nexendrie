@@ -16,8 +16,8 @@ use Nette\InvalidArgumentException;
  * @author Jakub Konečný
  */
 final class UserManager {
-  protected array $roles = [];
-  protected array $newUser;
+  private array $roles = [];
+  private array $newUser;
   /** Exception error code */
   public const REG_DUPLICATE_NAME = 1,
     REG_DUPLICATE_EMAIL = 2,
@@ -71,10 +71,10 @@ final class UserManager {
    */
   public function register(array $data): void {
     if(!$this->emailAvailable($data["email"])) {
-      throw new RegistrationException("Duplicate email.", static::REG_DUPLICATE_EMAIL);
+      throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
     }
     if(!$this->nameAvailable($data["publicname"])) {
-      throw new RegistrationException("Duplicate name.", static::REG_DUPLICATE_NAME);
+      throw new RegistrationException("Duplicate name.", self::REG_DUPLICATE_NAME);
     }
     $user = new UserEntity();
     $this->orm->users->attach($user);
@@ -118,10 +118,10 @@ final class UserManager {
       throw new AuthenticationNeededException("This action requires authentication.");
     }
     if(!$this->nameAvailable($settings["publicname"], $this->user->id)) {
-      throw new SettingsException("The name is used by someone else.", static::REG_DUPLICATE_NAME);
+      throw new SettingsException("The name is used by someone else.", self::REG_DUPLICATE_NAME);
     }
     if(!$this->emailAvailable($settings["email"], $this->user->id)) {
-      throw new SettingsException("The e-mail is used by someone else.", static::REG_DUPLICATE_EMAIL);
+      throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
     }
     $settings = array_filter($settings, function($value) {
       return $value !== null && $value !== "";
@@ -132,7 +132,7 @@ final class UserManager {
       switch($key) {
         case "password_new":
           if(!$this->passwords->verify($settings["password_old"], $user->password)) {
-            throw new SettingsException("Invalid password.", static::SET_INVALID_PASSWORD);
+            throw new SettingsException("Invalid password.", self::SET_INVALID_PASSWORD);
           }
           $user->password = $this->passwords->hash($value);
           unset($settings[$key], $settings["password_old"], $settings["password_check"]);

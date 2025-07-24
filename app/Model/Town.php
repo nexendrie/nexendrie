@@ -15,8 +15,8 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Town {
-  protected int $foundingPrice;
-  protected int $foundingCharter;
+  private int $foundingPrice;
+  private int $foundingCharter;
   
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->foundingPrice = $sr->settings["fees"]["foundTown"];

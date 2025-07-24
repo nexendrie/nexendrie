@@ -15,8 +15,8 @@ use Nexendrie\Orm\UserExpense;
  * @author Jakub Konečný
  */
 final class House {
-  protected int $price;
-  protected int $criticalCondition;
+  private int $price;
+  private int $criticalCondition;
   
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->price = $sr->settings["fees"]["buyHouse"];

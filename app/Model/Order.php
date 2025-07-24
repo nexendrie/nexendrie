@@ -16,7 +16,7 @@ use Nextras\Orm\Collection\ICollection;
  * @property-read int $maxRank
  */
 final class Order {
-  protected int $foundingPrice;
+  private int $foundingPrice;
   
   use \Nette\SmartObject;
   

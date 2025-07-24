@@ -14,7 +14,7 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditJobFormFactory {
-  protected ?\Nexendrie\Orm\Job $job;
+  private ?\Nexendrie\Orm\Job $job;
 
   public function __construct(private readonly Job $model, private readonly Skills $skillsModel) {
   }
@@ -22,7 +22,7 @@ final class AddEditJobFormFactory {
   /**
    * @return string[]
    */
-  protected function getSkills(): array {
+  private function getSkills(): array {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   

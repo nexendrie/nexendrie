@@ -20,7 +20,7 @@ namespace Nexendrie\Orm;
  * @property-read bool $due {virtual}
  */
 final class Deposit extends BaseEntity {
-  protected \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

@@ -16,7 +16,7 @@ final class WeddingControl extends \Nette\Application\UI\Control {
   protected \Nexendrie\Model\Marriage $model;
   protected \Nexendrie\Orm\Model $orm;
   protected \Nette\Security\User $user;
-  protected MarriageEntity $marriage;
+  private MarriageEntity $marriage;
   
   public function __construct(\Nexendrie\Model\Marriage $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     $this->model = $model;
@@ -32,7 +32,7 @@ final class WeddingControl extends \Nette\Application\UI\Control {
   /**
    * @return string[]
    */
-  protected function getTexts(): array {
+  private function getTexts(): array {
     $texts = [];
     return $texts;
   }

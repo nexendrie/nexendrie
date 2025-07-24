@@ -14,12 +14,12 @@ use Nexendrie\Orm\Model as ORM;
  * @author Jakub Konečný
  */
 final class EditUserFormFactory {
-  protected int $uid;
+  private int $uid;
   
   public function __construct(private readonly ORM $orm, private readonly UserManager $model, private readonly Town $townModel) {
   }
-  
-  protected function getListOfGroups(int $uid): array {
+
+  private function getListOfGroups(int $uid): array {
     if($uid === 0) {
       $groups = $this->orm->groups->findBy(["id" => 0]);
     } else {
@@ -27,15 +27,15 @@ final class EditUserFormFactory {
     }
     return $groups->fetchPairs("id", "name");
   }
-  
-  protected function getListOfTowns(): array {
+
+  private function getListOfTowns(): array {
     return $this->townModel->listOfTowns()->fetchPairs("id", "name");
   }
   
   /**
    * @throws \Nette\ArgumentOutOfRangeException
    */
-  protected function getDefaultValues(): array {
+  private function getDefaultValues(): array {
     $user = $this->orm->users->getById($this->uid);
     if($user === null) {
       throw new \Nette\ArgumentOutOfRangeException("User with specified id does not exist.");

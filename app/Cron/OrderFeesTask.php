@@ -16,8 +16,8 @@ use Nexendrie\Orm\OrderRank;
 final class OrderFeesTask extends BaseMonthlyCronTask {
   public function __construct(private readonly ORM $orm) {
   }
-  
-  protected function getFeeRecord(\Nexendrie\Orm\User $user): OrderFee {
+
+  private function getFeeRecord(\Nexendrie\Orm\User $user): OrderFee {
     /** @var Order $order */
     $order = $user->order;
     $fee = $this->orm->orderFees->getByUserAndOrder($user, $order);

@@ -12,7 +12,7 @@ use Nexendrie\Model\Polls;
  * @author Jakub Konečný
  */
 final class AddEditPollFormFactory {
-  protected ?\Nexendrie\Orm\Poll $poll;
+  private ?\Nexendrie\Orm\Poll $poll;
 
   public function __construct(private readonly Polls $model, \Nette\Security\User $user) {
     $this->model->user = $user;

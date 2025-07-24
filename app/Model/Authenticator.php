@@ -17,8 +17,8 @@ use Nette\Security\AuthenticationException;
  * @property-write User $user
  */
 final class Authenticator implements \Nette\Security\Authenticator {
-  protected User $user;
-  protected array $roles;
+  private User $user;
+  private array $roles;
   
   use \Nette\SmartObject;
   
@@ -65,10 +65,10 @@ final class Authenticator implements \Nette\Security\Authenticator {
   public function authenticate(string $email, string $password): SimpleIdentity {
     $user = $this->orm->users->getByEmail($email);
     if($user === null) {
-      throw new AuthenticationException("E-mail not found.", static::IDENTITY_NOT_FOUND);
+      throw new AuthenticationException("E-mail not found.", self::IDENTITY_NOT_FOUND);
     }
     if(!$this->passwords->verify($password, $user->password)) {
-      throw new AuthenticationException("Invalid password.", static::INVALID_CREDENTIAL);
+      throw new AuthenticationException("Invalid password.", self::INVALID_CREDENTIAL);
     }
     $user->lastActive = time();
     $this->orm->users->persistAndFlush($user);

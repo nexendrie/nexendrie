@@ -13,7 +13,7 @@ use Nexendrie\Orm\Skill as SkillEntity;
  * @author Jakub Konečný
  */
 final class AddEditSkillFormFactory {
-  protected ?SkillEntity $skill;
+  private ?SkillEntity $skill;
 
   public function __construct(private readonly Skills $model) {
   }

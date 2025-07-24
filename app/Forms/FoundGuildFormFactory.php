@@ -18,8 +18,8 @@ use Nexendrie\Model\Skills;
 final class FoundGuildFormFactory {
   public function __construct(private readonly Guild $model, private readonly Skills $skillsModel) {
   }
-  
-  protected function getListOfSkills(): array {
+
+  private function getListOfSkills(): array {
     return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
   }
   

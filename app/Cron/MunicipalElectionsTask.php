@@ -16,8 +16,8 @@ use Nexendrie\Orm\Model as ORM;
 final class MunicipalElectionsTask extends BaseMonthlyCronTask {
   public function __construct(private readonly ORM $orm, private readonly Elections $electionsModel) {
   }
-  
-  protected function getElectionResults(int $town, int $year, int $month): array {
+
+  private function getElectionResults(int $town, int $year, int $month): array {
     $votes = $this->orm->elections->findVotedInMonth($town, $year, $month);
     $results = [];
     foreach($votes as $vote) {

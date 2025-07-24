@@ -17,8 +17,8 @@ use Nextras\Orm\Collection\ICollection;
  * 
  */
 final class Monastery {
-  protected int $buildingPrice;
-  protected int $criticalCondition;
+  private int $buildingPrice;
+  private int $criticalCondition;
   
   public function __construct(private readonly Events $eventsModel, private readonly Guild $guildModel, private readonly Order $orderModel, private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->buildingPrice = $sr->settings["fees"]["buildMonastery"];

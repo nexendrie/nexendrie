@@ -14,12 +14,12 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditItemFormFactory {
-  protected ?Item $item;
+  private ?Item $item;
 
   public function __construct(private readonly Market $model) {
   }
 
-  protected function getShops(): array {
+  private function getShops(): array {
     return $this->model->listOfShops()->fetchPairs("id", "name");
   }
   

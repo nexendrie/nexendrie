@@ -16,8 +16,8 @@ use Nexendrie\Orm\Model as ORM;
 final class GuildFeesTask extends BaseMonthlyCronTask {
   public function __construct(private readonly ORM $orm) {
   }
-  
-  protected function getFeeRecord(\Nexendrie\Orm\User $user): GuildFee {
+
+  private function getFeeRecord(\Nexendrie\Orm\User $user): GuildFee {
     /** @var Guild $guild */
     $guild = $user->guild;
     $fee = $this->orm->guildFees->getByUserAndGuild($user, $guild);

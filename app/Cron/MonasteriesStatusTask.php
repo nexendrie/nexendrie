@@ -12,7 +12,7 @@ use Nexendrie\Orm\Model as ORM;
  * @author Jakub Konečný
  */
 final class MonasteriesStatusTask {
-  protected int $weeklyWearingOut;
+  private int $weeklyWearingOut;
   
   public function __construct(private readonly ORM $orm, SettingsRepository $sr) {
     $this->weeklyWearingOut = $sr->settings["buildings"]["weeklyWearingOut"];

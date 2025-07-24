@@ -19,7 +19,7 @@ namespace Nexendrie\Orm;
  * @property-read int $interest {virtual}
  */
 final class Loan extends BaseEntity {
-  protected \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

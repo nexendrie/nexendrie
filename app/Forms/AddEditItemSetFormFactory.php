@@ -14,20 +14,20 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditItemSetFormFactory {
-  protected ?ItemSet $set;
+  private ?ItemSet $set;
 
   public function __construct(private readonly \Nexendrie\Model\ItemSet $model, private readonly ORM $orm) {
   }
 
-  protected function getWeapons(): array {
+  private function getWeapons(): array {
     return $this->orm->items->findWeapons()->fetchPairs("id", "name");
   }
-  
-  protected function getArmors(): array {
+
+  private function getArmors(): array {
     return $this->orm->items->findArmors()->fetchPairs("id", "name");
   }
-  
-  protected function getHelmets(): array {
+
+  private function getHelmets(): array {
     return $this->orm->items->findHelmets()->fetchPairs("id", "name");
   }
   

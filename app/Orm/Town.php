@@ -26,7 +26,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $createdAt {virtual}
  */
 final class Town extends BaseEntity {
-  protected \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Locale $localeModel;
   
   public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
     $this->localeModel = $localeModel;

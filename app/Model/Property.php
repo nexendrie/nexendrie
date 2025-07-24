@@ -15,8 +15,8 @@ use Nexendrie\Orm\UserExpense;
 final class Property {
   public function __construct(private readonly Taxes $taxesModel, private readonly ORM $orm, private readonly \Nette\Security\User $user, private readonly SettingsRepository $sr) {
   }
-  
-  protected function calculateBeerProduction(): int {
+
+  private function calculateBeerProduction(): int {
     $result = 0;
     $beerProduction = $this->orm->beerProduction->findProducedThisMonth($this->user->id);
     foreach($beerProduction as $production) {
@@ -24,8 +24,8 @@ final class Property {
     }
     return $result;
   }
-  
-  protected function calculateLoansInterest(): int {
+
+  private function calculateLoansInterest(): int {
     $result = 0;
     $loans = $this->orm->loans->findReturnedThisMonth($this->user->id);
     foreach($loans as $loan) {
@@ -33,8 +33,8 @@ final class Property {
     }
     return $result;
   }
-  
-  protected function calculateMembershipFee(): int {
+
+  private function calculateMembershipFee(): int {
     $result = 0;
     $donations = $this->orm->monasteryDonations->findDonatedThisMonth($this->user->id);
     foreach($donations as $donation) {
@@ -50,8 +50,8 @@ final class Property {
     }
     return $result;
   }
-  
-  protected function calculateDepositInterest(): int {
+
+  private function calculateDepositInterest(): int {
     $result = 0;
     $deposits = $this->orm->deposits->findDueThisMonth($this->user->id);
     foreach($deposits as $deposit) {
@@ -60,7 +60,7 @@ final class Property {
     return $result;
   }
 
-  protected function calculateMountsMaintenance(): int {
+  private function calculateMountsMaintenance(): int {
     $mounts = $this->orm->mounts->findAutoFed($this->user->id);
     $result = $mounts->countStored() * $this->sr->settings["fees"]["autoFeedMount"] * 4;
     $expenses = $this->orm->userExpenses->findPaidThisMonth($this->user->id, UserExpense::CATEGORY_MOUNT_MAINTENANCE);
@@ -70,7 +70,7 @@ final class Property {
     return $result;
   }
 
-  protected function calculateBuildingMaintenance(): int {
+  private function calculateBuildingMaintenance(): int {
     $result = 0;
     $expenses = $this->orm->userExpenses->findPaidThisMonth($this->user->id, UserExpense::CATEGORY_CASTLE_MAINTENANCE);
     foreach($expenses as $expense) {

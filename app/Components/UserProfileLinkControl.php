@@ -13,10 +13,7 @@ use Nexendrie\Orm\User;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 final class UserProfileLinkControl extends Control {
-  /**
-   * @param string|bool $title
-   */
-  protected function baseRender(string $id, string $name, $title): void {
+  private function baseRender(string $id, string $name, string|bool $title): void {
     $this->template->setFile(__DIR__ . "/userProfileLink.latte");
     $this->template->id = $id;
     $this->template->name = $name;

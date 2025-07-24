@@ -19,8 +19,8 @@ use Nexendrie\Orm\PollVote as PollVoteEntity;
  * @property-write int $id
  */
 final class PollControl extends \Nette\Application\UI\Control {
-  protected PollEntity $poll;
-  protected int $id;
+  private PollEntity $poll;
+  private int $id;
   
   public function __construct(private readonly \Nette\Security\User $user, private readonly ORM $orm, IUserProfileLinkControlFactory $userProfileLinkControlFactory) {
     $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
@@ -88,7 +88,7 @@ final class PollControl extends \Nette\Application\UI\Control {
   /**
    * Check whether the user can vote in the poll
    */
-  protected function canVote(): bool {
+  private function canVote(): bool {
     if(!$this->user->isLoggedIn()) {
       return false;
     } elseif(!$this->user->isAllowed("poll", "vote")) {
@@ -105,7 +105,7 @@ final class PollControl extends \Nette\Application\UI\Control {
    * @throws AccessDeniedException
    * @throws PollVotingException
    */
-  protected function vote(int $answer): void {
+  private function vote(int $answer): void {
     if(!$this->canVote()) {
       throw new AccessDeniedException("You can't vote in this poll.");
     }

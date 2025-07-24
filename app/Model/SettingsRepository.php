@@ -13,7 +13,7 @@ use Nexendrie\Utils\Intervals;
  * @author Jakub Konečný
  */
 final class SettingsRepository {
-  protected array $defaults = [
+  private array $defaults = [
     "roles" => [
       "guestRole" => 13,
       "loggedInRole" => 12,
@@ -68,7 +68,7 @@ final class SettingsRepository {
     ],
   ];
 
-  protected array $rules = [
+  private array $rules = [
     "newUser" => [
       "style" => "validateStyle",
       "money" => "validateMoney",
@@ -95,35 +95,35 @@ final class SettingsRepository {
   public function __construct(array $settings, private readonly ThemesManager $themesManager) {
     $this->settings = $this->validateSettings($settings);
   }
-  
-  protected function validateStyle(string $value): bool {
+
+  private function validateStyle(string $value): bool {
     return array_key_exists($value, $this->themesManager->getList());
   }
-  
-  protected function validatePercent(int $value): bool {
+
+  private function validatePercent(int $value): bool {
     return Intervals::isInInterval($value, "[0,100]");
   }
-  
-  protected function validateMoney(int $value): bool {
+
+  private function validateMoney(int $value): bool {
     return Intervals::isInInterval($value, "[1,100]");
   }
-  
-  protected function validateFee(int $value): bool {
+
+  private function validateFee(int $value): bool {
     return Intervals::isInInterval($value, "[0,5000]");
   }
 
-  protected function validateFriendicaAccount(string $value): bool {
+  private function validateFriendicaAccount(string $value): bool {
     return (preg_match('/^@.+@.+/', $value) === 1);
   }
 
-  protected function validateServerSideEventsCooldown(int $value): bool {
+  private function validateServerSideEventsCooldown(int $value): bool {
     return Intervals::isInInterval($value, "[1,100]");
   }
   
   /**
    * Validate section $name of config
    */
-  protected function validateSection(string $name, array $config): array {
+  private function validateSection(string $name, array $config): array {
     $values = Arrays::get($config, $name, []);
     $resolver = new OptionsResolver();
     $defaults = $this->defaults[$name];
@@ -138,8 +138,8 @@ final class SettingsRepository {
     }
     return $resolver->resolve($values);
   }
-  
-  protected function validateSettings(array $settings): array {
+
+  private function validateSettings(array $settings): array {
     $return = [];
     $sections = array_keys($this->defaults);
     foreach($sections as $section) {

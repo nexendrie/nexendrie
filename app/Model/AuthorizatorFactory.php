@@ -90,8 +90,8 @@ final class AuthorizatorFactory {
       return $return;
     });
   }
-  
-  protected function addRanks(array $ranks, Permission &$permission, string $type): void {
+
+  private function addRanks(array $ranks, Permission &$permission, string $type): void {
     /**
      * @var int $id
      * @var string $rank
@@ -104,13 +104,13 @@ final class AuthorizatorFactory {
       $permission->addRole($type . "^" . $rank, $parent);
     }
   }
-  
-  protected function addOrganizationPrivileges(array $roles, Permission &$permission, string $name): void {
+
+  private function addOrganizationPrivileges(array $roles, Permission &$permission, string $name): void {
     $permission->addResource($name);
     $lowestRank = min(array_keys($roles)); // @phpstan-ignore argument.type
     $highestRank = max(array_keys($roles)); // @phpstan-ignore argument.type
     $permission->deny($roles[$lowestRank]);
-    foreach(static::ORGANIZATION_PRIVILEGES as $privilege) {
+    foreach(self::ORGANIZATION_PRIVILEGES as $privilege) {
       $permission->allow($roles[$highestRank], $name, $privilege);
     }
   }
@@ -133,15 +133,15 @@ final class AuthorizatorFactory {
       }
       $permission->addRole($row->singleName, $parent);
     }
-    $this->addRanks($guildRanks, $permission, static::GUILD_RANK_ROLE_PREFIX);
+    $this->addRanks($guildRanks, $permission, self::GUILD_RANK_ROLE_PREFIX);
     $addPrefix = function(&$value, $key, $prefix): void {
       $value = $prefix . "^" . $value;
     };
-    array_walk($guildRanks, $addPrefix, static::GUILD_RANK_ROLE_PREFIX);
-    $this->addOrganizationPrivileges($guildRanks, $permission, static::GUILD_RESOURCE_NAME);
-    $this->addRanks($orderRanks, $permission, static::ORDER_RANK_ROLE_PREFIX);
-    array_walk($orderRanks, $addPrefix, static::ORDER_RANK_ROLE_PREFIX);
-    $this->addOrganizationPrivileges($orderRanks, $permission, static::ORDER_RESOURCE_NAME);
+    array_walk($guildRanks, $addPrefix, self::GUILD_RANK_ROLE_PREFIX);
+    $this->addOrganizationPrivileges($guildRanks, $permission, self::GUILD_RESOURCE_NAME);
+    $this->addRanks($orderRanks, $permission, self::ORDER_RANK_ROLE_PREFIX);
+    array_walk($orderRanks, $addPrefix, self::ORDER_RANK_ROLE_PREFIX);
+    $this->addOrganizationPrivileges($orderRanks, $permission, self::ORDER_RESOURCE_NAME);
     
     $bannedRole = $groups[$this->sr->settings["roles"]["bannedRole"]]->singleName;
     $permission->deny($bannedRole);

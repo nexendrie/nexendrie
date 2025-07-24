@@ -14,7 +14,7 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class AddEditAdventureFormFactory {
-  protected ?\Nexendrie\Orm\Adventure $adventure;
+  private ?\Nexendrie\Orm\Adventure $adventure;
 
   public function __construct(private readonly Adventure $model, private readonly ORM $orm) {
   }
@@ -24,7 +24,7 @@ final class AddEditAdventureFormFactory {
    * 
    * @return array of id => name
    */
-  protected function getEvents(): array {
+  private function getEvents(): array {
     return $this->orm->events->findAll()->fetchPairs("id", "name");
   }
   

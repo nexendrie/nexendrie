@@ -14,7 +14,7 @@ use Nexendrie\Orm\User;
  * @author Jakub Konečný
  */
 final class BanUserFormFactory {
-  protected int $userId;
+  private int $userId;
   
   public function __construct(private readonly ORM $orm) {
   }

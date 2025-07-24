@@ -19,20 +19,20 @@ use Nexendrie\Orm\Model as ORM;
 final class SystemSettingsFormFactory {
   public function __construct(private readonly string $appDir, private readonly SettingsRepository $sr, private readonly ORM $orm, private readonly ThemesManager $themesManager) {
   }
-  
-  protected function getListOfGroups(): array {
+
+  private function getListOfGroups(): array {
     return $this->orm->groups->findAll()->fetchPairs("id", "singleName");
   }
-  
-  protected function getListOfTowns(): array {
+
+  private function getListOfTowns(): array {
     return $this->orm->towns->findAll()->fetchPairs("id", "name");
   }
 
-  protected function getListOfCharters(): array {
+  private function getListOfCharters(): array {
     return $this->orm->items->findBy(["type" => \Nexendrie\Orm\Item::TYPE_CHARTER])->fetchPairs("id", "name");
   }
-  
-  protected function getDefaultValues(): array {
+
+  private function getDefaultValues(): array {
     $settings = $this->sr->settings;
     return $settings;
   }

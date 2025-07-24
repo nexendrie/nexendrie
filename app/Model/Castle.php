@@ -15,7 +15,7 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  */
 final class Castle {
-  protected int $buildingPrice;
+  private int $buildingPrice;
   
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr) {
     $this->buildingPrice = $sr->settings["fees"]["buildCastle"];

@@ -39,8 +39,8 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read string $typeGenderName {virtual}
  */
 final class Mount extends BaseEntity implements ICharacterEffectsProvider {
-  protected \Nexendrie\Model\Locale $localeModel;
-  protected \Nexendrie\Model\Events $eventsModel;
+  private \Nexendrie\Model\Locale $localeModel;
+  private \Nexendrie\Model\Events $eventsModel;
   
   public const GENDER_MALE = "male";
   public const GENDER_FEMALE = "female";
@@ -62,9 +62,9 @@ final class Mount extends BaseEntity implements ICharacterEffectsProvider {
    */
   public static function getGenders(): array {
     return [
-      static::GENDER_MALE => "hřebec",
-      static::GENDER_FEMALE => "klisna",
-      static::GENDER_YOUNG => "mládě"
+      self::GENDER_MALE => "hřebec",
+      self::GENDER_FEMALE => "klisna",
+      self::GENDER_YOUNG => "mládě"
     ];
   }
   
@@ -81,7 +81,7 @@ final class Mount extends BaseEntity implements ICharacterEffectsProvider {
   }
   
   protected function getterGenderCZ(): string {
-    return static::getGenders()[$this->gender];
+    return self::getGenders()[$this->gender];
   }
   
   protected function getterCreatedAt(): string {

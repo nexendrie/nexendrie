@@ -37,8 +37,8 @@ final class Skill extends BaseEntity {
    */
   public static function getTypes(): array {
     return [
-      static::TYPE_WORK => "práce",
-      static::TYPE_COMBAT => "boj",
+      self::TYPE_WORK => "práce",
+      self::TYPE_COMBAT => "boj",
     ];
   }
   
@@ -47,19 +47,19 @@ final class Skill extends BaseEntity {
    */
   public static function getStats(): array {
     return [
-      static::STAT_HITPOINTS => "maximum životů",
-      static::STAT_DAMAGE => "poškození",
-      static::STAT_ARMOR => "brnění",
-      static::STAT_INITIATIVE => "iniciativa",
+      self::STAT_HITPOINTS => "maximum životů",
+      self::STAT_DAMAGE => "poškození",
+      self::STAT_ARMOR => "brnění",
+      self::STAT_INITIATIVE => "iniciativa",
     ];
   }
   
   protected function getterStatCZ(): ?string {
-    return ($this->stat !== null) ? static::getStats()[$this->stat] : null;
+    return ($this->stat !== null) ? self::getStats()[$this->stat] : null;
   }
   
   protected function getterEffect(): string {
-    if($this->type === static::TYPE_WORK) {
+    if($this->type === self::TYPE_WORK) {
       return "";
     }
     return $this->statCZ . " +" . $this->statIncrease;

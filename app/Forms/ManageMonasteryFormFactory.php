@@ -15,7 +15,7 @@ use Nextras\Orm\Entity\ToArrayConverter;
  * @author Jakub Konečný
  */
 final class ManageMonasteryFormFactory {
-  protected int $id;
+  private int $id;
   
   public function __construct(private readonly Monastery $model) {
   }
