@@ -1,6 +1,6 @@
 * @konecnyjakub
 
-[Project Management] @nexendrie/project-management
+[Project Management] @project-management
 /.gitlab/
 /README.md
 /LICENSE.md
@@ -8,10 +8,10 @@
 /CHANGELOG.md
 /composer.json
 
-[Quality Assurance] @nexendrie/quality-assurance
+[Quality Assurance] @quality-assurance
 /phpstan.neon
 
-[Devops] @nexendrie/devops
+[Devops] @devops
 /migrations/
 /tools/
 /.gitlab-ci.yml
