@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use Nextras\Orm\Collection\Expression\LikeExpression;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -11,7 +12,6 @@ use Nextras\Orm\Collection\ICollection;
  * @method User|null getBy(array $conds)
  * @method ICollection|User[] findBy(array $conds)
  * @method ICollection|User[] findAll()
- * @method ICollection|User[] findByLikeName(string $publicname)
  */
 final class UsersRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
@@ -120,6 +120,13 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository {
   public function findByGuild(int $guild): ICollection {
     return $this->findBy(["guild" => $guild])
       ->orderBy("guildRank", ICollection::DESC);
+  }
+
+  /**
+   * @return ICollection|User[]
+   */
+  public function findByLikeName(string $publicname): ICollection {
+    return $this->findBy(["publicname~" => LikeExpression::contains($publicname),]);
   }
 }
 ?>

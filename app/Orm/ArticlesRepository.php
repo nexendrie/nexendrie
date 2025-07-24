@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use Nextras\Orm\Collection\Expression\LikeExpression;
 use Nextras\Orm\Collection\ICollection;
 
 /**
@@ -11,7 +12,6 @@ use Nextras\Orm\Collection\ICollection;
  * @method Article|null getBy(array $conds)
  * @method ICollection|Article[] findBy(array $conds)
  * @method ICollection|Article[] findAll()
- * @method ICollection|Article[] findByText(string $text)
  */
 final class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
   public static function getEntityClassNames(): array {
@@ -44,6 +44,17 @@ final class ArticlesRepository extends \Nextras\Orm\Repository\Repository {
    */
   public function findChronicle(): ICollection {
     return $this->findBy(["category" => Article::CATEGORY_CHRONICLE])->orderBy("created", ICollection::DESC);
+  }
+
+  /**
+   * @return ICollection|Article[]
+   */
+  public function findByText(string $text): ICollection {
+    return $this->findBy([
+      ICollection::OR,
+      "text~" => LikeExpression::contains($text),
+      "title~" => LikeExpression::contains($text),
+    ]);
   }
 }
 ?>
