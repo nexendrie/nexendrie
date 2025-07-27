@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2dd61cc4abb8a06f20c403b96a453e61",
+    "content-hash": "217be33989fb67c17999c0f64948c5ec",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -1580,30 +1580,31 @@
         },
         {
             "name": "nexendrie/book-component",
-            "version": "2.3.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/book-component.git",
-                "reference": "12362972a9421fab3306497d857837c4cb31d367"
+                "reference": "81b1b81560bfddc50082e06b8fbd2407e7a1977d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=12362972a9421fab3306497d857837c4cb31d367",
-                "reference": "12362972a9421fab3306497d857837c4cb31d367",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=81b1b81560bfddc50082e06b8fbd2407e7a1977d",
+                "reference": "81b1b81560bfddc50082e06b8fbd2407e7a1977d",
                 "shasum": ""
             },
             "require": {
-                "latte/latte": "^2.5 || ^3.0",
-                "nette/application": "^3.0",
-                "nette/utils": "^3.0",
-                "nexendrie/utils": "^1.8",
-                "php": ">=7.4.0",
-                "symfony/polyfill-php80": "^1.18"
+                "latte/latte": "^2.5",
+                "nette/application": "^3.1.2",
+                "nette/utils": "^3.2.2",
+                "nexendrie/utils": "^1.9",
+                "php": ">=8.1.0"
             },
             "require-dev": {
+                "nette/http": "3.1.2",
                 "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "^0.6",
-                "nexendrie/translation": "^2.2"
+                "nexendrie/site-generator": "^0.8",
+                "nexendrie/translation": "^2.3.1",
+                "phpstan/phpstan-deprecation-rules": "^2.0"
             },
             "suggest": {
                 "nette/security": "To use book page conditions related to user",
@@ -1612,7 +1613,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3.x-dev"
+                    "dev-master": "2.4.x-dev"
                 }
             },
             "autoload": {
@@ -1641,36 +1642,36 @@
             ],
             "support": {
                 "docs": "https://nexendrie.gitlab.io/book-component",
-                "issues": "https://gitlab.com/nexendrie/book-component/issues",
-                "source": "https://gitlab.com/nexendrie/book-component/"
+                "issues": "https://gitlab.com/nexendrie/book-component/-/issues",
+                "source": "https://gitlab.com/nexendrie/book-component/-/tree/2.4.0"
             },
-            "time": "2020-09-05T20:55:19+00:00"
+            "time": "2025-07-27T17:27:11+00:00"
         },
         {
             "name": "nexendrie/event-calendar",
-            "version": "0.7.0",
+            "version": "0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/EventCalendar.git",
-                "reference": "f1124c5d51793df6ccc255a0600f38950d454dea"
+                "reference": "3fd2ec14613a586c53ebc282cec58445e3210532"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2FEventCalendar/repository/archive.zip?sha=f1124c5d51793df6ccc255a0600f38950d454dea",
-                "reference": "f1124c5d51793df6ccc255a0600f38950d454dea",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2FEventCalendar/repository/archive.zip?sha=3fd2ec14613a586c53ebc282cec58445e3210532",
+                "reference": "3fd2ec14613a586c53ebc282cec58445e3210532",
                 "shasum": ""
             },
             "require": {
                 "ext-calendar": "*",
-                "latte/latte": "^2.8.3 || ^3.0",
-                "nette/application": "^3.1.2",
+                "latte/latte": "^2.8.3",
+                "nette/application": "^3.1.7",
                 "nette/neon": "^3.2.2",
-                "nette/utils": "^3.2.2",
-                "php": ">=7.4.0"
+                "nette/utils": "^3.2.7",
+                "php": ">=8.1.0"
             },
             "conflict": {
-                "nette/caching": "<3.1.1",
-                "texy/texy": "<3.1.4"
+                "nette/caching": "<3.1.3",
+                "texy/texy": "<3.1.6"
             },
             "replace": {
                 "jaroslav-kubicek/event-calendar": ">=0.2",
@@ -1679,12 +1680,13 @@
             "require-dev": {
                 "ext-curl": "*",
                 "ext-json": "*",
-                "nette/caching": "^3.1.1",
+                "ext-mbstring": "*",
+                "nette/caching": "^3.1.3",
                 "nexendrie/code-quality": "@dev",
-                "nexendrie/site-generator": "^0.7",
+                "nexendrie/site-generator": "^0.8",
                 "nexendrie/translation": "^2.3.1",
-                "phpstan/phpstan-nette": "^0.12",
-                "texy/texy": "^3.1.4"
+                "phpstan/phpstan-nette": "^2.0",
+                "texy/texy": "^3.1.6"
             },
             "suggest": {
                 "ext-curl": "Needed for Google Calendar",
@@ -1695,7 +1697,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.7.x-dev"
+                    "dev-master": "0.8.x-dev"
                 }
             },
             "autoload": {
@@ -1718,11 +1720,13 @@
                 }
             ],
             "description": "Plugin for Nette based web applications for creating calendar with custom events",
-            "homepage": "http://www.nimral.cz/calendar",
+            "homepage": "https://nexendrie.gitlab.io",
             "support": {
-                "issues": "https://gitlab.com/api/v4/projects/21367710/issues"
+                "docs": "https://nexendrie.gitlab.io/EventCalendar",
+                "issues": "https://gitlab.com/nexendrie/EventCalendar/-/issues",
+                "source": "https://gitlab.com/EventCalendar/EventCalendar/"
             },
-            "time": "2021-05-08T17:15:36+00:00"
+            "time": "2025-07-27T17:36:32+00:00"
         },
         {
             "name": "nexendrie/menu",
@@ -4089,16 +4093,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.19",
+            "version": "2.1.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "473a8c30e450d87099f76313edcbb90852f9afdf"
+                "reference": "a9ccfef95210f92ba6feea6e8d1eef42b5605499"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/473a8c30e450d87099f76313edcbb90852f9afdf",
-                "reference": "473a8c30e450d87099f76313edcbb90852f9afdf",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a9ccfef95210f92ba6feea6e8d1eef42b5605499",
+                "reference": "a9ccfef95210f92ba6feea6e8d1eef42b5605499",
                 "shasum": ""
             },
             "require": {
@@ -4143,7 +4147,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-21T19:58:24+00:00"
+            "time": "2025-07-26T20:45:26+00:00"
         },
         {
             "name": "phpstan/phpstan-nette",

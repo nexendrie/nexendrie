@@ -21,7 +21,7 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-final class Events implements \Nexendrie\EventCalendar\IEventModel {
+final class Events implements \Nexendrie\EventCalendar\EventModel {
   /** @var Event[]|ICollection */
   private ICollection $events;
 
