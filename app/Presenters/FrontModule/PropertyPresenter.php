@@ -6,7 +6,6 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nexendrie\Model\CombatHelper;
 use Nexendrie\Model\Inventory;
 use Nexendrie\Model\Locale;
-use Nexendrie\Model\Profile;
 use Nexendrie\Model\Property;
 use Nexendrie\Model\Town;
 use Nexendrie\Model\UserManager;
