@@ -32,7 +32,7 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask {
       }
       $results[$index]["amount"]++;
     }
-    usort($results, function($a, $b): int {
+    usort($results, static function($a, $b): int {
       return $a["amount"] <=> $b["amount"];
     });
     return $results;

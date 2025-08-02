@@ -123,7 +123,7 @@ final class UserManager {
     if(!$this->emailAvailable($settings["email"], $this->user->id)) {
       throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
     }
-    $settings = array_filter($settings, function($value) {
+    $settings = array_filter($settings, static function($value) {
       return $value !== null && $value !== "";
     });
     /** @var UserEntity $user */
