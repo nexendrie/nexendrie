@@ -88,7 +88,7 @@ final class PropertyPresenter extends BasePresenter {
   protected function createComponentAppointMayorForm(AppointMayorFormFactory $factory): Form {
     $form = $factory->create($this->town->id);
     $form->onSuccess[] = function(): void {
-      $this->flashMessage("Rychář jmenován.");
+      $this->flashMessage("Rychtář jmenován.");
     };
     return $form;
   }
