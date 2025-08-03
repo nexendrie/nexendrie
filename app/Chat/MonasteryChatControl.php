@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Chat;
 
 use HeroesofAbenez\Chat\ChatControl;
-use HeroesofAbenez\Chat\IDatabaseAdapter;
+use HeroesofAbenez\Chat\DatabaseAdapter;
 use Nexendrie\Orm\User;
 
 /**
@@ -13,7 +13,7 @@ use Nexendrie\Orm\User;
  * @author Jakub Konečný
  */
 final class MonasteryChatControl extends ChatControl {
-  public function __construct(IDatabaseAdapter $databaseAdapter, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
+  public function __construct(DatabaseAdapter $databaseAdapter, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
     /** @var User $userRecord */
     $userRecord = $orm->users->getById($user->id);
     $monasteryId = ($userRecord->monastery !== null) ? $userRecord->monastery->id : 0;

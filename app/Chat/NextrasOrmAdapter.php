@@ -5,7 +5,7 @@ namespace Nexendrie\Chat;
 
 use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Orm\ChatMessage as ChatMessageEntity;
-use HeroesofAbenez\Chat\IDatabaseAdapter;
+use HeroesofAbenez\Chat\DatabaseAdapter;
 use HeroesofAbenez\Chat\ChatMessagesCollection;
 use HeroesofAbenez\Chat\ChatMessage;
 use HeroesofAbenez\Chat\ChatCharactersCollection;
@@ -16,7 +16,7 @@ use HeroesofAbenez\Chat\ChatCharacter;
  *
  * @author Jakub Konečný
  */
-final class NextrasOrmAdapter implements IDatabaseAdapter {
+final class NextrasOrmAdapter implements DatabaseAdapter {
   public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
   }
 
