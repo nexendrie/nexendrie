@@ -2,6 +2,7 @@ Version 1.0.0-beta10+dev
 - added support for early hints for style and scripts (not enabled by default, currently only works on FrankenPHP)
 - added mounts and buildings' maintenance into budget
 - raised minimal version of PHP to 8.1
+- allowed dark mode in chats
 
 Version 1.0.0-beta10
 - added profile sub-page comments and crimes
