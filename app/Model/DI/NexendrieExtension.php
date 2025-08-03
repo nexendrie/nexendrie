@@ -6,7 +6,7 @@ namespace Nexendrie\Model\DI;
 use Nette\DI\Definitions\FactoryDefinition;
 use Nexendrie;
 use Nexendrie\Model\SettingsRepository;
-use Nette\Bridges\ApplicationLatte\ILatteFactory;
+use Nette\Bridges\ApplicationLatte\LatteFactory;
 
 /**
  * Nexendrie Extension for DIC
@@ -346,7 +346,7 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
   public function beforeCompile(): void {
     $builder = $this->getContainerBuilder();
     /** @var FactoryDefinition $latteFactory */
-    $latteFactory = $builder->getDefinitionByType(ILatteFactory::class);
+    $latteFactory = $builder->getDefinitionByType(LatteFactory::class);
     $latteFactory->getResultDefinition()->addSetup("addFilter", ["genderify", ["@" . $this->prefix("model.locale"), "genderMessage"]]);
     $latteFactory->getResultDefinition()->addSetup("addFilter", ["money", ["@" . $this->prefix("model.locale"), "money"]]);
   }

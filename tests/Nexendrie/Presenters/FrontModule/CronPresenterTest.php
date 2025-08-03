@@ -18,7 +18,7 @@ final class CronPresenterTest extends \Tester\TestCase {
     $response = $this->check(":Front:Cron:default");
     Assert::same(200, $this->getReturnCode());
     Assert::type(\Nette\Application\Responses\TextResponse::class, $response);
-    Assert::type(\Nette\Application\UI\ITemplate::class, $response->getSource());
+    Assert::type(\Nette\Application\UI\Template::class, $response->getSource());
   }
 }
 

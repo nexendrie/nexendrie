@@ -22,8 +22,8 @@ final class AuthenticatorTest extends \Tester\TestCase {
     $user = "jakub.konecny2@centrum.cz";
     $password = "qwerty";
     $identity = $this->model->authenticate($user, $password);
-    Assert::type(\Nette\Security\Identity::class, $identity);
-    Assert::same(1, $identity->id);
+    Assert::type(\Nette\Security\SimpleIdentity::class, $identity);
+    Assert::same(1, $identity->id); // @phpstan-ignore property.deprecatedClass
     Assert::exception(function() use($user) {
       $this->model->authenticate($user, "abc");
     }, AuthenticationException::class);
