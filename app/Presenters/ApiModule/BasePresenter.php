@@ -31,7 +31,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * If no response was sent, we received a request that we are not able to handle.
    * That means e.g. invalid associations.
    */
-  protected function beforeRender(): void {
+  protected function beforeRender(): never {
     $this->getHttpResponse()->setCode(IResponse::S400_BAD_REQUEST);
     $this->sendJson(["message" => "This action is not allowed."]);
   }
@@ -73,7 +73,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * It is meant to be used only in {@see sendEntity}, {@see actionReadAll} or {@see actionDelete}
    * method when the associated resource was not found.
    */
-  protected function resourceNotFound(string $resource, int $id): void {
+  protected function resourceNotFound(string $resource, int $id): never {
     $this->getHttpResponse()->setCode(IResponse::S404_NOT_FOUND);
     $payload = ["message" => Strings::firstUpper($resource) . " with id $id was not found."];
     $this->addContentLengthHeader($payload);
@@ -84,7 +84,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * A quick way to send 405 status with an appropriate message and list of allowed methods to the client.
    * It is send by default to all HTTP methods but OPTIONS.
    */
-  protected function methodNotAllowed(): void {
+  protected function methodNotAllowed(): never {
     $method = $this->request->method;
     $this->getHttpResponse()->setCode(IResponse::S405_METHOD_NOT_ALLOWED);
     $this->getHttpResponse()->addHeader("Allow", implode(", ", $this->getAllowedMethods()));
@@ -158,7 +158,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * A quick way to send a collection of entities as response.
    * It is meant to be used in {@see actionReadAll} method.
    */
-  protected function sendCollection(iterable $collection): void {
+  protected function sendCollection(iterable $collection): never {
     $data = $this->entityConverter->convertCollection($collection, $this->getApiVersion());
     $this->getHttpResponse()->addHeader("Link", $this->createLinkHeader("self", $this->getSelfLink()));
     $payload = [$this->getCollectionName() => $data];
@@ -191,7 +191,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * A quick way to send single entity as response.
    * It is meant to be used in {@see actionRead} method.
    */
-  protected function sendEntity(?Entity $entity): void {
+  protected function sendEntity(?Entity $entity): never {
     if($entity === null) {
       $this->resourceNotFound($this->getInvalidEntityName(), $this->getId());
     }
@@ -210,7 +210,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * Send the entity that was created in {@see actionCreate} method.
    * Sets appropriate status code and Location header.
    */
-  protected function sendCreatedEntity(Entity $entity): void {
+  protected function sendCreatedEntity(Entity $entity): never {
     $this->getHttpResponse()->setCode(IResponse::S201_CREATED);
     $data = $this->entityConverter->convertEntity($entity, $this->getApiVersion());
     $links = $data->_links ?? [];
@@ -229,7 +229,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
    * A quick way to send info about a deleted entity as response. Handles non-existing entity.
    * It is meant to be used in {@see actionDelete} method.
    */
-  protected function sendDeletedEntity(?Entity $entity) : void {
+  protected function sendDeletedEntity(?Entity $entity) : never {
     if($entity === null) {
       $this->resourceNotFound($this->getInvalidEntityName(), $this->getId());
     }
@@ -289,7 +289,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter {
     return [$_SERVER["PHP_AUTH_USER"] ?? "", $_SERVER["PHP_AUTH_PW"] ?? "",];
   }
 
-  protected function sendBasicAuthRequest(string $message = "This action requires authentication."): void {
+  protected function sendBasicAuthRequest(string $message = "This action requires authentication."): never {
     $this->getHttpResponse()->setHeader("WWW-Authenticate", "Basic realm=\"Nexendrie API\"");
     $this->getHttpResponse()->setCode(IResponse::S401_UNAUTHORIZED);
     $this->sendJson(["message" => $message]);
