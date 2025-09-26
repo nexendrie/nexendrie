@@ -20,8 +20,6 @@ parameters:
         - Nextras\Orm\Entity\IEntity
     ignoreErrors:
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'
-        - '#Property SimpleXMLElement::\$Url \(bool\|float\|int\|SimpleXMLElement\|string\|null\) does not accept array\<string, string\>#'
-        - '#Property Nexendrie\\Orm\\[a-zA-Z]+::\$[a-zA-Z1-9]+ \(Nexendrie\\Orm\\[a-zA-Z]+(\|null)?\) does not accept int#'
         - '#Property Nette\\Utils\\Paginator::\$itemsPerPage \(int\<1, max\>\) does not accept int#'
         -
             identifier: missingType.generics

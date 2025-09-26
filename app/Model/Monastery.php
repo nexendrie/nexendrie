@@ -117,7 +117,7 @@ final class Monastery {
     if($user->group->path !== GroupEntity::PATH_CHURCH) {
       $ranks = $this->getChurchGroupIds();
       end($ranks);
-      $user->group = current($ranks);
+      $user->group = (int) current($ranks);
     }
     $user->town = $monastery->town;
     $user->guild = $user->guildRank = null;
@@ -205,7 +205,7 @@ final class Monastery {
       $ranks = $this->orm->groups->getCityGroupIds();
     }
     end($ranks);
-    $user->group = current($ranks);
+    $user->group = (int) current($ranks);
     $this->orm->users->persistAndFlush($user);
   }
   

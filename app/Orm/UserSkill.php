@@ -66,7 +66,7 @@ final class UserSkill extends BaseEntity implements ICharacterEffectsProvider {
     $stats = [
       "id" => "skill{$this->skill->id}Effect", "type" => SkillSpecial::TYPE_BUFF,
       "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
-      "stat" => $bonusStats[$this->skill->stat], "value" => $this->skill->statIncrease * $this->level,
+      "stat" => $bonusStats[(string) $this->skill->stat], "value" => $this->skill->statIncrease * $this->level,
     ];
     return [new CharacterEffect($stats)];
   }
