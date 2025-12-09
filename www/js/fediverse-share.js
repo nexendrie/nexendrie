@@ -1,6 +1,6 @@
-const link = document.getElementById("share-link-fediverse");
-if (link) {
-    link.addEventListener("click", function (event) {
+const fediverseShareLink = document.getElementById("share-link-fediverse");
+if (fediverseShareLink) {
+    fediverseShareLink.addEventListener("click", function (event) {
         document.getElementById("fediverse-share").showModal();
         event.preventDefault();
     });

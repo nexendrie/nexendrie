@@ -4,6 +4,7 @@ Version 1.0.0-beta10+dev
 - raised minimal version of PHP to 8.1
 - allowed dark mode in chats
 - allowed installation as progressive web app
+- allowed sharing articles via Web Share API
 
 Version 1.0.0-beta10
 - added profile sub-page comments and crimes

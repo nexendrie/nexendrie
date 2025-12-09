@@ -1,0 +1,19 @@
+<?php
+declare(strict_types=1);
+
+namespace Nexendrie\Components\SharerLinks;
+
+final class Web implements \Nexendrie\Components\ISharerLink {
+  public function getShareLink(string $url): string {
+    return "";
+  }
+
+  public function getSiteName(): string {
+    return "zařízení";
+  }
+
+  public function getPlatformName(): string {
+    return "web";
+  }
+}
+?>

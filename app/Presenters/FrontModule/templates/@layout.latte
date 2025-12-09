@@ -35,6 +35,7 @@
 </footer>
 {if $user->isLoggedIn() and $user->identity->notifications}<script src="{$basePath}/js/sse.js"></script>{/if}
 <script src="{$basePath}/js/fediverse-share.js"></script>
+<script src="{$basePath}/js/web-share.js"></script>
 <dialog id="fediverse-share">
   <form onsubmit="fediverseShareSubmit(event)">
     <label for="fediverse-share-instance">Adresa mé instance:</label>
