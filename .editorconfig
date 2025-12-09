@@ -13,3 +13,4 @@ insert_final_newline = false
 
 [{*.xml,*.latte}]
 indent_size = 2
+insert_final_newline = false
