@@ -15,6 +15,7 @@ function fediverseShareSubmit(event) {
     const platform = document.getElementById("fediverse-share-platform").value;
     const instance = document.getElementById("fediverse-share-instance").value;
     const url = document.getElementById("share-link-fediverse").dataset.url;
+    const title = document.getElementById("share-link-fediverse").dataset.title;
     document.getElementById("fediverse-share").close();
     switch (platform) {
         case "mastodon":

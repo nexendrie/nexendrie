@@ -2,7 +2,7 @@
     <p>
       Sdílet {$contentType} na:
       {foreach $links as $link}
-      <a href="{$link->getShareLink($url)}" data-url="{$url}" id="share-link-{$link->getPlatformName()}">{$link->getSiteName()}</a>
+      <a href="{$link->getShareLink($url, $title)}" data-url="{$url}" data-title="{$title}" id="share-link-{$link->getPlatformName()}">{$link->getSiteName()}</a>
       {if !$iterator->last} {/if}
       {/foreach}
     </p>

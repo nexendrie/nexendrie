@@ -7,7 +7,8 @@ if (webShareLink) {
     webShareLink.addEventListener("click", function (event) {
         event.preventDefault();
         const data = {
-            url: document.getElementById("share-link-web").dataset.url
+            url: document.getElementById("share-link-web").dataset.url,
+            title: document.getElementById("share-link-web").dataset.title
         };
         if (!navigator.canShare) {
             alert("Tvůj prohlížeš nepodporuje Web Share API");

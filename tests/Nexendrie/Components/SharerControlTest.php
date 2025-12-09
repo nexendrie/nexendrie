@@ -23,7 +23,7 @@ final class SharerControlTest extends \Tester\TestCase {
   }
   
   public function testRender(): void {
-    $this->checkRenderOutput($this->control, __DIR__ . "/sharerExpected.latte", ["https://www.nexendrie.cz/", "článek"]);
+    $this->checkRenderOutput($this->control, __DIR__ . "/sharerExpected.latte", ["https://www.nexendrie.cz/", "Nexendrie hlavní stránka", "článek"]);
   }
 }
 

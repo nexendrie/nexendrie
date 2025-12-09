@@ -17,8 +17,8 @@ final class Twitter implements \Nexendrie\Components\ISharerLink {
     $this->account = $sr->settings["socialAccounts"]["twitter"];
   }
 
-  public function getShareLink(string $url): string {
-    return "https://twitter.com/intent/tweet?url=$url&via={$this->account}";
+  public function getShareLink(string $url, string $title): string {
+    return "https://twitter.com/intent/tweet?url=$url&text=$title&via={$this->account}";
   }
 
   public function getSiteName(): string {

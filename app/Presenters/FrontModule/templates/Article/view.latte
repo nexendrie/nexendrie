@@ -11,7 +11,7 @@
   <p>od {control userProfileLink $article->author} {$article->createdAt}</p>
   <p>{$article->text}</p>
   {if $user->isAllowed("article", "edit")}<a n:href=":Admin:Article:edit $article->id">Upravit</a>{/if}
-  {control sharer $link, "článek"}
+  {control sharer $link, $article->title, "článek"}
   <a name="comments"></a>
   <div id="comments">
     <h3>Komentáře:</h3>

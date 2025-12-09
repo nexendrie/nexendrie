@@ -7,7 +7,7 @@ use Nexendrie\Components\ISharerLink;
 
 final class Fediverse implements ISharerLink {
 
-  public function getShareLink(string $url): string {
+  public function getShareLink(string $url, string $title): string {
     return "";
   }
 

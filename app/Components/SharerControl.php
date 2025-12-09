@@ -16,10 +16,11 @@ final class SharerControl extends \Nette\Application\UI\Control {
   public function __construct(private readonly array $links) {
   }
 
-  public function render(string $url, string $contentType = ""): void {
+  public function render(string $url, string $title, string $contentType = ""): void {
     $this->template->setFile(__DIR__ . "/sharer.latte");
     $this->template->links = $this->links;
     $this->template->url = $url;
+    $this->template->title = $title;
     $this->template->contentType = $contentType;
     $this->template->render();
   }
