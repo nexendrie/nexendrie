@@ -61,9 +61,10 @@ abstract class BasePresenter extends \Nexendrie\Presenters\BasePresenter {
     $baseUrl = dirname($_SERVER["PHP_SELF"]) . "js";
     $result = [
       $baseUrl . "/fediverse-share.js",
+      $baseUrl . "/web-share.js",
     ];
     if ($this->user->isLoggedIn() && $this->user->identity->notifications) {
-      $result[] = "/sse.js";
+      $result[] = $baseUrl . "/sse.js";
     }
     return $result;
   }
