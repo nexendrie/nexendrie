@@ -66,7 +66,7 @@ final class AddEditJobFormFactory {
       ->addRule(Form::RANGE, "Úroveň dovednosti musí být v rozmezí 0-5.", [0, 5])
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($job !== null) {
       $form->setDefaults($job->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }

@@ -37,7 +37,7 @@ final class ManageGuildFormFactory {
       ->setRequired("Vyber dovednost.");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($guild->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

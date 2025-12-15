@@ -59,7 +59,7 @@ final class UserSettingsFormFactory {
     $form->setCurrentGroup(null);
     $form->addSubmit("save", "Uložit změny");
     $form->setDefaults($defaultValues);
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

@@ -35,7 +35,7 @@ final class ManageTownFormFactory {
     $form->addCheckbox("onMarket", "Na prodej");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($town->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

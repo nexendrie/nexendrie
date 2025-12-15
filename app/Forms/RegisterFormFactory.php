@@ -29,7 +29,7 @@ final class RegisterFormFactory {
     $form->addPassword("password", "Heslo:")
       ->setRequired("Zadej heslo.");
     $form->addSubmit("register", "Zaregistrovat se");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

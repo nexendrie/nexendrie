@@ -51,7 +51,7 @@ final class AddEditSkillFormFactory {
       ->elseCondition()
       ->addRule(Form::EQUAL, "Neplatná kombinace: vylepšení dovednosti musí být 0 u pracovní dovednosti.", 0);
     $form->addSubmit("submit", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($skill !== null) {
       $form->setDefaults($skill->toArray());
     }

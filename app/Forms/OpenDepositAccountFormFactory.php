@@ -30,7 +30,7 @@ final class OpenDepositAccountFormFactory {
     }, "Datum nemůže být v minulosti.");
     $form->addComponent($term, "term");
     $form->addSubmit("submit", "Otevřít účet");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

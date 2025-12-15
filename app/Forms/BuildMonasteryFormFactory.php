@@ -23,7 +23,7 @@ final class BuildMonasteryFormFactory {
     $form->addText("name", "Jméno:")
       ->setRequired("Zadej jméno");
     $form->addSubmit("submit", "Založit klášter");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

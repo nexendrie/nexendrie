@@ -33,7 +33,7 @@ final class ManageMountFormFactory {
     $form->addCheckbox("autoFeed", "Automaticky krmit");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($mount->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

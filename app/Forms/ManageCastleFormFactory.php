@@ -29,7 +29,7 @@ final class ManageCastleFormFactory {
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($castle->toArray());
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

@@ -45,7 +45,7 @@ final class AddEditItemFormFactory {
       ->addRule(Form::RANGE, "Síla musí být v rozmezí 0-999.", [0, 999])
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($item !== null) {
       $form->setDefaults($item->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }

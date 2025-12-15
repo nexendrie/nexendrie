@@ -29,7 +29,7 @@ final class AddEditPollFormFactory {
       ->setOption("description", "Každou odpověď napiš na nový řádek.");
     $form->addCheckbox("locked", "Uzamčená");
     $form->addSubmit("send", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($poll !== null) {
       $form->setDefaults($poll->toArray());
     }

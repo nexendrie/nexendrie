@@ -57,7 +57,7 @@ final class AddEditEventFormFactory {
       ->addRule(Form::INTEGER)
       ->addRule(Form::RANGE, null, [0, 100]);
     $form->addSubmit("submit", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($event !== null) {
       $form->setDefaults($event->dummyArray());
     }

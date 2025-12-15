@@ -178,7 +178,7 @@ final class SystemSettingsFormFactory {
     $form->setCurrentGroup(null);
     $form->addSubmit("submit", "Uložit změny");
     $form->setDefaults($this->getDefaultValues());
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

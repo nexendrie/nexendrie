@@ -51,7 +51,7 @@ final class AddEditItemSetFormFactory {
       ->addRule(Form::RANGE, "Velikost bonusu musí být v rozmezí 0-99.", [0, 99])
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($set !== null) {
       $form->setDefaults($set->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }

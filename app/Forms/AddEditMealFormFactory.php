@@ -34,7 +34,7 @@ final class AddEditMealFormFactory {
       ->addRule(Form::INTEGER, "Efekt musí být celé číslo.")
       ->addRule(Form::RANGE, "Efekt musí být v rozmezí -60 - 60.", [-60, 60]);
     $form->addSubmit("submit", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($meal !== null) {
       $form->setDefaults($meal->toArray());
     }

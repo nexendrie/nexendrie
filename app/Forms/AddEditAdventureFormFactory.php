@@ -52,7 +52,7 @@ final class AddEditAdventureFormFactory {
     $form->addSelect("event", "Akce:", $this->getEvents())
       ->setPrompt("žádná");
     $form->addSubmit("submit", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($adventure !== null) {
       $form->setDefaults($adventure->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }

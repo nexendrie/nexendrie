@@ -24,7 +24,7 @@ final class LoginFormFactory {
     $form->addPassword("password", "Heslo:")
       ->setRequired("Zadej heslo.");
     $form->addSubmit("login", "Přihlásit se");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

@@ -26,7 +26,7 @@ final class NewMessageFormFactory {
     $form->addTextArea("text", "Text:")
       ->setRequired("Zadej text.");
     $form->addSubmit("send", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

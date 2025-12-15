@@ -23,7 +23,7 @@ final class TakeLoanFormFactory {
       ->addRule(Form::INTEGER, "Částka musí být celé číslo.")
       ->addRule(Form::MIN, "Částka musí být větší než 0.", 1);
     $form->addSubmit("submit", "Půjčit si");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

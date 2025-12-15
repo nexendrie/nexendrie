@@ -39,7 +39,7 @@ final class AddEditTownFormFactory {
         ->setDefaultValue(5000);
     }
     $form->addSubmit("submit", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($town !== null) {
       $form->setDefaults($town->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }

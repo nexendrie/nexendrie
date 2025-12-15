@@ -30,7 +30,7 @@ final class ChangeWeddingTermFormFactory {
     }, "Datum nemůže být v minulosti.");
     $form->addComponent($term, "term");
     $form->addSubmit("submit", "Změnit");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

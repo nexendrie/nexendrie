@@ -46,7 +46,7 @@ final class AddEditMountFormFactory {
       ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", [0, 999999])
       ->setValue(0);
     $form->addSubmit("submit", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($mount !== null) {
       $form->setDefaults($mount->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
     }

@@ -39,7 +39,7 @@ final class EditGroupFormFactory {
       ->addRule(Form::MAX_LENGTH, "Maximální půjčka může mít maximálně 5 znaků.", 5)
       ->setRequired("Zadej maximální půjčku.");
     $form->addSubmit("send", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     $form->setDefaults($group->toArray());
     return $form;
   }

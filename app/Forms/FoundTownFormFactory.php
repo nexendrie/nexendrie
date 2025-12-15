@@ -26,7 +26,7 @@ final class FoundTownFormFactory {
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Založit");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

@@ -59,7 +59,7 @@ final class EditUserFormFactory {
       ->setRequired("Vyber město.");
     $form->setDefaults($this->getDefaultValues());
     $form->addSubmit("submit", "Uložit");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

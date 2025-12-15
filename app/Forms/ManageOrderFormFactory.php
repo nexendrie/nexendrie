@@ -28,7 +28,7 @@ final class ManageOrderFormFactory {
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Odeslat");
     $form->setDefaults($guild->toArray());
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

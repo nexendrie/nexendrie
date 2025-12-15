@@ -26,7 +26,7 @@ final class AddEditShopFormFactory {
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Odeslat");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     if($shop !== null) {
       $form->setDefaults($shop->toArray());
     }

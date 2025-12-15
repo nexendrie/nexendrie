@@ -23,7 +23,7 @@ final class MakeCitizenFormFactory {
     $form->addSelect("user", "Uživatel:", $this->model->getTownPeasants($town))
       ->setRequired();
     $form->addSubmit("submit", "Povýsit");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

@@ -27,7 +27,7 @@ final class BuildCastleFormFactory {
     $form->addTextArea("description", "Popis:")
       ->setRequired("Zadej popis.");
     $form->addSubmit("submit", "Postavit");
-    $form->onSuccess[] = [$this, "process"];
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   

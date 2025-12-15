@@ -52,8 +52,8 @@ final class GiftFormFactory {
       ->setPrompt("-");
     $form->addTextArea("message", "Zpráva pro příjemce:");
     $form->addSubmit("submit", "Darovat");
-    $form->onValidate[] = [$this, "validate"];
-    $form->onSuccess[] = [$this, "process"];
+    $form->onValidate[] = $this->validate(...);
+    $form->onSuccess[] = $this->process(...);
     return $form;
   }
   
