@@ -70,6 +70,10 @@ final class UserPresenter extends BasePresenter {
    */
   public function actionRegister(): void {
     $this->mustNotBeLoggedIn();
+    if (!$this->sr->settings["registration"]["open"]) {
+      $this->flashMessage("Registrace je na tomto serveru otevřená jen pro pozvané uživatele");
+      $this->redirect("Homepage:");
+    }
   }
   
   protected function createComponentRegisterForm(RegisterFormFactory $factory): Form {

@@ -148,8 +148,8 @@ final class SystemSettingsFormFactory {
       ->addRule(Form::RANGE, "Kritický stav budov musí být v rozmezí 0-100.", [0, 100]);
     $form->addGroup("Registrace");
     $registration = $form->addContainer("registration");
-    $registration->addText("token", "Heslo:")
-      ->setOption("description", "Ponech prázdné, pokud má být registrace přístupná všem.");
+    $registration->addCheckbox("open", "Otevřená registrace")
+      ->setOption("description", "Jestli je registrace otevřená všem nebo jen pozvaným");
     $form->addGroup("Stránky");
     $site = $form->addContainer("site");
     $site->addText("versionSuffix", "Přípona verze:")

@@ -6,7 +6,6 @@ namespace Nexendrie\Forms;
 use Nette\Application\UI\Form;
 use Nexendrie\Model\UserManager;
 use Nexendrie\Model\RegistrationException;
-use Nexendrie\Model\SettingsRepository;
 
 /**
  * Factory for form Register
@@ -14,10 +13,7 @@ use Nexendrie\Model\SettingsRepository;
  * @author Jakub Konečný
  */
 final class RegisterFormFactory {
-  private string $registrationToken;
-  
-  public function __construct(private readonly UserManager $model, SettingsRepository $sr) {
-    $this->registrationToken = $sr->settings["registration"]["token"];
+  public function __construct(private readonly UserManager $model) {
   }
   
   public function create(): Form {
@@ -32,19 +28,12 @@ final class RegisterFormFactory {
       ->setOption("description", "Slouží jako uživatelské jméno.");
     $form->addPassword("password", "Heslo:")
       ->setRequired("Zadej heslo.");
-    if($this->registrationToken !== "") {
-      $form->addText("token", "Token:")
-        ->setRequired()
-        ->addRule(Form::EQUAL, "Špatné heslo.", $this->registrationToken)
-        ->setOption("description", "Registrace na tomto serveru vyžaduje heslo.");
-    }
     $form->addSubmit("register", "Zaregistrovat se");
     $form->onSuccess[] = [$this, "process"];
     return $form;
   }
   
   public function process(Form $form, array $values): void {
-    unset($values["token"]);
     try {
       $this->model->register($values);
     } catch(RegistrationException $e) {
