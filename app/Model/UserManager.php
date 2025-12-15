@@ -18,14 +18,17 @@ use Nette\InvalidArgumentException;
 final class UserManager {
   private array $roles = [];
   private array $newUser;
+  private bool $openRegistration;
   /** Exception error code */
   public const REG_DUPLICATE_NAME = 1,
     REG_DUPLICATE_EMAIL = 2,
-    SET_INVALID_PASSWORD = 3;
+    SET_INVALID_PASSWORD = 3,
+    REG_EMAIL_NOT_INVITED = 4;
 
-  public function __construct(private readonly ORM $orm, SettingsRepository $sr, private readonly User $user, private readonly Passwords $passwords) {
+  public function __construct(private readonly ORM $orm, SettingsRepository $sr, private readonly User $user, private readonly Passwords $passwords, private readonly Invitations $invitations) {
     $this->roles = $sr->settings["roles"];
     $this->newUser = $sr->settings["newUser"];
+    $this->openRegistration = $sr->settings["registration"]["open"];
   }
 
   /**
@@ -70,6 +73,9 @@ final class UserManager {
    * @throws RegistrationException
    */
   public function register(array $data): void {
+    if (!$this->openRegistration && !$this->invitations->isInvited($data["email"])) {
+      throw new RegistrationException("Email not invited", self::REG_EMAIL_NOT_INVITED);
+    }
     if(!$this->emailAvailable($data["email"])) {
       throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
     }

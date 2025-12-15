@@ -43,6 +43,9 @@ final class RegisterFormFactory {
       if($e->getCode() === UserManager::REG_DUPLICATE_NAME) {
         $form->addError("Zvolené jméno je už zabráno.");
       }
+      if ($e->getCode() === UserManager::REG_EMAIL_NOT_INVITED) {
+        $form->addError("Nemáš platnou pozvánku.");
+      }
     }
   }
 }

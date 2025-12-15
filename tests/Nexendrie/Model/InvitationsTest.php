@@ -20,6 +20,7 @@ final class InvitationsTest extends \Tester\TestCase {
   public function testProcess(): void {
     $email = "abc@def";
     Assert::count(0, $this->model->listOfInvitations());
+    Assert::false($this->model->isInvited($email));
     Assert::exception(function () {
       $this->model->add("abc");
     }, AuthenticationNeededException::class);
@@ -35,6 +36,7 @@ final class InvitationsTest extends \Tester\TestCase {
     Assert::exception(function () use($email) {
       $this->model->add($email);
     }, EmailAlreadyInvitedException::class);
+    Assert::true($this->model->isInvited($email));
     $invitations = $this->model->listOfInvitations();
     Assert::count(1, $invitations);
     Assert::type(Invitation::class, $invitations[0]);
@@ -55,6 +57,7 @@ final class InvitationsTest extends \Tester\TestCase {
     }, EmailNotInvitedException::class);
     $this->model->remove($email);
     Assert::count(0, $this->model->listOfInvitations());
+    Assert::false($this->model->isInvited($email));
   }
 }
 

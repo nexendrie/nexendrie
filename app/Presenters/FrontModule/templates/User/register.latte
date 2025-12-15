@@ -2,5 +2,6 @@
 {block title}Registrace{/block}
 {block content}
   <h1>Registrace</h1>
+  {if !$openRegistration}<p><b>Registrace na tomto serveru je otevřená pouze pozvaným uživatelům. Pokud máš pozvánku, můžeš vyplnit svou e-mailovou adresu.</b></p>{/if}
   {control registerForm}
 {/block}

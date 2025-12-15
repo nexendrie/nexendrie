@@ -66,5 +66,9 @@ final class Invitations {
     }
     $this->orm->removeAndFlush($invitation);
   }
+
+  public function isInvited(string $email): bool {
+    return $this->orm->invitations->getByEmail($email) !== null;
+  }
 }
 ?>
