@@ -70,6 +70,7 @@ final class UserPresenter extends BasePresenter {
    */
   public function actionRegister(): void {
     $this->mustNotBeLoggedIn();
+    $this->template->openRegistration = $this->sr->settings["registration"]["open"];
   }
   
   protected function createComponentRegisterForm(RegisterFormFactory $factory): Form {

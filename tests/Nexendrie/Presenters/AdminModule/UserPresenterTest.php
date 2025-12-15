@@ -31,6 +31,10 @@ final class UserPresenterTest extends \Tester\TestCase {
     $this->checkRedirect(":Admin:User:ban", "/admin/users", ["id" => 1]);
     $this->checkRedirect(":Admin:User:ban", "/admin/users", ["id" => 5000]);
   }
+
+  public function testInvitations(): void {
+    $this->defaultChecks(":Admin:User:invitations");
+  }
 }
 
 $test = new UserPresenterTest();

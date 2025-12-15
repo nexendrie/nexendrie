@@ -6,6 +6,10 @@ namespace Nexendrie\Presenters\AdminModule;
 use Nexendrie\Forms\EditUserFormFactory;
 use Nexendrie\Forms\BanUserFormFactory;
 use Nette\Application\UI\Form;
+use Nexendrie\Forms\InviteUserFormFactory;
+use Nexendrie\Model\EmailAlreadyRegisteredException;
+use Nexendrie\Model\EmailNotInvitedException;
+use Nexendrie\Model\Invitations;
 use Nexendrie\Model\UserManager;
 use Nexendrie\Model\UserNotFoundException;
 
@@ -15,7 +19,7 @@ use Nexendrie\Model\UserNotFoundException;
  * @author Jakub Konečný
  */
 final class UserPresenter extends BasePresenter {
-  public function __construct(private readonly UserManager $model) {
+  public function __construct(private readonly UserManager $model, private readonly Invitations $invitations) {
     parent::__construct();
   }
   
@@ -73,6 +77,33 @@ final class UserPresenter extends BasePresenter {
       $this->flashMessage("Uživatel uvězněn.");
     };
     return $form;
+  }
+
+  public function actionInvitations(): void {
+    $this->requiresPermissions("user", "invite");
+    $this->template->invitations = $this->invitations->listOfInvitations();
+  }
+
+  protected function createComponentInviteUserForm(InviteUserFormFactory $factory): Form {
+    $form = $factory->create();
+    $form->onSuccess[] = function(): void {
+      $this->flashMessage("Pozvánka vytvořena.");
+      $this->redirect("this");
+    };
+    return $form;
+  }
+
+  public function handleCancelInvitation(string $email): void {
+    $this->requiresPermissions("user", "invite");
+    try {
+      $this->invitations->remove($email);
+      $this->flashMessage("Pozvánka zrušena.");
+    } catch (EmailNotInvitedException) {
+      $this->flashMessage("Neexistuje pozvánka pro danou e-mailovou adresu.");
+    } catch (EmailAlreadyRegisteredException) {
+      $this->flashMessage("Už existuje uživatel s danou e-mailovou adresou.");
+    }
+    $this->redirect("this");
   }
 }
 ?>

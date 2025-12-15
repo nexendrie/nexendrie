@@ -5,6 +5,7 @@ Version 1.0.0-beta10+dev
 - allowed dark mode in chats
 - allowed installation as progressive web app
 - allowed sharing articles via Web Share API
+- allowed resticting registration to invited e-mail adrresses
 
 Version 1.0.0-beta10
 - added profile sub-page comments and crimes

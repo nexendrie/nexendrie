@@ -34,6 +34,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Menu\ConditionBanned::class);
     $builder->addDefinition("menu.condition.path")
       ->setType(Nexendrie\Menu\ConditionPath::class);
+    $builder->addDefinition("menu.condition.openRegistration")
+      ->setType(Nexendrie\Menu\ConditionOpenRegistration::class);
   }
 
   private function addChatCommands(): void {
@@ -148,6 +150,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Model\GenericNotificator::class);
     $builder->addDefinition($this->prefix("model.workNotificator"))
       ->setType(Nexendrie\Model\WorkNotificator::class);
+    $builder->addDefinition($this->prefix("model.invitations"))
+      ->setType(Nexendrie\Model\Invitations::class);
   }
 
   private function addCronTasks(): void {
@@ -325,6 +329,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension {
       ->setType(Nexendrie\Forms\OpenDepositAccountFormFactory::class);
     $builder->addDefinition($this->prefix("form.siteSearch"))
       ->setType(Nexendrie\Forms\SiteSearchFormFactory::class);
+    $builder->addDefinition($this->prefix("form.inviteUser"))
+      ->setType(Nexendrie\Forms\InviteUserFormFactory::class);
   }
 
   private function addAchievements(): void {

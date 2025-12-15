@@ -47,7 +47,7 @@ final class SettingsRepository {
       "foundTown" => 15,
     ],
     "registration" => [
-      "token" => "",
+      "open" => true,
     ],
     "site" => [
       "versionSuffix" => "",

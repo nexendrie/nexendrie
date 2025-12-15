@@ -54,6 +54,7 @@ namespace Nexendrie\Orm;
  * @property-read NotificationsRepository $notifications
  * @property-read ApiTokensRepository $apiTokens
  * @property-read UserExpensesRepository $userExpenses
+ * @property-read InvitationsRepository $invitations
  */
 final class Model extends \Nextras\Orm\Model\Model {
   

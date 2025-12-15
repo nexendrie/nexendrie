@@ -540,4 +540,16 @@ class ContentAlreadyReportedException extends AccessDeniedException {
 class ContentReportNotFoundException extends RecordNotFoundException {
 
 }
+
+class EmailAlreadyInvitedException extends \RuntimeException {
+
+}
+
+class EmailAlreadyRegisteredException extends \RuntimeException {
+
+}
+
+class EmailNotInvitedException extends \RuntimeException {
+
+}
 ?>
