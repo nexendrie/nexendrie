@@ -160,3 +160,8 @@ menu:
                 link: "Admin:Settings:"
                 conditions:
                     acl: site:settings
+            Pozvánky:
+                link: "Admin:User:Invitations"
+                conditions:
+                    openRegistration: false
+                    acl: user:invite

@@ -1,0 +1,24 @@
+{layout "../@layout.latte"}
+{block title}Pozvánky{/block}
+{block content}
+  <h1>Pozvánky</h1>
+  {control inviteUserForm}
+  <br>
+  <table>
+    <tr>
+      <th>E-mail</th>
+      <th>Pozván</th>
+      <th>Akce</th>
+    </tr>
+    {foreach $invitations as $invitation}
+    <tr>
+      <td>{$invitation->email}</td>
+      <td>{control userProfileLink $invitation->inviter} {$invitation->dt}</td>
+      <td>
+        {if $invitation->user}{control userProfileLink:name $user, "Zobrazit uživatele"}
+        {else}<a n:href="cancelInvitation! $invitation->email">Zrušit pozvánku</a>{/if}
+      </td>
+    </tr>
+    {/foreach}
+  </table>
+{/block}
