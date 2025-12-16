@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\ISocialIconsControlFactory;
+use Nexendrie\Components\SocialIconsControlFactory;
 use Nexendrie\Components\SocialIconsControl;
 use Nexendrie\Model\Article;
 
@@ -27,7 +27,7 @@ final class HomepagePresenter extends BasePresenter
         $this->template->paginator = $paginator;
     }
 
-    public function createComponentSocialIcons(ISocialIconsControlFactory $factory): SocialIconsControl
+    public function createComponentSocialIcons(SocialIconsControlFactory $factory): SocialIconsControl
     {
         return $factory->create();
     }

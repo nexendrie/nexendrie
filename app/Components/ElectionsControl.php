@@ -24,7 +24,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control
         private readonly Elections $model,
         private readonly ORM $orm,
         private readonly \Nette\Security\User $user,
-        IUserProfileLinkControlFactory $userProfileLinkControlFactory
+        UserProfileLinkControlFactory $userProfileLinkControlFactory
     ) {
         $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
     }

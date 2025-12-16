@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nexendrie\Achievements\IAchievement;
+use Nexendrie\Achievements\Achievement;
 
 /**
  * Achievements
@@ -13,7 +13,7 @@ use Nexendrie\Achievements\IAchievement;
 final class Achievements
 {
     /**
-     * @param IAchievement[] $achievements
+     * @param Achievement[] $achievements
      */
     public function __construct(public readonly array $achievements)
     {

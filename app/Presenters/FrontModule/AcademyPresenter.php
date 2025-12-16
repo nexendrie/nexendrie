@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Components\AcademyControl;
-use Nexendrie\Components\IAcademyControlFactory;
+use Nexendrie\Components\AcademyControlFactory;
 
 /**
  * Presenter Academy
@@ -23,7 +23,7 @@ final class AcademyPresenter extends BasePresenter
         $this->mustNotBeTavelling();
     }
 
-    protected function createComponentAcademy(IAcademyControlFactory $factory): AcademyControl
+    protected function createComponentAcademy(AcademyControlFactory $factory): AcademyControl
     {
         return $factory->create();
     }

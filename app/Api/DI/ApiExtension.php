@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Api\DI;
 
 use Nette\Schema\Expect;
-use Nexendrie\Api\Transformers\ITransformer;
+use Nexendrie\Api\Transformers\Transformer;
 
 /**
  * Api Extension for DIC
@@ -39,7 +39,7 @@ final class ApiExtension extends \Nette\DI\CompilerExtension
                 return false;
             }
             $rc = new \ReflectionClass($transformer);
-            return $rc->isInstantiable() && $rc->implementsInterface(ITransformer::class);
+            return $rc->isInstantiable() && $rc->implementsInterface(Transformer::class);
         }));
         foreach ($transformers as $index => $transformer) {
             $builder->addDefinition($this->prefix("transformer.$index"))

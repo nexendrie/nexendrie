@@ -37,10 +37,10 @@ translation:
 chat:
     databaseAdapter: Nexendrie\Chat\NextrasOrmAdapter
     chats:
-        town: Nexendrie\Chat\ITownChatControlFactory
-        monastery: Nexendrie\Chat\IMonasteryChatControlFactory
-        guild: Nexendrie\Chat\IGuildChatControlFactory
-        order: Nexendrie\Chat\IOrderChatControlFactory
+        town: Nexendrie\Chat\TownChatControlFactory
+        monastery: Nexendrie\Chat\MonasteryChatControlFactory
+        guild: Nexendrie\Chat\GuildChatControlFactory
+        order: Nexendrie\Chat\OrderChatControlFactory
     characterProfileLink: ":Front:Profile:"
 nexendrie.api:
     transformersNamespace: Nexendrie\Api\Transformers

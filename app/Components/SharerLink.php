@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-interface ISharerLink
+interface SharerLink
 {
     public function getShareLink(string $url, string $title): string;
 

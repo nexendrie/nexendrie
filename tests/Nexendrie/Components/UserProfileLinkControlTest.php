@@ -16,8 +16,8 @@ final class UserProfileLinkControlTest extends \Tester\TestCase
     {
         static $control = null;
         if (is_null($control)) {
-            /** @var IUserProfileLinkControlFactory $factory */
-            $factory = $this->getService(IUserProfileLinkControlFactory::class);
+            /** @var UserProfileLinkControlFactory $factory */
+            $factory = $this->getService(UserProfileLinkControlFactory::class);
             $control = $factory->create();
         }
         $this->control = $control;

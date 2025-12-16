@@ -3,24 +3,24 @@ declare(strict_types=1);
 
 namespace Nexendrie\Api;
 
-use Nexendrie\Api\Transformers\ITransformer;
+use Nexendrie\Api\Transformers\Transformer;
 use Nexendrie\Utils\Collection;
 use Nextras\Orm\Entity\Entity;
 
 final class EntityConverter
 {
     private int $maxDepth;
-    /** @var ITransformer[]|Collection */
+    /** @var Transformer[]|Collection */
     private Collection $transformers;
 
     /**
-     * @param ITransformer[] $transformers
+     * @param Transformer[] $transformers
      */
     public function __construct(int $maxDepth, array $transformers)
     {
         $this->maxDepth = $maxDepth;
         $this->transformers = new class extends Collection {
-            protected string $class = ITransformer::class;
+            protected string $class = Transformer::class;
         };
         foreach ($transformers as $transformer) {
             $this->transformers[] = $transformer;
@@ -29,7 +29,7 @@ final class EntityConverter
 
     public function convertEntity(Entity $entity, string $apiVersion): \stdClass
     {
-        /** @var ITransformer|null $transformer */
+        /** @var Transformer|null $transformer */
         $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($entity)]);
         if ($transformer === null) {
             return new \stdClass();

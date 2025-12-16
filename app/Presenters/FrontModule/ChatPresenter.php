@@ -6,13 +6,13 @@ namespace Nexendrie\Presenters\FrontModule;
 use Nexendrie\Model\Guild;
 use Nexendrie\Model\Monastery;
 use Nexendrie\Model\NotInMonasteryException;
-use Nexendrie\Chat\ITownChatControlFactory;
+use Nexendrie\Chat\TownChatControlFactory;
 use Nexendrie\Chat\TownChatControl;
-use Nexendrie\Chat\IMonasteryChatControlFactory;
+use Nexendrie\Chat\MonasteryChatControlFactory;
 use Nexendrie\Chat\MonasteryChatControl;
-use Nexendrie\Chat\IOrderChatControlFactory;
+use Nexendrie\Chat\OrderChatControlFactory;
 use Nexendrie\Chat\OrderChatControl;
-use Nexendrie\Chat\IGuildChatControlFactory;
+use Nexendrie\Chat\GuildChatControlFactory;
 use Nexendrie\Chat\GuildChatControl;
 use Nexendrie\Model\Order;
 
@@ -46,7 +46,7 @@ final class ChatPresenter extends BasePresenter
         $this->template->chatRefreshRate = 1;
     }
 
-    protected function createComponentTownChat(ITownChatControlFactory $factory): TownChatControl
+    protected function createComponentTownChat(TownChatControlFactory $factory): TownChatControl
     {
         return $factory->create();
     }
@@ -61,7 +61,7 @@ final class ChatPresenter extends BasePresenter
         }
     }
 
-    protected function createComponentMonasteryChat(IMonasteryChatControlFactory $factory): MonasteryChatControl
+    protected function createComponentMonasteryChat(MonasteryChatControlFactory $factory): MonasteryChatControl
     {
         return $factory->create();
     }
@@ -75,7 +75,7 @@ final class ChatPresenter extends BasePresenter
         }
     }
 
-    protected function createComponentOrderChat(IOrderChatControlFactory $factory): OrderChatControl
+    protected function createComponentOrderChat(OrderChatControlFactory $factory): OrderChatControl
     {
         return $factory->create();
     }
@@ -89,7 +89,7 @@ final class ChatPresenter extends BasePresenter
         }
     }
 
-    protected function createComponentGuildChat(IGuildChatControlFactory $factory): GuildChatControl
+    protected function createComponentGuildChat(GuildChatControlFactory $factory): GuildChatControl
     {
         return $factory->create();
     }

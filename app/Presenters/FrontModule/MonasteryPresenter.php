@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Chat\IMonasteryChatControlFactory;
+use Nexendrie\Chat\MonasteryChatControlFactory;
 use Nexendrie\Chat\MonasteryChatControl;
 use Nexendrie\Model\Locale;
 use Nexendrie\Model\Monastery;
@@ -39,7 +39,7 @@ final class MonasteryPresenter extends BasePresenter
     public function __construct(
         private readonly Monastery $model,
         private readonly Locale $localeModel,
-        private readonly IMonasteryChatControlFactory $chatFactory
+        private readonly MonasteryChatControlFactory $chatFactory
     ) {
         parent::__construct();
     }

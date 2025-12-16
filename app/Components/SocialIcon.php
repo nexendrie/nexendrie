@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-interface ISocialIcon
+interface SocialIcon
 {
     public function getLink(): string;
 

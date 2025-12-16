@@ -23,7 +23,7 @@ final class WeddingControl extends \Nette\Application\UI\Control
         \Nexendrie\Model\Marriage $model,
         \Nexendrie\Orm\Model $orm,
         \Nette\Security\User $user,
-        IUserProfileLinkControlFactory $userProfileLinkControlFactory
+        UserProfileLinkControlFactory $userProfileLinkControlFactory
     ) {
         $this->model = $model;
         $this->orm = $orm;

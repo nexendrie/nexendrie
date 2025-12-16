@@ -6,11 +6,11 @@ namespace Nexendrie\Achievements;
 use Nexendrie\Orm\User;
 
 /**
- * IAchievement
+ * Achievement
  *
  * @author Jakub Konečný
  */
-interface IAchievement
+interface Achievement
 {
     public function getName(): string;
 

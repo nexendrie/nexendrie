@@ -16,8 +16,8 @@ final class TownsMarketControlTest extends \Tester\TestCase
     {
         static $control = null;
         if (is_null($control)) {
-            /** @var ITownsMarketControlFactory $factory */
-            $factory = $this->getService(ITownsMarketControlFactory::class);
+            /** @var TownsMarketControlFactory $factory */
+            $factory = $this->getService(TownsMarketControlFactory::class);
             $control = $factory->create();
         }
         $this->control = $control;

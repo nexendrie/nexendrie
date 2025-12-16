@@ -16,8 +16,8 @@ final class TavernControlTest extends \Tester\TestCase
     {
         static $control = null;
         if (is_null($control)) {
-            /** @var ITavernControlFactory $factory */
-            $factory = $this->getService(ITavernControlFactory::class);
+            /** @var TavernControlFactory $factory */
+            $factory = $this->getService(TavernControlFactory::class);
             $control = $factory->create();
         }
         $this->control = $control;

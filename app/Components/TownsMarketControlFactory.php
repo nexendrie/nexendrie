@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-interface ITownsMarketControlFactory
+interface TownsMarketControlFactory
 {
     public function create(): TownsMarketControl;
 }

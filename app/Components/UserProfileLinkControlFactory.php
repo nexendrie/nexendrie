@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace Nexendrie\Components;
 
 /**
- * IUserProfileLinkControlFactory
+ * UserProfileLinkControlFactory
  *
  * @author Jakub Konečný
  */
-interface IUserProfileLinkControlFactory
+interface UserProfileLinkControlFactory
 {
     public function create(): UserProfileLinkControl;
 }

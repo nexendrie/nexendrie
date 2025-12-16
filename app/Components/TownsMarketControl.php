@@ -20,7 +20,7 @@ final class TownsMarketControl extends \Nette\Application\UI\Control
 {
     public function __construct(
         private readonly Town $model,
-        IUserProfileLinkControlFactory $userProfileLinkControlFactory
+        UserProfileLinkControlFactory $userProfileLinkControlFactory
     ) {
         $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
     }

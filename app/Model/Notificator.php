@@ -5,7 +5,7 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Structs\Notification;
 
-interface INotificator
+interface Notificator
 {
     /**
      * @return Notification[]

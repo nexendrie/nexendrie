@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-interface IElectionsControlFactory
+interface ElectionsControlFactory
 {
     public function create(): ElectionsControl;
 }

@@ -8,7 +8,7 @@ use Nexendrie\Orm\Mount as MountEntity;
 use Nexendrie\Model\MountNotFoundException;
 use Nexendrie\Forms\ManageMountFormFactory;
 use Nette\Application\UI\Form;
-use Nexendrie\Components\IStablesControlFactory;
+use Nexendrie\Components\StablesControlFactory;
 use Nexendrie\Components\StablesControl;
 
 /**
@@ -39,7 +39,7 @@ final class StablesPresenter extends BasePresenter
         $this->template->mounts = $this->model->listOfMounts($this->user->id);
     }
 
-    protected function createComponentStables(IStablesControlFactory $factory): StablesControl
+    protected function createComponentStables(StablesControlFactory $factory): StablesControl
     {
         return $factory->create();
     }

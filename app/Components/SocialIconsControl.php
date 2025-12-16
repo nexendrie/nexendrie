@@ -12,7 +12,7 @@ namespace Nexendrie\Components;
 final class SocialIconsControl extends \Nette\Application\UI\Control
 {
     /**
-     * @param ISocialIcon[] $icons
+     * @param SocialIcon[] $icons
      */
     public function __construct(private readonly array $icons)
     {

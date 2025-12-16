@@ -20,8 +20,8 @@ final class PollControlTest extends \Tester\TestCase
     {
         static $control = null;
         if (is_null($control)) {
-            /** @var IPollControlFactory $factory */
-            $factory = $this->getService(IPollControlFactory::class);
+            /** @var PollControlFactory $factory */
+            $factory = $this->getService(PollControlFactory::class);
             $control = $factory->create();
         }
         $this->control = $control;

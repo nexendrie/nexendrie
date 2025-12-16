@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Model\INotificator;
+use Nexendrie\Model\Notificator;
 
 class SsePresenter extends BasePresenter
 {
     protected bool $earlyHints = false;
 
     /**
-     * @param INotificator[] $notificators
+     * @param Notificator[] $notificators
      */
     public function __construct(private readonly array $notificators)
     {

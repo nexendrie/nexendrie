@@ -16,8 +16,8 @@ final class SharerControlTest extends \Tester\TestCase
     {
         static $control = null;
         if ($control === null) {
-            /** @var ISharerControlFactory $factory */
-            $factory = $this->getService(ISharerControlFactory::class);
+            /** @var SharerControlFactory $factory */
+            $factory = $this->getService(SharerControlFactory::class);
             $control = $factory->create();
         }
         $this->control = $control;

@@ -10,7 +10,7 @@ use Nexendrie\Model\SettingsRepository;
  *
  * @author Jakub Konečný
  */
-final class Friendica implements \Nexendrie\Components\ISocialIcon
+final class Friendica implements \Nexendrie\Components\SocialIcon
 {
     private string $account;
 

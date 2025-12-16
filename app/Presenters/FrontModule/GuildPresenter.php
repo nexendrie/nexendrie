@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Chat\GuildChatControl;
-use Nexendrie\Chat\IGuildChatControlFactory;
+use Nexendrie\Chat\GuildChatControlFactory;
 use Nexendrie\Forms\FoundGuildFormFactory;
 use Nette\Application\UI\Form;
 use Nexendrie\Model\Guild;
@@ -33,7 +33,7 @@ final class GuildPresenter extends BasePresenter
     public function __construct(
         private readonly Guild $model,
         private readonly Locale $localeModel,
-        private readonly IGuildChatControlFactory $chatFactory
+        private readonly GuildChatControlFactory $chatFactory
     ) {
         parent::__construct();
     }

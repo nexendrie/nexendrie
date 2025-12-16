@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\IHelpControlFactory;
+use Nexendrie\Components\HelpControlFactory;
 
 require __DIR__ . "/../../../bootstrap.php";
 
@@ -19,8 +19,8 @@ final class HelpPresenterTest extends \Tester\TestCase
         $this->checkAction(":Front:Help:default");
         $this->login();
         $this->checkAction(":Front:Help:default");
-        /** @var IHelpControlFactory $factory */
-        $factory = $this->getService(IHelpControlFactory::class);
+        /** @var HelpControlFactory $factory */
+        $factory = $this->getService(HelpControlFactory::class);
         $component = $factory->create();
         $pages = $component->getPages();
         /** @var \Nexendrie\BookComponent\BookPage $page */

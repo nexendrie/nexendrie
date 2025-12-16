@@ -201,37 +201,37 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension
     {
         $builder = $this->getContainerBuilder();
         $builder->addFactoryDefinition($this->prefix("component.poll"))
-            ->setImplement(Nexendrie\Components\IPollControlFactory::class);
+            ->setImplement(Nexendrie\Components\PollControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.shop"))
-            ->setImplement(Nexendrie\Components\IShopControlFactory::class);
+            ->setImplement(Nexendrie\Components\ShopControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.mountsMarket"))
-            ->setImplement(Nexendrie\Components\IMountsMarketControlFactory::class);
+            ->setImplement(Nexendrie\Components\MountsMarketControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.academy"))
-            ->setImplement(Nexendrie\Components\IAcademyControlFactory::class);
+            ->setImplement(Nexendrie\Components\AcademyControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.townsMarket"))
-            ->setImplement(Nexendrie\Components\ITownsMarketControlFactory::class);
+            ->setImplement(Nexendrie\Components\TownsMarketControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.help"))
-            ->setImplement(Nexendrie\Components\IHelpControlFactory::class);
+            ->setImplement(Nexendrie\Components\HelpControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.stables"))
-            ->setImplement(Nexendrie\Components\IStablesControlFactory::class);
+            ->setImplement(Nexendrie\Components\StablesControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.prison"))
-            ->setImplement(Nexendrie\Components\IPrisonControlFactory::class);
+            ->setImplement(Nexendrie\Components\PrisonControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.tavern"))
-            ->setImplement(Nexendrie\Components\ITavernControlFactory::class);
+            ->setImplement(Nexendrie\Components\TavernControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.adventure"))
-            ->setImplement(Nexendrie\Components\IAdventureControlFactory::class);
+            ->setImplement(Nexendrie\Components\AdventureControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.history"))
-            ->setImplement(Nexendrie\Components\IHistoryControlFactory::class);
+            ->setImplement(Nexendrie\Components\HistoryControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.wedding"))
-            ->setImplement(Nexendrie\Components\IWeddingControlFactory::class);
+            ->setImplement(Nexendrie\Components\WeddingControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.elections"))
-            ->setImplement(Nexendrie\Components\IElectionsControlFactory::class);
+            ->setImplement(Nexendrie\Components\ElectionsControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.userProfileLink"))
-            ->setImplement(Nexendrie\Components\IUserProfileLinkControlFactory::class);
+            ->setImplement(Nexendrie\Components\UserProfileLinkControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.favicon"))
-            ->setImplement(Nexendrie\Components\IFaviconControlFactory::class);
+            ->setImplement(Nexendrie\Components\FaviconControlFactory::class);
         $builder->addFactoryDefinition($this->prefix("component.sharer"))
-            ->setImplement(Nexendrie\Components\ISharerControlFactory::class);
+            ->setImplement(Nexendrie\Components\SharerControlFactory::class);
         $builder->addDefinition($this->prefix("component.sharer.link.facebook"))
             ->setType(Nexendrie\Components\SharerLinks\Facebook::class);
         $builder->addDefinition($this->prefix("component.sharer.link.twitter"))
@@ -241,7 +241,7 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension
         $builder->addDefinition($this->prefix("component.sharer.link.web"))
             ->setType(Nexendrie\Components\SharerLinks\Web::class);
         $builder->addFactoryDefinition($this->prefix("component.socialIcons"))
-            ->setImplement(Nexendrie\Components\ISocialIconsControlFactory::class);
+            ->setImplement(Nexendrie\Components\SocialIconsControlFactory::class);
         $builder->addDefinition($this->prefix("component.socialIcons.icon.facebook"))
             ->setType(Nexendrie\Components\SocialIcons\Facebook::class);
         $builder->addDefinition($this->prefix("component.socialIcons.icon.twitter"))

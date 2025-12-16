@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Chat\ITownChatControlFactory;
+use Nexendrie\Chat\TownChatControlFactory;
 use Nexendrie\Chat\TownChatControl;
 use Nexendrie\Model\Locale;
 use Nexendrie\Model\Profile;
@@ -13,7 +13,7 @@ use Nexendrie\Model\CannotMoveToSameTownException;
 use Nexendrie\Model\CannotMoveToTownException;
 use Nexendrie\Forms\FoundTownFormFactory;
 use Nette\Application\UI\Form;
-use Nexendrie\Components\IElectionsControlFactory;
+use Nexendrie\Components\ElectionsControlFactory;
 use Nexendrie\Components\ElectionsControl;
 use Nexendrie\Model\UserManager;
 use Nexendrie\Orm\Group as GroupEntity;
@@ -35,7 +35,7 @@ final class TownPresenter extends BasePresenter
         private readonly Profile $profileModel,
         private readonly Locale $localeModel,
         private readonly ORM $orm,
-        private readonly ITownChatControlFactory $chatFactory
+        private readonly TownChatControlFactory $chatFactory
     ) {
         parent::__construct();
     }
@@ -143,7 +143,7 @@ final class TownPresenter extends BasePresenter
         $this->town = $this->model->get($this->user->identity->town);
     }
 
-    protected function createComponentElections(IElectionsControlFactory $factory): ElectionsControl
+    protected function createComponentElections(ElectionsControlFactory $factory): ElectionsControl
     {
         $elections = $factory->create();
         $elections->town = $this->town;

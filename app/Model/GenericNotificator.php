@@ -7,7 +7,7 @@ use Nette\Security\User;
 use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Structs\Notification;
 
-final class GenericNotificator implements INotificator
+final class GenericNotificator implements Notificator
 {
     public function __construct(
         private readonly ORM $orm,

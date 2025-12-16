@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\IAdventureControlFactory;
+use Nexendrie\Components\AdventureControlFactory;
 use Nexendrie\Components\AdventureControl;
 use Nexendrie\Model\Adventure;
 
@@ -43,7 +43,7 @@ final class AdventurePresenter extends BasePresenter
         $this->redirect("Homepage:");
     }
 
-    protected function createComponentAdventure(IAdventureControlFactory $factory): AdventureControl
+    protected function createComponentAdventure(AdventureControlFactory $factory): AdventureControl
     {
         return $factory->create();
     }

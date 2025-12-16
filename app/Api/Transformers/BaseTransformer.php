@@ -10,20 +10,20 @@ use Nextras\Orm\Entity\Entity;
 use Nextras\Orm\Entity\ToArrayConverter;
 use Nextras\Orm\Relationships\HasMany;
 
-abstract class BaseTransformer implements ITransformer
+abstract class BaseTransformer implements Transformer
 {
     /** @var string[] */
     protected array $fields = [];
     /** @var string[] */
     protected array $fieldsRename = [];
-    /** @var ITransformer[]|Collection */
+    /** @var Transformer[]|Collection */
     protected Collection $transformers;
     protected bool $createSelfLink = true;
 
     public function __construct(protected \Nette\DI\Container $container, protected LinkGenerator $linkGenerator)
     {
         $this->transformers = new class extends Collection {
-            protected string $class = ITransformer::class;
+            protected string $class = Transformer::class;
         };
     }
 
@@ -32,7 +32,7 @@ abstract class BaseTransformer implements ITransformer
         if (count($this->transformers) > 0) {
             return;
         }
-        foreach ($this->container->findByType(ITransformer::class) as $serviceName) {
+        foreach ($this->container->findByType(Transformer::class) as $serviceName) {
             $this->transformers[] = $this->container->getService($serviceName);
         }
     }
@@ -69,7 +69,7 @@ abstract class BaseTransformer implements ITransformer
                 $array = [];
                 /** @var Entity $item */
                 foreach ($value as $item) {
-                    /** @var ITransformer|null $transformer */
+                    /** @var Transformer|null $transformer */
                     $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($item)]);
                     if ($transformer === null || $maxDepth < 1) {
                         $array[] = $item->id;
@@ -85,7 +85,7 @@ abstract class BaseTransformer implements ITransformer
                 }
                 $value = $array;
             } else {
-                /** @var ITransformer|null $transformer */
+                /** @var Transformer|null $transformer */
                 $transformer = $this->transformers->getItem(["getEntityClassName()" => get_class($value)]);
                 if ($transformer === null || $maxDepth < 1) {
                     $value = $value->id;

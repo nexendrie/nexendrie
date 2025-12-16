@@ -12,7 +12,7 @@ namespace Nexendrie\Components;
 final class SharerControl extends \Nette\Application\UI\Control
 {
     /**
-     * @param ISharerLink[] $links
+     * @param SharerLink[] $links
      */
     public function __construct(private readonly array $links)
     {

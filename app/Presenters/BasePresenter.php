@@ -5,10 +5,10 @@ namespace Nexendrie\Presenters;
 
 use Nette\Application\Responses\RedirectResponse;
 use Nexendrie\Components\FaviconControl;
-use Nexendrie\Components\IFaviconControlFactory;
+use Nexendrie\Components\FaviconControlFactory;
 use Nexendrie\Menu\IMenuControlFactory;
 use Nexendrie\Menu\MenuControl;
-use Nexendrie\Components\IUserProfileLinkControlFactory;
+use Nexendrie\Components\UserProfileLinkControlFactory;
 use Nexendrie\Components\UserProfileLinkControl;
 
 /**
@@ -23,7 +23,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
     protected \Nexendrie\Model\SettingsRepository $sr;
     protected \Nexendrie\Model\ThemesManager $themesManager;
-    protected IUserProfileLinkControlFactory $userProfileLinkFactory;
+    protected UserProfileLinkControlFactory $userProfileLinkFactory;
     protected bool $cachingEnabled;
     protected bool $publicCache = true;
     protected bool $earlyHints;
@@ -39,7 +39,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         }
     }
 
-    public function injectUserProfileLinkFactory(IUserProfileLinkControlFactory $userProfileLinkFactory): void
+    public function injectUserProfileLinkFactory(UserProfileLinkControlFactory $userProfileLinkFactory): void
     {
         $this->userProfileLinkFactory = $userProfileLinkFactory;
     }
@@ -196,7 +196,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         return $this->userProfileLinkFactory->create();
     }
 
-    protected function createComponentFavicon(IFaviconControlFactory $factory): FaviconControl
+    protected function createComponentFavicon(FaviconControlFactory $factory): FaviconControl
     {
         return $factory->create();
     }

@@ -23,7 +23,7 @@ use Nexendrie\Model\MaxIntimacyReachedException;
 use Nexendrie\Model\ItemNotFoundException;
 use Nexendrie\Model\ItemNotUsableException;
 use Nexendrie\Model\ItemNotOwnedException;
-use Nexendrie\Components\IWeddingControlFactory;
+use Nexendrie\Components\WeddingControlFactory;
 use Nexendrie\Components\WeddingControl;
 use Nexendrie\Orm\Marriage as MarriageEntity;
 
@@ -143,7 +143,7 @@ final class MarriagePresenter extends BasePresenter
         }
     }
 
-    protected function createComponentWedding(IWeddingControlFactory $factory): WeddingControl
+    protected function createComponentWedding(WeddingControlFactory $factory): WeddingControl
     {
         $wedding = $factory->create();
         $wedding->marriage = $this->marriage;

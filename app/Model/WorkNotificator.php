@@ -7,7 +7,7 @@ use Nette\Application\LinkGenerator;
 use Nexendrie\Structs\Notification;
 use Nexendrie\Utils\Numbers;
 
-final class WorkNotificator implements INotificator
+final class WorkNotificator implements Notificator
 {
     public const TAG_WORK_FINISHED = "workFinished";
     public const TAG_WORK_NEXT_SHIFT = "workNextShift";

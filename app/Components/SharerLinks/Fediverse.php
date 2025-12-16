@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components\SharerLinks;
 
-use Nexendrie\Components\ISharerLink;
+use Nexendrie\Components\SharerLink;
 
-final class Fediverse implements ISharerLink
+final class Fediverse implements SharerLink
 {
     public function getShareLink(string $url, string $title): string
     {

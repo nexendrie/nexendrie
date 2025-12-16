@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\IHistoryControlFactory;
+use Nexendrie\Components\HistoryControlFactory;
 
 require __DIR__ . "/../../../bootstrap.php";
 
@@ -19,8 +19,8 @@ final class HistoryPresenterTest extends \Tester\TestCase
         $this->checkAction(":Front:History:default");
         $this->login();
         $this->checkAction(":Front:History:default");
-        /** @var IHistoryControlFactory $factory */
-        $factory = $this->getService(IHistoryControlFactory::class);
+        /** @var HistoryControlFactory $factory */
+        $factory = $this->getService(HistoryControlFactory::class);
         $component = $factory->create();
         $pages = $component->getPages();
         /** @var \Nexendrie\BookComponent\BookPage $page */

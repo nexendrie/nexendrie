@@ -19,8 +19,8 @@ final class MountsMarketControlTest extends \Tester\TestCase
     {
         static $control = null;
         if ($control === null) {
-            /** @var IMountsMarketControlFactory $factory */
-            $factory = $this->getService(IMountsMarketControlFactory::class);
+            /** @var MountsMarketControlFactory $factory */
+            $factory = $this->getService(MountsMarketControlFactory::class);
             $control = $factory->create();
         }
         $this->control = $control;

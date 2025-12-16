@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\ITavernControlFactory;
+use Nexendrie\Components\TavernControlFactory;
 use Nexendrie\Components\TavernControl;
 
 /**
@@ -21,7 +21,7 @@ final class TavernPresenter extends BasePresenter
         $this->mustNotBeTavelling();
     }
 
-    protected function createComponentTavern(ITavernControlFactory $factory): TavernControl
+    protected function createComponentTavern(TavernControlFactory $factory): TavernControl
     {
         return $factory->create();
     }

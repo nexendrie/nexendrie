@@ -8,7 +8,7 @@ namespace Nexendrie\Components\SocialIcons;
  *
  * @author Jakub Konečný
  */
-final class GitLab implements \Nexendrie\Components\ISocialIcon
+final class GitLab implements \Nexendrie\Components\SocialIcon
 {
     public function getLink(): string
     {

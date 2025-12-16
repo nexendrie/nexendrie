@@ -12,7 +12,7 @@ use Nette\Utils\Arrays;
  *
  * @author Jakub Konečný
  */
-abstract class BaseAchievement implements IAchievement
+abstract class BaseAchievement implements Achievement
 {
     protected string $field;
     protected string $name;

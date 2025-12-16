@@ -10,7 +10,7 @@ use Nexendrie\Model\SettingsRepository;
  *
  * @author Jakub Konečný
  */
-final class Facebook implements \Nexendrie\Components\ISocialIcon
+final class Facebook implements \Nexendrie\Components\SocialIcon
 {
     private string $account;
 

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\IHistoryControlFactory;
+use Nexendrie\Components\HistoryControlFactory;
 use Nexendrie\Components\HistoryControl;
 
 /**
@@ -20,7 +20,7 @@ final class HistoryPresenter extends BasePresenter
         $this->template->page = $page;
     }
 
-    protected function createComponentHistory(IHistoryControlFactory $factory): HistoryControl
+    protected function createComponentHistory(HistoryControlFactory $factory): HistoryControl
     {
         return $factory->create();
     }

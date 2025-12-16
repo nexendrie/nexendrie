@@ -10,7 +10,7 @@ use Nexendrie\Model\SettingsRepository;
  *
  * @author Jakub Konečný
  */
-final class Twitter implements \Nexendrie\Components\ISharerLink
+final class Twitter implements \Nexendrie\Components\SharerLink
 {
     private string $account;
 

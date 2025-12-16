@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Chat\IOrderChatControlFactory;
+use Nexendrie\Chat\OrderChatControlFactory;
 use Nexendrie\Chat\OrderChatControl;
 use Nexendrie\Forms\FoundOrderFormFactory;
 use Nexendrie\Forms\ManageOrderFormFactory;
@@ -33,7 +33,7 @@ final class OrderPresenter extends BasePresenter
     public function __construct(
         private readonly Order $model,
         private readonly Locale $localeModel,
-        private readonly IOrderChatControlFactory $chatFactory
+        private readonly OrderChatControlFactory $chatFactory
     ) {
         parent::__construct();
     }

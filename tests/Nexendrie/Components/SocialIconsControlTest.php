@@ -16,8 +16,8 @@ final class SocialIconsControlTest extends \Tester\TestCase
     {
         static $control = null;
         if ($control === null) {
-            /** @var ISocialIconsControlFactory $factory */
-            $factory = $this->getService(ISocialIconsControlFactory::class);
+            /** @var SocialIconsControlFactory $factory */
+            $factory = $this->getService(SocialIconsControlFactory::class);
             $control = $factory->create();
         }
         $this->control = $control;

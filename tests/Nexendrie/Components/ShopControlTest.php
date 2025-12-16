@@ -19,8 +19,8 @@ final class ShopControlTest extends \Tester\TestCase
     {
         static $control = null;
         if (is_null($control)) {
-            /** @var IShopControlFactory $factory */
-            $factory = $this->getService(IShopControlFactory::class);
+            /** @var ShopControlFactory $factory */
+            $factory = $this->getService(ShopControlFactory::class);
             $control = $factory->create();
         }
         $this->control = $control;

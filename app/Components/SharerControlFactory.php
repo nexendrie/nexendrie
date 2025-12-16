@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-interface ISharerControlFactory
+interface SharerControlFactory
 {
     public function create(): SharerControl;
 }

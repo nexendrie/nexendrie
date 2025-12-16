@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components\SharerLinks;
 
-final class Web implements \Nexendrie\Components\ISharerLink
+final class Web implements \Nexendrie\Components\SharerLink
 {
     public function getShareLink(string $url, string $title): string
     {

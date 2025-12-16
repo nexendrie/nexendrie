@@ -26,7 +26,7 @@ final class PollControl extends \Nette\Application\UI\Control
     public function __construct(
         private readonly \Nette\Security\User $user,
         private readonly ORM $orm,
-        IUserProfileLinkControlFactory $userProfileLinkControlFactory
+        UserProfileLinkControlFactory $userProfileLinkControlFactory
     ) {
         $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
     }

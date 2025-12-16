@@ -8,7 +8,7 @@ namespace Nexendrie\Components\SharerLinks;
  *
  * @author Jakub Konečný
  */
-final class Facebook implements \Nexendrie\Components\ISharerLink
+final class Facebook implements \Nexendrie\Components\SharerLink
 {
     public function getShareLink(string $url, string $title): string
     {

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\FrontModule;
 
-use Nexendrie\Components\ISharerControlFactory;
+use Nexendrie\Components\SharerControlFactory;
 use Nexendrie\Components\SharerControl;
 use Nexendrie\Model\Article;
 use Nexendrie\Model\ArticleNotFoundException;
@@ -62,7 +62,7 @@ final class ArticlePresenter extends BasePresenter
         return $form;
     }
 
-    public function createComponentSharer(ISharerControlFactory $factory): SharerControl
+    public function createComponentSharer(SharerControlFactory $factory): SharerControl
     {
         return $factory->create();
     }
