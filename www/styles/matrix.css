@@ -7,12 +7,11 @@ header h2 a { text-decoration: none; font-size: larger; }
 #userPanel { position: absolute; top: 125px; right: -125px; }
 #userPanel a { text-decoration: none; border: #0D0208 solid; position: relative; bottom: 1px;
     display: list-item; list-style-type: none; text-align: center; }
-#mainMenu { position: relative; top: 85px; width: 17%; max-width: 160px; }
-#mainMenu h3 { position: relative; left: 18px; bottom: 14px; max-width: 104px;
-    padding: 3px 10px 3px 15px; text-align: center; }
+#mainMenu { position: relative; top: 128px; width: 17%; max-width: 160px; }
+#mainMenu h3 { display: none; }
 #mainMenu ul { position: relative; left: 17px; bottom: 22px; width: 73%; max-width: 117px; padding: 10px 5px 10px 8px; }
 #mainMenu li { list-style-type: none; text-align: center; }
 #mainMenu li a { text-decoration: none; font-weight: lighter; }
 main { position: absolute; top: 89px; left: 175px; width: 60%; max-width: 741px; padding: 0 7px; }
 #topLinks { position: absolute; top: 14px; right: 15px; height: 0; }
-#flashes { position: relative; top: 85px; }
+#flashes { position: relative; top: 128px; }
