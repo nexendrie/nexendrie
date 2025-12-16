@@ -24,63 +24,68 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|ItemSet[] $armorSets {1:m ItemSet::$armor}
  * @property OneHasMany|ItemSet[] $helmetSets {1:m ItemSet::$helmet}
  */
-final class Item extends BaseEntity {
-  public const TYPE_ITEM = "item";
-  public const TYPE_WEAPON = "weapon";
-  public const TYPE_ARMOR = "armor";
-  public const TYPE_HELMET = "helmet";
-  public const TYPE_AMULET = "amulet";
-  public const TYPE_POTION = "potion";
-  public const TYPE_MATERIAL = "material";
-  public const TYPE_CHARTER = "charter";
-  public const TYPE_INTIMACY_BOOST = "intimacy_boost";
-  
-  /**
-   * @return array<string, string>
-   */
-  public static function getTypes(): array {
-    return [
-      self::TYPE_ITEM => "Věc",
-      self::TYPE_WEAPON => "Zbraň",
-      self::TYPE_ARMOR => "Brnění",
-      self::TYPE_HELMET => "Helma",
-      self::TYPE_AMULET => "Amulet",
-      self::TYPE_POTION => "Lektvar",
-      self::TYPE_MATERIAL => "Surovina",
-      self::TYPE_CHARTER => "Listina",
-      self::TYPE_INTIMACY_BOOST => "Zvýšení důvěrnosti",
-    ];
-  }
-  
-  /**
-   * @return string[]
-   */
-  public static function getCommonTypes(): array {
-    return [
-      self::TYPE_ITEM, self::TYPE_MATERIAL, self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
-    ];
-  }
-  
-  /**
-   * @return string[]
-   */
-  public static function getEquipmentTypes(): array {
-    return [
-      self::TYPE_WEAPON, self::TYPE_ARMOR, self::TYPE_HELMET, self::TYPE_AMULET,
-    ];
-  }
-  
-  /**
-   * @return string[]
-   */
-  public static function getNotForSale(): array {
-    return [
-      self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
-    ];
-  }
-  
-  protected function getterTypeCZ(): string {
-    return self::getTypes()[$this->type];
-  }
+final class Item extends BaseEntity
+{
+    public const TYPE_ITEM = "item";
+    public const TYPE_WEAPON = "weapon";
+    public const TYPE_ARMOR = "armor";
+    public const TYPE_HELMET = "helmet";
+    public const TYPE_AMULET = "amulet";
+    public const TYPE_POTION = "potion";
+    public const TYPE_MATERIAL = "material";
+    public const TYPE_CHARTER = "charter";
+    public const TYPE_INTIMACY_BOOST = "intimacy_boost";
+
+    /**
+     * @return array<string, string>
+     */
+    public static function getTypes(): array
+    {
+        return [
+            self::TYPE_ITEM => "Věc",
+            self::TYPE_WEAPON => "Zbraň",
+            self::TYPE_ARMOR => "Brnění",
+            self::TYPE_HELMET => "Helma",
+            self::TYPE_AMULET => "Amulet",
+            self::TYPE_POTION => "Lektvar",
+            self::TYPE_MATERIAL => "Surovina",
+            self::TYPE_CHARTER => "Listina",
+            self::TYPE_INTIMACY_BOOST => "Zvýšení důvěrnosti",
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function getCommonTypes(): array
+    {
+        return [
+            self::TYPE_ITEM, self::TYPE_MATERIAL, self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function getEquipmentTypes(): array
+    {
+        return [
+            self::TYPE_WEAPON, self::TYPE_ARMOR, self::TYPE_HELMET, self::TYPE_AMULET,
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function getNotForSale(): array
+    {
+        return [
+            self::TYPE_CHARTER, self::TYPE_INTIMACY_BOOST
+        ];
+    }
+
+    protected function getterTypeCZ(): string
+    {
+        return self::getTypes()[$this->type];
+    }
 }
-?>

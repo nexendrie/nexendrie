@@ -18,13 +18,15 @@ use Nexendrie\Utils\Numbers;
  * @property int $updated
  * @property OneHasMany|User[] $people {1:m User::$orderRank}
  */
-final class OrderRank extends BaseEntity {
-  protected function setterIncomeBonus(int $value): int {
-    return Numbers::range($value, 0, 99);
-  }
-  
-  protected function setterGuildFee(int $value): int {
-    return Numbers::range($value, 0, 999);
-  }
+final class OrderRank extends BaseEntity
+{
+    protected function setterIncomeBonus(int $value): int
+    {
+        return Numbers::range($value, 0, 99);
+    }
+
+    protected function setterGuildFee(int $value): int
+    {
+        return Numbers::range($value, 0, 999);
+    }
 }
-?>

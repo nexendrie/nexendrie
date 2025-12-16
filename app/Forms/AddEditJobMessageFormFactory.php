@@ -10,14 +10,15 @@ use Nette\Application\UI\Form;
  *
  * @author Jakub Konečný
  */
-final class AddEditJobMessageFormFactory {
-  public function create(): Form {
-    $form = new Form();
-    $form->addTextArea("message", "Zpráva:")
-      ->setRequired("Zadej zprávu.");
-    $form->addCheckbox("success", "Zobrazit při úspěchu");
-    $form->addSubmit("submit", "Odeslat");
-    return $form;
-  }
+final class AddEditJobMessageFormFactory
+{
+    public function create(): Form
+    {
+        $form = new Form();
+        $form->addTextArea("message", "Zpráva:")
+            ->setRequired("Zadej zprávu.");
+        $form->addCheckbox("success", "Zobrazit při úspěchu");
+        $form->addSubmit("submit", "Odeslat");
+        return $form;
+    }
 }
-?>

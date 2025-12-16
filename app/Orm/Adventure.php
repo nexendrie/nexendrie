@@ -22,7 +22,6 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure, orderBy=order}
  * @property OneHasMany|UserAdventure[] $userAdventures {1:m UserAdventure::$adventure}
  */
-final class Adventure extends BaseEntity {
-
+final class Adventure extends BaseEntity
+{
 }
-?>

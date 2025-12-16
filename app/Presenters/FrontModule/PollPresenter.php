@@ -13,38 +13,42 @@ use Nexendrie\Model\Polls;
  *
  * @author Jakub Konečný
  */
-final class PollPresenter extends BasePresenter {
-  private \Nexendrie\Orm\Poll $poll;
-  
-  public function __construct(private readonly Polls $model) {
-    parent::__construct();
-  }
-  
-  /**
-   * @throws \Nette\Application\BadRequestException
-   */
-  public function renderView(int $id): void {
-    try {
-      $this->poll = $this->model->view($id);
-    } catch(PollNotFoundException) {
-      throw new \Nette\Application\BadRequestException();
-    }
-    $this->template->pollId = $id;
-  }
-  
-  protected function createComponentPoll(IPollControlFactory $factory): \Nette\Application\UI\Multiplier {
-    return new \Nette\Application\UI\Multiplier(static function($id) use ($factory): PollControl {
-      $poll = $factory->create();
-      $poll->id = (int) $id;
-      return $poll;
-    });
-  }
+final class PollPresenter extends BasePresenter
+{
+    private \Nexendrie\Orm\Poll $poll;
 
-  protected function getDataModifiedTime(): int {
-    if(!isset($this->poll)) {
-      return 0;
+    public function __construct(private readonly Polls $model)
+    {
+        parent::__construct();
     }
-    return $this->poll->updated;
-  }
+
+    /**
+     * @throws \Nette\Application\BadRequestException
+     */
+    public function renderView(int $id): void
+    {
+        try {
+            $this->poll = $this->model->view($id);
+        } catch (PollNotFoundException) {
+            throw new \Nette\Application\BadRequestException();
+        }
+        $this->template->pollId = $id;
+    }
+
+    protected function createComponentPoll(IPollControlFactory $factory): \Nette\Application\UI\Multiplier
+    {
+        return new \Nette\Application\UI\Multiplier(static function ($id) use ($factory): PollControl {
+            $poll = $factory->create();
+            $poll->id = (int) $id;
+            return $poll;
+        });
+    }
+
+    protected function getDataModifiedTime(): int
+    {
+        if (!isset($this->poll)) {
+            return 0;
+        }
+        return $this->poll->updated;
+    }
 }
-?>

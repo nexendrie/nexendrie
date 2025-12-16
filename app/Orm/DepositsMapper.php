@@ -11,6 +11,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<Deposit>
  */
-final class DepositsMapper extends DbalMapper {
+final class DepositsMapper extends DbalMapper
+{
 }
-?>

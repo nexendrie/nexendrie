@@ -8,13 +8,14 @@ namespace Nexendrie\Achievements;
  *
  * @author Jakub Konečný
  */
-final class CompletedJobsAchievement extends BaseAchievement {
-  protected string $field = "completedJobs";
-  protected string $name = "Pracant";
-  protected string $description = "nexendrie.achievements.completedJobs";
-  
-  public function getRequirements(): array {
-    return [1, 4, 10, 24, ];
-  }
+final class CompletedJobsAchievement extends BaseAchievement
+{
+    protected string $field = "completedJobs";
+    protected string $name = "Pracant";
+    protected string $description = "nexendrie.achievements.completedJobs";
+
+    public function getRequirements(): array
+    {
+        return [1, 4, 10, 24,];
+    }
 }
-?>

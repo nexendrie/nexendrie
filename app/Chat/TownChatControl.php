@@ -11,10 +11,11 @@ use HeroesofAbenez\Chat\DatabaseAdapter;
  *
  * @author Jakub Konečný
  */
-final class TownChatControl extends ChatControl {
-  public function __construct(DatabaseAdapter $databaseAdapter, \Nette\Security\User $user) {
-    $townId = $user->identity->town;
-    parent::__construct($databaseAdapter, "town", $townId, null, null);
-  }
+final class TownChatControl extends ChatControl
+{
+    public function __construct(DatabaseAdapter $databaseAdapter, \Nette\Security\User $user)
+    {
+        $townId = $user->identity->town;
+        parent::__construct($databaseAdapter, "town", $townId, null, null);
+    }
 }
-?>

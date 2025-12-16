@@ -11,6 +11,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<ChatMessage>
  */
-final class ChatMessagesMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper {
+final class ChatMessagesMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper
+{
 }
-?>

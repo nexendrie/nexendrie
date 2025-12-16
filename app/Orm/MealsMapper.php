@@ -9,6 +9,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<Meal>
  */
-final class MealsMapper extends DbalMapper {
+final class MealsMapper extends DbalMapper
+{
 }
-?>

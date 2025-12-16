@@ -16,15 +16,17 @@ namespace Nexendrie\Orm;
  * @property bool $read {default false}
  * @property-read string $createdAt {virtual}
  */
-final class Message extends BaseEntity {
-  private \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function getterCreatedAt(): string {
-    return $this->localeModel->formatDateTime($this->created);
-  }
+final class Message extends BaseEntity
+{
+    private \Nexendrie\Model\Locale $localeModel;
+
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
+    }
+
+    protected function getterCreatedAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->created);
+    }
 }
-?>

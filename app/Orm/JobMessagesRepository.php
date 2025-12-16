@@ -12,16 +12,18 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|JobMessage[] findBy(array $conds)
  * @method ICollection|JobMessage[] findAll()
  */
-final class JobMessagesRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [JobMessage::class];
-  }
-  
-  /**
-   * @return ICollection|JobMessage[]
-   */
-  public function findByJobAndSuccess(Job|int $job, bool $success): ICollection {
-    return $this->findBy(["job" => $job, "success" => $success]);
-  }
+final class JobMessagesRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [JobMessage::class];
+    }
+
+    /**
+     * @return ICollection|JobMessage[]
+     */
+    public function findByJobAndSuccess(Job|int $job, bool $success): ICollection
+    {
+        return $this->findBy(["job" => $job, "success" => $success]);
+    }
 }
-?>

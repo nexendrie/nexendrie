@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-interface IMountsMarketControlFactory {
-  public function create(): MountsMarketControl;
+interface IMountsMarketControlFactory
+{
+    public function create(): MountsMarketControl;
 }
-?>

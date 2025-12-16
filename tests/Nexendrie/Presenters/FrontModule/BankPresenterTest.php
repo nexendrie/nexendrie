@@ -8,24 +8,27 @@ require __DIR__ . "/../../../bootstrap.php";
 /**
  * @skip
  */
-final class BankPresenterTest extends \Tester\TestCase {
-  use \Nexendrie\Presenters\TPresenter;
-  
-  public function testDefault(): void {
-    $this->checkAction(":Front:Bank:default");
-    $this->login();
-    $this->checkAction(":Front:Bank:default");
-  }
-  
-  public function testReturn(): void {
-    $this->checkRedirect(":Front:Bank:return", "/user/login");
-  }
-  
-  public function testClose(): void {
-    $this->checkRedirect(":Front:Bank:close", "/user/login");
-  }
+final class BankPresenterTest extends \Tester\TestCase
+{
+    use \Nexendrie\Presenters\TPresenter;
+
+    public function testDefault(): void
+    {
+        $this->checkAction(":Front:Bank:default");
+        $this->login();
+        $this->checkAction(":Front:Bank:default");
+    }
+
+    public function testReturn(): void
+    {
+        $this->checkRedirect(":Front:Bank:return", "/user/login");
+    }
+
+    public function testClose(): void
+    {
+        $this->checkRedirect(":Front:Bank:close", "/user/login");
+    }
 }
 
 $test = new BankPresenterTest();
 $test->run();
-?>

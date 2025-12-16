@@ -8,14 +8,16 @@ namespace Nexendrie\Presenters\FrontModule;
  *
  * @author Jakub Konečný
  */
-final class AchievementsPresenter extends BasePresenter {
-  protected function startup(): void {
-    parent::startup();
-    $this->requiresLogin();
-  }
-  
-  public function renderDefault(): void {
-    $this->redirect("Profile:achievements", ["name" => $this->user->identity->name]);
-  }
+final class AchievementsPresenter extends BasePresenter
+{
+    protected function startup(): void
+    {
+        parent::startup();
+        $this->requiresLogin();
+    }
+
+    public function renderDefault(): void
+    {
+        $this->redirect("Profile:achievements", ["name" => $this->user->identity->name]);
+    }
 }
-?>

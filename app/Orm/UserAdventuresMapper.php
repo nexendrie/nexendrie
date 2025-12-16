@@ -9,6 +9,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<UserAdventure>
  */
-final class UserAdventuresMapper extends DbalMapper {
+final class UserAdventuresMapper extends DbalMapper
+{
 }
-?>

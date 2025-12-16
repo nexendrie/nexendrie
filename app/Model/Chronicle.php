@@ -13,36 +13,39 @@ use Nexendrie\Orm\Punishment as PunishmentEntity;
  *
  * @author Jakub Konečný
  */
-final class Chronicle {
-  public function __construct(private readonly ORM $orm) {
-  }
-  
-  /**
-   * Get list of chronicle records
-   *
-   * @return ArticleEntity[]|ICollection
-   */
-  public function articles(\Nette\Utils\Paginator $paginator = null): ICollection {
-    $articles = $this->orm->articles->findChronicle();
-    if($paginator !== null) {
-      //$paginator->itemsPerPage = $this->itemsPerPage;
-      $articles = $articles->limitBy($paginator->getLength(), $paginator->getOffset());
+final class Chronicle
+{
+    public function __construct(private readonly ORM $orm)
+    {
     }
-    return $articles;
-  }
-  
-  /**
-   * Get list of punishments
-   * 
-   * @return PunishmentEntity[]|ICollection
-   */
-  public function crimes(string $user = ""): ICollection {
-    if($user === "") {
-      $collection = $this->orm->punishments->findAll();
-    } else {
-      $collection = $this->orm->punishments->findByUserPublicname($user);
+
+    /**
+     * Get list of chronicle records
+     *
+     * @return ArticleEntity[]|ICollection
+     */
+    public function articles(\Nette\Utils\Paginator $paginator = null): ICollection
+    {
+        $articles = $this->orm->articles->findChronicle();
+        if ($paginator !== null) {
+            //$paginator->itemsPerPage = $this->itemsPerPage;
+            $articles = $articles->limitBy($paginator->getLength(), $paginator->getOffset());
+        }
+        return $articles;
     }
-    return $collection->orderBy("created", ICollection::DESC);
-  }
+
+    /**
+     * Get list of punishments
+     *
+     * @return PunishmentEntity[]|ICollection
+     */
+    public function crimes(string $user = ""): ICollection
+    {
+        if ($user === "") {
+            $collection = $this->orm->punishments->findAll();
+        } else {
+            $collection = $this->orm->punishments->findByUserPublicname($user);
+        }
+        return $collection->orderBy("created", ICollection::DESC);
+    }
 }
-?>

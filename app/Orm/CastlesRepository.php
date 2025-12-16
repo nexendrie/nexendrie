@@ -12,26 +12,30 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Castle[] findBy(array $conds)
  * @method ICollection|Castle[] findAll()
  */
-final class CastlesRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Castle::class];
-  }
+final class CastlesRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Castle::class];
+    }
 
-  public function getByOwner(User|int $owner): ?Castle {
-    return $this->getBy(["owner" => $owner]);
-  }
-  
-  public function getByName(string $name): ?Castle {
-    return $this->getBy(["name" => $name]);
-  }
-  
-  /**
-   * Get castles owned by users
-   * 
-   * @return ICollection|Castle[]
-   */
-  public function findOwnedCastles(): ICollection {
-    return $this->findBy(["owner->id>" => 0]);
-  }
+    public function getByOwner(User|int $owner): ?Castle
+    {
+        return $this->getBy(["owner" => $owner]);
+    }
+
+    public function getByName(string $name): ?Castle
+    {
+        return $this->getBy(["name" => $name]);
+    }
+
+    /**
+     * Get castles owned by users
+     *
+     * @return ICollection|Castle[]
+     */
+    public function findOwnedCastles(): ICollection
+    {
+        return $this->findBy(["owner->id>" => 0]);
+    }
 }
-?>

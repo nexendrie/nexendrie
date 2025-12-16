@@ -12,27 +12,31 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Guild[] findBy(array $conds)
  * @method ICollection|Guild[] findAll()
  */
-final class GuildsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Guild::class];
-  }
-  
-  public function getByName(string $name): ?Guild {
-    return $this->getBy(["name" => $name]);
-  }
-  
-  /**
-   * @return ICollection|Guild[]
-   */
-  public function findByTown(Town|int $town): ICollection {
-    return $this->findBy(["town" => $town]);
-  }
-  
-  /**
-   * @return ICollection|Guild[]
-   */
-  public function findBySkill(Skill|int $skill): ICollection {
-    return $this->findBy(["skill" => $skill]);
-  }
+final class GuildsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Guild::class];
+    }
+
+    public function getByName(string $name): ?Guild
+    {
+        return $this->getBy(["name" => $name]);
+    }
+
+    /**
+     * @return ICollection|Guild[]
+     */
+    public function findByTown(Town|int $town): ICollection
+    {
+        return $this->findBy(["town" => $town]);
+    }
+
+    /**
+     * @return ICollection|Guild[]
+     */
+    public function findBySkill(Skill|int $skill): ICollection
+    {
+        return $this->findBy(["skill" => $skill]);
+    }
 }
-?>

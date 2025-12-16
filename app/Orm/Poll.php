@@ -19,21 +19,24 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $createdAt {virtual}
  * @property bool $locked {default false}
  * @property OneHasMany|PollVote[] $votes {1:m PollVote::$poll}
- * 
+ *
  */
-final class Poll extends BaseEntity {
-  private \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function getterCreatedAt(): string {
-    return $this->localeModel->formatDateTime($this->created);
-  }
-  
-  protected function getterParsedAnswers(): array {
-    return explode("\n", $this->answers);
-  }
+final class Poll extends BaseEntity
+{
+    private \Nexendrie\Model\Locale $localeModel;
+
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
+    }
+
+    protected function getterCreatedAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->created);
+    }
+
+    protected function getterParsedAnswers(): array
+    {
+        return explode("\n", $this->answers);
+    }
 }
-?>

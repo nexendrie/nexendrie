@@ -14,7 +14,6 @@ namespace Nexendrie\Orm;
  * @property int $created
  * @property bool $elected {default false}
  */
-final class Election extends BaseEntity {
-
+final class Election extends BaseEntity
+{
 }
-?>

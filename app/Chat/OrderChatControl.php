@@ -12,12 +12,13 @@ use Nexendrie\Orm\User;
  *
  * @author Jakub Konečný
  */
-final class OrderChatControl extends ChatControl {
-  public function __construct(DatabaseAdapter $databaseAdapter, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user) {
-    /** @var User $userRecord */
-    $userRecord = $orm->users->getById($user->id);
-    $orderId = ($userRecord->order !== null) ? $userRecord->order->id : 0;
-    parent::__construct($databaseAdapter, "order", $orderId, null, null);
-  }
+final class OrderChatControl extends ChatControl
+{
+    public function __construct(DatabaseAdapter $databaseAdapter, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user)
+    {
+        /** @var User $userRecord */
+        $userRecord = $orm->users->getById($user->id);
+        $orderId = ($userRecord->order !== null) ? $userRecord->order->id : 0;
+        parent::__construct($databaseAdapter, "order", $orderId, null, null);
+    }
 }
-?>

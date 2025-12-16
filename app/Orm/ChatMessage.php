@@ -17,15 +17,17 @@ namespace Nexendrie\Orm;
  * @property Guild|null $guild {m:1 Guild::$chatMessages}
  * @property Order|null $order {m:1 Order::$chatMessages}
  */
-final class ChatMessage extends BaseEntity {
-  private \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function getterCreatedAt(): string {
-    return $this->localeModel->formatDateTime($this->created);
-  }
+final class ChatMessage extends BaseEntity
+{
+    private \Nexendrie\Model\Locale $localeModel;
+
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
+    }
+
+    protected function getterCreatedAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->created);
+    }
 }
-?>

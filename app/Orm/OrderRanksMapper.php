@@ -9,6 +9,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<OrderRank>
  */
-final class OrderRanksMapper extends DbalMapper {
+final class OrderRanksMapper extends DbalMapper
+{
 }
-?>

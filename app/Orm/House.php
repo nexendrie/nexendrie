@@ -23,76 +23,85 @@ use Nexendrie\Utils\Numbers;
  * @property-read int $breweryUpgradePrice {virtual}
  * @property-read int $repairPrice {virtual}
  */
-final class House extends BaseEntity {
-  public const MAX_LEVEL = 5;
-  public const BASE_UPGRADE_PRICE = 250;
-  public const BASE_REPAIR_PRICE = 15;
-  public const INCOME_BONUS_PER_LEVEL = 3;
+final class House extends BaseEntity
+{
+    public const MAX_LEVEL = 5;
+    public const BASE_UPGRADE_PRICE = 250;
+    public const BASE_REPAIR_PRICE = 15;
+    public const INCOME_BONUS_PER_LEVEL = 3;
 
-  private \Nexendrie\Model\Events $eventsModel;
-  private int $criticalCondition;
-  
-  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
-    $this->eventsModel = $eventsModel;
-  }
+    private \Nexendrie\Model\Events $eventsModel;
+    private int $criticalCondition;
 
-  public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void {
-    $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
-  }
-  
-  protected function setterLuxuryLevel(int $value): int {
-    return Numbers::range($value, 1, self::MAX_LEVEL);
-  }
-  
-  protected function setterBreweryLevel(int $value): int {
-    return Numbers::range($value, 0, self::MAX_LEVEL);
-  }
-  
-  protected function setterHp(int $value): int {
-    return Numbers::range($value, 1, 100);
-  }
-  
-  protected function getterWorkIncomeBonus(): int {
-    if($this->hp < $this->criticalCondition) {
-      return 0;
-    } elseif($this->owner->group->path !== Group::PATH_CITY) {
-      return 0;
+    public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void
+    {
+        $this->eventsModel = $eventsModel;
     }
-    return $this->luxuryLevel * self::INCOME_BONUS_PER_LEVEL;
-  }
-  
-  protected function getterUpgradePrice(): int {
-    if($this->luxuryLevel === self::MAX_LEVEL) {
-      return 0;
+
+    public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void
+    {
+        $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
     }
-    $price = self::BASE_UPGRADE_PRICE;
-    for($i = 2; $i < $this->luxuryLevel + 1; $i++) {
-      $price += (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+
+    protected function setterLuxuryLevel(int $value): int
+    {
+        return Numbers::range($value, 1, self::MAX_LEVEL);
     }
-    return $price;
-  }
-  
-  protected function getterBreweryUpgradePrice(): int {
-    if($this->breweryLevel === self::MAX_LEVEL) {
-      return 0;
+
+    protected function setterBreweryLevel(int $value): int
+    {
+        return Numbers::range($value, 0, self::MAX_LEVEL);
     }
-    $price = self::BASE_UPGRADE_PRICE;
-    for($i = 1; $i < $this->breweryLevel + 1; $i++) {
-      $price += (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+
+    protected function setterHp(int $value): int
+    {
+        return Numbers::range($value, 1, 100);
     }
-    return $price;
-  }
-  
-  protected function getterRepairPrice(): int {
-    if($this->hp >= 100) {
-      return 0;
+
+    protected function getterWorkIncomeBonus(): int
+    {
+        if ($this->hp < $this->criticalCondition) {
+            return 0;
+        } elseif ($this->owner->group->path !== Group::PATH_CITY) {
+            return 0;
+        }
+        return $this->luxuryLevel * self::INCOME_BONUS_PER_LEVEL;
     }
-    $multiplier = 1;
-    if($this->luxuryLevel !== 1) {
-      $multiplier = ($this->luxuryLevel - 1) * 10 / 100 + 1;
+
+    protected function getterUpgradePrice(): int
+    {
+        if ($this->luxuryLevel === self::MAX_LEVEL) {
+            return 0;
+        }
+        $price = self::BASE_UPGRADE_PRICE;
+        for ($i = 2; $i < $this->luxuryLevel + 1; $i++) {
+            $price += (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+        }
+        return $price;
     }
-    $basePrice = (int) (self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
-    return $basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice);
-  }
+
+    protected function getterBreweryUpgradePrice(): int
+    {
+        if ($this->breweryLevel === self::MAX_LEVEL) {
+            return 0;
+        }
+        $price = self::BASE_UPGRADE_PRICE;
+        for ($i = 1; $i < $this->breweryLevel + 1; $i++) {
+            $price += (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+        }
+        return $price;
+    }
+
+    protected function getterRepairPrice(): int
+    {
+        if ($this->hp >= 100) {
+            return 0;
+        }
+        $multiplier = 1;
+        if ($this->luxuryLevel !== 1) {
+            $multiplier = ($this->luxuryLevel - 1) * 10 / 100 + 1;
+        }
+        $basePrice = (int) (self::BASE_REPAIR_PRICE * $multiplier * (100 - $this->hp));
+        return $basePrice - $this->eventsModel->calculateRepairingDiscount($basePrice);
+    }
 }
-?>

@@ -10,27 +10,32 @@ use Nexendrie\Model\SettingsRepository;
  *
  * @author Jakub Konečný
  */
-final class Twitter implements \Nexendrie\Components\ISocialIcon {
-  private string $account;
+final class Twitter implements \Nexendrie\Components\ISocialIcon
+{
+    private string $account;
 
-  public function __construct(SettingsRepository $sr) {
-    $this->account = $sr->settings["socialAccounts"]["twitter"];
-  }
+    public function __construct(SettingsRepository $sr)
+    {
+        $this->account = $sr->settings["socialAccounts"]["twitter"];
+    }
 
-  public function getLink(): string {
-    return "https://twitter.com/{$this->account}";
-  }
+    public function getLink(): string
+    {
+        return "https://twitter.com/{$this->account}";
+    }
 
-  public function getImage(): string {
-    return "twitter.png";
-  }
+    public function getImage(): string
+    {
+        return "twitter.png";
+    }
 
-  public function getImageAlt(): string {
-    return "X (Twitter)";
-  }
+    public function getImageAlt(): string
+    {
+        return "X (Twitter)";
+    }
 
-  public function getImageTitle(): string {
-    return "X (Twitter)";
-  }
+    public function getImageTitle(): string
+    {
+        return "X (Twitter)";
+    }
 }
-?>

@@ -11,15 +11,17 @@ use Nexendrie\Components\HistoryControl;
  *
  * @author Jakub Konečný
  */
-final class HistoryPresenter extends BasePresenter {
-  protected bool $cachingEnabled = false;
+final class HistoryPresenter extends BasePresenter
+{
+    protected bool $cachingEnabled = false;
 
-  public function renderDefault(string $page = "index"): void {
-    $this->template->page = $page;
-  }
-  
-  protected function createComponentHistory(IHistoryControlFactory $factory): HistoryControl {
-    return $factory->create();
-  }
+    public function renderDefault(string $page = "index"): void
+    {
+        $this->template->page = $page;
+    }
+
+    protected function createComponentHistory(IHistoryControlFactory $factory): HistoryControl
+    {
+        return $factory->create();
+    }
 }
-?>

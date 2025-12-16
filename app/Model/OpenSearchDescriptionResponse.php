@@ -13,13 +13,15 @@ use Nette\Http\IResponse;
  *
  * @property-read string $source
  */
-final class OpenSearchDescriptionResponse implements \Nette\Application\Response {
-  public function __construct(public readonly string $source) {
-  }
+final class OpenSearchDescriptionResponse implements \Nette\Application\Response
+{
+    public function __construct(public readonly string $source)
+    {
+    }
 
-  public function send(IRequest $httpRequest, IResponse $httpResponse): void {
-    $httpResponse->setContentType("application/opensearchdescription+xml");
-    echo $this->source;
-  }
+    public function send(IRequest $httpRequest, IResponse $httpResponse): void
+    {
+        $httpResponse->setContentType("application/opensearchdescription+xml");
+        echo $this->source;
+    }
 }
-?>

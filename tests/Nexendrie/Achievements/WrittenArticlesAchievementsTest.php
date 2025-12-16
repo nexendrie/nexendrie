@@ -8,33 +8,36 @@ require __DIR__ . "/../../bootstrap.php";
 use Nexendrie\Orm\User;
 use Tester\Assert;
 
-final class WrittenArticlesAchievementsTest extends \Tester\TestCase {
-  use \Testbench\TCompiledContainer;
+final class WrittenArticlesAchievementsTest extends \Tester\TestCase
+{
+    use \Testbench\TCompiledContainer;
 
-  protected WrittenArticlesAchievement $model;
-  protected \Nexendrie\Orm\Model $orm;
-  
-  protected function setUp(): void {
-    $this->model = $this->getService(WrittenArticlesAchievement::class); // @phpstan-ignore assign.propertyType
-    $this->orm = $this->getService(\Nexendrie\Orm\Model::class); // @phpstan-ignore assign.propertyType
-  }
-  
-  public function testGetName(): void {
-    Assert::same("Kronikář", $this->model->getName());
-  }
-  
-  public function testIsAchievedAndGetProgress(): void {
-    /** @var User $user */
-    $user = $this->orm->users->getById(1);
-    Assert::same(16, $this->model->getProgress($user));
-    Assert::same(3, $this->model->isAchieved($user));
-    /** @var User $user */
-    $user = $this->orm->users->getById(3);
-    Assert::same(0, $this->model->getProgress($user));
-    Assert::same(0, $this->model->isAchieved($user));
-  }
+    protected WrittenArticlesAchievement $model;
+    protected \Nexendrie\Orm\Model $orm;
+
+    protected function setUp(): void
+    {
+        $this->model = $this->getService(WrittenArticlesAchievement::class); // @phpstan-ignore assign.propertyType
+        $this->orm = $this->getService(\Nexendrie\Orm\Model::class); // @phpstan-ignore assign.propertyType
+    }
+
+    public function testGetName(): void
+    {
+        Assert::same("Kronikář", $this->model->getName());
+    }
+
+    public function testIsAchievedAndGetProgress(): void
+    {
+        /** @var User $user */
+        $user = $this->orm->users->getById(1);
+        Assert::same(16, $this->model->getProgress($user));
+        Assert::same(3, $this->model->isAchieved($user));
+        /** @var User $user */
+        $user = $this->orm->users->getById(3);
+        Assert::same(0, $this->model->getProgress($user));
+        Assert::same(0, $this->model->isAchieved($user));
+    }
 }
 
 $test = new WrittenArticlesAchievementsTest();
 $test->run();
-?>

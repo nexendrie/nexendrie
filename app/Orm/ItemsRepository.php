@@ -12,37 +12,42 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Item[] findBy(array $conds)
  * @method ICollection|Item[] findAll()
  */
-final class ItemsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Item::class];
-  }
-  
-  /**
-   * @return Item[]|ICollection
-   */
-  public function findWeapons(): ICollection {
-    return $this->findBy(["type" => Item::TYPE_WEAPON]);
-  }
-  
-  /**
-   * @return Item[]|ICollection
-   */
-  public function findArmors(): ICollection {
-    return $this->findBy(["type" => Item::TYPE_ARMOR]);
-  }
-  
-  /**
-   * @return Item[]|ICollection
-   */
-  public function findHelmets(): ICollection {
-    return $this->findBy(["type" => Item::TYPE_HELMET]);
-  }
-  
-  /**
-   * @return Item[]|ICollection
-   */
-  public function findByShop(Shop|int $shop): ICollection {
-    return $this->findBy(["shop" => $shop]);
-  }
+final class ItemsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Item::class];
+    }
+
+    /**
+     * @return Item[]|ICollection
+     */
+    public function findWeapons(): ICollection
+    {
+        return $this->findBy(["type" => Item::TYPE_WEAPON]);
+    }
+
+    /**
+     * @return Item[]|ICollection
+     */
+    public function findArmors(): ICollection
+    {
+        return $this->findBy(["type" => Item::TYPE_ARMOR]);
+    }
+
+    /**
+     * @return Item[]|ICollection
+     */
+    public function findHelmets(): ICollection
+    {
+        return $this->findBy(["type" => Item::TYPE_HELMET]);
+    }
+
+    /**
+     * @return Item[]|ICollection
+     */
+    public function findByShop(Shop|int $shop): ICollection
+    {
+        return $this->findBy(["shop" => $shop]);
+    }
 }
-?>

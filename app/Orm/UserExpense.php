@@ -14,9 +14,9 @@ namespace Nexendrie\Orm;
  * @property int $created
  * @property-read AdventureNpc|null $nextEnemy {virtual}
  */
-final class UserExpense extends BaseEntity {
-  public const CATEGORY_CASTLE_MAINTENANCE = "castle_maintenance";
-  public const CATEGORY_HOUSE_MAINTENANCE = "house_maintenance";
-  public const CATEGORY_MOUNT_MAINTENANCE = "mount_maintenance";
+final class UserExpense extends BaseEntity
+{
+    public const CATEGORY_CASTLE_MAINTENANCE = "castle_maintenance";
+    public const CATEGORY_HOUSE_MAINTENANCE = "house_maintenance";
+    public const CATEGORY_MOUNT_MAINTENANCE = "mount_maintenance";
 }
-?>

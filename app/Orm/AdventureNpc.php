@@ -11,7 +11,7 @@ namespace Nexendrie\Orm;
  * @property string $name
  * @property Adventure $adventure {m:1 Adventure::$npcs}
  * @property int $order
- * @property int $hitpoints 
+ * @property int $hitpoints
  * @property int $strength
  * @property int $armor
  * @property int $initiative {default 0}
@@ -21,7 +21,6 @@ namespace Nexendrie\Orm;
  * @property int $created
  * @property int $updated
  */
-final class AdventureNpc extends BaseEntity {
-  
+final class AdventureNpc extends BaseEntity
+{
 }
-?>

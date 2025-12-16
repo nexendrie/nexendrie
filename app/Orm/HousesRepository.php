@@ -12,22 +12,25 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|House[] findBy(array $conds)
  * @method ICollection|House[] findAll()
  */
-final class HousesRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [House::class];
-  }
+final class HousesRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [House::class];
+    }
 
-  public function getByOwner(User|int $owner): ?House {
-    return $this->getBy(["owner" => $owner]);
-  }
-  
-  /**
-   * Get houses owned by users
-   * 
-   * @return ICollection|House[]
-   */
-  public function findOwnedHouses(): ICollection {
-    return $this->findBy(["owner->id>" => 0]);
-  }
+    public function getByOwner(User|int $owner): ?House
+    {
+        return $this->getBy(["owner" => $owner]);
+    }
+
+    /**
+     * Get houses owned by users
+     *
+     * @return ICollection|House[]
+     */
+    public function findOwnedHouses(): ICollection
+    {
+        return $this->findBy(["owner->id>" => 0]);
+    }
 }
-?>

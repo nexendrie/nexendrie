@@ -8,7 +8,7 @@ namespace Nexendrie\Components;
  *
  * @author Jakub Konečný
  */
-interface IUserProfileLinkControlFactory {
-  public function create(): UserProfileLinkControl;
+interface IUserProfileLinkControlFactory
+{
+    public function create(): UserProfileLinkControl;
 }
-?>

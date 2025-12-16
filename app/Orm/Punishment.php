@@ -20,29 +20,33 @@ namespace Nexendrie\Orm;
  * @property-read string $releasedAt {virtual}
  * @property-read int $nextShift {virtual}
  */
-final class Punishment extends BaseEntity {
-  private \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function getterCreatedAt(): string {
-    return $this->localeModel->formatDateTime($this->created);
-  }
-  
-  protected function getterReleasedAt(): string {
-    if(is_int($this->released)) {
-      return $this->localeModel->formatDateTime($this->released);
+final class Punishment extends BaseEntity
+{
+    private \Nexendrie\Model\Locale $localeModel;
+
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
     }
-    return "";
-  }
-  
-  protected function getterNextShift(): int {
-    if($this->lastAction === null) {
-      return time();
+
+    protected function getterCreatedAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->created);
     }
-    return $this->lastAction + (60 * 60);
-  }
+
+    protected function getterReleasedAt(): string
+    {
+        if (is_int($this->released)) {
+            return $this->localeModel->formatDateTime($this->released);
+        }
+        return "";
+    }
+
+    protected function getterNextShift(): int
+    {
+        if ($this->lastAction === null) {
+            return time();
+        }
+        return $this->lastAction + (60 * 60);
+    }
 }
-?>

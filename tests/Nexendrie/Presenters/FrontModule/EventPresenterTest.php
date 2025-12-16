@@ -11,17 +11,18 @@ require __DIR__ . "/../../../bootstrap.php";
 /**
  * @skip
  */
-final class EventPresenterTest extends \Tester\TestCase {
-  use \Nexendrie\Presenters\TPresenter;
-  
-  public function testView(): void {
-    Assert::exception(function() {
-      $this->checkAction(":Front:Event:view", ["id" => 50]);
-    }, BadRequestException::class);
-    $this->checkAction(":Front:Event:view", ["id" => 1]);
-  }
+final class EventPresenterTest extends \Tester\TestCase
+{
+    use \Nexendrie\Presenters\TPresenter;
+
+    public function testView(): void
+    {
+        Assert::exception(function () {
+            $this->checkAction(":Front:Event:view", ["id" => 50]);
+        }, BadRequestException::class);
+        $this->checkAction(":Front:Event:view", ["id" => 1]);
+    }
 }
 
 $test = new EventPresenterTest();
 $test->run();
-?>

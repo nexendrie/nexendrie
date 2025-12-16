@@ -12,29 +12,33 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Invitation[] findBy(array $conds)
  * @method ICollection|Invitation[] findAll()
  */
-final class InvitationsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Invitation::class];
-  }
+final class InvitationsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Invitation::class];
+    }
 
-  public function getByEmail(string $email): ?Invitation {
-    return $this->getBy(["email" => $email,]);
-  }
-  
-  /**
-   * @return ICollection|Invitation[]
-   */
-  public function findByInviter(User|int $user): ICollection {
-    return $this->findBy(["inviter" => $user]);
-  }
-  
-  /**
-   * @return ICollection|Invitation[]
-   */
-  public function findByUserAndStat(int $user, string $stat): ICollection {
-    return $this->findBy([
-      "user" => $user, "skill->stat" => $stat
-    ]);
-  }
+    public function getByEmail(string $email): ?Invitation
+    {
+        return $this->getBy(["email" => $email,]);
+    }
+
+    /**
+     * @return ICollection|Invitation[]
+     */
+    public function findByInviter(User|int $user): ICollection
+    {
+        return $this->findBy(["inviter" => $user]);
+    }
+
+    /**
+     * @return ICollection|Invitation[]
+     */
+    public function findByUserAndStat(int $user, string $stat): ICollection
+    {
+        return $this->findBy([
+            "user" => $user, "skill->stat" => $stat
+        ]);
+    }
 }
-?>

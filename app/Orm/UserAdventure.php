@@ -17,17 +17,18 @@ namespace Nexendrie\Orm;
  * @property int $loot {default 0}
  * @property-read AdventureNpc|null $nextEnemy {virtual}
  */
-final class UserAdventure extends BaseEntity {
-  public const PROGRESS_COMPLETED = 10;
-  public const PROGRESS_CLOSED = 11;
-  
-  protected function getterNextEnemy(): ?AdventureNpc {
-    if($this->progress >= self::PROGRESS_COMPLETED) {
-      return null;
+final class UserAdventure extends BaseEntity
+{
+    public const PROGRESS_COMPLETED = 10;
+    public const PROGRESS_CLOSED = 11;
+
+    protected function getterNextEnemy(): ?AdventureNpc
+    {
+        if ($this->progress >= self::PROGRESS_COMPLETED) {
+            return null;
+        }
+        return $this->adventure->npcs->toCollection()->getBy([ // @phpstan-ignore return.type
+            "order" => $this->progress + 1
+        ]);
     }
-    return $this->adventure->npcs->toCollection()->getBy([ // @phpstan-ignore return.type
-      "order" => $this->progress + 1
-    ]);
-  }
 }
-?>

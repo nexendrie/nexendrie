@@ -18,30 +18,34 @@ namespace Nexendrie\Orm;
  * @property-read string $returnedT {virtual}
  * @property-read int $interest {virtual}
  */
-final class Loan extends BaseEntity {
-  private \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function getterTakenT(): string {
-    return $this->localeModel->formatDateTime($this->created);
-  }
-  
-  protected function getterReturnedT(): string {
-    if($this->returned === null) {
-      return "";
+final class Loan extends BaseEntity
+{
+    private \Nexendrie\Model\Locale $localeModel;
+
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
     }
-    return $this->localeModel->formatDateTime($this->returned);
-  }
-  
-  protected function getterInterest(): int {
-    $start = $this->created;
-    $end = $this->returned ?? time();
-    $duration = ($end - $start) / (60 * 60 * 24);
-    $interest = (int) ($this->amount * $this->interestRate * $duration / 36500);
-    return max([1, $interest]);
-  }
+
+    protected function getterTakenT(): string
+    {
+        return $this->localeModel->formatDateTime($this->created);
+    }
+
+    protected function getterReturnedT(): string
+    {
+        if ($this->returned === null) {
+            return "";
+        }
+        return $this->localeModel->formatDateTime($this->returned);
+    }
+
+    protected function getterInterest(): int
+    {
+        $start = $this->created;
+        $end = $this->returned ?? time();
+        $duration = ($end - $start) / (60 * 60 * 24);
+        $interest = (int) ($this->amount * $this->interestRate * $duration / 36500);
+        return max([1, $interest]);
+    }
 }
-?>

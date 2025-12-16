@@ -14,15 +14,17 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|GuildFee[] findBy(array $conds)
  * @method ICollection|GuildFee[] findAll()
  */
-final class GuildFeesRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [GuildFee::class];
-  }
+final class GuildFeesRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [GuildFee::class];
+    }
 
-  public function getByUserAndGuild(User|int $user, Guild|int $guild): ?GuildFee {
-    return $this->getBy([
-      "user" => $user, "guild" => $guild,
-    ]);
-  }
+    public function getByUserAndGuild(User|int $user, Guild|int $guild): ?GuildFee
+    {
+        return $this->getBy([
+            "user" => $user, "guild" => $guild,
+        ]);
+    }
 }
-?>

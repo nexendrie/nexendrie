@@ -8,18 +8,20 @@ namespace Nexendrie\Presenters\ApiModule\V1;
  *
  * @author Jakub Konečný
  */
-final class CastlesPresenter extends BasePresenter {
-  public function actionReadAll(): void {
-    if(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
-      return;
+final class CastlesPresenter extends BasePresenter
+{
+    public function actionReadAll(): void
+    {
+        if (isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
+            return;
+        }
+        $records = $this->orm->castles->findAll();
+        $this->sendCollection($records);
     }
-    $records = $this->orm->castles->findAll();
-    $this->sendCollection($records);
-  }
-  
-  public function actionRead(): void {
-    $record = $this->orm->castles->getById($this->getId());
-    $this->sendEntity($record);
-  }
+
+    public function actionRead(): void
+    {
+        $record = $this->orm->castles->getById($this->getId());
+        $this->sendEntity($record);
+    }
 }
-?>

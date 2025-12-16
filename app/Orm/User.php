@@ -85,155 +85,179 @@ use Nexendrie\Utils\Numbers;
  * @property-read int $writtenArticles {virtual}
  * @property-read int $writtenComments {virtual}
  */
-final class User extends BaseEntity {
-  public const GENDER_MALE = "male";
-  public const GENDER_FEMALE = "female";
+final class User extends BaseEntity
+{
+    public const GENDER_MALE = "male";
+    public const GENDER_FEMALE = "female";
 
-  private Locale $localeModel;
-  private SettingsRepository $sr;
-  private ThemesManager $themesManager;
-  
-  public function injectLocaleModel(Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  public function injectSr(SettingsRepository $sr): void {
-    $this->sr = $sr;
-  }
+    private Locale $localeModel;
+    private SettingsRepository $sr;
+    private ThemesManager $themesManager;
 
-  public function injectThemesManager(ThemesManager $themesManager): void {
-    $this->themesManager = $themesManager;
-  }
-  
-  protected function setterStyle(string $value): string {
-    if(array_key_exists($value, $this->themesManager->getList())) {
-      return $value;
+    public function injectLocaleModel(Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
     }
-    return $this->sr->settings["newUser"]["style"];
-  }
-  
-  protected function getterCreatedAt(): string {
-    return $this->localeModel->formatDateTime($this->created);
-  }
-  
-  protected function getterLastActiveAt(): string {
-    return $this->localeModel->formatDateTime($this->lastActive);
-  }
 
-  protected function getterBanned(): bool {
-    return ($this->punishments->toCollection()->getBy(["released" => null]) !== null);
-  }
-  
-  /**
-   * @return array<string, string>
-   */
-  public static function getGenders(): array {
-    return [
-      self::GENDER_MALE => "muž",
-      self::GENDER_FEMALE => "žena"
-    ];
-  }
-  
-  protected function getterMaxLife(): int {
-    $maxLife = 60;
-    /** @var UserSkill[] $lifeSkills */
-    $lifeSkills = $this->skills->toCollection()->findBy(["skill->stat" => Skill::STAT_HITPOINTS]);
-    foreach($lifeSkills as $skill) {
-      $maxLife += $skill->skill->statIncrease * $skill->level;
+    public function injectSr(SettingsRepository $sr): void
+    {
+        $this->sr = $sr;
     }
-    return $maxLife;
-  }
-  
-  protected function setterLife(int $value): int {
-    return Numbers::range($value, 1, $this->maxLife);
-  }
-  
-  protected function getterTitle(): string {
-    if($this->gender === self::GENDER_FEMALE) {
-      return $this->group->femaleName;
-    }
-    return $this->group->singleName;
-  }
-  
-  protected function getterCompletedAdventures(): int {
-    return $this->adventures->toCollection()->findBy(["progress" => UserAdventure::PROGRESS_COMPLETED])->countStored();
-  }
-  
-  protected function getterCompletedJobs(): int {
-    return $this->jobs->toCollection()->findBy(["finished" => true, "earned>" => 0])->count();
-  }
-  
-  protected function getterProducedBeers(): int {
-    $amount = 0;
-    foreach($this->beerProduction as $row) {
-      $amount += $row->amount;
-    }
-    return $amount;
-  }
-  
-  protected function getterPunishmentsCount(): int {
-    return $this->punishments->count();
-  }
-  
-  protected function getterLessonsTaken(): int {
-    $amount = 0;
-    foreach($this->skills as $lesson) {
-      $amount += $lesson->level;
-    }
-    return $amount;
-  }
-  
-  protected function getterCurrentOrderContribution(): int {
-    if($this->order === null) {
-      return 0;
-    }
-    /** @var OrderFee|null $record */
-    $record = $this->orderFees->toCollection()->getBy(["order" => $this->order]);
-    if($record === null) {
-      return 0;
-    }
-    return $record->amount;
-  }
-  
-  protected function getterCurrentGuildContribution(): int {
-    if($this->guild === null) {
-      return 0;
-    }
-    /** @var GuildFee|null $record */
-    $record = $this->guildFees->toCollection()->getBy(["guild" => $this->guild]);
-    if($record === null) {
-      return 0;
-    }
-    return $record->amount;
-  }
-  
-  protected function getterTownsOwned(): int {
-    return $this->ownedTowns->countStored();
-  }
-  
-  protected function getterMountsOwned(): int {
-    return $this->mounts->countStored();
-  }
 
-  protected function getterWrittenArticles(): int {
-    return $this->articles->countStored();
-  }
-
-  protected function getterWrittenComments(): int {
-    return $this->comments->toCollection()->findBy(["deleted" => false])->countStored();
-  }
-
-  protected function getterAdventureBonusIncome(): float {
-    if($this->order === null || $this->orderRank === null || $this->group->path !== Group::PATH_TOWER) {
-      return 0;
+    public function injectThemesManager(ThemesManager $themesManager): void
+    {
+        $this->themesManager = $themesManager;
     }
-    return $this->orderRank->adventureBonus + $this->order->adventuresBonusIncome;
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    $this->lastActive = $this->created;
-    $this->life = $this->maxLife;
-  }
+
+    protected function setterStyle(string $value): string
+    {
+        if (array_key_exists($value, $this->themesManager->getList())) {
+            return $value;
+        }
+        return $this->sr->settings["newUser"]["style"];
+    }
+
+    protected function getterCreatedAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->created);
+    }
+
+    protected function getterLastActiveAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->lastActive);
+    }
+
+    protected function getterBanned(): bool
+    {
+        return ($this->punishments->toCollection()->getBy(["released" => null]) !== null);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function getGenders(): array
+    {
+        return [
+            self::GENDER_MALE => "muž",
+            self::GENDER_FEMALE => "žena"
+        ];
+    }
+
+    protected function getterMaxLife(): int
+    {
+        $maxLife = 60;
+        /** @var UserSkill[] $lifeSkills */
+        $lifeSkills = $this->skills->toCollection()->findBy(["skill->stat" => Skill::STAT_HITPOINTS]);
+        foreach ($lifeSkills as $skill) {
+            $maxLife += $skill->skill->statIncrease * $skill->level;
+        }
+        return $maxLife;
+    }
+
+    protected function setterLife(int $value): int
+    {
+        return Numbers::range($value, 1, $this->maxLife);
+    }
+
+    protected function getterTitle(): string
+    {
+        if ($this->gender === self::GENDER_FEMALE) {
+            return $this->group->femaleName;
+        }
+        return $this->group->singleName;
+    }
+
+    protected function getterCompletedAdventures(): int
+    {
+        return $this->adventures->toCollection()->findBy(["progress" => UserAdventure::PROGRESS_COMPLETED])->countStored();
+    }
+
+    protected function getterCompletedJobs(): int
+    {
+        return $this->jobs->toCollection()->findBy(["finished" => true, "earned>" => 0])->count();
+    }
+
+    protected function getterProducedBeers(): int
+    {
+        $amount = 0;
+        foreach ($this->beerProduction as $row) {
+            $amount += $row->amount;
+        }
+        return $amount;
+    }
+
+    protected function getterPunishmentsCount(): int
+    {
+        return $this->punishments->count();
+    }
+
+    protected function getterLessonsTaken(): int
+    {
+        $amount = 0;
+        foreach ($this->skills as $lesson) {
+            $amount += $lesson->level;
+        }
+        return $amount;
+    }
+
+    protected function getterCurrentOrderContribution(): int
+    {
+        if ($this->order === null) {
+            return 0;
+        }
+        /** @var OrderFee|null $record */
+        $record = $this->orderFees->toCollection()->getBy(["order" => $this->order]);
+        if ($record === null) {
+            return 0;
+        }
+        return $record->amount;
+    }
+
+    protected function getterCurrentGuildContribution(): int
+    {
+        if ($this->guild === null) {
+            return 0;
+        }
+        /** @var GuildFee|null $record */
+        $record = $this->guildFees->toCollection()->getBy(["guild" => $this->guild]);
+        if ($record === null) {
+            return 0;
+        }
+        return $record->amount;
+    }
+
+    protected function getterTownsOwned(): int
+    {
+        return $this->ownedTowns->countStored();
+    }
+
+    protected function getterMountsOwned(): int
+    {
+        return $this->mounts->countStored();
+    }
+
+    protected function getterWrittenArticles(): int
+    {
+        return $this->articles->countStored();
+    }
+
+    protected function getterWrittenComments(): int
+    {
+        return $this->comments->toCollection()->findBy(["deleted" => false])->countStored();
+    }
+
+    protected function getterAdventureBonusIncome(): float
+    {
+        if ($this->order === null || $this->orderRank === null || $this->group->path !== Group::PATH_TOWER) {
+            return 0;
+        }
+        return $this->orderRank->adventureBonus + $this->order->adventuresBonusIncome;
+    }
+
+    public function onBeforeInsert(): void
+    {
+        parent::onBeforeInsert();
+        $this->lastActive = $this->created;
+        $this->life = $this->maxLife;
+    }
 }
-?>

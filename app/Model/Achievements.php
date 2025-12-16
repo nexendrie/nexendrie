@@ -10,11 +10,12 @@ use Nexendrie\Achievements\IAchievement;
  *
  * @author Jakub Konečný
  */
-final class Achievements {
-  /**
-   * @param IAchievement[] $achievements
-   */
-  public function __construct(public readonly array $achievements) {
-  }
+final class Achievements
+{
+    /**
+     * @param IAchievement[] $achievements
+     */
+    public function __construct(public readonly array $achievements)
+    {
+    }
 }
-?>

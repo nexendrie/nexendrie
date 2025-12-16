@@ -14,32 +14,35 @@ use Nextras\Orm\Entity\ToArrayConverter;
  *
  * @author Jakub Konečný
  */
-final class ManageMonasteryFormFactory {
-  private int $id;
-  
-  public function __construct(private readonly Monastery $model) {
-  }
-  
-  public function create(int $id): Form {
-    $this->id = $id;
-    $form = new Form();
-    $form->addText("name", "Jméno:")
-      ->setRequired("Zadej jméno");
-    $form->addSelect("leader", "Vůdce:", $this->model->highClerics($id));
-    $form->addSubmit("submit", "Odeslat");
-    $form->setDefaults($this->model->get($id)->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = $this->process(...);
-    return $form;
-  }
-  
-  public function process(Form $form, array $values): void {
-    try {
-      $this->model->edit($this->id, $values);
-    } catch(MonasteryNotFoundException) {
-      $form->addError("Neplatný klášter.");
-    } catch(MonasteryNameInUseException) {
-      $form->addError("Zadané jméno je již zabráno.");
+final class ManageMonasteryFormFactory
+{
+    private int $id;
+
+    public function __construct(private readonly Monastery $model)
+    {
     }
-  }
+
+    public function create(int $id): Form
+    {
+        $this->id = $id;
+        $form = new Form();
+        $form->addText("name", "Jméno:")
+            ->setRequired("Zadej jméno");
+        $form->addSelect("leader", "Vůdce:", $this->model->highClerics($id));
+        $form->addSubmit("submit", "Odeslat");
+        $form->setDefaults($this->model->get($id)->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
+        $form->onSuccess[] = $this->process(...);
+        return $form;
+    }
+
+    public function process(Form $form, array $values): void
+    {
+        try {
+            $this->model->edit($this->id, $values);
+        } catch (MonasteryNotFoundException) {
+            $form->addError("Neplatný klášter.");
+        } catch (MonasteryNameInUseException) {
+            $form->addError("Zadané jméno je již zabráno.");
+        }
+    }
 }
-?>

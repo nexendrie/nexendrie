@@ -8,13 +8,14 @@ namespace Nexendrie\Achievements;
  *
  * @author Jakub Konečný
  */
-final class TownsOwnedAchievements extends BaseAchievement {
-  protected string $field = "townsOwned";
-  protected string $name = "Vládce";
-  protected string $description = "nexendrie.achievements.townsOwned";
-  
-  public function getRequirements(): array {
-    return [1, 3, 8, ];
-  }
+final class TownsOwnedAchievements extends BaseAchievement
+{
+    protected string $field = "townsOwned";
+    protected string $name = "Vládce";
+    protected string $description = "nexendrie.achievements.townsOwned";
+
+    public function getRequirements(): array
+    {
+        return [1, 3, 8,];
+    }
 }
-?>

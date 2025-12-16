@@ -12,33 +12,37 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Message[] findBy(array $conds)
  * @method ICollection|Message[] findAll()
  */
-final class MessagesRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Message::class];
-  }
-  
-  /**
-   * @return ICollection|Message[]
-   */
-  public function findByFrom(User|int $from): ICollection {
-    return $this->findBy(["from" => $from]);
-  }
-  
-  /**
-   * @return ICollection|Message[]
-   */
-  public function findByTo(User|int $to): ICollection {
-    return $this->findBy(["to" => $to]);
-  }
+final class MessagesRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Message::class];
+    }
 
-  /**
-   * @return ICollection|Message[]
-   */
-  public function findUnnotified(User|int $to): ICollection {
-    return $this->findBy([
-      "to" => $to,
-      "notified" => false,
-    ]);
-  }
+    /**
+     * @return ICollection|Message[]
+     */
+    public function findByFrom(User|int $from): ICollection
+    {
+        return $this->findBy(["from" => $from]);
+    }
+
+    /**
+     * @return ICollection|Message[]
+     */
+    public function findByTo(User|int $to): ICollection
+    {
+        return $this->findBy(["to" => $to]);
+    }
+
+    /**
+     * @return ICollection|Message[]
+     */
+    public function findUnnotified(User|int $to): ICollection
+    {
+        return $this->findBy([
+            "to" => $to,
+            "notified" => false,
+        ]);
+    }
 }
-?>

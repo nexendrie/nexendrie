@@ -9,6 +9,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<Poll>
  */
-final class PollsMapper extends DbalMapper {
+final class PollsMapper extends DbalMapper
+{
 }
-?>

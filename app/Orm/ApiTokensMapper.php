@@ -9,6 +9,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<ApiToken>
  */
-final class ApiTokensMapper extends DbalMapper {
+final class ApiTokensMapper extends DbalMapper
+{
 }
-?>

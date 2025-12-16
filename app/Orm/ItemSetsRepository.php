@@ -12,13 +12,15 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|ItemSet[] findBy(array $conds)
  * @method ICollection|ItemSet[] findAll()
  */
-final class ItemSetsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [ItemSet::class];
-  }
+final class ItemSetsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [ItemSet::class];
+    }
 
-  public function getByWeaponAndArmorAndHelmet(Item|int|null $weapon, Item|int|null $armor, Item|int|null $helmet): ?ItemSet {
-    return $this->getBy(["weapon" => $weapon, "armor" => $armor, "helmet" => $helmet]);
-  }
+    public function getByWeaponAndArmorAndHelmet(Item|int|null $weapon, Item|int|null $armor, Item|int|null $helmet): ?ItemSet
+    {
+        return $this->getBy(["weapon" => $weapon, "armor" => $armor, "helmet" => $helmet]);
+    }
 }
-?>

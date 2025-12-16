@@ -6,13 +6,15 @@ namespace Nexendrie\Model;
 use Nette;
 use Nette\Application\Response;
 
-final class ICalendarResponse implements Response {
-  public function __construct(public readonly string $source) {
-  }
+final class ICalendarResponse implements Response
+{
+    public function __construct(public readonly string $source)
+    {
+    }
 
-  public function send(Nette\Http\IRequest $httpRequest, Nette\Http\IResponse $httpResponse): void {
-    $httpResponse->setContentType("text/calendar");
-    echo $this->source;
-  }
+    public function send(Nette\Http\IRequest $httpRequest, Nette\Http\IResponse $httpResponse): void
+    {
+        $httpResponse->setContentType("text/calendar");
+        echo $this->source;
+    }
 }
-?>

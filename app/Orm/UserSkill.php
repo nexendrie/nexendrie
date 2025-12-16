@@ -22,53 +22,58 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read int $jobRewardBonus {virtual}
  * @property-read int $jobSuccessRateBonus {virtual}
  */
-final class UserSkill extends BaseEntity implements ICharacterEffectsProvider {
-  /** Increase of success rate per skill level (in %) */
-  public const LEVEL_SUCCESS_RATE = 5;
-  /** Increase of income per skill level (in %) */
-  public const LEVEL_BONUS_INCOME = 15;
+final class UserSkill extends BaseEntity implements ICharacterEffectsProvider
+{
+    /** Increase of success rate per skill level (in %) */
+    public const LEVEL_SUCCESS_RATE = 5;
+    /** Increase of income per skill level (in %) */
+    public const LEVEL_BONUS_INCOME = 15;
 
-  private \Nexendrie\Model\Events $eventsModel;
-  
-  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
-    $this->eventsModel = $eventsModel;
-  }
-  
-  protected function getterLearningPrice(): int {
-    $price = $basePrice = $this->skill->price;
-    for($i = 2; $i <= $this->level + 1; $i++) {
-      $price += (int) ($basePrice / $this->skill->maxLevel);
+    private \Nexendrie\Model\Events $eventsModel;
+
+    public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void
+    {
+        $this->eventsModel = $eventsModel;
     }
-    $price -= $this->eventsModel->calculateTrainingDiscount($price);
-    if($this->user->monastery !== null && $this->user->group->path === Group::PATH_CHURCH) {
-      $monasteryDiscount = $this->user->monastery->skillLearningDiscount;
-      $price -= (int) ($price / 100 * $monasteryDiscount);
+
+    protected function getterLearningPrice(): int
+    {
+        $price = $basePrice = $this->skill->price;
+        for ($i = 2; $i <= $this->level + 1; $i++) {
+            $price += (int) ($basePrice / $this->skill->maxLevel);
+        }
+        $price -= $this->eventsModel->calculateTrainingDiscount($price);
+        if ($this->user->monastery !== null && $this->user->group->path === Group::PATH_CHURCH) {
+            $monasteryDiscount = $this->user->monastery->skillLearningDiscount;
+            $price -= (int) ($price / 100 * $monasteryDiscount);
+        }
+        return $price;
     }
-    return $price;
-  }
-  
-  protected function getterJobRewardBonus(): int {
-    return $this->level * self::LEVEL_BONUS_INCOME;
-  }
-  
-  protected function getterJobSuccessRateBonus(): int {
-    return $this->level * self::LEVEL_SUCCESS_RATE;
-  }
-  
-  public function getCombatEffects(): array {
-    if($this->skill->type !== Skill::TYPE_COMBAT) {
-      return [];
+
+    protected function getterJobRewardBonus(): int
+    {
+        return $this->level * self::LEVEL_BONUS_INCOME;
     }
-    $bonusStats = [
-      Skill::STAT_HITPOINTS => Character::STAT_MAX_HITPOINTS, Skill::STAT_DAMAGE => Character::STAT_DAMAGE,
-      Skill::STAT_ARMOR => Character::STAT_DEFENSE, Skill::STAT_INITIATIVE => Character::STAT_INITIATIVE,
-    ];
-    $stats = [
-      "id" => "skill{$this->skill->id}Effect", "type" => SkillSpecial::TYPE_BUFF,
-      "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
-      "stat" => $bonusStats[(string) $this->skill->stat], "value" => $this->skill->statIncrease * $this->level,
-    ];
-    return [new CharacterEffect($stats)];
-  }
+
+    protected function getterJobSuccessRateBonus(): int
+    {
+        return $this->level * self::LEVEL_SUCCESS_RATE;
+    }
+
+    public function getCombatEffects(): array
+    {
+        if ($this->skill->type !== Skill::TYPE_COMBAT) {
+            return [];
+        }
+        $bonusStats = [
+            Skill::STAT_HITPOINTS => Character::STAT_MAX_HITPOINTS, Skill::STAT_DAMAGE => Character::STAT_DAMAGE,
+            Skill::STAT_ARMOR => Character::STAT_DEFENSE, Skill::STAT_INITIATIVE => Character::STAT_INITIATIVE,
+        ];
+        $stats = [
+            "id" => "skill{$this->skill->id}Effect", "type" => SkillSpecial::TYPE_BUFF,
+            "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
+            "stat" => $bonusStats[(string) $this->skill->stat], "value" => $this->skill->statIncrease * $this->level,
+        ];
+        return [new CharacterEffect($stats)];
+    }
 }
-?>

@@ -3,11 +3,12 @@ declare(strict_types=1);
 
 namespace Nexendrie\Api\Transformers;
 
-final class ShopTransformer extends BaseTransformer {
-  protected array $fields = ["id", "name", "description", "items", ];
+final class ShopTransformer extends BaseTransformer
+{
+    protected array $fields = ["id", "name", "description", "items",];
 
-  public function getEntityClassName(): string {
-    return \Nexendrie\Orm\Shop::class;
-  }
+    public function getEntityClassName(): string
+    {
+        return \Nexendrie\Orm\Shop::class;
+    }
 }
-?>

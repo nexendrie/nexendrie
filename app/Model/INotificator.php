@@ -5,10 +5,10 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Structs\Notification;
 
-interface INotificator {
-  /**
-   * @return Notification[]
-   */
-  public function getNotifications(): array;
+interface INotificator
+{
+    /**
+     * @return Notification[]
+     */
+    public function getNotifications(): array;
 }
-?>

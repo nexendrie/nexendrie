@@ -12,9 +12,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Shop[] findBy(array $conds)
  * @method ICollection|Shop[] findAll()
  */
-final class ShopsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Shop::class];
-  }
+final class ShopsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Shop::class];
+    }
 }
-?>

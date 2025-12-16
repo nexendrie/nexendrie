@@ -14,7 +14,6 @@ namespace Nexendrie\Orm;
  * @property int $created
  * @property int $updated
  */
-final class JobMessage extends BaseEntity {
-  
+final class JobMessage extends BaseEntity
+{
 }
-?>

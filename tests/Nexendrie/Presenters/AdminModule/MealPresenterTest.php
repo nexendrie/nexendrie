@@ -11,21 +11,23 @@ require __DIR__ . "/../../../bootstrap.php";
 /**
  * @skip
  */
-final class MealPresenterTest extends \Tester\TestCase {
-  use TAdminPresenter;
-  
-  public function testNew(): void {
-    $this->defaultChecks(":Admin:Meal:new");
-  }
-  
-  public function testEdit(): void {
-    $this->defaultChecks(":Admin:Meal:edit", ["id" => 1]);
-    Assert::exception(function() {
-      $this->check(":Admin:Meal:edit", ["id" => 5000]);
-    }, BadRequestException::class);
-  }
+final class MealPresenterTest extends \Tester\TestCase
+{
+    use TAdminPresenter;
+
+    public function testNew(): void
+    {
+        $this->defaultChecks(":Admin:Meal:new");
+    }
+
+    public function testEdit(): void
+    {
+        $this->defaultChecks(":Admin:Meal:edit", ["id" => 1]);
+        Assert::exception(function () {
+            $this->check(":Admin:Meal:edit", ["id" => 5000]);
+        }, BadRequestException::class);
+    }
 }
 
 $test = new MealPresenterTest();
 $test->run();
-?>

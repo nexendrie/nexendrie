@@ -12,32 +12,35 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-final class Elections {
-  public function __construct(private readonly ORM $orm) {
-  }
-  
-  /**
-   * Get number of councillors for the town
-   */
-  public function getNumberOfCouncillors(int $townId): int {
-    $town = $this->orm->towns->getById($townId);
-    if($town === null) {
-      return 0;
+final class Elections
+{
+    public function __construct(private readonly ORM $orm)
+    {
     }
-    $denizens = $town->denizens->countStored();
-    if($denizens <= 3) {
-      return 0;
+
+    /**
+     * Get number of councillors for the town
+     */
+    public function getNumberOfCouncillors(int $townId): int
+    {
+        $town = $this->orm->towns->getById($townId);
+        if ($town === null) {
+            return 0;
+        }
+        $denizens = $town->denizens->countStored();
+        if ($denizens <= 3) {
+            return 0;
+        }
+        return max(1, (int) ($denizens / 5));
     }
-    return max(1, (int) ($denizens / 5));
-  }
-  
-  /**
-   * Get candidates for elections
-   *
-   * @return UserEntity[]|ICollection
-   */
-  public function getCandidates(int $town): ICollection {
-    return $this->orm->users->findTownCitizens($town);
-  }
+
+    /**
+     * Get candidates for elections
+     *
+     * @return UserEntity[]|ICollection
+     */
+    public function getCandidates(int $town): ICollection
+    {
+        return $this->orm->users->findTownCitizens($town);
+    }
 }
-?>

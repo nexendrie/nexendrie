@@ -12,16 +12,18 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Permission[] findBy(array $conds)
  * @method ICollection|Permission[] findAll()
  */
-final class PermissionsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Permission::class];
-  }
-  
-  /**
-   * @return ICollection|Permission[]
-   */
-  public function findByGroup(Group|int $group): ICollection {
-    return $this->findBy(["group" => $group]);
-  }
+final class PermissionsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Permission::class];
+    }
+
+    /**
+     * @return ICollection|Permission[]
+     */
+    public function findByGroup(Group|int $group): ICollection
+    {
+        return $this->findBy(["group" => $group]);
+    }
 }
-?>

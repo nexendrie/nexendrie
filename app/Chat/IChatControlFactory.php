@@ -5,7 +5,7 @@ namespace Nexendrie\Chat;
 
 use HeroesofAbenez\Chat\ChatControl;
 
-interface IChatControlFactory {
-  public function create(): ChatControl;
+interface IChatControlFactory
+{
+    public function create(): ChatControl;
 }
-?>

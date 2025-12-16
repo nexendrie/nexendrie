@@ -11,15 +11,17 @@ use Nexendrie\Components\HelpControl;
  *
  * @author Jakub Konečný
  */
-final class HelpPresenter extends BasePresenter {
-  protected bool $cachingEnabled = false;
+final class HelpPresenter extends BasePresenter
+{
+    protected bool $cachingEnabled = false;
 
-  public function renderDefault(string $page = "index"): void {
-    $this->template->page = $page;
-  }
-  
-  protected function createComponentHelp(IHelpControlFactory $factory): HelpControl {
-    return $factory->create();
-  }
+    public function renderDefault(string $page = "index"): void
+    {
+        $this->template->page = $page;
+    }
+
+    protected function createComponentHelp(IHelpControlFactory $factory): HelpControl
+    {
+        return $factory->create();
+    }
 }
-?>

@@ -11,6 +11,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<ContentReport>
  */
-final class ContentReportsMapper extends DbalMapper {
+final class ContentReportsMapper extends DbalMapper
+{
 }
-?>

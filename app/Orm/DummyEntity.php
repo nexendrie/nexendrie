@@ -8,13 +8,14 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-abstract class DummyEntity {
-  public function toArray(): array {
-    $return = [];
-    foreach(get_object_vars($this) as $key => $value) {
-      $return[$key] = $value;
+abstract class DummyEntity
+{
+    public function toArray(): array
+    {
+        $return = [];
+        foreach (get_object_vars($this) as $key => $value) {
+            $return[$key] = $value;
+        }
+        return $return;
     }
-    return $return;
-  }
 }
-?>

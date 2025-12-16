@@ -16,101 +16,110 @@ use Nexendrie\Orm\UserSkill;
  *
  * @author Jakub Konečný
  */
-final class Profile {
-  public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user) {
-  }
-  
-  /**
-   * Show user's profile
-   *
-   * @throws UserNotFoundException
-   */
-  public function view(string $publicname): UserEntity {
-    $user = $this->orm->users->getByPublicname($publicname);
-    return $user ?? throw new UserNotFoundException("Specified user does not exist.");
-  }
-  
-  /**
-   * Get list of potential town owners
-   * 
-   * @return string[]
-   */
-  public function getListOfLords(): array {
-    return $this->orm->users->findBy(["group->path" => \Nexendrie\Orm\Group::PATH_TOWER])
-      ->fetchPairs("id", "publicname");
-  }
-  
-  /**
-   * Get specified user's path
-   */
-  public function getPath(int $id = null): string {
-    $user = $this->orm->users->getById($id ?? $this->user->id);
-    if($user === null) {
-      throw new UserNotFoundException();
+final class Profile
+{
+    public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user)
+    {
     }
-    return $user->group->path;
-  }
 
-  /**
-   * Get specified user's partner
-   */
-  public function getPartner(int $id): ?UserEntity {
-    $marriage = $this->orm->marriages->getActiveMarriage($id);
-    if($marriage === null) {
-      return null;
-    } elseif($marriage->user1->id === $id) {
-      return $marriage->user2;
+    /**
+     * Show user's profile
+     *
+     * @throws UserNotFoundException
+     */
+    public function view(string $publicname): UserEntity
+    {
+        $user = $this->orm->users->getByPublicname($publicname);
+        return $user ?? throw new UserNotFoundException("Specified user does not exist.");
     }
-    return $marriage->user1;
-  }
 
-  /**
-   * Get specified user's fiance(e)
-   */
-  public function getFiance(int $id): ?UserEntity {
-    $marriage = $this->orm->marriages->getAcceptedMarriage($id);
-    if($marriage === null) {
-      return null;
-    } elseif($marriage->user1->id === $id) {
-      return $marriage->user2;
+    /**
+     * Get list of potential town owners
+     *
+     * @return string[]
+     */
+    public function getListOfLords(): array
+    {
+        return $this->orm->users->findBy(["group->path" => \Nexendrie\Orm\Group::PATH_TOWER])
+            ->fetchPairs("id", "publicname");
     }
-    return $marriage->user1;
-  }
-  
-  /**
-   * @return OneHasMany|ArticleEntity[]
-   * @throws UserNotFoundException
-   */
-  public function getArticles(string $publicname): OneHasMany {
-    $user = $this->orm->users->getByPublicname($publicname);
-    if($user === null) {
-      throw new UserNotFoundException("Specified user does not exist.");
-    }
-    return $user->articles;
-  }
-  
-  /**
-   * @return OneHasMany|UserSkill[]
-   * @throws UserNotFoundException
-   */
-  public function getSkills(string $publicname): OneHasMany {
-    $user = $this->orm->users->getByPublicname($publicname);
-    if($user === null) {
-      throw new UserNotFoundException("Specified user does not exist.");
-    }
-    return $user->skills;
-  }
 
-  /**
-   * @return ICollection|Comment[]
-   * @throws UserNotFoundException
-   */
-  public function getComments(string $publicname): ICollection {
-    $user = $this->orm->users->getByPublicname($publicname);
-    if($user === null) {
-      throw new UserNotFoundException("Specified user does not exist.");
+    /**
+     * Get specified user's path
+     */
+    public function getPath(int $id = null): string
+    {
+        $user = $this->orm->users->getById($id ?? $this->user->id);
+        if ($user === null) {
+            throw new UserNotFoundException();
+        }
+        return $user->group->path;
     }
-    return $user->comments->toCollection()->findBy(['deleted' => false, ]); // @phpstan-ignore  return.type
-  }
+
+    /**
+     * Get specified user's partner
+     */
+    public function getPartner(int $id): ?UserEntity
+    {
+        $marriage = $this->orm->marriages->getActiveMarriage($id);
+        if ($marriage === null) {
+            return null;
+        } elseif ($marriage->user1->id === $id) {
+            return $marriage->user2;
+        }
+        return $marriage->user1;
+    }
+
+    /**
+     * Get specified user's fiance(e)
+     */
+    public function getFiance(int $id): ?UserEntity
+    {
+        $marriage = $this->orm->marriages->getAcceptedMarriage($id);
+        if ($marriage === null) {
+            return null;
+        } elseif ($marriage->user1->id === $id) {
+            return $marriage->user2;
+        }
+        return $marriage->user1;
+    }
+
+    /**
+     * @return OneHasMany|ArticleEntity[]
+     * @throws UserNotFoundException
+     */
+    public function getArticles(string $publicname): OneHasMany
+    {
+        $user = $this->orm->users->getByPublicname($publicname);
+        if ($user === null) {
+            throw new UserNotFoundException("Specified user does not exist.");
+        }
+        return $user->articles;
+    }
+
+    /**
+     * @return OneHasMany|UserSkill[]
+     * @throws UserNotFoundException
+     */
+    public function getSkills(string $publicname): OneHasMany
+    {
+        $user = $this->orm->users->getByPublicname($publicname);
+        if ($user === null) {
+            throw new UserNotFoundException("Specified user does not exist.");
+        }
+        return $user->skills;
+    }
+
+    /**
+     * @return ICollection|Comment[]
+     * @throws UserNotFoundException
+     */
+    public function getComments(string $publicname): ICollection
+    {
+        $user = $this->orm->users->getByPublicname($publicname);
+        if ($user === null) {
+            throw new UserNotFoundException("Specified user does not exist.");
+        }
+        return $user->comments->toCollection()->findBy(['deleted' => false,]); // @phpstan-ignore  return.type
+    }
 }
-?>

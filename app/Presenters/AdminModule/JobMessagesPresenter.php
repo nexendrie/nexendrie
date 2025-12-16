@@ -17,78 +17,85 @@ use Nextras\Orm\Entity\ToArrayConverter;
  *
  * @author Jakub Konečný
  */
-final class JobMessagesPresenter extends BasePresenter {
-  private JobMessageEntity $message;
-  private JobEntity $job;
-  
-  public function __construct(private readonly Job $model) {
-    parent::__construct();
-  }
-  
-  public function actionList(int $id): void {
-    $this->requiresPermissions("content", "list");
-    try {
-      $this->template->messages = $this->model->listOfMessages($id);
-      $this->template->jobId = $id;
-    } catch(JobNotFoundException) {
-      $this->forward("Job:notfound");
+final class JobMessagesPresenter extends BasePresenter
+{
+    private JobMessageEntity $message;
+    private JobEntity $job;
+
+    public function __construct(private readonly Job $model)
+    {
+        parent::__construct();
     }
-  }
-  
-  public function actionAdd(int $id): void {
-    $this->requiresPermissions("content", "add");
-    try {
-      $this->job = $this->model->getJob($id);
-      $this->template->jobName = $this->job->name;
-    } catch(JobNotFoundException) {
-      $this->forward("Job:notfound");
+
+    public function actionList(int $id): void
+    {
+        $this->requiresPermissions("content", "list");
+        try {
+            $this->template->messages = $this->model->listOfMessages($id);
+            $this->template->jobId = $id;
+        } catch (JobNotFoundException) {
+            $this->forward("Job:notfound");
+        }
     }
-  }
-  
-  protected function createComponentAddJobMessageForm(AddEditJobMessageFormFactory $factory): Form {
-    $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values): void {
-      $values["job"] = $this->job->id;
-      $this->model->addMessage($values);
-      $this->flashMessage("Hláška přidána.");
-      $this->redirect("list", ["id" => $this->job->id]);
-    };
-    return $form;
-  }
-  
-  /**
-   * @throws \Nette\Application\BadRequestException
-   */
-  public function actionEdit(int $id): void {
-    $this->requiresPermissions("content", "edit");
-    try {
-      $this->message = $this->model->getMessage($id);
-    } catch(JobMessageNotFoundException) {
-      throw new \Nette\Application\BadRequestException();
+
+    public function actionAdd(int $id): void
+    {
+        $this->requiresPermissions("content", "add");
+        try {
+            $this->job = $this->model->getJob($id);
+            $this->template->jobName = $this->job->name;
+        } catch (JobNotFoundException) {
+            $this->forward("Job:notfound");
+        }
     }
-  }
-  
-  protected function createComponentEditJobMessageForm(AddEditJobMessageFormFactory $factory): Form {
-    $form = $factory->create();
-    $form->setDefaults($this->message->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
-    $form->onSuccess[] = function(Form $form, array $values): void {
-      $this->model->editMessage($this->message->id, $values);
-      $this->flashMessage("Hláška upravena.");
-    };
-    return $form;
-  }
-  
-  /**
-   * @throws \Nette\Application\BadRequestException
-   */
-  public function actionDelete(int $id): never {
-    try {
-      $job = $this->model->deleteMessage($id);
-      $this->flashMessage("Hláška smazána.");
-      $this->redirect("list", ["id" => $job]);
-    } catch(JobMessageNotFoundException) {
-      throw new \Nette\Application\BadRequestException();
+
+    protected function createComponentAddJobMessageForm(AddEditJobMessageFormFactory $factory): Form
+    {
+        $form = $factory->create();
+        $form->onSuccess[] = function (Form $form, array $values): void {
+            $values["job"] = $this->job->id;
+            $this->model->addMessage($values);
+            $this->flashMessage("Hláška přidána.");
+            $this->redirect("list", ["id" => $this->job->id]);
+        };
+        return $form;
     }
-  }
+
+    /**
+     * @throws \Nette\Application\BadRequestException
+     */
+    public function actionEdit(int $id): void
+    {
+        $this->requiresPermissions("content", "edit");
+        try {
+            $this->message = $this->model->getMessage($id);
+        } catch (JobMessageNotFoundException) {
+            throw new \Nette\Application\BadRequestException();
+        }
+    }
+
+    protected function createComponentEditJobMessageForm(AddEditJobMessageFormFactory $factory): Form
+    {
+        $form = $factory->create();
+        $form->setDefaults($this->message->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));
+        $form->onSuccess[] = function (Form $form, array $values): void {
+            $this->model->editMessage($this->message->id, $values);
+            $this->flashMessage("Hláška upravena.");
+        };
+        return $form;
+    }
+
+    /**
+     * @throws \Nette\Application\BadRequestException
+     */
+    public function actionDelete(int $id): never
+    {
+        try {
+            $job = $this->model->deleteMessage($id);
+            $this->flashMessage("Hláška smazána.");
+            $this->redirect("list", ["id" => $job]);
+        } catch (JobMessageNotFoundException) {
+            throw new \Nette\Application\BadRequestException();
+        }
+    }
 }
-?>

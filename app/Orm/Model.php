@@ -42,7 +42,7 @@ namespace Nexendrie\Orm;
  * @property-read GuildRanksRepository $guildRanks
  * @property-read OrdersRepository $orders
  * @property-read OrderRanksRepository $orderRanks
- * @property-read ItemSetsRepository  $itemSets
+ * @property-read ItemSetsRepository $itemSets
  * @property-read MarriagesRepository $marriages
  * @property-read ElectionsRepository $elections
  * @property-read ElectionResultsRepository $electionResults
@@ -56,7 +56,6 @@ namespace Nexendrie\Orm;
  * @property-read UserExpensesRepository $userExpenses
  * @property-read InvitationsRepository $invitations
  */
-final class Model extends \Nextras\Orm\Model\Model {
-  
+final class Model extends \Nextras\Orm\Model\Model
+{
 }
-?>

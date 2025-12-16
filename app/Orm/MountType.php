@@ -23,9 +23,10 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $updated
  * @property OneHasMany|Mount[] $mounts {1:m Mount::$type}
  */
-final class MountType extends BaseEntity {
-  protected function getterMaleName(): string {
-    return $this->name;
-  }
+final class MountType extends BaseEntity
+{
+    protected function getterMaleName(): string
+    {
+        return $this->name;
+    }
 }
-?>

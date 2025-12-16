@@ -18,70 +18,76 @@ use Nexendrie\Model\DepositAccountNotDueException;
  *
  * @author Jakub Konečný
  */
-final class BankPresenter extends BasePresenter {
-  protected bool $cachingEnabled = false;
-  
-  public function __construct(private readonly Bank $model, private readonly Locale $localeModel) {
-    parent::__construct();
-  }
-  
-  public function renderDefault(): void {
-    $this->template->maxLoan = $this->model->maxLoan();
-    $this->template->loanInterest = $this->sr->settings["fees"]["loanInterest"];
-    $this->template->depositInterest = $this->sr->settings["fees"]["depositInterest"];
-    if(!$this->user->isLoggedIn()) {
-      return;
+final class BankPresenter extends BasePresenter
+{
+    protected bool $cachingEnabled = false;
+
+    public function __construct(private readonly Bank $model, private readonly Locale $localeModel)
+    {
+        parent::__construct();
     }
-    $this->template->loan = $this->model->getActiveLoan();
-    if($this->template->loan !== null) {
-      $this->template->returnMoney = $this->template->loan->amount + $this->template->loan->interest;
+
+    public function renderDefault(): void
+    {
+        $this->template->maxLoan = $this->model->maxLoan();
+        $this->template->loanInterest = $this->sr->settings["fees"]["loanInterest"];
+        $this->template->depositInterest = $this->sr->settings["fees"]["depositInterest"];
+        if (!$this->user->isLoggedIn()) {
+            return;
+        }
+        $this->template->loan = $this->model->getActiveLoan();
+        if ($this->template->loan !== null) {
+            $this->template->returnMoney = $this->template->loan->amount + $this->template->loan->interest;
+        }
+        $this->template->deposit = $this->model->getActiveDeposit();
     }
-    $this->template->deposit = $this->model->getActiveDeposit();
-  }
-  
-  protected function createComponentTakeLoanForm(TakeLoanFormFactory $factory): Form {
-    $form = $factory->create();
-    $form->onSuccess[] = function(Form $form, array $values): void {
-      $text = $this->localeModel->genderMessage("Přijal(a) jsi půjčku %s.");
-      $message = sprintf($text, $this->localeModel->money($values["amount"]));
-      $this->flashMessage($message);
-    };
-    return $form;
-  }
-  
-  protected function createComponentOpenDepositAccountForm(OpenDepositAccountFormFactory $factory): Form {
-    $form = $factory->create();
-    $form->onSuccess[] = function(): void {
-      $this->flashMessage("Termínovaný účet otevřen.");
-    };
-    return $form;
-  }
-  
-  public function actionReturn(): never {
-    $this->requiresLogin();
-    try {
-      $this->model->returnLoan();
-      $message = $this->localeModel->genderMessage("Vrátil(a) jsi půjčku.");
-      $this->flashMessage($message);
-    } catch(NoLoanException) {
-      $this->flashMessage("Nemáš žádnou půjčku.");
-    } catch(InsufficientFundsException) {
-      $this->flashMessage("Nemáš dostatek peněz.");
+
+    protected function createComponentTakeLoanForm(TakeLoanFormFactory $factory): Form
+    {
+        $form = $factory->create();
+        $form->onSuccess[] = function (Form $form, array $values): void {
+            $text = $this->localeModel->genderMessage("Přijal(a) jsi půjčku %s.");
+            $message = sprintf($text, $this->localeModel->money($values["amount"]));
+            $this->flashMessage($message);
+        };
+        return $form;
     }
-    $this->redirect("default");
-  }
-  
-  public function actionClose(): never {
-    $this->requiresLogin();
-    try {
-      $this->model->closeDeposit();
-      $this->flashMessage("Termínovaný účet uzavřen.");
-    } catch(NoDepositAccountException) {
-      $this->flashMessage("Nemáš otevřený termínovaný účet.");
-    } catch(DepositAccountNotDueException) {
-      $this->flashMessage("Termínovaný účet není splatný.");
+
+    protected function createComponentOpenDepositAccountForm(OpenDepositAccountFormFactory $factory): Form
+    {
+        $form = $factory->create();
+        $form->onSuccess[] = function (): void {
+            $this->flashMessage("Termínovaný účet otevřen.");
+        };
+        return $form;
     }
-    $this->redirect("default");
-  }
+
+    public function actionReturn(): never
+    {
+        $this->requiresLogin();
+        try {
+            $this->model->returnLoan();
+            $message = $this->localeModel->genderMessage("Vrátil(a) jsi půjčku.");
+            $this->flashMessage($message);
+        } catch (NoLoanException) {
+            $this->flashMessage("Nemáš žádnou půjčku.");
+        } catch (InsufficientFundsException) {
+            $this->flashMessage("Nemáš dostatek peněz.");
+        }
+        $this->redirect("default");
+    }
+
+    public function actionClose(): never
+    {
+        $this->requiresLogin();
+        try {
+            $this->model->closeDeposit();
+            $this->flashMessage("Termínovaný účet uzavřen.");
+        } catch (NoDepositAccountException) {
+            $this->flashMessage("Nemáš otevřený termínovaný účet.");
+        } catch (DepositAccountNotDueException) {
+            $this->flashMessage("Termínovaný účet není splatný.");
+        }
+        $this->redirect("default");
+    }
 }
-?>

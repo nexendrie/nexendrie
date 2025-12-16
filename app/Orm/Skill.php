@@ -24,45 +24,49 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|Guild[] $guilds {1:m Guild::$skill}
  * @property-read string $effect {virtual}
  */
-final class Skill extends BaseEntity {
-  public const TYPE_WORK = "work";
-  public const TYPE_COMBAT = "combat";
-  public const STAT_HITPOINTS = "hitpoints";
-  public const STAT_DAMAGE = "damage";
-  public const STAT_ARMOR = "armor";
-  public const STAT_INITIATIVE = "initiative";
-  
-  /**
-   * @return array<string, string>
-   */
-  public static function getTypes(): array {
-    return [
-      self::TYPE_WORK => "práce",
-      self::TYPE_COMBAT => "boj",
-    ];
-  }
-  
-  /**
-   * @return array<string, string>
-   */
-  public static function getStats(): array {
-    return [
-      self::STAT_HITPOINTS => "maximum životů",
-      self::STAT_DAMAGE => "poškození",
-      self::STAT_ARMOR => "brnění",
-      self::STAT_INITIATIVE => "iniciativa",
-    ];
-  }
-  
-  protected function getterStatCZ(): ?string {
-    return ($this->stat !== null) ? self::getStats()[$this->stat] : null;
-  }
-  
-  protected function getterEffect(): string {
-    if($this->type === self::TYPE_WORK) {
-      return "";
+final class Skill extends BaseEntity
+{
+    public const TYPE_WORK = "work";
+    public const TYPE_COMBAT = "combat";
+    public const STAT_HITPOINTS = "hitpoints";
+    public const STAT_DAMAGE = "damage";
+    public const STAT_ARMOR = "armor";
+    public const STAT_INITIATIVE = "initiative";
+
+    /**
+     * @return array<string, string>
+     */
+    public static function getTypes(): array
+    {
+        return [
+            self::TYPE_WORK => "práce",
+            self::TYPE_COMBAT => "boj",
+        ];
     }
-    return $this->statCZ . " +" . $this->statIncrease;
-  }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function getStats(): array
+    {
+        return [
+            self::STAT_HITPOINTS => "maximum životů",
+            self::STAT_DAMAGE => "poškození",
+            self::STAT_ARMOR => "brnění",
+            self::STAT_INITIATIVE => "iniciativa",
+        ];
+    }
+
+    protected function getterStatCZ(): ?string
+    {
+        return ($this->stat !== null) ? self::getStats()[$this->stat] : null;
+    }
+
+    protected function getterEffect(): string
+    {
+        if ($this->type === self::TYPE_WORK) {
+            return "";
+        }
+        return $this->statCZ . " +" . $this->statIncrease;
+    }
 }
-?>

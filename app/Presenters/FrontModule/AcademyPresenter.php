@@ -11,18 +11,20 @@ use Nexendrie\Components\IAcademyControlFactory;
  *
  * @author Jakub Konečný
  */
-final class AcademyPresenter extends BasePresenter {
-  protected bool $cachingEnabled = false;
+final class AcademyPresenter extends BasePresenter
+{
+    protected bool $cachingEnabled = false;
 
-  protected function startup(): void {
-    parent::startup();
-    $this->requiresLogin();
-    $this->mustNotBeBanned();
-    $this->mustNotBeTavelling();
-  }
-  
-  protected function createComponentAcademy(IAcademyControlFactory $factory): AcademyControl {
-    return $factory->create();
-  }
+    protected function startup(): void
+    {
+        parent::startup();
+        $this->requiresLogin();
+        $this->mustNotBeBanned();
+        $this->mustNotBeTavelling();
+    }
+
+    protected function createComponentAcademy(IAcademyControlFactory $factory): AcademyControl
+    {
+        return $factory->create();
+    }
 }
-?>

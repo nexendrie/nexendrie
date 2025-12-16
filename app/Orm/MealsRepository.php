@@ -12,9 +12,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Meal[] findBy(array $conds)
  * @method ICollection|Meal[] findAll()
  */
-final class MealsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Meal::class];
-  }
+final class MealsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Meal::class];
+    }
 }
-?>

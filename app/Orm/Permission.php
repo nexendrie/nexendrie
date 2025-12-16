@@ -14,9 +14,10 @@ namespace Nexendrie\Orm;
  * @property int $created
  * @property int $updated
  */
-final class Permission extends BaseEntity {
-  public function dummy(): PermissionDummy {
-    return new PermissionDummy($this);
-  }
+final class Permission extends BaseEntity
+{
+    public function dummy(): PermissionDummy
+    {
+        return new PermissionDummy($this);
+    }
 }
-?>

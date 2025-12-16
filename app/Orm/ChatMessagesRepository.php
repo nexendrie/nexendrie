@@ -14,9 +14,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|ChatMessage[] findBy(array $conds)
  * @method ICollection|ChatMessage[] findAll()
  */
-final class ChatMessagesRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [ChatMessage::class];
-  }
+final class ChatMessagesRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [ChatMessage::class];
+    }
 }
-?>

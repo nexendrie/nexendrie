@@ -13,7 +13,6 @@ namespace Nexendrie\Orm;
  * @property int $amount
  * @property int $created
  */
-final class MonasteryDonation extends BaseEntity {
-
+final class MonasteryDonation extends BaseEntity
+{
 }
-?>

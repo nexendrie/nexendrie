@@ -14,7 +14,6 @@ namespace Nexendrie\Orm;
  * @property int $created
  * @property int $updated
  */
-final class GuildFee extends BaseEntity {
-  
+final class GuildFee extends BaseEntity
+{
 }
-?>

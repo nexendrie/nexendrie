@@ -16,16 +16,18 @@ namespace Nexendrie\Orm;
  * @property int $updated
  * @property-read string $effect {virtual}
  */
-final class Meal extends BaseEntity {
-  private \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function getterEffect(): string {
-    $word = ($this->life < 0) ? "ubere" : "přidá";
-    return $word . " " . $this->localeModel->hitpoints($this->life);
-  }
+final class Meal extends BaseEntity
+{
+    private \Nexendrie\Model\Locale $localeModel;
+
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
+    }
+
+    protected function getterEffect(): string
+    {
+        $word = ($this->life < 0) ? "ubere" : "přidá";
+        return $word . " " . $this->localeModel->hitpoints($this->life);
+    }
 }
-?>

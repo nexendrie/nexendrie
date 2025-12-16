@@ -8,9 +8,10 @@ namespace Nexendrie\Presenters\ApiModule\V1;
  *
  * @author Jakub Konečný
  */
-abstract class BasePresenter extends \Nexendrie\Presenters\ApiModule\BasePresenter {
-  final protected function getApiVersion(): string {
-    return "v1";
-  }
+abstract class BasePresenter extends \Nexendrie\Presenters\ApiModule\BasePresenter
+{
+    final protected function getApiVersion(): string
+    {
+        return "v1";
+    }
 }
-?>

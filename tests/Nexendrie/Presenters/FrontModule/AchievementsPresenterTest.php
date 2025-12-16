@@ -8,16 +8,17 @@ require __DIR__ . "/../../../bootstrap.php";
 /**
  * @skip
  */
-final class AchievementsPresenterTest extends \Tester\TestCase {
-  use \Nexendrie\Presenters\TPresenter;
-  
-  public function testDefault(): void {
-    $this->checkRedirect(":Front:Achievements:default", "/user/login");
-    $this->login("Rahym");
-    $this->checkRedirect(":Front:Achievements:default", "/profile/Rahym/achievements");
-  }
+final class AchievementsPresenterTest extends \Tester\TestCase
+{
+    use \Nexendrie\Presenters\TPresenter;
+
+    public function testDefault(): void
+    {
+        $this->checkRedirect(":Front:Achievements:default", "/user/login");
+        $this->login("Rahym");
+        $this->checkRedirect(":Front:Achievements:default", "/profile/Rahym/achievements");
+    }
 }
 
 $test = new AchievementsPresenterTest();
 $test->run();
-?>

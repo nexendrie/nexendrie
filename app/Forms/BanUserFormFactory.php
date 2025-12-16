@@ -13,34 +13,37 @@ use Nexendrie\Orm\User;
  *
  * @author Jakub Konečný
  */
-final class BanUserFormFactory {
-  private int $userId;
-  
-  public function __construct(private readonly ORM $orm) {
-  }
-  
-  public function create(int $userId): Form {
-    $this->userId = $userId;
-    $form = new Form();
-    $form->addTextArea("crime", "Zločin:")
-      ->setRequired("Zadej zločin.");
-    $form->addText("numberOfShifts", "Počet směn:")
-      ->setRequired("Zadej počet směn.")
-      ->addRule(Form::INTEGER, "Počet směn musí být celé číslo.")
-      ->addRule(Form::RANGE, "Počet směn musí být v rozmezí 1-9999.", [1, 9999]);
-    $form->addSubmit("ban", "Uvěznit");
-    $form->onSuccess[] = $this->process(...);
-    return $form;
-  }
-  
-  public function process(Form $form, array $values): void {
-    /** @var User $user */
-    $user = $this->orm->users->getById($this->userId);
-    $punishment = new Punishment();
-    $punishment->user = $user;
-    $punishment->numberOfShifts = $values["numberOfShifts"];
-    $punishment->crime = $values["crime"];
-    $this->orm->punishments->persistAndFlush($punishment);
-  }
+final class BanUserFormFactory
+{
+    private int $userId;
+
+    public function __construct(private readonly ORM $orm)
+    {
+    }
+
+    public function create(int $userId): Form
+    {
+        $this->userId = $userId;
+        $form = new Form();
+        $form->addTextArea("crime", "Zločin:")
+            ->setRequired("Zadej zločin.");
+        $form->addText("numberOfShifts", "Počet směn:")
+            ->setRequired("Zadej počet směn.")
+            ->addRule(Form::INTEGER, "Počet směn musí být celé číslo.")
+            ->addRule(Form::RANGE, "Počet směn musí být v rozmezí 1-9999.", [1, 9999]);
+        $form->addSubmit("ban", "Uvěznit");
+        $form->onSuccess[] = $this->process(...);
+        return $form;
+    }
+
+    public function process(Form $form, array $values): void
+    {
+        /** @var User $user */
+        $user = $this->orm->users->getById($this->userId);
+        $punishment = new Punishment();
+        $punishment->user = $user;
+        $punishment->numberOfShifts = $values["numberOfShifts"];
+        $punishment->crime = $values["crime"];
+        $this->orm->punishments->persistAndFlush($punishment);
+    }
 }
-?>

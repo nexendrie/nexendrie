@@ -15,19 +15,22 @@ namespace Nexendrie\Orm;
  * @property int $created
  * @property-read string $createdAt {virtual}
  */
-final class ApiToken extends BaseEntity {
-  private \Nexendrie\Model\Locale $localeModel;
+final class ApiToken extends BaseEntity
+{
+    private \Nexendrie\Model\Locale $localeModel;
 
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
+    }
 
-  protected function getterExpireAt(): string {
-    return $this->localeModel->formatDateTime($this->expire);
-  }
+    protected function getterExpireAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->expire);
+    }
 
-  protected function getterCreatedAt(): string {
-    return $this->localeModel->formatDateTime($this->created);
-  }
+    protected function getterCreatedAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->created);
+    }
 }
-?>

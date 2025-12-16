@@ -8,7 +8,6 @@ namespace Nexendrie\Presenters\AdminModule;
  *
  * @author Jakub Konečný
  */
-final class HomepagePresenter extends BasePresenter {
-  
+final class HomepagePresenter extends BasePresenter
+{
 }
-?>

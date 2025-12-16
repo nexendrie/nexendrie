@@ -10,21 +10,23 @@ use Nexendrie\Orm\User;
  *
  * @author Jakub Konečný
  */
-interface IAchievement {
-  public function getName(): string;
-  public function getDescription(User $user): string;
-  public function getMaxLevel(): int;
-  
-  /**
-   * @return int[]
-   */
-  public function getRequirements(): array;
-  
-  public function getProgress(User $user): int;
-  
-  /**
-   * @return int Achieved level or 0
-   */
-  public function isAchieved(User $user): int;
+interface IAchievement
+{
+    public function getName(): string;
+
+    public function getDescription(User $user): string;
+
+    public function getMaxLevel(): int;
+
+    /**
+     * @return int[]
+     */
+    public function getRequirements(): array;
+
+    public function getProgress(User $user): int;
+
+    /**
+     * @return int Achieved level or 0
+     */
+    public function isAchieved(User $user): int;
 }
-?>

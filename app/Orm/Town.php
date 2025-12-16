@@ -25,15 +25,17 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$town}
  * @property-read string $createdAt {virtual}
  */
-final class Town extends BaseEntity {
-  private \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function getterCreatedAt(): string {
-    return $this->localeModel->formatDate($this->created);
-  }
+final class Town extends BaseEntity
+{
+    private \Nexendrie\Model\Locale $localeModel;
+
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
+    }
+
+    protected function getterCreatedAt(): string
+    {
+        return $this->localeModel->formatDate($this->created);
+    }
 }
-?>

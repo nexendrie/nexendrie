@@ -12,16 +12,18 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Poll[] findBy(array $conds)
  * @method ICollection|Poll[] findAll()
  */
-final class PollsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Poll::class];
-  }
-  
-  /**
-   * @return ICollection|Poll[]
-   */
-  public function findByAuthor(User|int $author): ICollection {
-    return $this->findBy(["author" => $author]);
-  }
+final class PollsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Poll::class];
+    }
+
+    /**
+     * @return ICollection|Poll[]
+     */
+    public function findByAuthor(User|int $author): ICollection
+    {
+        return $this->findBy(["author" => $author]);
+    }
 }
-?>

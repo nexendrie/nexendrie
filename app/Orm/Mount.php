@@ -38,134 +38,153 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read int $armorTrainingCost {virtual}
  * @property-read string $typeGenderName {virtual}
  */
-final class Mount extends BaseEntity implements ICharacterEffectsProvider {
-  private \Nexendrie\Model\Locale $localeModel;
-  private \Nexendrie\Model\Events $eventsModel;
-  
-  public const GENDER_MALE = "male";
-  public const GENDER_FEMALE = "female";
-  public const GENDER_YOUNG = "young";
-  public const HP_DECREASE_ADVENTURE = 5;
-  public const HP_DECREASE_TRAINING = 10;
-  public const HP_DECREASE_WEEKLY = 5;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void {
-    $this->eventsModel = $eventsModel;
-  }
-  
-  /**
-   * @return array<string, string>
-   */
-  public static function getGenders(): array {
-    return [
-      self::GENDER_MALE => "hřebec",
-      self::GENDER_FEMALE => "klisna",
-      self::GENDER_YOUNG => "mládě"
-    ];
-  }
-  
-  protected function setterHp(int $value): int {
-    return Numbers::range($value, 0, 100);
-  }
-  
-  protected function setterDamage(int $value): int {
-    return Numbers::range($value, $this->baseDamage, $this->maxDamage);
-  }
-  
-  protected function setterArmor(int $value): int {
-    return Numbers::range($value, $this->baseArmor, $this->maxArmor);
-  }
-  
-  protected function getterGenderCZ(): string {
-    return self::getGenders()[$this->gender];
-  }
-  
-  protected function getterCreatedAt(): string {
-    return $this->localeModel->formatDateTime($this->created);
-  }
-  
-  protected function getterBaseDamage(): int {
-    return $this->type->damage;
-  }
-  
-  protected function getterBaseArmor(): int {
-    return $this->type->armor;
-  }
-  
-  protected function getterMaxDamage(): int {
-    return max($this->type->damage * 2, 1);
-  }
-  
-  protected function getterMaxArmor(): int {
-    return max($this->type->armor * 2, 1);
-  }
-  
-  protected function getterDamageTrainingCost(): int {
-    if($this->damage >= $this->maxDamage) {
-      return 0;
+final class Mount extends BaseEntity implements ICharacterEffectsProvider
+{
+    private \Nexendrie\Model\Locale $localeModel;
+    private \Nexendrie\Model\Events $eventsModel;
+
+    public const GENDER_MALE = "male";
+    public const GENDER_FEMALE = "female";
+    public const GENDER_YOUNG = "young";
+    public const HP_DECREASE_ADVENTURE = 5;
+    public const HP_DECREASE_TRAINING = 10;
+    public const HP_DECREASE_WEEKLY = 5;
+
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
     }
-    $basePrice = ($this->damage - $this->baseDamage + 1) * 30;
-    $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
-    return $basePrice;
-  }
-  
-  protected function getterArmorTrainingCost(): int {
-    if($this->armor >= $this->maxArmor) {
-      return 0;
+
+    public function injectEventsModel(\Nexendrie\Model\Events $eventsModel): void
+    {
+        $this->eventsModel = $eventsModel;
     }
-    $basePrice = ($this->armor - $this->baseArmor + 1) * 30;
-    $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
-    return $basePrice;
-  }
-  
-  protected function getterTypeGenderName(): string {
-    return match($this->gender) {
-      self::GENDER_FEMALE => $this->type->femaleName,
-      self::GENDER_YOUNG => $this->type->youngName,
-      default => $this->type->maleName,
-    };
-  }
-  
-  public function onBeforeInsert(): void {
-    parent::onBeforeInsert();
-    if($this->price === 0) {
-      $this->price = $this->type->price;
+
+    /**
+     * @return array<string, string>
+     */
+    public static function getGenders(): array
+    {
+        return [
+            self::GENDER_MALE => "hřebec",
+            self::GENDER_FEMALE => "klisna",
+            self::GENDER_YOUNG => "mládě"
+        ];
     }
-    if($this->damage === 0) {
-      $this->damage = $this->type->damage;
+
+    protected function setterHp(int $value): int
+    {
+        return Numbers::range($value, 0, 100);
     }
-    if($this->armor === 0) {
-      $this->armor = $this->type->armor;
+
+    protected function setterDamage(int $value): int
+    {
+        return Numbers::range($value, $this->baseDamage, $this->maxDamage);
     }
-    if($this->owner->id === 0) {
-      $this->onMarket = true;
+
+    protected function setterArmor(int $value): int
+    {
+        return Numbers::range($value, $this->baseArmor, $this->maxArmor);
     }
-  }
-  
-  public function toCombatDamageEffect(): CharacterEffect {
-    $stats = [
-      "id" => "mount{$this->id}DamageBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->damage,
-      "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
-      "stat" => Character::STAT_DAMAGE,
-    ];
-    return new CharacterEffect($stats);
-  }
-  
-  public function toCombatDefenseEffect(): CharacterEffect {
-    $stats = [
-      "id" => "mount{$this->id}DefenseBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->armor,
-      "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
-      "stat" => Character::STAT_DEFENSE,
-    ];
-    return new CharacterEffect($stats);
-  }
-  
-  public function getCombatEffects(): array {
-    return [$this->toCombatDamageEffect(), $this->toCombatDefenseEffect(), ];
-  }
+
+    protected function getterGenderCZ(): string
+    {
+        return self::getGenders()[$this->gender];
+    }
+
+    protected function getterCreatedAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->created);
+    }
+
+    protected function getterBaseDamage(): int
+    {
+        return $this->type->damage;
+    }
+
+    protected function getterBaseArmor(): int
+    {
+        return $this->type->armor;
+    }
+
+    protected function getterMaxDamage(): int
+    {
+        return max($this->type->damage * 2, 1);
+    }
+
+    protected function getterMaxArmor(): int
+    {
+        return max($this->type->armor * 2, 1);
+    }
+
+    protected function getterDamageTrainingCost(): int
+    {
+        if ($this->damage >= $this->maxDamage) {
+            return 0;
+        }
+        $basePrice = ($this->damage - $this->baseDamage + 1) * 30;
+        $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
+        return $basePrice;
+    }
+
+    protected function getterArmorTrainingCost(): int
+    {
+        if ($this->armor >= $this->maxArmor) {
+            return 0;
+        }
+        $basePrice = ($this->armor - $this->baseArmor + 1) * 30;
+        $basePrice -= $this->eventsModel->calculateTrainingDiscount($basePrice);
+        return $basePrice;
+    }
+
+    protected function getterTypeGenderName(): string
+    {
+        return match ($this->gender) {
+            self::GENDER_FEMALE => $this->type->femaleName,
+            self::GENDER_YOUNG => $this->type->youngName,
+            default => $this->type->maleName,
+        };
+    }
+
+    public function onBeforeInsert(): void
+    {
+        parent::onBeforeInsert();
+        if ($this->price === 0) {
+            $this->price = $this->type->price;
+        }
+        if ($this->damage === 0) {
+            $this->damage = $this->type->damage;
+        }
+        if ($this->armor === 0) {
+            $this->armor = $this->type->armor;
+        }
+        if ($this->owner->id === 0) {
+            $this->onMarket = true;
+        }
+    }
+
+    public function toCombatDamageEffect(): CharacterEffect
+    {
+        $stats = [
+            "id" => "mount{$this->id}DamageBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->damage,
+            "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
+            "stat" => Character::STAT_DAMAGE,
+        ];
+        return new CharacterEffect($stats);
+    }
+
+    public function toCombatDefenseEffect(): CharacterEffect
+    {
+        $stats = [
+            "id" => "mount{$this->id}DefenseBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->armor,
+            "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
+            "stat" => Character::STAT_DEFENSE,
+        ];
+        return new CharacterEffect($stats);
+    }
+
+    public function getCombatEffects(): array
+    {
+        return [$this->toCombatDamageEffect(), $this->toCombatDefenseEffect(),];
+    }
 }
-?>

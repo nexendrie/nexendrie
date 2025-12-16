@@ -12,25 +12,28 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Adventure[] findBy(array $conds)
  * @method ICollection|Adventure[] findAll()
  */
-final class AdventuresRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Adventure::class];
-  }
-  
-  /**
-   * @return ICollection|Adventure[]
-   */
-  public function findByEvent(Event|int $event): ICollection {
-    return $this->findBy(["event" => $event]);
-  }
-  
-  /**
-   * Find adventures for specified level
-   *
-   * @return ICollection|Adventure[]
-   */
-  public function findForLevel(int $level): ICollection {
-    return $this->findBy(["level<=" => $level]);
-  }
+final class AdventuresRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Adventure::class];
+    }
+
+    /**
+     * @return ICollection|Adventure[]
+     */
+    public function findByEvent(Event|int $event): ICollection
+    {
+        return $this->findBy(["event" => $event]);
+    }
+
+    /**
+     * Find adventures for specified level
+     *
+     * @return ICollection|Adventure[]
+     */
+    public function findForLevel(int $level): ICollection
+    {
+        return $this->findBy(["level<=" => $level]);
+    }
 }
-?>

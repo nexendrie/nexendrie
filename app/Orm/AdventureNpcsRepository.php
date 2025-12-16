@@ -12,20 +12,23 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|AdventureNpc[] findBy(array $conds)
  * @method ICollection|AdventureNpc[] findAll()
  */
-final class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [AdventureNpc::class];
-  }
+final class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [AdventureNpc::class];
+    }
 
-  public function getByAdventureAndOrder(Adventure|int $adventure, Order|int $order): ?AdventureNpc {
-    return $this->getBy(["adventure" => $adventure, "order" => $order]);
-  }
-  
-  /**
-   * @return ICollection|AdventureNpc[]
-   */
-  public function findByAdventure(int $adventure): ICollection {
-    return $this->findBy(["adventure" => $adventure])->orderBy("order");
-  }
+    public function getByAdventureAndOrder(Adventure|int $adventure, Order|int $order): ?AdventureNpc
+    {
+        return $this->getBy(["adventure" => $adventure, "order" => $order]);
+    }
+
+    /**
+     * @return ICollection|AdventureNpc[]
+     */
+    public function findByAdventure(int $adventure): ICollection
+    {
+        return $this->findBy(["adventure" => $adventure])->orderBy("order");
+    }
 }
-?>

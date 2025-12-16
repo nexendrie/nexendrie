@@ -12,13 +12,15 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Order[] findBy(array $conds)
  * @method ICollection|Order[] findAll()
  */
-final class OrdersRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Order::class];
-  }
-  
-  public function getByName(string $name): ?Order {
-    return $this->getBy(["name" => $name]);
-  }
+final class OrdersRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Order::class];
+    }
+
+    public function getByName(string $name): ?Order
+    {
+        return $this->getBy(["name" => $name]);
+    }
 }
-?>

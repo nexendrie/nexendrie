@@ -8,17 +8,18 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-final class PermissionDummy {
-  public readonly int $id;
-  public readonly string $resource;
-  public readonly string $action;
-  public readonly int $group;
-  
-  public function __construct(Permission $p) {
-    $this->id = $p->id;
-    $this->resource = $p->resource;
-    $this->action = $p->action;
-    $this->group = $p->group->id;
-  }
+final class PermissionDummy
+{
+    public readonly int $id;
+    public readonly string $resource;
+    public readonly string $action;
+    public readonly int $group;
+
+    public function __construct(Permission $p)
+    {
+        $this->id = $p->id;
+        $this->resource = $p->resource;
+        $this->action = $p->action;
+        $this->group = $p->group->id;
+    }
 }
-?>

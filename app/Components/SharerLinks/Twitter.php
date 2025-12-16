@@ -10,23 +10,27 @@ use Nexendrie\Model\SettingsRepository;
  *
  * @author Jakub Konečný
  */
-final class Twitter implements \Nexendrie\Components\ISharerLink {
-  private string $account;
+final class Twitter implements \Nexendrie\Components\ISharerLink
+{
+    private string $account;
 
-  public function __construct(SettingsRepository $sr) {
-    $this->account = $sr->settings["socialAccounts"]["twitter"];
-  }
+    public function __construct(SettingsRepository $sr)
+    {
+        $this->account = $sr->settings["socialAccounts"]["twitter"];
+    }
 
-  public function getShareLink(string $url, string $title): string {
-    return "https://twitter.com/intent/tweet?url=$url&text=$title&via={$this->account}";
-  }
+    public function getShareLink(string $url, string $title): string
+    {
+        return "https://twitter.com/intent/tweet?url=$url&text=$title&via={$this->account}";
+    }
 
-  public function getSiteName(): string {
-    return "X (Twitteru)";
-  }
+    public function getSiteName(): string
+    {
+        return "X (Twitteru)";
+    }
 
-  public function getPlatformName(): string {
-    return "twitter";
-  }
+    public function getPlatformName(): string
+    {
+        return "twitter";
+    }
 }
-?>

@@ -12,16 +12,18 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|Skill[] findBy(array $conds)
  * @method ICollection|Skill[] findAll()
  */
-final class SkillsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [Skill::class];
-  }
-  
-  /**
-   * @return ICollection|Skill[]
-   */
-  public function findByType(string $type): ICollection {
-    return $this->findBy(["type" => $type]);
-  }
+final class SkillsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [Skill::class];
+    }
+
+    /**
+     * @return ICollection|Skill[]
+     */
+    public function findByType(string $type): ICollection
+    {
+        return $this->findBy(["type" => $type]);
+    }
 }
-?>

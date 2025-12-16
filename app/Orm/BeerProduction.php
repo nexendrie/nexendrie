@@ -14,7 +14,6 @@ namespace Nexendrie\Orm;
  * @property int $price
  * @property int $created
  */
-final class BeerProduction extends BaseEntity {
-
+final class BeerProduction extends BaseEntity
+{
 }
-?>

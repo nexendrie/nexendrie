@@ -11,48 +11,53 @@ require __DIR__ . "/../../../bootstrap.php";
 /**
  * @skip
  */
-final class ProfilePresenterTest extends \Tester\TestCase {
-  use \Nexendrie\Presenters\TPresenter;
-  
-  public function testView(): void {
-    Assert::exception(function() {
-      $this->checkAction(":Front:Profile:default");
-    }, BadRequestException::class);
-    Assert::exception(function() {
-      $this->checkAction(":Front:Profile:default", ["name" => "abc"]);
-    }, BadRequestException::class);
-    $this->checkAction(":Front:Profile:default", ["name" => "Vladěna"]);
-  }
-  
-  public function testArticles(): void {
-    Assert::exception(function() {
-      $this->checkAction(":Front:Profile:articles", ["name" => "abc"]);
-    }, BadRequestException::class);
-    $this->checkAction(":Front:Profile:articles", ["name" => "Vladěna"]);
-  }
-  
-  public function testSkills(): void {
-    Assert::exception(function() {
-      $this->checkAction(":Front:Profile:skills", ["name" => "abc"]);
-    }, BadRequestException::class);
-    $this->checkAction(":Front:Profile:skills", ["name" => "Vladěna"]);
-  }
+final class ProfilePresenterTest extends \Tester\TestCase
+{
+    use \Nexendrie\Presenters\TPresenter;
 
-  public function testAchievements(): void {
-    Assert::exception(function() {
-      $this->checkAction(":Front:Profile:achievements", ["name" => "abc"]);
-    }, BadRequestException::class);
-    $this->checkAction(":Front:Profile:achievements", ["name" => "Vladěna"]);
-  }
+    public function testView(): void
+    {
+        Assert::exception(function () {
+            $this->checkAction(":Front:Profile:default");
+        }, BadRequestException::class);
+        Assert::exception(function () {
+            $this->checkAction(":Front:Profile:default", ["name" => "abc"]);
+        }, BadRequestException::class);
+        $this->checkAction(":Front:Profile:default", ["name" => "Vladěna"]);
+    }
 
-  public function testComments(): void {
-    Assert::exception(function() {
-      $this->checkAction(":Front:Profile:comments", ["name" => "abc"]);
-    }, BadRequestException::class);
-    $this->checkAction(":Front:Profile:comments", ["name" => "Vladěna"]);
-  }
+    public function testArticles(): void
+    {
+        Assert::exception(function () {
+            $this->checkAction(":Front:Profile:articles", ["name" => "abc"]);
+        }, BadRequestException::class);
+        $this->checkAction(":Front:Profile:articles", ["name" => "Vladěna"]);
+    }
+
+    public function testSkills(): void
+    {
+        Assert::exception(function () {
+            $this->checkAction(":Front:Profile:skills", ["name" => "abc"]);
+        }, BadRequestException::class);
+        $this->checkAction(":Front:Profile:skills", ["name" => "Vladěna"]);
+    }
+
+    public function testAchievements(): void
+    {
+        Assert::exception(function () {
+            $this->checkAction(":Front:Profile:achievements", ["name" => "abc"]);
+        }, BadRequestException::class);
+        $this->checkAction(":Front:Profile:achievements", ["name" => "Vladěna"]);
+    }
+
+    public function testComments(): void
+    {
+        Assert::exception(function () {
+            $this->checkAction(":Front:Profile:comments", ["name" => "abc"]);
+        }, BadRequestException::class);
+        $this->checkAction(":Front:Profile:comments", ["name" => "Vladěna"]);
+    }
 }
 
 $test = new ProfilePresenterTest();
 $test->run();
-?>

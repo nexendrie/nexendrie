@@ -13,29 +13,32 @@ use Nexendrie\Model\InsufficientFundsException;
  *
  * @author Jakub Konečný
  */
-final class MonasteryDonateFormFactory {
-  public function __construct(private readonly Monastery $model) {
-  }
-  
-  public function create(): Form {
-    $form = new Form();
-    $form->addText("amount", "Množství:")
-      ->setRequired("Zadej množství.")
-      ->addRule(Form::INTEGER, "Množství musí být celé číslo")
-      ->addRule(Form::MIN, "Musíš darovat minimálně 1 groš.", 1);
-    $form->addSubmit("submit", "Darovat");
-    $form->onSuccess[] = $this->process(...);
-    return $form;
-  }
-  
-  public function process(Form $form, array $values): void {
-    try {
-      $this->model->donate($values["amount"]);
-    } catch(NotInMonasteryException) {
-      $form->addError("Nejsi v klášteře.");
-    } catch(InsufficientFundsException) {
-      $form->addError("Nemáš dostatek peněz.");
+final class MonasteryDonateFormFactory
+{
+    public function __construct(private readonly Monastery $model)
+    {
     }
-  }
+
+    public function create(): Form
+    {
+        $form = new Form();
+        $form->addText("amount", "Množství:")
+            ->setRequired("Zadej množství.")
+            ->addRule(Form::INTEGER, "Množství musí být celé číslo")
+            ->addRule(Form::MIN, "Musíš darovat minimálně 1 groš.", 1);
+        $form->addSubmit("submit", "Darovat");
+        $form->onSuccess[] = $this->process(...);
+        return $form;
+    }
+
+    public function process(Form $form, array $values): void
+    {
+        try {
+            $this->model->donate($values["amount"]);
+        } catch (NotInMonasteryException) {
+            $form->addError("Nejsi v klášteře.");
+        } catch (InsufficientFundsException) {
+            $form->addError("Nemáš dostatek peněz.");
+        }
+    }
 }
-?>

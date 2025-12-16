@@ -3,6 +3,6 @@ declare(strict_types=1);
 
 namespace Nexendrie\Api;
 
-class TokenExpiredException extends \RuntimeException {
+class TokenExpiredException extends \RuntimeException
+{
 }
-?>

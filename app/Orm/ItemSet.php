@@ -24,43 +24,47 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property int $updated
  * @property-read string $effect {virtual}
  */
-final class ItemSet extends BaseEntity implements ICharacterEffectsProvider {
-  public const STAT_DAMAGE = "damage";
-  public const STAT_ARMOR = "armor";
-  public const STAT_HITPOINTS = "hitpoints";
-  public const STAT_INITIATIVE = "initiative";
-  
-  /**
-   * @return array<string, string>
-   */
-  public static function getStats(): array {
-    return [
-      self::STAT_HITPOINTS => "maximum životů",
-      self::STAT_DAMAGE => "poškození",
-      self::STAT_ARMOR => "brnění",
-      self::STAT_INITIATIVE => "iniciativa",
-    ];
-  }
-  
-  public function setterBonus(int $value): int {
-    return Numbers::range($value, 0, 99);
-  }
-  
-  protected function getterEffect(): string {
-    return self::getStats()[$this->stat] . " +" . $this->bonus;
-  }
-  
-  public function getCombatEffects(): array {
-    $bonusStats = [
-      self::STAT_HITPOINTS => Character::STAT_MAX_HITPOINTS, self::STAT_DAMAGE => Character::STAT_DAMAGE,
-      self::STAT_ARMOR => Character::STAT_DEFENSE, self::STAT_INITIATIVE => Character::STAT_INITIATIVE,
-    ];
-    $stats = [
-      "id" => "itemSet{$this->id}BonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->bonus,
-      "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
-      "stat" => $bonusStats[$this->stat],
-    ];
-    return [new CharacterEffect($stats)];
-  }
+final class ItemSet extends BaseEntity implements ICharacterEffectsProvider
+{
+    public const STAT_DAMAGE = "damage";
+    public const STAT_ARMOR = "armor";
+    public const STAT_HITPOINTS = "hitpoints";
+    public const STAT_INITIATIVE = "initiative";
+
+    /**
+     * @return array<string, string>
+     */
+    public static function getStats(): array
+    {
+        return [
+            self::STAT_HITPOINTS => "maximum životů",
+            self::STAT_DAMAGE => "poškození",
+            self::STAT_ARMOR => "brnění",
+            self::STAT_INITIATIVE => "iniciativa",
+        ];
+    }
+
+    public function setterBonus(int $value): int
+    {
+        return Numbers::range($value, 0, 99);
+    }
+
+    protected function getterEffect(): string
+    {
+        return self::getStats()[$this->stat] . " +" . $this->bonus;
+    }
+
+    public function getCombatEffects(): array
+    {
+        $bonusStats = [
+            self::STAT_HITPOINTS => Character::STAT_MAX_HITPOINTS, self::STAT_DAMAGE => Character::STAT_DAMAGE,
+            self::STAT_ARMOR => Character::STAT_DEFENSE, self::STAT_INITIATIVE => Character::STAT_INITIATIVE,
+        ];
+        $stats = [
+            "id" => "itemSet{$this->id}BonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->bonus,
+            "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
+            "stat" => $bonusStats[$this->stat],
+        ];
+        return [new CharacterEffect($stats)];
+    }
 }
-?>

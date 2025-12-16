@@ -12,16 +12,16 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $filename = __DIR__ . "/../app/config/local.neon";
 $db = [
-  "driver" => Arrays::get($argv, 1, "mysqli"),
-  "host" => Arrays::get($argv, 2, "localhost"),
-  "database" => Arrays::get($argv, 3, "nexendrie"),
-  "username" => Arrays::get($argv, 4, "nexendrie"),
-  "password" => Arrays::get($argv, 5, "nexendrie"),
+    "driver" => Arrays::get($argv, 1, "mysqli"),
+    "host" => Arrays::get($argv, 2, "localhost"),
+    "database" => Arrays::get($argv, 3, "nexendrie"),
+    "username" => Arrays::get($argv, 4, "nexendrie"),
+    "password" => Arrays::get($argv, 5, "nexendrie"),
 ];
 
 $content = file_get_contents($filename);
-if($content === false) {
-  throw new RuntimeException("File $filename does not exist or cannot be read.");
+if ($content === false) {
+    throw new RuntimeException("File $filename does not exist or cannot be read.");
 }
 $config = Neon::decode($content);
 $config["dbal"] = $db;
@@ -34,4 +34,3 @@ $environment = "production";
 $config = new Config(require __DIR__ . "/../phinx.php");
 $manager = new Manager($config, new StringInput(" "), new ConsoleOutput());
 $manager->migrate($environment);
-?>

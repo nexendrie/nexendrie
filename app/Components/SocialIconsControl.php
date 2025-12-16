@@ -9,17 +9,19 @@ namespace Nexendrie\Components;
  * @author Jakub Konečný
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
-final class SocialIconsControl extends \Nette\Application\UI\Control {
-  /**
-   * @param ISocialIcon[] $icons
-   */
-  public function __construct(private readonly array $icons) {
-  }
+final class SocialIconsControl extends \Nette\Application\UI\Control
+{
+    /**
+     * @param ISocialIcon[] $icons
+     */
+    public function __construct(private readonly array $icons)
+    {
+    }
 
-  public function render(): void {
-    $this->template->setFile(__DIR__ . "/socialIcons.latte");
-    $this->template->icons = $this->icons;
-    $this->template->render();
-  }
+    public function render(): void
+    {
+        $this->template->setFile(__DIR__ . "/socialIcons.latte");
+        $this->template->icons = $this->icons;
+        $this->template->render();
+    }
 }
-?>

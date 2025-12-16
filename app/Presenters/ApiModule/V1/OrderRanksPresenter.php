@@ -8,18 +8,20 @@ namespace Nexendrie\Presenters\ApiModule\V1;
  *
  * @author Jakub Konečný
  */
-final class OrderRanksPresenter extends BasePresenter {
-  public function actionReadAll(): void {
-    if(isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
-      return;
+final class OrderRanksPresenter extends BasePresenter
+{
+    public function actionReadAll(): void
+    {
+        if (isset($this->params["associations"]) && count($this->params["associations"]) > 0) {
+            return;
+        }
+        $records = $this->orm->orderRanks->findAll();
+        $this->sendCollection($records);
     }
-    $records = $this->orm->orderRanks->findAll();
-    $this->sendCollection($records);
-  }
 
-  public function actionRead(): void {
-    $record = $this->orm->orderRanks->getById($this->getId());
-    $this->sendEntity($record);
-  }
+    public function actionRead(): void
+    {
+        $record = $this->orm->orderRanks->getById($this->getId());
+        $this->sendEntity($record);
+    }
 }
-?>

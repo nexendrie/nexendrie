@@ -12,27 +12,31 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|PollVote[] findBy(array $conds)
  * @method ICollection|PollVote[] findAll()
  */
-final class PollVotesRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [PollVote::class];
-  }
+final class PollVotesRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [PollVote::class];
+    }
 
-  public function getByPollAndUser(Poll|int $poll, User|int $user): ?PollVote {
-    return $this->getBy(["poll" => $poll, "user" => $user]);
-  }
-  
-  /**
-   * @return ICollection|PollVote[]
-   */
-  public function findByPoll(Poll|int $poll): ICollection {
-    return $this->findBy(["poll" => $poll]);
-  }
-  
-  /**
-   * @return ICollection|PollVote[]
-   */
-  public function findByUser(User|int $user): ICollection {
-    return $this->findBy(["user" => $user]);
-  }
+    public function getByPollAndUser(Poll|int $poll, User|int $user): ?PollVote
+    {
+        return $this->getBy(["poll" => $poll, "user" => $user]);
+    }
+
+    /**
+     * @return ICollection|PollVote[]
+     */
+    public function findByPoll(Poll|int $poll): ICollection
+    {
+        return $this->findBy(["poll" => $poll]);
+    }
+
+    /**
+     * @return ICollection|PollVote[]
+     */
+    public function findByUser(User|int $user): ICollection
+    {
+        return $this->findBy(["user" => $user]);
+    }
 }
-?>

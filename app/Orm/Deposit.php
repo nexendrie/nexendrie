@@ -19,27 +19,31 @@ namespace Nexendrie\Orm;
  * @property-read int $interest {virtual}
  * @property-read bool $due {virtual}
  */
-final class Deposit extends BaseEntity {
-  private \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function getterTermT(): string {
-    return $this->localeModel->formatDateTime($this->term);
-  }
-  
-  protected function getterInterest(): int {
-    $start = $this->created;
-    $end = $this->term;
-    $duration = ($end - $start) / (60 * 60 * 24);
-    $interest = (int) ($this->amount * $this->interestRate * $duration / 36500);
-    return max([1, $interest]);
-  }
-  
-  protected function getterDue(): bool {
-    return (time() >= $this->term);
-  }
+final class Deposit extends BaseEntity
+{
+    private \Nexendrie\Model\Locale $localeModel;
+
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
+    }
+
+    protected function getterTermT(): string
+    {
+        return $this->localeModel->formatDateTime($this->term);
+    }
+
+    protected function getterInterest(): int
+    {
+        $start = $this->created;
+        $end = $this->term;
+        $duration = ($end - $start) / (60 * 60 * 24);
+        $interest = (int) ($this->amount * $this->interestRate * $duration / 36500);
+        return max([1, $interest]);
+    }
+
+    protected function getterDue(): bool
+    {
+        return (time() >= $this->term);
+    }
 }
-?>

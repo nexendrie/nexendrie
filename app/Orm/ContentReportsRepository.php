@@ -14,9 +14,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|ContentReport[] findBy(array $conds)
  * @method ICollection|ContentReport[] findAll()
  */
-final class ContentReportsRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [ContentReport::class];
-  }
+final class ContentReportsRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [ContentReport::class];
+    }
 }
-?>

@@ -16,7 +16,6 @@ namespace Nexendrie\Orm;
  * @property User $user {m:1 User::$notificationQueue}
  * @property int $created
  */
-final class Notification extends BaseEntity {
-
+final class Notification extends BaseEntity
+{
 }
-?>

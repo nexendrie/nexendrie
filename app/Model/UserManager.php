@@ -15,170 +15,179 @@ use Nette\InvalidArgumentException;
  *
  * @author Jakub Konečný
  */
-final class UserManager {
-  private array $roles = [];
-  private array $newUser;
-  private bool $openRegistration;
-  /** Exception error code */
-  public const REG_DUPLICATE_NAME = 1,
-    REG_DUPLICATE_EMAIL = 2,
-    SET_INVALID_PASSWORD = 3,
-    REG_EMAIL_NOT_INVITED = 4;
+final class UserManager
+{
+    private array $roles = [];
+    private array $newUser;
+    private bool $openRegistration;
+    /** Exception error code */
+    public const REG_DUPLICATE_NAME = 1,
+        REG_DUPLICATE_EMAIL = 2,
+        SET_INVALID_PASSWORD = 3,
+        REG_EMAIL_NOT_INVITED = 4;
 
-  public function __construct(private readonly ORM $orm, SettingsRepository $sr, private readonly User $user, private readonly Passwords $passwords, private readonly Invitations $invitations) {
-    $this->roles = $sr->settings["roles"];
-    $this->newUser = $sr->settings["newUser"];
-    $this->openRegistration = $sr->settings["registration"]["open"];
-  }
+    public function __construct(private readonly ORM $orm, SettingsRepository $sr, private readonly User $user, private readonly Passwords $passwords, private readonly Invitations $invitations)
+    {
+        $this->roles = $sr->settings["roles"];
+        $this->newUser = $sr->settings["newUser"];
+        $this->openRegistration = $sr->settings["registration"]["open"];
+    }
 
-  /**
-   * Checks whether a name is available
-   *
-   * @param int|null $uid Id of user who can use the name
-   * @throws InvalidArgumentException
-   */
-  public function nameAvailable(string $name, ?int $uid = null): bool {
-    $row = $this->orm->users->getByPublicname($name);
-    if($row === null) {
-      return true;
-    } elseif(!is_int($uid)) {
-      return false;
-    } elseif($row->id === $uid) {
-      return true;
+    /**
+     * Checks whether a name is available
+     *
+     * @param int|null $uid Id of user who can use the name
+     * @throws InvalidArgumentException
+     */
+    public function nameAvailable(string $name, ?int $uid = null): bool
+    {
+        $row = $this->orm->users->getByPublicname($name);
+        if ($row === null) {
+            return true;
+        } elseif (!is_int($uid)) {
+            return false;
+        } elseif ($row->id === $uid) {
+            return true;
+        }
+        return false;
     }
-    return false;
-  }
 
-  /**
-   * Checks whether an e-mail is available
-   *
-   * @param int|null $uid Id of user who can use the e-mail
-   * @throws InvalidArgumentException
-   */
-  public function emailAvailable(string $email, int $uid = null): bool {
-    $row = $this->orm->users->getByEmail($email);
-    if($row === null) {
-      return true;
-    } elseif(!is_int($uid)) {
-      return false;
-    } elseif($row->id === $uid) {
-      return true;
+    /**
+     * Checks whether an e-mail is available
+     *
+     * @param int|null $uid Id of user who can use the e-mail
+     * @throws InvalidArgumentException
+     */
+    public function emailAvailable(string $email, int $uid = null): bool
+    {
+        $row = $this->orm->users->getByEmail($email);
+        if ($row === null) {
+            return true;
+        } elseif (!is_int($uid)) {
+            return false;
+        } elseif ($row->id === $uid) {
+            return true;
+        }
+        return false;
     }
-    return false;
-  }
 
-  /**
-   * Register new user
-   *
-   * @throws RegistrationException
-   */
-  public function register(array $data): void {
-    if (!$this->openRegistration && !$this->invitations->isInvited($data["email"])) {
-      throw new RegistrationException("Email not invited", self::REG_EMAIL_NOT_INVITED);
+    /**
+     * Register new user
+     *
+     * @throws RegistrationException
+     */
+    public function register(array $data): void
+    {
+        if (!$this->openRegistration && !$this->invitations->isInvited($data["email"])) {
+            throw new RegistrationException("Email not invited", self::REG_EMAIL_NOT_INVITED);
+        }
+        if (!$this->emailAvailable($data["email"])) {
+            throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
+        }
+        if (!$this->nameAvailable($data["publicname"])) {
+            throw new RegistrationException("Duplicate name.", self::REG_DUPLICATE_NAME);
+        }
+        $user = new UserEntity();
+        $this->orm->users->attach($user);
+        $data += $this->newUser;
+        foreach ($data as $key => $value) {
+            if ($key === "password") {
+                $value = $this->passwords->hash($data["password"]);
+            }
+            $user->$key = $value;
+        }
+        $user->group = $this->roles["loggedInRole"];
+        $this->orm->users->persistAndFlush($user);
     }
-    if(!$this->emailAvailable($data["email"])) {
-      throw new RegistrationException("Duplicate email.", self::REG_DUPLICATE_EMAIL);
-    }
-    if(!$this->nameAvailable($data["publicname"])) {
-      throw new RegistrationException("Duplicate name.", self::REG_DUPLICATE_NAME);
-    }
-    $user = new UserEntity();
-    $this->orm->users->attach($user);
-    $data += $this->newUser;
-    foreach($data as $key => $value) {
-      if($key === "password") {
-        $value = $this->passwords->hash($data["password"]);
-      }
-      $user->$key = $value;
-    }
-    $user->group = $this->roles["loggedInRole"];
-    $this->orm->users->persistAndFlush($user);
-  }
 
-  /**
-   * Get user's settings
-   *
-   * @throws AuthenticationNeededException
-   */
-  public function getSettings(): array {
-    if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException("This action requires authentication.");
+    /**
+     * Get user's settings
+     *
+     * @throws AuthenticationNeededException
+     */
+    public function getSettings(): array
+    {
+        if (!$this->user->isLoggedIn()) {
+            throw new AuthenticationNeededException("This action requires authentication.");
+        }
+        /** @var UserEntity $user */
+        $user = $this->orm->users->getById($this->user->id);
+        $settings = [
+            "publicname" => $user->publicname, "email" => $user->email, "style" => $user->style, "gender" => $user->gender,
+            "notifications" => $user->notifications, "api" => $user->api,
+        ];
+        return $settings;
     }
-    /** @var UserEntity $user */
-    $user = $this->orm->users->getById($this->user->id);
-    $settings = [
-      "publicname" => $user->publicname, "email" => $user->email, "style" => $user->style, "gender" => $user->gender,
-      "notifications" => $user->notifications, "api" => $user->api,
-    ];
-    return $settings;
-  }
 
-  /**
-   * Change user's settings
-   *
-   * @throws AuthenticationNeededException
-   * @throws SettingsException
-   */
-  public function changeSettings(array $settings): void {
-    if(!$this->user->isLoggedIn()) {
-      throw new AuthenticationNeededException("This action requires authentication.");
+    /**
+     * Change user's settings
+     *
+     * @throws AuthenticationNeededException
+     * @throws SettingsException
+     */
+    public function changeSettings(array $settings): void
+    {
+        if (!$this->user->isLoggedIn()) {
+            throw new AuthenticationNeededException("This action requires authentication.");
+        }
+        if (!$this->nameAvailable($settings["publicname"], $this->user->id)) {
+            throw new SettingsException("The name is used by someone else.", self::REG_DUPLICATE_NAME);
+        }
+        if (!$this->emailAvailable($settings["email"], $this->user->id)) {
+            throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
+        }
+        $settings = array_filter($settings, static function ($value) {
+            return $value !== null && $value !== "";
+        });
+        /** @var UserEntity $user */
+        $user = $this->orm->users->getById($this->user->id);
+        foreach ($settings as $key => $value) {
+            switch ($key) {
+                case "password_new":
+                    if (!$this->passwords->verify($settings["password_old"], $user->password)) {
+                        throw new SettingsException("Invalid password.", self::SET_INVALID_PASSWORD);
+                    }
+                    $user->password = $this->passwords->hash($value);
+                    unset($settings[$key], $settings["password_old"], $settings["password_check"]);
+                    break;
+            }
+            $skip = ["password_old", "password_new", "password_check"];
+            if (!in_array($key, $skip, true)) {
+                $user->$key = $value;
+            }
+        }
+        $this->orm->users->persistAndFlush($user);
     }
-    if(!$this->nameAvailable($settings["publicname"], $this->user->id)) {
-      throw new SettingsException("The name is used by someone else.", self::REG_DUPLICATE_NAME);
-    }
-    if(!$this->emailAvailable($settings["email"], $this->user->id)) {
-      throw new SettingsException("The e-mail is used by someone else.", self::REG_DUPLICATE_EMAIL);
-    }
-    $settings = array_filter($settings, static function($value) {
-      return $value !== null && $value !== "";
-    });
-    /** @var UserEntity $user */
-    $user = $this->orm->users->getById($this->user->id);
-    foreach($settings as $key => $value) {
-      switch($key) {
-        case "password_new":
-          if(!$this->passwords->verify($settings["password_old"], $user->password)) {
-            throw new SettingsException("Invalid password.", self::SET_INVALID_PASSWORD);
-          }
-          $user->password = $this->passwords->hash($value);
-          unset($settings[$key], $settings["password_old"], $settings["password_check"]);
-          break;
-      }
-      $skip = ["password_old", "password_new", "password_check"];
-      if(!in_array($key, $skip, true)) {
-        $user->$key = $value;
-      }
-    }
-    $this->orm->users->persistAndFlush($user);
-  }
 
-  /**
-   * Get list of all users
-   *
-   * @return UserEntity[]|ICollection
-   */
-  public function listOfUsers(): ICollection {
-    return $this->orm->users->findAll()->orderBy("group")->orderBy("id");
-  }
-
-  /**
-   * @throws UserNotFoundException
-   */
-  public function edit(int $id, array $values): void {
-    try {
-      $user = $this->get($id);
-    } catch(UserNotFoundException $e) {
-      throw $e;
+    /**
+     * Get list of all users
+     *
+     * @return UserEntity[]|ICollection
+     */
+    public function listOfUsers(): ICollection
+    {
+        return $this->orm->users->findAll()->orderBy("group")->orderBy("id");
     }
-    foreach($values as $key => $value) {
-      $user->$key = $value;
-    }
-    $this->orm->users->persistAndFlush($user);
-  }
 
-  public function get(int $id): UserEntity {
-    $user = $this->orm->users->getById($id);
-    return $user ?? throw new UserNotFoundException();
-  }
+    /**
+     * @throws UserNotFoundException
+     */
+    public function edit(int $id, array $values): void
+    {
+        try {
+            $user = $this->get($id);
+        } catch (UserNotFoundException $e) {
+            throw $e;
+        }
+        foreach ($values as $key => $value) {
+            $user->$key = $value;
+        }
+        $this->orm->users->persistAndFlush($user);
+    }
+
+    public function get(int $id): UserEntity
+    {
+        $user = $this->orm->users->getById($id);
+        return $user ?? throw new UserNotFoundException();
+    }
 }
-?>

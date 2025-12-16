@@ -28,63 +28,76 @@ use Nexendrie\Utils\Numbers;
  * @property OneHasMany|Adventure[] $adventures {1:m Adventure::$event}
  * @property-read bool $active {virtual}
  */
-final class Event extends BaseEntity {
-  private \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function getterStartAt(): string {
-    return $this->localeModel->formatDateTime($this->start);
-  }
-  
-  protected function setterEnd(int $value): int {
-    if($value < $this->start) {
-      return $this->start;
+final class Event extends BaseEntity
+{
+    private \Nexendrie\Model\Locale $localeModel;
+
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
     }
-    return $value;
-  }
-  
-  protected function getterEndAt(): string {
-    return $this->localeModel->formatDateTime($this->end);
-  }
-  
-  protected function setterAdventuresBonus(int $value): int {
-    return Numbers::range($value, 0, 999);
-  }
-  
-  protected function setterWorkBonus(int $value): int {
-    return Numbers::range($value, 0, 999);
-  }
-  
-  protected function setterPrayerLifeBonus(int $value): int {
-    return Numbers::range($value, 0, 999);
-  }
-  
-  protected function setterTrainingDiscount(int $value): int {
-    return Numbers::range($value, 0, 100);
-  }
-  
-  protected function setterRepairingDiscount(int $value): int {
-    return Numbers::range($value, 0, 100);
-  }
-  
-  protected function setterShoppingDiscount(int $value): int {
-    return Numbers::range($value, 0, 100);
-  }
-  
-  protected function getterActive(): bool {
-    $time = time();
-    return ($this->start <= $time && $this->end >= $time);
-  }
-  
-  public function dummy(): EventDummy {
-    return new EventDummy($this);
-  }
-  
-  public function dummyArray(): array {
-    return $this->dummy()->toArray();
-  }
+
+    protected function getterStartAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->start);
+    }
+
+    protected function setterEnd(int $value): int
+    {
+        if ($value < $this->start) {
+            return $this->start;
+        }
+        return $value;
+    }
+
+    protected function getterEndAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->end);
+    }
+
+    protected function setterAdventuresBonus(int $value): int
+    {
+        return Numbers::range($value, 0, 999);
+    }
+
+    protected function setterWorkBonus(int $value): int
+    {
+        return Numbers::range($value, 0, 999);
+    }
+
+    protected function setterPrayerLifeBonus(int $value): int
+    {
+        return Numbers::range($value, 0, 999);
+    }
+
+    protected function setterTrainingDiscount(int $value): int
+    {
+        return Numbers::range($value, 0, 100);
+    }
+
+    protected function setterRepairingDiscount(int $value): int
+    {
+        return Numbers::range($value, 0, 100);
+    }
+
+    protected function setterShoppingDiscount(int $value): int
+    {
+        return Numbers::range($value, 0, 100);
+    }
+
+    protected function getterActive(): bool
+    {
+        $time = time();
+        return ($this->start <= $time && $this->end >= $time);
+    }
+
+    public function dummy(): EventDummy
+    {
+        return new EventDummy($this);
+    }
+
+    public function dummyArray(): array
+    {
+        return $this->dummy()->toArray();
+    }
 }
-?>

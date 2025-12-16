@@ -14,15 +14,17 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|OrderFee[] findBy(array $conds)
  * @method ICollection|OrderFee[] findAll()
  */
-final class OrderFeesRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [OrderFee::class];
-  }
+final class OrderFeesRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [OrderFee::class];
+    }
 
-  public function getByUserAndOrder(User|int $user, Order|int $order): ?OrderFee {
-    return $this->getBy([
-      "user" => $user, "order" => $order,
-    ]);
-  }
+    public function getByUserAndOrder(User|int $user, Order|int $order): ?OrderFee
+    {
+        return $this->getBy([
+            "user" => $user, "order" => $order,
+        ]);
+    }
 }
-?>

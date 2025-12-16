@@ -12,9 +12,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|OrderRank[] findBy(array $conds)
  * @method ICollection|OrderRank[] findAll()
  */
-final class OrderRanksRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [OrderRank::class];
-  }
+final class OrderRanksRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [OrderRank::class];
+    }
 }
-?>

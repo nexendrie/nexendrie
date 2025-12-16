@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Chat;
 
-interface IGuildChatControlFactory extends IChatControlFactory {
-  public function create(): GuildChatControl;
+interface IGuildChatControlFactory extends IChatControlFactory
+{
+    public function create(): GuildChatControl;
 }
-?>

@@ -26,38 +26,43 @@ use Nexendrie\Utils\Numbers;
  * @property-read int $upgradePrice {virtual}
  * @property-read int $jobBonusIncome {virtual}
  */
-final class Guild extends BaseEntity {
-  public const MAX_LEVEL = 6;
-  public const BASE_UPGRADE_PRICE = 700;
-  public const JOB_INCOME_BONUS_PER_LEVEL = 1;
+final class Guild extends BaseEntity
+{
+    public const MAX_LEVEL = 6;
+    public const BASE_UPGRADE_PRICE = 700;
+    public const JOB_INCOME_BONUS_PER_LEVEL = 1;
 
-  private \Nexendrie\Model\Locale $localeModel;
-  
-  public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void {
-    $this->localeModel = $localeModel;
-  }
-  
-  protected function setterLevel(int $value): int {
-    return Numbers::range($value, 1, self::MAX_LEVEL);
-  }
-  
-  protected function getterCreatedAt(): string {
-    return $this->localeModel->formatDateTime($this->created);
-  }
-  
-  protected function getterUpgradePrice(): int {
-    if($this->level === self::MAX_LEVEL) {
-      return 0;
-    }
-    $price = self::BASE_UPGRADE_PRICE;
-    for($i = 2; $i < $this->level + 1; $i++) {
-      $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
-    }
-    return $price;
-  }
+    private \Nexendrie\Model\Locale $localeModel;
 
-  protected function getterJobBonusIncome(): int {
-    return ($this->level - 1) * self::JOB_INCOME_BONUS_PER_LEVEL;
-  }
+    public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
+    {
+        $this->localeModel = $localeModel;
+    }
+
+    protected function setterLevel(int $value): int
+    {
+        return Numbers::range($value, 1, self::MAX_LEVEL);
+    }
+
+    protected function getterCreatedAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->created);
+    }
+
+    protected function getterUpgradePrice(): int
+    {
+        if ($this->level === self::MAX_LEVEL) {
+            return 0;
+        }
+        $price = self::BASE_UPGRADE_PRICE;
+        for ($i = 2; $i < $this->level + 1; $i++) {
+            $price += (int) (self::BASE_UPGRADE_PRICE / self::MAX_LEVEL);
+        }
+        return $price;
+    }
+
+    protected function getterJobBonusIncome(): int
+    {
+        return ($this->level - 1) * self::JOB_INCOME_BONUS_PER_LEVEL;
+    }
 }
-?>

@@ -8,9 +8,10 @@ namespace Nexendrie\Cron;
  *
  * @author Jakub Konečný
  */
-abstract class BaseMonthlyCronTask {
-  public function isDue(\DateTime $date): bool {
-    return ((int) ($date->format("j")) === 1);
-  }
+abstract class BaseMonthlyCronTask
+{
+    public function isDue(\DateTime $date): bool
+    {
+        return ((int) ($date->format("j")) === 1);
+    }
 }
-?>

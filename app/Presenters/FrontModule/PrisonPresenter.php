@@ -11,20 +11,22 @@ use Nexendrie\Components\PrisonControl;
  *
  * @author Jakub Konečný
  */
-final class PrisonPresenter extends BasePresenter {
-  protected bool $cachingEnabled = false;
+final class PrisonPresenter extends BasePresenter
+{
+    protected bool $cachingEnabled = false;
 
-  protected function startup(): void {
-    parent::startup();
-    if(!$this->user->isLoggedIn()) {
-      $this->redirect("Homepage:");
-    } elseif(!$this->user->identity->banned) {
-      $this->redirect("Homepage:");
+    protected function startup(): void
+    {
+        parent::startup();
+        if (!$this->user->isLoggedIn()) {
+            $this->redirect("Homepage:");
+        } elseif (!$this->user->identity->banned) {
+            $this->redirect("Homepage:");
+        }
     }
-  }
-  
-  protected function createComponentPrison(IPrisonControlFactory $factory): PrisonControl {
-    return $factory->create();
-  }
+
+    protected function createComponentPrison(IPrisonControlFactory $factory): PrisonControl
+    {
+        return $factory->create();
+    }
 }
-?>

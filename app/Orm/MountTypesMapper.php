@@ -9,6 +9,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<MountType>
  */
-final class MountTypesMapper extends DbalMapper {
+final class MountTypesMapper extends DbalMapper
+{
 }
-?>

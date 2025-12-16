@@ -12,9 +12,10 @@ use Nextras\Orm\Collection\ICollection;
  * @method ICollection|MountType[] findBy(array $conds)
  * @method ICollection|MountType[] findAll()
  */
-final class MountTypesRepository extends \Nextras\Orm\Repository\Repository {
-  public static function getEntityClassNames(): array {
-    return [MountType::class];
-  }
+final class MountTypesRepository extends \Nextras\Orm\Repository\Repository
+{
+    public static function getEntityClassNames(): array
+    {
+        return [MountType::class];
+    }
 }
-?>

@@ -9,9 +9,10 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<BeerProduction>
  */
-final class BeerProductionMapper extends DbalMapper {
-  public function getTableName(): string {
-    return "beer_production";
-  }
+final class BeerProductionMapper extends DbalMapper
+{
+    public function getTableName(): string
+    {
+        return "beer_production";
+    }
 }
-?>

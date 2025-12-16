@@ -9,6 +9,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<ItemSet>
  */
-final class ItemSetsMapper extends DbalMapper {
+final class ItemSetsMapper extends DbalMapper
+{
 }
-?>

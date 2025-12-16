@@ -24,7 +24,6 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property OneHasMany|UserJob[] $userJobs {1:m UserJob::$job}
  * @property OneHasMany|JobMessage[] $messages {1:m JobMessage::$job}
  */
-final class Job extends BaseEntity {
-
+final class Job extends BaseEntity
+{
 }
-?>

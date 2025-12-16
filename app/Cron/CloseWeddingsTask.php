@@ -12,28 +12,30 @@ use Nexendrie\Orm\Model as ORM;
  *
  * @author Jakub Konečný
  */
-final class CloseWeddingsTask {
-  public function __construct(private readonly ORM $orm, private readonly Marriage $marriageModel) {
-  }
-  
-  /**
-   * @cronner-task(Close weddings)
-   * @cronner-period(1 hour)
-   */
-  public function run(): void {
-    echo "Starting closing weddings ...\n";
-    $weddings = $this->orm->marriages->findOpenWeddings();
-    foreach($weddings as $wedding) {
-      if(!$this->marriageModel->canFinish($wedding)) {
-        echo "Wedding (#$wedding->id) cannot be finished!\n";
-        continue;
-      }
-      echo "Closed wedding (#$wedding->id).\n";
-      $wedding->status = MarriageEntity::STATUS_ACTIVE;
-      $this->orm->marriages->persist($wedding);
+final class CloseWeddingsTask
+{
+    public function __construct(private readonly ORM $orm, private readonly Marriage $marriageModel)
+    {
     }
-    $this->orm->flush();
-    echo "Finished closing weddings ...\n";
-  }
+
+    /**
+     * @cronner-task(Close weddings)
+     * @cronner-period(1 hour)
+     */
+    public function run(): void
+    {
+        echo "Starting closing weddings ...\n";
+        $weddings = $this->orm->marriages->findOpenWeddings();
+        foreach ($weddings as $wedding) {
+            if (!$this->marriageModel->canFinish($wedding)) {
+                echo "Wedding (#$wedding->id) cannot be finished!\n";
+                continue;
+            }
+            echo "Closed wedding (#$wedding->id).\n";
+            $wedding->status = MarriageEntity::STATUS_ACTIVE;
+            $this->orm->marriages->persist($wedding);
+        }
+        $this->orm->flush();
+        echo "Finished closing weddings ...\n";
+    }
 }
-?>

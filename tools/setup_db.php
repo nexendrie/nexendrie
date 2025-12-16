@@ -13,4 +13,3 @@ $config = new Config(require __DIR__ . "/../phinx.php");
 $manager = new Manager($config, new StringInput(" "), new ConsoleOutput());
 $manager->migrate($environment);
 $manager->seed($environment);
-?>
