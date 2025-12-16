@@ -35,17 +35,15 @@ final class AddEditItemFormFactory
             ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 30 znaků.", 30);
         $form->addTextArea("description", "Popis:")
             ->setRequired("Zadej popis.");
-        $form->addText("price", "Cena:")
+        $form->addInteger("price", "Cena:")
             ->setRequired("Zadej cenu.")
-            ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
             ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999.", [0, 999]);
         $form->addSelect("shop", "Obchod:", $this->getShops())
             ->setPrompt("žádný");
         $form->addSelect("type", "Typ:", Item::getTypes())
             ->setRequired("Vyber typ.");
-        $form->addText("strength", "Síla:")
+        $form->addInteger("strength", "Síla:")
             ->setRequired("Zadej síla.")
-            ->addRule(Form::INTEGER, "Síla musí být celé číslo.")
             ->addRule(Form::RANGE, "Síla musí být v rozmezí 0-999.", [0, 999])
             ->setValue(0);
         $form->addSubmit("submit", "Odeslat");

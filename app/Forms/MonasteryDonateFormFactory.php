@@ -22,9 +22,8 @@ final class MonasteryDonateFormFactory
     public function create(): Form
     {
         $form = new Form();
-        $form->addText("amount", "Množství:")
+        $form->addInteger("amount", "Množství:")
             ->setRequired("Zadej množství.")
-            ->addRule(Form::INTEGER, "Množství musí být celé číslo")
             ->addRule(Form::MIN, "Musíš darovat minimálně 1 groš.", 1);
         $form->addSubmit("submit", "Darovat");
         $form->onSuccess[] = $this->process(...);

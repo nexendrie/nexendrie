@@ -22,9 +22,8 @@ final class OpenDepositAccountFormFactory
     {
         $maxDeposit = $this->model->maxDeposit();
         $form = new Form();
-        $form->addText("amount", "Částka:")
+        $form->addInteger("amount", "Částka:")
             ->setRequired("Zadej částku.")
-            ->addRule(Form::INTEGER, "Částka musí být celé číslo.")
             ->addRule(Form::RANGE, "Částka musí být v rozmezí 1-$maxDeposit.", [1, $maxDeposit]);
         $term = new DateControl("Termín:");
         $term->setRequired("Zadej datum.");

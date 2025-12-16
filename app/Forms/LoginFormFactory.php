@@ -22,7 +22,7 @@ final class LoginFormFactory
     public function create(): Form
     {
         $form = new Form();
-        $form->addText("email", "E-mail:")
+        $form->addEmail("email", "E-mail:")
             ->setRequired("Zadej e-mail.");
         $form->addPassword("password", "Heslo:")
             ->setRequired("Zadej heslo.");

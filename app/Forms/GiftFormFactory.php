@@ -51,8 +51,7 @@ final class GiftFormFactory
         $form = new Form();
         $form->addSelect("user", "Uživatel:", $this->getUsersList())
             ->setRequired("Vyber uživatele.");
-        $form->addText("money", "Peníze:")
-            ->addRule(Form::INTEGER, "Zadej celé číslo.")
+        $form->addInteger("money", "Peníze:")
             ->addRule(Form::RANGE, "Zadej číslo v rozmezí 0-2000.", [0, 2000])
             ->setValue(0)
             ->setRequired("Zadej částku.");

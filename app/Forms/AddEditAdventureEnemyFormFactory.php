@@ -18,29 +18,23 @@ final class AddEditAdventureEnemyFormFactory
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
             ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 20 znaků.", 20);
-        $form->addText("order", "Pořadí:")
+        $form->addInteger("order", "Pořadí:")
             ->setRequired("Zadej pořadí.")
-            ->addRule(Form::INTEGER, "Pořadí musí být celé číslo.")
             ->addRule(Form::RANGE, "Pořadí musí být v rozmezí 1-9.", [1, 9]);
-        $form->addText("hitpoints", "Životy:")
+        $form->addInteger("hitpoints", "Životy:")
             ->setRequired("Zadej počet životů.")
-            ->addRule(Form::INTEGER, "Počet životů musí být celé číslo.")
             ->addRule(Form::RANGE, "Počet životů musí být v rozmezí 1-999.", [1, 999]);
-        $form->addText("strength", "Síla:")
+        $form->addInteger("strength", "Síla:")
             ->setRequired("Zadej sílu.")
-            ->addRule(Form::INTEGER, "Síla musí být celé číslo.")
             ->addRule(Form::RANGE, "Síla musí být v rozmezí 1-99.", [1, 99]);
-        $form->addText("armor", "Brnění:")
+        $form->addInteger("armor", "Brnění:")
             ->setRequired("Zadej brnění.")
-            ->addRule(Form::INTEGER, "Brnění musí být celé číslo.")
             ->addRule(Form::RANGE, "Brnění musí být v rozmezí 0-99.", [0, 99]);
-        $form->addText("initiative", "Iniciativa:")
+        $form->addInteger("initiative", "Iniciativa:")
             ->setRequired("Zadej iniciativu.")
-            ->addRule(Form::INTEGER, "Iniciativa musí být celé číslo.")
             ->addRule(Form::RANGE, "Iniciativa musí být v rozmezí 0-99.", [0, 99]);
-        $form->addText("reward", "Odměna:")
+        $form->addInteger("reward", "Odměna:")
             ->setRequired("Zadej odměnu.")
-            ->addRule(Form::INTEGER, "Odměna musí být celé číslo.")
             ->addRule(Form::RANGE, "Odměna musí být v rozmezí 1-999.", [1, 999]);
         $form->addTextArea("encounterText", "Text při střetnutí:")
             ->setRequired("Zadej zext při střetnutí.");

@@ -27,14 +27,12 @@ final class AddEditSkillFormFactory
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
             ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 20 znaků.", 20);
-        $form->addText("price", "Cena:")
+        $form->addInteger("price", "Cena:")
             ->setRequired("Zadej cenu.")
-            ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
             ->addRule(Form::RANGE, "Cena musí být v rozmezí 1-999.", [1, 999])
             ->setOption("description", "Cena na první úrovni");
-        $form->addText("maxLevel", "Úrovní:")
+        $form->addInteger("maxLevel", "Úrovní:")
             ->setRequired("Zadej počet úrovní.")
-            ->addRule(Form::INTEGER, "Počet úrovní musí být celé číslo.")
             ->addRule(Form::RANGE, "Počet úrovní musí být v rozmezí 1-99.", [1, 99])
             ->setValue(5);
         $type = $form->addSelect("type", "Typ:", SkillEntity::getTypes())
@@ -45,11 +43,10 @@ final class AddEditSkillFormFactory
             ->setRequired("Vyber vlasnost.")
             ->elseCondition()
             ->addRule(Form::BLANK, "Neplatná kombinace: vybrána vlastnost u pracovní dovednosti.");
-        $form->addText("statIncrease", "Vylepšení vlastnosti:")
+        $form->addInteger("statIncrease", "Vylepšení vlastnosti:")
             ->setValue(0)
             ->setRequired()
             ->addConditionOn($type, Form::EQUAL, SkillEntity::TYPE_COMBAT)
-            ->addRule(Form::INTEGER, "Vylepšení vlastnosti musí být celé číslo.")
             ->addRule(Form::RANGE, "Vylepšení vlastnosti musí být v rozmezí 1-99.", [1, 99])
             ->elseCondition()
             ->addRule(Form::EQUAL, "Neplatná kombinace: vylepšení dovednosti musí být 0 u pracovní dovednosti.", 0);

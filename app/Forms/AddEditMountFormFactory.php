@@ -45,9 +45,8 @@ final class AddEditMountFormFactory
             ->setValue(Mount::GENDER_YOUNG);
         $form->addSelect("type", "Druh:", $this->getMountTypes())
             ->setRequired("Vyber druh.");
-        $form->addText("price", "Cena:")
+        $form->addInteger("price", "Cena:")
             ->setRequired("Zadej cenu.")
-            ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
             ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", [0, 999999])
             ->setValue(0);
         $form->addSubmit("submit", "Odeslat");

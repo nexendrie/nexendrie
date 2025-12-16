@@ -34,8 +34,7 @@ final class UserSettingsFormFactory
         $form->addText("publicname", "Zobrazované jméno:")
             ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25)
             ->setRequired("Zadej jméno.");
-        $form->addText("email", "E-mail:")
-            ->addRule(Form::EMAIL, "Zadej platný e-mail.")
+        $form->addEmail("email", "E-mail:")
             ->setRequired("Zadej e-mail.");
         $form->addRadioList("gender", "Pohlaví:", UserEntity::getGenders())
             ->setRequired("Vyber pohlaví.");

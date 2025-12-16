@@ -51,9 +51,8 @@ final class AddEditItemSetFormFactory
             ->setPrompt("");
         $form->addSelect("stat", "Vlastnost:", ItemSet::getStats())
             ->setRequired("Vyber vlastnost.");
-        $form->addText("bonus", "Velikost bonusu:")
+        $form->addInteger("bonus", "Velikost bonusu:")
             ->setRequired("Zadej velikost bonusu.")
-            ->addRule(Form::INTEGER, "Velikost bonusu musí být celé číslo.")
             ->addRule(Form::RANGE, "Velikost bonusu musí být v rozmezí 0-99.", [0, 99])
             ->setValue(0);
         $form->addSubmit("submit", "Odeslat");

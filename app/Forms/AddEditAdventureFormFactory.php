@@ -44,14 +44,12 @@ final class AddEditAdventureFormFactory
             ->setRequired("Zadej úvodní text.");
         $form->addTextArea("epilogue", "Závěrečný text:")
             ->setRequired("Zadej zavérečný text.");
-        $form->addText("level", "Úroveň:")
+        $form->addInteger("level", "Úroveň:")
             ->setRequired("Zadej úroveň.")
-            ->addRule(Form::INTEGER, "Úroveň musí být celé číslo.")
             ->addRule(Form::RANGE, "Úroveň musí být v rozmezí 55-10000.", [55, 10000])
             ->setValue(55);
-        $form->addText("reward", "Odměna:")
+        $form->addInteger("reward", "Odměna:")
             ->setRequired("Zadej odměnu.")
-            ->addRule(Form::INTEGER, "Odměna musí být celé číslo.")
             ->addRule(Form::RANGE, "Odměna musí být v rozmezí 1-999.", [1, 999]);
         $form->addSelect("event", "Akce:", $this->getEvents())
             ->setPrompt("žádná");

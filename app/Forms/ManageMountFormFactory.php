@@ -28,9 +28,8 @@ final class ManageMountFormFactory
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
             ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25);
-        $form->addText("price", "Cena:")
+        $form->addInteger("price", "Cena:")
             ->setRequired("Zadej cenu.")
-            ->addRule(Form::INTEGER, "Cena musí být celé číslo.")
             ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", [0, 999999]);
         $form->addCheckbox("onMarket", "Na prodej");
         $form->addCheckbox("autoFeed", "Automaticky krmit");

@@ -21,9 +21,8 @@ final class TakeLoanFormFactory
     public function create(): Form
     {
         $form = new Form();
-        $form->addText("amount", "Částka:")
+        $form->addInteger("amount", "Částka:")
             ->setRequired("Zadej částku.")
-            ->addRule(Form::INTEGER, "Částka musí být celé číslo.")
             ->addRule(Form::MIN, "Částka musí být větší než 0.", 1);
         $form->addSubmit("submit", "Půjčit si");
         $form->onSuccess[] = $this->process(...);
