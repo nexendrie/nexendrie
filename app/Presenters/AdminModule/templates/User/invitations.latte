@@ -2,6 +2,11 @@
 {block title}Pozvánky{/block}
 {block content}
   <h1>Pozvánky</h1>
+  <button id="email-select">Vybrat z kontaktů</button>
+  <script src="/js/email-picker.js"></script>
+  <script>
+    emailPickerSetup("email-select", "frm-inviteUserForm-email")
+  </script>
   {control inviteUserForm}
   <br>
   <table>
