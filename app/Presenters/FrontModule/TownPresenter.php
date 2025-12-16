@@ -29,8 +29,14 @@ final class TownPresenter extends BasePresenter
     private \Nexendrie\Orm\Town $town;
     protected bool $cachingEnabled = false;
 
-    public function __construct(private readonly Town $model, private readonly UserManager $userManager, private readonly Profile $profileModel, private readonly Locale $localeModel, private readonly ORM $orm, private readonly ITownChatControlFactory $chatFactory)
-    {
+    public function __construct(
+        private readonly Town $model,
+        private readonly UserManager $userManager,
+        private readonly Profile $profileModel,
+        private readonly Locale $localeModel,
+        private readonly ORM $orm,
+        private readonly ITownChatControlFactory $chatFactory
+    ) {
         parent::__construct();
     }
 

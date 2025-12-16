@@ -19,8 +19,12 @@ final class WeddingControl extends \Nette\Application\UI\Control
     protected \Nette\Security\User $user;
     private MarriageEntity $marriage;
 
-    public function __construct(\Nexendrie\Model\Marriage $model, \Nexendrie\Orm\Model $orm, \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory)
-    {
+    public function __construct(
+        \Nexendrie\Model\Marriage $model,
+        \Nexendrie\Orm\Model $orm,
+        \Nette\Security\User $user,
+        IUserProfileLinkControlFactory $userProfileLinkControlFactory
+    ) {
         $this->model = $model;
         $this->orm = $orm;
         $this->user = $user;

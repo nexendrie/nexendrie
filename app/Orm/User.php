@@ -169,7 +169,9 @@ final class User extends BaseEntity
 
     protected function getterCompletedAdventures(): int
     {
-        return $this->adventures->toCollection()->findBy(["progress" => UserAdventure::PROGRESS_COMPLETED])->countStored();
+        return $this->adventures->toCollection()
+            ->findBy(["progress" => UserAdventure::PROGRESS_COMPLETED])
+            ->countStored();
     }
 
     protected function getterCompletedJobs(): int

@@ -23,8 +23,11 @@ final class HousePresenter extends BasePresenter
 {
     protected bool $publicCache = false;
 
-    public function __construct(private readonly House $model, private readonly Profile $profileModel, private readonly Locale $localeModel)
-    {
+    public function __construct(
+        private readonly House $model,
+        private readonly Profile $profileModel,
+        private readonly Locale $localeModel
+    ) {
         parent::__construct();
     }
 

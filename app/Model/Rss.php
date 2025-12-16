@@ -19,8 +19,12 @@ final class Rss
 {
     private string $versionSuffix = "";
 
-    public function __construct(private readonly Article $articleModel, private readonly LinkGenerator $linkGenerator, private readonly Generator $generator, SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly Article $articleModel,
+        private readonly LinkGenerator $linkGenerator,
+        private readonly Generator $generator,
+        SettingsRepository $sr
+    ) {
         $this->versionSuffix = $sr->settings["site"]["versionSuffix"];
     }
 
@@ -82,8 +86,8 @@ final class Rss
             foreach ($comments as $comment) {
                 $link = $articleLink . "#comment-$comment->id";
                 $return[] = new Item([
-                    "title" => $comment->title, "description" => $comment->text, "link" => $link, "pubDate" => $comment->created,
-                    "author" => $comment->author->publicname,
+                    "title" => $comment->title, "description" => $comment->text, "link" => $link,
+                    "pubDate" => $comment->created, "author" => $comment->author->publicname,
                 ]);
             }
             return $return;

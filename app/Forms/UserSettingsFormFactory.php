@@ -19,8 +19,11 @@ use Nexendrie\Orm\User as UserEntity;
  */
 final class UserSettingsFormFactory
 {
-    public function __construct(private readonly UserManager $model, private readonly ThemesManager $themesManager, private readonly LinkGenerator $linkGenerator)
-    {
+    public function __construct(
+        private readonly UserManager $model,
+        private readonly ThemesManager $themesManager,
+        private readonly LinkGenerator $linkGenerator
+    ) {
     }
 
     public function create(): Form

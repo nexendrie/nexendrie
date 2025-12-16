@@ -17,8 +17,11 @@ use Nexendrie\Model\Marriage;
  */
 final class ChroniclePresenter extends BasePresenter
 {
-    public function __construct(private readonly Chronicle $model, private readonly Events $eventsModel, private readonly Marriage $marriagesModel)
-    {
+    public function __construct(
+        private readonly Chronicle $model,
+        private readonly Events $eventsModel,
+        private readonly Marriage $marriagesModel
+    ) {
         parent::__construct();
     }
 

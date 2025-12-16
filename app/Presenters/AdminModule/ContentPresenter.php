@@ -24,8 +24,17 @@ use Nexendrie\Model\Town;
  */
 final class ContentPresenter extends BasePresenter
 {
-    public function __construct(private readonly Market $marketModel, private readonly Job $jobModel, private readonly Town $townModel, private readonly Mount $mountModel, private readonly Skills $skillsModel, private readonly Tavern $tavernModel, private readonly Adventure $adventureModel, private readonly ItemSet $itemSetModel, private readonly Moderation $moderationModel)
-    {
+    public function __construct(
+        private readonly Market $marketModel,
+        private readonly Job $jobModel,
+        private readonly Town $townModel,
+        private readonly Mount $mountModel,
+        private readonly Skills $skillsModel,
+        private readonly Tavern $tavernModel,
+        private readonly Adventure $adventureModel,
+        private readonly ItemSet $itemSetModel,
+        private readonly Moderation $moderationModel
+    ) {
         parent::__construct();
     }
 

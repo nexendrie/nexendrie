@@ -24,8 +24,12 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     protected bool $cachingEnabled = true;
     protected bool $publicCache = true;
 
-    public function __construct(protected readonly ORM $orm, protected readonly EntityConverter $entityConverter, protected readonly Tokens $tokens, protected readonly Authenticator $authenticator)
-    {
+    public function __construct(
+        protected readonly ORM $orm,
+        protected readonly EntityConverter $entityConverter,
+        protected readonly Tokens $tokens,
+        protected readonly Authenticator $authenticator
+    ) {
         parent::__construct();
     }
 
@@ -258,7 +262,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
             $this->resourceNotFound($this->getInvalidEntityName(), $this->getId());
         }
         $this->getHttpResponse()->setCode(IResponse::S204_NO_CONTENT);
-        $this->sendJson(["message" => Strings::firstUpper($this->getEntityName()) . " with id {$this->getId()} was deleted."]);
+        $this->sendJson(
+            ["message" => Strings::firstUpper($this->getEntityName()) . " with id {$this->getId()} was deleted."]
+        );
     }
 
     protected function addContentLengthHeader(array $payload): void

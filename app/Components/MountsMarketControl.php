@@ -18,8 +18,10 @@ use Nexendrie\Model\InsufficientFundsException;
  */
 final class MountsMarketControl extends \Nette\Application\UI\Control
 {
-    public function __construct(private readonly Mount $model, IUserProfileLinkControlFactory $userProfileLinkControlFactory)
-    {
+    public function __construct(
+        private readonly Mount $model,
+        IUserProfileLinkControlFactory $userProfileLinkControlFactory
+    ) {
         $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
     }
 

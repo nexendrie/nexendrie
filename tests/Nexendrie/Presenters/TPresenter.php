@@ -47,8 +47,12 @@ trait TPresenter
     /**
      * @throws \Exception
      */
-    protected function checkForward(string $destination, string $to = "", array $params = [], array $post = []): ForwardResponse
-    {
+    protected function checkForward(
+        string $destination,
+        string $to = "",
+        array $params = [],
+        array $post = []
+    ): ForwardResponse {
         /** @var ForwardResponse $response */ // @phpstan-ignore varTag.nativeType
         $response = $this->check($destination, $params, $post);
         if ($this->testbench_exception === null) {
@@ -68,8 +72,13 @@ trait TPresenter
      * @return RedirectResponse
      * @throws \Exception
      */
-    protected function checkSignal(string $destination, string $signal, array $params = [], array $post = [], bool|string $redirect = false): Response
-    {
+    protected function checkSignal(
+        string $destination,
+        string $signal,
+        array $params = [],
+        array $post = [],
+        bool|string $redirect = false
+    ): Response {
         return $this->checkRedirect($destination, $redirect, [
                 "do" => $signal,
             ] + $params, $post);

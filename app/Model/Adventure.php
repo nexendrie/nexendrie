@@ -25,8 +25,14 @@ final class Adventure
 
     private ?UserAdventureEntity $adventure = null;
 
-    public function __construct(private readonly CombatBase $combat, private readonly CombatHelper $combatHelper, private readonly Events $eventsModel, private readonly Order $orderModel, private readonly ORM $orm, private readonly \Nette\Security\User $user)
-    {
+    public function __construct(
+        private readonly CombatBase $combat,
+        private readonly CombatHelper $combatHelper,
+        private readonly Events $eventsModel,
+        private readonly Order $orderModel,
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user
+    ) {
     }
 
     /**

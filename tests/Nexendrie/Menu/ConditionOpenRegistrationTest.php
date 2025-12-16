@@ -25,10 +25,14 @@ final class ConditionOpenRegistrationTest extends \Tester\TestCase
     {
         /** @var ThemesManager $themeManager */
         $themeManager = $this->getService(ThemesManager::class);
-        $condition = new ConditionOpenRegistration(new SettingsRepository(["registration" => ["open" => true,]], $themeManager));
+        $condition = new ConditionOpenRegistration(
+            new SettingsRepository(["registration" => ["open" => true,]], $themeManager)
+        );
         Assert::same(true, $condition->isAllowed(true));
         Assert::same(false, $condition->isAllowed(false));
-        $condition = new ConditionOpenRegistration(new SettingsRepository(["registration" => ["open" => false,]], $themeManager));
+        $condition = new ConditionOpenRegistration(
+            new SettingsRepository(["registration" => ["open" => false,]], $themeManager)
+        );
         Assert::same(false, $condition->isAllowed(true));
         Assert::same(true, $condition->isAllowed(false));
     }

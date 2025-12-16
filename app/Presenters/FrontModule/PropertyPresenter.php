@@ -37,8 +37,14 @@ final class PropertyPresenter extends BasePresenter
     private TownEntity $town;
     protected bool $cachingEnabled = false;
 
-    public function __construct(private readonly Property $model, private readonly Town $townModel, private readonly Locale $localeModel, private readonly Inventory $inventoryModel, private readonly CombatHelper $combatModel, private readonly UserManager $userManager)
-    {
+    public function __construct(
+        private readonly Property $model,
+        private readonly Town $townModel,
+        private readonly Locale $localeModel,
+        private readonly Inventory $inventoryModel,
+        private readonly CombatHelper $combatModel,
+        private readonly UserManager $userManager
+    ) {
         parent::__construct();
     }
 

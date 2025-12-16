@@ -16,8 +16,11 @@ final class Locale
 {
     public readonly array $formats;
 
-    public function __construct(SettingsRepository $sr, private readonly Translator $translator, private readonly User $user)
-    {
+    public function __construct(
+        SettingsRepository $sr,
+        private readonly Translator $translator,
+        private readonly User $user
+    ) {
         $this->formats = $sr->settings["locale"];
     }
 

@@ -37,8 +37,11 @@ final class MarriagePresenter extends BasePresenter
     private MarriageEntity $marriage;
     protected bool $publicCache = false;
 
-    public function __construct(private readonly Marriage $model, private readonly Inventory $inventoryModel, private readonly Locale $localeModel)
-    {
+    public function __construct(
+        private readonly Marriage $model,
+        private readonly Inventory $inventoryModel,
+        private readonly Locale $localeModel
+    ) {
         parent::__construct();
     }
 

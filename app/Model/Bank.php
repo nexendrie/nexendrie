@@ -18,8 +18,11 @@ final class Bank
     private int $loanInterest;
     private int $depositInterest;
 
-    public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user,
+        SettingsRepository $sr
+    ) {
         $this->loanInterest = $sr->settings["fees"]["loanInterest"];
         $this->depositInterest = $sr->settings["fees"]["depositInterest"];
     }

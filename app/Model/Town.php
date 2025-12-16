@@ -19,8 +19,11 @@ final class Town
     private int $foundingPrice;
     private int $foundingCharter;
 
-    public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user,
+        SettingsRepository $sr
+    ) {
         $this->foundingPrice = $sr->settings["fees"]["foundTown"];
         $this->foundingCharter = $sr->settings["specialItems"]["foundTown"];
     }

@@ -11,8 +11,13 @@ final class OpenSearch
     {
     }
 
-    public function createDescription(string $shortName, string $longName, string $description, string $tags, string $searchType): string
-    {
+    public function createDescription(
+        string $shortName,
+        string $longName,
+        string $description,
+        string $tags,
+        string $searchType
+    ): string {
         /** @var \SimpleXMLElement $xml */
         $xml = simplexml_load_file(__DIR__ . "/openSearchDescription.xml");
         $xml->ShortName .= $shortName;

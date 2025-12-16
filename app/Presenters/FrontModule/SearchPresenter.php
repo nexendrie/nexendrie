@@ -49,13 +49,25 @@ final class SearchPresenter extends BasePresenter
 
     public function actionUsers(): void
     {
-        $description = $this->openSearch->createDescription("Uživatelé", "Uživatelé", "Hledat v uživatelích", "uživatelé", "users");
+        $description = $this->openSearch->createDescription(
+            "Uživatelé",
+            "Uživatelé",
+            "Hledat v uživatelích",
+            "uživatelé",
+            "users"
+        );
         $this->sendOpenSearchDescriptionResponse($description);
     }
 
     public function actionArticles(): void
     {
-        $description = $this->openSearch->createDescription("Články", "Články", "Hledat v článcích", "články", "articles");
+        $description = $this->openSearch->createDescription(
+            "Články",
+            "Články",
+            "Hledat v článcích",
+            "články",
+            "articles"
+        );
         $this->sendOpenSearchDescriptionResponse($description);
     }
 

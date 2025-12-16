@@ -26,8 +26,13 @@ final class UserManager
         SET_INVALID_PASSWORD = 3,
         REG_EMAIL_NOT_INVITED = 4;
 
-    public function __construct(private readonly ORM $orm, SettingsRepository $sr, private readonly User $user, private readonly Passwords $passwords, private readonly Invitations $invitations)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        SettingsRepository $sr,
+        private readonly User $user,
+        private readonly Passwords $passwords,
+        private readonly Invitations $invitations
+    ) {
         $this->roles = $sr->settings["roles"];
         $this->newUser = $sr->settings["newUser"];
         $this->openRegistration = $sr->settings["registration"]["open"];
@@ -112,11 +117,10 @@ final class UserManager
         }
         /** @var UserEntity $user */
         $user = $this->orm->users->getById($this->user->id);
-        $settings = [
-            "publicname" => $user->publicname, "email" => $user->email, "style" => $user->style, "gender" => $user->gender,
-            "notifications" => $user->notifications, "api" => $user->api,
+        return [
+            "publicname" => $user->publicname, "email" => $user->email, "style" => $user->style,
+            "gender" => $user->gender, "notifications" => $user->notifications, "api" => $user->api,
         ];
-        return $settings;
     }
 
     /**

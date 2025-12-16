@@ -12,8 +12,11 @@ final class WorkNotificator implements INotificator
     public const TAG_WORK_FINISHED = "workFinished";
     public const TAG_WORK_NEXT_SHIFT = "workNextShift";
 
-    public function __construct(private readonly Job $job, private readonly LinkGenerator $linkGenerator, private readonly SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly Job $job,
+        private readonly LinkGenerator $linkGenerator,
+        private readonly SettingsRepository $sr
+    ) {
     }
 
     public function getNotifications(): array

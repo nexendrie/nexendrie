@@ -28,8 +28,11 @@ final class AuthorizatorFactory
     /** @internal */
     public const ORGANIZATION_PRIVILEGES = ["manage", "upgrade", "promote", "demote", "kick",];
 
-    public function __construct(private readonly Cache $cache, private readonly ORM $orm, private readonly SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly Cache $cache,
+        private readonly ORM $orm,
+        private readonly SettingsRepository $sr
+    ) {
     }
 
     /**

@@ -24,8 +24,11 @@ use Nexendrie\Orm\UserAdventure;
  */
 final class AdventureControl extends \Nette\Application\UI\Control
 {
-    public function __construct(private readonly \Nexendrie\Model\Adventure $model, private readonly \Nexendrie\Model\Locale $localeModel, private readonly \Nette\Security\User $user)
-    {
+    public function __construct(
+        private readonly \Nexendrie\Model\Adventure $model,
+        private readonly \Nexendrie\Model\Locale $localeModel,
+        private readonly \Nette\Security\User $user
+    ) {
     }
 
     public function renderList(): void

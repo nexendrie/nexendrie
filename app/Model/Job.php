@@ -17,8 +17,12 @@ use Nextras\Orm\Relationships\OneHasMany;
  */
 final class Job
 {
-    public function __construct(private readonly Skills $skillsModel, private readonly Locale $localeModel, private readonly ORM $orm, private readonly \Nette\Security\User $user)
-    {
+    public function __construct(
+        private readonly Skills $skillsModel,
+        private readonly Locale $localeModel,
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user
+    ) {
     }
 
     /**

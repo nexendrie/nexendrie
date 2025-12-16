@@ -142,7 +142,10 @@ final class JobTest extends \Tester\TestCase
         $job->user = $this->getUser();
         $job->job = $this->orm->jobs->getById(3); // @phpstan-ignore assign.propertyType
         $result = $this->model->parseJobHelp($job);
-        Assert::same("Postarej se o tohle zvíře na 2 hodiny. Pokud se alespoň 13 nic nestane, dostaneš 70 grošů.", $result);
+        Assert::same(
+            "Postarej se o tohle zvíře na 2 hodiny. Pokud se alespoň 13 nic nestane, dostaneš 70 grošů.",
+            $result
+        );
     }
 
     public function testCanWork(): void

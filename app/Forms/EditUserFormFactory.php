@@ -17,8 +17,11 @@ final class EditUserFormFactory
 {
     private int $uid;
 
-    public function __construct(private readonly ORM $orm, private readonly UserManager $model, private readonly Town $townModel)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly UserManager $model,
+        private readonly Town $townModel
+    ) {
     }
 
     private function getListOfGroups(int $uid): array

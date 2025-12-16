@@ -9,8 +9,11 @@ use Nexendrie\Structs\Notification;
 
 final class GenericNotificator implements INotificator
 {
-    public function __construct(private readonly ORM $orm, private readonly User $user, private readonly SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly User $user,
+        private readonly SettingsRepository $sr
+    ) {
     }
 
     public function createNotification(Notification $data, int $userId): void

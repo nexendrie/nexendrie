@@ -14,8 +14,12 @@ use Nexendrie\Orm\UserExpense;
  */
 final class Property
 {
-    public function __construct(private readonly Taxes $taxesModel, private readonly ORM $orm, private readonly \Nette\Security\User $user, private readonly SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly Taxes $taxesModel,
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user,
+        private readonly SettingsRepository $sr
+    ) {
     }
 
     private function calculateBeerProduction(): int
@@ -70,7 +74,10 @@ final class Property
     {
         $mounts = $this->orm->mounts->findAutoFed($this->user->id);
         $result = $mounts->countStored() * $this->sr->settings["fees"]["autoFeedMount"] * 4;
-        $expenses = $this->orm->userExpenses->findPaidThisMonth($this->user->id, UserExpense::CATEGORY_MOUNT_MAINTENANCE);
+        $expenses = $this->orm->userExpenses->findPaidThisMonth(
+            $this->user->id,
+            UserExpense::CATEGORY_MOUNT_MAINTENANCE
+        );
         foreach ($expenses as $expense) {
             $result += $expense->amount;
         }
@@ -80,11 +87,17 @@ final class Property
     private function calculateBuildingMaintenance(): int
     {
         $result = 0;
-        $expenses = $this->orm->userExpenses->findPaidThisMonth($this->user->id, UserExpense::CATEGORY_CASTLE_MAINTENANCE);
+        $expenses = $this->orm->userExpenses->findPaidThisMonth(
+            $this->user->id,
+            UserExpense::CATEGORY_CASTLE_MAINTENANCE
+        );
         foreach ($expenses as $expense) {
             $result += $expense->amount;
         }
-        $expenses = $this->orm->userExpenses->findPaidThisMonth($this->user->id, UserExpense::CATEGORY_HOUSE_MAINTENANCE);
+        $expenses = $this->orm->userExpenses->findPaidThisMonth(
+            $this->user->id,
+            UserExpense::CATEGORY_HOUSE_MAINTENANCE
+        );
         foreach ($expenses as $expense) {
             $result += $expense->amount;
         }

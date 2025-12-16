@@ -21,8 +21,14 @@ final class Monastery
     private int $buildingPrice;
     private int $criticalCondition;
 
-    public function __construct(private readonly Events $eventsModel, private readonly Guild $guildModel, private readonly Order $orderModel, private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly Events $eventsModel,
+        private readonly Guild $guildModel,
+        private readonly Order $orderModel,
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user,
+        SettingsRepository $sr
+    ) {
         $this->buildingPrice = $sr->settings["fees"]["buildMonastery"];
         $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
     }

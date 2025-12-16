@@ -17,8 +17,11 @@ use Nexendrie\Orm\Item as ItemEntity;
  */
 final class GiftFormFactory
 {
-    public function __construct(private readonly Locale $localeModel, private readonly ORM $orm, private readonly \Nette\Security\User $user)
-    {
+    public function __construct(
+        private readonly Locale $localeModel,
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user
+    ) {
     }
 
     /**

@@ -16,8 +16,12 @@ use Nextras\Orm\Collection\ICollection;
  */
 final class Messenger
 {
-    public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, private readonly LinkGenerator $linkGenerator, private readonly GenericNotificator $notificator)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user,
+        private readonly LinkGenerator $linkGenerator,
+        private readonly GenericNotificator $notificator
+    ) {
     }
 
     /**

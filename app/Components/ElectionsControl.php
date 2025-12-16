@@ -20,8 +20,12 @@ final class ElectionsControl extends \Nette\Application\UI\Control
 {
     private \Nexendrie\Orm\Town $town;
 
-    public function __construct(private readonly Elections $model, private readonly ORM $orm, private readonly \Nette\Security\User $user, IUserProfileLinkControlFactory $userProfileLinkControlFactory)
-    {
+    public function __construct(
+        private readonly Elections $model,
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user,
+        IUserProfileLinkControlFactory $userProfileLinkControlFactory
+    ) {
         $this->addComponent($userProfileLinkControlFactory->create(), "userProfileLink");
     }
 
@@ -89,7 +93,11 @@ final class ElectionsControl extends \Nette\Application\UI\Control
         $date = new \DateTime();
         $date->setTimestamp((int) mktime(0, 0, 0, (int) date("n"), 1, (int) date("Y")));
         $date->modify("-1 month");
-        return $this->orm->electionResults->findByTownAndYearAndMonth($this->town->id, (int) $date->format("Y"), (int) $date->format("n"));
+        return $this->orm->electionResults->findByTownAndYearAndMonth(
+            $this->town->id,
+            (int) $date->format("Y"),
+            (int) $date->format("n")
+        );
     }
 
     public function render(): void

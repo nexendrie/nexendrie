@@ -22,8 +22,11 @@ use Nexendrie\Orm\UserExpense;
  */
 final class StablesControl extends \Nette\Application\UI\Control
 {
-    public function __construct(private readonly ORM $orm, private readonly Locale $localeModel, private readonly \Nette\Security\User $user)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly Locale $localeModel,
+        private readonly \Nette\Security\User $user
+    ) {
     }
 
     public function render(): void

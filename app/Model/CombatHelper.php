@@ -104,7 +104,12 @@ final class CombatHelper
             "id" => $npc->id, "name" => "Armor", "slot" => Equipment::SLOT_ARMOR, "type" => null,
             "strength" => $npc->armor, "worn" => true,
         ];
-        $character = new Character($stats, [new Equipment($armorStats)], [], [], new ConstantInitiativeFormulaParser($npc->initiative));
-        return $character;
+        return new Character(
+            $stats,
+            [new Equipment($armorStats)],
+            [],
+            [],
+            new ConstantInitiativeFormulaParser($npc->initiative)
+        );
     }
 }

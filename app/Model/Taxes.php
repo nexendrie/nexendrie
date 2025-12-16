@@ -14,8 +14,12 @@ final class Taxes
 {
     private int $taxRate;
 
-    public function __construct(private readonly ORM $orm, private readonly Job $jobModel, private readonly Adventure $adventureModel, SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly Job $jobModel,
+        private readonly Adventure $adventureModel,
+        SettingsRepository $sr
+    ) {
         $this->taxRate = $sr->settings["fees"]["incomeTax"];
     }
 
@@ -67,7 +71,13 @@ final class Taxes
                 $return->denizens[$d->id] = $d;
                 continue;
             }
-            $d->income = array_sum($this->calculateIncome($denizen->id, $month ?? (int) date("n"), $year ?? (int) date("Y")));
+            $d->income = array_sum(
+                $this->calculateIncome(
+                    $denizen->id,
+                    $month ?? (int) date("n"),
+                    $year ?? (int) date("Y")
+                )
+            );
             $d->tax = $this->calculateTax($d->income);
             $return->denizens[$d->id] = $d;
             $return->taxes += $d->tax;

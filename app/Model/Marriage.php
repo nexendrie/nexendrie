@@ -16,8 +16,12 @@ use Nextras\Orm\Collection\ICollection;
  */
 final class Marriage
 {
-    public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, private readonly GenericNotificator $notificator, private readonly LinkGenerator $linkGenerator)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user,
+        private readonly GenericNotificator $notificator,
+        private readonly LinkGenerator $linkGenerator
+    ) {
     }
 
     /**

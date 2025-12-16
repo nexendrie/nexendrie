@@ -19,8 +19,11 @@ final class House
     private int $price;
     private int $criticalCondition;
 
-    public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user,
+        SettingsRepository $sr
+    ) {
         $this->price = $sr->settings["fees"]["buyHouse"];
         $this->criticalCondition = $sr->settings["buildings"]["criticalCondition"];
     }

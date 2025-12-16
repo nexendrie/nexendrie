@@ -16,8 +16,11 @@ use Nexendrie\Orm\User as UserEntity;
  */
 final class PrisonControl extends \Nette\Application\UI\Control
 {
-    public function __construct(private readonly ORM $orm, private readonly Locale $localeModel, private readonly \Nette\Security\User $user)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly Locale $localeModel,
+        private readonly \Nette\Security\User $user
+    ) {
     }
 
     private function canWork(Punishment $punishment): bool

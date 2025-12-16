@@ -18,8 +18,12 @@ use Nexendrie\Orm\Model as ORM;
  */
 final class SystemSettingsFormFactory
 {
-    public function __construct(private readonly string $appDir, private readonly SettingsRepository $sr, private readonly ORM $orm, private readonly ThemesManager $themesManager)
-    {
+    public function __construct(
+        private readonly string $appDir,
+        private readonly SettingsRepository $sr,
+        private readonly ORM $orm,
+        private readonly ThemesManager $themesManager
+    ) {
     }
 
     private function getListOfGroups(): array
@@ -57,7 +61,10 @@ final class SystemSettingsFormFactory
             ->setOption("description", "Pro funkci date()")
             ->setRequired("Zadej formát data.");
         $locale->addText("dateTimeFormat", "Formát času:")
-            ->setOption("description", Html::fromHtml("<a href=\"http://docs.php.net/manual/en/function.date.php\">Dokumentace</a>"))
+            ->setOption(
+                "description",
+                Html::fromHtml("<a href=\"http://docs.php.net/manual/en/function.date.php\">Dokumentace</a>")
+            )
             ->setRequired("Zadej formát času.");
         $form->addGroup("Role");
         $roles = $form->addContainer("roles");
@@ -164,7 +171,10 @@ final class SystemSettingsFormFactory
             ->setRequired(false)
             ->setOption("description", "Přidává se do titulku všech stránek a RSS kanálů.");
         $site->addInteger("serverSideEventsCooldown", "Pausa pro server-side events:")
-            ->setOption("description", "Pausa mezi jednotlivými průchody server-side events (používá se např. pro upozornění)")
+            ->setOption(
+                "description",
+                "Pausa mezi jednotlivými průchody server-side events (používá se např. pro upozornění)"
+            )
             ->setRequired("Zadej pausu pro server-side events.")
             ->addRule(Form::INTEGER, "Pausa pro server-side events musí být celé číslo.")
             ->addRule(Form::RANGE, "Pausa pro server-side events musí být v rozmezí 1-100.", [1, 100]);
@@ -179,9 +189,15 @@ final class SystemSettingsFormFactory
         $form->addGroup("Experimentální funkce");
         $features = $form->addContainer("features");
         $features->addCheckbox("httpCaching", "HTTP cacheování")
-            ->setOption("description", "Zapne cachování pomocí HTTP hlavičky If-Modified-Since u vhodných stránek a API požadavků.");
+            ->setOption(
+                "description",
+                "Zapne cachování pomocí HTTP hlavičky If-Modified-Since u vhodných stránek a API požadavků."
+            );
         $features->addCheckbox("earlyHints", "Předběžné náznaky")
-            ->setOption("description", "Může zrychlit načítání stránek dřívějším odesláním stylů a skriptů. Vyžaduje podporu na serveru.");
+            ->setOption(
+                "description",
+                "Může zrychlit načítání stránek dřívějším odesláním stylů a skriptů. Vyžaduje podporu na serveru."
+            );
         $form->setCurrentGroup(null);
         $form->addSubmit("submit", "Uložit změny");
         $form->setDefaults($this->getDefaultValues());

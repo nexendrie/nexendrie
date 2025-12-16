@@ -30,8 +30,11 @@ use Nexendrie\Model\CannotKickMemberException;
  */
 final class GuildPresenter extends BasePresenter
 {
-    public function __construct(private readonly Guild $model, private readonly Locale $localeModel, private readonly IGuildChatControlFactory $chatFactory)
-    {
+    public function __construct(
+        private readonly Guild $model,
+        private readonly Locale $localeModel,
+        private readonly IGuildChatControlFactory $chatFactory
+    ) {
         parent::__construct();
     }
 

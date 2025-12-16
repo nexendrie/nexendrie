@@ -27,8 +27,12 @@ final class UserPresenter extends BasePresenter
     public string $backlink = "";
     protected bool $cachingEnabled = false;
 
-    public function __construct(private readonly Authenticator $model, private readonly Locale $localeModel, private readonly ORM $orm, private readonly Tokens $apiTokens)
-    {
+    public function __construct(
+        private readonly Authenticator $model,
+        private readonly Locale $localeModel,
+        private readonly ORM $orm,
+        private readonly Tokens $apiTokens
+    ) {
         parent::__construct();
     }
 

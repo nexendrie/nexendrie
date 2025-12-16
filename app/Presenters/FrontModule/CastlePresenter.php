@@ -22,8 +22,11 @@ use Nexendrie\Orm\Group as GroupEntity;
  */
 final class CastlePresenter extends BasePresenter
 {
-    public function __construct(private readonly Castle $model, private readonly UserManager $userManager, private readonly Profile $profileModel)
-    {
+    public function __construct(
+        private readonly Castle $model,
+        private readonly UserManager $userManager,
+        private readonly Profile $profileModel
+    ) {
         parent::__construct();
     }
 

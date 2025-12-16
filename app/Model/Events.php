@@ -26,8 +26,12 @@ final class Events implements \Nexendrie\EventCalendar\EventModel
     /** @var Event[]|ICollection */
     private ICollection $events;
 
-    public function __construct(private readonly ORM $orm, private readonly Cache $cache, private readonly SettingsRepository $sr, private readonly \Nette\Application\LinkGenerator $lg)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly Cache $cache,
+        private readonly SettingsRepository $sr,
+        private readonly \Nette\Application\LinkGenerator $lg
+    ) {
     }
 
     /**

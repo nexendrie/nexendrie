@@ -36,8 +36,11 @@ final class MonasteryPresenter extends BasePresenter
 {
     private int $monasteryId;
 
-    public function __construct(private readonly Monastery $model, private readonly Locale $localeModel, private readonly IMonasteryChatControlFactory $chatFactory)
-    {
+    public function __construct(
+        private readonly Monastery $model,
+        private readonly Locale $localeModel,
+        private readonly IMonasteryChatControlFactory $chatFactory
+    ) {
         parent::__construct();
     }
 

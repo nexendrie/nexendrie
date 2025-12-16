@@ -30,8 +30,11 @@ use Nexendrie\Model\CannotKickMemberException;
  */
 final class OrderPresenter extends BasePresenter
 {
-    public function __construct(private readonly Order $model, private readonly Locale $localeModel, private readonly IOrderChatControlFactory $chatFactory)
-    {
+    public function __construct(
+        private readonly Order $model,
+        private readonly Locale $localeModel,
+        private readonly IOrderChatControlFactory $chatFactory
+    ) {
         parent::__construct();
     }
 

@@ -68,7 +68,11 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask
                 continue;
             }
             $newCouncillors = [];
-            echo sprintf("Found %d possible candidates, the town can have %d councillors.\n", count($results), $councillors);
+            echo sprintf(
+                "Found %d possible candidates, the town can have %d councillors.\n",
+                count($results),
+                $councillors
+            );
             foreach ($results as $row) {
                 $record = new ElectionResult();
                 $record->candidate = $row["candidate"];

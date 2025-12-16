@@ -17,8 +17,11 @@ final class Article
 {
     private int $itemsPerPage;
 
-    public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user, SettingsRepository $sr)
-    {
+    public function __construct(
+        private readonly ORM $orm,
+        private readonly \Nette\Security\User $user,
+        SettingsRepository $sr
+    ) {
         $this->itemsPerPage = (int) $sr->settings["pagination"]["articles"];
     }
 

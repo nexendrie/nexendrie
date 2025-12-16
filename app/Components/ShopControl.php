@@ -25,8 +25,11 @@ final class ShopControl extends \Nette\Application\UI\Control
     private ShopEntity $shop;
     private int $id;
 
-    public function __construct(private readonly Market $model, private readonly Events $eventsModel, private readonly ORM $orm)
-    {
+    public function __construct(
+        private readonly Market $model,
+        private readonly Events $eventsModel,
+        private readonly ORM $orm
+    ) {
     }
 
     /**

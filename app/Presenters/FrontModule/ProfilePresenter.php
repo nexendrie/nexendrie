@@ -23,8 +23,12 @@ final class ProfilePresenter extends BasePresenter
     /** @var string[] */
     private array $cacheableActions = ["articles", "skills", "comments",];
 
-    public function __construct(private readonly Profile $model, private readonly Marriage $marriageModel, private readonly Achievements $achievementsModel, private readonly Job $jobModel)
-    {
+    public function __construct(
+        private readonly Profile $model,
+        private readonly Marriage $marriageModel,
+        private readonly Achievements $achievementsModel,
+        private readonly Job $jobModel
+    ) {
         parent::__construct();
     }
 
