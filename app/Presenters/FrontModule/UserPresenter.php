@@ -55,7 +55,7 @@ final class UserPresenter extends BasePresenter {
     return $form;
   }
 
-  public function actionLogout(): void {
+  public function actionLogout(): never {
     $message = "Nejsi přihlášen.";
     if($this->user->isLoggedIn()) {
       $message = $this->localeModel->genderMessage("Byl(a) jsi úspěšně odhlášen(a).");
@@ -108,7 +108,7 @@ final class UserPresenter extends BasePresenter {
     $this->template->tokens = $this->orm->apiTokens->findActiveForUser($this->user->id);
   }
 
-  public function handleCreateApiToken(): void {
+  public function handleCreateApiToken(): never {
     $this->requiresLogin();
     try {
       $this->apiTokens->create();
@@ -119,7 +119,7 @@ final class UserPresenter extends BasePresenter {
     $this->redirect("apiTokens");
   }
 
-  public function handleInvalidateApiToken(string $token): void {
+  public function handleInvalidateApiToken(string $token): never {
     $this->requiresLogin();
     try {
       $this->apiTokens->invalidate($token);

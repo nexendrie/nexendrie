@@ -58,7 +58,7 @@ final class MarriagePresenter extends BasePresenter {
     }
   }
   
-  public function actionPropose(int $id): void {
+  public function actionPropose(int $id): never {
     try {
       $this->model->proposeMarriage($id);
       $this->flashMessage("Sňatek navržen.");
@@ -75,7 +75,7 @@ final class MarriagePresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  public function actionAccept(int $id): void {
+  public function actionAccept(int $id): never {
     try {
       $this->model->acceptProposal($id);
       $this->flashMessage("Návrh přijat. Nyní jste zasnoubení.");
@@ -94,7 +94,7 @@ final class MarriagePresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  public function actionDecline(int $id): void {
+  public function actionDecline(int $id): never {
     try {
       $this->model->declineProposal($id);
       $this->flashMessage("Návrh zamítnut.");
@@ -137,7 +137,7 @@ final class MarriagePresenter extends BasePresenter {
     return $wedding;
   }
   
-  public function handleCancelWedding(): void {
+  public function handleCancelWedding(): never {
     try {
       $this->model->cancelWedding();
       $this->flashMessage("Zasnoubení zrušeno.");
@@ -152,7 +152,7 @@ final class MarriagePresenter extends BasePresenter {
     }
   }
   
-  public function handleFileForDivorce(): void {
+  public function handleFileForDivorce(): never {
     try {
       $this->model->fileForDivorce();
       $this->flashMessage("Žádost podána.");
@@ -167,7 +167,7 @@ final class MarriagePresenter extends BasePresenter {
     }
   }
   
-  public function handleAcceptDivorce(): void {
+  public function handleAcceptDivorce(): never {
     try {
       $this->model->acceptDivorce();
       $this->flashMessage("Vaše manželství skončilo.");
@@ -182,7 +182,7 @@ final class MarriagePresenter extends BasePresenter {
     }
   }
   
-  public function handleDeclineDivorce(): void {
+  public function handleDeclineDivorce(): never {
     try {
       $this->model->declineDivorce();
       $this->flashMessage("Žádost zamítnuta.");
@@ -197,7 +197,7 @@ final class MarriagePresenter extends BasePresenter {
     }
   }
   
-  public function handleTakeBackDivorce(): void {
+  public function handleTakeBackDivorce(): never {
     try {
       $this->model->takeBackDivorce();
       $this->flashMessage("Žádost stáhnuta.");
@@ -216,7 +216,7 @@ final class MarriagePresenter extends BasePresenter {
     }
   }
   
-  public function handleBoostIntimacy(int $item): void {
+  public function handleBoostIntimacy(int $item): never {
     try {
       $this->inventoryModel->boostIntimacy($item);
       $this->flashMessage("Věc použita.");

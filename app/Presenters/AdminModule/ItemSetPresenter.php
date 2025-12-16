@@ -58,7 +58,7 @@ final class ItemSetPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  public function actionDelete(int $id): void {
+  public function actionDelete(int $id): never {
     $this->requiresPermissions("content", "delete");
     try {
       $this->model->delete($id);

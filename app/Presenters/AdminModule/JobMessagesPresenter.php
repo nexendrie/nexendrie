@@ -81,7 +81,7 @@ final class JobMessagesPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  public function actionDelete(int $id): void {
+  public function actionDelete(int $id): never {
     try {
       $job = $this->model->deleteMessage($id);
       $this->flashMessage("Hláška smazána.");

@@ -62,7 +62,7 @@ final class ArticlePresenter extends BasePresenter {
     return $factory->create();
   }
 
-  public function handleReport(int $comment): void {
+  public function handleReport(int $comment): never {
     try {
       $this->moderationModel->reportComment($comment);
       $this->flashMessage("Komentář nahlášen.");

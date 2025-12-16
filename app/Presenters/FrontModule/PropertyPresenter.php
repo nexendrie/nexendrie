@@ -124,7 +124,7 @@ final class PropertyPresenter extends BasePresenter {
     $this->template->maxLifeCombat = $combatLife["maxLife"];
   }
   
-  public function handleEquip(int $item): void {
+  public function handleEquip(int $item): never {
     try {
       $this->inventoryModel->equipItem($item);
       $this->flashMessage("Věc nasazena.");
@@ -154,7 +154,7 @@ final class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  public function handleDrink(int $potion): void {
+  public function handleDrink(int $potion): never {
     try {
       $life = $this->inventoryModel->drinkPotion($potion);
       $this->flashMessage("Doplnil sis $life životů.");
@@ -170,7 +170,7 @@ final class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  public function handleSell(int $item): void {
+  public function handleSell(int $item): never {
     try {
       $price = $this->inventoryModel->sellItem($item);
       $this->flashMessage("Věc prodána za " . $this->localeModel->money($price) . ".");
@@ -184,7 +184,7 @@ final class PropertyPresenter extends BasePresenter {
     $this->redirect("equipment");
   }
   
-  public function handleUpgrade(int $item): void {
+  public function handleUpgrade(int $item): never {
     try {
       $this->inventoryModel->upgradeItem($item);
       $this->flashMessage("Věc vylepšena.");

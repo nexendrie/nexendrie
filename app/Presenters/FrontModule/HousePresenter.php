@@ -47,7 +47,7 @@ final class HousePresenter extends BasePresenter {
     $this->template->canProduceBeer = $this->model->canProduceBeer();
   }
   
-  public function actionBuy(): void {
+  public function actionBuy(): never {
     try {
       $this->model->buyHouse();
       $this->flashMessage("Dům zakoupen.");
@@ -61,7 +61,7 @@ final class HousePresenter extends BasePresenter {
     }
   }
   
-  public function handleUpgrade(): void {
+  public function handleUpgrade(): never {
     try {
       $this->model->upgrade();
       $this->flashMessage("Dům vylepšen.");
@@ -75,7 +75,7 @@ final class HousePresenter extends BasePresenter {
     }
   }
   
-  public function handleRepair(): void {
+  public function handleRepair(): never {
     try {
       $this->model->repair();
       $this->flashMessage("Dům opraven.");
@@ -89,7 +89,7 @@ final class HousePresenter extends BasePresenter {
     }
   }
   
-  public function handleUpgradeBrewery(): void {
+  public function handleUpgradeBrewery(): never {
     try {
       $newLevel = $this->model->upgradeBrewery();
       $message = ($newLevel === 1) ? "Pivovar pořízen." : "Pivovar vylepšen.";
@@ -104,7 +104,7 @@ final class HousePresenter extends BasePresenter {
     }
   }
   
-  public function handleProduceBeer(): void {
+  public function handleProduceBeer(): never {
     try {
       $result = $this->model->produceBeer();
       $message = $this->localeModel->genderMessage("Uvařil(a) jsi ");

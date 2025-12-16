@@ -92,7 +92,7 @@ final class GuildPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  public function actionJoin(int $id): void {
+  public function actionJoin(int $id): never {
     try {
       $this->model->join($id);
       $message = $this->localeModel->genderMessage("Vstoupil(a) jsi do cechu.");
@@ -106,7 +106,7 @@ final class GuildPresenter extends BasePresenter {
     }
   }
   
-  public function actionLeave(): void {
+  public function actionLeave(): never {
     try {
       $this->model->leave();
       $message = $this->localeModel->genderMessage("Opustil(a) jsi cechu.");
@@ -137,7 +137,7 @@ final class GuildPresenter extends BasePresenter {
     return $form;
   }
   
-  public function handleUpgrade(): void {
+  public function handleUpgrade(): never {
     try {
       $this->model->upgrade();
       $this->flashMessage("Cech vylepšen.");
@@ -162,7 +162,7 @@ final class GuildPresenter extends BasePresenter {
     $this->template->maxRank = $this->model->maxRank;
   }
   
-  public function handlePromote(int $user): void {
+  public function handlePromote(int $user): never {
     try {
       $this->model->promote($user);
       $this->flashMessage("Povýšen(a)");
@@ -185,7 +185,7 @@ final class GuildPresenter extends BasePresenter {
     }
   }
   
-  public function handleDemote(int $user): void {
+  public function handleDemote(int $user): never {
     try {
       $this->model->demote($user);
       $this->flashMessage("Degradován(a)");
@@ -208,7 +208,7 @@ final class GuildPresenter extends BasePresenter {
     }
   }
   
-  public function handleKick(int $user): void {
+  public function handleKick(int $user): never {
     try {
       $this->model->kick($user);
       $this->flashMessage("Vyloučen(a)");

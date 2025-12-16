@@ -57,7 +57,7 @@ final class BankPresenter extends BasePresenter {
     return $form;
   }
   
-  public function actionReturn(): void {
+  public function actionReturn(): never {
     $this->requiresLogin();
     try {
       $this->model->returnLoan();
@@ -71,7 +71,7 @@ final class BankPresenter extends BasePresenter {
     $this->redirect("default");
   }
   
-  public function actionClose(): void {
+  public function actionClose(): never {
     $this->requiresLogin();
     try {
       $this->model->closeDeposit();

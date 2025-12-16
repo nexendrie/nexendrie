@@ -73,7 +73,7 @@ final class WorkPresenter extends BasePresenter {
     $this->template->offers = $this->model->findAvailableJobs();
   }
   
-  public function actionStart(int $id): void {
+  public function actionStart(int $id): never {
     try {
       $this->model->startJob($id);
       $this->flashMessage("Práce zahájena.");
@@ -107,7 +107,7 @@ final class WorkPresenter extends BasePresenter {
     }
   }
   
-  public function actionWork(): void {
+  public function actionWork(): never {
     try {
       $result = $this->model->work();
       $this->flashMessage($result->message);

@@ -81,7 +81,7 @@ final class CastlePresenter extends BasePresenter {
     return $form;
   }
   
-  public function handleUpgrade(): void {
+  public function handleUpgrade(): never {
     try {
       $this->model->upgrade();
       $this->flashMessage("Hrad vylepšen.");
@@ -95,7 +95,7 @@ final class CastlePresenter extends BasePresenter {
     }
   }
   
-  public function handleRepair(): void {
+  public function handleRepair(): never {
     try {
       $this->model->repair();
       $this->flashMessage("Hrad opraven.");

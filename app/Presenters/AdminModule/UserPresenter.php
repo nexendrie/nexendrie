@@ -93,7 +93,7 @@ final class UserPresenter extends BasePresenter {
     return $form;
   }
 
-  public function handleCancelInvitation(string $email): void {
+  public function handleCancelInvitation(string $email): never {
     $this->requiresPermissions("user", "invite");
     try {
       $this->invitations->remove($email);

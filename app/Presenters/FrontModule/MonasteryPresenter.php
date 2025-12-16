@@ -110,7 +110,7 @@ final class MonasteryPresenter extends BasePresenter {
   /**
    * @throws \Nette\Application\BadRequestException
    */
-  public function actionJoin(int $id): void {
+  public function actionJoin(int $id): never {
     try {
       $this->model->join($id);
       /** @var \Nexendrie\Model\Authenticator $authenticator */
@@ -131,7 +131,7 @@ final class MonasteryPresenter extends BasePresenter {
     }
   }
   
-  public function actionLeave(): void {
+  public function actionLeave(): never {
     try {
       $this->model->leave();
       /** @var \Nexendrie\Model\Authenticator $authenticator */
@@ -147,7 +147,7 @@ final class MonasteryPresenter extends BasePresenter {
     }
   }
   
-  public function actionPray(): void {
+  public function actionPray(): never {
     try {
       $this->model->pray();
       $this->flashMessage("Modlitba ti přidala 5 životů.");
@@ -189,7 +189,7 @@ final class MonasteryPresenter extends BasePresenter {
     return $form;
   }
   
-  public function handleUpgrade(): void {
+  public function handleUpgrade(): never {
     try {
       $this->model->upgrade();
       $this->flashMessage("Klášter vylepšen.");
@@ -214,7 +214,7 @@ final class MonasteryPresenter extends BasePresenter {
     }
   }
   
-  public function handleRepair(): void {
+  public function handleRepair(): never {
     try {
       $this->model->repair();
       $this->flashMessage("Klášter opraven.");
@@ -228,7 +228,7 @@ final class MonasteryPresenter extends BasePresenter {
     }
   }
 
-  public function handlePromote(int $user): void {
+  public function handlePromote(int $user): never {
     try {
       $this->model->promote($user);
       $this->flashMessage("Povýšen(a).");
@@ -251,7 +251,7 @@ final class MonasteryPresenter extends BasePresenter {
     }
   }
 
-  public function handleDemote(int $user): void {
+  public function handleDemote(int $user): never {
     try {
       $this->model->demote($user);
       $this->flashMessage("Degradován(a).");

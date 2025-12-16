@@ -76,7 +76,7 @@ final class TownPresenter extends BasePresenter {
     }
   }
   
-  public function actionMove(int $id): void {
+  public function actionMove(int $id): never {
     try {
       $this->model->moveToTown($id);
       /** @var \Nexendrie\Model\Authenticator $authenticator */
