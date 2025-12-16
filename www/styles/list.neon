@@ -1,9 +1,3 @@
-blue-sky:
-    name: "Modrá obloha"
-    deprecated: true
-dark-sky:
-    name: "Temná obloha"
-    deprecated: true
 matrix:
     name: "Matrix"
     experimental: true
