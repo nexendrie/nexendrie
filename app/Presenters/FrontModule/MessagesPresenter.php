@@ -68,7 +68,7 @@ final class MessagesPresenter extends BasePresenter
             /** @var \Nette\Forms\Controls\SelectBox $receiver */
             $receiver = $form["to"];
             $receiver->setDefaultValue($uid);
-        } catch (\Nette\InvalidArgumentException) {
+        } catch (\Nette\InvalidArgumentException) { // phpcs:ignore
         }
         $form->onSuccess[] = function (): void {
             $this->flashMessage("Zpráva byla odeslána.");

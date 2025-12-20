@@ -22,5 +22,5 @@ try {
     while ($table = $tables->fetchField(0)) {
         $connection->query("DROP TABLE $table"); // @phpstan-ignore argument.type
     }
-} catch (QueryException $e) { // @codingStandardsIgnoreLine
+} catch (QueryException $e) { // phpcs:ignore
 }
