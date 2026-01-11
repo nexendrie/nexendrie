@@ -15,7 +15,6 @@
 /migrations/
 /tools/
 /.gitlab-ci.yml
-/.scrutinizer.yml
 /install.sh
 /build.xml
 /phinx.php
