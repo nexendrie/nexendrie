@@ -64,10 +64,10 @@ test:reports:
     paths:
       - coverage.xml
       - junit.xml
-      - phpstan.json
+      - phpcs.json
     reports:
       junit: junit.xml
-      codequality: phpstan.json
+      codequality: phpcs.json
 
 deploy:alpha:
   <<: *deploy_job

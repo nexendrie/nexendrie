@@ -130,25 +130,31 @@
           <arg value="--extensions=php"/>
           <arg value="."/>
           <arg value="--standard=vendor/nexendrie/code-quality/phpcs.xml"/>
-          <arg value="--colors"/>
           <arg value="-p"/>
         </exec>
       </then>
+      <else>
+        <exec executable="vendor/bin/phpcs" logoutput="true" passthru="true" checkreturn="true">
+          <arg value="--extensions=php"/>
+          <arg value="."/>
+          <arg value="--standard=vendor/nexendrie/code-quality/phpcs.xml"/>
+          <arg value="-p"/>
+          <arg value="--report-\\Micheh\\PhpCodeSniffer\\Report\\Gitlab=phpcs.json"/>
+          <arg value="--basepath=."/>
+        </exec>
+      </else>
     </if>
   </target>
   <target name="phpstan" description="PHPStan analyzes">
     <if>
-      <isset property="env.REPORTS"/>
+      <not>
+        <isset property="env.REPORTS"/>
+      </not>
       <then>
-        <exec executable="vendor/bin/phpstan" logoutput="true" passthru="true" checkreturn="true">
-          <arg line="analyze --error-format=gitlab | tee phpstan.json"/>
-        </exec>
-      </then>
-      <else>
         <exec executable="vendor/bin/phpstan" logoutput="true" passthru="true" checkreturn="true">
           <arg value="analyze"/>
         </exec>
-      </else>
+      </then>
     </if>
   </target>
   <target name="setup-db">

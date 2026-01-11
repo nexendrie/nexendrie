@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "298505720a1247c7b15ca2700d550a51",
+    "content-hash": "198d10dc5736475d73d8969bbda8ed85",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -877,6 +877,7 @@
                 "issues": "https://github.com/nette/finder/issues",
                 "source": "https://github.com/nette/finder/tree/v2.6.0"
             },
+            "abandoned": true,
             "time": "2022-10-13T01:31:15+00:00"
         },
         {
@@ -1036,16 +1037,16 @@
         },
         {
             "name": "nette/neon",
-            "version": "v3.4.6",
+            "version": "v3.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/neon.git",
-                "reference": "36e3f4f89fd8a7b89ada74c7a678baa9f7cc7719"
+                "reference": "cc96bf5264d721d0c102bb976272d3d001a23e65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/neon/zipball/36e3f4f89fd8a7b89ada74c7a678baa9f7cc7719",
-                "reference": "36e3f4f89fd8a7b89ada74c7a678baa9f7cc7719",
+                "url": "https://api.github.com/repos/nette/neon/zipball/cc96bf5264d721d0c102bb976272d3d001a23e65",
+                "reference": "cc96bf5264d721d0c102bb976272d3d001a23e65",
                 "shasum": ""
             },
             "require": {
@@ -1101,9 +1102,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/neon/issues",
-                "source": "https://github.com/nette/neon/tree/v3.4.6"
+                "source": "https://github.com/nette/neon/tree/v3.4.7"
             },
-            "time": "2025-11-25T13:12:06+00:00"
+            "time": "2026-01-04T08:39:50+00:00"
         },
         {
             "name": "nette/php-generator",
@@ -2620,16 +2621,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v6.4.30",
+            "version": "v6.4.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "1b2813049506b39eb3d7e64aff033fd5ca26c97e"
+                "reference": "f9f8a889f54c264f9abac3fc0f7a371ffca51997"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/1b2813049506b39eb3d7e64aff033fd5ca26c97e",
-                "reference": "1b2813049506b39eb3d7e64aff033fd5ca26c97e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/f9f8a889f54c264f9abac3fc0f7a371ffca51997",
+                "reference": "f9f8a889f54c264f9abac3fc0f7a371ffca51997",
                 "shasum": ""
             },
             "require": {
@@ -2694,7 +2695,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v6.4.30"
+                "source": "https://github.com/symfony/console/tree/v6.4.31"
             },
             "funding": [
                 {
@@ -2714,7 +2715,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-12-05T13:47:41+00:00"
+            "time": "2025-12-22T08:30:34+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -3472,6 +3473,59 @@
             "time": "2019-04-04T18:34:37+00:00"
         },
         {
+            "name": "micheh/phpcs-gitlab",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/micheh/phpcs-gitlab.git",
+                "reference": "465874d545c29855fcf102351eada8b95bf7eb2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/micheh/phpcs-gitlab/zipball/465874d545c29855fcf102351eada8b95bf7eb2c",
+                "reference": "465874d545c29855fcf102351eada8b95bf7eb2c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^9.3 || ^10.0",
+                "squizlabs/php_codesniffer": "^3.5.0 || ^4.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micheh\\PhpCodeSniffer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Michel Hunziker",
+                    "email": "info@michelhunziker.com"
+                }
+            ],
+            "description": "GitLab Report for PHP_CodeSniffer (display the violations in the GitLab CI/CD Code Quality Report)",
+            "keywords": [
+                "PHP_CodeSniffer",
+                "code climate",
+                "code quality",
+                "gitlab",
+                "phpcs",
+                "report"
+            ],
+            "support": {
+                "issues": "https://github.com/micheh/phpcs-gitlab/issues",
+                "source": "https://github.com/micheh/phpcs-gitlab/tree/2.1.0"
+            },
+            "time": "2025-09-17T09:43:27+00:00"
+        },
+        {
             "name": "nette/tester",
             "version": "v2.5.7",
             "source": {
@@ -3555,12 +3609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "61c3cf9885c011dc591c136b3895ed4f12f8e474"
+                "reference": "ce81fdde0344d442c2f0497d96ae614b14c87e04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=61c3cf9885c011dc591c136b3895ed4f12f8e474",
-                "reference": "61c3cf9885c011dc591c136b3895ed4f12f8e474",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=ce81fdde0344d442c2f0497d96ae614b14c87e04",
+                "reference": "ce81fdde0344d442c2f0497d96ae614b14c87e04",
                 "shasum": ""
             },
             "require": {
@@ -3595,7 +3649,7 @@
                 "issues": "https://gitlab.com/nexendrie/code-quality/-/issues",
                 "source": "https://gitlab.com/nexendrie/code-quality/"
             },
-            "time": "2025-12-19T20:19:59+00:00"
+            "time": "2026-01-11T19:14:06+00:00"
         },
         {
             "name": "nexendrie/testbench",
