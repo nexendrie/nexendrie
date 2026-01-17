@@ -6,7 +6,6 @@ namespace Nexendrie\Model;
 use Nette\Security\User;
 use Nexendrie\Orm\Invitation;
 use Nexendrie\Orm\Model as ORM;
-use Nextras\Orm\Collection\ICollection;
 
 final class Invitations
 {

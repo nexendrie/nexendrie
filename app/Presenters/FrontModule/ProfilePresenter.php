@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Presenters\FrontModule;
 
 use Nexendrie\Model\Achievements;
-use Nexendrie\Model\Castle;
 use Nexendrie\Model\Job;
 use Nexendrie\Model\Marriage;
 use Nexendrie\Model\NotWorkingException;

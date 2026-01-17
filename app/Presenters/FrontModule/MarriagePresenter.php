@@ -13,7 +13,6 @@ use Nexendrie\Model\MarriageNotFoundException;
 use Nexendrie\Model\AccessDeniedException;
 use Nexendrie\Model\MarriageProposalAlreadyHandledException;
 use Nexendrie\Model\NotEngagedException;
-use Nexendrie\Model\Profile;
 use Nexendrie\Model\WeddingAlreadyHappenedException;
 use Nexendrie\Model\NotMarriedException;
 use Nexendrie\Model\AlreadyInDivorceException;

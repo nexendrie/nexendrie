@@ -8,7 +8,6 @@ use Nette\Application\UI\Form;
 use Nette\Utils\Html;
 use Nexendrie\Model\ThemesManager;
 use Nexendrie\Model\UserManager;
-use Nette\Security\User;
 use Nexendrie\Model\SettingsException;
 use Nexendrie\Orm\User as UserEntity;
 

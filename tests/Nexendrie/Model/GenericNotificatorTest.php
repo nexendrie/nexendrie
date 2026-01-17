@@ -5,8 +5,6 @@ namespace Nexendrie\Model;
 
 use Nexendrie\Structs\Notification;
 use Tester\Assert;
-use Nextras\Orm\Collection\ICollection;
-use Nexendrie\Orm\Message;
 
 require __DIR__ . "/../../bootstrap.php";
 
