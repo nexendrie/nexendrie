@@ -40,7 +40,7 @@ final class AddEditSkillFormFactory
         $form->addSelect("stat", "Vlastnost:", SkillEntity::getStats())
             ->setPrompt("žádná")
             ->addConditionOn($type, Form::EQUAL, SkillEntity::TYPE_COMBAT)
-            ->setRequired("Vyber vlasnost.")
+            ->setRequired("Vyber vlastnost.")
             ->elseCondition()
             ->addRule(Form::BLANK, "Neplatná kombinace: vybrána vlastnost u pracovní dovednosti.");
         $form->addInteger("statIncrease", "Vylepšení vlastnosti:")

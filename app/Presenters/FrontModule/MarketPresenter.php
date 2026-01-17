@@ -28,7 +28,7 @@ final class MarketPresenter extends BasePresenter
     protected function startup(): void
     {
         parent::startup();
-        $this->mustNotBeTavelling();
+        $this->mustNotBeTravelling();
     }
 
     public function renderDefault(): void

@@ -4,7 +4,7 @@
   <h1>{$guild->name}</h1>
   <p>{$guild->name} byl založen {$guild->createdAt}. Cech je na úrovni {$guild->level} a působí ve městě <a n:href="Town:detail $guild->town->id">{$guild->town->name}</a>.</p>
   <p>{$guild->description}</p>
-  <p>Bonus k pracem: {foreach $guild->skill->jobs as $job}{$job->name}{if !$iterator->last}, {else}.{/if}{/foreach}</p>
+  <p>Bonus k pracím: {foreach $guild->skill->jobs as $job}{$job->name}{if !$iterator->last}, {else}.{/if}{/foreach}</p>
   <h3>Členové</h3>
   <p>
     {foreach $guild->members as $member}

@@ -41,11 +41,11 @@ final class AppointMayorFormFactory
         } catch (TownNotOwnedException) {
             $form->addError("Zadané město ti nepatří.");
         } catch (UserNotFoundException) {
-            $form->addError("Vybarný uživatel nebyl nalezen.");
+            $form->addError("Vybraný uživatel nebyl nalezen.");
         } catch (UserDoesNotLiveInTheTownException) {
             $form->addError("Vybraný uživatel nežije ve městě.");
         } catch (InsufficientLevelForMayorException) {
-            $form->addError("Vybraný uživatel nemá dostečnou úroveň.");
+            $form->addError("Vybraný uživatel nemá dostatečnou úroveň.");
         }
     }
 }

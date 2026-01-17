@@ -3,7 +3,7 @@
 {block content}
   <h1>Tržiště</h1>
   <p>Došel jsi na třžiště. Jelikož v tuto dobu tu chodí nejvíce lidí, je tu velký hluk a ty máš problém rozumět, co vykřikují prodejci.
-  Slyšíš jen jména následujích obchodů:</p>
+  Slyšíš jen jména následujících obchodů:</p>
   <article id="shops">
   {foreach $shops as $shop}
     <p><a n:href="Market:shop $shop->id">{$shop->name}</a></p>   

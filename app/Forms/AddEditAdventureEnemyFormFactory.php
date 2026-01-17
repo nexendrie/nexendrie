@@ -37,7 +37,7 @@ final class AddEditAdventureEnemyFormFactory
             ->setRequired("Zadej odměnu.")
             ->addRule(Form::RANGE, "Odměna musí být v rozmezí 1-999.", [1, 999]);
         $form->addTextArea("encounterText", "Text při střetnutí:")
-            ->setRequired("Zadej zext při střetnutí.");
+            ->setRequired("Zadej text při střetnutí.");
         $form->addTextArea("victoryText", "Text při vítězství:")
             ->setRequired("Zadej text při vítězství.");
         $form->addSubmit("submit", "Odeslat");

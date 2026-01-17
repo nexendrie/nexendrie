@@ -18,7 +18,7 @@ final class TavernPresenter extends BasePresenter
     protected function startup(): void
     {
         parent::startup();
-        $this->mustNotBeTavelling();
+        $this->mustNotBeTravelling();
     }
 
     protected function createComponentTavern(TavernControlFactory $factory): TavernControl

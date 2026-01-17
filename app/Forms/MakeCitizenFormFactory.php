@@ -25,7 +25,7 @@ final class MakeCitizenFormFactory
         $form = new Form();
         $form->addSelect("user", "Uživatel:", $this->model->getTownPeasants($town))
             ->setRequired();
-        $form->addSubmit("submit", "Povýsit");
+        $form->addSubmit("submit", "Povýšit");
         $form->onSuccess[] = $this->process(...);
         return $form;
     }

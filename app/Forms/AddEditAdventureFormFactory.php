@@ -43,7 +43,7 @@ final class AddEditAdventureFormFactory
         $form->addTextArea("intro", "Úvodní text:")
             ->setRequired("Zadej úvodní text.");
         $form->addTextArea("epilogue", "Závěrečný text:")
-            ->setRequired("Zadej zavérečný text.");
+            ->setRequired("Zadej závěrečný text.");
         $form->addInteger("level", "Úroveň:")
             ->setRequired("Zadej úroveň.")
             ->addRule(Form::RANGE, "Úroveň musí být v rozmezí 55-10000.", [55, 10000])

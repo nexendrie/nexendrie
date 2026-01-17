@@ -53,7 +53,7 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask
         if (!$this->isDue($date)) {
             return;
         }
-        echo "Starting proccessing results of municipal elections ...\n";
+        echo "Starting processing results of municipal elections ...\n";
         $date->modify("-1 day");
         $year = (int) $date->format("Y");
         $month = (int) $date->format("n");
@@ -104,6 +104,6 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask
             }
         }
         $this->orm->flush();
-        echo "Finished proccessing results of municipal elections ...\n";
+        echo "Finished processing results of municipal elections ...\n";
     }
 }

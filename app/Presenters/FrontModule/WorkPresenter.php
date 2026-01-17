@@ -32,7 +32,7 @@ final class WorkPresenter extends BasePresenter
         parent::startup();
         $this->requiresLogin();
         $this->mustNotBeBanned();
-        $this->mustNotBeTavelling();
+        $this->mustNotBeTravelling();
     }
 
     public function actionDefault(): void

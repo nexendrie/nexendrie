@@ -33,7 +33,7 @@ final class EditGroupFormFactory
         $form->addText("femaleName", "Titul členky:")
             ->addRule(Form::MAX_LENGTH, "Titul členky může mít maximálně 30 znaků.", 30)
             ->setRequired("Zadej titul členky.");
-        $form->addInteger("level", "Úroveň skpuiny:")
+        $form->addInteger("level", "Úroveň skupiny:")
             ->addRule(Form::MAX_LENGTH, "Úroveň skupiny může mít maximálně 5 znaků.", 5)
             ->setRequired("Zadej úroveň skupiny.");
         $form->addInteger("maxLoan", "Maximální půjčka:")

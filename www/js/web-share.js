@@ -11,7 +11,7 @@ if (webShareLink) {
             title: document.getElementById("share-link-web").dataset.title
         };
         if (!navigator.canShare) {
-            alert("Tvůj prohlížeš nepodporuje Web Share API");
+            alert("Tvůj prohlížeč nepodporuje Web Share API");
             return;
         }
         if (!navigator.canShare(data)) {

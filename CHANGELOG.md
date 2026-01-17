@@ -5,7 +5,7 @@ Version 1.0.0-beta10+dev
 - allowed dark mode in chats
 - allowed installation as progressive web app
 - allowed sharing articles via Web Share API
-- allowed resticting registration to invited e-mail adrresses
+- allowed restricting registration to invited e-mail addresses
 
 Version 1.0.0-beta10
 - added profile sub-page comments and crimes
@@ -32,7 +32,7 @@ Version 1.0.0-beta8
 - added support for OPTIONS and HEAD methods in api
 - comments from current user/article's author/admin are marked now
 - fixed skill's bonus to work success rate and reward
-- single entities and collections in api now have links in json and send Link headers
+- single entities and collections in api now have links in JSON and send Link headers
 - added Open Graph metadata for frontend pages
 - allowed sharing articles on Facebook
 - phinx is used for database migrations

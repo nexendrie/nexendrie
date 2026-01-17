@@ -20,7 +20,7 @@ final class AcademyPresenter extends BasePresenter
         parent::startup();
         $this->requiresLogin();
         $this->mustNotBeBanned();
-        $this->mustNotBeTavelling();
+        $this->mustNotBeTravelling();
     }
 
     protected function createComponentAcademy(AcademyControlFactory $factory): AcademyControl

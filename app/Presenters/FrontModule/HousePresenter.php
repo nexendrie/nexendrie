@@ -35,7 +35,7 @@ final class HousePresenter extends BasePresenter
     {
         parent::startup();
         $this->requiresLogin();
-        $this->mustNotBeTavelling();
+        $this->mustNotBeTravelling();
         if ($this->profileModel->getPath() !== GroupEntity::PATH_CITY) {
             $this->redirect("Homepage:");
         }

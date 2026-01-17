@@ -160,7 +160,7 @@ final class SystemSettingsFormFactory
                 "description",
                 "Pausa mezi jednotlivými průchody server-side events (používá se např. pro upozornění)"
             )
-            ->setRequired("Zadej pausu pro server-side events.")
+            ->setRequired("Zadej pauzu pro server-side events.")
             ->addRule(Form::INTEGER, "Pausa pro server-side events musí být celé číslo.")
             ->addRule(Form::RANGE, "Pausa pro server-side events musí být v rozmezí 1-100.", [1, 100]);
         $form->addGroup("Účty na sociálních sítích");

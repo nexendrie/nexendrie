@@ -85,7 +85,7 @@ final class EventPresenter extends BasePresenter
         } catch (EventNotFoundException) {
             throw new \Nette\Application\BadRequestException();
         } catch (CannotDeleteStartedEventException) {
-            $this->flashMessage("Nelze smazat již započatnou akci.");
+            $this->flashMessage("Nelze smazat již započatou akci.");
             $this->redirect("Homepage:");
         }
     }

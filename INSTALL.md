@@ -10,7 +10,7 @@ The game uses Composer to manage its dependencies, so you have to have it instal
 Downloading
 -----------
 
-Clone the repository with git clone. Alternatively, you can download the source code from GitLab/GitHub in a archive.
+Clone the repository with git clone. Alternatively, you can download the source code from GitLab/GitHub in an archive.
 
 Auto install
 ------------
