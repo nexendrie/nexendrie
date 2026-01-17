@@ -117,7 +117,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control
         $this->template->render();
     }
 
-    public function handleVote(int $candidate): void
+    public function handleVote(int $candidate): never
     {
         if (!$this->canVote()) {
             $this->presenter->flashMessage("Nemůžeš hlasovat.");

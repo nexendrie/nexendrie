@@ -49,7 +49,7 @@ final class PrisonControl extends \Nette\Application\UI\Control
         $this->template->render();
     }
 
-    public function handleWork(): void
+    public function handleWork(): never
     {
         $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
         if ($punishment === null) {
@@ -70,7 +70,7 @@ final class PrisonControl extends \Nette\Application\UI\Control
         $this->presenter->redirect("default");
     }
 
-    public function handleRelease(): void
+    public function handleRelease(): never
     {
         $punishment = $this->orm->punishments->getActivePunishment($this->user->id);
         $release = false;

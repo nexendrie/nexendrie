@@ -16,7 +16,7 @@ final class AchievementsPresenter extends BasePresenter
         $this->requiresLogin();
     }
 
-    public function renderDefault(): void
+    public function renderDefault(): never
     {
         $this->redirect("Profile:achievements", ["name" => $this->user->identity->name]);
     }
