@@ -355,7 +355,7 @@ final class Adventure
         foreach ($adventures as $adventure) {
             $income += $adventure->reward + $adventure->loot;
         }
-        return (int) $income;
+        return $income;
     }
 
     /**

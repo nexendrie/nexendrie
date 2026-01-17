@@ -183,7 +183,7 @@ final class House
         $house->owner->money -= $house->breweryUpgradePrice;
         $house->breweryLevel++;
         $this->orm->houses->persistAndFlush($house);
-        return (int) $house->breweryLevel;
+        return $house->breweryLevel;
     }
 
     /**
