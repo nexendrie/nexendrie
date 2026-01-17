@@ -90,11 +90,7 @@ final class Adventure
      */
     public function editAdventure(int $id, array $data): void
     {
-        try {
-            $adventure = $this->get($id);
-        } catch (AdventureNotFoundException $e) {
-            throw $e;
-        }
+        $adventure = $this->get($id);
         foreach ($data as $key => $value) {
             $adventure->$key = $value;
         }
@@ -132,11 +128,7 @@ final class Adventure
      */
     public function editNpc(int $id, array $data): void
     {
-        try {
-            $npc = $this->getNpc($id);
-        } catch (AdventureNpcNotFoundException $e) {
-            throw $e;
-        }
+        $npc = $this->getNpc($id);
         foreach ($data as $key => $value) {
             $npc->$key = $value;
         }
@@ -150,11 +142,7 @@ final class Adventure
      */
     public function deleteNpc(int $id): int
     {
-        try {
-            $npc = $this->getNpc($id);
-        } catch (AdventureNpcNotFoundException $e) {
-            throw $e;
-        }
+        $npc = $this->getNpc($id);
         $return = $npc->adventure->id;
         $this->orm->adventureNpcs->removeAndFlush($npc);
         return $return;

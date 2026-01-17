@@ -69,11 +69,7 @@ final class Town
      */
     public function edit(int $id, array $data): void
     {
-        try {
-            $town = $this->get($id);
-        } catch (TownNotFoundException $e) {
-            throw $e;
-        }
+        $town = $this->get($id);
         foreach ($data as $key => $value) {
             $town->$key = $value;
         }

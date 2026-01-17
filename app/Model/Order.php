@@ -67,11 +67,7 @@ final class Order
      */
     public function editOrder(int $id, array $data): void
     {
-        try {
-            $order = $this->getOrder($id);
-        } catch (OrderNotFoundException $e) {
-            throw $e;
-        }
+        $order = $this->getOrder($id);
         foreach ($data as $key => $value) {
             if ($key === "name" && !$this->checkNameAvailability($value, $id)) {
                 throw new OrderNameInUseException();
@@ -186,11 +182,7 @@ final class Order
         } elseif (!$this->canJoin()) {
             throw new CannotJoinOrderException();
         }
-        try {
-            $order = $this->getOrder($id);
-        } catch (OrderNotFoundException $e) {
-            throw $e;
-        }
+        $order = $this->getOrder($id);
         /** @var UserEntity $user */
         $user = $this->orm->users->getById($this->user->id);
         $user->order = $order;

@@ -115,11 +115,7 @@ final class Monastery
         } elseif (!$this->canJoin()) {
             throw new CannotJoinMonasteryException();
         }
-        try {
-            $monastery = $this->get($id);
-        } catch (MonasteryNotFoundException $e) {
-            throw $e;
-        }
+        $monastery = $this->get($id);
         /** @var UserEntity $user */
         $user = $this->orm->users->getById($this->user->id);
         if ($user->monastery !== null && $user->monastery->id === $monastery->id) {
@@ -316,11 +312,7 @@ final class Monastery
      */
     public function edit(int $id, array $data): void
     {
-        try {
-            $monastery = $this->get($id);
-        } catch (MonasteryNotFoundException $e) {
-            throw $e;
-        }
+        $monastery = $this->get($id);
         $skip = ["town", "created", "money"];
         foreach ($data as $key => $value) {
             if (in_array($key, $skip, true)) {

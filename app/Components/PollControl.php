@@ -52,12 +52,8 @@ final class PollControl extends \Nette\Application\UI\Control
      */
     protected function setId(int $id): void
     {
-        try {
-            $this->id = $id;
-            $this->getPoll();
-        } catch (PollNotFoundException $e) {
-            throw $e;
-        }
+        $this->id = $id;
+        $this->getPoll();
     }
 
     /**

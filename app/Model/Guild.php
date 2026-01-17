@@ -70,11 +70,7 @@ final class Guild
      */
     public function editGuild(int $id, array $data): void
     {
-        try {
-            $guild = $this->getGuild($id);
-        } catch (GuildNotFoundException $e) {
-            throw $e;
-        }
+        $guild = $this->getGuild($id);
         foreach ($data as $key => $value) {
             if ($key === "name" && !$this->checkNameAvailability($value, $id)) {
                 throw new GuildNameInUseException();
@@ -165,11 +161,7 @@ final class Guild
         } elseif (!$this->canJoin()) {
             throw new CannotJoinGuildException();
         }
-        try {
-            $guild = $this->getGuild($id);
-        } catch (GuildNotFoundException $e) {
-            throw $e;
-        }
+        $guild = $this->getGuild($id);
         /** @var UserEntity $user */
         $user = $this->orm->users->getById($this->user->id);
         $user->guild = $guild;

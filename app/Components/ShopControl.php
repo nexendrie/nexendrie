@@ -49,12 +49,8 @@ final class ShopControl extends \Nette\Application\UI\Control
 
     protected function setId(int $id): void
     {
-        try {
-            $this->id = $id;
-            $this->getShop();
-        } catch (ShopNotFoundException $e) {
-            throw $e;
-        }
+        $this->id = $id;
+        $this->getShop();
     }
 
     public function render(): void

@@ -119,11 +119,7 @@ final class Job
      */
     public function editJob(int $id, array $data): void
     {
-        try {
-            $job = $this->getJob($id);
-        } catch (JobNotFoundException $e) {
-            throw $e;
-        }
+        $job = $this->getJob($id);
         foreach ($data as $key => $value) {
             $job->$key = $value;
         }
@@ -173,11 +169,7 @@ final class Job
      */
     public function finishJob(): array
     {
-        try {
-            $currentJob = $this->getCurrentJob();
-        } catch (AccessDeniedException $e) {
-            throw $e;
-        }
+        $currentJob = $this->getCurrentJob();
         if (time() < $currentJob->finishTime) {
             throw new JobNotFinishedException();
         }
@@ -223,13 +215,9 @@ final class Job
      */
     public function work(): \stdClass
     {
-        try {
-            $canWork = $this->canWork();
-            if (!$canWork) {
-                throw new CannotWorkException();
-            }
-        } catch (AccessDeniedException $e) {
-            throw $e;
+        $canWork = $this->canWork();
+        if (!$canWork) {
+            throw new CannotWorkException();
         }
         $job = $this->getCurrentJob();
         $success = (rand(1, 100) <= $job->successRate);
@@ -303,11 +291,7 @@ final class Job
      */
     public function canWork(): bool
     {
-        try {
-            $job = $this->getCurrentJob();
-        } catch (AccessDeniedException $e) {
-            throw $e;
-        }
+        $job = $this->getCurrentJob();
         return $job->lastAction === null || $job->nextShiftTime <= time();
     }
 
@@ -360,11 +344,7 @@ final class Job
      */
     public function editMessage(int $id, array $data): void
     {
-        try {
-            $message = $this->getMessage($id);
-        } catch (JobMessageNotFoundException $e) {
-            throw $e;
-        }
+        $message = $this->getMessage($id);
         foreach ($data as $key => $value) {
             if ($key === "success") {
                 $value = (bool) $value;

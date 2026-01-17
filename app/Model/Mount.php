@@ -87,11 +87,7 @@ final class Mount
      */
     public function edit(int $id, array $data): void
     {
-        try {
-            $mount = $this->get($id);
-        } catch (MountNotFoundException $e) {
-            throw $e;
-        }
+        $mount = $this->get($id);
         foreach ($data as $key => $value) {
             $mount->$key = $value;
         }
@@ -113,11 +109,7 @@ final class Mount
         if (!$this->user->isLoggedIn()) {
             throw new AuthenticationNeededException();
         }
-        try {
-            $mount = $this->get($id);
-        } catch (MountNotFoundException $e) {
-            throw $e;
-        }
+        $mount = $this->get($id);
         if (!$mount->onMarket) {
             throw new MountNotOnSaleException();
         }

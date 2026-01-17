@@ -58,11 +58,7 @@ final class Tavern
      */
     public function editMeal(int $id, array $data): void
     {
-        try {
-            $meal = $this->getMeal($id);
-        } catch (MealNotFoundException $e) {
-            throw $e;
-        }
+        $meal = $this->getMeal($id);
         foreach ($data as $key => $value) {
             $meal->$key = $value;
         }

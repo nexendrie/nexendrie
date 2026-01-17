@@ -51,11 +51,7 @@ final class Skills
      */
     public function edit(int $id, array $data): void
     {
-        try {
-            $skill = $this->get($id);
-        } catch (SkillNotFoundException $e) {
-            throw $e;
-        }
+        $skill = $this->get($id);
         foreach ($data as $key => $value) {
             $skill->$key = $value;
         }
@@ -105,11 +101,7 @@ final class Skills
         if (!$this->user->isLoggedIn()) {
             throw new AuthenticationNeededException();
         }
-        try {
-            $skill = $this->get($id);
-        } catch (SkillNotFoundException $e) {
-            throw $e;
-        }
+        $skill = $this->get($id);
         $userSkill = $this->getUserSkill($id);
         if ($userSkill->level === $skill->maxLevel) {
             throw new SkillMaxLevelReachedException();
@@ -131,11 +123,7 @@ final class Skills
      */
     public function getLevelOfSkill(int $skillId): int
     {
-        try {
-            $skill = $this->getUserSkill($skillId);
-        } catch (AuthenticationNeededException $e) {
-            throw $e;
-        }
+        $skill = $this->getUserSkill($skillId);
         $level = $skill->level;
         if ($level === 0) {
             $this->orm->userSkills->detach($skill);

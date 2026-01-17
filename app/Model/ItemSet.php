@@ -59,11 +59,7 @@ final class ItemSet
      */
     public function edit(int $id, array $data): void
     {
-        try {
-            $npc = $this->get($id);
-        } catch (ItemSetNotFoundException $e) {
-            throw $e;
-        }
+        $npc = $this->get($id);
         foreach ($data as $key => $value) {
             $npc->$key = $value;
         }
@@ -77,11 +73,7 @@ final class ItemSet
      */
     public function delete(int $id): void
     {
-        try {
-            $set = $this->get($id);
-        } catch (ItemSetNotFoundException $e) {
-            throw $e;
-        }
+        $set = $this->get($id);
         $this->orm->itemSets->removeAndFlush($set);
     }
 }

@@ -64,11 +64,7 @@ final class Castle
      */
     public function editCastle(int $id, array $data): void
     {
-        try {
-            $castle = $this->getCastle($id);
-        } catch (CastleNotFoundException $e) {
-            throw $e;
-        }
+        $castle = $this->getCastle($id);
         foreach ($data as $key => $value) {
             if ($key === "name" && !$this->checkNameAvailability($value, $id)) {
                 throw new CastleNameInUseException();

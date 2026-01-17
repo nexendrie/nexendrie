@@ -68,11 +68,7 @@ final class Rss
      */
     public function commentsFeed(int $id): RssResponse
     {
-        try {
-            $article = $this->articleModel->view($id);
-        } catch (ArticleNotFoundException $e) {
-            throw $e;
-        }
+        $article = $this->articleModel->view($id);
         $versionSuffix = $this->versionSuffix();
         $articleLink = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
         $info = [

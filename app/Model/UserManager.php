@@ -178,11 +178,7 @@ final class UserManager
      */
     public function edit(int $id, array $values): void
     {
-        try {
-            $user = $this->get($id);
-        } catch (UserNotFoundException $e) {
-            throw $e;
-        }
+        $user = $this->get($id);
         foreach ($values as $key => $value) {
             $user->$key = $value;
         }

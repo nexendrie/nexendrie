@@ -69,11 +69,7 @@ final class Market
      */
     public function editShop(int $id, array $data): void
     {
-        try {
-            $shop = $this->getShop($id);
-        } catch (ShopNotFoundException $e) {
-            throw $e;
-        }
+        $shop = $this->getShop($id);
         foreach ($data as $key => $value) {
             $shop->$key = $value;
         }
@@ -110,11 +106,7 @@ final class Market
      */
     public function editItem(int $id, array $data): void
     {
-        try {
-            $item = $this->getItem($id);
-        } catch (ItemNotFoundException $e) {
-            throw $e;
-        }
+        $item = $this->getItem($id);
         foreach ($data as $key => $value) {
             $item->$key = $value;
         }
