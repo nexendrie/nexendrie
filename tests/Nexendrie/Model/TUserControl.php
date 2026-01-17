@@ -257,7 +257,7 @@ trait TUserControl
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->logout();
     }
