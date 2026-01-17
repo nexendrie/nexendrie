@@ -137,11 +137,11 @@ final class PollControl extends \Nette\Application\UI\Control
         try {
             $this->vote($answer);
             $this->presenter->flashMessage("Hlas uložen.");
-        } catch (\Nette\InvalidArgumentException $e) {
+        } catch (\Nette\InvalidArgumentException) {
             $this->presenter->flashMessage("Zadaná anketa neexistuje.");
-        } catch (AccessDeniedException $e) {
+        } catch (AccessDeniedException) {
             $this->presenter->flashMessage("Nemůžeš hlasovat v této anketě.");
-        } catch (PollVotingException $e) {
+        } catch (PollVotingException) {
             $this->presenter->flashMessage("Neplatná volba.");
         }
     }

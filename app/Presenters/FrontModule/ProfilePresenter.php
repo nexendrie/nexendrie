@@ -59,7 +59,7 @@ final class ProfilePresenter extends BasePresenter
             $this->template->job = $job;
             $this->template->canProposeMarriage = $this->marriageModel->canPropose($user->id);
             $this->template->ogType = "profile";
-        } catch (UserNotFoundException $e) {
+        } catch (UserNotFoundException) {
             throw new BadRequestException();
         }
     }

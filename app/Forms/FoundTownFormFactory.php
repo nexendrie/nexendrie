@@ -37,13 +37,13 @@ final class FoundTownFormFactory
     {
         try {
             $this->model->found($values);
-        } catch (InsufficientLevelForFoundTownException $e) {
+        } catch (InsufficientLevelForFoundTownException) {
             $form->addError("Nejsi šlechtic.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $form->addError("Nemáš dostatek peněz.");
-        } catch (CannotFoundTownException $e) {
+        } catch (CannotFoundTownException) {
             $form->addError("Nemáš právo založit město.");
-        } catch (TownNameInUseException $e) {
+        } catch (TownNameInUseException) {
             $form->addError("Zadané jméno je již zabráno.");
         }
     }

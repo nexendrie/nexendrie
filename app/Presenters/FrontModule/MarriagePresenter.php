@@ -70,7 +70,7 @@ final class MarriagePresenter extends BasePresenter
         try {
             $this->model->proposeMarriage($id);
             $this->flashMessage("Sňatek navržen.");
-        } catch (CannotProposeMarriageException $e) {
+        } catch (CannotProposeMarriageException) {
             $this->flashMessage("Nemůžeš navrhnout sňatek.");
         }
         $this->redirect("Homepage:");

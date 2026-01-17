@@ -82,13 +82,13 @@ final class StablesControl extends \Nette\Application\UI\Control
             $this->increaseLife($mount, 3, 4);
             $message = $this->localeModel->genderMessage("Očistil(a) jsi jezdecké zvíře.");
             $this->presenter->flashMessage($message);
-        } catch (MountNotFoundException $e) {
+        } catch (MountNotFoundException) {
             $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
-        } catch (MountNotOwnedException $e) {
+        } catch (MountNotOwnedException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře ti nepatří.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $this->presenter->flashMessage("Nemáš dostatek peněz.");
-        } catch (CareNotNeededException $e) {
+        } catch (CareNotNeededException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře nepotřebuje čištění.");
         }
         $this->presenter->redirect("default");
@@ -100,13 +100,13 @@ final class StablesControl extends \Nette\Application\UI\Control
             $this->increaseLife($mount, 10, 12);
             $message = $this->localeModel->genderMessage("Nakrmil(a) jsi jezdecké zvíře.");
             $this->presenter->flashMessage($message);
-        } catch (MountNotFoundException $e) {
+        } catch (MountNotFoundException) {
             $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
-        } catch (MountNotOwnedException $e) {
+        } catch (MountNotOwnedException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře ti nepatří.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $this->presenter->flashMessage("Nemáš dostatek peněz.");
-        } catch (CareNotNeededException $e) {
+        } catch (CareNotNeededException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře nepotřebuje krmení.");
         }
         $this->presenter->redirect("default");
@@ -152,15 +152,15 @@ final class StablesControl extends \Nette\Application\UI\Control
         try {
             $this->train($mount, "damage");
             $this->presenter->flashMessage("Trénink byl úspěšný.");
-        } catch (MountNotFoundException $e) {
+        } catch (MountNotFoundException) {
             $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
-        } catch (MountNotOwnedException $e) {
+        } catch (MountNotOwnedException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře ti nepatří.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $this->presenter->flashMessage("Nemáš dostatek peněz.");
-        } catch (MountMaxTrainingLevelReachedException $e) {
+        } catch (MountMaxTrainingLevelReachedException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře už nemůže být trénováno.");
-        } catch (MountInBadConditionException $e) {
+        } catch (MountInBadConditionException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře je ve špatném stavu.");
         }
         $this->presenter->redirect("default");
@@ -171,15 +171,15 @@ final class StablesControl extends \Nette\Application\UI\Control
         try {
             $this->train($mount, "armor");
             $this->presenter->flashMessage("Trénink byl úspěšný.");
-        } catch (MountNotFoundException $e) {
+        } catch (MountNotFoundException) {
             $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
-        } catch (MountNotOwnedException $e) {
+        } catch (MountNotOwnedException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře ti nepatří.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $this->presenter->flashMessage("Nemáš dostatek peněz.");
-        } catch (MountMaxTrainingLevelReachedException $e) {
+        } catch (MountMaxTrainingLevelReachedException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře už nemůže být trénováno.");
-        } catch (MountInBadConditionException $e) {
+        } catch (MountInBadConditionException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře je ve špatném stavu.");
         }
         $this->presenter->redirect("default");

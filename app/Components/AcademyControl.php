@@ -54,12 +54,12 @@ final class AcademyControl extends \Nette\Application\UI\Control
             $this->model->learn($skill);
             $message = $this->localeModel->genderMessage("Úspěšně jsi se naučil(a) dovednost.");
             $this->presenter->flashMessage($message);
-        } catch (SkillNotFoundException $e) {
+        } catch (SkillNotFoundException) {
             $this->presenter->flashMessage("Dovednost nenalezena.");
-        } catch (SkillMaxLevelReachedException $e) {
+        } catch (SkillMaxLevelReachedException) {
             $message = $this->localeModel->genderMessage("Dosáhl(a) jsi již maximální úrovně.");
             $this->presenter->flashMessage($message);
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $this->presenter->flashMessage("Nemáš dostatek peněz.");
         }
         $this->presenter->redirect("this");

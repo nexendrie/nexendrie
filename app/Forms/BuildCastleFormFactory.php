@@ -38,13 +38,13 @@ final class BuildCastleFormFactory
     {
         try {
             $this->model->build($values);
-        } catch (CannotBuildCastleException $e) {
+        } catch (CannotBuildCastleException) {
             $form->addError("Nemůže stavět hrad.");
-        } catch (CannotBuildMoreCastlesException $e) {
+        } catch (CannotBuildMoreCastlesException) {
             $form->addError("Můžeš postavit jen 1 hrad.");
-        } catch (CastleNameInUseException $e) {
+        } catch (CastleNameInUseException) {
             $form->addError("Zadané jméno je již zabrané.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $form->addError("Nemáš dostatek peněz.");
         }
     }

@@ -114,7 +114,7 @@ final class MonasteryPresenter extends BasePresenter
     {
         try {
             $this->model->getByUser();
-        } catch (NotInMonasteryException $e) {
+        } catch (NotInMonasteryException) {
             $this->flashMessage("Nejsi v klášteře.");
             $this->redirect("Homepage:");
         }

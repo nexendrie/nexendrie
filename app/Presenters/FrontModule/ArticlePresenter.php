@@ -52,10 +52,10 @@ final class ArticlePresenter extends BasePresenter
             try {
                 $this->model->addComment($values);
                 $this->flashMessage("Komentář přidán.");
-            } catch (AuthenticationNeededException $e) {
+            } catch (AuthenticationNeededException) {
                 $this->flashMessage("Pro přidání komentáře musíš být přihlášený.");
                 $this->redirect("User:login");
-            } catch (MissingPermissionsException $e) {
+            } catch (MissingPermissionsException) {
                 $this->flashMessage("Nemůžeš přidávat komentáře.");
             }
         };

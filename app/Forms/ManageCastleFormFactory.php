@@ -40,7 +40,7 @@ final class ManageCastleFormFactory
     {
         try {
             $this->model->editCastle($this->id, $values);
-        } catch (CastleNameInUseException $e) {
+        } catch (CastleNameInUseException) {
             $form->addError("Zadané jméno je již zabráno.");
         }
     }

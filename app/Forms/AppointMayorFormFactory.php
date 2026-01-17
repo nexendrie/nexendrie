@@ -38,13 +38,13 @@ final class AppointMayorFormFactory
     {
         try {
             $this->model->appointMayor($this->town->id, $values["mayor"]);
-        } catch (TownNotOwnedException $e) {
+        } catch (TownNotOwnedException) {
             $form->addError("Zadané město ti nepatří.");
-        } catch (UserNotFoundException $e) {
+        } catch (UserNotFoundException) {
             $form->addError("Vybarný uživatel nebyl nalezen.");
-        } catch (UserDoesNotLiveInTheTownException $e) {
+        } catch (UserDoesNotLiveInTheTownException) {
             $form->addError("Vybraný uživatel nežije ve městě.");
-        } catch (InsufficientLevelForMayorException $e) {
+        } catch (InsufficientLevelForMayorException) {
             $form->addError("Vybraný uživatel nemá dostečnou úroveň.");
         }
     }

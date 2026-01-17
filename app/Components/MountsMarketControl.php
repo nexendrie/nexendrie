@@ -37,15 +37,15 @@ final class MountsMarketControl extends \Nette\Application\UI\Control
         try {
             $this->model->buy($mount);
             $this->presenter->flashMessage("Jezdecké zvíře koupeno.");
-        } catch (MountNotFoundException $e) {
+        } catch (MountNotFoundException) {
             $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
-        } catch (MountNotOnSaleException $e) {
+        } catch (MountNotOnSaleException) {
             $this->presenter->flashMessage("Jezdecké zvíře není na prodej.");
-        } catch (CannotBuyOwnMountException $e) {
+        } catch (CannotBuyOwnMountException) {
             $this->presenter->flashMessage("Toto jezdecké zvíře je již tvé.");
-        } catch (InsufficientLevelForMountException $e) {
+        } catch (InsufficientLevelForMountException) {
             $this->presenter->flashMessage("Nemůžeš si ještě koupit tento druh jezdeckého zvíře.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $this->presenter->flashMessage("Nemáš dostatek peněz.");
         }
     }

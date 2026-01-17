@@ -72,7 +72,7 @@ final class PropertyPresenter extends BasePresenter
     {
         try {
             $this->town = $this->townModel->get($id);
-        } catch (TownNotFoundException $e) {
+        } catch (TownNotFoundException) {
             $this->flashMessage("Město nenalezeno.");
             $this->redirect("Homepage:");
         }

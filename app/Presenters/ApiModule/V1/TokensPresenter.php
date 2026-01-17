@@ -46,12 +46,12 @@ final class TokensPresenter extends BasePresenter
             $this->user->login($identity);
         } catch (AuthenticationException $e) {
             $this->sendBasicAuthRequest($e->getMessage());
-        } catch (\Throwable $e) {
+        } catch (\Throwable) {
             $this->sendBasicAuthRequest();
         }
         try {
             $token = $this->tokens->create();
-        } catch (ApiNotEnabledException $e) {
+        } catch (ApiNotEnabledException) {
             $this->getHttpResponse()->setCode(IResponse::S403_FORBIDDEN);
             $this->sendJson(["message" => "You do not have API enabled."]);
         }

@@ -70,13 +70,13 @@ final class ShopControl extends \Nette\Application\UI\Control
         try {
             $this->model->buy($item, $this->shop->id);
             $this->presenter->flashMessage("Věc koupena.");
-        } catch (AuthenticationNeededException $e) {
+        } catch (AuthenticationNeededException) {
             $this->presenter->flashMessage("Pro nákup musíš být přihlášený.");
-        } catch (ItemNotFoundException $e) {
+        } catch (ItemNotFoundException) {
             $this->presenter->flashMessage("Zadaná věc neexistuje.");
-        } catch (WrongShopException $e) {
+        } catch (WrongShopException) {
             $this->presenter->flashMessage("Zadaná věc není v aktuálním obchodě.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $this->presenter->flashMessage("Nemáš dostatek peněz na zakoupení této věci.");
         }
         $this->presenter->redirect(":Front:Market:shop", ["id" => $this->shop->id]);

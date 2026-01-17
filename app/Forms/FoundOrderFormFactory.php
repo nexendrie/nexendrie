@@ -37,11 +37,11 @@ final class FoundOrderFormFactory
     {
         try {
             $this->model->found($values);
-        } catch (CannotFoundOrderException $e) {
+        } catch (CannotFoundOrderException) {
             $form->addError("Nemůžeš založit řád.");
-        } catch (OrderNameInUseException $e) {
+        } catch (OrderNameInUseException) {
             $form->addError("Zadané jméno je již zabráno.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $form->addError("Nemáš dostatek peněz.");
         }
     }

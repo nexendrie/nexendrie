@@ -45,7 +45,7 @@ final class AdventurePresenter extends BasePresenter
         $this->requiresPermissions("content", "edit");
         try {
             $this->adventure = $this->model->get($id);
-        } catch (AdventureNotFoundException $e) {
+        } catch (AdventureNotFoundException) {
             throw new \Nette\Application\BadRequestException();
         }
     }

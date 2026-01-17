@@ -36,11 +36,11 @@ final class TavernControl extends \Nette\Application\UI\Control
     {
         try {
             $this->template->message = $this->model->buyMeal($meal);
-        } catch (AuthenticationNeededException $e) {
+        } catch (AuthenticationNeededException) {
             $this->flashMessage("Musíš být přihlášený");
-        } catch (MealNotFoundException $e) {
+        } catch (MealNotFoundException) {
             $this->flashMessage("Jídlo nenalezeno.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $this->flashMessage("Nemáš dostatek peněz.");
         }
         $this->presenter->redirect("default");

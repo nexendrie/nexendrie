@@ -70,7 +70,7 @@ final class UserPresenter extends BasePresenter
                 $this->flashMessage("Uživatel už je uvězněn.");
                 $this->redirect("default");
             }
-        } catch (UserNotFoundException $e) {
+        } catch (UserNotFoundException) {
             $this->flashMessage("Zadaný uživatel neexistuje.");
             $this->redirect("default");
         }

@@ -51,7 +51,7 @@ final class StablesPresenter extends BasePresenter
     {
         try {
             $this->mount = $this->model->get($id);
-        } catch (MountNotFoundException $e) {
+        } catch (MountNotFoundException) {
             throw new \Nette\Application\BadRequestException();
         }
         if ($this->mount->owner->id !== $this->user->id) {

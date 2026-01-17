@@ -45,11 +45,11 @@ final class FoundGuildFormFactory
     {
         try {
             $this->model->found($values);
-        } catch (CannotFoundGuildException $e) {
+        } catch (CannotFoundGuildException) {
             $form->addError("Nemůžeš založit cech.");
-        } catch (GuildNameInUseException $e) {
+        } catch (GuildNameInUseException) {
             $form->addError("Zadané jméno je již zabráno.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $form->addError("Nemáš dostatek peněz.");
         }
     }

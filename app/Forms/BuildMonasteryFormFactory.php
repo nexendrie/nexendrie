@@ -34,11 +34,11 @@ final class BuildMonasteryFormFactory
     {
         try {
             $this->model->build($values["name"]);
-        } catch (CannotBuildMonasteryException $e) {
+        } catch (CannotBuildMonasteryException) {
             $form->addError("Nemůžeš postavit klášter.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $form->addError("Nemáš dostatek peněz.");
-        } catch (MonasteryNameInUseException $e) {
+        } catch (MonasteryNameInUseException) {
             $form->addError("Zadané jméno je již zabráno.");
         }
     }

@@ -125,7 +125,7 @@ final class HousePresenter extends BasePresenter
             $message .= $this->localeModel->money($result["amount"] * $result["price"]) . ".";
             $this->flashMessage($message);
             $this->redirect("default");
-        } catch (CannotProduceBeerException $e) {
+        } catch (CannotProduceBeerException) {
             $this->flashMessage("Nemůžeš vařit pivo.");
             $this->redirect("Homepage:");
         }

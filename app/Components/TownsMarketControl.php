@@ -37,15 +37,15 @@ final class TownsMarketControl extends \Nette\Application\UI\Control
         try {
             $this->model->buy($town);
             $this->presenter->flashMessage("Město koupeno.");
-        } catch (TownNotFoundException $e) {
+        } catch (TownNotFoundException) {
             $this->presenter->flashMessage("Město nenalezeno.");
-        } catch (TownNotOnSaleException $e) {
+        } catch (TownNotOnSaleException) {
             $this->presenter->flashMessage("Město není na prodej.");
-        } catch (CannotBuyOwnTownException $e) {
+        } catch (CannotBuyOwnTownException) {
             $this->presenter->flashMessage("Toto město je již tvé.");
-        } catch (CannotBuyTownException $e) {
+        } catch (CannotBuyTownException) {
             $this->presenter->flashMessage("Nemůžeš kupovat města.");
-        } catch (InsufficientFundsException $e) {
+        } catch (InsufficientFundsException) {
             $this->presenter->flashMessage("Nemáš dostatek peněz.");
         }
     }

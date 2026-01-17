@@ -204,7 +204,7 @@ final class SystemSettingsFormFactory
         try {
             $content = Neon::encode($config, true);
             FileSystem::write($filename, $content);
-        } catch (\Nette\IOException $e) {
+        } catch (\Nette\IOException) {
             $form->addError("Došlo k chybě při ukládání nastavení. Ujisti se, že máš právo zápisu do souboru.");
         }
     }

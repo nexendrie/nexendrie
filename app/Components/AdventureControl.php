@@ -67,21 +67,21 @@ final class AdventureControl extends \Nette\Application\UI\Control
             $message = $this->localeModel->genderMessage("Vydal(a) jsi se na dobrodružství.");
             $this->presenter->flashMessage($message);
             $this->presenter->redirect("Adventure:");
-        } catch (AlreadyOnAdventureException $e) {
+        } catch (AlreadyOnAdventureException) {
             $this->presenter->flashMessage("Už jsi na dobrodružství.");
-        } catch (CannotDoAdventureException $e) {
+        } catch (CannotDoAdventureException) {
             $this->presenter->flashMessage("Musíš počkat před dalším dobrodružstvím.");
-        } catch (AdventureNotFoundException $e) {
+        } catch (AdventureNotFoundException) {
             $this->presenter->flashMessage("Dobrodružství nenalezeno.");
-        } catch (InsufficientLevelForAdventureException $e) {
+        } catch (InsufficientLevelForAdventureException) {
             $this->presenter->flashMessage("Nemáš dostatečnou úroveň pro toto dobrodružství.");
-        } catch (MountNotFoundException $e) {
+        } catch (MountNotFoundException) {
             $this->presenter->flashMessage("Jezdecké zvíře nenalezeno.");
-        } catch (MountNotOwnedException $e) {
+        } catch (MountNotOwnedException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře ti nepatří.");
-        } catch (MountInBadConditionException $e) {
+        } catch (MountInBadConditionException) {
             $this->presenter->flashMessage("Dané jezdecké zvíře je ve špatném stavu.");
-        } catch (AdventureNotAccessibleException $e) {
+        } catch (AdventureNotAccessibleException) {
             $this->presenter->flashMessage("Vybrané dobrodružství není dostupné.");
         }
     }
@@ -91,9 +91,9 @@ final class AdventureControl extends \Nette\Application\UI\Control
         try {
             $result = $this->model->fight();
             $this->template->message = $result["message"];
-        } catch (NotOnAdventureException $e) {
+        } catch (NotOnAdventureException) {
             $this->presenter->flashMessage("Nejsi na dobrodružství.");
-        } catch (NoEnemyRemainException $e) {
+        } catch (NoEnemyRemainException) {
             $message = $this->localeModel->genderMessage("Porazil(a) jsi již všechny nepřátele.");
             $this->presenter->flashMessage($message);
         }
@@ -108,9 +108,9 @@ final class AdventureControl extends \Nette\Application\UI\Control
             $authenticator->user = $this->user;
             $authenticator->refreshIdentity();
             $this->presenter->redirect("Homepage:");
-        } catch (NotOnAdventureException $e) {
+        } catch (NotOnAdventureException) {
             $this->presenter->flashMessage("Nejsi na dobrodružství.");
-        } catch (NotAllEnemiesDefeatedException $e) {
+        } catch (NotAllEnemiesDefeatedException) {
             $message = $this->localeModel->genderMessage("Neporazil(a) jsi již všechny nepřátele.");
             $this->presenter->flashMessage($message);
         }

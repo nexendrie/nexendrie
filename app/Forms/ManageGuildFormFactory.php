@@ -49,7 +49,7 @@ final class ManageGuildFormFactory
     {
         try {
             $this->model->editGuild($this->id, $values);
-        } catch (GuildNameInUseException $e) {
+        } catch (GuildNameInUseException) {
             $form->addError("Zadané jméno je již zabráno.");
         }
     }
