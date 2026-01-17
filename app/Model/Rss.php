@@ -17,7 +17,7 @@ use Nextras\Orm\Collection\ICollection;
  */
 final class Rss
 {
-    private string $versionSuffix = "";
+    private string $versionSuffix;
 
     public function __construct(
         private readonly Article $articleModel,

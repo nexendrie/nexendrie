@@ -17,7 +17,7 @@ use Nette\InvalidArgumentException;
  */
 final class UserManager
 {
-    private array $roles = [];
+    private array $roles;
     private array $newUser;
     private bool $openRegistration;
     /** Exception error code */
