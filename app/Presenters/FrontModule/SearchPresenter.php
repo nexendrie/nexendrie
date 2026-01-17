@@ -35,8 +35,6 @@ final class SearchPresenter extends BasePresenter
                 case SiteSearchFormFactory::TYPE_ARTICLES:
                     $this->template->results = $this->orm->articles->findByText($text);
                     break;
-                default:
-                    return;
             }
         };
         return $form;
