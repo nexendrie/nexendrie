@@ -70,7 +70,7 @@ final class HelpControl extends BookControl
                 "skillLevel" => $job->neededSkillLevel, "count" => $job->count,
                 "award" => $job->award, "shift" => $job->shift,
             ];
-            /** @var \Nexendrie\Orm\Group $group */
+            /** @var GroupEntity $group */
             $group = $this->orm->groups->getByLevel($job->level);
             $j->rank = $group->singleName;
             $this->template->jobs[] = $j;

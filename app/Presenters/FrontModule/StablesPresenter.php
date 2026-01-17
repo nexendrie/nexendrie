@@ -88,7 +88,7 @@ final class StablesPresenter extends BasePresenter
     {
         if (isset($this->template->mounts)) {
             $time = 0;
-            /** @var \Nexendrie\Orm\Mount $mount */
+            /** @var MountEntity $mount */
             foreach ($this->template->mounts as $mount) {
                 $time = max($time, $mount->updated);
             }

@@ -9,6 +9,6 @@ use Nextras\Orm\Mapper\Dbal\DbalMapper;
  * @author Jakub Konečný
  * @extends DbalMapper<UserExpense>
  */
-final class UserExpensesMapper extends \Nextras\Orm\Mapper\Dbal\DbalMapper
+final class UserExpensesMapper extends DbalMapper
 {
 }
