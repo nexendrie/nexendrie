@@ -53,8 +53,7 @@ final class Group
     public function get(int $id): ?GroupDummy
     {
         $groups = $this->listOfGroups();
-        $group = Arrays::get($groups, $id, null);
-        return $group;
+        return Arrays::get($groups, $id, null);
     }
 
     public function ormGet(int $id): ?GroupEntity

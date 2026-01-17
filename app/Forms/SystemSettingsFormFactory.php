@@ -43,8 +43,7 @@ final class SystemSettingsFormFactory
 
     private function getDefaultValues(): array
     {
-        $settings = $this->sr->settings;
-        return $settings;
+        return $this->sr->settings;
     }
 
     /**
