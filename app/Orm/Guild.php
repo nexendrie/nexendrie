@@ -28,9 +28,9 @@ use Nexendrie\Utils\Numbers;
  */
 final class Guild extends BaseEntity
 {
-    public const MAX_LEVEL = 6;
-    public const BASE_UPGRADE_PRICE = 700;
-    public const JOB_INCOME_BONUS_PER_LEVEL = 1;
+    public const int MAX_LEVEL = 6;
+    public const int BASE_UPGRADE_PRICE = 700;
+    public const int JOB_INCOME_BONUS_PER_LEVEL = 1;
 
     private \Nexendrie\Model\Locale $localeModel;
 

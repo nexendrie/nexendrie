@@ -16,12 +16,12 @@ use Nexendrie\Orm\User as UserEntity;
  *
  * @author Jakub Konečný
  */
-final class UserSettingsFormFactory
+final readonly class UserSettingsFormFactory
 {
     public function __construct(
-        private readonly UserManager $model,
-        private readonly ThemesManager $themesManager,
-        private readonly LinkGenerator $linkGenerator
+        private UserManager $model,
+        private ThemesManager $themesManager,
+        private LinkGenerator $linkGenerator
     ) {
     }
 

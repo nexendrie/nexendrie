@@ -13,9 +13,9 @@ use Nexendrie\Orm\Punishment as PunishmentEntity;
  *
  * @author Jakub Konečný
  */
-final class Chronicle
+final readonly class Chronicle
 {
-    public function __construct(private readonly ORM $orm)
+    public function __construct(private ORM $orm)
     {
     }
 

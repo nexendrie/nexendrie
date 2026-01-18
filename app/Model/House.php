@@ -14,14 +14,14 @@ use Nexendrie\Orm\UserExpense;
  *
  * @author Jakub Konečný
  */
-final class House
+final readonly class House
 {
     private int $price;
     private int $criticalCondition;
 
     public function __construct(
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user,
+        private ORM $orm,
+        private \Nette\Security\User $user,
         SettingsRepository $sr
     ) {
         $this->price = $sr->settings["fees"]["buyHouse"];

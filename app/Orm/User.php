@@ -87,8 +87,8 @@ use Nexendrie\Utils\Numbers;
  */
 final class User extends BaseEntity
 {
-    public const GENDER_MALE = "male";
-    public const GENDER_FEMALE = "female";
+    public const string GENDER_MALE = "male";
+    public const string GENDER_FEMALE = "female";
 
     private Locale $localeModel;
     private SettingsRepository $sr;

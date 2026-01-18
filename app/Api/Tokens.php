@@ -9,13 +9,13 @@ use Nexendrie\Model\AuthenticationNeededException;
 use Nexendrie\Orm\ApiToken;
 use Nexendrie\Orm\Model as ORM;
 
-final class Tokens
+final readonly class Tokens
 {
     public function __construct(
-        private readonly int $ttl,
-        public readonly int $length,
-        private readonly ORM $orm,
-        private readonly User $user
+        private int $ttl,
+        public int $length,
+        private ORM $orm,
+        private User $user
     ) {
     }
 

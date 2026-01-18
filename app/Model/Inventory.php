@@ -17,9 +17,9 @@ use Nextras\Orm\Relationships\OneHasMany;
  *
  * @author Jakub Konečný
  */
-final class Inventory
+final readonly class Inventory
 {
-    public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user)
+    public function __construct(private ORM $orm, private \Nette\Security\User $user)
     {
     }
 

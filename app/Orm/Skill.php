@@ -26,12 +26,12 @@ use Nextras\Orm\Relationships\OneHasMany;
  */
 final class Skill extends BaseEntity
 {
-    public const TYPE_WORK = "work";
-    public const TYPE_COMBAT = "combat";
-    public const STAT_HITPOINTS = "hitpoints";
-    public const STAT_DAMAGE = "damage";
-    public const STAT_ARMOR = "armor";
-    public const STAT_INITIATIVE = "initiative";
+    public const string TYPE_WORK = "work";
+    public const string TYPE_COMBAT = "combat";
+    public const string STAT_HITPOINTS = "hitpoints";
+    public const string STAT_DAMAGE = "damage";
+    public const string STAT_ARMOR = "armor";
+    public const string STAT_INITIATIVE = "initiative";
 
     /**
      * @return array<string, string>

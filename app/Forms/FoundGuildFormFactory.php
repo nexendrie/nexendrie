@@ -15,9 +15,9 @@ use Nexendrie\Model\Skills;
  *
  * @author Jakub Konečný
  */
-final class FoundGuildFormFactory
+final readonly class FoundGuildFormFactory
 {
-    public function __construct(private readonly Guild $model, private readonly Skills $skillsModel)
+    public function __construct(private Guild $model, private Skills $skillsModel)
     {
     }
 

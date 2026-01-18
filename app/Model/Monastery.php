@@ -16,17 +16,17 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  *
  */
-final class Monastery
+final readonly class Monastery
 {
     private int $buildingPrice;
     private int $criticalCondition;
 
     public function __construct(
-        private readonly Events $eventsModel,
-        private readonly Guild $guildModel,
-        private readonly Order $orderModel,
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user,
+        private Events $eventsModel,
+        private Guild $guildModel,
+        private Order $orderModel,
+        private ORM $orm,
+        private \Nette\Security\User $user,
         SettingsRepository $sr
     ) {
         $this->buildingPrice = $sr->settings["fees"]["buildMonastery"];

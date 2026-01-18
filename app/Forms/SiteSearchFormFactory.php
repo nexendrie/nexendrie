@@ -12,8 +12,8 @@ use Nette\Application\UI\Form;
  */
 final class SiteSearchFormFactory
 {
-    public const TYPE_USERS = "users";
-    public const TYPE_ARTICLES = "articles";
+    public const string TYPE_USERS = "users";
+    public const string TYPE_ARTICLES = "articles";
 
     private function getTypes(): array
     {

@@ -7,16 +7,16 @@ use Nette\Neon\Neon;
 use Nette\Utils\Arrays;
 use Nette\Utils\Finder;
 
-final class ThemesManager
+final readonly class ThemesManager
 {
-    public const SUFFIX_DEPRECATED = " (zavržený)";
-    public const SUFFIX_EXPERIMENTAL = " (experimentální)";
-    private const KEY_DEPRECATED = "deprecated";
-    private const KEY_EXPERIMENTAL = "experimental";
-    private const KEY_NAME = "name";
-    private const THEMES_DIR = "styles";
+    public const string SUFFIX_DEPRECATED = " (zavržený)";
+    public const string SUFFIX_EXPERIMENTAL = " (experimentální)";
+    private const string KEY_DEPRECATED = "deprecated";
+    private const string KEY_EXPERIMENTAL = "experimental";
+    private const string KEY_NAME = "name";
+    private const string THEMES_DIR = "styles";
 
-    public function __construct(private readonly string $wwwDir)
+    public function __construct(private string $wwwDir)
     {
     }
 

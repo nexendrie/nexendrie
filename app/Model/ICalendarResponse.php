@@ -6,9 +6,9 @@ namespace Nexendrie\Model;
 use Nette;
 use Nette\Application\Response;
 
-final class ICalendarResponse implements Response
+final readonly class ICalendarResponse implements Response
 {
-    public function __construct(public readonly string $source)
+    public function __construct(public string $source)
     {
     }
 

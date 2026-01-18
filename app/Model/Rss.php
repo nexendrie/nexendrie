@@ -15,14 +15,14 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-final class Rss
+final readonly class Rss
 {
     private string $versionSuffix;
 
     public function __construct(
-        private readonly Article $articleModel,
-        private readonly LinkGenerator $linkGenerator,
-        private readonly Generator $generator,
+        private Article $articleModel,
+        private LinkGenerator $linkGenerator,
+        private Generator $generator,
         SettingsRepository $sr
     ) {
         $this->versionSuffix = $sr->settings["site"]["versionSuffix"];

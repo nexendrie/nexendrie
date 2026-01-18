@@ -15,9 +15,9 @@ use Nexendrie\Model\InsufficientFundsException;
  *
  * @author Jakub Konečný
  */
-final class BuildCastleFormFactory
+final readonly class BuildCastleFormFactory
 {
-    public function __construct(private readonly Castle $model)
+    public function __construct(private Castle $model)
     {
     }
 

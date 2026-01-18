@@ -11,9 +11,9 @@ use Nexendrie\Model\Messenger;
  *
  * @author Jakub Konečný
  */
-final class NewMessageFormFactory
+final readonly class NewMessageFormFactory
 {
-    public function __construct(private readonly Messenger $model)
+    public function __construct(private Messenger $model)
     {
     }
 

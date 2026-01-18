@@ -14,13 +14,13 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-final class Castle
+final readonly class Castle
 {
     private int $buildingPrice;
 
     public function __construct(
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user,
+        private ORM $orm,
+        private \Nette\Security\User $user,
         SettingsRepository $sr
     ) {
         $this->buildingPrice = $sr->settings["fees"]["buildCastle"];

@@ -26,10 +26,10 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  */
 final class ItemSet extends BaseEntity implements ICharacterEffectsProvider
 {
-    public const STAT_DAMAGE = "damage";
-    public const STAT_ARMOR = "armor";
-    public const STAT_HITPOINTS = "hitpoints";
-    public const STAT_INITIATIVE = "initiative";
+    public const string STAT_DAMAGE = "damage";
+    public const string STAT_ARMOR = "armor";
+    public const string STAT_HITPOINTS = "hitpoints";
+    public const string STAT_INITIATIVE = "initiative";
 
     /**
      * @return array<string, string>

@@ -18,9 +18,9 @@ use HeroesofAbenez\Combat\ConstantInitiativeFormulaParser;
  *
  * @author Jakub Konečný
  */
-final class CombatHelper
+final readonly class CombatHelper
 {
-    public function __construct(private readonly Inventory $inventoryModel, private readonly ORM $orm)
+    public function __construct(private Inventory $inventoryModel, private ORM $orm)
     {
     }
 

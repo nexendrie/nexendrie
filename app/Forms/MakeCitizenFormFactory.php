@@ -14,9 +14,9 @@ use Nexendrie\Model\TooHighLevelException;
  *
  * @author Jakub Konečný
  */
-final class MakeCitizenFormFactory
+final readonly class MakeCitizenFormFactory
 {
-    public function __construct(private readonly Town $model)
+    public function __construct(private Town $model)
     {
     }
 

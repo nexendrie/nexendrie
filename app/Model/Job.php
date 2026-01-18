@@ -15,13 +15,13 @@ use Nextras\Orm\Relationships\OneHasMany;
  *
  * @author Jakub Konečný
  */
-final class Job
+final readonly class Job
 {
     public function __construct(
-        private readonly Skills $skillsModel,
-        private readonly Locale $localeModel,
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user
+        private Skills $skillsModel,
+        private Locale $localeModel,
+        private ORM $orm,
+        private \Nette\Security\User $user
     ) {
     }
 

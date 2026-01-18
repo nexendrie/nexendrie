@@ -15,12 +15,12 @@ use Nexendrie\Orm\Item as ItemEntity;
  *
  * @author Jakub Konečný
  */
-final class GiftFormFactory
+final readonly class GiftFormFactory
 {
     public function __construct(
-        private readonly Locale $localeModel,
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user
+        private Locale $localeModel,
+        private ORM $orm,
+        private \Nette\Security\User $user
     ) {
     }
 

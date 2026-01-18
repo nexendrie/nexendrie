@@ -11,11 +11,11 @@ use Nexendrie\Orm\Mount as MountEntity;
  *
  * @author Jakub Konečný
  */
-final class MountsStatusTask
+final readonly class MountsStatusTask
 {
     private int $autoFeedingCost;
 
-    public function __construct(private readonly ORM $orm, \Nexendrie\Model\SettingsRepository $sr)
+    public function __construct(private ORM $orm, \Nexendrie\Model\SettingsRepository $sr)
     {
         $this->autoFeedingCost = $sr->settings["fees"]["autoFeedMount"];
     }

@@ -12,9 +12,9 @@ use Nextras\FormComponents\Controls\DateControl;
  *
  * @author Jakub Konečný
  */
-final class OpenDepositAccountFormFactory
+final readonly class OpenDepositAccountFormFactory
 {
-    public function __construct(private readonly Bank $model)
+    public function __construct(private Bank $model)
     {
     }
 

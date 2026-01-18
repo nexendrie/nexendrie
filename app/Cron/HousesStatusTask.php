@@ -11,11 +11,11 @@ use Nexendrie\Orm\Model as ORM;
  *
  * @author Jakub Konečný
  */
-final class HousesStatusTask
+final readonly class HousesStatusTask
 {
     private int $weeklyWearingOut;
 
-    public function __construct(private readonly ORM $orm, SettingsRepository $sr)
+    public function __construct(private ORM $orm, SettingsRepository $sr)
     {
         $this->weeklyWearingOut = $sr->settings["buildings"]["weeklyWearingOut"];
     }

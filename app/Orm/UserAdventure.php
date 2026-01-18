@@ -19,8 +19,8 @@ namespace Nexendrie\Orm;
  */
 final class UserAdventure extends BaseEntity
 {
-    public const PROGRESS_COMPLETED = 10;
-    public const PROGRESS_CLOSED = 11;
+    public const int PROGRESS_COMPLETED = 10;
+    public const int PROGRESS_CLOSED = 11;
 
     protected function getterNextEnemy(): ?AdventureNpc
     {

@@ -12,9 +12,9 @@ use Nexendrie\Orm\Model as ORM;
  *
  * @author Jakub Konečný
  */
-final class CloseWeddingsTask
+final readonly class CloseWeddingsTask
 {
-    public function __construct(private readonly ORM $orm, private readonly Marriage $marriageModel)
+    public function __construct(private ORM $orm, private Marriage $marriageModel)
     {
     }
 

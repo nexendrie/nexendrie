@@ -16,7 +16,7 @@ namespace Nexendrie\Orm;
  */
 final class UserExpense extends BaseEntity
 {
-    public const CATEGORY_CASTLE_MAINTENANCE = "castle_maintenance";
-    public const CATEGORY_HOUSE_MAINTENANCE = "house_maintenance";
-    public const CATEGORY_MOUNT_MAINTENANCE = "mount_maintenance";
+    public const string CATEGORY_CASTLE_MAINTENANCE = "castle_maintenance";
+    public const string CATEGORY_HOUSE_MAINTENANCE = "house_maintenance";
+    public const string CATEGORY_MOUNT_MAINTENANCE = "mount_maintenance";
 }

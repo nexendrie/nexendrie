@@ -15,9 +15,9 @@ use Nexendrie\Model\TownNameInUseException;
  *
  * @author Jakub Konečný
  */
-final class FoundTownFormFactory
+final readonly class FoundTownFormFactory
 {
-    public function __construct(private readonly Town $model)
+    public function __construct(private Town $model)
     {
     }
 

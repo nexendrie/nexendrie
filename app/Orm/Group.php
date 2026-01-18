@@ -23,9 +23,9 @@ use Nextras\Orm\Relationships\OneHasMany;
  */
 final class Group extends BaseEntity
 {
-    public const PATH_CITY = "city";
-    public const PATH_CHURCH = "church";
-    public const PATH_TOWER = "tower";
+    public const string PATH_CITY = "city";
+    public const string PATH_CHURCH = "church";
+    public const string PATH_TOWER = "tower";
 
     public function dummy(): GroupDummy
     {

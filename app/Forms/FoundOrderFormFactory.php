@@ -14,9 +14,9 @@ use Nexendrie\Model\InsufficientFundsException;
  *
  * @author Jakub Konečný
  */
-final class FoundOrderFormFactory
+final readonly class FoundOrderFormFactory
 {
-    public function __construct(private readonly Order $model)
+    public function __construct(private Order $model)
     {
     }
 

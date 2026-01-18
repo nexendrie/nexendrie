@@ -25,9 +25,9 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
 final class UserSkill extends BaseEntity implements ICharacterEffectsProvider
 {
     /** Increase of success rate per skill level (in %) */
-    public const LEVEL_SUCCESS_RATE = 5;
+    public const int LEVEL_SUCCESS_RATE = 5;
     /** Increase of income per skill level (in %) */
-    public const LEVEL_BONUS_INCOME = 15;
+    public const int LEVEL_BONUS_INCOME = 15;
 
     private \Nexendrie\Model\Events $eventsModel;
 

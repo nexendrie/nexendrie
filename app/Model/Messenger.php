@@ -14,13 +14,13 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-final class Messenger
+final readonly class Messenger
 {
     public function __construct(
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user,
-        private readonly LinkGenerator $linkGenerator,
-        private readonly GenericNotificator $notificator
+        private ORM $orm,
+        private \Nette\Security\User $user,
+        private LinkGenerator $linkGenerator,
+        private GenericNotificator $notificator
     ) {
     }
 

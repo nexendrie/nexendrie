@@ -13,14 +13,14 @@ use Nexendrie\Orm\User;
  *
  * @author Jakub Konečný
  */
-final class Bank
+final readonly class Bank
 {
     private int $loanInterest;
     private int $depositInterest;
 
     public function __construct(
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user,
+        private ORM $orm,
+        private \Nette\Security\User $user,
         SettingsRepository $sr
     ) {
         $this->loanInterest = $sr->settings["fees"]["loanInterest"];

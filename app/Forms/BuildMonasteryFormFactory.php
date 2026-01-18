@@ -14,9 +14,9 @@ use Nexendrie\Model\MonasteryNameInUseException;
  *
  * @author Jakub Konečný
  */
-final class BuildMonasteryFormFactory
+final readonly class BuildMonasteryFormFactory
 {
-    public function __construct(private readonly Monastery $model)
+    public function __construct(private Monastery $model)
     {
     }
 

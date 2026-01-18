@@ -32,12 +32,12 @@ use Nexendrie\Utils\Numbers;
  */
 final class Monastery extends BaseEntity
 {
-    public const MAX_LEVEL = 6;
-    public const BASE_UPGRADE_PRICE = 700;
-    public const BASE_REPAIR_PRICE = 30;
-    public const BASE_PRAYER_LIFE = 4;
-    public const PRAYER_LIFE_PER_LEVEL = 2;
-    public const SKILL_LEARNING_DISCOUNT_PER_LEVEL = 3;
+    public const int MAX_LEVEL = 6;
+    public const int BASE_UPGRADE_PRICE = 700;
+    public const int BASE_REPAIR_PRICE = 30;
+    public const int BASE_PRAYER_LIFE = 4;
+    public const int PRAYER_LIFE_PER_LEVEL = 2;
+    public const int SKILL_LEARNING_DISCOUNT_PER_LEVEL = 3;
 
     private \Nexendrie\Model\Locale $localeModel;
     private \Nexendrie\Model\Events $eventsModel;

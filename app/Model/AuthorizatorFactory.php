@@ -15,23 +15,26 @@ use Nexendrie\Orm\Model as ORM;
  *
  * @author Jakub Konečný
  */
-final class AuthorizatorFactory
+final readonly class AuthorizatorFactory
 {
     /** @internal */
-    public const GUILD_RANK_ROLE_PREFIX = "cech";
+    public const string GUILD_RANK_ROLE_PREFIX = "cech";
     /** @internal */
-    public const GUILD_RESOURCE_NAME = "guild";
+    public const string GUILD_RESOURCE_NAME = "guild";
     /** @internal */
-    public const ORDER_RANK_ROLE_PREFIX = "řád";
+    public const string ORDER_RANK_ROLE_PREFIX = "řád";
     /** @internal */
-    public const ORDER_RESOURCE_NAME = "order";
-    /** @internal */
-    public const ORGANIZATION_PRIVILEGES = ["manage", "upgrade", "promote", "demote", "kick",];
+    public const string ORDER_RESOURCE_NAME = "order";
+    /**
+     * @internal
+     * @var string[]
+     */
+    public const array ORGANIZATION_PRIVILEGES = ["manage", "upgrade", "promote", "demote", "kick",];
 
     public function __construct(
-        private readonly Cache $cache,
-        private readonly ORM $orm,
-        private readonly SettingsRepository $sr
+        private Cache $cache,
+        private ORM $orm,
+        private SettingsRepository $sr
     ) {
     }
 

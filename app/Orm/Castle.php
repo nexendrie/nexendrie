@@ -24,10 +24,10 @@ use Nexendrie\Utils\Numbers;
  */
 final class Castle extends BaseEntity
 {
-    public const MAX_LEVEL = 5;
-    public const BASE_UPGRADE_PRICE = 500;
-    public const BASE_REPAIR_PRICE = 35;
-    public const TAX_BONUS_PER_LEVEL = 30;
+    public const int MAX_LEVEL = 5;
+    public const int BASE_UPGRADE_PRICE = 500;
+    public const int BASE_REPAIR_PRICE = 35;
+    public const int TAX_BONUS_PER_LEVEL = 30;
 
     private \Nexendrie\Model\Locale $localeModel;
     private \Nexendrie\Model\Events $eventsModel;

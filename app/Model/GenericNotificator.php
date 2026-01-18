@@ -7,12 +7,12 @@ use Nette\Security\User;
 use Nexendrie\Orm\Model as ORM;
 use Nexendrie\Structs\Notification;
 
-final class GenericNotificator implements Notificator
+final readonly class GenericNotificator implements Notificator
 {
     public function __construct(
-        private readonly ORM $orm,
-        private readonly User $user,
-        private readonly SettingsRepository $sr
+        private ORM $orm,
+        private User $user,
+        private SettingsRepository $sr
     ) {
     }
 

@@ -12,9 +12,9 @@ use Nexendrie\Model\TooHighLoanException;
  *
  * @author Jakub Konečný
  */
-final class TakeLoanFormFactory
+final readonly class TakeLoanFormFactory
 {
-    public function __construct(private readonly Bank $model)
+    public function __construct(private Bank $model)
     {
     }
 

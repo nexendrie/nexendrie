@@ -21,7 +21,7 @@ use HeroesofAbenez\Combat\VictoryConditions;
  */
 final class Adventure
 {
-    public const ADVENTURE_BREAK_DAYS_LENGTH = 2;
+    public const int ADVENTURE_BREAK_DAYS_LENGTH = 2;
 
     private ?UserAdventureEntity $adventure = null;
 

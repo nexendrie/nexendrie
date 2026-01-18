@@ -16,13 +16,13 @@ use Nexendrie\Orm\Model as ORM;
  *
  * @author Jakub Konečný
  */
-final class SystemSettingsFormFactory
+final readonly class SystemSettingsFormFactory
 {
     public function __construct(
-        private readonly string $appDir,
-        private readonly SettingsRepository $sr,
-        private readonly ORM $orm,
-        private readonly ThemesManager $themesManager
+        private string $appDir,
+        private SettingsRepository $sr,
+        private ORM $orm,
+        private ThemesManager $themesManager
     ) {
     }
 

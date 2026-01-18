@@ -7,15 +7,15 @@ use Nette\Application\LinkGenerator;
 use Nexendrie\Structs\Notification;
 use Nexendrie\Utils\Numbers;
 
-final class WorkNotificator implements Notificator
+final readonly class WorkNotificator implements Notificator
 {
-    public const TAG_WORK_FINISHED = "workFinished";
-    public const TAG_WORK_NEXT_SHIFT = "workNextShift";
+    public const string TAG_WORK_FINISHED = "workFinished";
+    public const string TAG_WORK_NEXT_SHIFT = "workNextShift";
 
     public function __construct(
-        private readonly Job $job,
-        private readonly LinkGenerator $linkGenerator,
-        private readonly SettingsRepository $sr
+        private Job $job,
+        private LinkGenerator $linkGenerator,
+        private SettingsRepository $sr
     ) {
     }
 

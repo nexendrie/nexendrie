@@ -10,14 +10,14 @@ use Nexendrie\Orm\Model as ORM;
  *
  * @author Jakub Konečný
  */
-final class Taxes
+final readonly class Taxes
 {
     private int $taxRate;
 
     public function __construct(
-        private readonly ORM $orm,
-        private readonly Job $jobModel,
-        private readonly Adventure $adventureModel,
+        private ORM $orm,
+        private Job $jobModel,
+        private Adventure $adventureModel,
         SettingsRepository $sr
     ) {
         $this->taxRate = $sr->settings["fees"]["incomeTax"];

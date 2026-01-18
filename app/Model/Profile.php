@@ -16,9 +16,9 @@ use Nexendrie\Orm\UserSkill;
  *
  * @author Jakub Konečný
  */
-final class Profile
+final readonly class Profile
 {
-    public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user)
+    public function __construct(private ORM $orm, private \Nette\Security\User $user)
     {
     }
 

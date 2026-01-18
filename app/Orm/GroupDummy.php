@@ -8,15 +8,15 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-final class GroupDummy
+final readonly class GroupDummy
 {
-    public readonly int $id;
-    public readonly string $name;
-    public readonly string $singleName;
-    public readonly string $femaleName;
-    public readonly int $level;
-    public readonly string $path;
-    public readonly int $members;
+    public int $id;
+    public string $name;
+    public string $singleName;
+    public string $femaleName;
+    public int $level;
+    public string $path;
+    public int $members;
 
     public function __construct(Group $g)
     {

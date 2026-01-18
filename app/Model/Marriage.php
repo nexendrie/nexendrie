@@ -14,13 +14,13 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-final class Marriage
+final readonly class Marriage
 {
     public function __construct(
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user,
-        private readonly GenericNotificator $notificator,
-        private readonly LinkGenerator $linkGenerator
+        private ORM $orm,
+        private \Nette\Security\User $user,
+        private GenericNotificator $notificator,
+        private LinkGenerator $linkGenerator
     ) {
     }
 

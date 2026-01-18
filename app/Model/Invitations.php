@@ -7,9 +7,9 @@ use Nette\Security\User;
 use Nexendrie\Orm\Invitation;
 use Nexendrie\Orm\Model as ORM;
 
-final class Invitations
+final readonly class Invitations
 {
-    public function __construct(private readonly ORM $orm, private readonly User $user)
+    public function __construct(private ORM $orm, private User $user)
     {
     }
 

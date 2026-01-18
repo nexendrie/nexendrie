@@ -20,11 +20,10 @@ final class UserManager
     private array $roles;
     private array $newUser;
     private bool $openRegistration;
-    /** Exception error code */
-    public const REG_DUPLICATE_NAME = 1,
-        REG_DUPLICATE_EMAIL = 2,
-        SET_INVALID_PASSWORD = 3,
-        REG_EMAIL_NOT_INVITED = 4;
+    public const int REG_EMAIL_NOT_INVITED = 4;
+    public const int SET_INVALID_PASSWORD = 3;
+    public const int REG_DUPLICATE_EMAIL = 2;
+    public const int REG_DUPLICATE_NAME = 1;
 
     public function __construct(
         private readonly ORM $orm,

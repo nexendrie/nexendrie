@@ -26,15 +26,15 @@ use Nextras\Orm\Relationships\OneHasMany;
  */
 final class Item extends BaseEntity
 {
-    public const TYPE_ITEM = "item";
-    public const TYPE_WEAPON = "weapon";
-    public const TYPE_ARMOR = "armor";
-    public const TYPE_HELMET = "helmet";
-    public const TYPE_AMULET = "amulet";
-    public const TYPE_POTION = "potion";
-    public const TYPE_MATERIAL = "material";
-    public const TYPE_CHARTER = "charter";
-    public const TYPE_INTIMACY_BOOST = "intimacy_boost";
+    public const string TYPE_ITEM = "item";
+    public const string TYPE_WEAPON = "weapon";
+    public const string TYPE_ARMOR = "armor";
+    public const string TYPE_HELMET = "helmet";
+    public const string TYPE_AMULET = "amulet";
+    public const string TYPE_POTION = "potion";
+    public const string TYPE_MATERIAL = "material";
+    public const string TYPE_CHARTER = "charter";
+    public const string TYPE_INTIMACY_BOOST = "intimacy_boost";
 
     /**
      * @return array<string, string>

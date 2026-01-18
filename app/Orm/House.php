@@ -25,10 +25,10 @@ use Nexendrie\Utils\Numbers;
  */
 final class House extends BaseEntity
 {
-    public const MAX_LEVEL = 5;
-    public const BASE_UPGRADE_PRICE = 250;
-    public const BASE_REPAIR_PRICE = 15;
-    public const INCOME_BONUS_PER_LEVEL = 3;
+    public const int MAX_LEVEL = 5;
+    public const int BASE_UPGRADE_PRICE = 250;
+    public const int BASE_REPAIR_PRICE = 15;
+    public const int INCOME_BONUS_PER_LEVEL = 3;
 
     private \Nexendrie\Model\Events $eventsModel;
     private int $criticalCondition;

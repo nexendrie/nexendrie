@@ -12,9 +12,9 @@ use Nexendrie\Model\RegistrationException;
  *
  * @author Jakub Konečný
  */
-final class RegisterFormFactory
+final readonly class RegisterFormFactory
 {
-    public function __construct(private readonly UserManager $model)
+    public function __construct(private UserManager $model)
     {
     }
 

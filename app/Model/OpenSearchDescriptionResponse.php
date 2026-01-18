@@ -13,9 +13,9 @@ use Nette\Http\IResponse;
  *
  * @property-read string $source
  */
-final class OpenSearchDescriptionResponse implements \Nette\Application\Response
+final readonly class OpenSearchDescriptionResponse implements \Nette\Application\Response
 {
-    public function __construct(public readonly string $source)
+    public function __construct(public string $source)
     {
     }
 

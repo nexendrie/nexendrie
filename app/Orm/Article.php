@@ -24,14 +24,14 @@ use Nextras\Orm\Relationships\OneHasMany;
  */
 final class Article extends BaseEntity
 {
-    public const CATEGORY_NEWS = "news";
-    public const CATEGORY_CHRONICLE = "chronicle";
-    public const CATEGORY_POETRY = "poetry";
-    public const CATEGORY_SHORT_STORY = "short_story";
-    public const CATEGORY_ESSAY = "essay";
-    public const CATEGORY_NOVELLA = "novella";
-    public const CATEGORY_FAIRY_TALE = "fairy_tale";
-    public const CATEGORY_UNCATEGORIZED = "uncategorized";
+    public const string CATEGORY_NEWS = "news";
+    public const string CATEGORY_CHRONICLE = "chronicle";
+    public const string CATEGORY_POETRY = "poetry";
+    public const string CATEGORY_SHORT_STORY = "short_story";
+    public const string CATEGORY_ESSAY = "essay";
+    public const string CATEGORY_NOVELLA = "novella";
+    public const string CATEGORY_FAIRY_TALE = "fairy_tale";
+    public const string CATEGORY_UNCATEGORIZED = "uncategorized";
 
     private \Nexendrie\Model\Locale $localeModel;
 

@@ -24,8 +24,8 @@ namespace Nexendrie\Orm;
 final class UserJob extends BaseEntity
 {
     /** Base success rate for job (in %) */
-    public const BASE_SUCCESS_RATE = 55;
-    public const JOB_DAYS_LENGTH = 7;
+    public const int BASE_SUCCESS_RATE = 55;
+    public const int JOB_DAYS_LENGTH = 7;
 
     private \Nexendrie\Model\Events $eventsModel;
 

@@ -13,9 +13,9 @@ use Nette\Security\Authenticator;
  *
  * @author Jakub Konečný
  */
-final class LoginFormFactory
+final readonly class LoginFormFactory
 {
-    public function __construct(private readonly User $user)
+    public function __construct(private User $user)
     {
     }
 

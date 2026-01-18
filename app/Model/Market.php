@@ -14,12 +14,12 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-final class Market
+final readonly class Market
 {
     public function __construct(
-        private readonly Events $eventsModel,
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user
+        private Events $eventsModel,
+        private ORM $orm,
+        private \Nette\Security\User $user
     ) {
     }
 

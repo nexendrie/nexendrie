@@ -13,9 +13,9 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-final class Mount
+final readonly class Mount
 {
-    public function __construct(private readonly ORM $orm, private readonly \Nette\Security\User $user)
+    public function __construct(private ORM $orm, private \Nette\Security\User $user)
     {
     }
 

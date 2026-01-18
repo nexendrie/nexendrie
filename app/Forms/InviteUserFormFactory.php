@@ -8,9 +8,9 @@ use Nexendrie\Model\EmailAlreadyInvitedException;
 use Nexendrie\Model\EmailAlreadyRegisteredException;
 use Nexendrie\Model\Invitations;
 
-final class InviteUserFormFactory
+final readonly class InviteUserFormFactory
 {
-    public function __construct(private readonly Invitations $invitations)
+    public function __construct(private Invitations $invitations)
     {
     }
 

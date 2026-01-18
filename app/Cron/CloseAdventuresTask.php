@@ -11,9 +11,9 @@ use Nexendrie\Orm\UserAdventure;
  *
  * @author Jakub Konečný
  */
-final class CloseAdventuresTask
+final readonly class CloseAdventuresTask
 {
-    public function __construct(private readonly ORM $orm)
+    public function __construct(private ORM $orm)
     {
     }
 

@@ -13,9 +13,9 @@ use Nexendrie\Model\InsufficientFundsException;
  *
  * @author Jakub Konečný
  */
-final class MonasteryDonateFormFactory
+final readonly class MonasteryDonateFormFactory
 {
-    public function __construct(private readonly Monastery $model)
+    public function __construct(private Monastery $model)
     {
     }
 

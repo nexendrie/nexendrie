@@ -12,9 +12,9 @@ use Nextras\Orm\Collection\ICollection;
  *
  * @author Jakub Konečný
  */
-final class Elections
+final readonly class Elections
 {
-    public function __construct(private readonly ORM $orm)
+    public function __construct(private ORM $orm)
     {
     }
 

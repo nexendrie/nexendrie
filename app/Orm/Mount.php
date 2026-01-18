@@ -43,12 +43,12 @@ final class Mount extends BaseEntity implements ICharacterEffectsProvider
     private \Nexendrie\Model\Locale $localeModel;
     private \Nexendrie\Model\Events $eventsModel;
 
-    public const GENDER_MALE = "male";
-    public const GENDER_FEMALE = "female";
-    public const GENDER_YOUNG = "young";
-    public const HP_DECREASE_ADVENTURE = 5;
-    public const HP_DECREASE_TRAINING = 10;
-    public const HP_DECREASE_WEEKLY = 5;
+    public const string GENDER_MALE = "male";
+    public const string GENDER_FEMALE = "female";
+    public const string GENDER_YOUNG = "young";
+    public const int HP_DECREASE_ADVENTURE = 5;
+    public const int HP_DECREASE_TRAINING = 10;
+    public const int HP_DECREASE_WEEKLY = 5;
 
     public function injectLocaleModel(\Nexendrie\Model\Locale $localeModel): void
     {

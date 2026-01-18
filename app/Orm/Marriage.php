@@ -33,14 +33,14 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  */
 final class Marriage extends BaseEntity implements ICharacterEffectsProvider
 {
-    public const STATUS_PROPOSED = "proposed";
-    public const STATUS_ACCEPTED = "accepted";
-    public const STATUS_DECLINED = "declined";
-    public const STATUS_ACTIVE = "active";
-    public const STATUS_CANCELLED = "cancelled";
-    public const MAX_INTIMACY = 1000;
-    public const INTIMACY_FOR_LEVEL = 100;
-    public const HP_INCREASE_PER_LEVEL = 2;
+    public const string STATUS_PROPOSED = "proposed";
+    public const string STATUS_ACCEPTED = "accepted";
+    public const string STATUS_DECLINED = "declined";
+    public const string STATUS_ACTIVE = "active";
+    public const string STATUS_CANCELLED = "cancelled";
+    public const int MAX_INTIMACY = 1000;
+    public const int INTIMACY_FOR_LEVEL = 100;
+    public const int HP_INCREASE_PER_LEVEL = 2;
 
     private \Nexendrie\Model\Locale $localeModel;
 

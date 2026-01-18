@@ -12,14 +12,14 @@ use Nexendrie\Orm\User as UserEntity;
  *
  * @author Jakub Konečný
  */
-final class Locale
+final readonly class Locale
 {
-    public readonly array $formats;
+    public array $formats;
 
     public function __construct(
         SettingsRepository $sr,
-        private readonly Translator $translator,
-        private readonly User $user
+        private Translator $translator,
+        private User $user
     ) {
         $this->formats = $sr->settings["locale"];
     }

@@ -8,12 +8,12 @@ namespace Nexendrie\Orm;
  *
  * @author Jakub Konečný
  */
-final class PermissionDummy
+final readonly class PermissionDummy
 {
-    public readonly int $id;
-    public readonly string $resource;
-    public readonly string $action;
-    public readonly int $group;
+    public int $id;
+    public string $resource;
+    public string $action;
+    public int $group;
 
     public function __construct(Permission $p)
     {

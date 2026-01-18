@@ -12,13 +12,13 @@ use Nexendrie\Orm\UserExpense;
  *
  * @author Jakub Konečný
  */
-final class Property
+final readonly class Property
 {
     public function __construct(
-        private readonly Taxes $taxesModel,
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user,
-        private readonly SettingsRepository $sr
+        private Taxes $taxesModel,
+        private ORM $orm,
+        private \Nette\Security\User $user,
+        private SettingsRepository $sr
     ) {
     }
 

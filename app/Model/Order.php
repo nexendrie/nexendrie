@@ -15,15 +15,15 @@ use Nextras\Orm\Collection\ICollection;
  * @author Jakub Konečný
  * @property-read int $maxRank
  */
-final class Order
+final readonly class Order
 {
     use \Nette\SmartObject;
 
     private int $foundingPrice;
 
     public function __construct(
-        private readonly ORM $orm,
-        private readonly \Nette\Security\User $user,
+        private ORM $orm,
+        private \Nette\Security\User $user,
         SettingsRepository $sr
     ) {
         $this->foundingPrice = $sr->settings["fees"]["foundOrder"];
