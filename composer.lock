@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "151552d37293fec301e589293c3b517e",
+    "content-hash": "f9b73ef9e9f142839846724b773db1ba",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -145,12 +145,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "d0f71fa71d10138a3bfa01f51f46bde4dfaf37cd"
+                "reference": "bf9861ee71a1f64ccce85b4c75886742b7eccf34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=d0f71fa71d10138a3bfa01f51f46bde4dfaf37cd",
-                "reference": "d0f71fa71d10138a3bfa01f51f46bde4dfaf37cd",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=bf9861ee71a1f64ccce85b4c75886742b7eccf34",
+                "reference": "bf9861ee71a1f64ccce85b4c75886742b7eccf34",
                 "shasum": ""
             },
             "require": {
@@ -159,7 +159,7 @@
                 "nexendrie/translation": "^2.3.1",
                 "nexendrie/utils": "^1.9",
                 "php": ">=8.1.0",
-                "symfony/options-resolver": "^6.4"
+                "symfony/options-resolver": "^6.4 || ^7.4"
             },
             "require-dev": {
                 "nexendrie/code-quality": "dev-master",
@@ -199,7 +199,7 @@
                 "issues": "https://gitlab.com/heroesofabenez/combat/-/issues",
                 "source": "https://gitlab.com/heroesofabenez/combat/"
             },
-            "time": "2025-08-30T13:20:58+00:00"
+            "time": "2026-01-18T17:36:55+00:00"
         },
         {
             "name": "ijvo/cronner",
