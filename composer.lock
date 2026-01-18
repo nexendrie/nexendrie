@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "198d10dc5736475d73d8969bbda8ed85",
+    "content-hash": "f9a7fc0ba7d3f75f5d36438f20d8dd53",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -2300,16 +2300,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "1e0cd5370df5dd2e556a36b9c62f62e555870495"
+                "reference": "16dbf9937da8d4528ceb2145c9c7c0bd29e26374"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/1e0cd5370df5dd2e556a36b9c62f62e555870495",
-                "reference": "1e0cd5370df5dd2e556a36b9c62f62e555870495",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/16dbf9937da8d4528ceb2145c9c7c0bd29e26374",
+                "reference": "16dbf9937da8d4528ceb2145c9c7c0bd29e26374",
                 "shasum": ""
             },
             "require": {
@@ -2341,9 +2341,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.3.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.3.1"
             },
-            "time": "2025-08-30T15:50:23+00:00"
+            "time": "2026-01-12T11:33:04+00:00"
         },
         {
             "name": "psr/container",
@@ -3609,15 +3609,16 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/code-quality.git",
-                "reference": "ef6265f971fd5a3d809867df0a013cd94ba7cf02"
+                "reference": "b5b1e011c118e8aba846b0199d3052507ff65ad8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=ef6265f971fd5a3d809867df0a013cd94ba7cf02",
-                "reference": "ef6265f971fd5a3d809867df0a013cd94ba7cf02",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fcode-quality/repository/archive.zip?sha=b5b1e011c118e8aba846b0199d3052507ff65ad8",
+                "reference": "b5b1e011c118e8aba846b0199d3052507ff65ad8",
                 "shasum": ""
             },
             "require": {
+                "micheh/phpcs-gitlab": "^2.1",
                 "nexendrie/testbench": "^2.7.1",
                 "php-parallel-lint/php-console-highlighter": "^0.5",
                 "php-parallel-lint/php-parallel-lint": "^1.4",
@@ -3647,9 +3648,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/code-quality",
                 "issues": "https://gitlab.com/nexendrie/code-quality/-/issues",
-                "source": "https://gitlab.com/nexendrie/code-quality/"
+                "source": "https://gitlab.com/nexendrie/code-quality/-/tree/master"
             },
-            "time": "2026-01-11T19:16:31+00:00"
+            "time": "2026-01-18T13:56:10+00:00"
         },
         {
             "name": "nexendrie/testbench",
@@ -4489,5 +4490,5 @@
         "ext-json": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
