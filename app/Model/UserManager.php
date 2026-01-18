@@ -62,7 +62,7 @@ final class UserManager
      * @param int|null $uid Id of user who can use the e-mail
      * @throws InvalidArgumentException
      */
-    public function emailAvailable(string $email, int $uid = null): bool
+    public function emailAvailable(string $email, ?int $uid = null): bool
     {
         $row = $this->orm->users->getByEmail($email);
         if ($row === null) {

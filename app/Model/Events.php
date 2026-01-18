@@ -110,7 +110,7 @@ final class Events implements \Nexendrie\EventCalendar\EventModel
     /**
      * Load events from a month
      */
-    public function loadEvents(int $year = null, int $month = null): void
+    public function loadEvents(?int $year = null, ?int $month = null): void
     {
         $this->events = $this->orm->events->findFromMonth($year, $month);
     }

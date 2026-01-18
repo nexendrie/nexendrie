@@ -56,7 +56,7 @@ final readonly class Guild
     /**
      * Check whether a name can be used
      */
-    private function checkNameAvailability(string $name, int $id = null): bool
+    private function checkNameAvailability(string $name, ?int $id = null): bool
     {
         $guild = $this->orm->guilds->getByName($name);
         return $guild === null || $guild->id === $id;
@@ -83,7 +83,7 @@ final readonly class Guild
     /**
      * Get specified user's guild
      */
-    public function getUserGuild(int $uid = null): ?GuildEntity
+    public function getUserGuild(?int $uid = null): ?GuildEntity
     {
         $user = $this->orm->users->getById($uid ?? $this->user->id);
         return $user?->guild;

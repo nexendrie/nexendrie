@@ -50,7 +50,7 @@ final readonly class Castle
     /**
      * Check whether a name can be used
      */
-    private function checkNameAvailability(string $name, int $id = null): bool
+    private function checkNameAvailability(string $name, ?int $id = null): bool
     {
         $castle = $this->orm->castles->getByName($name);
         return $castle === null || $castle->id === $id;
@@ -111,7 +111,7 @@ final readonly class Castle
     /**
      * Get specified user's castle
      */
-    public function getUserCastle(int $user = null): ?CastleEntity
+    public function getUserCastle(?int $user = null): ?CastleEntity
     {
         return $this->orm->castles->getByOwner($user ?? $this->user->id);
     }

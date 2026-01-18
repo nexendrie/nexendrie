@@ -252,7 +252,7 @@ final readonly class Job
      * @throws AuthenticationNeededException
      * @throws NotWorkingException
      */
-    public function getCurrentJob(int $userId = null): UserJobEntity
+    public function getCurrentJob(?int $userId = null): UserJobEntity
     {
         if ($userId === null && !$this->user->isLoggedIn()) {
             throw new AuthenticationNeededException();

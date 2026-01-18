@@ -53,7 +53,7 @@ final readonly class Order
     /**
      * Check whether a name can be used
      */
-    private function checkNameAvailability(string $name, int $id = null): bool
+    private function checkNameAvailability(string $name, ?int $id = null): bool
     {
         $order = $this->orm->orders->getByName($name);
         return $order === null || $order->id === $id;
@@ -80,7 +80,7 @@ final readonly class Order
     /**
      * Get specified user's order
      */
-    public function getUserOrder(int $uid = null): ?OrderEntity
+    public function getUserOrder(?int $uid = null): ?OrderEntity
     {
         $user = $this->orm->users->getById($uid ?? $this->user->id);
         return $user?->order;

@@ -47,7 +47,7 @@ final readonly class Profile
     /**
      * Get specified user's path
      */
-    public function getPath(int $id = null): string
+    public function getPath(?int $id = null): string
     {
         $user = $this->orm->users->getById($id ?? $this->user->id);
         if ($user === null) {

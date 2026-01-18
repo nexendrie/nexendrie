@@ -36,7 +36,7 @@ final readonly class Mount
      * @param int|null $owner Return only mounts owned by specified user. null = all users
      * @return MountEntity[]|ICollection
      */
-    public function listOfMounts(int $owner = null): ICollection
+    public function listOfMounts(?int $owner = null): ICollection
     {
         if (is_int($owner)) {
             return $this->orm->mounts->findByOwner($owner);

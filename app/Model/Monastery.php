@@ -62,7 +62,7 @@ final readonly class Monastery
      * @throws UserNotFoundException
      * @throws NotInMonasteryException
      */
-    public function getByUser(int $id = null): MonasteryEntity
+    public function getByUser(?int $id = null): MonasteryEntity
     {
         $user = $this->orm->users->getById($id ?? $this->user->id);
         if ($user === null) {

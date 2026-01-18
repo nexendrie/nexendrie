@@ -336,7 +336,7 @@ final class Adventure
     /**
      * Calculate income from user's adventures from a month
      */
-    public function calculateMonthAdventuresIncome(int $user = null, int $month = null, int $year = null): int
+    public function calculateMonthAdventuresIncome(?int $user = null, ?int $month = null, ?int $year = null): int
     {
         $income = 0;
         $adventures = $this->orm->userAdventures->findFromMonth($user ?? $this->user->id, $month, $year);

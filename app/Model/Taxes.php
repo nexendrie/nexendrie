@@ -36,7 +36,7 @@ final readonly class Taxes
      *
      * @return int[]
      */
-    public function calculateIncome(int $user, int $month = null, int $year = null): array
+    public function calculateIncome(int $user, ?int $month = null, ?int $year = null): array
     {
         if ($month === null) {
             $month = (int) date("n");
@@ -52,7 +52,7 @@ final readonly class Taxes
     /**
      * Calculate taxes for a town
      */
-    public function calculateTownTaxes(\Nexendrie\Orm\Town $town, int $month = null, int $year = null): \stdClass
+    public function calculateTownTaxes(\Nexendrie\Orm\Town $town, ?int $month = null, ?int $year = null): \stdClass
     {
         $return = (object) [
             "id" => $town->id, "name" => $town->name, "owner" => 0,

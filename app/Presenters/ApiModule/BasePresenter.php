@@ -146,7 +146,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     /**
      * @param string|int|\DateTimeInterface $lastModified
      */
-    public function lastModified($lastModified, string $etag = null, string $expire = null): void
+    public function lastModified($lastModified, ?string $etag = null, ?string $expire = null): void
     {
         $this->getHttpResponse()->deleteHeader("Pragma");
         $this->getHttpResponse()->deleteHeader("Vary");

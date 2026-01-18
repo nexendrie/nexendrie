@@ -24,7 +24,7 @@ final readonly class Skills
      *
      * @return SkillEntity[]|ICollection
      */
-    public function listOfSkills(string $type = null): ICollection
+    public function listOfSkills(?string $type = null): ICollection
     {
         if ($type === null) {
             return $this->orm->skills->findAll();

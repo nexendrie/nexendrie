@@ -31,7 +31,7 @@ final readonly class House
     /**
      * Get specified user's house
      */
-    public function getUserHouse(int $user = null): ?HouseEntity
+    public function getUserHouse(?int $user = null): ?HouseEntity
     {
         return $this->orm->houses->getByOwner($user ?? $this->user->id);
     }

@@ -40,7 +40,7 @@ final readonly class Article
      *
      * @return ArticleEntity[]|ICollection
      */
-    public function listOfNews(\Nette\Utils\Paginator $paginator = null): ICollection
+    public function listOfNews(?\Nette\Utils\Paginator $paginator = null): ICollection
     {
         $news = $this->orm->articles->findNews();
         if ($paginator !== null) {

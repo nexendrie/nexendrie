@@ -22,7 +22,7 @@ final class EventsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * @return ICollection|Event[]
      */
-    public function findFromMonth(int $year = null, int $month = null): ICollection
+    public function findFromMonth(?int $year = null, ?int $month = null): ICollection
     {
         $startTS = (int) mktime(0, 0, 0, $month ?? (int) date("n"), 1, $year ?? (int) date("Y"));
         $date = new \DateTime();
@@ -39,7 +39,7 @@ final class EventsRepository extends \Nextras\Orm\Repository\Repository
      *
      * @return ICollection|Event[]
      */
-    public function findForTime(int $time = null): ICollection
+    public function findForTime(?int $time = null): ICollection
     {
         return $this->findBy(["start<=" => $time ?? time(), "end>=" => $time ?? time()])
             ->orderBy("start");
