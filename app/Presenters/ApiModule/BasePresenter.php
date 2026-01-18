@@ -39,7 +39,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
      */
     protected function beforeRender(): never
     {
-        $this->getHttpResponse()->setCode(IResponse::S400_BAD_REQUEST);
+        $this->getHttpResponse()->setCode(IResponse::S400_BadRequest);
         $this->sendJson(["message" => "This action is not allowed."]);
     }
 
@@ -59,14 +59,14 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         // we check in which class a method was defined to decide if the corresponding HTTP method is allowed
         // this base presenter forbids all methods, so if a subclass overrides it, we assume that it is allowed
         $methods = [
-            IRequest::GET => "actionReadAll", IRequest::POST => "actionCreate", IRequest::PUT => "actionUpdate",
-            IRequest::PATCH => "actionPartialUpdate", IRequest::DELETE => "actionDelete",
+            IRequest::Get => "actionReadAll", IRequest::Post => "actionCreate", IRequest::Put => "actionUpdate",
+            IRequest::Patch => "actionPartialUpdate", IRequest::Delete => "actionDelete",
         ];
-        $return = [IRequest::OPTIONS,];
+        $return = [IRequest::Options,];
         if (isset($this->params["id"])) {
-            $methods[IRequest::GET] = "actionRead";
+            $methods[IRequest::Get] = "actionRead";
         }
-        $methods[IRequest::HEAD] = $methods[IRequest::GET];
+        $methods[IRequest::Head] = $methods[IRequest::Get];
         foreach ($methods as $httpMethod => $classMethod) {
             $rm = new \ReflectionMethod(static::class, $classMethod);
             $declaringClass = $rm->getDeclaringClass()->getName();
@@ -84,7 +84,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
      */
     protected function resourceNotFound(string $resource, int $id): never
     {
-        $this->getHttpResponse()->setCode(IResponse::S404_NOT_FOUND);
+        $this->getHttpResponse()->setCode(IResponse::S404_NotFound);
         $payload = ["message" => Strings::firstUpper($resource) . " with id $id was not found."];
         $this->addContentLengthHeader($payload);
         $this->sendJson($payload);
@@ -97,7 +97,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     protected function methodNotAllowed(): never
     {
         $method = $this->request->method;
-        $this->getHttpResponse()->setCode(IResponse::S405_METHOD_NOT_ALLOWED);
+        $this->getHttpResponse()->setCode(IResponse::S405_MethodNotAllowed);
         $this->getHttpResponse()->addHeader("Allow", implode(", ", $this->getAllowedMethods()));
         $payload = ["message" => "Method $method is not allowed."];
         $this->addContentLengthHeader($payload);
@@ -136,7 +136,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
     public function actionOptions(): never
     {
-        $this->getHttpResponse()->setCode(IResponse::S204_NO_CONTENT);
+        $this->getHttpResponse()->setCode(IResponse::S204_NoContent);
         $this->getHttpResponse()->addHeader("Allow", implode(", ", $this->getAllowedMethods()));
         $this->sendResponse(new TextResponse(""));
     }
@@ -238,7 +238,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
      */
     protected function sendCreatedEntity(Entity $entity): never
     {
-        $this->getHttpResponse()->setCode(IResponse::S201_CREATED);
+        $this->getHttpResponse()->setCode(IResponse::S201_Created);
         $data = $this->entityConverter->convertEntity($entity, $this->getApiVersion());
         $links = $data->_links ?? [];
         foreach ($links as $link) {
@@ -261,7 +261,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         if ($entity === null) {
             $this->resourceNotFound($this->getInvalidEntityName(), $this->getId());
         }
-        $this->getHttpResponse()->setCode(IResponse::S204_NO_CONTENT);
+        $this->getHttpResponse()->setCode(IResponse::S204_NoContent);
         $this->sendJson(
             ["message" => Strings::firstUpper($this->getEntityName()) . " with id {$this->getId()} was deleted."]
         );
@@ -278,7 +278,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         try {
             return Json::decode($data);
         } catch (\Nette\Utils\JsonException $e) {
-            $this->getHttpResponse()->setCode(IResponse::S400_BAD_REQUEST);
+            $this->getHttpResponse()->setCode(IResponse::S400_BadRequest);
             $this->sendJson(["message" => "Error while parsing request body: " . $e->getMessage() . "."]);
         }
     }
@@ -307,7 +307,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         }
         $token = $this->orm->apiTokens->getByToken($matches[1]);
         if ($token === null || $token->expire <= time()) {
-            $this->getHttpResponse()->setCode(IResponse::S401_UNAUTHORIZED);
+            $this->getHttpResponse()->setCode(IResponse::S401_Unauthorized);
             $this->sendJson(["message" => "Provided token is not valid."]);
         }
         $this->user->login($this->authenticator->getIdentity($token->user));
@@ -317,7 +317,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     {
         $this->tryLogin();
         if (!$this->user->isLoggedIn()) {
-            $this->getHttpResponse()->setCode(IResponse::S401_UNAUTHORIZED);
+            $this->getHttpResponse()->setCode(IResponse::S401_Unauthorized);
             $this->sendJson(["message" => "This action requires authentication."]);
         }
     }
@@ -330,7 +330,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     protected function sendBasicAuthRequest(string $message = "This action requires authentication."): never
     {
         $this->getHttpResponse()->setHeader("WWW-Authenticate", "Basic realm=\"Nexendrie API\"");
-        $this->getHttpResponse()->setCode(IResponse::S401_UNAUTHORIZED);
+        $this->getHttpResponse()->setCode(IResponse::S401_Unauthorized);
         $this->sendJson(["message" => $message]);
     }
 }

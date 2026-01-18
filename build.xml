@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="Nexendrie" basedir="." default="test">
-  <target name="test" depends="lint,cs,phpstan,tests,clean-db"/>
+  <target name="test" depends="apply-dev-patches,lint,cs,phpstan,tests,clean-db"/>
   <target name="test-ci" depends="install-ci,test"/>
+  <target name="apply-dev-patches">
+    <exec executable="tools/apply-dev-patches.sh" logoutput="true" passthru="true" checkreturn="true"/>
+  </target>
   <target name="install">
     <property name="environment" value="production"/>
     <if>

@@ -1,7 +1,7 @@
 Version 1.0.0-beta10+dev
 - added support for early hints for style and scripts (not enabled by default, currently only works on FrankenPHP)
 - added mounts and buildings' maintenance into budget
-- raised minimal version of PHP to 8.1
+- raised minimal version of PHP to 8.3
 - allowed dark mode in chats
 - allowed installation as progressive web app
 - allowed sharing articles via Web Share API

@@ -19,7 +19,7 @@
         "issues": "https://gitlab.com/nexendrie/nexendrie/issues"
     },
     "require": {
-        "php": ">=8.1.0",
+        "php": ">=8.3.0",
         "ext-simplexml": "*",
         "ext-json": "*",
         "nette/application": "^3.1.10",
@@ -46,7 +46,6 @@
         "heroesofabenez/combat": "dev-master",
         "nexendrie/rest-route": "^5.1",
         "robmorgan/phinx": "^0.12.12",
-        "nette/http": "3.1.2",
         "eluceo/ical": "^2.13"
     },
     "require-dev": {
