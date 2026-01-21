@@ -46,7 +46,7 @@ final class ItemSet extends BaseEntity implements ICharacterEffectsProvider
 
     public function setterBonus(int $value): int
     {
-        return Numbers::range($value, 0, 99);
+        return Numbers::clamp($value, 0, 99);
     }
 
     protected function getterEffect(): string

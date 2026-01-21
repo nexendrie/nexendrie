@@ -41,7 +41,7 @@ final class Guild extends BaseEntity
 
     protected function setterLevel(int $value): int
     {
-        return Numbers::range($value, 1, self::MAX_LEVEL);
+        return Numbers::clamp($value, 1, self::MAX_LEVEL);
     }
 
     protected function getterCreatedAt(): string

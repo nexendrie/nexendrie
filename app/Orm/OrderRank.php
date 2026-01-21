@@ -22,11 +22,11 @@ final class OrderRank extends BaseEntity
 {
     protected function setterIncomeBonus(int $value): int
     {
-        return Numbers::range($value, 0, 99);
+        return Numbers::clamp($value, 0, 99);
     }
 
     protected function setterGuildFee(int $value): int
     {
-        return Numbers::range($value, 0, 999);
+        return Numbers::clamp($value, 0, 999);
     }
 }

@@ -33,7 +33,7 @@ final class UserItem extends BaseEntity
 
     protected function setterLevel(int $value): int
     {
-        return Numbers::range($value, 0, $this->maxLevel);
+        return Numbers::clamp($value, 0, $this->maxLevel);
     }
 
     protected function getterMaxLevel(): int

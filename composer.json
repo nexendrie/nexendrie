@@ -40,7 +40,7 @@
         "nexendrie/translation": "^2.4",
         "nexendrie/rss": "^0.12",
         "nexendrie/menu": "^2.4",
-        "nexendrie/utils": "^1.9",
+        "nexendrie/utils": "^1.10",
         "symfony/options-resolver": "^7.4",
         "heroesofabenez/chat": "^2.2",
         "heroesofabenez/combat": "dev-master",

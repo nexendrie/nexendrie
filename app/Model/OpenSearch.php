@@ -28,6 +28,7 @@ final readonly class OpenSearch
         $url = $this->lg->link("Front:Search:default", [
             "text" => "searchTerms", "type" => $searchType, "do" => "siteSearchForm-submit",
         ]);
+        // @phpstan-ignore offsetAccess.nonOffsetAccessible
         $xml->Url["template"] = str_replace("text=searchTerms", "text={searchTerms}", $url);
         return (string) $xml->asXML();
     }

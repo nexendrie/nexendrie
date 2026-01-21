@@ -57,32 +57,32 @@ final class Event extends BaseEntity
 
     protected function setterAdventuresBonus(int $value): int
     {
-        return Numbers::range($value, 0, 999);
+        return Numbers::clamp($value, 0, 999);
     }
 
     protected function setterWorkBonus(int $value): int
     {
-        return Numbers::range($value, 0, 999);
+        return Numbers::clamp($value, 0, 999);
     }
 
     protected function setterPrayerLifeBonus(int $value): int
     {
-        return Numbers::range($value, 0, 999);
+        return Numbers::clamp($value, 0, 999);
     }
 
     protected function setterTrainingDiscount(int $value): int
     {
-        return Numbers::range($value, 0, 100);
+        return Numbers::clamp($value, 0, 100);
     }
 
     protected function setterRepairingDiscount(int $value): int
     {
-        return Numbers::range($value, 0, 100);
+        return Numbers::clamp($value, 0, 100);
     }
 
     protected function setterShoppingDiscount(int $value): int
     {
-        return Numbers::range($value, 0, 100);
+        return Numbers::clamp($value, 0, 100);
     }
 
     protected function getterActive(): bool

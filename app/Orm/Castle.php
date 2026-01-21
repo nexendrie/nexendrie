@@ -50,12 +50,12 @@ final class Castle extends BaseEntity
 
     protected function setterLevel(int $value): int
     {
-        return Numbers::range($value, 1, self::MAX_LEVEL);
+        return Numbers::clamp($value, 1, self::MAX_LEVEL);
     }
 
     protected function setterHp(int $value): int
     {
-        return Numbers::range($value, 1, 100);
+        return Numbers::clamp($value, 1, 100);
     }
 
     protected function getterCreatedAt(): string

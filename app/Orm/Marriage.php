@@ -51,7 +51,7 @@ final class Marriage extends BaseEntity implements ICharacterEffectsProvider
 
     protected function setterDivorce(int $value): int
     {
-        return Numbers::range($value, 0, 4);
+        return Numbers::clamp($value, 0, 4);
     }
 
     protected function getterCreatedAt(): string
@@ -85,7 +85,7 @@ final class Marriage extends BaseEntity implements ICharacterEffectsProvider
 
     protected function setterIntimacy(int $value): int
     {
-        return Numbers::range($value, 0, self::MAX_INTIMACY);
+        return Numbers::clamp($value, 0, self::MAX_INTIMACY);
     }
 
     protected function getterLevel(): int

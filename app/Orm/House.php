@@ -45,17 +45,17 @@ final class House extends BaseEntity
 
     protected function setterLuxuryLevel(int $value): int
     {
-        return Numbers::range($value, 1, self::MAX_LEVEL);
+        return Numbers::clamp($value, 1, self::MAX_LEVEL);
     }
 
     protected function setterBreweryLevel(int $value): int
     {
-        return Numbers::range($value, 0, self::MAX_LEVEL);
+        return Numbers::clamp($value, 0, self::MAX_LEVEL);
     }
 
     protected function setterHp(int $value): int
     {
-        return Numbers::range($value, 1, 100);
+        return Numbers::clamp($value, 1, 100);
     }
 
     protected function getterWorkIncomeBonus(): int

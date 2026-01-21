@@ -65,17 +65,17 @@ final class Monastery extends BaseEntity
 
     protected function setterAltairLevel(int $value): int
     {
-        return Numbers::range($value, 1, self::MAX_LEVEL);
+        return Numbers::clamp($value, 1, self::MAX_LEVEL);
     }
 
     protected function setterLibraryLevel(int $value): int
     {
-        return Numbers::range($value, 0, self::MAX_LEVEL - 1);
+        return Numbers::clamp($value, 0, self::MAX_LEVEL - 1);
     }
 
     protected function setterHp(int $value): int
     {
-        return Numbers::range($value, 1, 100);
+        return Numbers::clamp($value, 1, 100);
     }
 
     protected function getterPrayerLife(): int

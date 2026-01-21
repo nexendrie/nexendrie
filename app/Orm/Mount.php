@@ -74,17 +74,17 @@ final class Mount extends BaseEntity implements ICharacterEffectsProvider
 
     protected function setterHp(int $value): int
     {
-        return Numbers::range($value, 0, 100);
+        return Numbers::clamp($value, 0, 100);
     }
 
     protected function setterDamage(int $value): int
     {
-        return Numbers::range($value, $this->baseDamage, $this->maxDamage);
+        return Numbers::clamp($value, $this->baseDamage, $this->maxDamage);
     }
 
     protected function setterArmor(int $value): int
     {
-        return Numbers::range($value, $this->baseArmor, $this->maxArmor);
+        return Numbers::clamp($value, $this->baseArmor, $this->maxArmor);
     }
 
     protected function getterGenderCZ(): string

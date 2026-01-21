@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ea7033ee26919d1946c94e16a8e1413",
+    "content-hash": "d009deec598555600672d283a868f9bd",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -145,25 +145,25 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "bf9861ee71a1f64ccce85b4c75886742b7eccf34"
+                "reference": "797dff59446c913ff5daaa4710e8efa9f60d976e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=bf9861ee71a1f64ccce85b4c75886742b7eccf34",
-                "reference": "bf9861ee71a1f64ccce85b4c75886742b7eccf34",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=797dff59446c913ff5daaa4710e8efa9f60d976e",
+                "reference": "797dff59446c913ff5daaa4710e8efa9f60d976e",
                 "shasum": ""
             },
             "require": {
                 "latte/latte": "^2.8",
                 "nette/utils": "^3.2.2",
-                "nexendrie/translation": "^2.3.1",
-                "nexendrie/utils": "^1.9",
+                "nexendrie/translation": "^2.4",
+                "nexendrie/utils": "^1.10",
                 "php": ">=8.1.0",
                 "symfony/options-resolver": "^6.4 || ^7.4"
             },
             "require-dev": {
                 "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "^0.8",
+                "nexendrie/site-generator": "^0.9",
                 "phpstan/phpstan-nette": "^2.0"
             },
             "default-branch": true,
@@ -197,9 +197,9 @@
             "support": {
                 "docs": "https://heroesofabenez.gitlab.io/combat",
                 "issues": "https://gitlab.com/heroesofabenez/combat/-/issues",
-                "source": "https://gitlab.com/heroesofabenez/combat/"
+                "source": "https://gitlab.com/heroesofabenez/combat/-/tree/master"
             },
-            "time": "2026-01-18T17:36:55+00:00"
+            "time": "2026-01-18T21:09:20+00:00"
         },
         {
             "name": "ijvo/cronner",
@@ -2022,16 +2022,16 @@
         },
         {
             "name": "nexendrie/utils",
-            "version": "1.9.1",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/utils.git",
-                "reference": "60c44fd3684b53f43204ce12283c714be5c388a7"
+                "reference": "86a61d1ed8efaf4405bb28d32b05b4b2173118e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Futils/repository/archive.zip?sha=60c44fd3684b53f43204ce12283c714be5c388a7",
-                "reference": "60c44fd3684b53f43204ce12283c714be5c388a7",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Futils/repository/archive.zip?sha=86a61d1ed8efaf4405bb28d32b05b4b2173118e0",
+                "reference": "86a61d1ed8efaf4405bb28d32b05b4b2173118e0",
                 "shasum": ""
             },
             "require": {
@@ -2044,7 +2044,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.9.x-dev"
+                    "dev-master": "1.10.x-dev"
                 }
             },
             "autoload": {
@@ -2076,9 +2076,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/utils",
                 "issues": "https://gitlab.com/nexendrie/utils/-/issues",
-                "source": "https://gitlab.com/nexendrie/utils/-/tree/1.9.1"
+                "source": "https://gitlab.com/nexendrie/utils/-/tree/1.10.0"
             },
-            "time": "2025-08-29T18:16:06+00:00"
+            "time": "2026-01-18T20:21:49+00:00"
         },
         {
             "name": "nextras/dbal",
@@ -4330,11 +4330,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.33",
+            "version": "2.1.36",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9e800e6bee7d5bd02784d4c6069b48032d16224f",
-                "reference": "9e800e6bee7d5bd02784d4c6069b48032d16224f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/2132e5e2361d11d40af4c17faa16f043269a4cf3",
+                "reference": "2132e5e2361d11d40af4c17faa16f043269a4cf3",
                 "shasum": ""
             },
             "require": {
@@ -4379,7 +4379,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-05T10:24:31+00:00"
+            "time": "2026-01-21T13:58:26+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",

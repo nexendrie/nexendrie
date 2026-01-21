@@ -156,7 +156,7 @@ final class User extends BaseEntity
 
     protected function setterLife(int $value): int
     {
-        return Numbers::range($value, 1, $this->maxLife);
+        return Numbers::clamp($value, 1, $this->maxLife);
     }
 
     protected function getterTitle(): string
