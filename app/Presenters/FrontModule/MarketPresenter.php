@@ -18,11 +18,10 @@ use Nexendrie\Model\Market;
  */
 final class MarketPresenter extends BasePresenter
 {
-    protected bool $cachingEnabled = false;
-
     public function __construct(private readonly Market $model)
     {
         parent::__construct();
+        $this->cachingEnabled = false;
     }
 
     protected function startup(): void

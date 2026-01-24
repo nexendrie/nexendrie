@@ -25,7 +25,6 @@ final class UserPresenter extends BasePresenter
 {
     /** @persistent */
     public string $backlink = "";
-    protected bool $cachingEnabled = false;
 
     public function __construct(
         private readonly Authenticator $model,
@@ -34,6 +33,7 @@ final class UserPresenter extends BasePresenter
         private readonly Tokens $apiTokens
     ) {
         parent::__construct();
+        $this->cachingEnabled = false;
     }
 
     /**

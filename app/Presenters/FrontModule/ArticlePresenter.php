@@ -22,11 +22,10 @@ use Nexendrie\Model\Moderation;
  */
 final class ArticlePresenter extends BasePresenter
 {
-    protected bool $publicCache = false;
-
     public function __construct(private readonly Article $model, private readonly Moderation $moderationModel)
     {
         parent::__construct();
+        $this->publicCache = false;
     }
 
     /**

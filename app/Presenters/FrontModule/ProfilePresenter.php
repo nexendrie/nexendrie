@@ -18,7 +18,6 @@ use Nette\Application\BadRequestException;
  */
 final class ProfilePresenter extends BasePresenter
 {
-    protected bool $cachingEnabled = false;
     /** @var string[] */
     private array $cacheableActions = ["articles", "skills", "comments",];
 
@@ -29,6 +28,7 @@ final class ProfilePresenter extends BasePresenter
         private readonly Job $jobModel
     ) {
         parent::__construct();
+        $this->cachingEnabled = false;
     }
 
     protected function startup(): void

@@ -14,11 +14,10 @@ use Nexendrie\Model\Adventure;
  */
 final class AdventurePresenter extends BasePresenter
 {
-    protected bool $cachingEnabled = false;
-
     public function __construct(private readonly Adventure $model)
     {
         parent::__construct();
+        $this->cachingEnabled = false;
     }
 
     protected function startup(): void

@@ -34,7 +34,6 @@ use Nexendrie\Orm\Marriage as MarriageEntity;
 final class MarriagePresenter extends BasePresenter
 {
     private MarriageEntity $marriage;
-    protected bool $publicCache = false;
 
     public function __construct(
         private readonly Marriage $model,
@@ -42,6 +41,7 @@ final class MarriagePresenter extends BasePresenter
         private readonly Locale $localeModel
     ) {
         parent::__construct();
+        $this->publicCache = false;
     }
 
     protected function startup(): void

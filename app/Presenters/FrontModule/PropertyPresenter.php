@@ -35,7 +35,6 @@ use Nexendrie\Forms\MakeCitizenFormFactory;
 final class PropertyPresenter extends BasePresenter
 {
     private TownEntity $town;
-    protected bool $cachingEnabled = false;
 
     public function __construct(
         private readonly Property $model,
@@ -46,6 +45,7 @@ final class PropertyPresenter extends BasePresenter
         private readonly UserManager $userManager
     ) {
         parent::__construct();
+        $this->cachingEnabled = false;
     }
 
     protected function startup(): void

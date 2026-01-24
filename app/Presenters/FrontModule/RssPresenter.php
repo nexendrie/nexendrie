@@ -12,11 +12,10 @@ use Nexendrie\Model\Rss;
  */
 final class RssPresenter extends BasePresenter
 {
-    protected bool $earlyHints = false;
-
     public function __construct(private readonly Rss $model)
     {
         parent::__construct();
+        $this->earlyHints = false;
     }
 
     public function renderNews(): never

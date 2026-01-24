@@ -7,14 +7,13 @@ use Nexendrie\Model\Notificator;
 
 class SsePresenter extends BasePresenter
 {
-    protected bool $earlyHints = false;
-
     /**
      * @param Notificator[] $notificators
      */
     public function __construct(private readonly array $notificators)
     {
         parent::__construct();
+        $this->earlyHints = false;
     }
 
     public function actionDefault(): void

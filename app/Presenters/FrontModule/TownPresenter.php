@@ -27,7 +27,6 @@ use Nexendrie\Orm\Model as ORM;
 final class TownPresenter extends BasePresenter
 {
     private \Nexendrie\Orm\Town $town;
-    protected bool $cachingEnabled = false;
 
     public function __construct(
         private readonly Town $model,
@@ -38,6 +37,7 @@ final class TownPresenter extends BasePresenter
         private readonly TownChatControlFactory $chatFactory
     ) {
         parent::__construct();
+        $this->cachingEnabled = false;
     }
 
     protected function startup(): void

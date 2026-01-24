@@ -20,11 +20,10 @@ use Nexendrie\Model\InsufficientSkillLevelForJobException;
  */
 final class WorkPresenter extends BasePresenter
 {
-    protected bool $cachingEnabled = false;
-
     public function __construct(private readonly Job $model, private readonly Locale $localeModel)
     {
         parent::__construct();
+        $this->cachingEnabled = false;
     }
 
     protected function startup(): void

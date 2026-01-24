@@ -23,14 +23,13 @@ use Nexendrie\Model\Order;
  */
 final class ChatPresenter extends BasePresenter
 {
-    protected bool $cachingEnabled = false;
-
     public function __construct(
         private readonly Monastery $monasteryModel,
         private readonly Order $orderModel,
         private readonly Guild $guildModel
     ) {
         parent::__construct();
+        $this->cachingEnabled = false;
     }
 
     protected function startup(): void

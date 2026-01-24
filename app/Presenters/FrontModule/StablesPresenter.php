@@ -19,11 +19,11 @@ use Nexendrie\Components\StablesControl;
 final class StablesPresenter extends BasePresenter
 {
     private MountEntity $mount;
-    protected bool $publicCache = false;
 
     public function __construct(private readonly Mount $model)
     {
         parent::__construct();
+        $this->publicCache = false;
     }
 
     protected function startup(): void

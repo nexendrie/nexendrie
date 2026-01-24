@@ -16,11 +16,10 @@ use Nexendrie\Orm\Model as ORM;
  */
 final class SearchPresenter extends BasePresenter
 {
-    protected bool $earlyHints = false;
-
     public function __construct(private readonly ORM $orm, private readonly OpenSearch $openSearch)
     {
         parent::__construct();
+        $this->earlyHints = false;
     }
 
     protected function createComponentSiteSearchForm(SiteSearchFormFactory $factory): Form

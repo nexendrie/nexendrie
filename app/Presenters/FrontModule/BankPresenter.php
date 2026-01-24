@@ -20,11 +20,10 @@ use Nexendrie\Model\DepositAccountNotDueException;
  */
 final class BankPresenter extends BasePresenter
 {
-    protected bool $cachingEnabled = false;
-
     public function __construct(private readonly Bank $model, private readonly Locale $localeModel)
     {
         parent::__construct();
+        $this->cachingEnabled = false;
     }
 
     public function renderDefault(): void

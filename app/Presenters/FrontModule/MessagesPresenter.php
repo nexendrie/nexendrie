@@ -16,11 +16,10 @@ use Nexendrie\Model\Messenger;
  */
 final class MessagesPresenter extends BasePresenter
 {
-    protected bool $publicCache = false;
-
     public function __construct(private readonly Messenger $model)
     {
         parent::__construct();
+        $this->publicCache = false;
     }
 
     protected function startup(): void
