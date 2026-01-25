@@ -5,9 +5,6 @@ namespace Nexendrie\Presenters\FrontModule;
 
 require __DIR__ . "/../../../bootstrap.php";
 
-/**
- * @skip
- */
 final class AchievementsPresenterTest extends \Tester\TestCase
 {
     use \Nexendrie\Presenters\TPresenter;

@@ -35,11 +35,11 @@ trait TPresenter
             Assert::type(RssResponse::class, $response);
 
             $dom = \Tester\DomQuery::fromXml($response->source);
-            Assert::true($dom->has('rss'), "missing 'rss' element");
-            Assert::true($dom->has('channel'), "missing 'channel' element");
-            Assert::true($dom->has('title'), "missing 'title' element");
-            Assert::true($dom->has('link'), "missing 'link' element");
-            Assert::true($dom->has('item'), "missing 'item' element");
+            Assert::true(is_array($dom->xpath('rss')), "missing 'rss' element");
+            Assert::true(is_array($dom->xpath('channel')), "missing 'channel' element");
+            Assert::true(is_array($dom->xpath('title')), "missing 'title' element");
+            Assert::true(is_array($dom->xpath('link')), "missing 'link' element");
+            Assert::true(is_array($dom->xpath('item')), "missing 'item' element");
         }
         return $response;
     }

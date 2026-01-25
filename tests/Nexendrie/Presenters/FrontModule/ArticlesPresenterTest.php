@@ -7,9 +7,6 @@ use Nexendrie\Orm\Article;
 
 require __DIR__ . "/../../../bootstrap.php";
 
-/**
- * @skip
- */
 final class ArticlesPresenterTest extends \Tester\TestCase
 {
     use \Nexendrie\Presenters\TPresenter;

@@ -7,9 +7,6 @@ require __DIR__ . "/../../../bootstrap.php";
 
 use Nexendrie\Forms\SiteSearchFormFactory;
 
-/**
- * @skip
- */
 final class SearchPresenterTest extends \Tester\TestCase
 {
     use \Nexendrie\Presenters\TPresenter;

@@ -7,9 +7,6 @@ use Nexendrie\Components\HistoryControlFactory;
 
 require __DIR__ . "/../../../bootstrap.php";
 
-/**
- * @skip
- */
 final class HistoryPresenterTest extends \Tester\TestCase
 {
     use \Nexendrie\Presenters\TPresenter;

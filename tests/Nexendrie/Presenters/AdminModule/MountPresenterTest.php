@@ -8,9 +8,6 @@ use Nette\Application\BadRequestException;
 
 require __DIR__ . "/../../../bootstrap.php";
 
-/**
- * @skip
- */
 final class MountPresenterTest extends \Tester\TestCase
 {
     use TAdminPresenter;
