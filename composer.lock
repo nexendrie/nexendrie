@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e010633d1bcddf21030a8fdf7cd4b3b6",
+    "content-hash": "c920679b8b854108dec3a33128176aeb",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -1870,24 +1870,24 @@
         },
         {
             "name": "nexendrie/rss",
-            "version": "0.12.0",
+            "version": "0.13.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/rss.git",
-                "reference": "19876e4ba870d0fd48f46df3a24d8aecf26b31aa"
+                "reference": "7a5353612881c4b87cf4f7b33bd9bb569e349dfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=19876e4ba870d0fd48f46df3a24d8aecf26b31aa",
-                "reference": "19876e4ba870d0fd48f46df3a24d8aecf26b31aa",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=7a5353612881c4b87cf4f7b33bd9bb569e349dfb",
+                "reference": "7a5353612881c4b87cf4f7b33bd9bb569e349dfb",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-simplexml": "*",
                 "nette/utils": "^3.2.7",
-                "nexendrie/utils": "^1.9",
-                "php": ">=8.1.0",
+                "nexendrie/utils": "^1.10",
+                "php": ">=8.3.0",
                 "psr/event-dispatcher": "^1.0",
                 "symfony/options-resolver": "^6.0 || ^7.0",
                 "symfony/polyfill-php84": "^1.30"
@@ -1896,7 +1896,7 @@
                 "nette/application": "^3.1.7",
                 "nette/di": "^3.0.11",
                 "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "^0.8"
+                "nexendrie/site-generator": "^0.9"
             },
             "suggest": {
                 "nette/application": "To use RssResponse"
@@ -1934,9 +1934,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/rss",
                 "issues": "https://gitlab.com/nexendrie/rss/-/issues",
-                "source": "https://gitlab.com/nexendrie/rss/-/tree/0.12.0"
+                "source": "https://gitlab.com/nexendrie/rss/-/tree/0.13.0"
             },
-            "time": "2026-01-18T19:09:07+00:00"
+            "time": "2026-01-28T20:47:44+00:00"
         },
         {
             "name": "nexendrie/translation",

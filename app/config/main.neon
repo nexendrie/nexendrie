@@ -165,3 +165,6 @@ menu:
                 conditions:
                     openRegistration: false
                     acl: user:invite
+rss:
+    extensions:
+        - Nexendrie\Rss\Extensions\DublinCore
