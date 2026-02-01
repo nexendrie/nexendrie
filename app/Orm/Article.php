@@ -17,6 +17,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $created
  * @property int $updated
  * @property-read string $createdAt {virtual}
+ * @property-read string $updatedAt {virtual}
  * @property bool $allowedComments {default true}
  * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
  * @property-read string $categoryCZ {virtual}
@@ -60,6 +61,11 @@ final class Article extends BaseEntity
     protected function getterCreatedAt(): string
     {
         return $this->localeModel->formatDateTime($this->created);
+    }
+
+    protected function getterUpdatedAt(): string
+    {
+        return $this->localeModel->formatDateTime($this->updated);
     }
 
     protected function getterCategoryCZ(): string

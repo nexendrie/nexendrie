@@ -2,6 +2,7 @@
 {block title}{$article->title}{/block}
 {block head}<link rel="alternate" type="application/rss+xml" title="{$siteName} - Komentáře k {$article->title}" n:href="//Rss:comments $article->id">
   <meta property="article:published_time" content="{$article->createdAt|date:'c'}">
+  <meta property="article:modified_time" content="{$article->updatedAt|date:'c'}">
   <meta property="article:author" content="{link //Profile: $article->author->publicname}">
   <meta property="article:section" content="{$article->categoryCZ}">{/block}
 {block content}
