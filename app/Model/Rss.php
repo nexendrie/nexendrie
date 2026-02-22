@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
+use DateTime;
 use Nexendrie\Rss\Bridges\NetteApplication\RssResponse;
+use Nexendrie\Rss\Extensions\RssCore\RssLanguage;
 use Nexendrie\Rss\Generator;
 use Nexendrie\Rss\RssChannelItem as Item;
 use Nexendrie\Rss\Collection;
@@ -44,7 +46,7 @@ final readonly class Rss
         $versionSuffix = $this->versionSuffix();
         $info = [
             "title" => "Nexendrie $versionSuffix- Novinky", "description" => "Novinky v Nexendrii",
-            "link" => $this->linkGenerator->link("Front:Homepage:default"), "language" => "cs",
+            "link" => $this->linkGenerator->link("Front:Homepage:default"), "language" => RssLanguage::Czech,
         ];
         $this->generator->dataSource = function (): Collection {
             $return = new Collection();
@@ -52,7 +54,8 @@ final readonly class Rss
             foreach ($items as $row) {
                 $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
                 $return[] = new Item([
-                    "title" => $row->title, "description" => $row->text, "link" => $link, "pubDate" => $row->created,
+                    "title" => $row->title, "description" => $row->text, "link" => $link,
+                    "pubDate" => (new DateTime())->setTimestamp($row->created),
                     "comments" => $link . "#comments", "dc:creator" => $row->author->publicname,
                 ]);
             }
@@ -73,7 +76,8 @@ final readonly class Rss
         $articleLink = $this->linkGenerator->link("Front:Article:view", ["id" => $id]);
         $info = [
             "title" => "Nexendrie $versionSuffix- Komentáře k " . $article->title,
-            "description" => "Komentáře k článku " . $article->title, "link" => $articleLink, "language" => "cs",
+            "description" => "Komentáře k článku " . $article->title, "link" => $articleLink,
+            "language" => RssLanguage::Czech,
         ];
         $this->generator->dataSource = function () use ($id, $articleLink): Collection {
             $return = new Collection();
@@ -83,7 +87,8 @@ final readonly class Rss
                 $link = $articleLink . "#comment-$comment->id";
                 $return[] = new Item([
                     "title" => $comment->title, "description" => $comment->text, "link" => $link,
-                    "pubDate" => $comment->created, "dc:creator" => $comment->author->publicname,
+                    "pubDate" => (new DateTime())->setTimestamp($comment->created),
+                    "dc:creator" => $comment->author->publicname,
                 ]);
             }
             return $return;
