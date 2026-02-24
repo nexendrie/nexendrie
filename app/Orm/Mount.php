@@ -8,7 +8,7 @@ use Nexendrie\Utils\Numbers;
 use HeroesofAbenez\Combat\CharacterEffect;
 use HeroesofAbenez\Combat\SkillSpecial;
 use HeroesofAbenez\Combat\Character;
-use HeroesofAbenez\Combat\ICharacterEffectsProvider;
+use HeroesofAbenez\Combat\CharacterEffectsProvider;
 
 /**
  * Mount
@@ -38,7 +38,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read int $armorTrainingCost {virtual}
  * @property-read string $typeGenderName {virtual}
  */
-final class Mount extends BaseEntity implements ICharacterEffectsProvider
+final class Mount extends BaseEntity implements CharacterEffectsProvider
 {
     private \Nexendrie\Model\Locale $localeModel;
     private \Nexendrie\Model\Events $eventsModel;

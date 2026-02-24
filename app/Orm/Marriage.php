@@ -7,7 +7,7 @@ use Nexendrie\Utils\Numbers;
 use HeroesofAbenez\Combat\CharacterEffect;
 use HeroesofAbenez\Combat\SkillSpecial;
 use HeroesofAbenez\Combat\Character;
-use HeroesofAbenez\Combat\ICharacterEffectsProvider;
+use HeroesofAbenez\Combat\CharacterEffectsProvider;
 
 /**
  * Marriage
@@ -31,7 +31,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read int $level {virtual}
  * @property-read int $hpIncrease {virtual}
  */
-final class Marriage extends BaseEntity implements ICharacterEffectsProvider
+final class Marriage extends BaseEntity implements CharacterEffectsProvider
 {
     public const string STATUS_PROPOSED = "proposed";
     public const string STATUS_ACCEPTED = "accepted";

@@ -6,7 +6,7 @@ namespace Nexendrie\Orm;
 use HeroesofAbenez\Combat\CharacterEffect;
 use HeroesofAbenez\Combat\SkillSpecial;
 use HeroesofAbenez\Combat\Character;
-use HeroesofAbenez\Combat\ICharacterEffectsProvider;
+use HeroesofAbenez\Combat\CharacterEffectsProvider;
 
 /**
  * UserSkill
@@ -22,7 +22,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property-read int $jobRewardBonus {virtual}
  * @property-read int $jobSuccessRateBonus {virtual}
  */
-final class UserSkill extends BaseEntity implements ICharacterEffectsProvider
+final class UserSkill extends BaseEntity implements CharacterEffectsProvider
 {
     /** Increase of success rate per skill level (in %) */
     public const int LEVEL_SUCCESS_RATE = 5;

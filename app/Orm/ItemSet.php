@@ -7,7 +7,7 @@ use Nexendrie\Utils\Numbers;
 use HeroesofAbenez\Combat\CharacterEffect;
 use HeroesofAbenez\Combat\SkillSpecial;
 use HeroesofAbenez\Combat\Character;
-use HeroesofAbenez\Combat\ICharacterEffectsProvider;
+use HeroesofAbenez\Combat\CharacterEffectsProvider;
 
 /**
  * ItemSet
@@ -24,7 +24,7 @@ use HeroesofAbenez\Combat\ICharacterEffectsProvider;
  * @property int $updated
  * @property-read string $effect {virtual}
  */
-final class ItemSet extends BaseEntity implements ICharacterEffectsProvider
+final class ItemSet extends BaseEntity implements CharacterEffectsProvider
 {
     public const string STAT_DAMAGE = "damage";
     public const string STAT_ARMOR = "armor";
