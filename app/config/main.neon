@@ -168,3 +168,4 @@ menu:
 rss:
     extensions:
         - Nexendrie\Rss\Extensions\DublinCore
+        - Nexendrie\Rss\Extensions\CommentApi

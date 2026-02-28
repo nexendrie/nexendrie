@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e4dc3ac817e029f1a636b82b87a8596",
+    "content-hash": "8e3d573845c6690abf222e9337b3a6fc",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -1868,16 +1868,16 @@
         },
         {
             "name": "nexendrie/rss",
-            "version": "0.14.0",
+            "version": "0.15.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/rss.git",
-                "reference": "963903eac8558d39d56b95a5a78c90afb33001a7"
+                "reference": "7b7e724cc777d740dcfda74810aba0007833e1db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=963903eac8558d39d56b95a5a78c90afb33001a7",
-                "reference": "963903eac8558d39d56b95a5a78c90afb33001a7",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=7b7e724cc777d740dcfda74810aba0007833e1db",
+                "reference": "7b7e724cc777d740dcfda74810aba0007833e1db",
                 "shasum": ""
             },
             "require": {
@@ -1933,9 +1933,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/rss",
                 "issues": "https://gitlab.com/nexendrie/rss/-/issues",
-                "source": "https://gitlab.com/nexendrie/rss/-/tree/0.14.0"
+                "source": "https://gitlab.com/nexendrie/rss/-/tree/0.15.0"
             },
-            "time": "2026-02-22T20:24:07+00:00"
+            "time": "2026-02-28T20:06:15+00:00"
         },
         {
             "name": "nexendrie/translation",

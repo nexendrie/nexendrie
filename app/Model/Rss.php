@@ -5,8 +5,11 @@ namespace Nexendrie\Model;
 
 use DateTime;
 use Nexendrie\Rss\Bridges\NetteApplication\RssResponse;
+use Nexendrie\Rss\CategoriesCollection;
+use Nexendrie\Rss\Category;
 use Nexendrie\Rss\Extensions\RssCore\RssLanguage;
 use Nexendrie\Rss\Generator;
+use Nexendrie\Rss\Guid;
 use Nexendrie\Rss\RssChannelItem as Item;
 use Nexendrie\Rss\Collection;
 use Nette\Application\LinkGenerator;
@@ -52,11 +55,14 @@ final readonly class Rss
             $return = new Collection();
             $items = $this->articleModel->listOfNews();
             foreach ($items as $row) {
-                $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id]);
+                $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id,]);
                 $return[] = new Item([
                     "title" => $row->title, "description" => $row->text, "link" => $link,
                     "pubDate" => (new DateTime())->setTimestamp($row->created),
                     "comments" => $link . "#comments", "dc:creator" => $row->author->publicname,
+                    "categories" => CategoriesCollection::fromArray([new Category($row->categoryCZ),]),
+                    "guid" => new Guid($link, true),
+                    "wfw:commentRss" => $this->linkGenerator->link("Front:Rss:comments", ["id" => $row->id,]),
                 ]);
             }
             return $return;
