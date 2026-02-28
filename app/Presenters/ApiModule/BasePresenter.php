@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Presenters\ApiModule;
 
+use JsonException;
 use Nette\Application\Responses\TextResponse;
 use Nette\Http\IRequest;
 use Nette\Http\IResponse;
@@ -85,7 +86,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     protected function resourceNotFound(string $resource, int $id): never
     {
         $this->getHttpResponse()->setCode(IResponse::S404_NotFound);
-        $payload = ["message" => Strings::firstUpper($resource) . " with id $id was not found."];
+        $payload = ["message" => ucfirst($resource) . " with id $id was not found."];
         $this->addContentLengthHeader($payload);
         $this->sendJson($payload);
     }
@@ -161,7 +162,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     {
         $presenterName = (string) Strings::before(static::class, "Presenter", -1);
         $presenterName = (string) Strings::after($presenterName, "\\", -1);
-        return Strings::firstLower($presenterName);
+        return lcfirst($presenterName);
     }
 
     protected function getCollectionModifiedTime(iterable $collection): int
@@ -199,7 +200,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     {
         $name = $this->getEntityName();
         return (string) preg_replace_callback("#[A-Z]#", static function (array $letter): string {
-            return " " . Strings::lower($letter[0]);
+            return " " . strtolower($letter[0]);
         }, $name);
     }
 
@@ -263,7 +264,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         }
         $this->getHttpResponse()->setCode(IResponse::S204_NoContent);
         $this->sendJson(
-            ["message" => Strings::firstUpper($this->getEntityName()) . " with id {$this->getId()} was deleted."]
+            ["message" => ucfirst($this->getEntityName()) . " with id {$this->getId()} was deleted."]
         );
     }
 
@@ -276,8 +277,8 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     {
         $data = ((strlen($this->params["data"]) > 0) ? $this->params["data"] : "{}");
         try {
-            return Json::decode($data);
-        } catch (\Nette\Utils\JsonException $e) {
+            return json_decode($data, flags: JSON_THROW_ON_ERROR | JSON_BIGINT_AS_STRING);
+        } catch (JsonException $e) {
             $this->getHttpResponse()->setCode(IResponse::S400_BadRequest);
             $this->sendJson(["message" => "Error while parsing request body: " . $e->getMessage() . "."]);
         }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nette\Neon\Neon;
-use Nette\Utils\Arrays;
 use Nette\Utils\Finder;
 
 final readonly class ThemesManager
@@ -33,13 +32,13 @@ final readonly class ThemesManager
         /** @var \SplFileInfo $style */
         foreach (Finder::findFiles("*.css")->in($dir) as $style) {
             $key = $style->getBasename(".css");
-            $value = Arrays::get($list, $key, $key);
+            $value = $list[$key] ?? $key;
             if (!is_array($value)) {
                 $styles[$key] = $key;
             } else {
-                $name = (string) Arrays::get($value, self::KEY_NAME, "");
-                $deprecated = (bool) Arrays::get($value, self::KEY_DEPRECATED, false);
-                $experimental = (bool) Arrays::get($value, self::KEY_EXPERIMENTAL, false);
+                $name = (string) $value[self::KEY_NAME];
+                $deprecated = $value[self::KEY_DEPRECATED] ?? false;
+                $experimental = $value[self::KEY_EXPERIMENTAL] ?? false;
                 if ($deprecated) {
                     $name .= self::SUFFIX_DEPRECATED;
                 } elseif ($experimental) {

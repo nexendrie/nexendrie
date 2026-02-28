@@ -7,7 +7,6 @@ use Nexendrie\Orm\PermissionDummy;
 use Nexendrie\Orm\GroupDummy;
 use Nette\Security\Permission;
 use Nette\Caching\Cache;
-use Nette\Utils\Arrays;
 use Nexendrie\Orm\Model as ORM;
 
 /**
@@ -164,8 +163,7 @@ final readonly class AuthorizatorFactory
             if (!$permission->hasResource($row->resource)) {
                 $permission->addResource($row->resource);
             }
-            /** @var GroupDummy $group */
-            $group = Arrays::get($groups, $row->group);
+            $group = $groups[$row->group];
             $permission->allow($group->singleName, $row->resource, $row->action);
         }
 

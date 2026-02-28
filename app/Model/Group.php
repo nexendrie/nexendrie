@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Nexendrie\Model;
 
 use Nette\Caching\Cache;
-use Nette\Utils\Arrays;
 use Nexendrie\Orm\Group as GroupEntity;
 use Nexendrie\Orm\GroupDummy;
 use Nexendrie\Orm\Model as ORM;
@@ -53,7 +52,7 @@ final class Group
     public function get(int $id): ?GroupDummy
     {
         $groups = $this->listOfGroups();
-        return Arrays::get($groups, $id, null);
+        return $groups[$id] ?? null;
     }
 
     public function ormGet(int $id): ?GroupEntity

@@ -40,7 +40,7 @@ abstract class BaseTransformer implements Transformer
     public function getCollectionName(): string
     {
         $entityName = (string) Strings::after($this->getEntityClassName(), "\\", -1) . "s";
-        return Strings::firstLower($entityName);
+        return lcfirst($entityName);
     }
 
     public function transform(Entity $entity, int $maxDepth, string $apiVersion): \stdClass

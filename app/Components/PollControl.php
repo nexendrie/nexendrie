@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nexendrie\Components;
 
-use Nette\Utils\Arrays;
 use Nexendrie\Model\PollVotingException;
 use Nexendrie\Model\PollNotFoundException;
 use Nexendrie\Model\AccessDeniedException;
@@ -66,7 +65,7 @@ final class PollControl extends \Nette\Application\UI\Control
         if ($votes->count() > 0) {
             $return["total"] = $votes->count();
             foreach ($votes as $vote) {
-                $count = (int) Arrays::get($return["answers"], $vote->answer, 0);
+                $count = isset($return["answers"][$vote->answer]) ? $return["answers"][$vote->answer] : 0;
                 $return["answers"][$vote->answer] = $count + 1;
             }
         }

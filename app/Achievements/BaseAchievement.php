@@ -5,7 +5,6 @@ namespace Nexendrie\Achievements;
 
 use Nexendrie\Orm\User;
 use Nette\Localization\Translator;
-use Nette\Utils\Arrays;
 
 /**
  * BaseAchievement
@@ -31,11 +30,8 @@ abstract class BaseAchievement implements Achievement
     {
         $currentLevel = $this->isAchieved($user);
         $message = $this->description;
-        $newCount = Arrays::get(
-            $this->getRequirements(),
-            $currentLevel,
-            Arrays::get($this->getRequirements(), $this->getMaxLevel() - 1)
-        );
+        $requirements = $this->getRequirements();
+        $newCount = $requirements[$currentLevel] ?? $requirements[$this->getMaxLevel() - 1];
         $oldCount = $this->getProgress($user);
         return $this->translator->translate($message, 0, ["oldCount" => $oldCount, "newCount" => $newCount,]);
     }

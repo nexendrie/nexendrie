@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nexendrie\Model;
 
-use Nette\Utils\Arrays;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Nexendrie\Utils\Intervals;
 
@@ -133,7 +132,7 @@ final class SettingsRepository
      */
     private function validateSection(string $name, array $config): array
     {
-        $values = Arrays::get($config, $name, []);
+        $values = $config[$name] ?? [];
         $resolver = new OptionsResolver();
         $defaults = $this->defaults[$name];
         $resolver->setDefaults($defaults);
