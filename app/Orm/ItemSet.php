@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use HeroesofAbenez\Combat\CharacterEffectDuration;
 use Nexendrie\Utils\Numbers;
 use HeroesofAbenez\Combat\CharacterEffect;
 use HeroesofAbenez\Combat\SkillSpecial;
@@ -62,7 +63,7 @@ final class ItemSet extends BaseEntity implements CharacterEffectsProvider
         ];
         $stats = [
             "id" => "itemSet{$this->id}BonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->bonus,
-            "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
+            "duration" => CharacterEffectDuration::Combat, "valueAbsolute" => true,
             "stat" => $bonusStats[$this->stat],
         ];
         return [new CharacterEffect($stats)];

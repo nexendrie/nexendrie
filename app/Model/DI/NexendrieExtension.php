@@ -63,7 +63,7 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension
         $builder->addDefinition($this->prefix("combat.successCalculator"))
             ->setType(\HeroesofAbenez\Combat\StaticSuccessCalculator::class);
         $builder->addDefinition($this->prefix("combat.actionSelector"))
-            ->setType(\HeroesofAbenez\Combat\CombatActionSelector::class);
+            ->setType(\HeroesofAbenez\Combat\DefaultCombatActionSelector::class);
     }
 
     private function addModels(): void

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use HeroesofAbenez\Combat\CharacterEffectDuration;
 use Nextras\Orm\Relationships\OneHasMany;
 use Nexendrie\Utils\Numbers;
 use HeroesofAbenez\Combat\CharacterEffect;
@@ -167,7 +168,7 @@ final class Mount extends BaseEntity implements CharacterEffectsProvider
     {
         $stats = [
             "id" => "mount{$this->id}DamageBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->damage,
-            "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
+            "duration" => CharacterEffectDuration::Combat, "valueAbsolute" => true,
             "stat" => Character::STAT_DAMAGE,
         ];
         return new CharacterEffect($stats);
@@ -177,7 +178,7 @@ final class Mount extends BaseEntity implements CharacterEffectsProvider
     {
         $stats = [
             "id" => "mount{$this->id}DefenseBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->armor,
-            "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
+            "duration" => CharacterEffectDuration::Combat, "valueAbsolute" => true,
             "stat" => Character::STAT_DEFENSE,
         ];
         return new CharacterEffect($stats);

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
+use HeroesofAbenez\Combat\CharacterEffectDuration;
 use Nexendrie\Utils\Numbers;
 use HeroesofAbenez\Combat\CharacterEffect;
 use HeroesofAbenez\Combat\SkillSpecial;
@@ -122,7 +123,7 @@ final class Marriage extends BaseEntity implements CharacterEffectsProvider
     {
         $stats = [
             "id" => "marriageBonusEffect", "type" => SkillSpecial::TYPE_BUFF, "value" => $this->hpIncrease,
-            "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
+            "duration" => CharacterEffectDuration::Combat, "valueAbsolute" => true,
             "stat" => Character::STAT_MAX_HITPOINTS,
         ];
         return [new CharacterEffect($stats)];

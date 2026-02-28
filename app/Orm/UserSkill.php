@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nexendrie\Orm;
 
 use HeroesofAbenez\Combat\CharacterEffect;
+use HeroesofAbenez\Combat\CharacterEffectDuration;
 use HeroesofAbenez\Combat\SkillSpecial;
 use HeroesofAbenez\Combat\Character;
 use HeroesofAbenez\Combat\CharacterEffectsProvider;
@@ -71,7 +72,7 @@ final class UserSkill extends BaseEntity implements CharacterEffectsProvider
         ];
         $stats = [
             "id" => "skill{$this->skill->id}Effect", "type" => SkillSpecial::TYPE_BUFF,
-            "duration" => CharacterEffect::DURATION_COMBAT, "valueAbsolute" => true,
+            "duration" => CharacterEffectDuration::Combat, "valueAbsolute" => true,
             "stat" => $bonusStats[(string) $this->skill->stat], "value" => $this->skill->statIncrease * $this->level,
         ];
         return [new CharacterEffect($stats)];

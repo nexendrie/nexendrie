@@ -250,7 +250,7 @@ final class Adventure
     private function fightNpc(AdventureNpcEntity $npc, MountEntity $mount): bool
     {
         $combat = $this->combat;
-        $combat->victoryCondition = [VictoryConditions::class, "eliminateSecondTeam"];
+        $combat->victoryCondition = VictoryConditions::eliminateSecondTeam(...);
         $player = $this->combatHelper->getCharacter($this->user->id, $mount);
         $enemy = $this->combatHelper->getAdventureNpc($npc);
         $combat->setDuelParticipants($player, $enemy);
