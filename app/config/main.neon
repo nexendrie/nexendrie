@@ -169,3 +169,4 @@ rss:
     extensions:
         - Nexendrie\Rss\Extensions\DublinCore
         - Nexendrie\Rss\Extensions\CommentApi
+        - Nexendrie\Rss\Extensions\Content

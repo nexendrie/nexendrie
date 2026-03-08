@@ -63,6 +63,7 @@ final readonly class Rss
                     "categories" => CategoriesCollection::fromArray([new Category($row->categoryCZ),]),
                     "guid" => new Guid($link, true),
                     "wfw:commentRss" => $this->linkGenerator->link("Front:Rss:comments", ["id" => $row->id,]),
+                    "content:encoded" => $row->text,
                 ]);
             }
             return $return;
