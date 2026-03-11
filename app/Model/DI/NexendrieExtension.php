@@ -250,6 +250,8 @@ final class NexendrieExtension extends \Nette\DI\CompilerExtension
             ->setType(Nexendrie\Components\SocialIcons\Friendica::class);
         $builder->addDefinition($this->prefix("component.socialIcons.icon.gitlab"))
             ->setType(Nexendrie\Components\SocialIcons\GitLab::class);
+        $builder->addFactoryDefinition($this->prefix("component.hotReloading"))
+            ->setImplement(Nexendrie\Components\HotReloadingControlFactory::class);
     }
 
     private function addForms(): void

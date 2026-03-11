@@ -183,6 +183,11 @@ final readonly class SystemSettingsFormFactory
                 "description",
                 "Může zrychlit načítání stránek dřívějším odesláním stylů a skriptů. Vyžaduje podporu na serveru."
             );
+        $features->addCheckbox("hotReloading", "Hot reloading")
+            ->setOption(
+                "description",
+                "Automaticky obnovuje stránky při změnách zdrojových kódu. Vyžaduje podporu na serveru, doporučeno jen při vývoji."
+            );
         $form->setCurrentGroup(null);
         $form->addSubmit("submit", "Uložit změny");
         $form->setDefaults($this->getDefaultValues());

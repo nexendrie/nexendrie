@@ -45,7 +45,7 @@ Whatever server you use, we strongly advise that the server name ends with .loca
 
 FrankenPHP is the recommended server as it was specifically created as a PHP app server and requires the least amount of configuration. You only need to add a new server, define the root directory and enable php_server for it.
 
-```
+```caddyfile
 nexendrie.localhost {
     root /var/www/html/nexendrie/www
     php_server
@@ -53,6 +53,26 @@ nexendrie.localhost {
 ```
 
 You will need to install a few PHP extensions: calendar, intl, xml and mysqli.
+
+During development, you can use the hot reloading feature. For that you need to configure the server first. Example configuration follows, consult the [official documentation](https://frankenphp.dev/docs/hot-reload/) for details.
+
+```caddyfile
+nexendrie.localhost {
+    root /var/www/html/nexendrie/www
+    php_server
+    hot_reload {
+        watch /var/www/html/nexendrie/app/**/*.php
+        watch /var/www/html/nexendrie/app/**/*.latte
+        watch /var/www/html/nexendrie/app/**/*.neon
+        watch /var/www/html/nexendrie/www
+    }
+    mercure {
+        anonymous
+    }
+}
+```
+
+After that you need to enable the feature in System Settings and you are done, the necessary client side code is in place.
 
 ### Apache
 

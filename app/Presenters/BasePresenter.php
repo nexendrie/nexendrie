@@ -6,6 +6,8 @@ namespace Nexendrie\Presenters;
 use Nette\Application\Responses\RedirectResponse;
 use Nexendrie\Components\FaviconControl;
 use Nexendrie\Components\FaviconControlFactory;
+use Nexendrie\Components\HotReloadingControl;
+use Nexendrie\Components\HotReloadingControlFactory;
 use Nexendrie\Menu\IMenuControlFactory;
 use Nexendrie\Menu\MenuControl;
 use Nexendrie\Components\UserProfileLinkControlFactory;
@@ -27,6 +29,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     protected bool $cachingEnabled;
     protected bool $publicCache = true;
     protected bool $earlyHints;
+    protected bool $hotReloading;
 
     public function injectSettingsRepository(\Nexendrie\Model\SettingsRepository $sr): void
     {
@@ -36,6 +39,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         }
         if (!isset($this->earlyHints)) {
             $this->earlyHints = (bool) $this->sr->settings["features"]["earlyHints"];
+        }
+        if (!isset($this->hotReloading)) {
+            $this->hotReloading = (bool) $this->sr->settings["features"]["hotReloading"];
         }
     }
 
@@ -125,6 +131,8 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         $this->getHttpResponse()->setHeader("Content-Language", "cs,sk");
         $versionSuffix = $this->sr->settings["site"]["versionSuffix"];
         $this->template->siteName = trim("Nexendrie " . $versionSuffix);
+        $this->template->hotReloadUrl = $this->hotReloading && isset($_SERVER["FRANKENPHP_HOT_RELOAD"])
+            ? $_SERVER["FRANKENPHP_HOT_RELOAD"] : null;
     }
 
     public function sendResponse(\Nette\Application\Response $response): never
@@ -199,5 +207,13 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     protected function createComponentFavicon(FaviconControlFactory $factory): FaviconControl
     {
         return $factory->create();
+    }
+
+    protected function createComponentHotReloading(HotReloadingControlFactory $factory): HotReloadingControl
+    {
+        $component = $factory->create();
+        $component->url = $this->hotReloading && isset($_SERVER["FRANKENPHP_HOT_RELOAD"])
+            ? $_SERVER["FRANKENPHP_HOT_RELOAD"] : null;
+        return $component;
     }
 }

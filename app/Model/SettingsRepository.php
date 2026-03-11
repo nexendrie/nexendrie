@@ -56,6 +56,7 @@ final class SettingsRepository
         "features" => [
             "httpCaching" => false,
             "earlyHints" => false,
+            "hotReloading" => false,
         ],
         "buildings" => [
             "weeklyWearingOut" => 3,
