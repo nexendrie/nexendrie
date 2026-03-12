@@ -4,7 +4,7 @@ Installation instructions
 Requirements
 ------------
 
-Obviously, you need PHP. Version 8.1 or later is required. Then you need web server (Apache is a safe bet but nginx or even PHP built-in server should be fine) and sql server (MySql/MariaDb).
+Obviously, you need PHP. Version 8.3 or later is required. Then you need web server (Apache is a safe bet but nginx or even PHP built-in server should be fine) and sql server (MySql/MariaDb).
 The game uses Composer to manage its dependencies, so you have to have it installed. You also need Git if you want to contribute.
 
 Downloading
@@ -53,6 +53,8 @@ nexendrie.localhost {
 ```
 
 You will need to install a few PHP extensions: calendar, intl, xml and mysqli.
+
+FrankenPHP supports early hints. If you want to use this features, just enable it in System Settings. Keep in mind that changes in relevant files are not taken into account once they were preloaded.
 
 During development, you can use the hot reloading feature. For that you need to configure the server first. Example configuration follows, consult the [official documentation](https://frankenphp.dev/docs/hot-reload/) for details.
 
@@ -133,7 +135,7 @@ server {
 
 With Caddy, the setup is like with nginx (simple server configuration + php-fpm) but the server configuration is even simpler:
 
-```
+```caddyfile
 nexendrie.localhost {
     root * /var/www/html/nexendrie/www
     php_fastcgi php-fpm:9000
@@ -153,4 +155,4 @@ php -S localhost:8080 -t www
 
 ### Other servers
 
-If you have any other server, you (currently) have to do all server configuration by yourself as there are no experts on them in the development team. An important thing to have (configured) is something like mod_rewrite on Apache as we use "cool urls". If you have figured things out, please, tell us so we can update this section for other developers/testers who (consider to) use that server.
+If you have any other server, the game will probably work but you (currently) have to do all server configuration by yourself as there are no experts on them in the development team. An important thing to have (configured) is something like mod_rewrite on Apache as we use "cool urls". If you have figured things out, please, tell us so we can update this section for other developers/testers who (consider to) use that server.
