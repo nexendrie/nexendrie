@@ -131,8 +131,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         $this->getHttpResponse()->setHeader("Content-Language", "cs,sk");
         $versionSuffix = $this->sr->settings["site"]["versionSuffix"];
         $this->template->siteName = trim("Nexendrie " . $versionSuffix);
-        $this->template->hotReloadUrl = $this->hotReloading && isset($_SERVER["FRANKENPHP_HOT_RELOAD"])
-            ? $_SERVER["FRANKENPHP_HOT_RELOAD"] : null;
     }
 
     public function sendResponse(\Nette\Application\Response $response): never
