@@ -28,7 +28,7 @@ final class AcademyControl extends \Nette\Application\UI\Control
      */
     private function getSkillTypes(): array
     {
-        return Constants::getConstantsValues(Skill::class, "TYPE_");
+        return Constants::getValues(Skill::class, "TYPE_");
     }
 
     public function render(string $type = "work"): void

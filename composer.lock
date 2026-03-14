@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d39cf647c7755d5f7d58558bc1927968",
+    "content-hash": "4888d8cb70b5b1f968f471c44ed113f0",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -144,19 +144,19 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "c394fe5c2196b953ef103088cac623224a7d4f83"
+                "reference": "8f9c958a01e2f5a15638f5d31d7c4b7528b6023d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=c394fe5c2196b953ef103088cac623224a7d4f83",
-                "reference": "c394fe5c2196b953ef103088cac623224a7d4f83",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=8f9c958a01e2f5a15638f5d31d7c4b7528b6023d",
+                "reference": "8f9c958a01e2f5a15638f5d31d7c4b7528b6023d",
                 "shasum": ""
             },
             "require": {
                 "latte/latte": "^2.8",
                 "nette/utils": "^3.2.2",
                 "nexendrie/translation": "^2.4",
-                "nexendrie/utils": "^1.10.1",
+                "nexendrie/utils": "^1.11",
                 "php": ">=8.3.0",
                 "symfony/options-resolver": "^6.4 || ^7.4"
             },
@@ -197,7 +197,7 @@
                 "issues": "https://gitlab.com/heroesofabenez/combat/-/issues",
                 "source": "https://gitlab.com/heroesofabenez/combat/-/tree/master"
             },
-            "time": "2026-03-02T20:38:03+00:00"
+            "time": "2026-03-14T15:03:33+00:00"
         },
         {
             "name": "ijvo/cronner",
@@ -1868,23 +1868,23 @@
         },
         {
             "name": "nexendrie/rss",
-            "version": "0.15.1",
+            "version": "0.16.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/rss.git",
-                "reference": "5264429a3a92b763b998c4503ce92d35b1f110c3"
+                "reference": "774f90963ef02573b8f54cab727ebae664092297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=5264429a3a92b763b998c4503ce92d35b1f110c3",
-                "reference": "5264429a3a92b763b998c4503ce92d35b1f110c3",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=774f90963ef02573b8f54cab727ebae664092297",
+                "reference": "774f90963ef02573b8f54cab727ebae664092297",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-simplexml": "*",
                 "nette/utils": "^3.2.7 || ^4.0",
-                "nexendrie/utils": "^1.10",
+                "nexendrie/utils": "^1.11",
                 "php": ">=8.3.0",
                 "psr/event-dispatcher": "^1.0",
                 "symfony/options-resolver": "^6.0 || ^7.0",
@@ -1933,9 +1933,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/rss",
                 "issues": "https://gitlab.com/nexendrie/rss/-/issues",
-                "source": "https://gitlab.com/nexendrie/rss/-/tree/0.15.1"
+                "source": "https://gitlab.com/nexendrie/rss/-/tree/0.16.0"
             },
-            "time": "2026-03-08T14:27:35+00:00"
+            "time": "2026-03-14T18:48:27+00:00"
         },
         {
             "name": "nexendrie/translation",
@@ -2021,16 +2021,16 @@
         },
         {
             "name": "nexendrie/utils",
-            "version": "1.10.1",
+            "version": "1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/utils.git",
-                "reference": "f441b2733a8b9b086687d826645db88578ab653e"
+                "reference": "b3e1abfff2a452849eac825b37b8dfd757f8a506"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Futils/repository/archive.zip?sha=f441b2733a8b9b086687d826645db88578ab653e",
-                "reference": "f441b2733a8b9b086687d826645db88578ab653e",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Futils/repository/archive.zip?sha=b3e1abfff2a452849eac825b37b8dfd757f8a506",
+                "reference": "b3e1abfff2a452849eac825b37b8dfd757f8a506",
                 "shasum": ""
             },
             "require": {
@@ -2042,7 +2042,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.10.x-dev"
+                    "dev-master": "1.11.x-dev"
                 }
             },
             "autoload": {
@@ -2074,9 +2074,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/utils",
                 "issues": "https://gitlab.com/nexendrie/utils/-/issues",
-                "source": "https://gitlab.com/nexendrie/utils/-/tree/1.10.1"
+                "source": "https://gitlab.com/nexendrie/utils/-/tree/1.11.0"
             },
-            "time": "2026-02-26T22:03:52+00:00"
+            "time": "2026-03-14T14:22:40+00:00"
         },
         {
             "name": "nextras/dbal",
