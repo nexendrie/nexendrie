@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4888d8cb70b5b1f968f471c44ed113f0",
+    "content-hash": "0bc9ced37ea1d1470931293ee726fa7c",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -144,18 +144,18 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "8f9c958a01e2f5a15638f5d31d7c4b7528b6023d"
+                "reference": "832631a2437ee9d98a9e901dd4242d86a7f37e87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=8f9c958a01e2f5a15638f5d31d7c4b7528b6023d",
-                "reference": "8f9c958a01e2f5a15638f5d31d7c4b7528b6023d",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=832631a2437ee9d98a9e901dd4242d86a7f37e87",
+                "reference": "832631a2437ee9d98a9e901dd4242d86a7f37e87",
                 "shasum": ""
             },
             "require": {
-                "latte/latte": "^2.8",
+                "latte/latte": "^2.8 || ^3.0",
                 "nette/utils": "^3.2.2",
-                "nexendrie/translation": "^2.4",
+                "nexendrie/translation": "^2.5",
                 "nexendrie/utils": "^1.11",
                 "php": ">=8.3.0",
                 "symfony/options-resolver": "^6.4 || ^7.4"
@@ -197,7 +197,7 @@
                 "issues": "https://gitlab.com/heroesofabenez/combat/-/issues",
                 "source": "https://gitlab.com/heroesofabenez/combat/-/tree/master"
             },
-            "time": "2026-03-14T15:03:33+00:00"
+            "time": "2026-03-15T20:19:46+00:00"
         },
         {
             "name": "ijvo/cronner",
@@ -1594,31 +1594,29 @@
         },
         {
             "name": "nexendrie/book-component",
-            "version": "2.4.0",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/book-component.git",
-                "reference": "81b1b81560bfddc50082e06b8fbd2407e7a1977d"
+                "reference": "8e48234d7982d5f7fc961cad01ba6ddce5e35bfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=81b1b81560bfddc50082e06b8fbd2407e7a1977d",
-                "reference": "81b1b81560bfddc50082e06b8fbd2407e7a1977d",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=8e48234d7982d5f7fc961cad01ba6ddce5e35bfd",
+                "reference": "8e48234d7982d5f7fc961cad01ba6ddce5e35bfd",
                 "shasum": ""
             },
             "require": {
-                "latte/latte": "^2.5",
+                "latte/latte": "^2.5 || ^3.0",
                 "nette/application": "^3.1.2",
                 "nette/utils": "^3.2.2",
-                "nexendrie/utils": "^1.9",
+                "nexendrie/utils": "^1.9.1",
                 "php": ">=8.1.0"
             },
             "require-dev": {
                 "nette/http": "3.1.2",
                 "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "^0.8",
-                "nexendrie/translation": "^2.3.1",
-                "phpstan/phpstan-deprecation-rules": "^2.0"
+                "nexendrie/translation": "^2.5"
             },
             "suggest": {
                 "nette/security": "To use book page conditions related to user",
@@ -1657,31 +1655,31 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/book-component",
                 "issues": "https://gitlab.com/nexendrie/book-component/-/issues",
-                "source": "https://gitlab.com/nexendrie/book-component/-/tree/2.4.0"
+                "source": "https://gitlab.com/nexendrie/book-component/-/tree/2.4.1"
             },
-            "time": "2025-07-27T17:27:11+00:00"
+            "time": "2026-03-15T20:31:22+00:00"
         },
         {
             "name": "nexendrie/event-calendar",
-            "version": "0.8.0",
+            "version": "0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/EventCalendar.git",
-                "reference": "3fd2ec14613a586c53ebc282cec58445e3210532"
+                "reference": "809ab4efb816d26c8b9429bc6aebd7e00a6f7a50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2FEventCalendar/repository/archive.zip?sha=3fd2ec14613a586c53ebc282cec58445e3210532",
-                "reference": "3fd2ec14613a586c53ebc282cec58445e3210532",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2FEventCalendar/repository/archive.zip?sha=809ab4efb816d26c8b9429bc6aebd7e00a6f7a50",
+                "reference": "809ab4efb816d26c8b9429bc6aebd7e00a6f7a50",
                 "shasum": ""
             },
             "require": {
                 "ext-calendar": "*",
-                "latte/latte": "^2.8.3",
+                "ext-mbstring": "*",
+                "latte/latte": "^2.8.3 || ^3.0",
                 "nette/application": "^3.1.7",
                 "nette/neon": "^3.2.2",
-                "nette/utils": "^3.2.7",
-                "php": ">=8.1.0"
+                "php": ">=8.3.0"
             },
             "conflict": {
                 "nette/caching": "<3.1.3",
@@ -1694,11 +1692,9 @@
             "require-dev": {
                 "ext-curl": "*",
                 "ext-json": "*",
-                "ext-mbstring": "*",
                 "nette/caching": "^3.1.3",
                 "nexendrie/code-quality": "@dev",
-                "nexendrie/site-generator": "^0.8",
-                "nexendrie/translation": "^2.3.1",
+                "nexendrie/translation": "^2.5",
                 "phpstan/phpstan-nette": "^2.0",
                 "texy/texy": "^3.1.6"
             },
@@ -1711,7 +1707,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.8.x-dev"
+                    "dev-master": "0.9.x-dev"
                 }
             },
             "autoload": {
@@ -1738,9 +1734,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/EventCalendar",
                 "issues": "https://gitlab.com/nexendrie/EventCalendar/-/issues",
-                "source": "https://gitlab.com/EventCalendar/EventCalendar/"
+                "source": "https://gitlab.com/nexendrie/EventCalendar/-/tree/0.9.0"
             },
-            "time": "2025-07-27T17:36:32+00:00"
+            "time": "2026-03-15T20:13:42+00:00"
         },
         {
             "name": "nexendrie/menu",
@@ -1939,37 +1935,41 @@
         },
         {
             "name": "nexendrie/translation",
-            "version": "2.4.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/translation.git",
-                "reference": "c13b1da6422534b26d8279ea4333359cead7a8c2"
+                "reference": "e5e8dc9e79a02505e6e9d85ca108f91c88176faf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=c13b1da6422534b26d8279ea4333359cead7a8c2",
-                "reference": "c13b1da6422534b26d8279ea4333359cead7a8c2",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=e5e8dc9e79a02505e6e9d85ca108f91c88176faf",
+                "reference": "e5e8dc9e79a02505e6e9d85ca108f91c88176faf",
                 "shasum": ""
             },
             "require": {
                 "nette/finder": "^2.6",
                 "nette/utils": "^3.2.10",
                 "nexendrie/utils": "^1.9",
-                "php": ">=8.1.0"
+                "php": ">=8.1.0",
+                "psr/event-dispatcher": "^1.0",
+                "symfony/polyfill-php84": "^1.31"
             },
             "require-dev": {
+                "circli/event-dispatcher": "^3.0",
+                "devium/toml": "^1.0",
                 "ext-simplexml": "*",
-                "latte/latte": "^2.8",
+                "latte/latte": "^3.0",
                 "nette/application": "^3.1.5",
                 "nette/di": "^3.1.3",
                 "nette/http": "3.1.2",
                 "nette/neon": "^3.4.1",
                 "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "^0.8",
                 "symfony/yaml": "^6.0",
                 "tracy/tracy": "^2.6"
             },
             "suggest": {
+                "devium/toml": "To use TomlLoader",
                 "ext-json": "To use JsonLoader",
                 "nette/application": "To use param locale resolver in Nette applications",
                 "nette/di": "For easier integration to Nette applications",
@@ -1981,7 +1981,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4.x-dev"
+                    "dev-master": "2.5.x-dev"
                 }
             },
             "autoload": {
@@ -2008,16 +2008,17 @@
                 "localization",
                 "neon",
                 "nette",
+                "toml",
                 "translating",
                 "translation",
                 "yaml"
             ],
             "support": {
                 "docs": "https://nexendrie.gitlab.io/translation",
-                "issues": "https://gitlab.com/nexendrie/translation/issues",
-                "source": "https://gitlab.com/nexendrie/translation/"
+                "issues": "https://gitlab.com/nexendrie/translation/-/issues",
+                "source": "https://gitlab.com/nexendrie/translation/-/tree/2.5.0"
             },
-            "time": "2025-08-03T19:01:51+00:00"
+            "time": "2026-03-15T18:24:17+00:00"
         },
         {
             "name": "nexendrie/utils",
