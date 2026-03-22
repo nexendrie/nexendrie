@@ -37,7 +37,7 @@
         "nexendrie/event-calendar": "^0.9",
         "nextras/form-components": "^2.0",
         "nexendrie/book-component": "^2.4.1",
-        "nexendrie/translation": "^2.5",
+        "nexendrie/translation": "^2.6",
         "nexendrie/rss": "^0.16",
         "nexendrie/menu": "^2.4",
         "nexendrie/utils": "^1.11",
@@ -59,7 +59,6 @@
         "symfony/polyfill-php80": "*",
         "symfony/polyfill-mbstring": "*",
         "symfony/polyfill-ctype": "*",
-        "symfony/yaml": "*",
         "cakephp/database": "*"
     },
     "autoload": {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0bc9ced37ea1d1470931293ee726fa7c",
+    "content-hash": "65cae0880ab2286fdede954b04e4128f",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -144,17 +144,17 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "832631a2437ee9d98a9e901dd4242d86a7f37e87"
+                "reference": "190d887e300f286b30f46eb6ca8e70c87e44a2f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=832631a2437ee9d98a9e901dd4242d86a7f37e87",
-                "reference": "832631a2437ee9d98a9e901dd4242d86a7f37e87",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=190d887e300f286b30f46eb6ca8e70c87e44a2f2",
+                "reference": "190d887e300f286b30f46eb6ca8e70c87e44a2f2",
                 "shasum": ""
             },
             "require": {
                 "latte/latte": "^2.8 || ^3.0",
-                "nette/utils": "^3.2.2",
+                "nette/utils": "^3.2.2 || ^4.0",
                 "nexendrie/translation": "^2.5",
                 "nexendrie/utils": "^1.11",
                 "php": ">=8.3.0",
@@ -197,7 +197,7 @@
                 "issues": "https://gitlab.com/heroesofabenez/combat/-/issues",
                 "source": "https://gitlab.com/heroesofabenez/combat/-/tree/master"
             },
-            "time": "2026-03-15T20:19:46+00:00"
+            "time": "2026-03-15T21:09:25+00:00"
         },
         {
             "name": "ijvo/cronner",
@@ -1935,16 +1935,16 @@
         },
         {
             "name": "nexendrie/translation",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/translation.git",
-                "reference": "e5e8dc9e79a02505e6e9d85ca108f91c88176faf"
+                "reference": "c8fb6e977f83dc880e740ff33723c6a7c9ebea47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=e5e8dc9e79a02505e6e9d85ca108f91c88176faf",
-                "reference": "e5e8dc9e79a02505e6e9d85ca108f91c88176faf",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=c8fb6e977f83dc880e740ff33723c6a7c9ebea47",
+                "reference": "c8fb6e977f83dc880e740ff33723c6a7c9ebea47",
                 "shasum": ""
             },
             "require": {
@@ -1954,6 +1954,15 @@
                 "php": ">=8.1.0",
                 "psr/event-dispatcher": "^1.0",
                 "symfony/polyfill-php84": "^1.31"
+            },
+            "conflict": {
+                "devium/toml": "<1.0",
+                "latte/latte": "<2.8",
+                "nette/application": "<3.1.5",
+                "nette/di": "<3.1.3",
+                "nette/neon": "<3.4.1",
+                "symfony/yaml": "<6.0",
+                "tracy/tracy": "<2.6"
             },
             "require-dev": {
                 "circli/event-dispatcher": "^3.0",
@@ -1981,7 +1990,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5.x-dev"
+                    "dev-master": "2.6.x-dev"
                 }
             },
             "autoload": {
@@ -2016,9 +2025,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/translation",
                 "issues": "https://gitlab.com/nexendrie/translation/-/issues",
-                "source": "https://gitlab.com/nexendrie/translation/-/tree/2.5.0"
+                "source": "https://gitlab.com/nexendrie/translation/-/tree/2.6.0"
             },
-            "time": "2026-03-15T18:24:17+00:00"
+            "time": "2026-03-22T13:39:27+00:00"
         },
         {
             "name": "nexendrie/utils",
@@ -4201,16 +4210,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.49",
+            "version": "3.0.50",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "6233a1e12584754e6b5daa69fe1289b47775c1b9"
+                "reference": "aa6ad8321ed103dc3624fb600a25b66ebf78ec7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/6233a1e12584754e6b5daa69fe1289b47775c1b9",
-                "reference": "6233a1e12584754e6b5daa69fe1289b47775c1b9",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/aa6ad8321ed103dc3624fb600a25b66ebf78ec7b",
+                "reference": "aa6ad8321ed103dc3624fb600a25b66ebf78ec7b",
                 "shasum": ""
             },
             "require": {
@@ -4291,7 +4300,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.49"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.50"
             },
             "funding": [
                 {
@@ -4307,15 +4316,15 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-01-27T09:17:28+00:00"
+            "time": "2026-03-19T02:57:58+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.40",
+            "version": "2.1.42",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9b2c7aeb83a75d8680ea5e7c9b7fca88052b766b",
-                "reference": "9b2c7aeb83a75d8680ea5e7c9b7fca88052b766b",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1279e1ce86ba768f0780c9d889852b4e02ff40d0",
+                "reference": "1279e1ce86ba768f0780c9d889852b4e02ff40d0",
                 "shasum": ""
             },
             "require": {
@@ -4360,7 +4369,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-23T15:04:35+00:00"
+            "time": "2026-03-17T14:58:32+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
