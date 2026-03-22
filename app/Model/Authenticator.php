@@ -44,13 +44,12 @@ final class Authenticator implements \Nette\Security\Authenticator
     public function getIdentity(UserEntity $user): SimpleIdentity
     {
         $roles = [];
+        $group = $user->group;
         if ($user->banned) {
             /** @var \Nexendrie\Orm\Group $group */
             $group = $this->orm->groups->getById($this->roles["bannedRole"]);
-            $roles[0] = $group->singleName;
-        } else {
-            $roles[0] = $user->group->singleName;
         }
+        $roles[0] = $group->singleName;
         if ($user->guildRank !== null && $user->group->path === \Nexendrie\Orm\Group::PATH_CITY) {
             $roles[1] = AuthorizatorFactory::GUILD_RANK_ROLE_PREFIX . "^" . $user->guildRank->name;
         } elseif ($user->orderRank !== null && $user->group->path === \Nexendrie\Orm\Group::PATH_TOWER) {

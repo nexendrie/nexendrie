@@ -209,10 +209,7 @@ final class User extends BaseEntity
         }
         /** @var OrderFee|null $record */
         $record = $this->orderFees->toCollection()->getBy(["order" => $this->order]);
-        if ($record === null) {
-            return 0;
-        }
-        return $record->amount;
+        return $record !== null ? $record->amount : 0;
     }
 
     protected function getterCurrentGuildContribution(): int
@@ -222,10 +219,7 @@ final class User extends BaseEntity
         }
         /** @var GuildFee|null $record */
         $record = $this->guildFees->toCollection()->getBy(["guild" => $this->guild]);
-        if ($record === null) {
-            return 0;
-        }
-        return $record->amount;
+        return $record !== null ? $record->amount : 0;
     }
 
     protected function getterTownsOwned(): int

@@ -44,10 +44,7 @@ final class Event extends BaseEntity
 
     protected function setterEnd(int $value): int
     {
-        if ($value < $this->start) {
-            return $this->start;
-        }
-        return $value;
+        return max($value, $this->start);
     }
 
     protected function getterEndAt(): string
