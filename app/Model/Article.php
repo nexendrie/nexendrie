@@ -45,7 +45,7 @@ final readonly class Article
         $news = $this->orm->articles->findNews();
         if ($paginator !== null) {
             $paginator->itemsPerPage = $this->itemsPerPage;
-            $paginator->itemCount = $news->count();
+            $paginator->itemCount = $news->countStored(); // @phpstan-ignore assign.propertyType
             $news = $news->limitBy($paginator->getLength(), $paginator->getOffset());
         }
         return $news;
@@ -61,7 +61,7 @@ final readonly class Article
         $articles = $this->orm->articles->findByCategory($name);
         if ($paginator !== null) {
             $paginator->itemsPerPage = $this->itemsPerPage;
-            $paginator->itemCount = $articles->count();
+            $paginator->itemCount = $articles->countStored(); // @phpstan-ignore assign.propertyType
             $articles = $articles->limitBy($paginator->getLength(), $paginator->getOffset());
         }
         return $articles;
