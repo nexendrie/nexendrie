@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65cae0880ab2286fdede954b04e4128f",
+    "content-hash": "5772250dcbdcf84a814a1791a1ebb1c8",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -144,12 +144,12 @@
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/heroesofabenez/combat.git",
-                "reference": "190d887e300f286b30f46eb6ca8e70c87e44a2f2"
+                "reference": "10f0e66f35f1fcde3971639e672a4e167dab90cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=190d887e300f286b30f46eb6ca8e70c87e44a2f2",
-                "reference": "190d887e300f286b30f46eb6ca8e70c87e44a2f2",
+                "url": "https://gitlab.com/api/v4/projects/heroesofabenez%2Fcombat/repository/archive.zip?sha=10f0e66f35f1fcde3971639e672a4e167dab90cd",
+                "reference": "10f0e66f35f1fcde3971639e672a4e167dab90cd",
                 "shasum": ""
             },
             "require": {
@@ -197,7 +197,7 @@
                 "issues": "https://gitlab.com/heroesofabenez/combat/-/issues",
                 "source": "https://gitlab.com/heroesofabenez/combat/-/tree/master"
             },
-            "time": "2026-03-15T21:09:25+00:00"
+            "time": "2026-04-03T12:06:25+00:00"
         },
         {
             "name": "ijvo/cronner",
@@ -1594,29 +1594,31 @@
         },
         {
             "name": "nexendrie/book-component",
-            "version": "2.4.1",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/book-component.git",
-                "reference": "8e48234d7982d5f7fc961cad01ba6ddce5e35bfd"
+                "reference": "81965eecc3d3727c0d63919b9c142d2975fff825"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=8e48234d7982d5f7fc961cad01ba6ddce5e35bfd",
-                "reference": "8e48234d7982d5f7fc961cad01ba6ddce5e35bfd",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fbook-component/repository/archive.zip?sha=81965eecc3d3727c0d63919b9c142d2975fff825",
+                "reference": "81965eecc3d3727c0d63919b9c142d2975fff825",
                 "shasum": ""
             },
             "require": {
                 "latte/latte": "^2.5 || ^3.0",
                 "nette/application": "^3.1.2",
-                "nette/utils": "^3.2.2",
-                "nexendrie/utils": "^1.9.1",
-                "php": ">=8.1.0"
+                "nette/utils": "^3.2.2 || ^4.0",
+                "nexendrie/utils": "^1.11",
+                "php": ">=8.3.0",
+                "psr/event-dispatcher": "^1.0"
             },
             "require-dev": {
-                "nette/http": "3.1.2",
+                "konecnyjakub/event-dispatcher": "^2.2",
                 "nexendrie/code-quality": "dev-master",
-                "nexendrie/translation": "^2.5"
+                "nexendrie/translation": "^2.7",
+                "phpstan/phpstan-nette": "^2.0"
             },
             "suggest": {
                 "nette/security": "To use book page conditions related to user",
@@ -1625,7 +1627,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4.x-dev"
+                    "dev-master": "2.5.x-dev"
                 }
             },
             "autoload": {
@@ -1655,9 +1657,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/book-component",
                 "issues": "https://gitlab.com/nexendrie/book-component/-/issues",
-                "source": "https://gitlab.com/nexendrie/book-component/-/tree/2.4.1"
+                "source": "https://gitlab.com/nexendrie/book-component/-/tree/2.5.0"
             },
-            "time": "2026-03-15T20:31:22+00:00"
+            "time": "2026-04-05T14:14:02+00:00"
         },
         {
             "name": "nexendrie/event-calendar",
@@ -1935,23 +1937,23 @@
         },
         {
             "name": "nexendrie/translation",
-            "version": "2.6.0",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/translation.git",
-                "reference": "c8fb6e977f83dc880e740ff33723c6a7c9ebea47"
+                "reference": "2f3a8bf58223ba1b60564cbbfe2535e4dd834596"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=c8fb6e977f83dc880e740ff33723c6a7c9ebea47",
-                "reference": "c8fb6e977f83dc880e740ff33723c6a7c9ebea47",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Ftranslation/repository/archive.zip?sha=2f3a8bf58223ba1b60564cbbfe2535e4dd834596",
+                "reference": "2f3a8bf58223ba1b60564cbbfe2535e4dd834596",
                 "shasum": ""
             },
             "require": {
-                "nette/finder": "^2.6",
-                "nette/utils": "^3.2.10",
+                "nette/finder": "^2.6 || ^3.0",
+                "nette/utils": "^3.2.10 || ^4.0",
                 "nexendrie/utils": "^1.9",
-                "php": ">=8.1.0",
+                "php": ">=8.3.0",
                 "psr/event-dispatcher": "^1.0",
                 "symfony/polyfill-php84": "^1.31"
             },
@@ -1971,7 +1973,7 @@
                 "latte/latte": "^3.0",
                 "nette/application": "^3.1.5",
                 "nette/di": "^3.1.3",
-                "nette/http": "3.1.2",
+                "nette/http": "^3.2",
                 "nette/neon": "^3.4.1",
                 "nexendrie/code-quality": "dev-master",
                 "symfony/yaml": "^6.0",
@@ -1990,7 +1992,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6.x-dev"
+                    "dev-master": "2.7.x-dev"
                 }
             },
             "autoload": {
@@ -2025,9 +2027,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/translation",
                 "issues": "https://gitlab.com/nexendrie/translation/-/issues",
-                "source": "https://gitlab.com/nexendrie/translation/-/tree/2.6.0"
+                "source": "https://gitlab.com/nexendrie/translation/-/tree/2.7.0"
             },
-            "time": "2026-03-22T13:39:27+00:00"
+            "time": "2026-04-05T14:03:53+00:00"
         },
         {
             "name": "nexendrie/utils",
@@ -2686,16 +2688,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v6.4.35",
+            "version": "v6.4.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "49257c96304c508223815ee965c251e7c79e614e"
+                "reference": "9f481cfb580db8bcecc9b2d4c63f3e13df022ad5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/49257c96304c508223815ee965c251e7c79e614e",
-                "reference": "49257c96304c508223815ee965c251e7c79e614e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/9f481cfb580db8bcecc9b2d4c63f3e13df022ad5",
+                "reference": "9f481cfb580db8bcecc9b2d4c63f3e13df022ad5",
                 "shasum": ""
             },
             "require": {
@@ -2760,7 +2762,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v6.4.35"
+                "source": "https://github.com/symfony/console/tree/v6.4.36"
             },
             "funding": [
                 {
@@ -2780,7 +2782,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-06T13:31:08+00:00"
+            "time": "2026-03-27T15:30:51+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -2851,16 +2853,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v7.4.6",
+            "version": "v7.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "3ebc794fa5315e59fd122561623c2e2e4280538e"
+                "reference": "58b9790d12f9670b7f53a1c1738febd3108970a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/3ebc794fa5315e59fd122561623c2e2e4280538e",
-                "reference": "3ebc794fa5315e59fd122561623c2e2e4280538e",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/58b9790d12f9670b7f53a1c1738febd3108970a5",
+                "reference": "58b9790d12f9670b7f53a1c1738febd3108970a5",
                 "shasum": ""
             },
             "require": {
@@ -2897,7 +2899,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v7.4.6"
+                "source": "https://github.com/symfony/filesystem/tree/v7.4.8"
             },
             "funding": [
                 {
@@ -2917,20 +2919,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-02-25T16:50:00+00:00"
+            "time": "2026-03-24T13:12:05+00:00"
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v7.4.0",
+            "version": "v7.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "b38026df55197f9e39a44f3215788edf83187b80"
+                "reference": "2888fcdc4dc2fd5f7c7397be78631e8af12e02b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/b38026df55197f9e39a44f3215788edf83187b80",
-                "reference": "b38026df55197f9e39a44f3215788edf83187b80",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/2888fcdc4dc2fd5f7c7397be78631e8af12e02b4",
+                "reference": "2888fcdc4dc2fd5f7c7397be78631e8af12e02b4",
                 "shasum": ""
             },
             "require": {
@@ -2968,7 +2970,7 @@
                 "options"
             ],
             "support": {
-                "source": "https://github.com/symfony/options-resolver/tree/v7.4.0"
+                "source": "https://github.com/symfony/options-resolver/tree/v7.4.8"
             },
             "funding": [
                 {
@@ -2988,7 +2990,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-12T15:39:26+00:00"
+            "time": "2026-03-24T13:12:05+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
@@ -3326,16 +3328,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v7.4.6",
+            "version": "v7.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "9f209231affa85aa930a5e46e6eb03381424b30b"
+                "reference": "114ac57257d75df748eda23dd003878080b8e688"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/9f209231affa85aa930a5e46e6eb03381424b30b",
-                "reference": "9f209231affa85aa930a5e46e6eb03381424b30b",
+                "url": "https://api.github.com/repos/symfony/string/zipball/114ac57257d75df748eda23dd003878080b8e688",
+                "reference": "114ac57257d75df748eda23dd003878080b8e688",
                 "shasum": ""
             },
             "require": {
@@ -3393,7 +3395,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v7.4.6"
+                "source": "https://github.com/symfony/string/tree/v7.4.8"
             },
             "funding": [
                 {
@@ -3413,7 +3415,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-02-09T09:33:46+00:00"
+            "time": "2026-03-24T13:12:05+00:00"
         },
         {
             "name": "tracy/tracy",
@@ -4320,11 +4322,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.44",
+            "version": "2.1.46",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4a88c083c668b2c364a425c9b3171b2d9ea5d218",
-                "reference": "4a88c083c668b2c364a425c9b3171b2d9ea5d218",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a193923fc2d6325ef4e741cf3af8c3e8f54dbf25",
+                "reference": "a193923fc2d6325ef4e741cf3af8c3e8f54dbf25",
                 "shasum": ""
             },
             "require": {
@@ -4369,7 +4371,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-25T17:34:21+00:00"
+            "time": "2026-04-01T09:25:14+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",

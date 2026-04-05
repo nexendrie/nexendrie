@@ -19,7 +19,7 @@ final class HistoryPresenterTest extends \Tester\TestCase
         /** @var HistoryControlFactory $factory */
         $factory = $this->getService(HistoryControlFactory::class);
         $component = $factory->create();
-        $pages = $component->getPages();
+        $pages = $component->getPages(); // @phpstan-ignore method.deprecated
         /** @var \Nexendrie\BookComponent\BookPage $page */
         foreach ($pages as $page) {
             $this->checkAction(":Front:Help:default", ["page" => $page->slug]);

@@ -19,7 +19,7 @@ final class HelpPresenterTest extends \Tester\TestCase
         /** @var HelpControlFactory $factory */
         $factory = $this->getService(HelpControlFactory::class);
         $component = $factory->create();
-        $pages = $component->getPages();
+        $pages = $component->getPages(); // @phpstan-ignore method.deprecated
         /** @var \Nexendrie\BookComponent\BookPage $page */
         foreach ($pages as $page) {
             $this->checkAction(":Front:Help:default", ["page" => $page->slug]);
