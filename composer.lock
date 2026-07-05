@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5772250dcbdcf84a814a1791a1ebb1c8",
+    "content-hash": "52d936f2090fd500b024b489291a9b00",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -349,36 +349,38 @@
         },
         {
             "name": "latte/latte",
-            "version": "v2.11.7",
+            "version": "v3.0.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "0ac0843a459790d471821f6a82f5d13db831a0d3"
+                "reference": "b5bd179e2e939c9673c9c0b99cb8b0eca6b2f8b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/0ac0843a459790d471821f6a82f5d13db831a0d3",
-                "reference": "0ac0843a459790d471821f6a82f5d13db831a0d3",
+                "url": "https://api.github.com/repos/nette/latte/zipball/b5bd179e2e939c9673c9c0b99cb8b0eca6b2f8b3",
+                "reference": "b5bd179e2e939c9673c9c0b99cb8b0eca6b2f8b3",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-tokenizer": "*",
-                "php": "7.1 - 8.3"
+                "php": "8.0 - 8.5"
             },
             "conflict": {
-                "nette/application": "<2.4.1"
+                "nette/application": "<3.1.7",
+                "nette/caching": "<3.1.4"
             },
             "require-dev": {
-                "nette/php-generator": "^3.3.4",
-                "nette/tester": "^2.0",
-                "nette/utils": "^3.0",
-                "phpstan/phpstan": "^1",
-                "tracy/tracy": "^2.3"
+                "nette/php-generator": "^4.0",
+                "nette/tester": "^2.5",
+                "nette/utils": "^4.0",
+                "phpstan/phpstan-nette": "^2.0@stable",
+                "tracy/tracy": "^2.10"
             },
             "suggest": {
                 "ext-fileinfo": "to use filter |datastream",
                 "ext-iconv": "to use filters |reverse, |substring",
+                "ext-intl": "to use Latte\\Engine::setLocale()",
                 "ext-mbstring": "to use filters like lower, upper, capitalize, ...",
                 "nette/php-generator": "to use tag {templatePrint}",
                 "nette/utils": "to use filter |webalize"
@@ -389,10 +391,13 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.11-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
+                "psr-4": {
+                    "Latte\\": "src/Latte"
+                },
                 "classmap": [
                     "src/"
                 ]
@@ -427,9 +432,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/latte/issues",
-                "source": "https://github.com/nette/latte/tree/v2.11.7"
+                "source": "https://github.com/nette/latte/tree/v3.0.26"
             },
-            "time": "2023-10-18T17:16:11+00:00"
+            "time": "2026-02-24T23:59:23+00:00"
         },
         {
             "name": "nette/application",
@@ -1744,30 +1749,28 @@
         },
         {
             "name": "nexendrie/menu",
-            "version": "2.4.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/menu.git",
-                "reference": "9c263328d1fa99fd7129bc228dfd16248d932240"
+                "reference": "af411ddd9d9d851eb65a9609a5299e3eb495e318"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fmenu/repository/archive.zip?sha=9c263328d1fa99fd7129bc228dfd16248d932240",
-                "reference": "9c263328d1fa99fd7129bc228dfd16248d932240",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Fmenu/repository/archive.zip?sha=af411ddd9d9d851eb65a9609a5299e3eb495e318",
+                "reference": "af411ddd9d9d851eb65a9609a5299e3eb495e318",
                 "shasum": ""
             },
             "require": {
                 "latte/latte": "^2.5.3 || ^3.0",
-                "nette/application": "^3.0",
-                "nette/di": "^3.0",
-                "nette/utils": "^3.1.1",
-                "nexendrie/utils": "^1.8",
-                "php": ">=7.4.0",
-                "symfony/polyfill-php80": "^1.18"
+                "nette/application": "^3.1.5",
+                "nette/di": "^3.0.9",
+                "nette/utils": "^3.2.7 || ^4.0",
+                "nexendrie/utils": "^1.11",
+                "php": ">=8.3.0"
             },
             "require-dev": {
-                "nexendrie/code-quality": "dev-master",
-                "nexendrie/site-generator": "^0.6"
+                "nexendrie/code-quality": "dev-master"
             },
             "suggest": {
                 "nette/security": "To use menu item conditions related to user"
@@ -1775,7 +1778,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4.x-dev"
+                    "dev-master": "2.5.x-dev"
                 }
             },
             "autoload": {
@@ -1804,10 +1807,10 @@
             ],
             "support": {
                 "docs": "https://nexendrie.gitlab.io/menu",
-                "issues": "https://gitlab.com/nexendrie/menu/issues",
-                "source": "https://gitlab.com/nexendrie/menu/"
+                "issues": "https://gitlab.com/nexendrie/menu/-/issues",
+                "source": "https://gitlab.com/nexendrie/menu/-/tree/2.5.0"
             },
-            "time": "2020-09-05T21:25:12+00:00"
+            "time": "2026-07-05T17:52:39+00:00"
         },
         {
             "name": "nexendrie/rest-route",
@@ -4329,11 +4332,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.2.4",
+            "version": "2.2.5",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f0fe3fb03bb53ce68cc2416785b260e62226ec27",
-                "reference": "f0fe3fb03bb53ce68cc2416785b260e62226ec27",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/909c1e5fef7989ac0d0c1c5c42e32a5c4f6198a0",
+                "reference": "909c1e5fef7989ac0d0c1c5c42e32a5c4f6198a0",
                 "shasum": ""
             },
             "require": {
@@ -4389,7 +4392,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-03T07:00:23+00:00"
+            "time": "2026-07-05T06:31:06+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
