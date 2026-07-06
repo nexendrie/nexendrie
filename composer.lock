@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52d936f2090fd500b024b489291a9b00",
+    "content-hash": "85929aac679f8a9d8b5dc230a91bfec6",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -1871,16 +1871,16 @@
         },
         {
             "name": "nexendrie/rss",
-            "version": "0.16.0",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/nexendrie/rss.git",
-                "reference": "774f90963ef02573b8f54cab727ebae664092297"
+                "reference": "3ad5ec617ab6b2978c1adf8c1af95d714ba6d1d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=774f90963ef02573b8f54cab727ebae664092297",
-                "reference": "774f90963ef02573b8f54cab727ebae664092297",
+                "url": "https://gitlab.com/api/v4/projects/nexendrie%2Frss/repository/archive.zip?sha=3ad5ec617ab6b2978c1adf8c1af95d714ba6d1d5",
+                "reference": "3ad5ec617ab6b2978c1adf8c1af95d714ba6d1d5",
                 "shasum": ""
             },
             "require": {
@@ -1896,8 +1896,8 @@
             "require-dev": {
                 "konecnyjakub/event-dispatcher": "^2.2",
                 "nette/application": "^3.1.7",
-                "nette/di": "^3.0.11",
-                "nexendrie/code-quality": "dev-master",
+                "nette/bootstrap": "^3.2",
+                "nexendrie/code-quality": "dev-mytester",
                 "psr/log": "^3.0"
             },
             "suggest": {
@@ -1936,9 +1936,9 @@
             "support": {
                 "docs": "https://nexendrie.gitlab.io/rss",
                 "issues": "https://gitlab.com/nexendrie/rss/-/issues",
-                "source": "https://gitlab.com/nexendrie/rss/-/tree/0.16.0"
+                "source": "https://gitlab.com/nexendrie/rss/-/tree/1.0.0"
             },
-            "time": "2026-03-14T18:48:27+00:00"
+            "time": "2026-07-06T13:29:51+00:00"
         },
         {
             "name": "nexendrie/translation",
