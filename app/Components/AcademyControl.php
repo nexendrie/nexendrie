@@ -15,7 +15,7 @@ use Nexendrie\Orm\Skill;
  * AcademyControl
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property-read \Nette\Bridges\ApplicationLatte\DefaultTemplate $template
  */
 final class AcademyControl extends \Nette\Application\UI\Control
 {

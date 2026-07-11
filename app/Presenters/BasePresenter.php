@@ -17,7 +17,7 @@ use Nexendrie\Components\UserProfileLinkControl;
  * Ultimate ancestor of all presenters
  *
  * @author Jakub Konečný
- * @property-read \Nette\Application\UI\Template $template
+ * @property-read \Nette\Bridges\ApplicationLatte\DefaultTemplate $template
  */
 abstract class BasePresenter extends \Nette\Application\UI\Presenter
 {

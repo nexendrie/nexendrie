@@ -17,7 +17,7 @@ use Nexendrie\Model\InsufficientFundsException;
  * Shop Control
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property-read \Nette\Bridges\ApplicationLatte\DefaultTemplate $template
  * @property-write int $id
  */
 final class ShopControl extends \Nette\Application\UI\Control

@@ -9,7 +9,7 @@ use Nette\Application\UI\Control;
  * HotReloadingControl
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property-read \Nette\Bridges\ApplicationLatte\DefaultTemplate $template
  */
 final class HotReloadingControl extends Control
 {

@@ -13,7 +13,7 @@ use Nextras\Orm\Collection\ICollection;
  * ElectionsControl
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property-read \Nette\Bridges\ApplicationLatte\DefaultTemplate $template
  * @property-write \Nexendrie\Orm\Town $town
  */
 final class ElectionsControl extends \Nette\Application\UI\Control

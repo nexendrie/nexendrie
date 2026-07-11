@@ -24,7 +24,7 @@ use Nexendrie\Orm\UserJob as UserJobEntity;
  * HelpControl
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property-read \Nette\Bridges\ApplicationLatte\DefaultTemplate $template
  * @property BookPagesStorage|BookPage[] $pages
  */
 final class HelpControl extends BookControl

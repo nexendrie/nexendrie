@@ -14,7 +14,7 @@ use Nexendrie\Orm\PollVote as PollVoteEntity;
  * Poll Control
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property-read \Nette\Bridges\ApplicationLatte\DefaultTemplate $template
  * @property-write int $id
  */
 final class PollControl extends \Nette\Application\UI\Control

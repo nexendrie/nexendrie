@@ -18,7 +18,7 @@ use Nexendrie\Orm\UserExpense;
  * StablesControl
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property-read \Nette\Bridges\ApplicationLatte\DefaultTemplate $template
  */
 final class StablesControl extends \Nette\Application\UI\Control
 {

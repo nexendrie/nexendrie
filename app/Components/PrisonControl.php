@@ -12,7 +12,7 @@ use Nexendrie\Orm\User as UserEntity;
  * Prison Control
  *
  * @author Jakub Konečný
- * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property-read \Nette\Bridges\ApplicationLatte\DefaultTemplate $template
  */
 final class PrisonControl extends \Nette\Application\UI\Control
 {
