@@ -22,7 +22,7 @@ final readonly class Chronicle
     /**
      * Get list of chronicle records
      *
-     * @return ArticleEntity[]|ICollection
+     * @return ICollection<ArticleEntity>
      */
     public function articles(?\Nette\Utils\Paginator $paginator = null): ICollection
     {
@@ -37,7 +37,7 @@ final readonly class Chronicle
     /**
      * Get list of punishments
      *
-     * @return PunishmentEntity[]|ICollection
+     * @return ICollection<PunishmentEntity>
      */
     public function crimes(string $user = ""): ICollection
     {

@@ -28,7 +28,7 @@ final readonly class Article
     /**
      * Get all articles
      *
-     * @return ArticleEntity[]|ICollection
+     * @return ICollection<ArticleEntity>
      */
     public function listOfArticles(): ICollection
     {
@@ -38,7 +38,7 @@ final readonly class Article
     /**
      * Get list of news
      *
-     * @return ArticleEntity[]|ICollection
+     * @return ICollection<ArticleEntity>
      */
     public function listOfNews(?\Nette\Utils\Paginator $paginator = null): ICollection
     {
@@ -54,7 +54,7 @@ final readonly class Article
     /**
      * Get list of articles from specified category
      *
-     * @return ArticleEntity[]|ICollection
+     * @return ICollection<ArticleEntity>
      */
     public function category(string $name, ?\Nette\Utils\Paginator $paginator = null): ICollection
     {
@@ -81,7 +81,7 @@ final readonly class Article
     /**
      * Get comments meeting specified rules
      *
-     * @return CommentEntity[]|ICollection
+     * @return ICollection<CommentEntity>
      */
     public function viewComments(int $article = 0): ICollection
     {

@@ -18,7 +18,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $updated
  * @property-read string $createdAt {virtual}
  * @property bool $locked {default false}
- * @property OneHasMany|PollVote[] $votes {1:m PollVote::$poll}
+ * @property OneHasMany<PollVote> $votes {1:m PollVote::$poll}
  *
  */
 final class Poll extends BaseEntity

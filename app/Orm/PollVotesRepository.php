@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method PollVote|null getById(int $id)
- * @method PollVote|null getBy(array $conds)
- * @method ICollection|PollVote[] findBy(array $conds)
- * @method ICollection|PollVote[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<PollVote>
  */
 final class PollVotesRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -25,7 +22,7 @@ final class PollVotesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|PollVote[]
+     * @return ICollection<PollVote>
      */
     public function findByPoll(Poll|int $poll): ICollection
     {
@@ -33,7 +30,7 @@ final class PollVotesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|PollVote[]
+     * @return ICollection<PollVote>
      */
     public function findByUser(User|int $user): ICollection
     {

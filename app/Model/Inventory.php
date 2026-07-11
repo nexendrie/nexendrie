@@ -26,7 +26,7 @@ final readonly class Inventory
     /**
      * Show user's possessions
      *
-     * @return array{money: int, items: ICollection|UserItemEntity[], towns: OneHasMany|\Nexendrie\Orm\Town[], loan: Loan|null}
+     * @return array{money: int, items: ICollection<UserItemEntity>, towns: OneHasMany<\Nexendrie\Orm\Town>, loan: Loan|null}
      * @throws AuthenticationNeededException
      */
     public function possessions(): array
@@ -41,13 +41,13 @@ final readonly class Inventory
         $return["items"] = $user->items->toCollection()->findBy(["item->type" => ItemEntity::getCommonTypes()]);
         $return["towns"] = $user->ownedTowns;
         $return["loan"] = $this->orm->loans->getActiveLoan($this->user->id);
-        return $return; // @phpstan-ignore return.type
+        return $return;
     }
 
     /**
      * Show user's equipment
      *
-     * @return UserItemEntity[]|ICollection
+     * @return ICollection<UserItemEntity>
      * @throws AuthenticationNeededException
      */
     public function equipment(): ICollection
@@ -61,7 +61,7 @@ final readonly class Inventory
     /**
      * Show user's potions
      *
-     * @return UserItemEntity[]|ICollection
+     * @return ICollection<UserItemEntity>
      * @throws AuthenticationNeededException
      */
     public function potions(): ICollection
@@ -75,7 +75,7 @@ final readonly class Inventory
     /**
      * Get user's intimacy boosters
      *
-     * @return UserItemEntity[]|ICollection
+     * @return ICollection<UserItemEntity>
      * @throws AuthenticationNeededException
      */
     public function intimacyBoosters(): ICollection

@@ -21,7 +21,7 @@ final readonly class ItemSet
     /**
      * Get list of all item sets
      *
-     * @return ItemSetEntity[]|ICollection
+     * @return ICollection<ItemSetEntity>
      */
     public function listOfSets(): ICollection
     {

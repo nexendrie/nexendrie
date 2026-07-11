@@ -85,7 +85,7 @@ final readonly class Profile
     }
 
     /**
-     * @return OneHasMany|ArticleEntity[]
+     * @return OneHasMany<ArticleEntity>
      * @throws UserNotFoundException
      */
     public function getArticles(string $publicname): OneHasMany
@@ -98,7 +98,7 @@ final readonly class Profile
     }
 
     /**
-     * @return OneHasMany|UserSkill[]
+     * @return OneHasMany<UserSkill>
      * @throws UserNotFoundException
      */
     public function getSkills(string $publicname): OneHasMany
@@ -111,7 +111,7 @@ final readonly class Profile
     }
 
     /**
-     * @return ICollection|Comment[]
+     * @return ICollection<Comment>
      * @throws UserNotFoundException
      */
     public function getComments(string $publicname): ICollection
@@ -120,6 +120,6 @@ final readonly class Profile
         if ($user === null) {
             throw new UserNotFoundException("Specified user does not exist.");
         }
-        return $user->comments->toCollection()->findBy(['deleted' => false,]); // @phpstan-ignore  return.type
+        return $user->comments->toCollection()->findBy(['deleted' => false,]);
     }
 }

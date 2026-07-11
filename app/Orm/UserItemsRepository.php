@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method UserItem|null getById(int $id)
- * @method UserItem|null getBy(array $conds)
- * @method ICollection|UserItem[] findBy(array $conds)
- * @method ICollection|UserItem[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<UserItem>
  */
 final class UserItemsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -25,7 +22,7 @@ final class UserItemsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|UserItem[]
+     * @return ICollection<UserItem>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -33,7 +30,7 @@ final class UserItemsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|UserItem[]
+     * @return ICollection<UserItem>
      */
     public function findByItem(Item|int $item): ICollection
     {
@@ -43,7 +40,7 @@ final class UserItemsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Find specified user's equipment
      *
-     * @return ICollection|UserItem[]
+     * @return ICollection<UserItem>
      */
     public function findEquipment(int $user): ICollection
     {
@@ -53,7 +50,7 @@ final class UserItemsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Find specified user's items
      *
-     * @return ICollection|UserItem[]
+     * @return ICollection<UserItem>
      */
     public function findCommonItems(int $user): ICollection
     {
@@ -63,7 +60,7 @@ final class UserItemsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Find specified user's items of a type
      *
-     * @return ICollection|UserItem[]
+     * @return ICollection<UserItem>
      */
     public function findByType(int $user, string $type): ICollection
     {

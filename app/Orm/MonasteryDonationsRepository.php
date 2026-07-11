@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method MonasteryDonation|null getById(int $id)
- * @method MonasteryDonation|null getBy(array $conds)
- * @method ICollection|MonasteryDonation[] findBy(array $conds)
- * @method ICollection|MonasteryDonation[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<MonasteryDonation>
  */
 final class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Reposit
     }
 
     /**
-     * @return ICollection|MonasteryDonation[]
+     * @return ICollection<MonasteryDonation>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -28,7 +25,7 @@ final class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Reposit
     }
 
     /**
-     * @return ICollection|MonasteryDonation[]
+     * @return ICollection<MonasteryDonation>
      */
     public function findByMonastery(Monastery|int $monastery): ICollection
     {
@@ -38,7 +35,7 @@ final class MonasteryDonationsRepository extends \Nextras\Orm\Repository\Reposit
     /**
      * Get donations made this month by specified user
      *
-     * @return ICollection|MonasteryDonation[]
+     * @return ICollection<MonasteryDonation>
      */
     public function findDonatedThisMonth(int $user): ICollection
     {

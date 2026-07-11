@@ -38,7 +38,7 @@ final class Adventure
     /**
      * Get list of all adventures
      *
-     * @return AdventureEntity[]|ICollection
+     * @return ICollection<AdventureEntity>
      */
     public function listOfAdventures(): ICollection
     {
@@ -48,7 +48,7 @@ final class Adventure
     /**
      * Get npcs from specified adventure
      *
-     * @return AdventureNpcEntity[]|OneHasMany
+     * @return OneHasMany<AdventureNpcEntity>
      * @throws AdventureNotFoundException
      */
     public function listOfNpcs(int $adventureId): OneHasMany
@@ -151,7 +151,7 @@ final class Adventure
     /**
      * Find available adventures for user
      *
-     * @return AdventureEntity[]|ICollection
+     * @return ICollection<AdventureEntity>
      * @throws AuthenticationNeededException
      */
     public function findAvailableAdventures(): ICollection
@@ -167,7 +167,7 @@ final class Adventure
     /**
      * Find mounts for adventure
      *
-     * @return MountEntity[]|ICollection
+     * @return ICollection<MountEntity>
      * @throws AuthenticationNeededException
      */
     public function findGoodMounts(): ICollection

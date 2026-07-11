@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method UserExpense|null getById(int $id)
- * @method UserExpense|null getBy(array $conds)
- * @method ICollection|UserExpense[] findBy(array $conds)
- * @method ICollection|UserExpense[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<UserExpense>
  */
 final class UserExpensesRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class UserExpensesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|UserExpense[]
+     * @return ICollection<UserExpense>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -28,7 +25,7 @@ final class UserExpensesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|UserExpense[]
+     * @return ICollection<UserExpense>
      */
     public function findPaidThisMonth(User|int $user, string $category): ICollection
     {

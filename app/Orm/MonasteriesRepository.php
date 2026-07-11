@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Monastery|null getById(int $id)
- * @method Monastery|null getBy(array $conds)
- * @method ICollection|Monastery[] findBy(array $conds)
- * @method ICollection|Monastery[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Monastery>
  */
 final class MonasteriesRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -25,7 +22,7 @@ final class MonasteriesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Monastery[]
+     * @return ICollection<Monastery>
      */
     public function findByTown(Town|int $town): ICollection
     {
@@ -40,7 +37,7 @@ final class MonasteriesRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get monasteries led by users
      *
-     * @return ICollection|Monastery[]
+     * @return ICollection<Monastery>
      */
     public function findLedMonasteries(): ICollection
     {

@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method UserAdventure|null getById(int $id)
- * @method UserAdventure|null getBy(array $conds)
- * @method ICollection|UserAdventure[] findBy(array $conds)
- * @method ICollection|UserAdventure[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<UserAdventure>
  */
 final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -21,7 +18,7 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository
 
 
     /**
-     * @return ICollection|UserAdventure[]
+     * @return ICollection<UserAdventure>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -38,7 +35,7 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository
 
     public function getLastAdventure(User|int $user): ?UserAdventure
     {
-        return $this->findBy(["user" => $user]) // @phpstan-ignore return.type
+        return $this->findBy(["user" => $user])
         ->orderBy("created", ICollection::DESC)
             ->limitBy(1)
             ->fetch();
@@ -47,7 +44,7 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get specified user's adventures from month
      *
-     * @return ICollection|UserAdventure[]
+     * @return ICollection<UserAdventure>
      */
     public function findFromMonth(int $user, ?int $month = null, ?int $year = null): ICollection
     {
@@ -64,7 +61,7 @@ final class UserAdventuresRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get open adventures
      *
-     * @return ICollection|UserAdventure[]
+     * @return ICollection<UserAdventure>
      */
     public function findOpenAdventures(): ICollection
     {

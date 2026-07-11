@@ -28,7 +28,7 @@ final readonly class Job
     /**
      * Get list of all jobs
      *
-     * @return JobEntity[]|ICollection
+     * @return ICollection<JobEntity>
      */
     public function listOfJobs(): ICollection
     {
@@ -297,7 +297,7 @@ final readonly class Job
     /**
      * Get messages for specified job
      *
-     * @return JobMessageEntity[]|OneHasMany
+     * @return OneHasMany<JobMessageEntity>
      * @throws JobNotFoundException
      */
     public function listOfMessages(int $jobId): OneHasMany

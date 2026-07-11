@@ -34,7 +34,7 @@ final readonly class Mount
      * Get list of all mounts
      *
      * @param int|null $owner Return only mounts owned by specified user. null = all users
-     * @return MountEntity[]|ICollection
+     * @return ICollection<MountEntity>
      */
     public function listOfMounts(?int $owner = null): ICollection
     {
@@ -47,7 +47,7 @@ final readonly class Mount
     /**
      * Get mounts on sale
      *
-     * @return MountEntity[]|ICollection
+     * @return ICollection<MountEntity>
      */
     public function mountsOnSale(): ICollection
     {
@@ -59,7 +59,7 @@ final readonly class Mount
     /**
      * Get list of all mount types
      *
-     * @return MountTypeEntity[]|ICollection
+     * @return ICollection<MountTypeEntity>
      */
     public function listOfMountTypes(): ICollection
     {

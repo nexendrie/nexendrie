@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method House|null getById(int $id)
- * @method House|null getBy(array $conds)
- * @method ICollection|House[] findBy(array $conds)
- * @method ICollection|House[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<House>
  */
 final class HousesRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -27,7 +24,7 @@ final class HousesRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get houses owned by users
      *
-     * @return ICollection|House[]
+     * @return ICollection<House>
      */
     public function findOwnedHouses(): ICollection
     {

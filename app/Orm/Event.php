@@ -25,7 +25,7 @@ use Nexendrie\Utils\Numbers;
  * @property int $shoppingDiscount {default 0}
  * @property int $created
  * @property int $updated
- * @property OneHasMany|Adventure[] $adventures {1:m Adventure::$event}
+ * @property OneHasMany<Adventure> $adventures {1:m Adventure::$event}
  * @property-read bool $active {virtual}
  */
 final class Event extends BaseEntity

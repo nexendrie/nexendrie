@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Comment|null getById(int $id)
- * @method Comment|null getBy(array $conds)
- * @method ICollection|Comment[] findBy(array $conds)
- * @method ICollection|Comment[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Comment>
  */
 final class CommentsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class CommentsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Comment[]
+     * @return ICollection<Comment>
      */
     public function findByArticle(Article|int $article): ICollection
     {
@@ -28,7 +25,7 @@ final class CommentsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Comment[]
+     * @return ICollection<Comment>
      */
     public function findByAuthor(User|int $author): ICollection
     {

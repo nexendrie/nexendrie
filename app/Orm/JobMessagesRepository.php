@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method JobMessage|null getById(int $id)
- * @method JobMessage|null getBy(array $conds)
- * @method ICollection|JobMessage[] findBy(array $conds)
- * @method ICollection|JobMessage[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<JobMessage>
  */
 final class JobMessagesRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class JobMessagesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|JobMessage[]
+     * @return ICollection<JobMessage>
      */
     public function findByJobAndSuccess(Job|int $job, bool $success): ICollection
     {

@@ -32,7 +32,7 @@ final readonly class Guild
     /**
      * Get list of guild from specified town
      *
-     * @return GuildEntity[]|ICollection
+     * @return ICollection<GuildEntity>
      */
     public function listOfGuilds(int $town = 0): ICollection
     {
@@ -267,7 +267,7 @@ final readonly class Guild
     /**
      * Get members of specified order
      *
-     * @return UserEntity[]|ICollection
+     * @return ICollection<UserEntity>
      */
     public function getMembers(int $guild): ICollection
     {

@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Permission|null getById(int $id)
- * @method Permission|null getBy(array $conds)
- * @method ICollection|Permission[] findBy(array $conds)
- * @method ICollection|Permission[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Permission>
  */
 final class PermissionsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class PermissionsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Permission[]
+     * @return ICollection<Permission>
      */
     public function findByGroup(Group|int $group): ICollection
     {

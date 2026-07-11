@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Castle|null getById(int $id)
- * @method Castle|null getBy(array $conds)
- * @method ICollection|Castle[] findBy(array $conds)
- * @method ICollection|Castle[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Castle>
  */
 final class CastlesRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -32,7 +29,7 @@ final class CastlesRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get castles owned by users
      *
-     * @return ICollection|Castle[]
+     * @return ICollection<Castle>
      */
     public function findOwnedCastles(): ICollection
     {

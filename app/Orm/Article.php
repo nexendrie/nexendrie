@@ -19,7 +19,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property-read string $createdAt {virtual}
  * @property-read string $updatedAt {virtual}
  * @property bool $allowedComments {default true}
- * @property OneHasMany|Comment[] $comments {1:m Comment::$article}
+ * @property OneHasMany<Comment> $comments {1:m Comment::$article}
  * @property-read string $categoryCZ {virtual}
  * @property-read int $commentsCount {virtual}
  */

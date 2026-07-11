@@ -36,7 +36,7 @@ final readonly class Monastery
     /**
      * Get list of all monasteries
      *
-     * @return MonasteryEntity[]|ICollection
+     * @return ICollection<MonasteryEntity>
      */
     public function listOfMonasteries(): ICollection
     {

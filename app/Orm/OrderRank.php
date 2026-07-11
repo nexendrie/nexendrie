@@ -16,7 +16,7 @@ use Nexendrie\Utils\Numbers;
  * @property int $orderFee
  * @property int $created
  * @property int $updated
- * @property OneHasMany|User[] $people {1:m User::$orderRank}
+ * @property OneHasMany<User> $people {1:m User::$orderRank}
  */
 final class OrderRank extends BaseEntity
 {

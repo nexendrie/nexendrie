@@ -19,8 +19,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property Event|null $event {m:1 Event::$adventures}
  * @property int $created
  * @property int $updated
- * @property OneHasMany|AdventureNpc[] $npcs {1:m AdventureNpc::$adventure, orderBy=order}
- * @property OneHasMany|UserAdventure[] $userAdventures {1:m UserAdventure::$adventure}
+ * @property OneHasMany<AdventureNpc> $npcs {1:m AdventureNpc::$adventure, orderBy=order}
+ * @property OneHasMany<UserAdventure> $userAdventures {1:m UserAdventure::$adventure}
  */
 final class Adventure extends BaseEntity
 {

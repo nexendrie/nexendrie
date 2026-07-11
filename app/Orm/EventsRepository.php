@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Event|null getById(int $id)
- * @method Event|null getBy(array $conds)
- * @method ICollection|Event[] findBy(array $conds)
- * @method ICollection|Event[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Event>
  */
 final class EventsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class EventsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Event[]
+     * @return ICollection<Event>
      */
     public function findFromMonth(?int $year = null, ?int $month = null): ICollection
     {
@@ -37,7 +34,7 @@ final class EventsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get ongoing events (at specified time)
      *
-     * @return ICollection|Event[]
+     * @return ICollection<Event>
      */
     public function findForTime(?int $time = null): ICollection
     {

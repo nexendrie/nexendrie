@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Poll|null getById(int $id)
- * @method Poll|null getBy(array $conds)
- * @method ICollection|Poll[] findBy(array $conds)
- * @method ICollection|Poll[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Poll>
  */
 final class PollsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class PollsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Poll[]
+     * @return ICollection<Poll>
      */
     public function findByAuthor(User|int $author): ICollection
     {

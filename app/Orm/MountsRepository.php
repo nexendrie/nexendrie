@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Mount|null getById(int $id)
- * @method Mount|null getBy(array $conds)
- * @method ICollection|Mount[] findBy(array $conds)
- * @method ICollection|Mount[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Mount>
  */
 final class MountsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Mount[]
+     * @return ICollection<Mount>
      */
     public function findByOwner(User|int $owner): ICollection
     {
@@ -28,7 +25,7 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Mount[]
+     * @return ICollection<Mount>
      */
     public function findAutoFed(User|int $owner): ICollection
     {
@@ -36,7 +33,7 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Mount[]
+     * @return ICollection<Mount>
      */
     public function findByType(MountType|int $type): ICollection
     {
@@ -46,7 +43,7 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get mounts on market
      *
-     * @return ICollection|Mount[]
+     * @return ICollection<Mount>
      */
     public function findOnMarket(): ICollection
     {
@@ -56,7 +53,7 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get mounts owned by users
      *
-     * @return ICollection|Mount[]
+     * @return ICollection<Mount>
      */
     public function findOwnedMounts(): ICollection
     {
@@ -66,7 +63,7 @@ final class MountsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get mounts of specified user for adventure
      *
-     * @return ICollection|Mount[]
+     * @return ICollection<Mount>
      */
     public function findGoodMounts(int $user): ICollection
     {

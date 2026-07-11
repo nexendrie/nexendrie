@@ -18,9 +18,9 @@ use Nexendrie\Utils\Numbers;
  * @property-read string $createdAt {virtual}
  * @property int $updated
  * @property int $money {default 0}
- * @property OneHasMany|User[] $members {1:m User::$order, orderBy=[orderRank,DESC]}
- * @property OneHasMany|OrderFee[] $fees {1:m OrderFee::$order}
- * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$order}
+ * @property OneHasMany<User> $members {1:m User::$order, orderBy=[orderRank,DESC]}
+ * @property OneHasMany<OrderFee> $fees {1:m OrderFee::$order}
+ * @property OneHasMany<ChatMessage> $chatMessages {1:m ChatMessage::$order}
  * @property-read int $upgradePrice {virtual}
  * @property-read float $adventuresBonusIncome {virtual}
  */

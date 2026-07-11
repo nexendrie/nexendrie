@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Group|null getById(int $id)
- * @method Group|null getBy(array $conds)
- * @method ICollection|Group[] findBy(array $conds)
- * @method ICollection|Group[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Group>
  */
 final class GroupsRepository extends \Nextras\Orm\Repository\Repository
 {

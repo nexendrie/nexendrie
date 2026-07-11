@@ -27,7 +27,7 @@ final readonly class Messenger
     /**
      * Get list of received messages
      *
-     * @return MessageEntity[]|ICollection
+     * @return ICollection<MessageEntity>
      * @throws AuthenticationNeededException
      */
     public function inbox(): ICollection
@@ -41,7 +41,7 @@ final readonly class Messenger
     /**
      * Get list of sent messages
      *
-     * @return MessageEntity[]|ICollection
+     * @return ICollection<MessageEntity>
      * @throws AuthenticationNeededException
      */
     public function outbox(): ICollection

@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Invitation|null getById(int $id)
- * @method Invitation|null getBy(array $conds)
- * @method ICollection|Invitation[] findBy(array $conds)
- * @method ICollection|Invitation[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Invitation>
  */
 final class InvitationsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -25,7 +22,7 @@ final class InvitationsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Invitation[]
+     * @return ICollection<Invitation>
      */
     public function findByInviter(User|int $user): ICollection
     {
@@ -33,7 +30,7 @@ final class InvitationsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Invitation[]
+     * @return ICollection<Invitation>
      */
     public function findByUserAndStat(int $user, string $stat): ICollection
     {

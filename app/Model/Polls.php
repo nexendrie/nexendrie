@@ -31,7 +31,7 @@ final class Polls
     /**
      * Get list of all polls
      *
-     * @return PollEntity[]|ICollection
+     * @return ICollection<PollEntity>
      */
     public function all(): ICollection
     {

@@ -21,8 +21,8 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $neededSkillLevel {default 0}
  * @property int $created
  * @property int $updated
- * @property OneHasMany|UserJob[] $userJobs {1:m UserJob::$job}
- * @property OneHasMany|JobMessage[] $messages {1:m JobMessage::$job}
+ * @property OneHasMany<UserJob> $userJobs {1:m UserJob::$job}
+ * @property OneHasMany<JobMessage> $messages {1:m JobMessage::$job}
  */
 final class Job extends BaseEntity
 {

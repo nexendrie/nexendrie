@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Notification|null getById(int $id)
- * @method Notification|null getBy(array $conds)
- * @method ICollection|Notification[] findBy(array $conds)
- * @method ICollection|Notification[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Notification>
  */
 final class NotificationsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class NotificationsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Notification[]
+     * @return ICollection<Notification>
      */
     public function findByUser(User|int $user): ICollection
     {

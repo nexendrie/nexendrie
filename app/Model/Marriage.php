@@ -27,7 +27,7 @@ final readonly class Marriage
     /**
      * Get list of all marriages
      *
-     * @return MarriageEntity[]|ICollection
+     * @return ICollection<MarriageEntity>
      */
     public function listOfMarriages(): ICollection
     {
@@ -117,7 +117,7 @@ final readonly class Marriage
     /**
      * Get proposals for a user
      *
-     * @return MarriageEntity[]|ICollection
+     * @return ICollection<MarriageEntity>
      * @throws AuthenticationNeededException
      */
     public function listOfProposals(): ICollection

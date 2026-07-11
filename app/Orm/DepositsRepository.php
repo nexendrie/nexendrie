@@ -9,10 +9,7 @@ use Nextras\Orm\Collection\ICollection;
  * DepositsRepository
  *
  * @author Jakub Konečný
- * @method Deposit|null getById(int $id)
- * @method Deposit|null getBy(array $conds)
- * @method ICollection|Deposit[] findBy(array $conds)
- * @method ICollection|Deposit[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Deposit>
  */
 final class DepositsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -22,7 +19,7 @@ final class DepositsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Deposit[]
+     * @return ICollection<Deposit>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -40,7 +37,7 @@ final class DepositsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get deposit accounts due this month
      *
-     * @return ICollection|Deposit[]
+     * @return ICollection<Deposit>
      */
     public function findDueThisMonth(int $user): ICollection
     {

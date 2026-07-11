@@ -8,10 +8,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Article|null getById(int $id)
- * @method Article|null getBy(array $conds)
- * @method ICollection|Article[] findBy(array $conds)
- * @method ICollection|Article[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Article>
  */
 final class ArticlesRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -21,7 +18,7 @@ final class ArticlesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Article[]
+     * @return ICollection<Article>
      */
     public function findByCategory(string $category): ICollection
     {
@@ -29,7 +26,7 @@ final class ArticlesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Article[]
+     * @return ICollection<Article>
      */
     public function findByAuthor(User|int $author): ICollection
     {
@@ -37,7 +34,7 @@ final class ArticlesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Article[]
+     * @return ICollection<Article>
      */
     public function findNews(): ICollection
     {
@@ -45,7 +42,7 @@ final class ArticlesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Article[]
+     * @return ICollection<Article>
      */
     public function findChronicle(): ICollection
     {
@@ -53,7 +50,7 @@ final class ArticlesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Article[]
+     * @return ICollection<Article>
      */
     public function findByText(string $text): ICollection
     {

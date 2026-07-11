@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Loan|null getById(int $id)
- * @method Loan|null getBy(array $conds)
- * @method ICollection|Loan[] findBy(array $conds)
- * @method ICollection|Loan[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Loan>
  */
 final class LoansRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class LoansRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Loan[]
+     * @return ICollection<Loan>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -38,7 +35,7 @@ final class LoansRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get loans returned this month by specified user
      *
-     * @return ICollection|Loan[]
+     * @return ICollection<Loan>
      */
     public function findReturnedThisMonth(int $user): ICollection
     {

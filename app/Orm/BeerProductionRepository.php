@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method BeerProduction|null getById(int $id)
- * @method BeerProduction|null getBy(array $conds)
- * @method ICollection|BeerProduction[] findBy(array $conds)
- * @method ICollection|BeerProduction[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<BeerProduction>
  */
 final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|BeerProduction[]
+     * @return ICollection<BeerProduction>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -28,7 +25,7 @@ final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|BeerProduction[]
+     * @return ICollection<BeerProduction>
      */
     public function findByHouse(House|int $house): ICollection
     {
@@ -37,7 +34,7 @@ final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository
 
     public function getLastProduction(House|int $house): ?BeerProduction
     {
-        return $this->findBy(["house" => $house]) // @phpstan-ignore return.type
+        return $this->findBy(["house" => $house])
         ->orderBy("created", ICollection::DESC)
             ->limitBy(1)
             ->fetch();
@@ -46,7 +43,7 @@ final class BeerProductionRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get beer made this month by specified user
      *
-     * @return ICollection|BeerProduction[]
+     * @return ICollection<BeerProduction>
      */
     public function findProducedThisMonth(int $user): ICollection
     {

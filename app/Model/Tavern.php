@@ -21,7 +21,7 @@ final readonly class Tavern
     /**
      * Get list of all meals
      *
-     * @return MealEntity[]|ICollection
+     * @return ICollection<MealEntity>
      */
     public function listOfMeals(): ICollection
     {

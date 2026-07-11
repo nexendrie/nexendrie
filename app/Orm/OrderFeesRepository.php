@@ -3,16 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Collection\ICollection;
-
 /**
  * OrderFeesRepository
  *
  * @author Jakub Konečný
- * @method OrderFee|null getById(int $id)
- * @method OrderFee|null getBy(array $conds)
- * @method ICollection|OrderFee[] findBy(array $conds)
- * @method ICollection|OrderFee[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<OrderFee>
  */
 final class OrderFeesRepository extends \Nextras\Orm\Repository\Repository
 {

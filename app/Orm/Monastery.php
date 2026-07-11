@@ -20,9 +20,9 @@ use Nexendrie\Utils\Numbers;
  * @property int $altairLevel {default 1}
  * @property int $libraryLevel {default 0}
  * @property int $hp {default 100}
- * @property OneHasMany|User[] $members {1:m User::$monastery, orderBy=group}
- * @property OneHasMany|MonasteryDonation[] $donations {1:m MonasteryDonation::$monastery}
- * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$monastery}
+ * @property OneHasMany<User> $members {1:m User::$monastery, orderBy=group}
+ * @property OneHasMany<MonasteryDonation> $donations {1:m MonasteryDonation::$monastery}
+ * @property OneHasMany<ChatMessage> $chatMessages {1:m ChatMessage::$monastery}
  * @property-read string $createdAt {virtual}
  * @property-read int $prayerLife {virtual}
  * @property-read int $upgradePrice {virtual}

@@ -29,7 +29,7 @@ final readonly class Castle
     /**
      * Get list of all castles
      *
-     * @return CastleEntity[]|ICollection
+     * @return ICollection<CastleEntity>
      */
     public function listOfCastles(): ICollection
     {

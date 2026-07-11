@@ -23,7 +23,7 @@ use Nextras\Orm\Collection\ICollection;
  */
 final class Events implements \Nexendrie\EventCalendar\EventModel
 {
-    /** @var Event[]|ICollection */
+    /** @var ICollection<Event> */
     private ICollection $events;
 
     public function __construct(
@@ -37,7 +37,7 @@ final class Events implements \Nexendrie\EventCalendar\EventModel
     /**
      * Get list of all events
      *
-     * @return Event[]|ICollection
+     * @return ICollection<Event>
      */
     public function listOfEvents(): ICollection
     {

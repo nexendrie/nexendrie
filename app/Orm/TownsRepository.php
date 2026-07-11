@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Town|null getById(int $id)
- * @method Town|null getBy(array $conds)
- * @method ICollection|Town[] findBy(array $conds)
- * @method ICollection|Town[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Town>
  */
 final class TownsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -25,7 +22,7 @@ final class TownsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Town[]
+     * @return ICollection<Town>
      */
     public function findByOwner(User|int $owner): ICollection
     {
@@ -35,7 +32,7 @@ final class TownsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get towns on sale
      *
-     * @return ICollection|Town[]
+     * @return ICollection<Town>
      */
     public function findOnMarket(): ICollection
     {

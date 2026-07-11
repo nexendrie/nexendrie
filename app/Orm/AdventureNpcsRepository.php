@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method AdventureNpc|null getById(int $id)
- * @method AdventureNpc|null getBy(array $conds)
- * @method ICollection|AdventureNpc[] findBy(array $conds)
- * @method ICollection|AdventureNpc[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<AdventureNpc>
  */
 final class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -25,7 +22,7 @@ final class AdventureNpcsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|AdventureNpc[]
+     * @return ICollection<AdventureNpc>
      */
     public function findByAdventure(int $adventure): ICollection
     {

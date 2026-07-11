@@ -3,16 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Collection\ICollection;
-
 /**
  * GuildFeesRepository
  *
  * @author Jakub Konečný
- * @method GuildFee|null getById(int $id)
- * @method GuildFee|null getBy(array $conds)
- * @method ICollection|GuildFee[] findBy(array $conds)
- * @method ICollection|GuildFee[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<GuildFee>
  */
 final class GuildFeesRepository extends \Nextras\Orm\Repository\Repository
 {

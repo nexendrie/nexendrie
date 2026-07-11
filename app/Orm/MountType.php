@@ -21,7 +21,7 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $price
  * @property int $created
  * @property int $updated
- * @property OneHasMany|Mount[] $mounts {1:m Mount::$type}
+ * @property OneHasMany<Mount> $mounts {1:m Mount::$type}
  */
 final class MountType extends BaseEntity
 {

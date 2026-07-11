@@ -27,7 +27,7 @@ final class UserAdventure extends BaseEntity
         if ($this->progress >= self::PROGRESS_COMPLETED) {
             return null;
         }
-        return $this->adventure->npcs->toCollection()->getBy([ // @phpstan-ignore return.type
+        return $this->adventure->npcs->toCollection()->getBy([
             "order" => $this->progress + 1
         ]);
     }

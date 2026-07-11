@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Marriage|null getById(int $id)
- * @method Marriage|null getBy(array $conds)
- * @method ICollection|Marriage[] findBy(array $conds)
- * @method ICollection|Marriage[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Marriage>
  */
 final class MarriagesRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class MarriagesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Marriage[]
+     * @return ICollection<Marriage>
      */
     public function findByUser1(User|int $user1): ICollection
     {
@@ -28,7 +25,7 @@ final class MarriagesRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Marriage[]
+     * @return ICollection<Marriage>
      */
     public function findByUser2(User|int $user2): ICollection
     {
@@ -38,7 +35,7 @@ final class MarriagesRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get proposals for a user
      *
-     * @return ICollection|Marriage[]
+     * @return ICollection<Marriage>
      */
     public function findProposals(User|int $user): ICollection
     {
@@ -50,7 +47,7 @@ final class MarriagesRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get open weddings
      *
-     * @return ICollection|Marriage[]
+     * @return ICollection<Marriage>
      */
     public function findOpenWeddings(): ICollection
     {

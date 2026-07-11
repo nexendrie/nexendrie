@@ -3,16 +3,11 @@ declare(strict_types=1);
 
 namespace Nexendrie\Orm;
 
-use Nextras\Orm\Collection\ICollection;
-
 /**
  * ContentReportsRepository
  *
  * @author Jakub Konečný
- * @method ContentReport|null getById(int $id)
- * @method ContentReport|null getBy(array $conds)
- * @method ICollection|ContentReport[] findBy(array $conds)
- * @method ICollection|ContentReport[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<ContentReport>
  */
 final class ContentReportsRepository extends \Nextras\Orm\Repository\Repository
 {

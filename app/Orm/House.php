@@ -17,7 +17,7 @@ use Nexendrie\Utils\Numbers;
  * @property int $hp {default 100}
  * @property int $created
  * @property int $updated
- * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$house}
+ * @property OneHasMany<BeerProduction> $beerProduction {1:m BeerProduction::$house}
  * @property-read int $workIncomeBonus {virtual}
  * @property-read int $upgradePrice {virtual}
  * @property-read int $breweryUpgradePrice {virtual}

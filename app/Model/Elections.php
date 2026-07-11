@@ -37,7 +37,7 @@ final readonly class Elections
     /**
      * Get candidates for elections
      *
-     * @return UserEntity[]|ICollection
+     * @return ICollection<UserEntity>
      */
     public function getCandidates(int $town): ICollection
     {

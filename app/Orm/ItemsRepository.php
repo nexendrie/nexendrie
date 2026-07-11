@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Item|null getById(int $id)
- * @method Item|null getBy(array $conds)
- * @method ICollection|Item[] findBy(array $conds)
- * @method ICollection|Item[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Item>
  */
 final class ItemsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class ItemsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return Item[]|ICollection
+     * @return ICollection<Item>
      */
     public function findWeapons(): ICollection
     {
@@ -28,7 +25,7 @@ final class ItemsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return Item[]|ICollection
+     * @return ICollection<Item>
      */
     public function findArmors(): ICollection
     {
@@ -36,7 +33,7 @@ final class ItemsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return Item[]|ICollection
+     * @return ICollection<Item>
      */
     public function findHelmets(): ICollection
     {
@@ -44,7 +41,7 @@ final class ItemsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return Item[]|ICollection
+     * @return ICollection<Item>
      */
     public function findByShop(Shop|int $shop): ICollection
     {

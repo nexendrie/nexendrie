@@ -43,35 +43,35 @@ use Nexendrie\Utils\Numbers;
  * @property bool $notifications {default false}
  * @property bool $api {default false}
  * @property-read float $adventureBonusIncome {virtual}
- * @property OneHasMany|Comment[] $comments {1:m Comment::$author}
- * @property OneHasMany|Article[] $articles {1:m Article::$author}
- * @property OneHasMany|Poll[] $polls {1:m Poll::$author}
- * @property OneHasMany|Message[] $sentMessages {1:m Message::$from}
- * @property OneHasMany|Message[] $receivedMessages {1:m Message::$to}
- * @property OneHasMany|PollVote[] $pollVotes {1:m PollVote::$user}
- * @property OneHasMany|UserItem[] $items {1:m UserItem::$user}
- * @property OneHasMany|UserJob[] $jobs {1:m UserJob::$user}
- * @property OneHasMany|Town[] $ownedTowns {1:m Town::$owner}
- * @property OneHasMany|Mount[] $mounts {1:m Mount::$owner}
- * @property OneHasMany|UserSkill[] $skills {1:m UserSkill::$user}
- * @property OneHasMany|Punishment[] $punishments {1:m Punishment::$user}
- * @property OneHasMany|Loan[] $loans {1:m Loan::$user}
- * @property OneHasMany|UserAdventure[] $adventures {1:m UserAdventure::$user}
- * @property OneHasMany|Monastery[] $monasteriesLed {1:m Monastery::$leader}
- * @property OneHasMany|MonasteryDonation[] $monasteryDonations {1:m MonasteryDonation::$user}
- * @property OneHasMany|BeerProduction[] $beerProduction {1:m BeerProduction::$user}
- * @property OneHasMany|Marriage[] $sentMarriages {1:m Marriage::$user1}
- * @property OneHasMany|Marriage[] $receivedMarriages {1:m Marriage::$user2}
- * @property OneHasMany|Election[] $receivedVotes {1:m Election::$candidate}
- * @property OneHasMany|Election[] $castedVotes {1:m Election::$voter}
- * @property OneHasMany|ElectionResult[] $elections {1:m ElectionResult::$candidate}
- * @property OneHasMany|Deposit[] $deposits {1:m Deposit::$user}
- * @property OneHasMany|GuildFee[] $guildFees {1:m GuildFee::$user}
- * @property OneHasMany|OrderFee[] $orderFees {1:m OrderFee::$user}
- * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$user}
- * @property OneHasMany|Notification[] $notificationQueue {1:m Notification::$user}
- * @property OneHasMany|ApiToken[] $apiTokens {1:m ApiToken::$user}
- * @property OneHasMany|UserExpense[] $expenses {1:m UserExpense::$user}
+ * @property OneHasMany<Comment> $comments {1:m Comment::$author}
+ * @property OneHasMany<Article> $articles {1:m Article::$author}
+ * @property OneHasMany<Poll> $polls {1:m Poll::$author}
+ * @property OneHasMany<Message> $sentMessages {1:m Message::$from}
+ * @property OneHasMany<Message> $receivedMessages {1:m Message::$to}
+ * @property OneHasMany<PollVote> $pollVotes {1:m PollVote::$user}
+ * @property OneHasMany<UserItem> $items {1:m UserItem::$user}
+ * @property OneHasMany<UserJob> $jobs {1:m UserJob::$user}
+ * @property OneHasMany<Town> $ownedTowns {1:m Town::$owner}
+ * @property OneHasMany<Mount> $mounts {1:m Mount::$owner}
+ * @property OneHasMany<UserSkill> $skills {1:m UserSkill::$user}
+ * @property OneHasMany<Punishment> $punishments {1:m Punishment::$user}
+ * @property OneHasMany<Loan> $loans {1:m Loan::$user}
+ * @property OneHasMany<UserAdventure> $adventures {1:m UserAdventure::$user}
+ * @property OneHasMany<Monastery> $monasteriesLed {1:m Monastery::$leader}
+ * @property OneHasMany<MonasteryDonation> $monasteryDonations {1:m MonasteryDonation::$user}
+ * @property OneHasMany<BeerProduction> $beerProduction {1:m BeerProduction::$user}
+ * @property OneHasMany<Marriage> $sentMarriages {1:m Marriage::$user1}
+ * @property OneHasMany<Marriage> $receivedMarriages {1:m Marriage::$user2}
+ * @property OneHasMany<Election> $receivedVotes {1:m Election::$candidate}
+ * @property OneHasMany<Election> $castedVotes {1:m Election::$voter}
+ * @property OneHasMany<ElectionResult> $elections {1:m ElectionResult::$candidate}
+ * @property OneHasMany<Deposit> $deposits {1:m Deposit::$user}
+ * @property OneHasMany<GuildFee> $guildFees {1:m GuildFee::$user}
+ * @property OneHasMany<OrderFee> $orderFees {1:m OrderFee::$user}
+ * @property OneHasMany<ChatMessage> $chatMessages {1:m ChatMessage::$user}
+ * @property OneHasMany<Notification> $notificationQueue {1:m Notification::$user}
+ * @property OneHasMany<ApiToken> $apiTokens {1:m ApiToken::$user}
+ * @property OneHasMany<UserExpense> $expenses {1:m UserExpense::$user}
  * @property-read string $title {virtual}
  * @property-read int $completedAdventures {virtual}
  * @property-read int $completedJobs {virtual}
@@ -146,7 +146,6 @@ final class User extends BaseEntity
     protected function getterMaxLife(): int
     {
         $maxLife = 60;
-        /** @var UserSkill[] $lifeSkills */
         $lifeSkills = $this->skills->toCollection()->findBy(["skill->stat" => Skill::STAT_HITPOINTS]);
         foreach ($lifeSkills as $skill) {
             $maxLife += $skill->skill->statIncrease * $skill->level;

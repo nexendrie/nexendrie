@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method UserSkill|null getById(int $id)
- * @method UserSkill|null getBy(array $conds)
- * @method ICollection|UserSkill[] findBy(array $conds)
- * @method ICollection|UserSkill[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<UserSkill>
  */
 final class UserSkillsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -25,7 +22,7 @@ final class UserSkillsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|UserSkill[]
+     * @return ICollection<UserSkill>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -33,7 +30,7 @@ final class UserSkillsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|UserSkill[]
+     * @return ICollection<UserSkill>
      */
     public function findByUserAndStat(int $user, string $stat): ICollection
     {

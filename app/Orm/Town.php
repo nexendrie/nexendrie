@@ -17,12 +17,12 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property User $owner {m:1 User::$ownedTowns}
  * @property int $price {default 5000}
  * @property bool $onMarket {default false}
- * @property OneHasMany|User[] $denizens {1:m User::$town, orderBy=group}
- * @property OneHasMany|Monastery[] $monasteries {1:m Monastery::$town}
- * @property OneHasMany|Guild[] $guilds {1:m Guild::$town}
- * @property OneHasMany|Election[] $elections {1:m Election::$town}
- * @property OneHasMany|ElectionResult[] $electionResults {1:m ElectionResult::$town}
- * @property OneHasMany|ChatMessage[] $chatMessages {1:m ChatMessage::$town}
+ * @property OneHasMany<User> $denizens {1:m User::$town, orderBy=group}
+ * @property OneHasMany<Monastery> $monasteries {1:m Monastery::$town}
+ * @property OneHasMany<Guild> $guilds {1:m Guild::$town}
+ * @property OneHasMany<Election> $elections {1:m Election::$town}
+ * @property OneHasMany<ElectionResult> $electionResults {1:m ElectionResult::$town}
+ * @property OneHasMany<ChatMessage> $chatMessages {1:m ChatMessage::$town}
  * @property-read string $createdAt {virtual}
  */
 final class Town extends BaseEntity

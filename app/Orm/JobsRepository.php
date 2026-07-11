@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Job|null getById(int $id)
- * @method Job|null getBy(array $conds)
- * @method ICollection|Job[] findBy(array $conds)
- * @method ICollection|Job[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Job>
  */
 final class JobsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class JobsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Job[]
+     * @return ICollection<Job>
      */
     public function findBySkill(Skill|int $skill): ICollection
     {
@@ -30,7 +27,7 @@ final class JobsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Find jobs for specified level
      *
-     * @return ICollection|Job[]
+     * @return ICollection<Job>
      */
     public function findForLevel(int $level): ICollection
     {

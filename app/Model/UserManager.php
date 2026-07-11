@@ -165,7 +165,7 @@ final class UserManager
     /**
      * Get list of all users
      *
-     * @return UserEntity[]|ICollection
+     * @return ICollection<UserEntity>
      */
     public function listOfUsers(): ICollection
     {

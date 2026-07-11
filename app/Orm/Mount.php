@@ -28,7 +28,7 @@ use HeroesofAbenez\Combat\CharacterEffectsProvider;
  * @property int $damage {default 0}
  * @property int $armor {default 0}
  * @property bool $autoFeed {default false}
- * @property OneHasMany|UserAdventure[] $adventures {1:m UserAdventure::$mount}
+ * @property OneHasMany<UserAdventure> $adventures {1:m UserAdventure::$mount}
  * @property-read string $genderCZ {virtual}
  * @property-read string $createdAt {virtual}
  * @property-read int $baseDamage {virtual}

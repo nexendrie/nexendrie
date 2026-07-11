@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method ApiToken|null getById(int $id)
- * @method ApiToken|null getBy(array $conds)
- * @method ICollection|ApiToken[] findBy(array $conds)
- * @method ICollection|ApiToken[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<ApiToken>
  */
 final class ApiTokensRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class ApiTokensRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|ApiToken[]
+     * @return ICollection<ApiToken>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -33,7 +30,7 @@ final class ApiTokensRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|ApiToken[]
+     * @return ICollection<ApiToken>
      */
     public function findActiveForUser(User|int $user): ICollection
     {

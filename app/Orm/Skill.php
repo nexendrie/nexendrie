@@ -19,9 +19,9 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $statIncrease {default 0}
  * @property int $created
  * @property int $updated
- * @property OneHasMany|Job[] $jobs {1:m Job::$neededSkill}
- * @property OneHasMany|UserSkill[] $userSkills {1:m UserSkill::$skill}
- * @property OneHasMany|Guild[] $guilds {1:m Guild::$skill}
+ * @property OneHasMany<Job> $jobs {1:m Job::$neededSkill}
+ * @property OneHasMany<UserSkill> $userSkills {1:m UserSkill::$skill}
+ * @property OneHasMany<Guild> $guilds {1:m Guild::$skill}
  * @property-read string $effect {virtual}
  */
 final class Skill extends BaseEntity

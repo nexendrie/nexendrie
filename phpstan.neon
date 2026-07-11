@@ -22,10 +22,6 @@ parameters:
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'
         - '#Property Nette\\Utils\\Paginator::\$itemsPerPage \(int\<1, max\>\) does not accept int#'
         -
-            identifier: missingType.generics
-        -
             identifier: phpDoc.parseError
-        -
-            identifier: varTag.type
         -
             identifier: ternary.shortNotAllowed

@@ -22,7 +22,7 @@ final readonly class Skills
     /**
      * Get list of all skills
      *
-     * @return SkillEntity[]|ICollection
+     * @return ICollection<SkillEntity>
      */
     public function listOfSkills(?string $type = null): ICollection
     {

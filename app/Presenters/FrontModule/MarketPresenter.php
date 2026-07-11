@@ -46,6 +46,9 @@ final class MarketPresenter extends BasePresenter
         $this->template->shopId = $id;
     }
 
+    /**
+     * @return \Nette\Application\UI\Multiplier<ShopControl>
+     */
     protected function createComponentShop(ShopControlFactory $factory): \Nette\Application\UI\Multiplier
     {
         return new \Nette\Application\UI\Multiplier(static function ($id) use ($factory): ShopControl {

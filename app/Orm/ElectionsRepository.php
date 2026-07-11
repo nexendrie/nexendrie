@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Election|null getById(int $id)
- * @method Election|null getBy(array $conds)
- * @method ICollection|Election[] findBy(array $conds)
- * @method ICollection|Election[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Election>
  */
 final class ElectionsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class ElectionsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Election[]
+     * @return ICollection<Election>
      */
     public function findByTown(Town|int $town): ICollection
     {
@@ -28,7 +25,7 @@ final class ElectionsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Election[]
+     * @return ICollection<Election>
      */
     public function findVotedInMonth(Town|int $town, int $year, int $month): ICollection
     {

@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Adventure|null getById(int $id)
- * @method Adventure|null getBy(array $conds)
- * @method ICollection|Adventure[] findBy(array $conds)
- * @method ICollection|Adventure[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Adventure>
  */
 final class AdventuresRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class AdventuresRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Adventure[]
+     * @return ICollection<Adventure>
      */
     public function findByEvent(Event|int $event): ICollection
     {
@@ -30,7 +27,7 @@ final class AdventuresRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Find adventures for specified level
      *
-     * @return ICollection|Adventure[]
+     * @return ICollection<Adventure>
      */
     public function findForLevel(int $level): ICollection
     {

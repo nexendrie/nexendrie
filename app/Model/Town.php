@@ -42,7 +42,7 @@ final readonly class Town
     /**
      * Get list of all towns
      *
-     * @return TownEntity[]|ICollection
+     * @return ICollection<TownEntity>
      */
     public function listOfTowns(): ICollection
     {
@@ -77,7 +77,7 @@ final readonly class Town
     }
 
     /**
-     * @return TownEntity[]|ICollection
+     * @return ICollection<TownEntity>
      */
     public function townsOnSale(): ICollection
     {

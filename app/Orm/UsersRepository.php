@@ -8,10 +8,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method User|null getById(int $id)
- * @method User|null getBy(array $conds)
- * @method ICollection|User[] findBy(array $conds)
- * @method ICollection|User[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<User>
  */
 final class UsersRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -31,7 +28,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|User[]
+     * @return ICollection<User>
      */
     public function findByGroup(Group|int $group): ICollection
     {
@@ -39,7 +36,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|User[]
+     * @return ICollection<User>
      */
     public function findByMonastery(Monastery|int $monastery): ICollection
     {
@@ -47,7 +44,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|User[]
+     * @return ICollection<User>
      */
     public function findByTown(Town|int $town): ICollection
     {
@@ -65,7 +62,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get citizens of specified town
      *
-     * @return ICollection|User[]
+     * @return ICollection<User>
      */
     public function findTownCitizens(int $town): ICollection
     {
@@ -78,7 +75,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get peasants from specified town
      *
-     * @return ICollection|User[]
+     * @return ICollection<User>
      */
     public function findTownPeasants(int $town): ICollection
     {
@@ -91,7 +88,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get users in guild
      *
-     * @return ICollection|User[]
+     * @return ICollection<User>
      */
     public function findInGuild(): ICollection
     {
@@ -104,7 +101,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get users in order
      *
-     * @return ICollection|User[]
+     * @return ICollection<User>
      */
     public function findInOrder(): ICollection
     {
@@ -117,7 +114,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get members of specified order
      *
-     * @return ICollection|User[]
+     * @return ICollection<User>
      */
     public function findByOrder(int $order): ICollection
     {
@@ -128,7 +125,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get members of specified guild
      *
-     * @return ICollection|User[]
+     * @return ICollection<User>
      */
     public function findByGuild(int $guild): ICollection
     {
@@ -137,7 +134,7 @@ final class UsersRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|User[]
+     * @return ICollection<User>
      */
     public function findByLikeName(string $publicname): ICollection
     {

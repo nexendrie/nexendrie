@@ -32,7 +32,7 @@ final readonly class Order
     /**
      * Get list of orders
      *
-     * @return OrderEntity[]|ICollection
+     * @return ICollection<OrderEntity>
      */
     public function listOfOrders(): ICollection
     {
@@ -291,7 +291,7 @@ final readonly class Order
     /**
      * Get members of specified order
      *
-     * @return UserEntity[]|ICollection
+     * @return ICollection<UserEntity>
      */
     public function getMembers(int $order): ICollection
     {

@@ -76,7 +76,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control
     /**
      * Get votes from specified month
      *
-     * @return ElectionEntity[]|ICollection
+     * @return ICollection<ElectionEntity>
      */
     private function getVotes(int $year, int $month): ICollection
     {
@@ -86,7 +86,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control
     /**
      * Get results of last elections
      *
-     * @return ElectionResultEntity[]|ICollection
+     * @return ICollection<ElectionResultEntity>
      */
     private function getResults(): ICollection
     {

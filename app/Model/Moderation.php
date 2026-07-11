@@ -39,7 +39,7 @@ final readonly class Moderation
     }
 
     /**
-     * @return ICollection|ContentReport[]
+     * @return ICollection<ContentReport>
      */
     public function getReportedContent(): ICollection
     {

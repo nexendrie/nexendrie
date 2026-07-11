@@ -26,7 +26,7 @@ final readonly class Market
     /**
      * Gets list of shops
      *
-     * @return ShopEntity[]|ICollection
+     * @return ICollection<ShopEntity>
      */
     public function listOfShops(): ICollection
     {
@@ -36,7 +36,7 @@ final readonly class Market
     /**
      * Get list of items
      *
-     * @return ItemEntity[]|ICollection
+     * @return ICollection<ItemEntity>
      */
     public function listOfItems(): ICollection
     {

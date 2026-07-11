@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Skill|null getById(int $id)
- * @method Skill|null getBy(array $conds)
- * @method ICollection|Skill[] findBy(array $conds)
- * @method ICollection|Skill[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Skill>
  */
 final class SkillsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class SkillsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Skill[]
+     * @return ICollection<Skill>
      */
     public function findByType(string $type): ICollection
     {

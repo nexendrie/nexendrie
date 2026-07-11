@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method UserJob|null getById(int $id)
- * @method UserJob|null getBy(array $conds)
- * @method ICollection|UserJob[] findBy(array $conds)
- * @method ICollection|UserJob[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<UserJob>
  */
 final class UserJobsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class UserJobsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|UserJob[]
+     * @return ICollection<UserJob>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -38,7 +35,7 @@ final class UserJobsRepository extends \Nextras\Orm\Repository\Repository
     /**
      * Get specified user's jobs from month
      *
-     * @return ICollection|UserJob[]
+     * @return ICollection<UserJob>
      */
     public function findFromMonth(int $user, int $month, int $year): ICollection
     {

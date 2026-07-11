@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method Guild|null getById(int $id)
- * @method Guild|null getBy(array $conds)
- * @method ICollection|Guild[] findBy(array $conds)
- * @method ICollection|Guild[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Guild>
  */
 final class GuildsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -25,7 +22,7 @@ final class GuildsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Guild[]
+     * @return ICollection<Guild>
      */
     public function findByTown(Town|int $town): ICollection
     {
@@ -33,7 +30,7 @@ final class GuildsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Guild[]
+     * @return ICollection<Guild>
      */
     public function findBySkill(Skill|int $skill): ICollection
     {

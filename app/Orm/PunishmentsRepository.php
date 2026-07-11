@@ -7,10 +7,7 @@ use Nextras\Orm\Collection\ICollection;
 
 /**
  * @author Jakub Konečný
- * @method AdventureNpc|null getById(int $id)
- * @method Punishment|null getBy(array $conds)
- * @method ICollection|Punishment[] findBy(array $conds)
- * @method ICollection|Punishment[] findAll()
+ * @extends \Nextras\Orm\Repository\Repository<Punishment>
  */
 final class PunishmentsRepository extends \Nextras\Orm\Repository\Repository
 {
@@ -20,7 +17,7 @@ final class PunishmentsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Punishment[]
+     * @return ICollection<Punishment>
      */
     public function findByUser(User|int $user): ICollection
     {
@@ -28,7 +25,7 @@ final class PunishmentsRepository extends \Nextras\Orm\Repository\Repository
     }
 
     /**
-     * @return ICollection|Punishment[]
+     * @return ICollection<Punishment>
      */
     public function findByUserPublicname(string $username): ICollection
     {
