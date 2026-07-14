@@ -10,17 +10,22 @@ use Nextras\Orm\Entity\Entity;
 final class EntityConverter
 {
     private int $maxDepth;
-    /** @var Transformer[]|Collection */
+    /** @var Collection<Transformer> */
     private Collection $transformers;
 
     /**
-     * @param Transformer[] $transformers
+     * @param list<Transformer> $transformers
      */
     public function __construct(int $maxDepth, array $transformers)
     {
         $this->maxDepth = $maxDepth;
+        // @phpstan-ignore assign.propertyType
         $this->transformers = new class extends Collection {
-            protected string $class = Transformer::class;
+            public function __construct()
+            {
+                parent::__construct();
+                $this->class = Transformer::class;
+            }
         };
         foreach ($transformers as $transformer) {
             $this->transformers[] = $transformer;

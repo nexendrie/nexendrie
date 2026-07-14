@@ -16,14 +16,19 @@ abstract class BaseTransformer implements Transformer
     protected array $fields = [];
     /** @var string[] */
     protected array $fieldsRename = [];
-    /** @var Transformer[]|Collection */
+    /** @var Collection<Transformer> */
     protected Collection $transformers;
     protected bool $createSelfLink = true;
 
     public function __construct(protected \Nette\DI\Container $container, protected LinkGenerator $linkGenerator)
     {
+        // @phpstan-ignore assign.propertyType
         $this->transformers = new class extends Collection {
-            protected string $class = Transformer::class;
+            public function __construct()
+            {
+                parent::__construct();
+                $this->class = Transformer::class;
+            }
         };
     }
 
