@@ -16,7 +16,7 @@ final class ItemSetsPresenter extends BasePresenter
             return;
         }
         $records = $this->orm->itemSets->findAll();
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

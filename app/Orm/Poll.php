@@ -12,14 +12,13 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property int $id {primary}
  * @property string $question
  * @property string $answers
- * @property-read array $parsedAnswers {virtual}
+ * @property-read list<string> $parsedAnswers {virtual}
  * @property User $author {m:1 User::$polls}
  * @property int $created
  * @property int $updated
  * @property-read string $createdAt {virtual}
  * @property bool $locked {default false}
  * @property OneHasMany<PollVote> $votes {1:m PollVote::$poll}
- *
  */
 final class Poll extends BaseEntity
 {
@@ -35,6 +34,9 @@ final class Poll extends BaseEntity
         return $this->localeModel->formatDateTime($this->created);
     }
 
+    /**
+     * @return list<string>
+     */
     protected function getterParsedAnswers(): array
     {
         return explode("\n", $this->answers);

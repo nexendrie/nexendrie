@@ -6,6 +6,9 @@ use Phinx\Seed\AbstractSeed;
 // phpcs:disable Generic.Files.LineLength
 final class ArticleSeeder extends AbstractSeed
 {
+    /**
+     * @return list<class-string>
+     */
     public function getDependencies(): array
     {
         return [UserSeeder::class];

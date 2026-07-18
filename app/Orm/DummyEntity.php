@@ -10,6 +10,9 @@ namespace Nexendrie\Orm;
  */
 abstract class DummyEntity
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         $return = [];

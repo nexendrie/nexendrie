@@ -94,6 +94,7 @@ final readonly class Article
     /**
      * Add article
      *
+     * @param array<string, mixed> $data
      * @return int Id of the new article
      * @throws AuthenticationNeededException
      * @throws MissingPermissionsException
@@ -120,6 +121,7 @@ final readonly class Article
     /**
      * Adds comment to article
      *
+     * @param array<string, mixed> $data
      * @throws AuthenticationNeededException
      * @throws MissingPermissionsException
      */
@@ -146,6 +148,7 @@ final readonly class Article
     /**
      * Edit specified article
      *
+     * @param array<string, mixed> $data
      * @throws AuthenticationNeededException
      * @throws MissingPermissionsException
      * @throws ArticleNotFoundException

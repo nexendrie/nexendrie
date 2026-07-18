@@ -307,6 +307,7 @@ final readonly class Monastery
     /**
      * Edit specified monastery
      *
+     * @param array<string, mixed> $data
      * @throws MonasteryNotFoundException
      * @throws MonasteryNameInUseException
      */

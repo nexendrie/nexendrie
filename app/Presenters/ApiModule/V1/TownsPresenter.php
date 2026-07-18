@@ -26,7 +26,7 @@ final class TownsPresenter extends BasePresenter
         } else {
             $records = $this->orm->towns->findAll();
         }
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

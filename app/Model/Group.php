@@ -72,6 +72,7 @@ final class Group
     /**
      * Edit specified group
      *
+     * @param array<string, mixed> $data
      * @throws AuthenticationNeededException
      * @throws MissingPermissionsException
      * @throws GroupNotFoundException

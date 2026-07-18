@@ -7,6 +7,7 @@ use Nexendrie\Model\Elections;
 use Nexendrie\Orm\ElectionResult;
 use Nexendrie\Orm\Group;
 use Nexendrie\Orm\Model as ORM;
+use Nexendrie\Orm\User;
 
 /**
  * MunicipalElectionsTask
@@ -19,6 +20,9 @@ final class MunicipalElectionsTask extends BaseMonthlyCronTask
     {
     }
 
+    /**
+     * @return list<array{candidate: User, amount: int}>
+     */
     private function getElectionResults(int $town, int $year, int $month): array
     {
         $votes = $this->orm->elections->findVotedInMonth($town, $year, $month);

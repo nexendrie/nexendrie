@@ -39,6 +39,9 @@ final class ManageMountFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         $this->model->edit($this->id, $values);

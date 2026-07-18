@@ -40,7 +40,9 @@ final readonly class Tavern
     }
 
     /**
-     * Add new meal
+     * Add new
+     *
+     * @param array<string, mixed> $data
      */
     public function addMeal(array $data): void
     {
@@ -54,6 +56,7 @@ final readonly class Tavern
     /**
      * Edit specified meal
      *
+     * @param array<string, mixed> $data
      * @throws MealNotFoundException
      */
     public function editMeal(int $id, array $data): void

@@ -21,6 +21,10 @@ final class OpenSearchDescriptionResponseTest extends \Tester\TestCase
         $this->model = $this->getService(OpenSearch::class); // @phpstan-ignore assign.propertyType
     }
 
+    /**
+     * @param array<string, mixed> $params
+     * @param array<string, mixed> $post
+     */
     protected function checkOpenSearchDescription(string $destination, array $params = [], array $post = []): string
     {
         $destination = ltrim($destination, ':');

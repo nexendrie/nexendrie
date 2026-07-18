@@ -24,7 +24,7 @@ final class PollsPresenter extends BasePresenter
         } else {
             $records = $this->orm->polls->findAll();
         }
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

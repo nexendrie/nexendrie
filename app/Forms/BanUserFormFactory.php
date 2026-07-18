@@ -35,6 +35,9 @@ final class BanUserFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         /** @var User $user */

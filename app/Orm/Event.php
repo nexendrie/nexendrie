@@ -93,6 +93,9 @@ final class Event extends BaseEntity
         return new EventDummy($this);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function dummyArray(): array
     {
         return $this->dummy()->toArray();

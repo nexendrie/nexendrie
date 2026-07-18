@@ -36,6 +36,9 @@ final class AddEditShopFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         if ($this->shop === null) {

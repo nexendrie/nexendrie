@@ -12,6 +12,9 @@ trait TAdminPresenter
 {
     use \Nexendrie\Presenters\TPresenter;
 
+    /**
+     * @param array<string, mixed> $params
+     */
     protected function defaultChecks(string $action, array $params = []): void
     {
         $this->checkRedirect($action, "/user/login", $params);

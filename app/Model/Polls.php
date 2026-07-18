@@ -52,6 +52,7 @@ final class Polls
     /**
      * Add poll
      *
+     * @param array<string, mixed> $data
      * @throws AuthenticationNeededException
      * @throws MissingPermissionsException
      */
@@ -83,6 +84,7 @@ final class Polls
     /**
      * Edit specified poll
      *
+     * @param array<string, mixed> $data
      * @throws AuthenticationNeededException
      * @throws MissingPermissionsException
      * @throws PollNotFoundException

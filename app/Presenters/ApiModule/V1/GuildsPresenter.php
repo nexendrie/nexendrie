@@ -31,7 +31,7 @@ final class GuildsPresenter extends BasePresenter
         } else {
             $records = $this->orm->guilds->findAll();
         }
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

@@ -31,7 +31,7 @@ final class CommentsPresenter extends BasePresenter
         } else {
             $records = $this->orm->comments->findBy(["deleted" => false,]);
         }
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

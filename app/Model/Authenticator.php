@@ -21,6 +21,9 @@ final class Authenticator implements \Nette\Security\Authenticator
     use \Nette\SmartObject;
 
     private User $user;
+    /**
+     * @var array<string, int>
+     */
     private array $roles;
 
     public function __construct(

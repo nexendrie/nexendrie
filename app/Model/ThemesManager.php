@@ -19,6 +19,9 @@ final readonly class ThemesManager
     {
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getList(): array
     {
         $styles = [];

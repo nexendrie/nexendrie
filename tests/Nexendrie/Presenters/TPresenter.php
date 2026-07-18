@@ -24,6 +24,8 @@ trait TPresenter
     }
 
     /**
+     * @param array<string, mixed> $params
+     * @param array<string, mixed> $post
      * @throws \Exception
      */
     protected function checkRss(string $destination, array $params = [], array $post = []): RssResponse
@@ -45,6 +47,8 @@ trait TPresenter
     }
 
     /**
+     * @param array<string, mixed> $params
+     * @param array<string, mixed> $post
      * @throws \Exception
      */
     protected function checkForward(
@@ -69,6 +73,8 @@ trait TPresenter
     }
 
     /**
+     * @param array<string, mixed> $params
+     * @param array<string, mixed> $post
      * @return RedirectResponse
      * @throws \Exception
      */

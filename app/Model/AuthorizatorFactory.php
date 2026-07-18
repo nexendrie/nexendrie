@@ -102,12 +102,11 @@ final readonly class AuthorizatorFactory
         });
     }
 
+    /**
+     * @param string[] $ranks
+     */
     private function addRanks(array $ranks, Permission &$permission, string $type): void
     {
-        /**
-         * @var int $id
-         * @var string $rank
-         */
         foreach ($ranks as $id => $rank) {
             $parent = null;
             if ($id > 1) {
@@ -117,6 +116,9 @@ final readonly class AuthorizatorFactory
         }
     }
 
+    /**
+     * @param string[] $roles
+     */
     private function addOrganizationPrivileges(array $roles, Permission &$permission, string $name): void
     {
         $permission->addResource($name);

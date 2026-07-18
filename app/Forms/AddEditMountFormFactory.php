@@ -28,9 +28,12 @@ final class AddEditMountFormFactory
         return Mount::getGenders();
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getMountTypes(): array
     {
-        return $this->model->listOfMountTypes()->fetchPairs("id", "name");
+        return $this->model->listOfMountTypes()->fetchPairs("id", "name"); // @phpstan-ignore return.type
     }
 
     public function create(?Mount $mount = null): Form
@@ -57,6 +60,9 @@ final class AddEditMountFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         if ($this->mount === null) {

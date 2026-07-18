@@ -65,6 +65,7 @@ final readonly class Market
     /**
      * Edit specified shop
      *
+     * @param array<string, mixed> $data
      * @throws ShopNotFoundException
      */
     public function editShop(int $id, array $data): void
@@ -78,6 +79,8 @@ final readonly class Market
 
     /**
      * Add new shop
+     *
+     * @param array<string, mixed> $data
      */
     public function addShop(array $data): void
     {
@@ -102,6 +105,7 @@ final readonly class Market
     /**
      * Edit specified item
      *
+     * @param array<string, mixed> $data
      * @throws ItemNotFoundException
      */
     public function editItem(int $id, array $data): void
@@ -115,6 +119,8 @@ final readonly class Market
 
     /**
      * Add new item
+     *
+     * @param array<string, mixed> $data
      */
     public function addItem(array $data): void
     {

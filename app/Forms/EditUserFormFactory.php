@@ -24,6 +24,9 @@ final class EditUserFormFactory
     ) {
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getListOfGroups(int $uid): array
     {
         if ($uid === 0) {
@@ -31,15 +34,19 @@ final class EditUserFormFactory
         } else {
             $groups = $this->orm->groups->findBy(["level>" => 0, "id!=" => 0]);
         }
-        return $groups->fetchPairs("id", "name");
-    }
-
-    private function getListOfTowns(): array
-    {
-        return $this->townModel->listOfTowns()->fetchPairs("id", "name");
+        return $groups->fetchPairs("id", "name"); // @phpstan-ignore return.type
     }
 
     /**
+     * @return array<int, string>
+     */
+    private function getListOfTowns(): array
+    {
+        return $this->townModel->listOfTowns()->fetchPairs("id", "name"); // @phpstan-ignore return.type
+    }
+
+    /**
+     * @return array{publicname: string, group: int, town: int}
      * @throws \Nette\ArgumentOutOfRangeException
      */
     private function getDefaultValues(): array
@@ -72,6 +79,9 @@ final class EditUserFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         $this->model->edit($this->uid, $values);

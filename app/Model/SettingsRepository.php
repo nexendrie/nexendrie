@@ -13,6 +13,9 @@ use Nexendrie\Utils\Intervals;
  */
 final class SettingsRepository
 {
+    /**
+     * @var array<string, array<string, mixed>>
+     */
     private array $defaults = [
         "roles" => [
             "guestRole" => 13,
@@ -69,6 +72,9 @@ final class SettingsRepository
         ],
     ];
 
+    /**
+     * @var array<string, array<string, mixed>>
+     */
     private array $rules = [
         "newUser" => [
             "style" => "validateStyle",
@@ -91,8 +97,14 @@ final class SettingsRepository
         ],
     ];
 
+    /**
+     * @var array<string, array<string, mixed>>
+     */
     public readonly array $settings;
 
+    /**
+     * @param array<string, array<string, mixed>> $settings
+     */
     public function __construct(array $settings, private readonly ThemesManager $themesManager)
     {
         $this->settings = $this->validateSettings($settings);
@@ -130,6 +142,9 @@ final class SettingsRepository
 
     /**
      * Validate section $name of config
+     *
+     * @param array<string, mixed> $config
+     * @return array<string, mixed>
      */
     private function validateSection(string $name, array $config): array
     {
@@ -148,6 +163,10 @@ final class SettingsRepository
         return $resolver->resolve($values);
     }
 
+    /**
+     * @param array<string, array<string, mixed>> $settings
+     * @return array<string, array<string, mixed>>
+     */
     private function validateSettings(array $settings): array
     {
         $return = [];

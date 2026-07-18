@@ -57,6 +57,7 @@ final class PollControl extends \Nette\Application\UI\Control
 
     /**
      * Get votes for the poll
+     * @return array{total: int, answers: array<int, int>}
      */
     public function getVotes(): array
     {

@@ -5,6 +5,9 @@ use Phinx\Seed\AbstractSeed;
 
 final class BeerProductionSeeder extends AbstractSeed
 {
+    /**
+     * @return list<class-string>
+     */
     public function getDependencies(): array
     {
         return [UserSeeder::class, HouseSeeder::class];

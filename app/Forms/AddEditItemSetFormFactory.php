@@ -21,19 +21,28 @@ final class AddEditItemSetFormFactory
     {
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getWeapons(): array
     {
-        return $this->orm->items->findWeapons()->fetchPairs("id", "name");
+        return $this->orm->items->findWeapons()->fetchPairs("id", "name"); // @phpstan-ignore return.type
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getArmors(): array
     {
-        return $this->orm->items->findArmors()->fetchPairs("id", "name");
+        return $this->orm->items->findArmors()->fetchPairs("id", "name"); // @phpstan-ignore return.type
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getHelmets(): array
     {
-        return $this->orm->items->findHelmets()->fetchPairs("id", "name");
+        return $this->orm->items->findHelmets()->fetchPairs("id", "name"); // @phpstan-ignore return.type
     }
 
     public function create(?ItemSet $set = null): Form
@@ -63,6 +72,9 @@ final class AddEditItemSetFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         if ($this->set === null) {

@@ -62,6 +62,7 @@ final readonly class Order
     /**
      * Edit specified order
      *
+     * @param array<string, mixed> $data
      * @throws OrderNotFoundException
      * @throws OrderNameInUseException
      */
@@ -112,6 +113,7 @@ final readonly class Order
     /**
      * Found an order
      *
+     * @param array<string, mixed> $data
      * @throws CannotFoundOrderException
      * @throws OrderNameInUseException
      * @throws InsufficientFundsException

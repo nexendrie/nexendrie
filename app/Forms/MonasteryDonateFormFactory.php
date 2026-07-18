@@ -30,6 +30,9 @@ final readonly class MonasteryDonateFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         try {

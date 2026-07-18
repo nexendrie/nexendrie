@@ -23,7 +23,7 @@ final class TokensPresenter extends BasePresenter
             return;
         }
         $records = $this->orm->apiTokens->findActiveForUser($this->user->id);
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

@@ -15,6 +15,9 @@ final class SiteSearchFormFactory
     public const string TYPE_USERS = "users";
     public const string TYPE_ARTICLES = "articles";
 
+    /**
+     * @return array<string, string>
+     */
     private function getTypes(): array
     {
         return [

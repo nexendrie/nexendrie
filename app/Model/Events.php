@@ -57,6 +57,8 @@ final class Events implements \Nexendrie\EventCalendar\EventModel
 
     /**
      * Add new event
+     *
+     * @param array<string, mixed> $data
      */
     public function addEvent(array $data): void
     {
@@ -73,6 +75,7 @@ final class Events implements \Nexendrie\EventCalendar\EventModel
     /**
      * Edit specified event
      *
+     * @param array<string, mixed> $data
      * @throws EventNotFoundException
      */
     public function editEvent(int $id, array $data): void

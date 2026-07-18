@@ -24,7 +24,7 @@ final class PunishmentsPresenter extends BasePresenter
         } else {
             $records = $this->orm->punishments->findAll();
         }
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

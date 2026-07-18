@@ -16,7 +16,7 @@ final class MealsPresenter extends BasePresenter
             return;
         }
         $records = $this->orm->meals->findAll();
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

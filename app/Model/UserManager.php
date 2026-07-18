@@ -17,7 +17,13 @@ use Nette\InvalidArgumentException;
  */
 final class UserManager
 {
+    /**
+     * @var array<string, int>
+     */
     private array $roles;
+    /**
+     * @var array<string, mixed>
+     */
     private array $newUser;
     private bool $openRegistration;
     public const int REG_EMAIL_NOT_INVITED = 4;
@@ -78,6 +84,7 @@ final class UserManager
     /**
      * Register new user
      *
+     * @param array<string, mixed> $data
      * @throws RegistrationException
      */
     public function register(array $data): void
@@ -107,6 +114,7 @@ final class UserManager
     /**
      * Get user's settings
      *
+     * @return array<string, mixed>
      * @throws AuthenticationNeededException
      */
     public function getSettings(): array
@@ -125,6 +133,7 @@ final class UserManager
     /**
      * Change user's settings
      *
+     * @param array<string, mixed> $settings
      * @throws AuthenticationNeededException
      * @throws SettingsException
      */
@@ -173,6 +182,7 @@ final class UserManager
     }
 
     /**
+     * @param array<string, mixed> $values
      * @throws UserNotFoundException
      */
     public function edit(int $id, array $values): void

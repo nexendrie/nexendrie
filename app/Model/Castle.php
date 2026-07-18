@@ -59,6 +59,7 @@ final readonly class Castle
     /**
      * Edit specified castle
      *
+     * @param array<string, mixed> $data
      * @throws CastleNotFoundException
      * @throws CastleNameInUseException
      */
@@ -77,6 +78,7 @@ final readonly class Castle
     /**
      * Build castle
      *
+     * @param array<string, mixed> $data
      * @throws AuthenticationNeededException
      * @throws CannotBuildCastleException
      * @throws CannotBuildMoreCastlesException

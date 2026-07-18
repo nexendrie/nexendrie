@@ -91,6 +91,9 @@ final class JobTest extends \Tester\TestCase
         }, InsufficientSkillLevelForJobException::class);
     }
 
+    /**
+     * @param array{reward: int, extra: int} $reward
+     */
     protected function checkReward(array $reward, int $base, int $extra): void
     {
         Assert::count(2, $reward);

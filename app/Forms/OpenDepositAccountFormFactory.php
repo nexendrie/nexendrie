@@ -36,6 +36,9 @@ final readonly class OpenDepositAccountFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         $this->model->openDeposit($values["amount"], $values["term"]->getTimestamp());

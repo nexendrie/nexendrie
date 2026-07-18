@@ -73,6 +73,8 @@ final class Adventure
 
     /**
      * Add new adventure
+     *
+     * @param array<string, mixed> $data
      */
     public function addAdventure(array $data): void
     {
@@ -86,6 +88,7 @@ final class Adventure
     /**
      * Edit adventure
      *
+     * @param array<string, mixed> $data
      * @throws AdventureNotFoundException
      */
     public function editAdventure(int $id, array $data): void
@@ -110,6 +113,8 @@ final class Adventure
 
     /**
      * Add new npc
+     *
+     * @param array<string, mixed> $data
      */
     public function addNpc(array $data): void
     {
@@ -124,6 +129,7 @@ final class Adventure
     /**
      * Edit specified npc
      *
+     * @param array<string, mixed> $data
      * @throws AdventureNpcNotFoundException
      */
     public function editNpc(int $id, array $data): void
@@ -275,6 +281,7 @@ final class Adventure
     /**
      * Fight next enemy
      *
+     * @return array{success: bool, message: string}
      * @throws AuthenticationNeededException
      * @throws NotOnAdventureException
      * @throws NoEnemyRemainException

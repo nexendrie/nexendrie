@@ -89,6 +89,9 @@ final readonly class Taxes
         return $return;
     }
 
+    /**
+     * @return list<\stdClass>
+     */
     public function payTaxes(): array
     {
         $return = [];

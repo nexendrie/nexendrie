@@ -14,6 +14,9 @@ use Nexendrie\Orm\User as UserEntity;
  */
 final readonly class Locale
 {
+    /**
+     * @var array<string, string>
+     */
     public array $formats;
 
     public function __construct(

@@ -16,7 +16,7 @@ final class ShopsPresenter extends BasePresenter
             return;
         }
         $records = $this->orm->shops->findAll();
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

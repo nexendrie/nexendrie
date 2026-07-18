@@ -24,7 +24,7 @@ final class SkillsPresenter extends BasePresenter
         } else {
             $records = $this->orm->skills->findAll();
         }
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

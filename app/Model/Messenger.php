@@ -93,6 +93,8 @@ final readonly class Messenger
 
     /**
      * Sends new message
+     *
+     * @param array<string, mixed> $data
      */
     public function send(array $data): int
     {

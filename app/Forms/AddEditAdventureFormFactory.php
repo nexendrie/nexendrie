@@ -24,11 +24,11 @@ final class AddEditAdventureFormFactory
     /**
      * Get list of events
      *
-     * @return array of id => name
+     * @return array<int, string> id => name
      */
     private function getEvents(): array
     {
-        return $this->orm->events->findAll()->fetchPairs("id", "name");
+        return $this->orm->events->findAll()->fetchPairs("id", "name"); // @phpstan-ignore return.type
     }
 
     public function create(?\Nexendrie\Orm\Adventure $adventure = null): Form
@@ -61,6 +61,9 @@ final class AddEditAdventureFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         if ($this->adventure === null) {

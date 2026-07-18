@@ -16,7 +16,7 @@ final class GroupsPresenter extends BasePresenter
             return;
         }
         $records = $this->orm->groups->findAll();
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

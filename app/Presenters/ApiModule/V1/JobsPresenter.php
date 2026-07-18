@@ -24,7 +24,7 @@ final class JobsPresenter extends BasePresenter
         } else {
             $records = $this->orm->jobs->findAll();
         }
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

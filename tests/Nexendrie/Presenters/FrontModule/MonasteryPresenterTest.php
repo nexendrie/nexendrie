@@ -12,6 +12,9 @@ final class MonasteryPresenterTest extends \Tester\TestCase
 {
     use \Nexendrie\Presenters\TPresenter;
 
+    /**
+     * @param array<string, mixed> $params
+     */
     protected function defaultChecks(string $action, array $params = []): void
     {
         $this->checkRedirect($action, "/user/login", $params);

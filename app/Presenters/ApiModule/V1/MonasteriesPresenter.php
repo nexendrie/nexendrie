@@ -24,7 +24,7 @@ final class MonasteriesPresenter extends BasePresenter
         } else {
             $records = $this->orm->monasteries->findAll();
         }
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     protected function getEntityName(): string

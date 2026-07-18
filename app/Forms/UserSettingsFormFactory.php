@@ -51,7 +51,7 @@ final readonly class UserSettingsFormFactory
         $form->addGroup("Upozorňování")
             ->setOption("description", "Zapne upozorňování např. na nepřečtené zprávy. Nejdříve je třeba je povolit na účtu a po uložení změn zapnout v prohlížeči. Upozornění se zobrazí jen pokud máte otevřené tyto stránky.");
         $form->addCheckbox("notifications", "Povolit upozorňování na tomto účtu");
-        if ($defaultValues['notifications']) {
+        if ((bool) $defaultValues['notifications']) {
             $form->addButton('notifications_browser', "Zapnout v prohlížeči")
                 ->setHtmlId("notifications_browser")
                 ->setHtmlAttribute("onclick", "notificationsSetup()");
@@ -67,6 +67,9 @@ final readonly class UserSettingsFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         try {

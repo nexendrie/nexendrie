@@ -116,6 +116,7 @@ trait TUserControl
     /**
      * Modify the user and perform some action with modified stats
      *
+     * @param array<string, mixed> $stats
      * @throws AuthenticationNeededException
      */
     protected function modifyUser(array $stats, callable $callback): void
@@ -153,6 +154,7 @@ trait TUserControl
     /**
      * Modify user's house and perform some action with modified stats
      *
+     * @param array<string, mixed> $stats
      * @throws AuthenticationNeededException
      * @throws \RuntimeException
      */
@@ -188,6 +190,7 @@ trait TUserControl
     /**
      * Modify user's castle and perform some action with modified stats
      *
+     * @param array<string, mixed> $stats
      * @throws AuthenticationNeededException
      * @throws \RuntimeException
      */
@@ -223,6 +226,7 @@ trait TUserControl
     /**
      * Modify user's order and perform some action with modified stats
      *
+     * @param array<string, mixed> $stats
      * @throws AuthenticationNeededException
      * @throws \RuntimeException
      */

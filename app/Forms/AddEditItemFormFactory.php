@@ -21,9 +21,12 @@ final class AddEditItemFormFactory
     {
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getShops(): array
     {
-        return $this->model->listOfShops()->fetchPairs("id", "name");
+        return $this->model->listOfShops()->fetchPairs("id", "name"); // @phpstan-ignore return.type
     }
 
     public function create(?Item $item = null): Form
@@ -54,6 +57,9 @@ final class AddEditItemFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         if ($this->item === null) {

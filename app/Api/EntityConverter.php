@@ -5,7 +5,9 @@ namespace Nexendrie\Api;
 
 use Nexendrie\Api\Transformers\Transformer;
 use Nexendrie\Utils\Collection;
+use Nextras\Orm\Collection\ICollection;
 use Nextras\Orm\Entity\Entity;
+use Nextras\Orm\Relationships\OneHasMany;
 
 final class EntityConverter
 {
@@ -43,6 +45,7 @@ final class EntityConverter
     }
 
     /**
+     * @param ICollection<Entity>|OneHasMany<Entity> $collection
      * @return \stdClass[]
      */
     public function convertCollection(iterable $collection, string $apiVersion): array

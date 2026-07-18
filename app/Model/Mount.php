@@ -68,6 +68,8 @@ final readonly class Mount
 
     /**
      * Add new mount
+     *
+     * @param array<string, mixed> $data
      */
     public function add(array $data): void
     {
@@ -83,6 +85,7 @@ final readonly class Mount
     /**
      * Edit specified mount
      *
+     * @param array<string, mixed> $data
      * @throws MountNotFoundException
      */
     public function edit(int $id, array $data): void

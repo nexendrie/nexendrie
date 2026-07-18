@@ -41,6 +41,8 @@ final readonly class ItemSet
 
     /**
      * Add new item set
+     *
+     * @param array<string, mixed> $data
      */
     public function add(array $data): void
     {
@@ -55,6 +57,7 @@ final readonly class ItemSet
     /**
      * Edit specified item set
      *
+     * @param array<string, mixed> $data
      * @throws ItemSetNotFoundException
      */
     public function edit(int $id, array $data): void

@@ -16,7 +16,7 @@ final class EventsPresenter extends BasePresenter
             return;
         }
         $records = $this->orm->events->findAll();
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

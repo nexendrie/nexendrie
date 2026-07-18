@@ -54,7 +54,7 @@ final class UsersPresenter extends BasePresenter
         } else {
             $records = $this->orm->users->findAll();
         }
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

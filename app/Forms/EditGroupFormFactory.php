@@ -45,6 +45,9 @@ final class EditGroupFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         $this->model->edit($this->group->id, $values);

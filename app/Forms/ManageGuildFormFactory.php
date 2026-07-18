@@ -22,9 +22,12 @@ final class ManageGuildFormFactory
     {
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getListOfSkills(): array
     {
-        return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name");
+        return $this->skillsModel->listOfSkills("work")->fetchPairs("id", "name"); // @phpstan-ignore return.type
     }
 
     public function create(int $guildId): Form
@@ -45,6 +48,9 @@ final class ManageGuildFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         try {

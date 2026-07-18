@@ -51,6 +51,8 @@ final readonly class Town
 
     /**
      * Add new town
+     *
+     * @param array<string, mixed> $data
      */
     public function add(array $data): void
     {
@@ -65,6 +67,7 @@ final readonly class Town
     /**
      * Edit specified town
      *
+     * @param array<string, mixed> $data
      * @throws TownNotFoundException
      */
     public function edit(int $id, array $data): void
@@ -248,6 +251,7 @@ final readonly class Town
     /**
      * Found new town
      *
+     * @param array<string, mixed> $data
      * @throws AuthenticationNeededException
      * @throws InsufficientLevelForFoundTownException
      * @throws InsufficientFundsException

@@ -27,11 +27,11 @@ final readonly class GiftFormFactory
     /**
      * Get list of users
      *
-     * @return array id => publicname
+     * @return array<int, string> id => publicname
      */
     private function getUsersList(): array
     {
-        return $this->orm->users->findBy(
+        return $this->orm->users->findBy( // @phpstan-ignore return.type
             ["id>" => 0]
         )->fetchPairs("id", "publicname");
     }
@@ -39,11 +39,11 @@ final readonly class GiftFormFactory
     /**
      * Get list of items
      *
-     * @return array id => name
+     * @return array<int, string> id => name
      */
     private function getItemsList(): array
     {
-        return $this->orm->items->findAll()->fetchPairs("id", "name");
+        return $this->orm->items->findAll()->fetchPairs("id", "name"); // @phpstan-ignore return.type
     }
 
     public function create(): Form
@@ -64,6 +64,9 @@ final readonly class GiftFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function validate(Form $form, array $values): void
     {
         if ($values["money"] === 0 && $values["item"] === null) {
@@ -96,6 +99,9 @@ final readonly class GiftFormFactory
         return $message;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         /** @var \Nexendrie\Orm\User $user */
@@ -110,7 +116,7 @@ final readonly class GiftFormFactory
             $this->orm->users->persist($queen);
             $this->orm->users->persist($user);
         }
-        if ($values["item"]) {
+        if ($values["item"] !== null) {
             /** @var ItemEntity $item */
             $item = $this->orm->items->getById($values["item"]);
             $row = $this->orm->userItems->getByUserAndItem($user->id, $item->id);

@@ -34,6 +34,8 @@ final readonly class Skills
 
     /**
      * Add new skill
+     *
+     * @param array<string, mixed> $data
      */
     public function add(array $data): void
     {
@@ -47,6 +49,7 @@ final readonly class Skills
     /**
      * Edit specified skill
      *
+     * @param array<string, mixed> $data
      * @throws SkillNotFoundException
      */
     public function edit(int $id, array $data): void

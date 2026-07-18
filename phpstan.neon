@@ -18,7 +18,7 @@ parameters:
     universalObjectCratesClasses:
         - Nette\Security\IIdentity
         - Nextras\Orm\Entity\IEntity
-    ignoreErrors:
+    ignoreErrors!:
         - '#Variable method call on \$this\(Nexendrie\\Model\\SettingsRepository\)#'
         - '#Property Nette\\Utils\\Paginator::\$itemsPerPage \(int\<1, max\>\) does not accept int#'
         -

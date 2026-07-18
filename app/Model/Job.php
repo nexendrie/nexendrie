@@ -101,6 +101,8 @@ final readonly class Job
 
     /**
      * Add new job
+     *
+     * @param array<string, mixed> $data
      */
     public function addJob(array $data): void
     {
@@ -115,6 +117,7 @@ final readonly class Job
     /**
      * Edit specified job
      *
+     * @param array<string, mixed> $data
      * @throws JobNotFoundException
      */
     public function editJob(int $id, array $data): void
@@ -322,6 +325,8 @@ final readonly class Job
 
     /**
      * Add new job message
+     *
+     * @param array<string, mixed> $data
      */
     public function addMessage(array $data): void
     {
@@ -339,6 +344,7 @@ final readonly class Job
     /**
      * Edit specified job message
      *
+     * @param array<string, mixed> $data
      * @throws JobMessageNotFoundException
      */
     public function editMessage(int $id, array $data): void

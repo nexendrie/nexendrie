@@ -13,7 +13,9 @@ use Nexendrie\Api\EntityConverter;
 use Nexendrie\Api\Tokens;
 use Nexendrie\Model\Authenticator;
 use Nexendrie\Orm\Model as ORM;
+use Nextras\Orm\Collection\ICollection;
 use Nextras\Orm\Entity\Entity;
+use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * BasePresenter
@@ -165,6 +167,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         return lcfirst($presenterName);
     }
 
+    /**
+     * @param ICollection<Entity>|OneHasMany<Entity> $collection
+     */
     protected function getCollectionModifiedTime(iterable $collection): int
     {
         $time = 0;
@@ -179,6 +184,8 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     /**
      * A quick way to send a collection of entities as response.
      * It is meant to be used in {@see actionReadAll} method.
+     *
+     * @param ICollection<Entity>|OneHasMany<Entity> $collection
      */
     protected function sendCollection(iterable $collection): never
     {
@@ -268,6 +275,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         );
     }
 
+    /**
+     * @param array<string, mixed> $payload
+     */
     protected function addContentLengthHeader(array $payload): void
     {
         $this->getHttpResponse()->addHeader("Content-Length", (string) strlen(Json::encode($payload)));
@@ -323,6 +333,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         }
     }
 
+    /**
+     * @return list<string>
+     */
     protected function getBasicCredentials(): array
     {
         return [$_SERVER["PHP_AUTH_USER"] ?? "", $_SERVER["PHP_AUTH_PW"] ?? "",];

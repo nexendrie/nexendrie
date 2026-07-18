@@ -65,6 +65,7 @@ final readonly class Guild
     /**
      * Edit specified guild
      *
+     * @param array<string, mixed> $data
      * @throws GuildNotFoundException
      * @throws GuildNameInUseException
      */
@@ -105,6 +106,7 @@ final readonly class Guild
     /**
      * Found a guild
      *
+     * @param array<string, mixed> $data
      * @throws CannotFoundGuildException
      * @throws GuildNameInUseException
      * @throws InsufficientFundsException

@@ -16,7 +16,7 @@ final class CastlesPresenter extends BasePresenter
             return;
         }
         $records = $this->orm->castles->findAll();
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void

@@ -26,21 +26,34 @@ final readonly class SystemSettingsFormFactory
     ) {
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getListOfGroups(): array
     {
-        return $this->orm->groups->findAll()->fetchPairs("id", "singleName");
+        return $this->orm->groups->findAll()->fetchPairs("id", "singleName"); // @phpstan-ignore return.type
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getListOfTowns(): array
     {
-        return $this->orm->towns->findAll()->fetchPairs("id", "name");
+        return $this->orm->towns->findAll()->fetchPairs("id", "name"); // @phpstan-ignore return.type
     }
 
+    /**
+     * @return array<int, string>
+     */
     private function getListOfCharters(): array
     {
+        // @phpstan-ignore return.type
         return $this->orm->items->findBy(["type" => \Nexendrie\Orm\Item::TYPE_CHARTER])->fetchPairs("id", "name");
     }
 
+    /**
+     * @return array<string, array<string, mixed>>
+     */
     private function getDefaultValues(): array
     {
         return $this->sr->settings;
@@ -195,6 +208,9 @@ final readonly class SystemSettingsFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         $filename = $this->appDir . "/config/local.neon";

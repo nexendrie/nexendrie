@@ -58,6 +58,9 @@ final class AddEditSkillFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         if ($this->skill === null) {

@@ -39,6 +39,9 @@ final class AddEditPollFormFactory
         return $form;
     }
 
+    /**
+     * @param array<string, mixed> $values
+     */
     public function process(Form $form, array $values): void
     {
         if ($this->poll === null) {

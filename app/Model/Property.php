@@ -107,6 +107,7 @@ final readonly class Property
     /**
      * Show user's budget
      *
+     * @return array{incomes: array<string, int>, expenses: array<string, int>}
      * @throws AuthenticationNeededException
      */
     public function budget(): array

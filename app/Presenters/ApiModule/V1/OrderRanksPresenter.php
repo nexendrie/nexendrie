@@ -16,7 +16,7 @@ final class OrderRanksPresenter extends BasePresenter
             return;
         }
         $records = $this->orm->orderRanks->findAll();
-        $this->sendCollection($records);
+        $this->sendCollection($records); // @phpstan-ignore argument.type
     }
 
     public function actionRead(): void
