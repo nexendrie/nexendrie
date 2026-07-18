@@ -44,7 +44,7 @@
         "symfony/options-resolver": "^7.4",
         "heroesofabenez/chat": "^2.4",
         "heroesofabenez/combat": "dev-master",
-        "nexendrie/rest-route": "^5.1",
+        "nexendrie/rest-route": "^5.2",
         "robmorgan/phinx": "^0.12.12",
         "eluceo/ical": "^2.13"
     },
