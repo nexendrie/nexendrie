@@ -17,7 +17,7 @@ final class AddEditArticleFormFactory
     {
         $form = new Form();
         $form->addText("title", "Titulek:")
-            ->addRule(Form::MAX_LENGTH, "Titulek může mít maximálně 30 znaků.", 30)
+            ->addRule(Form::MaxLength, "Titulek může mít maximálně 30 znaků.", 30)
             ->setRequired("Zadej titulek.");
         $form->addSelect("category", "Kategorie:", ArticleEntity::getCategories())
             ->setRequired("Vyber kategorii.");

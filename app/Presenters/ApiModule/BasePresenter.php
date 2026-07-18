@@ -99,7 +99,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
      */
     protected function methodNotAllowed(): never
     {
-        $method = $this->request->method;
+        $method = $this->getRequest()->getMethod(); // @phpstan-ignore method.nonObject
         $this->getHttpResponse()->setCode(IResponse::S405_MethodNotAllowed);
         $this->getHttpResponse()->addHeader("Allow", implode(", ", $this->getAllowedMethods()));
         $payload = ["message" => "Method $method is not allowed."];

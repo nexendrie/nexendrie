@@ -25,7 +25,7 @@ final class AddEditShopFormFactory
         $form = new Form();
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 30 znaků.", 30);
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 30 znaků.", 30);
         $form->addTextArea("description", "Popis:")
             ->setRequired("Zadej popis.");
         $form->addSubmit("submit", "Odeslat");

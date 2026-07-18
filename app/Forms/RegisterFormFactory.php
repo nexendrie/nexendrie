@@ -22,7 +22,7 @@ final readonly class RegisterFormFactory
     {
         $form = new Form();
         $form->addText("publicname", "Jméno:")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25)
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 25 znaků.", 25)
             ->setRequired("Zadej jméno.")
             ->setOption("description", "Toto jméno se zobrazuje ostatním.");
         $form->addEmail("email", "E-mail:")

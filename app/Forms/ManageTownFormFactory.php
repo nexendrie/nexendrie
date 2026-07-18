@@ -27,13 +27,13 @@ final class ManageTownFormFactory
         $town = $this->model->get($this->id);
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 20 znaků.", 20);
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 20 znaků.", 20);
         $form->addTextArea("description", "Popis:")
             ->setRequired("Zadej popis.")
-            ->addRule(Form::MAX_LENGTH, "Popis může mít maximálně 40 znaků.", 40);
+            ->addRule(Form::MaxLength, "Popis může mít maximálně 40 znaků.", 40);
         $form->addInteger("price", "Cena:")
             ->setRequired("Zadej cenu.")
-            ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", [0, 999999]);
+            ->addRule(Form::Range, "Cena musí být v rozmezí 0-999999.", [0, 999999]);
         $form->addCheckbox("onMarket", "Na prodej");
         $form->addSubmit("submit", "Odeslat");
         $form->setDefaults($town->toArray(ToArrayConverter::RELATIONSHIP_AS_ID));

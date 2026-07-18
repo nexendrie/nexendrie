@@ -27,10 +27,10 @@ final class ManageMountFormFactory
         $mount = $this->model->get($this->id);
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25);
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 25 znaků.", 25);
         $form->addInteger("price", "Cena:")
             ->setRequired("Zadej cenu.")
-            ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", [0, 999999]);
+            ->addRule(Form::Range, "Cena musí být v rozmezí 0-999999.", [0, 999999]);
         $form->addCheckbox("onMarket", "Na prodej");
         $form->addCheckbox("autoFeed", "Automaticky krmit");
         $form->addSubmit("submit", "Odeslat");

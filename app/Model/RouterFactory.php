@@ -22,47 +22,47 @@ final class RouterFactory
             null => "V1",
             "v1" => "V1",
         ]);
-        $router[] = $restRoute;
+        $router->add($restRoute);
         $frontRouter = new RouteList("Front");
-        $frontRouter[] = new Route("/", "Homepage:page");
-        $frontRouter[] = new Route("profile/<name>[/<action>]", "Profile:default");
-        $frontRouter[] = new Route("<presenter message|poll|article|event>/<id [0-9]+>", [
+        $frontRouter->add(new Route("/", "Homepage:page"));
+        $frontRouter->add(new Route("profile/<name>[/<action>]", "Profile:default"));
+        $frontRouter->add(new Route("<presenter message|poll|article|event>/<id [0-9]+>", [
             "action" => "view",
             "presenter" => [
-                Route::FILTER_TABLE => [
+                Route::FilterTable => [
                     "message" => "Messages"
                 ]
             ]
-        ]);
-        $frontRouter[] = new Route("<presenter order|town|guild|monastery|castle>/<id [0-9]+>", [
+        ]));
+        $frontRouter->add(new Route("<presenter order|town|guild|monastery|castle>/<id [0-9]+>", [
             "action" => "detail",
-        ]);
-        $frontRouter[] = new Route("page/<page [0-9]+>", "Homepage:page");
-        $frontRouter[] = new Route("rss[/<action>][/<id [0-9]+>]", "Rss:news");
-        $frontRouter[] = new Route("<presenter help|history>[/<page=index>]", [
+        ]));
+        $frontRouter->add(new Route("page/<page [0-9]+>", "Homepage:page"));
+        $frontRouter->add(new Route("rss[/<action>][/<id [0-9]+>]", "Rss:news"));
+        $frontRouter->add(new Route("<presenter help|history>[/<page=index>]", [
             "action" => "default"
-        ]);
-        $frontRouter[] = new Route("articles/<category>[/<page [0-9]+>]", "Articles:category");
+        ]));
+        $frontRouter->add(new Route("articles/<category>[/<page [0-9]+>]", "Articles:category"));
         $adminRouter = new RouteList("Admin");
-        $adminRouter[] = new Route("admin/<presenter groups|users|events>", [
+        $adminRouter->add(new Route("admin/<presenter groups|users|events>", [
             "action" => "default",
             "presenter" => [
-                Route::FILTER_TABLE => [
+                Route::FilterTable => [
                     "groups" => "Group",
                     "users" => "User",
                     "events" => "Event"
                 ]
             ]
-        ]);
-        $adminRouter[] = new Route("admin/content/<presenter shop|item|job|jobMessages|town|mount|skill|adventure|adventureEnemies|itemSet>/<action>[/<id>]");
-        $adminRouter[] = new Route("admin/<presenter>[/<action>][/<id>]", [
+        ]));
+        $adminRouter->add(new Route("admin/content/<presenter shop|item|job|jobMessages|town|mount|skill|adventure|adventureEnemies|itemSet>/<action>[/<id>]"));
+        $adminRouter->add(new Route("admin/<presenter>[/<action>][/<id>]", [
             "presenter" => "Homepage", "action" => "default"
-        ]);
-        $router[] = $frontRouter;
+        ]));
+        $router->add($frontRouter);
         $router[] = $adminRouter;
-        $router[] = new Route("<presenter>[/<action>][/<id>]", [
+        $router->add(new Route("<presenter>[/<action>][/<id>]", [
             "module" => "Front", "presenter" => "Homepage", "action" => "default"
-        ]);
+        ]));
         return $router;
     }
 }

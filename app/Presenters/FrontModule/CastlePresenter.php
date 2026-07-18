@@ -33,7 +33,7 @@ final class CastlePresenter extends BasePresenter
     protected function startup(): void
     {
         parent::startup();
-        if ($this->action !== "detail" && $this->action !== "list") {
+        if ($this->getAction() !== "detail" && $this->getAction() !== "list") {
             $this->requiresLogin();
         }
     }

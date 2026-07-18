@@ -51,7 +51,7 @@ final class AddEditItemSetFormFactory
         $form = new Form();
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 30 znaků.", 30);
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 30 znaků.", 30);
         $form->addSelect("weapon", "Zbraň:", $this->getWeapons())
             ->setPrompt("");
         $form->addSelect("armor", "Zbroj:", $this->getArmors())
@@ -62,7 +62,7 @@ final class AddEditItemSetFormFactory
             ->setRequired("Vyber vlastnost.");
         $form->addInteger("bonus", "Velikost bonusu:")
             ->setRequired("Zadej velikost bonusu.")
-            ->addRule(Form::RANGE, "Velikost bonusu musí být v rozmezí 0-99.", [0, 99])
+            ->addRule(Form::Range, "Velikost bonusu musí být v rozmezí 0-99.", [0, 99])
             ->setValue(0);
         $form->addSubmit("submit", "Odeslat");
         $form->onSuccess[] = $this->process(...);

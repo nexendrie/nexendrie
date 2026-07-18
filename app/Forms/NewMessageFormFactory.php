@@ -24,7 +24,7 @@ final readonly class NewMessageFormFactory
             ->setPrompt("Vyber příjemce")
             ->setRequired("Vyber příjemce.");
         $form->addText("subject", "Předmět:")
-            ->addRule(Form::MAX_LENGTH, "Předmět může mít maximálně 30 znaků.", 30)
+            ->addRule(Form::MaxLength, "Předmět může mít maximálně 30 znaků.", 30)
             ->setRequired("Zadej předmět.");
         $form->addTextArea("text", "Text:")
             ->setRequired("Zadej text.");

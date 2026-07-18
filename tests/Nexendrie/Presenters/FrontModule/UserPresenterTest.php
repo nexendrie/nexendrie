@@ -30,7 +30,7 @@ final class UserPresenterTest extends \Tester\TestCase
         $this->checkRedirect(":Front:User:logout", "/");
         /** @var \Nette\Security\User $user */
         $user = $this->getService(\Nette\Security\User::class);
-        Assert::false($user->loggedIn, "The user is logged in.");
+        Assert::false($user->isLoggedIn(), "The user is logged in.");
     }
 
     public function testRegister(): void

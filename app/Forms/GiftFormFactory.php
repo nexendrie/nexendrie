@@ -52,7 +52,7 @@ final readonly class GiftFormFactory
         $form->addSelect("user", "Uživatel:", $this->getUsersList())
             ->setRequired("Vyber uživatele.");
         $form->addInteger("money", "Peníze:")
-            ->addRule(Form::RANGE, "Zadej číslo v rozmezí 0-2000.", [0, 2000])
+            ->addRule(Form::Range, "Zadej číslo v rozmezí 0-2000.", [0, 2000])
             ->setValue(0)
             ->setRequired("Zadej částku.");
         $form->addSelect("item", "Věc:", $this->getItemsList())

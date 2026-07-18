@@ -33,26 +33,26 @@ final class AddEditEventFormFactory
         $form->addComponent($start, "start");
         $end = new DateTimeControl("Konec:");
         $end->setRequired("Zadej konec.");
-        $end->addRule(Form::MIN, "Akce nemůže skončit před svým začátkem.", $form["start"]);
+        $end->addRule(Form::Min, "Akce nemůže skončit před svým začátkem.", $form["start"]);
         $form->addComponent($end, "end");
         $form->addInteger("adventuresBonus", "Bonus k dobrodružstvím:")
             ->setRequired()
-            ->addRule(Form::RANGE, null, [0, 999]);
+            ->addRule(Form::Range, null, [0, 999]);
         $form->addInteger("workBonus", "Bonus k práci:")
             ->setRequired()
-            ->addRule(Form::RANGE, null, [0, 999]);
+            ->addRule(Form::Range, null, [0, 999]);
         $form->addInteger("prayerLifeBonus", "Bonus k modlení:")
             ->setRequired()
-            ->addRule(Form::RANGE, null, [0, 999]);
+            ->addRule(Form::Range, null, [0, 999]);
         $form->addInteger("trainingDiscount", "Sleva na trénink:")
             ->setRequired()
-            ->addRule(Form::RANGE, null, [0, 100]);
+            ->addRule(Form::Range, null, [0, 100]);
         $form->addInteger("repairingDiscount", "Sleva na opravy:")
             ->setRequired()
-            ->addRule(Form::RANGE, null, [0, 100]);
+            ->addRule(Form::Range, null, [0, 100]);
         $form->addInteger("shoppingDiscount", "Sleva na nákupy:")
             ->setRequired()
-            ->addRule(Form::RANGE, null, [0, 100]);
+            ->addRule(Form::Range, null, [0, 100]);
         $form->addSubmit("submit", "Odeslat");
         $form->onSuccess[] = $this->process(...);
         if ($event !== null) {

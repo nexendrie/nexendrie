@@ -27,7 +27,7 @@ final class AddEditTownFormFactory
         $form = new Form();
         $form->addText("name", "Jméno")
             ->setRequired("Zadej jméno.")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 20 znaků.", 20);
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 20 znaků.", 20);
         $form->addTextArea("description", "Popis:")
             ->setRequired("Zadej popis.");
         $form->addSelect("owner", "Majitel:", $this->profileModel->getListOfLords())
@@ -37,7 +37,7 @@ final class AddEditTownFormFactory
             $form->addCheckbox("onMarket", "Na prodej");
             $form->addInteger("price", "Cena:")
                 ->setRequired("Zadej cenu.")
-                ->addRule(Form::MIN, "Cena musí být větší než 0.", 1)
+                ->addRule(Form::Min, "Cena musí být větší než 0.", 1)
                 ->setDefaultValue(5000);
         }
         $form->addSubmit("submit", "Odeslat");

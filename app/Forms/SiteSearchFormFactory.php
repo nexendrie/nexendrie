@@ -29,9 +29,9 @@ final class SiteSearchFormFactory
     public function create(): Form
     {
         $form = new Form();
-        $form->setMethod(Form::GET);
+        $form->setMethod(Form::Get);
         $form->addText("text", "Text:", 25, 25)
-            ->addRule(Form::MIN_LENGTH, "Text musí mít alespoň 3 znaky.", 3)
+            ->addRule(Form::MinLength, "Text musí mít alespoň 3 znaky.", 3)
             ->setRequired(true);
         $form->addSelect("type", "Typ:", $this->getTypes());
         $form->addSubmit("submit", "Hledat");

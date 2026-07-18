@@ -35,19 +35,19 @@ final class AddEditItemFormFactory
         $form = new Form();
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 30 znaků.", 30);
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 30 znaků.", 30);
         $form->addTextArea("description", "Popis:")
             ->setRequired("Zadej popis.");
         $form->addInteger("price", "Cena:")
             ->setRequired("Zadej cenu.")
-            ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999.", [0, 999]);
+            ->addRule(Form::Range, "Cena musí být v rozmezí 0-999.", [0, 999]);
         $form->addSelect("shop", "Obchod:", $this->getShops())
             ->setPrompt("žádný");
         $form->addSelect("type", "Typ:", Item::getTypes())
             ->setRequired("Vyber typ.");
         $form->addInteger("strength", "Síla:")
             ->setRequired("Zadej síla.")
-            ->addRule(Form::RANGE, "Síla musí být v rozmezí 0-999.", [0, 999])
+            ->addRule(Form::Range, "Síla musí být v rozmezí 0-999.", [0, 999])
             ->setValue(0);
         $form->addSubmit("submit", "Odeslat");
         $form->onSuccess[] = $this->process(...);

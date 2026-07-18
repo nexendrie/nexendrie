@@ -98,7 +98,7 @@ final readonly class SystemSettingsFormFactory
         $newUser->addInteger("money", "Peníze:")
             ->setRequired("Zadej peníze.")
             ->setOption("description", "Počet grošů, které dostanou uživatelé po dokončení registrace.")
-            ->addRule(Form::RANGE, "Peníze musí být v rozmezí 1-100.", [1, 100]);
+            ->addRule(Form::Range, "Peníze musí být v rozmezí 1-100.", [1, 100]);
         $newUser->addSelect("town", "Město:", $this->getListOfTowns())
             ->setRequired("Vyber město.")
             ->setOption("description", "Město/vesnice, kam jsou umístěny uživatelé po dokončení registrace.");
@@ -107,43 +107,43 @@ final readonly class SystemSettingsFormFactory
         $fees->addInteger("incomeTax", "Daň z příjmů:")
             ->setOption("description", "% měsíčně")
             ->setRequired("Zadej daň z příjmů.")
-            ->addRule(Form::RANGE, "Daň z příjmů musí být v rozmezí 0-100.", [0, 100]);
+            ->addRule(Form::Range, "Daň z příjmů musí být v rozmezí 0-100.", [0, 100]);
         $fees->addInteger("loanInterest", "Úrok z půjčky:")
             ->setOption("description", "% ročně")
             ->setRequired("Zadej úrok z půjčky.")
-            ->addRule(Form::RANGE, "Úrok z půjčky musí být v rozmezí 0-100.", [0, 100]);
+            ->addRule(Form::Range, "Úrok z půjčky musí být v rozmezí 0-100.", [0, 100]);
         $fees->addInteger("depositInterest", "Úrok u termínovaných vkladů:")
             ->setOption("description", "% ročně")
             ->setRequired("Zadej úrok u termínovaných vkladů.")
-            ->addRule(Form::RANGE, "Úrok u termínovaných vkladů musí být v rozmezí 0-100.", [0, 100]);
+            ->addRule(Form::Range, "Úrok u termínovaných vkladů musí být v rozmezí 0-100.", [0, 100]);
         $fees->addInteger("buildMonastery", "Založení kláštera:")
             ->setOption("description", "Cena založení kláštera v groších.")
             ->setRequired("Zadej cenu založení kláštera.")
-            ->addRule(Form::RANGE, "Cena založení kláštera musí být v rozmezí 0-5000.", [0, 5000]);
+            ->addRule(Form::Range, "Cena založení kláštera musí být v rozmezí 0-5000.", [0, 5000]);
         $fees->addInteger("buildCastle", "Stavba hradu:")
             ->setOption("description", "Cena stavby hradu v groších.")
             ->setRequired("Zadej cenu stavby hradu.")
-            ->addRule(Form::RANGE, "Cena stavby hradu musí být v rozmezí 0-5000.", [0, 5000]);
+            ->addRule(Form::Range, "Cena stavby hradu musí být v rozmezí 0-5000.", [0, 5000]);
         $fees->addInteger("buyHouse", "Měšťanský dům:")
             ->setOption("description", "Cena měšťanského domu v groších.")
             ->setRequired("Zadej cenu měšťanského domu.")
-            ->addRule(Form::RANGE, "Cena měšťanského domu musí být v rozmezí 0-5000.", [0, 5000]);
+            ->addRule(Form::Range, "Cena měšťanského domu musí být v rozmezí 0-5000.", [0, 5000]);
         $fees->addInteger("foundGuild", "Založení cechu:")
             ->setOption("description", "Cena založení cechu v groších.")
             ->setRequired("Zadej cenu založení cechu.")
-            ->addRule(Form::RANGE, "Cena založení cechu musí být v rozmezí 0-5000.", [0, 5000]);
+            ->addRule(Form::Range, "Cena založení cechu musí být v rozmezí 0-5000.", [0, 5000]);
         $fees->addInteger("foundOrder", "Založení řádu:")
             ->setOption("description", "Cena založení řádu v groších.")
             ->setRequired("Zadej cenu založení řádu.")
-            ->addRule(Form::RANGE, "Cena založení řádu musí být v rozmezí 0-5000.", [0, 5000]);
+            ->addRule(Form::Range, "Cena založení řádu musí být v rozmezí 0-5000.", [0, 5000]);
         $fees->addInteger("foundTown", "Založení města:")
             ->setOption("description", "Cena založení města v groších.")
             ->setRequired("Zadej cenu založení města.")
-            ->addRule(Form::RANGE, "Cena založení města musí být v rozmezí 0-5000.", [0, 5000]);
+            ->addRule(Form::Range, "Cena založení města musí být v rozmezí 0-5000.", [0, 5000]);
         $fees->addInteger("autoFeedMount", "Automatické krmení jezdeckého zvířete:")
             ->setOption("description", "Cena automatické krmení jezdeckého zvířete v groších (za týden).")
             ->setRequired("Zadej cenu automatické krmení jezdeckého zvířete.")
-            ->addRule(Form::RANGE, "Cena automatické krmení jezdeckého zvířete musí být v rozmezí 0-20.", [0, 20]);
+            ->addRule(Form::Range, "Cena automatické krmení jezdeckého zvířete musí být v rozmezí 0-20.", [0, 20]);
         $form->addGroup("Speciální věci");
         $specialItems = $form->addContainer("specialItems");
         $specialItems->addSelect("foundTown", "Pro založení města:", $charters)
@@ -153,11 +153,11 @@ final readonly class SystemSettingsFormFactory
         $buildings->addInteger("weeklyWearingOut", "Týdenní opotřebení:")
             ->setOption("description", "%")
             ->setRequired("Zadej týdenní opotřebení budov.")
-            ->addRule(Form::RANGE, "Týdenní opotřebení budov musí být v rozmezí 0-100.", [0, 100]);
+            ->addRule(Form::Range, "Týdenní opotřebení budov musí být v rozmezí 0-100.", [0, 100]);
         $buildings->addInteger("criticalCondition", "Kritický stav:")
             ->setOption("description", "%, při poklesu pod tuto hodnotu budova přestane poskytovat výhody")
             ->setRequired("Zadej kritický stav budov.")
-            ->addRule(Form::RANGE, "Kritický stav budov musí být v rozmezí 0-100.", [0, 100]);
+            ->addRule(Form::Range, "Kritický stav budov musí být v rozmezí 0-100.", [0, 100]);
         $form->addGroup("Registrace");
         $registration = $form->addContainer("registration");
         $registration->addCheckbox("open", "Otevřená registrace")
@@ -165,7 +165,7 @@ final readonly class SystemSettingsFormFactory
         $form->addGroup("Stránky");
         $site = $form->addContainer("site");
         $site->addText("versionSuffix", "Přípona verze:")
-            ->addRule(Form::MAX_LENGTH, null, 5)
+            ->addRule(Form::MaxLength, null, 5)
             ->setRequired(false)
             ->setOption("description", "Přidává se do titulku všech stránek a RSS kanálů.");
         $site->addInteger("serverSideEventsCooldown", "Pausa pro server-side events:")
@@ -174,8 +174,8 @@ final readonly class SystemSettingsFormFactory
                 "Pausa mezi jednotlivými průchody server-side events (používá se např. pro upozornění)"
             )
             ->setRequired("Zadej pauzu pro server-side events.")
-            ->addRule(Form::INTEGER, "Pausa pro server-side events musí být celé číslo.")
-            ->addRule(Form::RANGE, "Pausa pro server-side events musí být v rozmezí 1-100.", [1, 100]);
+            ->addRule(Form::Integer, "Pausa pro server-side events musí být celé číslo.")
+            ->addRule(Form::Range, "Pausa pro server-side events musí být v rozmezí 1-100.", [1, 100]);
         $form->addGroup("Účty na sociálních sítích");
         $socialAccounts = $form->addContainer("socialAccounts");
         $socialAccounts->addText("facebook", "Facebook:")

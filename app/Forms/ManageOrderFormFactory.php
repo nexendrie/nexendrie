@@ -26,7 +26,7 @@ final class ManageOrderFormFactory
         $guild = $this->model->getOrder($this->id);
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25);
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 25 znaků.", 25);
         $form->addTextArea("description", "Popis:")
             ->setRequired("Zadej popis.");
         $form->addSubmit("submit", "Odeslat");

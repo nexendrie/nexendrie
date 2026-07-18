@@ -42,7 +42,7 @@ final class AddEditMountFormFactory
         $form = new Form();
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25);
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 25 znaků.", 25);
         $form->addRadioList("gender", "Pohlaví:", $this->getGenders())
             ->setRequired("Vyber pohlaví.")
             ->setValue(Mount::GENDER_YOUNG);
@@ -50,7 +50,7 @@ final class AddEditMountFormFactory
             ->setRequired("Vyber druh.");
         $form->addInteger("price", "Cena:")
             ->setRequired("Zadej cenu.")
-            ->addRule(Form::RANGE, "Cena musí být v rozmezí 0-999999.", [0, 999999])
+            ->addRule(Form::Range, "Cena musí být v rozmezí 0-999999.", [0, 999999])
             ->setValue(0);
         $form->addSubmit("submit", "Odeslat");
         $form->onSuccess[] = $this->process(...);

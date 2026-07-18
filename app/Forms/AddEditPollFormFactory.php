@@ -25,7 +25,7 @@ final class AddEditPollFormFactory
         $this->poll = $poll;
         $form = new Form();
         $form->addText("question", "Otázka:")
-            ->addRule(Form::MAX_LENGTH, "Otázka může mít maximálně 60 znaků.", 60)
+            ->addRule(Form::MaxLength, "Otázka může mít maximálně 60 znaků.", 60)
             ->setRequired("Zadej otázku.");
         $form->addTextArea("answers", "Odpovědi:")
             ->setRequired("Zadej alespoň jednu odpověď.")

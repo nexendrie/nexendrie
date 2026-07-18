@@ -32,7 +32,6 @@ final readonly class ThemesManager
         }
         /** @var array<string, array{name: string, deprecated?: bool, experimental?: bool}> $list */
         $list = Neon::decode($file);
-        /** @var \SplFileInfo $style */
         foreach (Finder::findFiles("*.css")->in($dir) as $style) {
             $key = $style->getBasename(".css");
             $value = $list[$key] ?? $key;
@@ -40,7 +39,9 @@ final readonly class ThemesManager
                 $styles[$key] = $key;
             } else {
                 $name = (string) $value[self::KEY_NAME];
+                /** @var bool $deprecated */
                 $deprecated = $value[self::KEY_DEPRECATED] ?? false;
+                /** @var bool $experimental */
                 $experimental = $value[self::KEY_EXPERIMENTAL] ?? false;
                 if ($deprecated) {
                     $name .= self::SUFFIX_DEPRECATED;

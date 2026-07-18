@@ -34,7 +34,7 @@ final class ProfilePresenter extends BasePresenter
     protected function startup(): void
     {
         parent::startup();
-        $this->cachingEnabled = in_array($this->action, $this->cacheableActions, true);
+        $this->cachingEnabled = in_array($this->getAction(), $this->cacheableActions, true);
     }
 
     /**

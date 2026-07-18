@@ -24,7 +24,7 @@ final readonly class OpenDepositAccountFormFactory
         $form = new Form();
         $form->addInteger("amount", "Částka:")
             ->setRequired("Zadej částku.")
-            ->addRule(Form::RANGE, "Částka musí být v rozmezí 1-$maxDeposit.", [1, $maxDeposit]);
+            ->addRule(Form::Range, "Částka musí být v rozmezí 1-$maxDeposit.", [1, $maxDeposit]);
         $term = new DateControl("Termín:");
         $term->setRequired("Zadej datum.");
         $term->addRule(static function (DateControl $datePicker): bool {

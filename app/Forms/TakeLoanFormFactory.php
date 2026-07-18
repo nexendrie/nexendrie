@@ -23,7 +23,7 @@ final readonly class TakeLoanFormFactory
         $form = new Form();
         $form->addInteger("amount", "Částka:")
             ->setRequired("Zadej částku.")
-            ->addRule(Form::MIN, "Částka musí být větší než 0.", 1);
+            ->addRule(Form::Min, "Částka musí být větší než 0.", 1);
         $form->addSubmit("submit", "Půjčit si");
         $form->onSuccess[] = $this->process(...);
         return $form;

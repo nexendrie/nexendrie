@@ -62,14 +62,14 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
             $key = \Nette\Utils\Random::generate(5);
         } while (isset($session[$key]));
 
-        $session[$key] = [$this->request];
+        $session[$key] = [$this->getRequest()];
         $session->setExpiration($expiration, $key);
         return $key;
     }
 
     protected function getFlashKey(): ?string
     {
-        $flashKey = $this->getParameter(self::FLASH_KEY);
+        $flashKey = $this->getParameter(self::FlashKey);
         return (is_string($flashKey) && $flashKey !== "") ? $flashKey : null;
     }
 
@@ -84,7 +84,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         unset($session[$key]);
         $request->setFlag(\Nette\Application\Request::RESTORED, true);
         $params = $request->getParameters();
-        $params[self::FLASH_KEY] = $this->getFlashKey();
+        $params[self::FlashKey] = $this->getFlashKey();
         $request->setParameters($params);
         $this->sendResponse(new \Nette\Application\Responses\ForwardResponse($request));
     }

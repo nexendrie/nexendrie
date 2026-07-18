@@ -24,7 +24,7 @@ final readonly class MonasteryDonateFormFactory
         $form = new Form();
         $form->addInteger("amount", "Množství:")
             ->setRequired("Zadej množství.")
-            ->addRule(Form::MIN, "Musíš darovat minimálně 1 groš.", 1);
+            ->addRule(Form::Min, "Musíš darovat minimálně 1 groš.", 1);
         $form->addSubmit("submit", "Darovat");
         $form->onSuccess[] = $this->process(...);
         return $form;

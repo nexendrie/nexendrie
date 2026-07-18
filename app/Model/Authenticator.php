@@ -77,10 +77,10 @@ final class Authenticator implements \Nette\Security\Authenticator
     {
         $user = $this->orm->users->getByEmail($email);
         if ($user === null) {
-            throw new AuthenticationException("E-mail not found.", self::IDENTITY_NOT_FOUND);
+            throw new AuthenticationException("E-mail not found.", self::IdentityNotFound);
         }
         if (!$this->passwords->verify($password, $user->password)) {
-            throw new AuthenticationException("Invalid password.", self::INVALID_CREDENTIAL);
+            throw new AuthenticationException("Invalid password.", self::InvalidCredential);
         }
         $user->lastActive = time();
         $this->orm->users->persistAndFlush($user);

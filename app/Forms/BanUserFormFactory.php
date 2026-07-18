@@ -29,7 +29,7 @@ final class BanUserFormFactory
             ->setRequired("Zadej zločin.");
         $form->addInteger("numberOfShifts", "Počet směn:")
             ->setRequired("Zadej počet směn.")
-            ->addRule(Form::RANGE, "Počet směn musí být v rozmezí 1-9999.", [1, 9999]);
+            ->addRule(Form::Range, "Počet směn musí být v rozmezí 1-9999.", [1, 9999]);
         $form->addSubmit("ban", "Uvěznit");
         $form->onSuccess[] = $this->process(...);
         return $form;

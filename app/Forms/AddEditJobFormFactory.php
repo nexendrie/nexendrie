@@ -35,7 +35,7 @@ final class AddEditJobFormFactory
         $form = new Form();
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25);
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 25 znaků.", 25);
         $form->addTextArea("description", "Popis:")
             ->setRequired("Zadej popis.")
             ->setOption("description", "Zobrazí se v seznamu prací.");
@@ -53,7 +53,7 @@ final class AddEditJobFormFactory
             ->setOption("description", "Délka 1 směny v minutách.");
         $form->addInteger("level", "Úroveň:")
             ->setRequired("Zadej úroveň.")
-            ->addRule(Form::RANGE, "Úroveň musí být v rozmezí 50-10000.", [50, 10000])
+            ->addRule(Form::Range, "Úroveň musí být v rozmezí 50-10000.", [50, 10000])
             ->setValue(50)
             ->setOption("description", "Minimální úroveň pro výkon práce.");
         $form->addSelect("neededSkill", "Dovednost:", $this->getSkills())
@@ -62,7 +62,7 @@ final class AddEditJobFormFactory
             ->setOption("description", "Dovednost nutná pro výkon práce, zvyšuje příjem.");
         $form->addInteger("neededSkillLevel", "Úroveň dovednosti:")
             ->setRequired("Zadej úroveň dovednosti.")
-            ->addRule(Form::RANGE, "Úroveň dovednosti musí být v rozmezí 0-5.", [0, 5])
+            ->addRule(Form::Range, "Úroveň dovednosti musí být v rozmezí 0-5.", [0, 5])
             ->setValue(0);
         $form->addSubmit("submit", "Odeslat");
         $form->onSuccess[] = $this->process(...);

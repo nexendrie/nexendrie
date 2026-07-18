@@ -25,15 +25,15 @@ final class AddEditMealFormFactory
         $form = new Form();
         $form->addText("name", "Jméno:")
             ->setRequired("Zadej jméno.")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 15 znaků.", 15);
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 15 znaků.", 15);
         $form->addTextArea("message", "Zpráva:")
             ->setRequired("Zadej zprávu.");
         $form->addInteger("price", "Cena:")
             ->setRequired("Zadej cenu.")
-            ->addRule(Form::RANGE, "Cena musí být v rozmezí 1-999.", [1, 999]);
+            ->addRule(Form::Range, "Cena musí být v rozmezí 1-999.", [1, 999]);
         $form->addInteger("life", "Efekt na život:")
             ->setRequired("Zadej efekt.")
-            ->addRule(Form::RANGE, "Efekt musí být v rozmezí -60 - 60.", [-60, 60]);
+            ->addRule(Form::Range, "Efekt musí být v rozmezí -60 - 60.", [-60, 60]);
         $form->addSubmit("submit", "Odeslat");
         $form->onSuccess[] = $this->process(...);
         if ($meal !== null) {

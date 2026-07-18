@@ -39,10 +39,10 @@ final readonly class LoginFormFactory
         try {
             $this->user->login($values["email"], $values["password"]);
         } catch (AuthenticationException $e) {
-            if ($e->getCode() === Authenticator::IDENTITY_NOT_FOUND) {
+            if ($e->getCode() === Authenticator::IdentityNotFound) {
                 $form->addError("Neplatný e-mail.");
             }
-            if ($e->getCode() === Authenticator::INVALID_CREDENTIAL) {
+            if ($e->getCode() === Authenticator::InvalidCredential) {
                 $form->addError("Neplatné heslo.");
             }
         }

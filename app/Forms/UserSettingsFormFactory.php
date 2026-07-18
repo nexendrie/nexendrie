@@ -31,7 +31,7 @@ final readonly class UserSettingsFormFactory
         $form = new Form();
         $form->addGroup("Účet");
         $form->addText("publicname", "Zobrazované jméno:")
-            ->addRule(Form::MAX_LENGTH, "Jméno může mít maximálně 25 znaků.", 25)
+            ->addRule(Form::MaxLength, "Jméno může mít maximálně 25 znaků.", 25)
             ->setRequired("Zadej jméno.");
         $form->addEmail("email", "E-mail:")
             ->setRequired("Zadej e-mail.");
@@ -42,12 +42,12 @@ final readonly class UserSettingsFormFactory
             ->setOption("description", "Současné a nové heslo vyplňujte jen pokud ho chcete změnit.");
         $passwordOld = $form->addPassword("password_old", "Současné heslo:");
         $passwordNew = $form->addPassword("password_new", "Nové heslo:");
-        $passwordOld->addConditionOn($passwordNew, Form::FILLED)
+        $passwordOld->addConditionOn($passwordNew, Form::Filled)
             ->setRequired("Musíš zadat současné heslo.");
         $form->addPassword("password_check", "Nové heslo (kontrola):")
-            ->addConditionOn($passwordNew, Form::FILLED)
+            ->addConditionOn($passwordNew, Form::Filled)
             ->setRequired("Musíš znovu zadat nové heslo.")
-            ->addRule(Form::EQUAL, "Hesla se neshodují.", $form["password_new"]);
+            ->addRule(Form::Equal, "Hesla se neshodují.", $form["password_new"]);
         $form->addGroup("Upozorňování")
             ->setOption("description", "Zapne upozorňování např. na nepřečtené zprávy. Nejdříve je třeba je povolit na účtu a po uložení změn zapnout v prohlížeči. Upozornění se zobrazí jen pokud máte otevřené tyto stránky.");
         $form->addCheckbox("notifications", "Povolit upozorňování na tomto účtu");

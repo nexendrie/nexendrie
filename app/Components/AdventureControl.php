@@ -61,7 +61,7 @@ final class AdventureControl extends \Nette\Application\UI\Control
         try {
             $this->model->startAdventure($adventure, $mount);
             /** @var \Nexendrie\Model\Authenticator $authenticator */
-            $authenticator = $this->user->authenticator;
+            $authenticator = $this->user->getAuthenticator();
             $authenticator->user = $this->user;
             $authenticator->refreshIdentity();
             $message = $this->localeModel->genderMessage("Vydal(a) jsi se na dobrodružství.");
@@ -104,7 +104,7 @@ final class AdventureControl extends \Nette\Application\UI\Control
         try {
             $this->model->finishAdventure();
             /** @var \Nexendrie\Model\Authenticator $authenticator */
-            $authenticator = $this->user->authenticator;
+            $authenticator = $this->user->getAuthenticator();
             $authenticator->user = $this->user;
             $authenticator->refreshIdentity();
             $this->presenter->redirect("Homepage:");
