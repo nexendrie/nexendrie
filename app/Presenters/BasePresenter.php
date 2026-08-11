@@ -113,7 +113,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         parent::startup();
         $style = $this->themesManager->getThemeFileUrl($this->getCurrentTheme());
         $this->template->style = $style;
-        if ($this->earlyHints && $this->getRequest()->isMethod('GET')) {
+        if ($this->earlyHints && $this->getRequest() !== null && $this->getRequest()->isMethod('GET')) {
             $linkHeader = "<$style>; rel=preload; as=style";
             $earlyScripts = $this->getEarlyScripts();
             foreach ($earlyScripts as $earlyScript) {
