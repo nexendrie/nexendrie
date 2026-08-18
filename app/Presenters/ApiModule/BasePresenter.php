@@ -49,9 +49,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     protected function shutdown(\Nette\Application\Response $response): void
     {
         parent::shutdown($response);
+        $this->user->logout(true);
         // do not send cookies with response, they are not (meant to be) used for authentication
         $this->getHttpResponse()->deleteHeader("Set-Cookie");
-        $this->user->logout(true);
     }
 
     /**
