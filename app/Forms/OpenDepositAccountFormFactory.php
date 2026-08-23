@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nette\Forms\Controls\DateTimeControl;
 use Nexendrie\Model\Bank;
-use Nextras\FormComponents\Controls\DateControl;
 
 /**
  *  Factory for form OpenDepositAccount
@@ -25,12 +25,11 @@ final readonly class OpenDepositAccountFormFactory
         $form->addInteger("amount", "Částka:")
             ->setRequired("Zadej částku.")
             ->addRule(Form::Range, "Částka musí být v rozmezí 1-$maxDeposit.", [1, $maxDeposit]);
-        $term = new DateControl("Termín:");
-        $term->setRequired("Zadej datum.");
-        $term->addRule(static function (DateControl $datePicker): bool {
-            return $datePicker->value->getTimestamp() > time();
-        }, "Datum nemůže být v minulosti.");
-        $form->addComponent($term, "term");
+        $form->addDate("term", "Termín:")
+            ->setRequired("Zadej datum.")
+            ->addRule(static function (DateTimeControl $datePicker): bool {
+                return $datePicker->value->getTimestamp() > time();
+            }, "Datum nemůže být v minulosti.");
         $form->addSubmit("submit", "Otevřít účet");
         $form->onSuccess[] = $this->process(...);
         return $form;

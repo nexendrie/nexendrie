@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a8c03e9400f577fdb285a6feffce91b",
+    "content-hash": "e8a31b0ca721742e77bc220561d850ba",
     "packages": [
         {
             "name": "eluceo/ical",
@@ -2174,73 +2174,6 @@
                 }
             ],
             "time": "2025-11-08T13:56:19+00:00"
-        },
-        {
-            "name": "nextras/form-components",
-            "version": "v2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nextras/form-components.git",
-                "reference": "b50849578f2a51e2a3c67983a24c90910f5cd79d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nextras/form-components/zipball/b50849578f2a51e2a3c67983a24c90910f5cd79d",
-                "reference": "b50849578f2a51e2a3c67983a24c90910f5cd79d",
-                "shasum": ""
-            },
-            "require": {
-                "nette/application": "~3.0",
-                "nette/component-model": "~3.0",
-                "nette/forms": "~3.1",
-                "nette/utils": "^3.0 || ^4.0",
-                "php": ">=8.0"
-            },
-            "require-dev": {
-                "latte/latte": "~3.0",
-                "nette/bootstrap": "~3.0",
-                "nette/di": "~3.0",
-                "nette/robot-loader": "~3.0",
-                "nette/tester": "~2.1",
-                "phpstan/phpstan": "^1.12",
-                "phpstan/phpstan-nette": "^1.3",
-                "tracy/tracy": "~2.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Nextras\\FormComponents\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT",
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Nextras Community",
-                    "homepage": "https://github.com/nextras/form-components/graphs/contributors"
-                }
-            ],
-            "description": "Form components for Nette Framework.",
-            "keywords": [
-                "components",
-                "form",
-                "nette"
-            ],
-            "support": {
-                "issues": "https://github.com/nextras/form-components/issues",
-                "source": "https://github.com/nextras/form-components/tree/v2.0.0"
-            },
-            "time": "2024-11-04T22:52:44+00:00"
         },
         {
             "name": "nextras/orm",

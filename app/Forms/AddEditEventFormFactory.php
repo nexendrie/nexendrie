@@ -5,7 +5,6 @@ namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
 use Nexendrie\Model\Events;
-use Nextras\FormComponents\Controls\DateTimeControl;
 
 /**
  * Factory for form AddEditEvent
@@ -28,13 +27,11 @@ final class AddEditEventFormFactory
             ->setRequired("Zadej jméno.");
         $form->addTextArea("description", "Popis:")
             ->setRequired("Zadej popis.");
-        $start = new DateTimeControl("Začátek:");
-        $start->setRequired("Zadej začátek.");
-        $form->addComponent($start, "start");
-        $end = new DateTimeControl("Konec:");
-        $end->setRequired("Zadej konec.");
-        $end->addRule(Form::Min, "Akce nemůže skončit před svým začátkem.", $form["start"]);
-        $form->addComponent($end, "end");
+        $form->addDateTime("start", "Začátek:")
+            ->setRequired("Zadej začátek.");
+        $form->addDateTime("end", "Konec:")
+            ->setRequired("Zadej konec.")
+            ->addRule(Form::Min, "Akce nemůže skončit před svým začátkem.", $form["start"]);
         $form->addInteger("adventuresBonus", "Bonus k dobrodružstvím:")
             ->setRequired()
             ->addRule(Form::Range, null, [0, 999]);

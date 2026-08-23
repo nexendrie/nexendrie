@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Nexendrie\Forms;
 
 use Nette\Application\UI\Form;
+use Nette\Forms\Controls\DateTimeControl;
 use Nexendrie\Orm\Marriage;
 use Nexendrie\Orm\Model as ORM;
-use Nextras\FormComponents\Controls\DateTimeControl;
 
 /**
  * Factory for form ChangeWeddingTerm
@@ -25,13 +25,12 @@ final class ChangeWeddingTermFormFactory
     {
         $this->marriage = $marriage;
         $form = new Form();
-        $term = new DateTimeControl("Nový termín:");
-        $term->setRequired("Zadej datum a čas.");
-        $term->setValue($marriage->term);
-        $term->addRule(static function (DateTimeControl $dateTimePicker): bool {
-            return $dateTimePicker->value->getTimestamp() > time();
-        }, "Datum nemůže být v minulosti.");
-        $form->addComponent($term, "term");
+        $form->addDateTime("term", "Nový termín:")
+            ->setRequired("Zadej datum a čas.")
+            ->setValue($marriage->term)
+            ->addRule(static function (DateTimeControl $dateTimePicker): bool {
+                return $dateTimePicker->value->getTimestamp() > time();
+            }, "Datum nemůže být v minulosti.");
         $form->addSubmit("submit", "Změnit");
         $form->onSuccess[] = $this->process(...);
         return $form;
