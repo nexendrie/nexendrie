@@ -61,12 +61,13 @@ During development, you can use the hot reloading feature. For that you need to 
 ```caddyfile
 nexendrie.localhost {
     root /var/www/html/nexendrie/www
-    php_server
-    hot_reload {
-        watch /var/www/html/nexendrie/app/**/*.php
-        watch /var/www/html/nexendrie/app/**/*.latte
-        watch /var/www/html/nexendrie/app/**/*.neon
-        watch /var/www/html/nexendrie/www
+    php_server {
+        hot_reload {
+            watch /var/www/html/nexendrie/app/**/*.php
+            watch /var/www/html/nexendrie/app/**/*.latte
+            watch /var/www/html/nexendrie/app/**/*.neon
+            watch /var/www/html/nexendrie/www
+        }
     }
     mercure {
         anonymous
