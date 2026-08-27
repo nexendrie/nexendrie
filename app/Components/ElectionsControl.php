@@ -65,12 +65,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control
             return false;
         }
         $votes = $this->getVotes((int) date("Y"), (int) date("n"));
-        foreach ($votes as $vote) {
-            if ($vote->voter->id === $this->user->id) {
-                return false;
-            }
-        }
-        return true;
+        return !array_any($votes->fetchAll(), fn (ElectionEntity $vote): bool => $vote->voter->id === $this->user->id);
     }
 
     /**
