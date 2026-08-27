@@ -37,19 +37,19 @@ final class ElectionsControl extends \Nette\Application\UI\Control
     /**
      * Get current state of elections
      */
-    private function getState(): string
+    private function getState(): ElectionsState
     {
         if ((int) date("j") <= 7) {
-            return "results";
+            return ElectionsState::Results;
         }
         $date = new \DateTime();
         $date->setDate((int) date("Y"), (int) date("n") + 1, 1);
         $date->setTime(0, 0, 0);
         $date->modify("-7 days");
         if (time() > $date->getTimestamp()) {
-            return "voting";
+            return ElectionsState::Voting;
         }
-        return "nothing";
+        return ElectionsState::Preparation;
     }
 
     /**
@@ -61,7 +61,7 @@ final class ElectionsControl extends \Nette\Application\UI\Control
             return false;
         } elseif ($this->model->getNumberOfCouncillors($this->town->id) === 0) {
             return false;
-        } elseif ($this->getState() !== "voting") {
+        } elseif ($this->getState() !== ElectionsState::Voting) {
             return false;
         }
         $votes = $this->getVotes((int) date("Y"), (int) date("n"));
@@ -105,12 +105,12 @@ final class ElectionsControl extends \Nette\Application\UI\Control
         $this->template->setFile(__DIR__ . "/elections.latte");
         $this->template->state = $this->getState();
         switch ($this->template->state) {
-            case "voting":
+            case ElectionsState::Voting:
                 $this->template->candidates = $this->model->getCandidates($this->town->id);
                 $this->template->councillors = $this->model->getNumberOfCouncillors($this->town->id);
                 $this->template->canVote = $this->canVote();
                 break;
-            case "results":
+            case ElectionsState::Results:
                 $this->template->results = $this->getResults();
                 break;
         }
