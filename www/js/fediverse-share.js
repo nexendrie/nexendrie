@@ -23,7 +23,7 @@ function fediverseShareSubmit(event) {
             break;
         case "friendica":
         case "diaspora":
-            window.open(`${instance}/bookmarklet?url=${url}&jump-doclose`);
+            window.open(`${instance}/bookmarklet?url=${url}&title=${title}&jump-doclose`);
             break;
         case "pleroma":
             window.open(`${instance}/share?message=${url}`);
