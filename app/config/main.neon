@@ -170,3 +170,4 @@ rss:
         - Nexendrie\Rss\Extensions\DublinCore
         - Nexendrie\Rss\Extensions\CommentApi
         - Nexendrie\Rss\Extensions\Content
+        - Nexendrie\Rss\Extensions\Slash

@@ -56,7 +56,7 @@ final readonly class Rss
             $items = $this->articleModel->listOfNews();
             foreach ($items as $row) {
                 $link = $this->linkGenerator->link("Front:Article:view", ["id" => $row->id,]);
-                $return[] = new Item([
+                $itemData = [
                     "title" => $row->title, "description" => $row->text, "link" => $link,
                     "pubDate" => (new DateTime())->setTimestamp($row->created),
                     "comments" => $link . "#comments", "dc:creator" => $row->author->publicname,
@@ -64,7 +64,12 @@ final readonly class Rss
                     "guid" => new Guid($link, true),
                     "wfw:commentRss" => $this->linkGenerator->link("Front:Rss:comments", ["id" => $row->id,]),
                     "content:encoded" => $row->text,
-                ]);
+                ];
+                $commentsCount = $row->commentsCount;
+                if ($commentsCount > 0) {
+                    $itemData["slash:comments"] = $commentsCount;
+                }
+                $return[] = new Item($itemData);
             }
             return $return;
         };
