@@ -13,12 +13,19 @@ stages:
   paths:
     - vendor/
 
+.phpstan_cache: &phpstan_cache
+    key: "phpstan-${CI_JOB_NAME}-${CI_COMMIT_REF_SLUG}"
+    policy: pull-push
+    paths:
+        - temp/.phpstan-cache/
+
 .test_job: &test_job
   stage: test
   services:
     - mariadb
   cache:
     <<: *default_cache
+    <<: *phpstan_cache
   variables:
     MYSQL_DATABASE: nexendrie
     MYSQL_ROOT_PASSWORD: root

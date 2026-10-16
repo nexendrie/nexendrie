@@ -25,3 +25,4 @@ parameters:
             identifier: phpDoc.parseError
         -
             identifier: ternary.shortNotAllowed
+    tmpDir: temp/.phpstan-cache
