@@ -138,6 +138,7 @@
           <arg value="."/>
           <arg value="--standard=vendor/nexendrie/code-quality/phpcs.xml"/>
           <arg value="-p"/>
+          <arg value="--cache=temp/.phpcs-cache"/>
         </exec>
       </then>
       <else>
@@ -146,6 +147,7 @@
           <arg value="."/>
           <arg value="--standard=vendor/nexendrie/code-quality/phpcs.xml"/>
           <arg value="-p"/>
+          <arg value="--cache=temp/.phpcs-cache"/>
           <arg value="--report-\\Micheh\\PhpCodeSniffer\\Report\\Gitlab=phpcs.json"/>
           <arg value="--basepath=."/>
         </exec>
