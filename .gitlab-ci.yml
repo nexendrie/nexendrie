@@ -9,20 +9,18 @@ stages:
   - deploy
 
 .default_cache: &default_cache
-  policy: pull
-  paths:
-    - vendor/
+    key: "vendor-${CI_COMMIT_REF_SLUG}"
+    fallback_keys:
+        - vendor-$CI_DEFAULT_BRANCH
+    policy: pull
+    paths:
+        - vendor/
 
-.phpstan_cache: &phpstan_cache
-    key: "phpstan-${CI_JOB_NAME}-${CI_COMMIT_REF_SLUG}"
+.tools_cache: &tools_cache
+    key: "tools-${CI_JOB_NAME}-${CI_COMMIT_REF_SLUG}"
     policy: pull-push
     paths:
         - temp/.phpstan-cache/
-
-.phpcs_cache: &phpcs_cache
-    key: "phpcs-${CI_JOB_NAME}-${CI_COMMIT_REF_SLUG}"
-    policy: pull-push
-    paths:
         - temp/.phpcs-cache
 
 .test_job: &test_job
@@ -30,9 +28,8 @@ stages:
   services:
     - mariadb
   cache:
-    <<: *default_cache
-    <<: *phpstan_cache
-    <<: *phpcs_cache
+      - <<: *default_cache
+      - <<: *tools_cache
   variables:
     MYSQL_DATABASE: nexendrie
     MYSQL_ROOT_PASSWORD: root
