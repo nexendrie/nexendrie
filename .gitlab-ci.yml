@@ -23,7 +23,7 @@ stages:
     key: "phpcs-${CI_JOB_NAME}-${CI_COMMIT_REF_SLUG}"
     policy: pull-push
     paths:
-        - temp/.phpstan-cache/
+        - temp/.phpcs-cache
 
 .test_job: &test_job
   stage: test
