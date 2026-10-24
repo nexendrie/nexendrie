@@ -26,12 +26,7 @@ stages:
 .test_job: &test_job
   stage: test
   services:
-    - name: mariadb
-      command: [
-          "--tmpfs=/var/lib/mysql:rw",
-          "--innodb-flush-log-at-trx-commit=0",
-          "--sync-binlog=0"
-      ]
+    - mariadb
   cache:
       - <<: *default_cache
       - <<: *tools_cache
